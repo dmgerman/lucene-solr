@@ -200,7 +200,7 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *<p>      * Parses a query which searches on the fields specified.      *<p>      * If x fields are specified, this effectively constructs:      *<pre>      *<code>      * ({field1}:{query}) ({field2}:{query}) ({field3}:{query})...({fieldx}:{query})      *</code>      *</pre>      *      * @param query Query string to parse      * @param fields Fields to search on      * @param analyzer Analyzer to use      * @throws ParserException if query parsing fails      * @throws TokenMgrError if query parsing fails      */
+comment|/**      *<p>      * Parses a query which searches on the fields specified.      *<p>      * If x fields are specified, this effectively constructs:      *<pre>      *<code>      * (field1:query) (field2:query) (field3:query)...(fieldx:query)      *</code>      *</pre>      *      * @param query Query string to parse      * @param fields Fields to search on      * @param analyzer Analyzer to use      * @throws ParserException if query parsing fails      * @throws TokenMgrError if query parsing fails      */
 DECL|method|parse
 specifier|public
 specifier|static
@@ -275,7 +275,7 @@ return|return
 name|bQuery
 return|;
 block|}
-comment|/**      *<p>      * Parses a query, searching on the fields specified.      * Use this if you need to specify certain fields as required,      * and others as prohibited.      *<p><pre>      * Usage:      *<code>      * String[] fields = {"filename", "contents", "description"};      * int[] flags = {MultiFieldQueryParser.NORMAL FIELD,      *                MultiFieldQueryParser.REQUIRED FIELD,      *                MultiFieldQueryParser.PROHIBITED FIELD,};      * parse(query, fields, flags, analyzer);      *</code>      *</pre>      *<p>      * The code above would construct a query:      *<pre>      *<code>      * (filename:{query}) +(contents:{query}) -(description:{query})      *</code>      *</pre>      *      * @param query Query string to parse      * @param fields Fields to search on      * @param flags Flags describing the fields      * @param analyzer Analyzer to use      * @throws ParserException if query parsing fails      * @throws TokenMgrError if query parsing fails      */
+comment|/**      *<p>      * Parses a query, searching on the fields specified.      * Use this if you need to specify certain fields as required,      * and others as prohibited.      *<p><pre>      * Usage:      *<code>      * String[] fields = {"filename", "contents", "description"};      * int[] flags = {MultiFieldQueryParser.NORMAL FIELD,      *                MultiFieldQueryParser.REQUIRED FIELD,      *                MultiFieldQueryParser.PROHIBITED FIELD,};      * parse(query, fields, flags, analyzer);      *</code>      *</pre>      *<p>      * The code above would construct a query:      *<pre>      *<code>      * (filename:query) +(contents:query) -(description:query)      *</code>      *</pre>      *      * @param query Query string to parse      * @param fields Fields to search on      * @param flags Flags describing the fields      * @param analyzer Analyzer to use      * @throws ParserException if query parsing fails      * @throws TokenMgrError if query parsing fails      */
 DECL|method|parse
 specifier|public
 specifier|static
