@@ -458,6 +458,24 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
+literal|"türm term term"
+argument_list|,
+literal|null
+argument_list|,
+literal|"türm term term"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"ümlaut"
+argument_list|,
+literal|null
+argument_list|,
+literal|"ümlaut"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
 literal|"term term1 term2"
 argument_list|,
 literal|null
@@ -621,6 +639,15 @@ expr_stmt|;
 name|assertQueryEquals
 argument_list|(
 literal|"term^2.0"
+argument_list|,
+literal|null
+argument_list|,
+literal|"term^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term^2"
 argument_list|,
 literal|null
 argument_list|,
