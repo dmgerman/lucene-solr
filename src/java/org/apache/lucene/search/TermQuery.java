@@ -74,7 +74,6 @@ end_comment
 
 begin_class
 DECL|class|TermQuery
-specifier|final
 specifier|public
 class|class
 name|TermQuery

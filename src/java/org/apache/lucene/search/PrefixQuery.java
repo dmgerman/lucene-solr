@@ -88,7 +88,6 @@ end_comment
 
 begin_class
 DECL|class|PrefixQuery
-specifier|final
 specifier|public
 class|class
 name|PrefixQuery

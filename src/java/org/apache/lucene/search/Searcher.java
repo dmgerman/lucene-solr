@@ -54,8 +54,22 @@ name|Term
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
 begin_comment
-comment|/** The abstract base class for search implementations.<p>Subclasses implement search over a single index, over multiple indices,   and over indices on remote servers.  */
+comment|/** The abstract base class for search implementations.  *  *<p>Subclasses implement search over a single index, over multiple indices,  * and over indices on remote servers.  */
 end_comment
 
 begin_class
@@ -64,6 +78,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Searcher
+implements|implements
+name|Searchable
 block|{
 comment|/** Returns the documents matching<code>query</code>. */
 DECL|method|search
@@ -145,84 +161,6 @@ name|results
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    */
-DECL|method|search
-specifier|public
-specifier|abstract
-name|void
-name|search
-parameter_list|(
-name|Query
-name|query
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|HitCollector
-name|results
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Frees resources associated with this Searcher. */
-DECL|method|close
-specifier|abstract
-specifier|public
-name|void
-name|close
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|docFreq
-specifier|abstract
-name|int
-name|docFreq
-parameter_list|(
-name|Term
-name|term
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|maxDoc
-specifier|abstract
-name|int
-name|maxDoc
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|search
-specifier|abstract
-name|TopDocs
-name|search
-parameter_list|(
-name|Query
-name|query
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|int
-name|n
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** For use by {@link HitCollector} implementations. */
-DECL|method|doc
-specifier|public
-specifier|abstract
-name|Document
-name|doc
-parameter_list|(
-name|int
-name|i
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 block|}
 end_class
 

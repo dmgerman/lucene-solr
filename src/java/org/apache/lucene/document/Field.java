@@ -274,7 +274,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/** The name of the field (e.g., "date", "subject", "title", "body", etc.)     as an interned string. */
+comment|/** The name of the field (e.g., "date", "subject", "title", or "body")     as an interned string. */
 DECL|method|name
 specifier|public
 name|String

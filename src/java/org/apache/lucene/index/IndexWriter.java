@@ -175,7 +175,6 @@ end_comment
 begin_class
 DECL|class|IndexWriter
 specifier|public
-specifier|final
 class|class
 name|IndexWriter
 block|{
@@ -405,7 +404,6 @@ block|}
 comment|/** Flushes all changes to an index, closes all associated files, and closes     the directory that the index is stored in. */
 DECL|method|close
 specifier|public
-specifier|final
 specifier|synchronized
 name|void
 name|close
@@ -440,7 +438,6 @@ block|}
 comment|/** Release the write lock, if needed. */
 DECL|method|finalize
 specifier|protected
-specifier|final
 name|void
 name|finalize
 parameter_list|()
@@ -469,7 +466,6 @@ block|}
 comment|/** Returns the number of documents currently in this index. */
 DECL|method|docCount
 specifier|public
-specifier|final
 specifier|synchronized
 name|int
 name|docCount
@@ -530,7 +526,6 @@ decl_stmt|;
 comment|/** Adds a document to this index.*/
 DECL|method|addDocument
 specifier|public
-specifier|final
 name|void
 name|addDocument
 parameter_list|(
@@ -648,7 +643,6 @@ decl_stmt|;
 comment|/** Merges all segments together into a single segment, optimizing an index       for search. */
 DECL|method|optimize
 specifier|public
-specifier|final
 specifier|synchronized
 name|void
 name|optimize
@@ -729,7 +723,6 @@ block|}
 comment|/** Merges all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing.  A large document    * collection can be broken into sub-collections.  Each sub-collection can be    * indexed in parallel, on a different thread, process or machine.  The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>After this completes, the index is optimized. */
 DECL|method|addIndexes
 specifier|public
-specifier|final
 specifier|synchronized
 name|void
 name|addIndexes

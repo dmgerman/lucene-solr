@@ -89,7 +89,6 @@ end_comment
 begin_class
 DECL|class|RangeQuery
 specifier|public
-specifier|final
 class|class
 name|RangeQuery
 extends|extends

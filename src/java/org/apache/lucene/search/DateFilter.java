@@ -123,7 +123,6 @@ end_comment
 begin_class
 DECL|class|DateFilter
 specifier|public
-specifier|final
 class|class
 name|DateFilter
 extends|extends
@@ -394,7 +393,6 @@ return|;
 block|}
 comment|/** Returns a BitSet with true for documents which should be permitted in     search results, and false for those that should not. */
 DECL|method|bits
-specifier|final
 specifier|public
 name|BitSet
 name|bits
@@ -545,7 +543,6 @@ end_class
 begin_function
 DECL|method|toString
 specifier|public
-specifier|final
 name|String
 name|toString
 parameter_list|()

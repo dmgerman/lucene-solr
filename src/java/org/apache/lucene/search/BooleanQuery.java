@@ -56,7 +56,6 @@ end_comment
 
 begin_class
 DECL|class|BooleanQuery
-specifier|final
 specifier|public
 class|class
 name|BooleanQuery
@@ -81,7 +80,6 @@ block|{}
 comment|/** Adds a clause to a boolean query.  Clauses may be:<ul><li><code>required</code> which means that documents which<i>do not</i>     match this sub-query will<i>not</i> match the boolean query;<li><code>prohibited</code> which means that documents which<i>do</i>     match this sub-query will<i>not</i> match the boolean query; or<li>neither, in which case matched documents are neither prohibited from     nor required to match the sub-query.</ul>     It is an error to specify a clause as both<code>required</code> and<code>prohibited</code>.     */
 DECL|method|add
 specifier|public
-specifier|final
 name|void
 name|add
 parameter_list|(
@@ -114,7 +112,6 @@ block|}
 comment|/** Adds a clause to a boolean query. */
 DECL|method|add
 specifier|public
-specifier|final
 name|void
 name|add
 parameter_list|(
@@ -181,7 +178,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|sumOfSquaredWeights
-specifier|final
 name|float
 name|sumOfSquaredWeights
 parameter_list|(
@@ -252,7 +248,6 @@ name|sum
 return|;
 block|}
 DECL|method|normalize
-specifier|final
 name|void
 name|normalize
 parameter_list|(
@@ -310,7 +305,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|scorer
-specifier|final
 name|Scorer
 name|scorer
 parameter_list|(
