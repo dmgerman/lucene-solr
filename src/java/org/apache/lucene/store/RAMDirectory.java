@@ -30,6 +30,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Vector
@@ -99,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A memory-resident {@link Directory} implementation. */
+comment|/**  * A memory-resident {@link Directory} implementation.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -125,13 +135,13 @@ specifier|public
 name|RAMDirectory
 parameter_list|()
 block|{   }
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *    * @param d a<code>Directory</code> value    * @exception IOException if an error occurs    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
 parameter_list|(
 name|Directory
-name|d
+name|dir
 parameter_list|)
 throws|throws
 name|IOException
@@ -141,7 +151,7 @@ name|String
 index|[]
 name|ar
 init|=
-name|d
+name|dir
 operator|.
 name|list
 argument_list|()
@@ -179,7 +189,7 @@ comment|// read current file
 name|InputStream
 name|is
 init|=
-name|d
+name|dir
 operator|.
 name|openFile
 argument_list|(
@@ -243,6 +253,54 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>File</code> specifying the index directory    */
+DECL|method|RAMDirectory
+specifier|public
+name|RAMDirectory
+parameter_list|(
+name|File
+name|dir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+name|dir
+argument_list|,
+literal|false
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>String</code> specifying the full index directory path    */
+DECL|method|RAMDirectory
+specifier|public
+name|RAMDirectory
+parameter_list|(
+name|String
+name|dir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+name|dir
+argument_list|,
+literal|false
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Returns an array of strings, one for each file in the directory. */
 DECL|method|list
