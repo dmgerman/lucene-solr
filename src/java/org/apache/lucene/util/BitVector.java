@@ -79,9 +79,8 @@ specifier|final
 class|class
 name|BitVector
 block|{
-comment|/** This is public just so that methods will inline.  Please don't touch.*/
 DECL|field|bits
-specifier|public
+specifier|private
 name|byte
 index|[]
 name|bits
