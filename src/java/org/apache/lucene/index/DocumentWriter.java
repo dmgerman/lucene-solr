@@ -350,6 +350,18 @@ argument_list|()
 index|]
 expr_stmt|;
 comment|// init fieldLengths
+name|fieldPositions
+operator|=
+operator|new
+name|int
+index|[
+name|fieldInfos
+operator|.
+name|size
+argument_list|()
+index|]
+expr_stmt|;
+comment|// init fieldPositions
 name|fieldBoosts
 operator|=
 operator|new
@@ -423,6 +435,12 @@ name|int
 index|[]
 name|fieldLengths
 decl_stmt|;
+DECL|field|fieldPositions
+specifier|private
+name|int
+index|[]
+name|fieldPositions
+decl_stmt|;
 DECL|field|fieldBoosts
 specifier|private
 name|float
@@ -488,9 +506,18 @@ name|fieldName
 argument_list|)
 decl_stmt|;
 name|int
-name|position
+name|length
 init|=
 name|fieldLengths
+index|[
+name|fieldNumber
+index|]
+decl_stmt|;
+comment|// length of field
+name|int
+name|position
+init|=
+name|fieldPositions
 index|[
 name|fieldNumber
 index|]
@@ -526,6 +553,9 @@ argument_list|,
 name|position
 operator|++
 argument_list|)
+expr_stmt|;
+name|length
+operator|++
 expr_stmt|;
 block|}
 else|else
@@ -642,7 +672,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|position
+operator|++
+name|length
 operator|>
 name|maxFieldLength
 condition|)
@@ -663,9 +694,17 @@ index|[
 name|fieldNumber
 index|]
 operator|=
-name|position
+name|length
 expr_stmt|;
 comment|// save field length
+name|fieldPositions
+index|[
+name|fieldNumber
+index|]
+operator|=
+name|position
+expr_stmt|;
+comment|// save field position
 name|fieldBoosts
 index|[
 name|fieldNumber
