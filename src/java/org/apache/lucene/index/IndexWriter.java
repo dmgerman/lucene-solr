@@ -755,7 +755,7 @@ return|return
 name|maxFieldLength
 return|;
 block|}
-comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is 10.    */
+comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is 10.    *     * @throws IllegalArgumentException if maxBufferedDocs is smaller than 1     */
 DECL|method|setMaxBufferedDocs
 specifier|public
 name|void
@@ -765,6 +765,19 @@ name|int
 name|maxBufferedDocs
 parameter_list|)
 block|{
+if|if
+condition|(
+name|maxBufferedDocs
+operator|<
+literal|1
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxBufferedDocs must at least be 1"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|minMergeDocs
