@@ -265,6 +265,13 @@ argument_list|)
 expr_stmt|;
 name|add
 argument_list|(
+literal|"bluebird foobar pizza"
+argument_list|,
+name|writer
+argument_list|)
+expr_stmt|;
+name|add
+argument_list|(
 literal|"piccadilly circus"
 argument_list|,
 name|writer
@@ -646,6 +653,34 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// test slop:
+name|query3
+operator|.
+name|setSlop
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|searcher
+operator|.
+name|search
+argument_list|(
+name|query3
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|3
+argument_list|,
+name|result
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// blueberry pizza, bluebird pizza, bluebird foobar pizza
 name|MultiPhraseQuery
 name|query4
 init|=
@@ -693,6 +728,16 @@ parameter_list|)
 block|{
 comment|// okay, all terms must belong to the same field
 block|}
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|indexStore
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|add
 specifier|private
