@@ -113,9 +113,10 @@ name|RussianAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|// letters
+comment|// letters (currently unused letters are commented out)
 DECL|field|A
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|A
@@ -124,6 +125,7 @@ literal|0
 decl_stmt|;
 DECL|field|B
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|B
@@ -132,6 +134,7 @@ literal|1
 decl_stmt|;
 DECL|field|V
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|V
@@ -140,6 +143,7 @@ literal|2
 decl_stmt|;
 DECL|field|G
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|G
@@ -148,6 +152,7 @@ literal|3
 decl_stmt|;
 DECL|field|D
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|D
@@ -156,6 +161,7 @@ literal|4
 decl_stmt|;
 DECL|field|E
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|E
@@ -164,6 +170,7 @@ literal|5
 decl_stmt|;
 DECL|field|ZH
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|ZH
@@ -172,6 +179,7 @@ literal|6
 decl_stmt|;
 DECL|field|Z
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|Z
@@ -180,6 +188,7 @@ literal|7
 decl_stmt|;
 DECL|field|I
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|I
@@ -188,6 +197,7 @@ literal|8
 decl_stmt|;
 DECL|field|I_
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|I_
@@ -196,6 +206,7 @@ literal|9
 decl_stmt|;
 DECL|field|K
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|K
@@ -204,6 +215,7 @@ literal|10
 decl_stmt|;
 DECL|field|L
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|L
@@ -212,6 +224,7 @@ literal|11
 decl_stmt|;
 DECL|field|M
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|M
@@ -220,6 +233,7 @@ literal|12
 decl_stmt|;
 DECL|field|N
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|N
@@ -228,6 +242,7 @@ literal|13
 decl_stmt|;
 DECL|field|O
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|O
@@ -236,6 +251,7 @@ literal|14
 decl_stmt|;
 DECL|field|P
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|P
@@ -244,6 +260,7 @@ literal|15
 decl_stmt|;
 DECL|field|R
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|R
@@ -252,6 +269,7 @@ literal|16
 decl_stmt|;
 DECL|field|S
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|S
@@ -260,6 +278,7 @@ literal|17
 decl_stmt|;
 DECL|field|T
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|T
@@ -268,24 +287,27 @@ literal|18
 decl_stmt|;
 DECL|field|U
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|U
 init|=
 literal|19
 decl_stmt|;
-comment|//private static char F = 20;
+comment|//private final static char F = 20;
 DECL|field|X
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|X
 init|=
 literal|21
 decl_stmt|;
-comment|//private static char TS = 22;
+comment|//private final static char TS = 22;
 DECL|field|CH
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|CH
@@ -294,6 +316,7 @@ literal|23
 decl_stmt|;
 DECL|field|SH
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|SH
@@ -302,15 +325,17 @@ literal|24
 decl_stmt|;
 DECL|field|SHCH
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|SHCH
 init|=
 literal|25
 decl_stmt|;
-comment|//private static char HARD = 26;
+comment|//private final static char HARD = 26;
 DECL|field|Y
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|Y
@@ -319,6 +344,7 @@ literal|27
 decl_stmt|;
 DECL|field|SOFT
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|SOFT
@@ -327,6 +353,7 @@ literal|28
 decl_stmt|;
 DECL|field|AE
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|AE
@@ -335,6 +362,7 @@ literal|29
 decl_stmt|;
 DECL|field|IU
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|IU
@@ -343,6 +371,7 @@ literal|30
 decl_stmt|;
 DECL|field|IA
 specifier|private
+specifier|final
 specifier|static
 name|char
 name|IA
@@ -1312,7 +1341,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-comment|// translate the word,using the charset
+comment|// translate the word, using the charset
 name|StringBuffer
 name|theWord
 init|=
