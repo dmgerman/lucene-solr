@@ -224,7 +224,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|testCase
+name|TestCase
 operator|.
 name|assertEquals
 argument_list|(
