@@ -233,6 +233,14 @@ name|FuzzyQuery
 operator|.
 name|defaultMinSimilarity
 decl_stmt|;
+DECL|field|fuzzyPrefixLength
+name|int
+name|fuzzyPrefixLength
+init|=
+name|FuzzyQuery
+operator|.
+name|defaultPrefixLength
+decl_stmt|;
 DECL|field|locale
 name|Locale
 name|locale
@@ -405,7 +413,7 @@ return|return
 name|field
 return|;
 block|}
-comment|/**    * Get the default minimal similarity for fuzzy queries.    */
+comment|/**    * Get the minimal similarity for fuzzy queries.    */
 DECL|method|getFuzzyMinSim
 specifier|public
 name|float
@@ -416,7 +424,7 @@ return|return
 name|fuzzyMinSim
 return|;
 block|}
-comment|/**    *Set the default minimum similarity for fuzzy queries.    */
+comment|/**    * Set the minimum similarity for fuzzy queries.    * Default is 0.5f.    */
 DECL|method|setFuzzyMinSim
 specifier|public
 name|void
@@ -431,6 +439,34 @@ operator|.
 name|fuzzyMinSim
 operator|=
 name|fuzzyMinSim
+expr_stmt|;
+block|}
+comment|/**    * Get the prefix length for fuzzy queries.     * @return Returns the fuzzyPrefixLength.    */
+DECL|method|getFuzzyPrefixLength
+specifier|public
+name|int
+name|getFuzzyPrefixLength
+parameter_list|()
+block|{
+return|return
+name|fuzzyPrefixLength
+return|;
+block|}
+comment|/**    * Set the prefix length for fuzzy queries. Default is 2.    * @param fuzzyPrefixLength The fuzzyPrefixLength to set.    */
+DECL|method|setFuzzyPrefixLength
+specifier|public
+name|void
+name|setFuzzyPrefixLength
+parameter_list|(
+name|int
+name|fuzzyPrefixLength
+parameter_list|)
+block|{
+name|this
+operator|.
+name|fuzzyPrefixLength
+operator|=
+name|fuzzyPrefixLength
 expr_stmt|;
 block|}
 comment|/**    * Sets the default slop for phrases.  If zero, then exact phrase matches    * are required.  Default value is zero.    */
@@ -1405,6 +1441,8 @@ argument_list|(
 name|t
 argument_list|,
 name|minSimilarity
+argument_list|,
+name|fuzzyPrefixLength
 argument_list|)
 return|;
 block|}
