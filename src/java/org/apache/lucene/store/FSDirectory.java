@@ -419,6 +419,37 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|lockDir
+operator|.
+name|exists
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+if|if
+condition|(
+name|lockDir
+operator|.
+name|mkdirs
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot create lock directory: "
+operator|+
+name|lockDir
+argument_list|)
+throw|;
+block|}
+block|}
+if|if
+condition|(
 name|create
 condition|)
 name|create
@@ -471,7 +502,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Cannot create directory: "
+literal|"Cannot create lock directory: "
 operator|+
 name|directory
 argument_list|)
@@ -529,7 +560,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"couldn't delete "
+literal|"Cannot delete "
 operator|+
 name|files
 index|[
@@ -612,7 +643,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"couldn't delete "
+literal|"Cannot delete "
 operator|+
 name|files
 index|[
@@ -838,7 +869,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"couldn't delete "
+literal|"Cannot delete "
 operator|+
 name|name
 argument_list|)
@@ -903,7 +934,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"couldn't delete "
+literal|"Cannot delete "
 operator|+
 name|to
 argument_list|)
@@ -1025,7 +1056,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"couldn't rename "
+literal|"Cannot rename "
 operator|+
 name|from
 operator|+
@@ -1062,7 +1093,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"could not close input stream: "
+literal|"Cannot close input stream: "
 operator|+
 name|e
 operator|.
@@ -1097,7 +1128,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"could not close output stream: "
+literal|"Cannot close output stream: "
 operator|+
 name|e
 operator|.
