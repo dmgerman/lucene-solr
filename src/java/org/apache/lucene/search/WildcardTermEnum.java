@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Subclass of FilteredTermEnum for enumerating all terms that match the specified wildcard filter term.<p>Term enumerations are always ordered by Term.compareTo().  Each term in   the enumeration is greater than all that precede it.  */
+comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified wildcard filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
 end_comment
 
 begin_class
@@ -364,6 +364,7 @@ name|WILDCARD_CHAR
 init|=
 literal|'?'
 decl_stmt|;
+comment|/**      * Determines if a word matches a wildcard pattern.      *<small>Work released by Granta Design Ltd after originally being done on      * company time.</small>      */
 DECL|method|wildcardEquals
 specifier|public
 specifier|static
@@ -411,6 +412,7 @@ operator|++
 name|s
 control|)
 block|{
+comment|// End of string yet?
 name|boolean
 name|sEnd
 init|=
@@ -423,6 +425,7 @@ name|length
 argument_list|()
 operator|)
 decl_stmt|;
+comment|// End of pattern yet?
 name|boolean
 name|pEnd
 init|=
@@ -435,22 +438,99 @@ name|length
 argument_list|()
 operator|)
 decl_stmt|;
+comment|// If we're looking at the end of the string...
 if|if
 condition|(
 name|sEnd
-operator|&&
-name|pEnd
 condition|)
+block|{
+comment|// Assume the only thing left on the pattern is/are wildcards
+name|boolean
+name|justWildcardsLeft
+init|=
+literal|true
+decl_stmt|;
+comment|// Current wildcard position
+name|int
+name|wildcardSearchPos
+init|=
+name|p
+decl_stmt|;
+comment|// While we haven't found the end of the pattern,
+comment|// and haven't encountered any non-wildcard characters
+while|while
+condition|(
+name|wildcardSearchPos
+operator|<
+name|pattern
+operator|.
+name|length
+argument_list|()
+operator|&&
+name|justWildcardsLeft
+condition|)
+block|{
+comment|// Check the character at the current position
+name|char
+name|wildchar
+init|=
+name|pattern
+operator|.
+name|charAt
+argument_list|(
+name|wildcardSearchPos
+argument_list|)
+decl_stmt|;
+comment|// If it's not a wildcard character, then there is more
+comment|// pattern information after this/these wildcards.
+if|if
+condition|(
+name|wildchar
+operator|!=
+name|WILDCARD_CHAR
+operator|&&
+name|wildchar
+operator|!=
+name|WILDCARD_STRING
+condition|)
+block|{
+name|justWildcardsLeft
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Look at the next character
+name|wildcardSearchPos
+operator|++
+expr_stmt|;
+block|}
+block|}
+comment|// This was a prefix wildcard search, and we've matched, so
+comment|// return true.
+if|if
+condition|(
+name|justWildcardsLeft
+condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+block|}
+comment|// If we've gone past the end of the string, or the pattern,
+comment|// return false.
 if|if
 condition|(
 name|sEnd
 operator|||
 name|pEnd
 condition|)
+block|{
 break|break;
+block|}
+comment|// Match a single character, so continue.
 if|if
 condition|(
 name|pattern
@@ -462,7 +542,10 @@ argument_list|)
 operator|==
 name|WILDCARD_CHAR
 condition|)
+block|{
 continue|continue;
+block|}
+comment|//
 if|if
 condition|(
 name|pattern
@@ -475,16 +558,16 @@ operator|==
 name|WILDCARD_STRING
 condition|)
 block|{
-name|int
-name|i
-decl_stmt|;
+comment|// Look at the character beyond the '*'.
 operator|++
 name|p
 expr_stmt|;
+comment|// Examine the string, starting at the last character.
 for|for
 control|(
+name|int
 name|i
-operator|=
+init|=
 name|string
 operator|.
 name|length
@@ -497,6 +580,7 @@ condition|;
 operator|--
 name|i
 control|)
+block|{
 if|if
 condition|(
 name|wildcardEquals
@@ -510,9 +594,12 @@ argument_list|,
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+block|}
 break|break;
 block|}
 if|if
@@ -531,7 +618,9 @@ argument_list|(
 name|s
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 block|}
 return|return
 literal|false
