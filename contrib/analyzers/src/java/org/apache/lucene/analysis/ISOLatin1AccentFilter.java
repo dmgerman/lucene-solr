@@ -42,7 +42,6 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * To replace accented characters by unaccented equivalents. 	 */
 DECL|method|next
 specifier|public
 specifier|final
@@ -79,7 +78,7 @@ return|return
 operator|new
 name|Token
 argument_list|(
-name|RemoveAccents
+name|removeAccents
 argument_list|(
 name|t
 operator|.
@@ -105,12 +104,12 @@ argument_list|)
 return|;
 block|}
 comment|/** 	 * To replace accented characters in a String by unaccented equivalents. 	 */
-DECL|method|RemoveAccents
+DECL|method|removeAccents
 specifier|public
 specifier|final
 specifier|static
 name|String
-name|RemoveAccents
+name|removeAccents
 parameter_list|(
 name|String
 name|input
