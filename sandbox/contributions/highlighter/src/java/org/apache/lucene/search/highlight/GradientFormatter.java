@@ -547,7 +547,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getForegroundColorString
-specifier|private
+specifier|protected
 name|String
 name|getForegroundColorString
 parameter_list|(
@@ -643,7 +643,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getBackgroundColorString
-specifier|private
+specifier|protected
 name|String
 name|getBackgroundColorString
 parameter_list|(
