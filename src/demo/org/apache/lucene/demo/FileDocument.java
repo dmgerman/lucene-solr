@@ -143,16 +143,14 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// Add the path of the file as a field named "path".  Use a
-comment|// Keyword field, so that it's searchable, but so that no attempt is made
-comment|// to tokenize the field into words.
+comment|// Add the path of the file as a field named "path".  Use a field that is
+comment|// indexed (i.e. searchable), but don't tokenize the field into words.
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Keyword
 argument_list|(
 literal|"path"
 argument_list|,
@@ -160,19 +158,30 @@ name|f
 operator|.
 name|getPath
 argument_list|()
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Add the last modified date of the file a field named "modified".  Use a
-comment|// Keyword field, so that it's searchable, but so that no attempt is made
-comment|// to tokenize the field into words.
+comment|// Add the last modified date of the file a field named "modified".  Use
+comment|// a field that is indexed (i.e. searchable), but don't tokenize the field
+comment|// into words.
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Keyword
 argument_list|(
 literal|"modified"
 argument_list|,
@@ -185,11 +194,23 @@ operator|.
 name|lastModified
 argument_list|()
 argument_list|)
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Add the contents of the file a field named "contents".  Use a Text
-comment|// field, specifying a Reader, so that the text of the file is tokenized.
+comment|// Add the contents of the file to a field named "contents".  Specify a Reader,
+comment|// so that the text of the file is tokenized and indexed, but not stored.
 comment|// ?? why doesn't FileReader work here ??
 name|FileInputStream
 name|is
@@ -217,9 +238,8 @@ name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Text
 argument_list|(
 literal|"contents"
 argument_list|,
