@@ -82,6 +82,20 @@ name|URL
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * this special kind of task queue reorders the incoming tasks so that every subsequent  * task is for a different host.  * This is done by a "HashedCircularLinkedList" which allows random adding while  * a differnet thread iterates through the collection circularly.  *  * @author    Clemens Marschner  * @created   23. November 2001  * @version $Id$  */
 end_comment
@@ -119,8 +133,18 @@ comment|/**      * Constructor for the FetcherTaskQueue object. Does nothing    
 DECL|method|FetcherTaskQueue
 specifier|public
 name|FetcherTaskQueue
-parameter_list|()
-block|{ }
+parameter_list|(
+name|HostManager
+name|manager
+parameter_list|)
+block|{
+name|this
+operator|.
+name|manager
+operator|=
+name|manager
+expr_stmt|;
+block|}
 comment|/**      * true if no task is queued      *      * @return   The empty value      */
 DECL|method|isEmpty
 specifier|public
@@ -274,6 +298,10 @@ name|size
 argument_list|()
 return|;
 block|}
+DECL|field|manager
+name|HostManager
+name|manager
+decl_stmt|;
 comment|/**      * get the next task. warning: not synchronized      *      * @return   Description of the Return Value      */
 DECL|method|remove
 specifier|public
@@ -283,6 +311,11 @@ parameter_list|()
 block|{
 name|FetcherTask
 name|t
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|start
 init|=
 literal|null
 decl_stmt|;
@@ -296,6 +329,8 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|//            while(true)
+comment|//            {
 name|Queue
 name|q
 init|=
@@ -307,6 +342,41 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+name|String
+name|host
+init|=
+operator|(
+name|String
+operator|)
+name|servers
+operator|.
+name|getCurrentKey
+argument_list|()
+decl_stmt|;
+comment|//                if(start == null)
+comment|//                {
+comment|//                    start = host;
+comment|//                }
+comment|//                else if(host.equals(start))
+comment|//                {
+comment|//                    System.out.println("FetcherTaskQueue: all hosts busy. waiting 1sec");
+comment|//                    try
+comment|//                    {
+comment|//                        Thread.sleep(1000);
+comment|//                    }
+comment|//                    catch(InterruptedException e)
+comment|//                    {
+comment|//                        break;
+comment|//                    }
+comment|//                }
+comment|//                HostInfo hInfo = manager.getHostInfo(host);
+comment|//                System.out.println("getting sync on " + hInfo.getHostName());
+comment|//                synchronized(hInfo.getLockMonitor())
+comment|//                {
+comment|//                    if(!hInfo.isBusy())
+comment|//                    {
+comment|//                        System.out.println("FetcherTaskQueue: host " + host + " ok");
+comment|//                        hInfo.obtainLock(); // decreased in FetcherTask
 comment|// assert(q != null&& q.size()> 0)
 name|t
 operator|=
@@ -341,6 +411,14 @@ block|}
 name|size
 operator|--
 expr_stmt|;
+comment|//                        break;
+comment|//                    }
+comment|//                    else
+comment|//                    {
+comment|//                        System.out.println("FetcherTaskQueue: host " + host + " is busy. next...");
+comment|//                    }
+comment|//                }
+comment|//            }
 block|}
 return|return
 name|t
@@ -358,924 +436,70 @@ name|args
 index|[]
 parameter_list|)
 block|{
-name|FetcherTaskQueue
-name|q
-init|=
-operator|new
-name|FetcherTaskQueue
-argument_list|()
-decl_stmt|;
-name|de
-operator|.
-name|lanlab
-operator|.
-name|larm
-operator|.
-name|net
-operator|.
-name|HostManager
-name|hm
-init|=
-operator|new
-name|de
-operator|.
-name|lanlab
-operator|.
-name|larm
-operator|.
-name|net
-operator|.
-name|HostManager
-argument_list|(
-literal|10
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Test 1. put in 4 yahoos and 3 lmus. pull out LMU/Yahoo/LMU/Yahoo/LMU/Yahoo/Yahoo"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.lmu.de/1"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.lmu.de/2"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/1"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/2"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/3"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/4"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.lmu.de/3"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|t
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Test 2. new Queue"
-argument_list|)
-expr_stmt|;
-name|q
-operator|=
-operator|new
-name|FetcherTaskQueue
-argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size [0]:"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"put 3 lmus."
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.lmu.de/1"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.lmu.de/2"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.lmu.de/3"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"pull out 1st element [lmu/1]: "
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size now [2]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"pull out 2nd element [lmu/2]: "
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size now [1]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"put in 3 yahoos"
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/1"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/2"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/3"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove [?]: "
-operator|+
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Size now [3]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove [?]: "
-operator|+
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Size now [2]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove [?]: "
-operator|+
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Size now [1]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"put in another Yahoo"
-argument_list|)
-expr_stmt|;
-name|q
-operator|.
-name|insert
-argument_list|(
-operator|new
-name|FetcherTask
-argument_list|(
-operator|new
-name|URLMessage
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-literal|"http://www.yahoo.de/4"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|hm
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove [?]: "
-operator|+
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Size now [1]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove [?]: "
-operator|+
-operator|(
-operator|(
-name|FetcherTask
-operator|)
-name|q
-operator|.
-name|remove
-argument_list|()
-operator|)
-operator|.
-name|getInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Size now [0]: "
-operator|+
-name|q
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|t
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
+comment|// FIXME: put that into a JUnit test case
+comment|//        FetcherTaskQueue q = new FetcherTaskQueue();
+comment|//        de.lanlab.larm.net.HostResolver hm = new de.lanlab.larm.net.HostResolver();
+comment|//        System.out.println("Test 1. put in 4 yahoos and 3 lmus. pull out LMU/Yahoo/LMU/Yahoo/LMU/Yahoo/Yahoo");
+comment|//        try
+comment|//        {
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.lmu.de/1"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.lmu.de/2"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/1"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/2"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/3"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/4"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.lmu.de/3"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//        }
+comment|//        catch (Throwable t)
+comment|//        {
+comment|//            t.printStackTrace();
+comment|//        }
+comment|//
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//        System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//
+comment|//        System.out.println("Test 2. new Queue");
+comment|//        q = new FetcherTaskQueue();
+comment|//        System.out.println("size [0]:");
+comment|//        System.out.println(q.size());
+comment|//        try
+comment|//        {
+comment|//            System.out.println("put 3 lmus.");
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.lmu.de/1"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.lmu.de/2"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.lmu.de/3"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            System.out.print("pull out 1st element [lmu/1]: ");
+comment|//            System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("size now [2]: " + q.size());
+comment|//            System.out.print("pull out 2nd element [lmu/2]: ");
+comment|//            System.out.println(((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("size now [1]: " + q.size());
+comment|//            System.out.println("put in 3 yahoos");
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/1"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/2"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/3"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            System.out.println("remove [?]: " + ((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("Size now [3]: " + q.size());
+comment|//            System.out.println("remove [?]: " + ((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("Size now [2]: " + q.size());
+comment|//            System.out.println("remove [?]: " + ((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("Size now [1]: " + q.size());
+comment|//            System.out.println("put in another Yahoo");
+comment|//            q.insert(new FetcherTask(new URLMessage(new URL("http://www.yahoo.de/4"), null, URLMessage.LINKTYPE_ANCHOR, null, hm)));
+comment|//            System.out.println("remove [?]: " + ((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("Size now [1]: " + q.size());
+comment|//            System.out.println("remove [?]: " + ((FetcherTask) q.remove()).getInfo());
+comment|//            System.out.println("Size now [0]: " + q.size());
+comment|//        }
+comment|//        catch (Throwable t)
+comment|//        {
+comment|//            t.printStackTrace();
+comment|//        }
 block|}
 block|}
 end_class
