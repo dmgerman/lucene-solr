@@ -20,53 +20,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DateField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|beans
 operator|.
 name|IndividualHit
 import|;
 end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
-begin_comment
-comment|//import org.apache.log4j.Logger;
-end_comment
 
 begin_class
 DECL|class|CompareDocumentsByField
@@ -80,12 +38,6 @@ name|util
 operator|.
 name|Comparator
 block|{
-comment|// static private Logger logger = Logger.getLogger(CompareDocumentsByDate.class.getName());
-DECL|method|CompareDocumentsByField
-specifier|public
-name|CompareDocumentsByField
-parameter_list|()
-block|{ 	}
 DECL|method|compare
 specifier|public
 name|int

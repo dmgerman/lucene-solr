@@ -108,10 +108,20 @@ decl_stmt|;
 comment|//keeps track of all fields
 comment|/** Creates a new instance of SortedField */
 DECL|method|SortedField
-specifier|public
+specifier|private
 name|SortedField
-parameter_list|()
-block|{     }
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+block|{
+name|this
+operator|.
+name|fieldName
+operator|=
+name|fieldName
+expr_stmt|;
+block|}
 comment|/** add a field so that is can be used to sort      * @param fieldName the name of the field to add      * @param indexPath path to Lucene index directory      */
 DECL|method|addField
 specifier|public
@@ -234,7 +244,9 @@ name|sortedField
 init|=
 operator|new
 name|SortedField
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 decl_stmt|;
 name|sortedField
 operator|.
