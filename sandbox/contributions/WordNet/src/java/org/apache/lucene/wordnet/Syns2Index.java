@@ -110,16 +110,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|File
 import|;
 end_import
@@ -975,7 +965,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Given the 2 maps fills a document for 1 word.      *      * @param      * @param      * @param      * @param      * @return      */
+comment|/**      * Given the 2 maps fills a document for 1 word.      */
 DECL|method|index
 specifier|private
 specifier|static
