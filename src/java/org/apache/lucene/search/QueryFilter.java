@@ -87,7 +87,7 @@ operator|new
 name|WeakHashMap
 argument_list|()
 decl_stmt|;
-comment|/** Constructs a filter which only matches documents matching    *<code>query</code>.    */
+comment|/** Constructs a filter which only matches documents matching      *<code>query</code>.      */
 DECL|method|QueryFilter
 specifier|public
 name|QueryFilter
