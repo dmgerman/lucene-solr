@@ -183,7 +183,7 @@ return|;
 block|}
 comment|/**    * Resolves the deserialized instance to the local reference for accurate    * equals() and == comparisons.    *     * @return a reference to Parameter as resolved in the local VM    * @throws ObjectStreamException    */
 DECL|method|readResolve
-specifier|private
+specifier|protected
 name|Object
 name|readResolve
 parameter_list|()
