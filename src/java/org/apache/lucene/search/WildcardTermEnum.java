@@ -100,7 +100,7 @@ name|endEnum
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Creates a new<code>WildcardTermEnum</code>.  Passing in a    * {@link org.apache.lucene.index.Term Term} that does not contain a    *<code>WILDCARD_CHAR</code> will cause an exception to be thrown.    */
+comment|/**    * Creates a new<code>WildcardTermEnum</code>.  Passing in a    * {@link org.apache.lucene.index.Term Term} that does not contain a    *<code>WILDCARD_CHAR</code> will cause an exception to be thrown.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.    */
 DECL|method|WildcardTermEnum
 specifier|public
 name|WildcardTermEnum

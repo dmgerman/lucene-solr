@@ -147,7 +147,7 @@ index|[
 name|TYPICAL_LONGEST_WORD_IN_INDEX
 index|]
 decl_stmt|;
-comment|/**    * Creates a FuzzyTermEnum with an empty prefix and a minSimilarity of 0.5f.    *     * @param reader    * @param term    * @throws IOException    * @see #FuzzyTermEnum(IndexReader, Term, float, int)    */
+comment|/**    * Creates a FuzzyTermEnum with an empty prefix and a minSimilarity of 0.5f.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.     *     * @param reader    * @param term    * @throws IOException    * @see #FuzzyTermEnum(IndexReader, Term, float, int)    */
 DECL|method|FuzzyTermEnum
 specifier|public
 name|FuzzyTermEnum
@@ -177,7 +177,7 @@ name|defaultPrefixLength
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a FuzzyTermEnum with an empty prefix.    *     * @param reader    * @param term    * @param minSimilarity    * @throws IOException    * @see #FuzzyTermEnum(IndexReader, Term, float, int)    */
+comment|/**    * Creates a FuzzyTermEnum with an empty prefix.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.     *     * @param reader    * @param term    * @param minSimilarity    * @throws IOException    * @see #FuzzyTermEnum(IndexReader, Term, float, int)    */
 DECL|method|FuzzyTermEnum
 specifier|public
 name|FuzzyTermEnum
@@ -208,7 +208,7 @@ name|defaultPrefixLength
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of    * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;    *<code>minSimilarity</code>.     *     * @param reader Delivers terms.    * @param term Pattern term.    * @param minSimilarity Minimum required similarity for terms from the reader. Default value is 0.5f.    * @param prefixLength Length of required common prefix. Default value is 0.    * @throws IOException    */
+comment|/**    * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of    * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;    *<code>minSimilarity</code>.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.     *     * @param reader Delivers terms.    * @param term Pattern term.    * @param minSimilarity Minimum required similarity for terms from the reader. Default value is 0.5f.    * @param prefixLength Length of required common prefix. Default value is 0.    * @throws IOException    */
 DECL|method|FuzzyTermEnum
 specifier|public
 name|FuzzyTermEnum
