@@ -281,7 +281,6 @@ decl_stmt|;
 comment|/**    * Returns whether<code>a</code> is less relevant than<code>b</code>.    * @param a ScoreDoc    * @param b ScoreDoc    * @return<code>true</code> if document<code>a</code> should be sorted after document<code>b</code>.    */
 DECL|method|lessThan
 specifier|protected
-specifier|final
 name|boolean
 name|lessThan
 parameter_list|(
