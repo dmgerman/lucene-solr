@@ -47,6 +47,7 @@ name|GCJSegmentReader
 extends|extends
 name|SegmentReader
 block|{
+comment|/** Try to use an optimized native implementation of TermDocs.  The optimized    * implementation can only be used when the segment's directory is a    * GCJDirectory and it is not in compound format.  */
 DECL|method|termDocs
 specifier|public
 specifier|final
@@ -62,8 +63,16 @@ name|directory
 argument_list|()
 operator|instanceof
 name|GCJDirectory
+comment|// it's a GCJ directory
+operator|&&
+name|this
+operator|.
+name|cfsReader
+operator|==
+literal|null
 condition|)
 block|{
+comment|//& not in compound format
 return|return
 operator|new
 name|GCJTermDocs
@@ -71,6 +80,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+comment|// so can use GCJTermDocs
 block|}
 else|else
 block|{
