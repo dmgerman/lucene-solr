@@ -358,6 +358,22 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+catch|catch
+parameter_list|(
+name|BooleanQuery
+operator|.
+name|TooManyClauses
+name|tmc
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ParseException
+argument_list|(
+literal|"Too many boolean clauses"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * Sets the default slop for phrases.  If zero, then exact phrase matches    * are required.  Default value is zero.    */
 DECL|method|setPhraseSlop
