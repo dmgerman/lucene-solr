@@ -852,6 +852,14 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|boq
+operator|.
+name|setBoost
+argument_list|(
+name|getBoost
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|boq
 operator|.
