@@ -308,6 +308,7 @@ name|storage
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Describe<code>openLinkStorage</code> method here.      *      */
 DECL|method|openLinkStorage
 specifier|public
 name|void
@@ -350,6 +351,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|/**      * Describe<code>storeLinks</code> method here.      *      * @param c a<code>Collection</code> value      * @return a<code>Collection</code> value      */
 DECL|method|storeLinks
 specifier|public
 name|Collection
