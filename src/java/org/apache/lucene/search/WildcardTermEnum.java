@@ -365,18 +365,11 @@ name|int
 name|stringIdx
 parameter_list|)
 block|{
-for|for
-control|(
 name|int
 name|p
 init|=
 name|patternIdx
-init|;
-condition|;
-operator|++
-name|p
-control|)
-block|{
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -605,7 +598,6 @@ block|}
 return|return
 literal|false
 return|;
-block|}
 block|}
 DECL|method|close
 specifier|public
