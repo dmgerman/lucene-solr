@@ -190,7 +190,7 @@ literal|"das"
 block|,
 literal|"dass"
 block|,
-literal|"daï¿½"
+literal|"daÃ"
 block|,
 literal|"du"
 block|,
@@ -242,7 +242,7 @@ literal|"ihres"
 block|,
 literal|"als"
 block|,
-literal|"fï¿½r"
+literal|"fÃ¼r"
 block|,
 literal|"von"
 block|,
