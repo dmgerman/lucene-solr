@@ -62,7 +62,7 @@ name|Token
 name|token
 parameter_list|)
 function_decl|;
-comment|/** 	 * Called when the highlighter has no more tokens for the current fragment - the scorer will typically 	 * call setScore() on the fragment passed in startFragment to record total info 	 * 	 */
+comment|/** 	 * Called when the highlighter has no more tokens for the current fragment - the scorer returns 	 * the weighting it has derived for the most recent fragment, typically based on the tokens 	 * passed to getTokenScore().  	 * 	 */
 DECL|method|getFragmentScore
 specifier|public
 name|float

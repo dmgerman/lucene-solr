@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class used to extract the terms used in a query, plus any weights.  * This class will not find terms for MultiTermQuery, RangeQuery and PrefixQuery classes  * so the caller must pass a rewritten query (see query.rewrite) to obtain a list of   * expanded terms.   *   */
+comment|/**  * Utility class used to extract the terms used in a query, plus any weights.  * This class will not find terms for MultiTermQuery, RangeQuery and PrefixQuery classes  * so the caller must pass a rewritten query (see Query.rewrite) to obtain a list of   * expanded terms.   *   */
 end_comment
 
 begin_class

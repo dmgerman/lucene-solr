@@ -28,7 +28,7 @@ specifier|public
 interface|interface
 name|Formatter
 block|{
-comment|/**    * Highlights a search term. For example, an HTML Formatter could simply do:    *    *<p><dl><dt></dt><dd><code>return "&lt;b&gt;" + term + "&lt;/b&gt;";</code></dd></dl>    *    * @param originalTermText (unstemmed) term text to highlight    * @param stemmedTerm the stemmed form of the originalTermText    * @param startOffset the position of the originalTermText in the text being highlighted      *    * @return highlighted term text    */
+comment|/**    * Highlights a search term. For example, an HTML Formatter could simply do:    *    *<p><dl><dt></dt><dd><code>return "&lt;b&gt;" + term + "&lt;/b&gt;";</code></dd></dl>    *    * @param originalTermText (unstemmed) term text to highlight    * @param stemmedTerm the stemmed form of the originalTermText    * @param score The score for this term returned by Scorer.getTokenScore - one use for this may be to set font weight in highlighted text     * @param startOffset the position of the originalTermText in the text being highlighted      *    * @return highlighted term text    */
 DECL|method|highlightTerm
 name|String
 name|highlightTerm
