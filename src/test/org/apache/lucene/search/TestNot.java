@@ -177,13 +177,24 @@ name|d1
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Text
 argument_list|(
 literal|"field"
 argument_list|,
 literal|"a b"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
