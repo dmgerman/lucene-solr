@@ -59,33 +59,6 @@ name|LOCK_POLL_INTERVAL
 init|=
 literal|1000
 decl_stmt|;
-DECL|field|lockName
-specifier|private
-name|String
-name|lockName
-init|=
-literal|null
-decl_stmt|;
-DECL|method|Lock
-specifier|public
-name|Lock
-parameter_list|(
-name|String
-name|lockName
-parameter_list|)
-block|{
-name|this
-operator|.
-name|lockName
-operator|=
-name|lockName
-expr_stmt|;
-block|}
-DECL|method|Lock
-specifier|public
-name|Lock
-parameter_list|()
-block|{   }
 comment|/** Attempts to obtain exclusive access and immediately return    *  upon success or failure.    * @return true iff exclusive access is obtained    */
 DECL|method|obtain
 specifier|public
@@ -145,30 +118,16 @@ operator|==
 name|maxSleepCount
 condition|)
 block|{
-name|String
-name|s
-init|=
-literal|"Lock obtain timed out"
-decl_stmt|;
-if|if
-condition|(
-name|lockName
-operator|!=
-literal|null
-condition|)
-block|{
-name|s
-operator|+=
-literal|", lock name ="
-operator|+
-name|lockName
-expr_stmt|;
-block|}
 throw|throw
 operator|new
 name|IOException
 argument_list|(
-name|s
+literal|"Lock obtain timed out: "
+operator|+
+name|this
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 throw|;
 block|}
