@@ -418,6 +418,15 @@ argument_list|,
 name|a
 argument_list|)
 decl_stmt|;
+name|qp
+operator|.
+name|setOperator
+argument_list|(
+name|QueryParser
+operator|.
+name|DEFAULT_OPERATOR_OR
+argument_list|)
+expr_stmt|;
 return|return
 name|qp
 operator|.
