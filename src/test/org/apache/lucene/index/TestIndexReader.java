@@ -420,7 +420,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|9
+literal|8
 argument_list|,
 name|fieldNames
 operator|.
@@ -428,7 +428,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// the following fields + an empty one (bug?!)
+comment|// the following fields
 name|assertTrue
 argument_list|(
 name|fieldNames
@@ -603,7 +603,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|3
+literal|2
 argument_list|,
 name|unindexedFieldNames
 operator|.
@@ -611,7 +611,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// the following fields + an empty one
+comment|// the following fields
 name|assertTrue
 argument_list|(
 name|unindexedFieldNames

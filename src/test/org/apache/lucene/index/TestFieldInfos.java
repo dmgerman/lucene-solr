@@ -165,10 +165,10 @@ operator|.
 name|size
 argument_list|()
 operator|==
-literal|7
+literal|6
 argument_list|)
 expr_stmt|;
-comment|//this is 7 b/c we are using the no-arg constructor
+comment|//this is 6 b/c we are using the no-arg constructor
 name|RAMDirectory
 name|dir
 init|=
