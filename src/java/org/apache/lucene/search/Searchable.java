@@ -73,7 +73,7 @@ comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/** The interface for search implementations.  *  *<p>Implementations provide search over a single index, over multiple  * indices, and over indices on remote servers.  */
+comment|/** The interface for search implementations.  *  *<p>Searchable is the abstract network protocol for searching.   * Implementations provide search over a single index, over multiple  * indices, and over indices on remote servers.  *  *<p>Queries, filters and sort criteria are designed to be compact so that  * they may be efficiently passed to a remote index, with only the top-scoring  * hits being returned, rather than every non-zero scoring hit.  */
 end_comment
 
 begin_interface
@@ -88,7 +88,7 @@ name|rmi
 operator|.
 name|Remote
 block|{
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|void
 name|search

@@ -17,7 +17,7 @@ comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/** Lower-level search API.  * @see Searcher#search(Query,HitCollector)  * @version $Id$  */
+comment|/** Lower-level search API.  *<br>HitCollectors are primarily meant to be used to implement queries,  * sorting and filtering.  * @see Searcher#search(Query,HitCollector)  * @version $Id$  */
 end_comment
 
 begin_class
