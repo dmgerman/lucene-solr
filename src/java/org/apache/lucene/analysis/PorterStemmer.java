@@ -17,7 +17,7 @@ comment|/* ==================================================================== 
 end_comment
 
 begin_comment
-comment|/*     Porter stemmer in Java. The original paper is in         Porter, 1980, An algorithm for suffix stripping, Program, Vol. 14,        no. 3, pp 130-137,     See also http://www.muscat.com/~martin/stem.html     Bug 1 (reported by Gonzalo Parra 16/10/99) fixed as marked below.    Tthe words 'aed', 'eed', 'oed' leave k at 'a' for step 3, and b[k-1]    is then out outside the bounds of b.     Similarly,     Bug 2 (reported by Steve Dyrdahl 22/2/00) fixed as marked below.    'ion' by itself leaves j = -1 in the test for 'ion' in step 5, and    b[j] is then outside the bounds of b.     Release 3.     [ This version is derived from Release 3, modified by Brian Goetz to       optimize for fewer object creations.  ]  */
+comment|/*     Porter stemmer in Java. The original paper is in         Porter, 1980, An algorithm for suffix stripping, Program, Vol. 14,        no. 3, pp 130-137,     See also http://www.tartarus.org/~martin/PorterStemmer/index.html     Bug 1 (reported by Gonzalo Parra 16/10/99) fixed as marked below.    Tthe words 'aed', 'eed', 'oed' leave k at 'a' for step 3, and b[k-1]    is then out outside the bounds of b.     Similarly,     Bug 2 (reported by Steve Dyrdahl 22/2/00) fixed as marked below.    'ion' by itself leaves j = -1 in the test for 'ion' in step 5, and    b[j] is then outside the bounds of b.     Release 3.     [ This version is derived from Release 3, modified by Brian Goetz to      optimize for fewer object creations.  ]  */
 end_comment
 
 begin_import
@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * Stemmer, implementing the Porter Stemming Algorithm  *  * The Stemmer class transforms a word into its root form.  The input  * word can be provided a character at time (by calling add()), or at once  * by calling one of the various stem(something) methods.    */
+comment|/**  *  * Stemmer, implementing the Porter Stemming Algorithm  *  * The Stemmer class transforms a word into its root form.  The input  * word can be provided a character at time (by calling add()), or at once  * by calling one of the various stem(something) methods.  */
 end_comment
 
 begin_class
@@ -104,7 +104,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**     * reset() resets the stemmer so it can stem another word.  If you invoke    * the stemmer by calling add(char) and then stem(), you must call reset()    * before starting another word.    */
+comment|/**    * reset() resets the stemmer so it can stem another word.  If you invoke    * the stemmer by calling add(char) and then stem(), you must call reset()    * before starting another word.    */
 DECL|method|reset
 specifier|public
 name|void
@@ -120,7 +120,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**    * Add a character to the word being stemmed.  When you are finished     * adding characters, you can call stem(void) to process the word.     */
+comment|/**    * Add a character to the word being stemmed.  When you are finished    * adding characters, you can call stem(void) to process the word.    */
 DECL|method|add
 specifier|public
 name|void
@@ -195,7 +195,7 @@ operator|=
 name|ch
 expr_stmt|;
 block|}
-comment|/**    * After a word has been stemmed, it can be retrieved by toString(),     * or a reference to the internal buffer can be retrieved by getResultBuffer    * and getResultLength (which is generally more efficient.)    */
+comment|/**    * After a word has been stemmed, it can be retrieved by toString(),    * or a reference to the internal buffer can be retrieved by getResultBuffer    * and getResultLength (which is generally more efficient.)    */
 DECL|method|toString
 specifier|public
 name|String
@@ -1817,7 +1817,7 @@ name|k
 operator|--
 expr_stmt|;
 block|}
-comment|/**     * Stem a word provided as a String.  Returns the result as a String.    */
+comment|/**    * Stem a word provided as a String.  Returns the result as a String.    */
 DECL|method|stem
 specifier|public
 name|String
@@ -1851,7 +1851,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/** Stem a word contained in a char[].  Returns true if the stemming process    * resulted in a word different from the input.  You can retrieve the     * result with getResultLength()/getResultBuffer() or toString().     */
+comment|/** Stem a word contained in a char[].  Returns true if the stemming process    * resulted in a word different from the input.  You can retrieve the    * result with getResultLength()/getResultBuffer() or toString().    */
 DECL|method|stem
 specifier|public
 name|boolean
@@ -1873,7 +1873,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/** Stem a word contained in a portion of a char[] array.  Returns    * true if the stemming process resulted in a word different from    * the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().      */
+comment|/** Stem a word contained in a portion of a char[] array.  Returns    * true if the stemming process resulted in a word different from    * the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().    */
 DECL|method|stem
 specifier|public
 name|boolean
@@ -1956,7 +1956,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Stem a word contained in a leading portion of a char[] array.    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().      */
+comment|/** Stem a word contained in a leading portion of a char[] array.    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().    */
 DECL|method|stem
 specifier|public
 name|boolean
@@ -1981,7 +1981,7 @@ name|wordLen
 argument_list|)
 return|;
 block|}
-comment|/** Stem the word placed into the Stemmer buffer through calls to add().    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().      */
+comment|/** Stem the word placed into the Stemmer buffer through calls to add().    * Returns true if the stemming process resulted in a word different    * from the input.  You can retrieve the result with    * getResultLength()/getResultBuffer() or toString().    */
 DECL|method|stem
 specifier|public
 name|boolean
@@ -2066,7 +2066,7 @@ return|return
 name|dirty
 return|;
 block|}
-comment|/** Test program for demonstrating the Stemmer.  It reads a file and    * stems each word, writing the result to standard out.      * Usage: Stemmer file-name     */
+comment|/** Test program for demonstrating the Stemmer.  It reads a file and    * stems each word, writing the result to standard out.    * Usage: Stemmer file-name    */
 DECL|method|main
 specifier|public
 specifier|static
