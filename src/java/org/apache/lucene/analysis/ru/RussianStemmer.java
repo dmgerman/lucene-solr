@@ -2267,8 +2267,9 @@ argument_list|(
 name|stemmingZone
 argument_list|)
 expr_stmt|;
-comment|// variable r is unused, we are just interested in the side effect of
-comment|// adjectival() or verb(), if adjectival() does nothing etc.:
+comment|// variable r is unused, we are just interested in the flow that gets
+comment|// created by logical expression: apply adjectival(); if that fails,
+comment|// apply verb() etc
 name|boolean
 name|r
 init|=
