@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stemms german words. It supports a table of words that should  * not be stemmed at all.  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * A filter that stemms german words. It supports a table of words that should  * not be stemmed at all. The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a GermanStemmer).  *  * @author    Gerhard Schwarz  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -147,14 +147,12 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
 name|exclusions
 operator|=
-name|exclusions
+name|exclusiontable
 expr_stmt|;
 block|}
-comment|/** 	 * @return  Returns the next token in the stream, or null at EOS. 	 */
+comment|/** 	 * @return  Returns the next token in the stream, or null at EOS 	 */
 DECL|method|next
 specifier|public
 specifier|final
@@ -182,7 +180,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|// Check the exclusiontable.
+comment|// Check the exclusiontable
 elseif|else
 if|if
 condition|(
@@ -220,7 +218,7 @@ name|termText
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// If not stemmed, dont waste the time creating a new token.
+comment|// If not stemmed, dont waste the time creating a new token
 if|if
 condition|(
 operator|!
@@ -259,6 +257,46 @@ return|return
 name|token
 return|;
 block|}
+block|}
+comment|/** 	 * Set a alternative/custom GermanStemmer for this filter. 	 */
+DECL|method|setStemmer
+specifier|public
+name|void
+name|setStemmer
+parameter_list|(
+name|GermanStemmer
+name|stemmer
+parameter_list|)
+block|{
+if|if
+condition|(
+name|stemmer
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|stemmer
+operator|=
+name|stemmer
+expr_stmt|;
+block|}
+block|}
+comment|/** 	 * Set an alternative exclusion list for this filter. 	 */
+DECL|method|setExclusionTable
+specifier|public
+name|void
+name|setExclusionTable
+parameter_list|(
+name|Hashtable
+name|exclusiontable
+parameter_list|)
+block|{
+name|exclusions
+operator|=
+name|exclusiontable
+expr_stmt|;
 block|}
 block|}
 end_class

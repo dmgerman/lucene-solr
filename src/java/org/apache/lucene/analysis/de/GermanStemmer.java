@@ -55,7 +55,7 @@ specifier|public
 name|GermanStemmer
 parameter_list|()
 block|{ 	}
-comment|/** 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param word  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
+comment|/** 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
 DECL|method|stem
 specifier|protected
 name|String
@@ -97,6 +97,13 @@ block|{
 name|uppercase
 operator|=
 literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
+name|uppercase
+operator|=
+literal|false
 expr_stmt|;
 block|}
 comment|// Use lowercase for medium stemming.
@@ -499,9 +506,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Check the 7 "base" suffixes: "e", "s", "n", "t", "em", "er", "nd" for all
+comment|// Strip the 7 "base" suffixes: "e", "s", "n", "t", "em", "er", "nd" from all
 comment|// other terms. Adjectives, Verbs and Adverbs have a total of 52 different
-comment|// possible suffixes.
+comment|// possible suffixes, stripping only the characters from they are build
+comment|// does mostly the same
 else|else
 block|{
 comment|// Strip base suffixes as long as enough characters remain.
@@ -819,6 +827,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|sb
+operator|=
+name|resubstitute
+argument_list|(
+name|sb
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -833,13 +848,6 @@ name|sb
 argument_list|)
 expr_stmt|;
 block|}
-name|sb
-operator|=
-name|resubstitute
-argument_list|(
-name|sb
-argument_list|)
-expr_stmt|;
 return|return
 name|sb
 operator|.
@@ -875,18 +883,18 @@ name|c
 operator|++
 control|)
 block|{
-comment|// Strip from the beginning of the string to the "ge" inclusive.
+comment|// Strip from the beginning of the string to the "ge" inclusive
 if|if
 condition|(
 name|c
 operator|<
 operator|(
-name|sb
+name|buffer
 operator|.
 name|length
 argument_list|()
 operator|-
-literal|3
+literal|4
 operator|)
 operator|&&
 name|buffer
@@ -927,7 +935,7 @@ return|return
 name|sb
 return|;
 block|}
-comment|/** 	 * Do some substitutions for the term to reduce overstemming: 	 * 	 * - Substitute Umlauts with their corresponding vowel: äöü -> aou, 	 *   "ß" is substituted by "ss" 	 * - Substitute an second char of an pair of equal characters with 	 *   an asterisk: ?? -> ?* 	 * - Substitute some common character combinations with a token: 	 *   sch/ch/ei/ie/ig/st -> $/§/%/&/#/! 	 * 	 * @return  The term with all needed substitutions. 	 */
+comment|/** 	 * Do some substitutions for the term to reduce overstemming: 	 * 	 * - Substitute Umlauts with their corresponding vowel: äöü -> aou, 	 *   "ß" is substituted by "ss" 	 * - Substitute a second char of an pair of equal characters with 	 *   an asterisk: ?? -> ?* 	 * - Substitute some common character combinations with a token: 	 *   sch/ch/ei/ie/ig/st -> $/§/%/&/#/! 	 * 	 * @return  The term with all needed substitutions. 	 */
 DECL|method|substitute
 specifier|private
 name|StringBuffer
@@ -955,7 +963,7 @@ name|c
 operator|++
 control|)
 block|{
-comment|// Replace the second char of a pair of the equal characters with an asterisk.
+comment|// Replace the second char of a pair of the equal characters with an asterisk
 if|if
 condition|(
 name|c
@@ -1059,7 +1067,7 @@ literal|'u'
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Take care that enough characters at left for search.
+comment|// Take care that at least one character is left left side from the current one
 if|if
 condition|(
 name|c
@@ -1108,7 +1116,7 @@ name|substCount
 operator|++
 expr_stmt|;
 block|}
-comment|// Masking several common character combinations with an token.
+comment|// Masking several common character combinations with an token
 elseif|else
 if|if
 condition|(
@@ -1536,7 +1544,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Undoes some changes made by substitute(). That are character pairs and 	 * character combinations. 	 * 	 * @return  The term without the not human reaqdable substitutions. 	 */
+comment|/** 	 * Undoes the changes made by substitute(). That are character pairs and 	 * character combinations. Umlauts will remain as their corresponding vowel, 	 * as "ß" remains as "ss". 	 * 	 * @return  The term without the not human readable substitutions. 	 */
 DECL|method|resubstitute
 specifier|private
 name|StringBuffer

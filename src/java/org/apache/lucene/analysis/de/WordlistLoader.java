@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Loads a textfile and adds every entry to a Hashtable. If a file is not found  * or on any error, an empty table is returned.  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * Loads a textfile and adds every line as an entry to a Hashtable. Every line  * should contain only one word. If a file is not found or on any error, an  * empty table is returned.  *  * @author    Gerhard Schwarz  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -74,7 +74,7 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-comment|/** 	 * @param path      Path to the wordlist. 	 * @param wordfile  Name of the wordlist. 	 */
+comment|/** 	 * @param path      Path to the wordlist 	 * @param wordfile  Name of the wordlist 	 */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -105,9 +105,9 @@ name|Hashtable
 argument_list|()
 return|;
 block|}
-name|File
-name|absoluteName
-init|=
+return|return
+name|getWordtable
+argument_list|(
 operator|new
 name|File
 argument_list|(
@@ -115,11 +115,6 @@ name|path
 argument_list|,
 name|wordfile
 argument_list|)
-decl_stmt|;
-return|return
-name|getWordtable
-argument_list|(
-name|absoluteName
 argument_list|)
 return|;
 block|}
@@ -147,23 +142,18 @@ name|Hashtable
 argument_list|()
 return|;
 block|}
-name|File
-name|absoluteName
-init|=
+return|return
+name|getWordtable
+argument_list|(
 operator|new
 name|File
 argument_list|(
 name|wordfile
 argument_list|)
-decl_stmt|;
-return|return
-name|getWordtable
-argument_list|(
-name|absoluteName
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param wordfile  File containing the wordlist. 	 */
+comment|/** 	 * @param wordfile  File containing the wordlist 	 */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -290,6 +280,8 @@ block|}
 name|stopwords
 index|[
 name|wordcount
+operator|-
+literal|1
 index|]
 operator|=
 name|word
@@ -305,7 +297,7 @@ name|wordcount
 argument_list|)
 expr_stmt|;
 block|}
-comment|// On error, use an empty table.
+comment|// On error, use an empty table
 catch|catch
 parameter_list|(
 name|IOException
@@ -323,7 +315,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Builds the wordlist table. 	 * 	 * @param words   Word that where read. 	 * @param length  Amount of words that where read into<tt>words</tt>. 	 */
+comment|/** 	 * Builds the wordlist table. 	 * 	 * @param words   Word that where read 	 * @param length  Amount of words that where read into<tt>words</tt> 	 */
 DECL|method|makeWordTable
 specifier|private
 specifier|static

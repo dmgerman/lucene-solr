@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for german language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * Analyzer for german language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author    Gerhard Schwarz  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -246,6 +246,8 @@ block|,
 literal|"durch"
 block|,
 literal|"wegen"
+block|,
+literal|"wird"
 block|}
 decl_stmt|;
 comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
@@ -393,7 +395,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter. 	 */
+comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter 	 */
 DECL|method|tokenStream
 specifier|public
 specifier|final
