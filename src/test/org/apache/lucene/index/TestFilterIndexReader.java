@@ -408,7 +408,7 @@ return|return
 operator|new
 name|TestTermEnum
 argument_list|(
-name|baseReader
+name|in
 operator|.
 name|terms
 argument_list|()
@@ -428,7 +428,7 @@ return|return
 operator|new
 name|TestTermPositions
 argument_list|(
-name|baseReader
+name|in
 operator|.
 name|termPositions
 argument_list|()
