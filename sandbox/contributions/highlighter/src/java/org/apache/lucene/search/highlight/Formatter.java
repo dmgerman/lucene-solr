@@ -28,22 +28,16 @@ specifier|public
 interface|interface
 name|Formatter
 block|{
-comment|/**    * Highlights a search term. For example, an HTML Formatter could simply do:    *    *<p><dl><dt></dt><dd><code>return "&lt;b&gt;" + term + "&lt;/b&gt;";</code></dd></dl>    *    * @param originalTermText (unstemmed) term text to highlight    * @param stemmedTerm the stemmed form of the originalTermText    * @param score The score for this term returned by Scorer.getTokenScore - one use for this may be to set font weight in highlighted text     * @param startOffset the position of the originalTermText in the text being highlighted      *    * @return highlighted term text    */
+comment|/** 	 * @param originalText The section of text being considered for markup 	 * @param tokenGroup contains one or several overlapping Tokens along with 	 * their scores and positions. 	 * @return 	 */
 DECL|method|highlightTerm
 name|String
 name|highlightTerm
 parameter_list|(
 name|String
-name|originalTermText
+name|originalText
 parameter_list|,
-name|String
-name|stemmedTerm
-parameter_list|,
-name|float
-name|score
-parameter_list|,
-name|int
-name|startOffset
+name|TokenGroup
+name|tokenGroup
 parameter_list|)
 function_decl|;
 block|}
