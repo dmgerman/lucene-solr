@@ -211,8 +211,9 @@ argument_list|)
 expr_stmt|;
 name|reader1
 operator|=
-operator|new
 name|SegmentReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|SegmentInfo
@@ -227,8 +228,9 @@ argument_list|)
 expr_stmt|;
 name|reader2
 operator|=
-operator|new
 name|SegmentReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|SegmentInfo

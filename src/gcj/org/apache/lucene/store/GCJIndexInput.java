@@ -64,12 +64,12 @@ name|long
 name|fileLength
 decl_stmt|;
 DECL|field|data
-specifier|private
+specifier|public
 name|RawData
 name|data
 decl_stmt|;
 DECL|field|pointer
-specifier|private
+specifier|public
 name|RawData
 name|pointer
 decl_stmt|;

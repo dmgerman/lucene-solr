@@ -1260,8 +1260,9 @@ block|{
 comment|// add existing index, if any
 name|sReader
 operator|=
-operator|new
 name|SegmentReader
+operator|.
+name|get
 argument_list|(
 name|segmentInfos
 operator|.
@@ -1809,8 +1810,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|new
 name|SegmentReader
+operator|.
+name|get
 argument_list|(
 name|si
 argument_list|)

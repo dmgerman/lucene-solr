@@ -182,8 +182,9 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|=
-operator|new
 name|SegmentReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|SegmentInfo
@@ -425,8 +426,9 @@ block|{
 name|SegmentReader
 name|deleteReader
 init|=
-operator|new
 name|SegmentReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|SegmentInfo
