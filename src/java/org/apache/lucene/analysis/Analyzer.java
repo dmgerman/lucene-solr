@@ -58,7 +58,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/** Creates a TokenStream which tokenizes all the text in the provided    *  Reader.  Provided for backward compatibility only.    * @deprecated use tokenStream(String, Reader) instead.    * @see tokenStream(String, Reader)    */
+comment|/** Creates a TokenStream which tokenizes all the text in the provided    *  Reader.  Provided for backward compatibility only.    * @deprecated use tokenStream(String, Reader) instead.    * @see #tokenStream(String, Reader)    */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
