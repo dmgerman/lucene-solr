@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * The type of content in each field could be determined dynamically by  * FieldSortedHitQueue.determineComparator().  *  *<p>Created: Feb 3, 2004 4:46:55 PM   *   * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see FieldSortedHitQueue  * @see Searchable#search(Query,Filter,int,Sort)  */
+comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * The type of content in each field could be determined dynamically by  * FieldSortedHitQueue.determineComparator().  *  *<p>Created: Feb 3, 2004 4:46:55 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see FieldSortedHitQueue  * @see Searchable#search(Query,Filter,int,Sort)  */
 end_comment
 
 begin_class
@@ -123,6 +123,17 @@ operator|++
 name|i
 control|)
 block|{
+name|String
+name|fieldname
+init|=
+name|fields
+index|[
+name|i
+index|]
+operator|.
+name|getField
+argument_list|()
+decl_stmt|;
 name|comparators
 index|[
 name|i
@@ -134,13 +145,7 @@ name|getCachedComparator
 argument_list|(
 name|reader
 argument_list|,
-name|fields
-index|[
-name|i
-index|]
-operator|.
-name|getField
-argument_list|()
+name|fieldname
 argument_list|,
 name|fields
 index|[
@@ -161,13 +166,7 @@ operator|=
 operator|new
 name|SortField
 argument_list|(
-name|fields
-index|[
-name|i
-index|]
-operator|.
-name|getField
-argument_list|()
+name|fieldname
 argument_list|,
 name|comparators
 index|[

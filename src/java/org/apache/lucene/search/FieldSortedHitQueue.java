@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Base class for collecting results from a search and sorting  * them by terms in a given field in each document.  *  *<p>When one of these objects is created, a TermEnumerator is  * created to fetch all the terms in the index for the given field.  * The value of each term is assumed to represent a  * sort position.  Each document is assumed to contain one of the  * terms, indicating where in the sort it belongs.  *  *<p><h3>Memory Usage</h3>  *  *<p>A static cache is maintained.  This cache contains an integer  * or float array of length<code>IndexReader.maxDoc()</code> for each field  * name for which a sort is performed.  In other words, the size of  * the cache in bytes is:  *  *<p><code>4 * IndexReader.maxDoc() * (# of different fields actually used to sort)</code>  *  *<p>Note that the size of the cache is not affected by how many  * fields are in the index and<i>might</i> be used to sort - only by  * the ones actually used to sort a result set.  *  *<p>The cache is cleared each time a new<code>IndexReader</code> is  * passed in, or if the value returned by<code>maxDoc()</code>  * changes for the current IndexReader.  This class is not set up to  * be able to efficiently sort hits from more than one index  * simultaneously.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
+comment|/**  * Expert: Base class for collecting results from a search and sorting  * them by terms in a given field in each document.  *  *<p>When one of these objects is created, a TermEnumerator is  * created to fetch all the terms in the index for the given field.  * The value of each term is assumed to represent a  * sort position.  Each document is assumed to contain one of the  * terms, indicating where in the sort it belongs.  *  *<p><h3>Memory Usage</h3>  *  *<p>A static cache is maintained.  This cache contains an integer  * or float array of length<code>IndexReader.maxDoc()</code> for each field  * name for which a sort is performed.  In other words, the size of the  * cache in bytes is:  *  *<p><code>4 * IndexReader.maxDoc() * (# of different fields actually used to sort)</code>  *  *<p>For String fields, the cache is larger: in addition to the  * above array, the value of every term in the field is kept in memory.  * If there are many unique terms in the field, this could   * be quite large.  *  *<p>Note that the size of the cache is not affected by how many  * fields are in the index and<i>might</i> be used to sort - only by  * the ones actually used to sort a result set.  *  *<p>The cache is cleared each time a new<code>IndexReader</code> is  * passed in, or if the value returned by<code>maxDoc()</code>  * changes for the current IndexReader.  This class is not set up to  * be able to efficiently sort hits from more than one index  * simultaneously.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
 end_comment
 
 begin_class
@@ -470,6 +470,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|field
+operator|=
+name|field
+operator|.
+name|intern
+argument_list|()
+expr_stmt|;
 name|TermEnum
 name|enumerator
 init|=

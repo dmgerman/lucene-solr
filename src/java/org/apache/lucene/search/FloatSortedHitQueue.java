@@ -145,7 +145,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns a comparator for sorting hits according to a field containing floats. 	 * @param reader  Index to use. 	 * @param field  Field containg float values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
+comment|/** 	 * Returns a comparator for sorting hits according to a field containing floats. 	 * @param reader  Index to use. 	 * @param fieldname  Field containg float values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
 DECL|method|comparator
 specifier|static
 name|ScoreDocLookupComparator
@@ -157,11 +157,20 @@ name|reader
 parameter_list|,
 specifier|final
 name|String
-name|field
+name|fieldname
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|String
+name|field
+init|=
+name|fieldname
+operator|.
+name|intern
+argument_list|()
+decl_stmt|;
 return|return
 operator|new
 name|ScoreDocLookupComparator
@@ -502,7 +511,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns a comparator for sorting hits according to a field containing floats using the given enumerator 	 * to collect term values. 	 * @param reader  Index to use. 	 * @param field  Field containg float values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
+comment|/** 	 * Returns a comparator for sorting hits according to a field containing floats using the given enumerator 	 * to collect term values. 	 * @param reader  Index to use. 	 * @param fieldname  Field containg float values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
 DECL|method|comparator
 specifier|static
 name|ScoreDocLookupComparator
@@ -518,11 +527,20 @@ name|enumerator
 parameter_list|,
 specifier|final
 name|String
-name|field
+name|fieldname
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|String
+name|field
+init|=
+name|fieldname
+operator|.
+name|intern
+argument_list|()
+decl_stmt|;
 return|return
 operator|new
 name|ScoreDocLookupComparator
