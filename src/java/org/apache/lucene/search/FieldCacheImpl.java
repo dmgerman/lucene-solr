@@ -1288,6 +1288,8 @@ name|reader
 operator|.
 name|maxDoc
 argument_list|()
+operator|+
+literal|1
 index|]
 decl_stmt|;
 if|if
@@ -1329,6 +1331,18 @@ init|=
 literal|0
 decl_stmt|;
 comment|// current term number
+comment|// an entry for documents that have no terms in this field
+comment|// should a document with no terms be at top or bottom?
+comment|// this puts them at the top - if it is changed, FieldDocSortedHitQueue
+comment|// needs to change as well.
+name|mterms
+index|[
+name|t
+operator|++
+index|]
+operator|=
+literal|null
+expr_stmt|;
 try|try
 block|{
 if|if
