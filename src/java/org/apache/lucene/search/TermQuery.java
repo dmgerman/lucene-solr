@@ -68,20 +68,6 @@ name|IndexReader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryParser
-operator|.
-name|QueryParser
-import|;
-end_import
-
 begin_comment
 comment|/** A Query that matches documents containing a term.   This may be combined with other terms with a {@link BooleanQuery}.   */
 end_comment
@@ -721,15 +707,10 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|QueryParser
-operator|.
-name|escape
-argument_list|(
 name|term
 operator|.
 name|field
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|buffer
@@ -744,15 +725,10 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|QueryParser
-operator|.
-name|escape
-argument_list|(
 name|term
 operator|.
 name|text
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
