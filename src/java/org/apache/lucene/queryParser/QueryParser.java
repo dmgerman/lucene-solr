@@ -406,7 +406,7 @@ operator|=
 name|operator
 expr_stmt|;
 block|}
-comment|/**    * Gets implicit operator setting, which will be either DEFAULT_OPERATOR_AND    * or DEFAULT_OPERATOR_AND.    */
+comment|/**    * Gets implicit operator setting, which will be either DEFAULT_OPERATOR_AND    * or DEFAULT_OPERATOR_OR.    */
 DECL|method|getOperator
 specifier|public
 name|int
