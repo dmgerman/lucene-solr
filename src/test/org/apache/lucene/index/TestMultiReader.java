@@ -334,6 +334,10 @@ name|MultiReader
 argument_list|(
 name|dir
 argument_list|,
+name|sis
+argument_list|,
+literal|false
+argument_list|,
 name|readers
 argument_list|)
 decl_stmt|;
@@ -471,6 +475,10 @@ operator|new
 name|MultiReader
 argument_list|(
 name|dir
+argument_list|,
+name|sis
+argument_list|,
+literal|false
 argument_list|,
 name|readers
 argument_list|)
