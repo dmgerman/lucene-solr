@@ -65,10 +65,19 @@ specifier|private
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
-DECL|field|enumerator
+DECL|field|enumerators
+specifier|private
+name|ThreadLocal
+name|enumerators
+init|=
+operator|new
+name|ThreadLocal
+argument_list|()
+decl_stmt|;
+DECL|field|origEnum
 specifier|private
 name|SegmentTermEnum
-name|enumerator
+name|origEnum
 decl_stmt|;
 DECL|field|size
 specifier|private
@@ -102,7 +111,7 @@ name|fieldInfos
 operator|=
 name|fis
 expr_stmt|;
-name|enumerator
+name|origEnum
 operator|=
 operator|new
 name|SegmentTermEnum
@@ -123,7 +132,7 @@ argument_list|)
 expr_stmt|;
 name|size
 operator|=
-name|enumerator
+name|origEnum
 operator|.
 name|size
 expr_stmt|;
@@ -138,7 +147,7 @@ name|getSkipInterval
 parameter_list|()
 block|{
 return|return
-name|enumerator
+name|origEnum
 operator|.
 name|skipInterval
 return|;
@@ -153,11 +162,11 @@ name|IOException
 block|{
 if|if
 condition|(
-name|enumerator
+name|origEnum
 operator|!=
 literal|null
 condition|)
-name|enumerator
+name|origEnum
 operator|.
 name|close
 argument_list|()
@@ -174,6 +183,42 @@ return|return
 name|size
 return|;
 block|}
+DECL|method|getEnum
+specifier|private
+name|SegmentTermEnum
+name|getEnum
+parameter_list|()
+block|{
+name|SegmentTermEnum
+name|enum
+type|= (
+name|SegmentTermEnum
+decl_stmt|)enumerators.get(
+block|)
+function|;
+if|if
+condition|(enum
+operator|==
+literal|null
+condition|)
+block|{
+enum_decl|enum =
+name|terms
+argument_list|()
+expr_stmt|;
+name|enumerators
+operator|.
+name|set
+argument_list|(
+expr|enum
+argument_list|)
+expr_stmt|;
+block|}
+return|return enum;
+block|}
+end_class
+
+begin_decl_stmt
 DECL|field|indexTerms
 name|Term
 index|[]
@@ -181,16 +226,25 @@ name|indexTerms
 init|=
 literal|null
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|indexInfos
 name|TermInfo
 index|[]
 name|indexInfos
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|indexPointers
 name|long
 index|[]
 name|indexPointers
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 DECL|method|readIndex
 specifier|private
 specifier|final
@@ -312,7 +366,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the offset of the greatest index entry which is less than or equal to term.*/
+end_comment
+
+begin_function
 DECL|method|getIndexOffset
 specifier|private
 specifier|final
@@ -405,6 +465,9 @@ return|return
 name|hi
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|seekEnum
 specifier|private
 specifier|final
@@ -417,7 +480,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|enumerator
+name|getEnum
+argument_list|()
 operator|.
 name|seek
 argument_list|(
@@ -429,7 +493,8 @@ argument_list|,
 operator|(
 name|indexOffset
 operator|*
-name|enumerator
+name|getEnum
+argument_list|()
 operator|.
 name|indexInterval
 operator|)
@@ -448,10 +513,14 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the TermInfo for a Term in the set, or null. */
+end_comment
+
+begin_function
 DECL|method|get
-specifier|final
-specifier|synchronized
 name|TermInfo
 name|get
 parameter_list|(
@@ -470,7 +539,13 @@ condition|)
 return|return
 literal|null
 return|;
-comment|// optimize sequential access: first try scanning cached enumerator w/o seeking
+comment|// optimize sequential access: first try scanning cached enum w/o seeking
+name|SegmentTermEnum
+name|enumerator
+init|=
+name|getEnum
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|enumerator
@@ -578,7 +653,13 @@ name|term
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Scans within block for matching term. */
+end_comment
+
+begin_function
 DECL|method|scanEnum
 specifier|private
 specifier|final
@@ -591,6 +672,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|SegmentTermEnum
+name|enumerator
+init|=
+name|getEnum
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|term
@@ -643,10 +730,15 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the nth term in the set. */
+end_comment
+
+begin_function
 DECL|method|get
 specifier|final
-specifier|synchronized
 name|Term
 name|get
 parameter_list|(
@@ -665,6 +757,12 @@ condition|)
 return|return
 literal|null
 return|;
+name|SegmentTermEnum
+name|enumerator
+init|=
+name|getEnum
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|enumerator
@@ -720,6 +818,9 @@ name|position
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|scanEnum
 specifier|private
 specifier|final
@@ -732,6 +833,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|SegmentTermEnum
+name|enumerator
+init|=
+name|getEnum
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|enumerator
@@ -758,10 +865,15 @@ name|term
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the position of a Term in the set or -1. */
+end_comment
+
+begin_function
 DECL|method|getPosition
 specifier|final
-specifier|synchronized
 name|long
 name|getPosition
 parameter_list|(
@@ -794,6 +906,12 @@ argument_list|(
 name|indexOffset
 argument_list|)
 expr_stmt|;
+name|SegmentTermEnum
+name|enumerator
+init|=
+name|getEnum
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|term
@@ -839,46 +957,38 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns an enumeration of all the Terms and TermInfos in the set. */
+end_comment
+
+begin_function
 DECL|method|terms
-specifier|final
-specifier|synchronized
+specifier|public
 name|SegmentTermEnum
 name|terms
 parameter_list|()
-throws|throws
-name|IOException
 block|{
-if|if
-condition|(
-name|enumerator
-operator|.
-name|position
-operator|!=
-operator|-
-literal|1
-condition|)
-comment|// if not at start
-name|seekEnum
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// reset to start
 return|return
 operator|(
 name|SegmentTermEnum
 operator|)
-name|enumerator
+name|origEnum
 operator|.
 name|clone
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns an enumeration of terms starting at or after the named term. */
+end_comment
+
+begin_function
 DECL|method|terms
-specifier|final
-specifier|synchronized
+specifier|public
 name|SegmentTermEnum
 name|terms
 parameter_list|(
@@ -893,19 +1003,19 @@ argument_list|(
 name|term
 argument_list|)
 expr_stmt|;
-comment|// seek enumerator to term
 return|return
 operator|(
 name|SegmentTermEnum
 operator|)
-name|enumerator
+name|getEnum
+argument_list|()
 operator|.
 name|clone
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
