@@ -140,7 +140,7 @@ name|fieldList
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns a field with the given name if any exist in this document, or     null.  If multiple fields may exist with this name, this method returns the     last added such added. */
+comment|/** Returns a field with the given name if any exist in this document, or     null.  If multiple fields exists with this name, this method returns the     last field value added. */
 DECL|method|getField
 specifier|public
 specifier|final
@@ -191,7 +191,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns the string value of the field with the given name if any exist in     this document, or null.  If multiple fields may exist with this name, this     method returns the last added such added. */
+comment|/** Returns the string value of the field with the given name if any exist in     this document, or null.  If multiple fields exist with this name, this     method returns the last value added. */
 DECL|method|get
 specifier|public
 specifier|final
