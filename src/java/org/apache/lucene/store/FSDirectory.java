@@ -407,7 +407,7 @@ condition|(
 operator|!
 name|directory
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 condition|)
 throw|throw
