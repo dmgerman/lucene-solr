@@ -184,6 +184,7 @@ expr_stmt|;
 block|}
 DECL|method|numDocs
 specifier|public
+specifier|synchronized
 specifier|final
 name|int
 name|numDocs
@@ -329,6 +330,7 @@ comment|// dispatch to segment reader
 block|}
 DECL|method|delete
 specifier|public
+specifier|synchronized
 specifier|final
 name|void
 name|delete
