@@ -514,8 +514,9 @@ expr_stmt|;
 name|Directory
 name|store
 init|=
-operator|new
 name|FSDirectory
+operator|.
+name|getDirectory
 argument_list|(
 literal|"test.store"
 argument_list|,
