@@ -52,7 +52,7 @@ name|TextFragment
 name|newFragment
 parameter_list|)
 function_decl|;
-comment|/** 	 * Called for each token in the current fragment 	 * @param token The token to be scored 	 * @return a score which is passed to the TermHighlighter class to influence the mark-up of the text 	 * (this return value is NOT used to score the fragment) 	 */
+comment|/** 	 * Called for each token in the current fragment 	 * @param token The token to be scored 	 * @return a score which is passed to the Highlighter class to influence the mark-up of the text 	 * (this return value is NOT used to score the fragment) 	 */
 DECL|method|getTokenScore
 specifier|public
 name|float
