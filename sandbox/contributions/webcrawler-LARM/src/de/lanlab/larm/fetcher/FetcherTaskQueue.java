@@ -26,7 +26,7 @@ name|larm
 operator|.
 name|threads
 operator|.
-name|*
+name|TaskQueue
 import|;
 end_import
 
@@ -40,17 +40,35 @@ name|larm
 operator|.
 name|util
 operator|.
-name|*
+name|Queue
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
 operator|.
 name|util
 operator|.
-name|*
+name|CachingQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|util
+operator|.
+name|HashedCircularLinkedList
 import|;
 end_import
 
@@ -78,6 +96,7 @@ name|TaskQueue
 block|{
 comment|/**      * this is a hash that contains an entry for each server, which by itself is a      * CachingQueue that stores all tasks for this server      * @TODO probably link this to the host info structure      */
 DECL|field|servers
+specifier|private
 name|HashedCircularLinkedList
 name|servers
 init|=
@@ -90,6 +109,7 @@ literal|0.75f
 argument_list|)
 decl_stmt|;
 DECL|field|size
+specifier|private
 name|int
 name|size
 init|=
