@@ -347,8 +347,6 @@ argument_list|(
 name|mergedDir
 argument_list|,
 name|mergedSegment
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|merger

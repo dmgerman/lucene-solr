@@ -864,8 +864,6 @@ argument_list|(
 name|directory
 argument_list|,
 name|merged
-argument_list|,
-name|useCompoundFile
 argument_list|)
 decl_stmt|;
 name|merger
@@ -890,6 +888,15 @@ expr_stmt|;
 name|merger
 operator|.
 name|closeReaders
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|useCompoundFile
+condition|)
+name|merger
+operator|.
+name|createCompoundFile
 argument_list|()
 expr_stmt|;
 name|directory

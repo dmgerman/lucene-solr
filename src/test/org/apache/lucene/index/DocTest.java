@@ -422,8 +422,6 @@ argument_list|(
 name|directory
 argument_list|,
 name|merged
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|merger

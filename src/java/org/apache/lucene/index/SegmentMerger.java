@@ -108,11 +108,6 @@ specifier|final
 class|class
 name|SegmentMerger
 block|{
-DECL|field|useCompoundFile
-specifier|private
-name|boolean
-name|useCompoundFile
-decl_stmt|;
 DECL|field|directory
 specifier|private
 name|Directory
@@ -184,7 +179,7 @@ block|,
 literal|"tvf"
 block|}
 decl_stmt|;
-comment|/**    *     * @param dir The Directory to merge the other segments into    * @param name The name of the new segment    * @param compoundFile true if the new segment should use a compoundFile    */
+comment|/**    *     * @param dir The Directory to merge the other segments into    * @param name The name of the new segment    */
 DECL|method|SegmentMerger
 name|SegmentMerger
 parameter_list|(
@@ -193,9 +188,6 @@ name|dir
 parameter_list|,
 name|String
 name|name
-parameter_list|,
-name|boolean
-name|compoundFile
 parameter_list|)
 block|{
 name|directory
@@ -205,10 +197,6 @@ expr_stmt|;
 name|segment
 operator|=
 name|name
-expr_stmt|;
-name|useCompoundFile
-operator|=
-name|compoundFile
 expr_stmt|;
 block|}
 comment|/**    * Add an IndexReader to the collection of readers that are to be merged    * @param reader    */
@@ -284,13 +272,6 @@ condition|)
 name|mergeVectors
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|useCompoundFile
-condition|)
-name|createCompoundFile
-argument_list|()
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -344,7 +325,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|createCompoundFile
-specifier|private
 specifier|final
 name|void
 name|createCompoundFile
