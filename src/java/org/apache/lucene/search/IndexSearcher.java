@@ -296,6 +296,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|nDocs
+operator|<=
+literal|0
+condition|)
+comment|// null might be returned from hq.top() below.
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"nDocs must be> 0"
+argument_list|)
+throw|;
 name|Scorer
 name|scorer
 init|=
