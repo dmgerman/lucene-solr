@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Copyright 2002-2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/**  * Copyright 2002-2005 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class used to markup highlighted terms found in the best sections of a   * text, using configurable {@link Fragmenter}, {@link Scorer}, {@link Formatter}   * and tokenizers.  * @author mark@searcharea.co.uk  */
+comment|/**  * Class used to markup highlighted terms found in the best sections of a   * text, using configurable {@link Fragmenter}, {@link Scorer}, {@link Formatter},   * {@link Encoder} and tokenizers.  * @author mark@searcharea.co.uk  */
 end_comment
 
 begin_class
@@ -108,6 +108,11 @@ DECL|field|formatter
 specifier|private
 name|Formatter
 name|formatter
+decl_stmt|;
+DECL|field|encoder
+specifier|private
+name|Encoder
+name|encoder
 decl_stmt|;
 DECL|field|textFragmenter
 specifier|private
@@ -155,10 +160,42 @@ name|fragmentScorer
 parameter_list|)
 block|{
 name|this
+argument_list|(
+name|formatter
+argument_list|,
+operator|new
+name|DefaultEncoder
+argument_list|()
+argument_list|,
+name|fragmentScorer
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|Highlighter
+specifier|public
+name|Highlighter
+parameter_list|(
+name|Formatter
+name|formatter
+parameter_list|,
+name|Encoder
+name|encoder
+parameter_list|,
+name|Scorer
+name|fragmentScorer
+parameter_list|)
+block|{
+name|this
 operator|.
 name|formatter
 operator|=
 name|formatter
+expr_stmt|;
+name|this
+operator|.
+name|encoder
+operator|=
+name|encoder
 expr_stmt|;
 name|this
 operator|.
@@ -535,7 +572,12 @@ name|formatter
 operator|.
 name|highlightTerm
 argument_list|(
+name|encoder
+operator|.
+name|encodeText
+argument_list|(
 name|tokenText
+argument_list|)
 argument_list|,
 name|tokenGroup
 argument_list|)
@@ -551,6 +593,10 @@ name|newText
 operator|.
 name|append
 argument_list|(
+name|encoder
+operator|.
+name|encodeText
+argument_list|(
 name|text
 operator|.
 name|substring
@@ -558,6 +604,7 @@ argument_list|(
 name|lastEndOffset
 argument_list|,
 name|startOffset
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -716,7 +763,12 @@ name|formatter
 operator|.
 name|highlightTerm
 argument_list|(
+name|encoder
+operator|.
+name|encodeText
+argument_list|(
 name|tokenText
+argument_list|)
 argument_list|,
 name|tokenGroup
 argument_list|)
@@ -732,6 +784,10 @@ name|newText
 operator|.
 name|append
 argument_list|(
+name|encoder
+operator|.
+name|encodeText
+argument_list|(
 name|text
 operator|.
 name|substring
@@ -739,6 +795,7 @@ argument_list|(
 name|lastEndOffset
 argument_list|,
 name|startOffset
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -768,11 +825,16 @@ name|newText
 operator|.
 name|append
 argument_list|(
+name|encoder
+operator|.
+name|encodeText
+argument_list|(
 name|text
 operator|.
 name|substring
 argument_list|(
 name|lastEndOffset
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1449,6 +1511,32 @@ block|{
 name|fragmentScorer
 operator|=
 name|scorer
+expr_stmt|;
+block|}
+DECL|method|getEncoder
+specifier|public
+name|Encoder
+name|getEncoder
+parameter_list|()
+block|{
+return|return
+name|encoder
+return|;
+block|}
+DECL|method|setEncoder
+specifier|public
+name|void
+name|setEncoder
+parameter_list|(
+name|Encoder
+name|encoder
+parameter_list|)
+block|{
+name|this
+operator|.
+name|encoder
+operator|=
+name|encoder
 expr_stmt|;
 block|}
 block|}
