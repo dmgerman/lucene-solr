@@ -290,7 +290,7 @@ name|ScoreDoc
 name|j
 parameter_list|)
 function_decl|;
-comment|/** 	 * Compares two ScoreDoc objects and returns a result indicating their 	 * sort order in reverse. 	 * @param i First ScoreDoc 	 * @param j Second ScoreDoc 	 * @return<code>-1</code> if<code>i</code> should come before<code>j</code><br><code>1</code> if<code>i</code> should come after<code>j</code><br><code>0</code> if they are equal 	 * @see java.util.Comparator 	 */
+comment|/** 	 * Compares two ScoreDoc objects and returns a result indicating their 	 * sort order in reverse. 	 * @param i First ScoreDoc 	 * @param j Second ScoreDoc 	 * @return<code>-1</code> if<code>j</code> should come before<code>i</code><br><code>1</code> if<code>j</code> should come after<code>i</code><br><code>0</code> if they are equal 	 * @see java.util.Comparator 	 */
 DECL|method|compareReverse
 name|int
 name|compareReverse
@@ -311,7 +311,7 @@ name|ScoreDoc
 name|i
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the type of sort. 	 * @return One of the constants in SortField. 	 * @see SortField 	 */
+comment|/** 	 * Returns the type of sort.  Should return<code>SortField.SCORE</code>,<code>SortField.DOC</code>,<code>SortField.STRING</code>,<code>SortField.INTEGER</code>,  	 *<code>SortField.FLOAT</code> or<code>SortField.CUSTOM</code>.  It is not valid to return<code>SortField.AUTO</code>. 	 * @return One of the constants in SortField. 	 * @see SortField 	 */
 DECL|method|sortType
 name|int
 name|sortType
