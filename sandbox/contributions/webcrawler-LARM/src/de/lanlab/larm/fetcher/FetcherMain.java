@@ -150,16 +150,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|UIManager
-import|;
-end_import
-
 begin_comment
 comment|/**  * ENTRY POINT: this class contains the main()-method of the application, does  * all the initializing and optionally connects the fetcher with the GUI.  *  * @author    Clemens Marschner  * @created   December 16, 2000  * @version $Id$  */
 end_comment
@@ -387,7 +377,7 @@ argument_list|(
 name|storeLog
 argument_list|,
 comment|/* save in page files? */
-literal|false
+literal|true
 argument_list|,
 comment|/* page file prefix */
 literal|"logs/pagefile"
@@ -443,6 +433,21 @@ operator|new
 name|HostResolver
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|hostResolverFile
+operator|!=
+literal|null
+operator|&&
+operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|hostResolverFile
+argument_list|)
+condition|)
+block|{
 name|hostResolver
 operator|.
 name|initFromFile
@@ -450,6 +455,7 @@ argument_list|(
 name|hostResolverFile
 argument_list|)
 expr_stmt|;
+block|}
 name|hostManager
 operator|.
 name|setHostResolver
@@ -485,6 +491,17 @@ argument_list|,
 name|hostManager
 argument_list|)
 expr_stmt|;
+name|urlLengthFilter
+operator|=
+operator|new
+name|URLLengthFilter
+argument_list|(
+literal|500
+argument_list|,
+name|lengthLog
+argument_list|)
+expr_stmt|;
+comment|//knownPathsFilter = new KnownPathsFilter()
 comment|// prevent message box popups
 name|HTTPConnection
 operator|.
@@ -578,13 +595,7 @@ argument_list|(
 name|urlVisitedFilter
 argument_list|)
 expr_stmt|;
-name|messageHandler
-operator|.
-name|addListener
-argument_list|(
-name|knownPathsFilter
-argument_list|)
-expr_stmt|;
+comment|//messageHandler.addListener(knownPathsFilter);
 name|messageHandler
 operator|.
 name|addListener
@@ -1220,13 +1231,6 @@ decl_stmt|;
 if|if
 condition|(
 name|showInfo
-operator|||
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|hostResolverFile
-argument_list|)
 operator|||
 operator|(
 name|startURLs
