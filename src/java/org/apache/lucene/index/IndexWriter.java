@@ -705,19 +705,6 @@ name|optimize
 argument_list|()
 expr_stmt|;
 comment|// start with zero or 1 seg
-name|int
-name|minSegment
-init|=
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-name|int
-name|segmentsAddedSinceMerge
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -784,28 +771,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// add each info
-comment|// merge whenever mergeFactor segments have been added
-if|if
-condition|(
-operator|++
-name|segmentsAddedSinceMerge
-operator|==
-name|mergeFactor
-condition|)
-block|{
-name|mergeSegments
-argument_list|(
-name|minSegment
-operator|++
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|segmentsAddedSinceMerge
-operator|=
-literal|0
-expr_stmt|;
-block|}
 block|}
 block|}
 name|optimize
@@ -1040,30 +1005,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|mergeSegments
-argument_list|(
-name|minSegment
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Pops segments off of segmentInfos stack down to minSegment, merges them,     and pushes the merged index onto the top of the segmentInfos stack. */
-DECL|method|mergeSegments
-specifier|private
-specifier|final
-name|void
-name|mergeSegments
-parameter_list|(
-name|int
-name|minSegment
-parameter_list|,
-name|boolean
-name|delete
-parameter_list|)
-throws|throws
-name|IOException
-block|{
 name|String
 name|mergedName
 init|=
@@ -1178,7 +1119,26 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|delete
+operator|(
+name|reader
+operator|.
+name|directory
+operator|==
+name|this
+operator|.
+name|directory
+operator|)
+operator|||
+comment|// if we own the directory
+operator|(
+name|reader
+operator|.
+name|directory
+operator|==
+name|this
+operator|.
+name|ramDirectory
+operator|)
 condition|)
 name|segmentsToDelete
 operator|.
@@ -1187,7 +1147,7 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-comment|// queue for deletion
+comment|// queue segment for deletion
 name|mergedDocCount
 operator|+=
 name|si
