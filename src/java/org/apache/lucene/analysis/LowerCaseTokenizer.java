@@ -54,7 +54,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which satisfy    * {@link Character.isLetter(char)}.*/
+comment|/** Collects only characters which satisfy    * {@link Character#isLetter(char)}.*/
 DECL|method|normalize
 specifier|protected
 name|char

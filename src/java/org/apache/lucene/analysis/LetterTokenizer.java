@@ -53,7 +53,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which satisfy    * {@link Character.isLetter(char)}.*/
+comment|/** Collects only characters which satisfy    * {@link Character#isLetter(char)}.*/
 DECL|method|isTokenChar
 specifier|protected
 name|boolean

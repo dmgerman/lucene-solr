@@ -53,7 +53,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which do not satisfy    * {@link Character.isWhitespace(char)}.*/
+comment|/** Collects only characters which do not satisfy    * {@link java.lang.Character#isWhitespace(char)}.*/
 DECL|method|isTokenChar
 specifier|protected
 name|boolean
