@@ -372,10 +372,10 @@ init|=
 operator|new
 name|int
 index|[
-literal|0
+literal|1
 index|]
 index|[
-literal|0
+literal|1
 index|]
 decl_stmt|;
 comment|/**      Levenshtein distance also known as edit distance is a measure of similiarity      between two strings where the distance is measured as the number of character       deletions, insertions or substitutions required to transform one string to       the other string.<p>This method takes in four parameters; two strings and their respective       lengths to compute the Levenshtein distance between the two strings.      The result is returned as an integer.      */
@@ -440,6 +440,9 @@ operator|.
 name|max
 argument_list|(
 name|e
+index|[
+literal|0
+index|]
 operator|.
 name|length
 argument_list|,
