@@ -32,7 +32,37 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|LinkedList
 import|;
 end_import
 
@@ -42,7 +72,6 @@ end_comment
 
 begin_class
 DECL|class|ConjunctionScorer
-specifier|final
 class|class
 name|ConjunctionScorer
 extends|extends
@@ -167,7 +196,9 @@ name|firstTime
 condition|)
 block|{
 name|init
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 elseif|else
@@ -260,6 +291,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|firstTime
+condition|)
+block|{
+name|init
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 name|Iterator
 name|i
 init|=
@@ -365,20 +407,14 @@ DECL|method|init
 specifier|private
 name|void
 name|init
-parameter_list|()
+parameter_list|(
+name|boolean
+name|initScorers
+parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|more
-operator|=
-name|scorers
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-expr_stmt|;
-comment|// compute coord factor
+comment|//  compute coord factor
 name|coord
 operator|=
 name|getSimilarity
@@ -397,6 +433,20 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|more
+operator|=
+name|scorers
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+expr_stmt|;
+if|if
+condition|(
+name|initScorers
+condition|)
+block|{
 comment|// move each scorer to its first entry
 name|Iterator
 name|i
@@ -440,6 +490,7 @@ name|sortScorers
 argument_list|()
 expr_stmt|;
 comment|// initial sort of list
+block|}
 name|firstTime
 operator|=
 literal|false
