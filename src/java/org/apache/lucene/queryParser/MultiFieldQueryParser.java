@@ -653,7 +653,7 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *<p>      * Parses a query which searches on the fields specified.      *<p>      * If x fields are specified, this effectively constructs:      *<pre>      *<code>      * (field1:query) (field2:query) (field3:query)...(fieldx:query)      *</code>      *</pre>      *      * @param query Query string to parse      * @param fields Fields to search on      * @param analyzer Analyzer to use      * @throws ParseException if query parsing fails      * @throws TokenMgrError if query parsing fails      * @deprecated use {@link #parse(String)} instead      */
+comment|/**      *<p>Parses a query which searches on the fields specified.      * If x fields are specified, this effectively constructs:</p>      *      *<code>      * (field1:query) (field2:query) (field3:query)...(fieldx:query)      *</code>      *      * @param query Query string to parse      * @param fields Fields to search on      * @param analyzer Analyzer to use      * @throws ParseException if query parsing fails      * @throws TokenMgrError if query parsing fails      * @deprecated use {@link #parse(String)} instead but note that it      *  returns a different query for queries where all terms are required:      *  its query excepts all terms, no matter in what field they occur whereas      *  the query built by this (deprecated) method expected all terms in all fields       *  at the same time.      */
 DECL|method|parse
 specifier|public
 specifier|static
