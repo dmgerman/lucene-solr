@@ -60,6 +60,12 @@ specifier|abstract
 specifier|public
 class|class
 name|Filter
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
 block|{
 comment|/** Returns a BitSet with true for documents which should be permitted in     search results, and false for those that should not. */
 DECL|method|bits

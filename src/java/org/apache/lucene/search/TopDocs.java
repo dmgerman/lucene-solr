@@ -25,6 +25,12 @@ DECL|class|TopDocs
 specifier|public
 class|class
 name|TopDocs
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
 block|{
 comment|/** Expert: The total number of hits for the query.    * @see Hits#length()   */
 DECL|field|totalHits
