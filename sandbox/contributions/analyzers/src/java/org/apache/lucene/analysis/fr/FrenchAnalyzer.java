@@ -138,6 +138,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Reader
 import|;
 end_import
@@ -705,7 +715,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/**    * Builds an analyzer with the given stop words.    * @throws IOException    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -713,6 +723,8 @@ parameter_list|(
 name|File
 name|stopwords
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|stoptable
 operator|=
@@ -721,13 +733,10 @@ name|HashSet
 argument_list|(
 name|WordlistLoader
 operator|.
-name|getWordtable
+name|getWordSet
 argument_list|(
 name|stopwords
 argument_list|)
-operator|.
-name|keySet
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -774,7 +783,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
+comment|/**    * Builds an exclusionlist from the words contained in the given file.    * @throws IOException    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -783,6 +792,8 @@ parameter_list|(
 name|File
 name|exclusionlist
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|excltable
 operator|=
@@ -791,13 +802,10 @@ name|HashSet
 argument_list|(
 name|WordlistLoader
 operator|.
-name|getWordtable
+name|getWordSet
 argument_list|(
 name|exclusionlist
 argument_list|)
-operator|.
-name|keySet
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
