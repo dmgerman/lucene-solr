@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Hashtable
 import|;
 end_import
@@ -471,11 +461,6 @@ throws|throws
 name|IOException
 block|{
 comment|//     final boolean MONITOR = false;
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
 name|RAMFile
 name|file
 init|=

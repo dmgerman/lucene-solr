@@ -36,6 +36,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -59,6 +69,31 @@ name|LOCK_POLL_INTERVAL
 init|=
 literal|1000
 decl_stmt|;
+DECL|field|lockFile
+specifier|private
+name|File
+name|lockFile
+init|=
+literal|null
+decl_stmt|;
+DECL|method|Lock
+name|Lock
+parameter_list|(
+name|File
+name|lockFile
+parameter_list|)
+block|{
+name|this
+operator|.
+name|lockFile
+operator|=
+name|lockFile
+expr_stmt|;
+block|}
+DECL|method|Lock
+name|Lock
+parameter_list|()
+block|{   }
 comment|/** Attempts to obtain exclusive access and immediately return    *  upon success or failure.    * @return true iff exclusive access is obtained    */
 DECL|method|obtain
 specifier|public
@@ -118,11 +153,33 @@ operator|==
 name|maxSleepCount
 condition|)
 block|{
+name|String
+name|s
+init|=
+literal|"Lock obtain timed out"
+decl_stmt|;
+if|if
+condition|(
+name|lockFile
+operator|!=
+literal|null
+condition|)
+block|{
+name|s
+operator|+=
+literal|", lock file ="
+operator|+
+name|lockFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Lock obtain timed out"
+name|s
 argument_list|)
 throw|;
 block|}
