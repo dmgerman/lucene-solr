@@ -32,37 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|BufferedReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStreamReader
+name|FileReader
 import|;
 end_import
 
@@ -211,29 +181,8 @@ argument_list|)
 expr_stmt|;
 comment|// Add the contents of the file to a field named "contents".  Specify a Reader,
 comment|// so that the text of the file is tokenized and indexed, but not stored.
-comment|// ?? why doesn't FileReader work here ??
-name|FileInputStream
-name|is
-init|=
-operator|new
-name|FileInputStream
-argument_list|(
-name|f
-argument_list|)
-decl_stmt|;
-name|Reader
-name|reader
-init|=
-operator|new
-name|BufferedReader
-argument_list|(
-operator|new
-name|InputStreamReader
-argument_list|(
-name|is
-argument_list|)
-argument_list|)
-decl_stmt|;
+comment|// Note that FileReader expects the file to be in the system's default encoding.
+comment|// If that's not the case searching for special characters will fail.
 name|doc
 operator|.
 name|add
@@ -243,7 +192,11 @@ name|Field
 argument_list|(
 literal|"contents"
 argument_list|,
-name|reader
+operator|new
+name|FileReader
+argument_list|(
+name|f
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
