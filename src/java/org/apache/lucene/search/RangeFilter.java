@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Filter that restricts search results to a range of values in a given  * field.  *   *<p>  * This code borrows heavily from {@link RangeQuery}, but implemented as a Filter  * (much like {@link DateFilter})  *</p>  */
+comment|/**  * A Filter that restricts search results to a range of values in a given  * field.  *   *<p>  * This code borrows heavily from {@link RangeQuery}, but is implemented as a Filter  * (much like {@link DateFilter}).  *</p>  */
 end_comment
 
 begin_class
@@ -143,7 +143,7 @@ specifier|private
 name|boolean
 name|includeUpper
 decl_stmt|;
-comment|/**      * @param fieldName The field this range applies to      * @param lowerTerm The lower bound on this range      * @param upperTerm The upper bound on this range      * @param includeLower Does this range include the lower bound?      * @param includeUpper Does this range include the upper bound?      */
+comment|/**      * @param fieldName The field this range applies to      * @param lowerTerm The lower bound on this range      * @param upperTerm The upper bound on this range      * @param includeLower Does this range include the lower bound?      * @param includeUpper Does this range include the upper bound?      * @throws IllegalArgumentException if both terms are null or if      *  lowerTerm is null and includeLower is true (similar for upperTerm      *  and includeUpper)      */
 DECL|method|RangeFilter
 specifier|public
 name|RangeFilter
@@ -248,7 +248,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Constructs a filter for field<code>field</code> matching      * less than or equal to<code>value</code>      */
+comment|/**      * Constructs a filter for field<code>fieldName</code> matching      * less than or equal to<code>upperTerm</code>.      */
 DECL|method|Less
 specifier|public
 specifier|static
@@ -278,7 +278,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Constructs a filter for field<code>field</code> matching      * greater than or equal to<code>lower</code>      */
+comment|/**      * Constructs a filter for field<code>fieldName</code> matching      * greater than or equal to<code>lowerTerm</code>.      */
 DECL|method|More
 specifier|public
 specifier|static
