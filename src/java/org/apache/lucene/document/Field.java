@@ -418,7 +418,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/** Constructs a String-valued Field that is not tokenized, but is indexed     and stored.  Useful for non-text fields, e.g. date or url.      */
+comment|/** Constructs a String-valued Field that is not tokenized, but is indexed     and stored.  Useful for non-text fields, e.g. date or url.       @deprecated use {@link #Field(String, String, Field.Store, Field.Index)       Field(name, value, Field.Store.YES, Field.Index.UN_TOKENIZED)} instead */
 DECL|method|Keyword
 specifier|public
 specifier|static
@@ -449,7 +449,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a String-valued Field that is not tokenized nor indexed,     but is stored in the index, for return with hits. */
+comment|/** Constructs a String-valued Field that is not tokenized nor indexed,     but is stored in the index, for return with hits.     @deprecated use {@link #Field(String, String, Field.Store, Field.Index)       Field(name, value, Field.Store.YES, Field.Index.NO)} instead */
 DECL|method|UnIndexed
 specifier|public
 specifier|static
@@ -506,7 +506,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a Date-valued Field that is not tokenized and is indexed,       and stored in the index, for return with hits. */
+comment|/** Constructs a Date-valued Field that is not tokenized and is indexed,       and stored in the index, for return with hits.       @deprecated use {@link #Field(String, String, Field.Store, Field.Index)       Field(name, value, Field.Store.YES, Field.Index.UN_TOKENIZED)} instead */
 DECL|method|Keyword
 specifier|public
 specifier|static
@@ -542,7 +542,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a String-valued Field that is tokenized and indexed,     and is stored in the index, for return with hits.  Useful for short text     fields, like "title" or "subject".     @deprecated use {@link #Field(String, String, Field.Store, Field.Index, Field.TermVector)       Field(name, value, Field.Store.YES, Field.Index.TOKENIZED, boolean)} instead */
+comment|/** Constructs a String-valued Field that is tokenized and indexed,     and is stored in the index, for return with hits.  Useful for short text     fields, like "title" or "subject".     @deprecated use {@link #Field(String, String, Field.Store, Field.Index, Field.TermVector)       Field(name, value, Field.Store.YES, Field.Index.TOKENIZED, storeTermVector)} instead */
 DECL|method|Text
 specifier|public
 specifier|static
@@ -578,7 +578,7 @@ name|storeTermVector
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a String-valued Field that is tokenized and indexed,     but that is not stored in the index.  Term vector will not be stored for this field. */
+comment|/** Constructs a String-valued Field that is tokenized and indexed,     but that is not stored in the index.  Term vector will not be stored for this field.     @deprecated use {@link #Field(String, String, Field.Store, Field.Index)       Field(name, value, Field.Store.NO, Field.Index.TOKENIZED)} instead */
 DECL|method|UnStored
 specifier|public
 specifier|static
@@ -604,7 +604,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a String-valued Field that is tokenized and indexed,     but that is not stored in the index. */
+comment|/** Constructs a String-valued Field that is tokenized and indexed,     but that is not stored in the index.     @deprecated use {@link #Field(String, String, Field.Store, Field.Index, Field.TermVector)       Field(name, value, Field.Store.NO, Field.Index.TOKENIZED, storeTermVector)} instead */
 DECL|method|UnStored
 specifier|public
 specifier|static
@@ -640,7 +640,7 @@ name|storeTermVector
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a Reader-valued Field that is tokenized and indexed, but is     not stored in the index verbatim.  Useful for longer text fields, like     "body". Term vector will not be stored for this field. */
+comment|/** Constructs a Reader-valued Field that is tokenized and indexed, but is     not stored in the index verbatim.  Useful for longer text fields, like     "body". Term vector will not be stored for this field.     @deprecated use {@link #Field(String, Reader) Field(name, value)} instead */
 DECL|method|Text
 specifier|public
 specifier|static
@@ -666,7 +666,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a Reader-valued Field that is tokenized and indexed, but is     not stored in the index verbatim.  Useful for longer text fields, like     "body". */
+comment|/** Constructs a Reader-valued Field that is tokenized and indexed, but is     not stored in the index verbatim.  Useful for longer text fields, like     "body".     @deprecated use {@link #Field(String, Reader, Field.TermVector)       Field(name, value, storeTermVector)} instead */
 DECL|method|Text
 specifier|public
 specifier|static
