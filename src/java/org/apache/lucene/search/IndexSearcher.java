@@ -717,13 +717,10 @@ argument_list|(
 name|this
 argument_list|)
 operator|.
-name|scorer
-argument_list|(
-name|reader
-argument_list|)
-operator|.
 name|explain
 argument_list|(
+name|reader
+argument_list|,
 name|doc
 argument_list|)
 return|;

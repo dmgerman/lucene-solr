@@ -96,11 +96,17 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** An explanation of this weight computation. */
+comment|/** An explanation of the score computation for the named document. */
 DECL|method|explain
 name|Explanation
 name|explain
-parameter_list|()
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|int
+name|doc
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
