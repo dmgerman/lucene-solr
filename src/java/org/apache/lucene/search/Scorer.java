@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Expert: Common scoring functionality for different types of queries.  *<br>A<code>Scorer</code> iterates over all documents matching a query,  * or provides an explanation of the score for a query for a given document.  *<br>Scores are computed using a given<code>Similarity</code> implementation.  */
+comment|/** Expert: Common scoring functionality for different types of queries.  *<br>A<code>Scorer</code> either iterates over documents matching a query,  * or provides an explanation of the score for a query for a given document.  *<br>Document scores are computed using a given<code>Similarity</code> implementation.  */
 end_comment
 
 begin_class
@@ -71,7 +71,7 @@ operator|.
 name|similarity
 return|;
 block|}
-comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    */
+comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
 DECL|method|score
 specifier|public
 name|void
@@ -150,7 +150,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Advances to the next document matching the query.    * @return true iff there is another document matching the query.    */
+comment|/** Advances to the next document matching the query.    * @return true iff there is another document matching the query.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
 DECL|method|next
 specifier|public
 specifier|abstract
@@ -178,7 +178,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.     * @param target The target document number.    * @return true iff there is such a match.    *<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    */
+comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.    *<br>When this method is used the {@link #explain(int)} method should not be used.    * @param target The target document number.    * @return true iff there is such a match.    *<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>Most implementations are considerably more efficient than that.    */
 DECL|method|skipTo
 specifier|public
 specifier|abstract
@@ -191,7 +191,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    */
+comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()}, {@link #skipTo(int)} and    * {@link #score(HitCollector)} methods should not be used.    * @param doc The document number for the explanation.    */
 DECL|method|explain
 specifier|public
 specifier|abstract

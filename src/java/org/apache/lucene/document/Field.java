@@ -740,7 +740,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/** The name of the field (e.g., "date", "title", "body", ...)     as an interned string. */
+comment|/** Returns the name of the field as an interned string.    * For example "date", "title", "body", ...    */
 DECL|method|name
 specifier|public
 name|String

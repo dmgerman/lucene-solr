@@ -232,6 +232,7 @@ operator|&
 literal|0xFF
 index|]
 return|;
+comment|//& 0xFF maps negative bytes to positive above 127
 block|}
 comment|/** Returns a table for decoding normalization bytes.    * @see #encodeNorm(float)    */
 DECL|method|getNormDecoder

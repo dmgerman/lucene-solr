@@ -238,7 +238,7 @@ return|return
 name|minimumSimilarity
 return|;
 block|}
-comment|/**    * Returns the prefix length, i.e. the number of characters at the start    * of a term that must be identical (not fuzzy) to the query term if the query    * is to match that term.     */
+comment|/**    * Returns the non-fuzzy prefix length. This is the number of characters at the start    * of a term that must be identical (not fuzzy) to the query term if the query    * is to match that term.     */
 DECL|method|getPrefixLength
 specifier|public
 name|int
