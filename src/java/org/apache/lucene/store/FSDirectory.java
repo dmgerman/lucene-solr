@@ -105,7 +105,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param path the path to the directory.    * @param create if true, create, or erase any existing contents.    * @returns the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param path the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -134,7 +134,7 @@ name|create
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param file the path to the directory.    * @param create if true, create, or erase any existing contents.    * @returns the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param file the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
