@@ -418,7 +418,6 @@ return|return
 name|term
 return|;
 block|}
-empty_stmt|;
 DECL|method|createWeight
 specifier|protected
 name|Weight
