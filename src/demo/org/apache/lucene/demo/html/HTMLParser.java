@@ -661,8 +661,6 @@ DECL|method|addMetaTag
 name|void
 name|addMetaTag
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|metaTags
 operator|.
