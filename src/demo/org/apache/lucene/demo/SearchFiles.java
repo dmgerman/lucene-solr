@@ -625,7 +625,9 @@ name|InputStreamReader
 argument_list|(
 name|System
 operator|.
-name|in
+name|int
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
