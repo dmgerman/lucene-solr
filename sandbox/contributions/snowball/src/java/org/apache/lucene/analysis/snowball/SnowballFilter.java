@@ -156,11 +156,10 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|this
-operator|.
-name|input
-operator|=
+name|super
+argument_list|(
 name|in
+argument_list|)
 expr_stmt|;
 try|try
 block|{
