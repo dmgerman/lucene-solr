@@ -624,9 +624,6 @@ operator|+
 literal|" total matching documents"
 argument_list|)
 expr_stmt|;
-name|Query
-name|explainQuery
-decl_stmt|;
 if|if
 condition|(
 name|explain
@@ -716,7 +713,11 @@ name|message
 argument_list|(
 literal|"---------------- "
 operator|+
+operator|(
 name|ii
+operator|+
+literal|1
+operator|)
 operator|+
 literal|" score:"
 operator|+
@@ -838,6 +839,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * @todo Allow user to specify what field(s) to display    */
 DECL|method|printHit
 specifier|private
 name|void
@@ -873,15 +875,33 @@ name|ii
 index|]
 decl_stmt|;
 name|String
+index|[]
 name|result
 init|=
 name|doc
 operator|.
-name|get
+name|getValues
 argument_list|(
 name|currField
 argument_list|)
 decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|result
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
 name|message
 argument_list|(
 name|currField
@@ -889,8 +909,12 @@ operator|+
 literal|":"
 operator|+
 name|result
+index|[
+name|i
+index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//another option is to just do message(doc);
 block|}
@@ -1097,6 +1121,7 @@ name|query
 operator|)
 return|;
 block|}
+comment|/**    * @todo Allow user to specify analyzer    */
 DECL|method|initSearch
 specifier|private
 name|Hits
@@ -1795,7 +1820,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Provides a list of the top terms of the index. 	 * 	 * @param field  - the name of the command or null for all of them. 	 */
+comment|/** Provides a list of the top terms of the index.    *    * @param field  - the name of the command or null for all of them.    */
 DECL|method|terms
 specifier|public
 name|void
@@ -1872,19 +1897,6 @@ name|termMap
 operator|.
 name|put
 argument_list|(
-operator|new
-name|Integer
-argument_list|(
-operator|(
-literal|0
-operator|-
-name|terms
-operator|.
-name|docFreq
-argument_list|()
-operator|)
-argument_list|)
-argument_list|,
 name|term
 operator|.
 name|field
@@ -1896,6 +1908,17 @@ name|term
 operator|.
 name|text
 argument_list|()
+argument_list|,
+operator|new
+name|Integer
+argument_list|(
+operator|(
+name|terms
+operator|.
+name|docFreq
+argument_list|()
+operator|)
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1930,28 +1953,28 @@ name|ii
 operator|++
 control|)
 block|{
-name|Integer
-name|termFreq
-init|=
-operator|(
-name|Integer
-operator|)
-name|termIterator
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
 name|String
 name|termDetails
 init|=
 operator|(
 name|String
 operator|)
+name|termIterator
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|Integer
+name|termFreq
+init|=
+operator|(
+name|Integer
+operator|)
 name|termMap
 operator|.
 name|get
 argument_list|(
-name|termFreq
+name|termDetails
 argument_list|)
 decl_stmt|;
 name|message
@@ -1970,7 +1993,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Sort Hashtable values 	 * @param h the hashtable we're sorting 	 * from http://developer.java.sun.com/developer/qow/archive/170/index.jsp 	 */
+comment|/** Sort Hashtable values    * @param h the hashtable we're sorting    * from http://developer.java.sun.com/developer/qow/archive/170/index.jsp    */
 specifier|public
 specifier|static
 name|Entry
