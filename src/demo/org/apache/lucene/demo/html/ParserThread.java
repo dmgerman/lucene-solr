@@ -131,7 +131,7 @@ name|summary
 operator|.
 name|setLength
 argument_list|(
-name|parser
+name|HTMLParser
 operator|.
 name|SUMMARY_LENGTH
 argument_list|)
