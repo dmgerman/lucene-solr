@@ -41,14 +41,6 @@ end_import
 
 begin_import
 import|import
-name|search
-operator|.
-name|SearchResultFactory
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -58,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Encapsulates the results of a search. After a SearchResults has  * been constructed from a Hits object, the IndexSearcher can be  * safely closed.  *</p>  *<p>  * SearchResults also provides a way of retrieving Java objects from  * Documents (via {@link search.SearchResultsFactory}).  *</p>  *<p>  *<b>Note that this implementation uses code from  * /projects/appex/search.</b>  *</p>  */
+comment|/**  *<p>  * Encapsulates the results of a search. After a SearchResults has  * been constructed from a Hits object, the IndexSearcher can be  * safely closed.  *</p>  *<p>  * SearchResults also provides a way of retrieving Java objects from  * Documents (via {@link search.SearchResultsFactory}).  *</p>  */
 end_comment
 
 begin_class
@@ -255,76 +247,8 @@ index|[]
 name|getResultsAsObjects
 parameter_list|()
 block|{
-if|if
-condition|(
-name|objectResults
-operator|==
-literal|null
-condition|)
-block|{
-name|objectResults
-operator|=
-operator|new
-name|Object
-index|[
-name|hitsDocuments
-operator|.
-name|length
-index|]
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|hitsDocuments
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-try|try
-block|{
-name|objectResults
-index|[
-name|i
-index|]
-operator|=
-name|SearchResultFactory
-operator|.
-name|getDocAsObject
-argument_list|(
-name|hitsDocuments
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|cat
-operator|.
-name|error
-argument_list|(
-literal|"Error instantiating an object from a document."
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
+comment|/**          * At this point, use some mechanism of retrieving          * the objects via a UUID or something.          */
+comment|/*         if (objectResults == null)         {             objectResults = new Object[hitsDocuments.length];             for (int i = 0; i< hitsDocuments.length; i++)             {                 try                 {                     objectResults[i] = SearchResultFactory.                             getDocAsObject(hitsDocuments[i]);                 }                 catch (Exception e)                 {                     cat.error("Error instantiating an object from a document.", e);                 }             }         }         */
 return|return
 name|objectResults
 return|;
