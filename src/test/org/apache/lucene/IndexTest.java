@@ -119,9 +119,10 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|mergeFactor
-operator|=
+name|setMergeFactor
+argument_list|(
 literal|20
+argument_list|)
 expr_stmt|;
 comment|// FIXME: OG: what's with this hard-coded dirs??
 name|indexDocs
