@@ -267,7 +267,7 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 * @return all tokens' scores summed up 	 */
 DECL|method|getTotalScore
 specifier|public
 name|float

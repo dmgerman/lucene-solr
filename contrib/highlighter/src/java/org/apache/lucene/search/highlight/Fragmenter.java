@@ -52,7 +52,7 @@ name|String
 name|originalText
 parameter_list|)
 function_decl|;
-comment|/** 	 * Test to see if this token from the stream should be held in a new TextFragment 	 * @param nextToken 	 * @return 	 */
+comment|/** 	 * Test to see if this token from the stream should be held in a new TextFragment 	 * @param nextToken 	 */
 DECL|method|isNewFragment
 specifier|public
 name|boolean

@@ -28,7 +28,7 @@ specifier|public
 interface|interface
 name|Encoder
 block|{
-comment|/** 	 * @param originalText The section of text being output 	 * @return 	 */
+comment|/** 	 * @param originalText The section of text being output 	 */
 DECL|method|encodeText
 name|String
 name|encodeText

@@ -28,7 +28,7 @@ specifier|public
 interface|interface
 name|Formatter
 block|{
-comment|/** 	 * @param originalText The section of text being considered for markup 	 * @param tokenGroup contains one or several overlapping Tokens along with 	 * their scores and positions. 	 * @return 	 */
+comment|/** 	 * @param originalText The section of text being considered for markup 	 * @param tokenGroup contains one or several overlapping Tokens along with 	 * their scores and positions. 	 */
 DECL|method|highlightTerm
 name|String
 name|highlightTerm

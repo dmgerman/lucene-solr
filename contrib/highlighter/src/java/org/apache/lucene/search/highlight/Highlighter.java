@@ -381,7 +381,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Low level api to get the most relevant (formatted) sections of the document. 	 * This method has been made public to allow visibility of score information held in TextFragment objects. 	 * Thanks to Jason Calabrese for help in redefining the interface.   	 * @param tokenStream 	 * @param text 	 * @param maxNumFragments 	 * @param mergeContiguousFragments 	 * @return  	 * @throws IOException 	 */
+comment|/** 	 * Low level api to get the most relevant (formatted) sections of the document. 	 * This method has been made public to allow visibility of score information held in TextFragment objects. 	 * Thanks to Jason Calabrese for help in redefining the interface.   	 * @param tokenStream 	 * @param text 	 * @param maxNumFragments 	 * @param mergeContiguousFragments 	 * @throws IOException 	 */
 DECL|method|getBestTextFragments
 specifier|public
 specifier|final
@@ -1451,7 +1451,7 @@ operator|=
 name|byteCount
 expr_stmt|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 DECL|method|getTextFragmenter
 specifier|public
 name|Fragmenter
