@@ -444,6 +444,16 @@ name|this
 return|;
 block|}
 block|}
+DECL|method|getQuery
+specifier|public
+name|Query
+name|getQuery
+parameter_list|()
+block|{
+return|return
+name|query
+return|;
+block|}
 comment|/** Prints a user-readable version of this query. */
 DECL|method|toString
 specifier|public
