@@ -270,6 +270,8 @@ operator|(
 operator|(
 name|TermPositions
 operator|)
+name|this
+operator|.
 name|in
 operator|)
 operator|.
