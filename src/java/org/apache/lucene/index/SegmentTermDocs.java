@@ -735,10 +735,6 @@ condition|(
 name|target
 operator|>
 name|skipDoc
-operator|&&
-name|skipCount
-operator|<
-name|numSkips
 condition|)
 block|{
 name|lastSkipDoc
@@ -767,6 +763,13 @@ name|numSkipped
 operator|+=
 name|skipInterval
 expr_stmt|;
+if|if
+condition|(
+name|skipCount
+operator|>=
+name|numSkips
+condition|)
+break|break;
 name|skipDoc
 operator|+=
 name|skipStream
