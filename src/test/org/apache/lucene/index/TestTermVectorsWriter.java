@@ -1008,6 +1008,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Test that no NullPointerException will be raised,    * when adding one document with a single, empty field    * and term vectors enabled.    *    */
 DECL|method|testBadSegment
 specifier|public
 name|void
@@ -1075,7 +1076,6 @@ name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// throws exception, works with Field.TermVector.NO
 name|ir
 operator|.
 name|addDocument
@@ -1084,6 +1084,11 @@ name|document
 argument_list|)
 expr_stmt|;
 name|ir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()
