@@ -202,6 +202,19 @@ argument_list|()
 expr_stmt|;
 comment|// trigger further scanning
 block|}
+return|return
+name|doNext
+argument_list|()
+return|;
+block|}
+DECL|method|doNext
+specifier|private
+name|boolean
+name|doNext
+parameter_list|()
+throws|throws
+name|IOException
+block|{
 while|while
 condition|(
 name|more
@@ -308,7 +321,8 @@ argument_list|()
 expr_stmt|;
 comment|// re-sort scorers
 return|return
-name|more
+name|doNext
+argument_list|()
 return|;
 block|}
 DECL|method|score
@@ -484,6 +498,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 comment|// empty the list
+comment|// note that this comparator is not consistent with equals!
 name|Arrays
 operator|.
 name|sort

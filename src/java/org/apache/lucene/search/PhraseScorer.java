@@ -273,6 +273,20 @@ argument_list|()
 expr_stmt|;
 comment|// trigger further scanning
 block|}
+return|return
+name|doNext
+argument_list|()
+return|;
+block|}
+comment|// next without initial increment
+DECL|method|doNext
+specifier|private
+name|boolean
+name|doNext
+parameter_list|()
+throws|throws
+name|IOException
+block|{
 while|while
 condition|(
 name|more
@@ -438,7 +452,8 @@ argument_list|()
 expr_stmt|;
 comment|// re-sort
 return|return
-name|more
+name|doNext
+argument_list|()
 return|;
 block|}
 DECL|method|phraseFreq
