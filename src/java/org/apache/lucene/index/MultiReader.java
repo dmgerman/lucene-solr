@@ -160,7 +160,7 @@ name|hasDeletions
 init|=
 literal|false
 decl_stmt|;
-comment|/**   *<p>Construct a MultiReader aggregating the named set of (sub)readers.   * Directory locking for delete, undeleteAll, and setNorm operations is   * left to the subreaders.</p>   *<p>Note that all subreaders are closed if this Multireader is closed.</p>   * @param readers set of (sub)readers   * @throws IOException   */
+comment|/**   *<p>Construct a MultiReader aggregating the named set of (sub)readers.   * Directory locking for delete, undeleteAll, and setNorm operations is   * left to the subreaders.</p>   *<p>Note that all subreaders are closed if this Multireader is closed.</p>   * @param subReaders set of (sub)readers   * @throws IOException   */
 DECL|method|MultiReader
 specifier|public
 name|MultiReader

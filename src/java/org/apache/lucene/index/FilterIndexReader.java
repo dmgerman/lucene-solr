@@ -370,7 +370,7 @@ specifier|protected
 name|IndexReader
 name|baseReader
 decl_stmt|;
-comment|/**    *<p>Construct a FilterIndexReader based on the specified base reader.    * Directory locking for delete, undeleteAll, and setNorm operations is    * left to the base reader.</p>    *<p>Note that base reader is closed if this FilterIndexReader is closed.</p>    * @param in specified base reader.    */
+comment|/**    *<p>Construct a FilterIndexReader based on the specified base reader.    * Directory locking for delete, undeleteAll, and setNorm operations is    * left to the base reader.</p>    *<p>Note that base reader is closed if this FilterIndexReader is closed.</p>    * @param baseReader specified base reader.    */
 DECL|method|FilterIndexReader
 specifier|public
 name|FilterIndexReader
