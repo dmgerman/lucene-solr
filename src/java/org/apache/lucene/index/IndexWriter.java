@@ -463,6 +463,17 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns the analyzer used by this index. */
+DECL|method|getAnalyzer
+specifier|public
+name|Analyzer
+name|getAnalyzer
+parameter_list|()
+block|{
+return|return
+name|analyzer
+return|;
+block|}
 comment|/** Returns the number of documents currently in this index. */
 DECL|method|docCount
 specifier|public
