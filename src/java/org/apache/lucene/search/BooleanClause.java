@@ -149,6 +149,10 @@ DECL|field|occur
 specifier|private
 name|Occur
 name|occur
+init|=
+name|Occur
+operator|.
+name|SHOULD
 decl_stmt|;
 comment|/** Constructs a BooleanClause with query<code>q</code>, required    *<code>r</code> and prohibited<code>p</code>.    * @deprecated use BooleanClause(Query, Occur) instead    *<ul>    *<li>For BooleanClause(query, true, false) use BooleanClause(query, BooleanClause.Occur.MUST)    *<li>For BooleanClause(query, false, false) use BooleanClause(query, BooleanClause.Occur.SHOULD)    *<li>For BooleanClause(query, false, true) use BooleanClause(query, BooleanClause.Occur.MUST_NOT)    *</ul>    */
 DECL|method|BooleanClause
