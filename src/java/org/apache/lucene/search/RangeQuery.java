@@ -426,8 +426,9 @@ name|queries
 argument_list|)
 return|;
 block|}
+comment|/** Returns the field name for this query */
 DECL|method|getField
-specifier|private
+specifier|public
 name|String
 name|getField
 parameter_list|()
@@ -448,6 +449,39 @@ operator|.
 name|field
 argument_list|()
 operator|)
+return|;
+block|}
+comment|/** Returns the lower term of this range query */
+DECL|method|getLowerTerm
+specifier|public
+name|Term
+name|getLowerTerm
+parameter_list|()
+block|{
+return|return
+name|lowerTerm
+return|;
+block|}
+comment|/** Returns the upper term of this range query */
+DECL|method|getUpperTerm
+specifier|public
+name|Term
+name|getUpperTerm
+parameter_list|()
+block|{
+return|return
+name|upperTerm
+return|;
+block|}
+comment|/** Returns<code>true</code> if the range query is inclusive */
+DECL|method|isInclusive
+specifier|public
+name|boolean
+name|isInclusive
+parameter_list|()
+block|{
+return|return
+name|inclusive
 return|;
 block|}
 comment|/** Prints a user-readable version of this query. */

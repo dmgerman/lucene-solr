@@ -101,6 +101,17 @@ operator|=
 name|prefix
 expr_stmt|;
 block|}
+comment|/** Returns the prefix of this query. */
+DECL|method|getPrefix
+specifier|public
+name|Term
+name|getPrefix
+parameter_list|()
+block|{
+return|return
+name|prefix
+return|;
+block|}
 DECL|method|rewrite
 specifier|public
 name|Query
