@@ -426,8 +426,6 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|RAMFile
 name|file
@@ -457,8 +455,6 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|//     final boolean MONITOR = false;
 name|RAMFile

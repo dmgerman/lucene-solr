@@ -632,8 +632,6 @@ specifier|final
 name|long
 name|getFilePointer
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|bufferStart
