@@ -1607,9 +1607,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
-name|isLocked
-argument_list|(
+name|Directory
+name|dir
+init|=
 name|FSDirectory
 operator|.
 name|getDirectory
@@ -1618,7 +1618,22 @@ name|directory
 argument_list|,
 literal|false
 argument_list|)
+decl_stmt|;
+name|boolean
+name|result
+init|=
+name|isLocked
+argument_list|(
+name|dir
 argument_list|)
+decl_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|/**    * Forcibly unlocks the index in the named directory.    *<P>    * Caution: this should only be used by failure recovery code,    * when it is known that no other process nor thread is in fact    * currently accessing this index.    */
