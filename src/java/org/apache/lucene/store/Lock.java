@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An interprocess mutex lock.  *<p>Typical use might look like:<pre>  * new Lock.With(directory.makeLock("my.lock")) {  *     public Object doBody() {  *<it>... code to execute while locked ...</it>  *     }  *   }.run();  *</pre>  *  * @author Doug Cutting  * @see Directory#makeLock(String) */
+comment|/** An interprocess mutex lock.  *<p>Typical use might look like:<pre>  * new Lock.With(directory.makeLock("my.lock")) {  *     public Object doBody() {  *<i>... code to execute while locked ...</i>  *     }  *   }.run();  *</pre>  *  * @author Doug Cutting  * @see Directory#makeLock(String) */
 end_comment
 
 begin_class
@@ -108,7 +108,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Calls {@link #doBody} while<it>lock</it> is obtained.  Blocks if lock      * cannot be obtained immediately.  Retries to obtain lock once per second      * until it is obtained, or until it has tried ten times. */
+comment|/** Calls {@link #doBody} while<i>lock</i> is obtained.  Blocks if lock      * cannot be obtained immediately.  Retries to obtain lock once per second      * until it is obtained, or until it has tried ten times. */
 DECL|method|run
 specifier|public
 name|Object

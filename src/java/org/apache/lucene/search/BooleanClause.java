@@ -33,7 +33,7 @@ specifier|public
 name|Query
 name|query
 decl_stmt|;
-comment|/** If true, documents documents which<i>do not</i>     match this sub-query will<it>not</it> match the boolean query. */
+comment|/** If true, documents documents which<i>do not</i>     match this sub-query will<i>not</i> match the boolean query. */
 DECL|field|required
 specifier|public
 name|boolean
@@ -41,7 +41,7 @@ name|required
 init|=
 literal|false
 decl_stmt|;
-comment|/** If true, documents documents which<i>do</i>     match this sub-query will<it>not</it> match the boolean query. */
+comment|/** If true, documents documents which<i>do</i>     match this sub-query will<i>not</i> match the boolean query. */
 DECL|field|prohibited
 specifier|public
 name|boolean
