@@ -204,7 +204,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/** Compares two terms, returning an integer which is less than zero iff this     term belongs after the argument, equal zero iff this term is equal to the     argument, and greater than zero iff this term belongs after the argument.      The ordering of terms is first by field, then by text.*/
+comment|/** Compares two terms, returning a negative integer iff this     term belongs before the argument, zero iff this term is equal to the     argument, and a positive integer iff this term belongs after the argument.      The ordering of terms is first by field, then by text.*/
 DECL|method|compareTo
 specifier|public
 specifier|final
