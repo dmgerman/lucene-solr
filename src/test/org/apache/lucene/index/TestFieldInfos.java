@@ -134,8 +134,6 @@ specifier|public
 name|void
 name|test
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|//Positive test of FieldInfos
 name|assertTrue
