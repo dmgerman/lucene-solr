@@ -265,7 +265,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a Date-valued Field that is tokenized and indexed,       and is stored in the index, for return with hits. */
+comment|/** Constructs a Date-valued Field that is not tokenized and is indexed,       and stored in the index, for return with hits. */
 DECL|method|Keyword
 specifier|public
 specifier|static
@@ -297,7 +297,7 @@ literal|true
 argument_list|,
 literal|true
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 return|;
 block|}
