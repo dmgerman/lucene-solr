@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -648,10 +648,10 @@ name|length
 return|;
 block|}
 comment|/** Not implemented      * @throws UnsupportedOperationException */
-DECL|method|createFile
+DECL|method|createOutput
 specifier|public
-name|OutputStream
-name|createFile
+name|IndexOutput
+name|createOutput
 parameter_list|(
 name|String
 name|name

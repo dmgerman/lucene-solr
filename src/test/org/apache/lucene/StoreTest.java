@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -278,12 +278,12 @@ literal|0x7F
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("filling " + name + " with " + length + " of " + b);
-name|OutputStream
+name|IndexOutput
 name|file
 init|=
 name|store
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|name
 argument_list|)

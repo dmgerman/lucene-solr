@@ -170,7 +170,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -1318,7 +1318,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|OutputStream
+name|IndexOutput
 name|freq
 init|=
 literal|null
@@ -1344,7 +1344,7 @@ name|freq
 operator|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|segment
 operator|+
@@ -1355,7 +1355,7 @@ name|prox
 operator|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|segment
 operator|+
@@ -1887,12 +1887,12 @@ name|n
 index|]
 argument_list|)
 decl_stmt|;
-name|OutputStream
+name|IndexOutput
 name|norms
 init|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|segment
 operator|+

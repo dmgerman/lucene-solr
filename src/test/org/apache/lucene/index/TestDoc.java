@@ -288,7 +288,7 @@ name|files
 operator|.
 name|add
 argument_list|(
-name|createFile
+name|createOutput
 argument_list|(
 literal|"test.txt"
 argument_list|,
@@ -300,7 +300,7 @@ name|files
 operator|.
 name|add
 argument_list|(
-name|createFile
+name|createOutput
 argument_list|(
 literal|"test2.txt"
 argument_list|,
@@ -309,10 +309,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createFile
+DECL|method|createOutput
 specifier|private
 name|File
-name|createFile
+name|createOutput
 parameter_list|(
 name|String
 name|name

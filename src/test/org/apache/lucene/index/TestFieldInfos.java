@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -134,6 +134,8 @@ specifier|public
 name|void
 name|test
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|//Positive test of FieldInfos
 name|assertTrue
@@ -181,12 +183,12 @@ name|name
 init|=
 literal|"testFile"
 decl_stmt|;
-name|OutputStream
+name|IndexOutput
 name|output
 init|=
 name|dir
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|name
 argument_list|)

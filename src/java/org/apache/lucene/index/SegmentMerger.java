@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -959,14 +959,14 @@ block|}
 block|}
 DECL|field|freqOutput
 specifier|private
-name|OutputStream
+name|IndexOutput
 name|freqOutput
 init|=
 literal|null
 decl_stmt|;
 DECL|field|proxOutput
 specifier|private
-name|OutputStream
+name|IndexOutput
 name|proxOutput
 init|=
 literal|null
@@ -1005,7 +1005,7 @@ name|freqOutput
 operator|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|segment
 operator|+
@@ -1016,7 +1016,7 @@ name|proxOutput
 operator|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|segment
 operator|+
@@ -1926,12 +1926,12 @@ operator|.
 name|isIndexed
 condition|)
 block|{
-name|OutputStream
+name|IndexOutput
 name|output
 init|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|segment
 operator|+

@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -843,12 +843,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|OutputStream
+name|IndexOutput
 name|output
 init|=
 name|d
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|name
 argument_list|)

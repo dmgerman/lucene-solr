@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|OutputStream
+name|IndexOutput
 import|;
 end_import
 
@@ -354,7 +354,7 @@ operator|=
 literal|true
 expr_stmt|;
 comment|// open the compound stream
-name|OutputStream
+name|IndexOutput
 name|os
 init|=
 literal|null
@@ -365,7 +365,7 @@ name|os
 operator|=
 name|directory
 operator|.
-name|createFile
+name|createOutput
 argument_list|(
 name|fileName
 argument_list|)
@@ -545,7 +545,7 @@ comment|// Close the output stream. Set the os to null before trying to
 comment|// close so that if an exception occurs during the close, the
 comment|// finally clause below will not attempt to close the stream
 comment|// the second time.
-name|OutputStream
+name|IndexOutput
 name|tmp
 init|=
 name|os
@@ -593,7 +593,7 @@ parameter_list|(
 name|FileEntry
 name|source
 parameter_list|,
-name|OutputStream
+name|IndexOutput
 name|os
 parameter_list|,
 name|byte

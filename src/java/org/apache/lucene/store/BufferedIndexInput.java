@@ -45,7 +45,7 @@ specifier|final
 name|int
 name|BUFFER_SIZE
 init|=
-name|OutputStream
+name|BufferedIndexOutput
 operator|.
 name|BUFFER_SIZE
 decl_stmt|;
