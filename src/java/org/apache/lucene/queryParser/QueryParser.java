@@ -253,8 +253,6 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
-try|try
-block|{
 name|QueryParser
 name|parser
 init|=
@@ -274,24 +272,6 @@ argument_list|(
 name|query
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|TokenMgrError
-name|tme
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ParseException
-argument_list|(
-name|tme
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/** Constructs a query parser.    *  @param f	the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|QueryParser
@@ -327,7 +307,7 @@ operator|=
 name|f
 expr_stmt|;
 block|}
-comment|/** Parses a query string, returning a    *<a href="lucene.search.Query.html">Query</a>.    *  @param query	the query string to be parsed.    *  @throws ParseException if the parsing fails    *  @throws TokenMgrError if ther parsing fails    */
+comment|/** Parses a query string, returning a    *<a href="lucene.search.Query.html">Query</a>.    *  @param query	the query string to be parsed.    *  @throws ParseException if the parsing fails    */
 DECL|method|parse
 specifier|public
 name|Query
@@ -338,8 +318,6 @@ name|query
 parameter_list|)
 throws|throws
 name|ParseException
-throws|,
-name|TokenMgrError
 block|{
 name|ReInit
 argument_list|(
@@ -354,12 +332,32 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 return|return
 name|Query
 argument_list|(
 name|field
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|TokenMgrError
+name|tme
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ParseException
+argument_list|(
+name|tme
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * Sets the default slop for phrases.  If zero, then exact phrase matches    * are required.  Default value is zero.    */
 DECL|method|setPhraseSlop
