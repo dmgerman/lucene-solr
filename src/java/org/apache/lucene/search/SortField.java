@@ -365,15 +365,15 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
+if|if
+condition|(
+name|reverse
+condition|)
 name|buffer
 operator|.
 name|append
 argument_list|(
-name|reverse
-condition|?
-literal|" DESC"
-else|:
-literal|" ASC"
+literal|'!'
 argument_list|)
 expr_stmt|;
 return|return
