@@ -86,13 +86,6 @@ specifier|private
 name|Term
 name|term
 decl_stmt|;
-DECL|field|boost
-specifier|private
-name|float
-name|boost
-init|=
-literal|1.0f
-decl_stmt|;
 DECL|field|idf
 specifier|private
 name|float
@@ -120,32 +113,6 @@ name|term
 operator|=
 name|t
 expr_stmt|;
-block|}
-comment|/** Sets the boost for this term to<code>b</code>.  Documents containing     this term will (in addition to the normal weightings) have their score     multiplied by<code>b</code>. */
-DECL|method|setBoost
-specifier|public
-name|void
-name|setBoost
-parameter_list|(
-name|float
-name|b
-parameter_list|)
-block|{
-name|boost
-operator|=
-name|b
-expr_stmt|;
-block|}
-comment|/** Gets the boost for this term.  Documents containing     this term will (in addition to the normal weightings) have their score     multiplied by<code>b</code>.   The boost is 1.0 by default.  */
-DECL|method|getBoost
-specifier|public
-name|float
-name|getBoost
-parameter_list|()
-block|{
-return|return
-name|boost
-return|;
 block|}
 DECL|method|sumOfSquaredWeights
 specifier|final

@@ -133,13 +133,6 @@ name|weight
 init|=
 literal|0.0f
 decl_stmt|;
-DECL|field|boost
-specifier|private
-name|float
-name|boost
-init|=
-literal|1.0f
-decl_stmt|;
 DECL|field|slop
 specifier|private
 name|int
@@ -153,34 +146,6 @@ specifier|public
 name|PhraseQuery
 parameter_list|()
 block|{   }
-comment|/** Sets the boost for this term to<code>b</code>.  Documents containing     this term will (in addition to the normal weightings) have their score     multiplied by<code>b</code>. */
-DECL|method|setBoost
-specifier|public
-specifier|final
-name|void
-name|setBoost
-parameter_list|(
-name|float
-name|b
-parameter_list|)
-block|{
-name|boost
-operator|=
-name|b
-expr_stmt|;
-block|}
-comment|/** Gets the boost for this term.  Documents containing     this term will (in addition to the normal weightings) have their score     multiplied by<code>b</code>.   The boost is 1.0 by default.  */
-DECL|method|getBoost
-specifier|public
-specifier|final
-name|float
-name|getBoost
-parameter_list|()
-block|{
-return|return
-name|boost
-return|;
-block|}
 comment|/** Sets the number of other words permitted between words in query phrase.     If zero, then this is an exact phrase search.  For larger values this works     like a<code>WITHIN</code> or<code>NEAR</code> operator.<p>The slop is in fact an edit-distance, where the units correspond to     moves of terms in the query phrase out of position.  For example, to switch     the order of two words requires two moves (the first move places the words     atop one another), so to permit re-orderings of phrases, the slop must be     at least two.<p>More exact matches are scored higher than sloppier matches, thus search     results are sorted by exactness.<p>The slop is zero by default, requiring exact matches.*/
 DECL|method|setSlop
 specifier|public
