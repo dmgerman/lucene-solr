@@ -112,6 +112,12 @@ argument_list|(
 name|ti
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ti
+operator|!=
+literal|null
+condition|)
 name|proxStream
 operator|.
 name|seek
@@ -120,6 +126,11 @@ name|ti
 operator|.
 name|proxPointer
 argument_list|)
+expr_stmt|;
+else|else
+name|proxCount
+operator|=
+literal|0
 expr_stmt|;
 block|}
 DECL|method|close
