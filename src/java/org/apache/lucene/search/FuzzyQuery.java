@@ -109,7 +109,7 @@ specifier|private
 name|int
 name|prefixLength
 decl_stmt|;
-comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    * If a<code>prefixLength</code>&gt; 0 is specified, a common prefix    * of that length is also required.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>    * @param prefixLength length of common (non-fuzzy) prefix    * @throws IllegalArgumentException if minimumSimilarity is&gt; 1 or&lt; 0    * or if prefixLength&lt; 0 or&gt;<code>term.text().length()</code>.    */
+comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    * If a<code>prefixLength</code>&gt; 0 is specified, a common prefix    * of that length is also required.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>    * @param prefixLength length of common (non-fuzzy) prefix    * @throws IllegalArgumentException if minimumSimilarity is&gt;= 1 or&lt; 0    * or if prefixLength&lt; 0    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery
@@ -158,12 +158,6 @@ argument_list|(
 literal|"minimumSimilarity< 0"
 argument_list|)
 throw|;
-name|this
-operator|.
-name|minimumSimilarity
-operator|=
-name|minimumSimilarity
-expr_stmt|;
 if|if
 condition|(
 name|prefixLength
@@ -177,6 +171,12 @@ argument_list|(
 literal|"prefixLength< 0"
 argument_list|)
 throw|;
+name|this
+operator|.
+name|minimumSimilarity
+operator|=
+name|minimumSimilarity
+expr_stmt|;
 name|this
 operator|.
 name|prefixLength
