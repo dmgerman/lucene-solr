@@ -478,7 +478,13 @@ name|append
 argument_list|(
 literal|"<custom:\""
 operator|+
-literal|"\">"
+name|field
+operator|+
+literal|"\": "
+operator|+
+name|factory
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
 break|break;

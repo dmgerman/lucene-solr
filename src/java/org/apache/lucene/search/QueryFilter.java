@@ -228,6 +228,20 @@ return|return
 name|bits
 return|;
 block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"QueryFilter("
+operator|+
+name|query
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

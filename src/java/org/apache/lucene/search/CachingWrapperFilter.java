@@ -197,6 +197,20 @@ return|return
 name|bits
 return|;
 block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"CachingWrapperFilter("
+operator|+
+name|filter
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 
