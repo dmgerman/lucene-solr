@@ -409,6 +409,7 @@ operator|.
 name|length
 operator|-
 literal|1
+decl_stmt|;
 comment|// for first element less
 while|while
 condition|(
