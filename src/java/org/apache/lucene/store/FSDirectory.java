@@ -152,7 +152,7 @@ name|Constants
 operator|.
 name|JAVA_1_1
 decl_stmt|;
-comment|/**    * Directory specified by<code>org.apache.lucene.lockdir</code>    * or<code>java.io.tmpdir</code> system property    */
+comment|/**    * Directory specified by<code>org.apache.lucene.lockDir</code>    * or<code>java.io.tmpdir</code> system property    */
 DECL|field|LOCK_DIR
 specifier|public
 specifier|static
@@ -164,7 +164,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"org.apache.lucene.lockdir"
+literal|"org.apache.lucene.lockDir"
 argument_list|,
 name|System
 operator|.
