@@ -648,8 +648,8 @@ argument_list|,
 literal|"\"hello there\""
 argument_list|)
 expr_stmt|;
-assert|assert
-operator|(
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"a AND b"
@@ -658,10 +658,10 @@ literal|null
 argument_list|)
 operator|instanceof
 name|BooleanQuery
-operator|)
-assert|;
-assert|assert
-operator|(
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"hello"
@@ -670,10 +670,10 @@ literal|null
 argument_list|)
 operator|instanceof
 name|TermQuery
-operator|)
-assert|;
-assert|assert
-operator|(
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"\"hello there\""
@@ -682,8 +682,8 @@ literal|null
 argument_list|)
 operator|instanceof
 name|PhraseQuery
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 name|assertQueryEquals
 argument_list|(
 literal|"germ term^2.0"
@@ -942,8 +942,8 @@ argument_list|,
 literal|"term*germ^3.0"
 argument_list|)
 expr_stmt|;
-assert|assert
-operator|(
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"term*"
@@ -952,10 +952,10 @@ literal|null
 argument_list|)
 operator|instanceof
 name|PrefixQuery
-operator|)
-assert|;
-assert|assert
-operator|(
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"term*^2"
@@ -964,10 +964,10 @@ literal|null
 argument_list|)
 operator|instanceof
 name|PrefixQuery
-operator|)
-assert|;
-assert|assert
-operator|(
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"term~"
@@ -976,10 +976,10 @@ literal|null
 argument_list|)
 operator|instanceof
 name|FuzzyQuery
-operator|)
-assert|;
-assert|assert
-operator|(
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"term*germ"
@@ -988,8 +988,8 @@ literal|null
 argument_list|)
 operator|instanceof
 name|WildcardQuery
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testQPA
 specifier|public
@@ -1062,8 +1062,8 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
-assert|assert
-operator|(
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"term term term"
@@ -1072,10 +1072,10 @@ name|qpAnalyzer
 argument_list|)
 operator|instanceof
 name|BooleanQuery
-operator|)
-assert|;
-assert|assert
-operator|(
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"term +stop"
@@ -1084,8 +1084,8 @@ name|qpAnalyzer
 argument_list|)
 operator|instanceof
 name|TermQuery
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testRange
 specifier|public
@@ -1104,8 +1104,8 @@ argument_list|,
 literal|"[a-z]"
 argument_list|)
 expr_stmt|;
-assert|assert
-operator|(
+name|assertTrue
+argument_list|(
 name|getQuery
 argument_list|(
 literal|"[ a z]"
@@ -1114,8 +1114,8 @@ literal|null
 argument_list|)
 operator|instanceof
 name|RangeQuery
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 name|assertQueryEquals
 argument_list|(
 literal|"[ a z ]"

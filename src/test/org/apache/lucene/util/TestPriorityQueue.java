@@ -260,16 +260,16 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
-assert|assert
-operator|(
+name|assertTrue
+argument_list|(
 name|next
 operator|.
 name|intValue
 argument_list|()
 operator|>=
 name|last
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 name|last
 operator|=
 name|next
@@ -282,13 +282,13 @@ operator|+=
 name|last
 expr_stmt|;
 block|}
-assert|assert
-operator|(
+name|assertEquals
+argument_list|(
 name|sum
-operator|==
+argument_list|,
 name|sum2
-operator|)
-assert|;
+argument_list|)
+expr_stmt|;
 comment|//      end = new Date();
 comment|//      System.out.print(((float)(end.getTime()-start.getTime()) / count) * 1000);
 comment|//      System.out.println(" microseconds/pop");
