@@ -247,6 +247,9 @@ parameter_list|,
 name|DbTxn
 name|txn
 parameter_list|,
+name|int
+name|flags
+parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -269,6 +272,8 @@ argument_list|(
 name|files
 argument_list|,
 name|txn
+argument_list|,
+name|flags
 argument_list|)
 condition|)
 block|{
@@ -451,7 +456,7 @@ name|key
 argument_list|,
 name|data
 argument_list|,
-literal|0
+name|flags
 argument_list|)
 operator|!=
 name|Db
@@ -633,6 +638,9 @@ name|files
 parameter_list|,
 name|DbTxn
 name|txn
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -651,7 +659,7 @@ name|key
 argument_list|,
 name|data
 argument_list|,
-literal|0
+name|flags
 argument_list|)
 operator|==
 name|Db
@@ -762,6 +770,9 @@ name|files
 parameter_list|,
 name|DbTxn
 name|txn
+parameter_list|,
+name|int
+name|flags
 parameter_list|,
 name|long
 name|length
@@ -897,6 +908,9 @@ name|blocks
 parameter_list|,
 name|DbTxn
 name|txn
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -909,6 +923,8 @@ argument_list|(
 name|files
 argument_list|,
 name|txn
+argument_list|,
+name|flags
 argument_list|)
 condition|)
 throw|throw
@@ -1031,7 +1047,7 @@ name|cursor
 argument_list|(
 name|txn
 argument_list|,
-literal|0
+name|flags
 argument_list|)
 expr_stmt|;
 if|if
@@ -1047,6 +1063,8 @@ argument_list|,
 name|Db
 operator|.
 name|DB_SET_RANGE
+operator||
+name|flags
 argument_list|)
 operator|!=
 name|Db
@@ -1074,6 +1092,8 @@ argument_list|,
 name|Db
 operator|.
 name|DB_NEXT
+operator||
+name|flags
 argument_list|)
 operator|!=
 name|Db
@@ -1178,6 +1198,9 @@ parameter_list|,
 name|DbTxn
 name|txn
 parameter_list|,
+name|int
+name|flags
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -1192,6 +1215,8 @@ argument_list|(
 name|files
 argument_list|,
 name|txn
+argument_list|,
+name|flags
 argument_list|)
 condition|)
 throw|throw
@@ -1222,6 +1247,8 @@ argument_list|(
 name|files
 argument_list|,
 name|txn
+argument_list|,
+name|flags
 argument_list|)
 condition|)
 name|newFile
@@ -1233,6 +1260,8 @@ argument_list|,
 name|blocks
 argument_list|,
 name|txn
+argument_list|,
+name|flags
 argument_list|)
 expr_stmt|;
 try|try
