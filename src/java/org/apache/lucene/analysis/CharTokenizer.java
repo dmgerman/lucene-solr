@@ -73,8 +73,8 @@ literal|0
 decl_stmt|;
 DECL|field|MAX_WORD_LEN
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|MAX_WORD_LEN
 init|=
@@ -82,8 +82,8 @@ literal|255
 decl_stmt|;
 DECL|field|IO_BUFFER_SIZE
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|IO_BUFFER_SIZE
 init|=

@@ -103,8 +103,8 @@ block|}
 comment|/** Builds a Hashtable from an array of stop words, appropriate for passing     into the StopFilter constructor.  This permits this table construction to     be cached once when an Analyzer is constructed. */
 DECL|method|makeStopTable
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|Hashtable
 name|makeStopTable
 parameter_list|(

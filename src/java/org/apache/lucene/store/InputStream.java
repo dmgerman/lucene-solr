@@ -32,16 +32,16 @@ end_comment
 
 begin_class
 DECL|class|InputStream
-specifier|abstract
 specifier|public
+specifier|abstract
 class|class
 name|InputStream
 implements|implements
 name|Cloneable
 block|{
 DECL|field|BUFFER_SIZE
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BUFFER_SIZE
 init|=
@@ -727,8 +727,8 @@ expr_stmt|;
 block|}
 comment|/** Expert: implements buffer refill.  Reads bytes from the current position    * in the input.    * @param b the array to read bytes into    * @param offset the offset in the array to start storing bytes    * @param length the number of bytes to read    */
 DECL|method|readInternal
-specifier|abstract
 specifier|protected
+specifier|abstract
 name|void
 name|readInternal
 parameter_list|(
@@ -747,8 +747,8 @@ name|IOException
 function_decl|;
 comment|/** Closes the stream to futher operations. */
 DECL|method|close
-specifier|abstract
 specifier|public
+specifier|abstract
 name|void
 name|close
 parameter_list|()
@@ -832,8 +832,8 @@ block|}
 block|}
 comment|/** Expert: implements seek.  Sets current position in this file, where the    * next {@link #readInternal(byte[],int,int)} will occur.    * @see #readInternal(byte[],int,int)    */
 DECL|method|seekInternal
-specifier|abstract
 specifier|protected
+specifier|abstract
 name|void
 name|seekInternal
 parameter_list|(

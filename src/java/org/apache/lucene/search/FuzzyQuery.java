@@ -60,8 +60,8 @@ end_comment
 
 begin_class
 DECL|class|FuzzyQuery
-specifier|final
 specifier|public
+specifier|final
 class|class
 name|FuzzyQuery
 extends|extends

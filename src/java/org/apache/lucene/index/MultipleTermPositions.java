@@ -94,8 +94,8 @@ name|TermPositions
 block|{
 DECL|class|TermPositionsQueue
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|TermPositionsQueue
 extends|extends
@@ -211,8 +211,8 @@ block|}
 block|}
 DECL|class|IntQueue
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|IntQueue
 block|{

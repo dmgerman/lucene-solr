@@ -61,17 +61,12 @@ end_comment
 begin_class
 DECL|class|Similarity
 specifier|public
-specifier|final
+specifier|abstract
 class|class
 name|Similarity
 block|{
-DECL|method|Similarity
-specifier|private
-name|Similarity
-parameter_list|()
-block|{}
-comment|// no public constructor
 DECL|field|NORM_TABLE
+specifier|private
 specifier|static
 specifier|final
 name|float
@@ -112,6 +107,34 @@ name|byte
 operator|)
 name|i
 argument_list|)
+expr_stmt|;
+block|}
+DECL|field|similarity
+specifier|private
+specifier|static
+name|Similarity
+name|similarity
+decl_stmt|;
+DECL|method|Similarity
+specifier|private
+name|Similarity
+parameter_list|()
+block|{}
+comment|// no public constructor
+comment|/**    * Sets the<code>Similarity</code> implementation to use.    *    * @param sim an instance of a class that implements<code>Similarity</code    */
+DECL|method|setDefaultSimilarity
+specifier|public
+specifier|static
+name|void
+name|setDefaultSimilarity
+parameter_list|(
+name|Similarity
+name|sim
+parameter_list|)
+block|{
+name|similarity
+operator|=
+name|sim
 expr_stmt|;
 block|}
 comment|/** Computes the normalization value for a document given the total number of    * terms contained in a field.  These values are stored in an index and used    * by the search code.    *    *<p>The formula used is:<code>1.0f / Math.sqrt(numTerms)</code>    *    * @see Field#setBoost(float)    */

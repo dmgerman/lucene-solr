@@ -27,33 +27,31 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>   *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * @author Doug Cutting  */
+comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>  *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * @author Doug Cutting  */
 end_comment
 
 begin_class
 DECL|class|Directory
-specifier|abstract
 specifier|public
+specifier|abstract
 class|class
 name|Directory
 block|{
 comment|/** Returns an array of strings, one for each file in the directory. */
 DECL|method|list
-specifier|abstract
 specifier|public
+specifier|abstract
 name|String
 index|[]
 name|list
 parameter_list|()
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Returns true iff a file with the given name exists. */
 DECL|method|fileExists
-specifier|abstract
 specifier|public
+specifier|abstract
 name|boolean
 name|fileExists
 parameter_list|(
@@ -62,13 +60,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Returns the time the named file was last modified. */
 DECL|method|fileModified
-specifier|abstract
 specifier|public
+specifier|abstract
 name|long
 name|fileModified
 parameter_list|(
@@ -77,13 +73,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Set the modified time of an existing file to now. */
 DECL|method|touchFile
-specifier|abstract
 specifier|public
+specifier|abstract
 name|void
 name|touchFile
 parameter_list|(
@@ -92,13 +86,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Removes an existing file in the directory. */
 DECL|method|deleteFile
-specifier|abstract
 specifier|public
+specifier|abstract
 name|void
 name|deleteFile
 parameter_list|(
@@ -107,13 +99,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Renames an existing file in the directory.     If a file already exists with the new name, then it is replaced.     This replacement should be atomic. */
 DECL|method|renameFile
-specifier|abstract
 specifier|public
+specifier|abstract
 name|void
 name|renameFile
 parameter_list|(
@@ -125,13 +115,11 @@ name|to
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Returns the length of a file in the directory. */
 DECL|method|fileLength
-specifier|abstract
 specifier|public
+specifier|abstract
 name|long
 name|fileLength
 parameter_list|(
@@ -140,13 +128,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Creates a new, empty file in the directory with the given name.       Returns a stream writing this file. */
 DECL|method|createFile
-specifier|abstract
 specifier|public
+specifier|abstract
 name|OutputStream
 name|createFile
 parameter_list|(
@@ -155,13 +141,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Returns a stream reading an existing file. */
 DECL|method|openFile
-specifier|abstract
 specifier|public
+specifier|abstract
 name|InputStream
 name|openFile
 parameter_list|(
@@ -170,13 +154,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
 DECL|method|makeLock
-specifier|abstract
 specifier|public
+specifier|abstract
 name|Lock
 name|makeLock
 parameter_list|(
@@ -186,15 +168,13 @@ parameter_list|)
 function_decl|;
 comment|/** Closes the store. */
 DECL|method|close
-specifier|abstract
 specifier|public
+specifier|abstract
 name|void
 name|close
 parameter_list|()
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 function_decl|;
 block|}
 end_class

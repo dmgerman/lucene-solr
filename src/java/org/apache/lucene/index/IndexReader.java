@@ -112,8 +112,8 @@ end_comment
 
 begin_class
 DECL|class|IndexReader
-specifier|abstract
 specifier|public
+specifier|abstract
 class|class
 name|IndexReader
 block|{
@@ -495,24 +495,24 @@ return|;
 block|}
 comment|/** Returns the number of documents in this index. */
 DECL|method|numDocs
-specifier|abstract
 specifier|public
+specifier|abstract
 name|int
 name|numDocs
 parameter_list|()
 function_decl|;
 comment|/** Returns one greater than the largest possible document number.     This may be used to, e.g., determine how big to allocate an array which     will have an element for every document number in an index.    */
 DECL|method|maxDoc
-specifier|abstract
 specifier|public
+specifier|abstract
 name|int
 name|maxDoc
 parameter_list|()
 function_decl|;
 comment|/** Returns the stored fields of the<code>n</code><sup>th</sup><code>Document</code> in this index. */
 DECL|method|document
-specifier|abstract
 specifier|public
+specifier|abstract
 name|Document
 name|document
 parameter_list|(
@@ -524,8 +524,8 @@ name|IOException
 function_decl|;
 comment|/** Returns true if document<i>n</i> has been deleted */
 DECL|method|isDeleted
-specifier|abstract
 specifier|public
+specifier|abstract
 name|boolean
 name|isDeleted
 parameter_list|(
@@ -535,8 +535,8 @@ parameter_list|)
 function_decl|;
 comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see Field#setBoost(float)    */
 DECL|method|norms
-specifier|abstract
 specifier|public
+specifier|abstract
 name|byte
 index|[]
 name|norms
@@ -549,8 +549,8 @@ name|IOException
 function_decl|;
 comment|/** Returns an enumeration of all the terms in the index.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
 DECL|method|terms
-specifier|abstract
 specifier|public
+specifier|abstract
 name|TermEnum
 name|terms
 parameter_list|()
@@ -559,8 +559,8 @@ name|IOException
 function_decl|;
 comment|/** Returns an enumeration of all terms after a given term.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
 DECL|method|terms
-specifier|abstract
 specifier|public
+specifier|abstract
 name|TermEnum
 name|terms
 parameter_list|(
@@ -572,8 +572,8 @@ name|IOException
 function_decl|;
 comment|/** Returns the number of documents containing the term<code>t</code>. */
 DECL|method|docFreq
-specifier|abstract
 specifier|public
+specifier|abstract
 name|int
 name|docFreq
 parameter_list|(
@@ -614,8 +614,8 @@ return|;
 block|}
 comment|/** Returns an unpositioned {@link TermDocs} enumerator. */
 DECL|method|termDocs
-specifier|abstract
 specifier|public
+specifier|abstract
 name|TermDocs
 name|termDocs
 parameter_list|()
@@ -653,8 +653,8 @@ return|;
 block|}
 comment|/** Returns an unpositioned {@link TermPositions} enumerator. */
 DECL|method|termPositions
-specifier|abstract
 specifier|public
+specifier|abstract
 name|TermPositions
 name|termPositions
 parameter_list|()
@@ -664,8 +664,8 @@ function_decl|;
 comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is     deleted it will not appear in TermDocs or TermPostitions enumerations.     Attempts to read its field with the {@link #document}     method will result in an error.  The presence of this document may still be     reflected in the {@link #docFreq} statistic, though     this will be corrected eventually as the index is further modified.  */
 DECL|method|delete
 specifier|public
-specifier|synchronized
 specifier|final
+specifier|synchronized
 name|void
 name|delete
 parameter_list|(

@@ -238,8 +238,8 @@ argument_list|)
 return|;
 block|}
 DECL|method|getQuery
-specifier|final
 specifier|private
+specifier|final
 name|BooleanQuery
 name|getQuery
 parameter_list|()

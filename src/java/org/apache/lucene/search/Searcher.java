@@ -81,6 +81,11 @@ name|Searcher
 implements|implements
 name|Searchable
 block|{
+DECL|field|similarity
+specifier|protected
+name|Similarity
+name|similarity
+decl_stmt|;
 comment|/** Returns the documents matching<code>query</code>. */
 DECL|method|search
 specifier|public
@@ -159,6 +164,21 @@ literal|null
 argument_list|,
 name|results
 argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Sets the<code>Similarity</code> implementation to use.    *    * @param sim an instance of a class that implements<code>Similarity</code    */
+DECL|method|setSimilarity
+specifier|public
+name|void
+name|setSimilarity
+parameter_list|(
+name|Similarity
+name|sim
+parameter_list|)
+block|{
+name|similarity
+operator|=
+name|sim
 expr_stmt|;
 block|}
 block|}

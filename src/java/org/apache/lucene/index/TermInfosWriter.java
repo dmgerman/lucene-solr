@@ -146,8 +146,6 @@ name|fis
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 block|{
 name|initialize
 argument_list|(
@@ -280,8 +278,6 @@ name|ti
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 block|{
 if|if
 condition|(
@@ -617,8 +613,6 @@ name|close
 parameter_list|()
 throws|throws
 name|IOException
-throws|,
-name|SecurityException
 block|{
 name|output
 operator|.

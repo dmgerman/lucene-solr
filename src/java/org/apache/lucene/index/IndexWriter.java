@@ -148,6 +148,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Similarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -215,6 +229,11 @@ DECL|field|writeLock
 specifier|private
 name|Lock
 name|writeLock
+decl_stmt|;
+DECL|field|similarity
+specifier|private
+name|Similarity
+name|similarity
 decl_stmt|;
 comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>path</code>, replacing the index     already there, if any. */
 DECL|method|IndexWriter
@@ -1726,6 +1745,21 @@ literal|"deleteable.new"
 argument_list|,
 literal|"deletable"
 argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Sets the<code>Similarity</code> implementation to use.    *    * @param sim an instance of a class that implements<code>Similarity</code    */
+DECL|method|setSimilarity
+specifier|public
+name|void
+name|setSimilarity
+parameter_list|(
+name|Similarity
+name|sim
+parameter_list|)
+block|{
+name|similarity
+operator|=
+name|sim
 expr_stmt|;
 block|}
 block|}

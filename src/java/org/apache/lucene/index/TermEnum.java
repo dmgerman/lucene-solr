@@ -39,8 +39,8 @@ name|TermEnum
 block|{
 comment|/** Increments the enumeration to the next element.  True if one exists.*/
 DECL|method|next
-specifier|abstract
 specifier|public
+specifier|abstract
 name|boolean
 name|next
 parameter_list|()
@@ -49,24 +49,24 @@ name|IOException
 function_decl|;
 comment|/** Returns the current Term in the enumeration.*/
 DECL|method|term
-specifier|abstract
 specifier|public
+specifier|abstract
 name|Term
 name|term
 parameter_list|()
 function_decl|;
 comment|/** Returns the docFreq of the current Term in the enumeration.*/
 DECL|method|docFreq
-specifier|abstract
 specifier|public
+specifier|abstract
 name|int
 name|docFreq
 parameter_list|()
 function_decl|;
 comment|/** Closes the enumeration to further activity, freeing resources. */
 DECL|method|close
-specifier|abstract
 specifier|public
+specifier|abstract
 name|void
 name|close
 parameter_list|()

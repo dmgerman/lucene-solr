@@ -40,8 +40,8 @@ name|size
 decl_stmt|;
 comment|/** Determines the ordering of objects in this priority queue.  Subclasses     must define this one method. */
 DECL|method|lessThan
-specifier|abstract
 specifier|protected
+specifier|abstract
 name|boolean
 name|lessThan
 parameter_list|(

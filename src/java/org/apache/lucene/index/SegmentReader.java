@@ -481,8 +481,8 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|hasDeletions
-specifier|final
 specifier|static
+specifier|final
 name|boolean
 name|hasDeletions
 parameter_list|(

@@ -32,8 +32,8 @@ end_comment
 
 begin_class
 DECL|class|Analyzer
-specifier|abstract
 specifier|public
+specifier|abstract
 class|class
 name|Analyzer
 block|{

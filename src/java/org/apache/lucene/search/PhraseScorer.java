@@ -301,8 +301,8 @@ comment|// resume scanning
 block|}
 block|}
 DECL|method|phraseFreq
-specifier|abstract
 specifier|protected
+specifier|abstract
 name|float
 name|phraseFreq
 parameter_list|()
