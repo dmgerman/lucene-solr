@@ -479,11 +479,6 @@ argument_list|(
 name|nDocs
 argument_list|)
 decl_stmt|;
-name|float
-name|minScore
-init|=
-literal|0.0f
-decl_stmt|;
 name|int
 name|totalHits
 init|=
@@ -565,15 +560,6 @@ index|[
 name|j
 index|]
 decl_stmt|;
-if|if
-condition|(
-name|scoreDoc
-operator|.
-name|score
-operator|>=
-name|minScore
-condition|)
-block|{
 name|scoreDoc
 operator|.
 name|doc
@@ -584,49 +570,16 @@ name|i
 index|]
 expr_stmt|;
 comment|// convert doc
+if|if
+condition|(
+operator|!
 name|hq
 operator|.
-name|put
+name|insert
 argument_list|(
 name|scoreDoc
 argument_list|)
-expr_stmt|;
-comment|// update hit queue
-if|if
-condition|(
-name|hq
-operator|.
-name|size
-argument_list|()
-operator|>
-name|nDocs
 condition|)
-block|{
-comment|// if hit queue overfull
-name|hq
-operator|.
-name|pop
-argument_list|()
-expr_stmt|;
-comment|// remove lowest in hit queue
-name|minScore
-operator|=
-operator|(
-operator|(
-name|ScoreDoc
-operator|)
-name|hq
-operator|.
-name|top
-argument_list|()
-operator|)
-operator|.
-name|score
-expr_stmt|;
-comment|// reset minScore
-block|}
-block|}
-else|else
 break|break;
 comment|// no more scores> minScore
 block|}

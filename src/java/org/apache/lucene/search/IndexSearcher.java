@@ -340,12 +340,6 @@ operator|new
 name|HitCollector
 argument_list|()
 block|{
-specifier|private
-name|float
-name|minScore
-init|=
-literal|0.0f
-decl_stmt|;
 specifier|public
 specifier|final
 name|void
@@ -386,16 +380,9 @@ literal|0
 index|]
 operator|++
 expr_stmt|;
-if|if
-condition|(
-name|score
-operator|>=
-name|minScore
-condition|)
-block|{
 name|hq
 operator|.
-name|put
+name|insert
 argument_list|(
 operator|new
 name|ScoreDoc
@@ -406,41 +393,6 @@ name|score
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// update hit queue
-if|if
-condition|(
-name|hq
-operator|.
-name|size
-argument_list|()
-operator|>
-name|nDocs
-condition|)
-block|{
-comment|// if hit queue overfull
-name|hq
-operator|.
-name|pop
-argument_list|()
-expr_stmt|;
-comment|// remove lowest in hit queue
-name|minScore
-operator|=
-operator|(
-operator|(
-name|ScoreDoc
-operator|)
-name|hq
-operator|.
-name|top
-argument_list|()
-operator|)
-operator|.
-name|score
-expr_stmt|;
-comment|// reset minScore
-block|}
-block|}
 block|}
 block|}
 block|}
