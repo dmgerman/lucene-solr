@@ -138,6 +138,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Reader
 import|;
 end_import
@@ -173,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    João Kramer  */
+comment|/**  * Analyzer for brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    Joï¿½o Kramer  */
 end_comment
 
 begin_class
@@ -535,21 +545,16 @@ parameter_list|(
 name|File
 name|stopwords
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|stoptable
 operator|=
-operator|new
-name|HashSet
-argument_list|(
 name|WordlistLoader
 operator|.
-name|getWordtable
+name|getWordSet
 argument_list|(
 name|stopwords
-argument_list|)
-operator|.
-name|keySet
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -605,21 +610,16 @@ parameter_list|(
 name|File
 name|exclusionlist
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|excltable
 operator|=
-operator|new
-name|HashSet
-argument_list|(
 name|WordlistLoader
 operator|.
-name|getWordtable
+name|getWordSet
 argument_list|(
 name|exclusionlist
-argument_list|)
-operator|.
-name|keySet
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
