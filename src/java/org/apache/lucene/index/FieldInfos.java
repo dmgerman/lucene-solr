@@ -264,11 +264,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|int
-name|j
-init|=
-literal|0
-decl_stmt|;
 while|while
 condition|(
 name|i
@@ -314,11 +309,6 @@ name|names
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
-name|int
-name|j
-init|=
-literal|0
 decl_stmt|;
 while|while
 condition|(
