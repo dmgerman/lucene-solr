@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * @(#)SimpleCharArrayReader.java	1.35 00/02/02  *   */
+comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
 end_comment
 
 begin_package
@@ -53,7 +53,7 @@ name|char
 name|buf
 index|[]
 decl_stmt|;
-comment|/**      * The index of the next character to read from the input stream buffer.      * This value should always be nonnegative      * and not larger than the value of<code>count</code>.      * The next byte to be read from the input stream buffer       * will be<code>buf[pos]</code>.      */
+comment|/**      * The index of the next character to read from the input stream buffer.      * This value should always be nonnegative      * and not larger than the value of<code>count</code>.      * The next byte to be read from the input stream buffer      * will be<code>buf[pos]</code>.      */
 DECL|field|pos
 specifier|protected
 name|int
@@ -67,13 +67,13 @@ name|mark
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * The index one greater than the last valid character in the input       * stream buffer.       * This value should always be nonnegative      * and not larger than the length of<code>buf</code>.      * It  is one greater than the position of      * the last byte within<code>buf</code> that      * can ever be read  from the input stream buffer.      */
+comment|/**      * The index one greater than the last valid character in the input      * stream buffer.      * This value should always be nonnegative      * and not larger than the length of<code>buf</code>.      * It  is one greater than the position of      * the last byte within<code>buf</code> that      * can ever be read  from the input stream buffer.      */
 DECL|field|count
 specifier|protected
 name|int
 name|count
 decl_stmt|;
-comment|/**      * Creates a<code>SimpleCharArrayReader</code>      * so that it  uses<code>buf</code> as its      * buffer array.       * The buffer array is not copied.       * The initial value of<code>pos</code>      * is<code>0</code> and the initial value      * of<code>count</code> is the length of      *<code>buf</code>.      *      * @param   buf   the input buffer.      */
+comment|/**      * Creates a<code>SimpleCharArrayReader</code>      * so that it  uses<code>buf</code> as its      * buffer array.      * The buffer array is not copied.      * The initial value of<code>pos</code>      * is<code>0</code> and the initial value      * of<code>count</code> is the length of      *<code>buf</code>.      *      * @param   buf   the input buffer.      */
 DECL|method|SimpleCharArrayReader
 specifier|public
 name|SimpleCharArrayReader
@@ -104,7 +104,7 @@ operator|.
 name|length
 expr_stmt|;
 block|}
-comment|/**      * Creates<code>SimpleCharArrayReader</code>      * that uses<code>buf</code> as its      * buffer array. The initial value of<code>pos</code>      * is<code>offset</code> and the initial value      * of<code>count</code> is<code>offset+len</code>.      * The buffer array is not copied.       *<p>      * Note that if bytes are simply read from      * the resulting input stream, elements<code>buf[pos]</code>      * through<code>buf[pos+len-1]</code> will      * be read; however, if a<code>reset</code>      * operation  is performed, then bytes<code>buf[0]</code>      * through b<code>uf[pos-1]</code> will then      * become available for input.      *      * @param   buf      the input buffer.      * @param   offset   the offset in the buffer of the first byte to read.      * @param   length   the maximum number of bytes to read from the buffer.      */
+comment|/**      * Creates<code>SimpleCharArrayReader</code>      * that uses<code>buf</code> as its      * buffer array. The initial value of<code>pos</code>      * is<code>offset</code> and the initial value      * of<code>count</code> is<code>offset+len</code>.      * The buffer array is not copied.      *<p>      * Note that if bytes are simply read from      * the resulting input stream, elements<code>buf[pos]</code>      * through<code>buf[pos+len-1]</code> will      * be read; however, if a<code>reset</code>      * operation  is performed, then bytes<code>buf[0]</code>      * through b<code>uf[pos-1]</code> will then      * become available for input.      *      * @param   buf      the input buffer.      * @param   offset   the offset in the buffer of the first byte to read.      * @param   length   the maximum number of bytes to read from the buffer.      */
 DECL|method|SimpleCharArrayReader
 specifier|public
 name|SimpleCharArrayReader
@@ -156,7 +156,7 @@ operator|=
 name|offset
 expr_stmt|;
 block|}
-comment|/**      * Reads the next byte of data from this input stream. The value       * byte is returned as an<code>int</code> in the range       *<code>0</code> to<code>255</code>. If no byte is available       * because the end of the stream has been reached, the value       *<code>-1</code> is returned.       *<p>      *      * @return  the next byte of data, or<code>-1</code> if the end of the      *          stream has been reached.      */
+comment|/**      * Reads the next byte of data from this input stream. The value      * byte is returned as an<code>int</code> in the range      *<code>0</code> to<code>255</code>. If no byte is available      * because the end of the stream has been reached, the value      *<code>-1</code> is returned.      *<p>      *      * @return  the next byte of data, or<code>-1</code> if the end of the      *          stream has been reached.      */
 DECL|method|read
 specifier|public
 name|int
@@ -184,7 +184,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**      * Reads up to<code>len</code> bytes of data into an array of bytes       * from this input stream.       * If<code>pos</code> equals<code>count</code>,      * then<code>-1</code> is returned to indicate      * end of file. Otherwise, the  number<code>k</code>      * of bytes read is equal to the smaller of      *<code>len</code> and<code>count-pos</code>.      * If<code>k</code> is positive, then bytes      *<code>buf[pos]</code> through<code>buf[pos+k-1]</code>      * are copied into<code>b[off]</code>  through      *<code>b[off+k-1]</code> in the manner performed      * by<code>System.arraycopy</code>. The      * value<code>k</code> is added into<code>pos</code>      * and<code>k</code> is returned.      *<p>      * This<code>read</code> method cannot block.       *      * @param   b     the buffer into which the data is read.      * @param   off   the start offset of the data.      * @param   len   the maximum number of bytes read.      * @return  the total number of bytes read into the buffer, or      *<code>-1</code> if there is no more data because the end of      *          the stream has been reached.      */
+comment|/**      * Reads up to<code>len</code> bytes of data into an array of bytes      * from this input stream.      * If<code>pos</code> equals<code>count</code>,      * then<code>-1</code> is returned to indicate      * end of file. Otherwise, the  number<code>k</code>      * of bytes read is equal to the smaller of      *<code>len</code> and<code>count-pos</code>.      * If<code>k</code> is positive, then bytes      *<code>buf[pos]</code> through<code>buf[pos+k-1]</code>      * are copied into<code>b[off]</code>  through      *<code>b[off+k-1]</code> in the manner performed      * by<code>System.arraycopy</code>. The      * value<code>k</code> is added into<code>pos</code>      * and<code>k</code> is returned.      *<p>      * This<code>read</code> method cannot block.      *      * @param   b     the buffer into which the data is read.      * @param   off   the start offset of the data.      * @param   len   the maximum number of bytes read.      * @return  the total number of bytes read into the buffer, or      *<code>-1</code> if there is no more data because the end of      *          the stream has been reached.      */
 DECL|method|read
 specifier|public
 name|int
@@ -328,7 +328,7 @@ return|return
 name|len
 return|;
 block|}
-comment|/**      * Skips<code>n</code> bytes of input from this input stream. Fewer       * bytes might be skipped if the end of the input stream is reached.       * The actual number<code>k</code>      * of bytes to be skipped is equal to the smaller      * of<code>n</code> and<code>count-pos</code>.      * The value<code>k</code> is added into<code>pos</code>      * and<code>k</code> is returned.      *      * @param   n   the number of bytes to be skipped.      * @return  the actual number of bytes skipped.      */
+comment|/**      * Skips<code>n</code> bytes of input from this input stream. Fewer      * bytes might be skipped if the end of the input stream is reached.      * The actual number<code>k</code>      * of bytes to be skipped is equal to the smaller      * of<code>n</code> and<code>count-pos</code>.      * The value<code>k</code> is added into<code>pos</code>      * and<code>k</code> is returned.      *      * @param   n   the number of bytes to be skipped.      * @return  the actual number of bytes skipped.      */
 DECL|method|skip
 specifier|public
 name|long
@@ -373,7 +373,7 @@ return|return
 name|n
 return|;
 block|}
-comment|/**      * Returns the number of bytes that can be read from this input       * stream without blocking.       * The value returned is      *<code>count&nbsp;- pos</code>,       * which is the number of bytes remaining to be read from the input buffer.      *      * @return  the number of bytes that can be read from the input stream      *          without blocking.      */
+comment|/**      * Returns the number of bytes that can be read from this input      * stream without blocking.      * The value returned is      *<code>count&nbsp;- pos</code>,      * which is the number of bytes remaining to be read from the input buffer.      *      * @return  the number of bytes that can be read from the input stream      *          without blocking.      */
 DECL|method|available
 specifier|public
 name|int
@@ -424,7 +424,7 @@ operator|=
 name|mark
 expr_stmt|;
 block|}
-comment|/**      * Closes this input stream and releases any system resources       * associated with the stream.       *<p>      */
+comment|/**      * Closes this input stream and releases any system resources      * associated with the stream.      *<p>      */
 DECL|method|close
 specifier|public
 name|void
@@ -445,7 +445,7 @@ name|void
 name|ensureOpen
 parameter_list|()
 block|{
-comment|/* This method does nothing for now.  Once we add throws clauses 	 * to the I/O methods in this class, it will throw an IOException 	 * if the stream has been closed. 	 */
+comment|/* This method does nothing for now.  Once we add throws clauses      * to the I/O methods in this class, it will throw an IOException      * if the stream has been closed.      */
 block|}
 block|}
 end_class

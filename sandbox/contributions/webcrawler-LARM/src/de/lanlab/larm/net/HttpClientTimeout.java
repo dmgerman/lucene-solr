@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
+end_comment
+
 begin_package
 DECL|package|de.lanlab.larm.net
 package|package
@@ -92,7 +96,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** 	 *  Constructor for the HttpClientTimeout object 	 * 	 *@param  url              Description of Parameter 	 *@param  proxy            Description of Parameter 	 *@param  proxyPort        Description of Parameter 	 *@exception  IOException  Description of Exception 	 */
+comment|/**      *  Constructor for the HttpClientTimeout object      *      *@param  url              Description of Parameter      *@param  proxy            Description of Parameter      *@param  proxyPort        Description of Parameter      *@exception  IOException  Description of Exception      */
 DECL|method|HttpClientTimeout
 specifier|public
 name|HttpClientTimeout
@@ -119,7 +123,7 @@ name|proxyPort
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the HttpClientTimeout object 	 * 	 *@param  url              Description of Parameter 	 *@exception  IOException  Description of Exception 	 */
+comment|/**      *  Constructor for the HttpClientTimeout object      *      *@param  url              Description of Parameter      *@exception  IOException  Description of Exception      */
 DECL|method|HttpClientTimeout
 specifier|public
 name|HttpClientTimeout
@@ -141,7 +145,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the Timeout attribute of the HttpClientTimeout object 	 * 	 *@param  i                    The new Timeout value 	 *@exception  SocketException  Description of Exception 	 */
+comment|/**      *  Sets the Timeout attribute of the HttpClientTimeout object      *      *@param  i                    The new Timeout value      *@exception  SocketException  Description of Exception      */
 DECL|method|setTimeout
 specifier|public
 name|void
@@ -168,7 +172,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Gets the Socket attribute of the HttpClientTimeout object 	 * 	 *@return    The Socket value 	 */
+comment|/**      *  Gets the Socket attribute of the HttpClientTimeout object      *      *@return    The Socket value      */
 DECL|method|getSocket
 specifier|public
 name|Socket
@@ -179,7 +183,7 @@ return|return
 name|serverSocket
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  header                   Description of Parameter 	 *@param  entry                    Description of Parameter 	 *@return                          Description of the Returned Value 	 *@exception  java.io.IOException  Description of Exception 	 */
+comment|/**      *  Description of the Method      *      *@param  header                   Description of Parameter      *@param  entry                    Description of Parameter      *@return                          Description of the Returned Value      *@exception  java.io.IOException  Description of Exception      */
 DECL|method|parseHTTP
 specifier|public
 name|boolean
@@ -250,7 +254,7 @@ name|entry
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@exception  IOException  Description of Exception 	 */
+comment|/**      *  Description of the Method      *      *@exception  IOException  Description of Exception      */
 DECL|method|close
 specifier|public
 name|void
@@ -265,9 +269,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* 	 * public void SetTimeout(int i) throws SocketException { 	 * serverSocket.setSoTimeout(i); 	 * } 	 */
-comment|/* 	 * This class has no public constructor for HTTP.  This method is used to 	 * get an HttpClient to the specifed URL.  If there's currently an 	 * active HttpClient to that server/port, you'll get that one. 	 * 	 * no longer syncrhonized -- it slows things down too much 	 * synchronize at a higher level 	 */
-comment|/** 	 *  Gets the New attribute of the HttpClientTimeout class 	 * 	 *@param  url              Description of Parameter 	 *@return                  The New value 	 *@exception  IOException  Description of Exception 	 */
+comment|/*      * public void SetTimeout(int i) throws SocketException {      * serverSocket.setSoTimeout(i);      * }      */
+comment|/*      * This class has no public constructor for HTTP.  This method is used to      * get an HttpClient to the specifed URL.  If there's currently an      * active HttpClient to that server/port, you'll get that one.      *      * no longer syncrhonized -- it slows things down too much      * synchronize at a higher level      */
+comment|/**      *  Gets the New attribute of the HttpClientTimeout class      *      *@param  url              Description of Parameter      *@return                  The New value      *@exception  IOException  Description of Exception      */
 DECL|method|getNew
 specifier|public
 specifier|static
@@ -280,7 +284,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|/* 		 * see if one's already around 		 */
+comment|/*          * see if one's already around          */
 name|HttpClientTimeout
 name|ret
 init|=
