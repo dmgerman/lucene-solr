@@ -103,8 +103,6 @@ class|class
 name|IndexSearcher
 extends|extends
 name|Searcher
-implements|implements
-name|Searchable
 block|{
 DECL|field|reader
 name|IndexReader

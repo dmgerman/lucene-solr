@@ -65,8 +65,6 @@ class|class
 name|MultiSearcher
 extends|extends
 name|Searcher
-implements|implements
-name|Searchable
 block|{
 DECL|field|searchables
 specifier|private
