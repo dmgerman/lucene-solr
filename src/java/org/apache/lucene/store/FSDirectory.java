@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   Straightforward implementation of Directory as a directory of files.     @see Directory     @author Doug Cutting */
+comment|/**  * Straight forward implementation of Directory as a directory of files.  * If the system property 'disableLocks' has the String value of "true", lock  * creation will be disabled.  *  * @see Directory  * @author Doug Cutting  */
 end_comment
 
 begin_class
@@ -118,8 +118,12 @@ name|getBoolean
 argument_list|(
 literal|"disableLocks"
 argument_list|)
+operator|||
+name|Constants
+operator|.
+name|JAVA_1_1
 decl_stmt|;
-comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param path the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *    * @param path the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -148,7 +152,7 @@ name|create
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param file the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *    * @param file the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -768,16 +772,6 @@ name|IOException
 block|{
 if|if
 condition|(
-name|Constants
-operator|.
-name|JAVA_1_1
-condition|)
-return|return
-literal|true
-return|;
-comment|// locks disabled in jdk 1.1
-if|if
-condition|(
 name|DISABLE_LOCKS
 condition|)
 return|return
@@ -797,12 +791,9 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|Constants
-operator|.
-name|JAVA_1_1
+name|DISABLE_LOCKS
 condition|)
 return|return;
-comment|// locks disabled in jdk 1.1
 name|lockFile
 operator|.
 name|delete
