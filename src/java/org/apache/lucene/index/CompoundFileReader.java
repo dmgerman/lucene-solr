@@ -68,20 +68,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|Lock
 import|;
 end_import
@@ -93,16 +79,6 @@ operator|.
 name|util
 operator|.
 name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 

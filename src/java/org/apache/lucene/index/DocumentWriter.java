@@ -1907,7 +1907,7 @@ name|norms
 operator|.
 name|writeByte
 argument_list|(
-name|similarity
+name|Similarity
 operator|.
 name|encodeNorm
 argument_list|(

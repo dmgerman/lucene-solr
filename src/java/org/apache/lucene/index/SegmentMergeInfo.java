@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BitVector
-import|;
-end_import
-
 begin_class
 DECL|class|SegmentMergeInfo
 specifier|final
