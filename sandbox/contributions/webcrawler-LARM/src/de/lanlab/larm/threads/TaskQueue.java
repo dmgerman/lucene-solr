@@ -40,10 +40,6 @@ name|Collection
 import|;
 end_import
 
-begin_comment
-comment|/**  * Title:        LARM Lanlab Retrieval Machine  * Description:  * Copyright:    Copyright (c)  * Company:  * @author  * @version 1.0  */
-end_comment
-
 begin_import
 import|import
 name|java
@@ -64,6 +60,10 @@ name|Iterator
 import|;
 end_import
 
+begin_comment
+comment|/**  * Title:        LARM Lanlab Retrieval Machine  * Description:  * Copyright:    Copyright (c)  * Company:  * @author  * @version $Id$  */
+end_comment
+
 begin_class
 DECL|class|TaskQueue
 specifier|public
@@ -73,6 +73,7 @@ implements|implements
 name|Queue
 block|{
 DECL|field|queue
+specifier|private
 name|LinkedList
 name|queue
 init|=
@@ -85,7 +86,7 @@ DECL|method|TaskQueue
 specifier|public
 name|TaskQueue
 parameter_list|()
-block|{      }
+block|{     }
 DECL|method|insertMultiple
 specifier|public
 name|void
