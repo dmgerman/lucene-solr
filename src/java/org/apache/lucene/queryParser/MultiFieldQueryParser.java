@@ -296,6 +296,8 @@ return|return
 name|getBooleanQuery
 argument_list|(
 name|clauses
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
