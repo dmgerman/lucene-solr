@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * this singleton manages all loggers. It can be used to flush all SimpleLoggers  * at once  */
+comment|/**  * This singleton manages all loggers. It can be used to flush all SimpleLoggers  * at once.  * @version $Id$  */
 end_comment
 
 begin_class
@@ -47,6 +47,7 @@ class|class
 name|SimpleLoggerManager
 block|{
 DECL|field|instance
+specifier|private
 specifier|static
 name|SimpleLoggerManager
 name|instance
@@ -54,6 +55,7 @@ init|=
 literal|null
 decl_stmt|;
 DECL|field|logs
+specifier|private
 name|ArrayList
 name|logs
 decl_stmt|;
@@ -160,6 +162,7 @@ block|}
 block|}
 DECL|method|getInstance
 specifier|public
+specifier|synchronized
 specifier|static
 name|SimpleLoggerManager
 name|getInstance
