@@ -212,7 +212,7 @@ name|RAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// for temp segs
-comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>d</code>, replacing the index     already there, if any. */
+comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>path</code>, replacing the index     already there, if any. */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -246,7 +246,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>d</code>, replacing the index     already there, if any. */
+comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>path</code>, replacing the index     already there, if any. */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
