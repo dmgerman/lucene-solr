@@ -123,7 +123,7 @@ specifier|final
 class|class
 name|QueryTermExtractor
 block|{
-comment|/** 	 * Extracts all terms texts of a given Query into an array of WeightedTerms 	 * 	 * @param query      Query to extract term texts from 	 * @return an array of the terms used in a query, plus their weights. 	 * @throws IOException 	 */
+comment|/** 	 * Extracts all terms texts of a given Query into an array of WeightedTerms 	 * 	 * @param query      Query to extract term texts from 	 * @return an array of the terms used in a query, plus their weights. 	 */
 DECL|method|getTerms
 specifier|public
 specifier|static
@@ -145,7 +145,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Extracts all terms texts of a given Query into an array of WeightedTerms 	 * 	 * @param query      Query to extract term texts from 	 * @param prohibited<code>true</code> to extract "prohibited" terms, too      * @return an array of the terms used in a query, plus their weights.      * @throws IOException      */
+comment|/** 	 * Extracts all terms texts of a given Query into an array of WeightedTerms 	 * 	 * @param query      Query to extract term texts from 	 * @param prohibited<code>true</code> to extract "prohibited" terms, too    * @return an array of the terms used in a query, plus their weights.    */
 DECL|method|getTerms
 specifier|public
 specifier|static
