@@ -27,11 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   Abstract class for input from a file in a Directory.   @author Doug Cutting */
-end_comment
-
-begin_comment
-comment|/** A random-access input stream */
+comment|/** Abstract base class for input from a file in a {@link Directory}.  A  * random-access input stream.  Used for all Lucene index input operations.  * @see Directory  * @see OutputStream  */
 end_comment
 
 begin_class
@@ -95,7 +91,7 @@ name|long
 name|length
 decl_stmt|;
 comment|// set by subclasses
-comment|/** InputStream-like methods @see java.io.InputStream */
+comment|/** Reads and returns a single byte.    * @see OutputStream#writeByte(byte)    */
 DECL|method|readByte
 specifier|public
 specifier|final
@@ -122,6 +118,7 @@ operator|++
 index|]
 return|;
 block|}
+comment|/** Reads a specified number of bytes into an array at the specified offset.    * @param b the array to read bytes into    * @param offset the offset in the array to start storing bytes    * @param len the number of bytes to read    * @see OutputStream#writeBytes(byte[],int)    */
 DECL|method|readBytes
 specifier|public
 specifier|final
@@ -218,6 +215,7 @@ expr_stmt|;
 comment|// trigger refill() on read
 block|}
 block|}
+comment|/** Reads four bytes and returns an int.    * @see OutputStream#writeInt(int)    */
 DECL|method|readInt
 specifier|public
 specifier|final
@@ -269,6 +267,7 @@ literal|0xFF
 operator|)
 return|;
 block|}
+comment|/** Reads an int stored in variable-length format.  Reads between one and    * five bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see OutputStream#writeVInt(int)    */
 DECL|method|readVInt
 specifier|public
 specifier|final
@@ -331,6 +330,7 @@ return|return
 name|i
 return|;
 block|}
+comment|/** Reads eight bytes and returns a long.    * @see OutputStream#writeLong(long)    */
 DECL|method|readLong
 specifier|public
 specifier|final
@@ -361,6 +361,7 @@ literal|0xFFFFFFFFL
 operator|)
 return|;
 block|}
+comment|/** Reads a long stored in variable-length format.  Reads between one and    * nine bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported. */
 DECL|method|readVLong
 specifier|public
 specifier|final
@@ -423,6 +424,7 @@ return|return
 name|i
 return|;
 block|}
+comment|/** Reads a string.    * @see OutputStream#writeString(String)    */
 DECL|method|readString
 specifier|public
 specifier|final
@@ -479,6 +481,7 @@ name|length
 argument_list|)
 return|;
 block|}
+comment|/** Reads UTF-8 encoded characters into an array.    * @param buffer the array to read characters into    * @param start the offset in the array to start storing characters    * @param length the number of characters to read    * @see OutputStream#writeChars(String,int,int)    */
 DECL|method|readChars
 specifier|public
 specifier|final
@@ -633,8 +636,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|refill
-specifier|protected
-specifier|final
+specifier|private
 name|void
 name|refill
 parameter_list|()
@@ -723,6 +725,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/** Expert: implements buffer refill.  Reads bytes from the current position    * in the input.    * @param b the array to read bytes into    * @param offset the offset in the array to start storing bytes    * @param length the number of bytes to read    */
 DECL|method|readInternal
 specifier|abstract
 specifier|protected
@@ -742,6 +745,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Closes the stream to futher operations. */
 DECL|method|close
 specifier|abstract
 specifier|public
@@ -751,7 +755,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** RandomAccessFile-like methods @see java.io.RandomAccessFile */
+comment|/** Returns the current position in this file, where the next read will    * occur.    * @see #seek(long)    */
 DECL|method|getFilePointer
 specifier|public
 specifier|final
@@ -765,6 +769,7 @@ operator|+
 name|bufferPosition
 return|;
 block|}
+comment|/** Sets current position in this file, where the next read will occur.    * @see #getFilePointer()    */
 DECL|method|seek
 specifier|public
 specifier|final
@@ -825,6 +830,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Expert: implements seek.  Sets current position in this file, where the    * next {@link #readInternal(byte[],int,int)} will occur.    * @see #readInternal(byte[],int,int)    */
 DECL|method|seekInternal
 specifier|abstract
 specifier|protected
@@ -837,6 +843,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** The number of bytes in the file. */
 DECL|method|length
 specifier|public
 specifier|final
@@ -848,6 +855,7 @@ return|return
 name|length
 return|;
 block|}
+comment|/** Returns a clone of this stream.    *    *<p>Clones of a stream access the same data, and are positioned at the same    * point as the stream they were cloned from.    *    *<p>Expert: Subclasses must ensure that clones may be positioned at    * different points in the input from each other and from the stream they    * were cloned from.    */
 DECL|method|clone
 specifier|public
 name|Object

@@ -27,11 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*   Java's filesystem API is not used directly, but rather through these   classes.  This permits:     . implementation of RAM-based indices, useful for summarization, etc.;     . implementation of an index as a single file.  */
-end_comment
-
-begin_comment
-comment|/**   A Directory is a flat list of files.  Files may be written once,   when they are created.  Once a file is created it may only be opened for   read, or deleted.  Random access is permitted when reading and writing.      @author Doug Cutting */
+comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>   *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * @author Doug Cutting  */
 end_comment
 
 begin_class

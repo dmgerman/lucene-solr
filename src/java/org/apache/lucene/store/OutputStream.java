@@ -27,11 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   Abstract class for output from a file in a Directory.   @author Doug Cutting */
-end_comment
-
-begin_comment
-comment|/** A random-access output stream */
+comment|/** Abstract class for output to a file in a Directory.  A random-access output  * stream.  Used for all Lucene index output operations.  * @see Directory  * @see InputStream  */
 end_comment
 
 begin_class
@@ -78,7 +74,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// position in buffer
-comment|/** OutputStream-like methods @see java.io.InputStream */
+comment|/** Writes a single byte.    * @see InputStream#readByte()    */
 DECL|method|writeByte
 specifier|public
 specifier|final
@@ -109,6 +105,7 @@ operator|=
 name|b
 expr_stmt|;
 block|}
+comment|/** Writes an array of bytes.    * @param b the bytes to write    * @param length the number of bytes to write    * @see InputStream#readBytes(byte[],int,int)    */
 DECL|method|writeBytes
 specifier|public
 specifier|final
@@ -148,6 +145,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes an int as four bytes.    * @see InputStream#readInt()    */
 DECL|method|writeInt
 specifier|public
 specifier|final
@@ -205,6 +203,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes an int in a variable-length format.  Writes between one and    * five bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see InputStream#readVInt()    */
 DECL|method|writeVInt
 specifier|public
 specifier|final
@@ -259,6 +258,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes a long as eight bytes.    * @see InputStream#readLong()    */
 DECL|method|writeLong
 specifier|public
 specifier|final
@@ -292,6 +292,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes an long in a variable-length format.  Writes between one and five    * bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see InputStream#readVLong()    */
 DECL|method|writeVLong
 specifier|public
 specifier|final
@@ -346,6 +347,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes a string.    * @see InputStream#readString()    */
 DECL|method|writeString
 specifier|public
 specifier|final
@@ -381,6 +383,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes a sequence of UTF-8 encoded characters from a string.    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @see InputStream#readChars(char[],int,int)    */
 DECL|method|writeChars
 specifier|public
 specifier|final
@@ -566,6 +569,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Forces any buffered output to be written. */
 DECL|method|flush
 specifier|protected
 specifier|final
@@ -591,6 +595,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/** Expert: implements buffer write.  Writes bytes at the current position in    * the output.    * @param b the bytes to write    * @param len the number of bytes to write    */
 DECL|method|flushBuffer
 specifier|abstract
 specifier|protected
@@ -607,6 +612,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Closes this stream to further operations. */
 DECL|method|close
 specifier|public
 name|void
@@ -619,7 +625,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** RandomAccessFile-like methods @see java.io.RandomAccessFile */
+comment|/** Returns the current position in this file, where the next write will    * occur.    * @see #seek(long)    */
 DECL|method|getFilePointer
 specifier|public
 specifier|final
@@ -635,6 +641,7 @@ operator|+
 name|bufferPosition
 return|;
 block|}
+comment|/** Sets current position in this file, where the next write will occur.    * @see #getFilePointer()    */
 DECL|method|seek
 specifier|public
 name|void
@@ -654,6 +661,7 @@ operator|=
 name|pos
 expr_stmt|;
 block|}
+comment|/** The number of bytes in the file. */
 DECL|method|length
 specifier|abstract
 specifier|public
