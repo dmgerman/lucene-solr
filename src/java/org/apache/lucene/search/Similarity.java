@@ -247,7 +247,7 @@ return|return
 name|NORM_TABLE
 return|;
 block|}
-comment|/** Computes the normalization value for a field given the total number of    * terms contained in a field.  These values, together with field boosts, are    * stored in an index and multipled into scores for hits on each field by the    * search code.    *    *<p>Matches in longer fields are less precise, so implemenations of this    * method usually return smaller values when<code>numTokens</code> is large,    * and larger values when<code>numTokens</code> is small.    *    *<p>That these values are computed under {@link    * IndexWriter#addDocument(org.apache.lucene.document.Document)} and stored then using    * {@link #encodeNorm(float)}.  Thus they have limited precision, and documents    * must be re-indexed if this method is altered.    *    * @param fieldName the name of the field    * @param numTokens the total number of tokens contained in fields named    *<i>fieldName</i> of<i>doc</i>.    * @return a normalization factor for hits on this field of this document    *    * @see Field#setBoost(float)    */
+comment|/** Computes the normalization value for a field given the total number of    * terms contained in a field.  These values, together with field boosts, are    * stored in an index and multipled into scores for hits on each field by the    * search code.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually return smaller values when<code>numTokens</code> is large,    * and larger values when<code>numTokens</code> is small.    *    *<p>That these values are computed under {@link    * IndexWriter#addDocument(org.apache.lucene.document.Document)} and stored then using    * {@link #encodeNorm(float)}.  Thus they have limited precision, and documents    * must be re-indexed if this method is altered.    *    * @param fieldName the name of the field    * @param numTokens the total number of tokens contained in fields named    *<i>fieldName</i> of<i>doc</i>.    * @return a normalization factor for hits on this field of this document    *    * @see Field#setBoost(float)    */
 DECL|method|lengthNorm
 specifier|public
 specifier|abstract
@@ -513,7 +513,7 @@ name|int
 name|distance
 parameter_list|)
 function_decl|;
-comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(Term, Searcher)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implemenations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    * @param freq the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
+comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(Term, Searcher)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implementations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    * @param freq the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
 DECL|method|tf
 specifier|public
 specifier|abstract
@@ -612,7 +612,7 @@ return|return
 name|idf
 return|;
 block|}
-comment|/** Computes a score factor based on a term's document frequency (the number    * of documents which contain the term).  This value is multiplied by the    * {@link #tf(int)} factor for each term in the query and these products are    * then summed to form the initial score for a document.    *    *<p>Terms that occur in fewer documents are better indicators of topic, so    * implemenations of this method usually return larger values for rare terms,    * and smaller values for common terms.    *    * @param docFreq the number of documents which contain the term    * @param numDocs the total number of documents in the collection    * @return a score factor based on the term's document frequency    */
+comment|/** Computes a score factor based on a term's document frequency (the number    * of documents which contain the term).  This value is multiplied by the    * {@link #tf(int)} factor for each term in the query and these products are    * then summed to form the initial score for a document.    *    *<p>Terms that occur in fewer documents are better indicators of topic, so    * implementations of this method usually return larger values for rare terms,    * and smaller values for common terms.    *    * @param docFreq the number of documents which contain the term    * @param numDocs the total number of documents in the collection    * @return a score factor based on the term's document frequency    */
 DECL|method|idf
 specifier|public
 specifier|abstract
@@ -626,7 +626,7 @@ name|int
 name|numDocs
 parameter_list|)
 function_decl|;
-comment|/** Computes a score factor based on the fraction of all query terms that a    * document contains.  This value is multiplied into scores.    *    *<p>The presence of a large portion of the query terms indicates a better    * match with the query, so implemenations of this method usually return    * larger values when the ratio between these parameters is large and smaller    * values when the ratio between them is small.    *    * @param overlap the number of query terms matched in the document    * @param maxOverlap the total number of terms in the query    * @return a score factor based on term overlap with the query    */
+comment|/** Computes a score factor based on the fraction of all query terms that a    * document contains.  This value is multiplied into scores.    *    *<p>The presence of a large portion of the query terms indicates a better    * match with the query, so implementations of this method usually return    * larger values when the ratio between these parameters is large and smaller    * values when the ratio between them is small.    *    * @param overlap the number of query terms matched in the document    * @param maxOverlap the total number of terms in the query    * @return a score factor based on term overlap with the query    */
 DECL|method|coord
 specifier|public
 specifier|abstract
