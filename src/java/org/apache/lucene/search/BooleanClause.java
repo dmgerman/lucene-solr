@@ -25,6 +25,12 @@ DECL|class|BooleanClause
 specifier|public
 class|class
 name|BooleanClause
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
 block|{
 comment|/** The query whose matching documents are combined by the boolean query. */
 DECL|field|query
