@@ -105,6 +105,20 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
+DECL|field|DISABLE_LOCKS
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|DISABLE_LOCKS
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"disableLocks"
+argument_list|)
+decl_stmt|;
 comment|/** Returns the directory instance for the named location.    *     *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *     * @param path the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
@@ -717,7 +731,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
+comment|/**    * Constructs a {@link Lock} with the specified name.    * If JDK 1.1 is used the lock file is not really made.    * If system property<I>disableLocks</I> has the value of 'true'    * the lock will not be created.  Assigning this property any other value    * will<B>not</B> prevent creation of locks.    *<BR>    * This is useful for using Lucene on read-only medium, such as CD-ROM.    *    * @param name the name of the lock file    * @return an instance of<code>Lock</code> holding the lock    */
 DECL|method|makeLock
 specifier|public
 specifier|final
@@ -762,6 +776,13 @@ return|return
 literal|true
 return|;
 comment|// locks disabled in jdk 1.1
+if|if
+condition|(
+name|DISABLE_LOCKS
+condition|)
+return|return
+literal|true
+return|;
 return|return
 name|lockFile
 operator|.
