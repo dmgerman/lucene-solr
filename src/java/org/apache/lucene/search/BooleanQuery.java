@@ -83,7 +83,7 @@ literal|"1024"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** Thrown when an attempt is made to add more than {@link    * #getMaxClauseCount()} clauses. */
+comment|/** Thrown when an attempt is made to add more than {@link    * #getMaxClauseCount()} clauses. This typically happens if    * a PrefixQuery, FuzzyQuery, WildcardQuery, or RangeQuery     * is expanded to many terms during search.     */
 DECL|class|TooManyClauses
 specifier|public
 specifier|static
