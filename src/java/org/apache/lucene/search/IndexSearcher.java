@@ -168,7 +168,7 @@ operator|=
 name|r
 expr_stmt|;
 block|}
-comment|/** Frees resources associated with this Searcher. */
+comment|/**    * Frees resources associated with this Searcher.    * Be careful not to call this method while you are still using objects    * like {@link Hits}.    */
 DECL|method|close
 specifier|public
 name|void
