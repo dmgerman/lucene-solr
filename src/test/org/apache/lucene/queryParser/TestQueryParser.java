@@ -331,15 +331,6 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**     * initialize this TemplateTester by creating a WebMacro instance     * and a default Context.     */
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|()
-throws|throws
-name|Exception
-block|{   }
 DECL|method|assertQueryEquals
 specifier|public
 name|void
