@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  The<code>HtmlDocument</code> class creates a Lucene {@link  *  org.apache.lucene.document.Document} from an HTML document.<P>  *  *  It does this by using JTidy package. It can take input input  *  from {@link java.io.File} or {@link java.io.InputStream}.  *  *@author     Erik Hatcher  *@created    October 27, 2001  */
+comment|/**  *  The<code>HtmlDocument</code> class creates a Lucene {@link  *  org.apache.lucene.document.Document} from an HTML document.<P>  *  *  It does this by using JTidy package. It can take input input  *  from {@link java.io.File} or {@link java.io.InputStream}.  *  *@author     Erik Hatcher  */
 end_comment
 
 begin_class
@@ -570,7 +570,7 @@ comment|// Private methods
 comment|//-------------------------------------------------------------
 comment|/**      *  Runs<code>HtmlDocument</code> on the files specified on      *  the command line.      *      *@param  args           Command line arguments      *@exception  Exception  Description of Exception      */
 DECL|method|main
-specifier|private
+specifier|public
 specifier|static
 name|void
 name|main

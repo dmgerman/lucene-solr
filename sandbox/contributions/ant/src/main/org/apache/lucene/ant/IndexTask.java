@@ -1243,7 +1243,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Add the path of the file as a field named "path".  Use a Text field, so
+comment|// Add the path of the file as a field named "path".  Use a Keyword field, so
 comment|// that the index stores the path, and so that the path is searchable
 name|doc
 operator|.

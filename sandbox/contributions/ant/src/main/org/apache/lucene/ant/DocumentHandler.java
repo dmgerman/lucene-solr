@@ -46,9 +46,8 @@ specifier|public
 interface|interface
 name|DocumentHandler
 block|{
-comment|/**      *  Gets the document attribute of the DocumentHandler object      *      *@param  file  Description of Parameter      *@return       The document value      *@throws DocumentHandlerException      */
+comment|/**      *  Gets the document attribute of the DocumentHandler object      *      *@param  file  Description of Parameter      *@return       The document value      */
 DECL|method|getDocument
-specifier|public
 name|Document
 name|getDocument
 parameter_list|(
