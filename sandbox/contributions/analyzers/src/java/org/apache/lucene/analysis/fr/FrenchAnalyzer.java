@@ -195,7 +195,9 @@ name|Analyzer
 block|{
 comment|/**    * Extended list of typical french stopwords.    */
 DECL|field|FRENCH_STOP_WORDS
-specifier|private
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|FRENCH_STOP_WORDS
@@ -656,7 +658,7 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/**    * Builds an analyzer.    */
+comment|/**    * Builds an analyzer with the default stop words ({@link #FRENCH_STOP_WORDS}).    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer

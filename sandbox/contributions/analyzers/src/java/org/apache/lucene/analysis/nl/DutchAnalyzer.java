@@ -166,7 +166,9 @@ name|Analyzer
 block|{
 comment|/**    * List of typical Dutch stopwords.    */
 DECL|field|DUTCH_STOP_WORDS
-specifier|private
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|DUTCH_STOP_WORDS
@@ -404,7 +406,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
-comment|/**    * Builds an analyzer.    */
+comment|/**    * Builds an analyzer with the default stop words ({@link #DUTCH_STOP_WORDS}).    */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer

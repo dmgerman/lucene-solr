@@ -174,12 +174,13 @@ extends|extends
 name|Analyzer
 block|{
 comment|/** 	 * List of typical stopwords. 	 */
-DECL|field|STOP_WORDS
-specifier|private
+DECL|field|CZECH_STOP_WORDS
+specifier|public
+specifier|final
 specifier|static
 name|String
 index|[]
-name|STOP_WORDS
+name|CZECH_STOP_WORDS
 init|=
 block|{
 literal|"a"
@@ -533,7 +534,7 @@ specifier|private
 name|Set
 name|stoptable
 decl_stmt|;
-comment|/** 	 * Builds an analyzer. 	 */
+comment|/** 	 * Builds an analyzer with the default stop words ({@link #CZECH_STOP_WORDS}). 	 */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -545,7 +546,7 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
-name|STOP_WORDS
+name|CZECH_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
