@@ -231,25 +231,22 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
 name|sortFlag
 operator|!=
 literal|""
-operator|)
-operator|&&
-operator|(
-name|sortFlag
-operator|.
-name|equals
-argument_list|(
-name|SearchBean
-operator|.
-name|SORT_FIELD_RELEVANCE
-argument_list|)
-operator|)
 condition|)
 block|{
-comment|//logger.debug("Sorting hits by field "+sortFlag);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Sorting hits by field "
+operator|+
+name|sortFlag
+argument_list|)
+expr_stmt|;
 name|sortByField
 argument_list|(
 name|sortFlag

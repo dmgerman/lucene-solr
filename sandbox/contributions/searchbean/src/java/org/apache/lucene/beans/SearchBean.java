@@ -565,6 +565,17 @@ name|IOException
 throws|,
 name|ParseException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"queryString = "
+operator|+
+name|queryString
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|queryString
@@ -595,7 +606,22 @@ argument_list|,
 name|defaultSearchField
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("###querystring= "+query.toString(defaultSearchField));
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"###querystring= "
+operator|+
+name|query
+operator|.
+name|toString
+argument_list|(
+name|defaultSearchField
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Hits
 name|hits
 init|=

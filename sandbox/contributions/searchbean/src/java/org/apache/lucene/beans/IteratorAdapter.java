@@ -22,6 +22,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Acts as an adapter for HitsIterator to comply with the Collections  * API.  *  * @author<a href="mailto:kelvint@apache.org">Kelvin Tan</a>  * @version $Id$  */
 end_comment
@@ -74,11 +84,31 @@ name|Object
 name|next
 parameter_list|()
 block|{
-return|return
+name|Object
+name|obj
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|obj
+operator|=
 name|hitsIterator
 operator|.
 name|next
 argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// ignore for now, returning null might be good enough?
+block|}
+return|return
+name|obj
 return|;
 block|}
 DECL|method|remove
