@@ -46,36 +46,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|de
 operator|.
 name|lanlab
@@ -132,16 +102,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|UIManager
-import|;
-end_import
-
-begin_import
-import|import
 name|HTTPClient
 operator|.
 name|*
@@ -161,6 +121,46 @@ operator|.
 name|regex
 operator|.
 name|MalformedPatternException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|UIManager
 import|;
 end_import
 
@@ -199,17 +199,23 @@ specifier|protected
 name|RobotExclusionFilter
 name|reFilter
 decl_stmt|;
-comment|/**      * the host manager keeps track of all hosts and is used by the filters.      */
-DECL|field|hostManager
-specifier|protected
-name|HostManager
-name|hostManager
-decl_stmt|;
 comment|/**      * this rather flaky filter just filters out some URLs, i.e. different views      * of Apache the apache DirIndex module. Has to be made      * configurable in near future      */
 DECL|field|knownPathsFilter
 specifier|protected
 name|KnownPathsFilter
 name|knownPathsFilter
+decl_stmt|;
+comment|/**      * the URL length filter filters URLs that are too long, i.e. because of errors      * in the implementation of dynamic web sites      */
+DECL|field|urlLengthFilter
+specifier|protected
+name|URLLengthFilter
+name|urlLengthFilter
+decl_stmt|;
+comment|/**      * the host manager keeps track of all hosts and is used by the filters.      */
+DECL|field|hostManager
+specifier|protected
+name|HostManager
+name|hostManager
 decl_stmt|;
 comment|/**      * this is the main document fetcher. It contains a thread pool that fetches the      * documents and stores them      */
 DECL|field|fetcher
@@ -229,15 +235,9 @@ specifier|protected
 name|DocumentStorage
 name|storage
 decl_stmt|;
-comment|/**      * the URL length filter filters URLs that are too long, i.e. because of errors      * in the implementation of dynamic web sites      */
-DECL|field|urlLengthFilter
-specifier|protected
-name|URLLengthFilter
-name|urlLengthFilter
-decl_stmt|;
 comment|/**      * initializes all classes and registers anonymous adapter classes as      * listeners for fetcher events.      *      * @param nrThreads  number of fetcher threads to be created      */
 DECL|method|FetcherMain
-specifier|public
+specifier|private
 name|FetcherMain
 parameter_list|(
 name|int
@@ -247,7 +247,7 @@ block|{
 comment|// to make things clear, this method is commented a bit better than
 comment|// the rest of the program...
 comment|// this is the main message queue. handlers are registered with
-comment|// the queue, and whenever a message is put in it, they are passed to the
+comment|// the queue, and whenever a message is put in it, the message is passed to the
 comment|// filters in a "chain of responibility" manner. Every listener can decide
 comment|// to throw the message away
 name|messageHandler
@@ -347,6 +347,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// FIXME: index name and path need to be configurable
 name|luceneStorage
 operator|.
 name|setIndexName
@@ -404,7 +405,23 @@ comment|//storage.addStorage(new JMSStorage(...));
 comment|// a third example would be the NullStorage, which converts the documents into
 comment|// heat, which evaporates above the processor
 comment|// NullStorage();
+name|hostManager
+operator|=
+operator|new
+name|HostManager
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
 comment|// create the filters and add them to the message queue
+name|reFilter
+operator|=
+operator|new
+name|RobotExclusionFilter
+argument_list|(
+name|hostManager
+argument_list|)
+expr_stmt|;
 name|urlScopeFilter
 operator|=
 operator|new
@@ -419,37 +436,6 @@ argument_list|(
 literal|100000
 argument_list|)
 expr_stmt|;
-comment|// dnsResolver = new DNSResolver();
-name|hostManager
-operator|=
-operator|new
-name|HostManager
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-name|reFilter
-operator|=
-operator|new
-name|RobotExclusionFilter
-argument_list|(
-name|hostManager
-argument_list|)
-expr_stmt|;
-name|fetcher
-operator|=
-operator|new
-name|Fetcher
-argument_list|(
-name|nrThreads
-argument_list|,
-name|storage
-argument_list|,
-name|storage
-argument_list|,
-name|hostManager
-argument_list|)
-expr_stmt|;
 name|knownPathsFilter
 operator|=
 operator|new
@@ -462,6 +448,21 @@ operator|new
 name|URLLengthFilter
 argument_list|(
 literal|255
+argument_list|)
+expr_stmt|;
+comment|// dnsResolver = new DNSResolver();
+name|fetcher
+operator|=
+operator|new
+name|Fetcher
+argument_list|(
+name|nrThreads
+argument_list|,
+name|storage
+argument_list|,
+name|storage
+argument_list|,
+name|hostManager
 argument_list|)
 expr_stmt|;
 comment|// prevent message box popups
@@ -563,7 +564,7 @@ argument_list|)
 expr_stmt|;
 comment|/* uncomment this to enable HTTPClient logging         try         {             HTTPClient.Log.setLogWriter(new java.io.FileWriter("logs/HttpClient.log"),false);             HTTPClient.Log.setLogging(HTTPClient.Log.ALL, true);         }         catch (Exception e)         {             e.printStackTrace();         }         */
 block|}
-comment|/**      * Sets the RexString attribute of the FetcherMain object      *      * @param restrictTo                          The new RexString value      */
+comment|/**      * Sets the RexString attribute of<code>UrlScopeFilter</code>.      *      * @param restrictTo the new RexString value      */
 DECL|method|setRexString
 specifier|public
 name|void
@@ -632,6 +633,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|// FIXME: replace with logging
 name|System
 operator|.
 name|out
@@ -669,7 +671,7 @@ expr_stmt|;
 block|}
 comment|/*      * the GUI is not working at this time. It was used in the very beginning, but      * synchronous updates turned out to slow down the program a lot, even if the      * GUI would be turned off. Thus, a lot      * of Observer messages where removed later. Nontheless, it's quite cool to see      * it working...      *      * @param f         Description of Parameter      * @param startURL  Description of Parameter      */
 comment|/*     public void initGui(FetcherMain f, String startURL)     {         // if we're on a windows platform, make it look a bit more convenient         try         {             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());         }         catch (Exception e)         {             // dann halt nicht...         }         System.out.println("Init FetcherFrame");          FetcherSummaryFrame fetcherFrame;         fetcherFrame = new FetcherSummaryFrame();         fetcherFrame.setSize(640, 450);         fetcherFrame.setVisible(true);         FetcherGUIController guiController = new FetcherGUIController(f, fetcherFrame, startURL);     }         */
-comment|/**      * The main program. parsed      *      * @param args  The command line arguments      */
+comment|/**      * The main program.      *      * @param args  The command line arguments      */
 DECL|method|main
 specifier|public
 specifier|static
@@ -715,6 +717,7 @@ argument_list|(
 literal|"LARM - LANLab Retrieval Machine - Fetcher - V 1.00 - (C) LANLab 2000-02"
 argument_list|)
 expr_stmt|;
+comment|// FIXME: consider using Jakarta Commons' CLI package for command line parameters
 for|for
 control|(
 name|int
