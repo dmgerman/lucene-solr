@@ -220,7 +220,9 @@ name|query
 init|=
 operator|new
 name|BooleanQuery
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|TermEnum
 name|enumerator
