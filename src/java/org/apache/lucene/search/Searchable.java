@@ -113,7 +113,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns the number of documents containing<code>term</code>.    * Called by search code to compute term weights.    * @see IndexReader#docFreq(Term).    */
+comment|/** Expert: Returns the number of documents containing<code>term</code>.    * Called by search code to compute term weights.    * @see IndexReader#docFreq(Term)    */
 DECL|method|docFreq
 name|int
 name|docFreq
@@ -124,7 +124,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns one greater than the largest possible document number.    * Called by search code to compute term weights.    * @see IndexReader#maxDoc().    */
+comment|/** Expert: Returns one greater than the largest possible document number.    * Called by search code to compute term weights.    * @see IndexReader#maxDoc()    */
 DECL|method|maxDoc
 name|int
 name|maxDoc
@@ -149,7 +149,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns the stored fields of document<code>i</code>.    * Called by {@link HitCollector} implementations.    * @see IndexReader#document(int).    */
+comment|/** Expert: Returns the stored fields of document<code>i</code>.    * Called by {@link HitCollector} implementations.    * @see IndexReader#document(int)    */
 DECL|method|doc
 name|Document
 name|doc
