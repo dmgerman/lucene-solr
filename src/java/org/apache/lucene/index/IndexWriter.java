@@ -725,7 +725,7 @@ name|MAX_RADIX
 argument_list|)
 return|;
 block|}
-comment|/** Determines how often segment indexes are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indexes are faster, but indexing speed is slower.  With larger    * values more RAM is used while indexing and searches on unoptimized indexes    * are slower, but indexing is faster.  Thus larger values (> 10) are best    * for batched index creation, and smaller values (< 10) for indexes that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is 10.*/
+comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is 10.*/
 DECL|field|mergeFactor
 specifier|public
 name|int
@@ -1294,9 +1294,10 @@ expr_stmt|;
 comment|// queue segment for deletion
 name|mergedDocCount
 operator|+=
-name|si
+name|reader
 operator|.
-name|docCount
+name|numDocs
+argument_list|()
 expr_stmt|;
 block|}
 if|if
