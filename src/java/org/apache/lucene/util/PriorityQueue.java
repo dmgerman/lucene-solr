@@ -236,7 +236,7 @@ init|=
 literal|0
 init|;
 name|i
-operator|<
+operator|<=
 name|size
 condition|;
 name|i
