@@ -625,7 +625,7 @@ name|InputStreamReader
 argument_list|(
 name|System
 operator|.
-name|int
+name|in
 argument_list|,
 literal|"UTF-8"
 argument_list|)
