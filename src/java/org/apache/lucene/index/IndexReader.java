@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -875,6 +885,16 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Return a list of all unique field names which exist in the index pointed to by      * this IndexReader.      * @return Collection of Strings indicating the names of the fields      * @throws IOException if there is a problem with accessing the index      */
+DECL|method|getFieldNames
+specifier|public
+specifier|abstract
+name|Collection
+name|getFieldNames
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
 DECL|method|isLocked
 specifier|public
