@@ -883,6 +883,34 @@ literal|"write.lock"
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
+DECL|method|isLocked
+specifier|public
+specifier|static
+name|boolean
+name|isLocked
+parameter_list|(
+name|String
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+operator|(
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+literal|"write.lock"
+argument_list|)
+operator|)
+operator|.
+name|exists
+argument_list|()
+return|;
+block|}
 comment|/**     * Forcibly unlocks the index in the named directory.     *<P>     * Caution: this should only be used by failure recovery code,     * when it is known that no other process nor thread is in fact     * currently accessing this index.     */
 DECL|method|unlock
 specifier|public
