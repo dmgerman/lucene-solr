@@ -118,6 +118,11 @@ DECL|field|skipInterval
 name|int
 name|skipInterval
 decl_stmt|;
+DECL|field|formatM1SkipInterval
+specifier|private
+name|int
+name|formatM1SkipInterval
+decl_stmt|;
 DECL|field|prev
 name|Term
 name|prev
@@ -192,6 +197,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 expr_stmt|;
+comment|// switch off skipTo optimization
 block|}
 else|else
 block|{
@@ -228,9 +234,43 @@ expr_stmt|;
 comment|// read the size
 if|if
 condition|(
+name|format
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|isIndex
 condition|)
+block|{
+name|indexInterval
+operator|=
+name|input
+operator|.
+name|readInt
+argument_list|()
+expr_stmt|;
+name|formatM1SkipInterval
+operator|=
+name|input
+operator|.
+name|readInt
+argument_list|()
+expr_stmt|;
+block|}
+comment|// switch off skipTo optimization for file format prior to 1.4rc2 in order to avoid a bug in
+comment|// skipTo implementation of these versions
+name|skipInterval
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+block|}
+else|else
 block|{
 name|indexInterval
 operator|=
@@ -450,6 +490,16 @@ expr_stmt|;
 comment|// read prox pointer
 if|if
 condition|(
+name|format
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|//  just read skipOffset in order to increment  file pointer;
+comment|// value is never used since skipTo is switched off
+if|if
+condition|(
 operator|!
 name|isIndex
 condition|)
@@ -460,7 +510,7 @@ name|termInfo
 operator|.
 name|docFreq
 operator|>
-name|skipInterval
+name|formatM1SkipInterval
 condition|)
 block|{
 name|termInfo
@@ -473,6 +523,27 @@ name|readVInt
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|termInfo
+operator|.
+name|docFreq
+operator|>=
+name|skipInterval
+condition|)
+name|termInfo
+operator|.
+name|skipOffset
+operator|=
+name|input
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
