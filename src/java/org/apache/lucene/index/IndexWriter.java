@@ -192,6 +192,22 @@ specifier|public
 class|class
 name|IndexWriter
 block|{
+DECL|field|WRITE_LOCK_TIMEOUT
+specifier|public
+specifier|static
+name|long
+name|WRITE_LOCK_TIMEOUT
+init|=
+literal|1000
+decl_stmt|;
+DECL|field|COMMIT_LOCK_TIMEOUT
+specifier|public
+specifier|static
+name|long
+name|COMMIT_LOCK_TIMEOUT
+init|=
+literal|10000
+decl_stmt|;
 DECL|field|directory
 specifier|private
 name|Directory
@@ -381,7 +397,9 @@ operator|!
 name|writeLock
 operator|.
 name|obtain
-argument_list|()
+argument_list|(
+name|WRITE_LOCK_TIMEOUT
+argument_list|)
 condition|)
 comment|// obtain write lock
 throw|throw
@@ -417,6 +435,8 @@ name|makeLock
 argument_list|(
 literal|"commit.lock"
 argument_list|)
+argument_list|,
+name|COMMIT_LOCK_TIMEOUT
 argument_list|)
 block|{
 specifier|public
@@ -1352,6 +1372,8 @@ name|makeLock
 argument_list|(
 literal|"commit.lock"
 argument_list|)
+argument_list|,
+name|COMMIT_LOCK_TIMEOUT
 argument_list|)
 block|{
 specifier|public
