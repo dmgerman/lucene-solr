@@ -162,6 +162,17 @@ operator|=
 name|maxDoc
 expr_stmt|;
 block|}
+DECL|method|getStarts
+specifier|protected
+name|int
+index|[]
+name|getStarts
+parameter_list|()
+block|{
+return|return
+name|starts
+return|;
+block|}
 comment|/** Frees resources associated with this<code>Searcher</code>. */
 DECL|method|close
 specifier|public

@@ -204,6 +204,27 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Return a new instance of the concrete MultiSearcher class 	 * used in this test 	 */
+DECL|method|getMultiSearcherInstance
+specifier|protected
+name|MultiSearcher
+name|getMultiSearcherInstance
+parameter_list|(
+name|Searcher
+index|[]
+name|searchers
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|MultiSearcher
+argument_list|(
+name|searchers
+argument_list|)
+return|;
+block|}
 DECL|method|testEmptyIndex
 specifier|public
 name|void
@@ -505,8 +526,7 @@ comment|// creating the multiSearcher
 name|Searcher
 name|mSearcher
 init|=
-operator|new
-name|MultiSearcher
+name|getMultiSearcherInstance
 argument_list|(
 name|searchers
 argument_list|)
@@ -668,8 +688,7 @@ comment|// creating the mulitSearcher
 name|Searcher
 name|mSearcher2
 init|=
-operator|new
-name|MultiSearcher
+name|getMultiSearcherInstance
 argument_list|(
 name|searchers2
 argument_list|)
@@ -858,8 +877,7 @@ comment|// creating the mulitSearcher
 name|Searcher
 name|mSearcher3
 init|=
-operator|new
-name|MultiSearcher
+name|getMultiSearcherInstance
 argument_list|(
 name|searchers3
 argument_list|)
