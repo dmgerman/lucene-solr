@@ -222,6 +222,14 @@ name|SearchBean
 extends|extends
 name|Object
 block|{
+DECL|field|SORT_FIELD_RELEVANCE
+specifier|static
+specifier|final
+name|String
+name|SORT_FIELD_RELEVANCE
+init|=
+literal|"relevance"
+decl_stmt|;
 DECL|field|queryString
 specifier|private
 name|String
@@ -234,7 +242,7 @@ specifier|private
 name|String
 name|querySortField
 init|=
-literal|"relevance"
+name|SORT_FIELD_RELEVANCE
 decl_stmt|;
 comment|// default
 DECL|field|queryType
@@ -269,6 +277,13 @@ name|long
 name|searchTime
 init|=
 literal|0
+decl_stmt|;
+DECL|field|searcher
+specifier|private
+name|Searcher
+name|searcher
+init|=
+literal|null
 decl_stmt|;
 comment|// static Logger logger = Logger.getLogger(SearchBean.class.getName());
 comment|// static Logger searchLogger = Logger.getLogger("searchLog");
@@ -495,31 +510,8 @@ argument_list|,
 name|queryType
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|hits
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-if|if
-condition|(
-name|hits
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
+comment|//if (hits == null) {return null;}
+comment|//if (hits.length() == 0) {return null;}
 name|HitsIterator
 name|hi
 init|=
@@ -585,15 +577,14 @@ literal|null
 return|;
 block|}
 comment|// Provide for multiple indices in the future
-name|Searcher
 name|searcher
-init|=
+operator|=
 operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|Query
 name|query
 init|=
@@ -620,6 +611,21 @@ comment|//logger.debug("queryString = "+query.toString(searchField)+" hits = "+h
 return|return
 name|hits
 return|;
+block|}
+comment|/**      * frees resources associated with SearchBean search      */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**<queryString> |<queryType> |<querySortField>      */
 DECL|method|toString
