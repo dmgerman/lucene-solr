@@ -117,12 +117,121 @@ name|int
 name|id
 decl_stmt|;
 DECL|field|healthyCount
-specifier|private
 name|int
 name|healthyCount
 init|=
-literal|5
+literal|8
 decl_stmt|;
+DECL|field|locks
+name|int
+name|locks
+init|=
+literal|2
+decl_stmt|;
+comment|// max. concurrent requests
+DECL|field|lockObtained
+name|int
+name|lockObtained
+init|=
+literal|0
+decl_stmt|;
+comment|// for debugging
+DECL|field|lockMonitor
+name|Object
+name|lockMonitor
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+DECL|method|getLockMonitor
+specifier|public
+name|Object
+name|getLockMonitor
+parameter_list|()
+block|{
+return|return
+name|lockMonitor
+return|;
+block|}
+DECL|method|releaseLock
+specifier|public
+name|void
+name|releaseLock
+parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|lockMonitor
+init|)
+block|{
+if|if
+condition|(
+name|lockObtained
+operator|>=
+literal|0
+condition|)
+block|{
+name|locks
+operator|++
+expr_stmt|;
+name|lockObtained
+operator|--
+expr_stmt|;
+comment|//                try
+comment|//                {
+comment|//                    throw new Exception();
+comment|//
+comment|//                }
+comment|//                catch(Exception e)
+comment|//                {
+comment|//                    System.out.println("HostInfo: release called at: " + e.getStackTrace()[1]);
+comment|//                }
+comment|//                System.out.println("HostInfo " + hostName + ": releaseing Lock. now " + lockObtained + " locks obtained, " + locks + " available");
+block|}
+comment|//            else
+comment|//            {
+comment|//                System.out.println("HostInfo: lock released although no lock acquired!?");
+comment|//            }
+block|}
+block|}
+comment|// must be synchronized
+DECL|method|obtainLock
+specifier|public
+name|void
+name|obtainLock
+parameter_list|()
+block|{
+name|locks
+operator|--
+expr_stmt|;
+name|lockObtained
+operator|++
+expr_stmt|;
+comment|//        try
+comment|//        {
+comment|//            throw new Exception();
+comment|//
+comment|//        }
+comment|//        catch(Exception e)
+comment|//        {
+comment|//            System.out.println("obtain called at: " + e.getStackTrace()[1]);
+comment|//        }
+comment|//        System.out.println("HostInfo " + hostName + ": obtaining Lock. now " + lockObtained + " locks obtained, " + locks + " available");
+block|}
+comment|// must be synchronized
+DECL|method|isBusy
+specifier|public
+name|boolean
+name|isBusy
+parameter_list|()
+block|{
+return|return
+name|locks
+operator|<=
+literal|0
+return|;
+block|}
 comment|// five strikes, and you're out
 DECL|field|isReachable
 specifier|private
@@ -309,6 +418,25 @@ block|{
 name|healthyCount
 operator|--
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"HostInfo: "
+operator|+
+name|this
+operator|.
+name|hostName
+operator|+
+literal|": badRequest. "
+operator|+
+name|healthyCount
+operator|+
+literal|" left"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Sets the reachable attribute of the HostInfo object      *      * @param reachable  The new reachable value      */
 DECL|method|setReachable
@@ -323,6 +451,29 @@ block|{
 name|isReachable
 operator|=
 name|reachable
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"HostInfo: "
+operator|+
+name|this
+operator|.
+name|hostName
+operator|+
+literal|": setting to "
+operator|+
+operator|(
+name|reachable
+condition|?
+literal|"reachable"
+else|:
+literal|"unreachable"
+operator|)
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Gets the reachable attribute of the HostInfo object      *      * @return   The reachable value      */
