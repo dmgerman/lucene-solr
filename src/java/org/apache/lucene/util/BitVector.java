@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Optimized implementation of a vector of bits.  This is more-or-less like   java.util.BitSet, but also includes the following:<UL><LI>a count() method, which efficiently computes the number of one bits;</LI><LI>optimized read from and write to disk;</LI><LI>inlinable get() method;</LI></UL>   */
+comment|/** Optimized implementation of a vector of bits.  This is more-or-less like   java.util.BitSet, but also includes the following:<ul><li>a count() method, which efficiently computes the number of one bits;</li><li>optimized read from and write to disk;</li><li>inlinable get() method;</li></ul>    @author Doug Cutting   @version $Id$   */
 end_comment
 
 begin_class
@@ -247,6 +247,7 @@ name|int
 name|count
 parameter_list|()
 block|{
+comment|// if the vector has been modified
 if|if
 condition|(
 name|count

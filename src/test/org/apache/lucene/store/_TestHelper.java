@@ -59,7 +59,7 @@ operator|instanceof
 name|FSInputStream
 return|;
 block|}
-comment|/** Returns true if the provided input stream is an FSInputStream and       *  is a clone, that is it does not own its underlying file descriptor.      */
+comment|/** Returns true if the provided input stream is an FSInputStream and      *  is a clone, that is it does not own its underlying file descriptor.      */
 DECL|method|isFSInputStreamClone
 specifier|public
 specifier|static
@@ -96,7 +96,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** Given an instance of FSDirectory.FSInputStream, this method returns      *  true if the underlying file descriptor is valid, and false otherwise.      *  This can be used to determine if the OS file has been closed.      *  The descriptor becomes invalid when the non-clone instance of the       *  FSInputStream that owns this descriptor is closed. However, the      *  descriptor may possibly become invalid in other ways as well.      */
+comment|/** Given an instance of FSDirectory.FSInputStream, this method returns      *  true if the underlying file descriptor is valid, and false otherwise.      *  This can be used to determine if the OS file has been closed.      *  The descriptor becomes invalid when the non-clone instance of the      *  FSInputStream that owns this descriptor is closed. However, the      *  descriptor may possibly become invalid in other ways as well.      */
 DECL|method|isFSInputStreamOpen
 specifier|public
 specifier|static

@@ -726,7 +726,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Compare two BitVectors (really, this should be an equals method on the BitVector itself...      * @param bv One bit vector      * @param compare The second to compare      */
+comment|/**      * Compare two BitVectors.      * This should really be an equals method on the BitVector itself.      * @param bv One bit vector      * @param compare The second to compare      */
 DECL|method|doCompare
 specifier|private
 name|boolean
