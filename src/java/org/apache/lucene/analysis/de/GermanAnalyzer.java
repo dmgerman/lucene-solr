@@ -118,6 +118,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Hashtable
 import|;
 end_import
@@ -132,18 +142,8 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
 begin_comment
-comment|/**  * Analyzer for German language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * Analyzer for German language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author Gerhard Schwarz  * @version $Id$  */
 end_comment
 
 begin_class
@@ -154,7 +154,7 @@ name|GermanAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/**      * List of typical german stopwords.      */
+comment|/**    * List of typical german stopwords.    */
 DECL|field|GERMAN_STOP_WORDS
 specifier|private
 name|String
@@ -259,7 +259,7 @@ block|,
 literal|"wird"
 block|}
 decl_stmt|;
-comment|/**      * Contains the stopwords used with the StopFilter.      */
+comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stopSet
 specifier|private
 name|Set
@@ -269,7 +269,7 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/**      * Contains words that should be indexed but not stemmed.      */
+comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|exclusionSet
 specifier|private
 name|Set
@@ -279,7 +279,7 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/**      * Builds an analyzer.      */
+comment|/**    * Builds an analyzer.    */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -295,7 +295,7 @@ name|GERMAN_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -315,7 +315,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -336,7 +336,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -362,7 +362,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an exclusionlist from an array of Strings.      */
+comment|/**    * Builds an exclusionlist from an array of Strings.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -383,7 +383,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an exclusionlist from a Hashtable.      */
+comment|/**    * Builds an exclusionlist from a Hashtable.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -405,7 +405,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an exclusionlist from the words contained in the given file.      */
+comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -432,7 +432,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream build from a StandardTokenizer filtered with      *		StandardFilter, StopFilter, GermanStemFilter      */
+comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return A TokenStream build from a StandardTokenizer filtered with    *         StandardFilter, StopFilter, GermanStemFilter    */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
