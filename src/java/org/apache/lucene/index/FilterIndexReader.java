@@ -812,6 +812,26 @@ name|tvSpec
 argument_list|)
 return|;
 block|}
+DECL|method|getFieldNames
+specifier|public
+name|Collection
+name|getFieldNames
+parameter_list|(
+name|IndexReader
+operator|.
+name|FieldOption
+name|fieldNames
+parameter_list|)
+block|{
+return|return
+name|in
+operator|.
+name|getFieldNames
+argument_list|(
+name|fieldNames
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

@@ -161,6 +161,177 @@ specifier|abstract
 class|class
 name|IndexReader
 block|{
+DECL|class|FieldOption
+specifier|public
+specifier|static
+specifier|final
+class|class
+name|FieldOption
+block|{
+DECL|field|option
+specifier|private
+name|String
+name|option
+decl_stmt|;
+DECL|method|FieldOption
+specifier|private
+name|FieldOption
+parameter_list|()
+block|{ }
+DECL|method|FieldOption
+specifier|private
+name|FieldOption
+parameter_list|(
+name|String
+name|option
+parameter_list|)
+block|{
+name|this
+operator|.
+name|option
+operator|=
+name|option
+expr_stmt|;
+block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|option
+return|;
+block|}
+comment|// all fields
+DECL|field|ALL
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|ALL
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"ALL"
+argument_list|)
+decl_stmt|;
+comment|// all indexed fields
+DECL|field|INDEXED
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|INDEXED
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"INDEXED"
+argument_list|)
+decl_stmt|;
+comment|// all fields which are not indexed
+DECL|field|UNINDEXED
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|UNINDEXED
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"UNINDEXED"
+argument_list|)
+decl_stmt|;
+comment|// all fields which are indexed with termvectors enables
+DECL|field|INDEXED_WITH_TERMVECTOR
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|INDEXED_WITH_TERMVECTOR
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"INDEXED_WITH_TERMVECTOR"
+argument_list|)
+decl_stmt|;
+comment|// all fields which are indexed but don't have termvectors enabled
+DECL|field|INDEXED_NO_TERMVECTOR
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|INDEXED_NO_TERMVECTOR
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"INDEXED_NO_TERMVECTOR"
+argument_list|)
+decl_stmt|;
+comment|// all fields where termvectors are enabled. Please note that only standard termvector fields are returned
+DECL|field|TERMVECTOR
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|TERMVECTOR
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"TERMVECTOR"
+argument_list|)
+decl_stmt|;
+comment|// all field with termvectors wiht positions enabled
+DECL|field|TERMVECTOR_WITH_POSITION
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|TERMVECTOR_WITH_POSITION
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"TERMVECTOR_WITH_POSITION"
+argument_list|)
+decl_stmt|;
+comment|// all fields where termvectors with offset position are set
+DECL|field|TERMVECTOR_WITH_OFFSET
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|TERMVECTOR_WITH_OFFSET
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"TERMVECTOR_WITH_OFFSET"
+argument_list|)
+decl_stmt|;
+comment|// all fields where termvectors with offset and position values set
+DECL|field|TERMVECTOR_WITH_POSITION_OFFSET
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|TERMVECTOR_WITH_POSITION_OFFSET
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"TERMVECTOR_WITH_POSITION_OFFSET"
+argument_list|)
+decl_stmt|;
+block|}
 comment|/**    * Constructor used if IndexReader is not owner of its directory.     * This is used for IndexReaders that are used within other IndexReaders that take care or locking directories.    *     * @param directory Directory where IndexReader files reside.    */
 DECL|method|IndexReader
 specifier|protected
@@ -457,8 +628,6 @@ name|closeDirectory
 argument_list|)
 return|;
 block|}
-else|else
-block|{
 name|IndexReader
 index|[]
 name|readers
@@ -519,7 +688,6 @@ argument_list|,
 name|readers
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 operator|.
@@ -1526,7 +1694,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
@@ -1536,7 +1704,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.  The boolean argument specifies whether the fields    * returned are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.  The boolean argument specifies whether the fields    * returned are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
@@ -1549,7 +1717,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getIndexedFieldNames (Field.TermVector tvSpec)}    */
+comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
 DECL|method|getIndexedFieldNames
 specifier|public
 name|Collection
@@ -1643,7 +1811,7 @@ name|NO
 argument_list|)
 return|;
 block|}
-comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information should be available for the fields    * @return Collection of Strings indicating the names of the fields    */
+comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information should be available for the fields    * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
 DECL|method|getIndexedFieldNames
 specifier|public
 specifier|abstract
@@ -1654,6 +1822,17 @@ name|Field
 operator|.
 name|TermVector
 name|tvSpec
+parameter_list|)
+function_decl|;
+comment|/**    * Get a list of unique field names that exist in this index and have the specified    * field option information.    * @param fldOption specifies which field option should be available for the returned fields    * @return Collection of Strings indicating the names of the fields.    * @see IndexReader.FieldOption    */
+DECL|method|getFieldNames
+specifier|public
+specifier|abstract
+name|Collection
+name|getFieldNames
+parameter_list|(
+name|FieldOption
+name|fldOption
 parameter_list|)
 function_decl|;
 comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
