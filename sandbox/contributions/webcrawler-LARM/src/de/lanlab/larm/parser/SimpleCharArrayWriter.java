@@ -1,27 +1,37 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * $Id$  *  * Copyright 1997 Hewlett-Packard Company  *  * This file may be copied, modified and distributed only in  * accordance with the terms of the limited licence contained  * in the accompanying file LICENSE.TXT.  */
-end_comment
-
 begin_package
-DECL|package|hplb.xml
+DECL|package|de.lanlab.larm.parser
 package|package
-name|hplb
+name|de
 operator|.
-name|xml
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|parser
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|CharArrayWriter
+import|;
+end_import
+
 begin_comment
-comment|/**  * A java.io.CharArrayWriter with the additional property that users can get  * to the actual underlying storage. Hence it's very fast (and dangerous).  * @author      Anders Kristensen  */
+comment|/**  *<p>Title:</p>  *<p>Description:</p>  *<p>Copyright: Copyright (c) 2002</p>  *<p>Company:</p>  * @author unascribed  * @version 1.0  */
 end_comment
 
 begin_class
-DECL|class|CharBuffer
+DECL|class|SimpleCharArrayWriter
 specifier|public
 specifier|final
 class|class
-name|CharBuffer
+name|SimpleCharArrayWriter
 extends|extends
 name|java
 operator|.
@@ -29,18 +39,18 @@ name|io
 operator|.
 name|CharArrayWriter
 block|{
-DECL|method|CharBuffer
+DECL|method|SimpleCharArrayWriter
 specifier|public
-name|CharBuffer
+name|SimpleCharArrayWriter
 parameter_list|()
 block|{
 name|super
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|CharBuffer
+DECL|method|SimpleCharArrayWriter
 specifier|public
-name|CharBuffer
+name|SimpleCharArrayWriter
 parameter_list|(
 name|int
 name|size
@@ -62,11 +72,7 @@ name|int
 name|size
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|lock
-init|)
-block|{
+comment|// synchronized (lock) {
 if|if
 condition|(
 name|size
@@ -77,7 +83,7 @@ name|count
 operator|=
 name|size
 expr_stmt|;
-block|}
+comment|// }
 block|}
 DECL|method|getCharArray
 specifier|public
@@ -86,15 +92,11 @@ index|[]
 name|getCharArray
 parameter_list|()
 block|{
-synchronized|synchronized
-init|(
-name|lock
-init|)
-block|{
+comment|// synchronized (lock) {
 return|return
 name|buf
 return|;
-block|}
+comment|// }
 block|}
 DECL|method|getLength
 specifier|public

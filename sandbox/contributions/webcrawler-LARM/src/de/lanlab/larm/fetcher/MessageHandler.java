@@ -68,6 +68,20 @@ name|UnderflowException
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|storage
+operator|.
+name|LinkStorage
+import|;
+end_import
+
 begin_comment
 comment|/**  *  this is a message handler that runs in its own thread.  *  Messages can be put via<code>putMessage</code> or<code>putMessages</code>  *  (use the latter whenever possible).<br>  *  The messages are passed to the filters in the order in which the filters where  *  added to the handler.<br>  *  They can consume the message by returning null. Otherwise, they return a Message  *  object, usually the one they got.<br>  *  The filters will run synchronously within the message handler thread<br>  *  This implements a chain of responsibility-style message handling  * @version $Id$  */
 end_comment
@@ -79,6 +93,8 @@ class|class
 name|MessageHandler
 implements|implements
 name|Runnable
+implements|,
+name|LinkStorage
 block|{
 comment|/**      * the queue where messages are put in.      * Holds max. 2 x 5000 = 10.000 messages in RAM      */
 DECL|field|messageQueue
@@ -168,6 +184,7 @@ return|;
 block|}
 comment|/**      *  messageHandler-Thread erzeugen und starten      */
 DECL|method|MessageHandler
+specifier|public
 name|MessageHandler
 parameter_list|()
 block|{
@@ -290,7 +307,7 @@ name|o
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  einen Event in die Schlange schreiben      */
+comment|/**      *  insert one message into the queue      */
 DECL|method|putMessage
 specifier|public
 name|void
@@ -417,6 +434,24 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|storeLinks
+specifier|public
+name|Collection
+name|storeLinks
+parameter_list|(
+name|Collection
+name|links
+parameter_list|)
+block|{
+name|putMessages
+argument_list|(
+name|links
+argument_list|)
+expr_stmt|;
+return|return
+name|links
+return|;
+block|}
 comment|/**      *  the main messageHandler-Thread.      */
 DECL|method|run
 specifier|public
@@ -532,8 +567,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Message processed
-comment|// und verteilen. Die Listener erhalten die Message in ihrer
-comment|// Eintragungsreihenfolge und können die Message auch verändern
+comment|// now distribute them. The handlers get the messages in the order
+comment|// of insertion and have the right to change them
 name|Iterator
 name|i
 init|=
@@ -550,7 +585,6 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-comment|//System.out.println("Verteile...");
 try|try
 block|{
 name|MessageListener
@@ -583,6 +617,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// handler has consumed the message
 name|messageProcessorObservable
 operator|.
 name|setChanged
@@ -596,7 +631,6 @@ name|listener
 argument_list|)
 expr_stmt|;
 break|break;
-comment|// Handler hat die Message konsumiert
 block|}
 block|}
 catch|catch
@@ -656,7 +690,7 @@ literal|false
 expr_stmt|;
 comment|// System.out.println("MessageHandler: messagesWaiting = true although nothing queued!");
 comment|// @FIXME: here is still a multi threading issue. I don't get it why this happens.
-comment|//         does someone want to draw a petri net of this?
+comment|//         does someone want to draw a petri net of this? ;-)
 block|}
 catch|catch
 parameter_list|(
@@ -706,6 +740,12 @@ name|size
 argument_list|()
 return|;
 block|}
+DECL|method|openLinkStorage
+specifier|public
+name|void
+name|openLinkStorage
+parameter_list|()
+block|{     }
 block|}
 end_class
 

@@ -422,10 +422,10 @@ operator|=
 name|log
 expr_stmt|;
 block|}
-comment|/**      * stores the document if storing is enabled      *      * @param doc  Description of the Parameter      */
+comment|/**      * writes file info to log file;      * stores the document if storing is enabled. in that case the log line contains      * the page file number and the index within that file      *      * @param doc  Description of the Parameter      * @return the unchanged document      */
 DECL|method|store
 specifier|public
-name|void
+name|WebDocument
 name|store
 parameter_list|(
 name|WebDocument
@@ -485,6 +485,9 @@ argument_list|(
 name|docInfo
 argument_list|)
 expr_stmt|;
+return|return
+name|doc
+return|;
 block|}
 block|}
 end_class

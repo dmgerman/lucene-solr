@@ -18,43 +18,35 @@ end_package
 
 begin_import
 import|import
-name|de
-operator|.
-name|lanlab
-operator|.
-name|larm
+name|java
 operator|.
 name|util
 operator|.
-name|*
+name|Collection
 import|;
 end_import
 
-begin_comment
-comment|/**  * This interface stores documents provided by a fetcher task  * @author    Clemens Marschner  */
-end_comment
-
 begin_interface
-DECL|interface|DocumentStorage
+DECL|interface|LinkStorage
 specifier|public
 interface|interface
-name|DocumentStorage
+name|LinkStorage
 block|{
-comment|/**      * called once when the storage is supposed to be initialized      */
-DECL|method|open
+comment|/**      * Description of the Method      */
+DECL|method|openLinkStorage
 specifier|public
 name|void
-name|open
+name|openLinkStorage
 parameter_list|()
 function_decl|;
-comment|/**      * called to store a web document      *      * @param doc  the document      * @return the document itself or a changed version. Only makes sense if      * storage pipeline is used; usually the storage would return the document      * as is.      */
-DECL|method|store
+comment|/**      * stores the extracted links may contain links of more than one document      *      * @param c  Description of the Parameter      * @return   the collection, may have been changed or set to null      */
+DECL|method|storeLinks
 specifier|public
-name|WebDocument
-name|store
+name|Collection
+name|storeLinks
 parameter_list|(
-name|WebDocument
-name|doc
+name|Collection
+name|c
 parameter_list|)
 function_decl|;
 block|}

@@ -52,16 +52,20 @@ specifier|public
 name|void
 name|open
 parameter_list|()
-block|{}
+block|{     }
 DECL|method|store
 specifier|public
-name|void
+name|WebDocument
 name|store
 parameter_list|(
 name|WebDocument
 name|doc
 parameter_list|)
-block|{}
+block|{
+return|return
+name|doc
+return|;
+block|}
 block|}
 end_class
 

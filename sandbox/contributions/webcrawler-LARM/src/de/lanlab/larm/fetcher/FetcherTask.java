@@ -118,6 +118,20 @@ name|lanlab
 operator|.
 name|larm
 operator|.
+name|storage
+operator|.
+name|LinkStorage
+import|;
+end_import
+
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
 name|util
 operator|.
 name|State
@@ -297,13 +311,21 @@ name|bytesRead
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * the storage this task will put the document to      */
-DECL|field|storage
+comment|/**      * the docStorage this task will put the document to      */
+DECL|field|docStorage
 specifier|private
 specifier|static
 specifier|volatile
 name|DocumentStorage
-name|storage
+name|docStorage
+decl_stmt|;
+comment|/**      * the docStorage this task will put the links to      */
+DECL|field|linkStorage
+specifier|private
+specifier|static
+specifier|volatile
+name|LinkStorage
+name|linkStorage
 decl_stmt|;
 comment|/**      * task state IDs. comparisons will be done by their references, so always      * use the IDs      */
 DECL|field|FT_IDLE
@@ -523,22 +545,40 @@ operator|.
 name|actURLMessage
 return|;
 block|}
-comment|/**      * Sets the document storage      *      * @param storage  The new storage      */
-DECL|method|setStorage
+comment|/**      * Sets the document docStorage      *      * @param docStorage  The new docStorage      */
+DECL|method|setDocStorage
 specifier|public
 specifier|static
 name|void
-name|setStorage
+name|setDocStorage
 parameter_list|(
 name|DocumentStorage
-name|storage
+name|docStorage
 parameter_list|)
 block|{
 name|FetcherTask
 operator|.
-name|storage
+name|docStorage
 operator|=
-name|storage
+name|docStorage
+expr_stmt|;
+block|}
+comment|/**      * Sets the document linkStorage      *      * @param linkStorage  The new linkStorage      */
+DECL|method|setLinkStorage
+specifier|public
+specifier|static
+name|void
+name|setLinkStorage
+parameter_list|(
+name|LinkStorage
+name|linkStorage
+parameter_list|)
+block|{
+name|FetcherTask
+operator|.
+name|linkStorage
+operator|=
+name|linkStorage
 expr_stmt|;
 block|}
 comment|/**      * Sets the messageHandler      *      * @param messageHandler  The new messageHandler      */
@@ -1181,14 +1221,15 @@ argument_list|,
 name|ipURL
 argument_list|)
 expr_stmt|;
-name|messageHandler
+name|linkStorage
 operator|.
-name|putMessages
+name|storeLinks
 argument_list|(
 name|foundUrls
 argument_list|)
 expr_stmt|;
-name|storage
+comment|//messageHandler.putMessages(foundUrls);
+name|docStorage
 operator|.
 name|store
 argument_list|(
@@ -1884,7 +1925,7 @@ literal|true
 expr_stmt|;
 comment|/*          *  try          *  {          *  if (conn != null)          *  {          *  ((HttpURLConnection) conn).disconnect();          *  System.out.println("FetcherTask: disconnected URL Connection");          *  conn = null;          *  }          *  if (in != null)          *  {          *  in.close();          *  / possibly hangs at close() .> KeepAliveStream.close() -> MeteredStream.skip()          *  System.out.println("FetcherTask: Closed Input Stream");          *  in = null;          *  }          *  }          *  catch (IOException e)          *  {          *  System.out.println("IOException while interrupting: ");          *  e.printStackTrace();          *  }          *  System.out.println("FetcherTask: Set all IOs to null");          */
 block|}
-comment|/**      * this is called whenever a links was found in the current document,      * Don't create too many objects here, this will be called      * millions of times      *      * @param link  Description of the Parameter      */
+comment|/**      * this is called whenever a link was found in the current document,      * Don't create too many objects here, as this will be called      * millions of times      *      * @param link  Description of the Parameter      */
 DECL|method|handleLink
 specifier|public
 name|void

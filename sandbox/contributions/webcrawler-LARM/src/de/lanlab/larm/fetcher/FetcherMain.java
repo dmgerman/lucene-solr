@@ -274,20 +274,50 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|this
-operator|.
+name|StoragePipeline
 name|storage
-operator|=
+init|=
+operator|new
+name|StoragePipeline
+argument_list|()
+decl_stmt|;
+name|storage
+operator|.
+name|addDocStorage
+argument_list|(
 operator|new
 name|LogStorage
 argument_list|(
 name|storeLog
 argument_list|,
-literal|true
+comment|/* save in page files? */
+literal|false
 argument_list|,
+comment|/* logfile prefix */
 literal|"logs/pagefile"
 argument_list|)
+argument_list|)
 expr_stmt|;
+name|storage
+operator|.
+name|addLinkStorage
+argument_list|(
+operator|new
+name|LinkLogStorage
+argument_list|(
+name|linksLog
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|storage
+operator|.
+name|addLinkStorage
+argument_list|(
+name|messageHandler
+argument_list|)
+expr_stmt|;
+comment|//storage.addStorage(new LuceneStorage(...));
+comment|//storage.addStorage(new JMSStorage(...));
 comment|// a third example would be the NullStorage, which converts the documents into
 comment|// heat, which evaporates above the processor
 comment|// NullStorage();
@@ -304,8 +334,6 @@ operator|new
 name|URLVisitedFilter
 argument_list|(
 literal|100000
-argument_list|,
-name|linksLog
 argument_list|)
 expr_stmt|;
 comment|// dnsResolver = new DNSResolver();
@@ -331,6 +359,8 @@ operator|new
 name|Fetcher
 argument_list|(
 name|nrThreads
+argument_list|,
+name|storage
 argument_list|,
 name|storage
 argument_list|,

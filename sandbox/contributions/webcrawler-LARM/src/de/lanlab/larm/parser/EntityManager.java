@@ -1,14 +1,18 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * $Id$  *  * Copyright 1997 Hewlett-Packard Company  *  * This file may be copied, modified and distributed only in  * accordance with the terms of the limited licence contained  * in the accompanying file LICENSE.TXT.  */
+comment|/*  *  ====================================================================  *  The Apache Software License, Version 1.1  *  *  Copyright (c) 2001 The Apache Software Foundation.  All rights  *  reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by the  *  Apache Software Foundation (http://www.apache.org/)."  *  Alternately, this acknowledgment may appear in the software itself,  *  if and wherever such third-party acknowledgments normally appear.  *  *  4. The names "Apache" and "Apache Software Foundation" and  *  "Apache Lucene" must not be used to endorse or promote products  *  derived from this software without prior written permission. For  *  written permission, please contact apache@apache.org.  *  *  5. Products derived from this software may not be called "Apache",  *  "Apache Lucene", nor may "Apache" appear in their name, without  *  prior written permission of the Apache Software Foundation.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  *  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  *  USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  *  SUCH DAMAGE.  *  ====================================================================  *  *  This software consists of voluntary contributions made by many  *  individuals on behalf of the Apache Software Foundation.  For more  *  information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
 end_comment
 
 begin_package
-DECL|package|hplb.xml
+DECL|package|de.lanlab.larm.parser
 package|package
-name|hplb
+name|de
 operator|.
-name|xml
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|parser
 package|;
 end_package
 
@@ -33,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A very simple entity manager.  * @author  Anders Kristensen  */
+comment|/**  * A very simple entity manager. Based on HeX, the HTML enabled XML parser, by  * Anders Kristensen, HP Labs Bristol  *  * @author    Administrator  * @created   1. Juni 2002  */
 end_comment
 
 begin_class
@@ -42,6 +46,7 @@ specifier|public
 class|class
 name|EntityManager
 block|{
+comment|/**      * Description of the Field      */
 DECL|field|entities
 specifier|protected
 name|Hashtable
@@ -51,32 +56,18 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|tok
 specifier|private
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|Parser
+name|Tokenizer
 name|tok
 decl_stmt|;
+comment|/**      * Constructor for the EntityManager object      *      * @param tok  Description of the Parameter      */
 DECL|method|EntityManager
 specifier|public
 name|EntityManager
 parameter_list|(
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|Parser
+name|Tokenizer
 name|tok
 parameter_list|)
 block|{
@@ -131,15 +122,78 @@ argument_list|,
 literal|"\""
 argument_list|)
 expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"auml"
+argument_list|,
+literal|"ä"
+argument_list|)
+expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"ouml"
+argument_list|,
+literal|"ö"
+argument_list|)
+expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"uuml"
+argument_list|,
+literal|"ü"
+argument_list|)
+expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"Auml"
+argument_list|,
+literal|"Ä"
+argument_list|)
+expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"Ouml"
+argument_list|,
+literal|"Ö"
+argument_list|)
+expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"Uuml"
+argument_list|,
+literal|"Ü"
+argument_list|)
+expr_stmt|;
+name|entities
+operator|.
+name|put
+argument_list|(
+literal|"szlig"
+argument_list|,
+literal|"ß"
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**      * Finds entitiy and character references in the provided char array      * and decodes them. The operation is destructive, i.e. the encoded      * string replaces the original - this is atrightforward since the      * new string can only get shorter.      */
+comment|/**      * Finds entitiy and character references in the provided char array and      * decodes them. The operation is destructive, i.e. the encoded string      * replaces the original - this is atrightforward since the new string can      * only get shorter.      *      * @param buffer         Description of the Parameter      * @return               Description of the Return Value      * @exception Exception  Description of the Exception      */
 DECL|method|entityDecode
 specifier|public
 specifier|final
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|entityDecode
 parameter_list|(
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|buffer
 parameter_list|)
 throws|throws
@@ -180,14 +234,16 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|buffer
 return|;
-name|CharBuffer
+block|}
+name|SimpleCharArrayWriter
 name|newbuf
 init|=
 operator|new
-name|CharBuffer
+name|SimpleCharArrayWriter
 argument_list|(
 name|len
 argument_list|)
@@ -331,6 +387,7 @@ block|}
 block|}
 comment|// character references are rare enough that we don't care about
 comment|// creating a String object for them unnecessarily...
+comment|/**      * Description of the Method      *      * @param buf                        Description of the Parameter      * @param off                        Description of the Parameter      * @param len                        Description of the Parameter      * @param out                        Description of the Parameter      * @exception Exception              Description of the Exception      * @exception IOException            Description of the Exception      * @exception NumberFormatException  Description of the Exception      */
 DECL|method|writeEntityDef
 specifier|public
 name|void
@@ -509,6 +566,7 @@ comment|//tok.warning("unknown entity reference: " + ent);
 block|}
 block|}
 block|}
+comment|/**      * Description of the Method      *      * @param entity  Description of the Parameter      * @param value   Description of the Parameter      * @return        Description of the Return Value      */
 DECL|method|defTextEntity
 specifier|public
 name|String
@@ -535,11 +593,11 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the index within this String of the first occurrence of the      * specified character, starting the search at fromIndex. This method      * returns -1 if the character is not found.      * @params buf        the buffer to search      * @params ch         the character to search for      * @params from       the index to start the search from      * @params to         the highest possible index returned plus 1      * @throws IndexOutOfBoundsException  if index out of bounds...      */
+comment|/**      * Returns the index within this String of the first occurrence of the      * specified character, starting the search at fromIndex. This method      * returns -1 if the character is not found.      *      * @param buf                         Description of the Parameter      * @param ch                          Description of the Parameter      * @param from                        Description of the Parameter      * @param to                          Description of the Parameter      * @return                            Description of the Return Value      * @params                            buf the buffer to search      * @params                            ch the character to search for      * @params                            from the index to start the search      *      from      * @params                            to the highest possible index returned      *      plus 1      * @throws IndexOutOfBoundsException  if index out of bounds...      */
 DECL|method|indexOf
 specifier|public
-specifier|static
 specifier|final
+specifier|static
 name|int
 name|indexOf
 parameter_list|(
@@ -580,7 +638,9 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 empty_stmt|;
+block|}
 comment|// do nothing
 if|if
 condition|(
@@ -588,17 +648,19 @@ name|i
 operator|<
 name|to
 condition|)
+block|{
 return|return
 name|i
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|-
 literal|1
 return|;
 block|}
-comment|// FOR TESTING
-comment|/*     public static void main(String[] args) throws Exception {         Parser tok = new Parser();         tst.xml.TokArgs.args(args, tok);         CharBuffer buf1 = new CharBuffer();         buf1.write(args[0]);         CharBuffer buf2 = tok.entMngr.entityDecode(buf1);          System.out.println("Changed: " + (buf1 != buf2));         System.out.println("Result: [" + buf2 + "]");     }     */
+block|}
 block|}
 end_class
 

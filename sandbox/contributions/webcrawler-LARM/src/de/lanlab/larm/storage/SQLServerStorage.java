@@ -582,9 +582,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**      *      * @param document      * @return the unchanged document      */
 DECL|method|store
 specifier|public
-name|void
+name|WebDocument
 name|store
 parameter_list|(
 name|WebDocument
@@ -711,6 +712,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+return|return
+name|document
+return|;
 block|}
 block|}
 end_class

@@ -18,42 +18,6 @@ end_package
 
 begin_import
 import|import
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|hplb
-operator|.
-name|xml
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|hplb
-operator|.
-name|xml
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -84,16 +48,6 @@ end_import
 
 begin_import
 import|import
-name|hplb
-operator|.
-name|misc
-operator|.
-name|ByteArray
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|net
@@ -103,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This parser is based on HEX, the HTML enabled XML parser, written by  * Anders Kristensen, HP Labs Bristol.  * It was stripped down and specialized to handle links in HTML pages. I removed  * some bugs. And it's FAST, about 10 x faster than the original HEX parser.  * Being some sort of SAX parser it calls the callback functions of the LinkHandler  * when links are found.  * @todo add handling of anchor texts  *  * @author    Clemens Marschner  * $Id$  */
+comment|/**  * This parser is based on HEX, the HTML enabled XML parser, written by  * Anders Kristensen, HP Labs Bristol.  * It was stripped down and specialized to handle links in HTML pages. I removed  * some bugs. And it's FAST, about 10 x faster than the original HEX parser.  * Being some sort of SAX parser it calls the callback functions of the LinkHandler  * when links are found.  * Attention: This parser is not thread safe, as a lot of locks were removed  *  * @author    Clemens Marschner  * $Id$  */
 end_comment
 
 begin_class
@@ -111,86 +65,10 @@ DECL|class|Tokenizer
 specifier|public
 class|class
 name|Tokenizer
-implements|implements
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|Parser
 block|{
-comment|/**      * Sets the entityHandler attribute of the Tokenizer object      *      * @param e  The new entityHandler value      */
-DECL|method|setEntityHandler
-specifier|public
-name|void
-name|setEntityHandler
-parameter_list|(
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|EntityHandler
-name|e
-parameter_list|)
-block|{ }
-comment|/**      * Sets the errorHandler attribute of the Tokenizer object      *      * @param e  The new errorHandler value      */
-DECL|method|setErrorHandler
-specifier|public
-name|void
-name|setErrorHandler
-parameter_list|(
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ErrorHandler
-name|e
-parameter_list|)
-block|{ }
-comment|/**      * Sets the documentHandler attribute of the Tokenizer object      *      * @param e  The new documentHandler value      */
-DECL|method|setDocumentHandler
-specifier|public
-name|void
-name|setDocumentHandler
-parameter_list|(
-name|hplb
-operator|.
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|DocumentHandler
-name|e
-parameter_list|)
-block|{ }
-comment|/**      * The value of boolean attributes is this string.      */
-DECL|field|BOOLATTR
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|BOOLATTR
-init|=
-name|Atom
-operator|.
-name|getAtom
-argument_list|(
-literal|"BOOLATTR"
-argument_list|)
-decl_stmt|;
+comment|/**      * Sets the entityHandler attribute of the Tokenizer object      *      * @param e  The new entityHandler value      *     public void setEntityHandler(EntityHandler e) { }     */
+comment|/**      * Sets the errorHandler attribute of the Tokenizer object      *      * @param e  The new errorHandler value      *     public void setErrorHandler(hplb.org.xml.sax.ErrorHandler e) { }     */
+comment|/**      * Sets the documentHandler attribute of the Tokenizer object      *      * @param e  The new documentHandler value      *     public void setDocumentHandler(hplb.org.xml.sax.DocumentHandler e) { }     */
 comment|// FSM states:
 DECL|field|ST_START
 specifier|final
@@ -455,11 +333,11 @@ name|boolean
 name|isInAnchorTag
 decl_stmt|;
 DECL|field|buf
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|buf
 init|=
 operator|new
-name|CharBuffer
+name|SimpleCharArrayWriter
 argument_list|()
 decl_stmt|;
 DECL|field|isStartTag
@@ -474,37 +352,37 @@ name|boolean
 name|noChildren
 decl_stmt|;
 DECL|field|tagname
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|tagname
 init|=
 operator|new
-name|CharBuffer
+name|SimpleCharArrayWriter
 argument_list|()
 decl_stmt|;
 DECL|field|attrName
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|attrName
 init|=
 operator|new
-name|CharBuffer
+name|SimpleCharArrayWriter
 argument_list|()
 decl_stmt|;
 DECL|field|attrValue
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|attrValue
 init|=
 operator|new
-name|CharBuffer
+name|SimpleCharArrayWriter
 argument_list|(
 literal|1000
 argument_list|)
 decl_stmt|;
 DECL|field|pcData
-name|CharBuffer
+name|SimpleCharArrayWriter
 name|pcData
 init|=
 operator|new
-name|CharBuffer
+name|SimpleCharArrayWriter
 argument_list|(
 literal|8000
 argument_list|)
@@ -1850,7 +1728,7 @@ comment|// we've seen<a href="...">. href is in linkValue. Read until
 comment|// the next end tag, at most 200 characters.
 comment|// (end tags are often ommited, i.e.<a ...>text</td>)
 comment|// regards other tags as text
-comment|// todo: read until next</a> or a couple other tags
+comment|// @todo: read until next</a> or a couple of other tags
 try|try
 block|{
 name|short
@@ -2698,78 +2576,7 @@ name|toStart
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Description of the Method      *      * @param attrs  Description of the Parameter      */
-DECL|method|keysToLowerCase
-specifier|public
-specifier|final
-name|void
-name|keysToLowerCase
-parameter_list|(
-name|SAXAttributeMap
-name|attrs
-parameter_list|)
-block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|attrs
-operator|.
-name|n
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|attrs
-operator|.
-name|keys
-index|[
-name|i
-index|]
-operator|=
-name|attrs
-operator|.
-name|keys
-index|[
-name|i
-index|]
-operator|.
-name|toLowerCase
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|atomize
-condition|)
-block|{
-name|attrs
-operator|.
-name|keys
-index|[
-name|i
-index|]
-operator|=
-name|Atom
-operator|.
-name|getAtom
-argument_list|(
-name|attrs
-operator|.
-name|keys
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
+comment|/**      * Description of the Method      *      * @param attrs  Description of the Parameter      *     public final void keysToLowerCase(SAXAttributeMap attrs)     {         for (int i = 0; i< attrs.n; i++)         {             attrs.keys[i] = attrs.keys[i].toLowerCase();             if (atomize)             {                 attrs.keys[i] = Atom.getAtom(attrs.keys[i]);             }         }     }     */
 comment|// toomuch true iff we read a '<' of the next token
 comment|/**      * Description of the Method      *      * @param toomuch        Description of the Parameter      * @exception Exception  Description of the Exception      */
 DECL|method|gotPCDATA
@@ -2835,7 +2642,7 @@ name|toStart
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*      *  noChildren = false;      *  if (toomuch) {      *  buf.setLength(buf.size() - 1);      *  }      *  CharBuffer buf1 = rcgnzEntities ? entMngr.entityDecode(buf) : buf;      *  docHandler.characters(buf1.getCharArray(), 0, buf1.size());      *  /handler.gotText(getBuffer());      *  toStart();      *  if (toomuch) {      *  buf.write('<');      *  column--;      *  }      *  }      */
+comment|/*      *  noChildren = false;      *  if (toomuch) {      *  buf.setLength(buf.size() - 1);      *  }      *  SimpleCharArrayWriter buf1 = rcgnzEntities ? entMngr.entityDecode(buf) : buf;      *  docHandler.characters(buf1.getCharArray(), 0, buf1.size());      *  /handler.gotText(getBuffer());      *  toStart();      *  if (toomuch) {      *  buf.write('<');      *  column--;      *  }      *  }      */
 comment|// XXX: should pass the comment on as docHandler.ignorable() ??
 comment|/**      * Description of the Method      *      * @exception IOException       Description of the Exception      * @exception EmptyInputStream  Description of the Exception      */
 DECL|method|gotComment
