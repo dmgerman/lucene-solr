@@ -14,16 +14,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -36,8 +26,18 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
 begin_comment
-comment|/**  *  Decides which class used to create the Lucene Document  *  object based on its file extension.  *  *@author     Erik Hatcher  *@created    October 28, 2001  *@todo Add dynamic file extension/classname mappings for  *      extensibility  */
+comment|/**  *  A DocumentHandler implementation to delegate responsibility to  *  based on a files extension.  Currently only .html and .txt  *  files are handled, other extensions ignored.  *  *@author     Erik Hatcher  *@created    October 28, 2001  *@todo Implement dynamic document type lookup  */
 end_comment
 
 begin_class
