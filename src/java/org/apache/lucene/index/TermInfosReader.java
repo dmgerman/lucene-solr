@@ -282,7 +282,7 @@ return|;
 block|}
 DECL|method|ensureIndexIsRead
 specifier|private
-specifier|final
+specifier|synchronized
 name|void
 name|ensureIndexIsRead
 parameter_list|()
