@@ -1643,7 +1643,7 @@ name|NO
 argument_list|)
 return|;
 block|}
-comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information shoul dbe available for the fields    * @return Collection of Strings indicating the names of the fields    */
+comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information should be available for the fields    * @return Collection of Strings indicating the names of the fields    */
 DECL|method|getIndexedFieldNames
 specifier|public
 specifier|abstract
