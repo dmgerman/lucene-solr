@@ -542,6 +542,10 @@ argument_list|,
 literal|"words"
 argument_list|,
 name|fis
+argument_list|,
+name|IndexWriter
+operator|.
+name|DEFAULT_TERM_INDEX_INTERVAL
 argument_list|)
 decl_stmt|;
 name|fis
