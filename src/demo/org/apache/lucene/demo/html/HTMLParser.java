@@ -498,6 +498,8 @@ operator|new
 name|InputStreamReader
 argument_list|(
 name|pipeInStream
+argument_list|,
+literal|"UTF-16BE"
 argument_list|)
 expr_stmt|;
 name|pipeOut
@@ -506,6 +508,8 @@ operator|new
 name|OutputStreamWriter
 argument_list|(
 name|pipeOutStream
+argument_list|,
+literal|"UTF-16BE"
 argument_list|)
 expr_stmt|;
 name|Thread
