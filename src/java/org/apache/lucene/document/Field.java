@@ -110,7 +110,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a String-valued Field that is not tokenized or indexed,     but is stored in the index, for return with hits. */
+comment|/** Constructs a String-valued Field that is not tokenized nor indexed,     but is stored in the index, for return with hits. */
 DECL|method|UnIndexed
 specifier|public
 specifier|static
