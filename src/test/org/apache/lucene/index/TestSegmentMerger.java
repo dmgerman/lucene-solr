@@ -536,9 +536,13 @@ name|stored
 init|=
 name|mergedReader
 operator|.
-name|getIndexedFieldNames
+name|getFieldNames
 argument_list|(
-literal|true
+name|IndexReader
+operator|.
+name|FieldOption
+operator|.
+name|INDEXED_WITH_TERMVECTOR
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -548,7 +552,20 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("stored size: " + stored.size());
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"stored size: "
+operator|+
+name|stored
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|stored
