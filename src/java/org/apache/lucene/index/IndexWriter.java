@@ -396,13 +396,13 @@ specifier|private
 name|Lock
 name|writeLock
 decl_stmt|;
-comment|/** Use compound file setting. Defaults to false to maintain multiple files    *  per segment behavior.    */
+comment|/** Use compound file setting. Defaults to true, minimizing the number of    * files used.  Setting this to false may improve indexing performance, but    * may also cause file handle problems.    */
 DECL|field|useCompoundFile
 specifier|private
 name|boolean
 name|useCompoundFile
 init|=
-literal|false
+literal|true
 decl_stmt|;
 comment|/** Setting to turn on usage of a compound file. When on, multiple files    *  for each segment are merged into a single file once the segment creation    *  is finished. This is done regardless of what directory is in use.    */
 DECL|method|getUseCompoundFile
