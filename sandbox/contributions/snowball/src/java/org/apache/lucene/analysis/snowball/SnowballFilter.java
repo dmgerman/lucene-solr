@@ -213,9 +213,7 @@ block|{
 throw|throw
 operator|new
 name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
+argument_list|()
 throw|;
 block|}
 block|}
@@ -277,9 +275,7 @@ block|{
 throw|throw
 operator|new
 name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
+argument_list|()
 throw|;
 block|}
 return|return
