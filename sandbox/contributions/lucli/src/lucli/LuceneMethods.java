@@ -412,12 +412,6 @@ name|String
 name|indexName
 decl_stmt|;
 comment|//directory of this index
-DECL|field|version
-specifier|private
-name|long
-name|version
-decl_stmt|;
-comment|//version number of this index
 DECL|field|fieldIterator
 name|java
 operator|.
@@ -1033,21 +1027,6 @@ decl_stmt|;
 name|getFieldInfo
 argument_list|()
 expr_stmt|;
-name|BufferedReader
-name|in
-init|=
-operator|new
-name|BufferedReader
-argument_list|(
-operator|new
-name|InputStreamReader
-argument_list|(
-name|System
-operator|.
-name|in
-argument_list|)
-argument_list|)
-decl_stmt|;
 name|MultiFieldQueryParser
 name|parser
 init|=
@@ -1173,21 +1152,6 @@ decl_stmt|;
 name|getFieldInfo
 argument_list|()
 expr_stmt|;
-name|BufferedReader
-name|in
-init|=
-operator|new
-name|BufferedReader
-argument_list|(
-operator|new
-name|InputStreamReader
-argument_list|(
-name|System
-operator|.
-name|in
-argument_list|)
-argument_list|)
-decl_stmt|;
 name|MultiFieldQueryParser
 name|parser
 init|=
