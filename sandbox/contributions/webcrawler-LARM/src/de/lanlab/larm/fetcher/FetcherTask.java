@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * this class gets the documents from the web. It connects to the server given  * by the IP address in the URLMessage, gets the document, and forwards it to  * the storage. If it's an HTML document, it will be parsed and all links will  * be put into the message handler again.  *  * @author    Clemens Marschner  * @version $Id$  */
+comment|/**  * this class gets the documents from the web. It connects to the server given  * by the IP address in the URLMessage, gets the document, and forwards it to  * the storage. If it's an HTML document, it will be parsed and all links will  * be put into the message handler again.  *  * stores contents of the files in field "contents"  *  * @author    Clemens Marschner  * @version $Id$  */
 end_comment
 
 begin_class
@@ -1219,38 +1219,6 @@ name|fullCharBuffer
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|// System.out.println("Discovered unknown content type: " + contentType + " at " + urlString);
-name|errorLog
-operator|.
-name|log
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] Discovered unknown content type at "
-operator|+
-name|urlString
-operator|+
-literal|": "
-operator|+
-name|contentType
-operator|+
-literal|". just storing"
-argument_list|)
-expr_stmt|;
-block|}
-name|log
-operator|.
-name|log
-argument_list|(
-literal|"scanned"
-argument_list|)
-expr_stmt|;
-block|}
 name|taskState
 operator|.
 name|setState
@@ -1267,19 +1235,15 @@ argument_list|(
 name|foundUrls
 argument_list|)
 expr_stmt|;
-comment|//messageHandler.putMessages(foundUrls);
-name|docStorage
-operator|.
-name|store
-argument_list|(
+name|WebDocument
+name|d
+init|=
 operator|new
 name|WebDocument
 argument_list|(
 name|contextUrl
 argument_list|,
 name|contentType
-argument_list|,
-name|fullBuffer
 argument_list|,
 name|statusCode
 argument_list|,
@@ -1292,10 +1256,99 @@ name|contentLength
 argument_list|,
 name|title
 argument_list|,
+name|date
+argument_list|,
 name|hostManager
 argument_list|)
+decl_stmt|;
+name|d
+operator|.
+name|addField
+argument_list|(
+literal|"content"
+argument_list|,
+name|fullCharBuffer
 argument_list|)
 expr_stmt|;
+name|docStorage
+operator|.
+name|store
+argument_list|(
+name|d
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// System.out.println("Discovered unknown content type: " + contentType + " at " + urlString);
+comment|//errorLog.log("[" + threadNr + "] Discovered unknown content type at " + urlString + ": " + contentType + ". just storing");
+name|taskState
+operator|.
+name|setState
+argument_list|(
+name|FT_STORING
+argument_list|,
+name|ipURL
+argument_list|)
+expr_stmt|;
+name|linkStorage
+operator|.
+name|storeLinks
+argument_list|(
+name|foundUrls
+argument_list|)
+expr_stmt|;
+name|WebDocument
+name|d
+init|=
+operator|new
+name|WebDocument
+argument_list|(
+name|contextUrl
+argument_list|,
+name|contentType
+argument_list|,
+name|statusCode
+argument_list|,
+name|actURLMessage
+operator|.
+name|getReferer
+argument_list|()
+argument_list|,
+name|contentLength
+argument_list|,
+name|title
+argument_list|,
+name|date
+argument_list|,
+name|hostManager
+argument_list|)
+decl_stmt|;
+name|d
+operator|.
+name|addField
+argument_list|(
+literal|"content"
+argument_list|,
+name|fullBuffer
+argument_list|)
+expr_stmt|;
+name|docStorage
+operator|.
+name|store
+argument_list|(
+name|d
+argument_list|)
+expr_stmt|;
+block|}
+name|log
+operator|.
+name|log
+argument_list|(
+literal|"scanned"
+argument_list|)
+expr_stmt|;
+block|}
 name|log
 operator|.
 name|log
@@ -1312,26 +1365,7 @@ name|e
 parameter_list|)
 block|{
 comment|// timeout while reading this file
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] FetcherTask: Timeout while opening: "
-operator|+
-name|this
-operator|.
-name|actURLMessage
-operator|.
-name|getUrl
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "] FetcherTask: Timeout while opening: " + this.actURLMessage.getUrl());
 name|errorLog
 operator|.
 name|log
@@ -1365,26 +1399,7 @@ argument_list|(
 name|FT_EXCEPTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] FetcherTask: File not Found: "
-operator|+
-name|this
-operator|.
-name|actURLMessage
-operator|.
-name|getUrl
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "] FetcherTask: File not Found: " + this.actURLMessage.getUrl());
 name|errorLog
 operator|.
 name|log
@@ -1421,34 +1436,7 @@ argument_list|(
 name|FT_EXCEPTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] "
-operator|+
-name|e
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "] " + e.getClass().getName() + ": " + e.getMessage());
 comment|// e.printStackTrace();
 name|errorLog
 operator|.
@@ -1494,34 +1482,7 @@ argument_list|(
 name|FT_EXCEPTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] "
-operator|+
-name|e
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "] " + e.getClass().getName() + ": " + e.getMessage());
 comment|// e.printStackTrace();
 name|errorLog
 operator|.
@@ -1559,24 +1520,7 @@ argument_list|(
 name|FT_EXCEPTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"]: SocketException:"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "]: SocketException:" + e.getMessage());
 name|errorLog
 operator|.
 name|log
@@ -1621,34 +1565,7 @@ argument_list|(
 name|FT_EXCEPTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] "
-operator|+
-name|e
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "] " + e.getClass().getName() + ": " + e.getMessage());
 comment|// e.printStackTrace();
 name|errorLog
 operator|.
@@ -1686,34 +1603,7 @@ argument_list|(
 name|FT_EXCEPTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] "
-operator|+
-name|e
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("[" + threadNr + "] " + e.getClass().getName() + ": " + e.getMessage());
 comment|// e.printStackTrace();
 name|errorLog
 operator|.
