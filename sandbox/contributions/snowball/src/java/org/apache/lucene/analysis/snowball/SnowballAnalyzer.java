@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|sf
+operator|.
+name|snowball
+operator|.
+name|ext
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -69,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link SnowballFilter} and {@link StopFilter}. */
+comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link StopFilter} and {@link SnowballFilter}.  *  * Available stemmers are listed in {@link net.sf.snowball.ext}.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link EnglishStemmer} is named "English".  */
 end_comment
 
 begin_class
@@ -80,39 +94,39 @@ name|SnowballAnalyzer
 extends|extends
 name|Analyzer
 block|{
-DECL|field|language
+DECL|field|name
 specifier|private
 name|String
-name|language
+name|name
 decl_stmt|;
 DECL|field|stopTable
 specifier|private
 name|Hashtable
 name|stopTable
 decl_stmt|;
-comment|/** Builds an analyzer with the given stop words. */
+comment|/** Builds the named analyzer with no stop words. */
 DECL|method|SnowballAnalyzer
 specifier|public
 name|SnowballAnalyzer
 parameter_list|(
 name|String
-name|language
+name|name
 parameter_list|)
 block|{
 name|this
 operator|.
-name|language
+name|name
 operator|=
-name|language
+name|name
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the given stop words. */
+comment|/** Builds the named analyzer with the given stop words. */
 DECL|method|SnowballAnalyzer
 specifier|public
 name|SnowballAnalyzer
 parameter_list|(
 name|String
-name|language
+name|name
 parameter_list|,
 name|String
 index|[]
@@ -121,7 +135,7 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|language
+name|name
 argument_list|)
 expr_stmt|;
 name|stopTable
@@ -195,7 +209,7 @@ name|SnowballFilter
 argument_list|(
 name|result
 argument_list|,
-name|language
+name|name
 argument_list|)
 expr_stmt|;
 return|return

@@ -54,6 +54,20 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|sf
+operator|.
+name|snowball
+operator|.
+name|ext
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -95,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  */
+comment|/** A filter that stems words using a Snowball-generated stemmer.  *  * Available stemmers are listed in {@link net.sf.snowball.ext}.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link EnglishStemmer} is named "English".  */
 end_comment
 
 begin_class
@@ -130,6 +144,7 @@ specifier|private
 name|Method
 name|stemMethod
 decl_stmt|;
+comment|/** Construct the named stemming filter.    *    * @param in the input tokens to stem    * @param in the name of a stemmer    */
 DECL|method|SnowballFilter
 specifier|public
 name|SnowballFilter
@@ -138,7 +153,7 @@ name|TokenStream
 name|in
 parameter_list|,
 name|String
-name|language
+name|name
 parameter_list|)
 block|{
 name|this
@@ -158,7 +173,7 @@ name|forName
 argument_list|(
 literal|"net.sf.snowball.ext."
 operator|+
-name|language
+name|name
 operator|+
 literal|"Stemmer"
 argument_list|)
