@@ -62,7 +62,7 @@ name|BooleanQuery
 extends|extends
 name|Query
 block|{
-comment|/**    * Default value is 1024.  Use<code>org.apache.lucene.maxClauseCount</code>    * system property to override.    */
+comment|/** The maximum number of clauses permitted. Default value is 1024.    * Use the<code>org.apache.lucene.maxClauseCount</code> system property to override.    *<p>TermQuery clauses are generated from for example prefix queries and fuzzy queries.    * Each TermQuery needs some buffer space during search, so this parameter indirectly     * controls the maximum buffer requirements for query search. Normally the buffers    * are allocated by the JVM. When using for example    * {@link org.apache.lucene.store.MMapDirectory} the buffering is left to the     * operating system.</p>    */
 DECL|field|maxClauseCount
 specifier|public
 specifier|static
@@ -92,7 +92,7 @@ name|TooManyClauses
 extends|extends
 name|RuntimeException
 block|{}
-comment|/** Return the maximum number of clauses permitted, 1024 by default.    * Attempts to add more than the permitted number of clauses cause {@link    * TooManyClauses} to be thrown.*/
+comment|/** Return the maximum number of clauses permitted, 1024 by default.    * Attempts to add more than the permitted number of clauses cause {@link    * TooManyClauses} to be thrown.    * @see #maxClauseCount    */
 DECL|method|getMaxClauseCount
 specifier|public
 specifier|static
