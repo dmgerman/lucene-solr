@@ -1039,6 +1039,15 @@ name|Exception
 block|{
 name|assertQueryEquals
 argument_list|(
+literal|""
+argument_list|,
+literal|null
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
 literal|"term term term"
 argument_list|,
 literal|null
@@ -1170,33 +1179,6 @@ argument_list|,
 literal|null
 argument_list|,
 literal|"a b"
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"a OR !b"
-argument_list|,
-literal|null
-argument_list|,
-literal|"a -b"
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"a OR ! b"
-argument_list|,
-literal|null
-argument_list|,
-literal|"a -b"
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"a OR -b"
-argument_list|,
-literal|null
-argument_list|,
-literal|"a -b"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -1436,6 +1418,33 @@ name|qp
 operator|.
 name|getDefaultOperator
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a OR !b"
+argument_list|,
+literal|null
+argument_list|,
+literal|"a (-b)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a OR ! b"
+argument_list|,
+literal|null
+argument_list|,
+literal|"a (-b)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a OR -b"
+argument_list|,
+literal|null
+argument_list|,
+literal|"a (-b)"
 argument_list|)
 expr_stmt|;
 block|}
