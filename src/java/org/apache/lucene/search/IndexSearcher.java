@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited {@link #search(Query)}  * or {@link #search(Query,Filter)} methods.  */
+comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited {@link #search(Query)}  * or {@link #search(Query,Filter)} methods. For performance reasons it is   * recommended to open only one IndexSearcher and use it for all of your searches.  */
 end_comment
 
 begin_class
