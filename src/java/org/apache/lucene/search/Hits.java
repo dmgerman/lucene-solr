@@ -462,7 +462,7 @@ comment|/** Returns the id for the nth document in this set. */
 DECL|method|id
 specifier|public
 specifier|final
-name|float
+name|int
 name|id
 parameter_list|(
 name|int
