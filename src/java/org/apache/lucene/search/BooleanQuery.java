@@ -62,6 +62,53 @@ name|BooleanQuery
 extends|extends
 name|Query
 block|{
+DECL|field|maxClauseCount
+specifier|private
+specifier|static
+name|int
+name|maxClauseCount
+init|=
+literal|1024
+decl_stmt|;
+comment|/** Thrown when an attempt is made to add more than {@link    * #getMaxClauseCount()} clauses. */
+DECL|class|TooManyClauses
+specifier|public
+specifier|static
+class|class
+name|TooManyClauses
+extends|extends
+name|RuntimeException
+block|{}
+comment|/** Return the maximum number of clauses permitted, 1024 by default.    * Attempts to add more than the permitted number of clauses cause {@link    * TooManyClauses} to be thrown.*/
+DECL|method|getMaxClauseCount
+specifier|public
+specifier|static
+name|int
+name|getMaxClauseCount
+parameter_list|()
+block|{
+return|return
+name|maxClauseCount
+return|;
+block|}
+comment|/** Set the maximum number of clauses permitted. */
+DECL|method|setMaxClauseCount
+specifier|public
+specifier|static
+name|void
+name|setMaxClauseCount
+parameter_list|(
+name|int
+name|maxClauseCount
+parameter_list|)
+block|{
+name|BooleanQuery
+operator|.
+name|maxClauseCount
+operator|=
+name|maxClauseCount
+expr_stmt|;
+block|}
 DECL|field|clauses
 specifier|private
 name|Vector
@@ -77,7 +124,7 @@ specifier|public
 name|BooleanQuery
 parameter_list|()
 block|{}
-comment|/** Adds a clause to a boolean query.  Clauses may be:<ul><li><code>required</code> which means that documents which<i>do not</i>     match this sub-query will<i>not</i> match the boolean query;<li><code>prohibited</code> which means that documents which<i>do</i>     match this sub-query will<i>not</i> match the boolean query; or<li>neither, in which case matched documents are neither prohibited from     nor required to match the sub-query.</ul>     It is an error to specify a clause as both<code>required</code> and<code>prohibited</code>.     */
+comment|/** Adds a clause to a boolean query.  Clauses may be:<ul><li><code>required</code> which means that documents which<i>do not</i>     match this sub-query will<i>not</i> match the boolean query;<li><code>prohibited</code> which means that documents which<i>do</i>     match this sub-query will<i>not</i> match the boolean query; or<li>neither, in which case matched documents are neither prohibited from     nor required to match the sub-query.</ul>     It is an error to specify a clause as both<code>required</code> and<code>prohibited</code>.     *     * @see #getMaxClauseCount()     */
 DECL|method|add
 specifier|public
 name|void
@@ -93,9 +140,7 @@ name|boolean
 name|prohibited
 parameter_list|)
 block|{
-name|clauses
-operator|.
-name|addElement
+name|add
 argument_list|(
 operator|new
 name|BooleanClause
@@ -109,7 +154,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Adds a clause to a boolean query. */
+comment|/** Adds a clause to a boolean query.     * @see #getMaxClauseCount()    */
 DECL|method|add
 specifier|public
 name|void
@@ -119,6 +164,20 @@ name|BooleanClause
 name|clause
 parameter_list|)
 block|{
+if|if
+condition|(
+name|clauses
+operator|.
+name|size
+argument_list|()
+operator|>=
+name|maxClauseCount
+condition|)
+throw|throw
+operator|new
+name|TooManyClauses
+argument_list|()
+throw|;
 name|clauses
 operator|.
 name|addElement
