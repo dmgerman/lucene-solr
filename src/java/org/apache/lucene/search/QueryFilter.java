@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Constrains search results to only match those which also match a provided  * query.  Results are cached, so that searches after the first on the same  * index using this filter are much faster.  *  *<p> This could be used, for example, with a {@link RangeQuery} on a suitably  * formatted date field to implement date filtering.  One could re-use a single  * QueryFilter that matches, e.g., only documents modified within the last  * week.  The QueryFilter and RangeQuery would only need to be reconstructed  * once per day.  */
+comment|/** Constrains search results to only match those which also match a provided  * query.  Results are cached, so that searches after the first on the same  * index using this filter are much faster.  *  *<p> This could be used, for example, with a {@link RangeQuery} on a suitably  * formatted date field to implement date filtering.  One could re-use a single  * QueryFilter that matches, e.g., only documents modified within the last  * week.  The QueryFilter and RangeQuery would only need to be reconstructed  * once per day.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -83,9 +83,7 @@ specifier|transient
 name|WeakHashMap
 name|cache
 init|=
-operator|new
-name|WeakHashMap
-argument_list|()
+literal|null
 decl_stmt|;
 comment|/** Constructs a filter which only matches documents matching    *<code>query</code>.    */
 DECL|method|QueryFilter
@@ -114,6 +112,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|cache
+operator|==
+literal|null
+condition|)
+block|{
+name|cache
+operator|=
+operator|new
+name|WeakHashMap
+argument_list|()
+expr_stmt|;
+block|}
 synchronized|synchronized
 init|(
 name|cache
