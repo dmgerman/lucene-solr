@@ -74,6 +74,12 @@ specifier|abstract
 specifier|public
 class|class
 name|Query
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
 block|{
 comment|// query boost factor
 DECL|field|boost

@@ -26,6 +26,12 @@ specifier|public
 specifier|final
 class|class
 name|Term
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
 block|{
 DECL|field|field
 name|String
