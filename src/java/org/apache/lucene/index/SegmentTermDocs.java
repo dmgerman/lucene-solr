@@ -747,7 +747,7 @@ name|numSkipped
 operator|+
 name|skipInterval
 operator|)
-operator|>
+operator|>=
 name|df
 condition|)
 break|break;
