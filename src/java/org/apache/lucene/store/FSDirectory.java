@@ -307,11 +307,23 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+if|if
+condition|(
+operator|!
 name|directory
 operator|.
 name|mkdir
 argument_list|()
-expr_stmt|;
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot create directory: "
+operator|+
+name|directory
+argument_list|)
+throw|;
 name|String
 index|[]
 name|files
