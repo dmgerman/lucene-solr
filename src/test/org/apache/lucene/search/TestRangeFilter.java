@@ -12,6 +12,10 @@ name|search
 package|;
 end_package
 
+begin_comment
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -51,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A basic 'positive' Unit test class for the RangeFilter class.  *  *<p>  * NOTE: at the moment, this class only tests for 'positive' results,  * it does not verify the results to ensure their are no 'false positives',  * nor does it adequately test 'negative' results.  It also does not test  * that garbage in results in an Exception.  */
+comment|/**  * A basic 'positive' Unit test class for the RangeFilter class.  *  *<p>  * NOTE: at the moment, this class only tests for 'positive' results,  * it does not verify the results to ensure there are no 'false positives',  * nor does it adequately test 'negative' results.  It also does not test  * that garbage in results in an Exception.  */
 end_comment
 
 begin_class
