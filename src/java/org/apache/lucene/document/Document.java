@@ -64,6 +64,24 @@ begin_comment
 comment|// for javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Hits
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
 begin_comment
 comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be stored with the document, in which case it is returned with  * search hits on the document.  Thus each document should typically contain  * stored fields which uniquely identify it.  * */
 end_comment
@@ -117,7 +135,7 @@ operator|=
 name|boost
 expr_stmt|;
 block|}
-comment|/** Returns the boost factor for hits on any field of this document.    *    *<p>The default value is 1.0.    *    *<p>Note: This value is not stored directly with the document in the index.    * Documents returned from {@link IndexReader#document(int)} and {@link    * Hits#doc(int)} may thus not have the same value present as when this    * document was indexed.    *    * @see #setBoost(float)    */
+comment|/** Returns the boost factor for hits on any field of this document.    *    *<p>The default value is 1.0.    *    *<p>Note: This value is not stored directly with the document in the index.    * Documents returned from {@link IndexReader#document(int)} and    * {@link Hits#doc(int)} may thus not have the same value present as when    * this document was indexed.    *    * @see #setBoost(float)    */
 DECL|method|getBoost
 specifier|public
 name|float
