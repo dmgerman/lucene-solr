@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author    Patrick Talbot (based on Gerhard Schwarz work for German)  */
+comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author    Patrick Talbot (based on Gerhard Schwarz work for German)  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -165,7 +165,7 @@ name|FrenchAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/**    * Extended list of typical french stopwords.    */
+comment|/** 	 * Extended list of typical french stopwords. 	 */
 DECL|field|FRENCH_STOP_WORDS
 specifier|private
 name|String
@@ -181,7 +181,7 @@ literal|"ai"
 block|,
 literal|"ainsi"
 block|,
-literal|"aprÃÂ¨s"
+literal|"après"
 block|,
 literal|"attendu"
 block|,
@@ -271,15 +271,15 @@ literal|"dedans"
 block|,
 literal|"dehors"
 block|,
-literal|"delÃÂ "
+literal|"delà"
 block|,
 literal|"depuis"
 block|,
-literal|"derriÃÂ¨re"
+literal|"derrière"
 block|,
 literal|"des"
 block|,
-literal|"dÃÂ©sormais"
+literal|"désormais"
 block|,
 literal|"desquelles"
 block|,
@@ -313,7 +313,7 @@ literal|"duquel"
 block|,
 literal|"durant"
 block|,
-literal|"dÃÂ¨s"
+literal|"dès"
 block|,
 literal|"elle"
 block|,
@@ -337,13 +337,13 @@ literal|"eu"
 block|,
 literal|"eux"
 block|,
-literal|"exceptÃÂ©"
+literal|"excepté"
 block|,
 literal|"hormis"
 block|,
 literal|"hors"
 block|,
-literal|"hÃÂ©las"
+literal|"hélas"
 block|,
 literal|"hui"
 block|,
@@ -383,13 +383,13 @@ literal|"lorsque"
 block|,
 literal|"lui"
 block|,
-literal|"lÃÂ "
+literal|"là"
 block|,
 literal|"ma"
 block|,
 literal|"mais"
 block|,
-literal|"malgrÃÂ©"
+literal|"malgré"
 block|,
 literal|"me"
 block|,
@@ -413,9 +413,9 @@ literal|"mon"
 block|,
 literal|"moyennant"
 block|,
-literal|"mÃÂªme"
+literal|"même"
 block|,
-literal|"mÃÂªmes"
+literal|"mêmes"
 block|,
 literal|"n"
 block|,
@@ -431,11 +431,11 @@ literal|"notre"
 block|,
 literal|"nous"
 block|,
-literal|"nÃÂ©anmoins"
+literal|"néanmoins"
 block|,
-literal|"nÃÂ´tre"
+literal|"nôtre"
 block|,
-literal|"nÃÂ´tres"
+literal|"nôtres"
 block|,
 literal|"on"
 block|,
@@ -445,7 +445,7 @@ literal|"ou"
 block|,
 literal|"outre"
 block|,
-literal|"oÃÂ¹"
+literal|"où"
 block|,
 literal|"par"
 block|,
@@ -455,7 +455,7 @@ literal|"partant"
 block|,
 literal|"pas"
 block|,
-literal|"passÃÂ©"
+literal|"passé"
 block|,
 literal|"pendant"
 block|,
@@ -471,7 +471,7 @@ literal|"pourquoi"
 block|,
 literal|"proche"
 block|,
-literal|"prÃÂ¨s"
+literal|"près"
 block|,
 literal|"puisque"
 block|,
@@ -497,7 +497,7 @@ literal|"quoique"
 block|,
 literal|"revoici"
 block|,
-literal|"revoilÃÂ "
+literal|"revoilà"
 block|,
 literal|"s"
 block|,
@@ -579,7 +579,7 @@ literal|"vers"
 block|,
 literal|"voici"
 block|,
-literal|"voilÃÂ "
+literal|"voilà"
 block|,
 literal|"vos"
 block|,
@@ -589,26 +589,26 @@ literal|"vous"
 block|,
 literal|"vu"
 block|,
-literal|"vÃÂ´tre"
+literal|"vôtre"
 block|,
-literal|"vÃÂ´tres"
+literal|"vôtres"
 block|,
 literal|"y"
 block|,
-literal|"ÃÂ "
+literal|"à"
 block|,
-literal|"ÃÂ§a"
+literal|"ça"
 block|,
-literal|"ÃÂ¨s"
+literal|"ès"
 block|,
-literal|"ÃÂ©tÃÂ©"
+literal|"été"
 block|,
-literal|"ÃÂªtre"
+literal|"être"
 block|,
-literal|"ÃÂ´"
+literal|"ô"
 block|}
 decl_stmt|;
-comment|/**    * Contains the stopwords used with the StopFilter.    */
+comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
 DECL|field|stoptable
 specifier|private
 name|Hashtable
@@ -618,7 +618,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/**    * Contains words that should be indexed but not stemmed.    */
+comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
 DECL|field|excltable
 specifier|private
 name|Hashtable
@@ -628,7 +628,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/**    * Builds an analyzer.    */
+comment|/** 	 * Builds an analyzer. 	 */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -644,7 +644,7 @@ name|FRENCH_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/** 	 * Builds an analyzer with the given stop words. 	 */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -664,7 +664,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/** 	 * Builds an analyzer with the given stop words. 	 */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -678,7 +678,7 @@ operator|=
 name|stopwords
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/** 	 * Builds an analyzer with the given stop words. 	 */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -697,7 +697,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an exclusionlist from an array of Strings.    */
+comment|/** 	 * Builds an exclusionlist from an array of Strings. 	 */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -718,7 +718,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an exclusionlist from a Hashtable.    */
+comment|/** 	 * Builds an exclusionlist from a Hashtable. 	 */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -733,7 +733,7 @@ operator|=
 name|exclusionlist
 expr_stmt|;
 block|}
-comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
+comment|/** 	 * Builds an exclusionlist from the words contained in the given file. 	 */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -753,7 +753,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return  A TokenStream build from a StandardTokenizer filtered with    * 			StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter    */
+comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter 	 */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -790,7 +790,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"reader must not be null"
+literal|"readermust not be null"
 argument_list|)
 throw|;
 name|TokenStream

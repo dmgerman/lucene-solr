@@ -231,6 +231,7 @@ operator|.
 name|termText
 argument_list|()
 decl_stmt|;
+comment|// why not key off token type here assuming ChineseTokenizer comes first?
 if|if
 condition|(
 name|stopTable
