@@ -894,7 +894,7 @@ name|si
 operator|.
 name|name
 operator|+
-literal|".f"
+literal|".s"
 decl_stmt|;
 name|int
 name|patternLength
@@ -913,7 +913,9 @@ literal|0
 init|;
 name|i
 operator|<
-literal|0
+name|result
+operator|.
+name|length
 condition|;
 name|i
 operator|++
