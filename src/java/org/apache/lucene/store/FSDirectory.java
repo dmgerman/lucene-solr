@@ -860,7 +860,15 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|// what can we do?
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"could not close input stream"
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 if|if
