@@ -119,15 +119,16 @@ name|TokenStream
 name|in
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 name|stemmer
 operator|=
 operator|new
 name|BrazilianStemmer
 argument_list|()
-expr_stmt|;
-name|input
-operator|=
-name|in
 expr_stmt|;
 block|}
 comment|/** 	 * Builds a BrazilianStemFilter that uses an exclusiontable. 	 */
