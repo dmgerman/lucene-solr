@@ -49,6 +49,13 @@ init|=
 literal|"word"
 decl_stmt|;
 comment|// lexical type
+DECL|field|positionIncrement
+specifier|private
+name|int
+name|positionIncrement
+init|=
+literal|1
+decl_stmt|;
 comment|/** Constructs a Token with the given term text, and start& end offsets.       The type defaults to "word." */
 DECL|method|Token
 specifier|public
@@ -111,6 +118,49 @@ name|type
 operator|=
 name|typ
 expr_stmt|;
+block|}
+comment|/** Set the position increment.  This determines the position of this token    * relative to the previous Token in a {@link TokenStream}, used in phrase    * searching.    *    *<p>The default value is one.    *    *<p>Two common uses for this are:<ul>    *    *<li>Set it to zero to put multiple terms in the same position.  This is    * useful if, e.g., when a word has multiple stems.  This way searches for    * phrases including either stem will match this occurence.  In this case,    * all but the first stem's increment should be set to zero: the increment of    * the first instance should be one.    *    *<li>Set it to values greater than one to inhibit exact phrase matches.    * If, for example, one does not want phrases to match across stop words,    * then one could build a stop word filter that removes stop words and also    * sets the increment to the number of stop words removed before each    * non-stop word.    *    *</ul>    * @see TermPositions    */
+DECL|method|setPositionIncrement
+specifier|public
+name|void
+name|setPositionIncrement
+parameter_list|(
+name|int
+name|positionIncrement
+parameter_list|)
+block|{
+if|if
+condition|(
+name|positionIncrement
+operator|<
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Increment must be positive: "
+operator|+
+name|positionIncrement
+argument_list|)
+throw|;
+name|this
+operator|.
+name|positionIncrement
+operator|=
+name|positionIncrement
+expr_stmt|;
+block|}
+comment|/** Returns the position increment of this Token.    * @see #setPositionIncrement    */
+DECL|method|getPositionIncrement
+specifier|public
+name|int
+name|getPositionIncrement
+parameter_list|()
+block|{
+return|return
+name|positionIncrement
+return|;
 block|}
 comment|/** Returns the Token's term text. */
 DECL|method|termText

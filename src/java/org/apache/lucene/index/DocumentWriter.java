@@ -596,6 +596,17 @@ name|next
 argument_list|()
 control|)
 block|{
+name|position
+operator|+=
+operator|(
+name|t
+operator|.
+name|getPositionIncrement
+argument_list|()
+operator|-
+literal|1
+operator|)
+expr_stmt|;
 name|addPosition
 argument_list|(
 name|fieldName
