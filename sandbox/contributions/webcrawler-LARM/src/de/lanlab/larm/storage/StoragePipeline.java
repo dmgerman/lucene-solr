@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author    Clemens Marschner  * @created   1. Juni 2002  * @version   $ver: $  */
+comment|/**  * @author    Clemens Marschner  * @created   1. Juni 2002  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -89,18 +89,22 @@ implements|,
 name|LinkStorage
 block|{
 DECL|field|isOpen
+specifier|private
 name|boolean
 name|isOpen
 decl_stmt|;
 DECL|field|isLinkStorageOpen
+specifier|private
 name|boolean
 name|isLinkStorageOpen
 decl_stmt|;
 DECL|field|docStorages
+specifier|private
 name|ArrayList
 name|docStorages
 decl_stmt|;
 DECL|field|linkStorages
+specifier|private
 name|ArrayList
 name|linkStorages
 decl_stmt|;
@@ -155,6 +159,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+comment|// FIXME: replace with logging
 name|System
 operator|.
 name|out
