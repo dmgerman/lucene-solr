@@ -22,6 +22,7 @@ end_comment
 
 begin_interface
 DECL|interface|ScoreDocComparator
+specifier|public
 interface|interface
 name|ScoreDocComparator
 block|{
@@ -121,7 +122,7 @@ literal|0
 return|;
 block|}
 specifier|public
-name|Object
+name|Comparable
 name|sortValue
 parameter_list|(
 name|ScoreDoc
@@ -247,7 +248,7 @@ literal|0
 return|;
 block|}
 specifier|public
-name|Object
+name|Comparable
 name|sortValue
 parameter_list|(
 name|ScoreDoc
@@ -301,9 +302,9 @@ name|ScoreDoc
 name|j
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the value used to sort the given document.  This is 	 * currently always either an Integer or Float, but could be extended 	 * to return any object used to sort by.  	 * @param i Document 	 * @return Integer or Float 	 */
+comment|/** 	 * Returns the value used to sort the given document.  The 	 * object returned must implement the java.io.Serializable 	 * interface. 	 * @param i Document 	 * @return Serializable object 	 */
 DECL|method|sortValue
-name|Object
+name|Comparable
 name|sortValue
 parameter_list|(
 name|ScoreDoc

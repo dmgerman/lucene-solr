@@ -514,7 +514,7 @@ name|n
 return|;
 block|}
 specifier|public
-name|Object
+name|Comparable
 name|sortValue
 parameter_list|(
 specifier|final

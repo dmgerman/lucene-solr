@@ -22,6 +22,7 @@ end_comment
 
 begin_interface
 DECL|interface|ScoreDocLookupComparator
+specifier|public
 interface|interface
 name|ScoreDocLookupComparator
 extends|extends

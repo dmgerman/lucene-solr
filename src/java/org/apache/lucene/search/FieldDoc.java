@@ -31,7 +31,7 @@ block|{
 comment|/** Expert: The values which are used to sort the referenced document. 	 * The order of these will match the original sort criteria given by a 	 * Sort object.  Each Object will be either an Integer, Float or String, 	 * depending on the type of values in the terms of the original field. 	 * @see Sort 	 * @see Searchable#search(Query,Filter,int,Sort) 	 */
 DECL|field|fields
 specifier|public
-name|Object
+name|Comparable
 index|[]
 name|fields
 decl_stmt|;
@@ -66,7 +66,7 @@ parameter_list|,
 name|float
 name|score
 parameter_list|,
-name|Object
+name|Comparable
 index|[]
 name|fields
 parameter_list|)
