@@ -99,10 +99,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestCachingrWrapperFilter
+DECL|class|TestCachingWrapperFilter
 specifier|public
 class|class
-name|TestCachingrWrapperFilter
+name|TestCachingWrapperFilter
 extends|extends
 name|TestCase
 block|{
