@@ -600,6 +600,20 @@ return|return
 name|tfExplanation
 return|;
 block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"scorer("
+operator|+
+name|weight
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 
