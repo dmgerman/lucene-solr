@@ -153,7 +153,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Increment must be positive: "
+literal|"Increment must be zero or greater: "
 operator|+
 name|positionIncrement
 argument_list|)
