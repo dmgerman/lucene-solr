@@ -1613,6 +1613,7 @@ comment|// set the value
 block|}
 comment|/** Read norms into a pre-allocated array. */
 DECL|method|norms
+specifier|public
 specifier|synchronized
 name|void
 name|norms
