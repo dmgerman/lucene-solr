@@ -511,6 +511,13 @@ specifier|private
 name|HandlerConfig
 name|handlerConfig
 decl_stmt|;
+DECL|field|useCompoundIndex
+specifier|private
+name|boolean
+name|useCompoundIndex
+init|=
+literal|true
+decl_stmt|;
 comment|/**    *  Creates new instance    */
 DECL|method|IndexTask
 specifier|public
@@ -566,6 +573,23 @@ operator|.
 name|overwrite
 operator|=
 name|overwrite
+expr_stmt|;
+block|}
+comment|/**    * If creating a new index and this is set to true, the    * index will be created in compound format.    */
+DECL|method|setUseCompoundIndex
+specifier|public
+name|void
+name|setUseCompoundIndex
+parameter_list|(
+name|boolean
+name|useCompoundIndex
+parameter_list|)
+block|{
+name|this
+operator|.
+name|useCompoundIndex
+operator|=
+name|useCompoundIndex
 expr_stmt|;
 block|}
 comment|/**    *  Sets the documentHandler attribute of the IndexTask object    *    *@param  classname  The new documentHandler value    */
@@ -948,6 +972,21 @@ argument_list|,
 name|create
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|create
+operator|&&
+name|useCompoundIndex
+condition|)
+block|{
+name|writer
+operator|.
+name|setUseCompoundFile
+argument_list|(
+name|useCompoundIndex
+argument_list|)
+expr_stmt|;
+block|}
 name|int
 name|totalFiles
 init|=
