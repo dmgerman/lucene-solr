@@ -2583,6 +2583,12 @@ argument_list|,
 name|q
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|modifier
+operator|==
+name|MOD_NONE
+condition|)
 name|firstQuery
 operator|=
 name|q
