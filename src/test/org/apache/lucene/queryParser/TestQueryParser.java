@@ -100,6 +100,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|standard
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|Token
 import|;
 end_import
@@ -481,24 +497,6 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
-literal|"term term1 term2"
-argument_list|,
-literal|null
-argument_list|,
-literal|"term term term"
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"term 1.0 1 2"
-argument_list|,
-literal|null
-argument_list|,
-literal|"term"
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
 literal|"a AND b"
 argument_list|,
 literal|null
@@ -554,15 +552,6 @@ expr_stmt|;
 name|assertQueryEquals
 argument_list|(
 literal|"a&& b"
-argument_list|,
-literal|null
-argument_list|,
-literal|"+a +b"
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"a&&b"
 argument_list|,
 literal|null
 argument_list|,
@@ -765,6 +754,120 @@ argument_list|,
 literal|null
 argument_list|,
 literal|"+(title:dog title:cat) -author:\"bob dole\""
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testPunct
+specifier|public
+name|void
+name|testPunct
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|NullAnalyzer
+argument_list|()
+decl_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a&b"
+argument_list|,
+name|a
+argument_list|,
+literal|"a&b"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a&&b"
+argument_list|,
+name|a
+argument_list|,
+literal|"a&&b"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|".NET"
+argument_list|,
+name|a
+argument_list|,
+literal|".NET"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testNumber
+specifier|public
+name|void
+name|testNumber
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// The numbers go away because SimpleAnalzyer ignores them
+name|assertQueryEquals
+argument_list|(
+literal|"3"
+argument_list|,
+literal|null
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term 1.0 1 2"
+argument_list|,
+literal|null
+argument_list|,
+literal|"term"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term term1 term2"
+argument_list|,
+literal|null
+argument_list|,
+literal|"term term term"
+argument_list|)
+expr_stmt|;
+name|Analyzer
+name|a
+init|=
+operator|new
+name|StandardAnalyzer
+argument_list|()
+decl_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|a
+argument_list|,
+literal|"3"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term 1.0 1 2"
+argument_list|,
+name|a
+argument_list|,
+literal|"term 1.0 1 2"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term term1 term2"
+argument_list|,
+name|a
+argument_list|,
+literal|"term term1 term2"
 argument_list|)
 expr_stmt|;
 block|}
