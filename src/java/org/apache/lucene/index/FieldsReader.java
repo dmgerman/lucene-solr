@@ -102,10 +102,6 @@ name|Field
 import|;
 end_import
 
-begin_comment
-comment|/**  * FIXME: Describe class<code>FieldsReader</code> here.  *  * @version $Id$  */
-end_comment
-
 begin_class
 DECL|class|FieldsReader
 specifier|final
@@ -173,7 +169,6 @@ operator|+
 literal|".fdx"
 argument_list|)
 expr_stmt|;
-comment|// TODO: document the magic number 8
 name|size
 operator|=
 operator|(
@@ -227,7 +222,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: document the magic number 8L
 name|indexStream
 operator|.
 name|seek
