@@ -90,6 +90,26 @@ name|HashSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Edwin de Jonge  *<p/>  *         A filter that stems Dutch words. It supports a table of words that should  *         not be stemmed at all. The stemmer used can be changed at runtime after the  *         filter object is created (as long as it is a DutchStemmer).  */
 end_comment
@@ -120,7 +140,7 @@ literal|null
 decl_stmt|;
 DECL|field|exclusions
 specifier|private
-name|HashSet
+name|Set
 name|exclusions
 init|=
 literal|null
@@ -153,7 +173,7 @@ parameter_list|(
 name|TokenStream
 name|_in
 parameter_list|,
-name|HashSet
+name|Set
 name|exclusiontable
 parameter_list|)
 block|{
@@ -175,10 +195,10 @@ parameter_list|(
 name|TokenStream
 name|_in
 parameter_list|,
-name|HashSet
+name|Set
 name|exclusiontable
 parameter_list|,
-name|HashMap
+name|Map
 name|stemdictionary
 parameter_list|)
 block|{

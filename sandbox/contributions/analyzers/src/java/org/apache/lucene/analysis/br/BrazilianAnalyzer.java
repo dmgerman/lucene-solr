@@ -162,6 +162,16 @@ name|HashSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * Analyzer for brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    João Kramer  */
 end_comment
@@ -443,7 +453,7 @@ decl_stmt|;
 comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
 DECL|field|stoptable
 specifier|private
-name|HashSet
+name|Set
 name|stoptable
 init|=
 operator|new
@@ -453,7 +463,7 @@ decl_stmt|;
 comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
 DECL|field|excltable
 specifier|private
-name|HashSet
+name|Set
 name|excltable
 init|=
 operator|new

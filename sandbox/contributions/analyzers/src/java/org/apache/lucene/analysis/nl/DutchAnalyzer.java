@@ -132,6 +132,26 @@ name|HashSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Edwin de Jonge  *<p/>  *         Analyzer for Dutch language. Supports an external list of stopwords (words that  *         will not be indexed at all), an external list of exclusions (word that will  *         not be stemmed, but indexed) and an external list of word-stem pairs that overrule  *         the algorithm (dictionary stemming).  *         A default set of stopwords is used unless an alternative list is specified, the  *         exclusion list is empty by default.  *         As start for the Analyzer the German Analyzer was used. The stemming algorithm  *         implemented can be found at @link  */
 end_comment
@@ -358,7 +378,7 @@ decl_stmt|;
 comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stoptable
 specifier|private
-name|HashSet
+name|Set
 name|stoptable
 init|=
 operator|new
@@ -368,7 +388,7 @@ decl_stmt|;
 comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|excltable
 specifier|private
-name|HashSet
+name|Set
 name|excltable
 init|=
 operator|new
@@ -377,7 +397,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|_stemdict
 specifier|private
-name|HashMap
+name|Map
 name|_stemdict
 init|=
 operator|new

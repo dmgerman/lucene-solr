@@ -76,17 +76,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
+name|Set
 import|;
 end_import
 
@@ -103,7 +93,7 @@ extends|extends
 name|Analyzer
 block|{
 comment|//~ Static fields/initializers ---------------------------------------------
-comment|/**      * An array containing some common English words that are not usually      * useful for searching. and some double-byte interpunctions.....      */
+comment|/**    * An array containing some common English words that are not usually    * useful for searching. and some double-byte interpunctions.....    */
 DECL|field|stopWords
 specifier|private
 specifier|static
@@ -186,14 +176,14 @@ literal|"www"
 block|}
 decl_stmt|;
 comment|//~ Instance fields --------------------------------------------------------
-comment|/** stop word list */
+comment|/**    * stop word list    */
 DECL|field|stopTable
 specifier|private
-name|HashSet
+name|Set
 name|stopTable
 decl_stmt|;
 comment|//~ Constructors -----------------------------------------------------------
-comment|/**      * Builds an analyzer which removes words in STOP_WORDS.      */
+comment|/**    * Builds an analyzer which removes words in STOP_WORDS.    */
 DECL|method|CJKAnalyzer
 specifier|public
 name|CJKAnalyzer
@@ -209,7 +199,7 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer which removes words in the provided array.      *      * @param stopWords stop word array      */
+comment|/**    * Builds an analyzer which removes words in the provided array.    *    * @param stopWords stop word array    */
 DECL|method|CJKAnalyzer
 specifier|public
 name|CJKAnalyzer
@@ -230,7 +220,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//~ Methods ----------------------------------------------------------------
-comment|/**      * get token stream from input      *      * @param fieldName lucene field name      * @param reader input reader      *      * @return TokenStream      */
+comment|/**    * get token stream from input    *    * @param fieldName lucene field name    * @param reader    input reader    * @return TokenStream    */
 DECL|method|tokenStream
 specifier|public
 specifier|final

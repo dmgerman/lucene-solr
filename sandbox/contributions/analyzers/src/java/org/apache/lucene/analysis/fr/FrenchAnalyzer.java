@@ -84,6 +84,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|de
+operator|.
+name|WordlistLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|standard
 operator|.
 name|StandardFilter
@@ -132,6 +148,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Hashtable
 import|;
 end_import
@@ -142,28 +168,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|de
-operator|.
-name|WordlistLoader
+name|Set
 import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author    Patrick Talbot (based on Gerhard Schwarz work for German)  * @version   $Id$  */
+comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author Patrick Talbot (based on Gerhard Schwarz work for German)  * @version $Id$  */
 end_comment
 
 begin_class
@@ -175,7 +185,7 @@ name|FrenchAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** 	 * Extended list of typical french stopwords. 	 */
+comment|/**    * Extended list of typical french stopwords.    */
 DECL|field|FRENCH_STOP_WORDS
 specifier|private
 name|String
@@ -618,27 +628,27 @@ block|,
 literal|"ô"
 block|}
 decl_stmt|;
-comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
+comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stoptable
 specifier|private
-name|HashSet
+name|Set
 name|stoptable
 init|=
 operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
+comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|excltable
 specifier|private
-name|HashSet
+name|Set
 name|excltable
 init|=
 operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Builds an analyzer. 	 */
+comment|/**    * Builds an analyzer.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -654,7 +664,7 @@ name|FRENCH_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -674,7 +684,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words.    *    * @deprecated 	 */
+comment|/**    * Builds an analyzer with the given stop words.    *    * @deprecated    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -695,7 +705,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -721,7 +731,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from an array of Strings. 	 */
+comment|/**    * Builds an exclusionlist from an array of Strings.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -742,7 +752,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from a Hashtable. 	 */
+comment|/**    * Builds an exclusionlist from a Hashtable.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -764,7 +774,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from the words contained in the given file. 	 */
+comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -791,7 +801,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter 	 */
+comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return A TokenStream build from a StandardTokenizer filtered with    *         StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter    */
 DECL|method|tokenStream
 specifier|public
 specifier|final

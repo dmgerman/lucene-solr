@@ -90,6 +90,16 @@ name|HashSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * A filter that stemms french words. It supports a table of words that should  * not be stemmed at all. The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a FrenchStemmer).  *  * @author    Patrick Talbot (based on Gerhard Schwarz work for German)  */
 end_comment
@@ -120,7 +130,7 @@ literal|null
 decl_stmt|;
 DECL|field|exclusions
 specifier|private
-name|HashSet
+name|Set
 name|exclusions
 init|=
 literal|null
@@ -181,7 +191,7 @@ parameter_list|(
 name|TokenStream
 name|in
 parameter_list|,
-name|HashSet
+name|Set
 name|exclusiontable
 parameter_list|)
 block|{

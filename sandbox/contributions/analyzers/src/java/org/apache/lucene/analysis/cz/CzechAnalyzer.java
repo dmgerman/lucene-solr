@@ -152,6 +152,16 @@ name|HashSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * Analyzer for Czech language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author    Lukas Zapletal [lzap@root.cz]  */
 end_comment
@@ -522,7 +532,7 @@ decl_stmt|;
 comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
 DECL|field|stoptable
 specifier|private
-name|HashSet
+name|Set
 name|stoptable
 decl_stmt|;
 comment|/** 	 * Builds an analyzer. 	 */
