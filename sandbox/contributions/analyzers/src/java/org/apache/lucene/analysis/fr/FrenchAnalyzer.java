@@ -14,6 +14,10 @@ name|fr
 package|;
 end_package
 
+begin_comment
+comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2004 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -149,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author    Patrick Talbot (based on Gerhard Schwarz work for German)  * @version   $Id$  */
+comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author    Patrick Talbot (based on Gerhard Schwarz work for German)  */
 end_comment
 
 begin_class
@@ -161,7 +165,7 @@ name|FrenchAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** 	 * Extended list of typical french stopwords. 	 */
+comment|/**    * Extended list of typical french stopwords.    */
 DECL|field|FRENCH_STOP_WORDS
 specifier|private
 name|String
@@ -177,7 +181,7 @@ literal|"ai"
 block|,
 literal|"ainsi"
 block|,
-literal|"après"
+literal|"aprÃÂ¨s"
 block|,
 literal|"attendu"
 block|,
@@ -267,15 +271,15 @@ literal|"dedans"
 block|,
 literal|"dehors"
 block|,
-literal|"delà"
+literal|"delÃÂ "
 block|,
 literal|"depuis"
 block|,
-literal|"derrière"
+literal|"derriÃÂ¨re"
 block|,
 literal|"des"
 block|,
-literal|"désormais"
+literal|"dÃÂ©sormais"
 block|,
 literal|"desquelles"
 block|,
@@ -309,7 +313,7 @@ literal|"duquel"
 block|,
 literal|"durant"
 block|,
-literal|"dès"
+literal|"dÃÂ¨s"
 block|,
 literal|"elle"
 block|,
@@ -333,13 +337,13 @@ literal|"eu"
 block|,
 literal|"eux"
 block|,
-literal|"excepté"
+literal|"exceptÃÂ©"
 block|,
 literal|"hormis"
 block|,
 literal|"hors"
 block|,
-literal|"hélas"
+literal|"hÃÂ©las"
 block|,
 literal|"hui"
 block|,
@@ -379,13 +383,13 @@ literal|"lorsque"
 block|,
 literal|"lui"
 block|,
-literal|"là"
+literal|"lÃÂ "
 block|,
 literal|"ma"
 block|,
 literal|"mais"
 block|,
-literal|"malgré"
+literal|"malgrÃÂ©"
 block|,
 literal|"me"
 block|,
@@ -409,9 +413,9 @@ literal|"mon"
 block|,
 literal|"moyennant"
 block|,
-literal|"même"
+literal|"mÃÂªme"
 block|,
-literal|"mêmes"
+literal|"mÃÂªmes"
 block|,
 literal|"n"
 block|,
@@ -427,11 +431,11 @@ literal|"notre"
 block|,
 literal|"nous"
 block|,
-literal|"néanmoins"
+literal|"nÃÂ©anmoins"
 block|,
-literal|"nôtre"
+literal|"nÃÂ´tre"
 block|,
-literal|"nôtres"
+literal|"nÃÂ´tres"
 block|,
 literal|"on"
 block|,
@@ -441,7 +445,7 @@ literal|"ou"
 block|,
 literal|"outre"
 block|,
-literal|"où"
+literal|"oÃÂ¹"
 block|,
 literal|"par"
 block|,
@@ -451,7 +455,7 @@ literal|"partant"
 block|,
 literal|"pas"
 block|,
-literal|"passé"
+literal|"passÃÂ©"
 block|,
 literal|"pendant"
 block|,
@@ -467,7 +471,7 @@ literal|"pourquoi"
 block|,
 literal|"proche"
 block|,
-literal|"près"
+literal|"prÃÂ¨s"
 block|,
 literal|"puisque"
 block|,
@@ -493,7 +497,7 @@ literal|"quoique"
 block|,
 literal|"revoici"
 block|,
-literal|"revoilà"
+literal|"revoilÃÂ "
 block|,
 literal|"s"
 block|,
@@ -575,7 +579,7 @@ literal|"vers"
 block|,
 literal|"voici"
 block|,
-literal|"voilà"
+literal|"voilÃÂ "
 block|,
 literal|"vos"
 block|,
@@ -585,26 +589,26 @@ literal|"vous"
 block|,
 literal|"vu"
 block|,
-literal|"vôtre"
+literal|"vÃÂ´tre"
 block|,
-literal|"vôtres"
+literal|"vÃÂ´tres"
 block|,
 literal|"y"
 block|,
-literal|"à"
+literal|"ÃÂ "
 block|,
-literal|"ça"
+literal|"ÃÂ§a"
 block|,
-literal|"ès"
+literal|"ÃÂ¨s"
 block|,
-literal|"été"
+literal|"ÃÂ©tÃÂ©"
 block|,
-literal|"être"
+literal|"ÃÂªtre"
 block|,
-literal|"ô"
+literal|"ÃÂ´"
 block|}
 decl_stmt|;
-comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
+comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stoptable
 specifier|private
 name|Hashtable
@@ -614,7 +618,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
+comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|excltable
 specifier|private
 name|Hashtable
@@ -624,7 +628,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Builds an analyzer. 	 */
+comment|/**    * Builds an analyzer.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -640,7 +644,7 @@ name|FRENCH_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -660,7 +664,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -674,7 +678,7 @@ operator|=
 name|stopwords
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -693,7 +697,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from an array of Strings. 	 */
+comment|/**    * Builds an exclusionlist from an array of Strings.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -714,7 +718,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from a Hashtable. 	 */
+comment|/**    * Builds an exclusionlist from a Hashtable.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -729,7 +733,7 @@ operator|=
 name|exclusionlist
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from the words contained in the given file. 	 */
+comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -749,7 +753,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter 	 */
+comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return  A TokenStream build from a StandardTokenizer filtered with    * 			StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -763,6 +767,32 @@ name|Reader
 name|reader
 parameter_list|)
 block|{
+if|if
+condition|(
+name|fieldName
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"fieldName must not be null"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|reader
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"reader must not be null"
+argument_list|)
+throw|;
 name|TokenStream
 name|result
 init|=
