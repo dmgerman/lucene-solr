@@ -512,6 +512,13 @@ comment|// If this term is introduced by AND, make the preceding term required,
 comment|// unless it's already prohibited
 if|if
 condition|(
+name|clauses
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+operator|&&
 name|conj
 operator|==
 name|CONJ_AND
@@ -557,6 +564,13 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|clauses
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+operator|&&
 name|operator
 operator|==
 name|DEFAULT_OPERATOR_AND
