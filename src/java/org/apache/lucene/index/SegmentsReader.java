@@ -492,6 +492,10 @@ operator|.
 name|undeleteAll
 argument_list|()
 expr_stmt|;
+name|hasDeletions
+operator|=
+literal|false
+expr_stmt|;
 block|}
 DECL|method|readerIndex
 specifier|private
