@@ -74,6 +74,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldCache
+operator|.
+name|StringIndex
+import|;
+end_import
+
+begin_comment
+comment|// required by GCJ
+end_comment
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
