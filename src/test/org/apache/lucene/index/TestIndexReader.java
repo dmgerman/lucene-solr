@@ -358,7 +358,8 @@ literal|5
 operator|*
 name|writer
 operator|.
-name|mergeFactor
+name|getMergeFactor
+argument_list|()
 condition|;
 name|i
 operator|++
@@ -384,7 +385,8 @@ literal|5
 operator|*
 name|writer
 operator|.
-name|mergeFactor
+name|getMergeFactor
+argument_list|()
 condition|;
 name|i
 operator|++
