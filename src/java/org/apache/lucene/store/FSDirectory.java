@@ -153,8 +153,9 @@ name|Constants
 operator|.
 name|JAVA_1_1
 decl_stmt|;
+comment|/**    * Directory specified by<code>org.apache.lucene.lockdir</code>    * or<code>java.io.tmpdir</code> system property    */
 DECL|field|LOCK_DIR
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
