@@ -145,6 +145,12 @@ name|directory
 operator|=
 name|directory
 expr_stmt|;
+name|segmentInfosAge
+operator|=
+name|Long
+operator|.
+name|MAX_VALUE
+expr_stmt|;
 block|}
 DECL|field|directory
 name|Directory
@@ -154,6 +160,12 @@ DECL|field|writeLock
 specifier|private
 name|Lock
 name|writeLock
+decl_stmt|;
+comment|//used to determine whether index has chaged since reader was opened
+DECL|field|segmentInfosAge
+specifier|private
+name|long
+name|segmentInfosAge
 decl_stmt|;
 comment|/** Returns an IndexReader reading the index in an FSDirectory in the named   path. */
 DECL|method|open
@@ -257,6 +269,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|IndexReader
+name|result
+init|=
+literal|null
+decl_stmt|;
 name|SegmentInfos
 name|infos
 init|=
@@ -280,8 +297,10 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 comment|// index is optimized
-return|return
+name|result
+operator|=
 operator|new
 name|SegmentReader
 argument_list|(
@@ -294,7 +313,10 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|)
-return|;
+expr_stmt|;
+block|}
+else|else
+block|{
 name|SegmentReader
 index|[]
 name|readers
@@ -350,7 +372,8 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-return|return
+name|result
+operator|=
 operator|new
 name|SegmentsReader
 argument_list|(
@@ -358,6 +381,19 @@ name|directory
 argument_list|,
 name|readers
 argument_list|)
+expr_stmt|;
+block|}
+name|result
+operator|.
+name|segmentInfosAge
+operator|=
+name|lastModified
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 block|}
@@ -640,7 +676,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number     and frequency of the term in that document, a list of all of the ordinal     positions of the term in the document is available.  Thus, this method     implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ... 	  pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is     greater than all that precede it in the enumeration.   */
+comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number     and frequency of the term in that document, a list of all of the ordinal     positions of the term in the document is available.  Thus, this method     implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...           pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is     greater than all that precede it in the enumeration.   */
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -738,6 +774,39 @@ name|writeLock
 operator|=
 name|writeLock
 expr_stmt|;
+comment|// we have to check whether index has changed since this reader was opened.
+comment|// if so, this reader is no longer valid for deletion
+if|if
+condition|(
+name|lastModified
+argument_list|(
+name|directory
+argument_list|)
+operator|>
+name|segmentInfosAge
+condition|)
+block|{
+name|this
+operator|.
+name|writeLock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|writeLock
+operator|=
+literal|null
+expr_stmt|;
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"IndexReader out of date and no longer valid for deletion"
+argument_list|)
+throw|;
+block|}
 block|}
 name|doDelete
 argument_list|(
