@@ -1016,6 +1016,8 @@ name|getBestFragment
 argument_list|(
 name|analyzer
 argument_list|,
+name|FIELD_NAME
+argument_list|,
 name|text
 argument_list|)
 expr_stmt|;

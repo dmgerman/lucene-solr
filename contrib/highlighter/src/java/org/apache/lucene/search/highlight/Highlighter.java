@@ -228,7 +228,7 @@ operator|=
 name|fragmentScorer
 expr_stmt|;
 block|}
-comment|/** 	 * Highlights chosen terms in a text, extracting the most relevant section. 	 * This is a convenience method that calls 	 * {@link #getBestFragment(TokenStream, String)} 	 * 	 * @param analyzer   the analyzer that will be used to split<code>text</code> 	 * into chunks   	 * @param text text to highlight terms in 	 * 	 * @return highlighted text fragment or null if no terms found 	 */
+comment|/** 	 * Highlights chosen terms in a text, extracting the most relevant section. 	 * This is a convenience method that calls 	 * {@link #getBestFragment(TokenStream, String)} 	 * 	 * @param analyzer   the analyzer that will be used to split<code>text</code> 	 * into chunks   	 * @param text text to highlight terms in 	 * @param fieldName Name of field used to influence analyzer's tokenization policy  	 * 	 * @return highlighted text fragment or null if no terms found 	 */
 DECL|method|getBestFragment
 specifier|public
 specifier|final
@@ -237,6 +237,9 @@ name|getBestFragment
 parameter_list|(
 name|Analyzer
 name|analyzer
+parameter_list|,
+name|String
+name|fieldName
 parameter_list|,
 name|String
 name|text
@@ -251,7 +254,7 @@ name|analyzer
 operator|.
 name|tokenStream
 argument_list|(
-literal|"field"
+name|fieldName
 argument_list|,
 operator|new
 name|StringReader
