@@ -86,7 +86,7 @@ specifier|private
 name|int
 name|prefixLength
 decl_stmt|;
-comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    * If a<code>prefixLength</code>&gt; 0 is specified, a common prefix    * of that length is also required.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>.    * @param prefixLength length of common prefix.    * @throws IllegalArgumentException if minimumSimilarity is&gt; 1 or&lt; 0    * or if prefixLength&lt; 0 or&gt;<code>term.text().length()</code>.    */
+comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    * If a<code>prefixLength</code>&gt; 0 is specified, a common prefix    * of that length is also required.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>    * @param prefixLength length of common (non-fuzzy) prefix    * @throws IllegalArgumentException if minimumSimilarity is&gt; 1 or&lt; 0    * or if prefixLength&lt; 0 or&gt;<code>term.text().length()</code>.    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery
@@ -223,6 +223,28 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Returns the minimum similarity that is required for this query to match.    * @return float value between 0.0 and 1.0    */
+DECL|method|getMinSimilarity
+specifier|public
+name|float
+name|getMinSimilarity
+parameter_list|()
+block|{
+return|return
+name|minimumSimilarity
+return|;
+block|}
+comment|/**    * Returns the prefix length, i.e. the number of characters at the start    * of a term that must be identical (not fuzzy) to the query term if the query    * is to match that term.     */
+DECL|method|getPrefixLength
+specifier|public
+name|int
+name|getPrefixLength
+parameter_list|()
+block|{
+return|return
+name|prefixLength
+return|;
 block|}
 DECL|method|getEnum
 specifier|protected
