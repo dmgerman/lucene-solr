@@ -147,8 +147,6 @@ parameter_list|(
 name|SegmentReader
 name|parent
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

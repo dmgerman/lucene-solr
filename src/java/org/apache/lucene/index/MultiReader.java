@@ -214,8 +214,6 @@ name|IndexReader
 index|[]
 name|subReaders
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -241,8 +239,6 @@ name|IndexReader
 index|[]
 name|subReaders
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

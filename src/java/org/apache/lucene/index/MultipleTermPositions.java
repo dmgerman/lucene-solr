@@ -606,15 +606,13 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Describe<code>nextPosition</code> method here.      *      * @return an<code>int</code> value      * @exception IOException if an error occurs      * @see TermPositions#nextPosition()      */
+comment|/**      * Describe<code>nextPosition</code> method here.      *      * @return an<code>int</code> value      * @see TermPositions#nextPosition()      */
 DECL|method|nextPosition
 specifier|public
 specifier|final
 name|int
 name|nextPosition
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|_posList
