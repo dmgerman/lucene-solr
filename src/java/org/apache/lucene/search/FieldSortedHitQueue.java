@@ -410,6 +410,22 @@ name|docB
 argument_list|)
 expr_stmt|;
 block|}
+comment|// avoid random sort order that could lead to duplicates (bug #31241):
+if|if
+condition|(
+name|c
+operator|==
+literal|0
+condition|)
+return|return
+name|docA
+operator|.
+name|doc
+operator|>
+name|docB
+operator|.
+name|doc
+return|;
 return|return
 name|c
 operator|>
