@@ -454,8 +454,6 @@ operator|.
 name|YES
 argument_list|)
 decl_stmt|;
-comment|//  public static Set fieldNamesSet = null;
-comment|//  public static Set fieldValuesSet = null;
 DECL|field|nameValues
 specifier|public
 specifier|static
@@ -805,10 +803,6 @@ return|;
 block|}
 block|}
 end_class
-
-begin_comment
-comment|/*     fieldNamesSet = new HashSet();     fieldNamesSet.add(TEXT_FIELD_1_KEY);     fieldNamesSet.add(TEXT_FIELD_2_KEY);     fieldNamesSet.add(KEYWORD_FIELD_KEY);     fieldNamesSet.add(UNINDEXED_FIELD_KEY);     fieldNamesSet.add(UNSTORED_FIELD_1_KEY);     fieldNamesSet.add(UNSTORED_FIELD_2_KEY);     fieldValuesSet = new HashSet();     fieldValuesSet.add(FIELD_1_TEXT);     fieldValuesSet.add(FIELD_2_TEXT);     fieldValuesSet.add(KEYWORD_TEXT);     fieldValuesSet.add(UNINDEXED_FIELD_TEXT);     fieldValuesSet.add(UNSTORED_1_FIELD_TEXT);     fieldValuesSet.add(UNSTORED_2_FIELD_TEXT); */
-end_comment
 
 end_unit
 
