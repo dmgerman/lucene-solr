@@ -68,7 +68,19 @@ specifier|static
 name|int
 name|maxClauseCount
 init|=
-literal|1024
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"org.apache.lucene.maxClauseCount"
+argument_list|,
+literal|"1024"
+argument_list|)
+argument_list|)
 decl_stmt|;
 comment|/** Thrown when an attempt is made to add more than {@link    * #getMaxClauseCount()} clauses. */
 DECL|class|TooManyClauses

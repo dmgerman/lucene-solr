@@ -59,6 +59,27 @@ name|LOCK_POLL_INTERVAL
 init|=
 literal|1000
 decl_stmt|;
+DECL|field|LOCK_DIR
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|LOCK_DIR
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"org.apache.lucene.lockdir"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.io.tmpdir"
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|/** Attempts to obtain exclusive access and immediately return    *  upon success or failure.    * @return true iff exclusive access is obtained    */
 DECL|method|obtain
 specifier|public
