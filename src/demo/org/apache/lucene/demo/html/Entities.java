@@ -215,9 +215,9 @@ return|;
 block|}
 block|}
 DECL|method|encode
+specifier|public
 specifier|static
 specifier|final
-specifier|public
 name|String
 name|encode
 parameter_list|(

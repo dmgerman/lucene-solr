@@ -55,11 +55,11 @@ specifier|final
 class|class
 name|Tags
 block|{
-comment|/**    * contains all tags for which whitespaces have to be inserted for proper tokenization     */
+comment|/**    * contains all tags for which whitespaces have to be inserted for proper tokenization    */
 DECL|field|WS_ELEMS
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|Set
 name|WS_ELEMS
 init|=
