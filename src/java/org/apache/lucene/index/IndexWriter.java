@@ -1142,6 +1142,8 @@ name|makeLock
 argument_list|(
 literal|"commit.lock"
 argument_list|)
+argument_list|,
+name|COMMIT_LOCK_TIMEOUT
 argument_list|)
 block|{
 specifier|public
