@@ -162,6 +162,18 @@ operator|=
 name|maxDoc
 expr_stmt|;
 block|}
+comment|/** Return the array of {@link Searchable}s this searches. */
+DECL|method|getSearchables
+specifier|public
+name|Searchable
+index|[]
+name|getSearchables
+parameter_list|()
+block|{
+return|return
+name|searchables
+return|;
+block|}
 DECL|method|getStarts
 specifier|protected
 name|int

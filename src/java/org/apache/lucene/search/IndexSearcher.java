@@ -200,6 +200,17 @@ operator|=
 name|closeReader
 expr_stmt|;
 block|}
+comment|/** Return the {@link IndexReader} this searches. */
+DECL|method|getIndexReader
+specifier|public
+name|IndexReader
+name|getIndexReader
+parameter_list|()
+block|{
+return|return
+name|reader
+return|;
+block|}
 comment|/**    * Note that the underlying IndexReader is not closed, if    * IndexSearcher was constructed with IndexSearcher(IndexReader r).    * If the IndexReader was supplied implicitly by specifying a directory, then    * the IndexReader gets closed.    */
 DECL|method|close
 specifier|public
