@@ -377,17 +377,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-specifier|final
-name|float
-index|[]
-name|scores
-init|=
-operator|new
-name|float
-index|[
-literal|4
-index|]
-decl_stmt|;
 name|Searcher
 name|searcher
 init|=
