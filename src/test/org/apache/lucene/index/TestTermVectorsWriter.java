@@ -433,8 +433,6 @@ parameter_list|,
 name|String
 name|field
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|TermFreqVector
 name|vector
@@ -738,7 +736,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param writer The writer to write to    * @param j The field number    * @throws IOException    */
+comment|/**    *     * @param writer The writer to write to    * @param f The field name    * @throws IOException    */
 DECL|method|writeField
 specifier|private
 name|void
