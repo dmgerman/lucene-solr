@@ -270,14 +270,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-name|String
-name|parentNodeName
-init|=
-name|parentNode
-operator|.
-name|getNodeName
-argument_list|()
-decl_stmt|;
+comment|//		    String parentNodeName = parentNode.getNodeName();
 comment|// 		    String nodeValue = node.getNodeValue();
 comment|// 		    if (parentNodeName.equals("name"))
 comment|// 		    {
