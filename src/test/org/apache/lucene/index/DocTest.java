@@ -124,15 +124,9 @@ name|File
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
+begin_comment
+comment|// FIXME: OG: remove hard-coded file names
+end_comment
 
 begin_class
 DECL|class|DocTest

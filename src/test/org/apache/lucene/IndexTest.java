@@ -50,34 +50,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|TermPositions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|demo
 operator|.
 name|FileDocument
@@ -129,6 +101,7 @@ operator|new
 name|Date
 argument_list|()
 decl_stmt|;
+comment|// FIXME: OG: what's with this hard-coded dirs??
 name|IndexWriter
 name|writer
 init|=
@@ -150,6 +123,7 @@ name|mergeFactor
 operator|=
 literal|20
 expr_stmt|;
+comment|// FIXME: OG: what's with this hard-coded dirs??
 name|indexDocs
 argument_list|(
 name|writer

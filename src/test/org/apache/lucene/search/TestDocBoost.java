@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -41,34 +51,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Hits
 import|;
 end_import
 
@@ -142,18 +124,8 @@ name|Field
 import|;
 end_import
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
 begin_comment
-comment|/** Document boost unit test.   *   * @author Doug Cutting   * @version $Revision$   */
+comment|/** Document boost unit test.  *  * @author Doug Cutting  * @version $Revision$  */
 end_comment
 
 begin_class
