@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|GCJDirectory
+name|GCJIndexInput
 import|;
 end_import
 
@@ -59,20 +59,12 @@ name|IOException
 block|{
 if|if
 condition|(
-name|directory
-argument_list|()
+name|freqStream
 operator|instanceof
-name|GCJDirectory
-comment|// it's a GCJ directory
-operator|&&
-name|this
-operator|.
-name|cfsReader
-operator|==
-literal|null
+name|GCJIndexInput
 condition|)
 block|{
-comment|//& not in compound format
+comment|// it's a GCJIndexInput
 return|return
 operator|new
 name|GCJTermDocs
