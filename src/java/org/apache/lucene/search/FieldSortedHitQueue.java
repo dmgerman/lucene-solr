@@ -92,18 +92,6 @@ name|Hashtable
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
 begin_comment
 comment|/**  * Expert: Base class for collecting results from a search and sorting  * them by terms in a given field in each document.  *  *<p>When one of these objects is created, a TermEnumerator is  * created to fetch all the terms in the index for the given field.  * The value of each term is assumed to represent a  * sort position.  Each document is assumed to contain one of the  * terms, indicating where in the sort it belongs.  *  *<p><h3>Memory Usage</h3>  *  *<p>A static cache is maintained.  This cache contains an integer  * or float array of length<code>IndexReader.maxDoc()</code> for each field  * name for which a sort is performed.  In other words, the size of the  * cache in bytes is:  *  *<p><code>4 * IndexReader.maxDoc() * (# of different fields actually used to sort)</code>  *  *<p>For String fields, the cache is larger: in addition to the  * above array, the value of every term in the field is kept in memory.  * If there are many unique terms in the field, this could   * be quite large.  *  *<p>Note that the size of the cache is not affected by how many  * fields are in the index and<i>might</i> be used to sort - only by  * the ones actually used to sort a result set.  *  *<p>The cache is cleared each time a new<code>IndexReader</code> is  * passed in, or if the value returned by<code>maxDoc()</code>  * changes for the current IndexReader.  This class is not set up to  * be able to efficiently sort hits from more than one index  * simultaneously.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
 end_comment
@@ -136,35 +124,9 @@ name|Hashtable
 argument_list|()
 decl_stmt|;
 comment|/** The pattern used to detect integer values in a field */
-DECL|field|pIntegers
-specifier|protected
-specifier|static
-specifier|final
-name|Pattern
-name|pIntegers
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|"[0-9\\-]+"
-argument_list|)
-decl_stmt|;
+comment|/** removed for java 1.3 compatibility 		protected static final Pattern pIntegers = Pattern.compile ("[0-9\\-]+"); 	**/
 comment|/** The pattern used to detect float values in a field */
-DECL|field|pFloats
-specifier|protected
-specifier|static
-specifier|final
-name|Pattern
-name|pFloats
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|"[0-9+\\-\\.eEfFdD]+"
-argument_list|)
-decl_stmt|;
+comment|/** removed for java 1.3 compatibility 		protected static final Object pFloats = Pattern.compile ("[0-9+\\-\\.eEfFdD]+"); 	**/
 comment|/** 	 * Returns a comparator for the given field.  If there is already one in the cache, it is returned. 	 * Otherwise one is created and put into the cache.  If<code>reader</code> is different than the 	 * one used for the current cache, or has changed size, the cache is cleared first. 	 * @param reader  Index to use. 	 * @param field   Field to sort by. 	 * @return  Comparator; never<code>null</code>. 	 * @throws IOException  If an error occurs reading the index. 	 * @see #determineComparator 	 */
 DECL|method|getCachedComparator
 specifier|static
@@ -541,18 +503,17 @@ operator|.
 name|trim
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|pIntegers
+comment|/** 				 * Java 1.4 level code:  				if (pIntegers.matcher(termtext).matches()) 					return IntegerSortedHitQueue.comparator (reader, enumerator, field);  				else if (pFloats.matcher(termtext).matches()) 					return FloatSortedHitQueue.comparator (reader, enumerator, field); 				 */
+comment|// Java 1.3 level code:
+try|try
+block|{
+name|Integer
 operator|.
-name|matcher
+name|parseInt
 argument_list|(
 name|termtext
 argument_list|)
-operator|.
-name|matches
-argument_list|()
-condition|)
+expr_stmt|;
 return|return
 name|IntegerSortedHitQueue
 operator|.
@@ -565,19 +526,24 @@ argument_list|,
 name|field
 argument_list|)
 return|;
-elseif|else
-if|if
-condition|(
-name|pFloats
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|nfe
+parameter_list|)
+block|{
+comment|// nothing
+block|}
+try|try
+block|{
+name|Float
 operator|.
-name|matcher
+name|parseFloat
 argument_list|(
 name|termtext
 argument_list|)
-operator|.
-name|matches
-argument_list|()
-condition|)
+expr_stmt|;
 return|return
 name|FloatSortedHitQueue
 operator|.
@@ -590,6 +556,15 @@ argument_list|,
 name|field
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|nfe
+parameter_list|)
+block|{
+comment|// nothing
+block|}
 return|return
 name|StringSortedHitQueue
 operator|.
