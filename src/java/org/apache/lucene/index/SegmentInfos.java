@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
 import|;
 end_import
 
@@ -146,12 +146,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InputStream
+name|IndexInput
 name|input
 init|=
 name|directory
 operator|.
-name|openFile
+name|openInput
 argument_list|(
 literal|"segments"
 argument_list|)
@@ -449,12 +449,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InputStream
+name|IndexInput
 name|input
 init|=
 name|directory
 operator|.
-name|openFile
+name|openInput
 argument_list|(
 literal|"segments"
 argument_list|)

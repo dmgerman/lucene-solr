@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|BufferedIndexInput
 import|;
 end_import
 
@@ -41,12 +41,12 @@ import|;
 end_import
 
 begin_class
-DECL|class|MockInputStream
+DECL|class|MockIndexInput
 specifier|public
 class|class
-name|MockInputStream
+name|MockIndexInput
 extends|extends
-name|InputStream
+name|BufferedIndexInput
 block|{
 DECL|field|buffer
 specifier|private
@@ -61,9 +61,14 @@ name|pointer
 init|=
 literal|0
 decl_stmt|;
-DECL|method|MockInputStream
+DECL|field|length
+specifier|private
+name|long
+name|length
+decl_stmt|;
+DECL|method|MockIndexInput
 specifier|public
-name|MockInputStream
+name|MockIndexInput
 parameter_list|(
 name|byte
 index|[]
@@ -207,6 +212,16 @@ name|int
 operator|)
 name|pos
 expr_stmt|;
+block|}
+DECL|method|length
+specifier|public
+name|long
+name|length
+parameter_list|()
+block|{
+return|return
+name|length
+return|;
 block|}
 block|}
 end_class

@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|Cloneable
 block|{
 DECL|field|input
 specifier|private
-name|InputStream
+name|IndexInput
 name|input
 decl_stmt|;
 DECL|field|fieldInfos
@@ -138,7 +138,7 @@ decl_stmt|;
 DECL|method|SegmentTermEnum
 name|SegmentTermEnum
 parameter_list|(
-name|InputStream
+name|IndexInput
 name|i
 parameter_list|,
 name|FieldInfos
@@ -324,7 +324,7 @@ operator|.
 name|input
 operator|=
 operator|(
-name|InputStream
+name|IndexInput
 operator|)
 name|input
 operator|.

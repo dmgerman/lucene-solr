@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
 import|;
 end_import
 
@@ -68,7 +68,7 @@ name|parent
 decl_stmt|;
 DECL|field|freqStream
 specifier|private
-name|InputStream
+name|IndexInput
 name|freqStream
 decl_stmt|;
 DECL|field|count
@@ -113,7 +113,7 @@ name|skipCount
 decl_stmt|;
 DECL|field|skipStream
 specifier|private
-name|InputStream
+name|IndexInput
 name|skipStream
 decl_stmt|;
 DECL|field|skipDoc
@@ -159,7 +159,7 @@ operator|.
 name|freqStream
 operator|=
 operator|(
-name|InputStream
+name|IndexInput
 operator|)
 name|parent
 operator|.
@@ -681,7 +681,7 @@ condition|)
 name|skipStream
 operator|=
 operator|(
-name|InputStream
+name|IndexInput
 operator|)
 name|freqStream
 operator|.

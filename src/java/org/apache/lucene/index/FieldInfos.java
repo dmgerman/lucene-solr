@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
 import|;
 end_import
 
@@ -146,7 +146,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * InputStream    * @param d The directory to open the InputStream from    * @param name The name of the file to open the InputStream from in the Directory    * @throws IOException    */
+comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * IndexInput    * @param d The directory to open the IndexInput from    * @param name The name of the file to open the IndexInput from in the Directory    * @throws IOException    */
 DECL|method|FieldInfos
 name|FieldInfos
 parameter_list|(
@@ -159,12 +159,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InputStream
+name|IndexInput
 name|input
 init|=
 name|d
 operator|.
-name|openFile
+name|openInput
 argument_list|(
 name|name
 argument_list|)
@@ -774,7 +774,7 @@ specifier|private
 name|void
 name|read
 parameter_list|(
-name|InputStream
+name|IndexInput
 name|input
 parameter_list|)
 throws|throws

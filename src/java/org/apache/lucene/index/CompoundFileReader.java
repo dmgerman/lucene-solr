@@ -40,7 +40,21 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|BufferedIndexInput
 import|;
 end_import
 
@@ -132,7 +146,7 @@ name|fileName
 decl_stmt|;
 DECL|field|stream
 specifier|private
-name|InputStream
+name|IndexInput
 name|stream
 decl_stmt|;
 DECL|field|entries
@@ -176,7 +190,7 @@ name|stream
 operator|=
 name|dir
 operator|.
-name|openFile
+name|openInput
 argument_list|(
 name|name
 argument_list|)
@@ -382,11 +396,11 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-DECL|method|openFile
+DECL|method|openInput
 specifier|public
 specifier|synchronized
-name|InputStream
-name|openFile
+name|IndexInput
+name|openInput
 parameter_list|(
 name|String
 name|id
@@ -439,7 +453,7 @@ argument_list|)
 throw|;
 return|return
 operator|new
-name|CSInputStream
+name|CSIndexInput
 argument_list|(
 name|stream
 argument_list|,
@@ -665,28 +679,32 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Implementation of an InputStream that reads from a portion of the      *  compound file. The visibility is left as "package" *only* because      *  this helps with testing since JUnit test cases in a different class      *  can then access package fields of this class.      */
-DECL|class|CSInputStream
+comment|/** Implementation of an IndexInput that reads from a portion of the      *  compound file. The visibility is left as "package" *only* because      *  this helps with testing since JUnit test cases in a different class      *  can then access package fields of this class.      */
+DECL|class|CSIndexInput
 specifier|static
 specifier|final
 class|class
-name|CSInputStream
+name|CSIndexInput
 extends|extends
-name|InputStream
+name|BufferedIndexInput
 block|{
 DECL|field|base
-name|InputStream
+name|IndexInput
 name|base
 decl_stmt|;
 DECL|field|fileOffset
 name|long
 name|fileOffset
 decl_stmt|;
-DECL|method|CSInputStream
-name|CSInputStream
+DECL|field|length
+name|long
+name|length
+decl_stmt|;
+DECL|method|CSIndexInput
+name|CSIndexInput
 parameter_list|(
 specifier|final
-name|InputStream
+name|IndexInput
 name|base
 parameter_list|,
 specifier|final
@@ -716,7 +734,6 @@ name|length
 operator|=
 name|length
 expr_stmt|;
-comment|// variable in the superclass
 block|}
 comment|/** Expert: implements buffer refill.  Reads bytes from the current          *  position in the input.          * @param b the array to read bytes into          * @param offset the offset in the array to start storing bytes          * @param len the number of bytes to read          */
 DECL|method|readInternal
@@ -802,6 +819,16 @@ name|void
 name|close
 parameter_list|()
 block|{}
+DECL|method|length
+specifier|public
+name|long
+name|length
+parameter_list|()
+block|{
+return|return
+name|length
+return|;
+block|}
 block|}
 block|}
 end_class

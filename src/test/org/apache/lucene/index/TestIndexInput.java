@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
 import|;
 end_import
 
@@ -51,10 +51,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestInputStream
+DECL|class|TestIndexInput
 specifier|public
 class|class
-name|TestInputStream
+name|TestIndexInput
 extends|extends
 name|TestCase
 block|{
@@ -66,11 +66,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|InputStream
+name|IndexInput
 name|is
 init|=
 operator|new
-name|MockInputStream
+name|MockIndexInput
 argument_list|(
 operator|new
 name|byte

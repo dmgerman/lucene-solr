@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|InputStream
+name|IndexInput
 import|;
 end_import
 
@@ -603,7 +603,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InputStream
+name|IndexInput
 name|is
 init|=
 literal|null
@@ -622,7 +622,7 @@ name|is
 operator|=
 name|directory
 operator|.
-name|openFile
+name|openInput
 argument_list|(
 name|source
 operator|.

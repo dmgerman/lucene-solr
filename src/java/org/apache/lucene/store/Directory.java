@@ -142,10 +142,9 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a stream reading an existing file. */
+comment|/** @deprecated use {@link openInput(String)}. */
 DECL|method|openFile
 specifier|public
-specifier|abstract
 name|InputStream
 name|openFile
 parameter_list|(
@@ -154,7 +153,41 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|{
+return|return
+operator|(
+name|InputStream
+operator|)
+name|openInput
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
+comment|/** Returns a stream reading an existing file. */
+DECL|method|openInput
+specifier|public
+name|IndexInput
+name|openInput
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// default implementation for back compatibility
+comment|// this method should be abstract
+return|return
+operator|(
+name|IndexInput
+operator|)
+name|openFile
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
 DECL|method|makeLock
 specifier|public
