@@ -257,6 +257,40 @@ specifier|private
 name|Lock
 name|writeLock
 decl_stmt|;
+comment|/** Use compound file setting. Defaults to false to maintain multiple files     *  per segment behavior.    */
+DECL|field|useCompoundFile
+specifier|private
+name|boolean
+name|useCompoundFile
+init|=
+literal|false
+decl_stmt|;
+comment|/** Setting to turn on usage of a compound file. When on, multiple files    *  for each segment are merged into a single file once the segment creation    *  is finished. This is done regardless of what directory is in use.    */
+DECL|method|getUseCompoundFile
+specifier|public
+name|boolean
+name|getUseCompoundFile
+parameter_list|()
+block|{
+return|return
+name|useCompoundFile
+return|;
+block|}
+comment|/** Setting to turn on usage of a compound file. When on, multiple files    *  for each segment are merged into a single file once the segment creation    *  is finished. This is done regardless of what directory is in use.    */
+DECL|method|setUseCompoundFile
+specifier|public
+name|void
+name|setUseCompoundFile
+parameter_list|(
+name|boolean
+name|value
+parameter_list|)
+block|{
+name|useCompoundFile
+operator|=
+name|value
+expr_stmt|;
+block|}
 comment|/** Expert: Set the Similarity implementation used by this IndexWriter.    *    * @see Similarity#setDefault(Similarity)    */
 DECL|method|setSimilarity
 specifier|public
@@ -794,6 +828,23 @@ literal|0
 argument_list|)
 argument_list|)
 operator|||
+operator|(
+name|useCompoundFile
+operator|&&
+operator|!
+name|SegmentReader
+operator|.
+name|usesCompoundFile
+argument_list|(
+name|segmentInfos
+operator|.
+name|info
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+operator|)
+operator|||
 name|segmentInfos
 operator|.
 name|info
@@ -1182,6 +1233,8 @@ argument_list|(
 name|directory
 argument_list|,
 name|mergedName
+argument_list|,
+name|useCompoundFile
 argument_list|)
 decl_stmt|;
 specifier|final
