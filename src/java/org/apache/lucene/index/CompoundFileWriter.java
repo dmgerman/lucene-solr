@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Combines multiple files into a single compound file.  * The file format:<br>  *<ul>  *<li>VInt fileCount</li>  *<li>{Directory}  *         fileCount entries with the following structure:</li>  *<ul>  *<li>long dataOffset</li>  *<li>UTFString extension</li>  *</ul>  *<li>{File Data}  *         fileCount entries with the raw data of the corresponding file</li>  *</ul>  *  * The fileCount integer indicates how many files are contained in this compound  * file. The {directory} that follows has that many entries. Each directory entry  * contains an encoding identifier, an long pointer to the start of this file's  * data section, and a UTF String with that file's extension.  *  * @author Dmitry Serebrennikov  * @version $Id$  */
+comment|/**  * Combines multiple files into a single compound file.  * The file format:<br>  *<ul>  *<li>VInt fileCount</li>  *<li>{Directory}  *         fileCount entries with the following structure:</li>  *<ul>  *<li>long dataOffset</li>  *<li>UTFString extension</li>  *</ul>  *<li>{File Data}  *         fileCount entries with the raw data of the corresponding file</li>  *</ul>  *  * The fileCount integer indicates how many files are contained in this compound  * file. The {directory} that follows has that many entries. Each directory entry  * contains an encoding identifier, a long pointer to the start of this file's  * data section, and a UTF String with that file's extension.  *  * @author Dmitry Serebrennikov  * @version $Id$  */
 end_comment
 
 begin_class
@@ -158,7 +158,7 @@ name|merged
 init|=
 literal|false
 decl_stmt|;
-comment|/** Create the compound stream in the specified file. The file name is the      *  entire name (no extensions are added).      */
+comment|/** Create the compound stream in the specified file. The file name is the      *  entire name (no extensions are added).      *  @throws NullPointerException if<code>dir</code> or<code>name</code> is null      */
 DECL|method|CompoundFileWriter
 specifier|public
 name|CompoundFileWriter
@@ -178,9 +178,9 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|NullPointerException
 argument_list|(
-literal|"Missing directory"
+literal|"directory cannot be null"
 argument_list|)
 throw|;
 if|if
@@ -191,9 +191,9 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|NullPointerException
 argument_list|(
-literal|"Missing name"
+literal|"name cannot be null"
 argument_list|)
 throw|;
 name|directory
@@ -239,7 +239,7 @@ return|return
 name|fileName
 return|;
 block|}
-comment|/** Add a source stream.<code>file</code> is the string by which the       *  sub-stream will be known in the compound stream.      *       *  @throws IllegalStateException if this writer is closed      *  @throws IllegalArgumentException if<code>file</code> is null      *   or if a file with the same name has been added already      */
+comment|/** Add a source stream.<code>file</code> is the string by which the       *  sub-stream will be known in the compound stream.      *       *  @throws IllegalStateException if this writer is closed      *  @throws NullPointerException if<code>file</code> is null      *  @throws IllegalArgumentException if a file with the same name      *   has been added already      */
 DECL|method|addFile
 specifier|public
 name|void
@@ -268,9 +268,9 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|NullPointerException
 argument_list|(
-literal|"Missing source file"
+literal|"file cannot be null"
 argument_list|)
 throw|;
 if|if
@@ -315,7 +315,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Merge files with the extensions added up to now.      *  All files with these extensions are combined sequentially into the      *  compound stream. After successful merge, the source files      *  are deleted.      */
+comment|/** Merge files with the extensions added up to now.      *  All files with these extensions are combined sequentially into the      *  compound stream. After successful merge, the source files      *  are deleted.      *  @throws IllegalStateException if close() had been called before or      *   if no file has been added to this object      */
 DECL|method|close
 specifier|public
 name|void
