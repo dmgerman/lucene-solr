@@ -257,7 +257,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"All documents in /Computers category"
+literal|"All documents in /Computers category and below"
 argument_list|,
 literal|3
 argument_list|,
