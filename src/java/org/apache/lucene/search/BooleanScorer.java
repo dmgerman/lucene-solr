@@ -851,7 +851,7 @@ name|SIZE
 init|=
 literal|1
 operator|<<
-literal|8
+literal|11
 decl_stmt|;
 DECL|field|MASK
 specifier|public
