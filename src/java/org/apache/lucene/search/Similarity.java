@@ -76,24 +76,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Field
@@ -105,7 +87,7 @@ comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/** Expert: Scoring API.  *<p>Subclasses implement search scoring.  *  *<p>The score of query<code>q</code> for document<code>d</code> is defined  * in terms of these methods as follows:  *  *<table cellpadding="0" cellspacing="0" border="0">  *<tr>  *<td valign="middle" align="right" rowspan="2">score(q,d) =<br></td>  *<td valign="middle" align="center">  *<big><big><big><big><big>&Sigma;</big></big></big></big></big></td>  *<td valign="middle"><small>  *    {@link #tf(int) tf}(t in d) *  *    {@link #idf(Term,Searcher) idf}(t) *  *    {@link Field#getBoost getBoost}(t.field in d) *  *    {@link #lengthNorm(String,int) lengthNorm}(t.field in d)  *</small></td>  *<td valign="middle" rowspan="2">&nbsp;*  *    {@link #coord(int,int) coord}(q,d) *  *    {@link #queryNorm(float) queryNorm}(q)  *</td>  *</tr>  *<tr>   *<td valign="top" align="right">  *<small>t in q</small>  *</td>  *</tr>  *</table>  *  * @see #setDefault(Similarity)  * @see IndexWriter#setSimilarity(Similarity)  * @see Searcher#setSimilarity(Similarity)  */
+comment|/** Expert: Scoring API.  *<p>Subclasses implement search scoring.  *  *<p>The score of query<code>q</code> for document<code>d</code> is defined  * in terms of these methods as follows:  *  *<table cellpadding="0" cellspacing="0" border="0">  *<tr>  *<td valign="middle" align="right" rowspan="2">score(q,d) =<br></td>  *<td valign="middle" align="center">  *<big><big><big><big><big>&Sigma;</big></big></big></big></big></td>  *<td valign="middle"><small>  *    {@link #tf(int) tf}(t in d) *  *    {@link #idf(Term,Searcher) idf}(t) *  *    {@link Field#getBoost getBoost}(t.field in d) *  *    {@link #lengthNorm(String,int) lengthNorm}(t.field in d)  *</small></td>  *<td valign="middle" rowspan="2">&nbsp;*  *    {@link #coord(int,int) coord}(q,d) *  *    {@link #queryNorm(float) queryNorm}(q)  *</td>  *</tr>  *<tr>  *<td valign="top" align="right">  *<small>t in q</small>  *</td>  *</tr>  *</table>  *  * @see #setDefault(Similarity)  * @see IndexWriter#setSimilarity(Similarity)  * @see Searcher#setSimilarity(Similarity)  */
 end_comment
 
 begin_class
@@ -248,7 +230,7 @@ name|float
 name|sumOfSquaredWeights
 parameter_list|)
 function_decl|;
-comment|/** Encodes a normalization factor for storage in an index.      *    *<p>The encoding uses a five-bit exponent and three-bit mantissa, thus    * representing values from around 7x10^9 to 2x10^-9 with about one    * significant decimal digit of accuracy.  Zero is also represented.    * Negative numbers are rounded up to zero.  Values too large to represent    * are rounded down to the largest representable value.  Positive values too    * small to represent are rounded up to the smallest positive representable    * value.    *    * @see Field#setBoost(float)    */
+comment|/** Encodes a normalization factor for storage in an index.    *    *<p>The encoding uses a five-bit exponent and three-bit mantissa, thus    * representing values from around 7x10^9 to 2x10^-9 with about one    * significant decimal digit of accuracy.  Zero is also represented.    * Negative numbers are rounded up to zero.  Values too large to represent    * are rounded down to the largest representable value.  Positive values too    * small to represent are rounded up to the smallest positive representable    * value.    *    * @see Field#setBoost(float)    */
 DECL|method|encodeNorm
 specifier|public
 specifier|static
@@ -458,7 +440,7 @@ argument_list|)
 return|;
 comment|// pack into a byte
 block|}
-comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(Term, Searcher)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implemenations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    *<p>The default implementation calls {@link #tf(float)}.    *    * @param tf the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
+comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(Term, Searcher)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implementations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    *<p>The default implementation calls {@link #tf(float)}.    *    * @param freq the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
 DECL|method|tf
 specifier|public
 name|float
@@ -478,7 +460,7 @@ name|freq
 argument_list|)
 return|;
 block|}
-comment|/** Computes the amount of a sloppy phrase match, based on an edit distance.    * This value is summed for each sloppy phrase match in a document to form    * the frequency that is passed to {@link #tf(float)}.    *    *<p>A phrase match with a small edit distance to a document passage more    * closely matches the document, so implemenations of this method usually    * return larger values when the edit distance is small and smaller values    * when it is large.    *    * @see PhraseQuery#setSlop(int)    * @param distance the edit distance of this sloppy phrase match    * @return the frequency increment for this match    */
+comment|/** Computes the amount of a sloppy phrase match, based on an edit distance.    * This value is summed for each sloppy phrase match in a document to form    * the frequency that is passed to {@link #tf(float)}.    *    *<p>A phrase match with a small edit distance to a document passage more    * closely matches the document, so implementations of this method usually    * return larger values when the edit distance is small and smaller values    * when it is large.    *    * @see PhraseQuery#setSlop(int)    * @param distance the edit distance of this sloppy phrase match    * @return the frequency increment for this match    */
 DECL|method|sloppyFreq
 specifier|public
 specifier|abstract
@@ -489,7 +471,7 @@ name|int
 name|distance
 parameter_list|)
 function_decl|;
-comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(Term, Searcher)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implemenations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    * @param tf the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
+comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(Term, Searcher)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implemenations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    * @param freq the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
 DECL|method|tf
 specifier|public
 specifier|abstract
