@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encapsulates sort criteria for returned hits.  *  *<p>The fields used to determine sort order must be carefully chosen.  * Documents must contain a single term in such a field,  * and the value of the term should indicate the document's relative position in  * a given sort order.  The field must be indexed, but should not be tokenized,  * and does not need to be stored (unless you happen to want it back with the  * rest of your document data).  In other words:  *  *<dl><dd><code>document.add (new Field ("byNumber", Integer.toString(x), false, true, false));</code>  *</dd></dl>  *  *<p><h3>Valid Types of Values</h3>  *  *<p>There are three possible kinds of term values which may be put into  * sorting fields: Integers, Floats, or Strings.  Unless  * {@link SortField SortField} objects are specified, the type of value  * in the field is determined by using a regular expression against the  * first term in the field.  *  *<p>Integer term values should contain only digits and an optional  * preceeding negative sign.  Values must be base 10 and in the range  *<code>Integer.MIN_VALUE</code> and<code>Integer.MAX_VALUE</code> inclusive.  * Documents which should appear first in the sort  * should have low value integers, later documents high values  * (i.e. the documents should be numbered<code>1..n</code> where  *<code>1</code> is the first and<code>n</code> the last).  *  *<p>Float term values should conform to values accepted by  * {@link Float Float.valueOf(String)} (except that<code>NaN</code>  * and<code>Infinity</code> are not supported).  * Documents which should appear first in the sort  * should have low values, later documents high values.  *  *<p>String term values can contain any valid String, but should  * not be tokenized.  The values are sorted according to their  * {@link Comparable natural order}.  Note that using this type  * of term value has higher memory requirements than the other  * two types - see {@link FieldSortedHitQueue FieldSortedHitQueue}.  *  *<p><h3>Object Reuse</h3>  *  *<p>One of these objects can be  * used multiple times and the sort order changed between usages.  *  *<p>This class is thread safe.  *  *<p><h3>Memory Usage</h3>  *  * See {@link FieldSortedHitQueue FieldSortedHitQueue} for  * information on the memory requirements of sorting hits.  *  *<p>Created: Feb 12, 2004 10:53:57 AM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
+comment|/**  * Encapsulates sort criteria for returned hits.  *  *<p>The fields used to determine sort order must be carefully chosen.  * Documents must contain a single term in such a field,  * and the value of the term should indicate the document's relative position in  * a given sort order.  The field must be indexed, but should not be tokenized,  * and does not need to be stored (unless you happen to want it back with the  * rest of your document data).  In other words:  *  *<dl><dd><code>document.add (new Field ("byNumber", Integer.toString(x), false, true, false));</code>  *</dd></dl>  *  *<p><h3>Valid Types of Values</h3>  *  *<p>There are three possible kinds of term values which may be put into  * sorting fields: Integers, Floats, or Strings.  Unless  * {@link SortField SortField} objects are specified, the type of value  * in the field is determined by using a regular expression against the  * first term in the field.  *  *<p>Integer term values should contain only digits and an optional  * preceeding negative sign.  Values must be base 10 and in the range  *<code>Integer.MIN_VALUE</code> and<code>Integer.MAX_VALUE</code> inclusive.  * Documents which should appear first in the sort  * should have low value integers, later documents high values  * (i.e. the documents should be numbered<code>1..n</code> where  *<code>1</code> is the first and<code>n</code> the last).  *  *<p>Float term values should conform to values accepted by  * {@link Float Float.valueOf(String)} (except that<code>NaN</code>  * and<code>Infinity</code> are not supported).  * Documents which should appear first in the sort  * should have low values, later documents high values.  *  *<p>String term values can contain any valid String, but should  * not be tokenized.  The values are sorted according to their  * {@link Comparable natural order}.  Note that using this type  * of term value has higher memory requirements than the other  * two types - see {@link FieldSortedHitQueue FieldSortedHitQueue}.  *  *<p><h3>Object Reuse</h3>  *  *<p>One of these objects can be  * used multiple times and the sort order changed between usages.  *  *<p>This class is thread safe.  *  *<p><h3>Memory Usage</h3>  *  *<p>Sorting uses of caches of term values maintained by the  * internal HitQueue(s).  The cache is static and contains an integer  * or float array of length<code>IndexReader.maxDoc()</code> for each field  * name for which a sort is performed.  In other words, the size of the  * cache in bytes is:  *  *<p><code>4 * IndexReader.maxDoc() * (# of different fields actually used to sort)</code>  *  *<p>For String fields, the cache is larger: in addition to the  * above array, the value of every term in the field is kept in memory.  * If there are many unique terms in the field, this could  * be quite large.  *  *<p>Note that the size of the cache is not affected by how many  * fields are in the index and<i>might</i> be used to sort - only by  * the ones actually used to sort a result set.  *  *<p>The cache is cleared each time a new<code>IndexReader</code> is  * passed in, or if the value returned by<code>maxDoc()</code>  * changes for the current IndexReader.  This class is not set up to  * be able to efficiently sort hits from more than one index  * simultaneously.  *  *<p>Created: Feb 12, 2004 10:53:57 AM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
 end_comment
 
 begin_class
@@ -38,7 +38,7 @@ name|Sort
 implements|implements
 name|Serializable
 block|{
-comment|/** Represents sorting by computed relevance. Using this sort criteria 	 * returns the same results with slightly more overhead as calling 	 * Searcher#search() without a sort criteria. */
+comment|/** Represents sorting by computed relevance. Using this sort criteria 	 * returns the same results as calling {@link Searcher#search(Query) Searcher#search()} 	 * without a sort criteria, only with slightly more overhead. */
 DECL|field|RELEVANCE
 specifier|public
 specifier|static
@@ -72,7 +72,7 @@ name|SortField
 index|[]
 name|fields
 decl_stmt|;
-comment|/** Sorts by computed relevance.  This is the same sort criteria as 	 * calling Searcher#search() without a sort criteria, only with 	 * slightly more overhead. */
+comment|/** Sorts by computed relevance.  This is the same sort criteria as 	 * calling {@link Searcher#search(Query) Searcher#search()} without a sort criteria, only with 	 * slightly more overhead. */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -95,7 +95,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sorts by the terms in<code>field</code> then by index order (document 	 * number). */
+comment|/** Sorts by the terms in<code>field</code> then by index order (document 	 * number). The type of value in<code>field</code> is determined 	 * automatically. 	 * @see SortField#AUTO 	 */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -112,7 +112,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sorts possibly in reverse by the terms in<code>field</code> then by 	 * index order (document number). */
+comment|/** Sorts possibly in reverse by the terms in<code>field</code> then by 	 * index order (document number). The type of value in<code>field</code> is determined 	 * automatically. 	 * @see SortField#AUTO 	 */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -132,7 +132,7 @@ name|reverse
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sorts in succession by the terms in each field. */
+comment|/** Sorts in succession by the terms in each field. 	 * The type of value in<code>field</code> is determined 	 * automatically. 	 * @see SortField#AUTO 	 */
 DECL|method|Sort
 specifier|public
 name|Sort
