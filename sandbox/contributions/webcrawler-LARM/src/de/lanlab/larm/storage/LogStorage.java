@@ -78,6 +78,7 @@ DECL|field|out
 name|FileOutputStream
 name|out
 decl_stmt|;
+comment|/*OutputStreamWriter outw;*/
 DECL|field|pageFileCount
 name|int
 name|pageFileCount
@@ -209,6 +210,7 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
+comment|/*outw = new OutputStreamWriter(out);*/
 name|isValid
 operator|=
 literal|true
@@ -405,6 +407,7 @@ operator|-
 literal|1
 return|;
 block|}
+comment|/*     public synchronized int writeToPageFile(char[] chars)     {         try         {             getOutputStream();             int oldOffset = this.offset;             this.offset += outw.write(chars);             new java.io.BufferedWriter().          }       } */
 comment|/**      * Sets the logger attribute of the LogStorage object      *      * @param log  The new logger value      */
 DECL|method|setLogger
 specifier|public
@@ -440,27 +443,10 @@ operator|.
 name|getInfo
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|logContents
-operator|&&
-name|isValid
-operator|&&
-name|doc
-operator|.
-name|getField
-argument_list|(
-literal|"content"
-argument_list|)
-operator|!=
-literal|null
-condition|)
-block|{
-name|int
-name|offset
+name|byte
+index|[]
+name|content
 init|=
-name|writeToPageFile
-argument_list|(
 operator|(
 name|byte
 index|[]
@@ -469,8 +455,32 @@ name|doc
 operator|.
 name|getField
 argument_list|(
-literal|"content"
+literal|"contentBytes"
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|logContents
+operator|&&
+name|isValid
+operator|&&
+name|content
+operator|!=
+literal|null
+operator|&&
+name|content
+operator|.
+name|length
+operator|!=
+literal|0
+condition|)
+block|{
+name|int
+name|offset
+init|=
+name|writeToPageFile
+argument_list|(
+name|content
 argument_list|)
 decl_stmt|;
 name|docInfo
