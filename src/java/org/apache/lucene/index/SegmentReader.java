@@ -456,7 +456,9 @@ name|directory
 operator|.
 name|makeLock
 argument_list|(
-literal|"IndexWriter.COMMIT_LOCK_NAME"
+name|IndexWriter
+operator|.
+name|COMMIT_LOCK_NAME
 argument_list|)
 argument_list|,
 name|IndexWriter
