@@ -194,13 +194,9 @@ name|doc
 argument_list|(
 name|i
 argument_list|)
-block|)
-empty_stmt|;
+expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_function
 DECL|method|getTotalNumberOfResults
 specifier|public
 name|int
@@ -211,13 +207,7 @@ return|return
 name|totalNumberOfResults
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**      * Obtain the results of the search as objects.      */
-end_comment
-
-begin_function
 DECL|method|getResultsAsObjects
 specifier|public
 name|Object
@@ -299,8 +289,8 @@ return|return
 name|objectResults
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 
