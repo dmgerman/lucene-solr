@@ -44,10 +44,10 @@ name|TestPerFieldAnalzyerWrapper
 extends|extends
 name|TestCase
 block|{
-DECL|method|testIt
+DECL|method|testPerField
 specifier|public
 name|void
-name|testIt
+name|testPerField
 parameter_list|()
 throws|throws
 name|Exception
