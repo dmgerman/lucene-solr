@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified wildcard filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
+comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified wildcard filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -106,7 +106,7 @@ name|endEnum
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Creates a new<code>WildcardTermEnum</code>.  Passing in a    * {@link org.apache.lucene.index.Term} that does not contain a    *<code>WILDCARD_CHAR</code> will cause an exception to be thrown.    */
+comment|/**    * Creates a new<code>WildcardTermEnum</code>.  Passing in a    * {@link org.apache.lucene.index.Term Term} that does not contain a    *<code>WILDCARD_CHAR</code> will cause an exception to be thrown.    */
 DECL|method|WildcardTermEnum
 specifier|public
 name|WildcardTermEnum
@@ -354,7 +354,7 @@ name|WILDCARD_CHAR
 init|=
 literal|'?'
 decl_stmt|;
-comment|/**      * Determines if a word matches a wildcard pattern.      *<small>Work released by Granta Design Ltd after originally being done on      * company time.</small>      */
+comment|/**    * Determines if a word matches a wildcard pattern.    *<small>Work released by Granta Design Ltd after originally being done on    * company time.</small>    */
 DECL|method|wildcardEquals
 specifier|public
 specifier|static
