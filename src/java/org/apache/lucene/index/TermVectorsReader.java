@@ -55,13 +55,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * FIXME: relax synchro!  *  * @version $Id$  */
+comment|/**  * @version $Id$  */
 end_comment
 
 begin_class
 DECL|class|TermVectorsReader
 class|class
 name|TermVectorsReader
+implements|implements
+name|Cloneable
 block|{
 DECL|field|fieldInfos
 specifier|private
@@ -388,9 +390,8 @@ return|return
 name|size
 return|;
 block|}
-comment|/**    * Retrieve the term vector for the given document and field    * @param docNum The document number to retrieve the vector for    * @param field The field within the document to retrieve    * @return The TermFreqVector for the document and field or null if there is no termVector for this field.    * @throws IOException    */
+comment|/**    * Retrieve the term vector for the given document and field    * @param docNum The document number to retrieve the vector for    * @param field The field within the document to retrieve    * @return The TermFreqVector for the document and field or null if there is no termVector for this field.    * @throws IOException if there is an error reading the term vector files    */
 DECL|method|get
-specifier|synchronized
 name|TermFreqVector
 name|get
 parameter_list|(
@@ -592,9 +593,8 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Return all term vectors stored for this document or null if there are no term vectors    * for the document.    * @throws IOException    */
+comment|/**    * Return all term vectors stored for this document or null if the could not be read in.    *     * @param docNum The document number to retrieve the vector for    * @return All term frequency vectors    * @throws IOException if there is an error reading the term vector files     */
 DECL|method|get
-specifier|synchronized
 name|TermFreqVector
 index|[]
 name|get
@@ -1388,6 +1388,76 @@ expr_stmt|;
 block|}
 return|return
 name|tv
+return|;
+block|}
+DECL|method|clone
+specifier|protected
+name|Object
+name|clone
+parameter_list|()
+block|{
+name|TermVectorsReader
+name|clone
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|clone
+operator|=
+operator|(
+name|TermVectorsReader
+operator|)
+name|super
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CloneNotSupportedException
+name|e
+parameter_list|)
+block|{}
+name|clone
+operator|.
+name|tvx
+operator|=
+operator|(
+name|IndexInput
+operator|)
+name|tvx
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
+name|tvd
+operator|=
+operator|(
+name|IndexInput
+operator|)
+name|tvd
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
+name|tvf
+operator|=
+operator|(
+name|IndexInput
+operator|)
+name|tvf
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+return|return
+name|clone
 return|;
 block|}
 block|}
