@@ -108,7 +108,6 @@ specifier|protected
 name|IndexReader
 parameter_list|()
 block|{}
-empty_stmt|;
 comment|/** Returns an IndexReader reading the index in an FSDirectory in the named   path. */
 DECL|method|open
 specifier|public

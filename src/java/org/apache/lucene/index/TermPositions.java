@@ -54,7 +54,6 @@ name|TermDocs
 block|{
 comment|/** Returns next position in the current document.  It is an error to call     this more than {@link #freq()} times     without calling {@link #next()}<p> This is     invalid until {@link #next()} is called for     the first time.*/
 DECL|method|nextPosition
-specifier|public
 name|int
 name|nextPosition
 parameter_list|()
