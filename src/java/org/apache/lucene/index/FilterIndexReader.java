@@ -116,8 +116,8 @@ name|void
 name|seek
 parameter_list|(
 name|TermEnum
-name|enum
-function|)
+name|termEnum
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -125,7 +125,7 @@ name|in
 operator|.
 name|seek
 argument_list|(
-expr|enum
+name|termEnum
 argument_list|)
 expr_stmt|;
 block|}

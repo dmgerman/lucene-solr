@@ -324,18 +324,21 @@ name|dir
 argument_list|)
 decl_stmt|;
 name|TermEnum
-name|enum
-type|= null
+name|termEnum
+init|=
+literal|null
 decl_stmt|;
 comment|// create enumeration of all terms
-enum_decl|enum =
+name|termEnum
+operator|=
 name|reader
 operator|.
 name|terms
 argument_list|()
 expr_stmt|;
 comment|// go to the first term (aaa)
-enum_decl|enum.
+name|termEnum
+operator|.
 name|next
 argument_list|()
 expr_stmt|;
@@ -344,7 +347,7 @@ name|assertEquals
 argument_list|(
 literal|"aaa"
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|term
 argument_list|()
@@ -357,14 +360,15 @@ name|assertEquals
 argument_list|(
 literal|200
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// go to the second term (bbb)
-enum_decl|enum.
+name|termEnum
+operator|.
 name|next
 argument_list|()
 expr_stmt|;
@@ -373,7 +377,7 @@ name|assertEquals
 argument_list|(
 literal|"bbb"
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|term
 argument_list|()
@@ -386,18 +390,20 @@ name|assertEquals
 argument_list|(
 literal|100
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
-enum_decl|enum.
+name|termEnum
+operator|.
 name|close
 argument_list|()
 expr_stmt|;
 comment|// create enumeration of terms after term 'aaa', including 'aaa'
-enum_decl|enum =
+name|termEnum
+operator|=
 name|reader
 operator|.
 name|terms
@@ -416,7 +422,7 @@ name|assertEquals
 argument_list|(
 literal|"aaa"
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|term
 argument_list|()
@@ -429,14 +435,15 @@ name|assertEquals
 argument_list|(
 literal|200
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// go to term 'bbb'
-enum_decl|enum.
+name|termEnum
+operator|.
 name|next
 argument_list|()
 expr_stmt|;
@@ -445,7 +452,7 @@ name|assertEquals
 argument_list|(
 literal|"bbb"
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|term
 argument_list|()
@@ -458,13 +465,14 @@ name|assertEquals
 argument_list|(
 literal|100
 argument_list|,
-expr|enum
+name|termEnum
 operator|.
 name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
-enum_decl|enum.
+name|termEnum
+operator|.
 name|close
 argument_list|()
 expr_stmt|;

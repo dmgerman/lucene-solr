@@ -225,17 +225,18 @@ name|void
 name|seek
 parameter_list|(
 name|TermEnum
-name|enum
-function|)
+name|termEnum
+parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|TermInfo
 name|ti
 decl_stmt|;
-comment|// use comparison of fieldinfos to verify that enum belongs to the same segment as this SegmentTermDocs
+comment|// use comparison of fieldinfos to verify that termEnum belongs to the same segment as this SegmentTermDocs
 if|if
-condition|(enum
+condition|(
+name|termEnum
 operator|instanceof
 name|SegmentTermEnum
 operator|&&
@@ -243,7 +244,7 @@ operator|(
 operator|(
 name|SegmentTermEnum
 operator|)
-expr|enum
+name|termEnum
 operator|)
 operator|.
 name|fieldInfos
@@ -259,7 +260,7 @@ operator|(
 operator|(
 name|SegmentTermEnum
 operator|)
-expr|enum
+name|termEnum
 operator|)
 operator|.
 name|termInfo
@@ -275,7 +276,7 @@ name|tis
 operator|.
 name|get
 argument_list|(
-expr|enum
+name|termEnum
 operator|.
 name|term
 argument_list|()
