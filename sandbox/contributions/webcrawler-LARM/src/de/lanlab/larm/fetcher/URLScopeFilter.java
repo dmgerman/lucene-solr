@@ -64,6 +64,20 @@ name|Pattern
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * filter class. Tries to match a regular expression with an incoming URL  * @author Clemens Marschner  * @version $Id$  */
 end_comment
@@ -113,10 +127,17 @@ specifier|private
 name|Perl5Compiler
 name|compiler
 decl_stmt|;
+DECL|field|log
+name|SimpleLogger
+name|log
+decl_stmt|;
 DECL|method|URLScopeFilter
 specifier|public
 name|URLScopeFilter
-parameter_list|()
+parameter_list|(
+name|SimpleLogger
+name|log
+parameter_list|)
 block|{
 name|matcher
 operator|=
@@ -129,6 +150,12 @@ operator|=
 operator|new
 name|Perl5Compiler
 argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|log
+operator|=
+name|log
 expr_stmt|;
 block|}
 DECL|method|getRexString
@@ -214,7 +241,7 @@ operator|)
 name|message
 operator|)
 operator|.
-name|toString
+name|getNormalizedURLString
 argument_list|()
 decl_stmt|;
 name|int
@@ -267,7 +294,17 @@ operator|!
 name|match
 condition|)
 block|{
-comment|//System.out.println("not in Scope: " + urlString);
+comment|//log.log("URLScopeFilter: not in scope: " + urlString);
+name|log
+operator|.
+name|log
+argument_list|(
+name|message
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|filtered
 operator|++
 expr_stmt|;
