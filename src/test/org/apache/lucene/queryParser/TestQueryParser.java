@@ -722,6 +722,15 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
+literal|"\"term germ\"^2"
+argument_list|,
+literal|null
+argument_list|,
+literal|"\"term germ\"^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
 literal|"(foo OR bar) AND (baz OR boo)"
 argument_list|,
 literal|null
@@ -797,6 +806,60 @@ argument_list|,
 name|a
 argument_list|,
 literal|".NET"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testSlop
+specifier|public
+name|void
+name|testSlop
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"\"term germ\"~2"
+argument_list|,
+literal|null
+argument_list|,
+literal|"\"term germ\"~2"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"term germ\"~2 flork"
+argument_list|,
+literal|null
+argument_list|,
+literal|"\"term germ\"~2 flork"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"term\"~2"
+argument_list|,
+literal|null
+argument_list|,
+literal|"term"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\" \"~2 germ"
+argument_list|,
+literal|null
+argument_list|,
+literal|"germ"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"term germ\"~2^2"
+argument_list|,
+literal|null
+argument_list|,
+literal|"\"term germ\"~2^2.0"
 argument_list|)
 expr_stmt|;
 block|}
