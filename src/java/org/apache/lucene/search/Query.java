@@ -113,7 +113,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/** Prints a query to a string, with<code>field</code> as the default field    * for terms.<p>The representation used is one that is readable by {@link    * org.apache.lucene.queryParser.QueryParser QueryParser} (although, if the    * query was created by the parser, the printed representation may not be    * exactly what was parsed).    */
+comment|/** Prints a query to a string, with<code>field</code> as the default field    * for terms.<p>The representation used is one that is readable by    * {@link org.apache.lucene.queryParser.QueryParser QueryParser}    * (although, if the query was created by the parser, the printed    * representation may not be exactly what was parsed).    */
 DECL|method|toString
 specifier|public
 specifier|abstract
