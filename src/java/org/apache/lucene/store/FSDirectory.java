@@ -1174,10 +1174,10 @@ block|}
 block|}
 block|}
 comment|/** Creates a new, empty file in the directory with the given name.       Returns a stream writing this file. */
-DECL|method|createFile
+DECL|method|createOutput
 specifier|public
-name|OutputStream
-name|createFile
+name|IndexOutput
+name|createOutput
 parameter_list|(
 name|String
 name|name
@@ -1187,7 +1187,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|FSOutputStream
+name|FSIndexOutput
 argument_list|(
 operator|new
 name|File
@@ -1200,10 +1200,10 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a stream reading an existing file. */
-DECL|method|openFile
+DECL|method|openInput
 specifier|public
-name|InputStream
-name|openFile
+name|IndexInput
+name|openInput
 parameter_list|(
 name|String
 name|name
@@ -1213,7 +1213,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|FSInputStream
+name|FSIndexInput
 argument_list|(
 operator|new
 name|File
@@ -1615,11 +1615,11 @@ block|}
 end_class
 
 begin_class
-DECL|class|FSInputStream
+DECL|class|FSIndexInput
 class|class
-name|FSInputStream
+name|FSIndexInput
 extends|extends
-name|InputStream
+name|BufferedIndexInput
 block|{
 DECL|class|Descriptor
 specifier|private
@@ -1628,9 +1628,6 @@ name|Descriptor
 extends|extends
 name|RandomAccessFile
 block|{
-comment|/* DEBUG */
-comment|//private String name;
-comment|/* DEBUG */
 DECL|field|position
 specifier|public
 name|long
@@ -1656,29 +1653,10 @@ argument_list|,
 name|mode
 argument_list|)
 expr_stmt|;
-comment|/* DEBUG */
-comment|//name = file.toString();
-comment|//debug_printInfo("OPEN");
-comment|/* DEBUG */
 block|}
-comment|/* DEBUG */
-comment|//public void close() throws IOException {
-comment|//  debug_printInfo("CLOSE");
-comment|//    super.close();
-comment|//}
-comment|//
-comment|//private void debug_printInfo(String op) {
-comment|//  try { throw new Exception(op + "<" + name + ">");
-comment|//  } catch (Exception e) {
-comment|//    java.io.StringWriter sw = new java.io.StringWriter();
-comment|//    java.io.PrintWriter pw = new java.io.PrintWriter(sw);
-comment|//    e.printStackTrace(pw);
-comment|//    System.out.println(sw.getBuffer().toString());
-comment|//  }
-comment|//}
-comment|/* DEBUG */
 block|}
 DECL|field|file
+specifier|private
 name|Descriptor
 name|file
 init|=
@@ -1688,9 +1666,14 @@ DECL|field|isClone
 name|boolean
 name|isClone
 decl_stmt|;
-DECL|method|FSInputStream
+DECL|field|length
+specifier|private
+name|long
+name|length
+decl_stmt|;
+DECL|method|FSIndexInput
 specifier|public
-name|FSInputStream
+name|FSIndexInput
 parameter_list|(
 name|File
 name|path
@@ -1716,7 +1699,7 @@ name|length
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** InputStream methods */
+comment|/** IndexInput methods */
 DECL|method|readInternal
 specifier|protected
 name|void
@@ -1847,7 +1830,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Random-access methods */
 DECL|method|seekInternal
 specifier|protected
 name|void
@@ -1857,6 +1839,16 @@ name|long
 name|position
 parameter_list|)
 block|{   }
+DECL|method|length
+specifier|public
+name|long
+name|length
+parameter_list|()
+block|{
+return|return
+name|length
+return|;
+block|}
 DECL|method|finalize
 specifier|protected
 name|void
@@ -1876,11 +1868,11 @@ name|Object
 name|clone
 parameter_list|()
 block|{
-name|FSInputStream
+name|FSIndexInput
 name|clone
 init|=
 operator|(
-name|FSInputStream
+name|FSIndexInput
 operator|)
 name|super
 operator|.
@@ -1919,11 +1911,11 @@ block|}
 end_class
 
 begin_class
-DECL|class|FSOutputStream
+DECL|class|FSIndexOutput
 class|class
-name|FSOutputStream
+name|FSIndexOutput
 extends|extends
-name|OutputStream
+name|BufferedIndexOutput
 block|{
 DECL|field|file
 name|RandomAccessFile
@@ -1931,9 +1923,9 @@ name|file
 init|=
 literal|null
 decl_stmt|;
-DECL|method|FSOutputStream
+DECL|method|FSIndexOutput
 specifier|public
-name|FSOutputStream
+name|FSIndexOutput
 parameter_list|(
 name|File
 name|path

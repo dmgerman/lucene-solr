@@ -76,7 +76,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// position in buffer
-comment|/** Writes a single byte.    * @see InputStream#readByte()    */
+comment|/** Writes a single byte.    * @see IndexInput#readByte()    */
 DECL|method|writeByte
 specifier|public
 name|void
@@ -106,7 +106,7 @@ operator|=
 name|b
 expr_stmt|;
 block|}
-comment|/** Writes an array of bytes.    * @param b the bytes to write    * @param length the number of bytes to write    * @see InputStream#readBytes(byte[],int,int)    */
+comment|/** Writes an array of bytes.    * @param b the bytes to write    * @param length the number of bytes to write    * @see IndexInput#readBytes(byte[],int,int)    */
 DECL|method|writeBytes
 specifier|public
 name|void

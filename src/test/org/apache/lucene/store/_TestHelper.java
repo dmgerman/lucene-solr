@@ -42,12 +42,12 @@ specifier|public
 class|class
 name|_TestHelper
 block|{
-comment|/** Returns true if the instance of the provided input stream is actually      *  an FSInputStream.      */
-DECL|method|isFSInputStream
+comment|/** Returns true if the instance of the provided input stream is actually      *  an FSIndexInput.      */
+DECL|method|isFSIndexInput
 specifier|public
 specifier|static
 name|boolean
-name|isFSInputStream
+name|isFSIndexInput
 parameter_list|(
 name|IndexInput
 name|is
@@ -56,15 +56,15 @@ block|{
 return|return
 name|is
 operator|instanceof
-name|FSInputStream
+name|FSIndexInput
 return|;
 block|}
-comment|/** Returns true if the provided input stream is an FSInputStream and      *  is a clone, that is it does not own its underlying file descriptor.      */
-DECL|method|isFSInputStreamClone
+comment|/** Returns true if the provided input stream is an FSIndexInput and      *  is a clone, that is it does not own its underlying file descriptor.      */
+DECL|method|isFSIndexInputClone
 specifier|public
 specifier|static
 name|boolean
-name|isFSInputStreamClone
+name|isFSIndexInputClone
 parameter_list|(
 name|IndexInput
 name|is
@@ -72,7 +72,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|isFSInputStream
+name|isFSIndexInput
 argument_list|(
 name|is
 argument_list|)
@@ -81,7 +81,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|FSInputStream
+name|FSIndexInput
 operator|)
 name|is
 operator|)
@@ -96,12 +96,12 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** Given an instance of FSDirectory.FSInputStream, this method returns      *  true if the underlying file descriptor is valid, and false otherwise.      *  This can be used to determine if the OS file has been closed.      *  The descriptor becomes invalid when the non-clone instance of the      *  FSInputStream that owns this descriptor is closed. However, the      *  descriptor may possibly become invalid in other ways as well.      */
-DECL|method|isFSInputStreamOpen
+comment|/** Given an instance of FSDirectory.FSIndexInput, this method returns      *  true if the underlying file descriptor is valid, and false otherwise.      *  This can be used to determine if the OS file has been closed.      *  The descriptor becomes invalid when the non-clone instance of the      *  FSIndexInput that owns this descriptor is closed. However, the      *  descriptor may possibly become invalid in other ways as well.      */
+DECL|method|isFSIndexInputOpen
 specifier|public
 specifier|static
 name|boolean
-name|isFSInputStreamOpen
+name|isFSIndexInputOpen
 parameter_list|(
 name|IndexInput
 name|is
@@ -111,17 +111,17 @@ name|IOException
 block|{
 if|if
 condition|(
-name|isFSInputStream
+name|isFSIndexInput
 argument_list|(
 name|is
 argument_list|)
 condition|)
 block|{
-name|FSInputStream
+name|FSIndexInput
 name|fis
 init|=
 operator|(
-name|FSInputStream
+name|FSIndexInput
 operator|)
 name|is
 decl_stmt|;

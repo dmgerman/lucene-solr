@@ -1604,7 +1604,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|demo_FSInputStreamBug
+name|demo_FSIndexInputBug
 argument_list|(
 operator|(
 name|FSDirectory
@@ -1615,10 +1615,10 @@ literal|"test"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|demo_FSInputStreamBug
+DECL|method|demo_FSIndexInputBug
 specifier|private
 name|void
-name|demo_FSInputStreamBug
+name|demo_FSIndexInputBug
 parameter_list|(
 name|FSDirectory
 name|fsdir
@@ -1783,7 +1783,7 @@ decl_stmt|;
 return|return
 name|_TestHelper
 operator|.
-name|isFSInputStreamOpen
+name|isFSIndexInputOpen
 argument_list|(
 name|cis
 operator|.
@@ -1835,7 +1835,7 @@ name|assertTrue
 argument_list|(
 name|_TestHelper
 operator|.
-name|isFSInputStreamOpen
+name|isFSIndexInputOpen
 argument_list|(
 name|expected
 argument_list|)
