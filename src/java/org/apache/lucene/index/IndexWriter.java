@@ -824,7 +824,7 @@ return|return
 name|mergeFactor
 return|;
 block|}
-comment|/** If non-null, information about merges will be printed to this.    */
+comment|/** If non-null, information about merges and a message when    * maxFieldLength is reached will be printed to this.    */
 DECL|method|setInfoStream
 specifier|public
 name|void
@@ -1047,6 +1047,13 @@ argument_list|,
 name|maxFieldLength
 argument_list|)
 decl_stmt|;
+name|dw
+operator|.
+name|setInfoStream
+argument_list|(
+name|infoStream
+argument_list|)
+expr_stmt|;
 name|String
 name|segmentName
 init|=

@@ -32,6 +32,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Reader
 import|;
 end_import
@@ -218,6 +228,11 @@ DECL|field|maxFieldLength
 specifier|private
 name|int
 name|maxFieldLength
+decl_stmt|;
+DECL|field|infoStream
+specifier|private
+name|PrintStream
+name|infoStream
 decl_stmt|;
 comment|/**    *     * @param directory The directory to write the document information to    * @param analyzer The analyzer to use for the document    * @param similarity The Similarity function    * @param maxFieldLength The maximum number of tokens a field may have    */
 DECL|method|DocumentWriter
@@ -798,7 +813,26 @@ name|length
 operator|>
 name|maxFieldLength
 condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
+operator|.
+name|println
+argument_list|(
+literal|"maxFieldLength "
+operator|+
+name|maxFieldLength
+operator|+
+literal|" reached, ignoring following tokens"
+argument_list|)
+expr_stmt|;
 break|break;
+block|}
 block|}
 if|if
 condition|(
@@ -2160,6 +2194,22 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+comment|/** If non-null, a message will be printed to this if maxFieldLength is reached.    */
+DECL|method|setInfoStream
+name|void
+name|setInfoStream
+parameter_list|(
+name|PrintStream
+name|infoStream
+parameter_list|)
+block|{
+name|this
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+expr_stmt|;
 block|}
 block|}
 end_class
