@@ -814,19 +814,8 @@ literal|'u'
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Take care that at least one character is left left side from the current one
-if|if
-condition|(
-name|c
-operator|<
-name|buffer
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|1
-condition|)
-block|{
+comment|// Fix bug so that 'Ã' at the end of a word is replaced.
+elseif|else
 if|if
 condition|(
 name|buffer
@@ -863,8 +852,20 @@ name|substCount
 operator|++
 expr_stmt|;
 block|}
+comment|// Take care that at least one character is left left side from the current one
+if|if
+condition|(
+name|c
+operator|<
+name|buffer
+operator|.
+name|length
+argument_list|()
+operator|-
+literal|1
+condition|)
+block|{
 comment|// Masking several common character combinations with an token
-elseif|else
 if|if
 condition|(
 operator|(
