@@ -867,6 +867,33 @@ condition|)
 return|return
 literal|true
 return|;
+comment|// trigger further scanning
+if|if
+condition|(
+name|inOrder
+operator|&&
+name|checkSlop
+argument_list|()
+condition|)
+block|{
+comment|/* There is a non ordered match within slop and an ordered match is needed. */
+name|more
+operator|=
+name|firstNonOrderedNextToPartialList
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|more
+condition|)
+block|{
+name|partialListToQueue
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 name|more
 operator|=
 name|min
@@ -875,17 +902,19 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|// trigger further scanning
 if|if
 condition|(
 name|more
 condition|)
+block|{
 name|queue
 operator|.
 name|adjustTop
 argument_list|()
 expr_stmt|;
 comment|// maintain queue
+block|}
+block|}
 block|}
 return|return
 literal|false
@@ -1297,6 +1326,88 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|firstNonOrderedNextToPartialList
+specifier|private
+name|boolean
+name|firstNonOrderedNextToPartialList
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|/* Creates a partial list consisting of first non ordered and earlier.      * Returns first non ordered .next().      */
+name|last
+operator|=
+name|first
+operator|=
+literal|null
+expr_stmt|;
+name|int
+name|orderedIndex
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+name|queue
+operator|.
+name|top
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|SpansCell
+name|cell
+init|=
+operator|(
+name|SpansCell
+operator|)
+name|queue
+operator|.
+name|pop
+argument_list|()
+decl_stmt|;
+name|addToList
+argument_list|(
+name|cell
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|cell
+operator|.
+name|index
+operator|==
+name|orderedIndex
+condition|)
+block|{
+name|orderedIndex
+operator|++
+expr_stmt|;
+block|}
+else|else
+block|{
+return|return
+name|cell
+operator|.
+name|next
+argument_list|()
+return|;
+comment|// FIXME: continue here, rename to eg. checkOrderedMatch():
+comment|// when checkSlop() and not ordered, repeat cell.next().
+comment|// when checkSlop() and ordered, add to list and repeat queue.pop()
+comment|// without checkSlop(): no match, rebuild the queue from the partial list.
+comment|// When queue is empty and checkSlop() and ordered there is a match.
+block|}
+block|}
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"Unexpected: ordered"
+argument_list|)
+throw|;
+block|}
 DECL|method|listToQueue
 specifier|private
 name|void
@@ -1308,6 +1419,17 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+comment|// rebuild queue
+name|partialListToQueue
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|partialListToQueue
+specifier|private
+name|void
+name|partialListToQueue
+parameter_list|()
+block|{
 for|for
 control|(
 name|SpansCell
@@ -1333,7 +1455,7 @@ argument_list|(
 name|cell
 argument_list|)
 expr_stmt|;
-comment|// build queue from list
+comment|// add to queue from list
 block|}
 block|}
 DECL|method|atMatch
@@ -1342,8 +1464,8 @@ name|boolean
 name|atMatch
 parameter_list|()
 block|{
-if|if
-condition|(
+return|return
+operator|(
 name|min
 argument_list|()
 operator|.
@@ -1354,9 +1476,26 @@ name|max
 operator|.
 name|doc
 argument_list|()
-condition|)
+operator|)
+operator|&&
+name|checkSlop
+argument_list|()
+operator|&&
+operator|(
+operator|!
+name|inOrder
+operator|||
+name|matchIsOrdered
+argument_list|()
+operator|)
+return|;
+block|}
+DECL|method|checkSlop
+specifier|private
+name|boolean
+name|checkSlop
+parameter_list|()
 block|{
-comment|// at a match?
 name|int
 name|matchLength
 init|=
@@ -1371,9 +1510,7 @@ operator|.
 name|start
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-operator|(
+return|return
 operator|(
 name|matchLength
 operator|-
@@ -1381,26 +1518,6 @@ name|totalLength
 operator|)
 operator|<=
 name|slop
-operator|)
-comment|// check slop
-operator|&&
-operator|(
-operator|!
-name|inOrder
-operator|||
-name|matchIsOrdered
-argument_list|()
-operator|)
-condition|)
-block|{
-comment|// check order
-return|return
-literal|true
-return|;
-block|}
-block|}
-return|return
-literal|false
 return|;
 block|}
 DECL|method|matchIsOrdered
