@@ -27,15 +27,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** An Analyzer that filters LetterTokenizer with LowerCaseFilter. */
+comment|/** An Analyzer that uses WhitespaceTokenizer. */
 end_comment
 
 begin_class
-DECL|class|NullAnalyzer
+DECL|class|WhitespaceAnalyzer
 specifier|public
 specifier|final
 class|class
-name|NullAnalyzer
+name|WhitespaceAnalyzer
 extends|extends
 name|Analyzer
 block|{
@@ -54,7 +54,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NullTokenizer
+name|WhitespaceTokenizer
 argument_list|(
 name|reader
 argument_list|)
