@@ -101,6 +101,24 @@ name|key
 expr_stmt|;
 block|}
 block|}
+DECL|method|getCurrentKey
+specifier|public
+name|Object
+name|getCurrentKey
+parameter_list|()
+block|{
+return|return
+name|current
+operator|!=
+literal|null
+condition|?
+name|current
+operator|.
+name|key
+else|:
+literal|null
+return|;
+block|}
 comment|/**      * the list. contains objects      */
 DECL|field|header
 specifier|private
