@@ -143,7 +143,6 @@ end_comment
 begin_class
 DECL|class|GermanAnalyzer
 specifier|public
-specifier|final
 class|class
 name|GermanAnalyzer
 extends|extends
@@ -402,7 +401,6 @@ block|}
 comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter 	 */
 DECL|method|tokenStream
 specifier|public
-specifier|final
 name|TokenStream
 name|tokenStream
 parameter_list|(
@@ -448,15 +446,6 @@ argument_list|(
 name|result
 argument_list|,
 name|excltable
-argument_list|)
-expr_stmt|;
-comment|// Convert to lowercase after stemming!
-name|result
-operator|=
-operator|new
-name|LowerCaseFilter
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 return|return
