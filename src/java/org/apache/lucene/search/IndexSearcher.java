@@ -92,20 +92,6 @@ name|Term
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|PriorityQueue
-import|;
-end_import
-
 begin_comment
 comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited {@link #search(Query)}  * or {@link #search(Query,Filter)} methods.  */
 end_comment

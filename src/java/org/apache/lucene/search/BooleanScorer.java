@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|*
-import|;
-end_import
-
 begin_class
 DECL|class|BooleanScorer
 specifier|final
@@ -48,11 +34,6 @@ name|BooleanScorer
 extends|extends
 name|Scorer
 block|{
-DECL|field|currentDoc
-specifier|private
-name|int
-name|currentDoc
-decl_stmt|;
 DECL|field|scorers
 specifier|private
 name|SubScorer

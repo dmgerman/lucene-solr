@@ -36,20 +36,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/** Scorer for conjunctions, sets of queries, all of which are required. */
 end_comment
