@@ -78,7 +78,7 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-comment|/** 	 * @param path      Path to the wordlist 	 * @param wordfile  Name of the wordlist 	 */
+comment|/**      * @param path      Path to the wordlist      * @param wordfile  Name of the wordlist      */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -122,7 +122,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param wordfile  Complete path to the wordlist 	 */
+comment|/**      * @param wordfile  Complete path to the wordlist      */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -157,7 +157,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param wordfile  File containing the wordlist 	 */
+comment|/**      * @param wordfile  File containing the wordlist      */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -319,7 +319,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Builds the wordlist table. 	 * 	 * @param words   Word that where read 	 * @param length  Amount of words that where read into<tt>words</tt> 	 */
+comment|/**      * Builds the wordlist table.      *      * @param words   Word that where read      * @param length  Amount of words that where read into<tt>words</tt>      */
 DECL|method|makeWordTable
 specifier|private
 specifier|static

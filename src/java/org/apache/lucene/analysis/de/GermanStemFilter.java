@@ -93,7 +93,7 @@ name|GermanStemFilter
 extends|extends
 name|TokenFilter
 block|{
-comment|/** 	 * The actual token in the input stream. 	 */
+comment|/**      * The actual token in the input stream.      */
 DECL|field|token
 specifier|private
 name|Token
@@ -134,7 +134,7 @@ operator|=
 name|in
 expr_stmt|;
 block|}
-comment|/** 	 * Builds a GermanStemFilter that uses an exclusiontable. 	 */
+comment|/**      * Builds a GermanStemFilter that uses an exclusiontable.      */
 DECL|method|GermanStemFilter
 specifier|public
 name|GermanStemFilter
@@ -156,7 +156,7 @@ operator|=
 name|exclusiontable
 expr_stmt|;
 block|}
-comment|/** 	 * @return  Returns the next token in the stream, or null at EOS 	 */
+comment|/**      * @return  Returns the next token in the stream, or null at EOS      */
 DECL|method|next
 specifier|public
 specifier|final
@@ -265,7 +265,7 @@ name|token
 return|;
 block|}
 block|}
-comment|/** 	 * Set a alternative/custom GermanStemmer for this filter. 	 */
+comment|/**      * Set a alternative/custom GermanStemmer for this filter.      */
 DECL|method|setStemmer
 specifier|public
 name|void
@@ -290,7 +290,7 @@ name|stemmer
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Set an alternative exclusion list for this filter. 	 */
+comment|/**      * Set an alternative exclusion list for this filter.      */
 DECL|method|setExclusionTable
 specifier|public
 name|void

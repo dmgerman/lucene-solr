@@ -148,7 +148,7 @@ name|GermanAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** 	 * List of typical german stopwords. 	 */
+comment|/**      * List of typical german stopwords.      */
 DECL|field|GERMAN_STOP_WORDS
 specifier|private
 name|String
@@ -253,7 +253,7 @@ block|,
 literal|"wird"
 block|}
 decl_stmt|;
-comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
+comment|/**      * Contains the stopwords used with the StopFilter.      */
 DECL|field|stoptable
 specifier|private
 name|Hashtable
@@ -263,7 +263,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
+comment|/**      * Contains words that should be indexed but not stemmed.      */
 DECL|field|excltable
 specifier|private
 name|Hashtable
@@ -273,7 +273,7 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Builds an analyzer. 	 */
+comment|/**      * Builds an analyzer.      */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -289,7 +289,7 @@ name|GERMAN_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**      * Builds an analyzer with the given stop words.      */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -309,7 +309,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**      * Builds an analyzer with the given stop words.      */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -323,7 +323,7 @@ operator|=
 name|stopwords
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/**      * Builds an analyzer with the given stop words.      */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
@@ -342,7 +342,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from an array of Strings. 	 */
+comment|/**      * Builds an exclusionlist from an array of Strings.      */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -363,7 +363,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from a Hashtable. 	 */
+comment|/**      * Builds an exclusionlist from a Hashtable.      */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -378,7 +378,7 @@ operator|=
 name|exclusionlist
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from the words contained in the given file. 	 */
+comment|/**      * Builds an exclusionlist from the words contained in the given file.      */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -398,7 +398,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter 	 */
+comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream build from a StandardTokenizer filtered with      *		StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter      */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream

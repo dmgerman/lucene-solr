@@ -38,7 +38,7 @@ operator|new
 name|StringBuffer
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Indicates if a term is handled as a noun.      */
+comment|/**      * Indicates if a term is handled as a noun.      */
 DECL|field|uppercase
 specifier|private
 name|boolean
@@ -204,7 +204,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * suffix stripping (stemming) on the current term. The stripping is reduced 	 * to the seven "base" suffixes "e", "s", "n", "t", "em", "er" and * "nd", 	 * from which all regular suffixes are build of. The simplification causes 	 * some overstemming, and way more irregular stems, but still provides unique. 	 * discriminators in the most of those cases. 	 * The algorithm is context free, except of the length restrictions. 	 */
+comment|/**      * suffix stripping (stemming) on the current term. The stripping is reduced      * to the seven "base" suffixes "e", "s", "n", "t", "em", "er" and * "nd",      * from which all regular suffixes are build of. The simplification causes      * some overstemming, and way more irregular stems, but still provides unique.      * discriminators in the most of those cases.      * The algorithm is context free, except of the length restrictions.      */
 DECL|method|strip
 specifier|private
 name|void
@@ -532,7 +532,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Does some optimizations on the term. This optimisations are 	 * contextual. 	 * 	 * @return  The term with the optimizations applied. 	 */
+comment|/**      * Does some optimizations on the term. This optimisations are      * contextual.      *      * @return  The term with the optimizations applied.      */
 DECL|method|optimize
 specifier|private
 name|void
