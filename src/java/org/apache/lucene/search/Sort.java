@@ -349,6 +349,18 @@ operator|=
 name|fields
 expr_stmt|;
 block|}
+comment|/**    * Representation of the sort criteria.    * @return Array of SortField objects used in this sort criteria    */
+DECL|method|getSort
+specifier|public
+name|SortField
+index|[]
+name|getSort
+parameter_list|()
+block|{
+return|return
+name|fields
+return|;
+block|}
 DECL|method|toString
 specifier|public
 name|String
