@@ -26,6 +26,34 @@ name|Enumeration
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Hits
+import|;
+end_import
+
 begin_comment
 comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be stored with the document, in which case it is returned with  * search hits on the document.  Thus each document should typically contain  * stored fields which uniquely identify it.  * */
 end_comment
@@ -49,12 +77,47 @@ name|fieldList
 init|=
 literal|null
 decl_stmt|;
+DECL|field|boost
+specifier|private
+name|float
+name|boost
+init|=
+literal|1.0f
+decl_stmt|;
 comment|/** Constructs a new document with no fields. */
 DECL|method|Document
 specifier|public
 name|Document
 parameter_list|()
 block|{}
+comment|/** Sets a boost factor for hits on any field of this document.  This value    * will be multiplied into the score of all hits on this document.    *    *<p>Values are multiplied into the value of {@link Field#getBoost()} of    * each field in this document.  Thus, this method in effect sets a default    * boost for the fields of this document.    *    * @see Field#setBoost(float)    */
+DECL|method|setBoost
+specifier|public
+name|void
+name|setBoost
+parameter_list|(
+name|float
+name|boost
+parameter_list|)
+block|{
+name|this
+operator|.
+name|boost
+operator|=
+name|boost
+expr_stmt|;
+block|}
+comment|/** Returns the boost factor for hits on any field of this document.    *    *<p>The default value is 1.0.    *    *<p>Note: This value is not stored directly with the document in the index.    * Documents returned from {@link IndexReader#document(int)} and {@link    * Hits#doc(int)} may thus not have the same value present as when this    * document was indexed.    *    * @see #setBoost(float)    */
+DECL|method|getBoost
+specifier|public
+name|float
+name|getBoost
+parameter_list|()
+block|{
+return|return
+name|boost
+return|;
+block|}
 comment|/** Adds a field to a document.  Several fields may be added with    * the same name.  In this case, if the fields are indexed, their text is    * treated as though appended for the purposes of search. */
 DECL|method|add
 specifier|public

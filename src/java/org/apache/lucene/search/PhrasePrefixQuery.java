@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * PhrasePrefixQuery is a generalized version of PhraseQuery, with an added  * method {@link add(Term[])}.  * To use this class, to search for the phrase "Microsoft app*" first use  * add(Term) on the term "Microsoft", then find all terms that has "app" as  * prefix using IndexReader.terms(Term), and use PhrasePrefixQuery.add(Term[]  * terms) to add them to the query.  *  * @author Anders Nielsen  * @version 1.0  */
+comment|/**  * PhrasePrefixQuery is a generalized version of PhraseQuery, with an added  * method {@link #add(Term[])}.  * To use this class, to search for the phrase "Microsoft app*" first use  * add(Term) on the term "Microsoft", then find all terms that has "app" as  * prefix using IndexReader.terms(Term), and use PhrasePrefixQuery.add(Term[]  * terms) to add them to the query.  *  * @author Anders Nielsen  * @version 1.0  */
 end_comment
 
 begin_class

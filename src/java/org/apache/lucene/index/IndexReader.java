@@ -92,6 +92,20 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
+import|;
+end_import
+
 begin_comment
 comment|/** IndexReader is an abstract class, providing an interface for accessing an   index.  Search of an index is done entirely through this abstract interface,   so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to   the static method {@link #open}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique   document in the index.  These document numbers are ephemeral--they may change   as documents are added to and deleted from an index.  Clients should thus not   rely on a given document having the same number between sessions. */
 end_comment
@@ -519,7 +533,7 @@ name|int
 name|n
 parameter_list|)
 function_decl|;
-comment|/** Returns the byte-encoded normalization factor for the named field of     every document.  This is used by the search code to score documents.     @see org.apache.lucene.search.Similarity#norm     */
+comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see Field#setBoost(float)    */
 DECL|method|norms
 specifier|abstract
 specifier|public
