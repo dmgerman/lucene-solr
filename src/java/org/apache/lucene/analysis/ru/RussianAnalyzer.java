@@ -1424,7 +1424,6 @@ block|}
 comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream build from a RussianLetterTokenizer filtered with      *                  RussianLowerCaseFilter, StopFilter, and RussianStemFilter      */
 DECL|method|tokenStream
 specifier|public
-specifier|final
 name|TokenStream
 name|tokenStream
 parameter_list|(

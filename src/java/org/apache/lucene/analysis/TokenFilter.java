@@ -45,6 +45,28 @@ specifier|protected
 name|TokenStream
 name|input
 decl_stmt|;
+comment|/** Call TokenFilter(TokenStream) instead.    * @deprecated */
+DECL|method|TokenFilter
+specifier|protected
+name|TokenFilter
+parameter_list|()
+block|{}
+comment|/** Construct a token stream filtering the given input. */
+DECL|method|TokenFilter
+specifier|protected
+name|TokenFilter
+parameter_list|(
+name|TokenStream
+name|input
+parameter_list|)
+block|{
+name|this
+operator|.
+name|input
+operator|=
+name|input
+expr_stmt|;
+block|}
 comment|/** Close the input TokenStream. */
 DECL|method|close
 specifier|public

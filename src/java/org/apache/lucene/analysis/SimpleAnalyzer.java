@@ -41,7 +41,6 @@ name|Analyzer
 block|{
 DECL|method|tokenStream
 specifier|public
-specifier|final
 name|TokenStream
 name|tokenStream
 parameter_list|(

@@ -52,15 +52,16 @@ name|TokenStream
 name|in
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 name|stemmer
 operator|=
 operator|new
 name|PorterStemmer
 argument_list|()
-expr_stmt|;
-name|input
-operator|=
-name|in
 expr_stmt|;
 block|}
 comment|/** Returns the next input Token, after being stemmed */

@@ -55,6 +55,28 @@ specifier|protected
 name|Reader
 name|input
 decl_stmt|;
+comment|/** Construct a tokenizer with null input. */
+DECL|method|Tokenizer
+specifier|protected
+name|Tokenizer
+parameter_list|()
+block|{}
+comment|/** Construct a token stream processing the given input. */
+DECL|method|Tokenizer
+specifier|protected
+name|Tokenizer
+parameter_list|(
+name|Reader
+name|input
+parameter_list|)
+block|{
+name|this
+operator|.
+name|input
+operator|=
+name|input
+expr_stmt|;
+block|}
 comment|/** By default, closes the input Reader. */
 DECL|method|close
 specifier|public

@@ -120,6 +120,11 @@ index|[]
 name|charset
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 name|stemmer
 operator|=
 operator|new
@@ -127,10 +132,6 @@ name|RussianStemmer
 argument_list|(
 name|charset
 argument_list|)
-expr_stmt|;
-name|input
-operator|=
-name|in
 expr_stmt|;
 block|}
 comment|/**      * @return  Returns the next token in the stream, or null at EOS      */

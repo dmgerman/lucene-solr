@@ -183,7 +183,6 @@ block|}
 comment|/** Constructs a {@link StandardTokenizer} filtered by a {@link 	StandardFilter}, a {@link LowerCaseFilter} and a {@link StopFilter}. */
 DECL|method|tokenStream
 specifier|public
-specifier|final
 name|TokenStream
 name|tokenStream
 parameter_list|(

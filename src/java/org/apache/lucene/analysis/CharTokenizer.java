@@ -47,11 +47,10 @@ name|Reader
 name|input
 parameter_list|)
 block|{
-name|this
-operator|.
+name|super
+argument_list|(
 name|input
-operator|=
-name|input
+argument_list|)
 expr_stmt|;
 block|}
 DECL|field|offset
