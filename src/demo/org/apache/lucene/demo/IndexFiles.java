@@ -101,19 +101,11 @@ name|String
 index|[]
 name|args
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|String
 name|usage
 init|=
-literal|"java "
-operator|+
-name|IndexFiles
-operator|.
-name|class
-operator|+
-literal|"<root_directory>"
+literal|"java org.apache.lucene.demo.IndexFiles<root_directory>"
 decl_stmt|;
 if|if
 condition|(
