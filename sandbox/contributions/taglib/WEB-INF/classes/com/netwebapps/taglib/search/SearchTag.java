@@ -337,7 +337,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  *   * @company Network Web Application  * @url http://www.netwebapps.com  * @author Bryan LaPlante   *  */
+comment|/*  *  * @company Network Web Application  * @url http://www.netwebapps.com  * @author Bryan LaPlante  *  */
 end_comment
 
 begin_class
@@ -361,13 +361,6 @@ name|ArrayList
 name|hitArray
 init|=
 literal|null
-decl_stmt|;
-DECL|field|collection
-specifier|private
-name|String
-name|collection
-init|=
-literal|""
 decl_stmt|;
 DECL|field|searcher
 specifier|private
@@ -485,11 +478,11 @@ name|msearcher
 init|=
 literal|null
 decl_stmt|;
-DECL|field|GERMANAN_ALYZER
+DECL|field|GERMAN_ANALYZER
 specifier|private
 specifier|final
 name|int
-name|GERMANAN_ALYZER
+name|GERMAN_ANALYZER
 init|=
 literal|0
 decl_stmt|;
@@ -1147,10 +1140,6 @@ name|hitArray
 operator|=
 literal|null
 expr_stmt|;
-name|collection
-operator|=
-literal|""
-expr_stmt|;
 name|searcher
 operator|=
 literal|null
@@ -1249,9 +1238,6 @@ name|aField
 operator|.
 name|get
 argument_list|(
-operator|(
-name|String
-operator|)
 name|name
 argument_list|)
 operator|.
@@ -1466,7 +1452,7 @@ name|analyzerType
 condition|)
 block|{
 case|case
-name|GERMANAN_ALYZER
+name|GERMAN_ANALYZER
 case|:
 if|if
 condition|(
@@ -2296,7 +2282,6 @@ return|return
 name|maxRows
 return|;
 block|}
-comment|/** 	 * @param string -- a comma seperated list of stop words. 	 */
 DECL|method|setStopWords
 specifier|public
 name|void
@@ -2490,7 +2475,6 @@ block|}
 comment|//	public void setStopWords(String[] swords) throws JspException{
 comment|//		stopWords = swords;
 comment|//	}
-comment|/** 	 * @param string 	 */
 DECL|method|setFlagList
 specifier|public
 name|void
@@ -2658,7 +2642,6 @@ operator|=
 name|list
 expr_stmt|;
 block|}
-comment|/** 	 * @param string 	 */
 DECL|method|setFieldList
 specifier|public
 name|void
@@ -2693,7 +2676,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param string 	 */
 DECL|method|setFieldList
 specifier|public
 name|void
@@ -2709,7 +2691,6 @@ operator|=
 name|fl
 expr_stmt|;
 block|}
-comment|/** 	 * @param string 	 */
 DECL|method|setSearch
 specifier|public
 name|void
@@ -2724,7 +2705,7 @@ operator|=
 name|string
 expr_stmt|;
 block|}
-comment|/** 	 * @param string 	 */
+comment|/** 	 * @param atype    * @todo this is crying for constants, not string comparisons 	 */
 DECL|method|setAnalyzerType
 specifier|public
 name|void
@@ -2740,7 +2721,7 @@ name|atype
 operator|.
 name|equalsIgnoreCase
 argument_list|(
-literal|"GERMANAN_ALYZER"
+literal|"GERMAN_ALYZER"
 argument_list|)
 condition|)
 block|{
