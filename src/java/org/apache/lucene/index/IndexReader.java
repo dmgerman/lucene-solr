@@ -18,31 +18,43 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|document
+operator|.
+name|Document
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|File
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collection
+name|lucene
+operator|.
+name|search
+operator|.
+name|Similarity
 import|;
 end_import
 
@@ -90,47 +102,31 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Document
+name|File
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
+name|IOException
 import|;
 end_import
 
-begin_comment
-comment|// for javadoc
-end_comment
-
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Similarity
+name|Collection
 import|;
 end_import
 
@@ -681,7 +677,7 @@ name|directory
 argument_list|)
 return|;
 block|}
-comment|/** Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector contains terms and frequencies for all terms    *  in a given vectorized field.    *  If no such fields existed, the method returns null.    *    * @see Field#isTermVectorStored()    */
+comment|/**    *  Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector contains terms and frequencies for all terms in a given vectorized field.    *  If no such fields existed, the method returns null. The term vectors that are    * returned my either be of type TermFreqVector or of type TermPositionsVector if    * positions or offsets have been stored.    *     * @param docNumber document for which term frequency vectors are returned    * @return array of term frequency vectors. May be null if no term vectors have been    *  stored for the specified document.    * @throws IOException if index cannot be accessed    * @see Field#TermVector    */
 DECL|method|getTermFreqVectors
 specifier|abstract
 specifier|public
@@ -695,7 +691,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Return a term frequency vector for the specified document and field. The    *  vector returned contains terms and frequencies for those terms in    *  the specified field of this document, if the field had storeTermVector    *  flag set.  If the flag was not set, the method returns null.    *    * @see Field#isTermVectorStored()    */
+comment|/**    *  Return a term frequency vector for the specified document and field. The    *  returned vector contains terms and frequencies for the terms in    *  the specified field of this document, if the field had the storeTermVector    *  flag set. If termvectors had been stored with positions or offsets, a     *  TermPositionsVector is returned.    *     * @param docNumber document for which the term frequency vector is returned    * @param field field for which the term frequency vector is returned.    * @return term frequency vector May be null if field does not exist in the specified    * document or term vector was not stored.    * @throws IOException if index cannot be accessed    * @see Field#TermVector    */
 DECL|method|getTermFreqVector
 specifier|abstract
 specifier|public
@@ -1534,7 +1530,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    */
+comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getIndexedFieldNames (Field.TermVector tvSpec)}    */
 DECL|method|getIndexedFieldNames
 specifier|public
 specifier|abstract
@@ -1543,6 +1539,19 @@ name|getIndexedFieldNames
 parameter_list|(
 name|boolean
 name|storedTermVector
+parameter_list|)
+function_decl|;
+comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information shoul dbe available for the fields    * @return Collection of Strings indicating the names of the fields    */
+DECL|method|getIndexedFieldNames
+specifier|public
+specifier|abstract
+name|Collection
+name|getIndexedFieldNames
+parameter_list|(
+name|Field
+operator|.
+name|TermVector
+name|tvSpec
 parameter_list|)
 function_decl|;
 comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */

@@ -237,9 +237,9 @@ index|[
 name|j
 index|]
 operator|=
-name|i
+name|j
 operator|*
-literal|100
+literal|10
 expr_stmt|;
 block|}
 block|}
@@ -433,6 +433,8 @@ parameter_list|,
 name|String
 name|field
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|TermFreqVector
 name|vector

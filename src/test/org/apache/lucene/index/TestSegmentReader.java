@@ -991,6 +991,8 @@ specifier|public
 name|void
 name|testTermVectors
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|TermFreqVector
 name|result

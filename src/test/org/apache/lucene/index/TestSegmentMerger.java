@@ -623,6 +623,15 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("Freqs size: " + freqs.length);
+name|assertTrue
+argument_list|(
+name|vector
+operator|instanceof
+name|TermPositionVector
+operator|==
+literal|true
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
