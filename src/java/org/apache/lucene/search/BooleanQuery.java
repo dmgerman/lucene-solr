@@ -964,7 +964,16 @@ operator|!=
 literal|1.0f
 condition|)
 block|{
-comment|// have to clone to boost
+comment|// incorporate boost
+if|if
+condition|(
+name|query
+operator|==
+name|c
+operator|.
+name|query
+condition|)
+comment|// if rewrite was no-op
 name|query
 operator|=
 operator|(
@@ -975,6 +984,7 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
+comment|// then clone before boost
 name|query
 operator|.
 name|setBoost
