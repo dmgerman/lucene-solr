@@ -2822,6 +2822,31 @@ name|Exception
 name|ignored
 parameter_list|)
 block|{ }
+if|if
+condition|(
+name|fms
+argument_list|<
+literal|0.0f
+operator|||
+name|fms
+argument_list|>
+literal|1.0f
+condition|)
+block|{
+block|{
+if|if
+condition|(
+literal|true
+condition|)
+throw|throw
+operator|new
+name|ParseException
+argument_list|(
+literal|"Minimum similarity for a FuzzyQuery has to be between 0.0f and 1.0f !"
+argument_list|)
+throw|;
+block|}
+block|}
 name|q
 operator|=
 name|getFuzzyQuery
