@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Provides support for converting dates to strings and vice-versa.  The    * strings are structured so that lexicographic sorting orders by date.  This    * makes them suitable for use as field values and search terms.  */
+comment|/**  * Provides support for converting dates to strings and vice-versa.  * The strings are structured so that lexicographic sorting orders by date.  * This makes them suitable for use as field values and search terms.  *<P>  * Note: currenly dates before 1970 cannot be used, and therefore cannot be  * indexed.  */
 end_comment
 
 begin_class
@@ -150,7 +150,7 @@ name|buffer
 argument_list|)
 return|;
 block|}
-comment|/** Converts a Date to a string suitable for indexing. */
+comment|/**    * Converts a Date to a string suitable for indexing.    * This method will throw a RuntimeException if the date specified in the    * method argument is before 1970.    */
 DECL|method|dateToString
 specifier|public
 specifier|static
@@ -171,7 +171,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Converts a millisecond time to a string suitable for indexing. */
+comment|/**    * Converts a millisecond time to a string suitable for indexing.    * This method will throw a RuntimeException if the time specified in the    * method argument is negative, that is, before 1970.    */
 DECL|method|timeToString
 specifier|public
 specifier|static
