@@ -1236,7 +1236,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes all documents containing<code>term</code>.    This is useful if one uses a document field to hold a unique ID string for    the document.  Then to delete such a document, one merely constructs a    term with the appropriate field and the unique ID string as its text and    passes it to this method.  Returns the number of documents deleted.    */
+comment|/** Deletes all documents containing<code>term</code>.    This is useful if one uses a document field to hold a unique ID string for    the document.  Then to delete such a document, one merely constructs a    term with the appropriate field and the unique ID string as its text and    passes it to this method.  Returns the number of documents deleted.    See {@link #delete(int)} for information about when this deletion will     become effective.    */
 DECL|method|delete
 specifier|public
 specifier|final
