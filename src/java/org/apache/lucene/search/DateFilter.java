@@ -440,6 +440,17 @@ operator|.
 name|termDocs
 argument_list|()
 decl_stmt|;
+if|if
+condition|(enum
+operator|.
+name|term
+argument_list|()
+operator|==
+literal|null
+condition|)
+return|return
+name|bits
+return|;
 try|try
 block|{
 name|Term
