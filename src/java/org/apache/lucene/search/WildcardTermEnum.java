@@ -106,7 +106,7 @@ name|endEnum
 init|=
 literal|false
 decl_stmt|;
-comment|/** Creates new WildcardTermEnum */
+comment|/**    * Creates a new<code>WildcardTermEnum</code>.  Passing in a    * {@link org.apache.lucene.index.Term} that does not contain a    *<code>WILDCARD_CHAR</code> will cause an exception to be thrown.    */
 DECL|method|WildcardTermEnum
 specifier|public
 name|WildcardTermEnum
@@ -177,10 +177,12 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 name|idx
 operator|=
 name|cidx
 expr_stmt|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -188,6 +190,7 @@ name|cidx
 operator|>=
 literal|0
 condition|)
+block|{
 name|idx
 operator|=
 name|Math
@@ -199,6 +202,7 @@ argument_list|,
 name|cidx
 argument_list|)
 expr_stmt|;
+block|}
 name|pre
 operator|=
 name|searchTerm
