@@ -79,7 +79,7 @@ init|=
 operator|new
 name|int
 index|[
-literal|128
+literal|32
 index|]
 decl_stmt|;
 comment|// buffered doc numbers
@@ -93,7 +93,7 @@ init|=
 operator|new
 name|int
 index|[
-literal|128
+literal|32
 index|]
 decl_stmt|;
 comment|// buffered term freqs
@@ -134,27 +134,41 @@ parameter_list|(
 name|TermDocs
 name|td
 parameter_list|,
+name|Similarity
+name|similarity
+parameter_list|,
 name|byte
 index|[]
-name|n
+name|norms
 parameter_list|,
 name|float
-name|w
+name|weight
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|similarity
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
 name|termDocs
 operator|=
 name|td
 expr_stmt|;
+name|this
+operator|.
 name|norms
 operator|=
-name|n
+name|norms
 expr_stmt|;
+name|this
+operator|.
 name|weight
 operator|=
-name|w
+name|weight
 expr_stmt|;
 for|for
 control|(
@@ -175,7 +189,8 @@ index|[
 name|i
 index|]
 operator|=
-name|Similarity
+name|getSimilarity
+argument_list|()
 operator|.
 name|tf
 argument_list|(
@@ -247,6 +262,13 @@ init|=
 name|doc
 decl_stmt|;
 comment|// cache doc in local
+name|Similarity
+name|similarity
+init|=
+name|getSimilarity
+argument_list|()
+decl_stmt|;
+comment|// cache sim in local
 while|while
 condition|(
 name|d
@@ -279,7 +301,7 @@ name|f
 index|]
 comment|// cache hit
 else|:
-name|Similarity
+name|similarity
 operator|.
 name|tf
 argument_list|(

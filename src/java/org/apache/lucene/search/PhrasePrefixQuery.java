@@ -308,6 +308,9 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|Similarity
+name|similarity
 parameter_list|)
 throws|throws
 name|IOException
@@ -398,6 +401,8 @@ operator|.
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+name|similarity
 argument_list|)
 return|;
 block|}
@@ -509,6 +514,8 @@ name|ExactPhraseScorer
 argument_list|(
 name|tps
 argument_list|,
+name|similarity
+argument_list|,
 name|reader
 operator|.
 name|norms
@@ -525,6 +532,8 @@ operator|new
 name|SloppyPhraseScorer
 argument_list|(
 name|tps
+argument_list|,
+name|similarity
 argument_list|,
 name|_slop
 argument_list|,
@@ -596,7 +605,10 @@ operator|++
 control|)
 name|_idf
 operator|+=
-name|Similarity
+name|searcher
+operator|.
+name|getSimilarity
+argument_list|()
 operator|.
 name|idf
 argument_list|(

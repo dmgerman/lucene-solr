@@ -144,7 +144,7 @@ name|boost
 init|=
 literal|1.0f
 decl_stmt|;
-comment|/** Sets the boost factor hits on this field.  This value will be    * multiplied into the score of all hits on this this field of this    * document.    *    *<p>The boost is multiplied by {@link Document#getBoost()} of the document    * containing this field.  If a document has multiple fields with the same    * name, all such values are multiplied together.  This product is then    * multipled by the value {@link Similarity#normalizeLength(int)}, and    * rounded by {@link Similarity#encodeNorm(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *    * @see Document#setBoost(float)    * @see Similarity#normalizeLength(int)    * @see Similarity#encodeNorm(float)    */
+comment|/** Sets the boost factor hits on this field.  This value will be    * multiplied into the score of all hits on this this field of this    * document.    *    *<p>The boost is multiplied by {@link Document#getBoost()} of the document    * containing this field.  If a document has multiple fields with the same    * name, all such values are multiplied together.  This product is then    * multipled by the value {@link Similarity#lengthNorm(String,int)}, and    * rounded by {@link Similarity#encodeNorm(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *    * @see Document#setBoost(float)    * @see Similarity#lengthNorm(String, int)    * @see Similarity#encodeNorm(float)    */
 DECL|method|setBoost
 specifier|public
 name|void

@@ -182,6 +182,20 @@ name|Analyzer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Similarity
+import|;
+end_import
+
 begin_comment
 comment|/**   An IndexWriter creates and maintains an index.    The third argument to the<a href="#IndexWriter"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened for the addition of new documents.    In either case, documents are added with the<a   href="#addDocument"><b>addDocument</b></a> method.  When finished adding   documents,<a href="#close"><b>close</b></a> should be called.    If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize"><b>optimize</b></a>   method should be called before the index is closed.   */
 end_comment
@@ -204,6 +218,17 @@ name|Analyzer
 name|analyzer
 decl_stmt|;
 comment|// how to analyze text
+DECL|field|similarity
+specifier|private
+name|Similarity
+name|similarity
+init|=
+name|Similarity
+operator|.
+name|getDefault
+argument_list|()
+decl_stmt|;
+comment|// how to normalize
 DECL|field|segmentInfos
 specifier|private
 name|SegmentInfos
@@ -230,11 +255,36 @@ specifier|private
 name|Lock
 name|writeLock
 decl_stmt|;
-DECL|field|similarity
-specifier|private
+comment|/** Expert: Set the Similarity implementation used by this IndexWriter.    *    * @see Similarity#setDefault(Similarity)    */
+DECL|method|setSimilarity
+specifier|public
+name|void
+name|setSimilarity
+parameter_list|(
 name|Similarity
 name|similarity
-decl_stmt|;
+parameter_list|)
+block|{
+name|this
+operator|.
+name|similarity
+operator|=
+name|similarity
+expr_stmt|;
+block|}
+comment|/** Expert: Return the Similarity implementation used by this IndexWriter.    *    *<p>This defaults to the current value of {@link Similarity#getDefault()}.    */
+DECL|method|getSimilarity
+specifier|public
+name|Similarity
+name|getSimilarity
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|similarity
+return|;
+block|}
 comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>path</code>, replacing the index     already there, if any. */
 DECL|method|IndexWriter
 specifier|public
@@ -574,6 +624,8 @@ argument_list|(
 name|ramDirectory
 argument_list|,
 name|analyzer
+argument_list|,
+name|similarity
 argument_list|,
 name|maxFieldLength
 argument_list|)
@@ -1745,21 +1797,6 @@ literal|"deleteable.new"
 argument_list|,
 literal|"deletable"
 argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Sets the<code>Similarity</code> implementation to use.    *    * @param sim an instance of a class that implements<code>Similarity</code    */
-DECL|method|setSimilarity
-specifier|public
-name|void
-name|setSimilarity
-parameter_list|(
-name|Similarity
-name|sim
-parameter_list|)
-block|{
-name|similarity
-operator|=
-name|sim
 expr_stmt|;
 block|}
 block|}

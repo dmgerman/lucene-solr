@@ -287,6 +287,9 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|Similarity
+name|similarity
 parameter_list|)
 throws|throws
 name|IOException
@@ -298,6 +301,8 @@ operator|.
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+name|similarity
 argument_list|)
 return|;
 block|}
