@@ -101,14 +101,20 @@ operator|new
 name|Date
 argument_list|()
 decl_stmt|;
-comment|// FIXME: OG: what's with this hard-coded dirs??
 name|IndexWriter
 name|writer
 init|=
 operator|new
 name|IndexWriter
 argument_list|(
-literal|"F:\\test"
+name|File
+operator|.
+name|createTempFile
+argument_list|(
+literal|"luceneTest"
+argument_list|,
+literal|"idx"
+argument_list|)
 argument_list|,
 operator|new
 name|SimpleAnalyzer
@@ -124,7 +130,6 @@ argument_list|(
 literal|20
 argument_list|)
 expr_stmt|;
-comment|// FIXME: OG: what's with this hard-coded dirs??
 name|indexDocs
 argument_list|(
 name|writer
@@ -132,7 +137,7 @@ argument_list|,
 operator|new
 name|File
 argument_list|(
-literal|"F:\\recipes"
+literal|"/tmp"
 argument_list|)
 argument_list|)
 expr_stmt|;
