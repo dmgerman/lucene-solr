@@ -27,6 +27,8 @@ specifier|final
 class|class
 name|Term
 implements|implements
+name|Comparable
+implements|,
 name|java
 operator|.
 name|io
@@ -181,6 +183,25 @@ name|text
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+DECL|method|compareTo
+specifier|public
+name|int
+name|compareTo
+parameter_list|(
+name|Object
+name|other
+parameter_list|)
+block|{
+return|return
+name|compareTo
+argument_list|(
+operator|(
+name|Term
+operator|)
+name|other
+argument_list|)
 return|;
 block|}
 comment|/** Compares two terms, returning an integer which is less than zero iff this     term belongs after the argument, equal zero iff this term is equal to the     argument, and greater than zero iff this term belongs after the argument.      The ordering of terms is first by field, then by text.*/
