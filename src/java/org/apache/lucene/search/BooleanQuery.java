@@ -885,54 +885,56 @@ condition|)
 block|{
 comment|// just return clause
 name|Query
-name|clone
+name|query
 init|=
+name|c
+operator|.
+name|query
+decl_stmt|;
+if|if
+condition|(
+name|getBoost
+argument_list|()
+operator|!=
+literal|1.0f
+condition|)
+block|{
+comment|// have to clone to boost
+name|query
+operator|=
 operator|(
 name|Query
 operator|)
-name|c
-operator|.
 name|query
 operator|.
 name|clone
 argument_list|()
-decl_stmt|;
-comment|// have to clone to boost
-name|clone
+expr_stmt|;
+name|query
 operator|.
 name|setBoost
 argument_list|(
 name|getBoost
 argument_list|()
 operator|*
-name|clone
+name|query
 operator|.
 name|getBoost
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
-name|clone
+name|query
 return|;
 block|}
 block|}
 name|BooleanQuery
 name|clone
 init|=
-operator|(
-name|BooleanQuery
-operator|)
-name|this
-operator|.
-name|clone
-argument_list|()
+literal|null
 decl_stmt|;
-comment|// recursively clone
-name|boolean
-name|changed
-init|=
-literal|false
-decl_stmt|;
+comment|// recursively rewrite
 for|for
 control|(
 name|int
@@ -965,7 +967,7 @@ name|i
 argument_list|)
 decl_stmt|;
 name|Query
-name|q
+name|query
 init|=
 name|c
 operator|.
@@ -978,19 +980,30 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|q
+name|query
 operator|!=
 name|c
 operator|.
 name|query
 condition|)
 block|{
-comment|// rewrote
-name|changed
+comment|// clause rewrote: must clone
+if|if
+condition|(
+name|clone
+operator|==
+literal|null
+condition|)
+name|clone
 operator|=
-literal|true
+operator|(
+name|BooleanQuery
+operator|)
+name|this
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
-comment|// replace in clone
 name|clone
 operator|.
 name|clauses
@@ -1000,7 +1013,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|q
+name|query
 argument_list|,
 name|c
 operator|.
@@ -1018,12 +1031,16 @@ block|}
 block|}
 if|if
 condition|(
-name|changed
+name|clone
+operator|!=
+literal|null
 condition|)
+block|{
 return|return
 name|clone
 return|;
-comment|// clauses rewrote
+comment|// some clauses rewrote
+block|}
 else|else
 return|return
 name|this
