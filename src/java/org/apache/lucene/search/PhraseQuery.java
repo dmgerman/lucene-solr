@@ -235,6 +235,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|idf
+operator|=
+literal|0.0f
+expr_stmt|;
 for|for
 control|(
 name|int
