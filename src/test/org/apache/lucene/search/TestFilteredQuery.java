@@ -134,16 +134,6 @@ name|BitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * FilteredQuery JUnit tests.  *  *<p>Created: Apr 21, 2004 1:21:46 PM  *  * @author  Tim Jones  * @version $Id$  * @since   1.4  */
 end_comment
@@ -503,8 +493,6 @@ parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|BitSet
 name|bitset

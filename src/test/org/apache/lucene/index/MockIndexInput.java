@@ -30,16 +30,6 @@ name|BufferedIndexInput
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_class
 DECL|class|MockIndexInput
 specifier|public
@@ -101,8 +91,6 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|int
 name|remainder
@@ -189,8 +177,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// ignore
 block|}
@@ -202,8 +188,6 @@ parameter_list|(
 name|long
 name|pos
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|pointer
 operator|=
