@@ -130,12 +130,6 @@ specifier|private
 name|String
 name|fileName
 decl_stmt|;
-comment|// Reference count
-DECL|field|open
-specifier|private
-name|boolean
-name|open
-decl_stmt|;
 DECL|field|stream
 specifier|private
 name|InputStream
@@ -801,7 +795,7 @@ name|long
 name|pos
 parameter_list|)
 block|{}
-comment|/** Closes the stream to futher operations. */
+comment|/** Closes the stream to further operations. */
 DECL|method|close
 specifier|public
 name|void
