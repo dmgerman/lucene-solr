@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A sorted hit queue for fields that contain string values.  * Hits are sorted into the queue by the values in the field and then by document number.  * The internal cache contains integers - the strings are sorted and  * then only their sequence number cached.  *  *<p>Created: Feb 2, 2004 9:26:33 AM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
+comment|/**  * Expert: A sorted hit queue for fields that contain string values.  * Hits are sorted into the queue by the values in the field and then by document number.  * Warning: The internal cache could be quite large, depending on the number of terms  * in the field!  All the terms are kept in memory, as well as a sorted array of  * integers representing their relative position.  *  *<p>Created: Feb 2, 2004 9:26:33 AM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
 end_comment
 
 begin_class
@@ -145,7 +145,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns a comparator for sorting hits according to a field containing strings. 	 * @param reader  Index to use. 	 * @param field  Field containg string values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
+comment|/** 	 * Returns a comparator for sorting hits according to a field containing strings. 	 * @param reader  Index to use. 	 * @param fieldname  Field containg string values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
 DECL|method|comparator
 specifier|static
 name|ScoreDocLookupComparator
@@ -157,11 +157,20 @@ name|reader
 parameter_list|,
 specifier|final
 name|String
-name|field
+name|fieldname
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|String
+name|field
+init|=
+name|fieldname
+operator|.
+name|intern
+argument_list|()
+decl_stmt|;
 return|return
 operator|new
 name|ScoreDocLookupComparator
@@ -176,6 +185,11 @@ name|fieldOrder
 init|=
 name|generateSortIndex
 argument_list|()
+decl_stmt|;
+specifier|protected
+name|String
+index|[]
+name|terms
 decl_stmt|;
 specifier|private
 specifier|final
@@ -200,6 +214,21 @@ name|maxDoc
 argument_list|()
 index|]
 decl_stmt|;
+specifier|final
+name|String
+index|[]
+name|mterms
+init|=
+operator|new
+name|String
+index|[
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+index|]
+decl_stmt|;
+comment|// guess length
 name|TermEnum
 name|enumerator
 init|=
@@ -251,14 +280,16 @@ comment|// contract for TermDocs says the docs will
 comment|// be ordered by document number.  So the
 comment|// following loop will automatically sort the
 comment|// terms in the correct order.
-try|try
-block|{
+comment|// if a given document has more than one term
+comment|// in the field, only the last one will be used.
 name|int
 name|t
 init|=
 literal|0
 decl_stmt|;
 comment|// current term number
+try|try
+block|{
 do|do
 block|{
 name|Term
@@ -279,9 +310,38 @@ operator|!=
 name|field
 condition|)
 break|break;
+comment|// store term text
+comment|// we expect that there is at most one term per document
+if|if
+condition|(
 name|t
-operator|++
+operator|>=
+name|mterms
+operator|.
+name|length
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"there are more terms than documents in field \""
+operator|+
+name|field
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+name|mterms
+index|[
+name|t
+index|]
+operator|=
+name|term
+operator|.
+name|text
+argument_list|()
 expr_stmt|;
+comment|// store which documents use this term
 name|termDocs
 operator|.
 name|seek
@@ -308,6 +368,9 @@ operator|=
 name|t
 expr_stmt|;
 block|}
+name|t
+operator|++
+expr_stmt|;
 block|}
 do|while
 condition|(
@@ -329,6 +392,48 @@ name|termDocs
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+block|}
+comment|// if there are less terms than documents,
+comment|// trim off the dead array space
+if|if
+condition|(
+name|t
+operator|<
+name|mterms
+operator|.
+name|length
+condition|)
+block|{
+name|terms
+operator|=
+operator|new
+name|String
+index|[
+name|t
+index|]
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|mterms
+argument_list|,
+literal|0
+argument_list|,
+name|terms
+argument_list|,
+literal|0
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|terms
+operator|=
+name|mterms
 expr_stmt|;
 block|}
 return|return
@@ -481,16 +586,15 @@ name|i
 parameter_list|)
 block|{
 return|return
-operator|new
-name|Integer
-argument_list|(
+name|terms
+index|[
 name|fieldOrder
 index|[
 name|i
 operator|.
 name|doc
 index|]
-argument_list|)
+index|]
 return|;
 block|}
 specifier|public
@@ -501,13 +605,13 @@ block|{
 return|return
 name|SortField
 operator|.
-name|INT
+name|STRING
 return|;
 block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns a comparator for sorting hits according to a field containing strings using the given enumerator 	 * to collect term values. 	 * @param reader  Index to use. 	 * @param field  Field containg string values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
+comment|/** 	 * Returns a comparator for sorting hits according to a field containing strings using the given enumerator 	 * to collect term values. 	 * @param reader  Index to use. 	 * @param fieldname  Field containg string values. 	 * @return  Comparator for sorting hits. 	 * @throws IOException If an error occurs reading the index. 	 */
 DECL|method|comparator
 specifier|static
 name|ScoreDocLookupComparator
@@ -523,11 +627,20 @@ name|enumerator
 parameter_list|,
 specifier|final
 name|String
-name|field
+name|fieldname
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|String
+name|field
+init|=
+name|fieldname
+operator|.
+name|intern
+argument_list|()
+decl_stmt|;
 return|return
 operator|new
 name|ScoreDocLookupComparator
@@ -541,6 +654,11 @@ name|fieldOrder
 init|=
 name|generateSortIndex
 argument_list|()
+decl_stmt|;
+specifier|protected
+name|String
+index|[]
+name|terms
 decl_stmt|;
 specifier|private
 specifier|final
@@ -565,6 +683,21 @@ name|maxDoc
 argument_list|()
 index|]
 decl_stmt|;
+specifier|final
+name|String
+index|[]
+name|mterms
+init|=
+operator|new
+name|String
+index|[
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+index|]
+decl_stmt|;
+comment|// guess length
 comment|// NOTE: the contract for TermEnum says the
 comment|// terms will be in natural order (which is
 comment|// ordering by field name, term text).  The
@@ -572,6 +705,8 @@ comment|// contract for TermDocs says the docs will
 comment|// be ordered by document number.  So the
 comment|// following loop will automatically sort the
 comment|// terms in the correct order.
+comment|// if a given document has more than one term
+comment|// in the field, only the last one will be used.
 name|TermDocs
 name|termDocs
 init|=
@@ -580,14 +715,14 @@ operator|.
 name|termDocs
 argument_list|()
 decl_stmt|;
-try|try
-block|{
 name|int
 name|t
 init|=
 literal|0
 decl_stmt|;
 comment|// current term number
+try|try
+block|{
 do|do
 block|{
 name|Term
@@ -608,9 +743,38 @@ operator|!=
 name|field
 condition|)
 break|break;
+comment|// store term text
+comment|// we expect that there is at most one term per document
+if|if
+condition|(
 name|t
-operator|++
+operator|>=
+name|mterms
+operator|.
+name|length
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"there are more terms than documents in field \""
+operator|+
+name|field
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+name|mterms
+index|[
+name|t
+index|]
+operator|=
+name|term
+operator|.
+name|text
+argument_list|()
 expr_stmt|;
+comment|// store which documents use this term
 name|termDocs
 operator|.
 name|seek
@@ -637,6 +801,9 @@ operator|=
 name|t
 expr_stmt|;
 block|}
+name|t
+operator|++
+expr_stmt|;
 block|}
 do|while
 condition|(
@@ -653,6 +820,48 @@ name|termDocs
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+block|}
+comment|// if there are less terms than documents,
+comment|// trim off the dead array space
+if|if
+condition|(
+name|t
+operator|<
+name|mterms
+operator|.
+name|length
+condition|)
+block|{
+name|terms
+operator|=
+operator|new
+name|String
+index|[
+name|t
+index|]
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|mterms
+argument_list|,
+literal|0
+argument_list|,
+name|terms
+argument_list|,
+literal|0
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|terms
+operator|=
+name|mterms
 expr_stmt|;
 block|}
 return|return
@@ -805,16 +1014,15 @@ name|i
 parameter_list|)
 block|{
 return|return
-operator|new
-name|Integer
-argument_list|(
+name|terms
+index|[
 name|fieldOrder
 index|[
 name|i
 operator|.
 name|doc
 index|]
-argument_list|)
+index|]
 return|;
 block|}
 specifier|public
@@ -825,7 +1033,7 @@ block|{
 return|return
 name|SortField
 operator|.
-name|INT
+name|STRING
 return|;
 block|}
 block|}
