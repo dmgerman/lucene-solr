@@ -83,6 +83,9 @@ name|search
 argument_list|(
 name|query
 argument_list|,
+operator|(
+name|Filter
+operator|)
 literal|null
 argument_list|)
 return|;
@@ -90,7 +93,6 @@ block|}
 comment|/** Returns the documents matching<code>query</code> and<code>filter</code>. */
 DECL|method|search
 specifier|public
-specifier|final
 name|Hits
 name|search
 parameter_list|(
@@ -115,6 +117,53 @@ name|filter
 argument_list|)
 return|;
 block|}
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *    *<p>Applications should only use this if they need<it>all</it> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.  */
+DECL|method|search
+specifier|public
+name|void
+name|search
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|HitCollector
+name|results
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|search
+argument_list|(
+name|query
+argument_list|,
+operator|(
+name|Filter
+operator|)
+literal|null
+argument_list|,
+name|results
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *    *<p>Applications should only use this if they need<it>all</it> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    */
+DECL|method|search
+specifier|public
+specifier|abstract
+name|void
+name|search
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|Filter
+name|filter
+parameter_list|,
+name|HitCollector
+name|results
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Frees resources associated with this Searcher. */
 DECL|method|close
 specifier|abstract
@@ -161,7 +210,9 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** For use by {@link HitCollector} implementations. */
 DECL|method|doc
+specifier|public
 specifier|abstract
 name|Document
 name|doc
