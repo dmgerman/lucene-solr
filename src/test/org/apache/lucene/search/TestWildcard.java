@@ -284,9 +284,11 @@ name|add
 argument_list|(
 name|query5
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
 name|BooleanQuery
@@ -302,9 +304,11 @@ name|add
 argument_list|(
 name|query3
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
 name|query7
@@ -313,9 +317,11 @@ name|add
 argument_list|(
 name|query5
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
 comment|// Queries do not automatically lower-case search terms:
