@@ -229,6 +229,15 @@ argument_list|()
 index|]
 decl_stmt|;
 comment|// guess length
+if|if
+condition|(
+name|retArray
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|TermEnum
 name|enumerator
 init|=
@@ -253,6 +262,14 @@ operator|.
 name|termDocs
 argument_list|()
 decl_stmt|;
+name|int
+name|t
+init|=
+literal|0
+decl_stmt|;
+comment|// current term number
+try|try
+block|{
 if|if
 condition|(
 name|enumerator
@@ -282,14 +299,6 @@ comment|// following loop will automatically sort the
 comment|// terms in the correct order.
 comment|// if a given document has more than one term
 comment|// in the field, only the last one will be used.
-name|int
-name|t
-init|=
-literal|0
-decl_stmt|;
-comment|// current term number
-try|try
-block|{
 do|do
 block|{
 name|Term
@@ -435,6 +444,7 @@ name|terms
 operator|=
 name|mterms
 expr_stmt|;
+block|}
 block|}
 return|return
 name|retArray
@@ -698,15 +708,15 @@ argument_list|()
 index|]
 decl_stmt|;
 comment|// guess length
-comment|// NOTE: the contract for TermEnum says the
-comment|// terms will be in natural order (which is
-comment|// ordering by field name, term text).  The
-comment|// contract for TermDocs says the docs will
-comment|// be ordered by document number.  So the
-comment|// following loop will automatically sort the
-comment|// terms in the correct order.
-comment|// if a given document has more than one term
-comment|// in the field, only the last one will be used.
+if|if
+condition|(
+name|retArray
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|TermDocs
 name|termDocs
 init|=
@@ -723,6 +733,35 @@ decl_stmt|;
 comment|// current term number
 try|try
 block|{
+if|if
+condition|(
+name|enumerator
+operator|.
+name|term
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"no terms in field "
+operator|+
+name|field
+argument_list|)
+throw|;
+block|}
+comment|// NOTE: the contract for TermEnum says the
+comment|// terms will be in natural order (which is
+comment|// ordering by field name, term text).  The
+comment|// contract for TermDocs says the docs will
+comment|// be ordered by document number.  So the
+comment|// following loop will automatically sort the
+comment|// terms in the correct order.
+comment|// if a given document has more than one term
+comment|// in the field, only the last one will be used.
 do|do
 block|{
 name|Term
@@ -863,6 +902,7 @@ name|terms
 operator|=
 name|mterms
 expr_stmt|;
+block|}
 block|}
 return|return
 name|retArray

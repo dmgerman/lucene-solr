@@ -479,6 +479,8 @@ argument_list|(
 literal|"no terms in field "
 operator|+
 name|field
+operator|+
+literal|" - cannot determine sort type"
 argument_list|)
 throw|;
 block|}
