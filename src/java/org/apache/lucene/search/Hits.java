@@ -156,8 +156,7 @@ argument_list|)
 expr_stmt|;
 comment|// retrieve 100 initially
 block|}
-comment|// Tries to add new documents to hitDocs.
-comment|// Ensures that the hit numbered<code>min</code> has been retrieved.
+comment|/**    * Tries to add new documents to hitDocs.    * Ensures that the hit numbered<code>min</code> has been retrieved.    */
 DECL|method|getMoreDocs
 specifier|private
 specifier|final
@@ -329,7 +328,7 @@ return|return
 name|length
 return|;
 block|}
-comment|/** Returns the nth document in this set.<p>Documents are cached, so that repeated requests for the same element may      return the same Document object. */
+comment|/** Returns the nth document in this set.<p>Documents are cached, so that repeated requests for the same element may    return the same Document object. */
 DECL|method|doc
 specifier|public
 specifier|final
