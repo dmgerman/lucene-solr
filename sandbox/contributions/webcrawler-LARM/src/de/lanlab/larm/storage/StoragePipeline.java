@@ -155,6 +155,15 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"opening..."
+argument_list|)
+expr_stmt|;
 operator|(
 operator|(
 name|DocumentStorage

@@ -498,7 +498,7 @@ operator|.
 name|createStatement
 argument_list|()
 decl_stmt|;
-comment|// bisherige Daten löschen, indem die Tabelle neu angelegt wird (geht schneller)
+comment|// recreate table (faster than delete from table)
 name|delDoc
 operator|.
 name|executeUpdate
@@ -634,10 +634,16 @@ name|setBytes
 argument_list|(
 literal|3
 argument_list|,
+operator|(
+name|byte
+index|[]
+operator|)
 name|document
 operator|.
-name|getDocumentBytes
-argument_list|()
+name|getField
+argument_list|(
+literal|"content"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|addDoc
