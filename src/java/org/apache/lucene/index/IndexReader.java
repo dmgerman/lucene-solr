@@ -385,6 +385,80 @@ literal|"segments"
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * If the directory does not exist or if there is no index in it.    *<code>false</code> is returned.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    */
+DECL|method|indexExists
+specifier|public
+specifier|static
+name|boolean
+name|indexExists
+parameter_list|(
+name|String
+name|directory
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+literal|"segments"
+argument_list|)
+operator|)
+operator|.
+name|exists
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * If the directory does not exist or if there is no index in it.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    */
+DECL|method|indexExists
+specifier|public
+specifier|static
+name|boolean
+name|indexExists
+parameter_list|(
+name|File
+name|directory
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+literal|"segments"
+argument_list|)
+operator|)
+operator|.
+name|exists
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * If the directory does not exist or if there is no index in it.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    * @throws IOException if there is a problem with accessing the index    */
+DECL|method|indexExists
+specifier|public
+specifier|static
+name|boolean
+name|indexExists
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|directory
+operator|.
+name|fileExists
+argument_list|(
+literal|"segments"
+argument_list|)
+return|;
+block|}
 comment|/** Returns the number of documents in this index. */
 DECL|method|numDocs
 specifier|abstract
@@ -439,7 +513,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the terms in the index.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.     */
+comment|/** Returns an enumeration of all the terms in the index.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|abstract
 specifier|public
@@ -449,7 +523,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all terms after a given term.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.     */
+comment|/** Returns an enumeration of all terms after a given term.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|abstract
 specifier|public
@@ -584,7 +658,7 @@ return|return
 name|n
 return|;
 block|}
-comment|/** Closes files associated with this index.     Also saves any new deletions to disk.     No other methods should be called after this has been called. */
+comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    */
 DECL|method|close
 specifier|abstract
 specifier|public
@@ -594,6 +668,49 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
+DECL|method|isLocked
+specifier|public
+specifier|static
+name|boolean
+name|isLocked
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|directory
+operator|.
+name|fileExists
+argument_list|(
+literal|"write.lock"
+argument_list|)
+return|;
+block|}
+comment|/**     * Forcibly unlocks the index in the named directory.     *<P>     * Caution: this should only be used by failure recovery code,     * when it is known that no other process nor thread is in fact     * currently accessing this index.     */
+DECL|method|unlock
+specifier|public
+specifier|static
+name|void
+name|unlock
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|directory
+operator|.
+name|deleteFile
+argument_list|(
+literal|"write.lock"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
