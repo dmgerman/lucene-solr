@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @todo add documentation after this is fully accepted  */
+comment|/**  * Wraps another filters result and caches it.  The caching  * behavior is like {@link QueryFilter}.  The purpose is to allow  * filters to simply filter, and then wrap with this class to add  * caching, keeping the two concerns decoupled yet composable.  */
 end_comment
 
 begin_class
@@ -94,7 +94,7 @@ specifier|transient
 name|Map
 name|cache
 decl_stmt|;
-comment|/**    * @param filter Filter to cache results of    * @todo Do we want another constructor to allow user to supply    *       a backing caching Map implementation?    */
+comment|/**    * @param filter Filter to cache results of    */
 DECL|method|CachingWrapperFilter
 specifier|public
 name|CachingWrapperFilter
