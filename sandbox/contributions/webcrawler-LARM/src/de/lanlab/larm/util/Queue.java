@@ -66,6 +66,18 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
+DECL|method|isEmpty
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+function_decl|;
+DECL|method|clear
+specifier|public
+name|void
+name|clear
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
