@@ -789,6 +789,14 @@ name|mergeFactor
 init|=
 literal|10
 decl_stmt|;
+comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *     *<p> The default value is 10.*/
+DECL|field|minMergeDocs
+specifier|public
+name|int
+name|minMergeDocs
+init|=
+literal|10
+decl_stmt|;
 comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link Integer#MAX_VALUE}. */
 DECL|field|maxMergeDocs
 specifier|public
@@ -1296,7 +1304,7 @@ block|{
 name|long
 name|targetMergeDocs
 init|=
-name|mergeFactor
+name|minMergeDocs
 decl_stmt|;
 while|while
 condition|(
