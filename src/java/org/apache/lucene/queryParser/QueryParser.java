@@ -375,6 +375,28 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * @return Returns the analyzer.    */
+DECL|method|getAnalyzer
+specifier|public
+name|Analyzer
+name|getAnalyzer
+parameter_list|()
+block|{
+return|return
+name|analyzer
+return|;
+block|}
+comment|/**    * @return Returns the field.    */
+DECL|method|getField
+specifier|public
+name|String
+name|getField
+parameter_list|()
+block|{
+return|return
+name|field
+return|;
+block|}
 comment|/**    * Sets the default slop for phrases.  If zero, then exact phrase matches    * are required.  Default value is zero.    */
 DECL|method|setPhraseSlop
 specifier|public
@@ -789,9 +811,6 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|,
 name|String
 name|queryText
 parameter_list|)
@@ -998,7 +1017,7 @@ name|q
 return|;
 block|}
 block|}
-comment|/**    * Base implementation delegates to {@link #getFieldQuery(String,Analyzer,String)}.    * This method may be overridden, for example, to return    * a SpanNearQuery instead of a PhraseQuery.    *    * @exception ParseException throw in overridden method to disallow    */
+comment|/**    * Base implementation delegates to {@link #getFieldQuery(String,String)}.    * This method may be overridden, for example, to return    * a SpanNearQuery instead of a PhraseQuery.    *    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getFieldQuery
 specifier|protected
 name|Query
@@ -1006,9 +1025,6 @@ name|getFieldQuery
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|Analyzer
-name|analyzer
 parameter_list|,
 name|String
 name|queryText
@@ -1025,8 +1041,6 @@ init|=
 name|getFieldQuery
 argument_list|(
 name|field
-argument_list|,
-name|analyzer
 argument_list|,
 name|queryText
 argument_list|)
@@ -1063,9 +1077,6 @@ name|getRangeQuery
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|Analyzer
-name|analyzer
 parameter_list|,
 name|String
 name|part1
@@ -2751,8 +2762,6 @@ name|getFieldQuery
 argument_list|(
 name|field
 argument_list|,
-name|analyzer
-argument_list|,
 name|termImage
 argument_list|)
 expr_stmt|;
@@ -3057,8 +3066,6 @@ operator|=
 name|getRangeQuery
 argument_list|(
 name|field
-argument_list|,
-name|analyzer
 argument_list|,
 name|goop1
 operator|.
@@ -3372,8 +3379,6 @@ name|getRangeQuery
 argument_list|(
 name|field
 argument_list|,
-name|analyzer
-argument_list|,
 name|goop1
 operator|.
 name|image
@@ -3519,8 +3524,6 @@ operator|=
 name|getFieldQuery
 argument_list|(
 name|field
-argument_list|,
-name|analyzer
 argument_list|,
 name|term
 operator|.
