@@ -285,9 +285,6 @@ block|{
 comment|//get current character
 name|c
 operator|=
-operator|(
-name|char
-operator|)
 name|ioBuffer
 index|[
 name|bufferIndex

@@ -284,9 +284,6 @@ return|;
 else|else
 name|c
 operator|=
-operator|(
-name|char
-operator|)
 name|ioBuffer
 index|[
 name|bufferIndex
