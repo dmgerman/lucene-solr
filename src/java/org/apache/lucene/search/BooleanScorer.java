@@ -549,7 +549,7 @@ operator|.
 name|first
 operator|!=
 literal|null
-operator||
+operator|||
 name|more
 condition|)
 do|;
