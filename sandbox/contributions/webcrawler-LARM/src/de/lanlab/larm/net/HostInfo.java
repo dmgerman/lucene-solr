@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * contains information about a host. If a host doesn't respond too often, it's  * excluded from the crawl. This class is used by the HostManager  *  * @author    Clemens Marschner  * @created   16. Februar 2002  * @version   $Id$  */
+comment|/**  * Contains information about a host. If a host doesn't respond too often, it's  * excluded from the crawl. This class is used by the HostManager.  * TODO: there needs to be a way to re-include the host in the crawl.  Perhaps  * all hosts marked as unhealthy should be checked periodically and marked  * healthy again, if they respond.  *  * @author    Clemens Marschner  * @created   16. Februar 2002  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -112,10 +112,12 @@ literal|0
 index|]
 decl_stmt|;
 DECL|field|id
+specifier|private
 name|int
 name|id
 decl_stmt|;
 DECL|field|healthyCount
+specifier|private
 name|int
 name|healthyCount
 init|=
@@ -123,30 +125,35 @@ literal|5
 decl_stmt|;
 comment|// five strikes, and you're out
 DECL|field|isReachable
+specifier|private
 name|boolean
 name|isReachable
 init|=
 literal|true
 decl_stmt|;
 DECL|field|robotTxtChecked
+specifier|private
 name|boolean
 name|robotTxtChecked
 init|=
 literal|false
 decl_stmt|;
 DECL|field|disallows
+specifier|private
 name|String
 index|[]
 name|disallows
 decl_stmt|;
 comment|// robot exclusion
 DECL|field|isLoadingRobotsTxt
+specifier|private
 name|boolean
 name|isLoadingRobotsTxt
 init|=
 literal|false
 decl_stmt|;
 DECL|field|queuedRequests
+specifier|private
 name|Queue
 name|queuedRequests
 init|=
@@ -154,9 +161,44 @@ literal|null
 decl_stmt|;
 comment|// robot exclusion
 DECL|field|hostName
+specifier|private
 name|String
 name|hostName
 decl_stmt|;
+comment|//LinkedList synonyms = new LinkedList();
+comment|/**      * Constructor for the HostInfo object      *      * @param hostName  Description of the Parameter      * @param id        Description of the Parameter      */
+DECL|method|HostInfo
+specifier|public
+name|HostInfo
+parameter_list|(
+name|String
+name|hostName
+parameter_list|,
+name|int
+name|id
+parameter_list|)
+block|{
+name|this
+operator|.
+name|id
+operator|=
+name|id
+expr_stmt|;
+name|this
+operator|.
+name|disallows
+operator|=
+name|HostInfo
+operator|.
+name|emptyKeepOutDirectories
+expr_stmt|;
+name|this
+operator|.
+name|hostName
+operator|=
+name|hostName
+expr_stmt|;
+block|}
 comment|/**      * Description of the Method      */
 DECL|method|removeQueue
 specifier|public
@@ -239,40 +281,6 @@ operator|.
 name|remove
 argument_list|()
 return|;
-block|}
-comment|//LinkedList synonyms = new LinkedList();
-comment|/**      * Constructor for the HostInfo object      *      * @param hostName  Description of the Parameter      * @param id        Description of the Parameter      */
-DECL|method|HostInfo
-specifier|public
-name|HostInfo
-parameter_list|(
-name|String
-name|hostName
-parameter_list|,
-name|int
-name|id
-parameter_list|)
-block|{
-name|this
-operator|.
-name|id
-operator|=
-name|id
-expr_stmt|;
-name|this
-operator|.
-name|disallows
-operator|=
-name|HostInfo
-operator|.
-name|emptyKeepOutDirectories
-expr_stmt|;
-name|this
-operator|.
-name|hostName
-operator|=
-name|hostName
-expr_stmt|;
 block|}
 comment|/**      * is this host reachable and responding?      *      * @return   The healthy value      */
 DECL|method|isHealthy
@@ -373,6 +381,7 @@ condition|(
 name|isLoading
 condition|)
 block|{
+comment|// FIXME: move '100' to properties
 name|this
 operator|.
 name|queuedRequests
