@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * this class is only used for SPEED. Its log function is not thread safe by  * default.  * It uses a BufferdWriter.  * It registers with a logger manager, which can be used to flush several loggers  * at once  * @todo: including the date slows down a lot  *  */
+comment|/**  * This class is only used for SPEED. Its log function is not thread safe by  * default.  * It uses a BufferdWriter.  * It registers with a logger manager, which can be used to flush several loggers  * at once.  * @todo: including the date slows down a lot  * @version $Id$  */
 end_comment
 
 begin_class
@@ -58,6 +58,7 @@ name|SimpleLogger
 block|{
 DECL|field|formatter
 specifier|private
+specifier|final
 name|SimpleDateFormat
 name|formatter
 init|=
@@ -68,10 +69,12 @@ literal|"HH:mm:ss:SSSS"
 argument_list|)
 decl_stmt|;
 DECL|field|logFile
+specifier|private
 name|Writer
 name|logFile
 decl_stmt|;
 DECL|field|buffer
+specifier|private
 name|StringBuffer
 name|buffer
 init|=
@@ -82,6 +85,7 @@ literal|1000
 argument_list|)
 decl_stmt|;
 DECL|field|startTime
+specifier|private
 name|long
 name|startTime
 init|=
@@ -91,9 +95,54 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 DECL|field|includeDate
+specifier|private
 name|boolean
 name|includeDate
 decl_stmt|;
+DECL|field|flushAtOnce
+specifier|private
+name|boolean
+name|flushAtOnce
+init|=
+literal|false
+decl_stmt|;
+comment|/**      * Creates a new<code>SimpleLogger</code> instance.      *      * @param name a<code>String</code> value      */
+DECL|method|SimpleLogger
+specifier|public
+name|SimpleLogger
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|init
+argument_list|(
+name|name
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Creates a new<code>SimpleLogger</code> instance.      *      * @param name a<code>String</code> value      * @param includeDate a<code>boolean</code> value      */
+DECL|method|SimpleLogger
+specifier|public
+name|SimpleLogger
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|boolean
+name|includeDate
+parameter_list|)
+block|{
+name|init
+argument_list|(
+name|name
+argument_list|,
+name|includeDate
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|setStartTime
 specifier|public
 name|void
@@ -272,12 +321,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|flushAtOnce
-name|boolean
-name|flushAtOnce
-init|=
-literal|false
-decl_stmt|;
 DECL|method|setFlushAtOnce
 specifier|public
 name|void
@@ -292,41 +335,6 @@ operator|.
 name|flushAtOnce
 operator|=
 name|flush
-expr_stmt|;
-block|}
-DECL|method|SimpleLogger
-specifier|public
-name|SimpleLogger
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|init
-argument_list|(
-name|name
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|SimpleLogger
-specifier|public
-name|SimpleLogger
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|boolean
-name|includeDate
-parameter_list|)
-block|{
-name|init
-argument_list|(
-name|name
-argument_list|,
-name|includeDate
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|flush
@@ -357,6 +365,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+comment|// FIXME: the logs directory needs to be configurable
 name|logFile
 operator|=
 operator|new
