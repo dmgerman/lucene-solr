@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements the fuzzy search query */
+comment|/** Implements the fuzzy search query. The similiarity measurement  * is based on the Levenshtein (edit distance) algorithm.  */
 end_comment
 
 begin_class
@@ -67,6 +67,65 @@ name|FuzzyQuery
 extends|extends
 name|MultiTermQuery
 block|{
+DECL|field|minimumSimilarity
+specifier|private
+name|float
+name|minimumSimilarity
+decl_stmt|;
+comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>.    * @throws IllegalArgumentException if minimumSimilarity is&gt; 1 or&lt; 0    */
+DECL|method|FuzzyQuery
+specifier|public
+name|FuzzyQuery
+parameter_list|(
+name|Term
+name|term
+parameter_list|,
+name|float
+name|minimumSimilarity
+parameter_list|)
+throws|throws
+name|IllegalArgumentException
+block|{
+name|super
+argument_list|(
+name|term
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|minimumSimilarity
+operator|>
+literal|1.0f
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"minimumSimilarity> 1"
+argument_list|)
+throw|;
+elseif|else
+if|if
+condition|(
+name|minimumSimilarity
+operator|<
+literal|0.0f
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"minimumSimilarity< 0"
+argument_list|)
+throw|;
+name|this
+operator|.
+name|minimumSimilarity
+operator|=
+name|minimumSimilarity
+expr_stmt|;
+block|}
+comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, 0.5f)}.    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery
@@ -75,9 +134,11 @@ name|Term
 name|term
 parameter_list|)
 block|{
-name|super
+name|this
 argument_list|(
 name|term
+argument_list|,
+literal|0.5f
 argument_list|)
 expr_stmt|;
 block|}
@@ -100,6 +161,8 @@ name|reader
 argument_list|,
 name|getTerm
 argument_list|()
+argument_list|,
+name|minimumSimilarity
 argument_list|)
 return|;
 block|}
