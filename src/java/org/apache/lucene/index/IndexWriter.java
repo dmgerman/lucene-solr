@@ -404,6 +404,11 @@ name|useCompoundFile
 init|=
 literal|true
 decl_stmt|;
+DECL|field|closeDir
+specifier|private
+name|boolean
+name|closeDir
+decl_stmt|;
 comment|/** Setting to turn on usage of a compound file. When on, multiple files    *  for each segment are merged into a single file once the segment creation    *  is finished. This is done regardless of what directory is in use.    */
 DECL|method|getUseCompoundFile
 specifier|public
@@ -491,6 +496,8 @@ argument_list|,
 name|a
 argument_list|,
 name|create
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -525,6 +532,8 @@ argument_list|,
 name|a
 argument_list|,
 name|create
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -539,13 +548,50 @@ parameter_list|,
 name|Analyzer
 name|a
 parameter_list|,
-specifier|final
 name|boolean
 name|create
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|this
+argument_list|(
+name|d
+argument_list|,
+name|a
+argument_list|,
+name|create
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|IndexWriter
+specifier|private
+name|IndexWriter
+parameter_list|(
+name|Directory
+name|d
+parameter_list|,
+name|Analyzer
+name|a
+parameter_list|,
+specifier|final
+name|boolean
+name|create
+parameter_list|,
+name|boolean
+name|closeDir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+operator|.
+name|closeDir
+operator|=
+name|closeDir
+expr_stmt|;
 name|directory
 operator|=
 name|d
@@ -653,7 +699,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Flushes all changes to an index, closes all associated files, and closes     the directory that the index is stored in. */
+comment|/** Flushes all changes to an index and closes all associated files. */
 DECL|method|close
 specifier|public
 specifier|synchronized
@@ -681,6 +727,10 @@ name|writeLock
 operator|=
 literal|null
 expr_stmt|;
+if|if
+condition|(
+name|closeDir
+condition|)
 name|directory
 operator|.
 name|close
@@ -1136,7 +1186,7 @@ argument_list|()
 expr_stmt|;
 comment|// final cleanup
 block|}
-comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized. */
+comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>    */
 DECL|method|addIndexes
 specifier|public
 specifier|synchronized
@@ -1783,6 +1833,11 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+name|merger
+operator|.
+name|closeReaders
+argument_list|()
+expr_stmt|;
 block|}
 comment|/* Some operating systems (e.g. Windows) don't permit a file to be deleted      while it is opened for read (e.g. by another process or thread).  So we      assume that when a delete fails it is because the file is open in another      process, and queue the file for subsequent deletion. */
 DECL|method|deleteSegments

@@ -887,6 +887,11 @@ operator|.
 name|merge
 argument_list|()
 expr_stmt|;
+name|merger
+operator|.
+name|closeReaders
+argument_list|()
+expr_stmt|;
 name|directory
 operator|.
 name|close
