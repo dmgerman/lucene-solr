@@ -209,7 +209,7 @@ literal|"ai"
 block|,
 literal|"ainsi"
 block|,
-literal|"après"
+literal|"aprÃ¨s"
 block|,
 literal|"attendu"
 block|,
@@ -299,15 +299,15 @@ literal|"dedans"
 block|,
 literal|"dehors"
 block|,
-literal|"delà"
+literal|"delÃ "
 block|,
 literal|"depuis"
 block|,
-literal|"derrière"
+literal|"derriÃ¨re"
 block|,
 literal|"des"
 block|,
-literal|"désormais"
+literal|"dÃ©sormais"
 block|,
 literal|"desquelles"
 block|,
@@ -341,7 +341,7 @@ literal|"duquel"
 block|,
 literal|"durant"
 block|,
-literal|"dès"
+literal|"dÃ¨s"
 block|,
 literal|"elle"
 block|,
@@ -365,13 +365,13 @@ literal|"eu"
 block|,
 literal|"eux"
 block|,
-literal|"excepté"
+literal|"exceptÃ©"
 block|,
 literal|"hormis"
 block|,
 literal|"hors"
 block|,
-literal|"hélas"
+literal|"hÃ©las"
 block|,
 literal|"hui"
 block|,
@@ -411,13 +411,13 @@ literal|"lorsque"
 block|,
 literal|"lui"
 block|,
-literal|"là"
+literal|"lÃ "
 block|,
 literal|"ma"
 block|,
 literal|"mais"
 block|,
-literal|"malgré"
+literal|"malgrÃ©"
 block|,
 literal|"me"
 block|,
@@ -441,9 +441,9 @@ literal|"mon"
 block|,
 literal|"moyennant"
 block|,
-literal|"même"
+literal|"mÃªme"
 block|,
-literal|"mêmes"
+literal|"mÃªmes"
 block|,
 literal|"n"
 block|,
@@ -459,11 +459,11 @@ literal|"notre"
 block|,
 literal|"nous"
 block|,
-literal|"néanmoins"
+literal|"nÃ©anmoins"
 block|,
-literal|"nôtre"
+literal|"nÃ´tre"
 block|,
-literal|"nôtres"
+literal|"nÃ´tres"
 block|,
 literal|"on"
 block|,
@@ -473,7 +473,7 @@ literal|"ou"
 block|,
 literal|"outre"
 block|,
-literal|"où"
+literal|"oÃ¹"
 block|,
 literal|"par"
 block|,
@@ -483,7 +483,7 @@ literal|"partant"
 block|,
 literal|"pas"
 block|,
-literal|"passé"
+literal|"passÃ©"
 block|,
 literal|"pendant"
 block|,
@@ -499,7 +499,7 @@ literal|"pourquoi"
 block|,
 literal|"proche"
 block|,
-literal|"près"
+literal|"prÃ¨s"
 block|,
 literal|"puisque"
 block|,
@@ -525,7 +525,7 @@ literal|"quoique"
 block|,
 literal|"revoici"
 block|,
-literal|"revoilà"
+literal|"revoilÃ "
 block|,
 literal|"s"
 block|,
@@ -607,7 +607,7 @@ literal|"vers"
 block|,
 literal|"voici"
 block|,
-literal|"voilà"
+literal|"voilÃ "
 block|,
 literal|"vos"
 block|,
@@ -617,23 +617,23 @@ literal|"vous"
 block|,
 literal|"vu"
 block|,
-literal|"vôtre"
+literal|"vÃ´tre"
 block|,
-literal|"vôtres"
+literal|"vÃ´tres"
 block|,
 literal|"y"
 block|,
-literal|"à"
+literal|"Ã "
 block|,
-literal|"ça"
+literal|"Ã§a"
 block|,
-literal|"ès"
+literal|"Ã¨s"
 block|,
-literal|"été"
+literal|"Ã©tÃ©"
 block|,
-literal|"être"
+literal|"Ãªtre"
 block|,
-literal|"ô"
+literal|"Ã´"
 block|}
 decl_stmt|;
 comment|/**    * Contains the stopwords used with the StopFilter.    */
