@@ -40,6 +40,10 @@ name|TermDocs
 import|;
 end_import
 
+begin_comment
+comment|/** Expert: A<code>Scorer</code> for documents matching a<code>Term</code>.  */
+end_comment
+
 begin_class
 DECL|class|TermScorer
 specifier|final
@@ -133,6 +137,7 @@ index|[
 name|SCORE_CACHE_SIZE
 index|]
 decl_stmt|;
+comment|/** Construct a<code>TermScorer</code>.    * @param weight The weight of the<code>Term</code> in the query.    * @param td An iterator over the documents matching the<code>Term</code>.    * @param similarity The</code>Similarity</code> implementation to be used for score computations.    * @param norms The field norms of the document fields for the<code>Term</code>.    */
 DECL|method|TermScorer
 name|TermScorer
 parameter_list|(
@@ -212,6 +217,7 @@ operator|*
 name|weightValue
 expr_stmt|;
 block|}
+comment|/** Returns the current document number matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
 DECL|method|doc
 specifier|public
 name|int
@@ -222,6 +228,7 @@ return|return
 name|doc
 return|;
 block|}
+comment|/** Advances to the next document matching the query.    *<br>The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    * @return true iff there is another document matching the query.    */
 DECL|method|next
 specifier|public
 name|boolean
@@ -350,6 +357,7 @@ argument_list|)
 return|;
 comment|// normalize for field
 block|}
+comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.     *<br>The implementation uses {@link TermDocs#skipTo(int)}.    * @param target The target document number.    * @return true iff there is such a match.    */
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -457,6 +465,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    * @todo Modify to make use of {@link TermDocs#skipTo(int)}.    */
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -593,6 +602,7 @@ return|return
 name|tfExplanation
 return|;
 block|}
+comment|/** Returns a string representation of this<code>TermScorer</code>. */
 DECL|method|toString
 specifier|public
 name|String

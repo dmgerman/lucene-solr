@@ -146,7 +146,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * InputStream    * @param d The directory to open the InputStream from    * @param name The name of the file to open the InputStream from in the Directory    * @throws IOException    *     * @see #read    */
+comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * InputStream    * @param d The directory to open the InputStream from    * @param name The name of the file to open the InputStream from in the Directory    * @throws IOException    */
 DECL|method|FieldInfos
 name|FieldInfos
 parameter_list|(

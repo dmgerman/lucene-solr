@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Expert: Implements scoring for a class of queries. */
+comment|/** Expert: Common scoring functionality for different types of queries.  *<br>A<code>Scorer</code> iterates over all documents matching a query,  * or provides an explanation of the score for a query for a given document.  *<br>Scores are computed using a given<code>Similarity</code> implementation.  */
 end_comment
 
 begin_class
@@ -42,7 +42,7 @@ specifier|private
 name|Similarity
 name|similarity
 decl_stmt|;
-comment|/** Constructs a Scorer. */
+comment|/** Constructs a Scorer.    * @param similarity The<code>Similarity</code> implementation used by this scorer.    */
 DECL|method|Scorer
 specifier|protected
 name|Scorer
@@ -71,7 +71,7 @@ operator|.
 name|similarity
 return|;
 block|}
-comment|/** Scores all documents and passes them to a collector. */
+comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    */
 DECL|method|score
 specifier|public
 name|void
@@ -102,7 +102,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Advance to the next document matching the query.  Returns true iff there    * is another match. */
+comment|/** Advances to the next document matching the query.    * @return true iff there is another document matching the query.    */
 DECL|method|next
 specifier|public
 specifier|abstract
@@ -112,7 +112,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the current document number.  Initially invalid, until {@link    * #next()} is called the first time. */
+comment|/** Returns the current document number matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
 DECL|method|doc
 specifier|public
 specifier|abstract
@@ -120,7 +120,7 @@ name|int
 name|doc
 parameter_list|()
 function_decl|;
-comment|/** Returns the score of the current document.  Initially invalid, until    * {@link #next()} is called the first time. */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
 DECL|method|score
 specifier|public
 specifier|abstract
@@ -130,7 +130,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to<i>target</i>.<p>Returns true iff there is such    * a match.<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    */
+comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.     * @param target The target document number.    * @return true iff there is such a match.    *<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    */
 DECL|method|skipTo
 specifier|public
 specifier|abstract
@@ -143,7 +143,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an explanation of the score for<code>doc</code>. */
+comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    */
 DECL|method|explain
 specifier|public
 specifier|abstract
