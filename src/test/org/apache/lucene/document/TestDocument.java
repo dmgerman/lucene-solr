@@ -256,6 +256,12 @@ name|binaryVal
 operator|.
 name|getBytes
 argument_list|()
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
 argument_list|)
 decl_stmt|;
 name|Field
@@ -270,6 +276,12 @@ name|binaryVal2
 operator|.
 name|getBytes
 argument_list|()
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
 argument_list|)
 decl_stmt|;
 name|doc
