@@ -374,8 +374,6 @@ argument_list|(
 literal|"body"
 argument_list|,
 name|prefix
-operator|+
-literal|"*"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -547,8 +545,6 @@ argument_list|(
 literal|"body"
 argument_list|,
 name|prefix
-operator|+
-literal|"*"
 argument_list|)
 argument_list|)
 expr_stmt|;
