@@ -225,7 +225,8 @@ argument_list|(
 literal|"time too late"
 argument_list|)
 throw|;
-while|while
+comment|// Pad with leading zeros
+if|if
 condition|(
 name|s
 operator|.
@@ -234,13 +235,42 @@ argument_list|()
 operator|<
 name|DATE_LEN
 condition|)
+block|{
+name|StringBuffer
+name|sb
+init|=
+operator|new
+name|StringBuffer
+argument_list|(
+name|s
+argument_list|)
+decl_stmt|;
+while|while
+condition|(
+name|sb
+operator|.
+name|length
+argument_list|()
+operator|<
+name|DATE_LEN
+condition|)
+name|sb
+operator|.
+name|insert
+argument_list|(
+literal|0
+argument_list|,
+literal|' '
+argument_list|)
+expr_stmt|;
 name|s
 operator|=
-literal|"0"
-operator|+
-name|s
+name|sb
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
-comment|// pad with leading zeros
+block|}
 return|return
 name|s
 return|;
