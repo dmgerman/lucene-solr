@@ -50,6 +50,17 @@ specifier|public
 interface|interface
 name|TermDocs
 block|{
+comment|/** Sets this to the data for a term.    * The enumeration is reset to the start of the data for this term.    */
+DECL|method|seek
+name|void
+name|seek
+parameter_list|(
+name|Term
+name|term
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Returns the current document number.<p> This is invalid until {@link       #next()} is called for the first time.*/
 DECL|method|doc
 name|int
@@ -86,7 +97,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Skips entries to the first beyond the current whose document number is    * greater than or equal to<i>target</i>.<p>Returns true iff there is such    * an entry.<p>Behaves as if written:<pre>    *   public boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Some implementations are considerably more efficient than that.    */
+comment|/** Skips entries to the first beyond the current whose document number is    * greater than or equal to<i>target</i>.<p>Returns true iff there is such    * an entry.<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Some implementations are considerably more efficient than that.    */
 DECL|method|skipTo
 name|boolean
 name|skipTo
