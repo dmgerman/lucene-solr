@@ -414,6 +414,7 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+comment|// shouldn't there be a lowercaser before stop word filtering?
 name|result
 operator|=
 operator|new
