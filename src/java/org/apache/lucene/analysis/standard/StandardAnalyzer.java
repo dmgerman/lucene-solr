@@ -82,7 +82,7 @@ name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS
 decl_stmt|;
-comment|/** Builds an analyzer. */
+comment|/** Builds an analyzer with the default stop words ({@link #STOP_WORDS}). */
 DECL|method|StandardAnalyzer
 specifier|public
 name|StandardAnalyzer
