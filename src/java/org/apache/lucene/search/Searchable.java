@@ -156,6 +156,31 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** */
+DECL|method|rewrite
+name|Query
+name|rewrite
+parameter_list|(
+name|Query
+name|query
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** */
+DECL|method|explain
+name|Explanation
+name|explain
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_interface
 

@@ -255,15 +255,11 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Term<"
-operator|+
 name|field
 operator|+
 literal|":"
 operator|+
 name|text
-operator|+
-literal|">"
 return|;
 block|}
 DECL|method|readObject

@@ -26,8 +26,13 @@ name|IOException
 import|;
 end_import
 
+begin_comment
+comment|/** Expert: Implements scoring for a class of queries. */
+end_comment
+
 begin_class
 DECL|class|Scorer
+specifier|public
 specifier|abstract
 class|class
 name|Scorer
@@ -37,6 +42,7 @@ specifier|private
 name|Similarity
 name|similarity
 decl_stmt|;
+comment|/** Constructs a Scorer. */
 DECL|method|Scorer
 specifier|protected
 name|Scorer
@@ -52,6 +58,7 @@ operator|=
 name|similarity
 expr_stmt|;
 block|}
+comment|/** Returns the Similarity implementation used by this scorer. */
 DECL|method|getSimilarity
 specifier|public
 name|Similarity
@@ -64,7 +71,9 @@ operator|.
 name|similarity
 return|;
 block|}
+comment|/** Scores hits and passes them to a collector.  Stops at the last document    * before<code>maxDoc</code>.  If called repeatedly, will restart at point    * where it last left off.    */
 DECL|method|score
+specifier|public
 specifier|abstract
 name|void
 name|score
@@ -74,6 +83,19 @@ name|hc
 parameter_list|,
 name|int
 name|maxDoc
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns an explanation of the score for<code>doc</code>. */
+DECL|method|explain
+specifier|public
+specifier|abstract
+name|Explanation
+name|explain
+parameter_list|(
+name|int
+name|doc
 parameter_list|)
 throws|throws
 name|IOException

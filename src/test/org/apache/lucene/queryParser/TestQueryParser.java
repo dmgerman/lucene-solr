@@ -863,6 +863,24 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
+literal|"(term)^2.0"
+argument_list|,
+literal|null
+argument_list|,
+literal|"term^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(germ term)^2.0"
+argument_list|,
+literal|null
+argument_list|,
+literal|"(germ term)^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
 literal|"term^2.0"
 argument_list|,
 literal|null
