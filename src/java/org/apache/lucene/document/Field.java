@@ -742,7 +742,7 @@ return|return
 name|isTokenized
 return|;
 block|}
-comment|/** True iff the term or terms used to index this field are stored as a term    *  vector, avaliable from {@link IndexReader#getTermFreqVector(int,String)}.    *  These methods do not provide access to the original content of the field,    *  only to terms used to index it. If the original content must be    *  preserved, use the<code>stored</code> attribute instead.    *    * @see IndexReader#getTermFreqVector(int, String)    */
+comment|/** True iff the term or terms used to index this field are stored as a term    *  vector, available from {@link IndexReader#getTermFreqVector(int,String)}.    *  These methods do not provide access to the original content of the field,    *  only to terms used to index it. If the original content must be    *  preserved, use the<code>stored</code> attribute instead.    *    * @see IndexReader#getTermFreqVector(int, String)    */
 DECL|method|isTermVectorStored
 specifier|public
 specifier|final
