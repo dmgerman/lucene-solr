@@ -718,7 +718,7 @@ name|length
 expr_stmt|;
 comment|// variable in the superclass
 block|}
-comment|/** Expert: implements buffer refill.  Reads bytes from the current          *  position in the input.          * @param b the array to read bytes into          * @param offset the offset in the array to start storing bytes          * @param length the number of bytes to read          */
+comment|/** Expert: implements buffer refill.  Reads bytes from the current          *  position in the input.          * @param b the array to read bytes into          * @param offset the offset in the array to start storing bytes          * @param len the number of bytes to read          */
 DECL|method|readInternal
 specifier|protected
 name|void
