@@ -149,7 +149,7 @@ block|{
 specifier|final
 name|String
 index|[]
-name|ar
+name|files
 init|=
 name|dir
 operator|.
@@ -165,7 +165,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|ar
+name|files
 operator|.
 name|length
 condition|;
@@ -179,7 +179,7 @@ name|os
 init|=
 name|createFile
 argument_list|(
-name|ar
+name|files
 index|[
 name|i
 index|]
@@ -193,7 +193,7 @@ name|dir
 operator|.
 name|openFile
 argument_list|(
-name|ar
+name|files
 index|[
 name|i
 index|]
