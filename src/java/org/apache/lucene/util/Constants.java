@@ -108,7 +108,7 @@ argument_list|(
 literal|"os.name"
 argument_list|)
 decl_stmt|;
-comment|/** True iff running on Windows. */
+comment|/** True iff running on Linux. */
 DECL|field|LINUX
 specifier|public
 specifier|static
