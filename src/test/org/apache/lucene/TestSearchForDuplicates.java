@@ -236,7 +236,7 @@ name|LOW_PRIORITY
 init|=
 literal|"low"
 decl_stmt|;
-comment|/** This test compares search results when using and not using compound    *  files.     *      *  TODO: There is rudimentary search result validation as well, but it is    *        simply based on asserting the output observed in the old test case,    *        without really knowing if the output is correct. Someone needs to    *        validate this output and make any changes to the checkHits method.    */
+comment|/** This test compares search results when using and not using compound    *  files.    *    *  TODO: There is rudimentary search result validation as well, but it is    *        simply based on asserting the output observed in the old test case,    *        without really knowing if the output is correct. Someone needs to    *        validate this output and make any changes to the checkHits method.    */
 DECL|method|testRun
 specifier|public
 name|void
@@ -291,15 +291,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|multiFileOutput
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(multiFileOutput);
 name|sw
 operator|=
 operator|new

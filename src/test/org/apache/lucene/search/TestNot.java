@@ -253,15 +253,7 @@ name|SimpleAnalyzer
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(query);
 name|Hits
 name|hits
 init|=

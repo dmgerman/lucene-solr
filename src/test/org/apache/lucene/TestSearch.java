@@ -196,7 +196,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** This test performs a number of searches. It also compares output      *  of searches using multi-file index segments with single-file      *  index segments.       *        *  TODO: someone should check that the results of the searches are      *        still correct by adding assert statements. Right now, the test      *        passes if the results are the same between multi-file and      *        single-file formats, even if the results are wrong.      */
+comment|/** This test performs a number of searches. It also compares output      *  of searches using multi-file index segments with single-file      *  index segments.      *      *  TODO: someone should check that the results of the searches are      *        still correct by adding assert statements. Right now, the test      *        passes if the results are the same between multi-file and      *        single-file formats, even if the results are wrong.      */
 DECL|method|testSearch
 specifier|public
 name|void
@@ -251,15 +251,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|multiFileOutput
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(multiFileOutput);
 name|sw
 operator|=
 operator|new
