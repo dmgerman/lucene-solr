@@ -52,20 +52,6 @@ name|lanlab
 operator|.
 name|larm
 operator|.
-name|gui
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|de
-operator|.
-name|lanlab
-operator|.
-name|larm
-operator|.
 name|util
 operator|.
 name|*
@@ -121,6 +107,16 @@ operator|.
 name|regex
 operator|.
 name|MalformedPatternException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|*
 import|;
 end_import
 
@@ -199,6 +195,18 @@ specifier|protected
 name|RobotExclusionFilter
 name|reFilter
 decl_stmt|;
+comment|/**      * the host manager keeps track of all hosts and is used by the filters.      */
+DECL|field|hostManager
+specifier|protected
+name|HostManager
+name|hostManager
+decl_stmt|;
+comment|/**      * the host resolver can change a host that occurs within a URL to a different      * host, depending on the rules specified in a configuration file      */
+DECL|field|hostResolver
+specifier|protected
+name|HostResolver
+name|hostResolver
+decl_stmt|;
 comment|/**      * this rather flaky filter just filters out some URLs, i.e. different views      * of Apache the apache DirIndex module. Has to be made      * configurable in near future      */
 DECL|field|knownPathsFilter
 specifier|protected
@@ -210,12 +218,6 @@ DECL|field|urlLengthFilter
 specifier|protected
 name|URLLengthFilter
 name|urlLengthFilter
-decl_stmt|;
-comment|/**      * the host manager keeps track of all hosts and is used by the filters.      */
-DECL|field|hostManager
-specifier|protected
-name|HostManager
-name|hostManager
 decl_stmt|;
 comment|/**      * this is the main document fetcher. It contains a thread pool that fetches the      * documents and stores them      */
 DECL|field|fetcher
@@ -237,12 +239,17 @@ name|storage
 decl_stmt|;
 comment|/**      * initializes all classes and registers anonymous adapter classes as      * listeners for fetcher events.      *      * @param nrThreads  number of fetcher threads to be created      */
 DECL|method|FetcherMain
-specifier|private
+specifier|public
 name|FetcherMain
 parameter_list|(
 name|int
 name|nrThreads
+parameter_list|,
+name|String
+name|hostResolverFile
 parameter_list|)
+throws|throws
+name|Exception
 block|{
 comment|// to make things clear, this method is commented a bit better than
 comment|// the rest of the program...
@@ -263,9 +270,25 @@ comment|// example for the (very slow) SQL Server storage:
 comment|// this.storage = new SQLServerStorage("sun.jdbc.odbc.JdbcOdbcDriver","jdbc:odbc:search","sa","...",nrThreads);
 comment|// the LogStorage used here does extensive logging. It logs all links and
 comment|// document information.
-comment|// it also saves all documents to page files. Probably this single storage
-comment|// could also be replaced by a pipeline; or even incorporated into the
-comment|// existing message pipeline
+comment|// it also saves all documents to page files.
+name|File
+name|logsDir
+init|=
+operator|new
+name|File
+argument_list|(
+literal|"logs"
+argument_list|)
+decl_stmt|;
+name|logsDir
+operator|.
+name|mkdir
+argument_list|()
+expr_stmt|;
+comment|// ensure log directory exists
+comment|// in this experimental implementation, the crawler is pretty verbose
+comment|// the SimpleLogger, however, is a FlyWeight logger which is buffered and
+comment|// not thread safe by default
 name|SimpleLogger
 name|storeLog
 init|=
@@ -274,6 +297,43 @@ name|SimpleLogger
 argument_list|(
 literal|"store"
 argument_list|,
+comment|/* add date/time? */
+literal|false
+argument_list|)
+decl_stmt|;
+name|SimpleLogger
+name|visitedLog
+init|=
+operator|new
+name|SimpleLogger
+argument_list|(
+literal|"URLVisitedFilter"
+argument_list|,
+comment|/* add date/time? */
+literal|false
+argument_list|)
+decl_stmt|;
+name|SimpleLogger
+name|scopeLog
+init|=
+operator|new
+name|SimpleLogger
+argument_list|(
+literal|"URLScopeFilter"
+argument_list|,
+comment|/* add date/time? */
+literal|false
+argument_list|)
+decl_stmt|;
+name|SimpleLogger
+name|pathsLog
+init|=
+operator|new
+name|SimpleLogger
+argument_list|(
+literal|"KnownPathsFilter"
+argument_list|,
+comment|/* add date/time? */
 literal|false
 argument_list|)
 decl_stmt|;
@@ -285,6 +345,19 @@ name|SimpleLogger
 argument_list|(
 literal|"links"
 argument_list|,
+comment|/* add date/time? */
+literal|false
+argument_list|)
+decl_stmt|;
+name|SimpleLogger
+name|lengthLog
+init|=
+operator|new
+name|SimpleLogger
+argument_list|(
+literal|"length"
+argument_list|,
+comment|/* add date/time? */
 literal|false
 argument_list|)
 decl_stmt|;
@@ -295,7 +368,32 @@ operator|new
 name|StoragePipeline
 argument_list|()
 decl_stmt|;
-comment|//storage.addDocStorage(new LogStorage(storeLog, /* save in page files? */ false, /* logfile prefix */ "logs/pagefile"));
+comment|// in the default configuration, the crawler will only save the document
+comment|// information to store.log and the link information to links.log
+comment|// The contents of the files are _not_ saved. If you set
+comment|// "save in page files" to "true", they will be saved in "page files",
+comment|// binary files each containing a set of documents. Here, the
+comment|// maximum file size is ~50 MB (crawled files won't be split up into different
+comment|// files). The logs/store.log file contains pointers to these files: a page
+comment|// file number, the offset within that file, and the document's length
+comment|// FIXME: default constructor for all storages + bean access methods
+name|storage
+operator|.
+name|addDocStorage
+argument_list|(
+operator|new
+name|LogStorage
+argument_list|(
+name|storeLog
+argument_list|,
+comment|/* save in page files? */
+literal|false
+argument_list|,
+comment|/* page file prefix */
+literal|"logs/pagefile"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|storage
 operator|.
 name|addLinkStorage
@@ -314,97 +412,23 @@ argument_list|(
 name|messageHandler
 argument_list|)
 expr_stmt|;
-name|LuceneStorage
-name|luceneStorage
-init|=
-operator|new
-name|LuceneStorage
-argument_list|()
-decl_stmt|;
-name|luceneStorage
-operator|.
-name|setAnalyzer
-argument_list|(
-operator|new
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|de
-operator|.
-name|GermanAnalyzer
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|luceneStorage
-operator|.
-name|setCreate
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-comment|// FIXME: index name and path need to be configurable
-name|luceneStorage
-operator|.
-name|setIndexName
-argument_list|(
-literal|"luceneIndex"
-argument_list|)
-expr_stmt|;
-name|luceneStorage
-operator|.
-name|setFieldInfo
-argument_list|(
-literal|"url"
-argument_list|,
-name|LuceneStorage
-operator|.
-name|INDEX
-operator||
-name|LuceneStorage
-operator|.
-name|STORE
-argument_list|)
-expr_stmt|;
-name|luceneStorage
-operator|.
-name|setFieldInfo
-argument_list|(
-literal|"content"
-argument_list|,
-name|LuceneStorage
-operator|.
-name|INDEX
-operator||
-name|LuceneStorage
-operator|.
-name|STORE
-operator||
-name|LuceneStorage
-operator|.
-name|TOKEN
-argument_list|)
-expr_stmt|;
-name|storage
-operator|.
-name|addDocStorage
-argument_list|(
-name|luceneStorage
-argument_list|)
-expr_stmt|;
+comment|/*         // experimental Lucene storage. will slow the crawler down *a lot*         LuceneStorage luceneStorage = new LuceneStorage();         luceneStorage.setAnalyzer(new org.apache.lucene.analysis.de.GermanAnalyzer());         luceneStorage.setCreate(true); 	// FIXME: index name and path need to be configurable         luceneStorage.setIndexName("luceneIndex");         // the field names come from URLMessage.java and WebDocument.java. See         // LuceneStorage source for details         luceneStorage.setFieldInfo("url", LuceneStorage.INDEX | LuceneStorage.STORE);         luceneStorage.setFieldInfo("content", LuceneStorage.INDEX | LuceneStorage.STORE | LuceneStorage.TOKEN);         storage.addDocStorage(luceneStorage);         */
 name|storage
 operator|.
 name|open
 argument_list|()
 expr_stmt|;
 comment|//storage.addStorage(new JMSStorage(...));
-comment|// a third example would be the NullStorage, which converts the documents into
-comment|// heat, which evaporates above the processor
-comment|// NullStorage();
+comment|// create the filters and add them to the message queue
+name|urlScopeFilter
+operator|=
+operator|new
+name|URLScopeFilter
+argument_list|(
+name|scopeLog
+argument_list|)
+expr_stmt|;
+comment|// dnsResolver = new DNSResolver();
 name|hostManager
 operator|=
 operator|new
@@ -413,7 +437,32 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-comment|// create the filters and add them to the message queue
+name|hostResolver
+operator|=
+operator|new
+name|HostResolver
+argument_list|()
+expr_stmt|;
+name|hostResolver
+operator|.
+name|initFromFile
+argument_list|(
+name|hostResolverFile
+argument_list|)
+expr_stmt|;
+name|hostManager
+operator|.
+name|setHostResolver
+argument_list|(
+name|hostResolver
+argument_list|)
+expr_stmt|;
+comment|//        hostManager.addSynonym("www.fachsprachen.uni-muenchen.de", "www.fremdsprachen.uni-muenchen.de");
+comment|//        hostManager.addSynonym("www.uni-muenchen.de", "www.lmu.de");
+comment|//        hostManager.addSynonym("www.uni-muenchen.de", "uni-muenchen.de");
+comment|//        hostManager.addSynonym("webinfo.uni-muenchen.de", "www.webinfo.uni-muenchen.de");
+comment|//        hostManager.addSynonym("webinfo.uni-muenchen.de", "webinfo.campus.lmu.de");
+comment|//        hostManager.addSynonym("www.s-a.uni-muenchen.de", "s-a.uni-muenchen.de");
 name|reFilter
 operator|=
 operator|new
@@ -422,35 +471,6 @@ argument_list|(
 name|hostManager
 argument_list|)
 expr_stmt|;
-name|urlScopeFilter
-operator|=
-operator|new
-name|URLScopeFilter
-argument_list|()
-expr_stmt|;
-name|urlVisitedFilter
-operator|=
-operator|new
-name|URLVisitedFilter
-argument_list|(
-literal|100000
-argument_list|)
-expr_stmt|;
-name|knownPathsFilter
-operator|=
-operator|new
-name|KnownPathsFilter
-argument_list|()
-expr_stmt|;
-name|urlLengthFilter
-operator|=
-operator|new
-name|URLLengthFilter
-argument_list|(
-literal|255
-argument_list|)
-expr_stmt|;
-comment|// dnsResolver = new DNSResolver();
 name|fetcher
 operator|=
 operator|new
@@ -483,6 +503,16 @@ operator|.
 name|ContentEncodingModule
 operator|.
 name|class
+argument_list|)
+expr_stmt|;
+name|urlVisitedFilter
+operator|=
+operator|new
+name|URLVisitedFilter
+argument_list|(
+name|visitedLog
+argument_list|,
+literal|100000
 argument_list|)
 expr_stmt|;
 comment|// initialize the threads
@@ -562,7 +592,8 @@ argument_list|(
 name|fetcher
 argument_list|)
 expr_stmt|;
-comment|/* uncomment this to enable HTTPClient logging         try         {             HTTPClient.Log.setLogWriter(new java.io.FileWriter("logs/HttpClient.log"),false);             HTTPClient.Log.setLogging(HTTPClient.Log.ALL, true);         }         catch (Exception e)         {             e.printStackTrace();         }         */
+comment|//uncomment this to enable HTTPClient logging
+comment|/*         try         {             HTTPClient.Log.setLogWriter(new java.io.OutputStreamWriter(System.out) //new java.io.FileWriter("logs/HttpClient.log")             ,false);             HTTPClient.Log.setLogging(HTTPClient.Log.ALL, true);         }         catch (Exception e)         {             e.printStackTrace();         }         */
 block|}
 comment|/**      * Sets the RexString attribute of<code>UrlScopeFilter</code>.      *      * @param restrictTo the new RexString value      */
 DECL|method|setRexString
@@ -596,12 +627,7 @@ parameter_list|,
 name|boolean
 name|isFrame
 parameter_list|)
-throws|throws
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
+comment|//   throws java.net.MalformedURLException
 block|{
 try|try
 block|{
@@ -617,12 +643,22 @@ argument_list|,
 literal|null
 argument_list|,
 name|isFrame
+operator|==
+literal|true
+condition|?
+name|URLMessage
+operator|.
+name|LINKTYPE_FRAME
+else|:
+name|URLMessage
+operator|.
+name|LINKTYPE_ANCHOR
 argument_list|,
 literal|null
 argument_list|,
 name|this
 operator|.
-name|hostManager
+name|hostResolver
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -654,7 +690,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|//System.out.println("URLs geschrieben");
 block|}
 comment|/**      * Description of the Method      */
 DECL|method|startMonitor
@@ -682,21 +717,25 @@ name|String
 index|[]
 name|args
 parameter_list|)
+throws|throws
+name|Exception
 block|{
 name|int
 name|nrThreads
 init|=
 literal|10
 decl_stmt|;
-name|String
-name|startURL
+name|ArrayList
+name|startURLs
 init|=
-literal|""
+operator|new
+name|ArrayList
+argument_list|()
 decl_stmt|;
 name|String
 name|restrictTo
 init|=
-literal|"http://141.84.120.82/ll/cmarschn/.*"
+literal|".*"
 decl_stmt|;
 name|boolean
 name|gui
@@ -708,13 +747,18 @@ name|showInfo
 init|=
 literal|false
 decl_stmt|;
+name|String
+name|hostResolverFile
+init|=
+literal|""
+decl_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"LARM - LANLab Retrieval Machine - Fetcher - V 1.00 - (C) LANLab 2000-02"
+literal|"LARM - LANLab Retrieval Machine - Fetcher - V 1.00 - B.20020914"
 argument_list|)
 expr_stmt|;
 comment|// FIXME: consider using Jakarta Commons' CLI package for command line parameters
@@ -751,12 +795,135 @@ block|{
 name|i
 operator|++
 expr_stmt|;
-name|startURL
-operator|=
+name|String
+name|arg
+init|=
 name|args
 index|[
 name|i
 index|]
+decl_stmt|;
+if|if
+condition|(
+name|arg
+operator|.
+name|startsWith
+argument_list|(
+literal|"@"
+argument_list|)
+condition|)
+block|{
+comment|// input is a file with one URL per line
+name|String
+name|fileName
+init|=
+name|arg
+operator|.
+name|substring
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"reading URL file "
+operator|+
+name|fileName
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|BufferedReader
+name|r
+init|=
+operator|new
+name|BufferedReader
+argument_list|(
+operator|new
+name|FileReader
+argument_list|(
+name|fileName
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|String
+name|line
+decl_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|line
+operator|=
+name|r
+operator|.
+name|readLine
+argument_list|()
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|startURLs
+operator|.
+name|add
+argument_list|(
+operator|new
+name|URL
+argument_list|(
+name|line
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|count
+operator|++
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|MalformedURLException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Malformed URL '"
+operator|+
+name|line
+operator|+
+literal|"' in line "
+operator|+
+operator|(
+name|count
+operator|+
+literal|1
+operator|)
+operator|+
+literal|" of file "
+operator|+
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|r
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|System
 operator|.
@@ -764,11 +931,98 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Start-URL set to: "
+literal|"added "
 operator|+
-name|startURL
+name|count
+operator|+
+literal|" URLs from "
+operator|+
+name|fileName
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Couldn't read '"
+operator|+
+name|fileName
+operator|+
+literal|"': "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"got URL "
+operator|+
+name|arg
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|startURLs
+operator|.
+name|add
+argument_list|(
+operator|new
+name|URL
+argument_list|(
+name|arg
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Start-URL added: "
+operator|+
+name|arg
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|MalformedURLException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Malformed URL '"
+operator|+
+name|arg
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 elseif|else
 if|if
@@ -857,6 +1111,44 @@ index|]
 operator|.
 name|equals
 argument_list|(
+literal|"-hostresolver"
+argument_list|)
+condition|)
+block|{
+name|i
+operator|++
+expr_stmt|;
+name|hostResolverFile
+operator|=
+name|args
+index|[
+name|i
+index|]
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"reading host resolver props from  '"
+operator|+
+name|hostResolverFile
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|args
+index|[
+name|i
+index|]
+operator|.
+name|equals
+argument_list|(
 literal|"-gui"
 argument_list|)
 condition|)
@@ -921,19 +1213,26 @@ operator|new
 name|FetcherMain
 argument_list|(
 name|nrThreads
+argument_list|,
+name|hostResolverFile
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|showInfo
 operator|||
-operator|(
-name|startURL
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|hostResolverFile
 argument_list|)
+operator|||
+operator|(
+name|startURLs
+operator|.
+name|isEmpty
+argument_list|()
 operator|&&
 name|gui
 operator|==
@@ -947,10 +1246,109 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Usage: FetcherMain -start<URL> -restrictto<RegEx> [-threads<nr=10>]"
+literal|"The LARM crawler\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"The LARM crawler is a fast parallel crawler, currently designed for\n"
+operator|+
+literal|"large intranets (up to a couple hundred hosts with some hundred thousand\n"
+operator|+
+literal|"documents). It is currently restricted by a relatively high memory overhead\n"
+operator|+
+literal|"per crawled host, and by a HashMap of already crawled URLs which is also held\n"
+operator|+
+literal|"in memory.\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"Usage:   FetcherMain<-start<URL>|@<filename>>+ -restrictto<RegEx>\n"
+operator|+
+literal|"                    [-threads<nr=10>] [-hostresolver<filename>]\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"Commands:\n"
+operator|+
+literal|"         -start specify one or more URLs to start with. You can as well specify a file"
+operator|+
+literal|"                that contains URLs, one each line\n"
+operator|+
+literal|"         -restrictto a Perl 5 regular expression each URL must match. It is run against the\n"
+operator|+
+literal|"                     _complete_ URL, including the http:// part\n"
+operator|+
+literal|"         -threads  the number of crawling threads. defaults to 10\n"
+operator|+
+literal|"         -hostresolver specify a file that contains rules for changing the host part of \n"
+operator|+
+literal|"                       a URL during the normalization process (experimental).\n"
+operator|+
+literal|"Caution: The<RegEx> is applied to the _normalized_ form of a URL.\n"
+operator|+
+literal|"         See URLNormalizer for details\n"
+operator|+
+literal|"Example:\n"
+operator|+
+literal|"    -start @urls1.txt -start @urls2.txt -start http://localhost/ "
+operator|+
+literal|"    -restrictto http://[^/]*\\.localhost/.* -threads 25\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"The host resolver file may contain the following commands: \n"
+operator|+
+literal|"  startsWith(part1) = part2\n"
+operator|+
+literal|"      if host starts with part1, this part will be replaced by part2\n"
+operator|+
+literal|"   endsWith(part1) = part2\n"
+operator|+
+literal|"       if host ends with part1, this part will be replaced by part2. This is done after\n"
+operator|+
+literal|"       startsWith was processed\n"
+operator|+
+literal|"   synonym(host1) = host2\n"
+operator|+
+literal|"       the keywords startsWith, endsWith and synonym are case sensitive\n"
+operator|+
+literal|"       host1 will be replaced with host2. this is done _after_ startsWith and endsWith was \n"
+operator|+
+literal|"       processed. Due to a bug in BeanUtils, dots are not allowed in the keys (in parentheses)\n"
+operator|+
+literal|"       and have to be escaped with commas. To simplify, commas are also replaced in property \n"
+operator|+
+literal|"       values. So just use commas instead of dots. The resulting host names are only used for \n"
+operator|+
+literal|"       comparisons and do not have to be existing URLs (although the syntax has to be valid).\n"
+operator|+
+literal|"       However, the names will often be passed to java.net.URL which will try to make a DNS name\n"
+operator|+
+literal|"       resolution, which will time out if the server can't be found. \n"
+operator|+
+literal|"   Example:"
+operator|+
+literal|"     synonym(www1,host,com) = host,com\n"
+operator|+
+literal|"     startsWith(www,) = ,\n"
+operator|+
+literal|"     endsWith(host1,com) = host,com\n"
+operator|+
+literal|"The crawler will show a status message every 5 seconds, which is printed by ThreadMonitor.java\n"
+operator|+
+literal|"It will stop after the ThreadMonitor found the message queue and the crawling threads to be idle a \n"
+operator|+
+literal|"couple of times.\n"
+operator|+
+literal|"The crawled data will be saved within a logs/ directory. A cachingqueue/ directory is used for\n"
+operator|+
+literal|"temporary queues.\n"
+operator|+
+literal|"Note that this implementation is experimental, and that the command line options cover only a part \n"
+operator|+
+literal|"of the parameters. Much of the configuration can only be done by modifying FetcherMain.java\n"
 argument_list|)
 expr_stmt|;
-comment|// [-gui]
 name|System
 operator|.
 name|exit
@@ -974,43 +1372,45 @@ name|gui
 condition|)
 block|{
 comment|// f.initGui(f, startURL);
+comment|// the GUI is not longer supported
 block|}
 else|else
-block|{
-try|try
 block|{
 name|f
 operator|.
 name|startMonitor
 argument_list|()
 expr_stmt|;
+for|for
+control|(
+name|Iterator
+name|it
+init|=
+name|startURLs
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
 name|f
 operator|.
 name|putURL
 argument_list|(
-operator|new
+operator|(
 name|URL
-argument_list|(
-name|startURL
-argument_list|)
+operator|)
+name|it
+operator|.
+name|next
+argument_list|()
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|MalformedURLException
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Malformed URL"
 argument_list|)
 expr_stmt|;
 block|}
