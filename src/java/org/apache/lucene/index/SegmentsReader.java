@@ -463,9 +463,37 @@ operator|+
 literal|1
 expr_stmt|;
 else|else
+block|{
+comment|// found a match
+while|while
+condition|(
+name|mid
+operator|+
+literal|1
+operator|<
+name|readers
+operator|.
+name|length
+operator|&&
+name|starts
+index|[
+name|mid
+operator|+
+literal|1
+index|]
+operator|==
+name|midValue
+condition|)
+block|{
+name|mid
+operator|++
+expr_stmt|;
+comment|// scan to last match
+block|}
 return|return
 name|mid
 return|;
+block|}
 block|}
 return|return
 name|hi
