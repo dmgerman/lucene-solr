@@ -1415,6 +1415,9 @@ name|prox
 operator|.
 name|getFilePointer
 argument_list|()
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|tis

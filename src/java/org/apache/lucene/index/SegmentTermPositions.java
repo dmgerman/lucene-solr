@@ -285,6 +285,30 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/** Called by super.skipTo(). */
+DECL|method|skipProx
+specifier|protected
+name|void
+name|skipProx
+parameter_list|(
+name|long
+name|proxPointer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|proxStream
+operator|.
+name|seek
+argument_list|(
+name|proxPointer
+argument_list|)
+expr_stmt|;
+name|proxCount
+operator|=
+literal|0
+expr_stmt|;
+block|}
 block|}
 end_class
 

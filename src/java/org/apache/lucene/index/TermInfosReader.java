@@ -72,7 +72,7 @@ name|enumerator
 decl_stmt|;
 DECL|field|size
 specifier|private
-name|int
+name|long
 name|size
 decl_stmt|;
 DECL|method|TermInfosReader
@@ -131,6 +131,18 @@ name|readIndex
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|getSkipInterval
+specifier|public
+name|int
+name|getSkipInterval
+parameter_list|()
+block|{
+return|return
+name|enumerator
+operator|.
+name|skipInterval
+return|;
+block|}
 DECL|method|close
 specifier|final
 name|void
@@ -154,7 +166,7 @@ block|}
 comment|/** Returns the number of term/value pairs in the set. */
 DECL|method|size
 specifier|final
-name|int
+name|long
 name|size
 parameter_list|()
 block|{
@@ -213,6 +225,9 @@ block|{
 name|int
 name|indexSize
 init|=
+operator|(
+name|int
+operator|)
 name|indexEnum
 operator|.
 name|size
@@ -414,9 +429,9 @@ argument_list|,
 operator|(
 name|indexOffset
 operator|*
-name|TermInfosWriter
+name|enumerator
 operator|.
-name|INDEX_INTERVAL
+name|indexInterval
 operator|)
 operator|-
 literal|1
@@ -503,15 +518,18 @@ block|{
 name|int
 name|enumOffset
 init|=
-operator|(
+call|(
+name|int
+call|)
+argument_list|(
 name|enumerator
 operator|.
 name|position
 operator|/
-name|TermInfosWriter
+name|enumerator
 operator|.
-name|INDEX_INTERVAL
-operator|)
+name|indexInterval
+argument_list|)
 operator|+
 literal|1
 decl_stmt|;
@@ -673,9 +691,9 @@ name|enumerator
 operator|.
 name|position
 operator|+
-name|TermInfosWriter
+name|enumerator
 operator|.
-name|INDEX_INTERVAL
+name|indexInterval
 operator|)
 condition|)
 return|return
@@ -689,9 +707,9 @@ name|seekEnum
 argument_list|(
 name|position
 operator|/
-name|TermInfosWriter
+name|enumerator
 operator|.
-name|INDEX_INTERVAL
+name|indexInterval
 argument_list|)
 expr_stmt|;
 comment|// must seek
@@ -744,7 +762,7 @@ comment|/** Returns the position of a Term in the set or -1. */
 DECL|method|getPosition
 specifier|final
 specifier|synchronized
-name|int
+name|long
 name|getPosition
 parameter_list|(
 name|Term

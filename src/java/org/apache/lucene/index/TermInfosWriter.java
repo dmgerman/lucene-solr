@@ -64,6 +64,17 @@ specifier|final
 class|class
 name|TermInfosWriter
 block|{
+comment|/** The file format version, a negative number. */
+DECL|field|FORMAT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT
+init|=
+operator|-
+literal|1
+decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
 name|FieldInfos
@@ -103,13 +114,25 @@ name|size
 init|=
 literal|0
 decl_stmt|;
-DECL|field|INDEX_INTERVAL
-specifier|static
-specifier|final
+comment|// TODO: the default values for these two parameters should be settable from
+comment|// IndexWriter.  However, once that's done, folks will start setting them to
+comment|// ridiculous values and complaining that things don't work well, as with
+comment|// mergeFactor.  So, let's wait until a number of folks find that alternate
+comment|// values work better.  Note that both of these values are stored in the
+comment|// segment, so that it's safe to change these w/o rebuilding all indexes.
+comment|/** Expert: The fraction of terms in the "dictionary" which should be stored    * in RAM.  Smaller values use more memory, but make searching slightly    * faster, while larger values use less memory and make searching slightly    * slower.  Searching is typically not dominated by dictionary lookup, so    * tweaking this is rarely useful.*/
+DECL|field|indexInterval
 name|int
-name|INDEX_INTERVAL
+name|indexInterval
 init|=
 literal|128
+decl_stmt|;
+comment|/** Expert: The fraction of {@link TermDocs} entries stored in skip tables,    * used to accellerate {@link TermDocs#skipTo(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
+DECL|field|skipInterval
+name|int
+name|skipInterval
+init|=
+literal|16
 decl_stmt|;
 DECL|field|lastIndexPointer
 specifier|private
@@ -259,10 +282,41 @@ name|output
 operator|.
 name|writeInt
 argument_list|(
+name|FORMAT
+argument_list|)
+expr_stmt|;
+comment|// write format
+name|output
+operator|.
+name|writeLong
+argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
 comment|// leave space for size
+if|if
+condition|(
+operator|!
+name|isIndex
+condition|)
+block|{
+name|output
+operator|.
+name|writeInt
+argument_list|(
+name|indexInterval
+argument_list|)
+expr_stmt|;
+comment|// write indexInterval
+name|output
+operator|.
+name|writeInt
+argument_list|(
+name|skipInterval
+argument_list|)
+expr_stmt|;
+comment|// write skipInterval
+block|}
 block|}
 comment|/** Adds a new<Term, TermInfo> pair to the set.     Term must be lexicographically greater than all previous Terms added.     TermInfo pointers must be positive and greater than all previous.*/
 DECL|method|add
@@ -341,7 +395,7 @@ name|isIndex
 operator|&&
 name|size
 operator|%
-name|INDEX_INTERVAL
+name|indexInterval
 operator|==
 literal|0
 condition|)
@@ -398,6 +452,32 @@ operator|.
 name|proxPointer
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|isIndex
+condition|)
+block|{
+if|if
+condition|(
+name|ti
+operator|.
+name|docFreq
+operator|>
+name|skipInterval
+condition|)
+block|{
+name|output
+operator|.
+name|writeVInt
+argument_list|(
+name|ti
+operator|.
+name|skipOffset
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|isIndex
@@ -618,13 +698,13 @@ name|output
 operator|.
 name|seek
 argument_list|(
-literal|0
+literal|4
 argument_list|)
 expr_stmt|;
-comment|// write size at start
+comment|// write size after format
 name|output
 operator|.
-name|writeInt
+name|writeLong
 argument_list|(
 name|size
 argument_list|)
