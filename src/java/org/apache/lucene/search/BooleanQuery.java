@@ -158,7 +158,7 @@ operator|=
 name|disableCoord
 expr_stmt|;
 block|}
-comment|/** Returns true iff {@link Similarity#coord(int,int)} is disabled in    * scoring for this query instance.    * @see BooleanQuery(boolean)    */
+comment|/** Returns true iff {@link Similarity#coord(int,int)} is disabled in    * scoring for this query instance.    * @see #BooleanQuery(boolean)    */
 DECL|method|isCoordDisabled
 specifier|public
 name|boolean

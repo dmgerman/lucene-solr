@@ -17,7 +17,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/** Expert: Delegating scoring implementation.  Useful in {@link  * Query#getSimilarity(Searcher) implementations, to override only certain  * methods of a Searcher's Similiarty implementation.. */
+comment|/** Expert: Delegating scoring implementation.  Useful in {@link  * Query#getSimilarity(Searcher)} implementations, to override only certain  * methods of a Searcher's Similiarty implementation.. */
 end_comment
 
 begin_class
@@ -33,7 +33,7 @@ specifier|private
 name|Similarity
 name|delegee
 decl_stmt|;
-comment|/** Construct a {@link Similiarity} that delegates all methods to another.    *    * @param delegee the Similarity implementation to delegate to    */
+comment|/** Construct a {@link Similarity} that delegates all methods to another.    *    * @param delegee the Similarity implementation to delegate to    */
 DECL|method|SimilarityDelegator
 specifier|public
 name|SimilarityDelegator
