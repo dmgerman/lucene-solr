@@ -457,21 +457,6 @@ name|webDoc
 parameter_list|)
 block|{
 comment|//System.out.println("storing " + webDoc.getUrl());
-name|boolean
-name|store
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|index
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|token
-init|=
-literal|false
-decl_stmt|;
 name|Document
 name|doc
 init|=
@@ -621,6 +606,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* else ? */
+comment|// ignore byte[] fields
 block|}
 try|try
 block|{
