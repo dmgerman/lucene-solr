@@ -285,7 +285,7 @@ block|{
 name|int
 name|i
 init|=
-name|searcherIndex
+name|subSearcher
 argument_list|(
 name|n
 argument_list|)
@@ -309,11 +309,28 @@ argument_list|)
 return|;
 comment|// dispatch to searcher
 block|}
-comment|/** For use by {@link HitCollector} implementations to identify the    * index of the sub-searcher that a particular hit came from. */
+comment|/** Call {@link #subSearcher} instead.    * @deprecated    */
 DECL|method|searcherIndex
 specifier|public
 name|int
 name|searcherIndex
+parameter_list|(
+name|int
+name|n
+parameter_list|)
+block|{
+return|return
+name|subSearcher
+argument_list|(
+name|n
+argument_list|)
+return|;
+block|}
+comment|/** Returns index of the searcher for document<code>n</code> in the array    * used to construct this searcher. */
+DECL|method|subSearcher
+specifier|public
+name|int
+name|subSearcher
 parameter_list|(
 name|int
 name|n
@@ -424,6 +441,28 @@ block|}
 block|}
 return|return
 name|hi
+return|;
+block|}
+comment|/** Returns the document number of document<code>n</code> within its    * sub-index. */
+DECL|method|subDoc
+specifier|public
+name|int
+name|subDoc
+parameter_list|(
+name|int
+name|n
+parameter_list|)
+block|{
+return|return
+name|n
+operator|-
+name|starts
+index|[
+name|subSearcher
+argument_list|(
+name|n
+argument_list|)
+index|]
 return|;
 block|}
 DECL|method|maxDoc
