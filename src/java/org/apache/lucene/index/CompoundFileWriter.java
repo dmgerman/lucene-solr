@@ -439,7 +439,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Open the files and copy their data into the stream.
-comment|// Remeber the locations of each file's data section.
+comment|// Remember the locations of each file's data section.
 name|byte
 name|buffer
 index|[]
