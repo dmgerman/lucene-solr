@@ -399,11 +399,11 @@ expr_stmt|;
 comment|// non-default operator:
 name|qp
 operator|.
-name|setOperator
+name|setDefaultOperator
 argument_list|(
 name|QueryParser
 operator|.
-name|DEFAULT_OPERATOR_AND
+name|AND_OPERATOR
 argument_list|)
 expr_stmt|;
 name|assertEquals
