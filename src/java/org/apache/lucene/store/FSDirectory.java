@@ -1456,6 +1456,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|getFile
+specifier|public
+name|File
+name|getFile
+parameter_list|()
+block|{
+return|return
+name|directory
+return|;
+block|}
 comment|/** For debug output. */
 DECL|method|toString
 specifier|public
