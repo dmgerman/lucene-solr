@@ -94,6 +94,14 @@ init|=
 literal|0
 decl_stmt|;
 comment|// used to name new segments
+DECL|field|version
+specifier|private
+name|long
+name|version
+init|=
+literal|0
+decl_stmt|;
+comment|//counts how often the index has been changed by adding or deleting docs
 DECL|method|info
 specifier|public
 specifier|final
@@ -190,6 +198,32 @@ name|si
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|input
+operator|.
+name|getFilePointer
+argument_list|()
+operator|>=
+name|input
+operator|.
+name|length
+argument_list|()
+condition|)
+name|version
+operator|=
+literal|0
+expr_stmt|;
+comment|// old file format without version number
+else|else
+name|version
+operator|=
+name|input
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
+comment|// read version
 block|}
 finally|finally
 block|{
@@ -284,6 +318,15 @@ name|docCount
 argument_list|)
 expr_stmt|;
 block|}
+name|output
+operator|.
+name|writeLong
+argument_list|(
+operator|++
+name|version
+argument_list|)
+expr_stmt|;
+comment|// every write changes the index
 block|}
 finally|finally
 block|{
@@ -303,6 +346,53 @@ argument_list|,
 literal|"segments"
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * version number when this SegmentInfos was generated.    */
+DECL|method|getVersion
+specifier|public
+name|long
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|version
+return|;
+block|}
+comment|/**    * Current version number from segments file.    */
+DECL|method|readCurrentVersion
+specifier|public
+specifier|static
+name|long
+name|readCurrentVersion
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// We cannot be sure whether the segments file is in the old format or the new one.
+comment|// Therefore we have to read the whole file and cannot simple seek to the version entry.
+name|SegmentInfos
+name|sis
+init|=
+operator|new
+name|SegmentInfos
+argument_list|()
+decl_stmt|;
+name|sis
+operator|.
+name|read
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
+return|return
+name|sis
+operator|.
+name|getVersion
+argument_list|()
+return|;
 block|}
 block|}
 end_class

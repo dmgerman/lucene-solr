@@ -163,6 +163,9 @@ decl_stmt|;
 DECL|method|SegmentsReader
 name|SegmentsReader
 parameter_list|(
+name|SegmentInfos
+name|sis
+parameter_list|,
 name|Directory
 name|directory
 parameter_list|,
@@ -177,6 +180,10 @@ name|super
 argument_list|(
 name|directory
 argument_list|)
+expr_stmt|;
+name|segmentInfos
+operator|=
+name|sis
 expr_stmt|;
 name|readers
 operator|=
