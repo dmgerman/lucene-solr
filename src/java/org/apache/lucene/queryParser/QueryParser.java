@@ -234,7 +234,7 @@ operator|.
 name|getDefault
 argument_list|()
 decl_stmt|;
-comment|/** Parses a query string, returning a {@link org.apache.lucene.search.Query}.    *  @param query	the query string to be parsed.    *  @param field	the default field for query terms.    *  @param analyzer   used to find terms in the query text.    *  @throws ParseException if the parsing fails    */
+comment|/** Parses a query string, returning a {@link org.apache.lucene.search.Query}.    *  @param query  the query string to be parsed.    *  @param field  the default field for query terms.    *  @param analyzer   used to find terms in the query text.    *  @throws ParseException if the parsing fails    */
 DECL|method|parse
 specifier|static
 specifier|public
@@ -273,7 +273,7 @@ name|query
 argument_list|)
 return|;
 block|}
-comment|/** Constructs a query parser.    *  @param f	the default field for query terms.    *  @param a   used to find terms in the query text.    */
+comment|/** Constructs a query parser.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|QueryParser
 specifier|public
 name|QueryParser
@@ -307,7 +307,7 @@ operator|=
 name|f
 expr_stmt|;
 block|}
-comment|/** Parses a query string, returning a    *<a href="lucene.search.Query.html">Query</a>.    *  @param query	the query string to be parsed.    *  @throws ParseException if the parsing fails    */
+comment|/** Parses a query string, returning a    *<a href="lucene.search.Query.html">Query</a>.    *  @param query  the query string to be parsed.    *  @throws ParseException if the parsing fails    */
 DECL|method|parse
 specifier|public
 name|Query
@@ -3324,7 +3324,7 @@ name|Exception
 name|ignored
 parameter_list|)
 block|{
-comment|/* Should this be handled somehow? (defaults to "no boost", if 	   * boost number is invalid) 	   */
+comment|/* Should this be handled somehow? (defaults to "no boost", if      * boost number is invalid)      */
 block|}
 comment|// avoid boosting null queries, such as those caused by stop words
 if|if

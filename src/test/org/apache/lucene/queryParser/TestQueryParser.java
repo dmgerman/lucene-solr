@@ -2309,6 +2309,141 @@ literal|"[a\\ TO a*]"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testTabNewlineCarriageReturn
+specifier|public
+name|void
+name|testTabNewlineCarriageReturn
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"+weltbank +worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"+weltbank\n+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \n+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \n +worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"+weltbank\r+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \r+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \r +worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"+weltbank\r\n+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \r\n+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \r\n +worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \r \n +worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"+weltbank\t+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \t+worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+name|assertQueryEqualsDOA
+argument_list|(
+literal|"weltbank \t +worlbank"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+weltbank +worlbank"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testSimpleDAO
 specifier|public
 name|void
