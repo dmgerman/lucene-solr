@@ -172,6 +172,8 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"java.io.tmpdir"
+argument_list|,
+literal|"."
 argument_list|)
 argument_list|)
 decl_stmt|;
