@@ -318,7 +318,7 @@ literal|"AND"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/** Parses a query string, returning a {@link org.apache.lucene.search.Query}.    *  @param query  the query string to be parsed.    *  @param field  the default field for query terms.    *  @param analyzer   used to find terms in the query text.    *  @throws ParseException if the parsing fails    */
+comment|/** Parses a query string, returning a {@link org.apache.lucene.search.Query}.    *  @param expression  the query expression to be parsed.    *  @param field  the default field for query terms.    *  @param analyzer   used to find terms in the query text.    *  @throws ParseException if the parsing fails    */
 DECL|method|parse
 specifier|static
 specifier|public
@@ -326,7 +326,7 @@ name|Query
 name|parse
 parameter_list|(
 name|String
-name|query
+name|expression
 parameter_list|,
 name|String
 name|field
@@ -353,7 +353,7 @@ name|parser
 operator|.
 name|parse
 argument_list|(
-name|query
+name|expression
 argument_list|)
 return|;
 block|}
@@ -391,7 +391,7 @@ operator|=
 name|f
 expr_stmt|;
 block|}
-comment|/** Parses a query string, returning a {@link org.apache.lucene.search.Query}.    *  @param query  the query string to be parsed.    *  @throws ParseException if the parsing fails    */
+comment|/** Parses a query string, returning a {@link org.apache.lucene.search.Query}.    *  @param expression  the query string to be parsed.    *  @throws ParseException if the parsing fails    */
 DECL|method|parse
 specifier|public
 name|Query
@@ -403,6 +403,30 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+comment|// optimize empty query to be empty BooleanQuery
+if|if
+condition|(
+name|expression
+operator|==
+literal|null
+operator|||
+name|expression
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+operator|new
+name|BooleanQuery
+argument_list|()
+return|;
+block|}
 name|ReInit
 argument_list|(
 operator|new
@@ -2545,9 +2569,6 @@ operator|new
 name|Vector
 argument_list|()
 decl_stmt|;
-name|int
-name|modifier
-decl_stmt|;
 name|Query
 name|q
 decl_stmt|,
@@ -2559,6 +2580,9 @@ name|boolean
 name|orPresent
 init|=
 literal|false
+decl_stmt|;
+name|int
+name|modifier
 decl_stmt|;
 name|modifier
 operator|=
@@ -2776,7 +2800,6 @@ literal|"Missing return statement in function"
 argument_list|)
 throw|;
 block|}
-comment|/* Query orExpression(String field) : {   Vector clauses = new Vector();   Query q, firstQuery=null;   int modifier; } {   q=andExpression(field)   {     addClause(clauses, CONJ_NONE, MOD_NONE, q);     firstQuery=q;   }   (<OR> modifier=Modifier() q=andExpression(field)     { addClause(clauses, CONJ_OR, modifier, q); }   )*     {       if (clauses.size() == 1&& firstQuery != null)         return firstQuery;       else {         return getBooleanQuery(clauses);       }     } } */
 DECL|method|andExpression
 specifier|final
 specifier|public
@@ -3227,11 +3250,6 @@ literal|false
 decl_stmt|;
 name|boolean
 name|fuzzy
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|rangein
 init|=
 literal|false
 decl_stmt|;
