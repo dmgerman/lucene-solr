@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes stop words from a token stream.  Position increments  * on tokens emitted are adjusted to account for words  * removed.  Exact phrase queries will not match across holes left  * by stop word removal, but sloppy phrase queries may match.  */
+comment|/** Removes stop words from a token stream. */
 end_comment
 
 begin_class
@@ -171,11 +171,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|int
-name|position
-init|=
-literal|1
-decl_stmt|;
 comment|// return the first non-stop word found
 for|for
 control|(
@@ -198,7 +193,6 @@ operator|.
 name|next
 argument_list|()
 control|)
-block|{
 if|if
 condition|(
 name|table
@@ -212,22 +206,9 @@ argument_list|)
 operator|==
 literal|null
 condition|)
-block|{
-name|token
-operator|.
-name|setPositionIncrement
-argument_list|(
-name|position
-argument_list|)
-expr_stmt|;
 return|return
 name|token
 return|;
-block|}
-name|position
-operator|++
-expr_stmt|;
-block|}
 comment|// reached EOS -- return null
 return|return
 literal|null
