@@ -98,13 +98,7 @@ decl_stmt|;
 DECL|method|FilteredTermEnum
 specifier|public
 name|FilteredTermEnum
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|Term
-name|term
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{}
