@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link PhraseQuery}<li> {@link BooleanQuery}</ul><p>A parser for queries is contained in:<ul><li><a href="/lucene/docs/api/org/apache/lucene/queryParser/QueryParser.html">QueryParser</a></ul>   */
+comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link PhraseQuery}<li> {@link BooleanQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser}</ul>   */
 end_comment
 
 begin_class
