@@ -70,16 +70,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Hashtable
-import|;
-end_import
-
 begin_comment
 comment|/**  * A filter that stems Russian words. The implementation was inspired by GermanStemFilter.  * The input should be filtered by RussianLowerCaseFilter before passing it to RussianStemFilter ,  * because RussianStemFilter only works  with lowercase part of any "russian" charset.  *  * @author    Boris Okner, b.okner@rogers.com  * @version   $Id$  */
 end_comment

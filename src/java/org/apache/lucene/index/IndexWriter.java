@@ -182,20 +182,6 @@ name|Analyzer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Similarity
-import|;
-end_import
-
 begin_comment
 comment|/**   An IndexWriter creates and maintains an index.    The third argument to the<a href="#IndexWriter"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened for the addition of new documents.    In either case, documents are added with the<a   href="#addDocument"><b>addDocument</b></a> method.  When finished adding   documents,<a href="#close"><b>close</b></a> should be called.    If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize"><b>optimize</b></a>   method should be called before the index is closed.   */
 end_comment

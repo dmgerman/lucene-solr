@@ -42,20 +42,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|LowerCaseFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|StopFilter
 import|;
 end_import
@@ -398,7 +384,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream build from a StandardTokenizer filtered with      *		StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter      */
+comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream build from a StandardTokenizer filtered with      *		StandardFilter, StopFilter, GermanStemFilter      */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream

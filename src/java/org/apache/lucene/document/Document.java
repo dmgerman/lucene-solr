@@ -46,34 +46,6 @@ name|ArrayList
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Hits
-import|;
-end_import
-
 begin_comment
 comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be stored with the document, in which case it is returned with  * search hits on the document.  Thus each document should typically contain  * stored fields which uniquely identify it.  * */
 end_comment

@@ -54,20 +54,6 @@ name|Term
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
 begin_comment
 comment|/** The interface for search implementations.  *  *<p>Implementations provide search over a single index, over multiple  * indices, and over indices on remote servers.  */
 end_comment

@@ -54,20 +54,6 @@ name|Term
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermEnum
-import|;
-end_import
-
 begin_comment
 comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified wildcard filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
 end_comment

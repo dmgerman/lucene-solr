@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
 begin_comment
 comment|/**  * TermPositions provides an interface for enumerating the&lt;document,  * frequency,&lt;position&gt;*&gt; tuples for a term.<p> The document and  * frequency are the same as for a TermDocs.  The positions portion lists the ordinal  * positions of each occurrence of a term in a document.  *  * @see IndexReader#termPositions  */
 end_comment
