@@ -497,7 +497,6 @@ operator|-
 name|bufferStart
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("mapping from: "+bufferStart+", size: "+bufSize);
 name|this
 operator|.
 name|buffers
@@ -565,6 +564,7 @@ index|[
 name|curBufIndex
 index|]
 expr_stmt|;
+comment|// index out of bounds when too many bytes requested
 name|curBuf
 operator|.
 name|position
@@ -572,7 +572,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// index out of bounds when too many requested
 name|curAvail
 operator|=
 name|bufSizes
@@ -645,6 +644,7 @@ index|[
 name|curBufIndex
 index|]
 expr_stmt|;
+comment|// index out of bounds when too many bytes requested
 name|curBuf
 operator|.
 name|position
@@ -652,7 +652,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// index out of bounds when too many requested
 name|curAvail
 operator|=
 name|bufSizes
