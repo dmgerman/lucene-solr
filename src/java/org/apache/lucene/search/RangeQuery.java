@@ -204,7 +204,6 @@ operator|=
 name|inclusive
 expr_stmt|;
 block|}
-comment|/**      * FIXME: Describe<code>rewrite</code> method here.      *      * @param reader an<code>IndexReader</code> value      * @return a<code>Query</code> value      * @exception IOException if an error occurs      */
 DECL|method|rewrite
 specifier|public
 name|Query
