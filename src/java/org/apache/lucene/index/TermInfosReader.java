@@ -312,7 +312,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns the offset of the greatest index entry which is less than term.*/
+comment|/** Returns the offset of the greatest index entry which is less than or equal to term.*/
 DECL|method|getIndexOffset
 specifier|private
 specifier|final
