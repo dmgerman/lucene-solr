@@ -284,7 +284,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Constructs a query parser.    *  @param field	the default field for query terms.    *  @param analyzer   used to find terms in the query text.    */
+comment|/** Constructs a query parser.    *  @param f	the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|QueryParser
 specifier|public
 name|QueryParser
@@ -634,6 +634,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getFieldQuery
 specifier|protected
 name|Query
@@ -648,6 +649,8 @@ parameter_list|,
 name|String
 name|queryText
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 comment|// Use the analyzer to get all the tokens, and then build a TermQuery,
 comment|// PhraseQuery, or nothing based on the term count
@@ -833,6 +836,7 @@ name|q
 return|;
 block|}
 block|}
+comment|/**    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getRangeQuery
 specifier|protected
 name|Query
@@ -853,13 +857,11 @@ parameter_list|,
 name|boolean
 name|inclusive
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 name|boolean
 name|isDate
-init|=
-literal|false
-decl_stmt|,
-name|isNumber
 init|=
 literal|false
 decl_stmt|;
@@ -965,7 +967,7 @@ name|inclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory method for generating query, given a set of clauses.    * By default creates a boolean query composed of clauses passed in.    *    * Can be overridden by extending classes, to modify query being    * returned.    *    * @param clauses Vector that contains {@link BooleanClause} instances    *    to join.    *    * @return Resulting {@link Query} object.    */
+comment|/**    * Factory method for generating query, given a set of clauses.    * By default creates a boolean query composed of clauses passed in.    *    * Can be overridden by extending classes, to modify query being    * returned.    *    * @param clauses Vector that contains {@link BooleanClause} instances    *    to join.    *    * @return Resulting {@link Query} object.    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getBooleanQuery
 specifier|protected
 name|Query
@@ -974,6 +976,8 @@ parameter_list|(
 name|Vector
 name|clauses
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 name|BooleanQuery
 name|query
@@ -1020,7 +1024,7 @@ return|return
 name|query
 return|;
 block|}
-comment|/**    * Factory method for generating a query. Called when parser    * parses an input term token that contains one or more wildcard    * characters (? and *), but is not a prefix term token (one    * that has just a single * character at the end)    *<p>    * Depending on settings, prefix term may be lower-cased    * automatically. It will not go through the default Analyzer,    * however, since normal Analyzers are unlikely to work properly    * with wildcard templates.    *<p>    * Can be overridden by extending classes, to provide custom handling for    * wildcard queries, which may be necessary due to missing analyzer calls.    *    * @param field Name of the field query will use.    * @param termStr Term token that contains one or more wild card    *   characters (? or *), but is not simple prefix term    *    * @return Resulting {@link Query} built for the term    */
+comment|/**    * Factory method for generating a query. Called when parser    * parses an input term token that contains one or more wildcard    * characters (? and *), but is not a prefix term token (one    * that has just a single * character at the end)    *<p>    * Depending on settings, prefix term may be lower-cased    * automatically. It will not go through the default Analyzer,    * however, since normal Analyzers are unlikely to work properly    * with wildcard templates.    *<p>    * Can be overridden by extending classes, to provide custom handling for    * wildcard queries, which may be necessary due to missing analyzer calls.    *    * @param field Name of the field query will use.    * @param termStr Term token that contains one or more wild card    *   characters (? or *), but is not simple prefix term    *    * @return Resulting {@link Query} built for the term    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getWildcardQuery
 specifier|protected
 name|Query
@@ -1032,6 +1036,8 @@ parameter_list|,
 name|String
 name|termStr
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 if|if
 condition|(
@@ -1065,7 +1071,7 @@ name|t
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory method for generating a query (similar to    * ({@link #getWildcardQuery}). Called when parser parses an input term    * token that uses prefix notation; that is, contains a single '*' wildcard    * character as its last character. Since this is a special case    * of generic wildcard term, and such a query can be optimized easily,    * this usually results in a different query object.    *<p>    * Depending on settings, a prefix term may be lower-cased    * automatically. It will not go through the default Analyzer,    * however, since normal Analyzers are unlikely to work properly    * with wildcard templates.    *<p>    * Can be overridden by extending classes, to provide custom handling for    * wild card queries, which may be necessary due to missing analyzer calls.    *    * @param field Name of the field query will use.    * @param termStr Term token to use for building term for the query    *    (<b>without</b> trailing '*' character!)    *    * @return Resulting {@link Query} built for the term    */
+comment|/**    * Factory method for generating a query (similar to    * ({@link #getWildcardQuery}). Called when parser parses an input term    * token that uses prefix notation; that is, contains a single '*' wildcard    * character as its last character. Since this is a special case    * of generic wildcard term, and such a query can be optimized easily,    * this usually results in a different query object.    *<p>    * Depending on settings, a prefix term may be lower-cased    * automatically. It will not go through the default Analyzer,    * however, since normal Analyzers are unlikely to work properly    * with wildcard templates.    *<p>    * Can be overridden by extending classes, to provide custom handling for    * wild card queries, which may be necessary due to missing analyzer calls.    *    * @param field Name of the field query will use.    * @param termStr Term token to use for building term for the query    *    (<b>without</b> trailing '*' character!)    *    * @return Resulting {@link Query} built for the term    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getPrefixQuery
 specifier|protected
 name|Query
@@ -1077,6 +1083,8 @@ parameter_list|,
 name|String
 name|termStr
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 if|if
 condition|(
@@ -1110,7 +1118,7 @@ name|t
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory method for generating a query (similar to    * ({@link #getWildcardQuery}). Called when parser parses    * an input term token that has the fuzzy suffix (~) appended.    *    * @param field Name of the field query will use.    * @param termStr Term token to use for building term for the query    *    * @return Resulting {@link Query} built for the term    */
+comment|/**    * Factory method for generating a query (similar to    * ({@link #getWildcardQuery}). Called when parser parses    * an input term token that has the fuzzy suffix (~) appended.    *    * @param field Name of the field query will use.    * @param termStr Term token to use for building term for the query    *    * @return Resulting {@link Query} built for the term    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getFuzzyQuery
 specifier|protected
 name|Query
@@ -1122,6 +1130,8 @@ parameter_list|,
 name|String
 name|termStr
 parameter_list|)
+throws|throws
+name|ParseException
 block|{
 name|Term
 name|t
