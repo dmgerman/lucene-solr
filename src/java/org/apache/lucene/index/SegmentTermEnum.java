@@ -204,6 +204,12 @@ argument_list|(
 name|termInfo
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|term
+operator|!=
+literal|null
+condition|)
 name|clone
 operator|.
 name|growBuffer
