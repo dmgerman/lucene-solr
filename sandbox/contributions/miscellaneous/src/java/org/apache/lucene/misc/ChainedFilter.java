@@ -589,6 +589,7 @@ name|reader
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|AND
 case|:
@@ -604,6 +605,7 @@ name|reader
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|ANDNOT
 case|:
@@ -619,6 +621,7 @@ name|reader
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|XOR
 case|:
@@ -634,6 +637,7 @@ name|reader
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
 default|default:
 name|doChain
 argument_list|(
@@ -646,6 +650,7 @@ argument_list|,
 name|filter
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 block|}
 block|}
