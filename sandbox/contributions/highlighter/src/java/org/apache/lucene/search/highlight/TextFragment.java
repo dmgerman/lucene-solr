@@ -109,6 +109,19 @@ name|frag2
 operator|.
 name|textEndPos
 expr_stmt|;
+name|score
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|score
+argument_list|,
+name|frag2
+operator|.
+name|score
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 * @param fragment  	 * @return true if this fragment follows the one passed 	 */
 DECL|method|follows
