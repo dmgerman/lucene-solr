@@ -193,13 +193,13 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|SIGRAM
+name|CJK
 case|:
 name|token
 operator|=
 name|jj_consume_token
 argument_list|(
-name|SIGRAM
+name|CJK
 argument_list|)
 expr_stmt|;
 break|break;
@@ -364,7 +364,7 @@ operator|new
 name|int
 index|[]
 block|{
-literal|0x4ff
+literal|0x10ff
 block|,}
 expr_stmt|;
 block|}
@@ -859,7 +859,7 @@ init|=
 operator|new
 name|boolean
 index|[
-literal|16
+literal|15
 index|]
 decl_stmt|;
 for|for
@@ -871,7 +871,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|16
+literal|15
 condition|;
 name|i
 operator|++
@@ -983,7 +983,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|16
+literal|15
 condition|;
 name|i
 operator|++
