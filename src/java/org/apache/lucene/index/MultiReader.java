@@ -1358,7 +1358,7 @@ return|return
 name|fieldSet
 return|;
 block|}
-comment|/**    * @see IndexReader#getFieldNames(IndexReader.FieldNames fldOption)    */
+comment|/**    * @see IndexReader#getFieldNames(IndexReader.FieldOption)    */
 DECL|method|getFieldNames
 specifier|public
 name|Collection

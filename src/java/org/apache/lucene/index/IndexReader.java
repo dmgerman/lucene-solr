@@ -1694,7 +1694,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    *     * @deprecated  Replaced by {@link #getFieldNames(IndexReader.FieldOption)}    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
@@ -1704,7 +1704,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.  The boolean argument specifies whether the fields    * returned are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.  The boolean argument specifies whether the fields    * returned are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    *     * @deprecated  Replaced by {@link #getFieldNames(IndexReader.FieldOption)}    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
@@ -1717,7 +1717,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
+comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getFieldNames(IndexReader.FieldOption)}    */
 DECL|method|getIndexedFieldNames
 specifier|public
 name|Collection
@@ -1811,7 +1811,7 @@ name|NO
 argument_list|)
 return|;
 block|}
-comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information should be available for the fields    * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getFieldNames (IndexReader.FieldOption fldOption)}    */
+comment|/**    * Get a list of unique field names that exist in this index, are indexed, and have    * the specified term vector information.    *     * @param tvSpec specifies which term vector information should be available for the fields    * @return Collection of Strings indicating the names of the fields    *     * @deprecated  Replaced by {@link #getFieldNames(IndexReader.FieldOption)}    */
 DECL|method|getIndexedFieldNames
 specifier|public
 specifier|abstract
