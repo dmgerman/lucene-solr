@@ -231,15 +231,9 @@ argument_list|,
 name|reverse
 argument_list|)
 block|,
-operator|new
-name|SortField
-argument_list|(
-name|field
-argument_list|,
 name|SortField
 operator|.
-name|DOC
-argument_list|)
+name|FIELD_DOC
 block|}
 decl_stmt|;
 name|fields
