@@ -699,6 +699,159 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link Integer#MAX_VALUE}.    */
+DECL|method|setMaxMergeDocs
+specifier|public
+name|void
+name|setMaxMergeDocs
+parameter_list|(
+name|int
+name|maxMergeDocs
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxMergeDocs
+operator|=
+name|maxMergeDocs
+expr_stmt|;
+block|}
+comment|/**    * @see #setMaxMergeDocs    */
+DECL|method|getMaxMergeDocs
+specifier|public
+name|int
+name|getMaxMergeDocs
+parameter_list|()
+block|{
+return|return
+name|maxMergeDocs
+return|;
+block|}
+comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    */
+DECL|method|setMaxFieldLength
+specifier|public
+name|void
+name|setMaxFieldLength
+parameter_list|(
+name|int
+name|maxFieldLength
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxFieldLength
+operator|=
+name|maxFieldLength
+expr_stmt|;
+block|}
+comment|/**    * @see #setMaxFieldLength    */
+DECL|method|getMaxFieldLength
+specifier|public
+name|int
+name|getMaxFieldLength
+parameter_list|()
+block|{
+return|return
+name|maxFieldLength
+return|;
+block|}
+comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is 10.    */
+DECL|method|setMaxBufferedDocs
+specifier|public
+name|void
+name|setMaxBufferedDocs
+parameter_list|(
+name|int
+name|maxBufferedDocs
+parameter_list|)
+block|{
+name|this
+operator|.
+name|minMergeDocs
+operator|=
+name|maxBufferedDocs
+expr_stmt|;
+block|}
+comment|/**    * @see #setMaxBufferedDocs    */
+DECL|method|getMaxBufferedDocs
+specifier|public
+name|int
+name|getMaxBufferedDocs
+parameter_list|()
+block|{
+return|return
+name|minMergeDocs
+return|;
+block|}
+comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is 10.    */
+DECL|method|setMergeFactor
+specifier|public
+name|void
+name|setMergeFactor
+parameter_list|(
+name|int
+name|mergeFactor
+parameter_list|)
+block|{
+if|if
+condition|(
+name|mergeFactor
+operator|<
+literal|2
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"mergeFactor cannot be less than 2"
+argument_list|)
+throw|;
+name|this
+operator|.
+name|mergeFactor
+operator|=
+name|mergeFactor
+expr_stmt|;
+block|}
+comment|/**    * @see #setMergeFactor    */
+DECL|method|getMergeFactor
+specifier|public
+name|int
+name|getMergeFactor
+parameter_list|()
+block|{
+return|return
+name|mergeFactor
+return|;
+block|}
+comment|/** If non-null, information about merges will be printed to this.    */
+DECL|method|setInfoStream
+specifier|public
+name|void
+name|setInfoStream
+parameter_list|(
+name|PrintStream
+name|infoStream
+parameter_list|)
+block|{
+name|this
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+expr_stmt|;
+block|}
+comment|/**    * @see #setInfoStream    */
+DECL|method|getInfoStream
+specifier|public
+name|PrintStream
+name|getInfoStream
+parameter_list|()
+block|{
+return|return
+name|infoStream
+return|;
+block|}
 comment|/** Flushes all changes to an index and closes all associated files. */
 DECL|method|close
 specifier|public
@@ -828,7 +981,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.   */
+comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *     * @deprecated use {@link #setMaxFieldLength} instead    */
 DECL|field|maxFieldLength
 specifier|public
 name|int
@@ -964,7 +1117,7 @@ name|MAX_RADIX
 argument_list|)
 return|;
 block|}
-comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is 10.*/
+comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is 10.    * @deprecated use {@link #setMergeFactor} instead    */
 DECL|field|mergeFactor
 specifier|public
 name|int
@@ -972,7 +1125,7 @@ name|mergeFactor
 init|=
 name|DEFAULT_MERGE_FACTOR
 decl_stmt|;
-comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is 10.*/
+comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is 10.    * @deprecated use {@link #setMaxBufferedDocs} instead    */
 DECL|field|minMergeDocs
 specifier|public
 name|int
@@ -980,7 +1133,7 @@ name|minMergeDocs
 init|=
 name|DEFAULT_MIN_MERGE_DOCS
 decl_stmt|;
-comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link Integer#MAX_VALUE}. */
+comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link Integer#MAX_VALUE}.    * @deprecated use {@link #setMaxMergeDocs} instead    */
 DECL|field|maxMergeDocs
 specifier|public
 name|int
@@ -988,7 +1141,7 @@ name|maxMergeDocs
 init|=
 name|DEFAULT_MAX_MERGE_DOCS
 decl_stmt|;
-comment|/** If non-null, information about merges will be printed to this. */
+comment|/** If non-null, information about merges will be printed to this.    * @deprecated use {@link #setInfoStream} instead     */
 DECL|field|infoStream
 specifier|public
 name|PrintStream
