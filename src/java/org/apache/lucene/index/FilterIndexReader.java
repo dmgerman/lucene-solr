@@ -792,25 +792,6 @@ name|indexed
 argument_list|)
 return|;
 block|}
-comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    */
-DECL|method|getIndexedFieldNames
-specifier|public
-name|Collection
-name|getIndexedFieldNames
-parameter_list|(
-name|boolean
-name|storedTermVector
-parameter_list|)
-block|{
-return|return
-name|in
-operator|.
-name|getIndexedFieldNames
-argument_list|(
-name|storedTermVector
-argument_list|)
-return|;
-block|}
 DECL|method|getIndexedFieldNames
 specifier|public
 name|Collection
