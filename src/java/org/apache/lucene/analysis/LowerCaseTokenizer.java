@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** LowerCaseTokenizer performs the function of LetterTokenizer   and LowerCaseFilter together.  It divides text at non-letters and converts   them to lower case.  While it is functionally equivalent to the combination   of LetterTokenizer and LowerCaseFilter, there is a performance advantage   to doing the two tasks at once, hence this (redundent) implementation.    Note: this does a decent job for most European languages, but does a terrible   job for some Asian languages, where words are not separated by spaces. */
+comment|/**  * LowerCaseTokenizer performs the function of LetterTokenizer  * and LowerCaseFilter together.  It divides text at non-letters and converts  * them to lower case.  While it is functionally equivalent to the combination  * of LetterTokenizer and LowerCaseFilter, there is a performance advantage  * to doing the two tasks at once, hence this (redundant) implementation.  *<P>  * Note: this does a decent job for most European languages, but does a terrible  * job for some Asian languages, where words are not separated by spaces.  */
 end_comment
 
 begin_class
