@@ -263,7 +263,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an array of {@link Field}s with the given name.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
+comment|/**    * Returns an array of {@link Field}s with the given name.    * This method can return<code>null</code>.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
 DECL|method|getFields
 specifier|public
 specifier|final
@@ -391,7 +391,7 @@ name|fields
 return|;
 block|}
 block|}
-comment|/**    * Returns an array of values of the field specified as the method parameter.    *    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
+comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method can return<code>null</code>.    * UnStored fields' values cannot be returned by this method.    *    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
 DECL|method|getValues
 specifier|public
 specifier|final
