@@ -185,16 +185,14 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// Add the url as a field named "path".  Use a Keyword field, so
-comment|// that it's searchable, but so that no attempt is made
-comment|// to tokenize the field into words.
+comment|// Add the url as a field named "path".  Use a field that is
+comment|// indexed (i.e. searchable), but don't tokenize the field into words.
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Keyword
 argument_list|(
 literal|"path"
 argument_list|,
@@ -209,19 +207,30 @@ name|dirSep
 argument_list|,
 literal|'/'
 argument_list|)
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Add the last modified date of the file a field named "modified".  Use a
-comment|// Keyword field, so that it's searchable, but so that no attempt is made
-comment|// to tokenize the field into words.
+comment|// Add the last modified date of the file a field named "modified".
+comment|// Use a field that is indexed (i.e. searchable), but don't tokenize
+comment|// the field into words.
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Keyword
 argument_list|(
 literal|"modified"
 argument_list|,
@@ -234,6 +243,18 @@ operator|.
 name|lastModified
 argument_list|()
 argument_list|)
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -254,11 +275,17 @@ argument_list|(
 name|f
 argument_list|)
 argument_list|,
-literal|false
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -292,9 +319,8 @@ name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Text
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -305,15 +331,14 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Add the summary as an UnIndexed field, so that it is stored and returned
-comment|// with hit documents for display.
+comment|// Add the summary as a field that is stored and returned with
+comment|// hit documents for display.
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|UnIndexed
 argument_list|(
 literal|"summary"
 argument_list|,
@@ -321,18 +346,28 @@ name|parser
 operator|.
 name|getSummary
 argument_list|()
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Add the title as a separate Text field, so that it can be searched
-comment|// separately.
+comment|// Add the title as a field that it can be searched and that is stored.
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Text
 argument_list|(
 literal|"title"
 argument_list|,
@@ -340,6 +375,18 @@ name|parser
 operator|.
 name|getTitle
 argument_list|()
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
