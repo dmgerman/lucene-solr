@@ -38,6 +38,12 @@ specifier|static
 specifier|final
 class|class
 name|Occur
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
 block|{
 DECL|field|name
 specifier|private
