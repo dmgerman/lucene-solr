@@ -564,7 +564,7 @@ operator|.
 name|timeToString
 argument_list|(
 name|now
-operator|-
+operator|+
 literal|888888
 argument_list|)
 argument_list|)
