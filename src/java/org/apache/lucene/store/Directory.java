@@ -142,7 +142,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** @deprecated use {@link openInput(String)}. */
+comment|/** @deprecated use {@link #openInput(String)} */
 DECL|method|openFile
 specifier|public
 name|InputStream
