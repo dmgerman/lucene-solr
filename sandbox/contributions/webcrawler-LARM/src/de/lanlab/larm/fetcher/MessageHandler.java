@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  this is a message handler that runs in its own thread.  *  Messages can be put via<code>putMessage</code> or<code>putMessages</code>  *  (use the latter whenever possible).<br>  *  The messages are passed to the filters in the order in which the filters where  *  added to the handler.<br>  *  They can consume the message by returning null. Otherwise, they return a Message  *  object, usually the one they got.<br>  *  The filters will run synchronously within the message handler thread<br>  *  This implements a chain of responsibility-style message handling  * @version $Id$  */
+comment|/**  *  This is a message handler that runs in its own thread.  *  Messages can be put via<code>putMessage</code> or<code>putMessages</code>  *  (use the latter whenever possible).<br>  *  Messages are passed to the filters in the order in which the filters where  *  added to the handler.<br>  *  They can consume a message by returning<code>null</code>. Otherwise, they  *  return a Message object, usually the one they got.<br>  *  The filters will run synchronously within the message handler thread<br>  *  This implements a chain of responsibility-style message handling.  * @version $Id$  */
 end_comment
 
 begin_class
@@ -172,16 +172,6 @@ operator|new
 name|SimpleObservable
 argument_list|()
 decl_stmt|;
-DECL|method|isWorkingOnMessage
-specifier|public
-name|boolean
-name|isWorkingOnMessage
-parameter_list|()
-block|{
-return|return
-name|workingOnMessage
-return|;
-block|}
 comment|/**      *  messageHandler-Thread erzeugen und starten      */
 DECL|method|MessageHandler
 specifier|public
@@ -198,6 +188,7 @@ argument_list|,
 literal|"MessageHandler Thread"
 argument_list|)
 expr_stmt|;
+comment|// higher priority to prevent starving when a lot of fetcher threads are used
 name|t
 operator|.
 name|setPriority
@@ -205,12 +196,21 @@ argument_list|(
 literal|5
 argument_list|)
 expr_stmt|;
-comment|// higher priority to prevent starving when a lot of fetcher threads are used
 name|t
 operator|.
 name|start
 argument_list|()
 expr_stmt|;
+block|}
+DECL|method|isWorkingOnMessage
+specifier|public
+name|boolean
+name|isWorkingOnMessage
+parameter_list|()
+block|{
+return|return
+name|workingOnMessage
+return|;
 block|}
 comment|/**      *   join messageHandler-Thread      */
 DECL|method|finalize
@@ -522,6 +522,10 @@ operator|.
 name|queueMonitor
 init|)
 block|{
+comment|// note: another thread may put a new message in the queue after
+comment|// messageQueue.size() is called below, which would result in the
+comment|// inconsistent state: messageWaiting would be set to false, but
+comment|// the queue would actually not be empty
 name|m
 operator|=
 operator|(
