@@ -127,7 +127,6 @@ operator|.
 name|proxPointer
 argument_list|)
 expr_stmt|;
-else|else
 name|proxCount
 operator|=
 literal|0
