@@ -185,17 +185,18 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// Add the url as a field named "url".  Use an UnIndexed field, so
-comment|// that the url is just stored with the document, but is not searchable.
+comment|// Add the url as a field named "path".  Use a Keyword field, so
+comment|// that it's searchable, but so that no attempt is made
+comment|// to tokenize the field into words.
 name|doc
 operator|.
 name|add
 argument_list|(
 name|Field
 operator|.
-name|UnIndexed
+name|Keyword
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|,
 name|f
 operator|.

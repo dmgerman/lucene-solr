@@ -143,15 +143,16 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// Add the path of the file as a field named "path".  Use a Text field, so
-comment|// that the index stores the path, and so that the path is searchable
+comment|// Add the path of the file as a field named "path".  Use a
+comment|// Keyword field, so that it's searchable, but so that no attempt is made
+comment|// to tokenize the field into words.
 name|doc
 operator|.
 name|add
 argument_list|(
 name|Field
 operator|.
-name|Text
+name|Keyword
 argument_list|(
 literal|"path"
 argument_list|,

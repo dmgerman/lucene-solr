@@ -885,7 +885,7 @@ name|doc
 operator|.
 name|get
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -923,7 +923,7 @@ name|doc
 operator|.
 name|get
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -82,6 +72,10 @@ name|Term
 import|;
 end_import
 
+begin_comment
+comment|//import org.apache.lucene.index.Term;
+end_comment
+
 begin_class
 DECL|class|DeleteFiles
 class|class
@@ -98,6 +92,39 @@ index|[]
 name|args
 parameter_list|)
 block|{
+name|String
+name|usage
+init|=
+literal|"java org.apache.lucene.demo.DeleteFiles<unique_term>"
+decl_stmt|;
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Usage: "
+operator|+
+name|usage
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|Directory
@@ -107,7 +134,7 @@ name|FSDirectory
 operator|.
 name|getDirectory
 argument_list|(
-literal|"demo index"
+literal|"index"
 argument_list|,
 literal|false
 argument_list|)
@@ -122,34 +149,47 @@ argument_list|(
 name|directory
 argument_list|)
 decl_stmt|;
-comment|//       Term term = new Term("path", "pizza");
-comment|//       int deleted = reader.delete(term);
-comment|//       System.out.println("deleted " + deleted +
-comment|// 			 " documents containing " + term);
-for|for
-control|(
-name|int
-name|i
+name|Term
+name|term
 init|=
+operator|new
+name|Term
+argument_list|(
+literal|"path"
+argument_list|,
+name|args
+index|[
 literal|0
-init|;
-name|i
-operator|<
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
+index|]
+argument_list|)
+decl_stmt|;
+name|int
+name|deleted
+init|=
 name|reader
 operator|.
 name|delete
 argument_list|(
-name|i
+name|term
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"deleted "
+operator|+
+name|deleted
+operator|+
+literal|" documents containing "
+operator|+
+name|term
 argument_list|)
 expr_stmt|;
+comment|// one can also delete documents by their internal id:
+comment|/*       for (int i = 0; i< reader.maxDoc(); i++) {         System.out.println("Deleting document with id " + i);         reader.delete(i);       }*/
 name|reader
 operator|.
 name|close
