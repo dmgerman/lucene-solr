@@ -67,7 +67,7 @@ name|FuzzyTermEnum
 extends|extends
 name|FilteredTermEnum
 block|{
-comment|/* This should be somewhere around the average long word.      * If it is longer, we waste time and space. If it is shorter, we waste a      * little bit of time growing the array as we encounter longer words.      */
+comment|/* This should be somewhere around the average long word.    * If it is longer, we waste time and space. If it is shorter, we waste a    * little bit of time growing the array as we encounter longer words.    */
 DECL|field|TYPICAL_LONGEST_WORD_IN_INDEX
 specifier|private
 specifier|static
@@ -77,7 +77,7 @@ name|TYPICAL_LONGEST_WORD_IN_INDEX
 init|=
 literal|19
 decl_stmt|;
-comment|/* Allows us save time required to create a new array      * everytime similarity is called.      */
+comment|/* Allows us save time required to create a new array    * everytime similarity is called.    */
 DECL|field|d
 specifier|private
 name|int
@@ -147,7 +147,7 @@ index|[
 name|TYPICAL_LONGEST_WORD_IN_INDEX
 index|]
 decl_stmt|;
-comment|/**      * Creates a FuzzyTermEnum with an empty prefix and a minSimilarity of 0.5f.      *       * @param reader      * @param term      * @throws IOException      * @see #FuzzyTermEnum(IndexReader, Term, float, int)      */
+comment|/**    * Creates a FuzzyTermEnum with an empty prefix and a minSimilarity of 0.5f.    *     * @param reader    * @param term    * @throws IOException    * @see #FuzzyTermEnum(IndexReader, Term, float, int)    */
 DECL|method|FuzzyTermEnum
 specifier|public
 name|FuzzyTermEnum
@@ -177,7 +177,7 @@ name|defaultPrefixLength
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a FuzzyTermEnum with an empty prefix.      *       * @param reader      * @param term      * @param minSimilarity      * @throws IOException      * @see #FuzzyTermEnum(IndexReader, Term, float, int)      */
+comment|/**    * Creates a FuzzyTermEnum with an empty prefix.    *     * @param reader    * @param term    * @param minSimilarity    * @throws IOException    * @see #FuzzyTermEnum(IndexReader, Term, float, int)    */
 DECL|method|FuzzyTermEnum
 specifier|public
 name|FuzzyTermEnum
@@ -208,7 +208,7 @@ name|defaultPrefixLength
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of      * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;      *<code>minSimilarity</code>.       *       * @param reader Delivers terms.      * @param term Pattern term.      * @param minSimilarity Minimum required similarity for terms from the reader. Default value is 0.5f.      * @param prefixLength Length of required common prefix. Default value is 0.      * @throws IOException      */
+comment|/**    * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of    * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;    *<code>minSimilarity</code>.     *     * @param reader Delivers terms.    * @param term Pattern term.    * @param minSimilarity Minimum required similarity for terms from the reader. Default value is 0.5f.    * @param prefixLength Length of required common prefix. Default value is 0.    * @throws IOException    */
 DECL|method|FuzzyTermEnum
 specifier|public
 name|FuzzyTermEnum
@@ -392,7 +392,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The termCompare method in FuzzyTermEnum uses Levenshtein distance to       * calculate the distance between the given term and the comparing term.       */
+comment|/**    * The termCompare method in FuzzyTermEnum uses Levenshtein distance to     * calculate the distance between the given term and the comparing term.     */
 DECL|method|termCompare
 specifier|protected
 specifier|final
@@ -498,8 +498,8 @@ return|return
 name|endEnum
 return|;
 block|}
-comment|/******************************      * Compute Levenshtein distance      ******************************/
-comment|/**      * Finds and returns the smallest of three integers       */
+comment|/******************************    * Compute Levenshtein distance    ******************************/
+comment|/**    * Finds and returns the smallest of three integers     */
 DECL|method|min
 specifier|private
 specifier|static
