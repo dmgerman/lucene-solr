@@ -32,7 +32,7 @@ name|Formatter
 block|{
 DECL|field|maxScore
 specifier|private
-name|int
+name|float
 name|maxScore
 decl_stmt|;
 DECL|field|fgRMin
@@ -83,12 +83,12 @@ DECL|field|highlightBackground
 name|boolean
 name|highlightBackground
 decl_stmt|;
-comment|/**      * Sets the color range for the IDF scores      *       * @param maxScore      *            The score (and above) displayed as maxColor      * @param minForegroundColor      *            The hex color used for representing IDF scores of zero eg      *            #FFFFFF (white) or null if no foreground color required      * @param maxForegroundColor      *            The largest hex color used for representing IDF scores eg      *            #000000 (black) or null if no foreground color required      * @param minBackgroundColor      *            The hex color used for representing IDF scores of zero eg      *            #FFFFFF (white) or null if no background color required      * @param maxBackgroundColor      *            The largest hex color used for representing IDF scores eg      *            #000000 (black) or null if no background color required      */
+comment|/**      * Sets the color range for the IDF scores      *       * @param maxScore      *            The score (and above) displayed as maxColor (See QueryScorer.getMaxWeight       * 			  which can be used to callibrate scoring scale)      * @param minForegroundColor      *            The hex color used for representing IDF scores of zero eg      *            #FFFFFF (white) or null if no foreground color required      * @param maxForegroundColor      *            The largest hex color used for representing IDF scores eg      *            #000000 (black) or null if no foreground color required      * @param minBackgroundColor      *            The hex color used for representing IDF scores of zero eg      *            #FFFFFF (white) or null if no background color required      * @param maxBackgroundColor      *            The largest hex color used for representing IDF scores eg      *            #000000 (black) or null if no background color required      */
 DECL|method|GradientFormatter
 specifier|public
 name|GradientFormatter
 parameter_list|(
-name|int
+name|float
 name|maxScore
 parameter_list|,
 name|String
