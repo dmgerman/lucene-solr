@@ -54,7 +54,7 @@ index|[]
 name|getTerms
 parameter_list|()
 function_decl|;
-comment|/** Array of term frequencies. Locations of the array correspond one to one    *  to the term numbers in the array obtained from<code>getTermNumbers</code>    *  method. Each location in the array contains the number of times this    *  term occurs in the document or the document field.    */
+comment|/** Array of term frequencies. Locations of the array correspond one to one    *  to the terms in the array obtained from<code>getTerms</code>    *  method. Each location in the array contains the number of times this    *  term occurs in the document or the document field.    */
 DECL|method|getTermFrequencies
 specifier|public
 name|int
@@ -62,26 +62,7 @@ index|[]
 name|getTermFrequencies
 parameter_list|()
 function_decl|;
-comment|/** Return a string representation of the vector.    */
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-function_decl|;
-comment|/** Return a string representation of the vector, but use the provided IndexReader    *  to obtain text for each term and include the text instead of term numbers.    */
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|IndexReader
-name|ir
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Return an index in the term numbers array returned from<code>getTermNumbers</code>    *  at which the term with the specified<code>termNumber</code> appears. If this    *  term does not appear in the array, return -1.    */
+comment|/** Return an index in the term numbers array returned from    *<code>getTerms</code> at which the term with the specified    *<code>term</code> appears. If this term does not appear in the array,    *  return -1.    */
 DECL|method|indexOf
 specifier|public
 name|int

@@ -632,7 +632,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**     * @return The number of terms in the term vector.    */
 DECL|method|size
 specifier|public
 name|int
@@ -645,22 +644,6 @@ operator|.
 name|length
 return|;
 block|}
-comment|/** Returns an array of positions in which the term is found or null if no position information is    * available or positions are not implemented.    *  Terms are identified by the index at which its number appears in the    *  term array obtained from<code>getTerms</code> method.    */
-DECL|method|getTermPositions
-specifier|public
-name|int
-index|[]
-name|getTermPositions
-parameter_list|(
-name|int
-name|index
-parameter_list|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-comment|/**     * @return An Array of term texts in ascending order.    */
 DECL|method|getTerms
 specifier|public
 name|String
@@ -672,7 +655,6 @@ return|return
 name|terms
 return|;
 block|}
-comment|/** Array of term frequencies. Locations of the array correspond one to one    *  to the term numbers in the array obtained from<code>getTermNumbers</code>    *  method. Each location in the array contains the number of times this    *  term occurs in the document or the document field.    */
 DECL|method|getTermFrequencies
 specifier|public
 name|int
@@ -684,24 +666,6 @@ return|return
 name|termFreqs
 return|;
 block|}
-comment|/** Return a string representation of the vector, but use the provided IndexReader    *  to obtain text for each term and include the text instead of term numbers.    */
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|IndexReader
-name|ir
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|toString
-argument_list|()
-return|;
-block|}
-comment|/** Return an index in the term numbers array returned from<code>getTermNumbers</code>    *  at which the term with the specified<code>termNumber</code> appears. If this    *  term does not appear in the array, return -1.    */
 DECL|method|indexOf
 specifier|public
 name|int
@@ -734,7 +698,6 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/** Just like<code>indexOf(int)</code> but searches for a number of terms    *  at the same time. Returns an array that has the same size as the number    *  of terms searched for, each slot containing the result of searching for    *  that term number.    *    *  @param terms array containing terms to look for    *  @param start index in the array where the list of terms starts    *  @param len the number of terms in the list    */
 DECL|method|indexesOf
 specifier|public
 name|int
