@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
+comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001, 2002, 2003 The Apache Software Foundation.  All  * rights reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
 end_comment
 
 begin_import
@@ -43,6 +43,26 @@ operator|.
 name|io
 operator|.
 name|RandomAccessFile
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileOutputStream
 import|;
 end_import
 
@@ -83,7 +103,7 @@ name|FSDirectory
 extends|extends
 name|Directory
 block|{
-comment|/** This cache of directories ensures that there is a unique Directory    * instance per path, so that synchronization on the Directory can be used to    * synchronize access between readers and writers.    *    * This should be a WeakHashMap, so that entries can be GC'd, but that would    * require Java 1.2.  Instead we use refcounts...  */
+comment|/** This cache of directories ensures that there is a unique Directory    * instance per path, so that synchronization on the Directory can be used to    * synchronize access between readers and writers.    *    * This should be a WeakHashMap, so that entries can be GC'd, but that would    * require Java 1.2.  Instead we use refcounts...    */
 DECL|field|DIRECTORIES
 specifier|private
 specifier|static
@@ -112,6 +132,15 @@ operator|||
 name|Constants
 operator|.
 name|JAVA_1_1
+decl_stmt|;
+comment|/** A buffer optionally used in renameTo method */
+DECL|field|buffer
+specifier|private
+name|byte
+index|[]
+name|buffer
+init|=
+literal|null
 decl_stmt|;
 comment|/** Returns the directory instance for the named location.    *    *<p>Directories are cached, so that, for a given canonical path, the same    * FSDirectory instance will always be returned.  This permits    * synchronization on directories.    *    * @param path the path to the directory.    * @param create if true, create, or erase any existing contents.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
@@ -681,6 +710,9 @@ operator|+
 name|to
 argument_list|)
 throw|;
+comment|// Rename the old file to the new one. Unfortunately, the renameTo()
+comment|// method does not work reliably under some JVMs.  Therefore, if the
+comment|// rename fails, we manually rename by copying the old file to the new one
 if|if
 condition|(
 operator|!
@@ -691,6 +723,106 @@ argument_list|(
 name|nu
 argument_list|)
 condition|)
+block|{
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+name|in
+init|=
+literal|null
+decl_stmt|;
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
+name|out
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|in
+operator|=
+operator|new
+name|FileInputStream
+argument_list|(
+name|old
+argument_list|)
+expr_stmt|;
+name|out
+operator|=
+operator|new
+name|FileOutputStream
+argument_list|(
+name|nu
+argument_list|)
+expr_stmt|;
+comment|// see if the buffer needs to be initialized. Initialization is
+comment|// only done on-demand since many VM's will never run into the renameTo
+comment|// bug and hence shouldn't waste 1K of mem for no reason.
+if|if
+condition|(
+name|buffer
+operator|==
+literal|null
+condition|)
+block|{
+name|buffer
+operator|=
+operator|new
+name|byte
+index|[
+literal|1024
+index|]
+expr_stmt|;
+block|}
+name|int
+name|len
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|len
+operator|=
+name|in
+operator|.
+name|read
+argument_list|(
+name|buffer
+argument_list|)
+operator|)
+operator|>=
+literal|0
+condition|)
+block|{
+name|out
+operator|.
+name|write
+argument_list|(
+name|buffer
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+block|}
+comment|// delete the old file.
+name|old
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -704,6 +836,59 @@ operator|+
 name|to
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|in
+operator|!=
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|in
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// what can we do?
+block|}
+block|}
+if|if
+condition|(
+name|out
+operator|!=
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|out
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// what can we do?
+block|}
+block|}
+block|}
+block|}
 block|}
 comment|/** Creates a new, empty file in the directory with the given name.       Returns a stream writing this file. */
 DECL|method|createFile
