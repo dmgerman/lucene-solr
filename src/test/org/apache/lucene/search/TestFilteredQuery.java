@@ -685,7 +685,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**Â     * This tests FilteredQuery's rewrite correctness    */
+comment|/**    * This tests FilteredQuery's rewrite correctness    */
 DECL|method|testRangeQuery
 specifier|public
 name|void
