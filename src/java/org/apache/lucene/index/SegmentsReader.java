@@ -112,6 +112,9 @@ decl_stmt|;
 DECL|method|SegmentsReader
 name|SegmentsReader
 parameter_list|(
+name|Directory
+name|directory
+parameter_list|,
 name|SegmentReader
 index|[]
 name|r
@@ -119,6 +122,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
 name|readers
 operator|=
 name|r
@@ -328,12 +336,11 @@ argument_list|)
 return|;
 comment|// dispatch to segment reader
 block|}
-DECL|method|delete
-specifier|public
+DECL|method|doDelete
 specifier|synchronized
 specifier|final
 name|void
-name|delete
+name|doDelete
 parameter_list|(
 name|int
 name|n
@@ -689,11 +696,11 @@ name|starts
 argument_list|)
 return|;
 block|}
-DECL|method|close
-specifier|public
+DECL|method|doClose
 specifier|final
+specifier|synchronized
 name|void
-name|close
+name|doClose
 parameter_list|()
 throws|throws
 name|IOException

@@ -212,6 +212,11 @@ name|RAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// for temp segs
+DECL|field|writeLock
+specifier|private
+name|Lock
+name|writeLock
+decl_stmt|;
 comment|/** Constructs an IndexWriter for the index in<code>path</code>.  Text will     be analyzed with<code>a</code>.  If<code>create</code> is true, then a     new, empty index will be created in<code>path</code>, replacing the index     already there, if any. */
 DECL|method|IndexWriter
 specifier|public
@@ -334,6 +339,13 @@ operator|+
 name|writeLock
 argument_list|)
 throw|;
+name|this
+operator|.
+name|writeLock
+operator|=
+name|writeLock
+expr_stmt|;
+comment|// save it
 synchronized|synchronized
 init|(
 name|directory
@@ -409,22 +421,50 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|directory
-operator|.
-name|makeLock
-argument_list|(
-literal|"write.lock"
-argument_list|)
+name|writeLock
 operator|.
 name|release
 argument_list|()
 expr_stmt|;
 comment|// release write lock
+name|writeLock
+operator|=
+literal|null
+expr_stmt|;
 name|directory
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+comment|/** Release the write lock, if needed. */
+DECL|method|finalize
+specifier|protected
+specifier|final
+name|void
+name|finalize
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|writeLock
+operator|!=
+literal|null
+condition|)
+block|{
+name|writeLock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+comment|// release write lock
+name|writeLock
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/** Returns the number of documents currently in this index. */
 DECL|method|docCount
