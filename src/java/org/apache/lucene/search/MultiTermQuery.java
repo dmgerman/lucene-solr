@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents containing a subset of terms provided by a   FilteredTermEnum enumeration. MultiTermQuery is not designed to be used by   itself. The reason being that it is not intialized with a FilteredTermEnum   enumeration. A FilteredTermEnum enumeration needs to be provided. For example,  WildcardQuery and FuzzyQuery extends MultiTermQuery to provide WildcardTermEnum  and FuzzyTermEnum respectively. */
+comment|/** A Query that matches documents containing a subset of terms provided by a   FilteredTermEnum enumeration. MultiTermQuery is not designed to be used by   itself. The reason being that it is not intialized with a FilteredTermEnum   enumeration. A FilteredTermEnum enumeration needs to be provided. For example,  WildcardQuery and FuzzyQuery extend MultiTermQuery to provide WildcardTermEnum  and FuzzyTermEnum respectively. */
 end_comment
 
 begin_class
