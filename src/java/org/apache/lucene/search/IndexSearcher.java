@@ -122,6 +122,11 @@ DECL|field|reader
 name|IndexReader
 name|reader
 decl_stmt|;
+DECL|field|closeReader
+specifier|private
+name|boolean
+name|closeReader
+decl_stmt|;
 comment|/** Creates a searcher searching the index in the named directory. */
 DECL|method|IndexSearcher
 specifier|public
@@ -141,6 +146,8 @@ name|open
 argument_list|(
 name|path
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -163,6 +170,8 @@ name|open
 argument_list|(
 name|directory
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -175,12 +184,37 @@ name|IndexReader
 name|r
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|r
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|IndexSearcher
+specifier|private
+name|IndexSearcher
+parameter_list|(
+name|IndexReader
+name|r
+parameter_list|,
+name|boolean
+name|closeReader
+parameter_list|)
+block|{
 name|reader
 operator|=
 name|r
 expr_stmt|;
+name|this
+operator|.
+name|closeReader
+operator|=
+name|closeReader
+expr_stmt|;
 block|}
-comment|// inherit javadoc
+comment|/**    * Note that the underlying IndexReader is not closed, if    * IndexSearcher was constructed with IndexSearcher(IndexReader r).    * If the IndexReader was supplied implicitly by specifying a directory, then    * the IndexReader gets closed.    */
 DECL|method|close
 specifier|public
 name|void
@@ -189,6 +223,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|closeReader
+condition|)
 name|reader
 operator|.
 name|close
