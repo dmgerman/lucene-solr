@@ -208,7 +208,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//creating file's for the FSDirectories
+comment|// creating file's for the FSDirectories
 name|File
 name|a
 init|=
@@ -241,7 +241,7 @@ argument_list|,
 literal|"indexStoreB"
 argument_list|)
 decl_stmt|;
-comment|//creating two directories for indices
+comment|// creating two directories for indices
 name|FSDirectory
 name|indexStoreA
 init|=
@@ -266,7 +266,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//creating a document to store
+comment|// creating a document to store
 name|Document
 name|lDoc
 init|=
@@ -316,7 +316,7 @@ literal|"1"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//creating a document to store
+comment|// creating a document to store
 name|Document
 name|lDoc2
 init|=
@@ -366,7 +366,7 @@ literal|"1"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//creating a document to store
+comment|// creating a document to store
 name|Document
 name|lDoc3
 init|=
@@ -416,7 +416,7 @@ literal|"1"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//creating an index writer for the first index
+comment|// creating an index writer for the first index
 name|IndexWriter
 name|writerA
 init|=
@@ -432,7 +432,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//creating an index writer for the second index, but writing nothing
+comment|// creating an index writer for the second index, but writing nothing
 name|IndexWriter
 name|writerB
 init|=
@@ -451,7 +451,7 @@ decl_stmt|;
 comment|//--------------------------------------------------------------------
 comment|// scenario 1
 comment|//--------------------------------------------------------------------
-comment|//writing the documents to the first index
+comment|// writing the documents to the first index
 name|writerA
 operator|.
 name|addDocument
@@ -483,13 +483,13 @@ operator|.
 name|optimize
 argument_list|()
 expr_stmt|;
-comment|//closing the second index
+comment|// closing the second index
 name|writerB
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//creating the query
+comment|// creating the query
 name|Query
 name|query
 init|=
@@ -506,7 +506,7 @@ name|StandardAnalyzer
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//bulding the searchables
+comment|// building the searchables
 name|Searcher
 index|[]
 name|searchers
@@ -517,7 +517,7 @@ index|[
 literal|2
 index|]
 decl_stmt|;
-comment|//VITAL STEP:adding the searcher for the empty index first, before the searcher for the populated index
+comment|// VITAL STEP:adding the searcher for the empty index first, before the searcher for the populated index
 name|searchers
 index|[
 literal|0
@@ -540,7 +540,7 @@ argument_list|(
 name|indexStoreA
 argument_list|)
 expr_stmt|;
-comment|//creating the mulitSearcher
+comment|// creating the multiSearcher
 name|Searcher
 name|mSearcher
 init|=
@@ -550,7 +550,7 @@ argument_list|(
 name|searchers
 argument_list|)
 decl_stmt|;
-comment|//performing the search
+comment|// performing the search
 name|Hits
 name|hits
 init|=
@@ -573,7 +573,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|//iterating over the hit documents
+comment|// iterating over the hit documents
 for|for
 control|(
 name|int
@@ -592,7 +592,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|//false ArrayIndexOutOfBounds should happen at this point
 name|Document
 name|d
 init|=
@@ -638,7 +637,7 @@ block|}
 comment|//--------------------------------------------------------------------
 comment|// scenario 2
 comment|//--------------------------------------------------------------------
-comment|//adding one document to the empty index
+comment|// adding one document to the empty index
 name|writerB
 operator|=
 operator|new
@@ -670,7 +669,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//building the searchables
+comment|// building the searchables
 name|Searcher
 index|[]
 name|searchers2
@@ -681,7 +680,7 @@ index|[
 literal|2
 index|]
 decl_stmt|;
-comment|//VITAL STEP:adding the searcher for the empty index first, before the searcher for the populated index
+comment|// VITAL STEP:adding the searcher for the empty index first, before the searcher for the populated index
 name|searchers2
 index|[
 literal|0
@@ -704,7 +703,7 @@ argument_list|(
 name|indexStoreA
 argument_list|)
 expr_stmt|;
-comment|//creating the mulitSearcher
+comment|// creating the mulitSearcher
 name|Searcher
 name|mSearcher2
 init|=
@@ -714,7 +713,7 @@ argument_list|(
 name|searchers2
 argument_list|)
 decl_stmt|;
-comment|//performing same the search
+comment|// performing the same search
 name|Hits
 name|hits2
 init|=
@@ -737,7 +736,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|//iterating over the hit documents
+comment|// iterating over the hit documents
 for|for
 control|(
 name|int
@@ -756,7 +755,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|//no exception should happen at this point
+comment|// no exception should happen at this point
 name|Document
 name|d
 init|=
@@ -802,7 +801,7 @@ block|}
 comment|//--------------------------------------------------------------------
 comment|// scenario 3
 comment|//--------------------------------------------------------------------
-comment|//deleting the document just added, this will cause a different exception to take place
+comment|// deleting the document just added, this will cause a different exception to take place
 name|Term
 name|term
 init|=
@@ -836,7 +835,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//optimizing the index with the writer
+comment|// optimizing the index with the writer
 name|writerB
 operator|=
 operator|new
@@ -861,7 +860,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//bulding the searchables
+comment|// building the searchables
 name|Searcher
 index|[]
 name|searchers3
@@ -894,7 +893,7 @@ argument_list|(
 name|indexStoreA
 argument_list|)
 expr_stmt|;
-comment|//creating the mulitSearcher
+comment|// creating the mulitSearcher
 name|Searcher
 name|mSearcher3
 init|=
@@ -904,7 +903,7 @@ argument_list|(
 name|searchers3
 argument_list|)
 decl_stmt|;
-comment|//performing same the search
+comment|// performing the same search
 name|Hits
 name|hits3
 init|=
@@ -927,7 +926,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|//iterating over the hit documents
+comment|// iterating over the hit documents
 for|for
 control|(
 name|int
@@ -946,7 +945,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|//false IOException should happen at this point
 name|Document
 name|d
 init|=
