@@ -608,7 +608,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//we don't have antyhing to compare.  That means if we just add
+comment|//we don't have anything to compare.  That means if we just add
 comment|//the letters for m we get the new word
 return|return
 name|prefix
@@ -695,7 +695,7 @@ comment|//too many edits
 comment|//for example "pre" length is 3 and "prefixes" length is 8.  We can see that
 comment|//given this optimal circumstance, the edit distance cannot be less than 5.
 comment|//which is 8-3 or more precisesly Math.abs(3-8).
-comment|//if our maximum edit distance is 4, than we can discard this word
+comment|//if our maximum edit distance is 4, then we can discard this word
 comment|//without looking at it.
 return|return
 literal|0.0f
