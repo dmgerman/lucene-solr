@@ -251,8 +251,32 @@ name|scoreNorm
 init|=
 literal|1.0f
 decl_stmt|;
-comment|//     if (length> 0&& scoreDocs[0].score> 1.0f)
-comment|//       scoreNorm = 1.0f / scoreDocs[0].score;
+if|if
+condition|(
+name|length
+operator|>
+literal|0
+operator|&&
+name|scoreDocs
+index|[
+literal|0
+index|]
+operator|.
+name|score
+operator|>
+literal|1.0f
+condition|)
+name|scoreNorm
+operator|=
+literal|1.0f
+operator|/
+name|scoreDocs
+index|[
+literal|0
+index|]
+operator|.
+name|score
+expr_stmt|;
 name|int
 name|end
 init|=

@@ -156,7 +156,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** */
+comment|/** Expert: called to re-write queries into primitive queries. */
 DECL|method|rewrite
 name|Query
 name|rewrite
@@ -167,7 +167,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** */
+comment|/** Returns an Explanation that describes how<code>doc</code> scored against    *<code>query</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    */
 DECL|method|explain
 name|Explanation
 name|explain

@@ -668,7 +668,7 @@ if|if
 condition|(
 name|getBoost
 argument_list|()
-operator|>
+operator|!=
 literal|1.0
 condition|)
 block|{
@@ -820,7 +820,7 @@ if|if
 condition|(
 name|getBoost
 argument_list|()
-operator|>
+operator|!=
 literal|1.0
 condition|)
 block|{

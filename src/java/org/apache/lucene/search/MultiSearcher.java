@@ -799,7 +799,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** */
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -865,7 +864,6 @@ name|queries
 argument_list|)
 return|;
 block|}
-comment|/** */
 DECL|method|explain
 specifier|public
 name|Explanation
