@@ -78,6 +78,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|ru
+operator|.
+name|RussianAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|de
 operator|.
 name|GermanAnalyzer
@@ -1095,11 +1111,6 @@ condition|(
 name|checkLastModified
 condition|)
 block|{
-name|Hits
-name|hits
-init|=
-literal|null
-decl_stmt|;
 name|Term
 name|pathTerm
 init|=
@@ -1123,15 +1134,16 @@ argument_list|(
 name|pathTerm
 argument_list|)
 decl_stmt|;
+name|Hits
 name|hits
-operator|=
+init|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// if document is found, compare the
 comment|// indexed last modified time with the
 comment|// current file
@@ -1457,7 +1469,6 @@ name|props
 return|;
 block|}
 block|}
-comment|/**    * @todo - the RusionAnalyzer requires a constructor argument    *         so its being removed from here until a mechanism    *         is developed to pass ctor info somehow    */
 DECL|class|AnalyzerType
 specifier|public
 specifier|static
@@ -1548,7 +1559,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//            analyzerLookup.put("russian", RussianAnalyzer.class.getName());
+name|analyzerLookup
+operator|.
+name|put
+argument_list|(
+literal|"russian"
+argument_list|,
+name|RussianAnalyzer
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * @see EnumeratedAttribute#getValues      */
 DECL|method|getValues
