@@ -771,7 +771,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    *     * @param fieldNum The field to read in    * @param tvfPointer The pointer within the tvf file where we should start reading    * @return The TermVector located at that position    * @throws IOException    */
+comment|/**    *     * @param field The field to read in    * @param tvfPointer The pointer within the tvf file where we should start reading    * @return The TermVector located at that position    * @throws IOException    */
 DECL|method|readTermVector
 specifier|private
 name|SegmentTermVector
