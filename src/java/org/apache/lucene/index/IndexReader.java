@@ -583,7 +583,7 @@ name|directory
 argument_list|)
 return|;
 block|}
-comment|/** Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector vector contains term numbers and frequencies for all terms    *  in a given vectorized field.    *  If no such fields existed, the method returns null.    *    * @see Field#isTermVectorStored()    */
+comment|/** Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector vector contains terms and frequencies for those terms    *  in a given vectorized field.    *  If no such fields existed, the method returns null.    *    * @see Field#isTermVectorStored()    */
 DECL|method|getTermFreqVectors
 specifier|abstract
 specifier|public
@@ -597,7 +597,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Return a term frequency vector for the specified document and field. The    *  vector returned contains term numbers and frequencies for all terms in    *  the specified field of this document, if the field had storeTermVector    *  flag set.  If the flag was not set, the method returns null.    *    * @see Field#isTermVectorStored()    */
+comment|/** Return a term frequency vector for the specified document and field. The    *  vector returned contains terms and frequencies for those terms in    *  the specified field of this document, if the field had storeTermVector    *  flag set.  If the flag was not set, the method returns null.    *    * @see Field#isTermVectorStored()    */
 DECL|method|getTermFreqVector
 specifier|abstract
 specifier|public
