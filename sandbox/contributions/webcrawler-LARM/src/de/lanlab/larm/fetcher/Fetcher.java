@@ -233,7 +233,9 @@ name|setQueue
 argument_list|(
 operator|new
 name|FetcherTaskQueue
-argument_list|()
+argument_list|(
+name|hostManager
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|docsRead
