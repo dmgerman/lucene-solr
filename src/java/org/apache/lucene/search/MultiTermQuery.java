@@ -99,11 +99,6 @@ specifier|private
 name|FilteredTermEnum
 name|enum
 type|;
-DECL|field|reader
-specifier|private
-name|IndexReader
-name|reader
-decl_stmt|;
 DECL|field|query
 specifier|private
 name|BooleanQuery

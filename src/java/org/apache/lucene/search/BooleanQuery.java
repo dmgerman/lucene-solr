@@ -542,14 +542,6 @@ name|BooleanQuery
 condition|)
 block|{
 comment|// wrap sub-bools in parens
-name|BooleanQuery
-name|bq
-init|=
-operator|(
-name|BooleanQuery
-operator|)
-name|subQuery
-decl_stmt|;
 name|buffer
 operator|.
 name|append
