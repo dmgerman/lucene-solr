@@ -18,6 +18,16 @@ name|standard
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|*
+import|;
+end_import
+
 begin_class
 DECL|class|StandardTokenizerTokenManager
 specifier|public
