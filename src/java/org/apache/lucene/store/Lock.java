@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An interprocess mutex lock.  *<p>Typical use might look like:<pre>  * new Lock.With(directory.makeLock("my.lock")) {  *     public Object doBody() {  *<i>... code to execute while locked ...</i>  *     }  *   }.run();  *</pre>  *  * @author Doug Cutting  * @see Directory#makeLock(String) */
+comment|/** An interprocess mutex lock.  *<p>Typical use might look like:<pre>  * new Lock.With(directory.makeLock("my.lock")) {  *     public Object doBody() {  *<i>... code to execute while locked ...</i>  *     }  *   }.run();  *</pre>  *  * @author Doug Cutting  * @version $Id$  * @see Directory#makeLock(String)  */
 end_comment
 
 begin_class
@@ -59,7 +59,7 @@ name|LOCK_POLL_INTERVAL
 init|=
 literal|1000
 decl_stmt|;
-comment|/** Attempt to obtain exclusive access and immediately return    *  upon success or failure.    * @return true iff exclusive access is obtained    */
+comment|/** Attempts to obtain exclusive access and immediately return    *  upon success or failure.    * @return true iff exclusive access is obtained    */
 DECL|method|obtain
 specifier|public
 specifier|abstract
@@ -69,7 +69,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Attempt to obtain an exclusive lock within amount    *  of time given. Currently polls once per second until    *  lockWaitTimeout is passed.    * @param lockWaitTimeout length of time to wait in ms    * @return true if lock was obtained    * @throws IOException if lock wait times out or obtain() throws an IOException    */
+comment|/** Attempts to obtain an exclusive lock within amount    *  of time given. Currently polls once per second until    *  lockWaitTimeout is passed.    * @param lockWaitTimeout length of time to wait in ms    * @return true if lock was obtained    * @throws IOException if lock wait times out or obtain() throws an IOException    */
 DECL|method|obtain
 specifier|public
 name|boolean
@@ -163,7 +163,7 @@ return|return
 name|locked
 return|;
 block|}
-comment|/** Release exclusive access. */
+comment|/** Releases exclusive access. */
 DECL|method|release
 specifier|public
 specifier|abstract
@@ -197,7 +197,7 @@ specifier|private
 name|long
 name|lockWaitTimeout
 decl_stmt|;
-comment|/** Constructs an executor that will grab the named lock.        *  Defaults lockWaitTimeout to Lock.COMMIT_LOCK_TIMEOUT.        *  @deprecated Kept only to avoid breaking existing code.        */
+comment|/** Constructs an executor that will grab the named lock.      *  Defaults lockWaitTimeout to Lock.COMMIT_LOCK_TIMEOUT.      *  @deprecated Kept only to avoid breaking existing code.      */
 DECL|method|With
 specifier|public
 name|With
