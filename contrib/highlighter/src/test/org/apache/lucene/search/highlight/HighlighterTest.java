@@ -34,16 +34,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -119,18 +109,6 @@ operator|.
 name|parsers
 operator|.
 name|DocumentBuilderFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
 import|;
 end_import
 
@@ -405,18 +383,6 @@ operator|.
 name|dom
 operator|.
 name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
 import|;
 end_import
 
@@ -991,6 +957,128 @@ argument_list|(
 literal|"\t"
 operator|+
 name|result
+argument_list|)
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+literal|"Failed to find correct number of highlights "
+operator|+
+name|numHighlights
+operator|+
+literal|" found"
+argument_list|,
+name|numHighlights
+operator|==
+literal|4
+argument_list|)
+expr_stmt|;
+name|numHighlights
+operator|=
+literal|0
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|hits
+operator|.
+name|length
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|String
+name|text
+init|=
+name|hits
+operator|.
+name|doc
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|get
+argument_list|(
+name|FIELD_NAME
+argument_list|)
+decl_stmt|;
+name|highlighter
+operator|.
+name|getBestFragment
+argument_list|(
+name|analyzer
+argument_list|,
+name|text
+argument_list|)
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+literal|"Failed to find correct number of highlights "
+operator|+
+name|numHighlights
+operator|+
+literal|" found"
+argument_list|,
+name|numHighlights
+operator|==
+literal|4
+argument_list|)
+expr_stmt|;
+name|numHighlights
+operator|=
+literal|0
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|hits
+operator|.
+name|length
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|String
+name|text
+init|=
+name|hits
+operator|.
+name|doc
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|get
+argument_list|(
+name|FIELD_NAME
+argument_list|)
+decl_stmt|;
+name|highlighter
+operator|.
+name|getBestFragments
+argument_list|(
+name|analyzer
+argument_list|,
+name|text
+argument_list|,
+literal|10
 argument_list|)
 expr_stmt|;
 block|}
@@ -1742,7 +1830,7 @@ name|assertTrue
 argument_list|(
 literal|"Setting MaxDocBytesToAnalyze should have prevented "
 operator|+
-literal|"us from finding matches for this record"
+literal|"us from finding matches for this record: "
 operator|+
 name|numHighlights
 operator|+
@@ -1965,11 +2053,6 @@ argument_list|(
 name|query
 argument_list|)
 argument_list|)
-decl_stmt|;
-name|int
-name|highlightFragmentSizeInBytes
-init|=
-literal|40
 decl_stmt|;
 for|for
 control|(
@@ -3085,11 +3168,11 @@ comment|// TODO - make synonyms all interchangeable with each other and produce
 end_comment
 
 begin_comment
-comment|// a version that does antonyms(?) - the "is a specialised type of ...."
+comment|// a version that does hyponyms - the "is a specialised type of ...."
 end_comment
 
 begin_comment
-comment|// so that car=audi, bmw and volkswagen but bmw != audi so different
+comment|// so that car = audi, bmw and volkswagen but bmw != audi so different
 end_comment
 
 begin_comment
