@@ -78,6 +78,8 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|demo
+operator|.
 name|FileDocument
 import|;
 end_import

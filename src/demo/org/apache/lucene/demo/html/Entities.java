@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.HTMLParser
+DECL|package|org.apache.lucene.demo.html
 package|package
 name|org
 operator|.
@@ -8,7 +8,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|HTMLParser
+name|demo
+operator|.
+name|html
 package|;
 end_package
 

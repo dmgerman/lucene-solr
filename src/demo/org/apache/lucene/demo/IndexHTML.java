@@ -1,12 +1,14 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene
+DECL|package|org.apache.lucene.demo
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|demo
 package|;
 end_package
 
@@ -24,7 +26,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|StopAnalyzer
+name|standard
+operator|.
+name|StandardAnalyzer
 import|;
 end_import
 
@@ -78,7 +82,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|HTMLParser
+name|demo
+operator|.
+name|html
 operator|.
 name|HTMLParser
 import|;
@@ -328,17 +334,11 @@ argument_list|(
 name|index
 argument_list|,
 operator|new
-name|StopAnalyzer
+name|StandardAnalyzer
 argument_list|()
 argument_list|,
 name|create
 argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|mergeFactor
-operator|=
-literal|20
 expr_stmt|;
 name|writer
 operator|.
