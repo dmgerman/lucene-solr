@@ -770,6 +770,22 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
+name|source
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// ignore
+block|}
 if|if
 condition|(
 name|v
