@@ -169,15 +169,7 @@ decl_stmt|;
 DECL|method|FieldInfos
 name|FieldInfos
 parameter_list|()
-block|{
-name|add
-argument_list|(
-literal|""
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
+block|{ }
 comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * IndexInput    * @param d The directory to open the IndexInput from    * @param name The name of the file to open the IndexInput from in the Directory    * @throws IOException    */
 DECL|method|FieldInfos
 name|FieldInfos
@@ -634,6 +626,8 @@ name|String
 name|fieldName
 parameter_list|)
 block|{
+try|try
+block|{
 name|FieldInfo
 name|fi
 init|=
@@ -653,7 +647,18 @@ name|fi
 operator|.
 name|number
 return|;
-else|else
+block|}
+catch|catch
+parameter_list|(
+name|IndexOutOfBoundsException
+name|ioobe
+parameter_list|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 return|return
 operator|-
 literal|1
@@ -680,6 +685,7 @@ name|fieldName
 argument_list|)
 return|;
 block|}
+comment|/**    * Return the fieldName identified by it's number.    * @param fieldNumber    * @return the fieldName or an empty string when the field    * with the given number doesn't exist.    */
 DECL|method|fieldName
 specifier|public
 name|String
@@ -688,6 +694,8 @@ parameter_list|(
 name|int
 name|fieldNumber
 parameter_list|)
+block|{
+try|try
 block|{
 return|return
 name|fieldInfo
@@ -698,6 +706,18 @@ operator|.
 name|name
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|npe
+parameter_list|)
+block|{
+return|return
+literal|""
+return|;
+block|}
+block|}
+comment|/**    * Return the fieldinfo object referenced by the fieldNumber.    * @param fieldNumber    * @return the FieldInfo object or null when the given fieldNumber    * doesn't exist.    */
 DECL|method|fieldInfo
 specifier|public
 name|FieldInfo
@@ -706,6 +726,8 @@ parameter_list|(
 name|int
 name|fieldNumber
 parameter_list|)
+block|{
+try|try
 block|{
 return|return
 operator|(
@@ -718,6 +740,17 @@ argument_list|(
 name|fieldNumber
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IndexOutOfBoundsException
+name|ioobe
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 DECL|method|size
 specifier|public
