@@ -1521,7 +1521,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * Finds ending among given ending class and returns the length of ending found(0, if not found).      * Creation date: (17/03/2002 8:18:34 PM)      * @return int      * @param word java.lang.StringBuffer      * @param theEnding char[]      */
+comment|/**      * Finds ending among given ending class and returns the length of ending found(0, if not found).      * Creation date: (17/03/2002 8:18:34 PM)      */
 DECL|method|findEnding
 specifier|private
 name|int
@@ -1695,7 +1695,7 @@ name|theEndingClass
 argument_list|)
 return|;
 block|}
-comment|/**      * Finds the ending among the given class of endings and removes it from stemming zone.      * Creation date: (17/03/2002 8:18:34 PM)      * @return boolean      * @param word java.lang.StringBuffer      * @param theEnding char[]      */
+comment|/**      * Finds the ending among the given class of endings and removes it from stemming zone.      * Creation date: (17/03/2002 8:18:34 PM)      */
 DECL|method|findAndRemoveEnding
 specifier|private
 name|boolean
@@ -1750,7 +1750,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Finds the ending among the given class of endings, then checks if this ending was      * preceded by any of given predessors, and if so, removes it from stemming zone.      * Creation date: (17/03/2002 8:18:34 PM)      * @return boolean      * @param word java.lang.StringBuffer      * @param theEnding char[]      */
+comment|/**      * Finds the ending among the given class of endings, then checks if this ending was      * preceded by any of given predessors, and if so, removes it from stemming zone.      * Creation date: (17/03/2002 8:18:34 PM)      */
 DECL|method|findAndRemoveEnding
 specifier|private
 name|boolean
@@ -1841,7 +1841,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * Marks positions of RV, R1 and R2 in a given word.      * Creation date: (16/03/2002 3:40:11 PM)      * @return int      * @param word java.lang.String      */
+comment|/**      * Marks positions of RV, R1 and R2 in a given word.      * Creation date: (16/03/2002 3:40:11 PM)      */
 DECL|method|markPositions
 specifier|private
 name|void
