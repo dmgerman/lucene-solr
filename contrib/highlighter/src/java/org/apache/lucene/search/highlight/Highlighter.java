@@ -308,11 +308,6 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-name|int
-name|n
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -848,11 +843,6 @@ name|length
 argument_list|()
 expr_stmt|;
 comment|//sort the most relevant sections of the text
-name|int
-name|minScore
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|Iterator

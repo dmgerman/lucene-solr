@@ -351,8 +351,6 @@ specifier|public
 name|Token
 name|next
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

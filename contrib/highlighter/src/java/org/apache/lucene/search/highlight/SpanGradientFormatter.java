@@ -22,22 +22,6 @@ begin_comment
 comment|/**  * Formats text with different color intensity depending on the score of the  * term using the span tag.  GradientFormatter uses a bgcolor argument to the font tag which  * doesn't work in Mozilla, thus this class.  *  * @see GradientFormatter  * @author David Spencer dave@searchmorph.com  */
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|highlight
-operator|.
-name|*
-import|;
-end_import
-
 begin_class
 DECL|class|SpanGradientFormatter
 specifier|public
