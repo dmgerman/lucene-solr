@@ -122,7 +122,6 @@ end_comment
 
 begin_class
 DECL|class|CompoundFileReader
-specifier|public
 class|class
 name|CompoundFileReader
 extends|extends

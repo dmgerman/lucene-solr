@@ -34,6 +34,11 @@ DECL|field|number
 name|int
 name|number
 decl_stmt|;
+comment|// true if term vector for this field should be stored
+DECL|field|storeTermVector
+name|boolean
+name|storeTermVector
+decl_stmt|;
 DECL|method|FieldInfo
 name|FieldInfo
 parameter_list|(
@@ -45,6 +50,9 @@ name|tk
 parameter_list|,
 name|int
 name|nu
+parameter_list|,
+name|boolean
+name|storeTermVector
 parameter_list|)
 block|{
 name|name
@@ -58,6 +66,12 @@ expr_stmt|;
 name|number
 operator|=
 name|nu
+expr_stmt|;
+name|this
+operator|.
+name|storeTermVector
+operator|=
+name|storeTermVector
 expr_stmt|;
 block|}
 block|}

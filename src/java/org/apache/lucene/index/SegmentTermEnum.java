@@ -628,7 +628,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the current Term in the enumeration.     Initially invalid, valid after next() called for the first time.*/
+comment|/** Returns the current Term in the enumeration.    Initially invalid, valid after next() called for the first time.*/
 DECL|method|term
 specifier|public
 specifier|final
@@ -640,7 +640,7 @@ return|return
 name|term
 return|;
 block|}
-comment|/** Returns the current TermInfo in the enumeration.     Initially invalid, valid after next() called for the first time.*/
+comment|/** Returns the current TermInfo in the enumeration.    Initially invalid, valid after next() called for the first time.*/
 DECL|method|termInfo
 specifier|final
 name|TermInfo
@@ -655,7 +655,7 @@ name|termInfo
 argument_list|)
 return|;
 block|}
-comment|/** Sets the argument to the current TermInfo in the enumeration.     Initially invalid, valid after next() called for the first time.*/
+comment|/** Sets the argument to the current TermInfo in the enumeration.    Initially invalid, valid after next() called for the first time.*/
 DECL|method|termInfo
 specifier|final
 name|void
@@ -673,7 +673,7 @@ name|termInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the docFreq from the current TermInfo in the enumeration.     Initially invalid, valid after next() called for the first time.*/
+comment|/** Returns the docFreq from the current TermInfo in the enumeration.    Initially invalid, valid after next() called for the first time.*/
 DECL|method|docFreq
 specifier|public
 specifier|final

@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  A<code>FilterIndexReader</code> contains another IndexReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterIndexReader</code> may  * further override some of these methods and may also provide additional  * methods and fields. */
+comment|/**  A<code>FilterIndexReader</code> contains another IndexReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterIndexReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  */
 end_comment
 
 begin_class
@@ -399,6 +399,52 @@ operator|=
 name|in
 expr_stmt|;
 block|}
+DECL|method|getTermFreqVectors
+specifier|public
+name|TermFreqVector
+index|[]
+name|getTermFreqVectors
+parameter_list|(
+name|int
+name|docNumber
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|getTermFreqVectors
+argument_list|(
+name|docNumber
+argument_list|)
+return|;
+block|}
+DECL|method|getTermFreqVector
+specifier|public
+name|TermFreqVector
+name|getTermFreqVector
+parameter_list|(
+name|int
+name|docNumber
+parameter_list|,
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|getTermFreqVector
+argument_list|(
+name|docNumber
+argument_list|,
+name|field
+argument_list|)
+return|;
+block|}
 DECL|method|numDocs
 specifier|public
 name|int
@@ -720,6 +766,25 @@ operator|.
 name|getFieldNames
 argument_list|(
 name|indexed
+argument_list|)
+return|;
+block|}
+comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    */
+DECL|method|getIndexedFieldNames
+specifier|public
+name|Collection
+name|getIndexedFieldNames
+parameter_list|(
+name|boolean
+name|storedTermVector
+parameter_list|)
+block|{
+return|return
+name|in
+operator|.
+name|getIndexedFieldNames
+argument_list|(
+name|storedTermVector
 argument_list|)
 return|;
 block|}

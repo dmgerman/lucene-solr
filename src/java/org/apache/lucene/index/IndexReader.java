@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** IndexReader is an abstract class, providing an interface for accessing an   index.  Search of an index is done entirely through this abstract interface,   so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to   the static method {@link #open}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique   document in the index.  These document numbers are ephemeral--they may change   as documents are added to and deleted from an index.  Clients should thus not   rely on a given document having the same number between sessions.    @author Doug Cutting   @version $Id$ */
+comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  the static method {@link #open}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.   @author Doug Cutting  @version $Id$ */
 end_comment
 
 begin_class
@@ -191,7 +191,7 @@ name|stale
 init|=
 literal|false
 decl_stmt|;
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named   path. */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path. */
 DECL|method|open
 specifier|public
 specifier|static
@@ -218,7 +218,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named   path. */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path. */
 DECL|method|open
 specifier|public
 specifier|static
@@ -583,6 +583,36 @@ name|directory
 argument_list|)
 return|;
 block|}
+comment|/** Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector vector contains term numbers and frequencies for all terms    *  in a given vectorized field.    *  If no such fields existed, the method returns null.    *    * @see Field#isTermVectorStored()    */
+DECL|method|getTermFreqVectors
+specifier|abstract
+specifier|public
+name|TermFreqVector
+index|[]
+name|getTermFreqVectors
+parameter_list|(
+name|int
+name|docNumber
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Return a term frequency vector for the specified document and field. The    *  vector returned contains term numbers and frequencies for all terms in    *  the specified field of this document, if the field had storeTermVector    *  flag set.  If the flag was not set, the method returns null.    *    * @see Field#isTermVectorStored()    */
+DECL|method|getTermFreqVector
+specifier|abstract
+specifier|public
+name|TermFreqVector
+name|getTermFreqVector
+parameter_list|(
+name|int
+name|docNumber
+parameter_list|,
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * If the directory does not exist or if there is no index in it.    *<code>false</code> is returned.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    */
 DECL|method|indexExists
 specifier|public
@@ -665,7 +695,7 @@ name|int
 name|numDocs
 parameter_list|()
 function_decl|;
-comment|/** Returns one greater than the largest possible document number.     This may be used to, e.g., determine how big to allocate an array which     will have an element for every document number in an index.    */
+comment|/** Returns one greater than the largest possible document number.    This may be used to, e.g., determine how big to allocate an array which    will have an element for every document number in an index.    */
 DECL|method|maxDoc
 specifier|public
 specifier|abstract
@@ -739,7 +769,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Field#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Field#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,           * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
 DECL|method|setNorm
 specifier|public
 specifier|abstract
@@ -791,7 +821,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns an enumeration of all the terms in the index.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
+comment|/** Returns an enumeration of all the terms in the index.    The enumeration is ordered by Term.compareTo().  Each term    is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|public
 specifier|abstract
@@ -801,7 +831,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all terms after a given term.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
+comment|/** Returns an enumeration of all terms after a given term.    The enumeration is ordered by Term.compareTo().  Each term    is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|public
 specifier|abstract
@@ -827,7 +857,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>. For each document, the document number, the frequency of     the term in that document is also provided, for use in search scoring.     Thus, this method implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup></ul><p>The enumeration is ordered by document number.  Each document number     is greater than all that precede it in the enumeration.   */
+comment|/** Returns an enumeration of all the documents which contain<code>term</code>. For each document, the document number, the frequency of    the term in that document is also provided, for use in search scoring.    Thus, this method implements the mapping:<p><ul>    Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup></ul><p>The enumeration is ordered by document number.  Each document number    is greater than all that precede it in the enumeration.    */
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -866,7 +896,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number     and frequency of the term in that document, a list of all of the ordinal     positions of the term in the document is available.  Thus, this method     implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...           pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is     greater than all that precede it in the enumeration.   */
+comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number    and frequency of the term in that document, a list of all of the ordinal    positions of the term in the document is available.  Thus, this method    implements the mapping:<p><ul>    Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...    pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is    greater than all that precede it in the enumeration.    */
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -905,7 +935,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is     deleted it will not appear in TermDocs or TermPostitions enumerations.     Attempts to read its field with the {@link #document}     method will result in an error.  The presence of this document may still be     reflected in the {@link #docFreq} statistic, though     this will be corrected eventually as the index is further modified.   */
+comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    deleted it will not appear in TermDocs or TermPostitions enumerations.    Attempts to read its field with the {@link #document}    method will result in an error.  The presence of this document may still be    reflected in the {@link #docFreq} statistic, though    this will be corrected eventually as the index is further modified.    */
 DECL|method|delete
 specifier|public
 specifier|final
@@ -1043,7 +1073,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes all documents containing<code>term</code>.     This is useful if one uses a document field to hold a unique ID string for     the document.  Then to delete such a document, one merely constructs a     term with the appropriate field and the unique ID string as its text and     passes it to this method.  Returns the number of documents deleted.   */
+comment|/** Deletes all documents containing<code>term</code>.    This is useful if one uses a document field to hold a unique ID string for    the document.  Then to delete such a document, one merely constructs a    term with the appropriate field and the unique ID string as its text and    passes it to this method.  Returns the number of documents deleted.    */
 DECL|method|delete
 specifier|public
 specifier|final
@@ -1195,7 +1225,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a list of all unique field names that exist in the index pointed to by    * this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
@@ -1205,7 +1235,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a list of all unique field names that exist in the index pointed to by    * this IndexReader.  The boolean argument specifies whether the fields returned    * are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed    * to by this IndexReader.  The boolean argument specifies whether the fields    * returned are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
@@ -1217,6 +1247,17 @@ name|indexed
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/**    *     * @param storedTermVector if true, returns only Indexed fields that have term vector info,     *                        else only indexed fields without term vector info     * @return Collection of Strings indicating the names of the fields    */
+DECL|method|getIndexedFieldNames
+specifier|public
+specifier|abstract
+name|Collection
+name|getIndexedFieldNames
+parameter_list|(
+name|boolean
+name|storedTermVector
+parameter_list|)
 function_decl|;
 comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
 DECL|method|isLocked
@@ -1284,7 +1325,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**     * Forcibly unlocks the index in the named directory.     *<P>     * Caution: this should only be used by failure recovery code,     * when it is known that no other process nor thread is in fact     * currently accessing this index.     */
+comment|/**    * Forcibly unlocks the index in the named directory.    *<P>    * Caution: this should only be used by failure recovery code,    * when it is known that no other process nor thread is in fact    * currently accessing this index.    */
 DECL|method|unlock
 specifier|public
 specifier|static

@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** TermDocs provides an interface for enumerating&lt;document, frequency&gt;   pairs for a term.<p> The document portion names each document containing   the term.  Documents are indicated by number.  The frequency portion gives   the number of times the term occurred in each document.<p> The pairs are   ordered by document number.    @see IndexReader#termDocs   */
+comment|/** TermDocs provides an interface for enumerating&lt;document, frequency&gt;  pairs for a term.<p> The document portion names each document containing  the term.  Documents are indicated by number.  The frequency portion gives  the number of times the term occurred in each document.<p> The pairs are  ordered by document number.   @see IndexReader#termDocs  */
 end_comment
 
 begin_interface
@@ -58,19 +58,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the current document number.<p> This is invalid until {@link       #next()} is called for the first time.*/
+comment|/** Returns the current document number.<p> This is invalid until {@link    #next()} is called for the first time.*/
 DECL|method|doc
 name|int
 name|doc
 parameter_list|()
 function_decl|;
-comment|/** Returns the frequency of the term within the current document.<p> This     is invalid until {@link #next()} is called for the first time.*/
+comment|/** Returns the frequency of the term within the current document.<p> This    is invalid until {@link #next()} is called for the first time.*/
 DECL|method|freq
 name|int
 name|freq
 parameter_list|()
 function_decl|;
-comment|/** Moves to the next pair in the enumeration.<p> Returns true iff there is     such a next pair in the enumeration. */
+comment|/** Moves to the next pair in the enumeration.<p> Returns true iff there is    such a next pair in the enumeration. */
 DECL|method|next
 name|boolean
 name|next
