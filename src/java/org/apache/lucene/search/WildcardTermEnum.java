@@ -94,12 +94,6 @@ name|preLen
 init|=
 literal|0
 decl_stmt|;
-DECL|field|fieldMatch
-name|boolean
-name|fieldMatch
-init|=
-literal|false
-decl_stmt|;
 DECL|field|endEnum
 name|boolean
 name|endEnum
