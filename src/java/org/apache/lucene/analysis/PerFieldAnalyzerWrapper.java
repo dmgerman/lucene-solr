@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This analyzer is used to facilitate scenarios where different  * fields require different analysis techniques.  Use {@link #addAnalyzer}  * to add a non-default analyzer on a field name basis.  * See {@link TestPerFieldAnalzyerWrapper} for example usage.  */
+comment|/**  * This analyzer is used to facilitate scenarios where different  * fields require different analysis techniques.  Use {@link #addAnalyzer}  * to add a non-default analyzer on a field name basis.  * See {@link TestPerFieldAnalyzerWrapper} for example usage.  */
 end_comment
 
 begin_class
