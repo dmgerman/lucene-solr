@@ -364,9 +364,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|maxFieldLength
-operator|=
+name|setMaxFieldLength
+argument_list|(
 literal|1000000
+argument_list|)
 expr_stmt|;
 name|indexDocs
 argument_list|(
