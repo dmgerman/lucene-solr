@@ -949,7 +949,13 @@ init|=
 name|c
 operator|.
 name|query
+operator|.
+name|rewrite
+argument_list|(
+name|reader
+argument_list|)
 decl_stmt|;
+comment|// rewrite first
 if|if
 condition|(
 name|getBoost
