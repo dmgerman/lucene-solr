@@ -8680,15 +8680,15 @@ decl_stmt|;
 name|int
 name|v_3
 decl_stmt|;
-comment|// (, line 48
-comment|// test, line 48
+comment|// (, line 49
+comment|// test, line 49
 name|v_1
 operator|=
 name|limit
 operator|-
 name|cursor
 expr_stmt|;
-comment|// hop, line 48
+comment|// hop, line 49
 block|{
 name|int
 name|c
@@ -8723,7 +8723,7 @@ name|limit
 operator|-
 name|v_1
 expr_stmt|;
-comment|// not, line 48
+comment|// not, line 49
 block|{
 name|v_2
 operator|=
@@ -8735,7 +8735,7 @@ name|lab0
 label|:
 do|do
 block|{
-comment|// literal, line 48
+comment|// literal, line 49
 if|if
 condition|(
 operator|!
@@ -8769,7 +8769,7 @@ operator|-
 name|v_2
 expr_stmt|;
 block|}
-comment|// not, line 48
+comment|// not, line 49
 block|{
 name|v_3
 operator|=
@@ -8781,7 +8781,7 @@ name|lab1
 label|:
 do|do
 block|{
-comment|// literal, line 48
+comment|// literal, line 49
 if|if
 condition|(
 operator|!
@@ -8828,15 +8828,15 @@ block|{
 name|int
 name|v_1
 decl_stmt|;
-comment|// (, line 49
-comment|// test, line 49
+comment|// (, line 50
+comment|// test, line 50
 name|v_1
 operator|=
 name|limit
 operator|-
 name|cursor
 expr_stmt|;
-comment|// hop, line 49
+comment|// hop, line 50
 block|{
 name|int
 name|c
@@ -8871,7 +8871,7 @@ name|limit
 operator|-
 name|v_1
 expr_stmt|;
-comment|// literal, line 49
+comment|// literal, line 50
 if|if
 condition|(
 operator|!
@@ -8902,13 +8902,13 @@ block|{
 name|int
 name|among_var
 decl_stmt|;
-comment|// (, line 54
-comment|// [, line 55
+comment|// (, line 55
+comment|// [, line 56
 name|ket
 operator|=
 name|cursor
 expr_stmt|;
-comment|// substring, line 55
+comment|// substring, line 56
 name|among_var
 operator|=
 name|find_among_b
@@ -8929,7 +8929,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|// ], line 55
+comment|// ], line 56
 name|bra
 operator|=
 name|cursor
@@ -8948,8 +8948,8 @@ return|;
 case|case
 literal|1
 case|:
-comment|// (, line 144
-comment|// delete, line 144
+comment|// (, line 145
+comment|// delete, line 145
 name|slice_del
 argument_list|()
 expr_stmt|;
@@ -8968,15 +8968,15 @@ block|{
 name|int
 name|v_1
 decl_stmt|;
-comment|// (, line 150
-comment|// test, line 151
+comment|// (, line 151
+comment|// test, line 152
 name|v_1
 operator|=
 name|limit
 operator|-
 name|cursor
 expr_stmt|;
-comment|// substring, line 151
+comment|// substring, line 152
 if|if
 condition|(
 name|find_among_b
@@ -8999,12 +8999,12 @@ name|limit
 operator|-
 name|v_1
 expr_stmt|;
-comment|// [, line 152
+comment|// [, line 154
 name|ket
 operator|=
 name|cursor
 expr_stmt|;
-comment|// next, line 152
+comment|// next, line 154
 if|if
 condition|(
 name|cursor
@@ -9019,12 +9019,12 @@ block|}
 name|cursor
 operator|--
 expr_stmt|;
-comment|// ], line 152
+comment|// ], line 154
 name|bra
 operator|=
 name|cursor
 expr_stmt|;
-comment|// delete, line 152
+comment|// delete, line 154
 name|slice_del
 argument_list|()
 expr_stmt|;
@@ -9065,13 +9065,13 @@ decl_stmt|;
 name|int
 name|v_8
 decl_stmt|;
-comment|// (, line 157
-comment|// [, line 158
+comment|// (, line 159
+comment|// [, line 160
 name|ket
 operator|=
 name|cursor
 expr_stmt|;
-comment|// substring, line 158
+comment|// substring, line 160
 name|among_var
 operator|=
 name|find_among_b
@@ -9092,7 +9092,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|// ], line 158
+comment|// ], line 160
 name|bra
 operator|=
 name|cursor
@@ -9111,8 +9111,8 @@ return|;
 case|case
 literal|1
 case|:
-comment|// (, line 159
-comment|//<-, line 159
+comment|// (, line 161
+comment|//<-, line 161
 name|slice_from
 argument_list|(
 literal|"ief"
@@ -9122,8 +9122,8 @@ break|break;
 case|case
 literal|2
 case|:
-comment|// (, line 160
-comment|//<-, line 160
+comment|// (, line 162
+comment|//<-, line 162
 name|slice_from
 argument_list|(
 literal|"uc"
@@ -9133,8 +9133,8 @@ break|break;
 case|case
 literal|3
 case|:
-comment|// (, line 161
-comment|//<-, line 161
+comment|// (, line 163
+comment|//<-, line 163
 name|slice_from
 argument_list|(
 literal|"um"
@@ -9144,8 +9144,8 @@ break|break;
 case|case
 literal|4
 case|:
-comment|// (, line 162
-comment|//<-, line 162
+comment|// (, line 164
+comment|//<-, line 164
 name|slice_from
 argument_list|(
 literal|"rb"
@@ -9155,8 +9155,8 @@ break|break;
 case|case
 literal|5
 case|:
-comment|// (, line 163
-comment|//<-, line 163
+comment|// (, line 165
+comment|//<-, line 165
 name|slice_from
 argument_list|(
 literal|"ur"
@@ -9166,8 +9166,8 @@ break|break;
 case|case
 literal|6
 case|:
-comment|// (, line 164
-comment|//<-, line 164
+comment|// (, line 166
+comment|//<-, line 166
 name|slice_from
 argument_list|(
 literal|"ister"
@@ -9177,8 +9177,8 @@ break|break;
 case|case
 literal|7
 case|:
-comment|// (, line 165
-comment|//<-, line 165
+comment|// (, line 167
+comment|//<-, line 167
 name|slice_from
 argument_list|(
 literal|"meter"
@@ -9188,8 +9188,8 @@ break|break;
 case|case
 literal|8
 case|:
-comment|// (, line 166
-comment|//<-, line 166
+comment|// (, line 168
+comment|//<-, line 168
 name|slice_from
 argument_list|(
 literal|"olut"
@@ -9199,8 +9199,8 @@ break|break;
 case|case
 literal|9
 case|:
-comment|// (, line 167
-comment|// not, line 167
+comment|// (, line 169
+comment|// not, line 169
 block|{
 name|v_1
 operator|=
@@ -9212,7 +9212,7 @@ name|lab0
 label|:
 do|do
 block|{
-comment|// literal, line 167
+comment|// literal, line 169
 if|if
 condition|(
 operator|!
@@ -9246,7 +9246,7 @@ operator|-
 name|v_1
 expr_stmt|;
 block|}
-comment|// not, line 167
+comment|// not, line 169
 block|{
 name|v_2
 operator|=
@@ -9258,7 +9258,7 @@ name|lab1
 label|:
 do|do
 block|{
-comment|// literal, line 167
+comment|// literal, line 169
 if|if
 condition|(
 operator|!
@@ -9292,7 +9292,7 @@ operator|-
 name|v_2
 expr_stmt|;
 block|}
-comment|// not, line 167
+comment|// not, line 169
 block|{
 name|v_3
 operator|=
@@ -9304,7 +9304,7 @@ name|lab2
 label|:
 do|do
 block|{
-comment|// literal, line 167
+comment|// literal, line 169
 if|if
 condition|(
 operator|!
@@ -9338,7 +9338,7 @@ operator|-
 name|v_3
 expr_stmt|;
 block|}
-comment|//<-, line 167
+comment|//<-, line 169
 name|slice_from
 argument_list|(
 literal|"l"
@@ -9348,8 +9348,8 @@ break|break;
 case|case
 literal|10
 case|:
-comment|// (, line 168
-comment|//<-, line 168
+comment|// (, line 170
+comment|//<-, line 170
 name|slice_from
 argument_list|(
 literal|"bic"
@@ -9359,8 +9359,8 @@ break|break;
 case|case
 literal|11
 case|:
-comment|// (, line 169
-comment|//<-, line 169
+comment|// (, line 171
+comment|//<-, line 171
 name|slice_from
 argument_list|(
 literal|"dic"
@@ -9370,8 +9370,8 @@ break|break;
 case|case
 literal|12
 case|:
-comment|// (, line 170
-comment|//<-, line 170
+comment|// (, line 172
+comment|//<-, line 172
 name|slice_from
 argument_list|(
 literal|"pic"
@@ -9381,8 +9381,8 @@ break|break;
 case|case
 literal|13
 case|:
-comment|// (, line 171
-comment|//<-, line 171
+comment|// (, line 173
+comment|//<-, line 173
 name|slice_from
 argument_list|(
 literal|"tic"
@@ -9392,8 +9392,8 @@ break|break;
 case|case
 literal|14
 case|:
-comment|// (, line 172
-comment|//<-, line 172
+comment|// (, line 174
+comment|//<-, line 174
 name|slice_from
 argument_list|(
 literal|"ac"
@@ -9403,8 +9403,8 @@ break|break;
 case|case
 literal|15
 case|:
-comment|// (, line 173
-comment|//<-, line 173
+comment|// (, line 175
+comment|//<-, line 175
 name|slice_from
 argument_list|(
 literal|"ec"
@@ -9414,8 +9414,8 @@ break|break;
 case|case
 literal|16
 case|:
-comment|// (, line 174
-comment|//<-, line 174
+comment|// (, line 176
+comment|//<-, line 176
 name|slice_from
 argument_list|(
 literal|"ic"
@@ -9425,8 +9425,8 @@ break|break;
 case|case
 literal|17
 case|:
-comment|// (, line 175
-comment|//<-, line 175
+comment|// (, line 177
+comment|//<-, line 177
 name|slice_from
 argument_list|(
 literal|"luc"
@@ -9436,8 +9436,8 @@ break|break;
 case|case
 literal|18
 case|:
-comment|// (, line 176
-comment|//<-, line 176
+comment|// (, line 178
+comment|//<-, line 178
 name|slice_from
 argument_list|(
 literal|"uas"
@@ -9447,8 +9447,8 @@ break|break;
 case|case
 literal|19
 case|:
-comment|// (, line 177
-comment|//<-, line 177
+comment|// (, line 179
+comment|//<-, line 179
 name|slice_from
 argument_list|(
 literal|"vas"
@@ -9458,8 +9458,8 @@ break|break;
 case|case
 literal|20
 case|:
-comment|// (, line 178
-comment|//<-, line 178
+comment|// (, line 180
+comment|//<-, line 180
 name|slice_from
 argument_list|(
 literal|"cis"
@@ -9469,8 +9469,8 @@ break|break;
 case|case
 literal|21
 case|:
-comment|// (, line 179
-comment|//<-, line 179
+comment|// (, line 181
+comment|//<-, line 181
 name|slice_from
 argument_list|(
 literal|"lis"
@@ -9480,8 +9480,8 @@ break|break;
 case|case
 literal|22
 case|:
-comment|// (, line 180
-comment|//<-, line 180
+comment|// (, line 182
+comment|//<-, line 182
 name|slice_from
 argument_list|(
 literal|"eris"
@@ -9491,8 +9491,8 @@ break|break;
 case|case
 literal|23
 case|:
-comment|// (, line 181
-comment|//<-, line 181
+comment|// (, line 183
+comment|//<-, line 183
 name|slice_from
 argument_list|(
 literal|"pans"
@@ -9502,8 +9502,8 @@ break|break;
 case|case
 literal|24
 case|:
-comment|// (, line 182
-comment|// not, line 182
+comment|// (, line 184
+comment|// not, line 184
 block|{
 name|v_4
 operator|=
@@ -9515,7 +9515,7 @@ name|lab3
 label|:
 do|do
 block|{
-comment|// literal, line 182
+comment|// literal, line 184
 if|if
 condition|(
 operator|!
@@ -9549,7 +9549,7 @@ operator|-
 name|v_4
 expr_stmt|;
 block|}
-comment|//<-, line 182
+comment|//<-, line 184
 name|slice_from
 argument_list|(
 literal|"ens"
@@ -9559,8 +9559,8 @@ break|break;
 case|case
 literal|25
 case|:
-comment|// (, line 183
-comment|//<-, line 183
+comment|// (, line 185
+comment|//<-, line 185
 name|slice_from
 argument_list|(
 literal|"ons"
@@ -9570,8 +9570,8 @@ break|break;
 case|case
 literal|26
 case|:
-comment|// (, line 184
-comment|//<-, line 184
+comment|// (, line 186
+comment|//<-, line 186
 name|slice_from
 argument_list|(
 literal|"lus"
@@ -9581,8 +9581,8 @@ break|break;
 case|case
 literal|27
 case|:
-comment|// (, line 185
-comment|//<-, line 185
+comment|// (, line 187
+comment|//<-, line 187
 name|slice_from
 argument_list|(
 literal|"rus"
@@ -9592,8 +9592,8 @@ break|break;
 case|case
 literal|28
 case|:
-comment|// (, line 186
-comment|// not, line 186
+comment|// (, line 188
+comment|// not, line 188
 block|{
 name|v_5
 operator|=
@@ -9605,7 +9605,7 @@ name|lab4
 label|:
 do|do
 block|{
-comment|// literal, line 186
+comment|// literal, line 188
 if|if
 condition|(
 operator|!
@@ -9639,7 +9639,7 @@ operator|-
 name|v_5
 expr_stmt|;
 block|}
-comment|// not, line 186
+comment|// not, line 188
 block|{
 name|v_6
 operator|=
@@ -9651,7 +9651,7 @@ name|lab5
 label|:
 do|do
 block|{
-comment|// literal, line 186
+comment|// literal, line 188
 if|if
 condition|(
 operator|!
@@ -9685,7 +9685,7 @@ operator|-
 name|v_6
 expr_stmt|;
 block|}
-comment|//<-, line 186
+comment|//<-, line 188
 name|slice_from
 argument_list|(
 literal|"hes"
@@ -9695,8 +9695,8 @@ break|break;
 case|case
 literal|29
 case|:
-comment|// (, line 187
-comment|//<-, line 187
+comment|// (, line 189
+comment|//<-, line 189
 name|slice_from
 argument_list|(
 literal|"mis"
@@ -9706,8 +9706,8 @@ break|break;
 case|case
 literal|30
 case|:
-comment|// (, line 188
-comment|// not, line 188
+comment|// (, line 190
+comment|// not, line 190
 block|{
 name|v_7
 operator|=
@@ -9719,7 +9719,7 @@ name|lab6
 label|:
 do|do
 block|{
-comment|// literal, line 188
+comment|// literal, line 190
 if|if
 condition|(
 operator|!
@@ -9753,7 +9753,7 @@ operator|-
 name|v_7
 expr_stmt|;
 block|}
-comment|//<-, line 188
+comment|//<-, line 190
 name|slice_from
 argument_list|(
 literal|"ens"
@@ -9763,8 +9763,8 @@ break|break;
 case|case
 literal|31
 case|:
-comment|// (, line 189
-comment|//<-, line 189
+comment|// (, line 192
+comment|//<-, line 192
 name|slice_from
 argument_list|(
 literal|"ers"
@@ -9774,8 +9774,8 @@ break|break;
 case|case
 literal|32
 case|:
-comment|// (, line 190
-comment|// not, line 190
+comment|// (, line 193
+comment|// not, line 193
 block|{
 name|v_8
 operator|=
@@ -9787,7 +9787,7 @@ name|lab7
 label|:
 do|do
 block|{
-comment|// literal, line 190
+comment|// literal, line 193
 if|if
 condition|(
 operator|!
@@ -9821,7 +9821,7 @@ operator|-
 name|v_8
 expr_stmt|;
 block|}
-comment|//<-, line 190
+comment|//<-, line 193
 name|slice_from
 argument_list|(
 literal|"es"
@@ -9831,8 +9831,8 @@ break|break;
 case|case
 literal|33
 case|:
-comment|// (, line 191
-comment|//<-, line 191
+comment|// (, line 194
+comment|//<-, line 194
 name|slice_from
 argument_list|(
 literal|"ys"
@@ -9842,8 +9842,8 @@ break|break;
 case|case
 literal|34
 case|:
-comment|// (, line 192
-comment|//<-, line 192
+comment|// (, line 195
+comment|//<-, line 195
 name|slice_from
 argument_list|(
 literal|"ys"
@@ -9870,8 +9870,8 @@ decl_stmt|;
 name|int
 name|v_3
 decl_stmt|;
-comment|// (, line 197
-comment|// backwards, line 199
+comment|// (, line 200
+comment|// backwards, line 202
 name|limit_backward
 operator|=
 name|cursor
@@ -9880,8 +9880,8 @@ name|cursor
 operator|=
 name|limit
 expr_stmt|;
-comment|// (, line 199
-comment|// do, line 200
+comment|// (, line 202
+comment|// do, line 203
 name|v_1
 operator|=
 name|limit
@@ -9892,7 +9892,7 @@ name|lab0
 label|:
 do|do
 block|{
-comment|// call endings, line 200
+comment|// call endings, line 203
 if|if
 condition|(
 operator|!
@@ -9916,7 +9916,7 @@ name|limit
 operator|-
 name|v_1
 expr_stmt|;
-comment|// do, line 201
+comment|// do, line 204
 name|v_2
 operator|=
 name|limit
@@ -9927,7 +9927,7 @@ name|lab1
 label|:
 do|do
 block|{
-comment|// call undouble, line 201
+comment|// call undouble, line 204
 if|if
 condition|(
 operator|!
@@ -9951,7 +9951,7 @@ name|limit
 operator|-
 name|v_2
 expr_stmt|;
-comment|// do, line 202
+comment|// do, line 205
 name|v_3
 operator|=
 name|limit
@@ -9962,7 +9962,7 @@ name|lab2
 label|:
 do|do
 block|{
-comment|// call respell, line 202
+comment|// call respell, line 205
 if|if
 condition|(
 operator|!

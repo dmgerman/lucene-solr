@@ -5232,6 +5232,9 @@ decl_stmt|;
 name|int
 name|v_9
 decl_stmt|;
+name|int
+name|v_10
+decl_stmt|;
 comment|// (, line 199
 comment|// do, line 200
 name|v_1
@@ -5333,12 +5336,20 @@ label|:
 do|do
 block|{
 comment|// (, line 204
+comment|// and, line 205
+name|v_5
+operator|=
+name|limit
+operator|-
+name|cursor
+expr_stmt|;
+comment|// (, line 204
 comment|// or, line 204
 name|lab5
 label|:
 do|do
 block|{
-name|v_5
+name|v_6
 operator|=
 name|limit
 operator|-
@@ -5373,7 +5384,7 @@ name|cursor
 operator|=
 name|limit
 operator|-
-name|v_5
+name|v_6
 expr_stmt|;
 comment|// call verb_suffix, line 204
 if|if
@@ -5393,8 +5404,14 @@ condition|(
 literal|false
 condition|)
 do|;
+name|cursor
+operator|=
+name|limit
+operator|-
+name|v_5
+expr_stmt|;
 comment|// do, line 205
-name|v_6
+name|v_7
 operator|=
 name|limit
 operator|-
@@ -5434,7 +5451,7 @@ operator|=
 name|cursor
 expr_stmt|;
 comment|// test, line 205
-name|v_7
+name|v_8
 operator|=
 name|limit
 operator|-
@@ -5462,7 +5479,7 @@ name|cursor
 operator|=
 name|limit
 operator|-
-name|v_7
+name|v_8
 expr_stmt|;
 comment|// call RV, line 205
 if|if
@@ -5490,7 +5507,7 @@ name|cursor
 operator|=
 name|limit
 operator|-
-name|v_6
+name|v_7
 expr_stmt|;
 break|break
 name|lab3
@@ -5538,7 +5555,7 @@ operator|-
 name|v_3
 expr_stmt|;
 comment|// do, line 209
-name|v_8
+name|v_9
 operator|=
 name|limit
 operator|-
@@ -5570,14 +5587,14 @@ name|cursor
 operator|=
 name|limit
 operator|-
-name|v_8
+name|v_9
 expr_stmt|;
 name|cursor
 operator|=
 name|limit_backward
 expr_stmt|;
 comment|// do, line 211
-name|v_9
+name|v_10
 operator|=
 name|cursor
 expr_stmt|;
@@ -5605,7 +5622,7 @@ condition|)
 do|;
 name|cursor
 operator|=
-name|v_9
+name|v_10
 expr_stmt|;
 return|return
 literal|true
