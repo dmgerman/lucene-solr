@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Loads a text file and adds every line as an entry to a Hashtable. Every line  * should contain only one word. If the file is not found or on any error, an  * empty table is returned.  *  * @author    Gerhard Schwarz  * @version   $Id$  *  * @todo refactor to convert to Sets instead of Hashtable  */
+comment|/**  * Loads a text file and adds every line as an entry to a Hashtable. Every line  * should contain only one word.  *  * @author Gerhard Schwarz  * @version $Id$  * @todo refactor to convert to Sets instead of Hashtable  */
 end_comment
 
 begin_class
@@ -78,7 +78,7 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-comment|/**    * @param path      Path to the wordlist    * @param wordfile  Name of the wordlist    */
+comment|/**    * @param path     Path to the wordlist    * @param wordfile Name of the wordlist    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -91,6 +91,8 @@ parameter_list|,
 name|String
 name|wordfile
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -122,7 +124,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * @param wordfile  Complete path to the wordlist    */
+comment|/**    * @param wordfile Complete path to the wordlist    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -132,6 +134,8 @@ parameter_list|(
 name|String
 name|wordfile
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -157,7 +161,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * @param wordfile  File containing the wordlist    * @todo Create a Set version of this method    */
+comment|/**    * @param wordfile File containing the wordlist    * @todo Create a Set version of this method    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -167,6 +171,8 @@ parameter_list|(
 name|File
 name|wordfile
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -186,21 +192,34 @@ name|result
 init|=
 literal|null
 decl_stmt|;
-try|try
-block|{
+name|FileReader
+name|freader
+init|=
+literal|null
+decl_stmt|;
 name|LineNumberReader
 name|lnr
 init|=
-operator|new
-name|LineNumberReader
-argument_list|(
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|freader
+operator|=
 operator|new
 name|FileReader
 argument_list|(
 name|wordfile
 argument_list|)
+expr_stmt|;
+name|lnr
+operator|=
+operator|new
+name|LineNumberReader
+argument_list|(
+name|freader
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|String
 name|word
 init|=
@@ -301,17 +320,28 @@ name|wordcount
 argument_list|)
 expr_stmt|;
 block|}
-comment|// On error, use an empty table
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
+finally|finally
 block|{
-name|result
-operator|=
-operator|new
-name|Hashtable
+if|if
+condition|(
+name|lnr
+operator|!=
+literal|null
+condition|)
+name|lnr
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|freader
+operator|!=
+literal|null
+condition|)
+name|freader
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 block|}
@@ -319,7 +349,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Builds the wordlist table.    *    * @param words   Word that where read    * @param length  Amount of words that where read into<tt>words</tt>    */
+comment|/**    * Builds the wordlist table.    *    * @param words  Word that where read    * @param length Amount of words that where read into<tt>words</tt>    */
 DECL|method|makeWordTable
 specifier|private
 specifier|static

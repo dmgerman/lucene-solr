@@ -116,6 +116,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashSet
@@ -180,7 +190,7 @@ literal|"das"
 block|,
 literal|"dass"
 block|,
-literal|"daß"
+literal|"daï¿½"
 block|,
 literal|"du"
 block|,
@@ -232,7 +242,7 @@ literal|"ihres"
 block|,
 literal|"als"
 block|,
-literal|"für"
+literal|"fï¿½r"
 block|,
 literal|"von"
 block|,
@@ -344,6 +354,8 @@ parameter_list|(
 name|File
 name|stopwords
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|stopSet
 operator|=
@@ -414,6 +426,8 @@ parameter_list|(
 name|File
 name|exclusionlist
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|exclusionSet
 operator|=
