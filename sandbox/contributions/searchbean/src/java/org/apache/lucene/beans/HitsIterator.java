@@ -239,8 +239,13 @@ operator|)
 operator|&&
 operator|(
 name|sortFlag
-operator|!=
-literal|"relevance"
+operator|.
+name|equals
+argument_list|(
+name|SearchBean
+operator|.
+name|SORT_FIELD_RELEVANCE
+argument_list|)
 operator|)
 condition|)
 block|{
@@ -327,6 +332,8 @@ block|}
 else|else
 block|{
 comment|//logger.error("Sort field not found");
+comment|// use default sort of Lucene -- Relevance
+comment|// Should I throw an exception here?
 name|arrayOfIndividualHits
 operator|=
 literal|null
@@ -432,6 +439,25 @@ name|void
 name|setPageCount
 parameter_list|()
 block|{
+if|if
+condition|(
+name|totalHits
+operator|==
+literal|0
+condition|)
+block|{
+name|totalPages
+operator|=
+literal|0
+expr_stmt|;
+name|setCurrentPage
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|totalPages
 operator|=
 name|totalHits
@@ -458,6 +484,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// reset currentPage to make sure not over the limit
+block|}
 block|}
 DECL|method|getPageCount
 specifier|public
@@ -619,6 +646,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// Determine if using relevnace or sorting by another field
 if|if
 condition|(
 name|arrayOfIndividualHits
@@ -673,6 +701,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// Determine if using relevnace or sorting by another field
 if|if
 condition|(
 name|arrayOfIndividualHits
@@ -791,13 +820,12 @@ operator|>
 name|totalPages
 condition|)
 block|{
-throw|throw
-operator|new
-name|IndexOutOfBoundsException
-argument_list|(
-literal|"currentPage greater than total pages"
-argument_list|)
-throw|;
+name|currentPage
+operator|=
+name|totalPages
+expr_stmt|;
+comment|// don't allow to go over max
+comment|//throw new IndexOutOfBoundsException("currentPage greater than total pages");
 block|}
 name|this
 operator|.
