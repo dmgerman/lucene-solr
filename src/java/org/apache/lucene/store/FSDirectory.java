@@ -864,9 +864,12 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"could not close input stream"
-argument_list|,
+literal|"could not close input stream: "
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -896,9 +899,12 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"could not close output stream"
-argument_list|,
+literal|"could not close output stream: "
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
