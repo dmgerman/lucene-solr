@@ -119,15 +119,21 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+comment|//protected in JDK's prior to 1.4
+comment|//cal.setTimeInMillis(round(time, resolution));
 name|cal
 operator|.
-name|setTimeInMillis
+name|setTime
+argument_list|(
+operator|new
+name|Date
 argument_list|(
 name|round
 argument_list|(
 name|time
 argument_list|,
 name|resolution
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -503,11 +509,17 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+comment|// protected in JDK's prior to 1.4
+comment|//cal.setTimeInMillis(time);
 name|cal
 operator|.
-name|setTimeInMillis
+name|setTime
+argument_list|(
+operator|new
+name|Date
 argument_list|(
 name|time
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
