@@ -346,27 +346,12 @@ name|isIndexed
 operator|!=
 name|isIndexed
 condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"field "
-operator|+
-name|name
-operator|+
-operator|(
 name|fi
 operator|.
 name|isIndexed
-condition|?
-literal|" must"
-else|:
-literal|" cannot"
-operator|)
-operator|+
-literal|" be an indexed field."
-argument_list|)
-throw|;
+operator|=
+literal|true
+expr_stmt|;
 block|}
 DECL|method|addInternal
 specifier|private
