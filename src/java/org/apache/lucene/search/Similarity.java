@@ -50,6 +50,60 @@ name|Term
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
 begin_comment
 comment|/** Expert: Scoring API.  *<p>Subclasses implement search scoring.  *  *<p>The score of query<code>q</code> for document<code>d</code> is defined  * in terms of these methods as follows:  *  *<table cellpadding="0" cellspacing="0" border="0">  *<tr>  *<td valign="middle" align="right" rowspan="2">score(q,d) =<br></td>  *<td valign="middle" align="center">  *<big><big><big><big><big>&Sigma;</big></big></big></big></big></td>  *<td valign="middle"><small>  *    {@link #tf(int) tf}(t in d) *  *    {@link #idf(Term,Searcher) idf}(t) *  *    {@link Field#getBoost getBoost}(t.field in d) *  *    {@link #lengthNorm(String,int) lengthNorm}(t.field in d)  *</small></td>  *<td valign="middle" rowspan="2">&nbsp;*  *    {@link #coord(int,int) coord}(q,d) *  *    {@link #queryNorm(float) queryNorm}(q)  *</td>  *</tr>  *<tr>   *<td valign="top" align="right">  *<small>t in q</small>  *</td>  *</tr>  *</table>  *  * @see #setDefault(Similarity)  * @see IndexWriter#setSimilarity(Similarity)  * @see Searcher#setSimilarity(Similarity)  */
 end_comment
