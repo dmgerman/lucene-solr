@@ -257,7 +257,7 @@ name|add
 argument_list|(
 name|Field
 operator|.
-name|Text
+name|Keyword
 argument_list|(
 literal|"datefield"
 argument_list|,
@@ -555,7 +555,7 @@ name|add
 argument_list|(
 name|Field
 operator|.
-name|Text
+name|Keyword
 argument_list|(
 literal|"datefield"
 argument_list|,
