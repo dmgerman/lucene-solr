@@ -1209,7 +1209,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Substitute ä, ë, ï, ö, ü, á , é, í, ó, ú    */
+comment|/**    * Substitute Ã¤, Ã«, Ã¯, Ã¶, Ã¼, Ã¡ , Ã©, Ã­, Ã³, Ãº    */
 DECL|method|substitute
 specifier|private
 name|void
@@ -1248,10 +1248,10 @@ argument_list|)
 condition|)
 block|{
 case|case
-literal|'ä'
+literal|'Ã¤'
 case|:
 case|case
-literal|'á'
+literal|'Ã¡'
 case|:
 block|{
 name|buffer
@@ -1266,10 +1266,10 @@ expr_stmt|;
 break|break;
 block|}
 case|case
-literal|'ë'
+literal|'Ã«'
 case|:
 case|case
-literal|'é'
+literal|'Ã©'
 case|:
 block|{
 name|buffer
@@ -1284,10 +1284,10 @@ expr_stmt|;
 break|break;
 block|}
 case|case
-literal|'ü'
+literal|'Ã¼'
 case|:
 case|case
-literal|'ú'
+literal|'Ãº'
 case|:
 block|{
 name|buffer
@@ -1302,7 +1302,7 @@ expr_stmt|;
 break|break;
 block|}
 case|case
-literal|'ï'
+literal|'Ã¯'
 case|:
 case|case
 literal|'i'
@@ -1320,10 +1320,10 @@ expr_stmt|;
 break|break;
 block|}
 case|case
-literal|'ö'
+literal|'Ã¶'
 case|:
 case|case
-literal|'ó'
+literal|'Ã³'
 case|:
 block|{
 name|buffer
@@ -1948,7 +1948,7 @@ case|case
 literal|'y'
 case|:
 case|case
-literal|'è'
+literal|'Ã¨'
 case|:
 block|{
 return|return
