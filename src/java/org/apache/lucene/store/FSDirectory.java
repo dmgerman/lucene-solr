@@ -208,6 +208,18 @@ name|dir
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|create
+condition|)
+block|{
+name|dir
+operator|.
+name|create
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 synchronized|synchronized
 init|(
@@ -255,17 +267,9 @@ name|path
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|directory
-operator|.
-name|exists
-argument_list|()
-operator|&&
 name|create
 condition|)
-name|directory
-operator|.
-name|mkdir
+name|create
 argument_list|()
 expr_stmt|;
 if|if
@@ -285,12 +289,29 @@ operator|+
 literal|" not a directory"
 argument_list|)
 throw|;
+block|}
+DECL|method|create
+specifier|private
+specifier|synchronized
+name|void
+name|create
+parameter_list|()
+throws|throws
+name|IOException
+block|{
 if|if
 condition|(
-name|create
+operator|!
+name|directory
+operator|.
+name|exists
+argument_list|()
 condition|)
-block|{
-comment|// clear old files
+name|directory
+operator|.
+name|mkdir
+argument_list|()
+expr_stmt|;
 name|String
 index|[]
 name|files
@@ -300,6 +321,7 @@ operator|.
 name|list
 argument_list|()
 decl_stmt|;
+comment|// clear old files
 for|for
 control|(
 name|int
@@ -351,7 +373,6 @@ name|i
 index|]
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 comment|/** Returns an array of strings, one for each file in the directory. */
