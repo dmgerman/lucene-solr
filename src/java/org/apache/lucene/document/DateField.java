@@ -63,7 +63,7 @@ comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/**  * Provides support for converting dates to strings and vice-versa.  * The strings are structured so that lexicographic sorting orders by date,  * which makes them suitable for use as field values and search terms.  *   *<P>Note that this class saves dates with millisecond granularity,  * which is bad for {@link RangeQuery} and {@link PrefixQuery}, as those  * queries are expanded to a BooleanQuery with a potentially large number   * of terms when searching. Thus you might want to use  * {@link DateTools} instead.  *   *<P>  * Note: dates before 1970 cannot be used, and therefore cannot be  * indexed when using this class. See {@link DateTools} for an  * alternative without such a limitation.  */
+comment|/**  * Provides support for converting dates to strings and vice-versa.  * The strings are structured so that lexicographic sorting orders by date,  * which makes them suitable for use as field values and search terms.  *   *<P>Note that this class saves dates with millisecond granularity,  * which is bad for {@link RangeQuery} and {@link PrefixQuery}, as those  * queries are expanded to a BooleanQuery with a potentially large number   * of terms when searching. Thus you might want to use  * {@link DateTools} instead.  *   *<P>  * Note: dates before 1970 cannot be used, and therefore cannot be  * indexed when using this class. See {@link DateTools} for an  * alternative without such a limitation.  *   * @deprecated Use {@link DateTools} instead.  */
 end_comment
 
 begin_class
