@@ -233,10 +233,24 @@ block|{
 name|TermInfo
 name|ti
 decl_stmt|;
+comment|// use comparison of fieldinfos to verify that enum belongs to the same segment as this SegmentTermDocs
 if|if
 condition|(enum
 operator|instanceof
 name|SegmentTermEnum
+operator|&&
+operator|(
+operator|(
+name|SegmentTermEnum
+operator|)
+expr|enum
+operator|)
+operator|.
+name|fieldInfos
+operator|==
+name|parent
+operator|.
+name|fieldInfos
 condition|)
 comment|// optimized case
 name|ti

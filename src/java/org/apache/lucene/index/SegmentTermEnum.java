@@ -56,7 +56,6 @@ name|InputStream
 name|input
 decl_stmt|;
 DECL|field|fieldInfos
-specifier|private
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
