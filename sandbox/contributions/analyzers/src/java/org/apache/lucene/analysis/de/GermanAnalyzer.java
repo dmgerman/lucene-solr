@@ -194,7 +194,9 @@ name|Analyzer
 block|{
 comment|/**    * List of typical german stopwords.    */
 DECL|field|GERMAN_STOP_WORDS
-specifier|private
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|GERMAN_STOP_WORDS
@@ -317,7 +319,7 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/**    * Builds an analyzer.    */
+comment|/**    * Builds an analyzer with the default stop words    * (<code>GERMAN_STOP_WORDS</code>).    */
 DECL|method|GermanAnalyzer
 specifier|public
 name|GermanAnalyzer
