@@ -685,6 +685,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**Â     * This tests FilteredQuery's rewrite correctness    */
 DECL|method|testRangeQuery
 specifier|public
 name|void
@@ -718,7 +719,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// rq = rq.rewrite(searcher.reader) // makes the test pass
 name|Query
 name|filteredquery
 init|=
