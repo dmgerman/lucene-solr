@@ -97,7 +97,7 @@ specifier|static
 name|int
 name|defaultPrefixLength
 init|=
-literal|2
+literal|0
 decl_stmt|;
 DECL|field|minimumSimilarity
 specifier|private
