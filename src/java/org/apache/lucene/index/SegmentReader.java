@@ -413,6 +413,13 @@ operator|+
 literal|".del"
 argument_list|)
 expr_stmt|;
+name|directory
+operator|.
+name|touchFile
+argument_list|(
+literal|"segments"
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;

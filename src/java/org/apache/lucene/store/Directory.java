@@ -80,6 +80,21 @@ name|IOException
 throws|,
 name|SecurityException
 function_decl|;
+comment|/** Set the modified time of an existing file to now. */
+DECL|method|touchFile
+specifier|abstract
+specifier|public
+name|void
+name|touchFile
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|SecurityException
+function_decl|;
 comment|/** Removes an existing file in the directory. */
 DECL|method|deleteFile
 specifier|abstract
