@@ -168,7 +168,7 @@ name|slop
 init|=
 literal|0
 decl_stmt|;
-comment|/* Sets the phrase slop for this query.    * @see PhraseQuery#setSlop(int)    */
+comment|/** Sets the phrase slop for this query.    * @see PhraseQuery#setSlop(int)    */
 DECL|method|setSlop
 specifier|public
 name|void
@@ -183,7 +183,7 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|/* Sets the phrase slop for this query.    * @see PhraseQuery#getSlop()    */
+comment|/** Sets the phrase slop for this query.    * @see PhraseQuery#getSlop()    */
 DECL|method|getSlop
 specifier|public
 name|int
@@ -194,7 +194,7 @@ return|return
 name|slop
 return|;
 block|}
-comment|/* Add a single term at the next position in the phrase.    * @see PhraseQuery#add(Term)    */
+comment|/** Add a single term at the next position in the phrase.    * @see PhraseQuery#add(Term)    */
 DECL|method|add
 specifier|public
 name|void
@@ -215,7 +215,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* Add multiple terms at the next position in the phrase.  Any of the terms    * may match.    *    * @see PhraseQuery#add(Term)    */
+comment|/** Add multiple terms at the next position in the phrase.  Any of the terms    * may match.    *    * @see PhraseQuery#add(Term)    */
 DECL|method|add
 specifier|public
 name|void
@@ -1318,12 +1318,26 @@ name|terms
 operator|.
 name|length
 operator|>
-literal|0
+literal|1
 condition|?
 literal|"*"
 else|:
 literal|""
 operator|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|" "
 argument_list|)
 expr_stmt|;
 block|}
