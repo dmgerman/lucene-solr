@@ -316,7 +316,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Constructs a filter for field<code>f</code> matching dates before<code>date</code>. */
+comment|/** Constructs a filter for field<code>f</code> matching dates after<code>date</code>. */
 DECL|method|After
 specifier|public
 specifier|static
@@ -354,7 +354,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Constructs a filter for field<code>f</code> matching times before<code>time</code>. */
+comment|/** Constructs a filter for field<code>f</code> matching times after<code>time</code>. */
 DECL|method|After
 specifier|public
 specifier|static
