@@ -1487,6 +1487,9 @@ name|Descriptor
 extends|extends
 name|RandomAccessFile
 block|{
+comment|/* DEBUG */
+comment|//private String name;
+comment|/* DEBUG */
 DECL|field|position
 specifier|public
 name|long
@@ -1512,7 +1515,27 @@ argument_list|,
 name|mode
 argument_list|)
 expr_stmt|;
+comment|/* DEBUG */
+comment|//name = file.toString();
+comment|//debug_printInfo("OPEN");
+comment|/* DEBUG */
 block|}
+comment|/* DEBUG */
+comment|//public void close() throws IOException {
+comment|//  debug_printInfo("CLOSE");
+comment|//    super.close();
+comment|//}
+comment|//
+comment|//private void debug_printInfo(String op) {
+comment|//  try { throw new Exception(op + "<" + name + ">");
+comment|//  } catch (Exception e) {
+comment|//    java.io.StringWriter sw = new java.io.StringWriter();
+comment|//    java.io.PrintWriter pw = new java.io.PrintWriter(sw);
+comment|//    e.printStackTrace(pw);
+comment|//    System.out.println(sw.getBuffer().toString());
+comment|//  }
+comment|//}
+comment|/* DEBUG */
 block|}
 DECL|field|file
 name|Descriptor
@@ -1737,6 +1760,24 @@ literal|true
 expr_stmt|;
 return|return
 name|clone
+return|;
+block|}
+comment|/** Method used for testing. Returns true if the underlying    *  file descriptor is valid.    */
+DECL|method|isFDValid
+name|boolean
+name|isFDValid
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|file
+operator|.
+name|getFD
+argument_list|()
+operator|.
+name|valid
+argument_list|()
 return|;
 block|}
 block|}
