@@ -180,6 +180,9 @@ name|segment
 parameter_list|,
 name|FieldInfos
 name|fis
+parameter_list|,
+name|int
+name|interval
 parameter_list|)
 throws|throws
 name|IOException
@@ -191,6 +194,8 @@ argument_list|,
 name|segment
 argument_list|,
 name|fis
+argument_list|,
+name|interval
 argument_list|,
 literal|false
 argument_list|)
@@ -205,6 +210,8 @@ argument_list|,
 name|segment
 argument_list|,
 name|fis
+argument_list|,
+name|interval
 argument_list|,
 literal|true
 argument_list|)
@@ -229,6 +236,9 @@ parameter_list|,
 name|FieldInfos
 name|fis
 parameter_list|,
+name|int
+name|interval
+parameter_list|,
 name|boolean
 name|isIndex
 parameter_list|)
@@ -242,6 +252,8 @@ argument_list|,
 name|segment
 argument_list|,
 name|fis
+argument_list|,
+name|interval
 argument_list|,
 name|isIndex
 argument_list|)
@@ -261,12 +273,19 @@ parameter_list|,
 name|FieldInfos
 name|fis
 parameter_list|,
+name|int
+name|interval
+parameter_list|,
 name|boolean
 name|isi
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|indexInterval
+operator|=
+name|interval
+expr_stmt|;
 name|fieldInfos
 operator|=
 name|fis

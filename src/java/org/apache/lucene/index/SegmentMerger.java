@@ -122,6 +122,15 @@ specifier|private
 name|String
 name|segment
 decl_stmt|;
+DECL|field|termIndexInterval
+specifier|private
+name|int
+name|termIndexInterval
+init|=
+name|IndexWriter
+operator|.
+name|DEFAULT_TERM_INDEX_INTERVAL
+decl_stmt|;
 DECL|field|readers
 specifier|private
 name|Vector
@@ -183,7 +192,7 @@ block|,
 literal|"tvf"
 block|}
 decl_stmt|;
-comment|/**    *     * @param dir The Directory to merge the other segments into    * @param name The name of the new segment    */
+comment|/** This ctor used only by test code.    *     * @param dir The Directory to merge the other segments into    * @param name The name of the new segment    */
 DECL|method|SegmentMerger
 name|SegmentMerger
 parameter_list|(
@@ -201,6 +210,35 @@ expr_stmt|;
 name|segment
 operator|=
 name|name
+expr_stmt|;
+block|}
+DECL|method|SegmentMerger
+name|SegmentMerger
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+name|directory
+operator|=
+name|writer
+operator|.
+name|getDirectory
+argument_list|()
+expr_stmt|;
+name|segment
+operator|=
+name|name
+expr_stmt|;
+name|termIndexInterval
+operator|=
+name|writer
+operator|.
+name|getTermIndexInterval
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Add an IndexReader to the collection of readers that are to be merged    * @param reader    */
@@ -1025,6 +1063,8 @@ argument_list|,
 name|segment
 argument_list|,
 name|fieldInfos
+argument_list|,
+name|termIndexInterval
 argument_list|)
 expr_stmt|;
 name|skipInterval

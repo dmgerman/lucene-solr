@@ -347,6 +347,28 @@ literal|"10000"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|/** The default value for {@link #getTermIndexInterval()}.  This is    * determined by the<code>org.apache.lucene.termIndexInterval</code> system    * property.  The default is 128.    */
+DECL|field|DEFAULT_TERM_INDEX_INTERVAL
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_TERM_INDEX_INTERVAL
+init|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"org.apache.lucene.termIndexInterval"
+argument_list|,
+literal|"128"
+argument_list|)
+argument_list|)
+decl_stmt|;
 DECL|field|directory
 specifier|private
 name|Directory
@@ -395,6 +417,13 @@ DECL|field|writeLock
 specifier|private
 name|Lock
 name|writeLock
+decl_stmt|;
+DECL|field|termIndexInterval
+specifier|private
+name|int
+name|termIndexInterval
+init|=
+name|DEFAULT_TERM_INDEX_INTERVAL
 decl_stmt|;
 comment|/** Use compound file setting. Defaults to true, minimizing the number of    * files used.  Setting this to false may improve indexing performance, but    * may also cause file handle problems.    */
 DECL|field|useCompoundFile
@@ -463,6 +492,34 @@ return|return
 name|this
 operator|.
 name|similarity
+return|;
+block|}
+comment|/** Expert: Set the interval between indexed terms.  Large values cause less    * memory to be used by IndexReader, but slow random-access to terms.  Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.  In particular,    *<code>numUniqueTerms/interval</code> terms are read into memory by an    * IndexReader, and, on average,<code>interval/2</code> terms must be    * scanned for each random term access.    *    * @see #DEFAULT_TERM_INDEX_INTERVAL    */
+DECL|method|setTermIndexInterval
+specifier|public
+name|void
+name|setTermIndexInterval
+parameter_list|(
+name|int
+name|interval
+parameter_list|)
+block|{
+name|this
+operator|.
+name|termIndexInterval
+operator|=
+name|interval
+expr_stmt|;
+block|}
+comment|/** Expert: Return the interval between indexed terms.    *    * @see #setTermIndexInterval(int)    */
+DECL|method|getTermIndexInterval
+specifier|public
+name|int
+name|getTermIndexInterval
+parameter_list|()
+block|{
+return|return
+name|termIndexInterval
 return|;
 block|}
 comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
@@ -939,6 +996,17 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns the Directory used by this index. */
+DECL|method|getDirectory
+specifier|public
+name|Directory
+name|getDirectory
+parameter_list|()
+block|{
+return|return
+name|directory
+return|;
+block|}
 comment|/** Returns the analyzer used by this index. */
 DECL|method|getAnalyzer
 specifier|public
@@ -1055,9 +1123,7 @@ name|ramDirectory
 argument_list|,
 name|analyzer
 argument_list|,
-name|similarity
-argument_list|,
-name|maxFieldLength
+name|this
 argument_list|)
 decl_stmt|;
 name|dw
@@ -1410,7 +1476,7 @@ init|=
 operator|new
 name|SegmentMerger
 argument_list|(
-name|directory
+name|this
 argument_list|,
 name|mergedName
 argument_list|)
@@ -1922,7 +1988,7 @@ init|=
 operator|new
 name|SegmentMerger
 argument_list|(
-name|directory
+name|this
 argument_list|,
 name|mergedName
 argument_list|)
