@@ -460,7 +460,7 @@ operator|.
 name|similarity
 return|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
+comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -494,7 +494,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
+comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -528,7 +528,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
+comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param d the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist, and<code>create</code> is    *<code>false</code>    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter

@@ -84,6 +84,24 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|Searcher
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Hits
 import|;
 end_import
@@ -93,7 +111,7 @@ comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be stored with the document, in which case it is returned with  * search hits on the document.  Thus each document should typically contain  * stored fields which uniquely identify it.  * */
+comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be {@link Field#isStored() stored} with the document, in which  * case it is returned with search hits on the document.  Thus each document  * should typically contain one or more stored fields which uniquely identify  * it.  *  *<p>Note that fields which are<i>not</i> {@link Field#isStored() stored} are  *<i>not</i> available in documents retrieved from the index, e.g. with {@link  * Hits#doc(int)}, {@link Searcher#doc(int)} or {@link  * IndexReader#document(int)}.  */
 end_comment
 
 begin_class
@@ -177,7 +195,7 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns a field with the given name if any exist in this document, or     null.  If multiple fields exists with this name, this method returns the     last field value added. */
+comment|/** Returns a field with the given name if any exist in this document, or    * null.  If multiple fields exists with this name, this method returns the    * first value added.    */
 DECL|method|getField
 specifier|public
 specifier|final
@@ -239,7 +257,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns the string value of the field with the given name if any exist in     this document, or null.  If multiple fields exist with this name, this     method returns the last value added. */
+comment|/** Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added.    */
 DECL|method|get
 specifier|public
 specifier|final
@@ -399,7 +417,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method can return<code>null</code>.    * UnStored fields' values cannot be returned by this method.    *    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
+comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method can return<code>null</code>.    *    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
 DECL|method|getValues
 specifier|public
 specifier|final

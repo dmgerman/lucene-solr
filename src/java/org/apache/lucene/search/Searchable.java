@@ -105,7 +105,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Frees resources associated with this Searcher. */
+comment|/** Frees resources associated with this Searcher.    * Be careful not to call this method while you are still using objects    * like {@link Hits}.    */
 DECL|method|close
 name|void
 name|close

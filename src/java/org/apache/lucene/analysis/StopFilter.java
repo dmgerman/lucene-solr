@@ -102,7 +102,7 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Hashtable.    *    * @deprecated Use {@link #StopFilter(TokenStream, Set)} StopFilter(TokenStream,Map)} instead    */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Hashtable.    *    * @deprecated Use {@link #StopFilter(TokenStream, Set)} instead    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -155,7 +155,7 @@ operator|=
 name|stopWords
 expr_stmt|;
 block|}
-comment|/**    * Builds a Hashtable from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this table construction to be cached once when    * an Analyzer is constructed.    *    * @deprecated Use {@link #makeStopSet(String[] makeStopSet) instead.    */
+comment|/**    * Builds a Hashtable from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this table construction to be cached once when    * an Analyzer is constructed.    *    * @deprecated Use {@link #makeStopSet(String[])} instead.    */
 DECL|method|makeStopTable
 specifier|public
 specifier|static

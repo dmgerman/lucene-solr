@@ -173,7 +173,7 @@ return|return
 name|starts
 return|;
 block|}
-comment|/** Frees resources associated with this<code>Searcher</code>. */
+comment|// inherit javadoc
 DECL|method|close
 specifier|public
 name|void
@@ -255,7 +255,7 @@ return|return
 name|docFreq
 return|;
 block|}
-comment|/** For use by {@link HitCollector} implementations. */
+comment|// inherit javadoc
 DECL|method|doc
 specifier|public
 name|Document
@@ -860,7 +860,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    */
+comment|// inherit javadoc
 DECL|method|search
 specifier|public
 name|void
