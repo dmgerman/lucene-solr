@@ -73,7 +73,7 @@ specifier|public
 name|BrazilianStemmer
 parameter_list|()
 block|{ 	}
-comment|/** 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param word  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
+comment|/** 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
 DECL|method|stem
 specifier|protected
 name|String
