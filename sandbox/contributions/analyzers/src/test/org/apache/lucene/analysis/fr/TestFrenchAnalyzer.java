@@ -24,16 +24,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringReader
 import|;
 end_import
@@ -218,9 +208,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|TokenStream
-name|ts
-init|=
 name|fa
 operator|.
 name|tokenStream
@@ -229,7 +216,7 @@ literal|"dummy"
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -256,9 +243,6 @@ literal|false
 expr_stmt|;
 try|try
 block|{
-name|TokenStream
-name|ts
-init|=
 name|fa
 operator|.
 name|tokenStream
@@ -271,7 +255,7 @@ argument_list|(
 literal|"dummy"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
