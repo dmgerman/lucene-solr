@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.queryParser
+DECL|package|org.apache.lucene.queryParser.precedence
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|queryParser
+operator|.
+name|precedence
 package|;
 end_package
 
@@ -150,7 +152,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DateField
+name|DateTools
 import|;
 end_import
 
@@ -306,15 +308,11 @@ name|Calendar
 import|;
 end_import
 
-begin_comment
-comment|/**  * Tests QueryParser.  */
-end_comment
-
 begin_class
-DECL|class|TestQueryParser
+DECL|class|TestPrecedenceQueryParser
 specifier|public
 class|class
-name|TestQueryParser
+name|TestPrecedenceQueryParser
 extends|extends
 name|TestCase
 block|{
@@ -527,7 +525,7 @@ specifier|static
 class|class
 name|QPTestParser
 extends|extends
-name|QueryParser
+name|PrecedenceQueryParser
 block|{
 DECL|method|QPTestParser
 specifier|public
@@ -617,7 +615,7 @@ expr_stmt|;
 block|}
 DECL|method|getParser
 specifier|public
-name|QueryParser
+name|PrecedenceQueryParser
 name|getParser
 parameter_list|(
 name|Analyzer
@@ -638,11 +636,11 @@ operator|new
 name|SimpleAnalyzer
 argument_list|()
 expr_stmt|;
-name|QueryParser
+name|PrecedenceQueryParser
 name|qp
 init|=
 operator|new
-name|QueryParser
+name|PrecedenceQueryParser
 argument_list|(
 literal|"field"
 argument_list|,
@@ -653,7 +651,7 @@ name|qp
 operator|.
 name|setDefaultOperator
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|OR_OPERATOR
 argument_list|)
@@ -772,7 +770,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|QueryParser
+name|PrecedenceQueryParser
 name|qp
 init|=
 name|getParser
@@ -851,7 +849,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|QueryParser
+name|PrecedenceQueryParser
 name|qp
 init|=
 name|getParser
@@ -935,11 +933,11 @@ operator|new
 name|SimpleAnalyzer
 argument_list|()
 expr_stmt|;
-name|QueryParser
+name|PrecedenceQueryParser
 name|qp
 init|=
 operator|new
-name|QueryParser
+name|PrecedenceQueryParser
 argument_list|(
 literal|"field"
 argument_list|,
@@ -950,7 +948,7 @@ name|qp
 operator|.
 name|setDefaultOperator
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|AND_OPERATOR
 argument_list|)
@@ -1354,11 +1352,11 @@ argument_list|,
 literal|"+(title:dog title:cat) -author:\"bob dole\""
 argument_list|)
 expr_stmt|;
-name|QueryParser
+name|PrecedenceQueryParser
 name|qp
 init|=
 operator|new
-name|QueryParser
+name|PrecedenceQueryParser
 argument_list|(
 literal|"field"
 argument_list|,
@@ -1370,7 +1368,7 @@ decl_stmt|;
 comment|// make sure OR is the default:
 name|assertEquals
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|OR_OPERATOR
 argument_list|,
@@ -1384,14 +1382,14 @@ name|qp
 operator|.
 name|setDefaultOperator
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|AND_OPERATOR
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|AND_OPERATOR
 argument_list|,
@@ -1405,14 +1403,14 @@ name|qp
 operator|.
 name|setDefaultOperator
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|OR_OPERATOR
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|OR_OPERATOR
 argument_list|,
@@ -2083,13 +2081,15 @@ argument_list|,
 literal|"term \"phrase1 phrase2\" term"
 argument_list|)
 expr_stmt|;
+comment|// note the parens in this next assertion differ from the original
+comment|// QueryParser behavior
 name|assertQueryEquals
 argument_list|(
 literal|"term AND NOT phrase term"
 argument_list|,
 name|qpAnalyzer
 argument_list|,
-literal|"+term -\"phrase1 phrase2\" term"
+literal|"(+term -\"phrase1 phrase2\") term"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -2252,7 +2252,7 @@ name|SHORT
 argument_list|)
 decl_stmt|;
 return|return
-name|DateField
+name|DateTools
 operator|.
 name|dateToString
 argument_list|(
@@ -2262,6 +2262,12 @@ name|parse
 argument_list|(
 name|s
 argument_list|)
+argument_list|,
+name|DateTools
+operator|.
+name|Resolution
+operator|.
+name|DAY
 argument_list|)
 return|;
 block|}
@@ -2853,11 +2859,11 @@ literal|"on"
 block|}
 argument_list|)
 decl_stmt|;
-name|QueryParser
+name|PrecedenceQueryParser
 name|qp
 init|=
 operator|new
-name|QueryParser
+name|PrecedenceQueryParser
 argument_list|(
 literal|"field"
 argument_list|,
@@ -2959,7 +2965,7 @@ argument_list|)
 expr_stmt|;
 name|q
 operator|=
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|parse
 argument_list|(
@@ -3105,7 +3111,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|parse
 argument_list|(
@@ -3133,7 +3139,7 @@ block|{
 comment|// too many boolean clauses, so ParseException is expected
 block|}
 block|}
-comment|/**    * This test differs from TestPrecedenceQueryParser    */
+comment|/**    * This test differs from the original QueryParser, showing how the    * precedence issue has been corrected.    */
 DECL|method|testPrecedence
 specifier|public
 name|void
@@ -3145,7 +3151,7 @@ block|{
 name|Query
 name|query1
 init|=
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|parse
 argument_list|(
@@ -3161,11 +3167,11 @@ decl_stmt|;
 name|Query
 name|query2
 init|=
-name|QueryParser
+name|PrecedenceQueryParser
 operator|.
 name|parse
 argument_list|(
-literal|"+A +B +C +D"
+literal|"(A AND B) OR (C AND D)"
 argument_list|,
 literal|"field"
 argument_list|,
