@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents within an exclusive range. */
+comment|/**  * A Query that matches documents within an exclusive range.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -95,7 +95,7 @@ specifier|private
 name|boolean
 name|inclusive
 decl_stmt|;
-comment|/** Constructs a query selecting all terms greater than      *<code>lowerTerm</code> but less than<code>upperTerm</code>.      * There must be at least one term and either term may be null--      * in which case there is no bound on that side, but if there are      * two term, both terms<b>must</b> be for the same field.      */
+comment|/** Constructs a query selecting all terms greater than      *<code>lowerTerm</code> but less than<code>upperTerm</code>.      * There must be at least one term and either term may be null,      * in which case there is no bound on that side, but if there are      * two terms, both terms<b>must</b> be for the same field.      */
 DECL|method|RangeQuery
 specifier|public
 name|RangeQuery
@@ -158,12 +158,39 @@ literal|"Both terms must be for the same field"
 argument_list|)
 throw|;
 block|}
+comment|// if we have a lowerTerm, start there. otherwise, start at beginning
+if|if
+condition|(
+name|lowerTerm
+operator|!=
+literal|null
+condition|)
+block|{
 name|this
 operator|.
 name|lowerTerm
 operator|=
 name|lowerTerm
 expr_stmt|;
+block|}
+else|else
+block|{
+name|this
+operator|.
+name|lowerTerm
+operator|=
+operator|new
+name|Term
+argument_list|(
+name|upperTerm
+operator|.
+name|field
+argument_list|()
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|upperTerm
@@ -177,6 +204,7 @@ operator|=
 name|inclusive
 expr_stmt|;
 block|}
+comment|/**      * FIXME: Describe<code>rewrite</code> method here.      *      * @param reader an<code>IndexReader</code> value      * @return a<code>Query</code> value      * @exception IOException if an error occurs      */
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -195,24 +223,6 @@ operator|new
 name|BooleanQuery
 argument_list|()
 decl_stmt|;
-comment|// if we have a lowerTerm, start there. otherwise, start at beginning
-if|if
-condition|(
-name|lowerTerm
-operator|==
-literal|null
-condition|)
-name|lowerTerm
-operator|=
-operator|new
-name|Term
-argument_list|(
-name|getField
-argument_list|()
-argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
 name|TermEnum
 name|enumerator
 init|=
@@ -225,14 +235,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|String
-name|lowerText
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|field
-decl_stmt|;
 name|boolean
 name|checkLower
 init|=
@@ -243,54 +245,11 @@ condition|(
 operator|!
 name|inclusive
 condition|)
-block|{
 comment|// make adjustments to set to exclusive
-if|if
-condition|(
-name|lowerTerm
-operator|!=
-literal|null
-condition|)
-block|{
-name|lowerText
-operator|=
-name|lowerTerm
-operator|.
-name|text
-argument_list|()
-expr_stmt|;
 name|checkLower
 operator|=
 literal|true
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|upperTerm
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// set upperTerm to an actual term in the index
-name|TermEnum
-name|uppEnum
-init|=
-name|reader
-operator|.
-name|terms
-argument_list|(
-name|upperTerm
-argument_list|)
-decl_stmt|;
-name|upperTerm
-operator|=
-name|uppEnum
-operator|.
-name|term
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 name|String
 name|testField
 init|=
@@ -333,7 +292,10 @@ argument_list|()
 operator|.
 name|compareTo
 argument_list|(
-name|lowerText
+name|lowerTerm
+operator|.
+name|text
+argument_list|()
 argument_list|)
 operator|>
 literal|0
@@ -355,12 +317,18 @@ name|compare
 init|=
 name|upperTerm
 operator|.
+name|text
+argument_list|()
+operator|.
 name|compareTo
 argument_list|(
 name|term
+operator|.
+name|text
+argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/* if beyond the upper term, or is exclusive and                    * this is equal to the upper term, break out */
+comment|/* if beyond the upper term, or is exclusive and                              * this is equal to the upper term, break out */
 if|if
 condition|(
 operator|(
