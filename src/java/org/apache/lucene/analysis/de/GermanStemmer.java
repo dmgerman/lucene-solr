@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A stemmer for german words. The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by Jörg  * Caumanns (joerg.caumanns@isst.fhg.de).  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * A stemmer for German words. The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by Jörg  * Caumanns (joerg.caumanns@isst.fhg.de).  *  * @author    Gerhard Schwarz  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -24,7 +24,7 @@ specifier|public
 class|class
 name|GermanStemmer
 block|{
-comment|/** 	 * Buffer for the terms while stemming them. 	 */
+comment|/**      * Buffer for the terms while stemming them.      */
 DECL|field|sb
 specifier|private
 name|StringBuffer
@@ -34,7 +34,7 @@ operator|new
 name|StringBuffer
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Indicates if a term is handled as a noun. 	 */
+comment|/**      * Indicates if a term is handled as a noun.      */
 DECL|field|uppercase
 specifier|private
 name|boolean
@@ -42,7 +42,7 @@ name|uppercase
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * Amount of characters that are removed with<tt>substitute()</tt> while stemming. 	 */
+comment|/**      * Amount of characters that are removed with<tt>substitute()</tt> while stemming.      */
 DECL|field|substCount
 specifier|private
 name|int
@@ -54,8 +54,8 @@ DECL|method|GermanStemmer
 specifier|public
 name|GermanStemmer
 parameter_list|()
-block|{ 	}
-comment|/** 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
+block|{     }
+comment|/**      * Stemms the given term to an unique<tt>discriminator</tt>.      *      * @param term  The term that should be stemmed.      * @return      Discriminator for<tt>term</tt>      */
 DECL|method|stem
 specifier|protected
 name|String
@@ -855,7 +855,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Removes a particle denotion ("ge") from a term, but only if at least 3 	 * characters will remain. 	 * 	 * @return  The term without particle denotion, if there was one. 	 */
+comment|/**      * Removes a particle denotion ("ge") from a term, but only if at least 3      * characters will remain.      *      * @return  The term without particle denotion, if there was one.      */
 DECL|method|removeParticleDenotion
 specifier|private
 name|StringBuffer
@@ -935,7 +935,7 @@ return|return
 name|sb
 return|;
 block|}
-comment|/** 	 * Do some substitutions for the term to reduce overstemming: 	 * 	 * - Substitute Umlauts with their corresponding vowel: äöü -> aou, 	 *   "ß" is substituted by "ss" 	 * - Substitute a second char of an pair of equal characters with 	 *   an asterisk: ?? -> ?* 	 * - Substitute some common character combinations with a token: 	 *   sch/ch/ei/ie/ig/st -> $/§/%/&/#/! 	 * 	 * @return  The term with all needed substitutions. 	 */
+comment|/**      * Do some substitutions for the term to reduce overstemming:      *      * - Substitute Umlauts with their corresponding vowel: äöü -> aou,      *   "ß" is substituted by "ss"      * - Substitute a second char of an pair of equal characters with      *   an asterisk: ?? -> ?*      * - Substitute some common character combinations with a token:      *   sch/ch/ei/ie/ig/st -> $/§/%/&/#/!      *      * @return  The term with all needed substitutions.      */
 DECL|method|substitute
 specifier|private
 name|StringBuffer
@@ -945,6 +945,10 @@ name|StringBuffer
 name|buffer
 parameter_list|)
 block|{
+name|substCount
+operator|=
+literal|0
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1427,7 +1431,7 @@ return|return
 name|buffer
 return|;
 block|}
-comment|/** 	 * Checks a term if it can be processed correctly. 	 * 	 * @return  true if, and only if, the given term consists in letters. 	 */
+comment|/**      * Checks a term if it can be processed correctly.      *      * @return  true if, and only if, the given term consists in letters.      */
 DECL|method|isStemmable
 specifier|private
 name|boolean
@@ -1544,7 +1548,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Undoes the changes made by substitute(). That are character pairs and 	 * character combinations. Umlauts will remain as their corresponding vowel, 	 * as "ß" remains as "ss". 	 * 	 * @return  The term without the not human readable substitutions. 	 */
+comment|/**      * Undoes the changes made by substitute(). That are character pairs and      * character combinations. Umlauts will remain as their corresponding vowel,      * as "ß" remains as "ss".      *      * @return  The term without the not human readable substitutions.      */
 DECL|method|resubstitute
 specifier|private
 name|StringBuffer
