@@ -233,6 +233,19 @@ literal|0xFF
 index|]
 return|;
 block|}
+comment|/** Returns a table for decoding normalization bytes.    * @see #encodeNorm(float)    */
+DECL|method|getNormDecoder
+specifier|public
+specifier|static
+name|float
+index|[]
+name|getNormDecoder
+parameter_list|()
+block|{
+return|return
+name|NORM_TABLE
+return|;
+block|}
 comment|/** Computes the normalization value for a field given the total number of    * terms contained in a field.  These values, together with field boosts, are    * stored in an index and multipled into scores for hits on each field by the    * search code.    *    *<p>Matches in longer fields are less precise, so implemenations of this    * method usually return smaller values when<code>numTokens</code> is large,    * and larger values when<code>numTokens</code> is small.    *    *<p>That these values are computed under {@link    * IndexWriter#addDocument(org.apache.lucene.document.Document)} and stored then using    * {@link #encodeNorm(float)}.  Thus they have limited precision, and documents    * must be re-indexed if this method is altered.    *    * @param fieldName the name of the field    * @param numTokens the total number of tokens contained in fields named    *<i>fieldName</i> of<i>doc</i>.    * @return a normalization factor for hits on this field of this document    *    * @see Field#setBoost(float)    */
 DECL|method|lengthNorm
 specifier|public

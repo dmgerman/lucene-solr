@@ -262,6 +262,15 @@ name|getSimilarity
 argument_list|()
 decl_stmt|;
 comment|// cache sim in local
+name|float
+index|[]
+name|normDecoder
+init|=
+name|similarity
+operator|.
+name|getNormDecoder
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|doc
@@ -305,15 +314,15 @@ decl_stmt|;
 comment|// cache miss
 name|score
 operator|*=
-name|Similarity
-operator|.
-name|decodeNorm
-argument_list|(
+name|normDecoder
+index|[
 name|norms
 index|[
 name|doc
 index|]
-argument_list|)
+operator|&
+literal|0xFF
+index|]
 expr_stmt|;
 comment|// normalize for field
 name|c
