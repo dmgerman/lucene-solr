@@ -431,17 +431,17 @@ if|if
 condition|(
 name|exponent
 operator|<
-literal|1
+literal|0
 condition|)
 block|{
 comment|// underflow: use min value
 name|exponent
 operator|=
-literal|1
+literal|0
 expr_stmt|;
 name|mantissa
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 block|}
 return|return
