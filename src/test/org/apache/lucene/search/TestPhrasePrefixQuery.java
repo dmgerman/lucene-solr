@@ -257,6 +257,13 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
+name|Document
+name|doc5
+init|=
+operator|new
+name|Document
+argument_list|()
+decl_stmt|;
 name|doc1
 operator|.
 name|add
@@ -281,7 +288,7 @@ name|Text
 argument_list|(
 literal|"body"
 argument_list|,
-literal|"blueberry pizza"
+literal|"blueberry strudel"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -295,7 +302,7 @@ name|Text
 argument_list|(
 literal|"body"
 argument_list|,
-literal|"blueberry chewing gum"
+literal|"blueberry pizza"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -309,7 +316,21 @@ name|Text
 argument_list|(
 literal|"body"
 argument_list|,
-literal|"picadelly circus"
+literal|"blueberry chewing gum"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doc5
+operator|.
+name|add
+argument_list|(
+name|Field
+operator|.
+name|Text
+argument_list|(
+literal|"body"
+argument_list|,
+literal|"piccadilly circus"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -339,6 +360,13 @@ operator|.
 name|addDocument
 argument_list|(
 name|doc4
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|addDocument
+argument_list|(
+name|doc5
 argument_list|)
 expr_stmt|;
 name|writer
@@ -417,7 +445,12 @@ argument_list|(
 name|indexStore
 argument_list|)
 decl_stmt|;
-comment|// this TermEnum gives "picadelly", "pie" and "pizza".
+comment|// this TermEnum gives "piccadilly", "pie" and "pizza".
+name|String
+name|prefix
+init|=
+literal|"pi"
+decl_stmt|;
 name|TermEnum
 name|te
 init|=
@@ -430,11 +463,29 @@ name|Term
 argument_list|(
 literal|"body"
 argument_list|,
-literal|"pi*"
+name|prefix
+operator|+
+literal|"*"
 argument_list|)
 argument_list|)
 decl_stmt|;
 do|do
+block|{
+if|if
+condition|(
+name|te
+operator|.
+name|term
+argument_list|()
+operator|.
+name|text
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+name|prefix
+argument_list|)
+condition|)
 block|{
 name|termsWithPrefix
 operator|.
@@ -446,6 +497,7 @@ name|term
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 do|while
 condition|(
