@@ -120,6 +120,20 @@ begin_comment
 comment|// for javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Similarity
+import|;
+end_import
+
 begin_comment
 comment|/** IndexReader is an abstract class, providing an interface for accessing an   index.  Search of an index is done entirely through this abstract interface,   so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to   the static method {@link #open}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique   document in the index.  These document numbers are ephemeral--they may change   as documents are added to and deleted from an index.  Clients should thus not   rely on a given document having the same number between sessions.    @author Doug Cutting   @version $Id$ */
 end_comment
@@ -707,6 +721,58 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Field#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+DECL|method|setNorm
+specifier|public
+specifier|abstract
+name|void
+name|setNorm
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|byte
+name|value
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+DECL|method|setNorm
+specifier|public
+name|void
+name|setNorm
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|float
+name|value
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|setNorm
+argument_list|(
+name|doc
+argument_list|,
+name|field
+argument_list|,
+name|Similarity
+operator|.
+name|encodeNorm
+argument_list|(
+name|value
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Returns an enumeration of all the terms in the index.     The enumeration is ordered by Term.compareTo().  Each term     is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|public
