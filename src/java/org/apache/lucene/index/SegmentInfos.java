@@ -86,6 +86,18 @@ name|SegmentInfos
 extends|extends
 name|Vector
 block|{
+comment|/** The file format version, a negative number. */
+comment|/* Works since counter, the old 1st entry, is always>= 0 */
+DECL|field|FORMAT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT
+init|=
+operator|-
+literal|1
+decl_stmt|;
 DECL|field|counter
 specifier|public
 name|int
@@ -146,6 +158,46 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|int
+name|format
+init|=
+name|input
+operator|.
+name|readInt
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|format
+operator|<
+literal|0
+condition|)
+block|{
+comment|// file contains explicit format info
+comment|// check that it is a format we can understand
+if|if
+condition|(
+name|format
+operator|<
+name|FORMAT
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Unknown format version: "
+operator|+
+name|format
+argument_list|)
+throw|;
+name|version
+operator|=
+name|input
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
+comment|// read version
 name|counter
 operator|=
 name|input
@@ -154,6 +206,15 @@ name|readInt
 argument_list|()
 expr_stmt|;
 comment|// read counter
+block|}
+else|else
+block|{
+comment|// file is in old format without explicit format info
+name|counter
+operator|=
+name|format
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -200,6 +261,14 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|format
+operator|>=
+literal|0
+condition|)
+block|{
+comment|// in old format the version number may be at the end of the file
+if|if
+condition|(
 name|input
 operator|.
 name|getFilePointer
@@ -224,6 +293,7 @@ name|readLong
 argument_list|()
 expr_stmt|;
 comment|// read version
+block|}
 block|}
 finally|finally
 block|{
@@ -258,6 +328,23 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|output
+operator|.
+name|writeInt
+argument_list|(
+name|FORMAT
+argument_list|)
+expr_stmt|;
+comment|// write FORMAT
+name|output
+operator|.
+name|writeLong
+argument_list|(
+operator|++
+name|version
+argument_list|)
+expr_stmt|;
+comment|// every write changes the index
 name|output
 operator|.
 name|writeInt
@@ -318,15 +405,6 @@ name|docCount
 argument_list|)
 expr_stmt|;
 block|}
-name|output
-operator|.
-name|writeLong
-argument_list|(
-operator|++
-name|version
-argument_list|)
-expr_stmt|;
-comment|// every write changes the index
 block|}
 finally|finally
 block|{
@@ -371,8 +449,86 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// We cannot be sure whether the segments file is in the old format or the new one.
-comment|// Therefore we have to read the whole file and cannot simple seek to the version entry.
+name|InputStream
+name|input
+init|=
+name|directory
+operator|.
+name|openFile
+argument_list|(
+literal|"segments"
+argument_list|)
+decl_stmt|;
+name|int
+name|format
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|version
+init|=
+literal|0
+decl_stmt|;
+try|try
+block|{
+name|format
+operator|=
+name|input
+operator|.
+name|readInt
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|format
+operator|<
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|format
+operator|<
+name|FORMAT
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Unknown format version: "
+operator|+
+name|format
+argument_list|)
+throw|;
+name|version
+operator|=
+name|input
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
+comment|// read version
+block|}
+block|}
+finally|finally
+block|{
+name|input
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|format
+operator|<
+literal|0
+condition|)
+return|return
+name|version
+return|;
+comment|// We cannot be sure about the format of the file.
+comment|// Therefore we have to read the whole file and cannot simply seek to the version entry.
 name|SegmentInfos
 name|sis
 init|=
