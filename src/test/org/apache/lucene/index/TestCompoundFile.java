@@ -1831,6 +1831,17 @@ argument_list|(
 literal|"f11"
 argument_list|)
 decl_stmt|;
+comment|// this test only works for FSIndexInput
+if|if
+condition|(
+name|_TestHelper
+operator|.
+name|isFSIndexInput
+argument_list|(
+name|expected
+argument_list|)
+condition|)
+block|{
 name|assertTrue
 argument_list|(
 name|_TestHelper
@@ -2008,6 +2019,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//assertSameStreams("basic clone two/4", expected, two);
+block|}
 name|expected
 operator|.
 name|close
