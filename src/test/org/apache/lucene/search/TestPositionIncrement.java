@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Document boost unit test.   *   * @author Doug Cutting   * @version $Revision$   */
+comment|/**   * Term position unit test.   *   * @author Doug Cutting   * @version $Revision$   */
 end_comment
 
 begin_class
