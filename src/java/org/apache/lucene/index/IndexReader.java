@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
+comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001, 2002, 2003 The Apache Software Foundation.  * All rights reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
 end_comment
 
 begin_import
@@ -597,7 +597,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>. For each document, the document number, the frequency of     the term in that document is also provided, for use in search scoring.     Thus, this method implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup></ul><p>The enumeration is ordered by document number.  Each document number     is greater than all that precede it in the enumeration. */
+comment|/** Returns an enumeration of all the documents which contain<code>term</code>. For each document, the document number, the frequency of     the term in that document is also provided, for use in search scoring.     Thus, this method implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup></ul><p>The enumeration is ordered by document number.  Each document number     is greater than all that precede it in the enumeration.   */
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -636,7 +636,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number     and frequency of the term in that document, a list of all of the ordinal     positions of the term in the document is available.  Thus, this method     implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ... 	  pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is     greater than all that precede it in the enumeration. */
+comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number     and frequency of the term in that document, a list of all of the ordinal     positions of the term in the document is available.  Thus, this method     implements the mapping:<p><ul>     Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ... 	  pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is     greater than all that precede it in the enumeration.   */
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -675,7 +675,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is     deleted it will not appear in TermDocs or TermPostitions enumerations.     Attempts to read its field with the {@link #document}     method will result in an error.  The presence of this document may still be     reflected in the {@link #docFreq} statistic, though     this will be corrected eventually as the index is further modified.  */
+comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is     deleted it will not appear in TermDocs or TermPostitions enumerations.     Attempts to read its field with the {@link #document}     method will result in an error.  The presence of this document may still be     reflected in the {@link #docFreq} statistic, though     this will be corrected eventually as the index is further modified.   */
 DECL|method|delete
 specifier|public
 specifier|final
@@ -748,7 +748,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes all documents containing<code>term</code>.     This is useful if one uses a document field to hold a unique ID string for     the document.  Then to delete such a document, one merely constructs a     term with the appropriate field and the unique ID string as its text and     passes it to this method.  Returns the number of documents deleted. */
+comment|/** Deletes all documents containing<code>term</code>.     This is useful if one uses a document field to hold a unique ID string for     the document.  Then to delete such a document, one merely constructs a     term with the appropriate field and the unique ID string as its text and     passes it to this method.  Returns the number of documents deleted.   */
 DECL|method|delete
 specifier|public
 specifier|final
@@ -889,13 +889,26 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Return a list of all unique field names which exist in the index pointed to by      * this IndexReader.      * @return Collection of Strings indicating the names of the fields      * @throws IOException if there is a problem with accessing the index      */
+comment|/**    * Returns a list of all unique field names that exist in the index pointed to by    * this IndexReader.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
 DECL|method|getFieldNames
 specifier|public
 specifier|abstract
 name|Collection
 name|getFieldNames
 parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Returns a list of all unique field names that exist in the index pointed to by    * this IndexReader.  The boolean argument specifies whether the fields returned    * are indexed or not.    * @param indexed<code>true</code> if only indexed fields should be returned;    *<code>false</code> if only unindexed fields should be returned.    * @return Collection of Strings indicating the names of the fields    * @throws IOException if there is a problem with accessing the index    */
+DECL|method|getFieldNames
+specifier|public
+specifier|abstract
+name|Collection
+name|getFieldNames
+parameter_list|(
+name|boolean
+name|indexed
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
