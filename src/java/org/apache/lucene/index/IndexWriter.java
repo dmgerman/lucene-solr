@@ -636,6 +636,7 @@ argument_list|()
 operator|==
 literal|1
 operator|&&
+operator|(
 name|SegmentReader
 operator|.
 name|hasDeletions
@@ -647,6 +648,18 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|)
+operator|||
+name|segmentInfos
+operator|.
+name|info
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|dir
+operator|!=
+name|directory
+operator|)
 operator|)
 condition|)
 block|{
