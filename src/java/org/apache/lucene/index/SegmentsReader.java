@@ -64,6 +64,10 @@ name|Document
 import|;
 end_import
 
+begin_comment
+comment|/**  * FIXME: Describe class<code>SegmentsReader</code> here.  *  * @version $Id$  */
+end_comment
+
 begin_class
 DECL|class|SegmentsReader
 specifier|final
@@ -405,9 +409,7 @@ operator|.
 name|length
 operator|-
 literal|1
-decl_stmt|;
 comment|// for first element less
-comment|// than n, return its index
 while|while
 condition|(
 name|hi
