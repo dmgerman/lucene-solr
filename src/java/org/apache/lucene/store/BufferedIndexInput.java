@@ -248,7 +248,7 @@ expr_stmt|;
 if|if
 condition|(
 name|bufferLength
-operator|==
+operator|<=
 literal|0
 condition|)
 throw|throw
