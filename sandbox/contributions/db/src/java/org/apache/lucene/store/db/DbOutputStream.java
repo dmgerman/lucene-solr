@@ -66,30 +66,6 @@ name|DbTxn
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|sleepycat
-operator|.
-name|db
-operator|.
-name|Dbt
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|sleepycat
-operator|.
-name|db
-operator|.
-name|DbException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Andi Vajda  */
 end_comment
