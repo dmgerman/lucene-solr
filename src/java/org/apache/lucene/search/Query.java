@@ -218,7 +218,7 @@ return|return
 name|weight
 return|;
 block|}
-comment|/** Expert: called to re-write queries into primitive queries.    *    *<p>Only implemented by derived queries, with no {@link    * #createWeight(Searcher)} implementatation..    */
+comment|/** Expert: called to re-write queries into primitive queries. */
 DECL|method|rewrite
 specifier|public
 name|Query
