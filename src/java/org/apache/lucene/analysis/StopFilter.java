@@ -32,12 +32,32 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
-comment|/** Removes stop words from a token stream. */
+comment|/**  * Removes stop words from a token stream.  */
 end_comment
 
 begin_class
@@ -51,10 +71,10 @@ name|TokenFilter
 block|{
 DECL|field|table
 specifier|private
-name|Hashtable
+name|Set
 name|table
 decl_stmt|;
-comment|/** Constructs a filter which removes words from the input    TokenStream that are named in the array of words. */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -74,13 +94,13 @@ argument_list|)
 expr_stmt|;
 name|table
 operator|=
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructs a filter which removes words from the input    TokenStream that are named in the Hashtable. */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Hashtable.    *    * @deprecated Use {@link #StopFilter(TokenStream, Set)} StopFilter(TokenStream,Map)} instead    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -100,9 +120,34 @@ expr_stmt|;
 name|table
 operator|=
 name|stopTable
+operator|.
+name|keySet
+argument_list|()
 expr_stmt|;
 block|}
-comment|/** Builds a Hashtable from an array of stop words, appropriate for passing    into the StopFilter constructor.  This permits this table construction to    be cached once when an Analyzer is constructed. */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    */
+DECL|method|StopFilter
+specifier|public
+name|StopFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|Set
+name|stopTable
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+name|table
+operator|=
+name|stopTable
+expr_stmt|;
+block|}
+comment|/**    * Builds a Hashtable from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this table construction to be cached once when    * an Analyzer is constructed.    *    * @deprecated Use {@link #makeStopSet(String[] makeStopSet) instead.    */
 DECL|method|makeStopTable
 specifier|public
 specifier|static
@@ -161,7 +206,61 @@ return|return
 name|stopTable
 return|;
 block|}
-comment|/** Returns the next input Token whose termText() is not a stop word. */
+comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this table construction to be cached once when    * an Analyzer is constructed.    */
+DECL|method|makeStopSet
+specifier|public
+specifier|static
+specifier|final
+name|Set
+name|makeStopSet
+parameter_list|(
+name|String
+index|[]
+name|stopWords
+parameter_list|)
+block|{
+name|Set
+name|stopTable
+init|=
+operator|new
+name|HashSet
+argument_list|(
+name|stopWords
+operator|.
+name|length
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|stopWords
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+name|stopTable
+operator|.
+name|add
+argument_list|(
+name|stopWords
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+return|return
+name|stopTable
+return|;
+block|}
+comment|/**    * Returns the next input Token whose termText() is not a stop word.    */
 DECL|method|next
 specifier|public
 specifier|final
@@ -195,16 +294,15 @@ argument_list|()
 control|)
 if|if
 condition|(
+operator|!
 name|table
 operator|.
-name|get
+name|contains
 argument_list|(
 name|token
 operator|.
 name|termText
 argument_list|)
-operator|==
-literal|null
 condition|)
 return|return
 name|token
