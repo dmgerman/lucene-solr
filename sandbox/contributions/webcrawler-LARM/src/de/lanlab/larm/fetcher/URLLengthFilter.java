@@ -16,6 +16,20 @@ name|fetcher
 package|;
 end_package
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * kills URLs longer than X characters. Used to prevent endless loops where  * the page contains the current URL + some extension  *  * @author Clemens Marschner  * @created   28. Januar 2002  * @version $Id$  */
 end_comment
@@ -55,10 +69,43 @@ DECL|field|maxLength
 name|int
 name|maxLength
 decl_stmt|;
+comment|//    URLLengthFilter()
+comment|//    {
+comment|//        maxLength = 0;
+comment|//    }
+DECL|field|log
+name|SimpleLogger
+name|log
+decl_stmt|;
 comment|/**      * Constructor for the URLLengthFilter object      *      * @param maxLength  max length of the _total_ URL (protocol+host+port+path)      */
 DECL|method|URLLengthFilter
 specifier|public
 name|URLLengthFilter
+parameter_list|(
+name|int
+name|maxLength
+parameter_list|,
+name|SimpleLogger
+name|log
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxLength
+operator|=
+name|maxLength
+expr_stmt|;
+name|this
+operator|.
+name|log
+operator|=
+name|log
+expr_stmt|;
+block|}
+DECL|method|setMaxLength
+specifier|public
+name|void
+name|setMaxLength
 parameter_list|(
 name|int
 name|maxLength
@@ -117,6 +164,17 @@ comment|// path + query
 block|{
 name|filtered
 operator|++
+expr_stmt|;
+comment|//log.log("URLLengthFilter: URL " + m.getUrl() + " exceeds maxLength " + this.maxLength);
+name|log
+operator|.
+name|log
+argument_list|(
+name|message
+operator|.
+name|toString
+argument_list|()
+argument_list|)
 expr_stmt|;
 return|return
 literal|null

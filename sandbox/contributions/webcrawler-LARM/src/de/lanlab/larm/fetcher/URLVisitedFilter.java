@@ -95,6 +95,9 @@ DECL|method|URLVisitedFilter
 specifier|public
 name|URLVisitedFilter
 parameter_list|(
+name|SimpleLogger
+name|log
+parameter_list|,
 name|int
 name|initialHashCapacity
 parameter_list|)
@@ -108,7 +111,17 @@ name|initialHashCapacity
 argument_list|)
 expr_stmt|;
 comment|//urlVector = new Vector(initialHashCapacity);
+name|this
+operator|.
+name|log
+operator|=
+name|log
+expr_stmt|;
 block|}
+DECL|field|log
+name|SimpleLogger
+name|log
+decl_stmt|;
 comment|/**      * clears everything      */
 DECL|method|clearHashtable
 specifier|public
@@ -123,7 +136,7 @@ argument_list|()
 expr_stmt|;
 comment|// urlVector.clear();
 block|}
-comment|/**      * @param message  Description of the Parameter      * @return         Description of the Return Value      */
+comment|/**q      * @param message  Description of the Parameter      * @return         Description of the Return Value      */
 DECL|method|handleRequest
 specifier|public
 name|Message
@@ -176,7 +189,17 @@ name|urlString
 argument_list|)
 condition|)
 block|{
-comment|//System.out.println("URLVisitedFilter: " + urlString + " already present.");
+comment|//log.log("URLVisitedFilter: " + urlString + " already present.");
+name|log
+operator|.
+name|log
+argument_list|(
+name|message
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|filtered
 operator|++
 expr_stmt|;
