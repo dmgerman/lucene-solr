@@ -244,9 +244,9 @@ name|operator
 init|=
 name|OR_OPERATOR
 decl_stmt|;
-DECL|field|lowercaseWildcardTerms
+DECL|field|lowercaseExpandedTerms
 name|boolean
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
 init|=
 literal|true
 decl_stmt|;
@@ -694,24 +694,41 @@ return|return
 name|operator
 return|;
 block|}
-comment|/**    * Whether terms of wildcard and prefix queries are to be automatically    * lower-cased or not.  Default is<code>true</code>.    */
+comment|/**    * Whether terms of wildcard, prefix, fuzzy and range queries are to be automatically    * lower-cased or not.  Default is<code>true</code>.    * @deprecated use {@link #setLowercaseExpandedTerms(boolean)} instead    */
 DECL|method|setLowercaseWildcardTerms
 specifier|public
 name|void
 name|setLowercaseWildcardTerms
 parameter_list|(
 name|boolean
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
 parameter_list|)
 block|{
 name|this
 operator|.
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
 operator|=
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
 expr_stmt|;
 block|}
-comment|/**    * @see #setLowercaseWildcardTerms(boolean)    */
+comment|/**    * Whether terms of wildcard, prefix, fuzzy and range queries are to be automatically    * lower-cased or not.  Default is<code>true</code>.    */
+DECL|method|setLowercaseExpandedTerms
+specifier|public
+name|void
+name|setLowercaseExpandedTerms
+parameter_list|(
+name|boolean
+name|lowercaseExpandedTerms
+parameter_list|)
+block|{
+name|this
+operator|.
+name|lowercaseExpandedTerms
+operator|=
+name|lowercaseExpandedTerms
+expr_stmt|;
+block|}
+comment|/**    * @deprecated use {@link #getLowercaseExpandedTerms()} instead    */
 DECL|method|getLowercaseWildcardTerms
 specifier|public
 name|boolean
@@ -719,7 +736,18 @@ name|getLowercaseWildcardTerms
 parameter_list|()
 block|{
 return|return
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
+return|;
+block|}
+comment|/**    * @see #setLowercaseExpandedTerms(boolean)    */
+DECL|method|getLowercaseExpandedTerms
+specifier|public
+name|boolean
+name|getLowercaseExpandedTerms
+parameter_list|()
+block|{
+return|return
+name|lowercaseExpandedTerms
 return|;
 block|}
 comment|/**    * Set locale used by date range parsing.    */
@@ -1740,6 +1768,26 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+if|if
+condition|(
+name|lowercaseExpandedTerms
+condition|)
+block|{
+name|part1
+operator|=
+name|part1
+operator|.
+name|toLowerCase
+argument_list|()
+expr_stmt|;
+name|part2
+operator|=
+name|part2
+operator|.
+name|toLowerCase
+argument_list|()
+expr_stmt|;
+block|}
 try|try
 block|{
 name|DateFormat
@@ -1906,7 +1954,7 @@ name|ParseException
 block|{
 if|if
 condition|(
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
 condition|)
 block|{
 name|termStr
@@ -1953,7 +2001,7 @@ name|ParseException
 block|{
 if|if
 condition|(
-name|lowercaseWildcardTerms
+name|lowercaseExpandedTerms
 condition|)
 block|{
 name|termStr
@@ -2027,6 +2075,19 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+if|if
+condition|(
+name|lowercaseExpandedTerms
+condition|)
+block|{
+name|termStr
+operator|=
+name|termStr
+operator|.
+name|toLowerCase
+argument_list|()
+expr_stmt|;
+block|}
 name|Term
 name|t
 init|=

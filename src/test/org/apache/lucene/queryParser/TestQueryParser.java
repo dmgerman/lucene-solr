@@ -782,11 +782,83 @@ argument_list|)
 decl_stmt|;
 name|qp
 operator|.
-name|setLowercaseWildcardTerms
+name|setLowercaseExpandedTerms
 argument_list|(
 name|lowercase
 argument_list|)
 expr_stmt|;
+name|Query
+name|q
+init|=
+name|qp
+operator|.
+name|parse
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|String
+name|s
+init|=
+name|q
+operator|.
+name|toString
+argument_list|(
+literal|"field"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|s
+operator|.
+name|equals
+argument_list|(
+name|result
+argument_list|)
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"WildcardQuery /"
+operator|+
+name|query
+operator|+
+literal|"/ yielded /"
+operator|+
+name|s
+operator|+
+literal|"/, expecting /"
+operator|+
+name|result
+operator|+
+literal|"/"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|assertWildcardQueryEquals
+specifier|public
+name|void
+name|assertWildcardQueryEquals
+parameter_list|(
+name|String
+name|query
+parameter_list|,
+name|String
+name|result
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|QueryParser
+name|qp
+init|=
+name|getParser
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
 name|Query
 name|q
 init|=
@@ -1756,6 +1828,17 @@ argument_list|)
 expr_stmt|;
 comment|/* Tests to see that wild card terms are (or are not) properly 	 * lower-cased with propery parser configuration 	 */
 comment|// First prefix queries:
+comment|// by default, convert to lowercase:
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"Term*"
+argument_list|,
+literal|true
+argument_list|,
+literal|"term*"
+argument_list|)
+expr_stmt|;
+comment|// explicitly set lowercase:
 name|assertWildcardQueryEquals
 argument_list|(
 literal|"term*"
@@ -1783,6 +1866,7 @@ argument_list|,
 literal|"term*"
 argument_list|)
 expr_stmt|;
+comment|// explicitly disable lowercase conversion:
 name|assertWildcardQueryEquals
 argument_list|(
 literal|"term*"
@@ -1811,6 +1895,15 @@ literal|"TERM*"
 argument_list|)
 expr_stmt|;
 comment|// Then 'full' wildcard queries:
+comment|// by default, convert to lowercase:
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"Te?m"
+argument_list|,
+literal|"te?m"
+argument_list|)
+expr_stmt|;
+comment|// explicitly set lowercase:
 name|assertWildcardQueryEquals
 argument_list|(
 literal|"te?m"
@@ -1847,6 +1940,7 @@ argument_list|,
 literal|"te?m*germ"
 argument_list|)
 expr_stmt|;
+comment|// explicitly disable lowercase conversion:
 name|assertWildcardQueryEquals
 argument_list|(
 literal|"te?m"
@@ -1881,6 +1975,58 @@ argument_list|,
 literal|false
 argument_list|,
 literal|"Te?m*gerM"
+argument_list|)
+expr_stmt|;
+comment|//  Fuzzy queries:
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"Term~"
+argument_list|,
+literal|"term~0.5"
+argument_list|)
+expr_stmt|;
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"Term~"
+argument_list|,
+literal|true
+argument_list|,
+literal|"term~0.5"
+argument_list|)
+expr_stmt|;
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"Term~"
+argument_list|,
+literal|false
+argument_list|,
+literal|"Term~0.5"
+argument_list|)
+expr_stmt|;
+comment|//  Range queries:
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"[A TO C]"
+argument_list|,
+literal|"[a TO c]"
+argument_list|)
+expr_stmt|;
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"[A TO C]"
+argument_list|,
+literal|true
+argument_list|,
+literal|"[a TO c]"
+argument_list|)
+expr_stmt|;
+name|assertWildcardQueryEquals
+argument_list|(
+literal|"[A TO C]"
+argument_list|,
+literal|false
+argument_list|,
+literal|"[A TO C]"
 argument_list|)
 expr_stmt|;
 block|}
