@@ -112,7 +112,7 @@ argument_list|)
 operator|+
 literal|"\u0000"
 operator|+
-name|DateField
+name|DateTools
 operator|.
 name|timeToString
 argument_list|(
@@ -120,6 +120,12 @@ name|f
 operator|.
 name|lastModified
 argument_list|()
+argument_list|,
+name|DateTools
+operator|.
+name|Resolution
+operator|.
+name|SECOND
 argument_list|)
 return|;
 block|}
