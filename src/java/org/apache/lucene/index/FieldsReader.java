@@ -82,6 +82,10 @@ name|Field
 import|;
 end_import
 
+begin_comment
+comment|/**  * Class responsible for access to stored document fields.  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  *  * @version $Id$  */
+end_comment
+
 begin_class
 DECL|class|FieldsReader
 specifier|final
@@ -151,15 +155,17 @@ argument_list|)
 expr_stmt|;
 name|size
 operator|=
-operator|(
+call|(
 name|int
-operator|)
+call|)
+argument_list|(
 name|indexStream
 operator|.
 name|length
 argument_list|()
 operator|/
 literal|8
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|close
