@@ -80,6 +80,26 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * A filter that stems German words. It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a GermanStemmer).  *  * @author    Gerhard Schwarz  * @version   $Id$  */
 end_comment
@@ -108,10 +128,10 @@ name|stemmer
 init|=
 literal|null
 decl_stmt|;
-DECL|field|exclusions
+DECL|field|exclusionSet
 specifier|private
-name|Hashtable
-name|exclusions
+name|Set
+name|exclusionSet
 init|=
 literal|null
 decl_stmt|;
@@ -135,7 +155,7 @@ name|GermanStemmer
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Builds a GermanStemFilter that uses an exclusiontable.      */
+comment|/**      * Builds a GermanStemFilter that uses an exclusiontable.      * @deprecated Use {@link #GermanStemFilter(org.apache.lucene.analysis.TokenStream, java.util.Set)} instead.      */
 DECL|method|GermanStemFilter
 specifier|public
 name|GermanStemFilter
@@ -152,9 +172,40 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|exclusions
+name|exclusionSet
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|exclusiontable
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Builds a GermanStemFilter that uses an exclusiontable.      */
+DECL|method|GermanStemFilter
+specifier|public
+name|GermanStemFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|Set
+name|exclusionSet
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|exclusionSet
+operator|=
+name|exclusionSet
 expr_stmt|;
 block|}
 comment|/**      * @return  Returns the next token in the stream, or null at EOS      */
@@ -189,11 +240,11 @@ comment|// Check the exclusiontable
 elseif|else
 if|if
 condition|(
-name|exclusions
+name|exclusionSet
 operator|!=
 literal|null
 operator|&&
-name|exclusions
+name|exclusionSet
 operator|.
 name|contains
 argument_list|(
@@ -291,7 +342,7 @@ name|stemmer
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set an alternative exclusion list for this filter.      */
+comment|/**      * Set an alternative exclusion list for this filter.      * @deprecated Use {@link #setExclusionSet(java.util.Set)} instead.      */
 DECL|method|setExclusionTable
 specifier|public
 name|void
@@ -301,9 +352,33 @@ name|Hashtable
 name|exclusiontable
 parameter_list|)
 block|{
-name|exclusions
+name|exclusionSet
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|exclusiontable
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Set an alternative exclusion list for this filter.      */
+DECL|method|setExclusionSet
+specifier|public
+name|void
+name|setExclusionSet
+parameter_list|(
+name|Set
+name|exclusionSet
+parameter_list|)
+block|{
+name|this
+operator|.
+name|exclusionSet
+operator|=
+name|exclusionSet
 expr_stmt|;
 block|}
 block|}

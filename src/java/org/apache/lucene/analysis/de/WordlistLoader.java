@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Loads a text file and adds every line as an entry to a Hashtable. Every line  * should contain only one word. If the file is not found or on any error, an  * empty table is returned.  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * Loads a text file and adds every line as an entry to a Hashtable. Every line  * should contain only one word. If the file is not found or on any error, an  * empty table is returned.  *  * @author    Gerhard Schwarz  * @version   $Id$  *  * @todo refactor to convert to Sets instead of Hashtable  */
 end_comment
 
 begin_class
@@ -157,7 +157,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * @param wordfile  File containing the wordlist    */
+comment|/**    * @param wordfile  File containing the wordlist    * @todo Create a Set version of this method    */
 DECL|method|getWordtable
 specifier|public
 specifier|static

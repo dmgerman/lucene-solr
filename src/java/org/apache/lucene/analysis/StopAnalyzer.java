@@ -36,6 +36,16 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/** Filters LetterTokenizer with LowerCaseFilter and StopFilter. */
 end_comment
@@ -49,10 +59,10 @@ name|StopAnalyzer
 extends|extends
 name|Analyzer
 block|{
-DECL|field|stopTable
+DECL|field|stopWords
 specifier|private
-name|Hashtable
-name|stopTable
+name|Set
+name|stopWords
 decl_stmt|;
 comment|/** An array containing some common English words that are not usually useful     for searching. */
 DECL|field|ENGLISH_STOP_WORDS
@@ -139,11 +149,11 @@ specifier|public
 name|StopAnalyzer
 parameter_list|()
 block|{
-name|stopTable
+name|stopWords
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|ENGLISH_STOP_WORDS
 argument_list|)
@@ -159,11 +169,13 @@ index|[]
 name|stopWords
 parameter_list|)
 block|{
-name|stopTable
+name|this
+operator|.
+name|stopWords
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|stopWords
 argument_list|)
@@ -192,7 +204,7 @@ argument_list|(
 name|reader
 argument_list|)
 argument_list|,
-name|stopTable
+name|stopWords
 argument_list|)
 return|;
 block|}

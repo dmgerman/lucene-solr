@@ -80,6 +80,26 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Analyzer for Russian language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *  * @author  Boris Okner, b.okner@rogers.com  * @version $Id$  */
 end_comment
@@ -1160,13 +1180,13 @@ block|}
 block|}
 decl_stmt|;
 comment|/**      * Contains the stopwords used with the StopFilter.      */
-DECL|field|stoptable
+DECL|field|stopSet
 specifier|private
-name|Hashtable
-name|stoptable
+name|Set
+name|stopSet
 init|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 decl_stmt|;
 comment|/**      * Charset for Russian letters.      * Represents encoding for 32 lowercase Russian letters.      * Predefined charsets can be taken from RussianCharSets class      */
@@ -1187,11 +1207,11 @@ name|RussianCharsets
 operator|.
 name|UnicodeRussian
 expr_stmt|;
-name|stoptable
+name|stopSet
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|makeStopWords
 argument_list|(
@@ -1218,11 +1238,11 @@ name|charset
 operator|=
 name|charset
 expr_stmt|;
-name|stoptable
+name|stopSet
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|makeStopWords
 argument_list|(
@@ -1251,11 +1271,11 @@ name|charset
 operator|=
 name|charset
 expr_stmt|;
-name|stoptable
+name|stopSet
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|stopwords
 argument_list|)
@@ -1367,7 +1387,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      */
+comment|/**      * Builds an analyzer with the given stop words.      * @todo create a Set version of this ctor      */
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
@@ -1386,9 +1406,16 @@ name|charset
 operator|=
 name|charset
 expr_stmt|;
-name|stoptable
+name|stopSet
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|stopwords
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream build from a RussianLetterTokenizer filtered with      *                  RussianLowerCaseFilter, StopFilter, and RussianStemFilter      */
@@ -1432,7 +1459,7 @@ name|StopFilter
 argument_list|(
 name|result
 argument_list|,
-name|stoptable
+name|stopSet
 argument_list|)
 expr_stmt|;
 name|result

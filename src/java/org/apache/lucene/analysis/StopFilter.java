@@ -46,6 +46,16 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * Removes stop words from a token stream.  */
 end_comment
@@ -61,7 +71,7 @@ name|TokenFilter
 block|{
 DECL|field|stopWords
 specifier|private
-name|HashSet
+name|Set
 name|stopWords
 decl_stmt|;
 comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    */
@@ -92,7 +102,7 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Hashtable.    *    * @deprecated Use {@link #StopFilter(TokenStream, HashSet)} StopFilter(TokenStream,Map)} instead    */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Hashtable.    *    * @deprecated Use {@link #StopFilter(TokenStream, Set)} StopFilter(TokenStream,Map)} instead    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -121,7 +131,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    * It is crucial that an efficient Set implementation is used    * for maximum performance.    *    * @see #makeStopSet(java.lang.String[])    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -129,7 +139,7 @@ parameter_list|(
 name|TokenStream
 name|in
 parameter_list|,
-name|HashSet
+name|Set
 name|stopWords
 parameter_list|)
 block|{
@@ -209,7 +219,7 @@ DECL|method|makeStopSet
 specifier|public
 specifier|static
 specifier|final
-name|HashSet
+name|Set
 name|makeStopSet
 parameter_list|(
 name|String
