@@ -318,8 +318,6 @@ specifier|final
 name|void
 name|computeCoordFactors
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|coordFactors
 operator|=
@@ -564,8 +562,6 @@ specifier|public
 name|float
 name|score
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -913,8 +909,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -930,8 +924,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

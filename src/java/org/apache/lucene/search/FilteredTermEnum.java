@@ -85,8 +85,6 @@ DECL|method|FilteredTermEnum
 specifier|public
 name|FilteredTermEnum
 parameter_list|()
-throws|throws
-name|IOException
 block|{}
 comment|/** Equality compare on the term */
 DECL|method|termCompare

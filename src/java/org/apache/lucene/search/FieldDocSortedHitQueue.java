@@ -34,16 +34,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|text
 operator|.
 name|Collator
@@ -87,7 +77,7 @@ name|Collator
 index|[]
 name|collators
 decl_stmt|;
-comment|/** 	 * Creates a hit queue sorted by the given list of fields. 	 * @param fields Field names, in priority order (highest priority first). 	 * @param size  The number of hits to retain.  Must be greater than zero. 	 * @throws IOException 	 */
+comment|/** 	 * Creates a hit queue sorted by the given list of fields. 	 * @param fields Field names, in priority order (highest priority first). 	 * @param size  The number of hits to retain.  Must be greater than zero. 	 */
 DECL|method|FieldDocSortedHitQueue
 name|FieldDocSortedHitQueue
 parameter_list|(
@@ -98,8 +88,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

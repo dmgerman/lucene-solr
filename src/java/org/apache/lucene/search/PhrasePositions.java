@@ -85,8 +85,6 @@ parameter_list|,
 name|int
 name|o
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|tp
 operator|=

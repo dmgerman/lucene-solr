@@ -98,8 +98,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|scorers
 operator|.
@@ -452,8 +450,6 @@ specifier|private
 name|void
 name|sortScorers
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// move scorers to an array
 name|Scorer
@@ -603,8 +599,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
