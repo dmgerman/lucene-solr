@@ -227,6 +227,17 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|indexEnum
+operator|!=
+literal|null
+condition|)
+name|indexEnum
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** Returns the number of term/value pairs in the set. */
 DECL|method|size
