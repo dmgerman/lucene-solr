@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TermPositions provides an interface for enumerating the&lt;document,  * frequency,&lt;position&gt;*&gt; tuples for a term.<p> The document and  * frequency are the same as for a TermDocs.  The positions portion lists the ordinal  * positions of each occurrence of a term in a document.  *  * @see IndexReader#termPositions  */
+comment|/**  * TermPositions provides an interface for enumerating the&lt;document,  * frequency,&lt;position&gt;*&gt; tuples for a term.<p> The document and  * frequency are the same as for a TermDocs.  The positions portion lists the ordinal  * positions of each occurrence of a term in a document.  *  * @see IndexReader#termPositions()  */
 end_comment
 
 begin_interface

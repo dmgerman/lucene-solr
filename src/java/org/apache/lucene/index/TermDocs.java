@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** TermDocs provides an interface for enumerating&lt;document, frequency&gt;  pairs for a term.<p> The document portion names each document containing  the term.  Documents are indicated by number.  The frequency portion gives  the number of times the term occurred in each document.<p> The pairs are  ordered by document number.   @see IndexReader#termDocs  */
+comment|/** TermDocs provides an interface for enumerating&lt;document, frequency&gt;  pairs for a term.<p> The document portion names each document containing  the term.  Documents are indicated by number.  The frequency portion gives  the number of times the term occurred in each document.<p> The pairs are  ordered by document number.   @see IndexReader#termDocs()  */
 end_comment
 
 begin_interface
