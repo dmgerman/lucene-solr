@@ -274,14 +274,7 @@ name|U
 init|=
 literal|19
 decl_stmt|;
-DECL|field|F
-specifier|private
-specifier|static
-name|char
-name|F
-init|=
-literal|20
-decl_stmt|;
+comment|//private static char F = 20;
 DECL|field|X
 specifier|private
 specifier|static
@@ -290,14 +283,7 @@ name|X
 init|=
 literal|21
 decl_stmt|;
-DECL|field|TS
-specifier|private
-specifier|static
-name|char
-name|TS
-init|=
-literal|22
-decl_stmt|;
+comment|//private static char TS = 22;
 DECL|field|CH
 specifier|private
 specifier|static
@@ -322,14 +308,7 @@ name|SHCH
 init|=
 literal|25
 decl_stmt|;
-DECL|field|HARD
-specifier|private
-specifier|static
-name|char
-name|HARD
-init|=
-literal|26
-decl_stmt|;
+comment|//private static char HARD = 26;
 DECL|field|Y
 specifier|private
 specifier|static
