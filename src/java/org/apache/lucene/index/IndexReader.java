@@ -187,7 +187,6 @@ expr_stmt|;
 block|}
 comment|/**    * Constructor used if IndexReader is owner of its directory.    * If IndexReader is owner of its directory, it locks its directory in case of write operations.    *     * @param directory Directory where IndexReader files reside.    * @param segmentInfos Used for write-l    * @param closeDirectory    */
 DECL|method|IndexReader
-specifier|protected
 name|IndexReader
 parameter_list|(
 name|Directory
