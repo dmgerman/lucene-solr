@@ -119,7 +119,7 @@ name|upHeap
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Adds element to the PriorityQueue in log(size) time if either    * the PriorityQueue is not full, or !lessThan(element, top()).    * @param element    * @return true if element is added, false otherwise.    */
+comment|/**    * Adds element to the PriorityQueue in log(size) time if either    * the PriorityQueue is not full, or not lessThan(element, top()).    * @param element    * @return true if element is added, false otherwise.    */
 DECL|method|insert
 specifier|public
 name|boolean
