@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}. */
+comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -69,7 +69,7 @@ specifier|private
 name|Hashtable
 name|stopTable
 decl_stmt|;
-comment|/** An array containing some common English words that are usually not 	useful for searching. */
+comment|/** An array containing some common English words that are usually not   useful for searching. */
 DECL|field|STOP_WORDS
 specifier|public
 specifier|static
@@ -114,7 +114,7 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructs a {@link StandardTokenizer} filtered by a {@link 	StandardFilter}, a {@link LowerCaseFilter} and a {@link StopFilter}. */
+comment|/** Constructs a {@link StandardTokenizer} filtered by a {@link   StandardFilter}, a {@link LowerCaseFilter} and a {@link StopFilter}. */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
