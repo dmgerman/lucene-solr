@@ -803,7 +803,6 @@ argument_list|(
 literal|"Kennedy"
 argument_list|)
 expr_stmt|;
-comment|//		QueryHighlightExtractor highlighter = new QueryHighlightExtractor(this, query, new StandardAnalyzer());
 name|Highlighter
 name|highlighter
 init|=

@@ -60,6 +60,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|Query
@@ -68,10 +82,6 @@ end_import
 
 begin_comment
 comment|/**  * {@link Scorer} implementation which scores text fragments by the number of unique query terms found.  * This class uses the {@link QueryTermExtractor} class to process determine the query terms and   * their boosts to be used.   * @author mark@searcharea.co.uk  */
-end_comment
-
-begin_comment
-comment|//TODO: provide option to roll idf into the scoring equation by passing a IndexReader.
 end_comment
 
 begin_comment
@@ -127,6 +137,36 @@ operator|.
 name|getTerms
 argument_list|(
 name|query
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 *  	 * @param query a Lucene query (ideally rewritten using query.rewrite  	 * before being passed to this class and the searcher) 	 * @param reader used to compute IDF which can be used to a) score selected fragments better  	 * b) use graded highlights eg set font color intensity 	 * @param fieldName the field on which Inverse Document Frequency (IDF) calculations are based 	 */
+DECL|method|QueryScorer
+specifier|public
+name|QueryScorer
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|fieldName
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|QueryTermExtractor
+operator|.
+name|getIdfWeightedTerms
+argument_list|(
+name|query
+argument_list|,
+name|reader
+argument_list|,
+name|fieldName
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -250,7 +290,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|//found a query term - is it unique in this fragment?
+comment|//found a query term - is it unique in this doc?
 if|if
 condition|(
 operator|!
