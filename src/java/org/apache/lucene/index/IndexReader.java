@@ -874,7 +874,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Field#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,           * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Field#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
 DECL|method|setNorm
 specifier|public
 specifier|final
@@ -1081,7 +1081,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Trys to acquire the WriteLock on this directory.    * this method is only valid if this IndexReader is directory owner.    *     * @throws IOException If WriteLock cannot be acquired.    */
+comment|/**    * Tries to acquire the WriteLock on this directory.    * this method is only valid if this IndexReader is directory owner.    *     * @throws IOException If WriteLock cannot be acquired.    */
 DECL|method|aquireWriteLock
 specifier|private
 name|void
