@@ -216,6 +216,7 @@ block|{
 comment|// add a new host to the queue
 comment|//String host2 = host.replace(':', '_').replace('/', '_').replace('\\', '_');
 comment|// make it file system ready
+comment|// FIXME: put '100' in properties.  This is block size (the number of objects/block)
 name|q
 operator|=
 operator|new

@@ -605,6 +605,7 @@ name|blockSize
 operator|=
 name|blockSize
 expr_stmt|;
+comment|// FIXME: the name of the caching queue directory needs to be in properties
 name|File
 name|cq
 init|=
