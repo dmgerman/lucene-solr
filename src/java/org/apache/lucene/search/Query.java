@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link PhraseQuery}<li> {@link BooleanQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser}</ul>   */
+comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link PhraseQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PrefixQuery}<li> {@link FuzzyQuery}<li> {@link RangeQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser QueryParser}</ul> */
 end_comment
 
 begin_class
@@ -195,7 +195,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/** Sets the boost for this term to<code>b</code>.  Documents containing     this term will (in addition to the normal weightings) have their score     multiplied by<code>b</code>. */
+comment|/**      * Sets the boost for this term to<code>b</code>.  Documents containing      * this term will (in addition to the normal weightings) have their score      * multiplied by<code>b</code>.      */
 DECL|method|setBoost
 specifier|public
 name|void
@@ -210,7 +210,7 @@ operator|=
 name|b
 expr_stmt|;
 block|}
-comment|/** Gets the boost for this term.  Documents containing     this term will (in addition to the normal weightings) have their score     multiplied by<code>b</code>.   The boost is 1.0 by default.  */
+comment|/**      * Gets the boost for this term.  Documents containing      * this term will (in addition to the normal weightings) have their score      * multiplied by<code>b</code>.   The boost is 1.0 by default.      */
 DECL|method|getBoost
 specifier|public
 name|float
@@ -221,7 +221,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/** Prints a query to a string, with<code>field</code> as the default field     for terms.<p>The representation used is one that is readable by<a href="doc/lucene.queryParser.QueryParser.html">QueryParser</a>     (although, if the query was created by the parser, the printed     representation may not be exactly what was parsed). */
+comment|/**      * Prints a query to a string, with<code>field</code> as the default field      * for terms.      *<p>The representation used is one that is readable by      * {@link org.apache.lucene.queryParser.QueryParser QueryParser}      * (although, if the query was created by the parser, the printed      * representation may not be exactly what was parsed).      */
 DECL|method|toString
 specifier|abstract
 specifier|public
