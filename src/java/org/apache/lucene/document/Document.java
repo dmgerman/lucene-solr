@@ -205,7 +205,7 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<p>Removes field with the given name from the document.    * If multiple fields exist with this name, this method returns the first value added.    * If there is no field with the specified name, the document remains unchanged.</p>    *<p> Note that the removeField(s) methods like the add method only make sense     * prior to adding a document to an index. These methods cannot    * be used to change the content of an existing index! In order to achieve this,    * a document has to be deleted from an index and a new changed version of that    * document has to be added.</p>    */
+comment|/**    *<p>Removes field with the specified name from the document.    * If multiple fields exist with this name, this method removes the first field that has been added.    * If there is no field with the specified name, the document remains unchanged.</p>    *<p> Note that the removeField(s) methods like the add method only make sense     * prior to adding a document to an index. These methods cannot    * be used to change the content of an existing index! In order to achieve this,    * a document has to be deleted from an index and a new changed version of that    * document has to be added.</p>    */
 DECL|method|removeField
 specifier|public
 specifier|final
