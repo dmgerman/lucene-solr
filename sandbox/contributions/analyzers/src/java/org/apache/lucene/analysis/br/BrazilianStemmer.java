@@ -19,7 +19,7 @@ comment|/* ==================================================================== 
 end_comment
 
 begin_comment
-comment|/**  * A stemmer for brazilian words. The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by Jörg  * Caumanns (joerg.caumanns@isst.fhg.de).  *  * @author    Gerhard Schwarz  */
+comment|/**  * A stemmer for brazilian words. The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by JÃ¶rg  * Caumanns (joerg.caumanns@isst.fhg.de).  *  * @author    Gerhard Schwarz  */
 end_comment
 
 begin_class
@@ -680,7 +680,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * 1) Turn to lowercase    * 2) Remove accents    * 3) ã -> a ; õ -> o    * 4) ç -> c    *    * @return null or a string transformed 	 */
+comment|/**    * 1) Turn to lowercase    * 2) Remove accents    * 3) Ã£ -> a ; Ãµ -> o    * 4) Ã§ -> c    *    * @return null or a string transformed 	 */
 DECL|method|changeTerm
 specifier|private
 name|String
@@ -747,7 +747,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'á'
+literal|'Ã¡'
 operator|)
 operator|||
 operator|(
@@ -758,7 +758,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'â'
+literal|'Ã¢'
 operator|)
 operator|||
 operator|(
@@ -769,7 +769,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ã'
+literal|'Ã£'
 operator|)
 condition|)
 block|{
@@ -791,7 +791,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'é'
+literal|'Ã©'
 operator|)
 operator|||
 operator|(
@@ -802,7 +802,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ê'
+literal|'Ãª'
 operator|)
 condition|)
 block|{
@@ -823,7 +823,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'í'
+literal|'Ã­'
 condition|)
 block|{
 name|r
@@ -844,7 +844,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ó'
+literal|'Ã³'
 operator|)
 operator|||
 operator|(
@@ -855,7 +855,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ô'
+literal|'Ã´'
 operator|)
 operator|||
 operator|(
@@ -866,7 +866,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'õ'
+literal|'Ãµ'
 operator|)
 condition|)
 block|{
@@ -888,7 +888,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ú'
+literal|'Ãº'
 operator|)
 operator|||
 operator|(
@@ -899,7 +899,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ü'
+literal|'Ã¼'
 operator|)
 condition|)
 block|{
@@ -920,7 +920,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ç'
+literal|'Ã§'
 condition|)
 block|{
 name|r
@@ -940,7 +940,7 @@ argument_list|(
 name|j
 argument_list|)
 operator|==
-literal|'ñ'
+literal|'Ã±'
 condition|)
 block|{
 name|r
@@ -1240,7 +1240,7 @@ name|preceded
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Creates CT (changed term) , substituting * 'ã' and 'õ' for 'a~' and 'o~'. 	 */
+comment|/** 	 * Creates CT (changed term) , substituting * 'Ã£' and 'Ãµ' for 'a~' and 'o~'. 	 */
 DECL|method|createCT
 specifier|private
 name|void
@@ -5650,7 +5650,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Residual suffix    *    * If the word ends with one of the suffixes (os a i o á í ó)    * in RV, delete it    * 	*/
+comment|/** 	 * Residual suffix    *    * If the word ends with one of the suffixes (os a i o Ã¡ Ã­ Ã³)    * in RV, delete it    * 	*/
 DECL|method|step4
 specifier|private
 name|void
@@ -5749,7 +5749,7 @@ expr_stmt|;
 return|return ;
 block|}
 block|}
-comment|/** 	 * If the word ends with one of ( e é ê) in RV,delete it,    * and if preceded by 'gu' (or 'ci') with the 'u' (or 'i') in RV,    * delete the 'u' (or 'i')    *    * Or if the word ends ç remove the cedilha    * 	*/
+comment|/** 	 * If the word ends with one of ( e Ã© Ãª) in RV,delete it,    * and if preceded by 'gu' (or 'ci') with the 'u' (or 'i') in RV,    * delete the 'u' (or 'i')    *    * Or if the word ends Ã§ remove the cedilha    * 	*/
 DECL|method|step5
 specifier|private
 name|void
