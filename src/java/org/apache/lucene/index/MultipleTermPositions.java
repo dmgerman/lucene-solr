@@ -763,6 +763,23 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+DECL|method|seek
+specifier|public
+name|void
+name|seek
+parameter_list|(
+name|TermEnum
+name|termEnum
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**      * Describe<code>read</code> method here.      *      * @param arg0 an<code>int[]</code> value      * @param arg1 an<code>int[]</code> value      * @return an<code>int</code> value      * @exception IOException if an error occurs      * @see TermDocs#read(int[], int[])      */
 DECL|method|read
 specifier|public

@@ -47,6 +47,17 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Sets this to the data for the current term in a {@link TermEnum}.    * This may be optimized in some implementations.    */
+DECL|method|seek
+name|void
+name|seek
+parameter_list|(
+name|TermEnum
+name|termEnum
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Returns the current document number.<p> This is invalid until {@link       #next()} is called for the first time.*/
 DECL|method|doc
 name|int

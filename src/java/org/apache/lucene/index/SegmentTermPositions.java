@@ -281,7 +281,7 @@ name|IOException
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}

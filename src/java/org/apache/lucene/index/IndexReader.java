@@ -153,6 +153,7 @@ name|MAX_VALUE
 expr_stmt|;
 block|}
 DECL|field|directory
+specifier|private
 name|Directory
 name|directory
 decl_stmt|;
@@ -405,6 +406,17 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** Returns the directory this index resides in. */
+DECL|method|directory
+specifier|public
+name|Directory
+name|directory
+parameter_list|()
+block|{
+return|return
+name|directory
+return|;
+block|}
 comment|/** Returns the time the index in the named directory was last modified. */
 DECL|method|lastModified
 specifier|public
@@ -588,6 +600,14 @@ parameter_list|(
 name|int
 name|n
 parameter_list|)
+function_decl|;
+comment|/** Returns true if any documents have been deleted */
+DECL|method|hasDeletions
+specifier|public
+specifier|abstract
+name|boolean
+name|hasDeletions
+parameter_list|()
 function_decl|;
 comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see Field#setBoost(float)    */
 DECL|method|norms
@@ -818,7 +838,9 @@ name|docNum
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Implements deletion of the document numbered<code>docNum</code>.    * Applications should call {@link #delete(int)} or {@link #delete(Term)}.    */
 DECL|method|doDelete
+specifier|protected
 specifier|abstract
 name|void
 name|doDelete
@@ -934,6 +956,7 @@ block|}
 block|}
 comment|/** Implements close. */
 DECL|method|doClose
+specifier|protected
 specifier|abstract
 name|void
 name|doClose
