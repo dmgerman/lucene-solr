@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|DateTools
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Document
 import|;
 end_import
@@ -64,20 +78,6 @@ name|Field
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DateField
-import|;
-end_import
-
 begin_comment
 comment|/** A utility for making Lucene Documents from a File. */
 end_comment
@@ -88,7 +88,7 @@ specifier|public
 class|class
 name|FileDocument
 block|{
-comment|/** Makes a document for a File.<p>     The document has three fields:<ul><li><code>path</code>--containing the pathname of the file, as a stored,     untokenized field;<li><code>modified</code>--containing the last modified date of the file as     a keyword field as encoded by<a     href="lucene.document.DateField.html">DateField</a>; and<li><code>contents</code>--containing the full contents of the file, as a     Reader field;     */
+comment|/** Makes a document for a File.<p>     The document has three fields:<ul><li><code>path</code>--containing the pathname of the file, as a stored,     untokenized field;<li><code>modified</code>--containing the last modified date of the file as     a field as created by<a     href="lucene.document.DateTools.html">DateTools</a>; and<li><code>contents</code>--containing the full contents of the file, as a     Reader field;     */
 DECL|method|Document
 specifier|public
 specifier|static
@@ -155,7 +155,7 @@ name|Field
 argument_list|(
 literal|"modified"
 argument_list|,
-name|DateField
+name|DateTools
 operator|.
 name|timeToString
 argument_list|(
@@ -163,6 +163,12 @@ name|f
 operator|.
 name|lastModified
 argument_list|()
+argument_list|,
+name|DateTools
+operator|.
+name|Resolution
+operator|.
+name|MINUTE
 argument_list|)
 argument_list|,
 name|Field

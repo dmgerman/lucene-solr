@@ -234,7 +234,7 @@ name|Field
 argument_list|(
 literal|"modified"
 argument_list|,
-name|DateField
+name|DateTools
 operator|.
 name|timeToString
 argument_list|(
@@ -242,6 +242,12 @@ name|f
 operator|.
 name|lastModified
 argument_list|()
+argument_list|,
+name|DateTools
+operator|.
+name|Resolution
+operator|.
+name|MINUTE
 argument_list|)
 argument_list|,
 name|Field
