@@ -206,6 +206,14 @@ name|SortField
 index|[]
 name|fields
 decl_stmt|;
+comment|/** Stores the maximum score value encountered, for normalizing. 	 *  we only care about scores greater than 1.0 - if all the scores 	 *  are less than 1.0, we don't have to normalize. */
+DECL|field|maxscore
+specifier|protected
+name|float
+name|maxscore
+init|=
+literal|1.0f
+decl_stmt|;
 comment|/** 	 * Returns whether<code>a</code> is less relevant than<code>b</code>. 	 * @param a ScoreDoc 	 * @param b ScoreDoc 	 * @return<code>true</code> if document<code>a</code> should be sorted after document<code>b</code>. 	 */
 DECL|method|lessThan
 specifier|protected
@@ -240,6 +248,36 @@ name|ScoreDoc
 operator|)
 name|b
 decl_stmt|;
+comment|// keep track of maximum score
+if|if
+condition|(
+name|docA
+operator|.
+name|score
+operator|>
+name|maxscore
+condition|)
+name|maxscore
+operator|=
+name|docA
+operator|.
+name|score
+expr_stmt|;
+if|if
+condition|(
+name|docB
+operator|.
+name|score
+operator|>
+name|maxscore
+condition|)
+name|maxscore
+operator|=
+name|docB
+operator|.
+name|score
+expr_stmt|;
+comment|// run comparators
 specifier|final
 name|int
 name|n
@@ -378,6 +416,19 @@ name|fields
 operator|=
 name|fields
 expr_stmt|;
+if|if
+condition|(
+name|maxscore
+operator|>
+literal|1.0f
+condition|)
+name|doc
+operator|.
+name|score
+operator|/=
+name|maxscore
+expr_stmt|;
+comment|// normalize scores
 return|return
 name|doc
 return|;
