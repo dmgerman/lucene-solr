@@ -152,7 +152,7 @@ name|this
 operator|.
 name|exclusions
 operator|=
-name|exclusions
+name|exclusiontable
 expr_stmt|;
 block|}
 comment|/** 	 * @return  Returns the next token in the stream, or null at EOS. 	 */
