@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The interface for search implementations. */
+comment|/** The interface for search implementations.  *  *<p>Implementations provide search over a single index, over multiple  * indices, and over indices on remote servers.  */
 end_comment
 
 begin_interface
