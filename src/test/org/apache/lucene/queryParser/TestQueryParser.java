@@ -647,6 +647,15 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
+literal|"\"germ term\"^2.0"
+argument_list|,
+literal|null
+argument_list|,
+literal|"\"germ term\"^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
 literal|"(foo OR bar) AND (baz OR boo)"
 argument_list|,
 literal|null
@@ -751,6 +760,87 @@ argument_list|,
 name|qpAnalyzer
 argument_list|,
 literal|""
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testRange
+specifier|public
+name|void
+name|testRange
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"[ a z]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[a-z]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ a z ]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[a-z]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"{ a z}"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{a-z}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"{ a z }"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{a-z}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"{ a z }^2.0"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{a-z}^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ a z] OR bar"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[a-z] bar"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ a z] AND bar"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+[a-z] +bar"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"( bar blar { a z}) "
+argument_list|,
+literal|null
+argument_list|,
+literal|"(bar blar {a-z})"
 argument_list|)
 expr_stmt|;
 block|}
