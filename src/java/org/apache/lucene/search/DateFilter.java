@@ -416,20 +416,21 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 name|TermEnum
-name|enum
-type|=
+name|enumerator
+init|=
 name|reader
 operator|.
 name|terms
-decl|(new
+argument_list|(
+operator|new
 name|Term
-decl|(
+argument_list|(
 name|field
-decl|,
+argument_list|,
 name|start
-decl_stmt|)
-block|)
-function|;
+argument_list|)
+argument_list|)
+decl_stmt|;
 name|TermDocs
 name|termDocs
 init|=
@@ -439,7 +440,8 @@ name|termDocs
 argument_list|()
 decl_stmt|;
 if|if
-condition|(enum
+condition|(
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -463,7 +465,8 @@ name|end
 argument_list|)
 decl_stmt|;
 while|while
-condition|(enum
+condition|(
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -480,7 +483,7 @@ name|termDocs
 operator|.
 name|seek
 argument_list|(
-expr|enum
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -517,7 +520,7 @@ block|}
 if|if
 condition|(
 operator|!
-expr|enum
+name|enumerator
 operator|.
 name|next
 argument_list|()
@@ -529,7 +532,8 @@ block|}
 block|}
 finally|finally
 block|{
-enum_decl|enum.
+name|enumerator
+operator|.
 name|close
 argument_list|()
 expr_stmt|;
@@ -538,9 +542,6 @@ return|return
 name|bits
 return|;
 block|}
-end_class
-
-begin_function
 DECL|method|toString
 specifier|public
 name|String
@@ -612,8 +613,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

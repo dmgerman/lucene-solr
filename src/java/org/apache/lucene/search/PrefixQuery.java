@@ -120,14 +120,14 @@ name|BooleanQuery
 argument_list|()
 decl_stmt|;
 name|TermEnum
-name|enum
-type|=
+name|enumerator
+init|=
 name|reader
 operator|.
 name|terms
-decl|(
+argument_list|(
 name|prefix
-decl|)
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -151,7 +151,8 @@ do|do
 block|{
 name|Term
 name|term
-init|= enum
+init|=
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -219,7 +220,8 @@ break|break;
 block|}
 block|}
 do|while
-condition|(enum
+condition|(
+name|enumerator
 operator|.
 name|next
 argument_list|()
@@ -228,7 +230,8 @@ do|;
 block|}
 finally|finally
 block|{
-enum_decl|enum.
+name|enumerator
+operator|.
 name|close
 argument_list|()
 expr_stmt|;

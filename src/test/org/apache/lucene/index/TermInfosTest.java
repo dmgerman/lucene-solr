@@ -717,12 +717,13 @@ name|Date
 argument_list|()
 expr_stmt|;
 name|SegmentTermEnum
-name|enum
-type|= (
-name|SegmentTermEnum
-decl_stmt|)reader.terms(
-block|)
-function|;
+name|enumerator
+init|=
+name|reader
+operator|.
+name|terms
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -741,7 +742,8 @@ name|i
 operator|++
 control|)
 block|{
-enum_decl|enum.
+name|enumerator
+operator|.
 name|next
 argument_list|()
 expr_stmt|;
@@ -765,7 +767,7 @@ name|key
 operator|.
 name|equals
 argument_list|(
-expr|enum
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -777,7 +779,7 @@ name|Exception
 argument_list|(
 literal|"wrong term: "
 operator|+
-expr|enum
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -793,7 +795,8 @@ argument_list|)
 throw|;
 name|TermInfo
 name|ti
-init|= enum
+init|=
+name|enumerator
 operator|.
 name|termInfo
 argument_list|()
@@ -1245,16 +1248,16 @@ expr_stmt|;
 name|reader
 operator|.
 name|close
-parameter_list|()
-constructor_decl|;
+argument_list|()
+expr_stmt|;
 name|store
 operator|.
 name|close
-parameter_list|()
-constructor_decl|;
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
-unit|}
 end_unit
 

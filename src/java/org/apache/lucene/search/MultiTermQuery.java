@@ -124,12 +124,12 @@ throws|throws
 name|IOException
 block|{
 name|FilteredTermEnum
-name|enum
-type|=
+name|enumerator
+init|=
 name|getEnum
-decl|(
+argument_list|(
 name|reader
-decl|)
+argument_list|)
 decl_stmt|;
 name|BooleanQuery
 name|query
@@ -144,7 +144,8 @@ do|do
 block|{
 name|Term
 name|t
-init|= enum
+init|=
+name|enumerator
 operator|.
 name|term
 argument_list|()
@@ -173,7 +174,7 @@ argument_list|(
 name|getBoost
 argument_list|()
 operator|*
-expr|enum
+name|enumerator
 operator|.
 name|difference
 argument_list|()
@@ -195,7 +196,8 @@ comment|// add to query
 block|}
 block|}
 do|while
-condition|(enum
+condition|(
+name|enumerator
 operator|.
 name|next
 argument_list|()
@@ -204,7 +206,8 @@ do|;
 block|}
 finally|finally
 block|{
-enum_decl|enum.
+name|enumerator
+operator|.
 name|close
 argument_list|()
 expr_stmt|;
