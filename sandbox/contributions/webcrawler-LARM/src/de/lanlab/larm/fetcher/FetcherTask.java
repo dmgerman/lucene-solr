@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
+comment|/*  *  ====================================================================  *  The Apache Software License, Version 1.1  *  *  Copyright (c) 2001 The Apache Software Foundation.  All rights  *  reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by the  *  Apache Software Foundation (http://www.apache.org/)."  *  Alternately, this acknowledgment may appear in the software itself,  *  if and wherever such third-party acknowledgments normally appear.  *  *  4. The names "Apache" and "Apache Software Foundation" and  *  "Apache Lucene" must not be used to endorse or promote products  *  derived from this software without prior written permission. For  *  written permission, please contact apache@apache.org.  *  *  5. Products derived from this software may not be called "Apache",  *  "Apache Lucene", nor may "Apache" appear in their name, without  *  prior written permission of the Apache Software Foundation.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  *  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  *  USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  *  SUCH DAMAGE.  *  ====================================================================  *  *  This software consists of voluntary contributions made by many  *  individuals on behalf of the Apache Software Foundation.  For more  *  information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
 end_comment
 
 begin_package
@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * this class gets the documents from the web. It connects to the server given  * by the IP address in the URLMessage, gets the document, and forwards it to  * the storage. If it's an HTML document, it will be parsed and all links will  * be put into the message handler again.  *  * stores contents of the files in field "contents"  *  * @author    Clemens Marschner  * @version $Id$  */
+comment|/**  * this class gets the documents from the web. It connects to the server given  * by the IP address in the URLMessage, gets the document, and forwards it to  * the storage. If it's an HTML document, it will be parsed and all links will  * be put into the message handler again. stores contents of the files in field  * "contents"  *  * @author    Clemens Marschner  * @created   28. Juni 2002  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -258,6 +258,7 @@ name|LinkHandler
 implements|,
 name|Serializable
 block|{
+comment|/**      * Description of the Field      */
 DECL|field|isInterrupted
 specifier|protected
 specifier|volatile
@@ -287,7 +288,7 @@ specifier|volatile
 name|URL
 name|base
 decl_stmt|;
-comment|/**      * the URL of the docuzment      * only valid within a doTask call      */
+comment|/**      * the URL of the docuzment only valid within a doTask call      */
 DECL|field|contextUrl
 specifier|private
 specifier|volatile
@@ -302,7 +303,7 @@ specifier|volatile
 name|MessageHandler
 name|messageHandler
 decl_stmt|;
-comment|/**      * actual number of bytes read      * only valid within a doTask call      */
+comment|/**      * actual number of bytes read only valid within a doTask call      */
 DECL|field|bytesRead
 specifier|private
 specifier|volatile
@@ -337,6 +338,7 @@ name|FT_IDLE
 init|=
 literal|"idle"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_STARTED
 specifier|public
 specifier|final
@@ -346,6 +348,7 @@ name|FT_STARTED
 init|=
 literal|"started"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_OPENCONNECTION
 specifier|public
 specifier|final
@@ -355,6 +358,7 @@ name|FT_OPENCONNECTION
 init|=
 literal|"opening connection"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_CONNECTING
 specifier|public
 specifier|final
@@ -364,6 +368,7 @@ name|FT_CONNECTING
 init|=
 literal|"connecting"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_GETTING
 specifier|public
 specifier|final
@@ -373,6 +378,7 @@ name|FT_GETTING
 init|=
 literal|"getting"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_READING
 specifier|public
 specifier|final
@@ -382,6 +388,7 @@ name|FT_READING
 init|=
 literal|"reading"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_SCANNING
 specifier|public
 specifier|final
@@ -391,6 +398,7 @@ name|FT_SCANNING
 init|=
 literal|"scanning"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_STORING
 specifier|public
 specifier|final
@@ -400,6 +408,7 @@ name|FT_STORING
 init|=
 literal|"storing"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_READY
 specifier|public
 specifier|final
@@ -409,6 +418,7 @@ name|FT_READY
 init|=
 literal|"ready"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_CLOSING
 specifier|public
 specifier|final
@@ -418,6 +428,7 @@ name|FT_CLOSING
 init|=
 literal|"closing"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_EXCEPTION
 specifier|public
 specifier|final
@@ -427,6 +438,7 @@ name|FT_EXCEPTION
 init|=
 literal|"exception"
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|FT_INTERRUPTED
 specifier|public
 specifier|final
@@ -448,7 +460,7 @@ argument_list|(
 name|FT_IDLE
 argument_list|)
 decl_stmt|;
-comment|/**      * the URLs found will be stored and only added to the message handler in the very      * end, to avoid too many synchronizations      */
+comment|/**      * the URLs found will be stored and only added to the message handler in      * the very end, to avoid too many synchronizations      */
 DECL|field|foundUrls
 specifier|private
 specifier|volatile
@@ -469,41 +481,6 @@ specifier|volatile
 name|String
 name|title
 decl_stmt|;
-comment|/**      * headers for HTTPClient      */
-DECL|field|headers
-specifier|private
-specifier|static
-specifier|volatile
-name|NVPair
-name|headers
-index|[]
-init|=
-operator|new
-name|NVPair
-index|[
-literal|1
-index|]
-decl_stmt|;
-static|static
-block|{
-name|headers
-index|[
-literal|0
-index|]
-operator|=
-operator|new
-name|HTTPClient
-operator|.
-name|NVPair
-argument_list|(
-literal|"User-Agent"
-argument_list|,
-name|Constants
-operator|.
-name|CRAWLER_AGENT
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      * Gets a copy of the current taskState      *      * @return   The taskState value      */
 DECL|method|getTaskState
 specifier|public
@@ -518,7 +495,7 @@ name|cloneState
 argument_list|()
 return|;
 block|}
-comment|/**      * Constructor for the FetcherTask object      *      * @param urlMessage   Description of the Parameter      */
+comment|/**      * Constructor for the FetcherTask object      *      * @param urlMessage  Description of the Parameter      */
 DECL|method|FetcherTask
 specifier|public
 name|FetcherTask
@@ -642,8 +619,13 @@ specifier|volatile
 name|HostManager
 name|hostManager
 decl_stmt|;
+DECL|field|hostResolver
+specifier|volatile
+name|HostResolver
+name|hostResolver
+decl_stmt|;
 comment|//private long startTime;
-comment|/**      * this will be called by the fetcher thread and will do all the work      *      * @TODO probably split this up into different processing steps      * @param thread  Description of the Parameter      */
+comment|/**      * this will be called by the fetcher thread and will do all the work      *      * @param thread  Description of the Parameter      * @TODO          probably split this up into different processing steps      */
 DECL|method|run
 specifier|public
 name|void
@@ -680,34 +662,12 @@ operator|.
 name|getHostManager
 argument_list|()
 expr_stmt|;
-comment|//HostManager hm = ((FetcherThread)thread).getHostManager();
-name|errorLog
+name|hostResolver
 operator|=
-name|thread
+name|hostManager
 operator|.
-name|getErrorLog
+name|getHostResolver
 argument_list|()
-expr_stmt|;
-comment|// startTime = System.currentTimeMillis();
-name|int
-name|threadNr
-init|=
-operator|(
-operator|(
-name|FetcherThread
-operator|)
-name|thread
-operator|)
-operator|.
-name|getThreadNumber
-argument_list|()
-decl_stmt|;
-name|log
-operator|.
-name|log
-argument_list|(
-literal|"start"
-argument_list|)
 expr_stmt|;
 name|base
 operator|=
@@ -737,6 +697,148 @@ operator|.
 name|toLowerCase
 argument_list|()
 decl_stmt|;
+name|HostInfo
+name|hi
+init|=
+name|hostManager
+operator|.
+name|getHostInfo
+argument_list|(
+name|host
+argument_list|)
+decl_stmt|;
+comment|//        System.out.println("FetcherTask with " + urlString + " started");
+if|if
+condition|(
+name|actURLMessage
+operator|.
+name|linkType
+operator|==
+name|URLMessage
+operator|.
+name|LINKTYPE_REDIRECT
+condition|)
+block|{
+name|taskState
+operator|.
+name|setState
+argument_list|(
+name|FT_READY
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|hi
+operator|.
+name|releaseLock
+argument_list|()
+expr_stmt|;
+return|return;
+comment|// we've already crawled that (see below)
+block|}
+name|NVPair
+index|[]
+name|headers
+init|=
+operator|(
+operator|(
+name|FetcherThread
+operator|)
+name|thread
+operator|)
+operator|.
+name|getDefaultHeaders
+argument_list|()
+decl_stmt|;
+name|int
+name|numHeaders
+init|=
+operator|(
+operator|(
+name|FetcherThread
+operator|)
+name|thread
+operator|)
+operator|.
+name|getUsedDefaultHeaders
+argument_list|()
+decl_stmt|;
+name|boolean
+name|isIncremental
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|actURLMessage
+operator|instanceof
+name|WebDocument
+condition|)
+block|{
+comment|// this is an incremental crawl where we only have to check whether the doc crawled
+comment|// is newer
+name|isIncremental
+operator|=
+literal|true
+expr_stmt|;
+name|headers
+index|[
+name|numHeaders
+index|]
+operator|=
+operator|new
+name|NVPair
+argument_list|(
+literal|"If-Modified-Since"
+argument_list|,
+name|HTTPClient
+operator|.
+name|Util
+operator|.
+name|httpDate
+argument_list|(
+operator|(
+operator|(
+name|WebDocument
+operator|)
+name|actURLMessage
+operator|)
+operator|.
+name|getLastModified
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|//HostManager hm = ((FetcherThread)thread).getHostManager();
+name|errorLog
+operator|=
+name|thread
+operator|.
+name|getErrorLog
+argument_list|()
+expr_stmt|;
+comment|// startTime = System.currentTimeMillis();
+name|int
+name|threadNr
+init|=
+operator|(
+operator|(
+name|FetcherThread
+operator|)
+name|thread
+operator|)
+operator|.
+name|getThreadNumber
+argument_list|()
+decl_stmt|;
+name|log
+operator|.
+name|log
+argument_list|(
+literal|"start"
+argument_list|)
+expr_stmt|;
 name|int
 name|hostPos
 init|=
@@ -754,16 +856,6 @@ name|host
 operator|.
 name|length
 argument_list|()
-decl_stmt|;
-name|HostInfo
-name|hi
-init|=
-name|hostManager
-operator|.
-name|getHostInfo
-argument_list|(
-name|host
-argument_list|)
 decl_stmt|;
 comment|// get and create
 if|if
@@ -787,26 +879,7 @@ operator|+
 literal|"; returning"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"["
-operator|+
-name|threadNr
-operator|+
-literal|"] bad host: "
-operator|+
-name|this
-operator|.
-name|actURLMessage
-operator|.
-name|getUrl
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            System.out.println("[" + threadNr + "] bad host: " + this.actURLMessage.getUrl());
 name|taskState
 operator|.
 name|setState
@@ -815,6 +888,11 @@ name|FT_READY
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+name|hi
+operator|.
+name|releaseLock
+argument_list|()
 expr_stmt|;
 return|return;
 block|}
@@ -835,7 +913,7 @@ literal|null
 decl_stmt|;
 name|title
 operator|=
-literal|"*untitled*"
+literal|""
 expr_stmt|;
 name|int
 name|size
@@ -984,15 +1062,316 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|statusCode
-operator|!=
-literal|404
-operator|&&
-name|statusCode
-operator|!=
-literal|403
+name|isIncremental
 condition|)
 block|{
+comment|// experimental
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ftask: if modified since: "
+operator|+
+name|HTTPClient
+operator|.
+name|Util
+operator|.
+name|httpDate
+argument_list|(
+operator|(
+operator|(
+name|WebDocument
+operator|)
+name|actURLMessage
+operator|)
+operator|.
+name|getLastModified
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+name|URL
+name|realURL
+decl_stmt|;
+switch|switch
+condition|(
+name|statusCode
+condition|)
+block|{
+case|case
+literal|404
+case|:
+comment|// file not found
+case|case
+literal|403
+case|:
+comment|// access forbidden
+comment|// if this is an incremental crawl, remove the doc from the repository
+if|if
+condition|(
+name|isIncremental
+condition|)
+block|{
+name|WebDocument
+name|d
+init|=
+operator|(
+name|WebDocument
+operator|)
+name|actURLMessage
+decl_stmt|;
+name|d
+operator|.
+name|setResultCode
+argument_list|(
+name|statusCode
+argument_list|)
+expr_stmt|;
+comment|// the repository will remove the doc if this statuscode is matched
+name|docStorage
+operator|.
+name|store
+argument_list|(
+name|d
+argument_list|)
+expr_stmt|;
+block|}
+comment|// otherwise, do nothing
+comment|// Todo: we could add an error marker to the referal link
+break|break;
+case|case
+literal|304
+case|:
+comment|// not modified
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ftask: -> not modified"
+argument_list|)
+expr_stmt|;
+comment|// "not modified since"
+name|taskState
+operator|.
+name|setState
+argument_list|(
+name|FT_STORING
+argument_list|,
+name|ipURL
+argument_list|)
+expr_stmt|;
+comment|// let the repository take care of the links
+comment|// it will determine that this is the old document (because it already
+comment|// has a docId), and will put back the links associated with it
+try|try
+block|{
+name|WebDocument
+name|doc
+init|=
+operator|(
+name|WebDocument
+operator|)
+name|this
+operator|.
+name|actURLMessage
+decl_stmt|;
+name|doc
+operator|.
+name|setModified
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|docStorage
+operator|.
+name|store
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|bytesRead
+operator|+=
+name|doc
+operator|.
+name|getSize
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"error while casting to WebDoc: "
+operator|+
+name|actURLMessage
+operator|.
+name|getInfo
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+break|break;
+case|case
+literal|301
+case|:
+comment|// moved permanently
+case|case
+literal|302
+case|:
+comment|// moved temporarily
+case|case
+literal|303
+case|:
+comment|// see other
+case|case
+literal|307
+case|:
+comment|// temporary redirect
+comment|/*                      *  this is a redirect. save it as a link and return.                      *  note that we could read the doc from the open connection here, but this could mean                      *  the filters were useless                      */
+name|realURL
+operator|=
+name|response
+operator|.
+name|getEffectiveURI
+argument_list|()
+operator|.
+name|toURL
+argument_list|()
+expr_stmt|;
+name|foundUrls
+operator|.
+name|add
+argument_list|(
+operator|new
+name|URLMessage
+argument_list|(
+name|realURL
+argument_list|,
+name|contextUrl
+argument_list|,
+name|URLMessage
+operator|.
+name|LINKTYPE_REDIRECT
+argument_list|,
+literal|""
+argument_list|,
+name|hostResolver
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|linkStorage
+operator|.
+name|storeLinks
+argument_list|(
+name|foundUrls
+argument_list|)
+expr_stmt|;
+break|break;
+default|default:
+comment|// this can be a 30x code that was resolved by the HTTPClient and is passed to us as 200
+comment|// we could turn this off and do it ourselves. But then we'd have to take care that
+comment|// we don't get into an endless redirection loop -> i.e. extend URLMessage by a counter
+comment|// at the moment we add the real URL to the message queue and mark it as a REDIRECT link
+comment|// that way it is added to the visited filter. Then we take care that we don't crawl it again
+comment|// the other possibility is that we receive a "Location:" header along with a 200 status code
+comment|// I have experienced that HTTPClient has an error with parsing this, so we do it ourselves
+comment|//String location = response.getHeader("Location");
+name|realURL
+operator|=
+name|response
+operator|.
+name|getEffectiveURI
+argument_list|()
+operator|.
+name|toURL
+argument_list|()
+expr_stmt|;
+comment|/*if(location != null)                     {                         //System.out.println("interesting: location header with url " + location);                         foundUrls.add(new URLMessage(new URL(location), contextUrl, URLMessage.LINKTYPE_REDIRECT, "", hostManager));                         this.base = this.contextUrl = location;                     }                     else*/
+if|if
+condition|(
+operator|!
+operator|(
+name|realURL
+operator|.
+name|equals
+argument_list|(
+name|contextUrl
+argument_list|)
+operator|)
+condition|)
+block|{
+comment|//System.out.println("interesting: redirect with url " + realURL + " -context: " + contextUrl);
+name|foundUrls
+operator|.
+name|add
+argument_list|(
+operator|new
+name|URLMessage
+argument_list|(
+name|realURL
+argument_list|,
+name|contextUrl
+argument_list|,
+name|URLMessage
+operator|.
+name|LINKTYPE_REDIRECT
+argument_list|,
+literal|""
+argument_list|,
+name|hostResolver
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|base
+operator|=
+name|this
+operator|.
+name|contextUrl
+operator|=
+name|realURL
+expr_stmt|;
+comment|//System.out.println(response);
+block|}
+if|if
+condition|(
+name|isIncremental
+condition|)
+block|{
+comment|// experimental
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ftask: -> was modified at "
+operator|+
+name|response
+operator|.
+name|getHeaderAsDate
+argument_list|(
+literal|"Last-Modified"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// read up to Constants.FETCHERTASK_MAXFILESIZE bytes into a byte array
 name|taskState
 operator|.
@@ -1055,6 +1434,30 @@ argument_list|(
 literal|"reading"
 argument_list|)
 expr_stmt|;
+name|realURL
+operator|=
+name|response
+operator|.
+name|getEffectiveURI
+argument_list|()
+operator|.
+name|toURL
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|contentType
+operator|!=
+literal|null
+operator|&&
+name|contentType
+operator|.
+name|startsWith
+argument_list|(
+literal|"text/html"
+argument_list|)
+condition|)
+block|{
 name|fullBuffer
 operator|=
 name|response
@@ -1066,22 +1469,12 @@ operator|.
 name|FETCHERTASK_MAXFILESIZE
 argument_list|)
 expr_stmt|;
-comment|// max. 2 MB
-name|base
-operator|=
-name|contextUrl
-operator|=
-name|response
+name|hi
 operator|.
-name|getEffectiveURI
-argument_list|()
-operator|.
-name|toURL
+name|releaseLock
 argument_list|()
 expr_stmt|;
-comment|// may have changed after a 30x result code
-comment|// to do: record the link between original and effective URL
-comment|// like this the effectiveURL may be crawled twice
+comment|// max. 2 MB
 if|if
 condition|(
 name|fullBuffer
@@ -1102,9 +1495,7 @@ operator|+=
 name|contentLength
 expr_stmt|;
 block|}
-block|}
-comment|//conn.stop();    // close connection. todo: Do some caching...
-comment|/*              *  conn.disconnect();              */
+comment|/*                          *  conn.disconnect();                          */
 if|if
 condition|(
 name|isInterrupted
@@ -1158,17 +1549,10 @@ operator|+
 literal|" bytes). Now scanning."
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|contentType
-operator|.
-name|startsWith
-argument_list|(
-literal|"text/html"
-argument_list|)
-condition|)
-block|{
+comment|// convert the bytes to Java characters
 comment|// ouch. I haven't found a better solution yet. just slower ones.
+comment|// remember: for better runtime performance avoid decorators, since they
+comment|// multiply function calls
 name|char
 index|[]
 name|fullCharBuffer
@@ -1237,7 +1621,78 @@ argument_list|)
 expr_stmt|;
 name|WebDocument
 name|d
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|isIncremental
+condition|)
+block|{
+name|d
+operator|=
+operator|(
+operator|(
+name|WebDocument
+operator|)
+name|this
+operator|.
+name|actURLMessage
+operator|)
+expr_stmt|;
+name|d
+operator|.
+name|setModified
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// file is new or newer
+name|d
+operator|.
+name|setUrl
+argument_list|(
+name|contextUrl
+argument_list|)
+expr_stmt|;
+name|d
+operator|.
+name|setMimeType
+argument_list|(
+name|contentType
+argument_list|)
+expr_stmt|;
+name|d
+operator|.
+name|setResultCode
+argument_list|(
+name|statusCode
+argument_list|)
+expr_stmt|;
+name|d
+operator|.
+name|setSize
+argument_list|(
+name|contentLength
+argument_list|)
+expr_stmt|;
+name|d
+operator|.
+name|setTitle
+argument_list|(
+name|title
+argument_list|)
+expr_stmt|;
+name|d
+operator|.
+name|setLastModified
+argument_list|(
+name|date
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|d
+operator|=
 operator|new
 name|WebDocument
 argument_list|(
@@ -1258,9 +1713,10 @@ name|title
 argument_list|,
 name|date
 argument_list|,
-name|hostManager
+name|hostResolver
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|d
 operator|.
 name|addField
@@ -1270,11 +1726,36 @@ argument_list|,
 name|fullCharBuffer
 argument_list|)
 expr_stmt|;
+name|d
+operator|.
+name|addField
+argument_list|(
+literal|"contentBytes"
+argument_list|,
+name|fullBuffer
+argument_list|)
+expr_stmt|;
 name|docStorage
 operator|.
 name|store
 argument_list|(
 name|d
+argument_list|)
+expr_stmt|;
+block|}
+name|log
+operator|.
+name|log
+argument_list|(
+literal|"scanned"
+argument_list|)
+expr_stmt|;
+block|}
+name|log
+operator|.
+name|log
+argument_list|(
+literal|"stored"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1315,24 +1796,18 @@ operator|.
 name|getReferer
 argument_list|()
 argument_list|,
-name|contentLength
+comment|/*                          *  contentLength                          */
+literal|0
 argument_list|,
 name|title
 argument_list|,
 name|date
 argument_list|,
-name|hostManager
+name|hostResolver
 argument_list|)
 decl_stmt|;
-name|d
-operator|.
-name|addField
-argument_list|(
-literal|"content"
-argument_list|,
-name|fullBuffer
-argument_list|)
-expr_stmt|;
+comment|//d.addField("content", fullBuffer);
+comment|//d.addField("content", null);
 name|docStorage
 operator|.
 name|store
@@ -1341,22 +1816,10 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
-name|log
-operator|.
-name|log
-argument_list|(
-literal|"scanned"
-argument_list|)
-expr_stmt|;
+break|break;
 block|}
-name|log
-operator|.
-name|log
-argument_list|(
-literal|"stored"
-argument_list|)
-expr_stmt|;
-block|}
+comment|/*              *  switch              */
+comment|//conn.stop();    // close connection. todo: Do some caching...
 block|}
 catch|catch
 parameter_list|(
@@ -1762,6 +2225,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|hi
+operator|.
+name|releaseLock
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|isInterrupted
@@ -1832,7 +2300,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * the interrupt method. not in use since the change to HTTPClient      * @TODO decide if we need this anymore      */
+comment|/**      * the interrupt method. not in use since the change to HTTPClient      *      * @TODO   decide if we need this anymore      */
 DECL|method|interrupt
 specifier|public
 name|void
@@ -1856,7 +2324,7 @@ literal|true
 expr_stmt|;
 comment|/*          *  try          *  {          *  if (conn != null)          *  {          *  ((HttpURLConnection) conn).disconnect();          *  System.out.println("FetcherTask: disconnected URL Connection");          *  conn = null;          *  }          *  if (in != null)          *  {          *  in.close();          *  / possibly hangs at close() .> KeepAliveStream.close() -> MeteredStream.skip()          *  System.out.println("FetcherTask: Closed Input Stream");          *  in = null;          *  }          *  }          *  catch (IOException e)          *  {          *  System.out.println("IOException while interrupting: ");          *  e.printStackTrace();          *  }          *  System.out.println("FetcherTask: Set all IOs to null");          */
 block|}
-comment|/**      * this is called whenever a link was found in the current document,      * Don't create too many objects here, as this will be called      * millions of times      *      * @param link  Description of the Parameter      */
+comment|/**      * this is called whenever a link was found in the current document, Don't      * create too many objects here, as this will be called millions of times      *      * @param link     Description of the Parameter      * @param anchor   Description of the Parameter      * @param isFrame  Description of the Parameter      */
 DECL|method|handleLink
 specifier|public
 name|void
@@ -1954,6 +2422,55 @@ name|link
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|url
+operator|.
+name|getPath
+argument_list|()
+operator|==
+literal|null
+operator|||
+name|url
+operator|.
+name|getPath
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|url
+operator|=
+operator|new
+name|URL
+argument_list|(
+name|url
+operator|.
+name|getProtocol
+argument_list|()
+argument_list|,
+name|url
+operator|.
+name|getHost
+argument_list|()
+argument_list|,
+name|url
+operator|.
+name|getPort
+argument_list|()
+argument_list|,
+literal|"/"
+operator|+
+name|url
+operator|.
+name|getFile
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|URLMessage
 name|urlMessage
 init|=
@@ -1965,10 +2482,18 @@ argument_list|,
 name|contextUrl
 argument_list|,
 name|isFrame
+condition|?
+name|URLMessage
+operator|.
+name|LINKTYPE_FRAME
+else|:
+name|URLMessage
+operator|.
+name|LINKTYPE_ANCHOR
 argument_list|,
 name|anchor
 argument_list|,
-name|hostManager
+name|hostResolver
 argument_list|)
 decl_stmt|;
 comment|//String urlString = urlMessage.getURLString();
@@ -2121,6 +2646,7 @@ name|title
 expr_stmt|;
 block|}
 comment|/*      *  public void notifyOpened(ObservableInputStream in, long timeElapsed)      *  {      *  }      *  public void notifyClosed(ObservableInputStream in, long timeElapsed)      *  {      *  }      *  public void notifyRead(ObservableInputStream in, long timeElapsed, int nrRead, int totalRead)      *  {      *  if(totalRead / ((double)timeElapsed)< 0.3) // weniger als 300 bytes/s      *  {      *  System.out.println("Task " + this.taskNr + " stalled at pos " + totalRead + " with " + totalRead / (timeElapsed / 1000.0) + " bytes/s");      *  }      *  }      *  public void notifyFinished(ObservableInputStream in, long timeElapsed, int totalRead)      *  {      *  /System.out.println("Task " + this.taskNr + " finished (" + totalRead + " bytes in " + timeElapsed + " ms with " + totalRead / (timeElapsed / 1000.0) + " bytes/s)");      *  }      */
+comment|/**      * Gets the bytesRead attribute of the FetcherTask object      *      * @return   The bytesRead value      */
 DECL|method|getBytesRead
 specifier|public
 name|long
