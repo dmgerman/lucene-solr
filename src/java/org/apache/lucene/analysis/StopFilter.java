@@ -220,10 +220,6 @@ argument_list|(
 name|position
 argument_list|)
 expr_stmt|;
-name|position
-operator|=
-literal|1
-expr_stmt|;
 return|return
 name|token
 return|;
