@@ -239,6 +239,8 @@ operator|new
 name|SimpleLogger
 argument_list|(
 literal|"RobotExclusionFilter"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|hostManager
@@ -250,7 +252,7 @@ operator|=
 operator|new
 name|ThreadPool
 argument_list|(
-literal|2
+literal|5
 argument_list|,
 operator|new
 name|REFThreadFactory
@@ -336,6 +338,8 @@ operator|.
 name|getUrl
 argument_list|()
 decl_stmt|;
+comment|//            String urlString = urlMsg.getNormalizedURLString();
+comment|//            URL nUrl = new URL(urlString);
 comment|//assert url != null;
 name|HostInfo
 name|h
@@ -348,11 +352,13 @@ name|url
 operator|.
 name|getHost
 argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|h
+init|)
+block|{
 if|if
 condition|(
 operator|!
@@ -404,11 +410,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|h
-init|)
-block|{
 comment|// isLoading...() and queuedRequest.insert() must be atomic
 if|if
 condition|(
@@ -611,7 +612,6 @@ name|ServerThread
 name|thread
 parameter_list|)
 block|{
-comment|// assert hostInfo != null;
 name|String
 name|threadName
 init|=
@@ -623,6 +623,40 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|hostInfo
+init|)
+block|{
+if|if
+condition|(
+name|hostInfo
+operator|.
+name|isRobotTxtChecked
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|logThreadSafe
+argument_list|(
+literal|"task "
+operator|+
+name|threadName
+operator|+
+literal|": already loaded "
+operator|+
+name|hostInfo
+operator|.
+name|getHostName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return;
+comment|// may happen 'cause check is not synchronized
+block|}
+block|}
+comment|// assert hostInfo != null;
 name|log
 operator|.
 name|logThreadSafe
@@ -725,6 +759,22 @@ block|{
 name|errorOccured
 operator|=
 literal|true
+expr_stmt|;
+name|log
+operator|.
+name|log
+argument_list|(
+literal|"task "
+operator|+
+name|threadName
+operator|+
+literal|": return code was "
+operator|+
+name|res
+operator|.
+name|getStatusCode
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -840,7 +890,14 @@ literal|"task "
 operator|+
 name|threadName
 operator|+
-literal|": unknown host. setting to unreachable"
+literal|": unknown host '"
+operator|+
+name|hostInfo
+operator|.
+name|getHostName
+argument_list|()
+operator|+
+literal|"'. setting to unreachable"
 argument_list|)
 expr_stmt|;
 name|errorOccured
@@ -873,7 +930,14 @@ literal|"task "
 operator|+
 name|threadName
 operator|+
-literal|": no route to. setting to unreachable"
+literal|": no route to '"
+operator|+
+name|hostInfo
+operator|.
+name|getHostName
+argument_list|()
+operator|+
+literal|"'. setting to unreachable"
 argument_list|)
 expr_stmt|;
 name|errorOccured
@@ -906,7 +970,14 @@ literal|"task "
 operator|+
 name|threadName
 operator|+
-literal|": connect exception. setting to unreachable"
+literal|": connect exception while connecting to '"
+operator|+
+name|hostInfo
+operator|.
+name|getHostName
+argument_list|()
+operator|+
+literal|"'. setting to unreachable"
 argument_list|)
 expr_stmt|;
 name|errorOccured
@@ -940,7 +1011,14 @@ literal|"task "
 operator|+
 name|threadName
 operator|+
-literal|": time out. setting to unreachable"
+literal|": time out while connecting to '"
+operator|+
+name|hostInfo
+operator|.
+name|getHostName
+argument_list|()
+operator|+
+literal|"'. setting to unreachable"
 argument_list|)
 expr_stmt|;
 name|errorOccured
@@ -1001,6 +1079,17 @@ condition|(
 name|errorOccured
 condition|)
 block|{
+name|log
+operator|.
+name|logThreadSafe
+argument_list|(
+literal|"task "
+operator|+
+name|threadName
+operator|+
+literal|": error occured. putback..."
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|hostInfo
@@ -1031,17 +1120,6 @@ literal|"task "
 operator|+
 name|threadName
 operator|+
-literal|": error occured"
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|logThreadSafe
-argument_list|(
-literal|"task "
-operator|+
-name|threadName
-operator|+
 literal|": now put "
 operator|+
 name|hostInfo
@@ -1052,13 +1130,7 @@ operator|+
 literal|" queueud requests back"
 argument_list|)
 expr_stmt|;
-name|hostInfo
-operator|.
-name|setLoadingRobotsTxt
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
+comment|//hostInfo.setLoadingRobotsTxt(false);
 name|putBackURLs
 argument_list|()
 expr_stmt|;
@@ -1066,6 +1138,17 @@ block|}
 block|}
 else|else
 block|{
+name|log
+operator|.
+name|logThreadSafe
+argument_list|(
+literal|"task "
+operator|+
+name|threadName
+operator|+
+literal|": finished. putback..."
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|hostInfo
@@ -1130,6 +1213,14 @@ name|void
 name|putBackURLs
 parameter_list|()
 block|{
+name|int
+name|qSize
+init|=
+name|hostInfo
+operator|.
+name|getQueueSize
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|hostInfo
@@ -1168,7 +1259,11 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": finished"
+literal|": finished. put "
+operator|+
+name|qSize
+operator|+
+literal|" URLs back"
 argument_list|)
 expr_stmt|;
 name|hostInfo
