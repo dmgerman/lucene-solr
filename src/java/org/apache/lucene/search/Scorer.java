@@ -168,7 +168,7 @@ name|int
 name|doc
 parameter_list|()
 function_decl|;
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} or {@link #skipTo(int)}    * is called the first time.    */
 DECL|method|score
 specifier|public
 specifier|abstract
