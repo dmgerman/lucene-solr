@@ -150,6 +150,8 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"dataDir"
+argument_list|,
+literal|"./bin"
 argument_list|)
 argument_list|)
 decl_stmt|;
