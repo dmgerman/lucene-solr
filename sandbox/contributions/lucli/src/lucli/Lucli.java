@@ -278,7 +278,7 @@ literal|"info"
 argument_list|,
 name|INFO
 argument_list|,
-literal|"Display info about the current Lucene Index. Example:info"
+literal|"Display info about the current Lucene index. Example: info"
 argument_list|)
 expr_stmt|;
 name|addCommand
@@ -327,7 +327,7 @@ literal|"help"
 argument_list|,
 name|HELP
 argument_list|,
-literal|"Display help about commands."
+literal|"Display help about commands"
 argument_list|)
 expr_stmt|;
 name|addCommand

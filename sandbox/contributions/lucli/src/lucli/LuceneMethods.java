@@ -465,9 +465,11 @@ name|index
 expr_stmt|;
 name|message
 argument_list|(
-literal|"Lucene CLI. Using directory:"
+literal|"Lucene CLI. Using directory '"
 operator|+
 name|indexName
+operator|+
+literal|"'. Type 'help' for instructions."
 argument_list|)
 expr_stmt|;
 block|}
@@ -885,6 +887,13 @@ argument_list|(
 name|currField
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|result
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -912,6 +921,17 @@ name|result
 index|[
 name|i
 index|]
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|message
+argument_list|(
+name|currField
+operator|+
+literal|":<not available>"
 argument_list|)
 expr_stmt|;
 block|}
