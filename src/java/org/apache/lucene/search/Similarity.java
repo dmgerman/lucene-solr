@@ -60,6 +60,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexWriter
 import|;
 end_import
@@ -482,7 +500,7 @@ name|float
 name|freq
 parameter_list|)
 function_decl|;
-comment|/** Computes a score factor for a simple term.    *    *<p>The default implementation is:<pre>    *   return idf(searcher.docFreq(term), searcher.maxDoc());    *</pre>    *    * Note that {@link Searcher#maxDoc()} is used instead of {@link    * IndexReader#numDocs()} because it is proportional to {@link    * Searcher#docFreq(Term)} , i.e., when one is inaccurate, so is the other,    * and in the same direction.    *    * @param term the term in question    * @param searcher the document collection being searched    * @return a score factor for the term    */
+comment|/** Computes a score factor for a simple term.    *    *<p>The default implementation is:<pre>    *   return idf(searcher.docFreq(term), searcher.maxDoc());    *</pre>    *    * Note that {@link Searcher#maxDoc()} is used instead of    * {@link IndexReader#numDocs()} because it is proportional to    * {@link Searcher#docFreq(Term)} , i.e., when one is inaccurate,    * so is the other, and in the same direction.    *    * @param term the term in question    * @param searcher the document collection being searched    * @return a score factor for the term    */
 DECL|method|idf
 specifier|public
 name|float
