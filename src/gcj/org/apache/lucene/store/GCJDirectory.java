@@ -59,6 +59,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// conserve address space by only mmapping the one index file that most
+comment|// impacts performance
+if|if
+condition|(
+name|name
+operator|.
+name|endsWith
+argument_list|(
+literal|".frq"
+argument_list|)
+condition|)
+block|{
 return|return
 operator|new
 name|GCJIndexInput
@@ -76,6 +88,18 @@ name|getPath
 argument_list|()
 argument_list|)
 return|;
+block|}
+else|else
+block|{
+return|return
+name|super
+operator|.
+name|openInput
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 block|}
 block|}
 end_class
