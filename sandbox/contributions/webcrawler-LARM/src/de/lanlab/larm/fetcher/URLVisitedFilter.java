@@ -163,7 +163,7 @@ name|urlString
 init|=
 name|urlMessage
 operator|.
-name|getURLString
+name|getNormalizedURLString
 argument_list|()
 decl_stmt|;
 if|if

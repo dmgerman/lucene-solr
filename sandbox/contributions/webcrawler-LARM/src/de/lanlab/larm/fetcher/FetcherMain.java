@@ -118,6 +118,20 @@ end_import
 
 begin_import
 import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|swing
@@ -535,6 +549,10 @@ argument_list|,
 name|isFrame
 argument_list|,
 literal|null
+argument_list|,
+name|this
+operator|.
+name|hostManager
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* ====================================================================  * The Apache Software License, Version 1.1  *  * Copyright (c) 2001 The Apache Software Foundation.  All rights  * reserved.  *  * Redistribution and use in source and binary forms, with or without  * modification, are permitted provided that the following conditions  * are met:  *  * 1. Redistributions of source code must retain the above copyright  *    notice, this list of conditions and the following disclaimer.  *  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in  *    the documentation and/or other materials provided with the  *    distribution.  *  * 3. The end-user documentation included with the redistribution,  *    if any, must include the following acknowledgment:  *       "This product includes software developed by the  *        Apache Software Foundation (http://www.apache.org/)."  *    Alternately, this acknowledgment may appear in the software itself,  *    if and wherever such third-party acknowledgments normally appear.  *  * 4. The names "Apache" and "Apache Software Foundation" and  *    "Apache Lucene" must not be used to endorse or promote products  *    derived from this software without prior written permission. For  *    written permission, please contact apache@apache.org.  *  * 5. Products derived from this software may not be called "Apache",  *    "Apache Lucene", nor may "Apache" appear in their name, without  *    prior written permission of the Apache Software Foundation.  *  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  * SUCH DAMAGE.  * ====================================================================  *  * This software consists of voluntary contributions made by many  * individuals on behalf of the Apache Software Foundation.  For more  * information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
+comment|/*  *  ====================================================================  *  The Apache Software License, Version 1.1  *  *  Copyright (c) 2001 The Apache Software Foundation.  All rights  *  reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by the  *  Apache Software Foundation (http://www.apache.org/)."  *  Alternately, this acknowledgment may appear in the software itself,  *  if and wherever such third-party acknowledgments normally appear.  *  *  4. The names "Apache" and "Apache Software Foundation" and  *  "Apache Lucene" must not be used to endorse or promote products  *  derived from this software without prior written permission. For  *  written permission, please contact apache@apache.org.  *  *  5. Products derived from this software may not be called "Apache",  *  "Apache Lucene", nor may "Apache" appear in their name, without  *  prior written permission of the Apache Software Foundation.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR  *  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT  *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF  *  USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND  *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,  *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF  *  SUCH DAMAGE.  *  ====================================================================  *  *  This software consists of voluntary contributions made by many  *  individuals on behalf of the Apache Software Foundation.  For more  *  information on the Apache Software Foundation, please see  *<http://www.apache.org/>.  */
 end_comment
 
 begin_package
@@ -50,8 +50,36 @@ name|URLUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|URLNormalizer
+import|;
+end_import
+
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|HostManager
+import|;
+end_import
+
 begin_comment
-comment|/**  * represents a URL which is passed around in the messageHandler  * @version $Id$  */
+comment|/**  * represents a URL which is passed around in the messageHandler  *  * @author    Administrator  * @created   14. Juni 2002  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -70,30 +98,50 @@ specifier|protected
 name|URL
 name|url
 decl_stmt|;
+comment|/**      * Description of the Field      */
 DECL|field|urlString
 specifier|protected
+specifier|volatile
 name|String
 name|urlString
 decl_stmt|;
+comment|/**      * referer or null      */
 DECL|field|referer
 specifier|protected
 name|URL
 name|referer
 decl_stmt|;
+comment|/**      * externalized referer URL, to prevent multiple calls to url.toExternalForm()      */
 DECL|field|refererString
 specifier|protected
+specifier|volatile
 name|String
 name|refererString
+decl_stmt|;
+comment|/**      * externalized referer URL, to prevent multiple calls to url.toExternalForm()      */
+DECL|field|refererNormalizedString
+specifier|protected
+specifier|volatile
+name|String
+name|refererNormalizedString
+decl_stmt|;
+comment|/**      * normalized URL, as defined by {@link de.lanlab.larm.net.URLNormalizer}      * (lower case, index.* removed, all characters except alphanumeric ones escaped)      */
+DECL|field|normalizedURLString
+specifier|protected
+name|String
+name|normalizedURLString
 decl_stmt|;
 DECL|field|isFrame
 name|boolean
 name|isFrame
 decl_stmt|;
+comment|/**      * anchor text, as in&lt;a href="..."&gt;Anchor&lt;/a&gt;      */
 DECL|field|anchor
 specifier|protected
 name|String
 name|anchor
 decl_stmt|;
+comment|/**      * Constructor for the URLMessage object      *      * @param url      Description of the Parameter      * @param referer  Description of the Parameter      * @param isFrame  Description of the Parameter      * @param anchor   Description of the Parameter      */
 DECL|method|URLMessage
 specifier|public
 name|URLMessage
@@ -109,6 +157,9 @@ name|isFrame
 parameter_list|,
 name|String
 name|anchor
+parameter_list|,
+name|HostManager
+name|hostManager
 parameter_list|)
 block|{
 comment|//super();
@@ -160,6 +211,30 @@ literal|null
 expr_stmt|;
 name|this
 operator|.
+name|refererNormalizedString
+operator|=
+name|referer
+operator|!=
+literal|null
+condition|?
+name|URLUtils
+operator|.
+name|toExternalFormNoRef
+argument_list|(
+name|URLNormalizer
+operator|.
+name|normalize
+argument_list|(
+name|referer
+argument_list|,
+name|hostManager
+argument_list|)
+argument_list|)
+else|:
+literal|null
+expr_stmt|;
+name|this
+operator|.
 name|isFrame
 operator|=
 name|isFrame
@@ -176,8 +251,40 @@ name|anchor
 else|:
 literal|""
 expr_stmt|;
+name|this
+operator|.
+name|normalizedURLString
+operator|=
+name|URLUtils
+operator|.
+name|toExternalFormNoRef
+argument_list|(
+name|URLNormalizer
+operator|.
+name|normalize
+argument_list|(
+name|url
+argument_list|,
+name|hostManager
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//this.normalizedURLString = URLNormalizer.
 comment|//System.out.println("" + refererString + " -> " + urlString);
 block|}
+DECL|method|getNormalizedURLString
+specifier|public
+name|String
+name|getNormalizedURLString
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|normalizedURLString
+return|;
+block|}
+comment|/**      * Gets the url attribute of the URLMessage object      *      * @return   The url value      */
 DECL|method|getUrl
 specifier|public
 name|URL
@@ -190,6 +297,7 @@ operator|.
 name|url
 return|;
 block|}
+comment|/**      * Gets the referer attribute of the URLMessage object      *      * @return   The referer value      */
 DECL|method|getReferer
 specifier|public
 name|URL
@@ -202,6 +310,7 @@ operator|.
 name|referer
 return|;
 block|}
+comment|/**      * Description of the Method      *      * @return   Description of the Return Value      */
 DECL|method|toString
 specifier|public
 name|String
@@ -212,6 +321,7 @@ return|return
 name|urlString
 return|;
 block|}
+comment|/**      * Gets the uRLString attribute of the URLMessage object      *      * @return   The uRLString value      */
 DECL|method|getURLString
 specifier|public
 name|String
@@ -222,6 +332,7 @@ return|return
 name|urlString
 return|;
 block|}
+comment|/**      * Gets the refererString attribute of the URLMessage object      *      * @return   The refererString value      */
 DECL|method|getRefererString
 specifier|public
 name|String
@@ -232,6 +343,7 @@ return|return
 name|refererString
 return|;
 block|}
+comment|/**      * Gets the anchor attribute of the URLMessage object      *      * @return   The anchor value      */
 DECL|method|getAnchor
 specifier|public
 name|String
@@ -242,6 +354,7 @@ return|return
 name|anchor
 return|;
 block|}
+comment|/**      * Description of the Method      *      * @return   Description of the Return Value      */
 DECL|method|hashCode
 specifier|public
 name|int
@@ -255,6 +368,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+comment|/**      * Description of the Method      *      * @param out              Description of the Parameter      * @exception IOException  Description of the Exception      */
 DECL|method|writeObject
 specifier|private
 name|void
@@ -298,7 +412,22 @@ argument_list|(
 name|anchor
 argument_list|)
 expr_stmt|;
+name|out
+operator|.
+name|writeUTF
+argument_list|(
+name|refererNormalizedString
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|writeUTF
+argument_list|(
+name|normalizedURLString
+argument_list|)
+expr_stmt|;
 block|}
+comment|/**      * Description of the Method      *      * @param in                          Description of the Parameter      * @exception IOException             Description of the Exception      * @exception ClassNotFoundException  Description of the Exception      */
 DECL|method|readObject
 specifier|private
 name|void
@@ -364,7 +493,22 @@ operator|.
 name|readUTF
 argument_list|()
 expr_stmt|;
+name|refererNormalizedString
+operator|=
+name|in
+operator|.
+name|readUTF
+argument_list|()
+expr_stmt|;
+name|normalizedURLString
+operator|=
+name|in
+operator|.
+name|readUTF
+argument_list|()
+expr_stmt|;
 block|}
+comment|/**      * Gets the info attribute of the URLMessage object      *      * @return   The info value      */
 DECL|method|getInfo
 specifier|public
 name|String
@@ -385,6 +529,13 @@ operator|+
 literal|"\t"
 operator|+
 name|urlString
+operator|+
+literal|"\t"
+operator|+
+name|this
+operator|.
+name|getNormalizedURLString
+argument_list|()
 operator|+
 literal|"\t"
 operator|+

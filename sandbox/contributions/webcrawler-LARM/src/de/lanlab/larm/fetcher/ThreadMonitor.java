@@ -88,6 +88,20 @@ name|SimpleLoggerManager
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * this monitor takes a sample of every thread every x milliseconds,  * and logs a lot of information. In the near past it has evolved into the multi  * purpose monitoring and maintenance facility.  * At the moment it prints status information  * to log files and to the console  * @TODO this can be done better. Probably with an agent where different services  * can be registered to be called every X seconds  * @version $Id$  */
 end_comment

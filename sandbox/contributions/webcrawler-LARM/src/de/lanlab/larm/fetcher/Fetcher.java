@@ -116,6 +116,20 @@ name|FetcherTask
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * filter class; the Fetcher is the main class which keeps the ThreadPool that  * gets the documents. It should be placed at the very end of the MessageQueue,  * so that all filtering can be made beforehand.  *  * @author    Clemens Marschner  * @version $Id$  */
 end_comment

@@ -44,6 +44,20 @@ name|State
 import|;
 end_import
 
+begin_import
+import|import
+name|de
+operator|.
+name|lanlab
+operator|.
+name|larm
+operator|.
+name|net
+operator|.
+name|HostManager
+import|;
+end_import
+
 begin_comment
 comment|/**  * a server thread for the thread pool that records the number  * of bytes read and the number of tasks run  * mainly for statistical purposes and to keep most of the information a task needs  * static  * @version $Id$  */
 end_comment
