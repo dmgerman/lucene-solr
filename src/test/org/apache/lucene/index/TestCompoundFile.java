@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -66,7 +76,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|*
+name|OutputStream
 import|;
 end_import
 
@@ -78,9 +88,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|store
 operator|.
-name|WhitespaceAnalyzer
+name|Directory
 import|;
 end_import
 
@@ -92,9 +102,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|store
 operator|.
-name|Document
+name|InputStream
 import|;
 end_import
 
@@ -106,9 +116,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|store
 operator|.
-name|Field
+name|FSDirectory
 import|;
 end_import
 
@@ -120,23 +130,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriter
+name|_TestHelper
 import|;
 end_import
 
@@ -188,29 +184,6 @@ comment|//        TestRunner.run (new TestCompoundFile("testFileNotFound"));
 comment|//        TestRunner.run (new TestCompoundFile("testReadPastEOF"));
 comment|//        TestRunner.run (new TestCompoundFile("testIWCreate"));
 block|}
-DECL|method|TestCompoundFile
-specifier|public
-name|TestCompoundFile
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|TestCompoundFile
-specifier|public
-name|TestCompoundFile
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 DECL|field|dir
 specifier|private
 name|Directory
@@ -231,7 +204,18 @@ name|FSDirectory
 operator|.
 name|getDirectory
 argument_list|(
+operator|new
+name|File
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tempDir"
+argument_list|)
+argument_list|,
 literal|"testIndex"
+argument_list|)
 argument_list|,
 literal|true
 argument_list|)

@@ -217,7 +217,7 @@ specifier|private
 name|LinkedList
 name|files
 decl_stmt|;
-comment|/** Set the test case. This test case needs       *  a few text files created in the current working directory.      */
+comment|/** Set the test case. This test case needs      *  a few text files created in the current working directory.      */
 DECL|method|setUp
 specifier|public
 name|void
@@ -231,6 +231,13 @@ operator|=
 operator|new
 name|File
 argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tempDir"
+argument_list|)
+argument_list|,
 literal|"TestDoc"
 argument_list|)
 expr_stmt|;
@@ -404,7 +411,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** This test executes a number of merges and compares the contents of      *  the segments created when using compound file or not using one.      *        *  TODO: the original test used to print the segment contents to System.out      *        for visual validation. To have the same effect, a new method      *        checkSegment(String name, ...) should be created that would       *        assert various things about the segment.      */
+comment|/** This test executes a number of merges and compares the contents of      *  the segments created when using compound file or not using one.      *      *  TODO: the original test used to print the segment contents to System.out      *        for visual validation. To have the same effect, a new method      *        checkSegment(String name, ...) should be created that would      *        assert various things about the segment.      */
 DECL|method|testIndexAndMerge
 specifier|public
 name|void
