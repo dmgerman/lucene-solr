@@ -19,7 +19,7 @@ comment|/* ==================================================================== 
 end_comment
 
 begin_comment
-comment|/**  * Russian stemming algorithm implementation (see http://snowball.sourceforge.net for detailed description).  * Creation date: (12/02/2002 10:34:15 PM)  * @author Boris Okner  * @version $Id$  */
+comment|/**  * Russian stemming algorithm implementation (see http://snowball.sourceforge.net for detailed description).  *  * @author  Boris Okner, b.okner@rogers.com  * @version $Id$  */
 end_comment
 
 begin_class

@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Russian language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *  * @author    Boris Okner  * @version $Id  */
+comment|/**  * Analyzer for Russian language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *  * @author  Boris Okner, b.okner@rogers.com  * @version $Id$  */
 end_comment
 
 begin_class
