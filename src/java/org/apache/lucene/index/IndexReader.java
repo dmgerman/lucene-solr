@@ -921,6 +921,16 @@ return|return
 name|n
 return|;
 block|}
+comment|/** Undeletes all documents currently marked as deleted in this index.*/
+DECL|method|undeleteAll
+specifier|public
+specifier|abstract
+name|void
+name|undeleteAll
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    */
 DECL|method|close
 specifier|public
