@@ -581,7 +581,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/** The maximum number of terms that will be indexed for a single field in a     document.  This limits the amount of memory required for indexing, so that     collections with very large files will not crash the indexing process by     running out of memory.<p>By default, no more than 10,000 terms will be indexed for a field. */
+comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.   */
 DECL|field|maxFieldLength
 specifier|public
 name|int
@@ -589,7 +589,7 @@ name|maxFieldLength
 init|=
 literal|10000
 decl_stmt|;
-comment|/** Adds a document to this index.*/
+comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #maxFieldLength} terms for a given field, the remainder are    * discarded.    */
 DECL|method|addDocument
 specifier|public
 name|void
