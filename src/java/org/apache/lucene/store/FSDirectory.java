@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Straight forward implementation of Directory as a directory of files.  * If the system property 'disableLocks' has the String value of "true", lock  * creation will be disabled.  *  * @see Directory  * @author Doug Cutting  */
+comment|/**  * Straightforward implementation of Directory as a directory of files.  * If the system property 'disableLuceneLocks' has the String value of "true",  * lock creation will be disabled.  *  * @see Directory  * @author Doug Cutting  */
 end_comment
 
 begin_class
@@ -116,7 +116,7 @@ name|Boolean
 operator|.
 name|getBoolean
 argument_list|(
-literal|"disableLocks"
+literal|"disableLuceneLocks"
 argument_list|)
 operator|||
 name|Constants
@@ -735,7 +735,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Constructs a {@link Lock} with the specified name.    * If JDK 1.1 is used the lock file is not really made.    * If system property<I>disableLocks</I> has the value of 'true'    * the lock will not be created.  Assigning this property any other value    * will<B>not</B> prevent creation of locks.    *<BR>    * This is useful for using Lucene on read-only medium, such as CD-ROM.    *    * @param name the name of the lock file    * @return an instance of<code>Lock</code> holding the lock    */
+comment|/**    * Constructs a {@link Lock} with the specified name.    * If JDK 1.1 is used the lock file is not really made.    * If system property<I>disableLuceneLocks</I> has the value of 'true'    * the lock will not be created.  Assigning this property any other value    * will<B>not</B> prevent creation of locks.    *<BR>    * This is useful for using Lucene on read-only medium, such as CD-ROM.    *    * @param name the name of the lock file    * @return an instance of<code>Lock</code> holding the lock    */
 DECL|method|makeLock
 specifier|public
 specifier|final
