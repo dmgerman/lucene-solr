@@ -108,6 +108,9 @@ name|CUSTOM
 init|=
 literal|9
 decl_stmt|;
+comment|// IMPLEMENTATION NOTE: the FieldCache.STRING_INDEX is in the same "namespace"
+comment|// as the above static int values.  Any new values must not have the same value
+comment|// as FieldCache.STRING_INDEX.
 comment|/** Represents sorting by document score (relevancy). */
 DECL|field|FIELD_SCORE
 specifier|public

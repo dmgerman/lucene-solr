@@ -571,11 +571,11 @@ else|:
 literal|null
 decl_stmt|;
 specifier|final
-name|MultiFieldSortedHitQueue
+name|FieldSortedHitQueue
 name|hq
 init|=
 operator|new
-name|MultiFieldSortedHitQueue
+name|FieldSortedHitQueue
 argument_list|(
 name|reader
 argument_list|,

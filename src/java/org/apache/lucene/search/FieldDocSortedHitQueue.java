@@ -378,6 +378,31 @@ index|[
 name|i
 index|]
 decl_stmt|;
+if|if
+condition|(
+name|s2
+operator|==
+literal|null
+condition|)
+name|c
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|// could be null if there are
+elseif|else
+if|if
+condition|(
+name|s1
+operator|==
+literal|null
+condition|)
+name|c
+operator|=
+literal|1
+expr_stmt|;
+comment|// no terms in the given field
+else|else
 name|c
 operator|=
 name|s2
@@ -673,6 +698,31 @@ index|[
 name|i
 index|]
 decl_stmt|;
+if|if
+condition|(
+name|s1
+operator|==
+literal|null
+condition|)
+name|c
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|// could be null if there are
+elseif|else
+if|if
+condition|(
+name|s2
+operator|==
+literal|null
+condition|)
+name|c
+operator|=
+literal|1
+expr_stmt|;
+comment|// no terms in the given field
+else|else
 name|c
 operator|=
 name|s1
