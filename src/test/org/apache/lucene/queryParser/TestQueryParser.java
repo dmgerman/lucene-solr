@@ -975,20 +975,20 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
-literal|"türm term term"
+literal|"tÃ¼rm term term"
 argument_list|,
 literal|null
 argument_list|,
-literal|"türm term term"
+literal|"tÃ¼rm term term"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
-literal|"ümlaut"
+literal|"Ã¼mlaut"
 argument_list|,
 literal|null
 argument_list|,
-literal|"ümlaut"
+literal|"Ã¼mlaut"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
