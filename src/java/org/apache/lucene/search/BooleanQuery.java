@@ -137,7 +137,7 @@ specifier|public
 name|BooleanQuery
 parameter_list|()
 block|{}
-comment|/** Adds a clause to a boolean query.  Clauses may be:    *<ul>    *<li><code>required</code> which means that documents which<i>do not</i>    * match this sub-query will<i>not</i> match the boolean query;    *<li><code>prohibited</code> which means that documents which<i>do</i>    * match this sub-query will<i>not</i> match the boolean query; or    *<li>neither, in which case matched documents are neither prohibited from    * nor required to match the sub-query. However, a document must match at    * least 1 sub-query to match the boolean query.    *</ul>    * It is an error to specify a clause as both<code>required</code> and    *<code>prohibited</code>.    *    * @see #getMaxClauseCount()    */
+comment|/** Adds a clause to a boolean query.  Clauses may be:    *<ul>    *<li><code>required</code> which means that documents which<i>do not</i>    * match this sub-query will<i>not</i> match the boolean query;    *<li><code>prohibited</code> which means that documents which<i>do</i>    * match this sub-query will<i>not</i> match the boolean query; or    *<li>neither, in which case matched documents are neither prohibited from    * nor required to match the sub-query. However, a document must match at    * least 1 sub-query to match the boolean query.    *</ul>    * It is an error to specify a clause as both<code>required</code> and    *<code>prohibited</code>.    *    * @deprecated use {@link #add(Query, BooleanClause.Occur)} instead:    *<ul>    *<li>For add(query, true, false) use add(query, BooleanClause.Occur.MUST)    *<li>For add(query, false, false) use add(query, BooleanClause.Occur.SHOULD)    *<li>For add(query, false, true) use add(query, BooleanClause.Occur.MUST_NOT)    *</ul>    */
 DECL|method|add
 specifier|public
 name|void
@@ -167,7 +167,34 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Adds a clause to a boolean query.     * @see #getMaxClauseCount()    */
+comment|/** Adds a clause to a boolean query.    *    * @throws TooManyClauses if the new number of clauses exceeds the maximum clause number    * @see #getMaxClauseCount()    */
+DECL|method|add
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|BooleanClause
+operator|.
+name|Occur
+name|occur
+parameter_list|)
+block|{
+name|add
+argument_list|(
+operator|new
+name|BooleanClause
+argument_list|(
+name|query
+argument_list|,
+name|occur
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Adds a clause to a boolean query.    * @throws TooManyClauses if the new number of clauses exceeds the maximum clause number    * @see #getMaxClauseCount()    */
 DECL|method|add
 specifier|public
 name|void
@@ -296,7 +323,8 @@ name|add
 argument_list|(
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 operator|.
 name|createWeight
 argument_list|(
@@ -391,7 +419,8 @@ condition|(
 operator|!
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 condition|)
 name|sum
 operator|+=
@@ -479,7 +508,8 @@ condition|(
 operator|!
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 condition|)
 name|w
 operator|.
@@ -553,7 +583,8 @@ condition|(
 operator|!
 name|c
 operator|.
-name|required
+name|isRequired
+argument_list|()
 condition|)
 name|allRequired
 operator|=
@@ -563,7 +594,8 @@ if|if
 condition|(
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 operator|instanceof
 name|BooleanQuery
 condition|)
@@ -735,11 +767,13 @@ name|subScorer
 argument_list|,
 name|c
 operator|.
-name|required
+name|isRequired
+argument_list|()
 argument_list|,
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 argument_list|)
 expr_stmt|;
 elseif|else
@@ -747,7 +781,8 @@ if|if
 condition|(
 name|c
 operator|.
-name|required
+name|isRequired
+argument_list|()
 condition|)
 return|return
 literal|null
@@ -861,7 +896,8 @@ condition|(
 operator|!
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 condition|)
 name|maxCoord
 operator|++
@@ -881,7 +917,8 @@ condition|(
 operator|!
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 condition|)
 block|{
 name|sumExpl
@@ -920,7 +957,8 @@ if|if
 condition|(
 name|c
 operator|.
-name|required
+name|isRequired
+argument_list|()
 condition|)
 block|{
 return|return
@@ -1101,7 +1139,8 @@ condition|(
 operator|!
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 condition|)
 block|{
 comment|// just return clause
@@ -1110,7 +1149,8 @@ name|query
 init|=
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 operator|.
 name|rewrite
 argument_list|(
@@ -1133,7 +1173,8 @@ name|query
 operator|==
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 condition|)
 comment|// if rewrite was no-op
 name|query
@@ -1208,7 +1249,8 @@ name|query
 init|=
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 operator|.
 name|rewrite
 argument_list|(
@@ -1221,7 +1263,8 @@ name|query
 operator|!=
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 condition|)
 block|{
 comment|// clause rewrote: must clone
@@ -1254,11 +1297,8 @@ name|query
 argument_list|,
 name|c
 operator|.
-name|required
-argument_list|,
-name|c
-operator|.
-name|prohibited
+name|getOccur
+argument_list|()
 argument_list|)
 argument_list|,
 name|i
@@ -1387,7 +1427,8 @@ if|if
 condition|(
 name|c
 operator|.
-name|prohibited
+name|isProhibited
+argument_list|()
 condition|)
 name|buffer
 operator|.
@@ -1401,7 +1442,8 @@ if|if
 condition|(
 name|c
 operator|.
-name|required
+name|isRequired
+argument_list|()
 condition|)
 name|buffer
 operator|.
@@ -1415,7 +1457,8 @@ name|subQuery
 init|=
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1438,7 +1481,8 @@ name|append
 argument_list|(
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 operator|.
 name|toString
 argument_list|(
@@ -1461,7 +1505,8 @@ name|append
 argument_list|(
 name|c
 operator|.
-name|query
+name|getQuery
+argument_list|()
 operator|.
 name|toString
 argument_list|(
