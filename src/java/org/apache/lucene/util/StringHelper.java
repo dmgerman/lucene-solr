@@ -13,7 +13,11 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Methods for manipulating strings  *  **/
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
+begin_comment
+comment|/**  * Methods for manipulating strings.  *  * $Id$  */
 end_comment
 
 begin_class
@@ -23,7 +27,7 @@ specifier|abstract
 class|class
 name|StringHelper
 block|{
-comment|/**    *     * @param s1 The first string to compare    * @param s2 The second string to compare    * @return The first position where the two strings differ.    */
+comment|/**    * Compares two strings, character by character, and returns the    * first position where the two strings differ from one another.    *    * @param s1 The first string to compare    * @param s2 The second string to compare    * @return The first position where the two strings differ.    */
 DECL|method|stringDifference
 specifier|public
 specifier|static
