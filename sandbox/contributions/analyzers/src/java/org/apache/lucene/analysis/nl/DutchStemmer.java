@@ -24,27 +24,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|*
+name|HashMap
 import|;
 end_import
 
@@ -58,7 +38,7 @@ specifier|public
 class|class
 name|DutchStemmer
 block|{
-comment|/** 	 * Buffer for the terms while stemming them. 	 */
+comment|/**    * Buffer for the terms while stemming them.    */
 DECL|field|sb
 specifier|private
 name|StringBuffer
@@ -75,7 +55,7 @@ name|_removedE
 decl_stmt|;
 DECL|field|_stemDict
 specifier|private
-name|Hashtable
+name|HashMap
 name|_stemDict
 decl_stmt|;
 DECL|field|_R1
@@ -89,7 +69,7 @@ name|int
 name|_R2
 decl_stmt|;
 comment|//TODO convert to internal
-comment|/* 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term The term that should be stemmed. 	 * @return Discriminator for<tt>term</tt> 	 */
+comment|/*    * Stemms the given term to an unique<tt>discriminator</tt>.    *    * @param term The term that should be stemmed.    * @return Discriminator for<tt>term</tt>    */
 DECL|method|stem
 specifier|public
 name|String
@@ -125,7 +105,7 @@ literal|null
 operator|&&
 name|_stemDict
 operator|.
-name|contains
+name|containsKey
 argument_list|(
 name|term
 argument_list|)
@@ -555,7 +535,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Delete suffix e if in R1 and 	 * preceded by a non-vowel, and then undouble the ending 	 * 	 * @param sb String being stemmed 	 */
+comment|/**    * Delete suffix e if in R1 and    * preceded by a non-vowel, and then undouble the ending    *    * @param sb String being stemmed    */
 DECL|method|step2
 specifier|private
 name|void
@@ -646,7 +626,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Delete "heid" 	 * 	 * @param sb String being stemmed 	 */
+comment|/**    * Delete "heid"    *    * @param sb String being stemmed    */
 DECL|method|step3a
 specifier|private
 name|void
@@ -728,7 +708,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *<p>A d-suffix, or derivational suffix, enables a new word, 	 *  often with a different grammatical category, or with a different 	 *  sense, to be built from another word. Whether a d-suffix can be 	 *  attached is discovered not from the rules of grammar, but by 	 *  referring to a dictionary. So in English, ness can be added to 	 *  certain adjectives to form corresponding nouns (littleness, 	 *  kindness, foolishness ...) but not to all adjectives  	 *  (not for example, to big, cruel, wise ...) d-suffixes can be 	 *  used to change meaning, often in rather exotic ways.</p> 	 *  Remove "ing", "end", "ig", "lijk", "baar" and "bar" 	 * 	 * @param sb String being stemmed 	 */
+comment|/**    *<p>A d-suffix, or derivational suffix, enables a new word,    * often with a different grammatical category, or with a different    * sense, to be built from another word. Whether a d-suffix can be    * attached is discovered not from the rules of grammar, but by    * referring to a dictionary. So in English, ness can be added to    * certain adjectives to form corresponding nouns (littleness,    * kindness, foolishness ...) but not to all adjectives    * (not for example, to big, cruel, wise ...) d-suffixes can be    * used to change meaning, often in rather exotic ways.</p>    * Remove "ing", "end", "ig", "lijk", "baar" and "bar"    *    * @param sb String being stemmed    */
 DECL|method|step3b
 specifier|private
 name|void
@@ -758,6 +738,8 @@ argument_list|()
 decl_stmt|;
 name|int
 name|index
+init|=
+literal|0
 decl_stmt|;
 if|if
 condition|(
@@ -1043,7 +1025,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|/** 	 * undouble vowel 	 * If the words ends CVD, where C is a non-vowel, D is a non-vowel other than I, and V is double a, e, o or u, remove one of the vowels from V (for example, maan -> man, brood -> brod). 	 * 	 * @param sb String being stemmed 	 */
+comment|/**    * undouble vowel    * If the words ends CVD, where C is a non-vowel, D is a non-vowel other than I, and V is double a, e, o or u, remove one of the vowels from V (for example, maan -> man, brood -> brod).    *    * @param sb String being stemmed    */
 DECL|method|step4
 specifier|private
 name|void
@@ -1176,7 +1158,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Checks if a term could be stemmed. 	 * 	 * @return true if, and only if, the given term consists in letters. 	 */
+comment|/**    * Checks if a term could be stemmed.    *    * @return true if, and only if, the given term consists in letters.    */
 DECL|method|isStemmable
 specifier|private
 name|boolean
@@ -1227,7 +1209,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Substitute ä, ë, ï, ö, ü, á , é, í, ó, ú 	 */
+comment|/**    * Substitute ä, ë, ï, ö, ü, á , é, í, ó, ú    */
 DECL|method|substitute
 specifier|private
 name|void
@@ -1982,7 +1964,7 @@ DECL|method|setStemDictionary
 name|void
 name|setStemDictionary
 parameter_list|(
-name|Hashtable
+name|HashMap
 name|dict
 parameter_list|)
 block|{

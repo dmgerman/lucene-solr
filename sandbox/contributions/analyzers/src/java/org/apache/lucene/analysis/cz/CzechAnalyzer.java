@@ -142,6 +142,16 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Analyzer for Czech language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author    Lukas Zapletal [lzap@root.cz]  */
 end_comment
@@ -512,12 +522,8 @@ decl_stmt|;
 comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
 DECL|field|stoptable
 specifier|private
-name|Hashtable
+name|HashSet
 name|stoptable
-init|=
-operator|new
-name|Hashtable
-argument_list|()
 decl_stmt|;
 comment|/** 	 * Builds an analyzer. 	 */
 DECL|method|CzechAnalyzer
@@ -529,7 +535,7 @@ name|stoptable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|STOP_WORDS
 argument_list|)
@@ -549,18 +555,38 @@ name|stoptable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 */
+comment|/** 	 * Builds an analyzer with the given stop words.    *    * @deprecated 	 */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
 parameter_list|(
 name|Hashtable
+name|stopwords
+parameter_list|)
+block|{
+name|stoptable
+operator|=
+operator|new
+name|HashSet
+argument_list|(
+name|stopwords
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|CzechAnalyzer
+specifier|public
+name|CzechAnalyzer
+parameter_list|(
+name|HashSet
 name|stopwords
 parameter_list|)
 block|{
@@ -580,11 +606,18 @@ parameter_list|)
 block|{
 name|stoptable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|WordlistLoader
 operator|.
 name|getWordtable
 argument_list|(
 name|stopwords
+argument_list|)
+operator|.
+name|keySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -611,7 +644,7 @@ block|{
 name|stoptable
 operator|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 expr_stmt|;
 return|return;
@@ -622,7 +655,7 @@ comment|// clear any previous table (if present)
 name|stoptable
 operator|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 expr_stmt|;
 name|InputStreamReader
@@ -681,10 +714,8 @@ condition|)
 block|{
 name|stoptable
 operator|.
-name|put
+name|add
 argument_list|(
-name|word
-argument_list|,
 name|word
 argument_list|)
 expr_stmt|;

@@ -94,35 +94,11 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
 operator|.
 name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|*
 import|;
 end_import
 
@@ -142,12 +118,22 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
 import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Edwin de Jonge  *  * Analyzer for Dutch language. Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  * As start for the Analyzer the German Analyzer was used. The stemming algorithm  * implemented can be found at @link  */
+comment|/**  * @author Edwin de Jonge  *<p/>  *         Analyzer for Dutch language. Supports an external list of stopwords (words that  *         will not be indexed at all), an external list of exclusions (word that will  *         not be stemmed, but indexed) and an external list of word-stem pairs that overrule  *         the algorithm (dictionary stemming).  *         A default set of stopwords is used unless an alternative list is specified, the  *         exclusion list is empty by default.  *         As start for the Analyzer the German Analyzer was used. The stemming algorithm  *         implemented can be found at @link  */
 end_comment
 
 begin_class
@@ -158,7 +144,7 @@ name|DutchAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** 	 * List of typical Dutch stopwords. 	 */
+comment|/**    * List of typical Dutch stopwords.    */
 DECL|field|DUTCH_STOP_WORDS
 specifier|private
 name|String
@@ -369,36 +355,36 @@ block|,
 literal|"andere"
 block|}
 decl_stmt|;
-comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
+comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stoptable
 specifier|private
-name|Hashtable
+name|HashSet
 name|stoptable
 init|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
+comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|excltable
 specifier|private
-name|Hashtable
+name|HashSet
 name|excltable
 init|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 decl_stmt|;
 DECL|field|_stemdict
 specifier|private
-name|Hashtable
+name|HashMap
 name|_stemdict
 init|=
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Builds an analyzer. 	 */
+comment|/**    * Builds an analyzer.    */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
@@ -408,7 +394,7 @@ name|stoptable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|DUTCH_STOP_WORDS
 argument_list|)
@@ -452,7 +438,7 @@ literal|"kinder"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 * 	 * @param stopwords 	 */
+comment|/**    * Builds an analyzer with the given stop words.    *    * @param stopwords    */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
@@ -466,18 +452,18 @@ name|stoptable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 * 	 * @param stopwords 	 */
+comment|/**    * Builds an analyzer with the given stop words.    *    * @param stopwords    */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
 parameter_list|(
-name|Hashtable
+name|HashSet
 name|stopwords
 parameter_list|)
 block|{
@@ -486,7 +472,7 @@ operator|=
 name|stopwords
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 * 	 *  @param stopwords 	 */
+comment|/**    * Builds an analyzer with the given stop words.    *    * @param stopwords    */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer
@@ -497,15 +483,22 @@ parameter_list|)
 block|{
 name|stoptable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|WordlistLoader
 operator|.
 name|getWordtable
 argument_list|(
 name|stopwords
 argument_list|)
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from an array of Strings. 	 * 	 * @param exclusionlist 	 */
+comment|/**    * Builds an exclusionlist from an array of Strings.    *    * @param exclusionlist    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -520,19 +513,19 @@ name|excltable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from a Hashtable. 	 */
+comment|/**    * Builds an exclusionlist from a Hashtable.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
 name|setStemExclusionTable
 parameter_list|(
-name|Hashtable
+name|HashSet
 name|exclusionlist
 parameter_list|)
 block|{
@@ -541,7 +534,7 @@ operator|=
 name|exclusionlist
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from the words contained in the given file. 	 */
+comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -553,15 +546,22 @@ parameter_list|)
 block|{
 name|excltable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|WordlistLoader
 operator|.
 name|getWordtable
 argument_list|(
 name|exclusionlist
 argument_list|)
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Reads a stemdictionary file , that overrules the stemming algorithm 	 * This is a textfile that contains per line 	 * word\tstem 	 * i.e: tabseperated 	 */
+comment|/**    * Reads a stemdictionary file , that overrules the stemming algorithm    * This is a textfile that contains per line    * word\tstem    * i.e: tabseperated    */
 DECL|method|setStemDictionary
 specifier|public
 name|void
@@ -581,7 +581,7 @@ name|stemdict
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided TextReader. 	 * 	 * @return A TokenStream build from a StandardTokenizer filtered with StandardFilter, StopFilter, GermanStemFilter 	 */
+comment|/**    * Creates a TokenStream which tokenizes all the text in the provided TextReader.    *    * @return A TokenStream build from a StandardTokenizer filtered with StandardFilter, StopFilter, GermanStemFilter    */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream

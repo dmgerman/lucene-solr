@@ -80,6 +80,16 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Based on (copied) the GermanStemFilter  *  *  * @author    João Kramer  *  *  * A filter that stemms german words. It supports a table of words that should  * not be stemmed at all.  *  * @author    Gerhard Schwarz  */
 end_comment
@@ -110,7 +120,7 @@ literal|null
 decl_stmt|;
 DECL|field|exclusions
 specifier|private
-name|Hashtable
+name|HashSet
 name|exclusions
 init|=
 literal|null
@@ -135,7 +145,7 @@ name|BrazilianStemmer
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Builds a BrazilianStemFilter that uses an exclusiontable. 	 */
+comment|/** 	 * Builds a BrazilianStemFilter that uses an exclusiontable.    *     * @deprecated 	 */
 DECL|method|BrazilianStemFilter
 specifier|public
 name|BrazilianStemFilter
@@ -144,6 +154,36 @@ name|TokenStream
 name|in
 parameter_list|,
 name|Hashtable
+name|exclusiontable
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|exclusions
+operator|=
+operator|new
+name|HashSet
+argument_list|(
+name|exclusiontable
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|BrazilianStemFilter
+specifier|public
+name|BrazilianStemFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|HashSet
 name|exclusiontable
 parameter_list|)
 block|{

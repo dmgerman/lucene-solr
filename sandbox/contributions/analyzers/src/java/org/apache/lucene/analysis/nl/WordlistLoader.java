@@ -64,12 +64,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
+name|HashMap
 import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Gerhard Schwarz  *  * Loads a text file and adds every line as an entry to a Hashtable. Every line  * should contain only one word. If the file is not found or on any error, an  * empty table is returned.  */
+comment|/**  * @author Gerhard Schwarz  *<p/>  *         Loads a text file and adds every line as an entry to a Hashtable. Every line  *         should contain only one word. If the file is not found or on any error, an  *         empty table is returned.  */
 end_comment
 
 begin_class
@@ -78,11 +78,11 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-comment|/** 	 * @param path Path to the wordlist 	 * @param wordfile Name of the wordlist 	 */
+comment|/**    * @param path     Path to the wordlist    * @param wordfile Name of the wordlist    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
-name|Hashtable
+name|HashMap
 name|getWordtable
 parameter_list|(
 name|String
@@ -105,7 +105,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 return|;
 block|}
@@ -122,11 +122,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param wordfile Complete path to the wordlist 	 */
+comment|/**    * @param wordfile Complete path to the wordlist    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
-name|Hashtable
+name|HashMap
 name|getWordtable
 parameter_list|(
 name|String
@@ -142,7 +142,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 return|;
 block|}
@@ -157,11 +157,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Reads a stemsdictionary. Each line contains:      * word \t stem 	 * i.e. tab seperated) 	 * 	 * @return Stem dictionary that overrules, the stemming algorithm 	 */
+comment|/**    * Reads a stemsdictionary. Each line contains:    * word \t stem    * i.e. tab seperated)    *    * @return Stem dictionary that overrules, the stemming algorithm    */
 DECL|method|getStemDict
 specifier|public
 specifier|static
-name|Hashtable
+name|HashMap
 name|getStemDict
 parameter_list|(
 name|File
@@ -177,15 +177,15 @@ condition|)
 block|{
 return|return
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 return|;
 block|}
-name|Hashtable
+name|HashMap
 name|result
 init|=
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 decl_stmt|;
 try|try
@@ -257,16 +257,16 @@ parameter_list|(
 name|IOException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param wordfile File containing the wordlist 	 */
+comment|/**    * @param wordfile File containing the wordlist    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
-name|Hashtable
+name|HashMap
 name|getWordtable
 parameter_list|(
 name|File
@@ -282,11 +282,11 @@ condition|)
 block|{
 return|return
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 return|;
 block|}
-name|Hashtable
+name|HashMap
 name|result
 init|=
 literal|null
@@ -416,7 +416,7 @@ block|{
 name|result
 operator|=
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 expr_stmt|;
 block|}
@@ -424,11 +424,11 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Builds the wordlist table. 	 * 	 * @param words Word that where read 	 * @param length Amount of words that where read into<tt>words</tt> 	 */
+comment|/**    * Builds the wordlist table.    *    * @param words  Word that where read    * @param length Amount of words that where read into<tt>words</tt>    */
 DECL|method|makeWordTable
 specifier|private
 specifier|static
-name|Hashtable
+name|HashMap
 name|makeWordTable
 parameter_list|(
 name|String
@@ -439,11 +439,11 @@ name|int
 name|length
 parameter_list|)
 block|{
-name|Hashtable
+name|HashMap
 name|table
 init|=
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|(
 name|length
 argument_list|)

@@ -152,6 +152,16 @@ name|Hashtable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Analyzer for brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    João Kramer  */
 end_comment
@@ -433,21 +443,21 @@ decl_stmt|;
 comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
 DECL|field|stoptable
 specifier|private
-name|Hashtable
+name|HashSet
 name|stoptable
 init|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
 DECL|field|excltable
 specifier|private
-name|Hashtable
+name|HashSet
 name|excltable
 init|=
 operator|new
-name|Hashtable
+name|HashSet
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Builds an analyzer. 	 */
@@ -460,7 +470,7 @@ name|stoptable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|BRAZILIAN_STOP_WORDS
 argument_list|)
@@ -480,7 +490,7 @@ name|stoptable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|stopwords
 argument_list|)
@@ -497,7 +507,14 @@ parameter_list|)
 block|{
 name|stoptable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|stopwords
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * Builds an analyzer with the given stop words. 	 */
@@ -511,11 +528,18 @@ parameter_list|)
 block|{
 name|stoptable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|WordlistLoader
 operator|.
 name|getWordtable
 argument_list|(
 name|stopwords
+argument_list|)
+operator|.
+name|keySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -534,7 +558,7 @@ name|excltable
 operator|=
 name|StopFilter
 operator|.
-name|makeStopTable
+name|makeStopSet
 argument_list|(
 name|exclusionlist
 argument_list|)
@@ -552,7 +576,14 @@ parameter_list|)
 block|{
 name|excltable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|exclusionlist
+operator|.
+name|keySet
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * Builds an exclusionlist from the words contained in the given file. 	 */
@@ -567,11 +598,18 @@ parameter_list|)
 block|{
 name|excltable
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|WordlistLoader
 operator|.
 name|getWordtable
 argument_list|(
 name|exclusionlist
+argument_list|)
+operator|.
+name|keySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
