@@ -69,10 +69,10 @@ name|StopFilter
 extends|extends
 name|TokenFilter
 block|{
-DECL|field|table
+DECL|field|stopWords
 specifier|private
 name|Set
-name|table
+name|stopWords
 decl_stmt|;
 comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    */
 DECL|method|StopFilter
@@ -92,7 +92,9 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|table
+name|this
+operator|.
+name|stopWords
 operator|=
 name|makeStopSet
 argument_list|(
@@ -117,12 +119,16 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|table
+name|stopWords
 operator|=
+operator|new
+name|HashSet
+argument_list|(
 name|stopTable
 operator|.
 name|keySet
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    */
@@ -134,7 +140,7 @@ name|TokenStream
 name|in
 parameter_list|,
 name|Set
-name|stopTable
+name|stopWords
 parameter_list|)
 block|{
 name|super
@@ -142,9 +148,15 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|table
+name|this
+operator|.
+name|stopWords
 operator|=
-name|stopTable
+operator|new
+name|HashSet
+argument_list|(
+name|stopWords
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds a Hashtable from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this table construction to be cached once when    * an Analyzer is constructed.    *    * @deprecated Use {@link #makeStopSet(String[] makeStopSet) instead.    */
@@ -206,7 +218,7 @@ return|return
 name|stopTable
 return|;
 block|}
-comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this table construction to be cached once when    * an Analyzer is constructed.    */
+comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    */
 DECL|method|makeStopSet
 specifier|public
 specifier|static
@@ -295,7 +307,7 @@ control|)
 if|if
 condition|(
 operator|!
-name|table
+name|stopWords
 operator|.
 name|contains
 argument_list|(
