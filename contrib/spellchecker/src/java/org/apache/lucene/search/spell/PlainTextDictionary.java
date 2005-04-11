@@ -134,9 +134,7 @@ argument_list|(
 operator|new
 name|InputStreamReader
 argument_list|(
-name|System
-operator|.
-name|in
+name|dictFile
 argument_list|)
 argument_list|)
 expr_stmt|;
