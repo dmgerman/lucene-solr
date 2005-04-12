@@ -605,7 +605,7 @@ argument_list|()
 decl_stmt|;
 name|spellChecker
 operator|.
-name|indexDictionnary
+name|indexDictionary
 argument_list|(
 operator|new
 name|LuceneDictionary

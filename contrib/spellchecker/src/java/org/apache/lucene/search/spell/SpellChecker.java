@@ -1154,11 +1154,11 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**      * Index a Dictionnary      * @param dict the dictionnary to index      * @throws IOException      */
-DECL|method|indexDictionnary
+comment|/**      * Index a Dictionary      * @param dict the dictionary to index      * @throws IOException      */
+DECL|method|indexDictionary
 specifier|public
 name|void
-name|indexDictionnary
+name|indexDictionary
 parameter_list|(
 name|Dictionary
 name|dict
