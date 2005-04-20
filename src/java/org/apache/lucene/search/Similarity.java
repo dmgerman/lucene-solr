@@ -30,6 +30,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -124,6 +134,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Similarity
+implements|implements
+name|Serializable
 block|{
 comment|/** The Similarity implementation used by default. */
 DECL|field|defaultImpl

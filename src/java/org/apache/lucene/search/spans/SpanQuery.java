@@ -144,6 +144,8 @@ parameter_list|(
 name|Searcher
 name|searcher
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new

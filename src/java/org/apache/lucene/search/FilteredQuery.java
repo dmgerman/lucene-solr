@@ -50,6 +50,16 @@ name|BitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * A query that applies a filter to the results of another query.  *  *<p>Note: the bits are retrieved from the filter each time this  * query is used in a search - use a CachingWrapperFilter to avoid  * regenerating the bits every time.  *  *<p>Created: Apr 20, 2004 8:58:29 AM  *  * @author  Tim Jones  * @since   1.4  * @version $Id$  * @see     CachingWrapperFilter  */
 end_comment
@@ -105,6 +115,8 @@ specifier|final
 name|Searcher
 name|searcher
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|Weight
@@ -113,6 +125,17 @@ init|=
 name|query
 operator|.
 name|createWeight
+argument_list|(
+name|searcher
+argument_list|)
+decl_stmt|;
+specifier|final
+name|Similarity
+name|similarity
+init|=
+name|query
+operator|.
+name|getSimilarity
 argument_list|(
 name|searcher
 argument_list|)
@@ -239,12 +262,7 @@ return|return
 operator|new
 name|Scorer
 argument_list|(
-name|query
-operator|.
-name|getSimilarity
-argument_list|(
-name|searcher
-argument_list|)
+name|similarity
 argument_list|)
 block|{
 comment|// pass these methods through to the enclosed scorer
@@ -453,6 +471,25 @@ block|{
 return|return
 name|query
 return|;
+block|}
+comment|// inherit javadoc
+DECL|method|extractTerms
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+name|terms
+parameter_list|)
+block|{
+name|getQuery
+argument_list|()
+operator|.
+name|extractTerms
+argument_list|(
+name|terms
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Prints a user-readable version of this query. */
 DECL|method|toString
