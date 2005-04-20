@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}.  *  * @version $Id$  */
+comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of English stop words.  *  * @version $Id$  */
 end_comment
 
 begin_class
