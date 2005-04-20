@@ -100,7 +100,7 @@ name|String
 index|[]
 name|fields
 decl_stmt|;
-comment|/**    * Creates a MultiFieldQueryParser.    *    *<p>It that will, when parse(String query)    * is called, construct a query like this (assuming the query consists of    * two terms and you specify the two fields<code>title</code> and<code>body</code>):</p>    *     *<code>    * (title:term1 body:term1) (title:term2 body:term2)    *</code>    *    *<p>When setDefaultOperator(AND_OPERATOR) is set, the result will be:</p>    *      *<code>    * +(title:term1 body:term1) +(title:term2 body:term2)    *</code>    *     *<p>In other words, all the query's terms must appear, but it doesn't matter in    * what fields they appear.</p>    */
+comment|/**    * Creates a MultiFieldQueryParser.    *    *<p>It will, when parse(String query)    * is called, construct a query like this (assuming the query consists of    * two terms and you specify the two fields<code>title</code> and<code>body</code>):</p>    *     *<code>    * (title:term1 body:term1) (title:term2 body:term2)    *</code>    *    *<p>When setDefaultOperator(AND_OPERATOR) is set, the result will be:</p>    *      *<code>    * +(title:term1 body:term1) +(title:term2 body:term2)    *</code>    *     *<p>In other words, all the query's terms must appear, but it doesn't matter in    * what fields they appear.</p>    */
 DECL|method|MultiFieldQueryParser
 specifier|public
 name|MultiFieldQueryParser
