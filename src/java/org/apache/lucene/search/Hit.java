@@ -116,7 +116,7 @@ operator|=
 name|hitNumber
 expr_stmt|;
 block|}
-comment|/**    * Returns document for this hit.    *    * @see {@link Hits#doc(int)}    */
+comment|/**    * Returns document for this hit.    *    * @see Hits#doc(int)    */
 DECL|method|getDocument
 specifier|public
 name|Document
@@ -137,7 +137,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/**    * Returns score for this hit.    *    * @see {@link Hits#score(int)}    */
+comment|/**    * Returns score for this hit.    *    * @see Hits#score(int)    */
 DECL|method|getScore
 specifier|public
 name|float
@@ -158,7 +158,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**    * Returns id for this hit.    *    * @see {@link Hits#id(int)}    */
+comment|/**    * Returns id for this hit.    *    * @see Hits#id(int)    */
 DECL|method|getId
 specifier|public
 name|int
@@ -220,7 +220,7 @@ literal|true
 expr_stmt|;
 block|}
 comment|// provide some of the Document style interface (the simple stuff)
-comment|/**    * Returns the boost factor for this hit on any field of the underlying document.    *    * @see {@link Document#getBoost()}    */
+comment|/**    * Returns the boost factor for this hit on any field of the underlying document.    *    * @see Document#getBoost()    */
 DECL|method|getBoost
 specifier|public
 name|float
@@ -237,7 +237,7 @@ name|getBoost
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    *    * @see {@link Document#get(String)}    */
+comment|/**    * Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    *    * @see Document#get(String)    */
 DECL|method|get
 specifier|public
 name|String
@@ -259,7 +259,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Prints the fields of the underlying document for human consumption.    *<p/>    * If an IOException occurs whilst getting the document, returns null    *    * @see {@link Document#toString()}     */
+comment|/**    * Prints the fields of the underlying document for human consumption.    *<p/>    * If an IOException occurs whilst getting the document, returns null    *    * @see Document#toString()    */
 DECL|method|toString
 specifier|public
 name|String
