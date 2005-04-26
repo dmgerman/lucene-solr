@@ -136,6 +136,8 @@ operator|=
 name|local
 expr_stmt|;
 block|}
+comment|// this implementation should be removed when the deprecated
+comment|// Searchable#search(Query,Filter,HitCollector) is removed
 DECL|method|search
 specifier|public
 name|void
@@ -265,6 +267,8 @@ name|maxDoc
 argument_list|()
 return|;
 block|}
+comment|// this implementation should be removed when the deprecated
+comment|// Searchable#search(Query,Filter,int) is removed
 DECL|method|search
 specifier|public
 name|TopDocs
@@ -325,6 +329,8 @@ name|n
 argument_list|)
 return|;
 block|}
+comment|// this implementation should be removed when the deprecated
+comment|// Searchable#search(Query,Filter,int,Sort) is removed
 DECL|method|search
 specifier|public
 name|TopFieldDocs
@@ -435,6 +441,8 @@ name|original
 argument_list|)
 return|;
 block|}
+comment|// this implementation should be removed when the deprecated
+comment|// Searchable#explain(Query,int) is removed
 DECL|method|explain
 specifier|public
 name|Explanation

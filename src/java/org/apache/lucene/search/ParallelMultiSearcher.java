@@ -621,8 +621,8 @@ specifier|public
 name|void
 name|search
 parameter_list|(
-name|Query
-name|query
+name|Weight
+name|weight
 parameter_list|,
 name|Filter
 name|filter
@@ -667,7 +667,7 @@ index|]
 operator|.
 name|search
 argument_list|(
-name|query
+name|weight
 argument_list|,
 name|filter
 argument_list|,

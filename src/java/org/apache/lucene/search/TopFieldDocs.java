@@ -17,7 +17,7 @@ comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * Expert: Returned by low-level sorted search implementations.  *  *<p>Created: Feb 12, 2004 8:58:46 AM   *   * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see Searchable#search(Query,Filter,int,Sort)  */
+comment|/**  * Expert: Returned by low-level sorted search implementations.  *  *<p>Created: Feb 12, 2004 8:58:46 AM   *   * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see Searcher#search(Query,Filter,int,Sort)  */
 end_comment
 
 begin_class

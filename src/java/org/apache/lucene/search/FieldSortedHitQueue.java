@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * Uses<code>FieldCache.DEFAULT</code> for maintaining internal term lookup tables.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see Searchable#search(Query,Filter,int,Sort)  * @see FieldCache  */
+comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * Uses<code>FieldCache.DEFAULT</code> for maintaining internal term lookup tables.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see Searcher#search(Query,Filter,int,Sort)  * @see FieldCache  */
 end_comment
 
 begin_class
@@ -431,7 +431,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Given a FieldDoc object, stores the values used    * to sort the given document.  These values are not the raw    * values out of the index, but the internal representation    * of them.  This is so the given search hit can be collated    * by a MultiSearcher with other search hits.    * @param  doc  The FieldDoc to store sort values into.    * @return  The same FieldDoc passed in.    * @see Searchable#search(Query,Filter,int,Sort)    */
+comment|/**    * Given a FieldDoc object, stores the values used    * to sort the given document.  These values are not the raw    * values out of the index, but the internal representation    * of them.  This is so the given search hit can be collated    * by a MultiSearcher with other search hits.    * @param  doc  The FieldDoc to store sort values into.    * @return  The same FieldDoc passed in.    * @see Searchable#search(Weight,Filter,int,Sort)    */
 DECL|method|fillFields
 name|FieldDoc
 name|fillFields

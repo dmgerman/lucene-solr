@@ -88,13 +88,13 @@ name|rmi
 operator|.
 name|Remote
 block|{
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    *    * @deprecated    */
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|void
 name|search
 parameter_list|(
-name|Query
-name|query
+name|Weight
+name|weight
 parameter_list|,
 name|Filter
 name|filter
@@ -105,13 +105,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.    * Identical to {@link #search(Query, Filter, HitCollector)}, but takes    * a Weight instead of a query.    */
+comment|/** Expert: Low-level search implementation.    * @deprecated use {@link Searcher#search(Query, Filter, HitCollector)} instead.    */
 DECL|method|search
 name|void
 name|search
 parameter_list|(
-name|Weight
-name|weight
+name|Query
+name|query
 parameter_list|,
 name|Filter
 name|filter
@@ -162,13 +162,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Called by {@link Hits}.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    *    * @deprecated    */
+comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Called by {@link Hits}.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|TopDocs
 name|search
 parameter_list|(
-name|Query
-name|query
+name|Weight
+name|weight
 parameter_list|,
 name|Filter
 name|filter
@@ -179,13 +179,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.    * Identical to {@link #search(Query, Filter, int)}, but takes    * a Weight instead of a query.    */
+comment|/** Expert: Low-level search implementation.    * @deprecated use {@link Searcher#search(Query, Filter, int)} instead.    */
 DECL|method|search
 name|TopDocs
 name|search
 parameter_list|(
-name|Weight
-name|weight
+name|Query
+name|query
 parameter_list|,
 name|Filter
 name|filter
@@ -218,21 +218,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an Explanation that describes how<code>doc</code> scored against    *<code>query</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    * @throws BooleanQuery.TooManyClauses    */
-DECL|method|explain
-name|Explanation
-name|explain
-parameter_list|(
-name|Query
-name|query
-parameter_list|,
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Identical to {@link #search(Query, Filter, HitCollector)}, but takes    * a Weight instead of a query.    */
+comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|explain
 name|Explanation
 name|explain
@@ -246,13 +232,27 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    * @throws BooleanQuery.TooManyClauses    *    * @deprecated    */
+comment|/**    * @deprecated use {@link Searcher#explain(Query, int)} instead.    */
+DECL|method|explain
+name|Explanation
+name|explain
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|Query
-name|query
+name|Weight
+name|weight
 parameter_list|,
 name|Filter
 name|filter
@@ -266,13 +266,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.    * Identical to {@link #search(Query, Filter, int, Sort)}, but takes    * a Weight instead of a query.    */
+comment|/** Expert: Low-level search implementation.    * @deprecated use {@link Searcher#search(Query, Filter, int, Sort)} instead.    */
 DECL|method|search
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|Weight
-name|weight
+name|Query
+name|query
 parameter_list|,
 name|Filter
 name|filter

@@ -2483,10 +2483,6 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// we'll test searching locally, remote and multi
-comment|// note: the multi test depends on each separate index containing
-comment|// the same documents as our local index, so the computed normalization
-comment|// will be the same.  so we make a multi searcher over two equal document
-comment|// sets - not realistic, but necessary for testing.
 name|MultiSearcher
 name|remote
 init|=
@@ -2512,9 +2508,9 @@ operator|new
 name|Searchable
 index|[]
 block|{
-name|full
+name|searchX
 block|,
-name|full
+name|searchY
 block|}
 argument_list|)
 decl_stmt|;
