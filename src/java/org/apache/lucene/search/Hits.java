@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -538,6 +548,21 @@ name|n
 argument_list|)
 operator|.
 name|id
+return|;
+block|}
+comment|/**    * Returns an {@link Iterator} to navigate the Hits.  Each item returned    * from {@link Iterator#next()} is a {@link Hit}.    */
+DECL|method|iterator
+specifier|public
+name|Iterator
+name|iterator
+parameter_list|()
+block|{
+return|return
+operator|new
+name|HitIterator
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 DECL|method|hitDoc
