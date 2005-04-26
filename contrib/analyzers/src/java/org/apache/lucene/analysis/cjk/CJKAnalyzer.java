@@ -93,7 +93,7 @@ extends|extends
 name|Analyzer
 block|{
 comment|//~ Static fields/initializers ---------------------------------------------
-comment|/**    * An array containing some common English words that are not usually    * useful for searching. and some double-byte interpunctions.....    */
+comment|/**    * An array containing some common English words that are not usually    * useful for searching and some double-byte interpunctions.    */
 DECL|field|STOP_WORDS
 specifier|public
 specifier|final

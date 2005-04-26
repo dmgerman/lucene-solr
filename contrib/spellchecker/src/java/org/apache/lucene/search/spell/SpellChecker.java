@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  *	Spell Checker class  (Main class)<br/>  * (initially inspired by the David Spencer code)  *</p>  *    *<p>  *  Spell Checker spellchecker= new SpellChecker (spellDirectory);<br/>  *<br/>  *  //To index a field of a user index<br/>  *  spellchecker.indexDictionary(new LuceneDictionary(my_lucene_reader, a_field));<br/>  *<br/>  *   //To index a file containing words<br/>  *  spellchecker.indexDictionary(new PlainTextDictionary(new File("myfile.txt")));<br/>  *</p>  *   * @author Nicolas Maisonneuve  * @version 1.0  */
+comment|/**  *<p>  *	Spell Checker class  (Main class)<br/>  * (initially inspired by the David Spencer code).  *</p>  *    *<p>  *  Spell Checker spellchecker= new SpellChecker (spellDirectory);<br/>  *<br/>  *  //To index a field of a user index<br/>  *  spellchecker.indexDictionary(new LuceneDictionary(my_lucene_reader, a_field));<br/>  *<br/>  *   //To index a file containing words<br/>  *  spellchecker.indexDictionary(new PlainTextDictionary(new File("myfile.txt")));<br/>  *</p>  *   * @author Nicolas Maisonneuve  * @version 1.0  */
 end_comment
 
 begin_class
