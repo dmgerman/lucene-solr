@@ -550,7 +550,7 @@ operator|.
 name|id
 return|;
 block|}
-comment|/**    * Returns an {@link Iterator} to navigate the Hits.  Each item returned    * from {@link Iterator#next()} is a {@link Hit}.    */
+comment|/**    * Returns an {@link Iterator} to navigate the Hits.  Each item returned    * from {@link Iterator#next()} is a {@link Hit}.    *<p>    *<b>Caution:</b> Iterate only over the hits needed.  Iterating over all    * hits is generally not desirable and may be the source of    * performance issues.    *</p>    */
 DECL|method|iterator
 specifier|public
 name|Iterator
