@@ -1427,7 +1427,7 @@ argument_list|)
 return|;
 comment|// dispatch to searcher
 block|}
-comment|/**    * Distributed query processing is done in the following steps:    * 1. rewrite query    * 2. extract necessary terms    * 3. collect dfs for these terms from the Searchables    * 4. create query weight using aggregate dfs.    * 5. distribute that weight to Searchables    * 6. merge results    *    * Steps 1-4 are done here, 5+6 in the search() methods    *    * @return rewritten queries    */
+comment|/**    * Create weight in multiple index scenario.    *     * Distributed query processing is done in the following steps:    * 1. rewrite query    * 2. extract necessary terms    * 3. collect dfs for these terms from the Searchables    * 4. create query weight using aggregate dfs.    * 5. distribute that weight to Searchables    * 6. merge results    *    * Steps 1-4 are done here, 5+6 in the search() methods    *    * @return rewritten queries    */
 DECL|method|createWeight
 specifier|protected
 name|Weight
