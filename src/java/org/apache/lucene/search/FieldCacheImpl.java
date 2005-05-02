@@ -1482,11 +1482,15 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"there are more terms than documents in field \""
+literal|"there are more terms than "
+operator|+
+literal|"documents in field \""
 operator|+
 name|field
 operator|+
-literal|"\""
+literal|"\", but it's impossible to sort on "
+operator|+
+literal|"tokenized fields"
 argument_list|)
 throw|;
 name|mterms
