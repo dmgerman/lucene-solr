@@ -3381,11 +3381,14 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|".skipTo"
+literal|".skipTo: "
+operator|+
+name|target
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+name|next
+argument_list|()
 return|;
 block|}
 specifier|public
