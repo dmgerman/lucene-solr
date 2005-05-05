@@ -922,32 +922,8 @@ name|endOffset
 expr_stmt|;
 block|}
 comment|// append text after end of last token
-if|if
-condition|(
-name|lastEndOffset
-operator|<
-name|text
-operator|.
-name|length
-argument_list|()
-condition|)
-name|newText
-operator|.
-name|append
-argument_list|(
-name|encoder
-operator|.
-name|encodeText
-argument_list|(
-name|text
-operator|.
-name|substring
-argument_list|(
-name|lastEndOffset
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//			if (lastEndOffset< text.length())
+comment|//				newText.append(encoder.encodeText(text.substring(lastEndOffset)));
 name|currentFrag
 operator|.
 name|textEndPos
