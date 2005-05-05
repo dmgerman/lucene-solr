@@ -107,11 +107,6 @@ specifier|private
 name|Similarity
 name|similarity
 decl_stmt|;
-DECL|field|searcher
-specifier|private
-name|Searcher
-name|searcher
-decl_stmt|;
 DECL|field|value
 specifier|private
 name|float
@@ -207,8 +202,6 @@ specifier|public
 name|float
 name|sumOfSquaredWeights
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|queryWeight
 operator|=

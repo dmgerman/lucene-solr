@@ -218,8 +218,6 @@ name|Term
 index|[]
 name|terms
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|int
 index|[]
@@ -286,8 +284,6 @@ parameter_list|(
 name|Query
 name|query
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// this is a bit of a hack. We know that a query which
 comment|// creates a Weight based on this Dummy-Searcher is
@@ -302,8 +298,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -319,8 +313,6 @@ parameter_list|(
 name|int
 name|i
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -339,8 +331,6 @@ parameter_list|,
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -362,8 +352,6 @@ parameter_list|,
 name|HitCollector
 name|results
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -385,8 +373,6 @@ parameter_list|,
 name|int
 name|n
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -411,8 +397,6 @@ parameter_list|,
 name|Sort
 name|sort
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
