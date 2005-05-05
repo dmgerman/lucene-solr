@@ -552,20 +552,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"stored size: "
-operator|+
-name|stored
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("stored size: " + stored.size());
 name|assertTrue
 argument_list|(
 name|stored
