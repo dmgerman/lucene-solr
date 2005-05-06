@@ -346,8 +346,6 @@ argument_list|,
 name|searcher
 argument_list|,
 name|results
-argument_list|,
-name|this
 argument_list|)
 expr_stmt|;
 block|}
