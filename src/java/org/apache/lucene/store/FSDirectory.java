@@ -695,6 +695,23 @@ operator|+
 name|directory
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|!
+name|directory
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+name|directory
+operator|+
+literal|" not a directory"
+argument_list|)
+throw|;
 name|String
 index|[]
 name|files
