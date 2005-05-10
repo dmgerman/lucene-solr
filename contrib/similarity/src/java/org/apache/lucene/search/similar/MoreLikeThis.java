@@ -250,6 +250,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -375,7 +385,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generate "more like this" similarity queries.   * Based on this mail:  *<code><pre>  * Lucene does let you access the document frequency of terms, with IndexReader.docFreq().  * Term frequencies can be computed by re-tokenizing the text, which, for a single document,  * is usually fast enough.  But looking up the docFreq() of every term in the document is  * probably too slow.  *   * You can use some heuristics to prune the set of terms, to avoid calling docFreq() too much,  * or at all.  Since you're trying to maximize a tf*idf score, you're probably most interested  * in terms with a high tf. Choosing a tf threshold even as low as two or three will radically  * reduce the number of terms under consideration.  Another heuristic is that terms with a  * high idf (i.e., a low df) tend to be longer.  So you could threshold the terms by the  * number of characters, not selecting anything less than, e.g., six or seven characters.  * With these sorts of heuristics you can usually find small set of, e.g., ten or fewer terms  * that do a pretty good job of characterizing a document.  *   * It all depends on what you're trying to do.  If you're trying to eek out that last percent  * of precision and recall regardless of computational difficulty so that you can win a TREC  * competition, then the techniques I mention above are useless.  But if you're trying to  * provide a "more like this" button on a search results page that does a decent job and has  * good performance, such techniques might be useful.  *   * An efficient, effective "more-like-this" query generator would be a great contribution, if  * anyone's interested.  I'd imagine that it would take a Reader or a String (the document's  * text), analyzer Analyzer, and return a set of representative terms using heuristics like those  * above.  The frequency and length thresholds could be parameters, etc.  *   * Doug  *</pre></code>  *  *  *<p>  *<h3>Initial Usage</h3>  *  * This class has lots of options to try to make it efficient and flexible.  * See the body of {@link #main main()} below in the source for real code, or  * if you want pseudo code, the simpliest possible usage is as follows. The bold  * fragment is specific to this class.  *  *<code><pre>  *  * IndexReader ir = ...  * IndexSearcher is = ...  *<b>  * MoreLikeThis mlt = new MoreLikeThis(ir);  * Reader target = ...</b><em>// orig source of doc you want to find similarities to</em><b>  * Query query = mlt.like( target);  *</b>  * Hits hits = is.search(query);  *<em>// now the usual iteration thru 'hits' - the only thing to watch for is to make sure  * you ignore the doc if it matches your 'target' document, as it should be similar to itself</em>  *  *</pre></code>  *  * Thus you:  *<ol>  *<li> do your normal, Lucene setup for searching,  *<li> create a MoreLikeThis,  *<li> get the text of the doc you want to find similaries to  *<li> then call one of the like() calls to generate a similarity query  *<li> call the searcher to find the similar docs  *</ol>  *  *<h3>More Advanced Usage</h3>  *  * You may want to use {@link #setFieldNames setFieldNames(...)} so you can examine  * multiple fields (e.g. body and title) for similarity.  *<p>  *  * Depending on the size of your index and the size and makeup of your documents you  * may want to call the other set methods to control how the similarity queries are  * generated:  *<ul>  *<li> {@link #setMinTermFreq setMinTermFreq(...)}  *<li> {@link #setMinDocFreq setMinDocFreq(...)}  *<li> {@link #setMinWordLen setMinWordLen(...)}  *<li> {@link #setMaxWordLen setMaxWordLen(...)}  *<li> {@link #setMaxQueryTerms setMaxQueryTerms(...)}  *<li> {@link #setMaxNumTokensParsed setMaxNumTokensParsed(...)}  *</ul>   *  *<hr>  *<pre>  * Changes: Mark Harwood 29/02/04  * Some bugfixing, some refactoring, some optimisation.  *  - bugfix: retrieveTerms(int docNum) was not working for indexes without a termvector -added missing code  *  - bugfix: No significant terms being created for fields with a termvector - because   *            was only counting one occurence per term/field pair in calculations(ie not including frequency info from TermVector)   *  - refactor: moved common code into isNoiseWord()  *  - optimise: when no termvector support available - used maxNumTermsParsed to limit amount of tokenization  *</pre>  *   * @author David Spencer  * @author Bruce Ritchie  * @author Mark Harwood  */
+comment|/**  * Generate "more like this" similarity queries.   * Based on this mail:  *<code><pre>  * Lucene does let you access the document frequency of terms, with IndexReader.docFreq().  * Term frequencies can be computed by re-tokenizing the text, which, for a single document,  * is usually fast enough.  But looking up the docFreq() of every term in the document is  * probably too slow.  *   * You can use some heuristics to prune the set of terms, to avoid calling docFreq() too much,  * or at all.  Since you're trying to maximize a tf*idf score, you're probably most interested  * in terms with a high tf. Choosing a tf threshold even as low as two or three will radically  * reduce the number of terms under consideration.  Another heuristic is that terms with a  * high idf (i.e., a low df) tend to be longer.  So you could threshold the terms by the  * number of characters, not selecting anything less than, e.g., six or seven characters.  * With these sorts of heuristics you can usually find small set of, e.g., ten or fewer terms  * that do a pretty good job of characterizing a document.  *   * It all depends on what you're trying to do.  If you're trying to eek out that last percent  * of precision and recall regardless of computational difficulty so that you can win a TREC  * competition, then the techniques I mention above are useless.  But if you're trying to  * provide a "more like this" button on a search results page that does a decent job and has  * good performance, such techniques might be useful.  *   * An efficient, effective "more-like-this" query generator would be a great contribution, if  * anyone's interested.  I'd imagine that it would take a Reader or a String (the document's  * text), analyzer Analyzer, and return a set of representative terms using heuristics like those  * above.  The frequency and length thresholds could be parameters, etc.  *   * Doug  *</pre></code>  *  *  *<p>  *<h3>Initial Usage</h3>  *  * This class has lots of options to try to make it efficient and flexible.  * See the body of {@link #main main()} below in the source for real code, or  * if you want pseudo code, the simpliest possible usage is as follows. The bold  * fragment is specific to this class.  *  *<code><pre>  *  * IndexReader ir = ...  * IndexSearcher is = ...  *<b>  * MoreLikeThis mlt = new MoreLikeThis(ir);  * Reader target = ...</b><em>// orig source of doc you want to find similarities to</em><b>  * Query query = mlt.like( target);  *</b>  * Hits hits = is.search(query);  *<em>// now the usual iteration thru 'hits' - the only thing to watch for is to make sure  * you ignore the doc if it matches your 'target' document, as it should be similar to itself</em>  *  *</pre></code>  *  * Thus you:  *<ol>  *<li> do your normal, Lucene setup for searching,  *<li> create a MoreLikeThis,  *<li> get the text of the doc you want to find similaries to  *<li> then call one of the like() calls to generate a similarity query  *<li> call the searcher to find the similar docs  *</ol>  *  *<h3>More Advanced Usage</h3>  *  * You may want to use {@link #setFieldNames setFieldNames(...)} so you can examine  * multiple fields (e.g. body and title) for similarity.  *<p>  *  * Depending on the size of your index and the size and makeup of your documents you  * may want to call the other set methods to control how the similarity queries are  * generated:  *<ul>  *<li> {@link #setMinTermFreq setMinTermFreq(...)}  *<li> {@link #setMinDocFreq setMinDocFreq(...)}  *<li> {@link #setMinWordLen setMinWordLen(...)}  *<li> {@link #setMaxWordLen setMaxWordLen(...)}  *<li> {@link #setMaxQueryTerms setMaxQueryTerms(...)}  *<li> {@link #setMaxNumTokensParsed setMaxNumTokensParsed(...)}  *<li> {@link #setStopWords setStopWord(...)}   *</ul>   *  *<hr>  *<pre>  * Changes: Mark Harwood 29/02/04  * Some bugfixing, some refactoring, some optimisation.  *  - bugfix: retrieveTerms(int docNum) was not working for indexes without a termvector -added missing code  *  - bugfix: No significant terms being created for fields with a termvector - because   *            was only counting one occurence per term/field pair in calculations(ie not including frequency info from TermVector)   *  - refactor: moved common code into isNoiseWord()  *  - optimise: when no termvector support available - used maxNumTermsParsed to limit amount of tokenization  *</pre>  *   * @author David Spencer  * @author Bruce Ritchie  * @author Mark Harwood  */
 end_comment
 
 begin_class
@@ -472,6 +482,24 @@ name|int
 name|DEFAULT_MAX_WORD_LENGTH
 init|=
 literal|0
+decl_stmt|;
+comment|/** 	 * Default set of stopwords. 	 * If null means to allow stop words. 	 * 	 * @see #setStopWords 	 * @see #getStopWords 	 */
+DECL|field|DEFAULT_STOP_WORDS
+specifier|public
+specifier|static
+specifier|final
+name|Set
+name|DEFAULT_STOP_WORDS
+init|=
+literal|null
+decl_stmt|;
+comment|/** 	 * Current set of stop words. 	 */
+DECL|field|stopWords
+specifier|private
+name|Set
+name|stopWords
+init|=
+name|DEFAULT_STOP_WORDS
 decl_stmt|;
 comment|/**      * Return a Query with no more than this many terms.      *      * @see BooleanQuery#getMaxClauseCount 	 * @see #getMaxQueryTerms 	 * @see #setMaxQueryTerms	       */
 DECL|field|DEFAULT_MAX_QUERY_TERMS
@@ -786,6 +814,34 @@ name|maxWordLen
 operator|=
 name|maxWordLen
 expr_stmt|;
+block|}
+comment|/** 	 * Set the set of stopwords. 	 * Any word in this set is considered "uninteresting" and ignored. 	 * Even if your Analyzer allows stopwords, you might want to tell the MoreLikeThis code to ignore them, as 	 * for the purposes of document similarity it seems reasonable to assume that "a stop word is never interesting". 	 *  	 * @param stopWords set of stopwords, if null it means to allow stop words 	 * 	 * @see org.apache.lucene.analysis.StopFilter#makeStopSet StopFilter.makeStopSet() 	 * @see #getStopWords	  	 */
+DECL|method|setStopWords
+specifier|public
+name|void
+name|setStopWords
+parameter_list|(
+name|Set
+name|stopWords
+parameter_list|)
+block|{
+name|this
+operator|.
+name|stopWords
+operator|=
+name|stopWords
+expr_stmt|;
+block|}
+comment|/** 	 * Get the current stop words being used. 	 * @see #setStopWords 	 */
+DECL|method|getStopWords
+specifier|public
+name|Set
+name|getStopWords
+parameter_list|()
+block|{
+return|return
+name|stopWords
+return|;
 block|}
 comment|/**      * Returns the maximum number of query terms that will be included in any generated query.      * The default is {@link #DEFAULT_MAX_QUERY_TERMS}.      *      * @return the maximum number of query terms that will be included in any generated query.      */
 DECL|method|getMaxQueryTerms
@@ -2526,6 +2582,24 @@ operator|&&
 name|len
 operator|>
 name|maxWordLen
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+if|if
+condition|(
+name|stopWords
+operator|!=
+literal|null
+operator|&&
+name|stopWords
+operator|.
+name|contains
+argument_list|(
+name|term
+argument_list|)
 condition|)
 block|{
 return|return
