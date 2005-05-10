@@ -2536,7 +2536,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Find words for a more-like-this query former. 	 * The result is a priority queue of arrays. 	 * Each array has 6 elements. 	 * The elements are: 	 *<ol> 	 *<li> The word (String) 	 *<li> The top field that this word comes from (String) 	 *<li> The score for this word (Float) 	 *<li> The IDF value (Float) 	 *<li> The frequency of this word in the index (Integer) 	 *<li> The frequency of this word in the source document (Integer)	 	  	 *</ol> 	 * This is a somewhat "advanced" routine, and in general only the 1st entry in the array is of interest. 	 * This method is exposed so that you can identify the "interesting words" in a document. 	 * For an easier method to call see {@link #retrieveInterestingTerms retrieveInterestingTerms()}.      *      * @param r the reader that has the content of the document 	 * @return the most intresting words in the document 	 * @see #retrieveInterestingTerms      */
+comment|/**      * Find words for a more-like-this query former. 	 * The result is a priority queue of arrays with one entry for<b>every word</b> in the document. 	 * Each array has 6 elements. 	 * The elements are: 	 *<ol> 	 *<li> The word (String) 	 *<li> The top field that this word comes from (String) 	 *<li> The score for this word (Float) 	 *<li> The IDF value (Float) 	 *<li> The frequency of this word in the index (Integer) 	 *<li> The frequency of this word in the source document (Integer)	 	  	 *</ol> 	 * This is a somewhat "advanced" routine, and in general only the 1st entry in the array is of interest. 	 * This method is exposed so that you can identify the "interesting words" in a document. 	 * For an easier method to call see {@link #retrieveInterestingTerms retrieveInterestingTerms()}.      *      * @param r the reader that has the content of the document 	 * @return the most intresting words in the document ordered by score, with the highest scoring, or best entry, first 	 * 	 * @see #retrieveInterestingTerms      */
 DECL|method|retrieveTerms
 specifier|public
 name|PriorityQueue
@@ -2630,6 +2630,13 @@ decl_stmt|;
 name|Object
 name|cur
 decl_stmt|;
+name|int
+name|lim
+init|=
+name|maxQueryTerms
+decl_stmt|;
+comment|// have to be careful, retrieveTerms returns all words but that's probably not useful to our caller...
+comment|// we just want to return the top words
 while|while
 condition|(
 operator|(
@@ -2644,6 +2651,11 @@ operator|)
 operator|!=
 literal|null
 operator|)
+operator|&&
+name|lim
+operator|--
+operator|>
+literal|0
 condition|)
 block|{
 name|Object
