@@ -17,7 +17,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * A filter that replace accented characters in the ISO Latin 1 character set by  * their unaccented equivalent. The case will not be altered.  *<p>  * For instance, 'Ã ' will be replaced by 'a'.  *<p>  */
+comment|/**  * A filter that replaces accented characters in the ISO Latin 1 character set by  * their unaccented equivalent. The case will not be altered.  *<p>  * For instance, '&agrave;' will be replaced by 'a'.  *<p>  */
 end_comment
 
 begin_class
