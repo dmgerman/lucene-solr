@@ -58,16 +58,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -81,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents matching boolean combinations of other   * queries, typically {@link TermQuery}s or {@link PhraseQuery}s.   */
+comment|/** A Query that matches documents matching boolean combinations of other   * queries, e.g. {@link TermQuery}s, {@link PhraseQuery}s or other   * BooleanQuerys.   */
 end_comment
 
 begin_class
