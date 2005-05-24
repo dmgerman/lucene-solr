@@ -258,6 +258,13 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+name|iwriter
+operator|.
+name|setMaxFieldLength
+argument_list|(
+literal|25000
+argument_list|)
+expr_stmt|;
 name|Document
 name|doc
 init|=
