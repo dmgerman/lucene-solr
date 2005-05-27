@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * @author Edwin de Jonge (ejne@cbs.nl)  *  * A stemmer for Dutch words. The algorithm is an implementation of  * the<see cref="http://snowball.tartarus.org/dutch/stemmer.html">dutch stemming</see>  *  algorithm in snowball. Snowball is a project of Martin Porter (does Porter Stemmer ring a bell?):  */
+comment|/**  *  * A stemmer for Dutch words. The algorithm is an implementation of  * the<a href="http://snowball.tartarus.org/algorithms/dutch/stemmer.html">dutch stemming</a>  * algorithm in Martin Porter's snowball project.  *   * @author Edwin de Jonge (ejne at cbs.nl)  */
 end_comment
 
 begin_class

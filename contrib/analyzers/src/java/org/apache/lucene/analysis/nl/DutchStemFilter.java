@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Edwin de Jonge  *<p/>  *         A filter that stems Dutch words. It supports a table of words that should  *         not be stemmed at all. The stemmer used can be changed at runtime after the  *         filter object is created (as long as it is a DutchStemmer).  */
+comment|/**  * A filter that stems Dutch words. It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a DutchStemmer).  *   * @author Edwin de Jonge  */
 end_comment
 
 begin_class
