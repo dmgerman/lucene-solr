@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on (copied) the GermanStemFilter  *  * @author JoÃ£o Kramer  *<p/>  *<p/>  *         A filter that stemms german words. It supports a table of words that should  *         not be stemmed at all.  * @author Gerhard Schwarz  */
+comment|/**  * Based on GermanStemFilter  *  * @author Jo&atilde;o Kramer  */
 end_comment
 
 begin_class

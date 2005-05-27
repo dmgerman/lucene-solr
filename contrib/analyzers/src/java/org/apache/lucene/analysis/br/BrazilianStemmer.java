@@ -19,7 +19,7 @@ comment|/**  * Copyright 2004-2005 The Apache Software Foundation  *  * Licensed
 end_comment
 
 begin_comment
-comment|/**  * A stemmer for brazilian words. The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by JÃ¶rg  * Caumanns (joerg.caumanns@isst.fhg.de).  *  * @author    Gerhard Schwarz  */
+comment|/**  * A stemmer for Brazilian words.  */
 end_comment
 
 begin_class
