@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    Joï¿½o Kramer  */
+comment|/**  * Analyzer for Brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    Jo&atilde;o Kramer  */
 end_comment
 
 begin_class
@@ -193,7 +193,7 @@ name|BrazilianAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** 	 * List of typical german stopwords. 	 */
+comment|/** 	 * List of typical Brazilian stopwords. 	 */
 DECL|field|BRAZILIAN_STOP_WORDS
 specifier|public
 specifier|final

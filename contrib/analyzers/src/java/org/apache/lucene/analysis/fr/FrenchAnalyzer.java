@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for french language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an other list is specified, the  * exclusionlist is empty by default.  *  * @author Patrick Talbot (based on Gerhard Schwarz work for German)  * @version $Id$  */
+comment|/**  * Analyzer for French language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author Patrick Talbot (based on Gerhard Schwarz's work for German)  * @version $Id$  */
 end_comment
 
 begin_class
@@ -193,7 +193,7 @@ name|FrenchAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/**    * Extended list of typical french stopwords.    */
+comment|/**    * Extended list of typical French stopwords.    */
 DECL|field|FRENCH_STOP_WORDS
 specifier|public
 specifier|final
@@ -846,7 +846,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"readermust not be null"
+literal|"reader must not be null"
 argument_list|)
 throw|;
 name|TokenStream

@@ -625,7 +625,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Loads stopwords hash from resource stream (file, database...).      * @param   wordfile    File containing the wordlist      * @param   encoding    Encoding used (win-1250, iso-8859-2, ...}, null for default system encoding      */
+comment|/**      * Loads stopwords hash from resource stream (file, database...).      * @param   wordfile    File containing the wordlist      * @param   encoding    Encoding used (win-1250, iso-8859-2, ...), null for default system encoding      */
 DECL|method|loadStopWords
 specifier|public
 name|void
@@ -737,7 +737,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, StopFilter, GermanStemFilter and LowerCaseFilter 	 */
+comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream build from a StandardTokenizer filtered with 	 * 			StandardFilter, LowerCaseFilter, and StopFilter 	 */
 DECL|method|tokenStream
 specifier|public
 specifier|final

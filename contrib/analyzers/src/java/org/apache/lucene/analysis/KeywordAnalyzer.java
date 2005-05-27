@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * "Tokenizes" the entire stream as a single token.  */
+comment|/**  * "Tokenizes" the entire stream as a single token. This is useful  * for data like zip codes, ids, and some product names.  */
 end_comment
 
 begin_class
