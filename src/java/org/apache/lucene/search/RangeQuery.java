@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an exclusive range.  *  * @version $Id$  */
+comment|/**  * A Query that matches documents within an exclusive range. A RangeQuery  * is built by QueryParser for input like<code>[010 TO 120]</code>.  *  * @version $Id$  */
 end_comment
 
 begin_class

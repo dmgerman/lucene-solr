@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents containing a particular sequence of terms.   This may be combined with other terms with a {@link BooleanQuery}.   */
+comment|/** A Query that matches documents containing a particular sequence of terms.  * A PhraseQuery is built by QueryParser for input like<code>"new york"</code>.  *   *<p>This query may be combined with other terms or queries with a {@link BooleanQuery}.  */
 end_comment
 
 begin_class

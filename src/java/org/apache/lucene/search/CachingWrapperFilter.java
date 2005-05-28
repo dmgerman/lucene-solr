@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps another filters result and caches it.  The caching  * behavior is like {@link QueryFilter}.  The purpose is to allow  * filters to simply filter, and then wrap with this class to add  * caching, keeping the two concerns decoupled yet composable.  */
+comment|/**  * Wraps another filter's result and caches it.  The caching  * behavior is like {@link QueryFilter}.  The purpose is to allow  * filters to simply filter, and then wrap with this class to add  * caching, keeping the two concerns decoupled yet composable.  */
 end_comment
 
 begin_class
