@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  *	Spell Checker class  (Main class)<br/>  * (initially inspired by the David Spencer code).  *</p>  *    *<p>  *  Spell Checker spellchecker= new SpellChecker (spellDirectory);<br/>  *<br/>  *  //To index a field of a user index<br/>  *  spellchecker.indexDictionary(new LuceneDictionary(my_lucene_reader, a_field));<br/>  *<br/>  *   //To index a file containing words<br/>  *  spellchecker.indexDictionary(new PlainTextDictionary(new File("myfile.txt")));<br/>  *</p>  *   * @author Nicolas Maisonneuve  * @version 1.0  */
+comment|/**  *<p>  *	Spell Checker class  (Main class)<br/>  * (initially inspired by the David Spencer code).  *</p>  *    *<p>Example Usage:  *   *<pre>  *  SpellChecker spellchecker = new SpellChecker(spellIndexDirectory);  *  // To index a field of a user index:  *  spellchecker.indexDictionary(new LuceneDictionary(my_lucene_reader, a_field));  *  // To index a file containing words:  *  spellchecker.indexDictionary(new PlainTextDictionary(new File("myfile.txt")));  *  String[] suggestions = spellchecker.suggestSimilar("misspelt", 5);  *</pre>  *   * @author Nicolas Maisonneuve  * @version 1.0  */
 end_comment
 
 begin_class
@@ -287,7 +287,7 @@ operator|=
 name|spellindex
 expr_stmt|;
 block|}
-comment|/**      *  Set the accuraty 0<min<1 default 0.5      * @param min float      */
+comment|/**      *  Set the accuracy 0&lt; min&lt; 1; default 0.5      */
 DECL|method|setAccuraty
 specifier|public
 name|void
@@ -353,7 +353,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * Suggest similar words (restricted or not of a field of a user index)      * @param word String the word you want a spell check done on      * @param num_sug int the number of suggest words      * @param ir the indexReader of the user index (can be null see field param)      * @param field String the field of the user index: if field is not null ,the suggest      * words are restricted to the words present in this field.      * @param morePopular boolean return only the suggest words that are more frequent than the searched word      * (only if restricted mode = (indexReader!=null and field!=null)      * @throws IOException      * @return String[] the sorted list of the suggest words with this 2 criteri      * first criteria : the edit distance, second criteria (only if restricted mode): the popularity      * of the suggest words in the field of the user index      */
+comment|/**      * Suggest similar words (restricted or not to a field of a user index)      * @param word String the word you want a spell check done on      * @param num_sug int the number of suggest words      * @param ir the indexReader of the user index (can be null see field param)      * @param field String the field of the user index: if field is not null, the suggested      * words are restricted to the words present in this field.      * @param morePopular boolean return only the suggest words that are more frequent than the searched word      * (only if restricted mode = (indexReader!=null and field!=null)      * @throws IOException      * @return String[] the sorted list of the suggest words with this 2 criteria:      * first criteria: the edit distance, second criteria (only if restricted mode): the popularity      * of the suggest words in the field of the user index      */
 DECL|method|suggestSimilar
 specifier|public
 name|String
@@ -1108,7 +1108,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * if the word exist in the index      * @param word String      * @throws IOException      * @return boolean      */
+comment|/**      * Check whether the word exists in the index.      * @param word String      * @throws IOException      * @return true iff the word exists in the index      */
 DECL|method|exist
 specifier|public
 name|boolean

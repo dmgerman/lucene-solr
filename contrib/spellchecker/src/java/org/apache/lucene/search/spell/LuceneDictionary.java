@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene Dictionnary  *  * @author Nicolas Maisonneuve  */
+comment|/**  * Lucene Dictionary  *  * @author Nicolas Maisonneuve  */
 end_comment
 
 begin_class

@@ -19,7 +19,7 @@ comment|/**  * Copyright 2002-2004 The Apache Software Foundation  *  * Licensed
 end_comment
 
 begin_comment
-comment|/**  *  SuggestWord Class  *  used in suggestSimilat method in SpellChecker class  *  @author Nicolas Maisonneuve  */
+comment|/**  *  SuggestWord Class, used in suggestSimilar method in SpellChecker class.  *   *  @author Nicolas Maisonneuve  */
 end_comment
 
 begin_class
