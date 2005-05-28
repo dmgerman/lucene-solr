@@ -62,7 +62,6 @@ end_comment
 
 begin_class
 DECL|class|BooleanScorer2
-specifier|public
 class|class
 name|BooleanScorer2
 extends|extends
@@ -1145,6 +1144,7 @@ name|coordFactor
 argument_list|()
 return|;
 block|}
+comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.    *     *<p>When this method is used the {@link #explain(int)} method should not be used.    *     * @param target The target document number.    * @return true iff there is such a match.    */
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -1176,6 +1176,7 @@ name|target
 argument_list|)
 return|;
 block|}
+comment|/** Throws an UnsupportedOperationException.    * TODO: Implement an explanation of the coordination factor.    * @param doc The document number for the explanation.    * @throws UnsupportedOperationException    */
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -1184,8 +1185,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
