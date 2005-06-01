@@ -112,8 +112,8 @@ condition|)
 block|{
 if|if
 condition|(
-operator|++
 name|sleepCount
+operator|++
 operator|==
 name|maxSleepCount
 condition|)
