@@ -1062,7 +1062,7 @@ name|IOException
 argument_list|(
 literal|"Cannot delete "
 operator|+
-name|name
+name|file
 argument_list|)
 throw|;
 block|}
@@ -1126,7 +1126,7 @@ name|IOException
 argument_list|(
 literal|"Cannot delete "
 operator|+
-name|to
+name|nu
 argument_list|)
 throw|;
 comment|// Rename the old file to the new one. Unfortunately, the renameTo()
@@ -1248,11 +1248,11 @@ name|IOException
 argument_list|(
 literal|"Cannot rename "
 operator|+
-name|from
+name|old
 operator|+
 literal|" to "
 operator|+
-name|to
+name|nu
 argument_list|)
 throw|;
 block|}
@@ -1343,10 +1343,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
-operator|new
-name|FSIndexOutput
-argument_list|(
+name|File
+name|file
+init|=
 operator|new
 name|File
 argument_list|(
@@ -1354,6 +1353,35 @@ name|directory
 argument_list|,
 name|name
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|file
+operator|.
+name|exists
+argument_list|()
+operator|&&
+operator|!
+name|file
+operator|.
+name|delete
+argument_list|()
+condition|)
+comment|// delete existing, if any
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot overwrite: "
+operator|+
+name|file
+argument_list|)
+throw|;
+return|return
+operator|new
+name|FSIndexOutput
+argument_list|(
+name|file
 argument_list|)
 return|;
 block|}
