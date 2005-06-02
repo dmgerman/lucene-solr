@@ -114,6 +114,40 @@ name|lookup
 expr_stmt|;
 block|}
 block|}
+comment|/** Interface to parse ints from document fields.    * @see #getInts(IndexReader, String, IntParser)    */
+DECL|interface|IntParser
+specifier|public
+interface|interface
+name|IntParser
+block|{
+comment|/** Return an integer representation of this field's value. */
+DECL|method|parseInt
+specifier|public
+name|int
+name|parseInt
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Interface to parse floats from document fields.    * @see #getFloats(IndexReader, String, FloatParser)    */
+DECL|interface|FloatParser
+specifier|public
+interface|interface
+name|FloatParser
+block|{
+comment|/** Return an float representation of this field's value. */
+DECL|method|parseFloat
+specifier|public
+name|float
+name|parseFloat
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+function_decl|;
+block|}
 comment|/** Expert: The cache used internally by sorting and range query classes. */
 DECL|field|DEFAULT
 specifier|public
@@ -141,6 +175,25 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as integers and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    * @param reader  Used to get field values.    * @param field   Which field contains the integers.    * @param parser  Computes integer for string values.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+DECL|method|getInts
+specifier|public
+name|int
+index|[]
+name|getInts
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|IntParser
+name|parser
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if    * none is found, reads the terms in<code>field</code> as floats and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the floats.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getFloats
 specifier|public
@@ -153,6 +206,25 @@ name|reader
 parameter_list|,
 name|String
 name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Checks the internal cache for an appropriate entry, and if    * none is found, reads the terms in<code>field</code> as floats and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the floats.    * @param parser  Computes float for string values.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+DECL|method|getFloats
+specifier|public
+name|float
+index|[]
+name|getFloats
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|FloatParser
+name|parser
 parameter_list|)
 throws|throws
 name|IOException
