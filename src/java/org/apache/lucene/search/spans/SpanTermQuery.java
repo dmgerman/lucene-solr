@@ -406,6 +406,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// are we already at the correct position?
+if|if
+condition|(
+name|doc
+operator|>=
+name|target
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 if|if
 condition|(
 operator|!
