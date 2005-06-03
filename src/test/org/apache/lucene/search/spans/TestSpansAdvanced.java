@@ -430,7 +430,7 @@ name|document
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Tests two span queries.      *      * ERROR: Lucene returns the incorrect number of results and the scoring for      * the results is incorrect.      *      * @throws IOException      */
+comment|/**      * Tests two span queries.      *      * @throws IOException      */
 DECL|method|testBooleanQueryWithSpanQueries
 specifier|public
 name|void
@@ -445,7 +445,7 @@ literal|0.3884282f
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Tests two span queries.      *      * ERROR: Lucene returns the incorrect number of results and the scoring for      * the results is incorrect.      *      * @throws IOException      */
+comment|/**      * Tests two span queries.      *      * @throws IOException      */
 DECL|method|doTestBooleanQueryWithSpanQueries
 specifier|protected
 name|void
