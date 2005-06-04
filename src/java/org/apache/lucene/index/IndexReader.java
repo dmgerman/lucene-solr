@@ -851,7 +851,7 @@ literal|"segments"
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    */
+comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    * @deprecated use {@link #isCurrent()} instead    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -875,7 +875,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    */
+comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    * @deprecated use {@link #isCurrent()} instead    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -917,7 +917,7 @@ return|return
 name|version
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read.    */
+comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read.    * @deprecated use {@link #isCurrent()} instead    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -937,6 +937,38 @@ name|readCurrentVersion
 argument_list|(
 name|directory
 argument_list|)
+return|;
+block|}
+comment|/**    * Check whether this IndexReader still works on a current version of the index.    * If this is not the case you will need to re-open the IndexReader to    * make sure you see the latest changes made to the index.    *     * @throws IOException    */
+DECL|method|isCurrent
+specifier|public
+name|boolean
+name|isCurrent
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|SegmentInfos
+operator|.
+name|readCurrentVersion
+argument_list|(
+name|directory
+argument_list|)
+operator|!=
+name|segmentInfos
+operator|.
+name|getVersion
+argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
 return|;
 block|}
 comment|/**    *  Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector contains terms and frequencies for all terms in a given vectorized field.    *  If no such fields existed, the method returns null. The term vectors that are    * returned my either be of type TermFreqVector or of type TermPositionsVector if    * positions or offsets have been stored.    *     * @param docNumber document for which term frequency vectors are returned    * @return array of term frequency vectors. May be null if no term vectors have been    *  stored for the specified document.    * @throws IOException if index cannot be accessed    * @see org.apache.lucene.document.Field.TermVector    */

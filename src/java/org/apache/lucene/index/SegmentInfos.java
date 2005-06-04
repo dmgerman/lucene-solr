@@ -106,14 +106,17 @@ init|=
 literal|0
 decl_stmt|;
 comment|// used to name new segments
+comment|/**    * counts how often the index has been changed by adding or deleting docs.    * starting with the current time in milliseconds forces to create unique version numbers.    */
 DECL|field|version
 specifier|private
 name|long
 name|version
 init|=
-literal|0
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
 decl_stmt|;
-comment|//counts how often the index has been changed by adding or deleting docs
 DECL|method|info
 specifier|public
 specifier|final
@@ -281,7 +284,10 @@ argument_list|()
 condition|)
 name|version
 operator|=
-literal|0
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
 expr_stmt|;
 comment|// old file format without version number
 else|else
