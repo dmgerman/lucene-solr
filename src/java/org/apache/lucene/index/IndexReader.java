@@ -1083,7 +1083,7 @@ name|int
 name|numDocs
 parameter_list|()
 function_decl|;
-comment|/** Returns one greater than the largest possible document number.    This may be used to, e.g., determine how big to allocate an array which    will have an element for every document number in an index.    */
+comment|/** Returns one greater than the largest possible document number.    * This may be used to, e.g., determine how big to allocate an array which    * will have an element for every document number in an index.    */
 DECL|method|maxDoc
 specifier|public
 specifier|abstract
@@ -1250,7 +1250,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns an enumeration of all the terms in the index.    The enumeration is ordered by Term.compareTo().  Each term    is greater than all that precede it in the enumeration.    */
+comment|/** Returns an enumeration of all the terms in the index.    * The enumeration is ordered by Term.compareTo().  Each term    * is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|public
 specifier|abstract
@@ -1260,7 +1260,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all terms after a given term.    The enumeration is ordered by Term.compareTo().  Each term    is greater than all that precede it in the enumeration.    */
+comment|/** Returns an enumeration of all terms after a given term.    * The enumeration is ordered by Term.compareTo().  Each term    * is greater than all that precede it in the enumeration.    */
 DECL|method|terms
 specifier|public
 specifier|abstract
@@ -1286,7 +1286,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>. For each document, the document number, the frequency of    the term in that document is also provided, for use in search scoring.    Thus, this method implements the mapping:<p><ul>    Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup></ul><p>The enumeration is ordered by document number.  Each document number    is greater than all that precede it in the enumeration.    */
+comment|/** Returns an enumeration of all the documents which contain    *<code>term</code>. For each document, the document number, the frequency of    * the term in that document is also provided, for use in search scoring.    * Thus, this method implements the mapping:    *<p><ul>    * Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup>    *</ul>    *<p>The enumeration is ordered by document number.  Each document number    * is greater than all that precede it in the enumeration.    */
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -1325,7 +1325,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain<code>term</code>.  For each document, in addition to the document number    and frequency of the term in that document, a list of all of the ordinal    positions of the term in the document is available.  Thus, this method    implements the mapping:<p><ul>    Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...    pos<sub>freq-1</sub>&gt;&gt;<sup>*</sup></ul><p> This positional information faciliates phrase and proximity searching.<p>The enumeration is ordered by document number.  Each document number is    greater than all that precede it in the enumeration.    */
+comment|/** Returns an enumeration of all the documents which contain    *<code>term</code>.  For each document, in addition to the document number    * and frequency of the term in that document, a list of all of the ordinal    * positions of the term in the document is available.  Thus, this method    * implements the mapping:    *    *<p><ul>    * Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,    *&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...    * pos<sub>freq-1</sub>&gt;    *&gt;<sup>*</sup>    *</ul>    *<p> This positional information faciliates phrase and proximity searching.    *<p>The enumeration is ordered by document number.  Each document number is    * greater than all that precede it in the enumeration.    */
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -1475,7 +1475,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    deleted it will not appear in TermDocs or TermPostitions enumerations.    Attempts to read its field with the {@link #document}    method will result in an error.  The presence of this document may still be    reflected in the {@link #docFreq} statistic, though    this will be corrected eventually as the index is further modified.    */
+comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    */
 DECL|method|delete
 specifier|public
 specifier|final
@@ -1519,7 +1519,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes all documents containing<code>term</code>.    This is useful if one uses a document field to hold a unique ID string for    the document.  Then to delete such a document, one merely constructs a    term with the appropriate field and the unique ID string as its text and    passes it to this method.  Returns the number of documents deleted.    See {@link #delete(int)} for information about when this deletion will     become effective.    */
+comment|/** Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #delete(int)} for information about when this deletion will     * become effective.    * @return the number of documents deleted    */
 DECL|method|delete
 specifier|public
 specifier|final

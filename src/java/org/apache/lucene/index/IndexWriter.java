@@ -1078,7 +1078,7 @@ name|maxFieldLength
 init|=
 name|DEFAULT_MAX_FIELD_LENGTH
 decl_stmt|;
-comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #maxFieldLength} terms for a given field, the remainder are    * discarded.    */
+comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -1098,7 +1098,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link #maxFieldLength} terms for a given field, the remainder are    * discarded.    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    */
 DECL|method|addDocument
 specifier|public
 name|void
