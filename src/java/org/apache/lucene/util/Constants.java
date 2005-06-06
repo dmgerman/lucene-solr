@@ -33,6 +33,26 @@ name|Constants
 parameter_list|()
 block|{}
 comment|// can't construct
+comment|/** Name of the index segment file */
+DECL|field|INDEX_SEGMENTS_FILENAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|INDEX_SEGMENTS_FILENAME
+init|=
+literal|"segments"
+decl_stmt|;
+comment|/** Name of the index deletable file */
+DECL|field|INDEX_DELETABLE_FILENAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|INDEX_DELETABLE_FILENAME
+init|=
+literal|"deletable"
+decl_stmt|;
 comment|/** The value of<tt>System.getProperty("java.version")<tt>. **/
 DECL|field|JAVA_VERSION
 specifier|public

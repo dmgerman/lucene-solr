@@ -78,6 +78,20 @@ name|IndexOutput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_class
 DECL|class|SegmentInfos
 specifier|final
@@ -156,7 +170,9 @@ name|directory
 operator|.
 name|openInput
 argument_list|(
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 decl_stmt|;
 try|try
@@ -427,7 +443,9 @@ name|renameFile
 argument_list|(
 literal|"segments.new"
 argument_list|,
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 expr_stmt|;
 block|}
@@ -462,7 +480,9 @@ name|directory
 operator|.
 name|openInput
 argument_list|(
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 decl_stmt|;
 name|int

@@ -212,7 +212,9 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"deletable"
+name|Constants
+operator|.
+name|INDEX_DELETABLE_FILENAME
 argument_list|)
 condition|)
 return|return
@@ -225,7 +227,9 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 condition|)
 return|return

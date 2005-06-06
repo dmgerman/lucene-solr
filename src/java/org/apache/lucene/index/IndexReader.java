@@ -116,6 +116,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -825,7 +839,9 @@ name|fileModified
 argument_list|(
 name|directory
 argument_list|,
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 return|;
 block|}
@@ -847,7 +863,9 @@ name|directory
 operator|.
 name|fileModified
 argument_list|(
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 return|;
 block|}
@@ -1019,7 +1037,9 @@ name|File
 argument_list|(
 name|directory
 argument_list|,
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 operator|)
 operator|.
@@ -1045,7 +1065,9 @@ name|File
 argument_list|(
 name|directory
 argument_list|,
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 operator|)
 operator|.
@@ -1071,7 +1093,9 @@ name|directory
 operator|.
 name|fileExists
 argument_list|(
-literal|"segments"
+name|Constants
+operator|.
+name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 return|;
 block|}
