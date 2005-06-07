@@ -795,7 +795,7 @@ return|return
 name|directory
 return|;
 block|}
-comment|/**     * Returns the time the index in the named directory was last modified.     *     *<p>Synchronization of IndexReader and IndexWriter instances is     * no longer done via time stamps of the segments file since the time resolution     * depends on the hardware platform. Instead, a version number is maintained    * within the segments file, which is incremented everytime when the index is    * changed.</p>    *     * @deprecated  Replaced by {@link #getCurrentVersion(String)}    * */
+comment|/**     * Returns the time the index in the named directory was last modified.    * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -819,7 +819,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**     * Returns the time the index in the named directory was last modified.     *     *<p>Synchronization of IndexReader and IndexWriter instances is     * no longer done via time stamps of the segments file since the time resolution     * depends on the hardware platform. Instead, a version number is maintained    * within the segments file, which is incremented everytime when the index is    * changed.</p>    *     * @deprecated  Replaced by {@link #getCurrentVersion(File)}    * */
+comment|/**     * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -845,7 +845,7 @@ name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 return|;
 block|}
-comment|/**     * Returns the time the index in the named directory was last modified.     *     *<p>Synchronization of IndexReader and IndexWriter instances is     * no longer done via time stamps of the segments file since the time resolution     * depends on the hardware platform. Instead, a version number is maintained    * within the segments file, which is incremented everytime when the index is    * changed.</p>    *     * @deprecated  Replaced by {@link #getCurrentVersion(Directory)}    * */
+comment|/**     * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -869,7 +869,7 @@ name|INDEX_SEGMENTS_FILENAME
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    * @deprecated use {@link #isCurrent()} instead    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -893,7 +893,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    * @deprecated use {@link #isCurrent()} instead    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -935,7 +935,7 @@ return|return
 name|version
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number counts the    * number of changes of the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read.    * @deprecated use {@link #isCurrent()} instead    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read.    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
