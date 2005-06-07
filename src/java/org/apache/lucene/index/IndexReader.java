@@ -957,6 +957,20 @@ name|directory
 argument_list|)
 return|;
 block|}
+comment|/**    * Version number when this IndexReader was opened.    */
+DECL|method|getVersion
+specifier|public
+name|long
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|segmentInfos
+operator|.
+name|getVersion
+argument_list|()
+return|;
+block|}
 comment|/**    * Check whether this IndexReader still works on a current version of the index.    * If this is not the case you will need to re-open the IndexReader to    * make sure you see the latest changes made to the index.    *     * @throws IOException    */
 DECL|method|isCurrent
 specifier|public
