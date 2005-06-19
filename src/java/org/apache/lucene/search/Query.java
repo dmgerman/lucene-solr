@@ -246,7 +246,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Expert: called when re-writing queries under MultiSearcher.    *    *<p>Only implemented by derived queries, with no    * {@link #createWeight(Searcher)} implementatation.    */
+comment|/** Expert: called when re-writing queries under MultiSearcher.    *    *<p>Only implemented by derived queries, with no    * {@link #createWeight(Searcher)} implementation.    */
 DECL|method|combine
 specifier|public
 name|Query
