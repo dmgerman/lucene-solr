@@ -106,7 +106,7 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-comment|/**    * Loads a text file and adds every line as an entry to a HashSet (omitting    * leading and trailing whitespace). Every line of the file should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like GermanAnalyzer).    *    * @param wordfile File containing the wordlist    * @return A HashSet with the file's words    */
+comment|/**    * Loads a text file and adds every line as an entry to a HashSet (omitting    * leading and trailing whitespace). Every line of the file should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param wordfile File containing the wordlist    * @return A HashSet with the file's words    */
 DECL|method|getWordSet
 specifier|public
 specifier|static
@@ -167,6 +167,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**    * Reads lines from a Reader and adds every line as an entry to a HashSet (omitting    * leading and trailing whitespace). Every line of the Reader should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param reader Reader containing the wordlist    * @return A HashSet with the reader's words    */
 DECL|method|getWordSet
 specifier|public
 specifier|static
