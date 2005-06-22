@@ -155,6 +155,26 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|StandardAnalyzer
+specifier|public
+name|StandardAnalyzer
+parameter_list|(
+name|Reader
+name|stopwords
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|stopSet
+operator|=
+name|WordlistLoader
+operator|.
+name|getWordSet
+argument_list|(
+name|stopwords
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Constructs a {@link StandardTokenizer} filtered by a {@link   StandardFilter}, a {@link LowerCaseFilter} and a {@link StopFilter}. */
 DECL|method|tokenStream
 specifier|public
