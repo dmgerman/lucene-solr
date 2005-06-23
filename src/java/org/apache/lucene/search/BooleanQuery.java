@@ -1671,26 +1671,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// inherit javadoc
-DECL|method|combine
-specifier|public
-name|Query
-name|combine
-parameter_list|(
-name|Query
-index|[]
-name|queries
-parameter_list|)
-block|{
-return|return
-name|Query
-operator|.
-name|mergeBooleanQueries
-argument_list|(
-name|queries
-argument_list|)
-return|;
-block|}
 DECL|method|clone
 specifier|public
 name|Object
