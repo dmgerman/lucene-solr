@@ -34,7 +34,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -133,6 +153,22 @@ operator|.
 name|search
 operator|.
 name|TermQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanNearQuery
 import|;
 end_import
 
@@ -418,15 +454,23 @@ argument_list|,
 name|terms
 argument_list|)
 expr_stmt|;
-comment|//				else
-comment|//					if ((query instanceof PrefixQuery)
-comment|//						|| (query instanceof RangeQuery)
-comment|//						|| (query instanceof MultiTermQuery))
-comment|//					{
-comment|//						//client should call rewrite BEFORE calling highlighter
-comment|//						//						Query expandedQuery = rewrite(reader, query);
-comment|//						//				getTerms(reader, expandedQuery, terms, prohibited);
-comment|//					}
+elseif|else
+if|if
+condition|(
+name|query
+operator|instanceof
+name|SpanNearQuery
+condition|)
+name|getTermsFromSpanNearQuery
+argument_list|(
+operator|(
+name|SpanNearQuery
+operator|)
+name|query
+argument_list|,
+name|terms
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getTermsFromBooleanQuery
 specifier|private
@@ -603,6 +647,83 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|getTermsFromSpanNearQuery
+specifier|private
+specifier|static
+specifier|final
+name|void
+name|getTermsFromSpanNearQuery
+parameter_list|(
+name|SpanNearQuery
+name|query
+parameter_list|,
+name|HashSet
+name|terms
+parameter_list|)
+block|{
+name|Collection
+name|queryTerms
+init|=
+name|query
+operator|.
+name|getTerms
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|iterator
+init|=
+name|queryTerms
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+comment|// break it out for debugging.
+name|Term
+name|term
+init|=
+operator|(
+name|Term
+operator|)
+name|iterator
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|String
+name|text
+init|=
+name|term
+operator|.
+name|text
+argument_list|()
+decl_stmt|;
+name|terms
+operator|.
+name|add
+argument_list|(
+operator|new
+name|WeightedTerm
+argument_list|(
+name|query
+operator|.
+name|getBoost
+argument_list|()
+argument_list|,
+name|text
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
