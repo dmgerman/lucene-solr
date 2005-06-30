@@ -120,6 +120,28 @@ return|return
 name|text
 return|;
 block|}
+comment|/**    * Optimized construction of new Terms by reusing same field as this Term    * - avoids field.intern() overhead     * @param text The text of the new term (field is implicitly same as this Term instance)    * @return A new Term    */
+DECL|method|createTerm
+specifier|public
+name|Term
+name|createTerm
+parameter_list|(
+name|String
+name|text
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Term
+argument_list|(
+name|field
+argument_list|,
+name|text
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
 comment|/** Compares two terms, returning true iff they have the same       field and text. */
 DECL|method|equals
 specifier|public
