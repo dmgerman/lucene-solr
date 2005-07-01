@@ -1724,13 +1724,20 @@ operator|.
 name|readByte
 argument_list|()
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"expected readByte() to throw exception"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|IOException
 name|e
 parameter_list|)
-block|{         }
+block|{
+comment|// expected exception
+block|}
 block|}
 DECL|method|isCSIndexInput
 specifier|static
