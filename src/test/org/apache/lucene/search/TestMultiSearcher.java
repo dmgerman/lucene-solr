@@ -651,8 +651,6 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|// iterating over the hit documents
 for|for
 control|(
@@ -683,37 +681,11 @@ name|i
 argument_list|)
 decl_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|ArrayIndexOutOfBoundsException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"ArrayIndexOutOfBoundsException thrown: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
 name|mSearcher
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 comment|//--------------------------------------------------------------------
 comment|// scenario 2
 comment|//--------------------------------------------------------------------
@@ -813,8 +785,6 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|// iterating over the hit documents
 for|for
 control|(
@@ -846,37 +816,11 @@ name|i
 argument_list|)
 decl_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"Exception thrown: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
 name|mSearcher2
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 comment|//--------------------------------------------------------------------
 comment|// scenario 3
 comment|//--------------------------------------------------------------------
@@ -1002,8 +946,6 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|// iterating over the hit documents
 for|for
 control|(
@@ -1034,37 +976,11 @@ name|i
 argument_list|)
 decl_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"IOException thrown: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
 name|mSearcher3
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class

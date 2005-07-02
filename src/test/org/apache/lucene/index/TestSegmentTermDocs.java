@@ -151,6 +151,8 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|DocHelper
 operator|.

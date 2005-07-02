@@ -3033,6 +3033,11 @@ argument_list|(
 literal|"a?t"
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"Wildcard queries should not be allowed"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3040,13 +3045,8 @@ name|ParseException
 name|expected
 parameter_list|)
 block|{
-return|return;
+comment|// expected exception
 block|}
-name|fail
-argument_list|(
-literal|"Wildcard queries should not be allowed"
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testCustomQueryParserFuzzy
 specifier|public
@@ -3073,6 +3073,11 @@ argument_list|(
 literal|"xunit~"
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"Fuzzy queries should not be allowed"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3080,13 +3085,8 @@ name|ParseException
 name|expected
 parameter_list|)
 block|{
-return|return;
+comment|// expected exception
 block|}
-name|fail
-argument_list|(
-literal|"Fuzzy queries should not be allowed"
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testBooleanQuery
 specifier|public
