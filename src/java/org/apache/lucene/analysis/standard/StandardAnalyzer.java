@@ -119,6 +119,20 @@ DECL|method|StandardAnalyzer
 specifier|public
 name|StandardAnalyzer
 parameter_list|(
+name|Set
+name|stopWords
+parameter_list|)
+block|{
+name|stopSet
+operator|=
+name|stopWords
+expr_stmt|;
+block|}
+comment|/** Builds an analyzer with the given stop words. */
+DECL|method|StandardAnalyzer
+specifier|public
+name|StandardAnalyzer
+parameter_list|(
 name|String
 index|[]
 name|stopWords

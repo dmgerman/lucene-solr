@@ -171,6 +171,22 @@ name|ENGLISH_STOP_WORDS
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Builds an analyzer with the stop words from the given set.    */
+DECL|method|StopAnalyzer
+specifier|public
+name|StopAnalyzer
+parameter_list|(
+name|Set
+name|stopWords
+parameter_list|)
+block|{
+name|this
+operator|.
+name|stopWords
+operator|=
+name|stopWords
+expr_stmt|;
+block|}
 comment|/** Builds an analyzer which removes words in the provided array. */
 DECL|method|StopAnalyzer
 specifier|public
