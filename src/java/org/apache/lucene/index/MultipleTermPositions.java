@@ -633,6 +633,13 @@ name|IOException
 block|{
 while|while
 condition|(
+name|_termPositionsQueue
+operator|.
+name|peek
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 name|target
 operator|>
 name|_termPositionsQueue
