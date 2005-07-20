@@ -329,6 +329,25 @@ name|mfqp
 operator|.
 name|parse
 argument_list|(
+literal|"w?ldcard"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"b:w?ldcard t:w?ldcard"
+argument_list|,
+name|q
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|q
+operator|=
+name|mfqp
+operator|.
+name|parse
+argument_list|(
 literal|"\"foo bar\""
 argument_list|)
 expr_stmt|;
@@ -354,6 +373,25 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"(b:\"aa bb cc\" t:\"aa bb cc\") (b:\"dd ee\" t:\"dd ee\")"
+argument_list|,
+name|q
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|q
+operator|=
+name|mfqp
+operator|.
+name|parse
+argument_list|(
+literal|"\"foo bar\"~4"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"b:\"foo bar\"~4 t:\"foo bar\"~4"
 argument_list|,
 name|q
 operator|.
