@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Describe class<code>MultipleTermPositions</code> here.  *  * @author Anders Nielsen  * @version 1.0  */
+comment|/**  * Describe class<code>MultipleTermPositions</code> here.  *   * @author Anders Nielsen  * @version 1.0  */
 end_comment
 
 begin_class
@@ -400,7 +400,7 @@ specifier|private
 name|IntQueue
 name|_posList
 decl_stmt|;
-comment|/**      * Creates a new<code>MultipleTermPositions</code> instance.      *      * @param indexReader an<code>IndexReader</code> value      * @param terms a<code>Term[]</code> value      * @exception IOException if an error occurs      */
+comment|/**    * Creates a new<code>MultipleTermPositions</code> instance.    *     * @exception IOException    */
 DECL|method|MultipleTermPositions
 specifier|public
 name|MultipleTermPositions
@@ -744,7 +744,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Not implemented.      * @throws UnsupportedOperationException      */
+comment|/**    * Not implemented.    * @throws UnsupportedOperationException    */
 DECL|method|seek
 specifier|public
 name|void
@@ -762,7 +762,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented.      * @throws UnsupportedOperationException      */
+comment|/**    * Not implemented.    * @throws UnsupportedOperationException    */
 DECL|method|seek
 specifier|public
 name|void
@@ -780,7 +780,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented.      * @throws UnsupportedOperationException      */
+comment|/**    * Not implemented.    * @throws UnsupportedOperationException    */
 DECL|method|read
 specifier|public
 name|int
