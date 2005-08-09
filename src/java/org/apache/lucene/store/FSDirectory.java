@@ -110,22 +110,8 @@ name|IndexFileNameFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Constants
-import|;
-end_import
-
 begin_comment
-comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  *<p>If the system property 'disableLuceneLocks' has the String value of  * "true", lock creation will be disabled.  *  * @see Directory  * @author Doug Cutting  */
+comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  *  * @see Directory  * @author Doug Cutting  */
 end_comment
 
 begin_class
@@ -148,24 +134,46 @@ operator|new
 name|Hashtable
 argument_list|()
 decl_stmt|;
-DECL|field|DISABLE_LOCKS
+DECL|field|disableLocks
 specifier|private
 specifier|static
-specifier|final
 name|boolean
-name|DISABLE_LOCKS
+name|disableLocks
 init|=
-name|Boolean
-operator|.
-name|getBoolean
-argument_list|(
-literal|"disableLuceneLocks"
-argument_list|)
-operator|||
-name|Constants
-operator|.
-name|JAVA_1_1
+literal|false
 decl_stmt|;
+comment|/**    * Set whether Lucene's use of lock files is disabled. By default,     * lock files are enabled. They should only be disabled if the index    * is on a read-only medium like a CD-ROM.    */
+DECL|method|setDisableLocks
+specifier|public
+specifier|static
+name|void
+name|setDisableLocks
+parameter_list|(
+name|boolean
+name|doDisableLocks
+parameter_list|)
+block|{
+name|FSDirectory
+operator|.
+name|disableLocks
+operator|=
+name|doDisableLocks
+expr_stmt|;
+block|}
+comment|/**    * Returns whether Lucene's use of lock files is disabled.    * @return true if locks are disabled, false if locks are enabled.    */
+DECL|method|getDisableLocks
+specifier|public
+specifier|static
+name|boolean
+name|getDisableLocks
+parameter_list|()
+block|{
+return|return
+name|FSDirectory
+operator|.
+name|disableLocks
+return|;
+block|}
 comment|/**    * Directory specified by<code>org.apache.lucene.lockDir</code>    * or<code>java.io.tmpdir</code> system property    */
 DECL|field|LOCK_DIR
 specifier|public
@@ -192,7 +200,6 @@ comment|/** The default class which implements filesystem-based directories. */
 DECL|field|IMPL
 specifier|private
 specifier|static
-specifier|final
 name|Class
 name|IMPL
 decl_stmt|;
@@ -245,6 +252,49 @@ name|toString
 argument_list|()
 argument_list|)
 throw|;
+block|}
+catch|catch
+parameter_list|(
+name|SecurityException
+name|se
+parameter_list|)
+block|{
+try|try
+block|{
+name|IMPL
+operator|=
+name|Class
+operator|.
+name|forName
+argument_list|(
+name|FSDirectory
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassNotFoundException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"cannot load default FSDirectory class: "
+operator|+
+name|e
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 DECL|field|DIGESTER
@@ -1389,7 +1439,7 @@ block|,
 literal|'f'
 block|}
 decl_stmt|;
-comment|/** Constructs a {@link Lock} with the specified name.  Locks are implemented    * with {@link File#createNewFile() }.    *    *<p>In JDK 1.1 or if system property<I>disableLuceneLocks</I> is the    * string "true", locks are disabled.  Assigning this property any other    * string will<B>not</B> prevent creation of lock files.  This is useful for    * using Lucene on read-only medium, such as CD-ROM.    *    * @param name the name of the lock file    * @return an instance of<code>Lock</code> holding the lock    */
+comment|/** Constructs a {@link Lock} with the specified name.  Locks are implemented    * with {@link File#createNewFile()}.    *    * @param name the name of the lock file    * @return an instance of<code>Lock</code> holding the lock    */
 DECL|method|makeLock
 specifier|public
 name|Lock
@@ -1449,7 +1499,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|DISABLE_LOCKS
+name|disableLocks
 condition|)
 return|return
 literal|true
@@ -1497,7 +1547,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|DISABLE_LOCKS
+name|disableLocks
 condition|)
 return|return;
 name|lockFile
@@ -1513,7 +1563,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|DISABLE_LOCKS
+name|disableLocks
 condition|)
 return|return
 literal|false
