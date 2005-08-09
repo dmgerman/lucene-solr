@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * FIXME: Describe class<code>SegmentReader</code> here.  *  * @version $Id$  */
+comment|/**  * @version $Id$  */
 end_comment
 
 begin_class
@@ -410,7 +410,6 @@ comment|/** The class which implements SegmentReader. */
 DECL|field|IMPL
 specifier|private
 specifier|static
-specifier|final
 name|Class
 name|IMPL
 decl_stmt|;
@@ -458,11 +457,48 @@ argument_list|(
 literal|"cannot load SegmentReader class: "
 operator|+
 name|e
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 throw|;
+block|}
+catch|catch
+parameter_list|(
+name|SecurityException
+name|se
+parameter_list|)
+block|{
+try|try
+block|{
+name|IMPL
+operator|=
+name|Class
+operator|.
+name|forName
+argument_list|(
+name|SegmentReader
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassNotFoundException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"cannot load default SegmentReader class: "
+operator|+
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 DECL|method|SegmentReader
@@ -593,9 +629,6 @@ argument_list|(
 literal|"cannot load SegmentReader class: "
 operator|+
 name|e
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 throw|;
 block|}
