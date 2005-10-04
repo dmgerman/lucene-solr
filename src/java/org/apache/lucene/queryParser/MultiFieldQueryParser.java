@@ -284,6 +284,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|clauses
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+comment|// happens for stopwords
+return|return
+literal|null
+return|;
 return|return
 name|getBooleanQuery
 argument_list|(
