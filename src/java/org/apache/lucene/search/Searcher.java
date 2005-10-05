@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An abstract base class for search implementations.  * Implements some common utility methods.  */
+comment|/** An abstract base class for search implementations.  * Implements the main search methods.  *   *<p>Note that you can only access Hits from a Searcher as long as it is  * not yet closed, otherwise an IOException will be thrown.   */
 end_comment
 
 begin_class
