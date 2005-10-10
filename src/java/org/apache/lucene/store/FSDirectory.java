@@ -780,6 +780,24 @@ operator|.
 name|list
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|files
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot read lock directory "
+operator|+
+name|lockDir
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+throw|;
 for|for
 control|(
 name|int
