@@ -169,7 +169,7 @@ name|maxBufferedDocs
 init|=
 name|IndexWriter
 operator|.
-name|DEFAULT_MIN_MERGE_DOCS
+name|DEFAULT_MAX_BUFFERED_DOCS
 decl_stmt|;
 DECL|field|maxFieldLength
 specifier|protected
