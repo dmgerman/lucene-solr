@@ -1500,7 +1500,8 @@ name|postings
 init|=
 name|smi
 operator|.
-name|postings
+name|getPositions
+argument_list|()
 decl_stmt|;
 name|int
 name|base
@@ -1515,7 +1516,8 @@ name|docMap
 init|=
 name|smi
 operator|.
-name|docMap
+name|getDocMap
+argument_list|()
 decl_stmt|;
 name|postings
 operator|.
