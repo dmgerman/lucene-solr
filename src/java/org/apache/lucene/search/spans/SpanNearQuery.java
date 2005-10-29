@@ -96,6 +96,20 @@ name|Query
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ToStringUtils
+import|;
+end_import
+
 begin_comment
 comment|/** Matches spans which are near one another.  One can specify<i>slop</i>, the  * maximum number of intervening unmatched positions, as well as whether  * matches are required to be in-order. */
 end_comment
@@ -473,6 +487,19 @@ argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|ToStringUtils
+operator|.
+name|boost
+argument_list|(
+name|getBoost
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 return|return
 name|buffer
 operator|.
@@ -768,7 +795,13 @@ return|return
 literal|false
 return|;
 return|return
-literal|true
+name|getBoost
+argument_list|()
+operator|==
+name|spanNearQuery
+operator|.
+name|getBoost
+argument_list|()
 return|;
 block|}
 DECL|method|hashCode

@@ -66,6 +66,20 @@ name|Query
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ToStringUtils
+import|;
+end_import
+
 begin_comment
 comment|/** Matches spans near the beginning of a field. */
 end_comment
@@ -215,6 +229,19 @@ operator|.
 name|append
 argument_list|(
 literal|")"
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|ToStringUtils
+operator|.
+name|boost
+argument_list|(
+name|getBoost
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return

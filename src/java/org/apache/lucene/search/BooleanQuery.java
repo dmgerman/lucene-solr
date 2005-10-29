@@ -70,6 +70,20 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ToStringUtils
+import|;
+end_import
+
 begin_comment
 comment|/** A Query that matches documents matching boolean combinations of other   * queries, e.g. {@link TermQuery}s, {@link PhraseQuery}s or other   * BooleanQuerys.   */
 end_comment
@@ -1880,15 +1894,20 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|")^"
+literal|")"
 argument_list|)
 expr_stmt|;
 name|buffer
 operator|.
 name|append
 argument_list|(
+name|ToStringUtils
+operator|.
+name|boost
+argument_list|(
 name|getBoost
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
