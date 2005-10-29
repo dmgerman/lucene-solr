@@ -1107,6 +1107,29 @@ name|boolean
 name|hasDeletions
 parameter_list|()
 function_decl|;
+comment|/** Returns true if there are norms stored for this field. */
+DECL|method|hasNorms
+specifier|public
+name|boolean
+name|hasNorms
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// backward compatible implementation.
+comment|// SegmentReader has an efficient implementation.
+return|return
+name|norms
+argument_list|(
+name|field
+argument_list|)
+operator|!=
+literal|null
+return|;
+block|}
 comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see Field#setBoost(float)    */
 DECL|method|norms
 specifier|public
