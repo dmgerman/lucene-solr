@@ -2320,7 +2320,6 @@ name|ones
 decl_stmt|;
 DECL|method|fakeNorms
 specifier|private
-specifier|synchronized
 name|byte
 index|[]
 name|fakeNorms
