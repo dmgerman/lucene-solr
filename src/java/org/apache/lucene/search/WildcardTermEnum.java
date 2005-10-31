@@ -474,6 +474,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// to prevent "cat" matches "ca??"
+if|if
+condition|(
+name|wildchar
+operator|==
+name|WILDCARD_CHAR
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|// Look at the next character
 name|wildcardSearchPos
 operator|++
