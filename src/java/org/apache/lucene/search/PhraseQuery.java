@@ -1462,12 +1462,7 @@ name|getBoost
 argument_list|()
 argument_list|)
 operator|^
-name|Float
-operator|.
-name|floatToIntBits
-argument_list|(
 name|slop
-argument_list|)
 operator|^
 name|terms
 operator|.
