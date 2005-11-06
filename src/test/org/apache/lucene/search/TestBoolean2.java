@@ -341,6 +341,8 @@ name|Exception
 block|{
 comment|//System.out.println();
 comment|//System.out.println("Query: " + queryText);
+try|try
+block|{
 name|Query
 name|query1
 init|=
@@ -405,6 +407,18 @@ argument_list|,
 name|expDocNrs
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// even when a test fails.
+name|BooleanQuery
+operator|.
+name|setUseScorer14
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|testQueries01
 specifier|public
@@ -799,6 +813,8 @@ name|tot
 init|=
 literal|0
 decl_stmt|;
+try|try
+block|{
 comment|// increase number of iterations for more complete testing
 for|for
 control|(
@@ -950,6 +966,18 @@ argument_list|,
 name|hits1
 argument_list|,
 name|hits2
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+comment|// even when a test fails.
+name|BooleanQuery
+operator|.
+name|setUseScorer14
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
