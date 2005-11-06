@@ -486,6 +486,16 @@ return|return
 name|query
 return|;
 block|}
+DECL|method|getFilter
+specifier|public
+name|Filter
+name|getFilter
+parameter_list|()
+block|{
+return|return
+name|filter
+return|;
+block|}
 comment|// inherit javadoc
 DECL|method|extractTerms
 specifier|public
