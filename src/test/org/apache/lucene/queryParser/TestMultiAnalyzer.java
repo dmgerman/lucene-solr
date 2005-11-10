@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test QueryParser's ability to deal with Analyzers that return more  * than one token per position.  *   * @author Daniel Naber  */
+comment|/**  * Test QueryParser's ability to deal with Analyzers that return more  * than one token per position or that return tokens with a position  * increment&gt; 1.  *   * @author Daniel Naber  */
 end_comment
 
 begin_class
@@ -181,6 +181,21 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"foo"
+argument_list|,
+name|qp
+operator|.
+name|parse
+argument_list|(
+literal|"\"foo\""
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 literal|"foo foobar"
 argument_list|,
 name|qp
@@ -188,6 +203,36 @@ operator|.
 name|parse
 argument_list|(
 literal|"foo foobar"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"\"foo foobar\""
+argument_list|,
+name|qp
+operator|.
+name|parse
+argument_list|(
+literal|"\"foo foobar\""
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"\"foo foobar blah\""
+argument_list|,
+name|qp
+operator|.
+name|parse
+argument_list|(
+literal|"\"foo foobar blah\""
 argument_list|)
 operator|.
 name|toString
