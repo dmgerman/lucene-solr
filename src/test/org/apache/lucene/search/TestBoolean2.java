@@ -1031,7 +1031,14 @@ name|current
 init|=
 operator|new
 name|BooleanQuery
+argument_list|(
+name|rnd
+operator|.
+name|nextInt
 argument_list|()
+operator|<
+literal|0
+argument_list|)
 decl_stmt|;
 for|for
 control|(
