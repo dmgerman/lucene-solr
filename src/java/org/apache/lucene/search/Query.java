@@ -166,7 +166,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Expert: Constructs an initializes a Weight for a top-level query. */
+comment|/** Expert: Constructs and initializes a Weight for a top-level query. */
 DECL|method|weight
 specifier|public
 name|Weight
