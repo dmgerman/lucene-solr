@@ -270,14 +270,83 @@ name|SortField
 index|[]
 name|fields
 decl_stmt|;
-comment|/** Stores the maximum score value encountered, for normalizing.    *  we only care about scores greater than 1.0 - if all the scores    *  are less than 1.0, we don't have to normalize. */
+comment|/** Stores the maximum score value encountered, needed for normalizing. */
 DECL|field|maxscore
 specifier|protected
 name|float
 name|maxscore
 init|=
-literal|1.0f
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
 decl_stmt|;
+comment|/** returns the maximum score encountered by elements inserted via insert()    */
+DECL|method|getMaxScore
+specifier|public
+name|float
+name|getMaxScore
+parameter_list|()
+block|{
+return|return
+name|maxscore
+return|;
+block|}
+comment|// The signature of this method takes a FieldDoc in order to avoid
+comment|// the unneeded cast to retrieve the score.
+comment|// inherit javadoc
+DECL|method|insert
+specifier|public
+name|boolean
+name|insert
+parameter_list|(
+name|FieldDoc
+name|fdoc
+parameter_list|)
+block|{
+name|maxscore
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|maxscore
+argument_list|,
+name|fdoc
+operator|.
+name|score
+argument_list|)
+expr_stmt|;
+return|return
+name|super
+operator|.
+name|insert
+argument_list|(
+name|fdoc
+argument_list|)
+return|;
+block|}
+comment|// This overrides PriorityQueue.insert() so that insert(FieldDoc) that
+comment|// keeps track of the score isn't accidentally bypassed.
+comment|// inherit javadoc
+DECL|method|insert
+specifier|public
+name|boolean
+name|insert
+parameter_list|(
+name|Object
+name|fdoc
+parameter_list|)
+block|{
+return|return
+name|insert
+argument_list|(
+operator|(
+name|FieldDoc
+operator|)
+name|fdoc
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns whether<code>a</code> is less relevant than<code>b</code>.    * @param a ScoreDoc    * @param b ScoreDoc    * @return<code>true</code> if document<code>a</code> should be sorted after document<code>b</code>.    */
 DECL|method|lessThan
 specifier|protected
@@ -311,35 +380,6 @@ name|ScoreDoc
 operator|)
 name|b
 decl_stmt|;
-comment|// keep track of maximum score
-if|if
-condition|(
-name|docA
-operator|.
-name|score
-operator|>
-name|maxscore
-condition|)
-name|maxscore
-operator|=
-name|docA
-operator|.
-name|score
-expr_stmt|;
-if|if
-condition|(
-name|docB
-operator|.
-name|score
-operator|>
-name|maxscore
-condition|)
-name|maxscore
-operator|=
-name|docB
-operator|.
-name|score
-expr_stmt|;
 comment|// run comparators
 specifier|final
 name|int

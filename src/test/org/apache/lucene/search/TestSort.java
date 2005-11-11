@@ -4376,7 +4376,29 @@ argument_list|,
 name|sort
 argument_list|)
 decl_stmt|;
-comment|// assertEquals(docs1.scoreDocs[0].score, docs2.scoreDocs[0].score, 1e-6);
+name|assertEquals
+argument_list|(
+name|docs1
+operator|.
+name|scoreDocs
+index|[
+literal|0
+index|]
+operator|.
+name|score
+argument_list|,
+name|docs2
+operator|.
+name|scoreDocs
+index|[
+literal|0
+index|]
+operator|.
+name|score
+argument_list|,
+literal|1e-6
+argument_list|)
+expr_stmt|;
 block|}
 comment|// runs a variety of sorts useful for multisearchers
 DECL|method|runMultiSorts
