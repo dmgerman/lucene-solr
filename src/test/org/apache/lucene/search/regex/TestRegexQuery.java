@@ -250,7 +250,7 @@ name|Query
 name|query
 init|=
 operator|new
-name|SpanRegexQuery
+name|RegexQuery
 argument_list|(
 operator|new
 name|Term
