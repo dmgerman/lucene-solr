@@ -647,6 +647,23 @@ literal|"c"
 block|}
 argument_list|)
 expr_stmt|;
+comment|// Korean words
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"ìëíì¸ì íê¸ìëë¤"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"ìëíì¸ì"
+block|,
+literal|"íê¸ìëë¤"
+block|}
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
