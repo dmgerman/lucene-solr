@@ -137,6 +137,19 @@ name|int
 name|maxClauseCount
 parameter_list|)
 block|{
+if|if
+condition|(
+name|maxClauseCount
+operator|<
+literal|1
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxClauseCount must be>= 1"
+argument_list|)
+throw|;
 name|BooleanQuery
 operator|.
 name|maxClauseCount

@@ -302,6 +302,34 @@ name|bq2
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testException
+specifier|public
+name|void
+name|testException
+parameter_list|()
+block|{
+try|try
+block|{
+name|BooleanQuery
+operator|.
+name|setMaxClauseCount
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+comment|// okay
+block|}
+block|}
 block|}
 end_class
 
