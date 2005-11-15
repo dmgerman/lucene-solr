@@ -22,46 +22,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -70,7 +30,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|BooleanClause
 import|;
 end_import
 
@@ -98,7 +58,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanClause
+name|Query
 import|;
 end_import
 
