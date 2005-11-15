@@ -142,11 +142,11 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|BooleanQueryTest
+name|BooleanQueryTst
 name|bqt
 init|=
 operator|new
-name|BooleanQueryTest
+name|BooleanQueryTst
 argument_list|(
 name|query
 argument_list|,

@@ -101,10 +101,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|BooleanQueryTest
+DECL|class|BooleanQueryTst
 specifier|public
 class|class
-name|BooleanQueryTest
+name|BooleanQueryTst
 block|{
 DECL|field|queryText
 name|String
@@ -138,9 +138,9 @@ name|verbose
 init|=
 literal|true
 decl_stmt|;
-DECL|method|BooleanQueryTest
+DECL|method|BooleanQueryTst
 specifier|public
-name|BooleanQueryTest
+name|BooleanQueryTst
 parameter_list|(
 name|String
 name|queryText
