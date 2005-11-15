@@ -136,13 +136,6 @@ specifier|private
 name|String
 name|fieldName
 decl_stmt|;
-DECL|field|dbName
-specifier|private
-name|String
-name|dbName
-init|=
-literal|"testdb"
-decl_stmt|;
 DECL|method|SingleFieldTestDb
 specifier|public
 name|SingleFieldTestDb
