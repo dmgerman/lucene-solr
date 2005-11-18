@@ -60,6 +60,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
 begin_comment
 comment|/**  * A query that generates the union of the documents produced by its subqueries, and that scores each document as the maximum  * score for that document produced by any subquery plus a tie breaking increment for any additional matching subqueries.  * This is useful to search for a word in multiple fields with different boost factors (so that the fields cannot be  * combined equivalently into a single search field).  We want the primary score to be the one associated with the highest boost,  * not the sum of the field scores (as BooleanQuery would give).  * If the query is "albino elephant" this ensures that "albino" matching one field and "elephant" matching  * another gets a higher score than "albino" matching both fields.  * To get this result, use both BooleanQuery and DisjunctionMaxQuery:  for each term a DisjunctionMaxQuery searches for it in  * each field, while the set of these DisjunctionMaxQuery's is combined into a BooleanQuery.  * The tie breaker capability allows results that include the same term in multiple fields to be judged better than results that  * include this term in only the best of those multiple fields, without confusing this with the better case of two different terms  * in the multiple fields.  * @author Chuck Williams  */
 end_comment
@@ -71,8 +81,6 @@ class|class
 name|DisjunctionMaxQuery
 extends|extends
 name|Query
-implements|implements
-name|Iterable
 block|{
 comment|/* The subqueries */
 DECL|field|disjuncts
@@ -108,12 +116,12 @@ operator|=
 name|tieBreakerMultiplier
 expr_stmt|;
 block|}
-comment|/**    * Creates a new DisjunctionMaxQuery    * @param disjuncts an Iterable<Query> of all the disjuncts to add    * @param tieBreakerMultiplier   the weight to give to each matching non-maximum disjunct    */
+comment|/**    * Creates a new DisjunctionMaxQuery    * @param disjuncts a Collection<Query> of all the disjuncts to add    * @param tieBreakerMultiplier   the weight to give to each matching non-maximum disjunct    */
 DECL|method|DisjunctionMaxQuery
 specifier|public
 name|DisjunctionMaxQuery
 parameter_list|(
-name|Iterable
+name|Collection
 name|disjuncts
 parameter_list|,
 name|float
@@ -156,34 +164,17 @@ specifier|public
 name|void
 name|add
 parameter_list|(
-name|Iterable
+name|Collection
 name|disjuncts
 parameter_list|)
 block|{
-name|Iterator
-name|i
-init|=
+name|this
+operator|.
 name|disjuncts
 operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|add
+name|addAll
 argument_list|(
-operator|(
-name|Query
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
+name|disjuncts
 argument_list|)
 expr_stmt|;
 block|}
