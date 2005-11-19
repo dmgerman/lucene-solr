@@ -234,6 +234,16 @@ operator|=
 name|term
 expr_stmt|;
 block|}
+DECL|method|getTerm
+specifier|public
+name|Term
+name|getTerm
+parameter_list|()
+block|{
+return|return
+name|term
+return|;
+block|}
 DECL|method|rewrite
 specifier|public
 name|Query
