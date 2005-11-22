@@ -617,6 +617,21 @@ name|fieldNumber
 index|]
 decl_stmt|;
 comment|// position in field
+if|if
+condition|(
+name|length
+operator|>
+literal|0
+condition|)
+name|position
+operator|+=
+name|analyzer
+operator|.
+name|getPositionIncrementGap
+argument_list|(
+name|fieldName
+argument_list|)
+expr_stmt|;
 name|int
 name|offset
 init|=

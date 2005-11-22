@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: Grant Ingersoll  * Date: Feb 2, 2004  * Time: 6:16:12 PM  * $Id$  * Copyright 2004.  Center For Natural Language Processing  */
+comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -139,10 +139,6 @@ operator|.
 name|Enumeration
 import|;
 end_import
-
-begin_comment
-comment|/**  *  *  **/
-end_comment
 
 begin_class
 DECL|class|DocHelper
@@ -552,6 +548,97 @@ operator|.
 name|YES
 argument_list|)
 decl_stmt|;
+DECL|field|REPEATED_1_TEXT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REPEATED_1_TEXT
+init|=
+literal|"repeated one"
+decl_stmt|;
+DECL|field|REPEATED_KEY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REPEATED_KEY
+init|=
+literal|"repeated"
+decl_stmt|;
+DECL|field|repeatedField1
+specifier|public
+specifier|static
+name|Field
+name|repeatedField1
+init|=
+operator|new
+name|Field
+argument_list|(
+name|REPEATED_KEY
+argument_list|,
+name|REPEATED_1_TEXT
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
+argument_list|,
+name|Field
+operator|.
+name|TermVector
+operator|.
+name|NO
+argument_list|)
+decl_stmt|;
+DECL|field|REPEATED_2_TEXT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REPEATED_2_TEXT
+init|=
+literal|"repeated two"
+decl_stmt|;
+DECL|field|repeatedField2
+specifier|public
+specifier|static
+name|Field
+name|repeatedField2
+init|=
+operator|new
+name|Field
+argument_list|(
+name|REPEATED_KEY
+argument_list|,
+name|REPEATED_2_TEXT
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
+argument_list|,
+name|Field
+operator|.
+name|TermVector
+operator|.
+name|NO
+argument_list|)
+decl_stmt|;
 DECL|field|nameValues
 specifier|public
 specifier|static
@@ -588,7 +675,11 @@ block|,
 name|unStoredField1
 block|,
 name|unStoredField2
-block|,   }
+block|,
+name|repeatedField1
+block|,
+name|repeatedField2
+block|}
 decl_stmt|;
 comment|// Map<String fieldName, Field field>
 DECL|field|all
@@ -991,13 +1082,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Analyzer
-name|analyzer
-init|=
-operator|new
-name|WhitespaceAnalyzer
-argument_list|()
-decl_stmt|;
 name|Similarity
 name|similarity
 init|=
@@ -1010,7 +1094,9 @@ name|writeDoc
 argument_list|(
 name|dir
 argument_list|,
-name|analyzer
+operator|new
+name|WhitespaceAnalyzer
+argument_list|()
 argument_list|,
 name|similarity
 argument_list|,
