@@ -564,6 +564,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|//  public void testPrefix() throws Exception {
+comment|// This test currently fails because RegexTermEnum picks "r" as the prefix
+comment|// but the following "?" makes the "r" optional and should be a hit for the
+comment|// document matching "over".
+comment|//    assertEquals(1, regexQueryNrHits("r?over"));
+comment|//  }
 block|}
 end_class
 

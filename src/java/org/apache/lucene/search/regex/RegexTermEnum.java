@@ -178,25 +178,15 @@ argument_list|(
 name|index
 argument_list|)
 decl_stmt|;
-comment|// TODO: improve the logic here.  There are other types of patterns
-comment|// that could break this, such as "\d*" and "\*abc"
 if|if
 condition|(
+operator|!
+name|Character
+operator|.
+name|isLetterOrDigit
+argument_list|(
 name|c
-operator|==
-literal|'*'
-operator|||
-name|c
-operator|==
-literal|'['
-operator|||
-name|c
-operator|==
-literal|'?'
-operator|||
-name|c
-operator|==
-literal|'.'
+argument_list|)
 condition|)
 break|break;
 name|index
