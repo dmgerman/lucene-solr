@@ -22,6 +22,7 @@ end_comment
 
 begin_class
 DECL|class|SmallFloat
+specifier|public
 class|class
 name|SmallFloat
 block|{
