@@ -376,11 +376,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|rand
-operator|.
-name|nextFloat
-argument_list|()
-expr_stmt|;
 comment|// up iterations for more exhaustive test after changing something
 for|for
 control|(
@@ -497,6 +492,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/***   // Do an exhaustive test of all possible floating point values   // for the 315 float against the original norm encoding in Similarity.   // Takes 75 seconds on my Pentium4 3GHz, with Java5 -server   public void testAllFloats() {     for(int i = Integer.MIN_VALUE;;i++) {       float f = Float.intBitsToFloat(i);       if (f==f) { // skip non-numbers         byte b1 = orig_floatToByte(f);         byte b2 = SmallFloat.floatToByte315(f);         if (b1!=b2) {           TestCase.fail("Failed floatToByte315 for float " + f);         }       }       if (i==Integer.MAX_VALUE) break;     }   }   ***/
 block|}
 end_class
 
