@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A remote searchable implementation. */
+comment|/**  * A remote searchable implementation.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -507,6 +507,48 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|String
+name|indexName
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|args
+operator|!=
+literal|null
+operator|&&
+name|args
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+name|indexName
+operator|=
+name|args
+index|[
+literal|0
+index|]
+expr_stmt|;
+if|if
+condition|(
+name|indexName
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Usage: org.apache.lucene.search.RemoteSearchable<index>"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 comment|// create and install a security manager
 if|if
 condition|(
@@ -534,10 +576,7 @@ init|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|args
-index|[
-literal|0
-index|]
+name|indexName
 argument_list|)
 decl_stmt|;
 name|RemoteSearchable
