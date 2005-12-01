@@ -147,6 +147,33 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 *  	 * @param query a Lucene query (ideally rewritten using query.rewrite  	 * before being passed to this class and the searcher) 	 * @param fieldName the Field name which is used to match Query terms 	 */
+DECL|method|QueryScorer
+specifier|public
+name|QueryScorer
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|String
+name|fieldName
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|QueryTermExtractor
+operator|.
+name|getTerms
+argument_list|(
+name|query
+argument_list|,
+literal|false
+argument_list|,
+name|fieldName
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** 	 *  	 * @param query a Lucene query (ideally rewritten using query.rewrite  	 * before being passed to this class and the searcher) 	 * @param reader used to compute IDF which can be used to a) score selected fragments better  	 * b) use graded highlights eg set font color intensity 	 * @param fieldName the field on which Inverse Document Frequency (IDF) calculations are based 	 */
 DECL|method|QueryScorer
 specifier|public
