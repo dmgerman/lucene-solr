@@ -498,16 +498,13 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|Document
-name|test
-init|=
 name|deleteReader
 operator|.
 name|document
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
