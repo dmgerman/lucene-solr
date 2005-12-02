@@ -83,10 +83,10 @@ comment|/**  * Test to illustrate the problem found when trying to open an Index
 end_comment
 
 begin_class
-DECL|class|FSDirectoryTest
+DECL|class|TestFSDirectory
 specifier|public
 class|class
-name|FSDirectoryTest
+name|TestFSDirectory
 extends|extends
 name|TestCase
 block|{

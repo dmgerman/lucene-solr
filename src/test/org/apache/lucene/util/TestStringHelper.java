@@ -27,39 +27,13 @@ import|;
 end_import
 
 begin_class
-DECL|class|StringHelperTest
+DECL|class|TestStringHelper
 specifier|public
 class|class
-name|StringHelperTest
+name|TestStringHelper
 extends|extends
 name|TestCase
 block|{
-DECL|method|StringHelperTest
-specifier|public
-name|StringHelperTest
-parameter_list|(
-name|String
-name|s
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|setUp
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-block|{   }
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|testStringDifference
 specifier|public
 name|void
