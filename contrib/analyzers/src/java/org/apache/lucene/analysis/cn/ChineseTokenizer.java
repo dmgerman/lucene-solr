@@ -350,6 +350,9 @@ block|{
 name|bufferIndex
 operator|--
 expr_stmt|;
+name|offset
+operator|--
+expr_stmt|;
 return|return
 name|flush
 argument_list|()
