@@ -406,10 +406,6 @@ parameter_list|,
 specifier|final
 name|int
 name|maxTokens
-parameter_list|,
-specifier|final
-name|int
-name|maxChars
 parameter_list|)
 block|{
 if|if
@@ -576,7 +572,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns an analyzer wrapper that wraps the underlying child analyzer's 	 * token stream into a {@link SynonymTokenFilter}. 	 *  	 * @param child 	 *            the underlying child analyzer 	 * @param synonyms 	 *            the map used to extract synonyms for terms 	 * @param maxSynonyms 	 *            the maximum number of synonym tokens to return per underlying 	 *            token word (a value of Integer.MAX_VALUE indicates unlimited) 	 */
+comment|/** 	 * Returns an analyzer wrapper that wraps the underlying child analyzer's 	 * token stream into a {@link SynonymTokenFilter}. 	 *  	 * @param child 	 *            the underlying child analyzer 	 * @param synonyms 	 *            the map used to extract synonyms for terms 	 * @param maxSynonyms 	 *            the maximum number of synonym tokens to return per underlying 	 *            token word (a value of Integer.MAX_VALUE indicates unlimited) 	 * @return a new analyzer 	 */
 DECL|method|getSynonymAnalyzer
 specifier|public
 specifier|static
