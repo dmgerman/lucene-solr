@@ -1027,7 +1027,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** 	 * Creates and returns a searcher that can be used to execute arbitrary 	 * Lucene queries and to collect the resulting query results as hits. 	 */
+comment|/** 	 * Creates and returns a searcher that can be used to execute arbitrary 	 * Lucene queries and to collect the resulting query results as hits. 	 *  	 * @return a searcher 	 */
 DECL|method|createSearcher
 specifier|public
 name|IndexSearcher
@@ -1063,7 +1063,7 @@ return|return
 name|searcher
 return|;
 block|}
-comment|/** 	 * Convenience method that efficiently returns the relevance score by 	 * matching this index against the given Lucene query expression. 	 *  	 * @param query 	 *            an arbitrary Lucene query to run against this index 	 * @return the relevance score of the matchmaking; A number in the range 	 *         [0.0 .. 1.0], with 0.0 indicating no match. The higher the number 	 *         the better the match. 	 * @see org.apache.lucene.queryParser.QueryParser#parse(String, String, 	 *      Analyzer) 	 */
+comment|/** 	 * Convenience method that efficiently returns the relevance score by 	 * matching this index against the given Lucene query expression. 	 *  	 * @param query 	 *            an arbitrary Lucene query to run against this index 	 * @return the relevance score of the matchmaking; A number in the range 	 *         [0.0 .. 1.0], with 0.0 indicating no match. The higher the number 	 *         the better the match. 	 * @see org.apache.lucene.queryParser.QueryParser#parse(String) 	 */
 DECL|method|search
 specifier|public
 name|float
@@ -1171,7 +1171,7 @@ comment|// searcher.close();
 comment|/* 			 * Note that it is harmless and important for good performance to 			 * NOT close the index reader!!! This avoids all sorts of 			 * unnecessary baggage and locking in the Lucene IndexReader 			 * superclass, all of which is completely unnecessary for this main 			 * memory index data structure without thread-safety claims. 			 *  			 * Wishing IndexReader would be an interface... 			 *  			 * Actually with the new tight createSearcher() API auto-closing is now 			 * made impossible, hence searcher.close() would be harmless... 			 */
 block|}
 block|}
-comment|/** 	 * Returns a reasonable approximation of the main memory [bytes] consumed by 	 * this instance. Useful for smart memory sensititve caches/pools. Assumes 	 * fieldNames are interned, whereas tokenized terms are memory-overlaid. For 	 * simplicity, assumes no VM word boundary alignment of instance vars. 	 */
+comment|/** 	 * Returns a reasonable approximation of the main memory [bytes] consumed by 	 * this instance. Useful for smart memory sensititve caches/pools. Assumes 	 * fieldNames are interned, whereas tokenized terms are memory-overlaid. For 	 * simplicity, assumes no VM word boundary alignment of instance vars. 	 *  	 * @return the main memory consumption 	 */
 DECL|method|getMemorySize
 specifier|public
 name|int
@@ -1609,7 +1609,7 @@ return|return
 name|entries
 return|;
 block|}
-comment|/** Returns a String representation of the index data for debugging purposes. */
+comment|/** 	 * Returns a String representation of the index data for debugging purposes. 	 *  	 * @return the string representation 	 */
 DECL|method|toString
 specifier|public
 name|String

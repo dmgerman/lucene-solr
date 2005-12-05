@@ -937,7 +937,7 @@ operator|=
 name|stopWords
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a token stream that tokenizes the given string into token terms 	 * (aka words). 	 *  	 * @param fieldName 	 *            the name of the field to tokenize (currently ignored). 	 * @param text 	 *            the string to tokenize 	 */
+comment|/** 	 * Creates a token stream that tokenizes the given string into token terms 	 * (aka words). 	 *  	 * @param fieldName 	 *            the name of the field to tokenize (currently ignored). 	 * @param text 	 *            the string to tokenize 	 * @return a new token stream 	 */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -1050,7 +1050,7 @@ return|return
 name|stream
 return|;
 block|}
-comment|/** 	 * Creates a token stream that tokenizes all the text in the given Reader; 	 * This implementation forwards to<code>tokenStream(String, String)</code> and is 	 * less efficient than<code>tokenStream(String, String)</code>. 	 */
+comment|/** 	 * Creates a token stream that tokenizes all the text in the given Reader; 	 * This implementation forwards to<code>tokenStream(String, String)</code> and is 	 * less efficient than<code>tokenStream(String, String)</code>. 	 *  	 * @param fieldName 	 *            the name of the field to tokenize (currently ignored). 	 * @param reader 	 *            the reader delivering the text 	 * @return a new token stream 	 */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -1122,7 +1122,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**  Indicates whether some other object is "equal to" this one. */
+comment|/** 	 * Indicates whether some other object is "equal to" this one. 	 *  	 * @param other 	 *            the reference object with which to compare. 	 * @return true if equal, false otherwise 	 */
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1212,7 +1212,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Returns a hash code value for the object. */
+comment|/** 	 * Returns a hash code value for the object. 	 *  	 * @return the hash code. 	 */
 DECL|method|hashCode
 specifier|public
 name|int
