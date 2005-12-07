@@ -45,6 +45,40 @@ name|ScoreDoc
 index|[]
 name|scoreDocs
 decl_stmt|;
+comment|/** Expert: Stores the maximum score value encountered, needed for normalizing. */
+DECL|field|maxScore
+specifier|private
+name|float
+name|maxScore
+decl_stmt|;
+comment|/** Expert: Returns the maximum score value encountered. */
+DECL|method|getMaxScore
+specifier|public
+name|float
+name|getMaxScore
+parameter_list|()
+block|{
+return|return
+name|maxScore
+return|;
+block|}
+comment|/** Expert: Sets the maximum score value encountered. */
+DECL|method|setMaxScore
+specifier|public
+name|void
+name|setMaxScore
+parameter_list|(
+name|float
+name|maxScore
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxScore
+operator|=
+name|maxScore
+expr_stmt|;
+block|}
 comment|/** Expert: Constructs a TopDocs.*/
 DECL|method|TopDocs
 name|TopDocs
@@ -55,6 +89,9 @@ parameter_list|,
 name|ScoreDoc
 index|[]
 name|scoreDocs
+parameter_list|,
+name|float
+name|maxScore
 parameter_list|)
 block|{
 name|this
@@ -68,6 +105,12 @@ operator|.
 name|scoreDocs
 operator|=
 name|scoreDocs
+expr_stmt|;
+name|this
+operator|.
+name|maxScore
+operator|=
+name|maxScore
 expr_stmt|;
 block|}
 block|}

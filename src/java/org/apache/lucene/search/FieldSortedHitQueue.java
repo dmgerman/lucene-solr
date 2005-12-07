@@ -535,19 +535,7 @@ name|fields
 operator|=
 name|fields
 expr_stmt|;
-if|if
-condition|(
-name|maxscore
-operator|>
-literal|1.0f
-condition|)
-name|doc
-operator|.
-name|score
-operator|/=
-name|maxscore
-expr_stmt|;
-comment|// normalize scores
+comment|//if (maxscore> 1.0f) doc.score /= maxscore;   // normalize scores
 return|return
 name|doc
 return|;

@@ -35,7 +35,7 @@ name|SortField
 index|[]
 name|fields
 decl_stmt|;
-comment|/** Creates one of these objects. 	 * @param totalHits  Total number of hits for the query. 	 * @param scoreDocs  The top hits for the query. 	 * @param fields     The sort criteria used to find the top hits. 	 */
+comment|/** Creates one of these objects. 	 * @param totalHits  Total number of hits for the query. 	 * @param scoreDocs  The top hits for the query. 	 * @param fields     The sort criteria used to find the top hits. 	 * @param maxScore   The maximum score encountered. 	 */
 DECL|method|TopFieldDocs
 name|TopFieldDocs
 parameter_list|(
@@ -49,6 +49,9 @@ parameter_list|,
 name|SortField
 index|[]
 name|fields
+parameter_list|,
+name|float
+name|maxScore
 parameter_list|)
 block|{
 name|super
@@ -56,6 +59,8 @@ argument_list|(
 name|totalHits
 argument_list|,
 name|scoreDocs
+argument_list|,
+name|maxScore
 argument_list|)
 expr_stmt|;
 name|this
