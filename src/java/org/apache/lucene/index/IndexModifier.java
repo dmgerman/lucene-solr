@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to modify an index, i.e. to delete and add documents. This  * class hides {@link IndexReader} and {@link IndexWriter} so that you  * do not need to care about implementation details such as that adding  * documents is done via IndexWriter and deletion is done via IndexReader.  *   *<p>Note that you cannot create more than one<code>IndexModifier</code> object  * on the same directory at the same time.  *   *<p>Example usage:  *<!-- ======================================================== --><!-- = Java Sourcecode to HTML automatically converted code = --><!-- =   Java2Html Converter V4.1 2004 by Markus Gebhard  markus@jave.de   = --><!-- =     Further information: http://www.java2html.de     = --><div align="left" class="java"><table border="0" cellpadding="3" cellspacing="0" bgcolor="#ffffff"><tr><!-- start source code --><td nowrap="nowrap" valign="top" align="left"><code><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Analyzer&nbsp;analyzer&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">StandardAnalyzer</font><font color="#000000">()</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;create&nbsp;an&nbsp;index&nbsp;in&nbsp;/tmp/index,&nbsp;overwriting&nbsp;an&nbsp;existing&nbsp;one:</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">IndexModifier&nbsp;indexModifier&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">IndexModifier</font><font color="#000000">(</font><font color="#2a00ff">&#34;/tmp/index&#34;</font><font color="#000000">,&nbsp;analyzer,&nbsp;</font><font color="#7f0055"><b>true</b></font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Document&nbsp;doc&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Document</font><font color="#000000">()</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">doc.add</font><font color="#000000">(</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Field</font><font color="#000000">(</font><font color="#2a00ff">&#34;id&#34;</font><font color="#000000">,&nbsp;</font><font color="#2a00ff">&#34;1&#34;</font><font color="#000000">,&nbsp;Field.Store.YES,&nbsp;Field.Index.UN_TOKENIZED</font><font color="#000000">))</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">doc.add</font><font color="#000000">(</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Field</font><font color="#000000">(</font><font color="#2a00ff">&#34;body&#34;</font><font color="#000000">,&nbsp;</font><font color="#2a00ff">&#34;a&nbsp;simple&nbsp;test&#34;</font><font color="#000000">,&nbsp;Field.Store.YES,&nbsp;Field.Index.TOKENIZED</font><font color="#000000">))</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">indexModifier.addDocument</font><font color="#000000">(</font><font color="#000000">doc</font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>int&nbsp;</b></font><font color="#000000">deleted&nbsp;=&nbsp;indexModifier.delete</font><font color="#000000">(</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Term</font><font color="#000000">(</font><font color="#2a00ff">&#34;id&#34;</font><font color="#000000">,&nbsp;</font><font color="#2a00ff">&#34;1&#34;</font><font color="#000000">))</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">System.out.println</font><font color="#000000">(</font><font color="#2a00ff">&#34;Deleted&nbsp;&#34;&nbsp;</font><font color="#000000">+&nbsp;deleted&nbsp;+&nbsp;</font><font color="#2a00ff">&#34;&nbsp;document&#34;</font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">indexModifier.flush</font><font color="#000000">()</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">System.out.println</font><font color="#000000">(</font><font color="#000000">indexModifier.docCount</font><font color="#000000">()&nbsp;</font><font color="#000000">+&nbsp;</font><font color="#2a00ff">&#34;&nbsp;docs&nbsp;in&nbsp;index&#34;</font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">indexModifier.close</font><font color="#000000">()</font><font color="#000000">;</font></code></td><!-- end source code --></tr></table></div><!-- =       END of automatically generated HTML code       = --><!-- ======================================================== -->  *  *<p>Not all methods of IndexReader and IndexWriter are offered by this   * class. If you need access to additional methods, either use those classes   * directly or implement your own class that extends<code>IndexModifier</code>.  *    *<p>Although an instance of this class can be used from more than one  * thread, you will not get the best performance. You might want to use   * IndexReader and IndexWriter directly for that (but you will need to   * care about synchronization yourself then).  *   *<p>While you can freely mix calls to add() and delete() using this class,  * you should batch you calls for best performance. For example, if you  * want to update 20 documents, you should first delete all those documents,  * then add all the new documents.  *   * @author Daniel Naber  */
+comment|/**  * A class to modify an index, i.e. to delete and add documents. This  * class hides {@link IndexReader} and {@link IndexWriter} so that you  * do not need to care about implementation details such as that adding  * documents is done via IndexWriter and deletion is done via IndexReader.  *   *<p>Note that you cannot create more than one<code>IndexModifier</code> object  * on the same directory at the same time.  *   *<p>Example usage:  *<!-- ======================================================== --><!-- = Java Sourcecode to HTML automatically converted code = --><!-- =   Java2Html Converter V4.1 2004 by Markus Gebhard  markus@jave.de   = --><!-- =     Further information: http://www.java2html.de     = --><div align="left" class="java"><table border="0" cellpadding="3" cellspacing="0" bgcolor="#ffffff"><tr><!-- start source code --><td nowrap="nowrap" valign="top" align="left"><code><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Analyzer&nbsp;analyzer&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">StandardAnalyzer</font><font color="#000000">()</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#3f7f5f">//&nbsp;create&nbsp;an&nbsp;index&nbsp;in&nbsp;/tmp/index,&nbsp;overwriting&nbsp;an&nbsp;existing&nbsp;one:</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">IndexModifier&nbsp;indexModifier&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">IndexModifier</font><font color="#000000">(</font><font color="#2a00ff">&#34;/tmp/index&#34;</font><font color="#000000">,&nbsp;analyzer,&nbsp;</font><font color="#7f0055"><b>true</b></font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Document&nbsp;doc&nbsp;=&nbsp;</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Document</font><font color="#000000">()</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">doc.add</font><font color="#000000">(</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Field</font><font color="#000000">(</font><font color="#2a00ff">&#34;id&#34;</font><font color="#000000">,&nbsp;</font><font color="#2a00ff">&#34;1&#34;</font><font color="#000000">,&nbsp;Field.Store.YES,&nbsp;Field.Index.UN_TOKENIZED</font><font color="#000000">))</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">doc.add</font><font color="#000000">(</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Field</font><font color="#000000">(</font><font color="#2a00ff">&#34;body&#34;</font><font color="#000000">,&nbsp;</font><font color="#2a00ff">&#34;a&nbsp;simple&nbsp;test&#34;</font><font color="#000000">,&nbsp;Field.Store.YES,&nbsp;Field.Index.TOKENIZED</font><font color="#000000">))</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">indexModifier.addDocument</font><font color="#000000">(</font><font color="#000000">doc</font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f0055"><b>int&nbsp;</b></font><font color="#000000">deleted&nbsp;=&nbsp;indexModifier.delete</font><font color="#000000">(</font><font color="#7f0055"><b>new&nbsp;</b></font><font color="#000000">Term</font><font color="#000000">(</font><font color="#2a00ff">&#34;id&#34;</font><font color="#000000">,&nbsp;</font><font color="#2a00ff">&#34;1&#34;</font><font color="#000000">))</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">System.out.println</font><font color="#000000">(</font><font color="#2a00ff">&#34;Deleted&nbsp;&#34;&nbsp;</font><font color="#000000">+&nbsp;deleted&nbsp;+&nbsp;</font><font color="#2a00ff">&#34;&nbsp;document&#34;</font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">indexModifier.flush</font><font color="#000000">()</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">System.out.println</font><font color="#000000">(</font><font color="#000000">indexModifier.docCount</font><font color="#000000">()&nbsp;</font><font color="#000000">+&nbsp;</font><font color="#2a00ff">&#34;&nbsp;docs&nbsp;in&nbsp;index&#34;</font><font color="#000000">)</font><font color="#000000">;</font><br/><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">indexModifier.close</font><font color="#000000">()</font><font color="#000000">;</font></code></td><!-- end source code --></tr></table></div><!-- =       END of automatically generated HTML code       = --><!-- ======================================================== -->  *  *<p>Not all methods of IndexReader and IndexWriter are offered by this  * class. If you need access to additional methods, either use those classes  * directly or implement your own class that extends<code>IndexModifier</code>.  *  *<p>Although an instance of this class can be used from more than one  * thread, you will not get the best performance. You might want to use  * IndexReader and IndexWriter directly for that (but you will need to  * care about synchronization yourself then).  *  *<p>While you can freely mix calls to add() and delete() using this class,  * you should batch you calls for best performance. For example, if you  * want to update 20 documents, you should first delete all those documents,  * then add all the new documents.  *  * @author Daniel Naber  */
 end_comment
 
 begin_class
@@ -189,7 +189,7 @@ name|IndexWriter
 operator|.
 name|DEFAULT_MERGE_FACTOR
 decl_stmt|;
-comment|/**    * Open an index with write access.    *      * @param directory the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
+comment|/**    * Open an index with write access.    *    * @param directory the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
 DECL|method|IndexModifier
 specifier|public
 name|IndexModifier
@@ -216,7 +216,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Open an index with write access.    *      * @param dirName the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
+comment|/**    * Open an index with write access.    *    * @param dirName the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
 DECL|method|IndexModifier
 specifier|public
 name|IndexModifier
@@ -255,7 +255,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Open an index with write access.    *      * @param file the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
+comment|/**    * Open an index with write access.    *    * @param file the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
 DECL|method|IndexModifier
 specifier|public
 name|IndexModifier
@@ -622,11 +622,11 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.  Returns the number of documents deleted.    * @return the number of documents deleted    * @see IndexReader#delete(Term)    * @throws IllegalStateException if the index is closed    */
-DECL|method|delete
+comment|/**    * Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.  Returns the number of documents deleted.    * @return the number of documents deleted    * @see IndexReader#deleteDocuments(Term)    * @throws IllegalStateException if the index is closed    */
+DECL|method|deleteDocuments
 specifier|public
 name|int
-name|delete
+name|deleteDocuments
 parameter_list|(
 name|Term
 name|term
@@ -648,18 +648,37 @@ expr_stmt|;
 return|return
 name|indexReader
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|term
 argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Deletes the document numbered<code>docNum</code>.    * @see IndexReader#delete(int)    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.  Returns the number of documents deleted.    * @return the number of documents deleted    * @see IndexReader#deleteDocuments(Term)    * @throws IllegalStateException if the index is closed    * @deprecated Use {@link #deleteDocuments(Term)} instead.    */
 DECL|method|delete
 specifier|public
-name|void
+name|int
 name|delete
+parameter_list|(
+name|Term
+name|term
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|deleteDocuments
+argument_list|(
+name|term
+argument_list|)
+return|;
+block|}
+comment|/**    * Deletes the document numbered<code>docNum</code>.    * @see IndexReader#deleteDocument(int)    * @throws IllegalStateException if the index is closed    */
+DECL|method|deleteDocument
+specifier|public
+name|void
+name|deleteDocument
 parameter_list|(
 name|int
 name|docNum
@@ -680,12 +699,30 @@ argument_list|()
 expr_stmt|;
 name|indexReader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 name|docNum
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Deletes the document numbered<code>docNum</code>.    * @see IndexReader#deleteDocument(int)    * @throws IllegalStateException if the index is closed    * @deprecated Use {@link #deleteDocument(int)} instead.    */
+DECL|method|delete
+specifier|public
+name|void
+name|delete
+parameter_list|(
+name|int
+name|docNum
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|deleteDocument
+argument_list|(
+name|docNum
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Returns the number of documents currently in this index.    * @see IndexWriter#docCount()    * @see IndexReader#numDocs()    * @throws IllegalStateException if the index is closed    */
 DECL|method|docCount
@@ -1030,7 +1067,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (&gt; 10) are best    * for batch index creation, and smaller values (&lt; 10) for indices that are    * interactively maintained.    *<p>This must never be less than 2.  The default value is 10.    *     * @see IndexWriter#setMergeFactor(int)    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (&gt; 10) are best    * for batch index creation, and smaller values (&lt; 10) for indices that are    * interactively maintained.    *<p>This must never be less than 2.  The default value is 10.    *    * @see IndexWriter#setMergeFactor(int)    * @throws IllegalStateException if the index is closed    */
 DECL|method|setMergeFactor
 specifier|public
 name|void
@@ -1099,7 +1136,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Close this index, writing all pending changes to disk.    *     * @throws IllegalStateException if the index has been closed before already    */
+comment|/**    * Close this index, writing all pending changes to disk.    *    * @throws IllegalStateException if the index has been closed before already    */
 DECL|method|close
 specifier|public
 name|void
