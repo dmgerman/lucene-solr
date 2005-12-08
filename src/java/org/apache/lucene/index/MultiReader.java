@@ -610,6 +610,12 @@ name|hasDeletions
 operator|=
 literal|false
 expr_stmt|;
+name|numDocs
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|// invalidate cache
 block|}
 DECL|method|readerIndex
 specifier|private
