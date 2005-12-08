@@ -1482,13 +1482,33 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    */
+comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    *    * @deprecated Use {@link #deleteDocument(int docNum)} instead.    */
 DECL|method|delete
 specifier|public
 specifier|final
 specifier|synchronized
 name|void
 name|delete
+parameter_list|(
+name|int
+name|docNum
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|deleteDocument
+argument_list|(
+name|docNum
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    */
+DECL|method|deleteDocument
+specifier|public
+specifier|final
+specifier|synchronized
+name|void
+name|deleteDocument
 parameter_list|(
 name|int
 name|docNum
@@ -1526,12 +1546,32 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #delete(int)} for information about when this deletion will     * become effective.    * @return the number of documents deleted    */
+comment|/** Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #delete(int)} for information about when this deletion will    * become effective.    * @return the number of documents deleted    *     * @deprecated Use {@link #deleteDocuments(Term term)} instead.    */
 DECL|method|delete
 specifier|public
 specifier|final
 name|int
 name|delete
+parameter_list|(
+name|Term
+name|term
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|deleteDocuments
+argument_list|(
+name|term
+argument_list|)
+return|;
+block|}
+comment|/** Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #delete(int)} for information about when this deletion will     * become effective.    * @return the number of documents deleted    */
+DECL|method|deleteDocuments
+specifier|public
+specifier|final
+name|int
+name|deleteDocuments
 parameter_list|(
 name|Term
 name|term
@@ -1571,7 +1611,7 @@ name|next
 argument_list|()
 condition|)
 block|{
-name|delete
+name|deleteDocument
 argument_list|(
 name|docs
 operator|.
