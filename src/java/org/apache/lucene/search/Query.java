@@ -230,7 +230,7 @@ return|return
 name|weight
 return|;
 block|}
-comment|/** Expert: called to re-write queries into primitive queries. */
+comment|/** Expert: called to re-write queries into primitive queries. For example,    * a PrefixQuery will be rewritten into a BooleanQuery that consists    * of TermQuerys.    */
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -490,7 +490,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Expert: adds all terms occuring in this query to the terms set    */
+comment|/**    * Expert: adds all terms occuring in this query to the terms set. Only    * works if this query is in its {@link #rewrite rewritten} form.    *     * @throws UnsupportedOperationException if this query is not yet rewritten    */
 DECL|method|extractTerms
 specifier|public
 name|void
