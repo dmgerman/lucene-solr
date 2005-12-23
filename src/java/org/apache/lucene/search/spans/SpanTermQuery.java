@@ -329,6 +329,8 @@ name|term
 operator|.
 name|hashCode
 argument_list|()
+operator|^
+literal|0xD23FE494
 return|;
 block|}
 DECL|method|getSpans
