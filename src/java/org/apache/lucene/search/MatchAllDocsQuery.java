@@ -637,6 +637,8 @@ argument_list|(
 name|getBoost
 argument_list|()
 argument_list|)
+operator|^
+literal|0x1AA71190
 return|;
 block|}
 block|}
