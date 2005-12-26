@@ -467,7 +467,7 @@ operator|!
 operator|(
 name|o
 operator|instanceof
-name|TermQuery
+name|SpanRegexQuery
 operator|)
 condition|)
 return|return
