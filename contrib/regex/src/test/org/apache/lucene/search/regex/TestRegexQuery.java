@@ -136,20 +136,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|spans
 operator|.
 name|SpanNearQuery
@@ -357,7 +343,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|Query
+name|RegexQuery
 name|query
 init|=
 operator|new
@@ -471,7 +457,7 @@ literal|1
 argument_list|,
 name|regexQueryNrHits
 argument_list|(
-literal|"q.[aeiou]c.*"
+literal|"^q.[aeiou]c.*$"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -490,7 +476,7 @@ literal|0
 argument_list|,
 name|regexQueryNrHits
 argument_list|(
-literal|".[aeiou]c.*"
+literal|"^.[aeiou]c.*$"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -509,7 +495,7 @@ literal|0
 argument_list|,
 name|regexQueryNrHits
 argument_list|(
-literal|"q.[aeiou]c"
+literal|"^q.[aeiou]c$"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -528,7 +514,7 @@ literal|1
 argument_list|,
 name|spanRegexQueryNrHits
 argument_list|(
-literal|"q.[aeiou]c.*"
+literal|"^q.[aeiou]c.*$"
 argument_list|,
 literal|"dog"
 argument_list|,
@@ -553,7 +539,7 @@ literal|0
 argument_list|,
 name|spanRegexQueryNrHits
 argument_list|(
-literal|"q.[aeiou]c.*"
+literal|"^q.[aeiou]c.*$"
 argument_list|,
 literal|"dog"
 argument_list|,
@@ -564,12 +550,58 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//  public void testPrefix() throws Exception {
-comment|// This test currently fails because RegexTermEnum picks "r" as the prefix
-comment|// but the following "?" makes the "r" optional and should be a hit for the
-comment|// document matching "over".
-comment|//    assertEquals(1, regexQueryNrHits("r?over"));
-comment|//  }
+DECL|method|testEquals
+specifier|public
+name|void
+name|testEquals
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|RegexQuery
+name|query1
+init|=
+operator|new
+name|RegexQuery
+argument_list|(
+name|newTerm
+argument_list|(
+literal|"foo.*"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|query1
+operator|.
+name|setRegexImplementation
+argument_list|(
+operator|new
+name|JakartaRegexpCapabilities
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|RegexQuery
+name|query2
+init|=
+operator|new
+name|RegexQuery
+argument_list|(
+name|newTerm
+argument_list|(
+literal|"foo.*"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertFalse
+argument_list|(
+name|query1
+operator|.
+name|equals
+argument_list|(
+name|query2
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
