@@ -1413,6 +1413,13 @@ operator|new
 name|MultiPhraseQuery
 argument_list|()
 decl_stmt|;
+name|mpq
+operator|.
+name|setSlop
+argument_list|(
+name|phraseSlop
+argument_list|)
+expr_stmt|;
 name|List
 name|multiTerms
 init|=
