@@ -1331,7 +1331,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a stored field with binary value. Optionally the value may be compressed.    *     * @param name The name of the field    * @param value The binary value    * @param store How<code>value</code> should be stored (compressed or not.)    */
+comment|/**    * Create a stored field with binary value. Optionally the value may be compressed.    *     * @param name The name of the field    * @param value The binary value    * @param store How<code>value</code> should be stored (compressed or not)    * @throws IllegalArgumentException if store is<code>Store.NO</code>     */
 DECL|method|Field
 specifier|public
 name|Field
