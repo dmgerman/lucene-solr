@@ -1913,7 +1913,7 @@ condition|(
 name|si
 operator|.
 name|docCount
-operator|>=
+operator|>
 name|targetMergeDocs
 condition|)
 break|break;
