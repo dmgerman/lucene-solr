@@ -687,8 +687,11 @@ condition|(
 name|sugword
 operator|.
 name|string
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|word
+argument_list|)
 condition|)
 block|{
 continue|continue;
