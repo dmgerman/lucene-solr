@@ -110,6 +110,7 @@ end_comment
 
 begin_class
 DECL|class|FieldSortedHitQueue
+specifier|public
 class|class
 name|FieldSortedHitQueue
 extends|extends
@@ -117,6 +118,7 @@ name|PriorityQueue
 block|{
 comment|/**    * Creates a hit queue sorted by the given list of fields.    * @param reader  Index to use.    * @param fields Field names, in priority order (highest priority first).  Cannot be<code>null</code> or empty.    * @param size  The number of hits to retain.  Must be greater than zero.    * @throws IOException    */
 DECL|method|FieldSortedHitQueue
+specifier|public
 name|FieldSortedHitQueue
 parameter_list|(
 name|IndexReader
