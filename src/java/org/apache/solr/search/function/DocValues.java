@@ -4,13 +4,13 @@ comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search.function
+DECL|package|org.apache.solr.search.function
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|search
 operator|.

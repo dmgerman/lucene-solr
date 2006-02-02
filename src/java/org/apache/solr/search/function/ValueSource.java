@@ -4,13 +4,13 @@ comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search.function
+DECL|package|org.apache.solr.search.function
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|search
 operator|.
@@ -38,7 +38,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|search
 operator|.
@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Instantiates {@link org.apache.lucene.search.function.DocValues} for a particular reader.  *<br>  * Often used when creating a {@link FunctionQuery}.  *  * @author yonik  * @version $Id: ValueSource.java,v 1.2 2005/11/30 19:31:01 yonik Exp $  */
+comment|/**  * Instantiates {@link org.apache.solr.search.function.DocValues} for a particular reader.  *<br>  * Often used when creating a {@link FunctionQuery}.  *  * @author yonik  * @version $Id: ValueSource.java,v 1.2 2005/11/30 19:31:01 yonik Exp $  */
 end_comment
 
 begin_class

@@ -4,13 +4,13 @@ comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search.function
+DECL|package|org.apache.solr.search.function
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|search
 operator|.
@@ -38,29 +38,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|search
 operator|.
 name|function
 operator|.
 name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|function
-operator|.
-name|ValueSource
 import|;
 end_import
 
