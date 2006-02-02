@@ -148,6 +148,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|analysis
+operator|.
+name|SolrAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -291,7 +305,7 @@ name|Analyzer
 name|boolAnalyzer
 init|=
 operator|new
-name|Analyzer
+name|SolrAnalyzer
 argument_list|()
 block|{
 specifier|public

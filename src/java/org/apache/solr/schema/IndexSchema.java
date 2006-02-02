@@ -697,10 +697,10 @@ return|return
 name|f
 return|;
 block|}
-DECL|class|SolrAnalyzer
+DECL|class|SolrIndexAnalyzer
 specifier|private
 class|class
-name|SolrAnalyzer
+name|SolrIndexAnalyzer
 extends|extends
 name|Analyzer
 block|{
@@ -715,8 +715,8 @@ name|Analyzer
 argument_list|>
 name|analyzers
 decl_stmt|;
-DECL|method|SolrAnalyzer
-name|SolrAnalyzer
+DECL|method|SolrIndexAnalyzer
+name|SolrIndexAnalyzer
 parameter_list|()
 block|{
 name|analyzers
@@ -881,7 +881,7 @@ specifier|private
 class|class
 name|SolrQueryAnalyzer
 extends|extends
-name|SolrAnalyzer
+name|SolrIndexAnalyzer
 block|{
 DECL|method|analyzerCache
 specifier|protected
@@ -2150,7 +2150,7 @@ block|}
 name|analyzer
 operator|=
 operator|new
-name|SolrAnalyzer
+name|SolrIndexAnalyzer
 argument_list|()
 expr_stmt|;
 name|queryAnalyzer
