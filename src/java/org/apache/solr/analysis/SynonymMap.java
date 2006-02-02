@@ -4,8 +4,20 @@ comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.analysis
+DECL|package|org.apache.solr.analysis
 package|package
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|analysis
+package|;
+end_package
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -13,8 +25,10 @@ operator|.
 name|lucene
 operator|.
 name|analysis
-package|;
-end_package
+operator|.
+name|Token
+import|;
+end_import
 
 begin_import
 import|import
@@ -27,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Mapping rules for use with {@link SynonymFilter}  *  * @author yonik  * @version $Id: SynonymMap.java,v 1.2 2005/12/13 05:15:08 yonik Exp $  */
+comment|/** Mapping rules for use with {@link org.apache.solr.analysis.SynonymFilter}  *  * @author yonik  * @version $Id: SynonymMap.java,v 1.2 2005/12/13 05:15:08 yonik Exp $  */
 end_comment
 
 begin_class
@@ -646,18 +660,22 @@ argument_list|(
 name|tok1
 operator|.
 name|termText
+argument_list|()
 argument_list|,
 name|tok1
 operator|.
 name|startOffset
+argument_list|()
 argument_list|,
 name|tok1
 operator|.
 name|endOffset
+argument_list|()
 argument_list|,
 name|tok1
 operator|.
 name|type
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|tok
@@ -737,18 +755,22 @@ argument_list|(
 name|tok2
 operator|.
 name|termText
+argument_list|()
 argument_list|,
 name|tok2
 operator|.
 name|startOffset
+argument_list|()
 argument_list|,
 name|tok2
 operator|.
 name|endOffset
+argument_list|()
 argument_list|,
 name|tok2
 operator|.
 name|type
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|tok
