@@ -528,7 +528,7 @@ name|name
 argument_list|,
 name|core
 operator|.
-name|getDir
+name|getIndexDir
 argument_list|()
 argument_list|,
 literal|false

@@ -235,7 +235,28 @@ parameter_list|()
 throws|throws
 name|ServletException
 block|{
-comment|/***     luceneDir=getServletContext().getInitParameter("solr.indexdir");     schemaFile=getServletContext().getInitParameter("solr.schema");     if (schemaFile == null) schemaFile="schema.xml";     ***/
+name|String
+name|configDir
+init|=
+name|getServletContext
+argument_list|()
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"solr.configDir"
+argument_list|)
+decl_stmt|;
+name|String
+name|dataDir
+init|=
+name|getServletContext
+argument_list|()
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"solr.dataDir"
+argument_list|)
+decl_stmt|;
 name|log
 operator|.
 name|info
@@ -250,15 +271,10 @@ literal|"user.dir"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|IndexSchema
-name|schema
-init|=
-operator|new
-name|IndexSchema
-argument_list|(
-literal|"schema.xml"
-argument_list|)
-decl_stmt|;
+comment|// TODO: find a way to allow configuration of the config and data
+comment|// directories other than using CWD.  If it is done via servlet
+comment|// params, then we must insure that this init() run before any
+comment|// of the JSPs.
 name|core
 operator|=
 name|SolrCore
