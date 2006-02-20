@@ -200,6 +200,7 @@ name|boost
 init|=
 literal|1.0f
 decl_stmt|;
+comment|/** Specifies whether and how a field should be stored. */
 DECL|class|Store
 specifier|public
 specifier|static
@@ -268,6 +269,7 @@ literal|"NO"
 argument_list|)
 decl_stmt|;
 block|}
+comment|/** Specifies whether and how a field should be indexed. */
 DECL|class|Index
 specifier|public
 specifier|static
@@ -350,6 +352,7 @@ literal|"NO_NORMS"
 argument_list|)
 decl_stmt|;
 block|}
+comment|/** Specifies whether and how a field should have term vectors. */
 DECL|class|TermVector
 specifier|public
 specifier|static

@@ -894,6 +894,7 @@ name|getTime
 argument_list|()
 return|;
 block|}
+comment|/** Specifies the time granularity. */
 DECL|class|Resolution
 specifier|public
 specifier|static
