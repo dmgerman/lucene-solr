@@ -581,17 +581,27 @@ name|i
 operator|++
 control|)
 block|{
+comment|//Pre Lucene 2.0 code
+comment|//			if (prohibited || !queryClauses[i].prohibited)
+comment|//				getTerms(queryClauses[i].query, terms, prohibited, fieldName);
+comment|// Lucene 2.0 ready code
 if|if
 condition|(
 name|prohibited
 operator|||
-operator|!
 name|queryClauses
 index|[
 name|i
 index|]
 operator|.
-name|prohibited
+name|getOccur
+argument_list|()
+operator|!=
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 condition|)
 name|getTerms
 argument_list|(
@@ -600,7 +610,8 @@ index|[
 name|i
 index|]
 operator|.
-name|query
+name|getQuery
+argument_list|()
 argument_list|,
 name|terms
 argument_list|,
