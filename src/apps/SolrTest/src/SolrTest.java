@@ -1665,7 +1665,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-literal|"solar"
+literal|"org.apache.solr"
 argument_list|)
 decl_stmt|;
 name|log
