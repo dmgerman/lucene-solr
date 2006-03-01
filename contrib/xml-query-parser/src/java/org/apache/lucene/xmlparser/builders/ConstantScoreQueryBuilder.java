@@ -154,26 +154,11 @@ name|filterElem
 init|=
 name|DOMUtils
 operator|.
-name|getFirstChildElement
+name|getFirstChildOrFail
 argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|filterElem
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|ParserException
-argument_list|(
-literal|"ConstantScoreQuery missing child element with filter"
-argument_list|)
-throw|;
-block|}
 name|Query
 name|q
 init|=

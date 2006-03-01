@@ -244,24 +244,16 @@ argument_list|(
 name|clauseElem
 argument_list|)
 decl_stmt|;
-comment|//find the first element child which should contain a Query
 name|Element
 name|clauseQuery
 init|=
 name|DOMUtils
 operator|.
-name|getFirstChildElement
+name|getFirstChildOrFail
 argument_list|(
 name|clauseElem
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|clauseQuery
-operator|!=
-literal|null
-condition|)
-block|{
 name|Query
 name|q
 init|=
@@ -285,17 +277,6 @@ name|occurs
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|ParserException
-argument_list|(
-literal|"BooleanClause missing child query element "
-argument_list|)
-throw|;
-block|}
 block|}
 return|return
 name|bq
