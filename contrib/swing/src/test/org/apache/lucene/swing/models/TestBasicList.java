@@ -20,11 +20,21 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|java
 operator|.
-name|framework
+name|util
 operator|.
-name|Test
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|ListModel
 import|;
 end_import
 
@@ -35,26 +45,6 @@ operator|.
 name|framework
 operator|.
 name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 

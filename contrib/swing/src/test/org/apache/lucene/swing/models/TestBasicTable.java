@@ -20,21 +20,11 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|java
 operator|.
-name|framework
+name|util
 operator|.
-name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
+name|ArrayList
 import|;
 end_import
 
@@ -52,11 +42,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|util
+name|framework
 operator|.
-name|ArrayList
+name|TestCase
 import|;
 end_import
 
