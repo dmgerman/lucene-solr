@@ -290,6 +290,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|FieldOption
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queryParser
 operator|.
 name|MultiFieldQueryParser
@@ -381,7 +397,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * Parts addapted from Lucene demo. Various methods that interact with  * Lucene and provide info about the index, search, etc.  */
+comment|/**  * Various methods that interact with Lucene and provide info about the   * index, search, etc. Parts addapted from Lucene demo.  */
 end_comment
 
 begin_class
@@ -401,6 +417,7 @@ name|indexName
 decl_stmt|;
 comment|//directory of this index
 DECL|field|fieldIterator
+specifier|private
 name|java
 operator|.
 name|util
@@ -409,26 +426,31 @@ name|Iterator
 name|fieldIterator
 decl_stmt|;
 DECL|field|fields
+specifier|private
 name|Vector
 name|fields
 decl_stmt|;
 comment|//Fields as a vector
 DECL|field|indexedFields
+specifier|private
 name|Vector
 name|indexedFields
 decl_stmt|;
 comment|//Fields as a vector
 DECL|field|fieldsArray
+specifier|private
 name|String
 name|fieldsArray
 index|[]
 decl_stmt|;
 comment|//Fields as an array
 DECL|field|searcher
+specifier|private
 name|Searcher
 name|searcher
 decl_stmt|;
 DECL|field|query
+specifier|private
 name|Query
 name|query
 decl_stmt|;
@@ -997,17 +1019,6 @@ decl_stmt|;
 name|getFieldInfo
 argument_list|()
 expr_stmt|;
-name|MultiFieldQueryParser
-name|parser
-init|=
-operator|new
-name|MultiFieldQueryParser
-argument_list|(
-name|queryString
-argument_list|,
-name|analyzer
-argument_list|)
-decl_stmt|;
 name|int
 name|arraySize
 init|=
@@ -1057,6 +1068,17 @@ name|ii
 argument_list|)
 expr_stmt|;
 block|}
+name|MultiFieldQueryParser
+name|parser
+init|=
+operator|new
+name|MultiFieldQueryParser
+argument_list|(
+name|indexedArray
+argument_list|,
+name|analyzer
+argument_list|)
+decl_stmt|;
 name|query
 operator|=
 name|parser
@@ -1064,10 +1086,6 @@ operator|.
 name|parse
 argument_list|(
 name|queryString
-argument_list|,
-name|indexedArray
-argument_list|,
-name|analyzer
 argument_list|)
 expr_stmt|;
 name|System
@@ -1122,17 +1140,6 @@ decl_stmt|;
 name|getFieldInfo
 argument_list|()
 expr_stmt|;
-name|MultiFieldQueryParser
-name|parser
-init|=
-operator|new
-name|MultiFieldQueryParser
-argument_list|(
-name|queryString
-argument_list|,
-name|analyzer
-argument_list|)
-decl_stmt|;
 name|int
 name|arraySize
 init|=
@@ -1180,6 +1187,17 @@ name|ii
 argument_list|)
 expr_stmt|;
 block|}
+name|MultiFieldQueryParser
+name|parser
+init|=
+operator|new
+name|MultiFieldQueryParser
+argument_list|(
+name|fieldsArray
+argument_list|,
+name|analyzer
+argument_list|)
+decl_stmt|;
 name|query
 operator|=
 name|parser
@@ -1187,10 +1205,6 @@ operator|.
 name|parse
 argument_list|(
 name|queryString
-argument_list|,
-name|fieldsArray
-argument_list|,
-name|analyzer
 argument_list|)
 expr_stmt|;
 name|System
@@ -1324,7 +1338,11 @@ operator|=
 name|indexReader
 operator|.
 name|getFieldNames
-argument_list|()
+argument_list|(
+name|FieldOption
+operator|.
+name|ALL
+argument_list|)
 operator|.
 name|iterator
 argument_list|()
@@ -1378,7 +1396,9 @@ name|indexReader
 operator|.
 name|getFieldNames
 argument_list|(
-literal|true
+name|FieldOption
+operator|.
+name|INDEXED
 argument_list|)
 operator|.
 name|iterator
