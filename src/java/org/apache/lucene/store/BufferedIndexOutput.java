@@ -198,6 +198,10 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+name|bufferStart
+operator|+=
+name|length
+expr_stmt|;
 block|}
 else|else
 block|{
