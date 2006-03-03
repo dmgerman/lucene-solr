@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for all field types used by an index schema.  *  * @author yonik  * @version $Id: FieldType.java,v 1.14 2006/01/06 04:23:15 yonik Exp $  */
+comment|/**  * Base class for all field types used by an index schema.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SolrIndexSearcher adds schema awareness and caching functionality  * over the lucene IndexSearcher.   * @author yonik  * @version $Id: SolrIndexSearcher.java,v 1.49 2005/12/20 16:05:46 yonik Exp $  * @since solr 0.9  */
+comment|/**  * SolrIndexSearcher adds schema awareness and caching functionality  * over the lucene IndexSearcher.   * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_comment
@@ -4680,34 +4680,24 @@ operator|.
 name|CORE
 return|;
 block|}
-DECL|method|getCvsId
+DECL|method|getSourceId
 specifier|public
 name|String
-name|getCvsId
+name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: SolrIndexSearcher.java,v 1.49 2005/12/20 16:05:46 yonik Exp $"
+literal|"$Id$"
 return|;
 block|}
-DECL|method|getCvsName
+DECL|method|getSource
 specifier|public
 name|String
-name|getCvsName
+name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$Name:  $"
-return|;
-block|}
-DECL|method|getCvsSource
-specifier|public
-name|String
-name|getCvsSource
-parameter_list|()
-block|{
-return|return
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/search/SolrIndexSearcher.java,v $"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs

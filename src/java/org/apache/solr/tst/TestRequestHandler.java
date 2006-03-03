@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: TestRequestHandler.java,v 1.19 2005/12/02 04:31:05 yonik Exp $  */
+comment|/**  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -1660,14 +1660,14 @@ operator|.
 name|QUERYHANDLER
 return|;
 block|}
-DECL|method|getCvsId
+DECL|method|getSourceId
 specifier|public
 name|String
-name|getCvsId
+name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: TestRequestHandler.java,v 1.19 2005/12/02 04:31:05 yonik Exp $"
+literal|"$Id$"
 return|;
 block|}
 DECL|method|getCvsName
@@ -1680,10 +1680,10 @@ return|return
 literal|"$Name:  $"
 return|;
 block|}
-DECL|method|getCvsSource
+DECL|method|getSource
 specifier|public
 name|String
-name|getCvsSource
+name|getSource
 parameter_list|()
 block|{
 return|return

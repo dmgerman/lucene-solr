@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>HashDocSet</code> represents an unordered set of Lucene Document Ids  * using a primitive int hash table.  It can be a better choice if there are few docs  * in the set because it takes up less memory and is faster to iterate and take  * set intersections.  *  * @author yonik  * @version $Id: HashDocSet.java,v 1.7 2005/11/22 17:16:19 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>HashDocSet</code> represents an unordered set of Lucene Document Ids  * using a primitive int hash table.  It can be a better choice if there are few docs  * in the set because it takes up less memory and is faster to iterate and take  * set intersections.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

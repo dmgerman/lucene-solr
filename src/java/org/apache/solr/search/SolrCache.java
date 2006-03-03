@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author yonik  * @version $Id: SolrCache.java,v 1.6 2005/06/21 05:26:43 yonik Exp $  */
+comment|/**  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface

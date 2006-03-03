@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>SolrQueryResponse</code> is used by a query handler to return  * the response to a query.  * @author yonik  * @version $Id: SolrQueryResponse.java,v 1.5 2005/08/10 04:27:04 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>SolrQueryResponse</code> is used by a query handler to return  * the response to a query.  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

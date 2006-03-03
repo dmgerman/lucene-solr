@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Mapping rules for use with {@link org.apache.solr.analysis.SynonymFilter}  *  * @author yonik  * @version $Id: SynonymMap.java,v 1.2 2005/12/13 05:15:08 yonik Exp $  */
+comment|/** Mapping rules for use with {@link org.apache.solr.analysis.SynonymFilter}  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link ValueSource}.  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  * @author yonik  * @version $Id: LinearFloatFunction.java,v 1.2 2005/11/22 05:23:21 yonik Exp $  */
+comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link ValueSource}.  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

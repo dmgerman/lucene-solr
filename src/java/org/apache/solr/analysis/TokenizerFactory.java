@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A<code>TokenizerFactory</code> creates a<code>Tokenizer</code> on demand  * that breaks up a stream of characters into tokens.  *  * @author yonik  * @version $Id: TokenizerFactory.java,v 1.10 2005/12/13 05:16:03 yonik Exp $  */
+comment|/**  * A<code>TokenizerFactory</code> creates a<code>Tokenizer</code> on demand  * that breaks up a stream of characters into tokens.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface

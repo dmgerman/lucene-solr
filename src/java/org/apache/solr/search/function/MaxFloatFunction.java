@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returns the max of a ValueSource and a float  * (which is useful for "bottoming out" another function at 0.0,  * or some positive number).  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  * @author hossman  * @version $Id: $  */
+comment|/**  * Returns the max of a ValueSource and a float  * (which is useful for "bottoming out" another function at 0.0,  * or some positive number).  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  * @author hossman  * @version $Id$  */
 end_comment
 
 begin_class

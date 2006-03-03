@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Obtains float field values from the {@link org.apache.lucene.search.FieldCache}  * using<code>getFloats()</code>  * and makes those values available as other numeric types, casting as needed.  *  * @author yonik  * @version $Id: FloatFieldSource.java,v 1.2 2005/11/22 05:23:20 yonik Exp $  */
+comment|/**  * Obtains float field values from the {@link org.apache.lucene.search.FieldCache}  * using<code>getFloats()</code>  * and makes those values available as other numeric types, casting as needed.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

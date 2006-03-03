@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base class for ValueSource implementations that retrieve values for  * a single field from the {@link org.apache.lucene.search.FieldCache}.  *  * @author yonik  * @version $Id: FieldCacheSource.java,v 1.1 2005/11/22 05:23:20 yonik Exp $  */
+comment|/**  * A base class for ValueSource implementations that retrieve values for  * a single field from the {@link org.apache.lucene.search.FieldCache}.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

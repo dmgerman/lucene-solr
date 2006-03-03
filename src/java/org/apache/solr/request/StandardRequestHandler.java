@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: StandardRequestHandler.java,v 1.17 2005/12/02 04:31:06 yonik Exp $  */
+comment|/**  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -1190,34 +1190,24 @@ operator|.
 name|QUERYHANDLER
 return|;
 block|}
-DECL|method|getCvsId
+DECL|method|getSourceId
 specifier|public
 name|String
-name|getCvsId
+name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: StandardRequestHandler.java,v 1.17 2005/12/02 04:31:06 yonik Exp $"
+literal|"$Id$"
 return|;
 block|}
-DECL|method|getCvsName
+DECL|method|getSource
 specifier|public
 name|String
-name|getCvsName
+name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$Name:  $"
-return|;
-block|}
-DECL|method|getCvsSource
-specifier|public
-name|String
-name|getCvsSource
-parameter_list|()
-block|{
-return|return
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/StandardRequestHandler.java,v $"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs

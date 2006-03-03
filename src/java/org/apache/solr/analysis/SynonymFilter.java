@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** SynonymFilter handles multi-token synonyms with variable position increment offsets.  *<p>  * The matched tokens from the input stream may be optionally passed through (includeOrig=true)  * or discarded.  If the original tokens are included, the position increments may be modified  * to retain absolute positions after merging with the synonym tokenstream.  *<p>  * Generated synonyms will start at the same position as the first matched source token.  *  * @author yonik  * @version $Id: SynonymFilter.java,v 1.3 2005/12/13 05:14:52 yonik Exp $  */
+comment|/** SynonymFilter handles multi-token synonyms with variable position increment offsets.  *<p>  * The matched tokens from the input stream may be optionally passed through (includeOrig=true)  * or discarded.  If the original tokens are included, the position increments may be modified  * to retain absolute positions after merging with the synonym tokenstream.  *<p>  * Generated synonyms will start at the same position as the first matched source token.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

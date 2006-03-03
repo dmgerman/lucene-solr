@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where documents are added  * directly to the main lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  *  * @author yonik  * @version $Id: DirectUpdateHandler.java,v 1.13 2005/06/17 20:44:42 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where documents are added  * directly to the main lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class
@@ -1590,14 +1590,14 @@ operator|.
 name|CORE
 return|;
 block|}
-DECL|method|getCvsId
+DECL|method|getSourceId
 specifier|public
 name|String
-name|getCvsId
+name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: DirectUpdateHandler.java,v 1.13 2005/06/17 20:44:42 yonik Exp $"
+literal|"$Id$"
 return|;
 block|}
 DECL|method|getCvsName
@@ -1610,10 +1610,10 @@ return|return
 literal|"$Name:  $"
 return|;
 block|}
-DECL|method|getCvsSource
+DECL|method|getSource
 specifier|public
 name|String
-name|getCvsSource
+name|getSource
 parameter_list|()
 block|{
 return|return

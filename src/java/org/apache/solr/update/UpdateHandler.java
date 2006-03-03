@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>UpdateHandler</code> handles requests to change the index  * (adds, deletes, commits, optimizes, etc).  *  * @author yonik  * @version $Id: UpdateHandler.java,v 1.15 2005/06/21 20:24:25 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>UpdateHandler</code> handles requests to change the index  * (adds, deletes, commits, optimizes, etc).  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

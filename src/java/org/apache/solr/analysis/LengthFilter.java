@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: LengthFilter.java,v 1.2 2005/04/24 02:53:35 yonik Exp $  */
+comment|/**  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

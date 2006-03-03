@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>BitDocSet</code> represents an unordered set of Lucene Document Ids  * using a BitSet.  A set bit represents inclusion in the set for that document.  *  * @author yonik  * @version $Id: BitDocSet.java,v 1.4 2005/10/27 04:14:49 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>BitDocSet</code> represents an unordered set of Lucene Document Ids  * using a BitSet.  A set bit represents inclusion in the set for that document.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

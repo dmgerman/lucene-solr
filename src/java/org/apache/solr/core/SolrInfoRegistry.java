@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author ronp  * @version $Id: SolrInfoRegistry.java,v 1.5 2005/05/14 03:34:39 yonik Exp $  */
+comment|/**  * @author ronp  * @version $Id$  */
 end_comment
 
 begin_comment
@@ -61,7 +61,7 @@ specifier|final
 name|String
 name|cvsId
 init|=
-literal|"$Id: SolrInfoRegistry.java,v 1.5 2005/05/14 03:34:39 yonik Exp $"
+literal|"$Id$"
 decl_stmt|;
 DECL|field|cvsSource
 specifier|public

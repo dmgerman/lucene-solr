@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of<code>CacheRegenerator</code> are used in autowarming to populate a new cache  * based on an old cache.<code>regenerateItem</code> is called for each item that should be inserted into the new cache.  *<p>  * Implementations should have a noarg constructor and be thread safe (a single instance will be  * used for all cache autowarmings).  *  * @author yonik  * @version $Id: CacheRegenerator.java,v 1.2 2005/09/07 20:37:57 yonik Exp $  */
+comment|/**  * Implementations of<code>CacheRegenerator</code> are used in autowarming to populate a new cache  * based on an old cache.<code>regenerateItem</code> is called for each item that should be inserted into the new cache.  *<p>  * Implementations should have a noarg constructor and be thread safe (a single instance will be  * used for all cache autowarmings).  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface

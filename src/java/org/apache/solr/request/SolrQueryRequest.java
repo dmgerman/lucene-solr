@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: SolrQueryRequest.java,v 1.3 2005/05/10 19:40:12 yonik Exp $  */
+comment|/**  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface

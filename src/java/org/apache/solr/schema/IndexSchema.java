@@ -309,7 +309,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>IndexSchema</code> contains information about the valid fields in an index  * and the types of those fields.  *  * @author yonik  * @version $Id: IndexSchema.java,v 1.21 2005/12/20 16:05:46 yonik Exp $  */
+comment|/**  *<code>IndexSchema</code> contains information about the valid fields in an index  * and the types of those fields.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

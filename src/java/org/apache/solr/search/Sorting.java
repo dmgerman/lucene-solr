@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Extra lucene sorting utilities& convenience methods  *  * @author yonik  * @version $Id: Sorting.java,v 1.1 2005/06/02 04:43:06 yonik Exp $  *  */
+comment|/**  * Extra lucene sorting utilities& convenience methods  *  * @author yonik  * @version $Id$  *  */
 end_comment
 
 begin_class

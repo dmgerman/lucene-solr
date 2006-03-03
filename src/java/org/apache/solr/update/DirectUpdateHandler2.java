@@ -265,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DirectUpdateHandler2</code> implements an UpdateHandler where documents are added  * directly to the main Lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  * This version supports efficient removal of duplicates on a commit.  It works by maintaining  * a related count for every document being added or deleted.  At commit time, for every id with a count,  * all but the last "count" docs with that id are deleted.  *<p>  *  * Supported add command parameters:<TABLE BORDER><TR><TH>allowDups</TH><TH>overwritePending</TH><TH>overwriteCommitted</TH><TH>efficiency</TH></TR><TR><TD>false</TD><TD>false</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>true or false</TD><TD>true</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>true</TD><TD>false</TD><TD>false</TD><TD>fastest</TD></TR></TABLE><p>Supported delete commands:<TABLE BORDER><TR><TH>command</TH><TH>fromPending</TH><TH>fromCommitted</TH><TH>efficiency</TH></TR><TR><TD>delete</TD><TD>true</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>deleteByQuery</TD><TD>true</TD><TD>true</TD><TD>very slow*</TD></TR></TABLE><p>* deleteByQuery causes a commit to happen (close current index writer, open new index reader)   before it can be processed.  If deleteByQuery functionality is needed, it's best if they can   be batched and executed together so they may share the same index reader.   *  * @author yonik  * @version $Id: DirectUpdateHandler2.java,v 1.12 2005/06/17 20:44:42 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>DirectUpdateHandler2</code> implements an UpdateHandler where documents are added  * directly to the main Lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  * This version supports efficient removal of duplicates on a commit.  It works by maintaining  * a related count for every document being added or deleted.  At commit time, for every id with a count,  * all but the last "count" docs with that id are deleted.  *<p>  *  * Supported add command parameters:<TABLE BORDER><TR><TH>allowDups</TH><TH>overwritePending</TH><TH>overwriteCommitted</TH><TH>efficiency</TH></TR><TR><TD>false</TD><TD>false</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>true or false</TD><TD>true</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>true</TD><TD>false</TD><TD>false</TD><TD>fastest</TD></TR></TABLE><p>Supported delete commands:<TABLE BORDER><TR><TH>command</TH><TH>fromPending</TH><TH>fromCommitted</TH><TH>efficiency</TH></TR><TR><TD>delete</TD><TD>true</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>deleteByQuery</TD><TD>true</TD><TD>true</TD><TD>very slow*</TD></TR></TABLE><p>* deleteByQuery causes a commit to happen (close current index writer, open new index reader)   before it can be processed.  If deleteByQuery functionality is needed, it's best if they can   be batched and executed together so they may share the same index reader.   *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class
@@ -2110,34 +2110,24 @@ operator|.
 name|UPDATEHANDLER
 return|;
 block|}
-DECL|method|getCvsId
+DECL|method|getSourceId
 specifier|public
 name|String
-name|getCvsId
+name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: DirectUpdateHandler2.java,v 1.12 2005/06/17 20:44:42 yonik Exp $"
+literal|"$Id$"
 return|;
 block|}
-DECL|method|getCvsName
+DECL|method|getSource
 specifier|public
 name|String
-name|getCvsName
+name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$Name:  $"
-return|;
-block|}
-DECL|method|getCvsSource
-specifier|public
-name|String
-name|getCvsSource
-parameter_list|()
-block|{
-return|return
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/DirectUpdateHandler2.java,v $"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs

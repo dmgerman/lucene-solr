@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *<code>DocSlice</code> implements DocList as an array of docids and optional scores.  *  * @author yonik  * @version $Id: DocSlice.java,v 1.9 2005/11/11 21:57:56 yonik Exp $  * @since solr 0.9  */
+comment|/**  *<code>DocSlice</code> implements DocList as an array of docids and optional scores.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

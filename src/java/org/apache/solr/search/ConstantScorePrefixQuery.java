@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: ConstantScorePrefixQuery.java,v 1.2 2005/09/15 14:32:41 yonik Exp $  */
+comment|/**  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

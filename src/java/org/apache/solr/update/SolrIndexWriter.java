@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An IndexWriter that is configured via Solr config mechanisms.  * * @author yonik * @version $Id: SolrIndexWriter.java,v 1.9 2006/01/09 03:51:44 yonik Exp $ * @since solr 0.9 */
+comment|/**  * An IndexWriter that is configured via Solr config mechanisms.  * * @author yonik * @version $Id$ * @since solr 0.9 */
 end_comment
 
 begin_class

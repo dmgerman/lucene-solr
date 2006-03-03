@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A struct who's only purpose is to hold both a DocList and a DocSet so that both  * may be returned from a single method.  *<p>  * The DocList and DocSet returned should<b>not</b> be modified as they may  * have been retrieved or inserted into a cache and should be considered shared.  *<p>  * Oh, if only java had "out" parameters or multiple return args...  *<p>  *  * @author yonik  * @version $Id: DocListAndSet.java,v 1.3 2005/04/08 05:38:05 yonik Exp $  * @since solr 0.9  */
+comment|/**  * A struct who's only purpose is to hold both a DocList and a DocSet so that both  * may be returned from a single method.  *<p>  * The DocList and DocSet returned should<b>not</b> be modified as they may  * have been retrieved or inserted into a cache and should be considered shared.  *<p>  * Oh, if only java had "out" parameters or multiple return args...  *<p>  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

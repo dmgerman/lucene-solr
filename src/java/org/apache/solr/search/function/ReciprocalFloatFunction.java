@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>ReciprocalFloatFunction</code> implements a reciprocal function f(x) = a/(mx+b), based on  * the float value of a field as exported by {@link org.apache.solr.search.function.ValueSource}.  *<br>  *  * When a and b are equal, and x>=0, this function has a maximum value of 1 that drops as x increases.  * Increasing the value of a and b together results in a movement of the entire function to a flatter part of the curve.  *<br>These properties make this an idea function for boosting more recent documents.  *<br>Example:<code>ReciprocalFloatFunction(new ReverseOrdFieldSource("my_date"),1,1000,1000)</code>  *  * @see FunctionQuery  *  *  * @author yonik  * @version $Id: ReciprocalFloatFunction.java,v 1.2 2005/11/22 05:23:21 yonik Exp $  */
+comment|/**  *<code>ReciprocalFloatFunction</code> implements a reciprocal function f(x) = a/(mx+b), based on  * the float value of a field as exported by {@link org.apache.solr.search.function.ValueSource}.  *<br>  *  * When a and b are equal, and x>=0, this function has a maximum value of 1 that drops as x increases.  * Increasing the value of a and b together results in a movement of the entire function to a flatter part of the curve.  *<br>These properties make this an idea function for boosting more recent documents.  *<br>Example:<code>ReciprocalFloatFunction(new ReverseOrdFieldSource("my_date"),1,1000,1000)</code>  *  * @see FunctionQuery  *  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
