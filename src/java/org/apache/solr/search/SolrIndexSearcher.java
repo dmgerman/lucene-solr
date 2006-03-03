@@ -1481,7 +1481,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// todo - when SOLAR starts accepting filters, need to
+comment|// todo - when Solr starts accepting filters, need to
 comment|// change this conditional check (filter!=null) and create a new filter
 comment|// that ANDs them together if it already exists.
 if|if

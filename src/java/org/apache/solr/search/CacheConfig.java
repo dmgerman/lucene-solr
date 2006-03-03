@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains the knowledge of how cache config is  * stored in the solarconfig.xml file, and implements a  * factory to create caches.  *  * @author yonik  * @version $Id$  */
+comment|/**  * Contains the knowledge of how cache config is  * stored in the solrconfig.xml file, and implements a  * factory to create caches.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class

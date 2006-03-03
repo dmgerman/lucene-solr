@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of<code>SolrRequestHandler</code> are called to handle query requests.  *  * Different<code>SolrRequestHandler</code>s are registered with the<code>SolrCore</code>.  * One way to register a SolrRequestHandler with the core is thorugh the<code>solarconfig.xml</code> file.  *<p>  * Example<code>solarconfig.xml</code> entry to register a<code>SolrRequestHandler</code> implementation to  * handle all queries with a query type of "test":  *<p>  *<code>  *&lt;requestHandler name="test" class="solr.tst.TestRequestHandler" /&gt;  *</code>  *<p>  * A single instance of any registered SolrRequestHandler is created  * via the default constructor and is reused for all relevant queries.  *  * @author yonik  * @version $Id$  */
+comment|/**  * Implementations of<code>SolrRequestHandler</code> are called to handle query requests.  *  * Different<code>SolrRequestHandler</code>s are registered with the<code>SolrCore</code>.  * One way to register a SolrRequestHandler with the core is thorugh the<code>solrconfig.xml</code> file.  *<p>  * Example<code>solrconfig.xml</code> entry to register a<code>SolrRequestHandler</code> implementation to  * handle all queries with a query type of "test":  *<p>  *<code>  *&lt;requestHandler name="test" class="solr.tst.TestRequestHandler" /&gt;  *</code>  *<p>  * A single instance of any registered SolrRequestHandler is created  * via the default constructor and is reused for all relevant queries.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -56,7 +56,7 @@ name|SolrRequestHandler
 extends|extends
 name|SolrInfoMBean
 block|{
-comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a request handler in    * solarconfig.xml    */
+comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a request handler in    * solrconfig.xml    */
 DECL|method|init
 specifier|public
 name|void

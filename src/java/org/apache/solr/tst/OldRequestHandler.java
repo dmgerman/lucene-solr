@@ -612,16 +612,6 @@ return|return
 literal|"$Id$"
 return|;
 block|}
-DECL|method|getCvsName
-specifier|public
-name|String
-name|getCvsName
-parameter_list|()
-block|{
-return|return
-literal|"$Name:  $"
-return|;
-block|}
 DECL|method|getSource
 specifier|public
 name|String
@@ -629,7 +619,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/tst/OldRequestHandler.java,v $"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs
