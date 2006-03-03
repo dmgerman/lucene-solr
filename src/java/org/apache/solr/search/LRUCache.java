@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: LRUCache.java,v 1.12 2005/11/30 06:12:55 yonik Exp $  */
+comment|/**  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -205,6 +205,13 @@ DECL|field|regenerator
 specifier|private
 name|CacheRegenerator
 name|regenerator
+decl_stmt|;
+DECL|field|description
+specifier|private
+name|String
+name|description
+init|=
+literal|"LRU Cache"
 decl_stmt|;
 DECL|method|init
 specifier|public
@@ -337,6 +344,38 @@ name|parseInt
 argument_list|(
 name|str
 argument_list|)
+expr_stmt|;
+name|description
+operator|=
+literal|"LRU Cache(maxSize="
+operator|+
+name|limit
+operator|+
+literal|", initialSize="
+operator|+
+name|initialSize
+expr_stmt|;
+if|if
+condition|(
+name|autowarmCount
+operator|>
+literal|0
+condition|)
+block|{
+name|description
+operator|+=
+literal|", autowarmCount="
+operator|+
+name|autowarmCount
+operator|+
+literal|", regenerator="
+operator|+
+name|regenerator
+expr_stmt|;
+block|}
+name|description
+operator|+=
+literal|')'
 expr_stmt|;
 name|map
 operator|=
@@ -924,7 +963,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"LRU Cache"
+name|description
 return|;
 block|}
 DECL|method|getCategory
@@ -939,34 +978,24 @@ operator|.
 name|CACHE
 return|;
 block|}
-DECL|method|getCvsId
+DECL|method|getSourceId
 specifier|public
 name|String
-name|getCvsId
+name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: LRUCache.java,v 1.12 2005/11/30 06:12:55 yonik Exp $"
+literal|"$Id$"
 return|;
 block|}
-DECL|method|getCvsName
+DECL|method|getSource
 specifier|public
 name|String
-name|getCvsName
+name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$Name:  $"
-return|;
-block|}
-DECL|method|getCvsSource
-specifier|public
-name|String
-name|getCvsSource
-parameter_list|()
-block|{
-return|return
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/search/LRUCache.java,v $"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs
