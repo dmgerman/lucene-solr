@@ -54,33 +54,6 @@ specifier|public
 class|class
 name|SolrInfoRegistry
 block|{
-DECL|field|cvsId
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|cvsId
-init|=
-literal|"$Id$"
-decl_stmt|;
-DECL|field|cvsSource
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|cvsSource
-init|=
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/SolrInfoRegistry.java,v $"
-decl_stmt|;
-DECL|field|cvsName
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|cvsName
-init|=
-literal|"$Name:  $"
-decl_stmt|;
 DECL|field|inst
 specifier|private
 specifier|static
