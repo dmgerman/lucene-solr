@@ -415,33 +415,6 @@ specifier|final
 class|class
 name|SolrCore
 block|{
-DECL|field|cvsId
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|cvsId
-init|=
-literal|"$Id$"
-decl_stmt|;
-DECL|field|cvsSource
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|cvsSource
-init|=
-literal|"$Source: /cvs/main/searching/solr/solarcore/src/solr/SolrCore.java,v $"
-decl_stmt|;
-DECL|field|cvsTag
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|cvsTag
-init|=
-literal|"$Name:  $"
-decl_stmt|;
 DECL|field|version
 specifier|public
 specifier|static
