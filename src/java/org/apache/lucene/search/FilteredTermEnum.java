@@ -105,7 +105,7 @@ name|float
 name|difference
 parameter_list|()
 function_decl|;
-comment|/** Indiciates the end of the enumeration has been reached */
+comment|/** Indicates the end of the enumeration has been reached */
 DECL|method|endEnum
 specifier|protected
 specifier|abstract
