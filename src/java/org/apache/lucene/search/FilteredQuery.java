@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/**  * Copyright 2004,2006 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -238,8 +238,7 @@ operator|.
 name|this
 return|;
 block|}
-comment|// return a scorer that overrides the enclosed query's score if
-comment|// the given hit has been filtered out.
+comment|// return a filtering scorer
 specifier|public
 name|Scorer
 name|scorer
@@ -279,7 +278,6 @@ argument_list|(
 name|similarity
 argument_list|)
 block|{
-comment|// pass these methods through to the enclosed scorer
 specifier|public
 name|boolean
 name|next
@@ -287,11 +285,39 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-return|return
+do|do
+block|{
+if|if
+condition|(
+operator|!
 name|scorer
 operator|.
 name|next
 argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+do|while
+condition|(
+operator|!
+name|bitset
+operator|.
+name|get
+argument_list|(
+name|scorer
+operator|.
+name|doc
+argument_list|()
+argument_list|)
+condition|)
+do|;
+comment|/* When skipTo() is allowed on scorer it should be used here              * in combination with bitset.nextSetBit(...)              * See the while loop in skipTo() below.              */
+return|return
+literal|true
 return|;
 block|}
 specifier|public
@@ -316,25 +342,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+if|if
+condition|(
+operator|!
 name|scorer
 operator|.
 name|skipTo
 argument_list|(
 name|i
 argument_list|)
-return|;
-block|}
-comment|// if the document has been filtered out, set score to 0.0
-specifier|public
-name|float
-name|score
-parameter_list|()
-throws|throws
-name|IOException
+condition|)
 block|{
 return|return
-operator|(
+literal|false
+return|;
+block|}
+while|while
+condition|(
+operator|!
 name|bitset
 operator|.
 name|get
@@ -344,14 +369,68 @@ operator|.
 name|doc
 argument_list|()
 argument_list|)
-operator|)
-condition|?
+condition|)
+block|{
+name|int
+name|nextFiltered
+init|=
+name|bitset
+operator|.
+name|nextSetBit
+argument_list|(
+name|scorer
+operator|.
+name|doc
+argument_list|()
+operator|+
+literal|1
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|nextFiltered
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+operator|!
+name|scorer
+operator|.
+name|skipTo
+argument_list|(
+name|nextFiltered
+argument_list|)
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|float
+name|score
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
 name|scorer
 operator|.
 name|score
 argument_list|()
-else|:
-literal|0.0f
 return|;
 block|}
 comment|// add an explanation about whether the document was filtered
