@@ -218,16 +218,23 @@ name|i
 index|]
 decl_stmt|;
 comment|/*** System.out.println("required="+c.required); System.out.println("boost="+c.query.getBoost()); System.out.println("isTermQuery="+(c.query instanceof TermQuery)); if (c.query instanceof TermQuery) {  System.out.println("term="+((TermQuery)c.query).getTerm());  System.out.println("docFreq="+searcher.docFreq(((TermQuery)c.query).getTerm())); } ***/
+name|Query
+name|q
+init|=
+name|c
+operator|.
+name|getQuery
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|c
 operator|.
-name|required
+name|isRequired
+argument_list|()
 comment|// required
 operator|&&
-name|c
-operator|.
-name|query
+name|q
 operator|.
 name|getBoost
 argument_list|()
@@ -235,9 +242,7 @@ operator|==
 literal|0.0f
 comment|// boost is zero
 operator|&&
-name|c
-operator|.
-name|query
+name|q
 operator|instanceof
 name|TermQuery
 comment|// TermQuery
@@ -251,9 +256,7 @@ operator|(
 operator|(
 name|TermQuery
 operator|)
-name|c
-operator|.
-name|query
+name|q
 operator|)
 operator|.
 name|getTerm
@@ -289,13 +292,13 @@ name|filterQuery
 operator|.
 name|add
 argument_list|(
-name|c
+name|q
+argument_list|,
+name|BooleanClause
 operator|.
-name|query
-argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
 comment|// filter it

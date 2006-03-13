@@ -777,7 +777,7 @@ operator|.
 name|getReader
 argument_list|()
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 name|doc
 argument_list|)
