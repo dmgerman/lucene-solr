@@ -431,13 +431,7 @@ argument_list|,
 operator|new
 name|UserInputQueryBuilder
 argument_list|(
-operator|new
-name|QueryParser
-argument_list|(
-literal|"contents"
-argument_list|,
-name|analyzer
-argument_list|)
+name|parser
 argument_list|)
 argument_list|)
 expr_stmt|;
