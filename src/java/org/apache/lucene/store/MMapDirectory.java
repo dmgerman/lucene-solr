@@ -282,7 +282,6 @@ throws|throws
 name|IOException
 block|{}
 block|}
-comment|/* Added class MultiMMapIndexInput, Paul Elschot.    * Slightly adapted constructor of MMapIndexInput.    * Licensed under the Apache License, Version 2.0.    */
 DECL|class|MultiMMapIndexInput
 specifier|private
 specifier|static
