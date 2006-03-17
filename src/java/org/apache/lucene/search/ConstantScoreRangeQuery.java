@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range query that returns a constant score equal to it's boost for  * all documents in the range.  *<p>  * It does not have an upper bound on the number of clauses covered in the range.  *<p>  * If an endpoint is null, it is said to be "open".  * Either or both endpoints may be open.  Open endpoints may not be exclusive  * (you can't select all but the first or last term without explicitly specifying the term to exclude.)  *  * @author yonik  * @version $Id$  */
+comment|/**  * A range query that returns a constant score equal to its boost for  * all documents in the range.  *<p>  * It does not have an upper bound on the number of clauses covered in the range.  *<p>  * If an endpoint is null, it is said to be "open".  * Either or both endpoints may be open.  Open endpoints may not be exclusive  * (you can't select all but the first or last term without explicitly specifying the term to exclude.)  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
