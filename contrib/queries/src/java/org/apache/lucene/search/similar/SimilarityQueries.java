@@ -288,9 +288,11 @@ name|add
 argument_list|(
 name|tq
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
 block|}

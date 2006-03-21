@@ -443,11 +443,17 @@ literal|""
 operator|+
 name|row
 argument_list|,
-literal|true
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
 argument_list|,
-literal|true
-argument_list|,
-literal|true
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -476,11 +482,17 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|,
-literal|true
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
 argument_list|,
-literal|true
-argument_list|,
-literal|true
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -587,18 +599,25 @@ decl_stmt|;
 comment|//build a query based on the fields, searchString and cached analyzer
 comment|//NOTE: This is an area for improvement since the MultiFieldQueryParser
 comment|// has some weirdness.
+name|MultiFieldQueryParser
+name|parser
+init|=
+operator|new
+name|MultiFieldQueryParser
+argument_list|(
+name|fields
+argument_list|,
+name|analyzer
+argument_list|)
+decl_stmt|;
 name|Query
 name|query
 init|=
-name|MultiFieldQueryParser
+name|parser
 operator|.
 name|parse
 argument_list|(
 name|searchString
-argument_list|,
-name|fields
-argument_list|,
-name|analyzer
 argument_list|)
 decl_stmt|;
 comment|//run the search

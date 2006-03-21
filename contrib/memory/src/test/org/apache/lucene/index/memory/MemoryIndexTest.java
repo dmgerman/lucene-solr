@@ -1562,26 +1562,37 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-block|{
-comment|// lucene-1.4.3
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|UnStored
 argument_list|(
 name|FIELD_NAME
 argument_list|,
 name|content
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
+argument_list|,
+name|Field
+operator|.
+name|TermVector
+operator|.
+name|WITH_POSITIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-comment|//		{ // lucene>= 1.9
-comment|//			doc.add(new Field(FIELD_NAME, content, Field.Store.NO, Field.Index.TOKENIZED, Field.TermVector.WITH_POSITIONS));
-comment|//		}
 return|return
 name|doc
 return|;
@@ -1688,14 +1699,13 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|maxFieldLength
-operator|=
+name|setMaxFieldLength
+argument_list|(
 name|Integer
 operator|.
 name|MAX_VALUE
+argument_list|)
 expr_stmt|;
-comment|// ensure large files are scored correctly
-comment|//			writer.setMaxFieldLength(Integer.MAX_VALUE);
 name|writer
 operator|.
 name|addDocument
