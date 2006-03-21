@@ -4838,34 +4838,6 @@ name|storedTermVector
 argument_list|)
 return|;
 block|}
-comment|// lucene>= 1.9 (deprecated) (remove this method for lucene-1.4.3)
-DECL|method|getIndexedFieldNames
-specifier|public
-name|Collection
-name|getIndexedFieldNames
-parameter_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
-operator|.
-name|TermVector
-name|tvSpec
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Deprecated; replaced by getFieldNames(IndexReader.FieldOption)"
-argument_list|)
-throw|;
-block|}
 comment|// lucene>= 1.9 (remove this method for lucene-1.4.3)
 DECL|method|getFieldNames
 specifier|public

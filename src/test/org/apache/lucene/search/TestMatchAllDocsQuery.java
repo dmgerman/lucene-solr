@@ -347,7 +347,7 @@ operator|.
 name|getIndexReader
 argument_list|()
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)

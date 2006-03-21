@@ -18,35 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|Filter
+name|IndexReader
 import|;
 end_import
 
@@ -94,20 +74,26 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|index
+name|util
 operator|.
-name|IndexReader
+name|BitSet
 import|;
 end_import
 
 begin_comment
-comment|/**  * A Filter that restricts search results to a range of values in a given  * field.  *   *<p>  * This code borrows heavily from {@link RangeQuery}, but is implemented as a Filter  * (much like {@link DateFilter}).  *</p>  */
+comment|/**  * A Filter that restricts search results to a range of values in a given  * field.  *   *<p>  * This code borrows heavily from {@link RangeQuery}, but is implemented as a Filter  *   *</p>  */
 end_comment
 
 begin_class

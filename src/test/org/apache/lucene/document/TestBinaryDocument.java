@@ -460,7 +460,7 @@ expr_stmt|;
 comment|/** delete the document from index */
 name|reader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)

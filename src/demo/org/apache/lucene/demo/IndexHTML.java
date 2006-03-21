@@ -579,7 +579,7 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|uidIter
 operator|.
@@ -810,7 +810,7 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|uidIter
 operator|.

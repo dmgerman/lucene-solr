@@ -224,20 +224,27 @@ argument_list|(
 name|store
 argument_list|)
 decl_stmt|;
-name|Query
-name|query
-init|=
 name|QueryParser
-operator|.
-name|parse
+name|parser
+init|=
+operator|new
+name|QueryParser
 argument_list|(
-literal|"a NOT b"
-argument_list|,
 literal|"field"
 argument_list|,
 operator|new
 name|SimpleAnalyzer
 argument_list|()
+argument_list|)
+decl_stmt|;
+name|Query
+name|query
+init|=
+name|parser
+operator|.
+name|parse
+argument_list|(
+literal|"a NOT b"
 argument_list|)
 decl_stmt|;
 comment|//System.out.println(query);

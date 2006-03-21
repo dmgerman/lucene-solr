@@ -694,27 +694,6 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    *    * @deprecated    */
-DECL|method|FrenchAnalyzer
-specifier|public
-name|FrenchAnalyzer
-parameter_list|(
-name|Hashtable
-name|stopwords
-parameter_list|)
-block|{
-name|stoptable
-operator|=
-operator|new
-name|HashSet
-argument_list|(
-name|stopwords
-operator|.
-name|keySet
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Builds an analyzer with the given stop words.    * @throws IOException    */
 DECL|method|FrenchAnalyzer
 specifier|public

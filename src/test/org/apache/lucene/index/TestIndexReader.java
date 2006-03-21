@@ -1275,7 +1275,7 @@ name|deleted
 operator|=
 name|reader
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|searchTerm
 argument_list|)
@@ -1663,7 +1663,7 @@ name|deleted
 operator|=
 name|reader
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|searchTerm
 argument_list|)
@@ -1752,7 +1752,7 @@ name|deleted
 operator|=
 name|reader
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|searchTerm
 argument_list|)
@@ -2283,7 +2283,7 @@ try|try
 block|{
 name|reader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)
@@ -2312,7 +2312,7 @@ expr_stmt|;
 comment|// this should not be done in the real world!
 name|reader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)
@@ -2385,14 +2385,14 @@ argument_list|)
 decl_stmt|;
 name|reader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
 name|reader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|1
 argument_list|)
@@ -2769,7 +2769,7 @@ comment|// when the reader is closed, the segment info is updated and
 comment|// the first reader is now stale
 name|reader2
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|searchTerm1
 argument_list|)
@@ -2936,7 +2936,7 @@ try|try
 block|{
 name|reader1
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|searchTerm2
 argument_list|)
@@ -3047,7 +3047,7 @@ argument_list|)
 expr_stmt|;
 name|reader1
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|searchTerm2
 argument_list|)

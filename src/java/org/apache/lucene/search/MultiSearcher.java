@@ -646,23 +646,6 @@ argument_list|)
 return|;
 comment|// dispatch to searcher
 block|}
-comment|/** Call {@link #subSearcher} instead.    * @deprecated    */
-DECL|method|searcherIndex
-specifier|public
-name|int
-name|searcherIndex
-parameter_list|(
-name|int
-name|n
-parameter_list|)
-block|{
-return|return
-name|subSearcher
-argument_list|(
-name|n
-argument_list|)
-return|;
-block|}
 comment|/** Returns index of the searcher for document<code>n</code> in the array    * used to construct this searcher. */
 DECL|method|subSearcher
 specifier|public

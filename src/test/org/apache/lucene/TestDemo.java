@@ -16,11 +16,11 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|io
+name|framework
 operator|.
-name|IOException
+name|TestCase
 import|;
 end_import
 
@@ -196,11 +196,11 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|java
 operator|.
-name|framework
+name|io
 operator|.
-name|TestCase
+name|IOException
 import|;
 end_import
 
@@ -325,18 +325,25 @@ name|directory
 argument_list|)
 decl_stmt|;
 comment|// Parse a simple query that searches for "text":
+name|QueryParser
+name|parser
+init|=
+operator|new
+name|QueryParser
+argument_list|(
+literal|"fieldname"
+argument_list|,
+name|analyzer
+argument_list|)
+decl_stmt|;
 name|Query
 name|query
 init|=
-name|QueryParser
+name|parser
 operator|.
 name|parse
 argument_list|(
 literal|"text"
-argument_list|,
-literal|"fieldname"
-argument_list|,
-name|analyzer
 argument_list|)
 decl_stmt|;
 name|Hits

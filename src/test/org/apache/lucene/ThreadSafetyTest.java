@@ -656,6 +656,17 @@ operator|+
 name|n
 argument_list|)
 expr_stmt|;
+name|QueryParser
+name|parser
+init|=
+operator|new
+name|QueryParser
+argument_list|(
+literal|"contents"
+argument_list|,
+name|ANALYZER
+argument_list|)
+decl_stmt|;
 name|Hits
 name|hits
 init|=
@@ -663,7 +674,7 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|QueryParser
+name|parser
 operator|.
 name|parse
 argument_list|(
@@ -673,10 +684,6 @@ name|intToEnglish
 argument_list|(
 name|n
 argument_list|)
-argument_list|,
-literal|"contents"
-argument_list|,
-name|ANALYZER
 argument_list|)
 argument_list|)
 decl_stmt|;

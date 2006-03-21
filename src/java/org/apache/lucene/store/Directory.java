@@ -129,31 +129,10 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** @deprecated use {@link #createOutput(String)} */
-DECL|method|createFile
-specifier|public
-name|OutputStream
-name|createFile
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-operator|(
-name|OutputStream
-operator|)
-name|createOutput
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
 comment|/** Creates a new, empty file in the directory with the given name.       Returns a stream writing this file. */
 DECL|method|createOutput
 specifier|public
+specifier|abstract
 name|IndexOutput
 name|createOutput
 parameter_list|(
@@ -162,44 +141,11 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-comment|// default implementation for back compatibility
-comment|// this method should be abstract
-return|return
-operator|(
-name|IndexOutput
-operator|)
-name|createFile
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
-comment|/** @deprecated use {@link #openInput(String)} */
-DECL|method|openFile
-specifier|public
-name|InputStream
-name|openFile
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-operator|(
-name|InputStream
-operator|)
-name|openInput
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
+function_decl|;
 comment|/** Returns a stream reading an existing file. */
 DECL|method|openInput
 specifier|public
+specifier|abstract
 name|IndexInput
 name|openInput
 parameter_list|(
@@ -208,19 +154,7 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-comment|// default implementation for back compatibility
-comment|// this method should be abstract
-return|return
-operator|(
-name|IndexInput
-operator|)
-name|openFile
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
+function_decl|;
 comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
 DECL|method|makeLock
 specifier|public

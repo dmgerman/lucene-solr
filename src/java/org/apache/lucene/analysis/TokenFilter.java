@@ -45,12 +45,6 @@ specifier|protected
 name|TokenStream
 name|input
 decl_stmt|;
-comment|/** Call TokenFilter(TokenStream) instead.    * @deprecated */
-DECL|method|TokenFilter
-specifier|protected
-name|TokenFilter
-parameter_list|()
-block|{}
 comment|/** Construct a token stream filtering the given input. */
 DECL|method|TokenFilter
 specifier|protected

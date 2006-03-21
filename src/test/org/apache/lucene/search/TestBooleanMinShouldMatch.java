@@ -18,71 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|apache
+name|framework
 operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
+name|TestCase
 import|;
 end_import
 
@@ -136,9 +76,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|index
 operator|.
-name|QueryParser
+name|IndexReader
 import|;
 end_import
 
@@ -150,19 +90,51 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|index
 operator|.
-name|ParseException
+name|IndexWriter
 import|;
 end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
 import|;
 end_import
 
@@ -295,9 +267,8 @@ name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Keyword
 argument_list|(
 literal|"id"
 argument_list|,
@@ -307,23 +278,48 @@ name|valueOf
 argument_list|(
 name|i
 argument_list|)
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//Field.Keyword("id",String.valueOf(i)));
 name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Keyword
 argument_list|(
 literal|"all"
 argument_list|,
 literal|"all"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|UN_TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//Field.Keyword("all","all"));
 if|if
 condition|(
 literal|null
@@ -338,9 +334,8 @@ name|doc
 operator|.
 name|add
 argument_list|(
+operator|new
 name|Field
-operator|.
-name|Text
 argument_list|(
 literal|"data"
 argument_list|,
@@ -348,9 +343,22 @@ name|data
 index|[
 name|i
 index|]
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Field
+operator|.
+name|Index
+operator|.
+name|TOKENIZED
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//Field.Text("data",data[i]));
 block|}
 name|writer
 operator|.
@@ -493,11 +501,14 @@ name|i
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 block|}
 name|q
 operator|.
@@ -547,11 +558,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -568,11 +582,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -589,11 +606,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -610,11 +630,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -663,11 +686,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -684,11 +710,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -705,11 +734,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -726,11 +758,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -747,11 +782,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -800,11 +838,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -821,11 +862,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -842,11 +886,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -863,11 +910,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -916,11 +966,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -937,11 +990,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -958,11 +1014,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -979,11 +1038,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1000,11 +1062,14 @@ literal|"C"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1053,11 +1118,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|// true,  false);
 name|q
 operator|.
 name|add
@@ -1074,11 +1142,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1095,11 +1166,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1116,11 +1190,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -1137,11 +1214,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1158,11 +1238,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1211,11 +1294,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1232,11 +1318,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1253,11 +1342,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1274,11 +1366,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1295,11 +1390,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -1316,11 +1414,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1337,11 +1438,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1390,11 +1494,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1411,11 +1518,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1432,11 +1542,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1453,11 +1566,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -1474,11 +1590,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1495,11 +1614,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1516,11 +1638,14 @@ literal|"C"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1569,11 +1694,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1590,11 +1718,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1611,11 +1742,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1632,11 +1766,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1653,11 +1790,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -1674,11 +1814,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1695,11 +1838,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1716,11 +1862,14 @@ literal|"C"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1769,11 +1918,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1790,11 +1942,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -1811,11 +1966,14 @@ literal|"5"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1832,11 +1990,14 @@ literal|"4"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1853,11 +2014,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|add
@@ -1874,11 +2038,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1895,11 +2062,14 @@ literal|"1"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1916,11 +2086,14 @@ literal|"C"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|true
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST_NOT
 argument_list|)
 expr_stmt|;
+comment|//false, true );
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1969,11 +2142,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -1990,11 +2166,14 @@ literal|"6"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -2011,11 +2190,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -2032,11 +2214,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -2085,11 +2270,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -2106,11 +2294,14 @@ literal|"3"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
 argument_list|)
 expr_stmt|;
+comment|//false, false);
 name|q
 operator|.
 name|add
@@ -2127,11 +2318,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -2180,11 +2374,14 @@ literal|"all"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|add
@@ -2201,11 +2398,14 @@ literal|"2"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
 argument_list|)
 expr_stmt|;
+comment|//true,  false);
 name|q
 operator|.
 name|setMinimumNumberShouldMatch
@@ -2370,11 +2570,6 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-name|int
-name|tot
-init|=
-literal|0
-decl_stmt|;
 comment|// increase number of iterations for more complete testing
 for|for
 control|(
@@ -2486,12 +2681,6 @@ argument_list|,
 literal|100
 argument_list|)
 decl_stmt|;
-name|tot
-operator|+=
-name|top2
-operator|.
-name|totalHits
-expr_stmt|;
 comment|// The constrained query
 comment|// should be a superset to the unconstrained query.
 if|if

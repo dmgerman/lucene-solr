@@ -18,41 +18,43 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Analyzer
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|File
+name|lucene
+operator|.
+name|document
+operator|.
+name|Document
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|lucene
 operator|.
-name|util
+name|search
 operator|.
-name|Vector
+name|Similarity
 import|;
 end_import
 
@@ -80,35 +82,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|FSDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Lock
 import|;
 end_import
 
@@ -148,9 +122,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|store
 operator|.
-name|Similarity
+name|Lock
 import|;
 end_import
 
@@ -162,23 +136,49 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|store
 operator|.
-name|Document
+name|RAMDirectory
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|analysis
+name|io
 operator|.
-name|Analyzer
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Vector
 import|;
 end_import
 
@@ -263,16 +263,6 @@ name|int
 name|DEFAULT_MAX_BUFFERED_DOCS
 init|=
 literal|10
-decl_stmt|;
-comment|/**    * @deprecated use {@link #DEFAULT_MAX_BUFFERED_DOCS} instead    */
-DECL|field|DEFAULT_MIN_MERGE_DOCS
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|DEFAULT_MIN_MERGE_DOCS
-init|=
-name|DEFAULT_MAX_BUFFERED_DOCS
 decl_stmt|;
 comment|/**    * Default value is {@link Integer#MAX_VALUE}. Change using {@link #setMaxMergeDocs(int)}.    */
 DECL|field|DEFAULT_MAX_MERGE_DOCS
@@ -1063,9 +1053,9 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *     * @deprecated use {@link #setMaxFieldLength} instead    */
+comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    */
 DECL|field|maxFieldLength
-specifier|public
+specifier|private
 name|int
 name|maxFieldLength
 init|=
@@ -1204,33 +1194,33 @@ name|MAX_RADIX
 argument_list|)
 return|;
 block|}
-comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is 10.    * @deprecated use {@link #setMergeFactor} instead    */
+comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is {@link DEFAULT_MERGE_FACTOR}.     */
 DECL|field|mergeFactor
-specifier|public
+specifier|private
 name|int
 name|mergeFactor
 init|=
 name|DEFAULT_MERGE_FACTOR
 decl_stmt|;
-comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is 10.    * @deprecated use {@link #setMaxBufferedDocs} instead    */
+comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is {@link DEFAULT_MAX_BUFFERED_DOCS}.     */
 DECL|field|minMergeDocs
-specifier|public
+specifier|private
 name|int
 name|minMergeDocs
 init|=
-name|DEFAULT_MIN_MERGE_DOCS
+name|DEFAULT_MAX_BUFFERED_DOCS
 decl_stmt|;
-comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link Integer#MAX_VALUE}.    * @deprecated use {@link #setMaxMergeDocs} instead    */
+comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link DEFAULT_MAX_MERGE_DOCS}.     */
 DECL|field|maxMergeDocs
-specifier|public
+specifier|private
 name|int
 name|maxMergeDocs
 init|=
 name|DEFAULT_MAX_MERGE_DOCS
 decl_stmt|;
-comment|/** If non-null, information about merges will be printed to this.    * @deprecated use {@link #setInfoStream} instead     */
+comment|/** If non-null, information about merges will be printed to this.     */
 DECL|field|infoStream
-specifier|public
+specifier|private
 name|PrintStream
 name|infoStream
 init|=

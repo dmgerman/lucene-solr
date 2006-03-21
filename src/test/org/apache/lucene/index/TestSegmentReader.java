@@ -459,7 +459,7 @@ argument_list|)
 expr_stmt|;
 name|deleteReader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)

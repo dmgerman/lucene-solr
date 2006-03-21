@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -50,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|IndexReader
 import|;
 end_import
 
@@ -64,7 +54,17 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Term
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -95,23 +95,6 @@ name|search
 parameter_list|(
 name|Weight
 name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|HitCollector
-name|results
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Expert: Low-level search implementation.    * @deprecated use {@link Searcher#search(Weight, Filter, HitCollector)} instead.    */
-DECL|method|search
-name|void
-name|search
-parameter_list|(
-name|Query
-name|query
 parameter_list|,
 name|Filter
 name|filter
@@ -179,23 +162,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.    * @deprecated use {@link Searcher#search(Weight, Filter, int)} instead.    */
-DECL|method|search
-name|TopDocs
-name|search
-parameter_list|(
-name|Query
-name|query
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|int
-name|n
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Expert: Returns the stored fields of document<code>i</code>.    * Called by {@link HitCollector} implementations.    * @see IndexReader#document(int)    */
 DECL|method|doc
 name|Document
@@ -232,20 +198,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * @deprecated use {@link Searcher#explain(Weight, int)} instead.    */
-DECL|method|explain
-name|Explanation
-name|explain
-parameter_list|(
-name|Query
-name|query
-parameter_list|,
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|TopFieldDocs
@@ -253,26 +205,6 @@ name|search
 parameter_list|(
 name|Weight
 name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|int
-name|n
-parameter_list|,
-name|Sort
-name|sort
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Expert: Low-level search implementation.    * @deprecated use {@link Searcher#search(Weight, Filter, int, Sort)} instead.    */
-DECL|method|search
-name|TopFieldDocs
-name|search
-parameter_list|(
-name|Query
-name|query
 parameter_list|,
 name|Filter
 name|filter

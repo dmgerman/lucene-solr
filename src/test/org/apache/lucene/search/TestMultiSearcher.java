@@ -585,20 +585,27 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// creating the query
-name|Query
-name|query
-init|=
 name|QueryParser
-operator|.
-name|parse
+name|parser
+init|=
+operator|new
+name|QueryParser
 argument_list|(
-literal|"handle:1"
-argument_list|,
 literal|"fulltext"
 argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
+argument_list|)
+decl_stmt|;
+name|Query
+name|query
+init|=
+name|parser
+operator|.
+name|parse
+argument_list|(
+literal|"handle:1"
 argument_list|)
 decl_stmt|;
 comment|// building the searchables
@@ -862,7 +869,7 @@ argument_list|)
 decl_stmt|;
 name|readerB
 operator|.
-name|delete
+name|deleteDocuments
 argument_list|(
 name|term
 argument_list|)

@@ -490,7 +490,7 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 literal|0
 argument_list|)
