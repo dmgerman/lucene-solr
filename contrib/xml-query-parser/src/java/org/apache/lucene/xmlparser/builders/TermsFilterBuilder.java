@@ -172,18 +172,6 @@ name|Element
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author maharwood  *  * @  */
 end_comment
@@ -216,7 +204,7 @@ operator|=
 name|analyzer
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.xmlparser.FilterBuilder#process(org.w3c.dom.Element) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.apache.lucene.xmlparser.FilterBuilder#process(org.w3c.dom.Element) 	 */
 DECL|method|getFilter
 specifier|public
 name|Filter
@@ -235,45 +223,14 @@ operator|new
 name|TermsFilter
 argument_list|()
 decl_stmt|;
-name|NodeList
-name|nl
+name|String
+name|text
 init|=
+name|DOMUtils
+operator|.
+name|getNonBlankTextOrFail
+argument_list|(
 name|e
-operator|.
-name|getElementsByTagName
-argument_list|(
-literal|"Field"
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nl
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|Element
-name|fieldElem
-init|=
-operator|(
-name|Element
-operator|)
-name|nl
-operator|.
-name|item
-argument_list|(
-name|i
 argument_list|)
 decl_stmt|;
 name|String
@@ -283,19 +240,9 @@ name|DOMUtils
 operator|.
 name|getAttributeWithInheritanceOrFail
 argument_list|(
-name|fieldElem
+name|e
 argument_list|,
 literal|"fieldName"
-argument_list|)
-decl_stmt|;
-name|String
-name|text
-init|=
-name|DOMUtils
-operator|.
-name|getNonBlankTextOrFail
-argument_list|(
-name|fieldElem
 argument_list|)
 decl_stmt|;
 name|TokenStream
@@ -359,6 +306,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//					 create from previous to save fieldName.intern overhead
 name|term
 operator|=
 name|term
@@ -371,7 +319,6 @@ name|termText
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//create from previous to save fieldName.intern overhead
 block|}
 name|tf
 operator|.
@@ -404,7 +351,6 @@ operator|+
 name|ioe
 argument_list|)
 throw|;
-block|}
 block|}
 return|return
 name|tf

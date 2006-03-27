@@ -847,6 +847,34 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testBooleanFilterXML
+specifier|public
+name|void
+name|testBooleanFilterXML
+parameter_list|()
+throws|throws
+name|ParserException
+throws|,
+name|IOException
+block|{
+name|Query
+name|q
+init|=
+name|parse
+argument_list|(
+literal|"BooleanFilter.xml"
+argument_list|)
+decl_stmt|;
+name|dumpResults
+argument_list|(
+literal|"Boolean filter"
+argument_list|,
+name|q
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
+block|}
 comment|//================= Helper methods ===================================
 DECL|method|parse
 specifier|private
