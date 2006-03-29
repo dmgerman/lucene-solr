@@ -40,6 +40,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -162,6 +172,7 @@ name|getField
 argument_list|()
 return|;
 block|}
+comment|/** Returns a collection of all terms matched by this query.    * @deprecated use extractTerms instead    * @see #extractTerms(Set)    */
 DECL|method|getTerms
 specifier|public
 name|Collection
@@ -250,6 +261,23 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+DECL|method|extractTerms
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+name|terms
+parameter_list|)
+block|{
+name|match
+operator|.
+name|extractTerms
+argument_list|(
+name|terms
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getSpans
 specifier|public
