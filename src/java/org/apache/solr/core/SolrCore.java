@@ -1121,6 +1121,11 @@ name|get
 argument_list|(
 literal|"dataDir"
 argument_list|,
+name|Config
+operator|.
+name|getInstanceDir
+argument_list|()
+operator|+
 literal|"data"
 argument_list|)
 expr_stmt|;
@@ -1129,7 +1134,14 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Opening new SolrCore with data directory at "
+literal|"Opening new SolrCore at "
+operator|+
+name|Config
+operator|.
+name|getInstanceDir
+argument_list|()
+operator|+
+literal|", dataDir="
 operator|+
 name|dataDir
 argument_list|)
