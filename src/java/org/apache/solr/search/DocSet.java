@@ -473,7 +473,6 @@ name|newbits
 argument_list|)
 return|;
 block|}
-comment|// TODO: more efficient implementations
 DECL|method|intersectionSize
 specifier|public
 name|int
@@ -483,6 +482,26 @@ name|DocSet
 name|other
 parameter_list|)
 block|{
+comment|// intersectionSize is overloaded in HashDocSet to be more
+comment|// efficient, so if "other" is a HashDocSet, dispatch off
+comment|// of it instead.
+if|if
+condition|(
+name|other
+operator|instanceof
+name|HashDocSet
+condition|)
+block|{
+return|return
+name|other
+operator|.
+name|intersectionSize
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+comment|// less efficient way: do the intersection then get it's size
 return|return
 name|intersection
 argument_list|(
