@@ -1891,6 +1891,17 @@ expr_stmt|;
 name|callPostCommitCallbacks
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|cmd
+operator|.
+name|optimize
+condition|)
+block|{
+name|callPostOptimizeCallbacks
+argument_list|()
+expr_stmt|;
+block|}
 comment|// open a new searcher in the sync block to avoid opening it
 comment|// after a deleteByQuery changed the index, or in between deletes
 comment|// and adds of another commit being done.

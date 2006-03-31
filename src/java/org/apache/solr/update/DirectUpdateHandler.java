@@ -1019,6 +1019,17 @@ expr_stmt|;
 name|callPostCommitCallbacks
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|cmd
+operator|.
+name|optimize
+condition|)
+block|{
+name|callPostOptimizeCallbacks
+argument_list|()
+expr_stmt|;
+block|}
 name|core
 operator|.
 name|getSearcher
