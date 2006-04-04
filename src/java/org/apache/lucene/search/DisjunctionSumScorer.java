@@ -624,12 +624,9 @@ operator|<=
 name|currentDoc
 condition|)
 block|{
-name|target
-operator|=
-name|currentDoc
-operator|+
-literal|1
-expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 do|do
 block|{
