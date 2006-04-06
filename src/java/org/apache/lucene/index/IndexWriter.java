@@ -1450,8 +1450,6 @@ name|int
 name|base
 init|=
 name|start
-operator|+
-literal|1
 init|;
 name|base
 operator|<
@@ -2228,7 +2226,7 @@ operator|-
 literal|1
 init|;
 name|i
-operator|>=
+operator|>
 name|minSegment
 condition|;
 name|i
@@ -2244,8 +2242,10 @@ argument_list|)
 expr_stmt|;
 name|segmentInfos
 operator|.
-name|addElement
+name|set
 argument_list|(
+name|minSegment
+argument_list|,
 operator|new
 name|SegmentInfo
 argument_list|(
