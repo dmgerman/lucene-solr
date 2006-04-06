@@ -108,6 +108,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -167,6 +177,12 @@ name|Object
 name|custom
 decl_stmt|;
 comment|// which custom comparator
+DECL|field|locale
+specifier|final
+name|Locale
+name|locale
+decl_stmt|;
+comment|// the locale we're sorting (if string)
 comment|/** Creates one of these objects. */
 DECL|method|Entry
 name|Entry
@@ -176,6 +192,9 @@ name|field
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|Locale
+name|locale
 parameter_list|)
 block|{
 name|this
@@ -198,6 +217,12 @@ operator|.
 name|custom
 operator|=
 literal|null
+expr_stmt|;
+name|this
+operator|.
+name|locale
+operator|=
+name|locale
 expr_stmt|;
 block|}
 comment|/** Creates one of these objects for a custom comparator. */
@@ -233,6 +258,12 @@ operator|.
 name|custom
 operator|=
 name|custom
+expr_stmt|;
+name|this
+operator|.
+name|locale
+operator|=
+literal|null
 expr_stmt|;
 block|}
 comment|/** Two of these are equal iff they reference the same field and type. */
@@ -279,6 +310,28 @@ if|if
 condition|(
 name|other
 operator|.
+name|locale
+operator|==
+literal|null
+condition|?
+name|locale
+operator|==
+literal|null
+else|:
+name|other
+operator|.
+name|locale
+operator|.
+name|equals
+argument_list|(
+name|locale
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|other
+operator|.
 name|custom
 operator|==
 literal|null
@@ -313,6 +366,7 @@ return|;
 block|}
 block|}
 block|}
+block|}
 return|return
 literal|false
 return|;
@@ -340,6 +394,19 @@ condition|?
 literal|0
 else|:
 name|custom
+operator|.
+name|hashCode
+argument_list|()
+operator|)
+operator|^
+operator|(
+name|locale
+operator|==
+literal|null
+condition|?
+literal|0
+else|:
+name|locale
 operator|.
 name|hashCode
 argument_list|()
@@ -430,6 +497,9 @@ name|field
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|Locale
+name|locale
 parameter_list|)
 block|{
 name|Entry
@@ -441,6 +511,8 @@ argument_list|(
 name|field
 argument_list|,
 name|type
+argument_list|,
+name|locale
 argument_list|)
 decl_stmt|;
 synchronized|synchronized
@@ -557,6 +629,9 @@ parameter_list|,
 name|int
 name|type
 parameter_list|,
+name|Locale
+name|locale
+parameter_list|,
 name|Object
 name|value
 parameter_list|)
@@ -570,6 +645,8 @@ argument_list|(
 name|field
 argument_list|,
 name|type
+argument_list|,
+name|locale
 argument_list|)
 decl_stmt|;
 synchronized|synchronized
@@ -1184,6 +1261,8 @@ argument_list|,
 name|SortField
 operator|.
 name|STRING
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -1324,6 +1403,8 @@ name|SortField
 operator|.
 name|STRING
 argument_list|,
+literal|null
+argument_list|,
 name|retArray
 argument_list|)
 expr_stmt|;
@@ -1371,6 +1452,8 @@ argument_list|,
 name|field
 argument_list|,
 name|STRING_INDEX
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -1643,6 +1726,8 @@ name|field
 argument_list|,
 name|STRING_INDEX
 argument_list|,
+literal|null
+argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
@@ -1695,6 +1780,8 @@ argument_list|,
 name|SortField
 operator|.
 name|AUTO
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -1849,6 +1936,8 @@ argument_list|,
 name|SortField
 operator|.
 name|AUTO
+argument_list|,
+literal|null
 argument_list|,
 name|ret
 argument_list|)
