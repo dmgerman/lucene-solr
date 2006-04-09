@@ -316,6 +316,16 @@ argument_list|(
 literal|"debugQuery"
 argument_list|)
 decl_stmt|;
+name|String
+name|defaultField
+init|=
+name|req
+operator|.
+name|getParam
+argument_list|(
+literal|"df"
+argument_list|)
+decl_stmt|;
 comment|// find fieldnames to return (fieldlist)
 name|String
 name|fl
@@ -492,6 +502,8 @@ operator|.
 name|parseQuery
 argument_list|(
 name|qs
+argument_list|,
+name|defaultField
 argument_list|,
 name|req
 operator|.
