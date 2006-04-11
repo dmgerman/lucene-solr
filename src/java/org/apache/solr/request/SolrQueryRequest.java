@@ -68,6 +68,13 @@ specifier|public
 interface|interface
 name|SolrQueryRequest
 block|{
+comment|/** All uses of this request are finished, resources can be freed */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+function_decl|;
 DECL|method|getParam
 specifier|public
 name|String
