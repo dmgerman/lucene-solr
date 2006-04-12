@@ -42,10 +42,12 @@ name|AddUpdateCommand
 extends|extends
 name|UpdateCommand
 block|{
-DECL|field|id
+comment|// optional id in "internal" indexed form... if it is needed and not supplied,
+comment|// it will be obtained from the doc.
+DECL|field|indexedId
 specifier|public
 name|String
-name|id
+name|indexedId
 decl_stmt|;
 DECL|field|doc
 specifier|public
@@ -102,7 +104,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|id
+name|indexedId
 operator|!=
 literal|null
 condition|)
@@ -115,7 +117,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|id
+name|indexedId
 argument_list|)
 expr_stmt|;
 name|sb

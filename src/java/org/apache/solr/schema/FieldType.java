@@ -893,6 +893,41 @@ return|return
 name|indexedForm
 return|;
 block|}
+DECL|method|storedToReadable
+specifier|public
+name|String
+name|storedToReadable
+parameter_list|(
+name|Field
+name|f
+parameter_list|)
+block|{
+return|return
+name|toExternal
+argument_list|(
+name|f
+argument_list|)
+return|;
+block|}
+DECL|method|storedToIndexed
+specifier|public
+name|String
+name|storedToIndexed
+parameter_list|(
+name|Field
+name|f
+parameter_list|)
+block|{
+comment|// right now, the transformation of single valued fields like SortableInt
+comment|// is done when the Field is created, not at analysis time... this means
+comment|// that the indexed form is the same as the stored field form.
+return|return
+name|f
+operator|.
+name|stringValue
+argument_list|()
+return|;
+block|}
 comment|/*********   // default analyzer for non-text fields.   // Only reads 80 bytes, but that should be plenty for a single value.   public Analyzer getAnalyzer() {     if (analyzer != null) return analyzer;      // the default analyzer...     return new Analyzer() {       public TokenStream tokenStream(String fieldName, Reader reader) {         return new Tokenizer(reader) {           final char[] cbuf = new char[80];           public Token next() throws IOException {             int n = input.read(cbuf,0,80);             if (n<=0) return null;             String s = toInternal(new String(cbuf,0,n));             return new Token(s,0,n);           };         };       }     };   }   **********/
 comment|//
 comment|// Default analyzer for types that only produce 1 verbatim token...

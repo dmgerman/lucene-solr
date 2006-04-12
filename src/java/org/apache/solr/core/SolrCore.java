@@ -2936,7 +2936,7 @@ comment|// that there are multiple docs in the add... so make sure that
 comment|// objects can handle that.
 name|cmd
 operator|.
-name|id
+name|indexedId
 operator|=
 literal|null
 expr_stmt|;

@@ -33,11 +33,13 @@ specifier|public
 name|String
 name|id
 decl_stmt|;
+comment|// external (printable) id, for delete-by-id
 DECL|field|query
 specifier|public
 name|String
 name|query
 decl_stmt|;
+comment|// query string for delete-by-query
 DECL|field|fromPending
 specifier|public
 name|boolean
