@@ -263,6 +263,12 @@ argument_list|(
 name|sb
 argument_list|,
 name|val
+operator|==
+literal|null
+condition|?
+literal|""
+else|:
+name|val
 argument_list|)
 expr_stmt|;
 block|}
