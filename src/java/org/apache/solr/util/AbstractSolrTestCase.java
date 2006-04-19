@@ -121,12 +121,20 @@ operator|.
 name|LocalRequestFactory
 name|lrf
 decl_stmt|;
-comment|/**    * Subclasses must define this method to return the path of the    * schema.xml they wish to use.    */
-DECL|method|getSchemaPath
+comment|/**    * Subclasses must define this method to return the name of the    * schema.xml they wish to use.    */
+DECL|method|getSchemaFile
 specifier|public
 specifier|abstract
 name|String
-name|getSchemaPath
+name|getSchemaFile
+parameter_list|()
+function_decl|;
+comment|/**    * Subclasses must define this method to return the name of the    * solrconfig.xml they wish to use.    */
+DECL|method|getSolrConfigFile
+specifier|public
+specifier|abstract
+name|String
+name|getSolrConfigFile
 parameter_list|()
 function_decl|;
 comment|/**    * The directory used to story the index managed by the TestHarness h    */
@@ -197,7 +205,10 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|,
-name|getSchemaPath
+name|getSolrConfigFile
+argument_list|()
+argument_list|,
+name|getSchemaFile
 argument_list|()
 argument_list|)
 expr_stmt|;

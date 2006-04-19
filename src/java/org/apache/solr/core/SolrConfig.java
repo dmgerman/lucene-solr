@@ -18,6 +18,40 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|ParserConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -27,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * Provides a static refrence to a Config object modeling the main  * configuration data for a a Solr instance -- typically found in  * "solrconfig.xml".  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -36,24 +70,40 @@ specifier|public
 class|class
 name|SolrConfig
 block|{
+DECL|field|DEFAULT_CONF_FILE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_CONF_FILE
+init|=
+literal|"solrconfig.xml"
+decl_stmt|;
+comment|/**    * Singleton containing all configuration.    */
 DECL|field|config
 specifier|public
 specifier|static
 name|Config
 name|config
 decl_stmt|;
-static|static
-block|{
-name|RuntimeException
-name|e
-init|=
-literal|null
-decl_stmt|;
+comment|/**    * (Re)loads the static configation information from the specified file.    *    *<p>    * This method is called implicitly on ClassLoad, but it may be    * called explicitly to change the Configuration used for the purpose    * of testing - in which case it should be called prior to initializing    * a SolrCore.    *</p>    *    *<p>    * This method should<b>only</b> be called for testing purposes.    * Because it modifies a singleton, it is not suitable for running    * multi-threaded tests.    *</p>    *    * @param file file name to load    * @see Config#openResource    */
+DECL|method|initConfig
+specifier|public
+specifier|static
+specifier|synchronized
+name|void
+name|initConfig
+parameter_list|(
 name|String
 name|file
-init|=
-literal|"solrconfig.xml"
-decl_stmt|;
+parameter_list|)
+throws|throws
+name|ParserConfigurationException
+throws|,
+name|IOException
+throws|,
+name|SAXException
+block|{
 name|InputStream
 name|is
 init|=
@@ -64,8 +114,6 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|config
 operator|=
 operator|new
@@ -83,6 +131,27 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|Config
+operator|.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Loaded SolrConfig: "
+operator|+
+name|file
+argument_list|)
+expr_stmt|;
+block|}
+static|static
+block|{
+try|try
+block|{
+name|initConfig
+argument_list|(
+name|DEFAULT_CONF_FILE
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -94,21 +163,14 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Error in solrconfig.xml"
+literal|"Error in "
+operator|+
+name|DEFAULT_CONF_FILE
 argument_list|,
 name|ee
 argument_list|)
 throw|;
 block|}
-name|Config
-operator|.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Loaded Config solrconfig.xml"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

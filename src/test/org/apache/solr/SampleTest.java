@@ -74,15 +74,26 @@ name|SampleTest
 extends|extends
 name|AbstractSolrTestCase
 block|{
-comment|/**    * All subclasses of AbstractSolrTestCase must define this method    */
-DECL|method|getSchemaPath
+comment|/**    * All subclasses of AbstractSolrTestCase must define this method.    *    *<p>    * Note that different tests can use different schemas by refering    * to any crazy path they want (as long as it works).    *</p>    */
+DECL|method|getSchemaFile
 specifier|public
 name|String
-name|getSchemaPath
+name|getSchemaFile
 parameter_list|()
 block|{
 return|return
-literal|"solr/conf/schema.xml"
+literal|"solr/crazy-path-to-schema.xml"
+return|;
+block|}
+comment|/**    * All subclasses of AbstractSolrTestCase must define this method    *    *<p>    * Note that different tests can use different configs by refering    * to any crazy path they want (as long as it works).    *</p>    */
+DECL|method|getSolrConfigFile
+specifier|public
+name|String
+name|getSolrConfigFile
+parameter_list|()
+block|{
+return|return
+literal|"solr/crazy-path-to-config.xml"
 return|;
 block|}
 comment|/**    * Demonstration of some of the simple ways to use the base class    */
@@ -202,7 +213,7 @@ operator|+
 literal|"</add>"
 argument_list|)
 expr_stmt|;
-comment|// or really make the xml yourself
+comment|/* or really make the xml yourself */
 name|assertU
 argument_list|(
 literal|"<add><doc><field name=\"id\">4055</field>"
@@ -244,7 +255,7 @@ argument_list|,
 literal|"//int[@name='id'][.='4055']"
 argument_list|)
 expr_stmt|;
-comment|/* make your own LocalRequestFactory to build a request */
+comment|/* make your own LocalRequestFactory to build a request      *      * Note: the qt proves we are using our custom config...      */
 name|TestHarness
 operator|.
 name|LocalRequestFactory
@@ -254,7 +265,7 @@ name|h
 operator|.
 name|getRequestFactory
 argument_list|(
-literal|"standard"
+literal|"crazy_custom_qt"
 argument_list|,
 literal|100
 argument_list|,
