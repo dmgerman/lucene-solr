@@ -1194,7 +1194,7 @@ name|MAX_RADIX
 argument_list|)
 return|;
 block|}
-comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is {@link DEFAULT_MERGE_FACTOR}.     */
+comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>This must never be less than 2.  The default value is {@link #DEFAULT_MERGE_FACTOR}.     */
 DECL|field|mergeFactor
 specifier|private
 name|int
@@ -1202,7 +1202,7 @@ name|mergeFactor
 init|=
 name|DEFAULT_MERGE_FACTOR
 decl_stmt|;
-comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is {@link DEFAULT_MAX_BUFFERED_DOCS}.     */
+comment|/** Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p> The default value is {@link #DEFAULT_MAX_BUFFERED_DOCS}.     */
 DECL|field|minMergeDocs
 specifier|private
 name|int
@@ -1210,7 +1210,7 @@ name|minMergeDocs
 init|=
 name|DEFAULT_MAX_BUFFERED_DOCS
 decl_stmt|;
-comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link DEFAULT_MAX_MERGE_DOCS}.     */
+comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link #DEFAULT_MAX_MERGE_DOCS}.     */
 DECL|field|maxMergeDocs
 specifier|private
 name|int
