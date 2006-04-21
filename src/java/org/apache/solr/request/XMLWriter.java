@@ -883,11 +883,13 @@ argument_list|(
 literal|"=\""
 argument_list|)
 expr_stmt|;
-name|writer
+name|XML
 operator|.
-name|write
+name|escapeAttributeValue
 argument_list|(
 name|val
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 name|writer
@@ -944,17 +946,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|writer
-operator|.
-name|write
+name|writeAttr
 argument_list|(
-literal|" name=\""
-argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|write
-argument_list|(
+literal|"name"
+argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
@@ -967,7 +962,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"\"/>"
+literal|"/>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -977,7 +972,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"\">"
+literal|">"
 argument_list|)
 expr_stmt|;
 block|}
