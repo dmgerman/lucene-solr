@@ -359,7 +359,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a List<Term[]> of the terms in the multiphrase.    * Do not modify the List or it's contents.    */
+comment|/**    * Returns a List<Term[]> of the terms in the multiphrase.    * Do not modify the List or its contents.    */
 DECL|method|getTermArrays
 specifier|public
 name|List
