@@ -84,6 +84,16 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+DECL|method|getParams
+specifier|public
+name|String
+index|[]
+name|getParams
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
 DECL|method|getQueryString
 specifier|public
 name|String
