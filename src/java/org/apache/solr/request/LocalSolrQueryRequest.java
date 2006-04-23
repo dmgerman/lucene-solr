@@ -120,28 +120,6 @@ name|HashMap
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Array
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author yonik  * @version $Id$  */
 end_comment
@@ -393,7 +371,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-empty_stmt|;
 name|this
 operator|.
 name|start
