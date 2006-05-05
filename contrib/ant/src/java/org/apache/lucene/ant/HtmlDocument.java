@@ -178,7 +178,7 @@ decl_stmt|;
 comment|//-------------------------------------------------------------
 comment|// Constructors
 comment|//-------------------------------------------------------------
-comment|/**      *  Constructs an<code>HtmlDocument</code> from a {@link      *  java.io.File}.      *      *@param  file             the<code>File</code> containing the      *      HTML to parse      *@exception  IOException  if an I/O exception occurs      *@since      */
+comment|/**      *  Constructs an<code>HtmlDocument</code> from a {@link      *  java.io.File}.      *      *@param  file             the<code>File</code> containing the      *      HTML to parse      *@exception  IOException  if an I/O exception occurs      */
 DECL|method|HtmlDocument
 specifier|public
 name|HtmlDocument
@@ -240,7 +240,7 @@ name|getDocumentElement
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Constructs an<code>HtmlDocument</code> from an {@link      *  java.io.InputStream}.      *      *@param  is               the<code>InputStream</code>      *      containing the HTML      *@exception  IOException  if I/O exception occurs      *@since      */
+comment|/**      *  Constructs an<code>HtmlDocument</code> from an {@link      *  java.io.InputStream}.      *      *@param  is               the<code>InputStream</code>      *      containing the HTML      */
 DECL|method|HtmlDocument
 specifier|public
 name|HtmlDocument
@@ -296,7 +296,7 @@ name|getDocumentElement
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Creates a Lucene<code>Document</code> from an {@link      *  java.io.InputStream}.      *      *@param  is      *@return      *@exception  IOException      */
+comment|/**      *  Creates a Lucene<code>Document</code> from an {@link      *  java.io.InputStream}.      *      *@param  is      */
 specifier|public
 specifier|static
 name|org
@@ -410,7 +410,7 @@ block|}
 comment|//-------------------------------------------------------------
 comment|// Public methods
 comment|//-------------------------------------------------------------
-comment|/**      *  Creates a Lucene<code>Document</code> from a {@link      *  java.io.File}.      *      *@param  file      *@return      *@exception  IOException      */
+comment|/**      *  Creates a Lucene<code>Document</code> from a {@link      *  java.io.File}.      *      *@param  file      *@exception  IOException      */
 specifier|public
 specifier|static
 name|org
