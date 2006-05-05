@@ -164,26 +164,6 @@ name|Collection
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_comment
 comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link #open(String)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.   @author Doug Cutting  @version $Id$ */
 end_comment
@@ -1608,7 +1588,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** Implements deletion of the document numbered<code>docNum</code>.    * Applications should call {@link #delete(int)} or {@link #delete(Term)}.    */
+comment|/** Implements deletion of the document numbered<code>docNum</code>.    * Applications should call {@link #deleteDocument(int)} or {@link #deleteDocuments(Term)}.    */
 DECL|method|doDelete
 specifier|protected
 specifier|abstract
@@ -1621,7 +1601,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #delete(int)} for information about when this deletion will     * become effective.    * @return the number of documents deleted    */
+comment|/** Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #deleteDocument(int)} for information about when this deletion will     * become effective.    * @return the number of documents deleted    */
 DECL|method|deleteDocuments
 specifier|public
 specifier|final
