@@ -250,6 +250,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -292,6 +294,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -331,6 +335,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -456,6 +462,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -596,6 +604,9 @@ argument_list|(
 literal|"Cannot create directory: "
 operator|+
 name|lockDir
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -616,6 +627,9 @@ argument_list|(
 literal|"Found regular file where directory expected: "
 operator|+
 name|lockDir
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -711,6 +725,24 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// clear old files
+if|if
+condition|(
+name|files
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot read directory "
+operator|+
+name|directory
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+throw|;
 for|for
 control|(
 name|int
@@ -756,10 +788,7 @@ name|IOException
 argument_list|(
 literal|"Cannot delete "
 operator|+
-name|files
-index|[
-name|i
-index|]
+name|file
 argument_list|)
 throw|;
 block|}
@@ -857,10 +886,7 @@ name|IOException
 argument_list|(
 literal|"Cannot delete "
 operator|+
-name|files
-index|[
-name|i
-index|]
+name|lockFile
 argument_list|)
 throw|;
 block|}
@@ -1245,7 +1271,9 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-throw|throw
+name|IOException
+name|newExc
+init|=
 operator|new
 name|IOException
 argument_list|(
@@ -1257,6 +1285,16 @@ literal|" to "
 operator|+
 name|nu
 argument_list|)
+decl_stmt|;
+name|newExc
+operator|.
+name|initCause
+argument_list|(
+name|ioe
+argument_list|)
+expr_stmt|;
+throw|throw
+name|newExc
 throw|;
 block|}
 finally|finally
@@ -1292,6 +1330,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1327,6 +1367,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1641,6 +1683,8 @@ name|e
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
