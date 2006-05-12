@@ -377,7 +377,15 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"term out of order"
+literal|"term out of order (\""
+operator|+
+name|term
+operator|+
+literal|"\".compareTo(\""
+operator|+
+name|lastTerm
+operator|+
+literal|"\")<= 0)"
 argument_list|)
 throw|;
 if|if
@@ -394,7 +402,19 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"freqPointer out of order"
+literal|"freqPointer out of order ("
+operator|+
+name|ti
+operator|.
+name|freqPointer
+operator|+
+literal|"< "
+operator|+
+name|lastTi
+operator|.
+name|freqPointer
+operator|+
+literal|")"
 argument_list|)
 throw|;
 if|if
@@ -411,7 +431,19 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"proxPointer out of order"
+literal|"proxPointer out of order ("
+operator|+
+name|ti
+operator|.
+name|proxPointer
+operator|+
+literal|"< "
+operator|+
+name|lastTi
+operator|.
+name|proxPointer
+operator|+
+literal|")"
 argument_list|)
 throw|;
 if|if

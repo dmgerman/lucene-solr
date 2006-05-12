@@ -817,7 +817,9 @@ name|e
 parameter_list|)
 block|{
 comment|// this will happen if the field is not compressed
-throw|throw
+name|IOException
+name|newException
+init|=
 operator|new
 name|IOException
 argument_list|(
@@ -828,6 +830,16 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|newException
+operator|.
+name|initCause
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|newException
 throw|;
 block|}
 block|}

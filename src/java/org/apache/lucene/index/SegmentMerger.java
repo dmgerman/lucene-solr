@@ -1676,7 +1676,15 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"docs out of order"
+literal|"docs out of order ("
+operator|+
+name|doc
+operator|+
+literal|"< "
+operator|+
+name|lastDoc
+operator|+
+literal|" )"
 argument_list|)
 throw|;
 name|df
