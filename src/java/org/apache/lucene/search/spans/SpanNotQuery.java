@@ -895,7 +895,7 @@ expr_stmt|;
 comment|// rotate left
 name|h
 operator|^=
-name|include
+name|exclude
 operator|.
 name|hashCode
 argument_list|()
