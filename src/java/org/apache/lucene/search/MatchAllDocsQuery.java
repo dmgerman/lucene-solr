@@ -128,6 +128,16 @@ name|ToStringUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * A query that matches all documents.  *   * @author John Wang  */
 end_comment
@@ -539,6 +549,15 @@ name|searcher
 argument_list|)
 return|;
 block|}
+DECL|method|extractTerms
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+name|terms
+parameter_list|)
+block|{   }
 DECL|method|toString
 specifier|public
 name|String
