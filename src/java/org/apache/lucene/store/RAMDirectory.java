@@ -223,18 +223,15 @@ index|]
 argument_list|)
 decl_stmt|;
 comment|// and copy to ram disk
-name|int
+name|long
 name|len
 init|=
-operator|(
-name|int
-operator|)
 name|is
 operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|int
+name|long
 name|readCount
 init|=
 literal|0
@@ -257,9 +254,14 @@ name|BUFFER_SIZE
 operator|>
 name|len
 condition|?
+call|(
+name|int
+call|)
+argument_list|(
 name|len
 operator|-
 name|readCount
+argument_list|)
 else|:
 name|BufferedIndexOutput
 operator|.
