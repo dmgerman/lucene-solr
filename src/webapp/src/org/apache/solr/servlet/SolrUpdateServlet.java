@@ -222,6 +222,13 @@ operator|.
 name|getSolrCore
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"SolrUpdateServlet.init() done"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|doPost
 specifier|public
