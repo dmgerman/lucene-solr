@@ -1697,12 +1697,6 @@ name|directory
 argument_list|)
 expr_stmt|;
 comment|// commit changes
-name|deleteSegments
-argument_list|(
-name|segmentsToDelete
-argument_list|)
-expr_stmt|;
-comment|// delete now-unused segments
 return|return
 literal|null
 return|;
@@ -1713,6 +1707,12 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+name|deleteSegments
+argument_list|(
+name|segmentsToDelete
+argument_list|)
+expr_stmt|;
+comment|// delete now-unused segments
 if|if
 condition|(
 name|useCompoundFile
@@ -1773,12 +1773,6 @@ operator|+
 literal|".cfs"
 argument_list|)
 expr_stmt|;
-comment|// delete now unused files of segment
-name|deleteFiles
-argument_list|(
-name|filesToDelete
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -1789,6 +1783,12 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+comment|// delete now unused files of segment
+name|deleteFiles
+argument_list|(
+name|filesToDelete
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/** Merges all RAM-resident segments. */
@@ -2299,12 +2299,6 @@ name|directory
 argument_list|)
 expr_stmt|;
 comment|// commit before deleting
-name|deleteSegments
-argument_list|(
-name|segmentsToDelete
-argument_list|)
-expr_stmt|;
-comment|// delete now-unused segments
 return|return
 literal|null
 return|;
@@ -2315,6 +2309,12 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+name|deleteSegments
+argument_list|(
+name|segmentsToDelete
+argument_list|)
+expr_stmt|;
+comment|// delete now-unused segments
 if|if
 condition|(
 name|useCompoundFile
@@ -2375,12 +2375,6 @@ operator|+
 literal|".cfs"
 argument_list|)
 expr_stmt|;
-comment|// delete now unused files of segment
-name|deleteFiles
-argument_list|(
-name|filesToDelete
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -2391,6 +2385,12 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+comment|// delete now unused files of segment
+name|deleteFiles
+argument_list|(
+name|filesToDelete
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/*    * Some operating systems (e.g. Windows) don't permit a file to be deleted    * while it is opened for read (e.g. by another process or thread). So we    * assume that when a delete fails it is because the file is open in another    * process, and queue the file for subsequent deletion.    */
