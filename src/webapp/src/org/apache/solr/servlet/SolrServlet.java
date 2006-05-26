@@ -82,7 +82,7 @@ name|solr
 operator|.
 name|request
 operator|.
-name|XMLResponseWriter
+name|QueryResponseWriter
 import|;
 end_import
 
@@ -205,7 +205,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  */
+comment|/**  * @author yonik  * @author<a href='mailto:mbaranczak@epublishing.com'> Mike Baranczak</a>  */
 end_comment
 
 begin_class
@@ -244,10 +244,6 @@ name|String
 name|CONTENT_TYPE
 init|=
 literal|"text/xml;charset=UTF-8"
-decl_stmt|;
-DECL|field|xmlResponseWriter
-name|XMLResponseWriter
-name|xmlResponseWriter
 decl_stmt|;
 DECL|method|init
 specifier|public
@@ -348,12 +344,6 @@ operator|=
 name|SolrCore
 operator|.
 name|getSolrCore
-argument_list|()
-expr_stmt|;
-name|xmlResponseWriter
-operator|=
-operator|new
-name|XMLResponseWriter
 argument_list|()
 expr_stmt|;
 name|log
@@ -477,19 +467,28 @@ name|CONTENT_TYPE
 argument_list|)
 expr_stmt|;
 name|PrintWriter
-name|writer
+name|out
 init|=
 name|response
 operator|.
 name|getWriter
 argument_list|()
 decl_stmt|;
-comment|// if (solrReq.getStrParam("version","2").charAt(0) == '1')
-name|xmlResponseWriter
+name|QueryResponseWriter
+name|responseWriter
+init|=
+name|core
+operator|.
+name|getQueryResponseWriter
+argument_list|(
+name|solrReq
+argument_list|)
+decl_stmt|;
+name|responseWriter
 operator|.
 name|write
 argument_list|(
-name|writer
+name|out
 argument_list|,
 name|solrReq
 argument_list|,
