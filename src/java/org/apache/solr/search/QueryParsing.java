@@ -379,7 +379,7 @@ return|return
 name|sort
 return|;
 block|}
-comment|/**      * Gets the number of documens to return after sorting.      * -1 means there is no cutoff (only do the sort)      * @return      */
+comment|/**      * Gets the number of documens to return after sorting.      *      * @return number of docs to return, or -1 for no cut off (just sort)      */
 DECL|method|getCount
 specifier|public
 name|int

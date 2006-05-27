@@ -1569,7 +1569,7 @@ return|return
 name|is
 return|;
 block|}
-comment|/**    * Returns a list of non-blank non-comment lines with whitespace trimmed from front and back.    * @param resource    * @return    * @throws IOException    */
+comment|/**    * Accesses a resource by name and returns the (non comment) lines    * containing data.    *    *<p>    * A comment line is any line that starts with the character "#"    *</p>    *    * @param resource    * @return a list of non-blank non-comment lines with whitespace trimmed    * from front and back.    * @throws IOException    */
 DECL|method|getLines
 specifier|public
 specifier|static

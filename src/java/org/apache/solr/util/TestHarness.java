@@ -441,7 +441,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Validates that an add of a single document results in success.    *    * @param fieldsAndValues Odds are field names, Evens are values    * @return null if succesful, otherwise the XML response to the update    * @see appendSimpleDoc    */
+comment|/**    * Validates that an add of a single document results in success.    *    * @param fieldsAndValues Odds are field names, Evens are values    * @return null if succesful, otherwise the XML response to the update    * @see #appendSimpleDoc    */
 DECL|method|validateAddDoc
 specifier|public
 name|String

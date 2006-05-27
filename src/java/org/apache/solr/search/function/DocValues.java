@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents field values as different types.  * Normally created via a {@link ValueSource} for a particular field and reader.  *<br>  * Often used by {@link FunctionFactory} implementations.  *  * @author yonik  * @version $Id$  */
+comment|/**  * Represents field values as different types.  * Normally created via a {@link ValueSource} for a particular field and reader.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_comment
