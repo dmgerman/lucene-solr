@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * MBean interface for getting various ui friendly strings and URLs  * for use by objects which are 'plugable' to make server administration  * easier.  *  * @author ronp  * @version $Id$  */
+comment|/**  * MBean interface for getting various ui friendly strings and URLs  * for use by objects which are 'pluggable' to make server administration  * easier.  *  * @author ronp  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -113,7 +113,7 @@ name|String
 name|getSource
 parameter_list|()
 function_decl|;
-comment|/**    * Documentation URL list.    *    *<p>    * Suggested documentaion URLs: Homepage for sponsoring project,    * FAQ on class usage, Design doc for class, Wiki, bug reporting URL, etc...    *</p>    */
+comment|/**    * Documentation URL list.    *    *<p>    * Suggested documentation URLs: Homepage for sponsoring project,    * FAQ on class usage, Design doc for class, Wiki, bug reporting URL, etc...    *</p>    */
 DECL|method|getDocs
 specifier|public
 name|URL

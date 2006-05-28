@@ -69,7 +69,7 @@ name|ArrayList
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    * @param nameValuePairs underlying List which should be used to impliment a NamedList; modifying this List will affect the NamedList.    */
+comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    * @param nameValuePairs underlying List which should be used to implement a NamedList; modifying this List will affect the NamedList.    */
 DECL|method|NamedList
 specifier|public
 name|NamedList
@@ -230,7 +230,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Scans the list sequentially begining at the specified index and    * returns the index of the first pair with the specified name.    *    * @param name name to look for, may be null    * @param start index to begin searching from    * @return The index of the first matching pair, -1 if no match    */
+comment|/**    * Scans the list sequentially beginning at the specified index and    * returns the index of the first pair with the specified name.    *    * @param name name to look for, may be null    * @param start index to begin searching from    * @return The index of the first matching pair, -1 if no match    */
 DECL|method|indexOf
 specifier|public
 name|int

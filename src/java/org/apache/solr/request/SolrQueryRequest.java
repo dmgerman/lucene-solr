@@ -85,7 +85,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the input parameter values for the specified name    * @return the values; may be null or empty depending on implimentation    */
+comment|/**    * Returns the input parameter values for the specified name    * @return the values; may be null or empty depending on implementation    */
 DECL|method|getParams
 specifier|public
 name|String
