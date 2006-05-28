@@ -41,43 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author ronp  * @version $Id$  */
-end_comment
-
-begin_comment
-comment|// MBean interface for getting various ui friendly strings and URLs
-end_comment
-
-begin_comment
-comment|// for use by objects which are 'plugable' to make administering
-end_comment
-
-begin_comment
-comment|// production use easier
-end_comment
-
-begin_comment
-comment|// name        - simple common usage name, e.g. BasicQueryHandler
-end_comment
-
-begin_comment
-comment|// version     - simple common usage version, e.g. 2.0
-end_comment
-
-begin_comment
-comment|// description - simple one or two line description
-end_comment
-
-begin_comment
-comment|// SourceId    - CVS Id, SVN Id, etc
-end_comment
-
-begin_comment
-comment|// Source      - CVS Source, SVN Source, etc
-end_comment
-
-begin_comment
-comment|// docs        - URL list: TWIKI, Faq, Design doc, something! :)
+comment|/**  * MBean interface for getting various ui friendly strings and URLs  * for use by objects which are 'plugable' to make server administration  * easier.  *  * @author ronp  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -107,42 +71,49 @@ block|,
 name|OTHER
 block|}
 empty_stmt|;
+comment|/**    * Simple common usage name, e.g. BasicQueryHandler,    * or fully qualified clas name.    */
 DECL|method|getName
 specifier|public
 name|String
 name|getName
 parameter_list|()
 function_decl|;
+comment|/** Simple common usage version, e.g. 2.0 */
 DECL|method|getVersion
 specifier|public
 name|String
 name|getVersion
 parameter_list|()
 function_decl|;
+comment|/** Simple one or two line description */
 DECL|method|getDescription
 specifier|public
 name|String
 name|getDescription
 parameter_list|()
 function_decl|;
+comment|/** Purpose of this Class */
 DECL|method|getCategory
 specifier|public
 name|Category
 name|getCategory
 parameter_list|()
 function_decl|;
+comment|/** CVS Id, SVN Id, etc */
 DECL|method|getSourceId
 specifier|public
 name|String
 name|getSourceId
 parameter_list|()
 function_decl|;
+comment|/** CVS Source, SVN Source, etc */
 DECL|method|getSource
 specifier|public
 name|String
 name|getSource
 parameter_list|()
 function_decl|;
+comment|/**    * Documentation URL list.    *    *<p>    * Suggested documentaion URLs: Homepage for sponsoring project,    * FAQ on class usage, Design doc for class, Wiki, bug reporting URL, etc...    *</p>    */
 DECL|method|getDocs
 specifier|public
 name|URL
@@ -150,6 +121,7 @@ index|[]
 name|getDocs
 parameter_list|()
 function_decl|;
+comment|/**    * Any statistics this instance would like to be publicly available via    * the Solr Administration interface.    *    *<p>    * Any Object type may be stored in the list, but only the    *<code>toString()</code> representation will be used.    *</p>    */
 DECL|method|getStatistics
 specifier|public
 name|NamedList

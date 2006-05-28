@@ -66,7 +66,7 @@ specifier|final
 name|float
 name|maxScore
 decl_stmt|;
-comment|/**    *    * @param offset  starting offset for this range of docs    * @param len     length of results    * @param docs    array of docids starting at position 0    * @param scores    * @param matches total number of matches for the query    */
+comment|/**    * Primary constructer for a DocSlice instance.    *    * @param offset  starting offset for this range of docs    * @param len     length of results    * @param docs    array of docids starting at position 0    * @param scores  array of scores that corrisponds to docs, may be null    * @param matches total number of matches for the query    */
 DECL|method|DocSlice
 specifier|public
 name|DocSlice

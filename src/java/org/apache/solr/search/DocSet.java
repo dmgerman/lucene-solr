@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DocSet</code> represents an unordered set of Lucene Document Ids.  *<p>  * WARNING: Any DocSet returned from SolrIndexSearcher should<b>not</b> be modified as it may have been retrieved from  * a cache and could be shared.  * @author yonik  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>DocSet</code> represents an unordered set of Lucene Document Ids.  *  *<p>  * WARNING: Any DocSet returned from SolrIndexSearcher should<b>not</b> be modified as it may have been retrieved from  * a cache and could be shared.  *</p>  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_interface
@@ -51,6 +51,7 @@ interface|interface
 name|DocSet
 comment|/* extends Collection<Integer> */
 block|{
+comment|/**    * Adds the specified document if it is not currently in the DocSet    * (optional operation).    *    * @see #addUnique    * @throws SolrException if the implimentation does not allow modifications    */
 DECL|method|add
 specifier|public
 name|void
@@ -60,6 +61,7 @@ name|int
 name|doc
 parameter_list|)
 function_decl|;
+comment|/**    * Adds a document the caller knows is not currently in the DocSet    * (optional operation).    *    *<p>    * This method may be faster then<code>add(doc)</code> in some    * implimentaions provided the caller is certain of the precondition.    *</p>    *    * @see #add    * @throws SolrException if the implimentation does not allow modifications    */
 DECL|method|addUnique
 specifier|public
 name|void
@@ -69,14 +71,14 @@ name|int
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**    * @return The number of document ids in the set.    */
+comment|/**    * Returns the number of documents in the set.    */
 DECL|method|size
 specifier|public
 name|int
 name|size
 parameter_list|()
 function_decl|;
-comment|/**    *    * @param docid    * @return    * true if the docid is in the set    */
+comment|/**    * Returns true if a document is in the DocSet.    */
 DECL|method|exists
 specifier|public
 name|boolean
@@ -86,7 +88,7 @@ name|int
 name|docid
 parameter_list|)
 function_decl|;
-comment|/**    *    * @return an interator that may be used to iterate over all of the documents in the set.    */
+comment|/**    * Returns an interator that may be used to iterate over all of the documents in the set.    *    *<p>    * The order of the documents returned by this iterator is    * non-deterministic, and any scoring information is meaningless    *</p>    */
 DECL|method|iterator
 specifier|public
 name|DocIterator
@@ -109,7 +111,7 @@ name|long
 name|memSize
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the intersection of this set with another set.  Neither set is modified - a new DocSet is    * created and returned.    * @param other    * @return a DocSet representing the intersection    */
+comment|/**    * Returns the intersection of this set with another set.  Neither set is modified - a new DocSet is    * created and returned.    * @return a DocSet representing the intersection    */
 DECL|method|intersection
 specifier|public
 name|DocSet
@@ -129,7 +131,7 @@ name|DocSet
 name|other
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the union of this set with another set.  Neither set is modified - a new DocSet is    * created and returned.    * @param other    * @return a DocSet representing the union    */
+comment|/**    * Returns the union of this set with another set.  Neither set is modified - a new DocSet is    * created and returned.    * @return a DocSet representing the union    */
 DECL|method|union
 specifier|public
 name|DocSet
@@ -151,6 +153,10 @@ parameter_list|)
 function_decl|;
 block|}
 end_interface
+
+begin_comment
+comment|/** A base class that may be usefull for implimenting DocSets */
+end_comment
 
 begin_class
 DECL|class|DocSetBase
@@ -283,6 +289,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * @throws SolrException Base implimentation does not allow modifications    */
 DECL|method|add
 specifier|public
 name|void
@@ -302,6 +309,7 @@ literal|"Unsupported Operation"
 argument_list|)
 throw|;
 block|}
+comment|/**    * @throws SolrException Base implimentation does not allow modifications    */
 DECL|method|addUnique
 specifier|public
 name|void
@@ -321,8 +329,7 @@ literal|"Unsupported Operation"
 argument_list|)
 throw|;
 block|}
-comment|// Only the inefficient base implementation.  DocSets based on
-comment|// BitSets will return the actual BitSet without making a copy.
+comment|/**    * Inefficient base implementation.    *    * @see BitDocSet#getBits    */
 DECL|method|getBits
 specifier|public
 name|BitSet

@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * Simple Iterator of document Ids which may include score information.  *  *<p>  * The order of the documents is determined by the context in which the  * DocIterator instance was retrieved.  *</p>  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -41,20 +41,16 @@ argument_list|<
 name|Integer
 argument_list|>
 block|{
-DECL|method|hasNext
-specifier|public
-name|boolean
-name|hasNext
-parameter_list|()
-function_decl|;
-comment|/**    * returns the next document id if hasNext()==true    */
+comment|// allready declared in superclass, redeclaring prevents javadoc inheritence
+comment|//public boolean hasNext();
+comment|/**    * Returns the next document id if hasNext()==true    *    *<code>    * This method is functionally equivilent to<code>next()</code>    * @see #next()    */
 DECL|method|nextDoc
 specifier|public
 name|int
 name|nextDoc
 parameter_list|()
 function_decl|;
-comment|/**    * returns the score for the document just returned by nextDoc()    */
+comment|/**    * Returns the score for the document just returned by<code>nextDoc()</code>    *    *<p>    * The value returned may be meaningless depending on the context    * in which the DocIterator instance was retrieved.    */
 DECL|method|score
 specifier|public
 name|float

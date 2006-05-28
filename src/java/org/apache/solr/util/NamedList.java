@@ -37,51 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|// A quick hack of a class to represent a list of name-value pairs.
-end_comment
-
-begin_comment
-comment|// Unlike a map, order is maintained, and names may
-end_comment
-
-begin_comment
-comment|// be repeated.  Names and values may be null.
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|// In the future, it would be nice if this extended Map or Collection,
-end_comment
-
-begin_comment
-comment|// had iterators, used java5 generics, had a faster lookup for
-end_comment
-
-begin_comment
-comment|// large lists, etc...
-end_comment
-
-begin_comment
-comment|// It could also have an interface, and multiple implementations.
-end_comment
-
-begin_comment
-comment|// One might have indexed lookup, one might not.
-end_comment
-
-begin_comment
-comment|//
+comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * :TODO: In the future, it would be nice if this extended Map or Collection,  * had iterators, used java5 generics, had a faster lookup for  * large lists, etc...  * It could also have an interface, and multiple implementations.  * One might have indexed lookup, one might not.  *</p>  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -100,6 +56,7 @@ specifier|final
 name|List
 name|nvPairs
 decl_stmt|;
+comment|/** Creates an empty instance */
 DECL|method|NamedList
 specifier|public
 name|NamedList
@@ -112,6 +69,7 @@ name|ArrayList
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    * @param nameValuePairs underlying List which should be used to impliment a NamedList; modifying this List will affect the NamedList.    */
 DECL|method|NamedList
 specifier|public
 name|NamedList
@@ -125,6 +83,7 @@ operator|=
 name|nameValuePairs
 expr_stmt|;
 block|}
+comment|/** The total number of name/value pairs */
 DECL|method|size
 specifier|public
 name|int
@@ -140,6 +99,7 @@ operator|>>
 literal|1
 return|;
 block|}
+comment|/**    * The name of the pair at the specified List index    *    * @return null if no name exists    */
 DECL|method|getName
 specifier|public
 name|String
@@ -163,6 +123,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**    * The value of the pair at the specified List index    *    * @return may be null    */
 DECL|method|getVal
 specifier|public
 name|Object
@@ -187,6 +148,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**    * Adds a name/value pair to the end of the list.    */
 DECL|method|add
 specifier|public
 name|void
@@ -214,6 +176,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Modifies the name of the pair at the specified index.    */
 DECL|method|setName
 specifier|public
 name|void
@@ -238,6 +201,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Modifies the value of the pair at the specified index.    */
 DECL|method|setVal
 specifier|public
 name|void
@@ -266,6 +230,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Scans the list sequentially begining at the specified index and    * returns the index of the first pair with the specified name.    *    * @param name name to look for, may be null    * @param start index to begin searching from    * @return The index of the first matching pair, -1 if no match    */
 DECL|method|indexOf
 specifier|public
 name|int
@@ -346,8 +311,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|// gets the value for the first specified name. returns null if not
-comment|// found or if the value stored was null.
+comment|/**    * Gets the value for the first instance of the specified name    * found.    *     * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    */
 DECL|method|get
 specifier|public
 name|Object
@@ -366,8 +330,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|// gets the value for the first specified name starting start.
-comment|// returns null if not found or if the value stored was null.
+comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *     * @return null if not found or if the value stored was null.    * @see #indexOf    */
 DECL|method|get
 specifier|public
 name|Object
@@ -548,6 +511,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Iterates over the Map and sequentially adds it's key/value pairs    */
 DECL|method|addAll
 specifier|public
 name|boolean
@@ -617,7 +581,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Makes a *shallow copy* of the named list.    */
+comment|/**    * Makes a<i>shallow copy</i> of the named list.    */
 DECL|method|clone
 specifier|public
 name|NamedList

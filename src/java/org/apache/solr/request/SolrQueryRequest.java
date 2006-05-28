@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * Container for a request to execute a query.  *   * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -68,13 +68,14 @@ specifier|public
 interface|interface
 name|SolrQueryRequest
 block|{
-comment|/** All uses of this request are finished, resources can be freed */
+comment|/**    * This method should be called when all uses of this request are    * finished, so that resources can be freed.    */
 DECL|method|close
 specifier|public
 name|void
 name|close
 parameter_list|()
 function_decl|;
+comment|/**    * Returns the input parameter value for the specified name    * @return the value, or the first value if the parameter was    * specified more then once; may be null.    */
 DECL|method|getParam
 specifier|public
 name|String
@@ -84,6 +85,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the input parameter values for the specified name    * @return the values; may be null or empty depending on implimentation    */
 DECL|method|getParams
 specifier|public
 name|String
@@ -94,56 +96,56 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the primary query string parameter of the request    */
 DECL|method|getQueryString
 specifier|public
 name|String
 name|getQueryString
 parameter_list|()
 function_decl|;
-comment|// signifies the syntax and the handler that should be used
-comment|// to execute this query.
+comment|/**    * Signifies the syntax and the handler that should be used    * to execute this query.    */
 DECL|method|getQueryType
 specifier|public
 name|String
 name|getQueryType
 parameter_list|()
 function_decl|;
-comment|// starting position in matches to return to client
+comment|/** starting position in matches to return to client */
 DECL|method|getStart
 specifier|public
 name|int
 name|getStart
 parameter_list|()
 function_decl|;
-comment|// number of matching documents to return
+comment|/** number of matching documents to return */
 DECL|method|getLimit
 specifier|public
 name|int
 name|getLimit
 parameter_list|()
 function_decl|;
-comment|// Get the start time of this request in milliseconds
+comment|/** The start time of this request in milliseconds */
 DECL|method|getStartTime
 specifier|public
 name|long
 name|getStartTime
 parameter_list|()
 function_decl|;
-comment|// The index searcher associated with this request
+comment|/** The index searcher associated with this request */
 DECL|method|getSearcher
 specifier|public
 name|SolrIndexSearcher
 name|getSearcher
 parameter_list|()
 function_decl|;
-comment|// The solr core (coordinator, etc) associated with this request
+comment|/** The solr core (coordinator, etc) associated with this request */
 DECL|method|getCore
 specifier|public
 name|SolrCore
 name|getCore
 parameter_list|()
 function_decl|;
-comment|// The index schema associated with this request
+comment|/** The index schema associated with this request */
 DECL|method|getSchema
 specifier|public
 name|IndexSchema

@@ -42,7 +42,7 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the total number of matches for the search    * (as opposed to just the number collected according    * to<code>offset()</code> and<code>size()</code>).    * Hence it's always true that matches()>= size()    * @return number of matches for the search(query&filter)    */
+comment|/**    * Returns the total number of matches for the search    * (as opposed to just the number collected according    * to<code>offset()</code> and<code>size()</code>).    * Hence it's always true that matches()>= size()    * @return number of matches for the search(query&amp; any filters)    */
 DECL|method|matches
 specifier|public
 name|int
@@ -68,6 +68,13 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
+function_decl|;
+comment|/**    * Returns an interator that may be used to iterate over the documents in this DocList    *    *<p>    * The order of the documents returned by this iterator is based on the    * Sort order of the search that produced it.  The Scoring information    * is meaningful only if<code>hasScores()</code> returns true.    *</p>    * @see #hasScores    */
+DECL|method|iterator
+specifier|public
+name|DocIterator
+name|iterator
+parameter_list|()
 function_decl|;
 comment|/** True if scores were retained */
 DECL|method|hasScores
