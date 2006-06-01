@@ -378,6 +378,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|float
+name|min
+init|=
+name|this
+operator|.
+name|min
+decl_stmt|;
 specifier|final
 name|TRStringDistance
 name|sd
