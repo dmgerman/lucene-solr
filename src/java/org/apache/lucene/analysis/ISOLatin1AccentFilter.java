@@ -67,16 +67,12 @@ decl_stmt|;
 if|if
 condition|(
 name|t
-operator|==
+operator|!=
 literal|null
 condition|)
-return|return
-literal|null
-return|;
-comment|// Return a token with filtered characters.
-return|return
-operator|new
-name|Token
+name|t
+operator|.
+name|setTermText
 argument_list|(
 name|removeAccents
 argument_list|(
@@ -85,22 +81,10 @@ operator|.
 name|termText
 argument_list|()
 argument_list|)
-argument_list|,
-name|t
-operator|.
-name|startOffset
-argument_list|()
-argument_list|,
-name|t
-operator|.
-name|endOffset
-argument_list|()
-argument_list|,
-name|t
-operator|.
-name|type
-argument_list|()
 argument_list|)
+expr_stmt|;
+return|return
+name|t
 return|;
 block|}
 comment|/** 	 * To replace accented characters in a String by unaccented equivalents. 	 */
