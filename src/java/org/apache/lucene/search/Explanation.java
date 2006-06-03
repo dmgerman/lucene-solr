@@ -404,7 +404,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"</li>\n"
+literal|"<br />\n"
 argument_list|)
 expr_stmt|;
 name|Explanation
@@ -453,6 +453,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|"</li>\n"
+argument_list|)
+expr_stmt|;
 name|buffer
 operator|.
 name|append
