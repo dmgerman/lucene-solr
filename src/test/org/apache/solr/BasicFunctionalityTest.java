@@ -883,6 +883,57 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testKeywordTokenizerFactory
+specifier|public
+name|void
+name|testKeywordTokenizerFactory
+parameter_list|()
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"42"
+argument_list|,
+literal|"keywordtok"
+argument_list|,
+literal|"How nOw broWn-ish C.o.w. ?"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"stored value matches?"
+argument_list|,
+name|req
+argument_list|(
+literal|"id:42"
+argument_list|)
+argument_list|,
+literal|"//str[.='How nOw broWn-ish C.o.w. ?']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"query on exact matches?"
+argument_list|,
+name|req
+argument_list|(
+literal|"keywordtok:\"How nOw broWn-ish C.o.w. ?\""
+argument_list|)
+argument_list|,
+literal|"//str[.='How nOw broWn-ish C.o.w. ?']"
+argument_list|)
+expr_stmt|;
+block|}
 comment|//   /** this doesn't work, but if it did, this is how we'd test it. */
 comment|//   public void testOverwriteFalse() {
 comment|//     assertU(adoc("id", "overwrite", "val_s", "AAA"));
