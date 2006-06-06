@@ -272,12 +272,13 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|/** The name of the type (not the name of the field) */
 DECL|field|typeName
 specifier|protected
 name|String
 name|typeName
 decl_stmt|;
-comment|// the name of the type, not the name of the field
+comment|/** additional arguments specified in the field type declaration */
 DECL|field|args
 specifier|protected
 name|Map
@@ -288,23 +289,23 @@ name|String
 argument_list|>
 name|args
 decl_stmt|;
-comment|// additional arguments
+comment|/** properties explicitly set to true */
 DECL|field|trueProperties
 specifier|protected
 name|int
 name|trueProperties
 decl_stmt|;
-comment|// properties explicitly set to true
+comment|/** properties explicitly set to false */
 DECL|field|falseProperties
 specifier|protected
 name|int
 name|falseProperties
 decl_stmt|;
-comment|// properties explicitly set to false
 DECL|field|properties
 name|int
 name|properties
 decl_stmt|;
+comment|/** Returns true if fields of this type should be tokenized */
 DECL|method|isTokenized
 specifier|protected
 name|boolean
@@ -610,6 +611,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** :TODO: document this method */
 DECL|method|restrictProps
 specifier|protected
 name|void
@@ -662,6 +664,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** The Name of this FieldType as specified in the schema file */
 DECL|method|getTypeName
 specifier|public
 name|String
@@ -732,19 +735,7 @@ operator|+
 literal|"}"
 return|;
 block|}
-comment|// used for adding a document when a field needs to be created from a type and a string
-comment|// by default, the indexed value is the same as the stored value (taken from toInternal())
-comment|// Having a different representation for external, internal, and indexed would present quite
-comment|// a few problems given the current Lucene architecture.  An analyzer for adding docs would
-comment|// need to translate internal->indexed while an analyzer for querying would need to
-comment|// translate external->indexed.
-comment|//
-comment|// The only other alternative to having internal==indexed would be to have
-comment|// internal==external.
-comment|// In this case, toInternal should convert to the indexed representation,
-comment|// toExternal() should do nothing, and createField() should *not* call toInternal,
-comment|// but use the external value and set tokenized=true to get Lucene to convert
-comment|// to the internal(indexed) form.
+comment|/**    * Used for adding a document when a field needs to be created from a    * type and a string.    *    *<p>    * By default, the indexed value is the same as the stored value    * (taken from toInternal()).   Having a different representation for    * external, internal, and indexed would present quite a few problems    * given the current Lucene architecture.  An analyzer for adding docs    * would need to translate internal->indexed while an analyzer for    * querying would need to translate external-&gt;indexed.    *</p>    *<p>    * The only other alternative to having internal==indexed would be to have    * internal==external.   In this case, toInternal should convert to    * the indexed representation, toExternal() should do nothing, and    * createField() should *not* call toInternal, but use the external    * value and set tokenized=true to get Lucene to convert to the    * internal(indexed) form.    *</p>    *    * :TODO: clean up and clarify this explanation.    *    * @see #toInternal    */
 DECL|method|createField
 specifier|public
 name|Field
@@ -890,10 +881,7 @@ return|return
 name|f
 return|;
 block|}
-comment|// Convert an external value (from XML update command or from query string)
-comment|// into the internal format.
-comment|// - used in delete when a Term needs to be created.
-comment|// - used by the default getTokenizer() and createField()
+comment|/**    * Convert an external value (from XML update command or from query string)    * into the internal format.    * @see #toExternal    */
 DECL|method|toInternal
 specifier|public
 name|String
@@ -903,14 +891,13 @@ name|String
 name|val
 parameter_list|)
 block|{
+comment|// - used in delete when a Term needs to be created.
+comment|// - used by the default getTokenizer() and createField()
 return|return
 name|val
 return|;
 block|}
-comment|// Convert the stored-field format to an external (string, human readable) value
-comment|// currently used in writing XML of the search result (but perhaps
-comment|// a more efficient toXML(Field f, Writer w) should be used
-comment|// in the future.
+comment|/**    * Convert the stored-field format to an external (string, human readable)    * value    * @see #toInternal    */
 DECL|method|toExternal
 specifier|public
 name|String
@@ -920,6 +907,9 @@ name|Field
 name|f
 parameter_list|)
 block|{
+comment|// currently used in writing XML of the search result (but perhaps
+comment|// a more efficient toXML(Field f, Writer w) should be used
+comment|// in the future.
 return|return
 name|f
 operator|.
@@ -927,6 +917,7 @@ name|stringValue
 argument_list|()
 return|;
 block|}
+comment|/** :TODO: document this method */
 DECL|method|indexedToReadable
 specifier|public
 name|String
@@ -940,6 +931,7 @@ return|return
 name|indexedForm
 return|;
 block|}
+comment|/** :TODO: document this method */
 DECL|method|storedToReadable
 specifier|public
 name|String
@@ -956,6 +948,7 @@ name|f
 argument_list|)
 return|;
 block|}
+comment|/** :TODO: document this method */
 DECL|method|storedToIndexed
 specifier|public
 name|String
@@ -976,10 +969,7 @@ argument_list|()
 return|;
 block|}
 comment|/*********   // default analyzer for non-text fields.   // Only reads 80 bytes, but that should be plenty for a single value.   public Analyzer getAnalyzer() {     if (analyzer != null) return analyzer;      // the default analyzer...     return new Analyzer() {       public TokenStream tokenStream(String fieldName, Reader reader) {         return new Tokenizer(reader) {           final char[] cbuf = new char[80];           public Token next() throws IOException {             int n = input.read(cbuf,0,80);             if (n<=0) return null;             String s = toInternal(new String(cbuf,0,n));             return new Token(s,0,n);           };         };       }     };   }   **********/
-comment|//
-comment|// Default analyzer for types that only produce 1 verbatim token...
-comment|// A maximum size of chars to be read must be specified
-comment|//
+comment|/**    * Default analyzer for types that only produce 1 verbatim token...    * A maximum size of chars to be read must be specified    */
 DECL|class|DefaultAnalyzer
 specifier|protected
 specifier|final
@@ -1100,8 +1090,7 @@ block|}
 return|;
 block|}
 block|}
-comment|//analyzer set by schema for text types.
-comment|//subclasses can set analyzer themselves or override getAnalyzer()
+comment|/**    * Analyzer set by schema for text types to use when indexing fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getAnalyzer    */
 DECL|field|analyzer
 specifier|protected
 name|Analyzer
@@ -1113,6 +1102,7 @@ argument_list|(
 literal|256
 argument_list|)
 decl_stmt|;
+comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getQueryAnalyzer    */
 DECL|field|queryAnalyzer
 specifier|protected
 name|Analyzer
@@ -1120,12 +1110,7 @@ name|queryAnalyzer
 init|=
 name|analyzer
 decl_stmt|;
-comment|// get analyzer should be fast to call... since the addition of dynamic fields,
-comment|// this can be called all the time instead of just once at startup.
-comment|// The analyzer will only be used in the following scenarios:
-comment|// - during a document add for any field that has "tokenized" set (typically
-comment|//   only Text fields)
-comment|// - during query parsing
+comment|/**    * Returns the Analyzer to be used when indexing fields of this type.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getQueryAnalyzer    */
 DECL|method|getAnalyzer
 specifier|public
 name|Analyzer
@@ -1136,6 +1121,7 @@ return|return
 name|analyzer
 return|;
 block|}
+comment|/**    * Returns the Analyzer to be used when searching fields of this type.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getAnalyzer    */
 DECL|method|getQueryAnalyzer
 specifier|public
 name|Analyzer
@@ -1146,7 +1132,7 @@ return|return
 name|queryAnalyzer
 return|;
 block|}
-comment|// This is called by the schema parser if a custom analyzer is defined
+comment|/**    * Sets the Analyzer to be used when indexing fields of this type.    * @see #getAnalyzer    */
 DECL|method|setAnalyzer
 specifier|public
 name|void
@@ -1184,7 +1170,7 @@ literal|")"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// This is called by the schema parser if a custom analyzer is defined
+comment|/**    * Sets the Analyzer to be used when querying fields of this type.    * @see #getQueryAnalyzer    */
 DECL|method|setQueryAnalyzer
 specifier|public
 name|void
@@ -1222,6 +1208,7 @@ literal|")"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Renders the specified field as XML    */
 DECL|method|write
 specifier|public
 specifier|abstract
@@ -1240,6 +1227,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns the SortField instance that should be used to sort fields    * of this type.    */
 DECL|method|getSortField
 specifier|public
 specifier|abstract
@@ -1253,6 +1241,7 @@ name|boolean
 name|top
 parameter_list|)
 function_decl|;
+comment|/**    * Utility usable by subclasses when they want to get basic String sorting.    */
 DECL|method|getStringSort
 specifier|protected
 name|SortField

@@ -353,6 +353,7 @@ specifier|private
 name|float
 name|version
 decl_stmt|;
+comment|/**    * Constructs a schema using the specified file name using the normal    * Config path directory searching rules.    *    * @see Config#openResource    */
 DECL|method|IndexSchema
 specifier|public
 name|IndexSchema
@@ -371,6 +372,7 @@ name|readConfig
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Direct acess to the InputStream for the schemaFile used by this instance.    *    * @see Config#openResource    */
 DECL|method|getInputStream
 specifier|public
 name|InputStream
@@ -395,6 +397,7 @@ return|return
 name|version
 return|;
 block|}
+comment|/** The Name of this schema (as specified in the schema file) */
 DECL|method|getName
 specifier|public
 name|String
@@ -445,6 +448,7 @@ name|FieldType
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**    * Provides direct access to the Map containing all explicit    * (ie: non-dynamic) fields in the index, keyed on field name.    *    *<p>    * Modifying this Map (or any item in it) will affect the real schema    *</p>    */
 DECL|method|getFields
 specifier|public
 name|Map
@@ -460,6 +464,7 @@ return|return
 name|fields
 return|;
 block|}
+comment|/**    * Provides direct access to the Map containing all Field Types    * in the index, keyed on fild type name.    *    *<p>    * Modifying this Map (or any item in it) will affect the real schema    *</p>    */
 DECL|method|getFieldTypes
 specifier|public
 name|Map
@@ -480,6 +485,7 @@ specifier|private
 name|Similarity
 name|similarity
 decl_stmt|;
+comment|/**    * Returns the Similarity used for this index    */
 DECL|method|getSimilarity
 specifier|public
 name|Similarity
@@ -495,6 +501,7 @@ specifier|private
 name|Analyzer
 name|analyzer
 decl_stmt|;
+comment|/**    * Returns the Analyzer used when indexing documents for this index    *    *<p>    * This Analyzer is field (and dynamic field) name aware, and delegates to    * a field specific Analyzer based on the field type.    *</p>    */
 DECL|method|getAnalyzer
 specifier|public
 name|Analyzer
@@ -510,6 +517,7 @@ specifier|private
 name|Analyzer
 name|queryAnalyzer
 decl_stmt|;
+comment|/**    * Returns the Analyzer used when searching this index    *    *<p>    * This Analyzer is field (and dynamic field) name aware, and delegates to    * a field specific Analyzer based on the field type.    *</p>    */
 DECL|method|getQueryAnalyzer
 specifier|public
 name|Analyzer
@@ -527,6 +535,7 @@ name|defaultSearchFieldName
 init|=
 literal|null
 decl_stmt|;
+comment|/** Name of the default search field specified in the schema file */
 DECL|method|getDefaultSearchFieldName
 specifier|public
 name|String
@@ -542,6 +551,7 @@ specifier|private
 name|SchemaField
 name|uniqueKeyField
 decl_stmt|;
+comment|/**    * Unique Key field specified in the schema file    * @return null if this schema has no unique key field    */
 DECL|method|getUniqueKeyField
 specifier|public
 name|SchemaField
@@ -562,6 +572,7 @@ specifier|private
 name|FieldType
 name|uniqueKeyFieldType
 decl_stmt|;
+comment|/**    * The raw (field type encoded) value of the Unique Key field for    * the specified Document    * @return null if this schema has no unique key field    * @see #printableUniqueKey    */
 DECL|method|getUniqueKeyField
 specifier|public
 name|Field
@@ -589,6 +600,7 @@ argument_list|)
 return|;
 comment|// this should return null if name is null
 block|}
+comment|/**    * The printable value of the Unique Key field for    * the specified Document    * @return null if this schema has no unique key field    */
 DECL|method|printableUniqueKey
 specifier|public
 name|String
@@ -2813,7 +2825,7 @@ name|DynamicField
 index|[]
 name|dynamicFields
 decl_stmt|;
-comment|// get a field, and if not statically defined, check dynamic fields.
+comment|/**    * Returns the SchemaField that should be used for the specified field name     *    * @param fieldName may be an explicitly created field, or a name that    * excercies a dynamic field.    * @throws SolrException if no such field exists    * @see #getFieldType    */
 DECL|method|getField
 specifier|public
 name|SchemaField
@@ -2883,8 +2895,7 @@ name|fieldName
 argument_list|)
 throw|;
 block|}
-comment|// This method exists because it can be more efficient for dynamic fields
-comment|// if a full SchemaField isn't needed.
+comment|/**    * Returns the FieldType for the specified field name.    *    *<p>    * This method exists because it can be more efficient then    * {@link #getField} for dynamic fields if a full SchemaField isn't needed.    *</p>    *    * @param fieldName may be an explicitly created field, or a name that    * excercies a dynamic field.    * @throws SolrException if no such field exists    * @see #getField(String)    * @see #getFieldTypeNoEx    */
 DECL|method|getFieldType
 specifier|public
 name|FieldType
@@ -2923,7 +2934,7 @@ name|fieldName
 argument_list|)
 return|;
 block|}
-comment|/**    * return null instead of throwing an exception if    * the field is undefined.    */
+comment|/**    * Returns the FieldType for the specified field name.    *    *<p>    * This method exists because it can be more efficient then    * {@link #getField} for dynamic fields if a full SchemaField isn't needed.    *</p>    *    * @param fieldName may be an explicitly created field, or a name that    * excercies a dynamic field.    * @return null if field is not defined.    * @see #getField(String)    * @see #getFieldTypeNoEx    */
 DECL|method|getFieldTypeNoEx
 specifier|public
 name|FieldType
@@ -2962,6 +2973,7 @@ name|fieldName
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the FieldType of the best matching dynamic field for    * the specified field name    *    * @param fieldName may be an explicitly created field, or a name that    * excercies a dynamic field.    * @throws SolrException if no such field exists    * @see #getField(String)    * @see #getFieldTypeNoEx    */
 DECL|method|getDynamicFieldType
 specifier|public
 name|FieldType
@@ -3071,6 +3083,7 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**    * Returns the list of fields that should recieve a copy of any indexed values added to the specified field.    * @return may be null or empty if there are no matching copyField directives    */
 DECL|method|getCopyFields
 specifier|public
 name|SchemaField
