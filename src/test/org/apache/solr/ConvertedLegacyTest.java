@@ -2852,6 +2852,37 @@ argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
+comment|// test copyField functionality with a pattern.
+name|assertU
+argument_list|(
+literal|"<add><doc><field name=\"id\">42</field><field name=\"copy_t\">Copy me to the text field pretty please.</field></doc></add>"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+literal|"<commit/>"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:42 AND text:pretty"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:42 AND copy_t:pretty"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
 comment|// test slop
 name|assertU
 argument_list|(
