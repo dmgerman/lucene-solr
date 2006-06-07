@@ -239,9 +239,6 @@ name|int
 name|doc
 parameter_list|)
 block|{
-name|size
-operator|++
-expr_stmt|;
 name|bits
 operator|.
 name|set
@@ -249,6 +246,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|size
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|// invalidate size
 block|}
 DECL|method|size
 specifier|public
