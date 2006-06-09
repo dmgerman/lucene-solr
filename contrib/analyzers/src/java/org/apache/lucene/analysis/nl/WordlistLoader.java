@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Gerhard Schwarz  *<p/>  *         Loads a text file and adds every line as an entry to a Hashtable. Every line  *         should contain only one word. If the file is not found or on any error, an  *         empty table is returned.  */
+comment|/**  *<p/>  *         Loads a text file and adds every line as an entry to a Hashtable. Every line  *         should contain only one word. If the file is not found or on any error, an  *         empty table is returned.  *           * @author Gerhard Schwarz  * @deprecated use {@link org.apache.lucene.analysis.WordlistLoader} instead  */
 end_comment
 
 begin_class
@@ -78,7 +78,7 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-comment|/**    * @param path     Path to the wordlist    * @param wordfile Name of the wordlist    */
+comment|/**    * @param path     Path to the wordlist    * @param wordfile Name of the wordlist    * @deprecated use {@link org.apache.lucene.analysis.WordlistLoader#getWordSet(File)} instead    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -122,7 +122,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * @param wordfile Complete path to the wordlist    */
+comment|/**    * @param wordfile Complete path to the wordlist    * @deprecated use {@link org.apache.lucene.analysis.WordlistLoader#getWordSet(File)} instead    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
@@ -157,7 +157,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads a stemsdictionary. Each line contains:    * word \t stem    * i.e. tab seperated)    *    * @return Stem dictionary that overrules, the stemming algorithm    */
+comment|/**    * Reads a stemsdictionary. Each line contains:    * word \t stem    * i.e. tab seperated)    *    * @return Stem dictionary that overrules, the stemming algorithm    * @deprecated use {@link org.apache.lucene.analysis.WordlistLoader#getStemDict(File)} instead    */
 DECL|method|getStemDict
 specifier|public
 specifier|static
@@ -262,7 +262,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * @param wordfile File containing the wordlist    */
+comment|/**    * @param wordfile File containing the wordlist    * @deprecated use {@link org.apache.lucene.analysis.WordlistLoader#getWordSet(File)} instead    */
 DECL|method|getWordtable
 specifier|public
 specifier|static
