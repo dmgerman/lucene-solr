@@ -906,7 +906,7 @@ name|termVector
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a tokenized and indexed field that is not stored. Term vectors will    * not be stored.    *     * @param name The name of the field    * @param reader The reader with the content    * @throws NullPointerException if name or reader is<code>null</code>    */
+comment|/**    * Create a tokenized and indexed field that is not stored. Term vectors will    * not be stored.  The Reader is read only when the Document is added to the index.    *     * @param name The name of the field    * @param reader The reader with the content    * @throws NullPointerException if name or reader is<code>null</code>    */
 DECL|method|Field
 specifier|public
 name|Field
@@ -930,7 +930,7 @@ name|NO
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a tokenized and indexed field that is not stored, optionally with     * storing term vectors.    *     * @param name The name of the field    * @param reader The reader with the content    * @param termVector Whether term vector should be stored    * @throws NullPointerException if name or reader is<code>null</code>    */
+comment|/**    * Create a tokenized and indexed field that is not stored, optionally with     * storing term vectors.  The Reader is read only when the Document is added to the index.    *     * @param name The name of the field    * @param reader The reader with the content    * @param termVector Whether term vector should be stored    * @throws NullPointerException if name or reader is<code>null</code>    */
 DECL|method|Field
 specifier|public
 name|Field
