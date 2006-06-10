@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|FieldSelector
 import|;
 end_import
 
@@ -721,7 +721,7 @@ return|return
 name|directory
 return|;
 block|}
-comment|/**     * Returns the time the index in the named directory was last modified.    * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
+comment|/**    * Returns the time the index in the named directory was last modified.    * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -745,7 +745,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**     * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
+comment|/**    * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -771,7 +771,7 @@ name|SEGMENTS
 argument_list|)
 return|;
 block|}
-comment|/**     * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
+comment|/**    * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -1153,12 +1153,37 @@ function_decl|;
 comment|/** Returns the stored fields of the<code>n</code><sup>th</sup><code>Document</code> in this index. */
 DECL|method|document
 specifier|public
+name|Document
+name|document
+parameter_list|(
+name|int
+name|n
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|document
+argument_list|(
+name|n
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/**    * Get the {@link org.apache.lucene.document.Document} at the<code>n</code><sup>th</sup> position. The {@link org.apache.lucene.document.FieldSelector}    * may be used to determine what {@link org.apache.lucene.document.Field}s to load and how they should be loaded.    *     *<b>NOTE:</b> If this Reader (more specifically, the underlying {@link FieldsReader} is closed before the lazy {@link org.apache.lucene.document.Field} is    * loaded an exception may be thrown.  If you want the value of a lazy {@link org.apache.lucene.document.Field} to be available after closing you must    * explicitly load it or fetch the Document again with a new loader.    *     *      * @param n Get the document at the<code>n</code><sup>th</sup> position    * @param fieldSelector The {@link org.apache.lucene.document.FieldSelector} to use to determine what Fields should be loaded on the Document.  May be null, in which case all Fields will be loaded.    * @return The stored fields of the {@link org.apache.lucene.document.Document} at the nth position    * @throws IOException If there is a problem reading this document    *     * @see org.apache.lucene.document.Fieldable    * @see org.apache.lucene.document.FieldSelector    * @see org.apache.lucene.document.SetBasedFieldSelector    * @see org.apache.lucene.document.LoadFirstFieldSelector    */
+comment|//When we convert to JDK 1.5 make this Set<String>
+DECL|method|document
+specifier|public
 specifier|abstract
 name|Document
 name|document
 parameter_list|(
 name|int
 name|n
+parameter_list|,
+name|FieldSelector
+name|fieldSelector
 parameter_list|)
 throws|throws
 name|IOException
@@ -1205,7 +1230,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see Field#setBoost(float)    */
+comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
 DECL|method|norms
 specifier|public
 specifier|abstract
@@ -1219,7 +1244,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Reads the byte-encoded normalization factor for the named field of every    *  document.  This is used by the search code to score documents.    *    * @see Field#setBoost(float)    */
+comment|/** Reads the byte-encoded normalization factor for the named field of every    *  document.  This is used by the search code to score documents.    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
 DECL|method|norms
 specifier|public
 specifier|abstract
@@ -1239,7 +1264,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Field#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Fieldable#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
 DECL|method|setNorm
 specifier|public
 specifier|final

@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|FieldSelector
 import|;
 end_import
 
@@ -74,7 +74,37 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Hashtable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -450,6 +480,9 @@ name|document
 parameter_list|(
 name|int
 name|n
+parameter_list|,
+name|FieldSelector
+name|fieldSelector
 parameter_list|)
 throws|throws
 name|IOException
@@ -477,6 +510,8 @@ name|starts
 index|[
 name|i
 index|]
+argument_list|,
+name|fieldSelector
 argument_list|)
 return|;
 comment|// dispatch to segment reader

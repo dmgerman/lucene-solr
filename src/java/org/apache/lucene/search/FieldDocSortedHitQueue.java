@@ -77,7 +77,7 @@ name|Collator
 index|[]
 name|collators
 decl_stmt|;
-comment|/** 	 * Creates a hit queue sorted by the given list of fields. 	 * @param fields Field names, in priority order (highest priority first). 	 * @param size  The number of hits to retain.  Must be greater than zero. 	 */
+comment|/** 	 * Creates a hit queue sorted by the given list of fields. 	 * @param fields Fieldable names, in priority order (highest priority first). 	 * @param size  The number of hits to retain.  Must be greater than zero. 	 */
 DECL|method|FieldDocSortedHitQueue
 name|FieldDocSortedHitQueue
 parameter_list|(

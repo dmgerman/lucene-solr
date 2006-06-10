@@ -92,21 +92,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
+name|*
 import|;
 end_import
 
@@ -328,7 +314,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("Document: " + doc);
-name|Field
+name|Fieldable
 index|[]
 name|fields
 init|=

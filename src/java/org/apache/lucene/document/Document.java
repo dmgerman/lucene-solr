@@ -18,56 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Enumeration
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Vector
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -79,28 +29,6 @@ operator|.
 name|IndexReader
 import|;
 end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Searcher
-import|;
-end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
 
 begin_import
 import|import
@@ -116,12 +44,36 @@ name|Hits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Searcher
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be {@link Field#isStored() stored} with the document, in which  * case it is returned with search hits on the document.  Thus each document  * should typically contain one or more stored fields which uniquely identify  * it.  *  *<p>Note that fields which are<i>not</i> {@link Field#isStored() stored} are  *<i>not</i> available in documents retrieved from the index, e.g. with {@link  * Hits#doc(int)}, {@link Searcher#doc(int)} or {@link  * IndexReader#document(int)}.  */
+comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be {@link Fieldable#isStored() stored} with the document, in which  * case it is returned with search hits on the document.  Thus each document  * should typically contain one or more stored fields which uniquely identify  * it.  *  *<p>Note that fields which are<i>not</i> {@link Fieldable#isStored() stored} are  *<i>not</i> available in documents retrieved from the index, e.g. with {@link  * Hits#doc(int)}, {@link Searcher#doc(int)} or {@link  * IndexReader#document(int)}.  */
 end_comment
 
 begin_class
@@ -158,7 +110,7 @@ specifier|public
 name|Document
 parameter_list|()
 block|{}
-comment|/** Sets a boost factor for hits on any field of this document.  This value    * will be multiplied into the score of all hits on this document.    *    *<p>Values are multiplied into the value of {@link Field#getBoost()} of    * each field in this document.  Thus, this method in effect sets a default    * boost for the fields of this document.    *    * @see Field#setBoost(float)    */
+comment|/** Sets a boost factor for hits on any field of this document.  This value    * will be multiplied into the score of all hits on this document.    *    *<p>Values are multiplied into the value of {@link Fieldable#getBoost()} of    * each field in this document.  Thus, this method in effect sets a default    * boost for the fields of this document.    *    * @see Fieldable#setBoost(float)    */
 DECL|method|setBoost
 specifier|public
 name|void
@@ -193,7 +145,7 @@ specifier|final
 name|void
 name|add
 parameter_list|(
-name|Field
+name|Fieldable
 name|field
 parameter_list|)
 block|{
@@ -232,11 +184,11 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|it
 operator|.
@@ -292,11 +244,11 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|it
 operator|.
@@ -328,7 +280,7 @@ comment|/** Returns a field with the given name if any exist in this document, o
 DECL|method|getField
 specifier|public
 specifier|final
-name|Field
+name|Fieldable
 name|getField
 parameter_list|(
 name|String
@@ -353,11 +305,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -415,11 +367,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -479,11 +431,11 @@ name|elements
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an array of {@link Field}s with the given name.    * This method can return<code>null</code>.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
+comment|/**    * Returns an array of {@link Fieldable}s with the given name.    * This method can return<code>null</code>.    *    * @param name the name of the field    * @return a<code>Fieldable[]</code> array    */
 DECL|method|getFields
 specifier|public
 specifier|final
-name|Field
+name|Fieldable
 index|[]
 name|getFields
 parameter_list|(
@@ -516,11 +468,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -565,7 +517,7 @@ literal|null
 return|;
 return|return
 operator|(
-name|Field
+name|Fieldable
 index|[]
 operator|)
 name|result
@@ -573,7 +525,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|Field
+name|Fieldable
 index|[
 name|result
 operator|.
@@ -620,11 +572,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -734,11 +686,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -841,11 +793,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -924,11 +876,11 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.

@@ -498,7 +498,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** Add term to the field's term vector. Field must already be open.    *  Terms should be added in    *  increasing order of terms, one call per unique termNum. ProxPointer    *  is a pointer into the TermPosition file (prx). Freq is the number of    *  times this term appears in this field, in this document.    * @throws IllegalStateException if document or field is not open    */
+comment|/** Add term to the field's term vector. Fieldable must already be open.    *  Terms should be added in    *  increasing order of terms, one call per unique termNum. ProxPointer    *  is a pointer into the TermPosition file (prx). Freq is the number of    *  times this term appears in this field, in this document.    * @throws IllegalStateException if document or field is not open    */
 DECL|method|addTerm
 specifier|public
 specifier|final
@@ -1069,7 +1069,7 @@ operator|.
 name|getFilePointer
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("Field Pointer: " + currentField.tvfPointer);
+comment|//System.out.println("Fieldable Pointer: " + currentField.tvfPointer);
 specifier|final
 name|int
 name|size

@@ -582,7 +582,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//System.out.println("Field not found");
+comment|//System.out.println("Fieldable not found");
 block|}
 block|}
 else|else

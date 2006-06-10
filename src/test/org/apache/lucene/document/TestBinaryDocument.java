@@ -116,7 +116,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Field
+name|Fieldable
 name|binaryFldStored
 init|=
 operator|new
@@ -136,7 +136,7 @@ operator|.
 name|YES
 argument_list|)
 decl_stmt|;
-name|Field
+name|Fieldable
 name|binaryFldCompressed
 init|=
 operator|new
@@ -156,7 +156,7 @@ operator|.
 name|COMPRESS
 argument_list|)
 decl_stmt|;
-name|Field
+name|Fieldable
 name|stringFldStored
 init|=
 operator|new
@@ -185,7 +185,7 @@ operator|.
 name|NO
 argument_list|)
 decl_stmt|;
-name|Field
+name|Fieldable
 name|stringFldCompressed
 init|=
 operator|new

@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FieldSelector
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -473,6 +487,9 @@ name|document
 parameter_list|(
 name|int
 name|n
+parameter_list|,
+name|FieldSelector
+name|fieldSelector
 parameter_list|)
 throws|throws
 name|IOException
@@ -483,6 +500,8 @@ operator|.
 name|document
 argument_list|(
 name|n
+argument_list|,
+name|fieldSelector
 argument_list|)
 return|;
 block|}

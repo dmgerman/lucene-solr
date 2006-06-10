@@ -221,7 +221,7 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|Field
+name|Fieldable
 name|stringFld
 init|=
 operator|new
@@ -244,7 +244,7 @@ operator|.
 name|NO
 argument_list|)
 decl_stmt|;
-name|Field
+name|Fieldable
 name|binaryFld
 init|=
 operator|new
@@ -264,7 +264,7 @@ operator|.
 name|YES
 argument_list|)
 decl_stmt|;
-name|Field
+name|Fieldable
 name|binaryFld2
 init|=
 operator|new

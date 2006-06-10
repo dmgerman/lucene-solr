@@ -116,7 +116,7 @@ name|FieldSortedHitQueue
 extends|extends
 name|PriorityQueue
 block|{
-comment|/**    * Creates a hit queue sorted by the given list of fields.    * @param reader  Index to use.    * @param fields Field names, in priority order (highest priority first).  Cannot be<code>null</code> or empty.    * @param size  The number of hits to retain.  Must be greater than zero.    * @throws IOException    */
+comment|/**    * Creates a hit queue sorted by the given list of fields.    * @param reader  Index to use.    * @param fields Fieldable names, in priority order (highest priority first).  Cannot be<code>null</code> or empty.    * @param size  The number of hits to retain.  Must be greater than zero.    * @throws IOException    */
 DECL|method|FieldSortedHitQueue
 specifier|public
 name|FieldSortedHitQueue
@@ -1021,7 +1021,7 @@ return|return
 name|comparator
 return|;
 block|}
-comment|/**    * Returns a comparator for sorting hits according to a field containing integers.    * @param reader  Index to use.    * @param fieldname  Field containg integer values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
+comment|/**    * Returns a comparator for sorting hits according to a field containing integers.    * @param reader  Index to use.    * @param fieldname  Fieldable containg integer values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
 DECL|method|comparatorInt
 specifier|static
 name|ScoreDocComparator
@@ -1163,7 +1163,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a comparator for sorting hits according to a field containing floats.    * @param reader  Index to use.    * @param fieldname  Field containg float values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
+comment|/**    * Returns a comparator for sorting hits according to a field containing floats.    * @param reader  Index to use.    * @param fieldname  Fieldable containg float values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
 DECL|method|comparatorFloat
 specifier|static
 name|ScoreDocComparator
@@ -1305,7 +1305,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a comparator for sorting hits according to a field containing strings.    * @param reader  Index to use.    * @param fieldname  Field containg string values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
+comment|/**    * Returns a comparator for sorting hits according to a field containing strings.    * @param reader  Index to use.    * @param fieldname  Fieldable containg string values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
 DECL|method|comparatorString
 specifier|static
 name|ScoreDocComparator
@@ -1455,7 +1455,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a comparator for sorting hits according to a field containing strings.    * @param reader  Index to use.    * @param fieldname  Field containg string values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
+comment|/**    * Returns a comparator for sorting hits according to a field containing strings.    * @param reader  Index to use.    * @param fieldname  Fieldable containg string values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
 DECL|method|comparatorStringLocale
 specifier|static
 name|ScoreDocComparator
@@ -1584,7 +1584,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a comparator for sorting hits according to values in the given field.    * The terms in the field are looked at to determine whether they contain integers,    * floats or strings.  Once the type is determined, one of the other static methods    * in this class is called to get the comparator.    * @param reader  Index to use.    * @param fieldname  Field containg values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
+comment|/**    * Returns a comparator for sorting hits according to values in the given field.    * The terms in the field are looked at to determine whether they contain integers,    * floats or strings.  Once the type is determined, one of the other static methods    * in this class is called to get the comparator.    * @param reader  Index to use.    * @param fieldname  Fieldable containg values.    * @return  Comparator for sorting hits.    * @throws IOException If an error occurs reading the index.    */
 DECL|method|comparatorAuto
 specifier|static
 name|ScoreDocComparator

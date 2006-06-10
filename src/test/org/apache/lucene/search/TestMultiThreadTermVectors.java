@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -60,21 +50,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
+name|*
 import|;
 end_import
 
@@ -145,6 +121,16 @@ operator|.
 name|util
 operator|.
 name|English
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -244,7 +230,7 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|Field
+name|Fieldable
 name|fld
 init|=
 operator|new

@@ -545,12 +545,14 @@ expr_stmt|;
 comment|//System.out.println("stored size: " + stored.size());
 name|assertTrue
 argument_list|(
+literal|"We do not have 4 fields that were indexed with term vector"
+argument_list|,
 name|stored
 operator|.
 name|size
 argument_list|()
 operator|==
-literal|2
+literal|4
 argument_list|)
 expr_stmt|;
 name|TermFreqVector

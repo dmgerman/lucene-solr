@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|Fieldable
 import|;
 end_import
 
@@ -354,11 +354,11 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -1053,7 +1053,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|Fieldable
 name|f
 init|=
 name|DocHelper
@@ -1400,11 +1400,17 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+literal|"We do not have 4 term freq vectors, we have: "
+operator|+
+name|results
+operator|.
+name|length
+argument_list|,
 name|results
 operator|.
 name|length
 operator|==
-literal|2
+literal|4
 argument_list|)
 expr_stmt|;
 block|}

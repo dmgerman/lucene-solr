@@ -961,7 +961,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p>The default value is 10.    *     * @see IndexWriter#setMaxBufferedDocs(int)    * @throws IllegalStateException if the index is closed    * @throws IllegalArgumentException if maxBufferedDocs is smaller than 2    */
+comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are merging and a new Segment is created.    * Since Documents are merged in a {@link org.apache.lucene.store.RAMDirectory},    * large value gives faster indexing.  At the same time, mergeFactor limits    * the number of files open in a FSDirectory.    *    *<p>The default value is 10.    *    * @see IndexWriter#setMaxBufferedDocs(int)    * @throws IllegalStateException if the index is closed    * @throws IllegalArgumentException if maxBufferedDocs is smaller than 2    */
 DECL|method|setMaxBufferedDocs
 specifier|public
 name|void
@@ -1172,7 +1172,7 @@ operator|+
 name|directory
 return|;
 block|}
-comment|/*   // used as an example in the javadoc:   public static void main(String[] args) throws IOException {     Analyzer analyzer = new StandardAnalyzer();     // create an index in /tmp/index, overwriting an existing one:     IndexModifier indexModifier = new IndexModifier("/tmp/index", analyzer, true);     Document doc = new Document();     doc.add(new Field("id", "1", Field.Store.YES, Field.Index.UN_TOKENIZED));     doc.add(new Field("body", "a simple test", Field.Store.YES, Field.Index.TOKENIZED));     indexModifier.addDocument(doc);     int deleted = indexModifier.delete(new Term("id", "1"));     System.out.println("Deleted " + deleted + " document");     indexModifier.flush();     System.out.println(indexModifier.docCount() + " docs in index");     indexModifier.close();   }*/
+comment|/*   // used as an example in the javadoc:   public static void main(String[] args) throws IOException {     Analyzer analyzer = new StandardAnalyzer();     // create an index in /tmp/index, overwriting an existing one:     IndexModifier indexModifier = new IndexModifier("/tmp/index", analyzer, true);     Document doc = new Document();     doc.add(new Fieldable("id", "1", Fieldable.Store.YES, Fieldable.Index.UN_TOKENIZED));     doc.add(new Fieldable("body", "a simple test", Fieldable.Store.YES, Fieldable.Index.TOKENIZED));     indexModifier.addDocument(doc);     int deleted = indexModifier.delete(new Term("id", "1"));     System.out.println("Deleted " + deleted + " document");     indexModifier.flush();     System.out.println(indexModifier.docCount() + " docs in index");     indexModifier.close();   }*/
 block|}
 end_class
 
