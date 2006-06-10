@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|OpenBitSet
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -127,7 +141,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|bs
 specifier|static
-name|BitSet
+name|OpenBitSet
 name|bs
 decl_stmt|;
 DECL|field|bds
@@ -162,7 +176,7 @@ block|{
 name|bs
 operator|=
 operator|new
-name|BitSet
+name|OpenBitSet
 argument_list|(
 name|maxSize
 argument_list|)
@@ -225,7 +239,7 @@ condition|)
 block|{
 name|bs
 operator|.
-name|set
+name|fastSet
 argument_list|(
 name|id
 argument_list|)
@@ -384,12 +398,12 @@ name|ret
 init|=
 literal|0
 decl_stmt|;
-name|BitSet
+name|OpenBitSet
 index|[]
 name|sets
 init|=
 operator|new
-name|BitSet
+name|OpenBitSet
 index|[
 name|numSets
 index|]
@@ -523,7 +537,7 @@ argument_list|,
 name|numBitsSet
 argument_list|)
 expr_stmt|;
-name|BitSet
+name|OpenBitSet
 name|bs1
 init|=
 name|bs
@@ -554,12 +568,12 @@ argument_list|,
 name|numBitsSet
 argument_list|)
 expr_stmt|;
-name|BitSet
+name|OpenBitSet
 name|res
 init|=
 operator|(
 operator|(
-name|BitSet
+name|OpenBitSet
 operator|)
 name|bs1
 operator|.
@@ -577,6 +591,9 @@ expr_stmt|;
 name|int
 name|icount
 init|=
+operator|(
+name|int
+operator|)
 name|res
 operator|.
 name|cardinality

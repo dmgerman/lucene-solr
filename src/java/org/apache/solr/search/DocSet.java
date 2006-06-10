@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|OpenBitSet
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -95,12 +109,12 @@ name|DocIterator
 name|iterator
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a BitSet view of the DocSet.  Any changes to this BitSet<b>may</b>    * be reflected in the DocSet, hence if the DocSet is shared or was returned from    * a SolrIndexSearcher method, it's not safe to modify the BitSet.    *    * @return    * A BitSet with the bit number of every docid set in the set.    */
+comment|/**    * Returns a BitSet view of the DocSet.  Any changes to this BitSet<b>may</b>    * be reflected in the DocSet, hence if the DocSet is shared or was returned from    * a SolrIndexSearcher method, it's not safe to modify the BitSet.    *    * @return    * An OpenBitSet with the bit number of every docid set in the set.    */
 annotation|@
 name|Deprecated
 DECL|method|getBits
 specifier|public
-name|BitSet
+name|OpenBitSet
 name|getBits
 parameter_list|()
 function_decl|;
@@ -332,15 +346,15 @@ block|}
 comment|/**    * Inefficient base implementation.    *    * @see BitDocSet#getBits    */
 DECL|method|getBits
 specifier|public
-name|BitSet
+name|OpenBitSet
 name|getBits
 parameter_list|()
 block|{
-name|BitSet
+name|OpenBitSet
 name|bits
 init|=
 operator|new
-name|BitSet
+name|OpenBitSet
 argument_list|()
 decl_stmt|;
 for|for
@@ -403,11 +417,11 @@ argument_list|)
 return|;
 block|}
 comment|// Default... handle with bitsets.
-name|BitSet
+name|OpenBitSet
 name|newbits
 init|=
 call|(
-name|BitSet
+name|OpenBitSet
 call|)
 argument_list|(
 name|this
@@ -446,11 +460,11 @@ name|DocSet
 name|other
 parameter_list|)
 block|{
-name|BitSet
+name|OpenBitSet
 name|newbits
 init|=
 call|(
-name|BitSet
+name|OpenBitSet
 call|)
 argument_list|(
 name|this
@@ -519,7 +533,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|// TODO: more efficient implementations
+comment|// TODO: do an efficient implementation
 DECL|method|unionSize
 specifier|public
 name|int
