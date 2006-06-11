@@ -4,7 +4,7 @@ comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.search.test
+DECL|package|org.apache.solr.search
 package|package
 name|org
 operator|.
@@ -13,8 +13,6 @@ operator|.
 name|solr
 operator|.
 name|search
-operator|.
-name|test
 package|;
 end_package
 
