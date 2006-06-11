@@ -99,10 +99,10 @@ comment|/**  * @author yonik  */
 end_comment
 
 begin_class
-DECL|class|TestDocSet
+DECL|class|DocSetPerf
 specifier|public
 class|class
-name|TestDocSet
+name|DocSetPerf
 block|{
 comment|// use test instead of assert since asserts may be turned off
 DECL|method|test
