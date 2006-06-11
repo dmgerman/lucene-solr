@@ -395,6 +395,7 @@ argument_list|(
 name|a2
 argument_list|)
 decl_stmt|;
+comment|// System.out.println("b1="+b1+", b2="+b2);
 name|assertEquals
 argument_list|(
 operator|(

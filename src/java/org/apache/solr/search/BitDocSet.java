@@ -411,6 +411,8 @@ operator|instanceof
 name|BitDocSet
 condition|)
 block|{
+comment|// if we don't know our current size, this is faster than
+comment|// size + other.size - intersection_size
 return|return
 operator|(
 name|int
@@ -492,7 +494,6 @@ return|;
 block|}
 else|else
 block|{
-comment|// use BaseDocSet's size-intersection_size
 return|return
 name|super
 operator|.
