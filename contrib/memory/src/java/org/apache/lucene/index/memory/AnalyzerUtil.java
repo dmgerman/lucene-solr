@@ -196,7 +196,7 @@ name|AnalyzerUtil
 parameter_list|()
 block|{}
 empty_stmt|;
-comment|/** 	 * Returns a simple analyzer wrapper that logs all tokens produced by the 	 * underlying child analyzer to the given log stream (typically System.err); 	 * Otherwise behaves exactly like the child analyzer, delivering the very 	 * same tokens; useful for debugging purposes on custom indexing and/or 	 * querying. 	 *  	 * @param child 	 *            the underlying child analyzer 	 * @param log 	 *            the print stream to log to (typically System.err) 	 * @param logName 	 *            a name for this logger (typically "log" or similar) 	 * @return a logging analyzer 	 */
+comment|/**    * Returns a simple analyzer wrapper that logs all tokens produced by the    * underlying child analyzer to the given log stream (typically System.err);    * Otherwise behaves exactly like the child analyzer, delivering the very    * same tokens; useful for debugging purposes on custom indexing and/or    * querying.    *     * @param child    *            the underlying child analyzer    * @param log    *            the print stream to log to (typically System.err)    * @param logName    *            a name for this logger (typically "log" or similar)    * @return a logging analyzer    */
 DECL|method|getLoggingAnalyzer
 specifier|public
 specifier|static
@@ -392,7 +392,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns an analyzer wrapper that returns at most the first 	 *<code>maxTokens</code> tokens from the underlying child analyzer, 	 * ignoring all remaining tokens. 	 *  	 * @param child 	 *            the underlying child analyzer 	 * @param maxTokens 	 *            the maximum number of tokens to return from the underlying 	 *            analyzer (a value of Integer.MAX_VALUE indicates unlimited) 	 * @return an analyzer wrapper 	 */
+comment|/**    * Returns an analyzer wrapper that returns at most the first    *<code>maxTokens</code> tokens from the underlying child analyzer,    * ignoring all remaining tokens.    *     * @param child    *            the underlying child analyzer    * @param maxTokens    *            the maximum number of tokens to return from the underlying    *            analyzer (a value of Integer.MAX_VALUE indicates unlimited)    * @return an analyzer wrapper    */
 DECL|method|getMaxTokenAnalyzer
 specifier|public
 specifier|static
@@ -509,7 +509,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns an English stemming analyzer that stems tokens from the 	 * underlying child analyzer according to the Porter stemming algorithm. The 	 * child analyzer must deliver tokens in lower case for the stemmer to work 	 * properly. 	 *<p> 	 * Background: Stemming reduces token terms to their linguistic root form 	 * e.g. reduces "fishing" and "fishes" to "fish", "family" and "families" to 	 * "famili", as well as "complete" and "completion" to "complet". Note that 	 * the root form is not necessarily a meaningful word in itself, and that 	 * this is not a bug but rather a feature, if you lean back and think about 	 * fuzzy word matching for a bit. 	 *<p> 	 * See the Lucene contrib packages for stemmers (and stop words) for German, 	 * Russian and many more languages. 	 *  	 * @param child 	 *            the underlying child analyzer 	 * @return an analyzer wrapper 	 */
+comment|/**    * Returns an English stemming analyzer that stems tokens from the    * underlying child analyzer according to the Porter stemming algorithm. The    * child analyzer must deliver tokens in lower case for the stemmer to work    * properly.    *<p>    * Background: Stemming reduces token terms to their linguistic root form    * e.g. reduces "fishing" and "fishes" to "fish", "family" and "families" to    * "famili", as well as "complete" and "completion" to "complet". Note that    * the root form is not necessarily a meaningful word in itself, and that    * this is not a bug but rather a feature, if you lean back and think about    * fuzzy word matching for a bit.    *<p>    * See the Lucene contrib packages for stemmers (and stop words) for German,    * Russian and many more languages.    *     * @param child    *            the underlying child analyzer    * @return an analyzer wrapper    */
 DECL|method|getPorterStemmerAnalyzer
 specifier|public
 specifier|static
@@ -564,15 +564,15 @@ name|reader
 argument_list|)
 argument_list|)
 return|;
-comment|// 				/* PorterStemFilter and SnowballFilter have the same behaviour,
-comment|// 				but PorterStemFilter is much faster. */
-comment|//				return new org.apache.lucene.analysis.snowball.SnowballFilter(
-comment|//						child.tokenStream(fieldName, reader), "English");
+comment|//        /* PorterStemFilter and SnowballFilter have the same behaviour,
+comment|//        but PorterStemFilter is much faster. */
+comment|//        return new org.apache.lucene.analysis.snowball.SnowballFilter(
+comment|//            child.tokenStream(fieldName, reader), "English");
 block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns an analyzer wrapper that wraps the underlying child analyzer's 	 * token stream into a {@link SynonymTokenFilter}. 	 *  	 * @param child 	 *            the underlying child analyzer 	 * @param synonyms 	 *            the map used to extract synonyms for terms 	 * @param maxSynonyms 	 *            the maximum number of synonym tokens to return per underlying 	 *            token word (a value of Integer.MAX_VALUE indicates unlimited) 	 * @return a new analyzer 	 */
+comment|/**    * Returns an analyzer wrapper that wraps the underlying child analyzer's    * token stream into a {@link SynonymTokenFilter}.    *     * @param child    *            the underlying child analyzer    * @param synonyms    *            the map used to extract synonyms for terms    * @param maxSynonyms    *            the maximum number of synonym tokens to return per underlying    *            token word (a value of Integer.MAX_VALUE indicates unlimited)    * @return a new analyzer    */
 DECL|method|getSynonymAnalyzer
 specifier|public
 specifier|static
@@ -679,7 +679,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Returns (frequency:term) pairs for the top N distinct terms (aka words), 	 * sorted descending by frequency (and ascending by term, if tied). 	 *<p> 	 * Example XQuery: 	 *<pre> 	 * declare namespace util = "java:org.apache.lucene.index.memory.AnalyzerUtil"; 	 * declare namespace analyzer = "java:org.apache.lucene.index.memory.PatternAnalyzer"; 	 *  	 * for $pair in util:get-most-frequent-terms( 	 *    analyzer:EXTENDED_ANALYZER(), doc("samples/shakespeare/othello.xml"), 10) 	 * return&lt;word word="{substring-after($pair, ':')}" frequency="{substring-before($pair, ':')}"/> 	 *</pre> 	 *  	 * @param analyzer 	 *            the analyzer to use for splitting text into terms (aka words) 	 * @param text 	 *            the text to analyze 	 * @param limit 	 *            the maximum number of pairs to return; zero indicates  	 *            "as many as possible". 	 * @return an array of (frequency:term) pairs in the form of (freq0:term0, 	 *         freq1:term1, ..., freqN:termN). Each pair is a single string 	 *         separated by a ':' delimiter. 	 */
+comment|/**    * Returns (frequency:term) pairs for the top N distinct terms (aka words),    * sorted descending by frequency (and ascending by term, if tied).    *<p>    * Example XQuery:    *<pre>    * declare namespace util = "java:org.apache.lucene.index.memory.AnalyzerUtil";    * declare namespace analyzer = "java:org.apache.lucene.index.memory.PatternAnalyzer";    *     * for $pair in util:get-most-frequent-terms(    *    analyzer:EXTENDED_ANALYZER(), doc("samples/shakespeare/othello.xml"), 10)    * return&lt;word word="{substring-after($pair, ':')}" frequency="{substring-before($pair, ':')}"/>    *</pre>    *     * @param analyzer    *            the analyzer to use for splitting text into terms (aka words)    * @param text    *            the text to analyze    * @param limit    *            the maximum number of pairs to return; zero indicates     *            "as many as possible".    * @return an array of (frequency:term) pairs in the form of (freq0:term0,    *         freq1:term1, ..., freqN:termN). Each pair is a single string    *         separated by a ':' delimiter.    */
 DECL|method|getMostFrequentTerms
 specifier|public
 specifier|static
@@ -1184,7 +1184,7 @@ argument_list|(
 literal|"([\\r\\n\\u0085\\u2028\\u2029][ \\t\\x0B\\f]*){2,}"
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Returns at most the first N paragraphs of the given text. Delimiting 	 * characters are excluded from the results. Each returned paragraph is 	 * whitespace-trimmed via String.trim(), potentially an empty string. 	 *  	 * @param text 	 *            the text to tokenize into paragraphs 	 * @param limit 	 *            the maximum number of paragraphs to return; zero indicates "as 	 *            many as possible". 	 * @return the first N paragraphs 	 */
+comment|/**    * Returns at most the first N paragraphs of the given text. Delimiting    * characters are excluded from the results. Each returned paragraph is    * whitespace-trimmed via String.trim(), potentially an empty string.    *     * @param text    *            the text to tokenize into paragraphs    * @param limit    *            the maximum number of paragraphs to return; zero indicates "as    *            many as possible".    * @return the first N paragraphs    */
 DECL|method|getParagraphs
 specifier|public
 specifier|static
@@ -1288,7 +1288,7 @@ argument_list|(
 literal|"[!\\.\\?\\xA1\\xBF]+"
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Returns at most the first N sentences of the given text. Delimiting 	 * characters are excluded from the results. Each returned sentence is 	 * whitespace-trimmed via String.trim(), potentially an empty string. 	 *  	 * @param text 	 *            the text to tokenize into sentences 	 * @param limit 	 *            the maximum number of sentences to return; zero indicates "as 	 *            many as possible". 	 * @return the first N sentences 	 */
+comment|/**    * Returns at most the first N sentences of the given text. Delimiting    * characters are excluded from the results. Each returned sentence is    * whitespace-trimmed via String.trim(), potentially an empty string.    *     * @param text    *            the text to tokenize into sentences    * @param limit    *            the maximum number of sentences to return; zero indicates "as    *            many as possible".    * @return the first N sentences    */
 DECL|method|getSentences
 specifier|public
 specifier|static
@@ -1303,7 +1303,7 @@ name|int
 name|limit
 parameter_list|)
 block|{
-comment|//		return tokenize(SENTENCES, text, limit); // equivalent but slower
+comment|//    return tokenize(SENTENCES, text, limit); // equivalent but slower
 name|int
 name|len
 init|=

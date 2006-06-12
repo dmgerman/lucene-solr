@@ -787,7 +787,7 @@ literal|"yourselves"
 block|}
 argument_list|)
 decl_stmt|;
-comment|/** 	 * A lower-casing word analyzer with English stop words (can be shared 	 * freely across threads without harm); global per class loader. 	 */
+comment|/**    * A lower-casing word analyzer with English stop words (can be shared    * freely across threads without harm); global per class loader.    */
 DECL|field|DEFAULT_ANALYZER
 specifier|public
 specifier|static
@@ -810,7 +810,7 @@ name|ENGLISH_STOP_WORDS
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * A lower-casing word analyzer with<b>extended</b> English stop words 	 * (can be shared freely across threads without harm); global per class 	 * loader. The stop words are borrowed from 	 * http://thomas.loc.gov/home/stopwords.html, see 	 * http://thomas.loc.gov/home/all.about.inquery.html 	 */
+comment|/**    * A lower-casing word analyzer with<b>extended</b> English stop words    * (can be shared freely across threads without harm); global per class    * loader. The stop words are borrowed from    * http://thomas.loc.gov/home/stopwords.html, see    * http://thomas.loc.gov/home/all.about.inquery.html    */
 DECL|field|EXTENDED_ANALYZER
 specifier|public
 specifier|static
@@ -846,7 +846,7 @@ specifier|final
 name|Set
 name|stopWords
 decl_stmt|;
-comment|/** 	 * Constructs a new instance with the given parameters. 	 *  	 * @param pattern 	 *            a regular expression delimiting tokens 	 * @param toLowerCase 	 *            if<code>true</code> returns tokens after applying 	 *            String.toLowerCase() 	 * @param stopWords 	 *            if non-null, ignores all tokens that are contained in the 	 *            given stop set (after previously having applied toLowerCase() 	 *            if applicable). For example, created via 	 *            {@link StopFilter#makeStopSet(String[])}and/or 	 *            {@link org.apache.lucene.analysis.WordlistLoader}as in 	 *<code>WordlistLoader.getWordSet(new File("samples/fulltext/stopwords.txt")</code> 	 *            or<a href="http://www.unine.ch/info/clef/">other stop words 	 *            lists</a>. 	 */
+comment|/**    * Constructs a new instance with the given parameters.    *     * @param pattern    *            a regular expression delimiting tokens    * @param toLowerCase    *            if<code>true</code> returns tokens after applying    *            String.toLowerCase()    * @param stopWords    *            if non-null, ignores all tokens that are contained in the    *            given stop set (after previously having applied toLowerCase()    *            if applicable). For example, created via    *            {@link StopFilter#makeStopSet(String[])}and/or    *            {@link org.apache.lucene.analysis.WordlistLoader}as in    *<code>WordlistLoader.getWordSet(new File("samples/fulltext/stopwords.txt")</code>    *            or<a href="http://www.unine.ch/info/clef/">other stop words    *            lists</a>.    */
 DECL|method|PatternAnalyzer
 specifier|public
 name|PatternAnalyzer
@@ -937,7 +937,7 @@ operator|=
 name|stopWords
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a token stream that tokenizes the given string into token terms 	 * (aka words). 	 *  	 * @param fieldName 	 *            the name of the field to tokenize (currently ignored). 	 * @param text 	 *            the string to tokenize 	 * @return a new token stream 	 */
+comment|/**    * Creates a token stream that tokenizes the given string into token terms    * (aka words).    *     * @param fieldName    *            the name of the field to tokenize (currently ignored).    * @param text    *            the string to tokenize    * @return a new token stream    */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -1050,7 +1050,7 @@ return|return
 name|stream
 return|;
 block|}
-comment|/** 	 * Creates a token stream that tokenizes all the text in the given Reader; 	 * This implementation forwards to<code>tokenStream(String, String)</code> and is 	 * less efficient than<code>tokenStream(String, String)</code>. 	 *  	 * @param fieldName 	 *            the name of the field to tokenize (currently ignored). 	 * @param reader 	 *            the reader delivering the text 	 * @return a new token stream 	 */
+comment|/**    * Creates a token stream that tokenizes all the text in the given Reader;    * This implementation forwards to<code>tokenStream(String, String)</code> and is    * less efficient than<code>tokenStream(String, String)</code>.    *     * @param fieldName    *            the name of the field to tokenize (currently ignored).    * @param reader    *            the reader delivering the text    * @return a new token stream    */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -1122,7 +1122,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Indicates whether some other object is "equal to" this one. 	 *  	 * @param other 	 *            the reference object with which to compare. 	 * @return true if equal, false otherwise 	 */
+comment|/**    * Indicates whether some other object is "equal to" this one.    *     * @param other    *            the reference object with which to compare.    * @return true if equal, false otherwise    */
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1212,7 +1212,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * Returns a hash code value for the object. 	 *  	 * @return the hash code. 	 */
+comment|/**    * Returns a hash code value for the object.    *     * @return the hash code.    */
 DECL|method|hashCode
 specifier|public
 name|int
@@ -1389,7 +1389,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/** 	 * Reads until end-of-stream and returns all read chars, finally closes the stream. 	 *  	 * @param input the input stream 	 * @throws IOException if an I/O error occurs while reading the stream 	 */
+comment|/**    * Reads until end-of-stream and returns all read chars, finally closes the stream.    *     * @param input the input stream    * @throws IOException if an I/O error occurs while reading the stream    */
 DECL|method|toString
 specifier|private
 specifier|static
@@ -1621,12 +1621,12 @@ expr_stmt|;
 return|return
 name|stops
 return|;
-comment|//		return Collections.unmodifiableSet(stops);
+comment|//    return Collections.unmodifiableSet(stops);
 block|}
 comment|///////////////////////////////////////////////////////////////////////////////
 comment|// Nested classes:
 comment|///////////////////////////////////////////////////////////////////////////////
-comment|/** 	 * The work horse; performance isn't fantastic, but it's not nearly as bad 	 * as one might think - kudos to the Sun regex developers. 	 */
+comment|/**    * The work horse; performance isn't fantastic, but it's not nearly as bad    * as one might think - kudos to the Sun regex developers.    */
 DECL|class|PatternTokenizer
 specifier|private
 specifier|static
@@ -1841,7 +1841,7 @@ block|}
 comment|///////////////////////////////////////////////////////////////////////////////
 comment|// Nested classes:
 comment|///////////////////////////////////////////////////////////////////////////////
-comment|/** 	 * Special-case class for best performance in common cases; this class is 	 * otherwise unnecessary. 	 */
+comment|/**    * Special-case class for best performance in common cases; this class is    * otherwise unnecessary.    */
 DECL|class|FastStringTokenizer
 specifier|private
 specifier|static
@@ -2062,16 +2062,16 @@ argument_list|(
 name|locale
 argument_list|)
 expr_stmt|;
-comment|//					if (toLowerCase) {
-comment|////						use next line once JDK 1.5 String.toLowerCase() performance regression is fixed
-comment|////						see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265809
-comment|//						text = s.substring(start, i).toLowerCase();
-comment|////						char[] chars = new char[i-start];
-comment|////						for (int j=start; j< i; j++) chars[j-start] = Character.toLowerCase(s.charAt(j));
-comment|////						text = new String(chars);
-comment|//					} else {
-comment|//						text = s.substring(start, i);
-comment|//					}
+comment|//          if (toLowerCase) {
+comment|////            use next line once JDK 1.5 String.toLowerCase() performance regression is fixed
+comment|////            see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265809
+comment|//            text = s.substring(start, i).toLowerCase();
+comment|////            char[] chars = new char[i-start];
+comment|////            for (int j=start; j< i; j++) chars[j-start] = Character.toLowerCase(s.charAt(j));
+comment|////            text = new String(chars);
+comment|//          } else {
+comment|//            text = s.substring(start, i);
+comment|//          }
 block|}
 block|}
 do|while
@@ -2165,7 +2165,7 @@ block|}
 comment|///////////////////////////////////////////////////////////////////////////////
 comment|// Nested classes:
 comment|///////////////////////////////////////////////////////////////////////////////
-comment|/** 	 * A StringReader that exposes it's contained string for fast direct access. 	 * Might make sense to generalize this to CharSequence and make it public? 	 */
+comment|/**    * A StringReader that exposes it's contained string for fast direct access.    * Might make sense to generalize this to CharSequence and make it public?    */
 DECL|class|FastStringReader
 specifier|static
 specifier|final

@@ -453,8 +453,8 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
-comment|//	public void setUp() {	}
-comment|//	public void tearDown() {}
+comment|//  public void setUp() {  }
+comment|//  public void tearDown() {}
 DECL|method|testMany
 specifier|public
 name|void
@@ -484,7 +484,7 @@ block|,
 literal|"src/java/test/org/apache/lucene/queryParser/*.java"
 block|,
 literal|"src/java/org/apache/lucene/index/memory/*.java"
-block|, 		}
+block|,     }
 argument_list|)
 decl_stmt|;
 name|System
@@ -522,7 +522,7 @@ block|,
 literal|"memram"
 block|,
 literal|"@src/test/org/apache/lucene/index/memory/testqueries.txt"
-block|, 		}
+block|,     }
 decl_stmt|;
 name|String
 index|[]
@@ -864,8 +864,8 @@ name|toLowerCase
 init|=
 literal|true
 decl_stmt|;
-comment|//		boolean toLowerCase = false;
-comment|//		Set stopWords = null;
+comment|//    boolean toLowerCase = false;
+comment|//    Set stopWords = null;
 name|Set
 name|stopWords
 init|=
@@ -902,10 +902,10 @@ name|PatternAnalyzer
 operator|.
 name|DEFAULT_ANALYZER
 block|,
-comment|//				new WhitespaceAnalyzer(),
-comment|//				new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, false, null),
-comment|//				new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, true, stopWords),
-comment|//				new SnowballAnalyzer("English", StopAnalyzer.ENGLISH_STOP_WORDS),
+comment|//        new WhitespaceAnalyzer(),
+comment|//        new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, false, null),
+comment|//        new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, true, stopWords),
+comment|//        new SnowballAnalyzer("English", StopAnalyzer.ENGLISH_STOP_WORDS),
 block|}
 decl_stmt|;
 for|for
@@ -1782,7 +1782,7 @@ name|Query
 name|query
 parameter_list|)
 block|{
-comment|//		System.out.println("MB=" + (getMemorySize(index) / (1024.0f * 1024.0f)));
+comment|//    System.out.println("MB=" + (getMemorySize(index) / (1024.0f * 1024.0f)));
 name|Searcher
 name|searcher
 init|=
@@ -1872,8 +1872,8 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|//			Hits hits = searcher.search(query);
-comment|//			float score = hits.length()> 0 ? hits.score(0) : 0.0f;
+comment|//      Hits hits = searcher.search(query);
+comment|//      float score = hits.length()> 0 ? hits.score(0) : 0.0f;
 return|return
 name|score
 return|;
@@ -2053,7 +2053,7 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-comment|//		parser.setPhraseSlop(0);
+comment|//    parser.setPhraseSlop(0);
 return|return
 name|parser
 operator|.

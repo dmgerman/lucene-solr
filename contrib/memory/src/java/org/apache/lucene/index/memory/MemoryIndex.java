@@ -402,7 +402,7 @@ name|DEBUG
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * Sorts term entries into ascending order; also works for 	 * Arrays.binarySearch() and Arrays.sort() 	 */
+comment|/**    * Sorts term entries into ascending order; also works for    * Arrays.binarySearch() and Arrays.sort()    */
 DECL|field|termComparator
 specifier|private
 specifier|static
@@ -497,7 +497,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** 	 * Constructs an empty instance. 	 */
+comment|/**    * Constructs an empty instance.    */
 DECL|method|MemoryIndex
 specifier|public
 name|MemoryIndex
@@ -509,7 +509,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Constructs an empty instance that can optionally store the start and end 	 * character offset of each token term in the text. This can be useful for 	 * highlighting of hit locations with the Lucene highlighter package. 	 * Private until the highlighter package matures, so that this can actually 	 * be meaningfully integrated. 	 *  	 * @param storeOffsets 	 *            whether or not to store the start and end character offset of 	 *            each token term in the text 	 */
+comment|/**    * Constructs an empty instance that can optionally store the start and end    * character offset of each token term in the text. This can be useful for    * highlighting of hit locations with the Lucene highlighter package.    * Private until the highlighter package matures, so that this can actually    * be meaningfully integrated.    *     * @param storeOffsets    *            whether or not to store the start and end character offset of    *            each token term in the text    */
 DECL|method|MemoryIndex
 specifier|private
 name|MemoryIndex
@@ -529,7 +529,7 @@ else|:
 literal|1
 expr_stmt|;
 block|}
-comment|/** 	 * Convenience method; Tokenizes the given field text and adds the resulting 	 * terms to the index; Equivalent to adding a tokenized, indexed, 	 * termVectorStored, unstored, non-keyword Lucene 	 * {@link org.apache.lucene.document.Field}. 	 *  	 * @param fieldName 	 *            a name to be associated with the text 	 * @param text 	 *            the text to tokenize and index. 	 * @param analyzer 	 *            the analyzer to use for tokenization 	 */
+comment|/**    * Convenience method; Tokenizes the given field text and adds the resulting    * terms to the index; Equivalent to adding a tokenized, indexed,    * termVectorStored, unstored, non-keyword Lucene    * {@link org.apache.lucene.document.Field}.    *     * @param fieldName    *            a name to be associated with the text    * @param text    *            the text to tokenize and index.    * @param analyzer    *            the analyzer to use for tokenization    */
 DECL|method|addField
 specifier|public
 name|void
@@ -639,7 +639,7 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Convenience method; Creates and returns a token stream that generates a 	 * token for each keyword in the given collection, "as is", without any 	 * transforming text analysis. The resulting token stream can be fed into 	 * {@link #addField(String, TokenStream)}, perhaps wrapped into another 	 * {@link org.apache.lucene.analysis.TokenFilter}, as desired. 	 *  	 * @param keywords 	 *            the keywords to generate tokens for 	 * @return the corresponding token stream 	 */
+comment|/**    * Convenience method; Creates and returns a token stream that generates a    * token for each keyword in the given collection, "as is", without any    * transforming text analysis. The resulting token stream can be fed into    * {@link #addField(String, TokenStream)}, perhaps wrapped into another    * {@link org.apache.lucene.analysis.TokenFilter}, as desired.    *     * @param keywords    *            the keywords to generate tokens for    * @return the corresponding token stream    */
 DECL|method|keywordTokenStream
 specifier|public
 name|TokenStream
@@ -764,7 +764,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** 	 * Iterates over the given token stream and adds the resulting terms to the index; 	 * Equivalent to adding a tokenized, indexed, termVectorStored, unstored, 	 * Lucene {@link org.apache.lucene.document.Field}. 	 * Finally closes the token stream. Note that untokenized keywords can be added with this method via  	 * {@link #keywordTokenStream(Collection)}, the Lucene contrib<code>KeywordTokenizer</code> or similar utilities. 	 *  	 * @param fieldName 	 *            a name to be associated with the text 	 * @param stream 	 *            the token stream to retrieve tokens from. 	 */
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene contrib<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    */
 DECL|method|addField
 specifier|public
 name|void
@@ -777,7 +777,7 @@ name|TokenStream
 name|stream
 parameter_list|)
 block|{
-comment|/* 		 * Note that this method signature avoids having a user call new 		 * o.a.l.d.Field(...) which would be much too expensive due to the 		 * String.intern() usage of that class. 		 *  		 * More often than not, String.intern() leads to serious performance 		 * degradations rather than improvements! If you're curious why, check 		 * out the JDK's native code, see how it oscillates multiple times back 		 * and forth between Java code and native code on each intern() call, 		 * only to end up using a plain vanilla java.util.HashMap on the Java 		 * heap for it's interned strings! String.equals() has a small cost 		 * compared to String.intern(), trust me. Application level interning 		 * (e.g. a HashMap per Directory/Index) typically leads to better 		 * solutions than frequent hidden low-level calls to String.intern(). 		 *  		 * Perhaps with some luck, Lucene's Field.java (and Term.java) and 		 * cousins could be fixed to not use String.intern(). Sigh :-( 		 */
+comment|/*      * Note that this method signature avoids having a user call new      * o.a.l.d.Field(...) which would be much too expensive due to the      * String.intern() usage of that class.      *       * More often than not, String.intern() leads to serious performance      * degradations rather than improvements! If you're curious why, check      * out the JDK's native code, see how it oscillates multiple times back      * and forth between Java code and native code on each intern() call,      * only to end up using a plain vanilla java.util.HashMap on the Java      * heap for it's interned strings! String.equals() has a small cost      * compared to String.intern(), trust me. Application level interning      * (e.g. a HashMap per Directory/Index) typically leads to better      * solutions than frequent hidden low-level calls to String.intern().      *       * Perhaps with some luck, Lucene's Field.java (and Term.java) and      * cousins could be fixed to not use String.intern(). Sigh :-(      */
 try|try
 block|{
 if|if
@@ -878,7 +878,7 @@ literal|0
 condition|)
 continue|continue;
 comment|// nothing to do
-comment|//				if (DEBUG) System.err.println("token='" + term + "'");
+comment|//        if (DEBUG) System.err.println("token='" + term + "'");
 name|numTokens
 operator|++
 expr_stmt|;
@@ -1041,7 +1041,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** 	 * Creates and returns a searcher that can be used to execute arbitrary 	 * Lucene queries and to collect the resulting query results as hits. 	 *  	 * @return a searcher 	 */
+comment|/**    * Creates and returns a searcher that can be used to execute arbitrary    * Lucene queries and to collect the resulting query results as hits.    *     * @return a searcher    */
 DECL|method|createSearcher
 specifier|public
 name|IndexSearcher
@@ -1077,7 +1077,7 @@ return|return
 name|searcher
 return|;
 block|}
-comment|/** 	 * Convenience method that efficiently returns the relevance score by 	 * matching this index against the given Lucene query expression. 	 *  	 * @param query 	 *            an arbitrary Lucene query to run against this index 	 * @return the relevance score of the matchmaking; A number in the range 	 *         [0.0 .. 1.0], with 0.0 indicating no match. The higher the number 	 *         the better the match. 	 * @see org.apache.lucene.queryParser.QueryParser#parse(String) 	 */
+comment|/**    * Convenience method that efficiently returns the relevance score by    * matching this index against the given Lucene query expression.    *     * @param query    *            an arbitrary Lucene query to run against this index    * @return the relevance score of the matchmaking; A number in the range    *         [0.0 .. 1.0], with 0.0 indicating no match. The higher the number    *         the better the match.    * @see org.apache.lucene.queryParser.QueryParser#parse(String)    */
 DECL|method|search
 specifier|public
 name|float
@@ -1182,10 +1182,10 @@ block|}
 finally|finally
 block|{
 comment|// searcher.close();
-comment|/* 			 * Note that it is harmless and important for good performance to 			 * NOT close the index reader!!! This avoids all sorts of 			 * unnecessary baggage and locking in the Lucene IndexReader 			 * superclass, all of which is completely unnecessary for this main 			 * memory index data structure without thread-safety claims. 			 *  			 * Wishing IndexReader would be an interface... 			 *  			 * Actually with the new tight createSearcher() API auto-closing is now 			 * made impossible, hence searcher.close() would be harmless... 			 */
+comment|/*        * Note that it is harmless and important for good performance to        * NOT close the index reader!!! This avoids all sorts of        * unnecessary baggage and locking in the Lucene IndexReader        * superclass, all of which is completely unnecessary for this main        * memory index data structure without thread-safety claims.        *         * Wishing IndexReader would be an interface...        *         * Actually with the new tight createSearcher() API auto-closing is now        * made impossible, hence searcher.close() would be harmless...        */
 block|}
 block|}
-comment|/** 	 * Returns a reasonable approximation of the main memory [bytes] consumed by 	 * this instance. Useful for smart memory sensititve caches/pools. Assumes 	 * fieldNames are interned, whereas tokenized terms are memory-overlaid. For 	 * simplicity, assumes no VM word boundary alignment of instance vars. 	 *  	 * @return the main memory consumption 	 */
+comment|/**    * Returns a reasonable approximation of the main memory [bytes] consumed by    * this instance. Useful for smart memory sensititve caches/pools. Assumes    * fieldNames are interned, whereas tokenized terms are memory-overlaid. For    * simplicity, assumes no VM word boundary alignment of instance vars.    *     * @return the main memory consumption    */
 DECL|method|getMemorySize
 specifier|public
 name|int
@@ -1458,7 +1458,7 @@ operator|-
 name|ARR
 expr_stmt|;
 comment|// assumes substring() memory overlay
-comment|//				size += STR + 2 * ((String) e.getKey()).length();
+comment|//        size += STR + 2 * ((String) e.getKey()).length();
 name|ArrayIntList
 name|positions
 init|=
@@ -1623,7 +1623,7 @@ return|return
 name|entries
 return|;
 block|}
-comment|/** 	 * Returns a String representation of the index data for debugging purposes. 	 *  	 * @return the string representation 	 */
+comment|/**    * Returns a String representation of the index data for debugging purposes.    *     * @return the string representation    */
 DECL|method|toString
 specifier|public
 name|String
@@ -1947,7 +1947,7 @@ block|}
 comment|///////////////////////////////////////////////////////////////////////////////
 comment|// Nested classes:
 comment|///////////////////////////////////////////////////////////////////////////////
-comment|/** 	 * Index data structure for a field; Contains the tokenized term texts and 	 * their positions. 	 */
+comment|/**    * Index data structure for a field; Contains the tokenized term texts and    * their positions.    */
 DECL|class|Info
 specifier|private
 specifier|static
@@ -1957,7 +1957,7 @@ name|Info
 implements|implements
 name|Serializable
 block|{
-comment|/** 		 * Term strings and their positions for this field: Map<String 		 * termText, ArrayIntList positions> 		 */
+comment|/**      * Term strings and their positions for this field: Map<String      * termText, ArrayIntList positions>      */
 DECL|field|terms
 specifier|private
 specifier|final
@@ -2021,7 +2021,7 @@ operator|=
 name|numTokens
 expr_stmt|;
 block|}
-comment|/** 		 * Sorts hashed terms into ascending order, reusing memory along the 		 * way. Note that sorting is lazily delayed until required (often it's 		 * not required at all). If a sorted view is required then hashing + 		 * sort + binary search is still faster and smaller than TreeMap usage 		 * (which would be an alternative and somewhat more elegant approach, 		 * apart from more sophisticated Tries / prefix trees). 		 */
+comment|/**      * Sorts hashed terms into ascending order, reusing memory along the      * way. Note that sorting is lazily delayed until required (often it's      * not required at all). If a sorted view is required then hashing +      * sort + binary search is still faster and smaller than TreeMap usage      * (which would be an alternative and somewhat more elegant approach,      * apart from more sophisticated Tries / prefix trees).      */
 DECL|method|sortTerms
 specifier|public
 name|void
@@ -2091,7 +2091,7 @@ block|}
 comment|///////////////////////////////////////////////////////////////////////////////
 comment|// Nested classes:
 comment|///////////////////////////////////////////////////////////////////////////////
-comment|/** 	 * Efficient resizable auto-expanding list holding<code>int</code> elements; 	 * implemented with arrays. 	 */
+comment|/**    * Efficient resizable auto-expanding list holding<code>int</code> elements;    * implemented with arrays.    */
 DECL|class|ArrayIntList
 specifier|private
 specifier|static
@@ -2588,7 +2588,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Search support for Lucene framework integration; implements all methods 	 * required by the Lucene IndexReader contracts. 	 */
+comment|/**    * Search support for Lucene framework integration; implements all methods    * required by the Lucene IndexReader contracts.    */
 DECL|class|MemoryIndexReader
 specifier|private
 specifier|final
@@ -3133,7 +3133,7 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//					if (DEBUG) System.err.println("TermEnum.term: " + i + ", " + info.sortedTerms[i].getKey());
+comment|//          if (DEBUG) System.err.println("TermEnum.term: " + i + ", " + info.sortedTerms[i].getKey());
 return|return
 name|createTerm
 argument_list|(
@@ -3751,7 +3751,7 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
-comment|//			if (vectors.length == 0) return null;
+comment|//      if (vectors.length == 0) return null;
 name|Iterator
 name|iter
 init|=

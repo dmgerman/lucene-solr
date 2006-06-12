@@ -170,7 +170,7 @@ name|DEBUG
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * Constructs an instance, loading WordNet synonym data from the given input 	 * stream. Finally closes the stream. The words in the stream must be in 	 * UTF-8 or a compatible subset (for example ASCII, MacRoman, etc.). 	 *  	 * @param input 	 *            the stream to read from (null indicates an empty synonym map) 	 * @throws IOException 	 *             if an error occured while reading the stream. 	 */
+comment|/**    * Constructs an instance, loading WordNet synonym data from the given input    * stream. Finally closes the stream. The words in the stream must be in    * UTF-8 or a compatible subset (for example ASCII, MacRoman, etc.).    *     * @param input    *            the stream to read from (null indicates an empty synonym map)    * @throws IOException    *             if an error occured while reading the stream.    */
 DECL|method|SynonymMap
 specifier|public
 name|SynonymMap
@@ -204,7 +204,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the synonym set for the given word, sorted ascending. 	 *  	 * @param word 	 *            the word to lookup (must be in lowercase). 	 * @return the synonyms; a set of zero or more words, sorted ascending, each 	 *         word containing lowercase characters that satisfy 	 *<code>Character.isLetter()</code>. 	 */
+comment|/**    * Returns the synonym set for the given word, sorted ascending.    *     * @param word    *            the word to lookup (must be in lowercase).    * @return the synonyms; a set of zero or more words, sorted ascending, each    *         word containing lowercase characters that satisfy    *<code>Character.isLetter()</code>.    */
 DECL|method|getSynonyms
 specifier|public
 name|String
@@ -295,7 +295,7 @@ return|return
 name|copy
 return|;
 block|}
-comment|/** 	 * Returns a String representation of the index data for debugging purposes. 	 *  	 * @return a String representation 	 */
+comment|/**    * Returns a String representation of the index data for debugging purposes.    *     * @return a String representation    */
 DECL|method|toString
 specifier|public
 name|String
@@ -495,7 +495,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Analyzes/transforms the given word on input stream loading. This default implementation simply 	 * lowercases the word. Override this method with a custom stemming 	 * algorithm or similar, if desired. 	 *  	 * @param word 	 *            the word to analyze 	 * @return the same word, or a different word (or null to indicate that the 	 *         word should be ignored) 	 */
+comment|/**    * Analyzes/transforms the given word on input stream loading. This default implementation simply    * lowercases the word. Override this method with a custom stemming    * algorithm or similar, if desired.    *     * @param word    *            the word to analyze    * @return the same word, or a different word (or null to indicate that the    *         word should be ignored)    */
 DECL|method|analyze
 specifier|protected
 name|String
@@ -740,7 +740,7 @@ block|}
 name|i
 operator|++
 expr_stmt|;
-comment|//			if (DEBUG) System.err.println("num="+ num);
+comment|//      if (DEBUG) System.err.println("num="+ num);
 comment|// scan to beginning of word
 while|while
 condition|(
@@ -838,8 +838,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-comment|//			String word = new String(data, 0, start, i-start-1); // ASCII
-comment|/* 			 * Part B: ignore phrases (with spaces and hyphens) and 			 * non-alphabetic words, and let user customize word (e.g. do some 			 * stemming) 			 */
+comment|//      String word = new String(data, 0, start, i-start-1); // ASCII
+comment|/*        * Part B: ignore phrases (with spaces and hyphens) and        * non-alphabetic words, and let user customize word (e.g. do some        * stemming)        */
 if|if
 condition|(
 operator|!
@@ -1054,7 +1054,7 @@ name|group2Words
 argument_list|)
 decl_stmt|;
 comment|/* Part E: minimize memory consumption by a factor 3 (or so) */
-comment|//		if (true) return word2Syns;
+comment|//    if (true) return word2Syns;
 name|word2Groups
 operator|=
 literal|null
@@ -1150,7 +1150,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|//			HashSet synonyms = new HashSet();
+comment|//      HashSet synonyms = new HashSet();
 name|TreeSet
 name|synonyms
 init|=
@@ -1293,8 +1293,8 @@ argument_list|(
 name|syns
 argument_list|)
 expr_stmt|;
-comment|//				if (syns.length> 1) Arrays.sort(syns);
-comment|//				if (DEBUG) System.err.println("word=" + word + ":" + Arrays.asList(syns));
+comment|//        if (syns.length> 1) Arrays.sort(syns);
+comment|//        if (DEBUG) System.err.println("word=" + word + ":" + Arrays.asList(syns));
 name|word2Syns
 operator|.
 name|put

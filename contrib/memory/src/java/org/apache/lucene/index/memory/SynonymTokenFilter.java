@@ -133,7 +133,7 @@ name|todo
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * Creates an instance for the given underlying stream and synonym table. 	 *  	 * @param input 	 *            the underlying child token stream 	 * @param synonyms 	 *            the map used to extract synonyms for terms 	 * @param maxSynonyms 	 *            the maximum number of synonym tokens to return per underlying 	 *            token word (a value of Integer.MAX_VALUE indicates unlimited) 	 */
+comment|/**    * Creates an instance for the given underlying stream and synonym table.    *     * @param input    *            the underlying child token stream    * @param synonyms    *            the map used to extract synonyms for terms    * @param maxSynonyms    *            the maximum number of synonym tokens to return per underlying    *            token word (a value of Integer.MAX_VALUE indicates unlimited)    */
 DECL|method|SynonymTokenFilter
 specifier|public
 name|SynonymTokenFilter
@@ -318,7 +318,7 @@ return|return
 name|token
 return|;
 block|}
-comment|/** 	 * Creates and returns a token for the given synonym of the current input 	 * token; Override for custom (stateless or stateful) behaviour, if desired. 	 *  	 * @param synonym  	 *            a synonym for the current token's term 	 * @param current 	 *            the current token from the underlying child stream 	 * @return a new token, or null to indicate that the given synonym should be 	 *         ignored 	 */
+comment|/**    * Creates and returns a token for the given synonym of the current input    * token; Override for custom (stateless or stateful) behaviour, if desired.    *     * @param synonym     *            a synonym for the current token's term    * @param current    *            the current token from the underlying child stream    * @return a new token, or null to indicate that the given synonym should be    *         ignored    */
 DECL|method|createToken
 specifier|protected
 name|Token
@@ -363,7 +363,7 @@ return|return
 name|token
 return|;
 block|}
-comment|/** 	 * Randomize synonyms to later sample a subset. Uses constant random seed 	 * for reproducability. Uses "DRand", a simple, fast, uniform pseudo-random 	 * number generator with medium statistical quality (multiplicative 	 * congruential method), producing integers in the range [Integer.MIN_VALUE, 	 * Integer.MAX_VALUE]. 	 */
+comment|/**    * Randomize synonyms to later sample a subset. Uses constant random seed    * for reproducability. Uses "DRand", a simple, fast, uniform pseudo-random    * number generator with medium statistical quality (multiplicative    * congruential method), producing integers in the range [Integer.MIN_VALUE,    * Integer.MAX_VALUE].    */
 DECL|method|randomize
 specifier|private
 specifier|static
@@ -390,7 +390,7 @@ name|seed
 operator|+
 literal|1
 decl_stmt|;
-comment|//		Random random = new Random(seed); // unnecessary overhead
+comment|//    Random random = new Random(seed); // unnecessary overhead
 name|int
 name|len
 init|=
@@ -443,7 +443,7 @@ operator|-
 name|r
 expr_stmt|;
 comment|// e.g. -9 % 2 == -1
-comment|//			int r = random.nextInt(len-i);
+comment|//      int r = random.nextInt(len-i);
 comment|// swap arr[i, i+r]
 name|Object
 name|tmp
