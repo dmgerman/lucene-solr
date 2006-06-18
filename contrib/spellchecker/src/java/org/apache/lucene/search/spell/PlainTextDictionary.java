@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dictionary represented by a file text.  *   *<p>Format allowed: 1 word per line:<br>  * word1<br>  * word2<br>  * word3<br>  *  * @author Nicolas Maisonneuve  */
+comment|/**  * Dictionary represented by a file text.  *   *<p/>Format allowed: 1 word per line:<br/>  * word1<br/>  * word2<br/>  * word3<br/>  *  * @author Nicolas Maisonneuve  */
 end_comment
 
 begin_class
@@ -90,10 +90,10 @@ specifier|private
 name|String
 name|line
 decl_stmt|;
-DECL|field|has_next_called
+DECL|field|hasNextCalled
 specifier|private
 name|boolean
-name|has_next_called
+name|hasNextCalled
 decl_stmt|;
 DECL|method|PlainTextDictionary
 specifier|public
@@ -167,14 +167,14 @@ block|{
 if|if
 condition|(
 operator|!
-name|has_next_called
+name|hasNextCalled
 condition|)
 block|{
 name|hasNext
 argument_list|()
 expr_stmt|;
 block|}
-name|has_next_called
+name|hasNextCalled
 operator|=
 literal|false
 expr_stmt|;
@@ -188,7 +188,7 @@ name|boolean
 name|hasNext
 parameter_list|()
 block|{
-name|has_next_called
+name|hasNextCalled
 operator|=
 literal|true
 expr_stmt|;
@@ -239,7 +239,6 @@ name|void
 name|remove
 parameter_list|()
 block|{     }
-empty_stmt|;
 block|}
 block|}
 end_class

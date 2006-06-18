@@ -38,9 +38,8 @@ specifier|public
 interface|interface
 name|Dictionary
 block|{
-comment|/**      * return all the words present in the dictionnary      * @return Iterator      */
+comment|/**    * Return all words present in the dictionary    * @return Iterator    */
 DECL|method|getWordsIterator
-specifier|public
 name|Iterator
 name|getWordsIterator
 parameter_list|()

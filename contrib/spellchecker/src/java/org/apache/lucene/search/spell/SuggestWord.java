@@ -19,7 +19,7 @@ comment|/**  * Copyright 2002-2004 The Apache Software Foundation  *  * Licensed
 end_comment
 
 begin_comment
-comment|/**  *  SuggestWord Class, used in suggestSimilar method in SpellChecker class.  *   *  @author Nicolas Maisonneuve  */
+comment|/**  *  SuggestWord, used in suggestSimilar method in SpellChecker class.  *   *  @author Nicolas Maisonneuve  */
 end_comment
 
 begin_class
@@ -28,19 +28,19 @@ specifier|final
 class|class
 name|SuggestWord
 block|{
-comment|/**      * the score of the word      */
+comment|/**    * the score of the word    */
 DECL|field|score
 specifier|public
 name|float
 name|score
 decl_stmt|;
-comment|/**      * The freq of the word      */
+comment|/**    * The freq of the word    */
 DECL|field|freq
 specifier|public
 name|int
 name|freq
 decl_stmt|;
-comment|/**      * the suggested word      */
+comment|/**    * the suggested word    */
 DECL|field|string
 specifier|public
 name|String
