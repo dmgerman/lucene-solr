@@ -2176,6 +2176,28 @@ argument_list|,
 literal|"rw"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|file
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// This can happen if there was a previous crash / unclean shutdown that
+comment|// left files around, then we end up re-using a segment name.
+comment|// If we have a logging framework in the future, a warning here might be
+comment|// a good idea.
+name|file
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/** output methods: */
 DECL|method|flushBuffer
