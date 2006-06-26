@@ -89,6 +89,22 @@ operator|=
 name|description
 expr_stmt|;
 block|}
+comment|/**    * Indicates wether or not this Explanation models a good match.    *    *<p>    * By default, an Explanation represents a "match" if the value is positive.    *</p>    * @see #getValue    */
+DECL|method|isMatch
+specifier|public
+name|boolean
+name|isMatch
+parameter_list|()
+block|{
+return|return
+operator|(
+literal|0.0f
+operator|<
+name|getValue
+argument_list|()
+operator|)
+return|;
+block|}
 comment|/** The value assigned to this explanation node. */
 DECL|method|getValue
 specifier|public
@@ -144,6 +160,23 @@ name|description
 operator|=
 name|description
 expr_stmt|;
+block|}
+comment|/**    * A short one line summary which should contain all high level    * information about this Explanation, without the "Details"    */
+DECL|method|getSummary
+specifier|protected
+name|String
+name|getSummary
+parameter_list|()
+block|{
+return|return
+name|getValue
+argument_list|()
+operator|+
+literal|" = "
+operator|+
+name|getDescription
+argument_list|()
+return|;
 block|}
 comment|/** The sub-nodes of this explanation node. */
 DECL|method|getDetails
@@ -224,7 +257,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|toString
-specifier|private
+specifier|protected
 name|String
 name|toString
 parameter_list|(
@@ -266,22 +299,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|" = "
-argument_list|)
-expr_stmt|;
-name|buffer
-operator|.
-name|append
-argument_list|(
-name|getDescription
+name|getSummary
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -381,22 +399,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|" = "
-argument_list|)
-expr_stmt|;
-name|buffer
-operator|.
-name|append
-argument_list|(
-name|getDescription
+name|getSummary
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -473,24 +473,16 @@ name|Explanation
 name|queryExpl
 init|=
 operator|new
-name|Explanation
-argument_list|()
-decl_stmt|;
-name|queryExpl
-operator|.
-name|setDescription
+name|ComplexExplanation
 argument_list|(
-literal|"MatchAllDocsQuery, product of:"
-argument_list|)
-expr_stmt|;
-name|queryExpl
-operator|.
-name|setValue
-argument_list|(
+literal|true
+argument_list|,
 name|getValue
 argument_list|()
+argument_list|,
+literal|"MatchAllDocsQuery, product of:"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|getBoost
