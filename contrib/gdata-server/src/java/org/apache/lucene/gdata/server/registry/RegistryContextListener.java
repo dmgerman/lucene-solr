@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**   * Copyright 2004 The Apache Software Foundation   *   * Licensed under the Apache License, Version 2.0 (the "License");   * you may not use this file except in compliance with the License.   * You may obtain a copy of the License at   *   *     http://www.apache.org/licenses/LICENSE-2.0   *   * Unless required by applicable law or agreed to in writing, software   * distributed under the License is distributed on an "AS IS" BASIS,   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   * See the License for the specific language governing permissions and   * limitations under the License.   */
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * This Listener creates the   * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry} when the   * context is loaded. The registry will be loaded before the   * {@link org.apache.lucene.gdata.servlet.RequestControllerServlet} is loaded.   * The Registry will be loaded and set up befor the REST interface is available.   *<p>   * This ContextListener has to be configured in the<code>web.xml</code>   * deployment descriptor.</p>   *    *    * @author Simon Willnauer   *    */
+comment|/**  * This Listener creates the  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry} when the  * context is loaded. The registry will be loaded before the  * {@link org.apache.lucene.gdata.servlet.RequestControllerServlet} is loaded.  * The Registry will be loaded and set up befor the REST interface is available.  *<p>  * This ContextListener has to be configured in the<code>web.xml</code>  * deployment descriptor.  *</p>  *<p>  * When the  * {@link javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)}  * method is called the registry will be destroyed using  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry#destroy()}  * method.  *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -101,7 +101,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**       * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)       */
+comment|/**      * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)      */
 DECL|method|contextInitialized
 specifier|public
 name|void
@@ -118,6 +118,8 @@ argument_list|(
 literal|"RegistryContextListener has been loaded"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|RegistryBuilder
 operator|.
 name|buildRegistry
@@ -133,7 +135,40 @@ name|getRegistry
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**       * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)       */
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|this
+operator|.
+name|serverRegistry
+operator|.
+name|destroy
+argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"can not register requiered components"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not register required components"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/**      * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)      */
 DECL|method|contextDestroyed
 specifier|public
 name|void

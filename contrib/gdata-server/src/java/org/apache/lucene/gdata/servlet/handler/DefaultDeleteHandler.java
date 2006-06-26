@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**   * Copyright 2004 The Apache Software Foundation   *   * Licensed under the Apache License, Version 2.0 (the "License");   * you may not use this file except in compliance with the License.   * You may obtain a copy of the License at   *   *     http://www.apache.org/licenses/LICENSE-2.0   *   * Unless required by applicable law or agreed to in writing, software   * distributed under the License is distributed on an "AS IS" BASIS,   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   * See the License for the specific language governing permissions and   * limitations under the License.   */
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -102,9 +102,11 @@ name|lucene
 operator|.
 name|gdata
 operator|.
-name|server
+name|data
 operator|.
-name|FeedNotFoundException
+name|GDataAccount
+operator|.
+name|AccountRole
 import|;
 end_import
 
@@ -121,22 +123,6 @@ operator|.
 name|server
 operator|.
 name|GDataRequestException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|gdata
-operator|.
-name|server
-operator|.
-name|Service
 import|;
 end_import
 
@@ -175,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Default Handler implementation. This handler processes the incoming   * {@link org.apache.lucene.gdata.server.GDataRequest} and deletes the requested   * feed entry from the storage and the search component.   *<p>   * The handler sends following response to the client:   *</p>   *<ol>   *<li>if the entry could be deleted - HTTP status code<i>200 OK</i></li>   *<li>if an error occures - HTTP status code<i>500 INTERNAL SERVER ERROR</i></li>   *<li>if the resource could not found - HTTP status code<i>404 NOT FOUND</i></li>   *</ol>   *    * @author Simon Willnauer   *    */
+comment|/**  * Default Handler implementation. This handler processes the incoming  * {@link org.apache.lucene.gdata.server.GDataRequest} and deletes the requested  * feed entry from the storage and the search component.  *<p>  * The handler sends following response to the client:  *</p>  *<ol>  *<li>if the entry could be deleted - HTTP status code<i>200 OK</i></li>  *<li>if an error occures - HTTP status code<i>500 INTERNAL SERVER ERROR</i></li>  *<li>if the resource could not found - HTTP status code<i>404 NOT FOUND</i></li>  *</ol>  *    * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -202,7 +188,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**       * @throws ServletException        * @see org.apache.lucene.gdata.servlet.handler.AbstractGdataRequestHandler#processRequest(javax.servlet.http.HttpServletRequest,       *      javax.servlet.http.HttpServletResponse)       */
+comment|/** 	 * @throws ServletException  	 * @see org.apache.lucene.gdata.servlet.handler.AbstractGdataRequestHandler#processRequest(javax.servlet.http.HttpServletRequest, 	 *      javax.servlet.http.HttpServletResponse) 	 */
 annotation|@
 name|Override
 DECL|method|processRequest
@@ -246,14 +232,35 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
-name|Service
-name|service
-init|=
-name|getService
+if|if
+condition|(
+operator|!
+name|authenticateAccount
+argument_list|(
+name|request
+argument_list|,
+name|AccountRole
+operator|.
+name|ENTRYAMINISTRATOR
+argument_list|)
+condition|)
+block|{
+name|setError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_UNAUTHORIZED
+argument_list|)
+expr_stmt|;
+name|sendError
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+return|return;
+block|}
 try|try
 block|{
+name|this
+operator|.
 name|service
 operator|.
 name|deleteEntry
@@ -266,37 +273,6 @@ name|this
 operator|.
 name|feedResponse
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|FeedNotFoundException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not process DeleteFeed request Feed Not Found- "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-name|setError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_NOT_FOUND
-argument_list|)
-expr_stmt|;
-name|sendError
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -319,17 +295,13 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|setError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_BAD_REQUEST
-argument_list|)
-expr_stmt|;
 name|sendError
 argument_list|()
 expr_stmt|;
 block|}
+name|closeService
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

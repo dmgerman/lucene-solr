@@ -161,6 +161,15 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+DECL|field|RUNNER_THREAD_NAME
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|RUNNER_THREAD_NAME
+init|=
+literal|"GDATA-ID Generator"
+decl_stmt|;
 comment|/**       * Constructs a new ID generator. with a fixed capacity of prebuild ids. The       * default capacity is 10. Every given parameter less than 10 will be       * ignored.       *        * @param capacity -       *            capacity of the prebuild id queue       * @throws NoSuchAlgorithmException -       *             if the algorithm does not exist       */
 DECL|method|IDGenerator
 specifier|public
@@ -281,6 +290,24 @@ operator|new
 name|Thread
 argument_list|(
 name|producer
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|runner
+operator|.
+name|setDaemon
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|runner
+operator|.
+name|setName
+argument_list|(
+name|RUNNER_THREAD_NAME
 argument_list|)
 expr_stmt|;
 name|this

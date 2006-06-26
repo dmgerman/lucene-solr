@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**   * Copyright 2004 The Apache Software Foundation   *   * Licensed under the Apache License, Version 2.0 (the "License");   * you may not use this file except in compliance with the License.   * You may obtain a copy of the License at   *   *     http://www.apache.org/licenses/LICENSE-2.0   *   * Unless required by applicable law or agreed to in writing, software   * distributed under the License is distributed on an "AS IS" BASIS,   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   * See the License for the specific language governing permissions and   * limitations under the License.   */
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -34,16 +34,6 @@ name|javax
 operator|.
 name|servlet
 operator|.
-name|ServletConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
 name|ServletException
 import|;
 end_import
@@ -114,48 +104,12 @@ name|servlet
 operator|.
 name|handler
 operator|.
-name|DefaultRequestHandlerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|gdata
-operator|.
-name|servlet
-operator|.
-name|handler
-operator|.
 name|GDataRequestHandler
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|gdata
-operator|.
-name|servlet
-operator|.
-name|handler
-operator|.
-name|RequestHandlerFactory
-import|;
-end_import
-
 begin_comment
-comment|/**   * Provides a clean basic interface for GDATA Client API and requests to the   * GDATA Server. This Servlet dispatches the incoming requests to defined GDATA   * request handlers. Each of the handler processes the incoming request and   * responds according to the requested action.   *    * @author Simon Willnauer   *    */
+comment|/**  * Provides a clean basic interface for GDATA Client API and requests to the  * GDATA Server. This Servlet dispatches the incoming requests to defined GDATA  * request handlers. Each of the handler processes the incoming request and  * responds according to the requested action.  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -166,14 +120,6 @@ name|RequestControllerServlet
 extends|extends
 name|AbstractGdataServlet
 block|{
-DECL|field|HANDLER_FACTORY
-specifier|private
-specifier|static
-name|RequestHandlerFactory
-name|HANDLER_FACTORY
-init|=
-literal|null
-decl_stmt|;
 DECL|field|LOGGER
 specifier|private
 specifier|static
@@ -190,7 +136,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**       * Version ID since this class implements       *        * @see java.io.Serializable       */
+comment|/**      * Version ID since this class implements      *       * @see java.io.Serializable      */
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -200,7 +146,7 @@ name|serialVersionUID
 init|=
 literal|7540810742476175576L
 decl_stmt|;
-comment|/**       * @see javax.servlet.http.HttpServlet#doDelete(javax.servlet.http.HttpServletRequest,       *      javax.servlet.http.HttpServletResponse)       */
+comment|/**      * @see javax.servlet.http.HttpServlet#doDelete(javax.servlet.http.HttpServletRequest,      *      javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 DECL|method|doDelete
@@ -224,7 +170,7 @@ name|hanlder
 init|=
 name|HANDLER_FACTORY
 operator|.
-name|getDeleteHandler
+name|getEntryDeleteHandler
 argument_list|()
 decl_stmt|;
 if|if
@@ -251,7 +197,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,       *      javax.servlet.http.HttpServletResponse)       */
+comment|/**      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,      *      javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 DECL|method|doGet
@@ -275,7 +221,7 @@ name|hanlder
 init|=
 name|HANDLER_FACTORY
 operator|.
-name|getQueryHandler
+name|getFeedQueryHandler
 argument_list|()
 decl_stmt|;
 if|if
@@ -302,7 +248,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest,       *      javax.servlet.http.HttpServletResponse)       */
+comment|/**      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest,      *      javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 DECL|method|doPost
@@ -326,7 +272,7 @@ name|hanlder
 init|=
 name|HANDLER_FACTORY
 operator|.
-name|getInsertHandler
+name|getEntryInsertHandler
 argument_list|()
 decl_stmt|;
 if|if
@@ -353,7 +299,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest,       *      javax.servlet.http.HttpServletResponse)       */
+comment|/**      * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest,      *      javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 DECL|method|doPut
@@ -377,7 +323,7 @@ name|hanlder
 init|=
 name|HANDLER_FACTORY
 operator|.
-name|getUpdateHandler
+name|getEntryUpdateHandler
 argument_list|()
 decl_stmt|;
 if|if
@@ -401,31 +347,6 @@ argument_list|(
 name|arg0
 argument_list|,
 name|arg1
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**       * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)       */
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|ServletConfig
-name|arg0
-parameter_list|)
-block|{
-comment|/*           * The Factory implementation could be configured as an initial           * parameter or by an external config file.           *            */
-name|HANDLER_FACTORY
-operator|=
-name|RequestHandlerFactory
-operator|.
-name|getInstance
-argument_list|(
-name|DefaultRequestHandlerFactory
-operator|.
-name|class
 argument_list|)
 expr_stmt|;
 block|}

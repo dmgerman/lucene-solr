@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**   * @author Simon Willnauer   *   */
+comment|/**  * The ServiceException is used to encapsulate all {@link java.lang.Exception}  * throw by underlaying layers of the  * {@link org.apache.lucene.gdata.server.Service} layer.  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -30,7 +30,7 @@ name|ServiceException
 extends|extends
 name|Exception
 block|{
-comment|/**       *        */
+comment|/**      *       */
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -41,7 +41,7 @@ init|=
 operator|-
 literal|7099825107871876584L
 decl_stmt|;
-comment|/**       *        */
+comment|/**      * Constructs a new ServiceException      */
 DECL|method|ServiceException
 specifier|public
 name|ServiceException
@@ -51,7 +51,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**       * @param arg0       */
+comment|/**      * Constructs a new ServiceException      * @param arg0 - the exception message      */
 DECL|method|ServiceException
 specifier|public
 name|ServiceException
@@ -66,7 +66,7 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @param arg0       * @param arg1       */
+comment|/**      * Constructs a new ServiceException      * @param arg0 - the exceptin message      * @param arg1 - the exception cause      */
 DECL|method|ServiceException
 specifier|public
 name|ServiceException
@@ -86,7 +86,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @param arg0       */
+comment|/**      * Constructs a new ServiceException      * @param arg0 - the exception cause      */
 DECL|method|ServiceException
 specifier|public
 name|ServiceException

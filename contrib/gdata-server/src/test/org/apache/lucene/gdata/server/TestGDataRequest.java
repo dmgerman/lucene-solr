@@ -90,7 +90,7 @@ name|server
 operator|.
 name|registry
 operator|.
-name|FeedInstanceConfigurator
+name|GDataServerRegistry
 import|;
 end_import
 
@@ -108,7 +108,57 @@ name|server
 operator|.
 name|registry
 operator|.
-name|GDataServerRegistry
+name|ProvidedService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|RegistryException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|utils
+operator|.
+name|ProvidedServiceStub
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|utils
+operator|.
+name|StorageStub
 import|;
 end_import
 
@@ -119,34 +169,6 @@ operator|.
 name|easymock
 operator|.
 name|MockControl
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|gdata
-operator|.
-name|data
-operator|.
-name|ExtensionProfile
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|gdata
-operator|.
-name|data
-operator|.
-name|Feed
 import|;
 end_import
 
@@ -177,6 +199,36 @@ specifier|private
 name|GDataRequest
 name|feedRequest
 decl_stmt|;
+static|static
+block|{
+try|try
+block|{
+name|GDataServerRegistry
+operator|.
+name|getRegistry
+argument_list|()
+operator|.
+name|registerComponent
+argument_list|(
+name|StorageStub
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RegistryException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|setUp
@@ -187,44 +239,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|FeedInstanceConfigurator
+name|ProvidedService
 name|configurator
 init|=
 operator|new
-name|FeedInstanceConfigurator
+name|ProvidedServiceStub
 argument_list|()
 decl_stmt|;
-name|configurator
-operator|.
-name|setFeedType
-argument_list|(
-name|Feed
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|configurator
-operator|.
-name|setFeedId
-argument_list|(
-literal|"feed"
-argument_list|)
-expr_stmt|;
-name|configurator
-operator|.
-name|setExtensionProfileClass
-argument_list|(
-name|ExtensionProfile
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 name|GDataServerRegistry
 operator|.
 name|getRegistry
 argument_list|()
 operator|.
-name|registerFeed
+name|registerService
 argument_list|(
 name|configurator
 argument_list|)
@@ -1283,7 +1310,7 @@ decl_stmt|;
 name|String
 name|queryString
 init|=
-literal|"?max-results=25"
+literal|"max-results=25"
 decl_stmt|;
 name|this
 operator|.
@@ -1410,7 +1437,7 @@ literal|"http://"
 operator|+
 name|host
 operator|+
-literal|"/host/feed/entryId/15"
+literal|"/host/feed/entryId/15?"
 operator|+
 name|queryString
 decl_stmt|;
@@ -1437,7 +1464,7 @@ argument_list|()
 expr_stmt|;
 name|queryString
 operator|=
-literal|"?alt=rss&max-results=25"
+literal|"alt=rss&max-results=25"
 expr_stmt|;
 name|this
 operator|.
@@ -1563,7 +1590,7 @@ literal|"http://"
 operator|+
 name|host
 operator|+
-literal|"/host/feed/entryId/15"
+literal|"/host/feed/entryId/15?"
 operator|+
 name|queryString
 expr_stmt|;
@@ -1937,8 +1964,6 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"?"
-operator|+
 name|maxResults
 argument_list|,
 name|this
@@ -2234,12 +2259,57 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testIsEntryRequest
+DECL|method|testgetAuthToken
 specifier|public
 name|void
-name|testIsEntryRequest
+name|testgetAuthToken
 parameter_list|()
-block|{                }
+block|{
+name|this
+operator|.
+name|control
+operator|.
+name|expectAndDefaultReturn
+argument_list|(
+name|this
+operator|.
+name|request
+operator|.
+name|getHeader
+argument_list|(
+literal|"Authentication"
+argument_list|)
+argument_list|,
+literal|"GoogleLogin auth=bla"
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|control
+operator|.
+name|replay
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"bla"
+argument_list|,
+name|this
+operator|.
+name|feedRequest
+operator|.
+name|getAuthToken
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|control
+operator|.
+name|verify
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testGetNextId
 specifier|public
 name|void
@@ -2253,7 +2323,8 @@ comment|//        String feedAndEntryID = "/feed/entryid";
 comment|//        String queryString = "?max-results=25";
 comment|//        String startIndex = "&start-index=26";
 comment|//        this.control.expectAndDefaultReturn(this.request.getHeader("Host"),host);
-comment|//        this.control.expectAndDefaultReturn(this.request.getPathInfo(),"/feed/entryId/15");
+comment|//        this.control.expectAndDefaultReturn(this.request.getRequestURI(),"/feed/");
+comment|//        this.control.expectAndDefaultReturn(this.request.getPathInfo(),"/feed/");
 comment|//        this.control.expectAndReturn(this.request.getParameter("max-results"),"25",2);
 comment|//        this.control.expectAndReturn(this.request.getParameter("start-index"),null);
 comment|//        this.control.expectAndDefaultReturn(this.request.getParameter("alt"),
@@ -2262,22 +2333,25 @@ comment|//        this.control.expectAndDefaultReturn(this.request.getQueryStrin
 comment|//                queryString);
 comment|//        this.control.replay();
 comment|//        this.feedRequest.initializeRequest();
-comment|//        String nextID = "http://"+host+"/feed"+queryString+startIndex;
+comment|//        String nextID = "http://"+host+"/feed/"+queryString+startIndex;
 comment|//
 comment|//        assertEquals("Next ID",nextID,this.feedRequest.getNextId());
 comment|//        this.control.reset();
-comment|//
-comment|//
 comment|//        queryString = "?alt=rss&max-results=25";
 comment|//
 comment|//        this.control.expectAndDefaultReturn(this.request.getHeader("Host"),host);
-comment|//        this.control.expectAndDefaultReturn(this.request.getPathInfo(),"/feed/entryId/15");
+comment|//        this.control.expectAndDefaultReturn(this.request.getRequestURI(),"/feed/");
+comment|//        this.control.expectAndDefaultReturn(this.request.getPathInfo(),"/feed/");
 comment|//        this.control.expectAndReturn(this.request.getParameter("max-results"),"25",2);
 comment|//        this.control.expectAndReturn(this.request.getParameter("start-index"),"26",2);
 comment|//        this.control.expectAndDefaultReturn(this.request.getParameter("alt"),
 comment|//                null);
 comment|//        this.control.expectAndDefaultReturn(this.request.getQueryString(),
 comment|//                queryString+startIndex);
+comment|//        Enumeration e =
+comment|//        this.control.expectAndDefaultReturn(this.request.getParameterNames(),)
+comment|//
+comment|//
 comment|//        this.control.replay();
 comment|//        this.feedRequest.initializeRequest();
 comment|//        startIndex = "&start-index=51";
@@ -2296,7 +2370,7 @@ comment|//        this.control.expectAndDefaultReturn(this.request.getQueryStrin
 comment|//                null);
 comment|//        this.control.replay();
 comment|//        this.feedRequest.initializeRequest();
-comment|//        selfID = "http://"+host+"/feed"+"?max-results=25";
+comment|//        String selfID = "http://"+host+"/feed"+"?max-results=25";
 comment|//
 comment|//        assertEquals("Self ID",selfID,this.feedRequest.getSelfId());
 comment|//        this.control.reset();

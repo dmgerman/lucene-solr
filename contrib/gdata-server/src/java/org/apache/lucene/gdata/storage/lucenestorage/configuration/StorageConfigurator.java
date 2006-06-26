@@ -82,6 +82,12 @@ specifier|final
 name|boolean
 name|recover
 decl_stmt|;
+DECL|field|ramDirectory
+specifier|private
+specifier|final
+name|boolean
+name|ramDirectory
+decl_stmt|;
 DECL|field|INSTANCE
 specifier|private
 specifier|static
@@ -237,6 +243,22 @@ literal|"gdata.server.storage.lucene.optimizeInterval"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|ramDirectory
+operator|=
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"gdata.server.storage.lucene.directory.ramDirectory"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**       * @return - the storage configurator       */
 DECL|method|getStorageConfigurator
@@ -376,6 +398,19 @@ return|return
 name|this
 operator|.
 name|indexOptimizeInterval
+return|;
+block|}
+comment|/**      * @return Returns the ramDirectory.      */
+DECL|method|isRamDirectory
+specifier|public
+name|boolean
+name|isRamDirectory
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|ramDirectory
 return|;
 block|}
 block|}

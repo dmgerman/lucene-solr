@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -50,11 +60,10 @@ begin_comment
 comment|/**   * The Service class represents an interface to access the GData service   * componentes of the GData-Server. It encapsulates all interactions with the   * GData client.   *<p>   * This class provides the base level common functionality required to access   * the GData components. It is also designed to act as a base class that can be   * extended for specific types of underlaying server components as different   * indexing or storage components.   *</p>   *<p>   * It could also encapsulate caching mechanismn build on top of the storage to   * reduce load on the storage component   *</p>   *    * @author Simon Willnauer   *    *    */
 end_comment
 
-begin_class
-DECL|class|Service
+begin_interface
+DECL|interface|Service
 specifier|public
-specifier|abstract
-class|class
+interface|interface
 name|Service
 block|{
 comment|/**       * Service method to create an entry in an already created and existing       * feed. This method will create the entry and passes the entry to the       * indexing component to make the new entry accessable via<i>get-queries</i>.       * The response and the corresponding http status code will be added to the       * given<code>FeedResponse</code>.       *        * @param request -       *            the current FeedRequest       * @param response -       *            the current FeedResponse       * @return - the entry which has been created        * @throws ServiceException -       *             if the corresponding feed does not exist or the storage can       *             not be accessed       */
@@ -146,8 +155,44 @@ parameter_list|)
 throws|throws
 name|ServiceException
 function_decl|;
+comment|/**      * will close the Service - service should not be used after this method has been called      */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+function_decl|;
+comment|/**      * Retruns the date of the last modification for the given feed id      * @param feedId - the id of the feed       * @return - the last modified date or the current date if the date can not be retrieved      * @throws ServiceException - if the storage can not be accessed      */
+DECL|method|getFeedLastModified
+specifier|public
+specifier|abstract
+name|Date
+name|getFeedLastModified
+parameter_list|(
+name|String
+name|feedId
+parameter_list|)
+throws|throws
+name|ServiceException
+function_decl|;
+comment|/**      * Retruns the date of the last modification for the given entry id      * @param entryId - the id of the entry      * @param feedId  - the feed id this entry belongs to      * @return - the last modified date or the current date if the date can not be retrieved      * @throws ServiceException - if the storage can not be accessed       */
+DECL|method|getEntryLastModified
+specifier|public
+specifier|abstract
+name|Date
+name|getEntryLastModified
+parameter_list|(
+name|String
+name|entryId
+parameter_list|,
+name|String
+name|feedId
+parameter_list|)
+throws|throws
+name|ServiceException
+function_decl|;
 block|}
-end_class
+end_interface
 
 end_unit
 

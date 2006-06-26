@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**   * Copyright 2004 The Apache Software Foundation   *   * Licensed under the Apache License, Version 2.0 (the "License");   * you may not use this file except in compliance with the License.   * You may obtain a copy of the License at   *   *     http://www.apache.org/licenses/LICENSE-2.0   *   * Unless required by applicable law or agreed to in writing, software   * distributed under the License is distributed on an "AS IS" BASIS,   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   * See the License for the specific language governing permissions and   * limitations under the License.   */
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -190,8 +190,44 @@ name|GDataRequestType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ComponentType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|GDataServerRegistry
+import|;
+end_import
+
 begin_comment
-comment|/**   * @author Simon Willnauer   *    */
+comment|/**  * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -200,6 +236,8 @@ specifier|public
 specifier|abstract
 class|class
 name|AbstractGdataRequestHandler
+extends|extends
+name|RequestAuthenticator
 implements|implements
 name|GDataRequestHandler
 block|{
@@ -219,6 +257,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+DECL|field|service
+specifier|protected
+name|Service
+name|service
+decl_stmt|;
 DECL|field|feedRequest
 specifier|protected
 name|GDataRequest
@@ -229,7 +272,7 @@ specifier|protected
 name|GDataResponse
 name|feedResponse
 decl_stmt|;
-comment|/**       * @see org.apache.lucene.gdata.servlet.handler.GDataRequestHandler#processRequest(javax.servlet.http.HttpServletRequest,       *      javax.servlet.http.HttpServletResponse)       */
+comment|/**      * @see org.apache.lucene.gdata.servlet.handler.GDataRequestHandler#processRequest(javax.servlet.http.HttpServletRequest,      *      javax.servlet.http.HttpServletResponse)      */
 DECL|method|processRequest
 specifier|public
 specifier|abstract
@@ -266,6 +309,8 @@ name|type
 parameter_list|)
 throws|throws
 name|GDataRequestException
+throws|,
+name|ServletException
 block|{
 name|this
 operator|.
@@ -288,6 +333,9 @@ name|GDataResponse
 argument_list|(
 name|response
 argument_list|)
+expr_stmt|;
+name|getService
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -411,31 +459,50 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getService
-specifier|protected
-name|Service
+specifier|private
+name|void
 name|getService
 parameter_list|()
 throws|throws
 name|ServletException
 block|{
+name|GDataServerRegistry
+name|registry
+init|=
+name|GDataServerRegistry
+operator|.
+name|getRegistry
+argument_list|()
+decl_stmt|;
 name|ServiceFactory
 name|serviceFactory
 init|=
+name|registry
+operator|.
+name|lookup
+argument_list|(
 name|ServiceFactory
 operator|.
-name|getInstance
-argument_list|()
+name|class
+argument_list|,
+name|ComponentType
+operator|.
+name|SERVICEFACTORY
+argument_list|)
 decl_stmt|;
-name|Service
+name|this
+operator|.
 name|service
-init|=
+operator|=
 name|serviceFactory
 operator|.
 name|getService
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
+name|this
+operator|.
 name|service
 operator|==
 literal|null
@@ -447,9 +514,20 @@ argument_list|(
 literal|"Service not available"
 argument_list|)
 throw|;
-return|return
+block|}
+DECL|method|closeService
+specifier|protected
+name|void
+name|closeService
+parameter_list|()
+block|{
+name|this
+operator|.
 name|service
-return|;
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

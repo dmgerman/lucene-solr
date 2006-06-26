@@ -70,15 +70,73 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|google
+name|apache
+operator|.
+name|lucene
 operator|.
 name|gdata
 operator|.
 name|data
 operator|.
-name|BaseEntry
+name|ServerBaseEntry
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ProvidedService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ProvidedServiceConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|storage
+operator|.
+name|lucenestorage
+operator|.
+name|StorageBuffer
+operator|.
+name|BufferableEntry
 import|;
 end_import
 
@@ -92,7 +150,7 @@ name|gdata
 operator|.
 name|data
 operator|.
-name|ExtensionProfile
+name|BaseEntry
 import|;
 end_import
 
@@ -115,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * This immutable class wrapps Entries for an internal Storage representation of   * an entry. This class also acts as a Documentfactory for lucene documents to   * be stored inside the index.   *    * @author Simon Willnauer   *    */
+comment|/**  * This immutable class wrapps<tt>ServerBaseEntry</tt> for an internal  * Storage representation of an entry. This class also acts as a Documentfactory  * for lucene documents to be stored inside the index.  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -128,7 +186,19 @@ name|Comparable
 argument_list|<
 name|StorageEntryWrapper
 argument_list|>
+implements|,
+name|StorageWrapper
 block|{
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4619985652059888526L
+decl_stmt|;
 DECL|field|INTERNAL_ENCODING
 specifier|private
 specifier|static
@@ -138,7 +208,7 @@ name|INTERNAL_ENCODING
 init|=
 literal|"UTF-8"
 decl_stmt|;
-comment|/**       * lucene field name Entry id       */
+comment|/**      * lucene field name Entry id      */
 DECL|field|FIELD_ENTRY_ID
 specifier|public
 specifier|final
@@ -148,17 +218,17 @@ name|FIELD_ENTRY_ID
 init|=
 literal|"entryId"
 decl_stmt|;
-comment|/**       * lucene field name feed id       */
-DECL|field|FIELD_FEED_ID
+comment|/**      * lucene field name feed id      */
+DECL|field|FIELD_FEED_REFERENCE
 specifier|public
 specifier|final
 specifier|static
 name|String
-name|FIELD_FEED_ID
+name|FIELD_FEED_REFERENCE
 init|=
-literal|"feedId"
+literal|"feedReference"
 decl_stmt|;
-comment|/**       * lucene field name entry content       */
+comment|/**      * lucene field name entry content      */
 DECL|field|FIELD_CONTENT
 specifier|public
 specifier|final
@@ -168,7 +238,7 @@ name|FIELD_CONTENT
 init|=
 literal|"content"
 decl_stmt|;
-comment|/**       * lucene field name creating timestamp       */
+comment|/**      * lucene field name creating timestamp      */
 DECL|field|FIELD_TIMESTAMP
 specifier|public
 specifier|final
@@ -192,20 +262,17 @@ name|feedId
 decl_stmt|;
 DECL|field|content
 specifier|private
-specifier|final
 name|String
 name|content
 decl_stmt|;
 DECL|field|entry
 specifier|private
 specifier|final
-specifier|transient
-name|BaseEntry
+name|ServerBaseEntry
 name|entry
 decl_stmt|;
 DECL|field|timestamp
 specifier|private
-specifier|final
 name|Long
 name|timestamp
 decl_stmt|;
@@ -220,31 +287,22 @@ specifier|private
 name|StorageOperation
 name|operation
 decl_stmt|;
-DECL|field|profile
+DECL|field|config
 specifier|private
-specifier|final
-name|ExtensionProfile
-name|profile
+name|ProvidedService
+name|config
 decl_stmt|;
-comment|/**       * Creates a new StorageEntryWrapper.       *        * @param entry -       *            the entry to wrap       * @param feedId -       *            the feed id       * @param operation -       *            the StorageOperation       * @param profile -       *            the ExtensionProfil for the given entry       * @throws IOException -       *             if the entry content can not be generated       */
+comment|/**      * Creates a new StorageEntryWrapper.      *       * @param entry -      *            the entry to wrap      *       * @param operation -      *            the StorageOperation      *       * @throws IOException -      *             if the entry content can not be generated      */
 DECL|method|StorageEntryWrapper
-specifier|protected
+specifier|public
 name|StorageEntryWrapper
 parameter_list|(
 specifier|final
-name|BaseEntry
+name|ServerBaseEntry
 name|entry
-parameter_list|,
-specifier|final
-name|String
-name|feedId
 parameter_list|,
 name|StorageOperation
 name|operation
-parameter_list|,
-specifier|final
-name|ExtensionProfile
-name|profile
 parameter_list|)
 throws|throws
 name|IOException
@@ -274,13 +332,28 @@ name|this
 operator|.
 name|feedId
 operator|=
-name|feedId
+name|entry
+operator|.
+name|getFeedId
+argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|operation
+operator|!=
+name|StorageOperation
+operator|.
+name|DELETE
+condition|)
+block|{
 name|this
 operator|.
-name|profile
+name|config
 operator|=
-name|profile
+name|entry
+operator|.
+name|getServiceConfig
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -289,6 +362,7 @@ operator|=
 name|buildContent
 argument_list|()
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|timestamp
@@ -296,6 +370,25 @@ operator|=
 operator|new
 name|Long
 argument_list|(
+name|this
+operator|.
+name|entry
+operator|.
+name|getUpdated
+argument_list|()
+operator|!=
+literal|null
+condition|?
+name|this
+operator|.
+name|entry
+operator|.
+name|getUpdated
+argument_list|()
+operator|.
+name|getValue
+argument_list|()
+else|:
 name|System
 operator|.
 name|currentTimeMillis
@@ -339,7 +432,10 @@ name|xmlWriter
 argument_list|,
 name|this
 operator|.
-name|profile
+name|config
+operator|.
+name|getExtensionProfile
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -349,13 +445,26 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**       * @return - the lucene document representing the entry       */
+comment|/**      * @see org.apache.lucene.gdata.storage.lucenestorage.StorageWrapper#getLuceneDocument()      */
 DECL|method|getLuceneDocument
 specifier|public
 name|Document
 name|getLuceneDocument
 parameter_list|()
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|operation
+operator|==
+name|StorageOperation
+operator|.
+name|DELETE
+condition|)
+return|return
+literal|null
+return|;
 if|if
 condition|(
 name|this
@@ -386,7 +495,7 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"entryId"
+name|FIELD_ENTRY_ID
 argument_list|,
 name|this
 operator|.
@@ -415,7 +524,7 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"feedId"
+name|FIELD_FEED_REFERENCE
 argument_list|,
 name|this
 operator|.
@@ -444,7 +553,7 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"content"
+name|FIELD_CONTENT
 argument_list|,
 name|this
 operator|.
@@ -460,7 +569,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -473,7 +582,7 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"timestamp"
+name|FIELD_TIMESTAMP
 argument_list|,
 name|this
 operator|.
@@ -502,20 +611,28 @@ operator|.
 name|document
 return|;
 block|}
-comment|/**       * @return - the wrapped entry       */
+comment|/**      * @return - the wrapped entry      */
 DECL|method|getEntry
 specifier|public
 name|BaseEntry
 name|getEntry
 parameter_list|()
 block|{
+comment|/*          * this wrapps the entry again. BufferableEntry creates a new instance          * for the dynamic element like links.          */
 return|return
+operator|new
+name|BufferableEntry
+argument_list|(
 name|this
 operator|.
 name|entry
+operator|.
+name|getEntry
+argument_list|()
+argument_list|)
 return|;
 block|}
-comment|/**       * @return - the entry id       */
+comment|/**      * @return - the entry id      */
 DECL|method|getEntryId
 specifier|public
 name|String
@@ -528,7 +645,7 @@ operator|.
 name|entryId
 return|;
 block|}
-comment|/**       * @return - the feed id       */
+comment|/**      * @return - the feed id      */
 DECL|method|getFeedId
 specifier|public
 name|String
@@ -541,26 +658,26 @@ operator|.
 name|feedId
 return|;
 block|}
-comment|/**       * Storage operations       *        * @author Simon Willnauer       *        */
+comment|/**      * Storage operations      *       * @author Simon Willnauer      *       */
 DECL|enum|StorageOperation
 specifier|public
 specifier|static
 enum|enum
 name|StorageOperation
 block|{
-comment|/**           * delete           */
+comment|/**          * delete          */
 DECL|enum constant|DELETE
 name|DELETE
 block|,
-comment|/**           * update           */
+comment|/**          * update          */
 DECL|enum constant|UPDATE
 name|UPDATE
 block|,
-comment|/**           * insert           */
+comment|/**          * insert          */
 DECL|enum constant|INSERT
 name|INSERT
 block|}
-comment|/**       * @return the specified storage operation       */
+comment|/**      * @return the specified storage operation      */
 DECL|method|getOperation
 specifier|public
 name|StorageOperation
@@ -573,7 +690,7 @@ operator|.
 name|operation
 return|;
 block|}
-comment|/**       * @see java.lang.Comparable#compareTo(T)       */
+comment|/**      * This compare method compares the timestamps of the wrapper instances.      *       * @param arg0 -      *            the wrapper to compare      * @par      * @return - 0 if the wrappers timestamp are the same, an integer> 0 if the      *         given wrapper is after this wrapper      *       */
 DECL|method|compareTo
 specifier|public
 name|int
@@ -608,6 +725,32 @@ else|:
 operator|-
 literal|1
 operator|)
+return|;
+block|}
+comment|/**      * @return - the specified {@link ProvidedServiceConfig}      */
+DECL|method|getConfigurator
+specifier|public
+name|ProvidedService
+name|getConfigurator
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|config
+return|;
+block|}
+comment|/**      * @return Returns the timestamp.      */
+DECL|method|getTimestamp
+specifier|public
+name|Long
+name|getTimestamp
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|timestamp
 return|;
 block|}
 block|}

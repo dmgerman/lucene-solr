@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**   * Copyright 2004 The Apache Software Foundation   *   * Licensed under the Apache License, Version 2.0 (the "License");   * you may not use this file except in compliance with the License.   * You may obtain a copy of the License at   *   *     http://www.apache.org/licenses/LICENSE-2.0   *   * Unless required by applicable law or agreed to in writing, software   * distributed under the License is distributed on an "AS IS" BASIS,   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   * See the License for the specific language governing permissions and   * limitations under the License.   */
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -20,8 +20,26 @@ name|handler
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ServerComponent
+import|;
+end_import
+
 begin_comment
-comment|/**   * @author Simon Willnauer   *    */
+comment|/**  * Abstract Superclass for RequestHandlerFactories  * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -30,48 +48,12 @@ specifier|public
 specifier|abstract
 class|class
 name|RequestHandlerFactory
+implements|implements
+name|ServerComponent
 block|{
-DECL|field|INSTANCE
-specifier|private
-specifier|static
-name|RequestHandlerFactory
-name|INSTANCE
-init|=
-literal|null
-decl_stmt|;
-comment|/**       * This method creates a singleton instance of the given type. The fist call       * will create an instance of the given class which will be returned in       * every subsequent call. Any subsequent call to this method will ignore the       * given class object.        *        * @param factoryImplementation -       *            the factory implementation (must be a subtype of this Class)       *        * @return - a singleton instance of the given type       *        */
-DECL|method|getInstance
-specifier|public
-specifier|static
-specifier|synchronized
-name|RequestHandlerFactory
-name|getInstance
-parameter_list|(
-name|Class
-name|factoryImplementation
-parameter_list|)
-block|{
-if|if
-condition|(
-name|INSTANCE
-operator|==
-literal|null
-condition|)
-block|{
-name|INSTANCE
-operator|=
-name|createInstance
-argument_list|(
-name|factoryImplementation
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|INSTANCE
-return|;
-block|}
-comment|/**       * Singleton - Pattern using private constructor       *        */
+comment|/**      * public constructor to enable loading via the registry      * @see org.apache.lucene.gdata.server.registry.Component      * @see org.apache.lucene.gdata.server.registry.GDataServerRegistry      */
 DECL|method|RequestHandlerFactory
+specifier|public
 name|RequestHandlerFactory
 parameter_list|()
 block|{
@@ -79,148 +61,86 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|createInstance
-specifier|private
-specifier|static
-name|RequestHandlerFactory
-name|createInstance
-parameter_list|(
-specifier|final
-name|Class
-name|qualifiedClass
-parameter_list|)
-block|{
-if|if
-condition|(
-name|qualifiedClass
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Factory class is null -- must be a implementation of org.apache.lucene.gdata.servlet.handler.RequestHandlerFactory"
-argument_list|)
-throw|;
-try|try
-block|{
-return|return
-operator|(
-name|RequestHandlerFactory
-operator|)
-name|qualifiedClass
-operator|.
-name|newInstance
-argument_list|()
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|FactoryImplementationException
-name|ex
-init|=
-operator|new
-name|FactoryImplementationException
-argument_list|(
-literal|"Factory implementation could not be created"
-argument_list|,
-name|e
-operator|.
-name|getCause
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|ex
-operator|.
-name|setStackTrace
-argument_list|(
-name|e
-operator|.
-name|getStackTrace
-argument_list|()
-argument_list|)
-expr_stmt|;
-throw|throw
-name|ex
-throw|;
-block|}
-block|}
-comment|/**       * Creates a UpdateHandler which processes a GDATA UPDATE request.       * @return - an RequestHandlerInstance       */
-DECL|method|getUpdateHandler
+comment|/**      * Creates a EntryUpdateHandler which processes a GDATA UPDATE request.      * @return - a RequestHandlerInstance      */
+DECL|method|getEntryUpdateHandler
 specifier|public
 specifier|abstract
 name|GDataRequestHandler
-name|getUpdateHandler
+name|getEntryUpdateHandler
 parameter_list|()
 function_decl|;
-comment|/**       * Creates a DeleteHandler which processes a GDATA DELETE request.       * @return - an RequestHandlerInstance       */
-DECL|method|getDeleteHandler
+comment|/**      * Creates a EntryDeleteHandler which processes a GDATA DELETE request.      * @return - a RequestHandlerInstance      */
+DECL|method|getEntryDeleteHandler
 specifier|public
 specifier|abstract
 name|GDataRequestHandler
-name|getDeleteHandler
+name|getEntryDeleteHandler
 parameter_list|()
 function_decl|;
-comment|/**       * Creates a QueryHandler which processes a GDATA Query / Get request.       * @return - an RequestHandlerInstance       */
-DECL|method|getQueryHandler
+comment|/**      * Creates a FeedQueryHandler which processes a GDATA Query / Get request.      * @return - a RequestHandlerInstance      */
+DECL|method|getFeedQueryHandler
 specifier|public
 specifier|abstract
 name|GDataRequestHandler
-name|getQueryHandler
+name|getFeedQueryHandler
 parameter_list|()
 function_decl|;
-comment|/**       * Creates a InsertHandler which processes a GDATA Insert request.       * @return - an RequestHandlerInstance       */
-DECL|method|getInsertHandler
+comment|/**      * Creates a EntryInsertHandler which processes a GDATA Insert request.      * @return - a RequestHandlerInstance      */
+DECL|method|getEntryInsertHandler
 specifier|public
 specifier|abstract
 name|GDataRequestHandler
-name|getInsertHandler
+name|getEntryInsertHandler
 parameter_list|()
 function_decl|;
-DECL|class|FactoryImplementationException
-specifier|private
-specifier|static
-class|class
-name|FactoryImplementationException
-extends|extends
-name|RuntimeException
-block|{
-comment|/**           *            */
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|3166033278825112569L
-decl_stmt|;
-comment|/**           * Constructs a new FactoryImplementationException with the specified           * cause and message           *            * @param arg0 -           *            the detail message           * @param arg1 -           *            the throw cause           */
-DECL|method|FactoryImplementationException
+comment|/**      * Creates a InsertAccountHandler which processes a Account Insert request.      * @return - a RequestHandlerInstance      */
+DECL|method|getInsertAccountHandler
 specifier|public
-name|FactoryImplementationException
-parameter_list|(
-name|String
-name|arg0
-parameter_list|,
-name|Throwable
-name|arg1
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|arg0
-argument_list|,
-name|arg1
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+specifier|abstract
+name|GDataRequestHandler
+name|getInsertAccountHandler
+parameter_list|()
+function_decl|;
+comment|/**      * Creates a DeleteAccountHandler which processes a Account Delete request.      * @return - a RequestHandlerInstance      */
+DECL|method|getDeleteAccountHandler
+specifier|public
+specifier|abstract
+name|GDataRequestHandler
+name|getDeleteAccountHandler
+parameter_list|()
+function_decl|;
+comment|/**      * Creates a UpdateAccountHandler which processes a Account Update request.      * @return - a RequestHandlerInstance      */
+DECL|method|getUpdateAccountHandler
+specifier|public
+specifier|abstract
+name|GDataRequestHandler
+name|getUpdateAccountHandler
+parameter_list|()
+function_decl|;
+comment|/**      * Creates a InsertFeedHandler which processes a Feed Insert request.      * @return - a RequestHandlerInstance      */
+DECL|method|getInsertFeedHandler
+specifier|public
+specifier|abstract
+name|GDataRequestHandler
+name|getInsertFeedHandler
+parameter_list|()
+function_decl|;
+comment|/**      * Creates a UpdateFeedHandler which processes a Feed Insert request.      * @return - a RequestHandlerInstance      */
+DECL|method|getUpdateFeedHandler
+specifier|public
+specifier|abstract
+name|GDataRequestHandler
+name|getUpdateFeedHandler
+parameter_list|()
+function_decl|;
+comment|/**      * Creates a DeleteFeedHandler which processes a Feed Insert request.      * @return - a RequestHandlerInstance      */
+DECL|method|getDeleteFeedHandler
+specifier|public
+specifier|abstract
+name|GDataRequestHandler
+name|getDeleteFeedHandler
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

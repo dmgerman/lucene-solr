@@ -90,11 +90,45 @@ name|lucene
 operator|.
 name|gdata
 operator|.
+name|data
+operator|.
+name|GDataAccount
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
 name|server
 operator|.
 name|registry
 operator|.
-name|GDataServerRegistry
+name|Component
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ComponentType
 import|;
 end_import
 
@@ -111,6 +145,22 @@ operator|.
 name|storage
 operator|.
 name|IDGenerator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|storage
+operator|.
+name|Storage
 import|;
 end_import
 
@@ -208,6 +258,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -242,11 +306,34 @@ name|FSDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
+import|;
+end_import
+
 begin_comment
-comment|/**   * TODO document this   * @author Simon Willnauer   *   */
+comment|/**  *    *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
+annotation|@
+name|Component
+argument_list|(
+name|componentType
+operator|=
+name|ComponentType
+operator|.
+name|STORAGECONTROLLER
+argument_list|)
 DECL|class|StorageCoreController
 specifier|public
 class|class
@@ -274,12 +361,6 @@ DECL|field|searcher
 specifier|private
 name|IndexSearcher
 name|searcher
-decl_stmt|;
-DECL|field|coreController
-specifier|private
-specifier|static
-name|StorageCoreController
-name|coreController
 decl_stmt|;
 DECL|field|storageDir
 specifier|private
@@ -367,29 +448,12 @@ specifier|private
 name|int
 name|indexOptimizeInterval
 decl_stmt|;
+comment|//    private RecoverController recoverController;
+comment|/**      * Creates a new<tt>StoragCoreController</tt> and sets up the storage      * environment reading the configuration file.      *       *       *       * @throws IOException -      *             if an IOException occures      * @throws StorageException -      *             if the storage lock can not be created or the      *             {@link IDGenerator} can not be loaded      */
 DECL|method|StorageCoreController
-specifier|private
+specifier|public
 name|StorageCoreController
 parameter_list|()
-throws|throws
-name|IOException
-throws|,
-name|StorageException
-block|{
-name|this
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|StorageCoreController
-specifier|private
-name|StorageCoreController
-parameter_list|(
-specifier|final
-name|Directory
-name|dir
-parameter_list|)
 throws|throws
 name|IOException
 throws|,
@@ -436,13 +500,6 @@ name|createNewStorage
 init|=
 literal|false
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|==
-literal|null
-condition|)
-block|{
 name|this
 operator|.
 name|configurator
@@ -452,6 +509,17 @@ operator|.
 name|getStorageConfigurator
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|this
+operator|.
+name|configurator
+operator|.
+name|isRamDirectory
+argument_list|()
+condition|)
+block|{
 name|String
 name|storageDirPath
 init|=
@@ -539,7 +607,7 @@ throw|throw
 operator|new
 name|StorageException
 argument_list|(
-literal|"could not create storage log file in "
+literal|"could not create storage lock file in "
 operator|+
 name|storageDirPath
 argument_list|)
@@ -636,7 +704,8 @@ name|this
 operator|.
 name|storageDir
 operator|=
-name|dir
+name|getRamDirectory
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -671,17 +740,14 @@ operator|.
 name|storageDir
 argument_list|)
 expr_stmt|;
-name|GDataServerRegistry
-operator|.
-name|getRegistry
+comment|//            this.recoverController = new RecoverController(null,this.configurator.isRecover(),this.configurator.isKeepRecoveredFiles());
+if|if
+condition|(
+name|createNewStorage
+condition|)
+name|createAdminAccount
 argument_list|()
-operator|.
-name|registerStorage
-argument_list|(
-name|this
-argument_list|)
 expr_stmt|;
-comment|// TODO reverse dependency here
 block|}
 block|}
 DECL|method|createStorageModifier
@@ -716,6 +782,8 @@ return|return
 operator|new
 name|StorageModifier
 argument_list|(
+name|this
+argument_list|,
 name|indexModifier
 argument_list|,
 name|this
@@ -732,9 +800,9 @@ name|indexOptimizeInterval
 argument_list|)
 return|;
 block|}
-comment|/**TODO document this       * @return       */
+comment|/**      * returns the current storage modifier      *       * @return - the current storage modifier      */
 DECL|method|getStorageModifier
-specifier|public
+specifier|protected
 name|StorageModifier
 name|getStorageModifier
 parameter_list|()
@@ -745,95 +813,15 @@ operator|.
 name|modifier
 return|;
 block|}
-comment|/**TODO document this       * @return       * @throws IOException       * @throws StorageException       */
-DECL|method|getStorageCoreController
-specifier|public
-specifier|static
-name|StorageCoreController
-name|getStorageCoreController
-parameter_list|()
-throws|throws
-name|IOException
-throws|,
-name|StorageException
-block|{
-synchronized|synchronized
-init|(
-name|StorageCoreController
-operator|.
-name|class
-init|)
-block|{
-if|if
-condition|(
-name|coreController
-operator|==
-literal|null
-condition|)
-name|coreController
-operator|=
-operator|new
-name|StorageCoreController
-argument_list|()
-expr_stmt|;
-return|return
-name|coreController
-return|;
-block|}
-block|}
-comment|/**TODO document this       * @param dir       * @return       * @throws IOException       * @throws StorageException       */
-DECL|method|getStorageCoreController
-specifier|protected
-specifier|static
-name|StorageCoreController
-name|getStorageCoreController
-parameter_list|(
-specifier|final
-name|Directory
-name|dir
-parameter_list|)
-throws|throws
-name|IOException
-throws|,
-name|StorageException
-block|{
-synchronized|synchronized
-init|(
-name|StorageCoreController
-operator|.
-name|class
-init|)
-block|{
-if|if
-condition|(
-name|coreController
-operator|==
-literal|null
-condition|)
-name|coreController
-operator|=
-operator|new
-name|StorageCoreController
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-return|return
-name|coreController
-return|;
-block|}
-block|}
-comment|/**TODO document this       * @return       * @throws IOException       */
+comment|/**      * returns a<tt>StorageQuery</tt> to query the storage index. The      * returned object is a reference counter to keep track of the references to      * the<tt>StorageQuery</tt>. The reference is already incremented before      * returned from this method.      *<p>      * if the reference counter has no remaining references the resource e.g.      * the<tt>StorageQuery</tt> will be closed. This ensures that a      *<tt>StorageQuery</tt> instance will be arround as long as needed and      * the resources will be released. The reference counter should be      * decremented by clients after finished using the query instance.      *</p>      *       * @return a {@link ReferenceCounter} instance holding the StorageQuery as a      *         resource.      *       */
 DECL|method|getStorageQuery
-specifier|public
+specifier|protected
 name|ReferenceCounter
 argument_list|<
 name|StorageQuery
 argument_list|>
 name|getStorageQuery
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 synchronized|synchronized
 init|(
@@ -989,6 +977,7 @@ return|return
 name|holder
 return|;
 block|}
+comment|/**      * Forces the controller to register a new<tt>StorageQuery</tt> instance.      * This method will be called after an index has been modified to make the      * changes available for searching.      *       * @throws IOException -      *             if an IO exception occures      */
 DECL|method|registerNewStorageQuery
 specifier|protected
 name|void
@@ -1065,6 +1054,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Creates a new StorageBuffer      *       * @return the new StorageBuffer      */
 DECL|method|releaseNewStorageBuffer
 specifier|protected
 name|StorageBuffer
@@ -1085,9 +1075,9 @@ name|currentBuffer
 return|;
 block|}
 block|}
-comment|/**TODO document this       * @return       * @throws IOException       */
+comment|/**      * Creates a new IndexModifier on the storage index      *       * @return - a new modifier      * @throws IOException -      *             if an IO exception occures      */
 DECL|method|createIndexModifier
-specifier|public
+specifier|protected
 name|IndexModifier
 name|createIndexModifier
 parameter_list|()
@@ -1176,10 +1166,6 @@ operator|.
 name|decrementRef
 argument_list|()
 expr_stmt|;
-name|coreController
-operator|=
-literal|null
-expr_stmt|;
 name|this
 operator|.
 name|modifier
@@ -1187,10 +1173,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//TODO make sure all resources will be released
+comment|// TODO make sure all resources will be released
 block|}
 block|}
-comment|/**TODO document this       * @return       */
+comment|/**      * The size of the<tt>StorageBuffer</tt>.      *       * @return - storage buffer size      */
 DECL|method|getStorageBufferSize
 specifier|public
 name|int
@@ -1203,7 +1189,7 @@ operator|.
 name|storageBufferSize
 return|;
 block|}
-comment|/**       * @param storageBufferSize       */
+comment|/**      * The size of the<tt>StorageBuffer</tt>. This size should be at least      * as big as the persist factor to prevent the<tt>StorageBuffer</tt> from      * resizing      *       * @param storageBufferSize      */
 DECL|method|setStorageBufferSize
 specifier|public
 name|void
@@ -1220,7 +1206,7 @@ operator|=
 name|storageBufferSize
 expr_stmt|;
 block|}
-comment|/**TODO document this       * @return       */
+comment|/**      * An integer value after how many changes to the StorageModifier the      * buffered changes will be persisted / wirtten to the index      *       * @return - the persist factor      */
 DECL|method|getStoragePersistFactor
 specifier|public
 name|int
@@ -1233,7 +1219,7 @@ operator|.
 name|storagePersistFactor
 return|;
 block|}
-comment|/**       * @param storagePersistFactor       */
+comment|/**      * @param storagePersistFactor      */
 DECL|method|setStoragePersistFactor
 specifier|public
 name|void
@@ -1250,7 +1236,7 @@ operator|=
 name|storagePersistFactor
 expr_stmt|;
 block|}
-comment|/**       * @throws IOException       * @throws StorageException       */
+comment|/**      * Forces the StorageModifier to write all buffered changes.      *       * @throws IOException -      *             if an IO exception occures      *       */
 DECL|method|forceWrite
 specifier|public
 name|void
@@ -1258,8 +1244,6 @@ name|forceWrite
 parameter_list|()
 throws|throws
 name|IOException
-throws|,
-name|StorageException
 block|{
 name|this
 operator|.
@@ -1328,7 +1312,7 @@ name|createNewFile
 argument_list|()
 return|;
 block|}
-comment|/**TODO document this       * @return       * @throws StorageException       */
+comment|/**      * Creates a unique ID to store as an id for      * {@link org.apache.lucene.gdata.data.ServerBaseEntry} instances      *       * @return - a unique id      * @throws StorageException -      *             if no id can be released      */
 DECL|method|releaseID
 specifier|public
 specifier|synchronized
@@ -1366,7 +1350,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**       * @see org.apache.lucene.gdata.storage.StorageController#destroy()       */
+comment|/**      * @see org.apache.lucene.gdata.storage.StorageController#destroy()      */
 DECL|method|destroy
 specifier|public
 name|void
@@ -1400,6 +1384,160 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      *       * @return - the lucene directory used as a storage      */
+DECL|method|getDirectory
+specifier|protected
+name|Directory
+name|getDirectory
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|storageDir
+return|;
+block|}
+comment|/**      * @see org.apache.lucene.gdata.storage.StorageController#getStorage()      */
+DECL|method|getStorage
+specifier|public
+name|Storage
+name|getStorage
+parameter_list|()
+throws|throws
+name|StorageException
+block|{
+try|try
+block|{
+return|return
+operator|new
+name|StorageImplementation
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|StorageException
+name|e
+parameter_list|)
+block|{
+name|StorageException
+name|ex
+init|=
+operator|new
+name|StorageException
+argument_list|(
+literal|"Can't create Storage instance -- "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+decl_stmt|;
+name|ex
+operator|.
+name|setStackTrace
+argument_list|(
+name|e
+operator|.
+name|getStackTrace
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|ex
+throw|;
+block|}
+block|}
+comment|// TODO Try to remove this --> testcases
+DECL|method|getRamDirectory
+specifier|private
+name|RAMDirectory
+name|getRamDirectory
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|IndexWriter
+name|writer
+decl_stmt|;
+name|RAMDirectory
+name|retVal
+init|=
+operator|new
+name|RAMDirectory
+argument_list|()
+decl_stmt|;
+name|writer
+operator|=
+operator|new
+name|IndexWriter
+argument_list|(
+name|retVal
+argument_list|,
+operator|new
+name|StandardAnalyzer
+argument_list|()
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+name|retVal
+return|;
+block|}
+comment|/**      * @see org.apache.lucene.gdata.server.registry.ServerComponent#initialize()      */
+DECL|method|initialize
+specifier|public
+name|void
+name|initialize
+parameter_list|()
+block|{
+comment|//
+block|}
+DECL|method|createAdminAccount
+specifier|private
+name|void
+name|createAdminAccount
+parameter_list|()
+throws|throws
+name|StorageException
+block|{
+name|GDataAccount
+name|adminAccount
+init|=
+name|GDataAccount
+operator|.
+name|createAdminAccount
+argument_list|()
+decl_stmt|;
+name|StorageAccountWrapper
+name|wrapper
+init|=
+operator|new
+name|StorageAccountWrapper
+argument_list|(
+name|adminAccount
+argument_list|)
+decl_stmt|;
+name|this
+operator|.
+name|getStorageModifier
+argument_list|()
+operator|.
+name|createAccount
+argument_list|(
+name|wrapper
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

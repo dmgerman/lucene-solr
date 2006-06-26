@@ -76,6 +76,18 @@ name|servlet
 operator|.
 name|http
 operator|.
+name|Cookie
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
 name|HttpServletRequest
 import|;
 end_import
@@ -120,6 +132,60 @@ name|gdata
 operator|.
 name|server
 operator|.
+name|authentication
+operator|.
+name|AuthenticationController
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ComponentType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|ProvidedService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
 name|registry
 operator|.
 name|GDataServerRegistry
@@ -128,20 +194,38 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|google
+name|apache
+operator|.
+name|lucene
 operator|.
 name|gdata
 operator|.
-name|data
+name|storage
 operator|.
-name|ExtensionProfile
+name|Storage
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|storage
+operator|.
+name|StorageController
 import|;
 end_import
 
 begin_comment
-comment|/**   * The GDataRequest Class wraps the incoming HttpServletRequest. Needed   * information coming with the HttpServletRequest can be accessed directly. It   * represents an abstraction on the plain HttpServletRequest. Every GData   * specific data coming from the client will be availiable and can be accessed   * via the GDataRequest.   *<p>   * GDataRequest instances will be passed to any action requested by the client.   * This class also holds the logic to retrieve important information like   * response format, the reqeusted feed instance and query parameters.   *    *</p>   *    * @author Simon Willnauer   *    */
+comment|/**  * The GDataRequest Class wraps the incoming HttpServletRequest. Needed  * information coming with the HttpServletRequest can be accessed directly. It  * represents an abstraction on the plain HttpServletRequest. Every GData  * specific data coming from the client will be availiable and can be accessed  * via the GDataRequest.  *<p>  * GDataRequest instances will be passed to any action requested by the client.  * This class also holds the logic to retrieve important information like  * response format, the reqeusted feed instance and query parameters.  *   *</p>  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_comment
@@ -243,6 +327,24 @@ name|RESPONSE_FORMAT_PARAMETER_ATOM
 init|=
 literal|"atom"
 decl_stmt|;
+DECL|field|HTTP_HEADER_IF_MODIFIED_SINCE
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|HTTP_HEADER_IF_MODIFIED_SINCE
+init|=
+literal|"If-Modified-Since"
+decl_stmt|;
+DECL|field|HTTP_HEADER_AUTH
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|HTTP_HEADER_AUTH
+init|=
+literal|"Authorization"
+decl_stmt|;
 comment|// Atom is the default resopnse format
 DECL|field|responseFormat
 specifier|private
@@ -273,10 +375,10 @@ name|entryId
 init|=
 literal|null
 decl_stmt|;
-DECL|field|extensionProfile
+DECL|field|configurator
 specifier|private
-name|ExtensionProfile
-name|extensionProfile
+name|ProvidedService
+name|configurator
 init|=
 literal|null
 decl_stmt|;
@@ -292,7 +394,7 @@ specifier|private
 name|GDataRequestType
 name|type
 decl_stmt|;
-comment|/**       * Creates a new FeedRequest       *        * @param requst -       *            the incoming HttpServletReqeust       * @param type -       *            the request type       *        */
+comment|/**      * Creates a new FeedRequest      *       * @param requst -      *            the incoming HttpServletReqeust      * @param type -      *            the request type      *       */
 DECL|method|GDataRequest
 specifier|public
 name|GDataRequest
@@ -345,7 +447,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**       * Initialize the GDataRequest. This will initialize all needed values /       * attributes in this request.       *        * @throws GDataRequestException       */
+comment|/**      * Initialize the GDataRequest. This will initialize all needed values /      * attributes in this request.      *       * @throws GDataRequestException      */
 DECL|method|initializeRequest
 specifier|public
 name|void
@@ -360,28 +462,68 @@ expr_stmt|;
 name|setOutputFormat
 argument_list|()
 expr_stmt|;
-comment|/*           * ExtensionProfile is used for building the Entry / Feed Instances from an inputstream or reader           */
+comment|// TODO remove this dependency
+name|StorageController
+name|controller
+init|=
+name|GDataServerRegistry
+operator|.
+name|getRegistry
+argument_list|()
+operator|.
+name|lookup
+argument_list|(
+name|StorageController
+operator|.
+name|class
+argument_list|,
+name|ComponentType
+operator|.
+name|STORAGECONTROLLER
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|Storage
+name|storage
+init|=
+name|controller
+operator|.
+name|getStorage
+argument_list|()
+decl_stmt|;
+name|String
+name|service
+init|=
+name|storage
+operator|.
+name|getServiceForFeed
+argument_list|(
 name|this
 operator|.
-name|extensionProfile
+name|feedId
+argument_list|)
+decl_stmt|;
+comment|/*              * ExtensionProfile and the type is used for building the Entry /              * Feed Instances from an inputstream or reader              *               */
+name|this
+operator|.
+name|configurator
 operator|=
 name|GDataServerRegistry
 operator|.
 name|getRegistry
 argument_list|()
 operator|.
-name|getExtensionProfile
+name|getProvidedService
 argument_list|(
-name|this
-operator|.
-name|feedId
+name|service
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|this
 operator|.
-name|extensionProfile
+name|configurator
 operator|==
 literal|null
 condition|)
@@ -393,7 +535,22 @@ literal|"feed is not registered or extension profile could not be created"
 argument_list|)
 throw|;
 block|}
-comment|/**       * @return - the id of the requested feed       */
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|GDataRequestException
+argument_list|(
+literal|"feed is not registered or extension profile could not be created"
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/**      * @return - the id of the requested feed      */
 DECL|method|getFeedId
 specifier|public
 name|String
@@ -406,7 +563,7 @@ operator|.
 name|feedId
 return|;
 block|}
-comment|/**       * @return - the entry id of the requested Entry if specified, otherwise       *<code>null</code>       */
+comment|/**      * @return - the entry id of the requested Entry if specified, otherwise      *<code>null</code>      */
 DECL|method|getEntryId
 specifier|public
 name|String
@@ -419,7 +576,7 @@ operator|.
 name|entryId
 return|;
 block|}
-comment|/**       * @return the version Id of the requested Entry if specified, otherwise       *<code>null</code>       */
+comment|/**      * @return the version Id of the requested Entry if specified, otherwise      *<code>null</code>      */
 DECL|method|getEntryVersion
 specifier|public
 name|String
@@ -432,7 +589,7 @@ operator|.
 name|entryVersion
 return|;
 block|}
-comment|/**       * A Reader instance to read form the client input stream       *        * @return - the HttpServletRequest {@link Reader}       * @throws IOException -       *             if an I/O Exception occures       */
+comment|/**      * A Reader instance to read form the client input stream      *       * @return - the HttpServletRequest {@link Reader}      * @throws IOException -      *             if an I/O Exception occures      */
 DECL|method|getReader
 specifier|public
 name|Reader
@@ -450,7 +607,7 @@ name|getReader
 argument_list|()
 return|;
 block|}
-comment|/**       * Returns the {@link HttpServletRequest} parameter map containig all<i>GET</i>       * request parameters.       *        * @return the parameter map       */
+comment|/**      * Returns the {@link HttpServletRequest} parameter map containig all<i>GET</i>      * request parameters.      *       * @return the parameter map      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -477,7 +634,7 @@ name|getParameterMap
 argument_list|()
 return|;
 block|}
-comment|/**       * The {@link HttpServletRequest} request parameter names       *        * @return parameter names enumeration       */
+comment|/**      * The {@link HttpServletRequest} request parameter names      *       * @return parameter names enumeration      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -501,7 +658,7 @@ name|getParameterNames
 argument_list|()
 return|;
 block|}
-comment|/**       * Either<i>Atom</i> or<i>RSS</i>       *        * @return - The output format requested by the client       */
+comment|/**      * Either<i>Atom</i> or<i>RSS</i>      *       * @return - The output format requested by the client      */
 DECL|method|getRequestedResponseFormat
 specifier|public
 name|OutputFormat
@@ -533,7 +690,7 @@ operator|.
 name|getPathInfo
 argument_list|()
 decl_stmt|;
-comment|/*           * TODO this has to be changed to support the category queries. Category           * queries could also be rewrited in the Servlet.           */
+comment|/*          * TODO this has to be changed to support the category queries. Category          * queries could also be rewrited in the Servlet.          */
 if|if
 condition|(
 name|pathInfo
@@ -646,7 +803,7 @@ operator|.
 name|RSS
 expr_stmt|;
 block|}
-comment|/**       * @return - the number of returned items per page       */
+comment|/**      * @return - the number of returned items per page      */
 DECL|method|getItemsPerPage
 specifier|public
 name|int
@@ -727,7 +884,7 @@ else|:
 name|retval
 return|;
 block|}
-comment|/**       * Start index represents the number of the first entry of the query -       * result. The order depends on the query. Is the query a search query the       * this value will be assinged to the score in a common feed query the value       * will be assigned to the update time of the entries.       *        * @return - the requested start index       */
+comment|/**      * Start index represents the number of the first entry of the query -      * result. The order depends on the query. Is the query a search query the      * this value will be assinged to the score in a common feed query the value      * will be assigned to the update time of the entries.      *       * @return - the requested start index      */
 DECL|method|getStartIndex
 specifier|public
 name|int
@@ -808,7 +965,7 @@ else|:
 name|retval
 return|;
 block|}
-comment|/**       * The selfid is<i>href</i> pointing to the requested resource       *        * @return - the self id       */
+comment|/**      * The selfid is<i>href</i> pointing to the requested resource      *       * @return - the self id      */
 DECL|method|getSelfId
 specifier|public
 name|String
@@ -836,6 +993,13 @@ name|builder
 operator|.
 name|append
 argument_list|(
+literal|"?"
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
 name|getQueryString
 argument_list|()
 argument_list|)
@@ -847,53 +1011,293 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**       * The<i>href</i> id of the next page of the requested resource.       *        * @return the id of the next page       */
+comment|/**      * The<i>href</i> id of the next page of the requested resource.      *       * @return the id of the next page      */
 DECL|method|getNextId
 specifier|public
 name|String
 name|getNextId
 parameter_list|()
 block|{
-comment|// StringBuilder builder = new StringBuilder();
-comment|// builder.append(buildRequestIDString());
-comment|//
-comment|// builder.append(getQueryString());
-comment|//
-comment|// if(this.request.getParameter(START_INDEX_NEXT_PAGE_PARAMETER)==
-comment|// null){
-comment|// builder.append("&").append(START_INDEX_NEXT_PAGE_PARAMETER).append("=");
-comment|// builder.append(DEFAULT_ITEMS_PER_PAGE+1);
-comment|// }
-comment|// else{
-comment|//
-comment|// int next = 0;
-comment|// try{
-comment|// next =
-comment|// Integer.parseInt(this.request.getParameter(START_INDEX_NEXT_PAGE_PARAMETER));
-comment|// }catch (Exception e) {
-comment|// //
-comment|// }
-comment|//
-comment|// if(next< 0)
-comment|// builder.append(DEFAULT_ITEMS_PER_PAGE+1);
-comment|// else
-comment|// builder.append(next+DEFAULT_ITEMS_PER_PAGE);
-comment|// int pos = builder.indexOf(START_INDEX_NEXT_PAGE_PARAMETER);
-comment|// boolean end = builder.lastIndexOf("&",pos)< pos;
-comment|// builder.replace(pos+START_INDEX_NEXT_PAGE_PARAMETER.length()+1,pos+START_INDEX_NEXT_PAGE_PARAMETER.length()+3,""+next);
-comment|//
-comment|//
-comment|// System.out.println(end);
-comment|// }
-comment|//
-comment|//
-comment|//
-comment|// return builder.toString();
-return|return
+name|StringBuilder
+name|builder
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
 name|buildRequestIDString
 argument_list|(
 literal|false
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"?"
+argument_list|)
+expr_stmt|;
+name|Enumeration
+name|parameters
+init|=
+name|this
+operator|.
+name|request
+operator|.
+name|getParameterNames
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|parameters
+operator|.
+name|hasMoreElements
+argument_list|()
+condition|)
+block|{
+name|String
+name|element
+init|=
+operator|(
+name|String
+operator|)
+name|parameters
+operator|.
+name|nextElement
+argument_list|()
+decl_stmt|;
+name|String
+index|[]
+name|values
+init|=
+name|this
+operator|.
+name|request
+operator|.
+name|getParameterValues
+argument_list|(
+name|element
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|values
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|builder
+operator|.
+name|append
+argument_list|(
+name|element
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"="
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|element
+operator|.
+name|equals
+argument_list|(
+name|START_INDEX_NEXT_PAGE_PARAMETER
+argument_list|)
+condition|)
+block|{
+name|int
+name|tempVal
+init|=
+name|DEFAULT_START_INDEX
+decl_stmt|;
+try|try
+block|{
+name|tempVal
+operator|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|values
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Can not parse StartIndex -- use defaut"
+argument_list|)
+expr_stmt|;
+block|}
+name|builder
+operator|.
+name|append
+argument_list|(
+name|tempVal
+operator|+
+name|getItemsPerPage
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
+name|builder
+operator|.
+name|append
+argument_list|(
+name|values
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|parameters
+operator|.
+name|hasMoreElements
+argument_list|()
+condition|)
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"&"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|this
+operator|.
+name|request
+operator|.
+name|getParameter
+argument_list|(
+name|ITEMS_PER_PAGE_PARAMETER
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|builder
+operator|.
+name|charAt
+argument_list|(
+name|builder
+operator|.
+name|length
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+operator|!=
+literal|'?'
+condition|)
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|'&'
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|ITEMS_PER_PAGE_PARAMETER
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|DEFAULT_ITEMS_PER_PAGE
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|this
+operator|.
+name|request
+operator|.
+name|getParameter
+argument_list|(
+name|START_INDEX_NEXT_PAGE_PARAMETER
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|'&'
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|START_INDEX_NEXT_PAGE_PARAMETER
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"="
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|DEFAULT_ITEMS_PER_PAGE
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|builder
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 DECL|method|buildRequestIDString
@@ -971,7 +1375,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**       * This will return the current query string including all parameters.       * Additionaly the<code>max-resul</code> parameter will be added if not       * specified.       *<p>       *<code>max-resul</code> indicates the number of results returned to the       * client. The default value is 25.       *</p>       *        * @return - the query string incluing all parameters       */
+comment|/**      * This will return the current query string including all parameters.      * Additionaly the<code>max-resul</code> parameter will be added if not      * specified.      *<p>      *<code>max-resul</code> indicates the number of results returned to the      * client. The default value is 25.      *</p>      *       * @return - the query string incluing all parameters      */
 DECL|method|getQueryString
 specifier|public
 name|String
@@ -1012,8 +1416,6 @@ name|retVal
 operator|==
 literal|null
 condition|?
-literal|"?"
-operator|+
 name|ITEMS_PER_PAGE_PARAMETER
 operator|+
 literal|"="
@@ -1041,22 +1443,22 @@ operator|+
 name|tempString
 return|;
 block|}
-comment|/**       * This enum represents the OutputFormat of the GDATA Server       *        * @author Simon Willnauer       *        */
+comment|/**      * This enum represents the OutputFormat of the GDATA Server      *       * @author Simon Willnauer      *       */
 DECL|enum|OutputFormat
 specifier|public
 specifier|static
 enum|enum
 name|OutputFormat
 block|{
-comment|/**           * Output format ATOM. ATOM is the default response format.           */
+comment|/**          * Output format ATOM. ATOM is the default response format.          */
 DECL|enum constant|ATOM
 name|ATOM
 block|,
-comment|/**           * Output format RSS           */
+comment|/**          * Output format RSS          */
 DECL|enum constant|RSS
 name|RSS
 block|}
-comment|/**       * Returns the requested path including the domain name and the requested       * resource<i>http://www.apache.org/path/resource/</i>       *        * @return the context path       */
+comment|/**      * Returns the requested path including the domain name and the requested      * resource<i>http://www.apache.org/path/resource/</i>      *       * @return the context path      */
 DECL|method|getContextPath
 specifier|public
 name|String
@@ -1086,29 +1488,29 @@ operator|.
 name|contextPath
 return|;
 block|}
-comment|/**       * Indicates the request type       *        * @author Simon Willnauer       *        */
+comment|/**      * Indicates the request type      *       * @author Simon Willnauer      *       */
 DECL|enum|GDataRequestType
 specifier|public
 enum|enum
 name|GDataRequestType
 block|{
-comment|/**           * Type FeedRequest           */
+comment|/**          * Type FeedRequest          */
 DECL|enum constant|GET
 name|GET
 block|,
-comment|/**           * Type UpdateRequest           */
+comment|/**          * Type UpdateRequest          */
 DECL|enum constant|UPDATE
 name|UPDATE
 block|,
-comment|/**           * Type DeleteRequest           */
+comment|/**          * Type DeleteRequest          */
 DECL|enum constant|DELETE
 name|DELETE
 block|,
-comment|/**           * Type InsertRequest           */
+comment|/**          * Type InsertRequest          */
 DECL|enum constant|INSERT
 name|INSERT
 block|}
-comment|/**       * {@link GDataRequestType}       *        * @return the current request type       */
+comment|/**      * {@link GDataRequestType}      *       * @return the current request type      */
 DECL|method|getType
 specifier|public
 name|GDataRequestType
@@ -1121,7 +1523,7 @@ operator|.
 name|type
 return|;
 block|}
-comment|/**       * If the reuquest is a {@link GDataRequestType#GET} request and there is       * no entry id specified, the requested resource is a feed.       *        * @return -<code>true</code> if an only if the requested resource is a feed       */
+comment|/**      * If the reuquest is a {@link GDataRequestType#GET} request and there is no      * entry id specified, the requested resource is a feed.      *       * @return -<code>true</code> if an only if the requested resource is a      *         feed      */
 DECL|method|isFeedRequested
 specifier|public
 name|boolean
@@ -1171,7 +1573,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/**       * * If the reuquest is a {@link GDataRequestType#GET} request and there is       * an entry id specified, the requested resource is an entry.       *        * @return -<code>true</code> if an only if the requested resource is an entry       */
+comment|/**      * * If the reuquest is a {@link GDataRequestType#GET} request and there is      * an entry id specified, the requested resource is an entry.      *       * @return -<code>true</code> if an only if the requested resource is an      *         entry      */
 DECL|method|isEntryRequested
 specifier|public
 name|boolean
@@ -1186,17 +1588,201 @@ name|isFeedRequested
 argument_list|()
 return|;
 block|}
-comment|/**       * @return - the extensionProfile for the requested resource       */
-DECL|method|getExtensionProfile
+comment|/**      * @return the configuration for this request      */
+DECL|method|getConfigurator
 specifier|public
-name|ExtensionProfile
-name|getExtensionProfile
+name|ProvidedService
+name|getConfigurator
 parameter_list|()
 block|{
 return|return
 name|this
 operator|.
-name|extensionProfile
+name|configurator
+return|;
+block|}
+comment|/**      * @return - Returns the Internet Protocol (IP) address of the client or      *         last proxy that sent the request.      */
+DECL|method|getRemoteAddress
+specifier|public
+name|String
+name|getRemoteAddress
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|request
+operator|.
+name|getRemoteAddr
+argument_list|()
+return|;
+block|}
+comment|/**      * @return - the value for the send auth token. The auth token will be send      *         as a request<tt>Authentication</tt> header.      */
+DECL|method|getAuthToken
+specifier|public
+name|String
+name|getAuthToken
+parameter_list|()
+block|{
+name|String
+name|token
+init|=
+name|this
+operator|.
+name|request
+operator|.
+name|getHeader
+argument_list|(
+name|HTTP_HEADER_AUTH
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|token
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+name|token
+operator|=
+name|token
+operator|.
+name|substring
+argument_list|(
+name|token
+operator|.
+name|indexOf
+argument_list|(
+literal|"="
+argument_list|)
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
+return|return
+name|token
+return|;
+block|}
+comment|/**      * @return - Returns an array containing all of the Cookie objects the      *         client sent with underlaying HttpServletRequest.      */
+DECL|method|getCookies
+specifier|public
+name|Cookie
+index|[]
+name|getCookies
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|request
+operator|.
+name|getCookies
+argument_list|()
+return|;
+block|}
+comment|/**      * @return - the cookie set instead of the authentication token or      *<code>null</code> if not auth cookie is set      */
+DECL|method|getAuthCookie
+specifier|public
+name|Cookie
+name|getAuthCookie
+parameter_list|()
+block|{
+name|Cookie
+index|[]
+name|cookies
+init|=
+name|this
+operator|.
+name|request
+operator|.
+name|getCookies
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|cookies
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|cookies
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|cookies
+index|[
+name|i
+index|]
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|AuthenticationController
+operator|.
+name|TOKEN_KEY
+argument_list|)
+condition|)
+return|return
+name|cookies
+index|[
+name|i
+index|]
+return|;
+block|}
+return|return
+literal|null
+return|;
+block|}
+comment|/**      * @return - the date string of the<tt>If-Modified-Since</tt> HTTP      *         request header, or null if header is not set      */
+DECL|method|getModifiedSince
+specifier|public
+name|String
+name|getModifiedSince
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|request
+operator|.
+name|getHeader
+argument_list|(
+name|HTTP_HEADER_IF_MODIFIED_SINCE
+argument_list|)
+return|;
+block|}
+comment|/**      * @return - the underlaying HttpServletRequest      */
+DECL|method|getHttpServletRequest
+specifier|public
+name|HttpServletRequest
+name|getHttpServletRequest
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|request
 return|;
 block|}
 block|}
