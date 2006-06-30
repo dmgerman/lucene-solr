@@ -192,10 +192,9 @@ specifier|public
 class|class
 name|IndexWriter
 block|{
-comment|/**    * Default value for the write lock timeout (1,000).    */
+comment|/**    * Default value for the write lock timeout (1,000).    * @see #setDefaultWriteLockTimeout    */
 DECL|field|WRITE_LOCK_TIMEOUT
 specifier|public
-specifier|final
 specifier|static
 name|long
 name|WRITE_LOCK_TIMEOUT
@@ -209,10 +208,9 @@ name|writeLockTimeout
 init|=
 name|WRITE_LOCK_TIMEOUT
 decl_stmt|;
-comment|/**    * Default value for the commit lock timeout (10,000).    */
+comment|/**    * Default value for the commit lock timeout (10,000).    * @see #setDefaultCommitLockTimeout    */
 DECL|field|COMMIT_LOCK_TIMEOUT
 specifier|public
-specifier|final
 specifier|static
 name|long
 name|COMMIT_LOCK_TIMEOUT
@@ -849,7 +847,7 @@ return|return
 name|infoStream
 return|;
 block|}
-comment|/**    * Sets the maximum time to wait for a commit lock (in milliseconds).    */
+comment|/**    * Sets the maximum time to wait for a commit lock (in milliseconds) for this instance of IndexWriter.  @see    * @see #setDefaultCommitLockTimeout to change the default value for all instances of IndexWriter.    */
 DECL|method|setCommitLockTimeout
 specifier|public
 name|void
@@ -877,7 +875,39 @@ return|return
 name|commitLockTimeout
 return|;
 block|}
-comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds).    */
+comment|/**    * Sets the default (for any instance of IndexWriter) maximum time to wait for a commit lock (in milliseconds)    */
+DECL|method|setDefaultCommitLockTimeout
+specifier|public
+specifier|static
+name|void
+name|setDefaultCommitLockTimeout
+parameter_list|(
+name|long
+name|commitLockTimeout
+parameter_list|)
+block|{
+name|IndexWriter
+operator|.
+name|COMMIT_LOCK_TIMEOUT
+operator|=
+name|commitLockTimeout
+expr_stmt|;
+block|}
+comment|/**    * @see #setDefaultCommitLockTimeout    */
+DECL|method|getDefaultCommitLockTimeout
+specifier|public
+specifier|static
+name|long
+name|getDefaultCommitLockTimeout
+parameter_list|()
+block|{
+return|return
+name|IndexWriter
+operator|.
+name|COMMIT_LOCK_TIMEOUT
+return|;
+block|}
+comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this instance of IndexWriter.  @see    * @see #setDefaultWriteLockTimeout to change the default value for all instances of IndexWriter.    */
 DECL|method|setWriteLockTimeout
 specifier|public
 name|void
@@ -903,6 +933,38 @@ parameter_list|()
 block|{
 return|return
 name|writeLockTimeout
+return|;
+block|}
+comment|/**    * Sets the default (for any instance of IndexWriter) maximum time to wait for a write lock (in    * milliseconds).    */
+DECL|method|setDefaultWriteLockTimeout
+specifier|public
+specifier|static
+name|void
+name|setDefaultWriteLockTimeout
+parameter_list|(
+name|long
+name|writeLockTimeout
+parameter_list|)
+block|{
+name|IndexWriter
+operator|.
+name|WRITE_LOCK_TIMEOUT
+operator|=
+name|writeLockTimeout
+expr_stmt|;
+block|}
+comment|/**    * @see #setDefaultWriteLockTimeout    */
+DECL|method|getDefaultWriteLockTimeout
+specifier|public
+specifier|static
+name|long
+name|getDefaultWriteLockTimeout
+parameter_list|()
+block|{
+return|return
+name|IndexWriter
+operator|.
+name|WRITE_LOCK_TIMEOUT
 return|;
 block|}
 comment|/** Flushes all changes to an index and closes all associated files. */
