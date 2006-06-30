@@ -151,7 +151,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A-Z]{2,4}"
+literal|"[A-Z][a-z]{1,2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2} [A-Z]{2,4}"
 argument_list|)
 decl_stmt|;
 name|Date
@@ -161,18 +161,6 @@ operator|new
 name|Date
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|date
-operator|.
-name|getTime
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 name|formatedDate
 init|=
@@ -200,32 +188,11 @@ name|matches
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|DateFormater
 operator|.
 name|parseDate
 argument_list|(
-name|formatedDate
-argument_list|,
-name|DateFormater
-operator|.
-name|HTTP_HEADER_DATE_FORMAT
-argument_list|)
-operator|.
-name|getTime
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|DateFormater
-operator|.
-name|parseDate
-argument_list|(
-literal|"Sun, 25 Jun 2006 13:51:23 +0000"
+literal|"Sun, 25 Jun 2006 13:51:23 CEST"
 argument_list|,
 name|DateFormater
 operator|.
@@ -236,6 +203,7 @@ operator|.
 name|HTTP_HEADER_DATE_FORMAT_TIME_OFFSET
 argument_list|)
 expr_stmt|;
+comment|//TODO extend this
 block|}
 block|}
 end_class

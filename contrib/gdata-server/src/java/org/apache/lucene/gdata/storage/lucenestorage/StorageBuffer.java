@@ -245,7 +245,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * The StorageBuffer is used to buffer incoming updates, deletes and inserts to   * the storage. The storage uses an lucene index to store the enries. As   * modifying the index all the time an altering request comes in is not   * efficent. The entries will be added to the buffer to be available for   * incoming storage queries. If the loadfactor for the   * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageModifier} is   * reached the modifier will perform a batch update on the index. Each entry   * will be associated with a feed id inside a associative datastructure to   * return a requested entry efficiently.   *<p>   * This implementation uses {@link java.util.concurrent.locks.ReadWriteLock}.   * The read lock may be held simultaneously by multiple reader threads, so long   * as there are no writers. The write lock is exclusive.</p>   *    * @see java.util.concurrent.locks.ReentrantReadWriteLock   * @see org.apache.lucene.gdata.storage.lucenestorage.StorageModifier   * @see org.apache.lucene.gdata.storage.lucenestorage.StorageCoreController   *    * @author Simon Willnauer   *    */
+comment|/**  * The StorageBuffer is used to buffer incoming updates, deletes and inserts to  * the storage. The storage uses an lucene index to store the enries. As  * modifying the index all the time an altering request comes in is not  * efficent. The entries will be added to the buffer to be available for  * incoming storage queries. If the loadfactor for the  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageModifier} is  * reached the modifier will perform a batch update on the index. Each entry  * will be associated with a feed id inside a associative datastructure to  * return a requested entry efficiently.  *<p>  * This implementation uses {@link java.util.concurrent.locks.ReadWriteLock}.  * The read lock may be held simultaneously by multiple reader threads, so long  * as there are no writers. The write lock is exclusive.  *</p>  *   * @see java.util.concurrent.locks.ReentrantReadWriteLock  * @see org.apache.lucene.gdata.storage.lucenestorage.StorageModifier  * @see org.apache.lucene.gdata.storage.lucenestorage.StorageCoreController  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -353,7 +353,7 @@ name|DEFAULT_BUFFER_COUNT
 init|=
 literal|10
 decl_stmt|;
-comment|/**       * Constructs a new StorageBuffer.       *<p>       * The expectedBufferCount sould be higher than the maximum of entries added       * to the buffer, resizing the buffer is very efficient. For detailed       * infomation {@link HashMap} as this is used inside the buffer       *</p>       *        * @param expectedBufferCount -       *            the expected size of the buffer       *        */
+comment|/** 	 * Constructs a new StorageBuffer. 	 *<p> 	 * The expectedBufferCount sould be higher than the maximum of entries added 	 * to the buffer, resizing the buffer is very efficient. For detailed 	 * infomation {@link HashMap} as this is used inside the buffer 	 *</p> 	 *  	 * @param expectedBufferCount - 	 *            the expected size of the buffer 	 *  	 */
 DECL|method|StorageBuffer
 specifier|protected
 name|StorageBuffer
@@ -430,7 +430,7 @@ name|expectedBufferCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * Adds a {@link StorageEntryWrapper} to the buffer. If a wrapper       * representing the same entry are already in the buffer the wrapper will be       * replaced.       *        * @param wrapper -       *            the wrapper to buffer       */
+comment|/** 	 * Adds a {@link StorageEntryWrapper} to the buffer. If a wrapper 	 * representing the same entry are already in the buffer the wrapper will be 	 * replaced. 	 *  	 * @param wrapper - 	 *            the wrapper to buffer 	 */
 DECL|method|addEntry
 specifier|public
 name|void
@@ -597,7 +597,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|/*               * add all to exclude from searches doc will be available via the               * buffer               */
+comment|/* 			 * add all to exclude from searches doc will be available via the 			 * buffer 			 */
 name|this
 operator|.
 name|excludeList
@@ -708,7 +708,7 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-comment|/**       * Returns all entries for the given feed id sorted by the update timestamp       * desc.       *        * @param feedId -       *            the feed id       * @return a {@link List} of all {@link StorageEntryWrapper} object buffered       *         in this buffer or an empty list if not entry has been buffered       *         for the given feed       */
+comment|/** 	 * Returns all entries for the given feed id sorted by the update timestamp 	 * desc. 	 *  	 * @param feedId - 	 *            the feed id 	 * @return a {@link List} of all {@link StorageEntryWrapper} object buffered 	 *         in this buffer or an empty list if not entry has been buffered 	 *         for the given feed 	 */
 DECL|method|getSortedEntries
 specifier|public
 name|List
@@ -819,7 +819,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**       * Adds a deleted entry to the buffer.       *        * @param entryId -       *            the deleted entry id       * @param feedId -       *            the feed of the entry       */
+comment|/** 	 * Adds a deleted entry to the buffer. 	 *  	 * @param entryId - 	 *            the deleted entry id 	 * @param feedId - 	 *            the feed of the entry 	 */
 DECL|method|addDeleted
 specifier|public
 name|void
@@ -911,7 +911,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**       * Returns an entry for the given entry id in the feed context spezified by       * the feed id;       *        * @param entryId -       *            the id of the entry to return       * @param feedId -       *            the feed containing the entry       * @return - the entry or<code>null</code> if the corresponding entry is       *         not in the buffer.       */
+comment|/** 	 * Returns an entry for the given entry id in the feed context spezified by 	 * the feed id; 	 *  	 * @param entryId - 	 *            the id of the entry to return 	 * @param feedId - 	 *            the feed containing the entry 	 * @return - the entry or<code>null</code> if the corresponding entry is 	 *         not in the buffer. 	 */
 DECL|method|getEntry
 specifier|public
 name|StorageEntryWrapper
@@ -976,13 +976,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**       * The buffer contains updated and delete entries. These entries are already       * available in the lucene index but should not be found during search.       *        *<p>       * this list contains all entries should not be found by the index searcher       *</p>       *        * @see ModifiedEntryFilter       * @return - a {@link List} of entries to be omitted from a lucene index       *         search       */
+comment|/** 	 * The buffer contains updated and delete entries. These entries are already 	 * available in the lucene index but should not be found during search. 	 *  	 *<p> 	 * This list contains all entries should not be found by the index searcher. 	 * This method creates a copy of the current list to prevent concurrent 	 * modification exceptions while iteration over the collection. 	 *</p> 	 *  	 *  	 * @see ModifiedEntryFilter 	 * @return - a String array of entries to be omitted from a lucene index 	 *         search 	 */
 DECL|method|getExculdList
 specifier|public
-name|List
-argument_list|<
 name|String
-argument_list|>
+index|[]
 name|getExculdList
 parameter_list|()
 block|{
@@ -999,6 +997,20 @@ return|return
 name|this
 operator|.
 name|excludeList
+operator|.
+name|toArray
+argument_list|(
+operator|new
+name|String
+index|[
+name|this
+operator|.
+name|excludeList
+operator|.
+name|size
+argument_list|()
+index|]
+argument_list|)
 return|;
 block|}
 finally|finally
@@ -1041,7 +1053,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**       * clears the buffer -       */
+comment|/** 	 * clears the buffer - 	 */
 DECL|method|close
 specifier|public
 name|void
@@ -1079,7 +1091,7 @@ name|BufferableEntry
 extends|extends
 name|BaseEntry
 block|{
-comment|/**          *           */
+comment|/** 		 *  		 */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1105,7 +1117,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**          * @param arg0          */
+comment|/** 		 * @param arg0 		 */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1136,7 +1148,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**          * @see com.google.gdata.data.BaseEntry#declareExtensions(com.google.gdata.data.ExtensionProfile)          */
+comment|/** 		 * @see com.google.gdata.data.BaseEntry#declareExtensions(com.google.gdata.data.ExtensionProfile) 		 */
 annotation|@
 name|Override
 DECL|method|declareExtensions

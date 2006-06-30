@@ -42,16 +42,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -132,10 +122,8 @@ decl_stmt|;
 DECL|field|entyIds
 specifier|private
 specifier|final
-name|List
-argument_list|<
 name|String
-argument_list|>
+index|[]
 name|entyIds
 decl_stmt|;
 comment|/**       * Creates a new {@link ModifiedEntryFilter}       * @param entryIds the entry id's to filter        *        */
@@ -143,10 +131,9 @@ DECL|method|ModifiedEntryFilter
 specifier|public
 name|ModifiedEntryFilter
 parameter_list|(
-name|List
-argument_list|<
+specifier|final
 name|String
-argument_list|>
+index|[]
 name|entryIds
 parameter_list|)
 block|{

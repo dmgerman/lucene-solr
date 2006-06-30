@@ -992,11 +992,14 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|// wait for the first thread to check for the inserted entries
 name|a
 operator|.
 name|join
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -1048,6 +1051,11 @@ operator|.
 name|configurator
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"get entry for id"
@@ -1065,11 +1073,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
+comment|/*         	 * if an exception occures the tread can at least finnish running before the         	 * controller will be closed in the tearDown method         	 */
 name|b
 operator|.
 name|join
 argument_list|()
 expr_stmt|;
+block|}
 name|ReferenceCounter
 argument_list|<
 name|StorageQuery
