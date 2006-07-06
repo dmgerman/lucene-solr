@@ -829,14 +829,19 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Closes the store to future operations. */
+comment|/** Closes the store to future operations, releasing associated memory. */
 DECL|method|close
 specifier|public
 specifier|final
 name|void
 name|close
 parameter_list|()
-block|{   }
+block|{
+name|files
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 
