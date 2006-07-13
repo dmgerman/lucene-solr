@@ -77,6 +77,22 @@ name|rsp
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getContentType
+specifier|public
+name|String
+name|getContentType
+parameter_list|(
+name|SolrQueryRequest
+name|request
+parameter_list|,
+name|SolrQueryResponse
+name|response
+parameter_list|)
+block|{
+return|return
+name|CONTENT_TYPE_XML_UTF8
+return|;
+block|}
 block|}
 end_class
 
