@@ -2606,12 +2606,12 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1000</field><field name=\"a_i\">1</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1000</field><field name=\"a_i\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1001</field><field name=\"a_i\">10</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1001</field><field name=\"a_i\">10</field><field name=\"nullfirst\">A</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2712,6 +2712,39 @@ argument_list|,
 literal|"//doc[4]/int[.='100']  "
 argument_list|,
 literal|"//doc[5]/int[.='1000']"
+argument_list|)
+expr_stmt|;
+comment|// nullfirst tests
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id_i:[1000 TO 1002]; nullfirst asc"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=3] "
+argument_list|,
+literal|"//doc[1]/int[.='1002']"
+argument_list|,
+literal|"//doc[2]/int[.='1001']  "
+argument_list|,
+literal|"//doc[3]/int[.='1000']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id_i:[1000 TO 1002]; nullfirst desc"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=3] "
+argument_list|,
+literal|"//doc[1]/int[.='1002']"
+argument_list|,
+literal|"//doc[2]/int[.='1000']  "
+argument_list|,
+literal|"//doc[3]/int[.='1001']"
 argument_list|)
 expr_stmt|;
 comment|// test prefix query
