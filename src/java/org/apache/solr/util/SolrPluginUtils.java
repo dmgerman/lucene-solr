@@ -3960,6 +3960,12 @@ name|currentStream
 operator|=
 literal|null
 expr_stmt|;
+name|this
+operator|.
+name|orderTokenOffsets
+operator|=
+name|orderTokenOffsets
+expr_stmt|;
 block|}
 comment|/** Returns the next token in the stream, or null at EOS. */
 DECL|method|next
