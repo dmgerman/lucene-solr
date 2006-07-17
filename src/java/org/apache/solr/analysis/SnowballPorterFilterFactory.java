@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -46,8 +56,22 @@ name|SnowballFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
+import|;
+end_import
+
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * Factory for SnowballFilters, with configurable language  *   * Browsing the code, SnowballFilter uses reflection to adapt to Lucene... don't  * use this if you are concerned about speed. Use EnglishPorterFilterFactory.  *   * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -58,6 +82,67 @@ name|SnowballPorterFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
 block|{
+DECL|field|language
+specifier|private
+name|String
+name|language
+init|=
+literal|"English"
+decl_stmt|;
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|)
+block|{
+name|super
+operator|.
+name|init
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+specifier|final
+name|String
+name|cfgLanguage
+init|=
+name|args
+operator|.
+name|get
+argument_list|(
+literal|"language"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|cfgLanguage
+operator|!=
+literal|null
+condition|)
+name|language
+operator|=
+name|cfgLanguage
+expr_stmt|;
+name|SolrCore
+operator|.
+name|log
+operator|.
+name|fine
+argument_list|(
+literal|"SnowballPorterFilterFactory: language="
+operator|+
+name|language
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|create
 specifier|public
 name|TokenStream
@@ -67,16 +152,13 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-comment|// Browsing the code, SnowballFilter uses reflection to adapt to Lucene...
-comment|// don't use this if you are concerned about speed.  Use EnglishPorterFilterFactory.
-comment|// TODO: make language configurable
 return|return
 operator|new
 name|SnowballFilter
 argument_list|(
 name|input
 argument_list|,
-literal|"English"
+name|language
 argument_list|)
 return|;
 block|}
