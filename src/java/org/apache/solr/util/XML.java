@@ -865,20 +865,22 @@ operator|<
 name|i
 condition|)
 block|{
-comment|// out.write(str.substring(start,i));
 name|out
 operator|.
 name|write
 argument_list|(
 name|str
-argument_list|,
+operator|.
+name|substring
+argument_list|(
 name|start
 argument_list|,
 name|i
-operator|-
-name|start
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// write(str,off,len) causes problems for Jetty with chars> 127
+comment|//out.write(str, start, i-start);
 comment|// n+=i-start;
 block|}
 name|out
@@ -924,23 +926,20 @@ name|length
 argument_list|()
 condition|)
 block|{
-comment|// out.write(str.substring(start));
 name|out
 operator|.
 name|write
 argument_list|(
 name|str
-argument_list|,
-name|start
-argument_list|,
-name|str
 operator|.
-name|length
-argument_list|()
-operator|-
+name|substring
+argument_list|(
 name|start
 argument_list|)
+argument_list|)
 expr_stmt|;
+comment|// write(str,off,len) causes problems for Jetty with chars> 127
+comment|// out.write(str, start, str.length()-start);
 comment|// n += str.length()-start;
 block|}
 comment|// return n;
