@@ -1271,7 +1271,18 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
 break|break;
+else|else
+continue|continue;
 block|}
 elseif|else
 if|if
@@ -1305,7 +1316,18 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
 break|break;
+else|else
+continue|continue;
 block|}
 elseif|else
 if|if
@@ -1346,7 +1368,18 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
 break|break;
+else|else
+continue|continue;
 block|}
 comment|//
 comment|// Find all adjacent tokens of the same type.
@@ -1522,7 +1555,21 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: in certain cases, queue may be empty (for instance, if catenate
+comment|// and generate are both set to false).  In this case, we should proceed
+comment|// to next token rather than throwing ArrayOutOfBounds
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
 break|break;
+else|else
+continue|continue;
 block|}
 comment|// System.out.println("##########AFTER COMBINATIONS:"+ str(queue));
 name|queuePos

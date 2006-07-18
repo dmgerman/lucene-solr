@@ -266,6 +266,27 @@ literal|"bar"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNoGenerationEdgeCase
+specifier|public
+name|void
+name|testNoGenerationEdgeCase
+parameter_list|()
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"222"
+argument_list|,
+literal|"numberpartfail"
+argument_list|,
+literal|"123.123.123.123"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
