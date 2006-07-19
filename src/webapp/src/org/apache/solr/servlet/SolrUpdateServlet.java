@@ -75,6 +75,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|QueryResponseWriter
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -195,14 +209,6 @@ specifier|private
 name|SolrCore
 name|core
 decl_stmt|;
-DECL|field|CONTENT_TYPE
-specifier|private
-specifier|static
-name|String
-name|CONTENT_TYPE
-init|=
-literal|"text/xml;charset=UTF-8"
-decl_stmt|;
 DECL|field|xmlResponseWriter
 name|XMLResponseWriter
 name|xmlResponseWriter
@@ -258,7 +264,9 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-name|CONTENT_TYPE
+name|QueryResponseWriter
+operator|.
+name|CONTENT_TYPE_XML_UTF8
 argument_list|)
 expr_stmt|;
 name|PrintWriter

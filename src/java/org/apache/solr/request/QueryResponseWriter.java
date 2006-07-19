@@ -52,7 +52,7 @@ specifier|static
 name|String
 name|CONTENT_TYPE_XML_UTF8
 init|=
-literal|"text/xml;charset=UTF-8"
+literal|"text/xml; charset=UTF-8"
 decl_stmt|;
 DECL|field|CONTENT_TYPE_TEXT_UTF8
 specifier|public
@@ -60,7 +60,7 @@ specifier|static
 name|String
 name|CONTENT_TYPE_TEXT_UTF8
 init|=
-literal|"text/plain;charset=UTF-8"
+literal|"text/plain; charset=UTF-8"
 decl_stmt|;
 DECL|field|CONTENT_TYPE_TEXT_ASCII
 specifier|public
@@ -68,7 +68,7 @@ specifier|static
 name|String
 name|CONTENT_TYPE_TEXT_ASCII
 init|=
-literal|"text/plain;charset=US-ASCII"
+literal|"text/plain; charset=US-ASCII"
 decl_stmt|;
 DECL|method|write
 specifier|public

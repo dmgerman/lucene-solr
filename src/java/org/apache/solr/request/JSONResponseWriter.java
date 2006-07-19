@@ -157,7 +157,7 @@ specifier|static
 name|String
 name|CONTENT_TYPE_JSON_UTF8
 init|=
-literal|"text/x-json;charset=UTF-8"
+literal|"text/x-json; charset=UTF-8"
 decl_stmt|;
 DECL|method|write
 specifier|public
