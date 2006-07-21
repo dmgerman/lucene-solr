@@ -56,7 +56,7 @@ name|SuggestWord
 name|a
 parameter_list|)
 block|{
-comment|//first criteria: the edit distance
+comment|// first criteria: the edit distance
 if|if
 condition|(
 name|score
@@ -84,7 +84,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|//second criteria (if first criteria is equal): the popularity
+comment|// second criteria (if first criteria is equal): the popularity
 if|if
 condition|(
 name|freq
