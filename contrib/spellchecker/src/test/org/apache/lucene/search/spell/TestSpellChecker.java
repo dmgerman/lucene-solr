@@ -747,24 +747,6 @@ return|return
 name|num
 return|;
 block|}
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|spellChecker
-operator|=
-literal|null
-expr_stmt|;
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 end_class
 
