@@ -265,12 +265,35 @@ specifier|private
 name|IndexReader
 name|reader
 decl_stmt|;
+DECL|field|searcher
+specifier|private
+name|IndexSearcher
+name|searcher
+decl_stmt|;
 DECL|field|min
 name|float
 name|min
 init|=
 literal|0.5f
 decl_stmt|;
+DECL|method|SpellChecker
+specifier|public
+name|SpellChecker
+parameter_list|(
+name|Directory
+name|spellIndex
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+operator|.
+name|setSpellIndex
+argument_list|(
+name|spellIndex
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|setSpellIndex
 specifier|public
 name|void
@@ -279,6 +302,8 @@ parameter_list|(
 name|Directory
 name|spellindex
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -286,12 +311,22 @@ name|spellindex
 operator|=
 name|spellindex
 expr_stmt|;
+name|searcher
+operator|=
+operator|new
+name|IndexSearcher
+argument_list|(
+name|this
+operator|.
+name|spellindex
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**    *  Set the accuracy 0&lt; min&lt; 1; default 0.5    */
-DECL|method|setAccuraty
+comment|/**    * Sets the accuracy 0&lt; min&lt; 1; default 0.5    */
+DECL|method|setAccuracy
 specifier|public
 name|void
-name|setAccuraty
+name|setAccuracy
 parameter_list|(
 name|float
 name|min
@@ -302,22 +337,6 @@ operator|.
 name|min
 operator|=
 name|min
-expr_stmt|;
-block|}
-DECL|method|SpellChecker
-specifier|public
-name|SpellChecker
-parameter_list|(
-name|Directory
-name|gramIndex
-parameter_list|)
-block|{
-name|this
-operator|.
-name|setSpellIndex
-argument_list|(
-name|gramIndex
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Suggest similar words    * @param word String the word you want a spell check done on    * @param num_sug int the number of suggest words    * @throws IOException    * @return String[]    */
@@ -431,6 +450,7 @@ argument_list|)
 else|:
 literal|0
 decl_stmt|;
+comment|// if the word exists in the real index and we don't care for word frequency, return the word itself
 if|if
 condition|(
 operator|!
@@ -449,7 +469,6 @@ block|{
 name|word
 block|}
 return|;
-comment|// return the word if it exist in the index and i don't want a more popular word
 block|}
 name|BooleanQuery
 name|query
@@ -602,17 +621,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|IndexSearcher
-name|searcher
-init|=
-operator|new
-name|IndexSearcher
-argument_list|(
-name|this
-operator|.
-name|spellindex
-argument_list|)
-decl_stmt|;
+comment|//    System.out.println("Q: " + query);
 name|Hits
 name|hits
 init|=
@@ -632,6 +641,7 @@ argument_list|(
 name|num_sug
 argument_list|)
 decl_stmt|;
+comment|// go thru more than 'maxr' matches in case the distance filter triggers
 name|int
 name|stop
 init|=
@@ -649,7 +659,6 @@ operator|*
 name|num_sug
 argument_list|)
 decl_stmt|;
-comment|// go thru more than 'maxr' matches in case the distance filter triggers
 name|SuggestWord
 name|sugword
 init|=
@@ -688,7 +697,8 @@ argument_list|(
 name|F_WORD
 argument_list|)
 expr_stmt|;
-comment|// get orig word)
+comment|// get orig word
+comment|// don't suggest a word for itself, that would be silly
 if|if
 condition|(
 name|sugword
@@ -702,9 +712,8 @@ argument_list|)
 condition|)
 block|{
 continue|continue;
-comment|// don't suggest a word for itself, that would be silly
 block|}
-comment|//edit distance/normalize with the min word length
+comment|// edit distance/normalize with the min word length
 name|sugword
 operator|.
 name|score
@@ -778,6 +787,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// freq in the index
+comment|// don't suggest a word that is not present in the field
 if|if
 condition|(
 operator|(
@@ -797,7 +807,6 @@ operator|<
 literal|1
 condition|)
 block|{
-comment|// don't suggest a word that is not present in the field
 continue|continue;
 block|}
 block|}
@@ -818,7 +827,7 @@ operator|==
 name|num_sug
 condition|)
 block|{
-comment|//if queue full , maintain the min score
+comment|// if queue full, maintain the min score
 name|min
 operator|=
 operator|(
@@ -893,11 +902,6 @@ operator|.
 name|string
 expr_stmt|;
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 return|return
 name|list
 return|;
@@ -913,10 +917,10 @@ name|BooleanQuery
 name|q
 parameter_list|,
 name|String
-name|k
+name|name
 parameter_list|,
 name|String
-name|v
+name|value
 parameter_list|,
 name|float
 name|boost
@@ -931,9 +935,9 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|k
+name|name
 argument_list|,
-name|v
+name|value
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -973,10 +977,10 @@ name|BooleanQuery
 name|q
 parameter_list|,
 name|String
-name|k
+name|name
 parameter_list|,
 name|String
-name|v
+name|value
 parameter_list|)
 block|{
 name|q
@@ -992,9 +996,9 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|k
+name|name
 argument_list|,
-name|v
+name|value
 argument_list|)
 argument_list|)
 argument_list|,
@@ -1314,9 +1318,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// close reader
-comment|//        reader.close();
-comment|//        reader=null;
 block|}
 DECL|method|getMin
 specifier|private
