@@ -392,6 +392,30 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+name|ParseException
+name|tme
+parameter_list|)
+block|{
+comment|// rethrow to include the original query:
+throw|throw
+operator|new
+name|ParseException
+argument_list|(
+literal|"Cannot parse '"
+operator|+
+name|query
+operator|+
+literal|"': "
+operator|+
+name|tme
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|TokenMgrError
 name|tme
 parameter_list|)
@@ -400,6 +424,12 @@ throw|throw
 operator|new
 name|ParseException
 argument_list|(
+literal|"Cannot parse '"
+operator|+
+name|query
+operator|+
+literal|"': "
+operator|+
 name|tme
 operator|.
 name|getMessage
@@ -419,7 +449,11 @@ throw|throw
 operator|new
 name|ParseException
 argument_list|(
-literal|"Too many boolean clauses"
+literal|"Cannot parse '"
+operator|+
+name|query
+operator|+
+literal|"': too many boolean clauses"
 argument_list|)
 throw|;
 block|}
