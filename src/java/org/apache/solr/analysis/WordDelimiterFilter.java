@@ -268,31 +268,37 @@ operator|=
 name|tab
 expr_stmt|;
 block|}
+comment|/**    * If 1, causes parts of words to be generated:    *<p/>    * "PowerShot" => "Power" "Shot"    */
 DECL|field|generateWordParts
 specifier|final
 name|int
 name|generateWordParts
 decl_stmt|;
+comment|/**    * If 1, causes number subwords to be generated:    *<p/>    * "500-42" => "500" "42"    */
 DECL|field|generateNumberParts
 specifier|final
 name|int
 name|generateNumberParts
 decl_stmt|;
+comment|/**    * If 1, causes maximum runs of word parts to be catenated:    *<p/>    * "wi-fi" => "wifi"    */
 DECL|field|catenateWords
 specifier|final
 name|int
 name|catenateWords
 decl_stmt|;
+comment|/**    * If 1, causes maximum runs of number parts to be catenated:    *<p/>    * "500-42" => "50042"    */
 DECL|field|catenateNumbers
 specifier|final
 name|int
 name|catenateNumbers
 decl_stmt|;
+comment|/**    * If 1, causes all subword parts to be catenated:    *<p/>    * "wi-fi-4000" => "wifi4000"    */
 DECL|field|catenateAll
 specifier|final
 name|int
 name|catenateAll
 decl_stmt|;
+comment|/**    *    * @param in Token stream to be filtered.    * @param charTypeTable    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    */
 DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
@@ -362,6 +368,7 @@ operator|=
 name|charTypeTable
 expr_stmt|;
 block|}
+comment|/**    * @param in Token stream to be filtered.    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    */
 DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
@@ -1556,8 +1563,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// NOTE: in certain cases, queue may be empty (for instance, if catenate
-comment|// and generate are both set to false).  In this case, we should proceed
-comment|// to next token rather than throwing ArrayOutOfBounds
+comment|// and generate are both set to false).  Only exit the loop if the queue
+comment|// is not empty.
 if|if
 condition|(
 name|queue
@@ -1568,8 +1575,6 @@ operator|>
 literal|0
 condition|)
 break|break;
-else|else
-continue|continue;
 block|}
 comment|// System.out.println("##########AFTER COMBINATIONS:"+ str(queue));
 name|queuePos
