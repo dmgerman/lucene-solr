@@ -129,7 +129,25 @@ class|class
 name|TooManyClauses
 extends|extends
 name|RuntimeException
+block|{
+DECL|method|TooManyClauses
+specifier|public
+name|TooManyClauses
+parameter_list|()
 block|{}
+DECL|method|getMessage
+specifier|public
+name|String
+name|getMessage
+parameter_list|()
+block|{
+return|return
+literal|"maxClauseCount is set to "
+operator|+
+name|maxClauseCount
+return|;
+block|}
+block|}
 comment|/** Return the maximum number of clauses permitted, 1024 by default.    * Attempts to add more than the permitted number of clauses cause {@link    * TooManyClauses} to be thrown.    * @see #setMaxClauseCount(int)    */
 DECL|method|getMaxClauseCount
 specifier|public
