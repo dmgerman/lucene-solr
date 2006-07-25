@@ -756,9 +756,7 @@ throw|throw
 operator|new
 name|RecoverException
 argument_list|(
-literal|"Can't recover feed Id -- "
-operator|+
-name|temp
+literal|"Can't recover feed Id -- is null"
 argument_list|)
 throw|;
 name|this
@@ -784,9 +782,7 @@ throw|throw
 operator|new
 name|RecoverException
 argument_list|(
-literal|"Can't recover entry Id -- "
-operator|+
-name|temp
+literal|"Can't recover entry Id -- is null"
 argument_list|)
 throw|;
 name|this
@@ -826,9 +822,7 @@ throw|throw
 operator|new
 name|RecoverException
 argument_list|(
-literal|"Can't recover timestamp -- "
-operator|+
-name|temp
+literal|"Can't recover timestamp -- is null"
 argument_list|,
 name|e
 argument_list|)
@@ -862,9 +856,7 @@ throw|throw
 operator|new
 name|RecoverException
 argument_list|(
-literal|"Can't recover service -- "
-operator|+
-name|temp
+literal|"Can't recover service -- is null"
 argument_list|)
 throw|;
 if|if

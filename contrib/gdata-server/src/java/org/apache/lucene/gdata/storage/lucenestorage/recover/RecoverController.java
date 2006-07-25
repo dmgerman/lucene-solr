@@ -317,6 +317,7 @@ specifier|final
 name|boolean
 name|keepRecoverFiles
 decl_stmt|;
+comment|/**      * @param recoverDirectory      * @param recover      * @param keepRecoverFiles      */
 DECL|method|RecoverController
 specifier|public
 name|RecoverController
@@ -350,6 +351,19 @@ condition|(
 operator|!
 name|recoverDirectory
 operator|.
+name|exists
+argument_list|()
+condition|)
+name|recoverDirectory
+operator|.
+name|mkdirs
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|recoverDirectory
+operator|.
 name|isDirectory
 argument_list|()
 condition|)
@@ -357,7 +371,9 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"the given File is not a directory"
+literal|"the given File is not a directory -- "
+operator|+
+name|recoverDirectory
 argument_list|)
 throw|;
 name|this
@@ -379,6 +395,7 @@ operator|=
 name|recoverDirectory
 expr_stmt|;
 block|}
+comment|/**  * @param wrapper  * @throws RecoverException  */
 DECL|method|storageModified
 specifier|public
 name|void
@@ -466,6 +483,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @param modifier      */
 DECL|method|recoverEntries
 specifier|public
 name|void
@@ -553,6 +571,18 @@ condition|)
 block|{
 try|try
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Recover file -- "
+operator|+
+name|files
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|fileReader
@@ -618,6 +648,21 @@ name|this
 operator|.
 name|keepRecoverFiles
 condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Recovering file -- "
+operator|+
+name|files
+index|[
+name|i
+index|]
+operator|+
+literal|" successful, delete file"
+argument_list|)
+expr_stmt|;
 name|files
 index|[
 name|i
@@ -626,6 +671,7 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -716,6 +762,8 @@ name|modifier
 parameter_list|)
 throws|throws
 name|StorageException
+throws|,
+name|IOException
 block|{
 for|for
 control|(
@@ -781,10 +829,16 @@ argument_list|(
 name|wrapper
 argument_list|)
 expr_stmt|;
+name|modifier
+operator|.
+name|forceWrite
+argument_list|()
+expr_stmt|;
 block|}
 block|}
+comment|/**      * @throws IOException      */
 DECL|method|initialize
-specifier|protected
+specifier|public
 specifier|synchronized
 name|void
 name|initialize
@@ -848,8 +902,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * @throws RecoverException      */
 DECL|method|destroy
-specifier|protected
+specifier|public
+specifier|synchronized
 name|void
 name|destroy
 parameter_list|()
@@ -888,6 +944,26 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|this
+operator|.
+name|keepRecoverFiles
+operator|&&
+name|this
+operator|.
+name|currentRecoverFile
+operator|!=
+literal|null
+condition|)
+name|this
+operator|.
+name|currentRecoverFile
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -916,6 +992,19 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**      * @return<code>true</code> if the RecoverController is initialized in recover mode, otherwise<code>false</code>      */
+DECL|method|isRecovering
+specifier|public
+name|boolean
+name|isRecovering
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|recover
+return|;
 block|}
 block|}
 end_class

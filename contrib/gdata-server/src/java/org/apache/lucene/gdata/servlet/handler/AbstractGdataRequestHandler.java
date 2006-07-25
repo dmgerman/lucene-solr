@@ -257,6 +257,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/*      * UTF-8 is the encoding used in the client API to send the entries to the server      */
+DECL|field|ENCODING
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|ENCODING
+init|=
+literal|"UTF-8"
+decl_stmt|;
 DECL|field|service
 specifier|protected
 name|Service
@@ -332,6 +342,15 @@ operator|new
 name|GDataResponse
 argument_list|(
 name|response
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|feedResponse
+operator|.
+name|setEncoding
+argument_list|(
+name|ENCODING
 argument_list|)
 expr_stmt|;
 name|getService

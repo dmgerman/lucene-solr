@@ -28,7 +28,7 @@ specifier|public
 class|class
 name|StorageException
 extends|extends
-name|Exception
+name|RuntimeException
 block|{
 comment|/**       *        */
 DECL|field|serialVersionUID

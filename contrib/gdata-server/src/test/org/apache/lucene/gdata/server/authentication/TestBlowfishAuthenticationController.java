@@ -522,7 +522,7 @@ name|this
 operator|.
 name|controller
 operator|.
-name|setMinuteOffset
+name|setLoginTimeout
 argument_list|(
 literal|0
 argument_list|)

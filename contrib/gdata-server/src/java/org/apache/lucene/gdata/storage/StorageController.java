@@ -66,6 +66,14 @@ parameter_list|()
 throws|throws
 name|StorageException
 function_decl|;
+comment|/**      * Releases a new unique ID      * @return - unique ID      */
+DECL|method|releaseId
+specifier|public
+specifier|abstract
+name|String
+name|releaseId
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

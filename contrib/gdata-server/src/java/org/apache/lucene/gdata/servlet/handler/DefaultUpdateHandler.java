@@ -345,9 +345,12 @@ name|sendError
 argument_list|()
 expr_stmt|;
 block|}
+finally|finally
+block|{
 name|closeService
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

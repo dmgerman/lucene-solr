@@ -653,6 +653,8 @@ operator|.
 name|getAdminService
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 return|return
 name|service
 operator|.
@@ -661,6 +663,15 @@ argument_list|(
 name|accountName
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|service
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|sendError
 specifier|private

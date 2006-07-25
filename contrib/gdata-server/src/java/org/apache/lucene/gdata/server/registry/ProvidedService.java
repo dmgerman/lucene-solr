@@ -76,6 +76,14 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
+comment|/**      * releases all dependencies and resources      */
+DECL|method|destroy
+specifier|public
+specifier|abstract
+name|void
+name|destroy
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

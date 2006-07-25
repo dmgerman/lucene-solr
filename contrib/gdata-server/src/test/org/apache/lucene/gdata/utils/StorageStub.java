@@ -496,6 +496,16 @@ return|return
 literal|null
 return|;
 block|}
+DECL|method|releaseId
+specifier|public
+name|String
+name|releaseId
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

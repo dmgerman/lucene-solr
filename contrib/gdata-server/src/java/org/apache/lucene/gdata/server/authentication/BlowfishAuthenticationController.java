@@ -236,6 +236,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
+name|registry
+operator|.
+name|configuration
+operator|.
+name|Requiered
+import|;
+end_import
+
+begin_import
+import|import
 name|sun
 operator|.
 name|misc
@@ -328,7 +348,6 @@ specifier|private
 name|Cipher
 name|enCrypt
 decl_stmt|;
-comment|// TODO make this configurable
 DECL|field|minuteOffset
 specifier|private
 name|int
@@ -368,13 +387,10 @@ operator|new
 name|ReentrantLock
 argument_list|()
 decl_stmt|;
-comment|// TODO make this configurable
 DECL|field|key
 specifier|private
 name|String
 name|key
-init|=
-literal|"myTestKey"
 decl_stmt|;
 comment|/**      * @see org.apache.lucene.gdata.server.authentication.AuthenticationController#initialize()      */
 DECL|method|initialize
@@ -1119,10 +1135,12 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * @return Returns the minuteOffset.      */
-DECL|method|getMinuteOffset
+annotation|@
+name|Requiered
+DECL|method|getLoginTimeout
 specifier|public
 name|int
-name|getMinuteOffset
+name|getLoginTimeout
 parameter_list|()
 block|{
 return|return
@@ -1132,10 +1150,12 @@ name|minuteOffset
 return|;
 block|}
 comment|/**      * @param minuteOffset      *            The minuteOffset to set.      */
-DECL|method|setMinuteOffset
+annotation|@
+name|Requiered
+DECL|method|setLoginTimeout
 specifier|public
 name|void
-name|setMinuteOffset
+name|setLoginTimeout
 parameter_list|(
 name|int
 name|minuteOffset

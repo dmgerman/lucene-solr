@@ -22,6 +22,22 @@ name|recover
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|storage
+operator|.
+name|StorageException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Simon Willnauer  *  */
 end_comment
@@ -32,7 +48,7 @@ specifier|public
 class|class
 name|RecoverException
 extends|extends
-name|Exception
+name|StorageException
 block|{
 comment|/**      *       */
 DECL|field|serialVersionUID

@@ -853,6 +853,7 @@ name|errorMessage
 return|;
 block|}
 DECL|class|FeedHandlerException
+specifier|static
 class|class
 name|FeedHandlerException
 extends|extends

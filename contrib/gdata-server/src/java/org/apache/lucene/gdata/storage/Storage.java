@@ -276,7 +276,7 @@ parameter_list|)
 throws|throws
 name|StorageException
 function_decl|;
-comment|/**      * @param accountName -      *            the name of the requested account      * @return - a {@link GDataAccount} instance for the requested account name      * @throws StorageException -      *             if no account for the account name is stored      *       */
+comment|/**      *       * Retrieves the {@link GDataAccount} for the given account name      * @param accountName -      *            the name of the requested account      * @return - a {@link GDataAccount} instance for the requested account name      * @throws StorageException -      *             if no account for the account name is stored      *       */
 DECL|method|getAccount
 specifier|public
 specifier|abstract

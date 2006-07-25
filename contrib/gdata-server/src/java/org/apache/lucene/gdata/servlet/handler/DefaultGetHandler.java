@@ -466,9 +466,12 @@ name|sendError
 argument_list|()
 expr_stmt|;
 block|}
+finally|finally
+block|{
 name|closeService
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/**      *       * returns true if the resource has been modified since the specified      * reqeust header value      */
 DECL|method|checkIsModified
