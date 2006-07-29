@@ -891,7 +891,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns an array of strings, one for each file in the directory. */
+comment|/** Returns an array of strings, one for each Lucene index file in the directory. */
 DECL|method|list
 specifier|public
 name|String
@@ -903,7 +903,11 @@ return|return
 name|directory
 operator|.
 name|list
+argument_list|(
+operator|new
+name|IndexFileNameFilter
 argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/** Returns true iff a file with the given name exists. */
@@ -1299,6 +1303,8 @@ throw|;
 block|}
 finally|finally
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|in
@@ -1336,6 +1342,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|out
@@ -1371,6 +1380,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
