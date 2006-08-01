@@ -182,6 +182,10 @@ block|,
 literal|null
 block|,
 literal|"&lt;"
+block|,
+literal|null
+block|,
+literal|"&gt;"
 block|}
 decl_stmt|;
 DECL|field|attribute_escapes

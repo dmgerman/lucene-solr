@@ -172,7 +172,7 @@ name|doSimpleTest
 argument_list|(
 literal|"Bonnie& Cl<em>y</em>de"
 argument_list|,
-literal|"Bonnie&amp; Cl&lt;em>y&lt;/em>de"
+literal|"Bonnie&amp; Cl&lt;em&gt;y&lt;/em&gt;de"
 argument_list|)
 expr_stmt|;
 block|}
@@ -223,7 +223,23 @@ name|doSimpleTest
 argument_list|(
 literal|"Les \u00e9v\u00e9nements<chez/> Bonnie& Clyde"
 argument_list|,
-literal|"Les \u00e9v\u00e9nements&lt;chez/> Bonnie&amp; Clyde"
+literal|"Les \u00e9v\u00e9nements&lt;chez/&gt; Bonnie&amp; Clyde"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testGt
+specifier|public
+name|void
+name|testGt
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|doSimpleTest
+argument_list|(
+literal|"a ]]> b"
+argument_list|,
+literal|"a ]]&gt; b"
 argument_list|)
 expr_stmt|;
 block|}
