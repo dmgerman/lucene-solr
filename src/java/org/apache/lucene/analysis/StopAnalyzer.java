@@ -124,11 +124,7 @@ literal|"on"
 block|,
 literal|"or"
 block|,
-literal|"s"
-block|,
 literal|"such"
-block|,
-literal|"t"
 block|,
 literal|"that"
 block|,
