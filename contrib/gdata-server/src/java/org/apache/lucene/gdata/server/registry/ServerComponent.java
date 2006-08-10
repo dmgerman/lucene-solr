@@ -30,7 +30,7 @@ specifier|public
 interface|interface
 name|ServerComponent
 block|{
-comment|/**      * will be call when the component is registered.      */
+comment|/**      * will be call when the component is registered.      * if this fails the server must not startup.      */
 DECL|method|initialize
 specifier|public
 specifier|abstract

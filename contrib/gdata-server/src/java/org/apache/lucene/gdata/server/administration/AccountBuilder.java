@@ -42,6 +42,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -90,6 +100,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|xerces
+operator|.
+name|parsers
+operator|.
+name|SAXParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -99,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helperclass to create {@link org.apache.lucene.gdata.data.GDataAccount}  * instances from a xml stream provided via a {@link Reader} instance.  *   * @author Simon Willnauer  *   */
+comment|/**  * Helper class to create {@link org.apache.lucene.gdata.data.GDataAccount}  * instances from a xml stream provided via a {@link Reader} instance.  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -108,7 +132,7 @@ specifier|public
 class|class
 name|AccountBuilder
 block|{
-comment|/**      * Reads the xml from the provided reader and binds the values to the       * @param reader - the reader to read the xml from      * @return - the GDataAccount       * @throws IOException - if an IOException occures      * @throws SAXException - if the xml can not be parsed by the sax reader      */
+comment|/**      * Reads the xml from the provided reader and binds the values to the       * @param reader - the reader to read the xml from      * @return - the GDataAccount       * @throws IOException - if an IOException occurs      * @throws SAXException - if the xml can not be parsed by the sax reader      */
 DECL|method|buildAccount
 specifier|public
 specifier|static
@@ -137,8 +161,8 @@ argument_list|(
 literal|"Reader must not be null"
 argument_list|)
 throw|;
-name|String
-name|schemaFile
+name|URL
+name|resource
 init|=
 name|AccountBuilder
 operator|.
@@ -148,6 +172,24 @@ name|getResource
 argument_list|(
 literal|"/gdata-account.xsd"
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|resource
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"can not find xml schema file 'gdata-account.xsd' -- file must be present on the classpath"
+argument_list|)
+throw|;
+name|String
+name|schemaFile
+init|=
+name|resource
 operator|.
 name|getFile
 argument_list|()
@@ -157,12 +199,58 @@ name|account
 init|=
 literal|null
 decl_stmt|;
+comment|/*          * Force using apache xerces parser for digester          */
+name|SAXParser
+name|parser
+init|=
+operator|new
+name|SAXParser
+argument_list|()
+decl_stmt|;
+name|parser
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://apache.org/xml/features/validation/schema-full-checking"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|parser
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://apache.org/xml/features/validation/schema"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|parser
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://xml.org/sax/features/validation"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|parser
+operator|.
+name|setProperty
+argument_list|(
+literal|"http://apache.org/xml/properties/schema/external-noNamespaceSchemaLocation"
+argument_list|,
+name|schemaFile
+argument_list|)
+expr_stmt|;
 name|Digester
 name|digester
 init|=
 operator|new
 name|Digester
-argument_list|()
+argument_list|(
+name|parser
+argument_list|)
 decl_stmt|;
 name|digester
 operator|.

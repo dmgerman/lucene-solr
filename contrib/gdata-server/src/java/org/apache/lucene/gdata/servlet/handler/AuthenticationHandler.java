@@ -142,6 +142,22 @@ name|gdata
 operator|.
 name|server
 operator|.
+name|GDataResponse
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|server
+operator|.
 name|ServiceException
 import|;
 end_import
@@ -591,9 +607,9 @@ name|sendError
 argument_list|(
 name|response
 argument_list|,
-name|HttpServletResponse
+name|GDataResponse
 operator|.
-name|SC_FORBIDDEN
+name|FORBIDDEN
 argument_list|,
 literal|"BadAuthentication"
 argument_list|)
@@ -623,9 +639,9 @@ name|sendError
 argument_list|(
 name|response
 argument_list|,
-name|HttpServletResponse
+name|GDataResponse
 operator|.
-name|SC_INTERNAL_SERVER_ERROR
+name|SERVER_ERROR
 argument_list|,
 literal|"Service not available"
 argument_list|)

@@ -130,20 +130,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|gdata
 operator|.
 name|data
@@ -199,6 +185,22 @@ operator|.
 name|storage
 operator|.
 name|StorageException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|utils
+operator|.
+name|ModifiedEntryFilter
 import|;
 end_import
 
@@ -401,7 +403,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * StorageQuery wrapps a Lucene {@link org.apache.lucene.search.IndexSearcher}  * and a {@link org.apache.lucene.gdata.storage.lucenestorage.StorageBuffer} to  * perform all request on the lucene storage. The wrapped components are thread -  * safe.  *<p>  * An instance of this class will serve all client requests. To obtain the  * current instance of the {@link StorageQuery} the method  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageCoreController#getStorageQuery()}  * has to be invoked. This method will release the current StorageQuery.  *</p>  *   * @see org.apache.lucene.search.IndexSearcher  * @see org.apache.lucene.gdata.storage.lucenestorage.StorageCoreController  * @see org.apache.lucene.gdata.storage.lucenestorage.StorageBuffer  *   * @author Simon Willnauer  *   */
+comment|/**  * StorageQuery wraps a Lucene {@link org.apache.lucene.search.IndexSearcher}  * and a {@link org.apache.lucene.gdata.storage.lucenestorage.StorageBuffer} to  * perform all request on the lucene storage. The wrapped components are thread -  * safe.  *<p>  * An instance of this class will serve all client requests. To obtain the  * current instance of the {@link StorageQuery} the method  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageCoreController#getStorageQuery()}  * has to be invoked. This method will release the current StorageQuery.  *</p>  *   * @see org.apache.lucene.search.IndexSearcher  * @see org.apache.lucene.gdata.storage.lucenestorage.StorageCoreController  * @see org.apache.lucene.gdata.storage.lucenestorage.StorageBuffer  *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -572,6 +574,10 @@ name|buffer
 operator|.
 name|getExculdList
 argument_list|()
+argument_list|,
+name|StorageEntryWrapper
+operator|.
+name|FIELD_ENTRY_ID
 argument_list|)
 argument_list|)
 return|;
@@ -628,6 +634,10 @@ name|buffer
 operator|.
 name|getExculdList
 argument_list|()
+argument_list|,
+name|StorageEntryWrapper
+operator|.
+name|FIELD_ENTRY_ID
 argument_list|)
 argument_list|,
 name|sort
@@ -682,11 +692,15 @@ name|buffer
 operator|.
 name|getExculdList
 argument_list|()
+argument_list|,
+name|StorageEntryWrapper
+operator|.
+name|FIELD_ENTRY_ID
 argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * This method fetches the latest feed entries from the storage. Feed      * ususaly requested via a search query or as a simple query to the REST      * interface.      *<p>      * The REST interface requestes all the entries from a Storage. The Storage      * retrieves the entries corresponding to the parameters specified. This      * method first requests the latest entries or updated entries from the      * {@link StorageBuffer}. If the buffer already contains enought entries      * for the the specified result count the entires will be returned. If not,      * the underlaying lucene index will be searcher for all documents of the      * specified feed sorted by storing timestamp desc.      *</p>      *<p>      * The entries will be searched in a feed context specified by the given      * feed ID      *</p>      *       *       * @param feedId -      *            the requested feed, this id will be used to retrieve the      *            entries.      * @param resultCount -      *            how many entries are requested      * @param startIndex -      *            the offset of the entriy to start from.      * @param config -      *            the FeedInstanceConfiguration contaning extension profile used      *            to create the entriy instances      * @return - an ordered list of {@link BaseEntry} objects, or an empty list      *         if no entries could be found      * @throws IOException -      *             if the index could not be queries or the entries could not be      *             build      * @throws ParseException -      *             if an entry could not be parsed while building it from the      *             Lucene Document.      */
+comment|/**      * This method fetches the latest feed entries from the storage. Feed      * usually requested via a search query or as a simple query to the REST      * interface.      *<p>      * The REST interface requests all the entries from a Storage. The Storage      * retrieves the entries corresponding to the parameters specified. This      * method first requests the latest entries or updated entries from the      * {@link StorageBuffer}. If the buffer already contains enough entries      * for the the specified result count the entries will be returned. If not,      * the underlying lucene index will be searcher for all documents of the      * specified feed sorted by storing timestamp desc.      *</p>      *<p>      * The entries will be searched in a feed context specified by the given      * feed ID      *</p>      *       *       * @param feedId -      *            the requested feed, this id will be used to retrieve the      *            entries.      * @param resultCount -      *            how many entries are requested      * @param startIndex -      *            the offset of the entry to start from.      * @param config -      *            the FeedInstanceConfiguration containing extension profile used      *            to create the entry instances      * @return - an ordered list of {@link BaseEntry} objects, or an empty list      *         if no entries could be found      * @throws IOException -      *             if the index could not be queries or the entries could not be      *             build      * @throws ParseException -      *             if an entry could not be parsed while building it from the      *             Lucene Document.      */
 comment|// TODO check input parameter
 annotation|@
 name|SuppressWarnings
@@ -918,7 +932,7 @@ block|}
 block|}
 else|else
 block|{
-comment|/*              * if the buffersize is less than the startindex the buffersize must              * be considered. Sublists would not be a repeatable read part of              * the whole list              */
+comment|/*              * if the buffer size is less than the start index the buffer size must              * be considered. Sublists would not be a repeatable read part of              * the whole list              */
 if|if
 condition|(
 name|bufferedWrapperList
@@ -1113,7 +1127,7 @@ return|return
 name|retVal
 return|;
 block|}
-comment|/**      * This method retrieves a single entry from the storage. If the      * {@link StorageBuffer} does not contain the requested entry the      * underlaying storage index will be searched.      *<p>      * The Entry will be searched in a feed context specified by the given feed      * ID      *</p>      *       * @param entryId -      *            the entry to fetch      * @param feedId -      *            the feedid eg. feed context      * @param config -      *            the FeedInstanceConfiguration contaning extension profile used      *            to create the entriy instances      * @return - the requested {@link BaseEntry} or<code>null</code> if the      *         entry can not be found      * @throws IOException -      *             if the index could not be queries or the entries could not be      *             build      * @throws ParseException -      *             if an entry could not be parsed while building it from the      *             Lucene Document.      */
+comment|/**      * This method retrieves a single entry from the storage. If the      * {@link StorageBuffer} does not contain the requested entry the      * underlying storage index will be searched.      *<p>      * The Entry will be searched in a feed context specified by the given feed      * ID      *</p>      *       * @param entryId -      *            the entry to fetch      * @param feedId -      *            the feed id e.g. feed context      * @param config -      *            the FeedInstanceConfiguration containing extension profile used      *            to create the entry instances      * @return - the requested {@link BaseEntry} or<code>null</code> if the      *         entry can not be found      * @throws IOException -      *             if the index could not be queries or the entries could not be      *             build      * @throws ParseException -      *             if an entry could not be parsed while building it from the      *             Lucene Document.      */
 DECL|method|singleEntryQuery
 specifier|public
 name|BaseEntry
@@ -1204,7 +1218,7 @@ name|getEntry
 argument_list|()
 return|;
 block|}
-comment|/**      * Fetches the requested entries from the storage. The given list contains      * entry ids to be looked up in the storage. First the {@link StorageBuffer}      * will be queried for the entry ids. If not all of the entries remain in      * the buffer the underlaying lucene index will be searched. The entries are      * not guaranteed to be in the same order as they are in the given id list.      * Entry ID's not found in the index or the buffer will be omitted.      *<p>      * The entries will be searched in a feed context specified by the given      * feed ID      *</p>      *       * @param entryIds -      *            the entriy ids to fetch.      * @param feedId -      *            the feed id eg. feed context.      * @param config -      *            the FeedInstanceConfiguration contaning extension profile used      *            to create the entriy instances      *       * @return - the list of entries corresponding to the given entry id list.      * @throws IOException -      *             if the index could not be queries or the entries could not be      *             build      * @throws ParseException -      *             if an entry could not be parsed while building it from the      *             Lucene Document.      */
+comment|/**      * Fetches the requested entries from the storage. The given list contains      * entry id's to be looked up in the storage. First the {@link StorageBuffer}      * will be queried for the entry id's. If not all of the entries remain in      * the buffer the underlying lucene index will be searched. The entries are      * not guaranteed to be in the same order as they are in the given id list.      * Entry ID's not found in the index or the buffer will be omitted.      *<p>      * The entries will be searched in a feed context specified by the given      * feed ID      *</p>      *       * @param entryIds -      *            the entry id's to fetch.      * @param feedId -      *            the feed id e.g. feed context.      * @param config -      *            the FeedInstanceConfiguration containing extension profile used      *            to create the entry instances      *       * @return - the list of entries corresponding to the given entry id list.      * @throws IOException -      *             if the index could not be queries or the entries could not be      *             build      * @throws ParseException -      *             if an entry could not be parsed while building it from the      *             Lucene Document.      */
 DECL|method|entryQuery
 specifier|public
 name|List
@@ -1587,7 +1601,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Closes all resources used in the {@link StorageQuery}. The instance can      * not be reused after invoking this method.      *       * @throws IOException -      *             if the resouces can not be closed      */
+comment|/**      * Closes all resources used in the {@link StorageQuery}. The instance can      * not be reused after invoking this method.      *       * @throws IOException -      *             if the resources can not be closed      */
 DECL|method|close
 specifier|public
 name|void
@@ -1642,7 +1656,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**      * Looks up the feedtype for the given feed ID      *       * @param feedID -      *            the feed ID      * @return - the feed type      * @throws IOException -      *             if the storage can not be accessed      */
+comment|/**      * Looks up the feed type for the given feed ID      *       * @param feedID -      *            the feed ID      * @return - the feed type      * @throws IOException -      *             if the storage can not be accessed      */
 DECL|method|getService
 specifier|public
 name|String

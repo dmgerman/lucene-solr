@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default Handler implementation. This handler processes the incoming  * {@link org.apache.lucene.gdata.server.GDataRequest} and retrieves the  * requested feed from the underlaying storage.  *<p>  * This hander also processes search queries and retrives the search hits from  * the underlaying search component. The user query will be accessed via the  * {@link org.apache.lucene.gdata.server.GDataRequest} instance passed to the  * {@link Service} class.  *</p>  *<p>  * The DefaultGetHandler supports HTTP Conditional GET. It set the Last-Modified  * response header based upon the value of the<atom:updated> element in the  * returned feed or entry. A client can send this value back as the value of the  * If-Modified-Since request header to avoid retrieving the content again if it  * hasn't changed. If the content hasn't changed since the If-Modified-Since  * time, then the GData service returns a 304 (Not Modified) HTTP response.</p>  *   *   * @author Simon Willnauer  *   */
+comment|/**  * Default Handler implementation. This handler processes the incoming  * {@link org.apache.lucene.gdata.server.GDataRequest} and retrieves the  * requested feed from the underlying storage.  *<p>  * This hander also processes search queries and retrieves the search hits from  * the underlying search component. The user query will be accessed via the  * {@link org.apache.lucene.gdata.server.GDataRequest} instance passed to the  * {@link Service} class.  *</p>  *<p>  * The DefaultGetHandler supports HTTP Conditional GET. It set the Last-Modified  * response header based upon the value of the<atom:updated> element in the  * returned feed or entry. A client can send this value back as the value of the  * If-Modified-Since request header to avoid retrieving the content again if it  * hasn't changed. If the content hasn't changed since the If-Modified-Since  * time, then the GData service returns a 304 (Not Modified) HTTP response.</p>  *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -462,6 +462,14 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+name|setError
+argument_list|(
+name|e
+operator|.
+name|getErrorCode
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|sendError
 argument_list|()
 expr_stmt|;
@@ -473,9 +481,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *       * returns true if the resource has been modified since the specified      * reqeust header value      */
+comment|/**      *       * returns true if the resource has been modified since the specified      * request header value      */
 DECL|method|checkIsModified
-specifier|private
+specifier|protected
 name|boolean
 name|checkIsModified
 parameter_list|(
@@ -581,7 +589,7 @@ literal|"comparing date clientDate: "
 operator|+
 name|clientDate
 operator|+
-literal|"; lastmodified: "
+literal|"; last modified: "
 operator|+
 name|entityDate
 argument_list|)

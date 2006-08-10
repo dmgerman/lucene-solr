@@ -22,6 +22,24 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|search
+operator|.
+name|config
+operator|.
+name|IndexSchema
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -68,7 +86,7 @@ name|Class
 name|getEntryType
 parameter_list|()
 function_decl|;
-comment|/**      * @return - the servicename      */
+comment|/**      * @return - the service name      */
 DECL|method|getName
 specifier|public
 specifier|abstract
@@ -82,6 +100,14 @@ specifier|public
 specifier|abstract
 name|void
 name|destroy
+parameter_list|()
+function_decl|;
+comment|/**      * @return the index schema configuration for this service      */
+DECL|method|getIndexSchema
+specifier|public
+specifier|abstract
+name|IndexSchema
+name|getIndexSchema
 parameter_list|()
 function_decl|;
 block|}

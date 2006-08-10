@@ -507,6 +507,22 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|this
+operator|.
+name|name
+operator|==
+literal|null
+condition|)
+return|return
+name|super
+operator|.
+name|equals
+argument_list|(
+name|o
+argument_list|)
+return|;
+if|if
+condition|(
 name|o
 operator|==
 literal|null
@@ -570,6 +586,20 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|name
+operator|==
+literal|null
+condition|)
+return|return
+name|super
+operator|.
+name|hashCode
+argument_list|()
+return|;
 name|int
 name|ret
 init|=
@@ -732,6 +762,14 @@ argument_list|(
 name|this
 operator|.
 name|authorLink
+operator|!=
+literal|null
+condition|?
+literal|""
+else|:
+name|this
+operator|.
+name|authorLink
 argument_list|)
 expr_stmt|;
 return|return
@@ -741,7 +779,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * checks whether the given integer matches the account role.      * @param intRole - integer representation of a role      * @param role - the accountrole to match      * @return<code>true</code> if and only if the given roles match, otherwise<code>false</code>      */
+comment|/**      * checks whether the given integer matches the account role.      * @param intRole - integer representation of a role      * @param role - the account role to match      * @return<code>true</code> if and only if the given roles match, otherwise<code>false</code>      */
 DECL|method|isInRole
 specifier|public
 specifier|static
@@ -829,7 +867,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * @return - a new Administartor accoutn       */
+comment|/**      * @return - a new Administrator account       */
 DECL|method|createAdminAccount
 specifier|public
 specifier|static

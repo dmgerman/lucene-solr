@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The FeedRequest Class wraps the curren HttpServletResponse. Any action on the  * HttpServletRequest will be executed via this class. This represents an  * abstraction on the plain {@link HttpServletResponse}. Any action which has  * to be performed on the underlaying {@link HttpServletResponse} will be  * executed within this class.  *<p>  * The GData basicly writes two different kinds ouf reponse to the output  * stream.  *<ol>  *<li>update, delete or insert requests will respond with a statuscode and if  * successful the feed entry modified or created</li>  *<li>get requests will respond with a statuscode and if successful the  * requested feed</li>  *</ol>  *   * For this purpose the {@link GDataResponse} class provides the overloaded  * method  * {@link org.apache.lucene.gdata.server.GDataResponse#sendResponse(BaseEntry, ExtensionProfile)}  * which sends the entry e.g feed to the output stream.  *</p>  *<p>  * This class will set the HTTP<tt>Last-Modified</tt> Header to enable  * clients to send<tt>If-Modified-Since</tt> request header to avoid  * retrieving the content again if it hasn't changed. If the content hasn't  * changed since the If-Modified-Since time, then the GData service returns a  * 304 (Not Modified) HTTP response.  *</p>  *   *   *   *   * @author Simon Willnauer  *   */
+comment|/**  * The FeedRequest Class wraps the current HttpServletResponse. Any action on the  * HttpServletRequest will be executed via this class. This represents an  * abstraction on the plain {@link HttpServletResponse}. Any action which has  * to be performed on the underlying {@link HttpServletResponse} will be  * executed within this class.  *<p>  * The GData basically writes two different kinds of response to the output  * stream.  *<ol>  *<li>update, delete or insert requests will respond with a status code and if  * successful the feed entry modified or created</li>  *<li>get requests will respond with a status code and if successful the  * requested feed</li>  *</ol>  *   * For this purpose the {@link GDataResponse} class provides the overloaded  * method  * {@link org.apache.lucene.gdata.server.GDataResponse#sendResponse(BaseEntry, ExtensionProfile)}  * which sends the entry e.g feed to the output stream.  *</p>  *<p>  * This class will set the HTTP<tt>Last-Modified</tt> Header to enable  * clients to send<tt>If-Modified-Since</tt> request header to avoid  * retrieving the content again if it hasn't changed. If the content hasn't  * changed since the If-Modified-Since time, then the GData service returns a  * 304 (Not Modified) HTTP response.  *</p>  *   *   *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -226,6 +226,102 @@ specifier|public
 class|class
 name|GDataResponse
 block|{
+comment|/**      * Response code bad request      */
+DECL|field|BAD_REQUEST
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BAD_REQUEST
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_BAD_REQUEST
+decl_stmt|;
+comment|/**      * Response code version conflict      */
+DECL|field|CONFLICT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|CONFLICT
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_CONFLICT
+decl_stmt|;
+comment|/**      * Response code forbidden access      */
+DECL|field|FORBIDDEN
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORBIDDEN
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_FORBIDDEN
+decl_stmt|;
+comment|/**      * Response code internal server error      */
+DECL|field|SERVER_ERROR
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|SERVER_ERROR
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_INTERNAL_SERVER_ERROR
+decl_stmt|;
+comment|/**      * Response code not found      */
+DECL|field|NOT_FOUND
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NOT_FOUND
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_NOT_FOUND
+decl_stmt|;
+comment|/**      * Response code not modified since      */
+DECL|field|NOT_MODIFIED
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NOT_MODIFIED
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_NOT_MODIFIED
+decl_stmt|;
+comment|/**      * Response code created      */
+DECL|field|CREATED
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|CREATED
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_CREATED
+decl_stmt|;
+comment|/**      * Response code unauthorized access      */
+DECL|field|UNAUTHORIZED
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|UNAUTHORIZED
+init|=
+name|HttpServletResponse
+operator|.
+name|SC_UNAUTHORIZED
+decl_stmt|;
 DECL|field|LOG
 specifier|private
 specifier|static
@@ -321,7 +417,7 @@ name|HEADER_LASTMODIFIED
 init|=
 literal|"Last-Modified"
 decl_stmt|;
-comment|/**      * Creates a new GDataResponse      *       * @param response -      *            The underlaying {@link HttpServletResponse}      */
+comment|/**      * Creates a new GDataResponse      *       * @param response -      *            The underlying {@link HttpServletResponse}      */
 DECL|method|GDataResponse
 specifier|public
 name|GDataResponse
@@ -373,7 +469,7 @@ operator|=
 name|errorCode
 expr_stmt|;
 block|}
-comment|/**      * Sets the status of the underlaying response      *       * @see HttpServletResponse      * @param responseCode -      *            the status of the response      */
+comment|/**      * Sets the status of the underlying response      *       * @see HttpServletResponse      * @param responseCode -      *            the status of the response      */
 DECL|method|setResponseCode
 specifier|public
 name|void
@@ -393,7 +489,7 @@ name|responseCode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * This method sends the specified error to the user if set      *       * @throws IOException -      *             if an I/O Exception occures      */
+comment|/**      * This method sends the specified error to the user if set      *       * @throws IOException -      *             if an I/O Exception occurs      */
 DECL|method|sendError
 specifier|public
 name|void
@@ -420,7 +516,7 @@ name|error
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @return - the {@link HttpServletResponse} writer      * @throws IOException -      *             If an I/O exception occures      */
+comment|/**      * @return - the {@link HttpServletResponse} writer      * @throws IOException -      *             If an I/O exception occurs      */
 DECL|method|getWriter
 specifier|public
 name|Writer
@@ -438,7 +534,7 @@ name|getWriter
 argument_list|()
 return|;
 block|}
-comment|/**      * Sends a response for a get e.g. query request. This method must not      * invoked in a case of an error performing the requeste action.      *       * @param feed -      *            the feed to respond to the client      * @param profile -      *            the extension profil for the feed to write      * @throws IOException -      *             if an I/O exception accures, often caused by an already      *             closed Writer or OutputStream      *       */
+comment|/**      * Sends a response for a get e.g. query request. This method must not      * invoked in a case of an error performing the requested action.      *       * @param feed -      *            the feed to respond to the client      * @param profile -      *            the extension profile for the feed to write      * @throws IOException -      *             if an I/O exception occurs, often caused by an already      *             closed Writer or OutputStream      *       */
 DECL|method|sendResponse
 specifier|public
 name|void
@@ -476,7 +572,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"extension profil must not be null"
+literal|"extension profile must not be null"
 argument_list|)
 throw|;
 name|DateTime
@@ -567,7 +663,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *       * Sends a response for an update, insert or delete request. This method      * must not invoked in a case of an error performing the requeste action. If      * the specified response format is ATOM the default namespace will be set      * to ATOM.      *       * @param entry -      *            the modified / created entry to send      * @param profile -      *            the entries extension profile      * @throws IOException -      *             if an I/O exception accures, often caused by an already      *             closed Writer or OutputStream      */
+comment|/**      *       * Sends a response for an update, insert or delete request. This method      * must not invoked in a case of an error performing the requested action. If      * the specified response format is ATOM the default namespace will be set      * to ATOM.      *       * @param entry -      *            the modified / created entry to send      * @param profile -      *            the entries extension profile      * @throws IOException -      *             if an I/O exception occurs, often caused by an already      *             closed Writer or OutputStream      */
 DECL|method|sendResponse
 specifier|public
 name|void
@@ -605,7 +701,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"extension profil must not be null"
+literal|"extension profile must not be null"
 argument_list|)
 throw|;
 name|DateTime

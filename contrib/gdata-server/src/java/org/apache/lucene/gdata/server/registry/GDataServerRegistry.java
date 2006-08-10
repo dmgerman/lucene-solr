@@ -138,8 +138,24 @@ name|PropertyInjector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|utils
+operator|.
+name|ReflectionUtils
+import|;
+end_import
+
 begin_comment
-comment|/**  *   * The GDataServerRegistry represents the registry component of the GData  * Server. All provided services and server components will be registered here.  * The Gdata Server serves RSS / ATOM feeds for defined services. Each service  * provides<i>n</i> feeds of a defined subclass of  * {@link com.google.gdata.data.BaseFeed}. Each feed contains<i>m</i> entries  * of a defined subclass of {@link com.google.gdata.data.BaseEntry}. To  * generate RSS / ATOM formates a class of the type  * {@link com.google.gdata.data.ExtensionProfile} is also defined for a service.  *<p>  * The entry,feed and the ExtensionProfile classes are defined in the  * gdata-config.xml and will be loaded when the server starts up.  *</p>  *<p>  * The components defined in the gdata-config.xml will also be loaded and  * instanciated at startup. If a component can not be loaded or an Exception  * occures the server will not start up. To cause of the exception or error will  * be logged to the standart server output.  *</p>  *<p>  * The GDataServerRegistry is a Singleton  *</p>  *   *   * @author Simon Willnauer  *   */
+comment|/**  *   * The GDataServerRegistry represents the registry component of the GData  * Server. All provided services and server components will be registered here.  * The GData Server serves RSS / ATOM feeds for defined services. Each service  * provides<i>n</i> feeds of a defined subclass of  * {@link com.google.gdata.data.BaseFeed}. Each feed contains<i>m</i> entries  * of a defined subclass of {@link com.google.gdata.data.BaseEntry}. To  * generate RSS / ATOM formates a class of the type  * {@link com.google.gdata.data.ExtensionProfile} is also defined for a service.  *<p>  * The entry,feed and the ExtensionProfile classes are defined in the  * gdata-config.xml and will be loaded when the server starts up.  *</p>  *<p>  * The components defined in the gdata-config.xml will also be loaded and  * instantiated at startup. If a component can not be loaded or an Exception  * occurs the server will not start up. To cause of the exception or error will  * be logged to the standard server output.  *</p>  *<p>  * The GDataServerRegistry is a Singleton  *</p>  *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -147,6 +163,8 @@ DECL|class|GDataServerRegistry
 specifier|public
 class|class
 name|GDataServerRegistry
+extends|extends
+name|EntryEventMediator
 block|{
 DECL|field|INSTANCE
 specifier|private
@@ -154,12 +172,12 @@ specifier|static
 name|GDataServerRegistry
 name|INSTANCE
 decl_stmt|;
-DECL|field|LOGGER
+DECL|field|LOG
 specifier|private
 specifier|static
 specifier|final
 name|Log
-name|LOGGER
+name|LOG
 init|=
 name|LogFactory
 operator|.
@@ -180,7 +198,7 @@ specifier|private
 name|ScopeVisitable
 name|sessionVisitable
 decl_stmt|;
-comment|//not available yet
+comment|// not available yet
 DECL|field|contextVisitable
 specifier|private
 name|ScopeVisitable
@@ -257,7 +275,7 @@ parameter_list|()
 block|{
 comment|// private - singleton
 block|}
-comment|/**      * @return a Sinleton registry instance      */
+comment|/**      * @return a Singleton registry instance      */
 DECL|method|getRegistry
 specifier|public
 specifier|static
@@ -299,11 +317,11 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOGGER
+name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Feedconfigurator is null -- skip registration"
+literal|"Feed configurator is null -- skip registration"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -380,12 +398,12 @@ argument_list|)
 throw|;
 if|if
 condition|(
-name|LOGGER
+name|LOG
 operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
-name|LOGGER
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -566,12 +584,12 @@ argument_list|)
 throw|;
 if|if
 condition|(
-name|LOGGER
+name|LOG
 operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
-name|LOGGER
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -735,7 +753,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Service is null - must not be null to get registered feedtype"
+literal|"Service is null - must not be null to get registered feed type"
 argument_list|)
 throw|;
 return|return
@@ -921,7 +939,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * All registered {@link ServerComponent} registered via this method are      * available via the      * {@link GDataServerRegistry#lookup(Class, ComponentType)} method. For each      * {@link ComponentType} there will be one single instance registered in the      * registry.      *<p>      * Eventually this method invokes the initialize method of the      * ServerComponent interface to prepare the component to be available via      * the lookup service      *</p>      *       * @param<E> -      *            The interface of the component to register      * @param componentClass -      *            a implementation of a ServerComponent interface to register in      *            the registry      * @param configuration -      *            the component configuration {@link ComponentConfiguration}      * @throws RegistryException -      *             if the provided class does not implement the      *             {@link ServerComponent} interface, if the mandatory      *             annotations not visible at runtime or not set, if the super      *             type provided by the {@link ComponentType} for the class to      *             register is not a super type of the class or if the      *             invokation of the {@link ServerComponent#initialize()} method      *             throws an exception.      */
+comment|/**      * All registered {@link ServerComponent} registered via this method are      * available via the      * {@link GDataServerRegistry#lookup(Class, ComponentType)} method. For each      * {@link ComponentType} there will be one single instance registered in the      * registry.      *<p>      * Eventually this method invokes the initialize method of the      * ServerComponent interface to prepare the component to be available via      * the lookup service      *</p>      *       * @param<E> -      *            The interface of the component to register      * @param componentClass -      *            a implementation of a ServerComponent interface to register in      *            the registry      * @param configuration -      *            the component configuration {@link ComponentConfiguration}      * @throws RegistryException -      *             if the provided class does not implement the      *             {@link ServerComponent} interface, if the mandatory      *             annotations not visible at runtime or not set, if the super      *             type provided by the {@link ComponentType} for the class to      *             register is not a super type of the class or if the      *             invocation of the {@link ServerComponent#initialize()} method      *             throws an exception.      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -967,7 +985,9 @@ throw|;
 if|if
 condition|(
 operator|!
-name|checkSuperType
+name|ReflectionUtils
+operator|.
+name|implementsType
 argument_list|(
 name|componentClass
 argument_list|,
@@ -1080,7 +1100,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|checkSuperType
+name|ReflectionUtils
+operator|.
+name|isTypeOf
 argument_list|(
 name|componentClass
 argument_list|,
@@ -1091,7 +1113,7 @@ throw|throw
 operator|new
 name|RegistryException
 argument_list|(
-literal|"Considered Supertype<"
+literal|"Considered super type<"
 operator|+
 name|superType
 operator|.
@@ -1122,12 +1144,12 @@ condition|)
 block|{
 if|if
 condition|(
-name|LOGGER
+name|LOG
 operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
-name|LOGGER
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -1179,7 +1201,9 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|checkSuperType
+name|ReflectionUtils
+operator|.
+name|implementsType
 argument_list|(
 name|componentClass
 argument_list|,
@@ -1267,108 +1291,6 @@ name|configuration
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|checkSuperType
-specifier|private
-specifier|static
-name|boolean
-name|checkSuperType
-parameter_list|(
-name|Class
-name|type
-parameter_list|,
-name|Class
-name|consideredSuperType
-parameter_list|)
-block|{
-if|if
-condition|(
-name|type
-operator|==
-literal|null
-condition|)
-return|return
-literal|false
-return|;
-if|if
-condition|(
-name|type
-operator|.
-name|equals
-argument_list|(
-name|Object
-operator|.
-name|class
-argument_list|)
-condition|)
-return|return
-literal|false
-return|;
-if|if
-condition|(
-name|type
-operator|.
-name|equals
-argument_list|(
-name|consideredSuperType
-argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-name|Class
-index|[]
-name|interfaces
-init|=
-name|type
-operator|.
-name|getInterfaces
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|interfaces
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|checkSuperType
-argument_list|(
-name|interfaces
-index|[
-name|i
-index|]
-argument_list|,
-name|consideredSuperType
-argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-block|}
-return|return
-name|checkSuperType
-argument_list|(
-name|type
-operator|.
-name|getSuperclass
-argument_list|()
-argument_list|,
-name|consideredSuperType
-argument_list|)
-return|;
-block|}
 DECL|class|ComponentBean
 specifier|private
 specifier|static
@@ -1434,6 +1356,38 @@ operator|.
 name|superType
 return|;
 block|}
+block|}
+comment|/**      * @see org.apache.lucene.gdata.server.registry.EntryEventMediator#getEntryEventMediator()      */
+annotation|@
+name|Override
+DECL|method|getEntryEventMediator
+specifier|public
+name|EntryEventMediator
+name|getEntryEventMediator
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
+comment|/**      * @return - all registered services      */
+DECL|method|getServices
+specifier|public
+name|Collection
+argument_list|<
+name|ProvidedService
+argument_list|>
+name|getServices
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|serviceTypeMap
+operator|.
+name|values
+argument_list|()
+return|;
 block|}
 block|}
 end_class

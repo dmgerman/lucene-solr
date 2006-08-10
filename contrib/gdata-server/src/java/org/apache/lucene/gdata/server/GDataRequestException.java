@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**   * This exception wraps all exceptions occure inside the {@link org.apache.lucene.gdata.server.GDataRequest}   * @author Simon Willnauer   *   */
+comment|/**   * This exception wraps all exceptions occur inside the {@link org.apache.lucene.gdata.server.GDataRequest}   * @author Simon Willnauer   *   */
 end_comment
 
 begin_class
@@ -30,6 +30,12 @@ name|GDataRequestException
 extends|extends
 name|Exception
 block|{
+DECL|field|errorCode
+specifier|private
+specifier|final
+name|int
+name|errorCode
+decl_stmt|;
 comment|/**       * Serial version ID. -> Implements Serializable       */
 DECL|field|serialVersionUID
 specifier|private
@@ -41,23 +47,35 @@ init|=
 operator|-
 literal|4440777051466950723L
 decl_stmt|;
-comment|/**       * Constructs a new GDataException       */
+comment|/**         /**      * Constructs a new GDataRequestException      * @param errorCode - gdata request error code      */
 DECL|method|GDataRequestException
 specifier|public
 name|GDataRequestException
-parameter_list|()
+parameter_list|(
+name|int
+name|errorCode
+parameter_list|)
 block|{
 name|super
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
+name|errorCode
+operator|=
+name|errorCode
+expr_stmt|;
 block|}
-comment|/**       * Constructs a new GDataException with a given message string       * @param arg0 - the excpetion message        */
+comment|/**      * Constructs a new GDataRequestException      * @param arg0 - the exception message      * @param errorCode - gdata request error code      */
 DECL|method|GDataRequestException
 specifier|public
 name|GDataRequestException
 parameter_list|(
 name|String
 name|arg0
+parameter_list|,
+name|int
+name|errorCode
 parameter_list|)
 block|{
 name|super
@@ -65,8 +83,14 @@ argument_list|(
 name|arg0
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|errorCode
+operator|=
+name|errorCode
+expr_stmt|;
 block|}
-comment|/**       * Constructs a new GDataException with a given message string and cause       * @param arg0 - the exception message       * @param arg1 - the exception who caused this exception       */
+comment|/**      * Constructs a new GDataRequestException      * @param arg0 - the exception message      * @param arg1 - the exception cause      * @param errorCode - gdata request error code      */
 DECL|method|GDataRequestException
 specifier|public
 name|GDataRequestException
@@ -76,6 +100,9 @@ name|arg0
 parameter_list|,
 name|Throwable
 name|arg1
+parameter_list|,
+name|int
+name|errorCode
 parameter_list|)
 block|{
 name|super
@@ -85,14 +112,23 @@ argument_list|,
 name|arg1
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|errorCode
+operator|=
+name|errorCode
+expr_stmt|;
 block|}
-comment|/**       * Constructs a new GDataException with a given cause       * @param arg0 - exception cause       */
+comment|/**      * Constructs a new GDataRequestException      * @param arg0 - the exception cause      * @param errorCode - gdata request error code      */
 DECL|method|GDataRequestException
 specifier|public
 name|GDataRequestException
 parameter_list|(
 name|Throwable
 name|arg0
+parameter_list|,
+name|int
+name|errorCode
 parameter_list|)
 block|{
 name|super
@@ -100,6 +136,25 @@ argument_list|(
 name|arg0
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|errorCode
+operator|=
+name|errorCode
+expr_stmt|;
+block|}
+comment|/**      * @return Returns the errorCode.      */
+DECL|method|getErrorCode
+specifier|public
+name|int
+name|getErrorCode
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|errorCode
+return|;
 block|}
 block|}
 end_class

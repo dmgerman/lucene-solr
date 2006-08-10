@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.gdata.storage.lucenestorage
 package|package
@@ -308,11 +312,7 @@ name|lucene
 operator|.
 name|gdata
 operator|.
-name|storage
-operator|.
-name|lucenestorage
-operator|.
-name|util
+name|utils
 operator|.
 name|ReferenceCounter
 import|;
@@ -1183,7 +1183,7 @@ operator|.
 name|modifier
 return|;
 block|}
-comment|/**      * returns a<tt>StorageQuery</tt> to query the storage index. The      * returned object is a reference counter to keep track of the references to      * the<tt>StorageQuery</tt>. The reference is already incremented before      * returned from this method.      *<p>      * if the reference counter has no remaining references the resource e.g.      * the<tt>StorageQuery</tt> will be closed. This ensures that a      *<tt>StorageQuery</tt> instance will be arround as long as needed and      * the resources will be released. The reference counter should be      * decremented by clients after finished using the query instance.      *</p>      *       * @return a {@link ReferenceCounter} instance holding the StorageQuery as a      *         resource.      *       */
+comment|/**      * returns a<tt>StorageQuery</tt> to query the storage index. The      * returned object is a reference counter to keep track of the references to      * the<tt>StorageQuery</tt>. The reference is already incremented before      * returned from this method.      *<p>      * if the reference counter has no remaining references the resource e.g.      * the<tt>StorageQuery</tt> will be closed. This ensures that a      *<tt>StorageQuery</tt> instance will be around as long as needed and      * the resources will be released. The reference counter should be      * decremented by clients after finished using the query instance.      *</p>      *       * @return a {@link ReferenceCounter} instance holding the StorageQuery as a      *         resource.      *       */
 DECL|method|getStorageQuery
 specifier|protected
 name|ReferenceCounter
@@ -1273,7 +1273,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Relese new StorageQuery"
+literal|"Release new StorageQuery"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1411,7 +1411,7 @@ return|return
 name|holder
 return|;
 block|}
-comment|/**      * Forces the controller to register a new<tt>StorageQuery</tt> instance.      * This method will be called after an index has been modified to make the      * changes available for searching.      *       * @throws IOException -      *             if an IO exception occures      */
+comment|/**      * Forces the controller to register a new<tt>StorageQuery</tt> instance.      * This method will be called after an index has been modified to make the      * changes available for searching.      *       * @throws IOException -      *             if an IO exception occurs      */
 DECL|method|registerNewStorageQuery
 specifier|protected
 name|void
@@ -1633,7 +1633,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Creates a new IndexModifier on the storage index      *       * @return - a new modifier      * @throws IOException -      *             if an IO exception occures      */
+comment|/**      * Creates a new IndexModifier on the storage index      *       * @return - a new modifier      * @throws IOException -      *             if an IO exception occurs      */
 DECL|method|createIndexModifier
 specifier|protected
 name|IndexModifier
@@ -1906,7 +1906,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Forces the StorageModifier to write all buffered changes.      *       * @throws IOException -      *             if an IO exception occures      *       */
+comment|/**      * Forces the StorageModifier to write all buffered changes.      *       * @throws IOException -      *             if an IO exception occurs      *       */
 DECL|method|forceWrite
 specifier|public
 name|void
@@ -2228,7 +2228,7 @@ operator|=
 name|storageBufferSize
 expr_stmt|;
 block|}
-comment|/**      * An integer value after how many changes to the StorageModifier the      * buffered changes will be persisted / wirtten to the index      *       * @return - the persist factor      */
+comment|/**      * An integer value after how many changes to the StorageModifier the      * buffered changes will be persisted / written to the index      *       * @return - the persist factor      */
 DECL|method|getPersistFactor
 specifier|public
 name|int

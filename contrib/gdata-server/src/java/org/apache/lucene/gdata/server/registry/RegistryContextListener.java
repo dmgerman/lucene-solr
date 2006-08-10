@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This Listener creates the  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry} when the  * context is loaded. The registry will be loaded before the  * {@link org.apache.lucene.gdata.servlet.RequestControllerServlet} is loaded.  * The Registry will be loaded and set up befor the REST interface is available.  *<p>  * This ContextListener has to be configured in the<code>web.xml</code>  * deployment descriptor.  *</p>  *<p>  * When the  * {@link javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)}  * method is called the registry will be destroyed using  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry#destroy()}  * method.  *   *   * @author Simon Willnauer  *   */
+comment|/**  * This Listener creates the  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry} when the  * context is loaded. The registry will be loaded before the  * {@link org.apache.lucene.gdata.servlet.RequestControllerServlet} is loaded.  * The Registry will be loaded and set up before the REST interface is available.  *<p>  * This ContextListener has to be configured in the<code>web.xml</code>  * deployment descriptor.  *</p>  *<p>  * When the  * {@link javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)}  * method is called the registry will be destroyed using  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry#destroy()}  * method.  *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -134,16 +134,18 @@ operator|.
 name|getRegistry
 argument_list|()
 expr_stmt|;
+comment|/*              * catch all exceptions and destroy the registry to release all resources.              * some components start lots of threads, the will remain running if the registry is not destroyed              */
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|Throwable
 name|e
 parameter_list|)
 block|{
-name|this
+name|GDataServerRegistry
 operator|.
-name|serverRegistry
+name|getRegistry
+argument_list|()
 operator|.
 name|destroy
 argument_list|()
@@ -152,7 +154,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"can not register requiered components"
+literal|"can not register required components"
 argument_list|,
 name|e
 argument_list|)
@@ -185,6 +187,15 @@ argument_list|(
 literal|"Destroying context"
 argument_list|)
 expr_stmt|;
+comment|/*          * this might be null if startup fails          * --> prevent null pointer exception          */
+if|if
+condition|(
+name|this
+operator|.
+name|serverRegistry
+operator|!=
+literal|null
+condition|)
 name|this
 operator|.
 name|serverRegistry

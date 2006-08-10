@@ -181,15 +181,30 @@ parameter_list|()
 block|{
 comment|//
 block|}
-comment|/** 	 * Creates a {@link Service} instance. 	 *  	 * @return a Service instance 	 */
+comment|/** 	 * Creates a {@link Service} instance. 	 * @param request - the request for this service 	 *  	 * @return a Service instance 	 */
 DECL|method|getService
 specifier|public
 name|Service
 name|getService
-parameter_list|()
+parameter_list|(
+name|GDataRequest
+name|request
+parameter_list|)
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|request
+operator|.
+name|isSearchRequested
+argument_list|()
+condition|)
+return|return
+operator|new
+name|GDataSearchService
+argument_list|()
+return|;
 return|return
 operator|new
 name|GDataService

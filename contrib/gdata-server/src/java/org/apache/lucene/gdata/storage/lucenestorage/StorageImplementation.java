@@ -252,11 +252,7 @@ name|lucene
 operator|.
 name|gdata
 operator|.
-name|storage
-operator|.
-name|lucenestorage
-operator|.
-name|util
+name|utils
 operator|.
 name|ReferenceCounter
 import|;
@@ -291,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is an implementation of the  * {@link org.apache.lucene.gdata.storage.Storage} interface. The  * StorageImplementation provides access to the  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageQuery} and the  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageModifier}. This  * class will be instanciated per client request.  *   *   *   * @author Simon Willnauer  *   */
+comment|/**  * This is an implementation of the  * {@link org.apache.lucene.gdata.storage.Storage} interface. The  * StorageImplementation provides access to the  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageQuery} and the  * {@link org.apache.lucene.gdata.storage.lucenestorage.StorageModifier}. This  * class will be instantiated per client request.  *   *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -410,7 +406,7 @@ throw|throw
 operator|new
 name|StorageException
 argument_list|(
-literal|"feedid is null"
+literal|"feed-id is null"
 argument_list|)
 throw|;
 if|if
@@ -1305,7 +1301,7 @@ operator|.
 name|getId
 argument_list|()
 operator|+
-literal|" startindex: "
+literal|" start-index: "
 operator|+
 name|feed
 operator|.
@@ -2846,7 +2842,7 @@ throw|throw
 operator|new
 name|StorageException
 argument_list|(
-literal|"feedid must not be null"
+literal|"feed-id must not be null"
 argument_list|)
 throw|;
 name|ReferenceCounter

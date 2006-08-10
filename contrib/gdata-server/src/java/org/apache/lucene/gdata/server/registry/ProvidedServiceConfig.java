@@ -70,6 +70,24 @@ name|lucene
 operator|.
 name|gdata
 operator|.
+name|search
+operator|.
+name|config
+operator|.
+name|IndexSchema
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
 name|utils
 operator|.
 name|Pool
@@ -118,12 +136,68 @@ name|gdata
 operator|.
 name|data
 operator|.
+name|BaseEntry
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|gdata
+operator|.
+name|data
+operator|.
+name|BaseFeed
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|gdata
+operator|.
+name|data
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|gdata
+operator|.
+name|data
+operator|.
 name|ExtensionProfile
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|gdata
+operator|.
+name|data
+operator|.
+name|Feed
+import|;
+end_import
+
 begin_comment
-comment|/**  * Standart implementation of  * {@link org.apache.lucene.gdata.server.registry.ProvidedService} to be used  * inside the  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry}  *<p>  * ExtensionProfiles are used to generate and parse xml by the gdata api. For  * that case all methodes are synchronized. This will slow down the application  * when performing lots of xml generation concurrently. For that case the  * extensionProfile for a specific service will be pooled and reused.  *</p>  *   *   * @author Simon Willnauer  *   */
+comment|/**  * Standard implementation of  * {@link org.apache.lucene.gdata.server.registry.ProvidedService} to be used  * inside the  * {@link org.apache.lucene.gdata.server.registry.GDataServerRegistry}  *<p>  * ExtensionProfiles are used to generate and parse xml by the gdata api. For  * that case all methods are synchronized. This will slow down the application  * when performing lots of xml generation concurrently. For that case the  * extensionProfile for a specific service will be pooled and reused.  *</p>  *   *   * @author Simon Willnauer  *   */
 end_comment
 
 begin_class
@@ -172,9 +246,14 @@ name|DEFAULT_POOL_SIZE
 init|=
 literal|5
 decl_stmt|;
-comment|/*      * To ensure a extensionprofile instance will not be shared within multiple      * threads each thread requesting a config will have one instance for the      * entire request.      */
-DECL|field|extProfThreadLocal
+DECL|field|indexSchema
 specifier|private
+name|IndexSchema
+name|indexSchema
+decl_stmt|;
+comment|/*      * To ensure a extension profile instance will not be shared within multiple      * threads each thread requesting a config will have one instance for the      * entire request.      */
+DECL|field|extProfThreadLocal
+specifier|protected
 specifier|final
 name|ThreadLocal
 argument_list|<
@@ -206,11 +285,21 @@ decl_stmt|;
 DECL|field|entryType
 specifier|private
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|BaseEntry
+argument_list|>
 name|entryType
 decl_stmt|;
 DECL|field|feedType
 specifier|private
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|BaseFeed
+argument_list|>
 name|feedType
 decl_stmt|;
 DECL|field|extensionProfile
@@ -261,7 +350,7 @@ else|:
 name|DEFAULT_POOL_SIZE
 expr_stmt|;
 block|}
-comment|/**      * Default constructor to instanciate via reflection      */
+comment|/**      * Default constructor to instantiate via reflection      */
 DECL|method|ProvidedServiceConfig
 specifier|public
 name|ProvidedServiceConfig
@@ -364,6 +453,17 @@ if|if
 condition|(
 name|this
 operator|.
+name|extensionProfile
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+if|if
+condition|(
+name|this
+operator|.
 name|profilPool
 operator|==
 literal|null
@@ -393,7 +493,7 @@ return|return
 name|ext
 return|;
 block|}
-comment|/**      * @param extensionProfil -      *            the extensionprofile for this feed configuration      */
+comment|/**      * @param extensionProfil -      *            the extension profile for this feed configuration      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -454,7 +554,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Create ExtensionProfile pool with poolsize:"
+literal|"Create ExtensionProfile pool with pool size:"
 operator|+
 name|this
 operator|.
@@ -493,6 +593,14 @@ name|extensionProfile
 operator|.
 name|getClass
 argument_list|()
+argument_list|,
+name|this
+operator|.
+name|entryType
+argument_list|,
+name|this
+operator|.
+name|feedType
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -714,6 +822,16 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+DECL|field|entry
+specifier|private
+name|BaseEntry
+name|entry
+decl_stmt|;
+DECL|field|feed
+specifier|private
+name|BaseFeed
+name|feed
+decl_stmt|;
 DECL|method|ExtensionProfileFactory
 name|ExtensionProfileFactory
 parameter_list|(
@@ -724,6 +842,22 @@ extends|extends
 name|ExtensionProfile
 argument_list|>
 name|clazz
+parameter_list|,
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|BaseEntry
+argument_list|>
+name|entryClass
+parameter_list|,
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|BaseFeed
+argument_list|>
+name|feedClass
 parameter_list|)
 block|{
 name|this
@@ -749,6 +883,24 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|entry
+operator|=
+name|entryClass
+operator|.
+name|newInstance
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|feed
+operator|=
+name|feedClass
+operator|.
+name|newInstance
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -760,7 +912,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"The given class has no defaul constructor -- can not use as a ExtensionProfile -- "
+literal|"The given class has no default constructor -- can not use as a ExtensionProfile -- "
 operator|+
 name|this
 operator|.
@@ -788,7 +940,9 @@ parameter_list|()
 block|{
 try|try
 block|{
-return|return
+name|Type
+name|retValue
+init|=
 operator|(
 name|Type
 operator|)
@@ -800,6 +954,27 @@ name|newInstance
 argument_list|(
 name|constArray
 argument_list|)
+decl_stmt|;
+name|this
+operator|.
+name|entry
+operator|.
+name|declareExtensions
+argument_list|(
+name|retValue
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|feed
+operator|.
+name|declareExtensions
+argument_list|(
+name|retValue
+argument_list|)
+expr_stmt|;
+return|return
+name|retValue
 return|;
 block|}
 catch|catch
@@ -812,7 +987,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not instanciate new ExtensionProfile -- "
+literal|"Can not instantiate new ExtensionProfile -- "
 argument_list|,
 name|e
 argument_list|)
@@ -850,7 +1025,7 @@ condition|)
 name|createProfilePool
 argument_list|()
 expr_stmt|;
-comment|/*          * don't set a extension profile for each thread. The current thread          * might use another service and does not need the extensionprofile of          * this service          */
+comment|/*          * don't set a extension profile for each thread. The current thread          * might use another service and does not need the extension profile of          * this service          */
 block|}
 comment|/**      * @see org.apache.lucene.gdata.server.registry.ScopeVisitor#visiteDestroy()      */
 DECL|method|visiteDestroy
@@ -913,6 +1088,55 @@ operator|.
 name|release
 argument_list|(
 name|ext
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * @return Returns the indexSchema.      */
+DECL|method|getIndexSchema
+specifier|public
+name|IndexSchema
+name|getIndexSchema
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|indexSchema
+return|;
+block|}
+comment|/**      * @param indexSchema The indexSchema to set.      */
+DECL|method|setIndexSchema
+specifier|public
+name|void
+name|setIndexSchema
+parameter_list|(
+name|IndexSchema
+name|indexSchema
+parameter_list|)
+block|{
+name|this
+operator|.
+name|indexSchema
+operator|=
+name|indexSchema
+expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|indexSchema
+operator|!=
+literal|null
+condition|)
+name|this
+operator|.
+name|indexSchema
+operator|.
+name|setName
+argument_list|(
+name|this
+operator|.
+name|serviceName
 argument_list|)
 expr_stmt|;
 block|}

@@ -35,17 +35,42 @@ name|serialVersionUID
 init|=
 literal|1L
 decl_stmt|;
-comment|/**       * Constructs a FeedNotFoundException       */
+comment|/**      * Constructs a new FeedNotFoundException      * @param errorCode - gdata request errorcode      */
 DECL|method|FeedNotFoundException
 specifier|public
 name|FeedNotFoundException
-parameter_list|()
+parameter_list|(
+name|int
+name|errorCode
+parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|errorCode
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @param arg0 -       *            message       * @param arg1 -       *            cause       */
+comment|/**      * Constructs a new FeedNotFoundException      * @param arg0 - the exception message      * @param errorCode - gdata request errorcode      */
+DECL|method|FeedNotFoundException
+specifier|public
+name|FeedNotFoundException
+parameter_list|(
+name|String
+name|arg0
+parameter_list|,
+name|int
+name|errorCode
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|arg0
+argument_list|,
+name|errorCode
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Constructs a new FeedNotFoundException      * @param arg0 - the exceptin message      * @param arg1 - the exception cause      * @param errorCode - gdata request errorcode      */
 DECL|method|FeedNotFoundException
 specifier|public
 name|FeedNotFoundException
@@ -55,6 +80,9 @@ name|arg0
 parameter_list|,
 name|Throwable
 name|arg1
+parameter_list|,
+name|int
+name|errorCode
 parameter_list|)
 block|{
 name|super
@@ -62,36 +90,28 @@ argument_list|(
 name|arg0
 argument_list|,
 name|arg1
+argument_list|,
+name|errorCode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @param arg0 -       *            message       */
-DECL|method|FeedNotFoundException
-specifier|public
-name|FeedNotFoundException
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|arg0
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**       * @param arg0 -       *            cause       */
+comment|/**      * Constructs a new FeedNotFoundException      * @param arg0 - the exception cause      * @param errorCode - gdata request errorcode      */
 DECL|method|FeedNotFoundException
 specifier|public
 name|FeedNotFoundException
 parameter_list|(
 name|Throwable
 name|arg0
+parameter_list|,
+name|int
+name|errorCode
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|arg0
+argument_list|,
+name|errorCode
 argument_list|)
 expr_stmt|;
 block|}

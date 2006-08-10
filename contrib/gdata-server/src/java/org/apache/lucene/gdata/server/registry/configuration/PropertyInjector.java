@@ -62,16 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -98,8 +88,24 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|utils
+operator|.
+name|ReflectionUtils
+import|;
+end_import
+
 begin_comment
-comment|/**  * PropertyInjector is used to set member variables / properties of classes via  *<i>setter</i> methodes using the  * {@link org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration}  * class.  *<p>  * To populate a object with properties from a ComponentConfiguration instance  * the class or a superclass of the object to populate has to provide at least  * one setter method with a single parameter. The object to populate is set via  * the {@link PropertyInjector#setTargetObject} method. The class of the object  * will be analyzed for setter methodes having a "set" prefix in their method  * name. If one of the found setter methodes is annotated with  * {@link org.apache.lucene.gdata.server.registry.configuration.Requiered} this  * property is interpreted as a mandatory property. Mandatory properties must be  * available in the provided ComponentConfiguration, if not the injection will  * fail.<br>  * The  * {@link org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration}  * contains key / value pairs where the key must match the signature of the  * setter method without the 'set' prefix and must begin with a lower case  * character.<span>Key<code>bufferSize</code> does match a method signature  * of<code>setBufferSize</code></span> The type of the parameter will be  * reflected via the Reflection API and instanciated with the given value if  * possible.  *</p>  *<p>  * Setter methodes without a<code>Requiered</code> anntoation will be set if  * the property is present in the ComponentConfiguration  *</p>  *<p>This class does not support overloaded setter methodes.</p>  * @author Simon Willnauer  * @see org.apache.lucene.gdata.server.registry.configuration.Requiered  * @see org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration  */
+comment|/**  * PropertyInjector is used to set member variables / properties of classes via  *<i>setter</i> methods using the  * {@link org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration}  * class.  *<p>  * To populate a object with properties from a ComponentConfiguration instance  * the class or a superclass of the object to populate has to provide at least  * one setter method with a single parameter. The object to populate is set via  * the {@link PropertyInjector#setTargetObject} method. The class of the object  * will be analyzed for setter methods having a "set" prefix in their method  * name. If one of the found setter methods is annotated with  * {@link org.apache.lucene.gdata.server.registry.configuration.Requiered} this  * property is interpreted as a mandatory property. Mandatory properties must be  * available in the provided ComponentConfiguration, if not the injection will  * fail.<br>  * The  * {@link org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration}  * contains key / value pairs where the key must match the signature of the  * setter method without the 'set' prefix and must begin with a lower case  * character.<span>Key<code>bufferSize</code> does match a method signature  * of<code>setBufferSize</code></span> The type of the parameter will be  * reflected via the Reflection API and instantiated with the given value if  * possible.  *</p>  *<p>  * Setter methods without a<code>Required</code> annotation will be set if  * the property is present in the ComponentConfiguration  *</p>  *<p>This class does not support overloaded setter methods.</p>  * @author Simon Willnauer  * @see org.apache.lucene.gdata.server.registry.configuration.Requiered  * @see org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration  */
 end_comment
 
 begin_class
@@ -255,7 +261,7 @@ throw|throw
 operator|new
 name|InjectionException
 argument_list|(
-literal|"Given type has no public setter methodes -- "
+literal|"Given type has no public setter methods -- "
 operator|+
 name|o
 operator|.
@@ -488,7 +494,7 @@ return|return
 name|retVal
 return|;
 block|}
-comment|/**      * Injects the properties stored in the<code>ComponentConfiguration</code>      * to the corresponding methodes of the target object      * @param bean - configuration bean containing all properties to set.      *       */
+comment|/**      * Injects the properties stored in the<code>ComponentConfiguration</code>      * to the corresponding methods of the target object      * @param bean - configuration bean containing all properties to set.      *       */
 DECL|method|injectProperties
 specifier|public
 name|void
@@ -545,7 +551,7 @@ operator|.
 name|entrySet
 argument_list|()
 decl_stmt|;
-comment|// set requiered properties
+comment|// set required properties
 for|for
 control|(
 name|Entry
@@ -576,7 +582,7 @@ throw|throw
 operator|new
 name|InjectionException
 argument_list|(
-literal|"requiered property can not be set -- value not in configuration bean; Property: "
+literal|"Required property can not be set -- value not in configuration bean; Property: "
 operator|+
 name|entry
 operator|.
@@ -848,7 +854,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-comment|// if class is requested use s as fully qualified classname
+comment|// if class is requested use s as fully qualified class name
 if|if
 condition|(
 name|clazz
@@ -875,6 +881,8 @@ argument_list|()
 condition|)
 name|clazz
 operator|=
+name|ReflectionUtils
+operator|.
 name|getPrimitiveWrapper
 argument_list|(
 name|clazz
@@ -1023,7 +1031,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/*              * if no string const. but a default const -- use the string as a              * classname              */
+comment|/*              * if no string const. but a default const. -- use the string as a              * class name              */
 if|if
 condition|(
 name|defaultConst
@@ -1102,113 +1110,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-block|}
-comment|/*      * return the wrappertype for the given primitive type. Wrappers can be      * easily instanciated via reflection and will be boxed by the vm      */
-DECL|method|getPrimitiveWrapper
-specifier|private
-specifier|static
-specifier|final
-name|Class
-name|getPrimitiveWrapper
-parameter_list|(
-name|Class
-name|primitive
-parameter_list|)
-block|{
-if|if
-condition|(
-name|primitive
-operator|==
-name|Integer
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Integer
-operator|.
-name|class
-return|;
-if|if
-condition|(
-name|primitive
-operator|==
-name|Float
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Float
-operator|.
-name|class
-return|;
-if|if
-condition|(
-name|primitive
-operator|==
-name|Long
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Long
-operator|.
-name|class
-return|;
-if|if
-condition|(
-name|primitive
-operator|==
-name|Short
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Short
-operator|.
-name|class
-return|;
-if|if
-condition|(
-name|primitive
-operator|==
-name|Byte
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Byte
-operator|.
-name|class
-return|;
-if|if
-condition|(
-name|primitive
-operator|==
-name|Double
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Double
-operator|.
-name|class
-return|;
-if|if
-condition|(
-name|primitive
-operator|==
-name|Boolean
-operator|.
-name|TYPE
-condition|)
-return|return
-name|Boolean
-operator|.
-name|class
-return|;
-return|return
-name|primitive
-return|;
 block|}
 block|}
 end_class
