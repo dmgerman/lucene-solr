@@ -2774,7 +2774,7 @@ if|if
 condition|(
 operator|!
 operator|(
-name|this
+name|o
 operator|instanceof
 name|OpenBitSet
 operator|)
