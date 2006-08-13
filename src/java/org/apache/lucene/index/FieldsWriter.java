@@ -94,6 +94,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|Fieldable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -262,11 +276,11 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
@@ -306,16 +320,30 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
-name|Field
+name|Fieldable
 name|field
 init|=
 operator|(
-name|Field
+name|Fieldable
 operator|)
 name|fields
 operator|.
 name|nextElement
 argument_list|()
+decl_stmt|;
+comment|// if the field as an instanceof FieldsReader.FieldForMerge, we're in merge mode
+comment|// and field.binaryValue() already returns the compressed value for a field
+comment|// with isCompressed()==true, so we disable compression in that case
+name|boolean
+name|disableCompression
+init|=
+operator|(
+name|field
+operator|instanceof
+name|FieldsReader
+operator|.
+name|FieldForMerge
+operator|)
 decl_stmt|;
 if|if
 condition|(
@@ -406,6 +434,23 @@ name|data
 init|=
 literal|null
 decl_stmt|;
+if|if
+condition|(
+name|disableCompression
+condition|)
+block|{
+comment|// optimized case for merging, the data
+comment|// is already compressed
+name|data
+operator|=
+name|field
+operator|.
+name|binaryValue
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// check if it is a binary field
 if|if
 condition|(
@@ -443,6 +488,7 @@ literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|final
 name|int
