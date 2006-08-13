@@ -225,6 +225,27 @@ name|PIPE_SIZE
 return|;
 block|}
 block|}
+comment|/**    * @deprecated Use HTMLParser(FileInputStream) instead    */
+DECL|method|HTMLParser
+specifier|public
+name|HTMLParser
+parameter_list|(
+name|File
+name|file
+parameter_list|)
+throws|throws
+name|FileNotFoundException
+block|{
+name|this
+argument_list|(
+operator|new
+name|FileInputStream
+argument_list|(
+name|file
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|getTitle
 specifier|public
 name|String
