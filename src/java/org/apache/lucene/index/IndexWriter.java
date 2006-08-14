@@ -338,13 +338,6 @@ name|RAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// for temp segs
-DECL|field|bufferedDocCount
-specifier|private
-name|long
-name|bufferedDocCount
-init|=
-literal|0
-decl_stmt|;
 DECL|field|writeLock
 specifier|private
 name|Lock
@@ -1220,9 +1213,6 @@ name|ramDirectory
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|bufferedDocCount
-operator|++
-expr_stmt|;
 name|maybeMergeSegments
 argument_list|()
 expr_stmt|;
@@ -1994,16 +1984,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|/**      *  do not bother checking the segment details to determine      *  if we should merge, but instead honour the maxBufferedDocs(minMergeDocs)      *  property to ensure we do not spend time checking for merge conditions      *        */
-if|if
-condition|(
-name|bufferedDocCount
-operator|<
-name|minMergeDocs
-condition|)
-block|{
-return|return;
-block|}
 name|long
 name|targetMergeDocs
 init|=
@@ -2275,11 +2255,6 @@ operator|.
 name|merge
 argument_list|()
 decl_stmt|;
-name|bufferedDocCount
-operator|-=
-name|mergedDocCount
-expr_stmt|;
-comment|// update bookkeeping about how many docs we have buffered
 if|if
 condition|(
 name|infoStream
