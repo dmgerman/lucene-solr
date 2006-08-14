@@ -1265,7 +1265,7 @@ init|=
 operator|(
 name|endIndex
 operator|&
-literal|0x3c
+literal|0x3f
 operator|)
 operator|==
 literal|0
