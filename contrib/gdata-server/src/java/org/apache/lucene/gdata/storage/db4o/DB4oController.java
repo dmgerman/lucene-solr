@@ -918,6 +918,25 @@ operator|.
 name|port
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|server
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can't create server at confiugred destination -- "
+operator|+
+name|this
+operator|.
+name|filePath
+argument_list|)
+throw|;
 name|this
 operator|.
 name|server

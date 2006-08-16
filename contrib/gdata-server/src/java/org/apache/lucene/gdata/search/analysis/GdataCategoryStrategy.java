@@ -340,12 +340,34 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-comment|/*          * enable more than one category element          */
+name|String
+name|nodeName
+init|=
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+decl_stmt|;
+comment|/*          * enable more than one category element -- check the node name if          * category strategy is used with an element not named "category"          */
 while|while
 condition|(
 name|node
 operator|!=
 literal|null
+operator|&&
+name|nodeName
+operator|!=
+literal|null
+operator|&&
+name|nodeName
+operator|.
+name|equals
+argument_list|(
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
 condition|)
 block|{
 name|NamedNodeMap

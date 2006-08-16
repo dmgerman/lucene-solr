@@ -56,6 +56,22 @@ name|ServerBaseEntry
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|data
+operator|.
+name|ServerBaseFeed
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class will be informed about every successful entry event and  * distributes all event to all registered  * {@link org.apache.lucene.gdata.server.registry.EntryEventListener}  *   * @author Simon Willnauer  *   */
 end_comment
@@ -93,7 +109,7 @@ name|EntryEventMediator
 name|getEntryEventMediator
 parameter_list|()
 function_decl|;
-comment|/**      * Registers a {@link EntryEventListener}. This listner will be fired if an      * entry update, insert or delete occures      *       * @param listener -      *            listener to register      */
+comment|/**      * Registers a {@link EntryEventListener}. This listener will be fired if an      * entry update, insert or delete occurs      *       * @param listener -      *            listener to register      */
 DECL|method|registerEntryEventListener
 specifier|public
 name|void
@@ -190,6 +206,36 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @param feed - the feed to delete all entries for      */
+DECL|method|allEntriesDeleted
+specifier|public
+name|void
+name|allEntriesDeleted
+parameter_list|(
+specifier|final
+name|ServerBaseFeed
+name|feed
+parameter_list|)
+block|{
+for|for
+control|(
+name|EntryEventListener
+name|listener
+range|:
+name|this
+operator|.
+name|entryEventListener
+control|)
+block|{
+name|listener
+operator|.
+name|fireDeleteAllEntries
+argument_list|(
+name|feed
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**      * @param entry -      *            the deleted entry      */
 DECL|method|entryDeleted
 specifier|public
@@ -220,6 +266,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * checks if the listener is already registered.      * @param listner - the listener to check      * @return<code>true</code> if and only if the given listener is already registered, otherwise<code>false</code>.      */
 DECL|method|isListenerRegistered
 specifier|public
 name|boolean

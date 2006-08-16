@@ -364,6 +364,11 @@ expr_stmt|;
 block|}
 comment|/**      * @see org.apache.lucene.gdata.server.GDataService#getFeed(org.apache.lucene.gdata.server.GDataRequest, org.apache.lucene.gdata.server.GDataResponse)      */
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
 name|Override
 DECL|method|getFeed
 specifier|public
@@ -587,6 +592,12 @@ expr_stmt|;
 name|BaseFeed
 name|feed
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|feed
+operator|=
 name|this
 operator|.
 name|storage
@@ -595,7 +606,28 @@ name|getFeed
 argument_list|(
 name|requestFeed
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|StorageException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ServiceException
+argument_list|(
+literal|"Search Failed -- can not get feed, feed not stored "
+argument_list|,
+name|e
+argument_list|,
+name|GDataResponse
+operator|.
+name|NOT_FOUND
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|String

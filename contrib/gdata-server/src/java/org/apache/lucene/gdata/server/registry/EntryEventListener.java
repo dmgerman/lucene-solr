@@ -36,6 +36,22 @@ name|ServerBaseEntry
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|gdata
+operator|.
+name|data
+operator|.
+name|ServerBaseFeed
+import|;
+end_import
+
 begin_comment
 comment|/**  * The EntryEventListener interface should be implemented by any class needs to be informed about any changes on entries.  * To register a class as a EntryEventListener use:  *<p>  *<tt>  * GdataServerRegistry.registerEntryEventListener(EntryEventListener);  *<tt>  *</p>  * @author Simon Willnauer  *  */
 end_comment
@@ -77,6 +93,17 @@ name|fireDeleteEvent
 parameter_list|(
 name|ServerBaseEntry
 name|entry
+parameter_list|)
+function_decl|;
+comment|/**      * will be invoked on every successful feed delete      * @param feed - the feed containing the feed id to delete all entries for      */
+DECL|method|fireDeleteAllEntries
+specifier|public
+specifier|abstract
+name|void
+name|fireDeleteAllEntries
+parameter_list|(
+name|ServerBaseFeed
+name|feed
 parameter_list|)
 function_decl|;
 block|}

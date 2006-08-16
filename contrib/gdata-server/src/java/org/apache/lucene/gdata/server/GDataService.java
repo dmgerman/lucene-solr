@@ -404,7 +404,7 @@ init|=
 literal|"application/atom+xml"
 decl_stmt|;
 DECL|field|entryEventMediator
-specifier|private
+specifier|protected
 specifier|final
 name|EntryEventMediator
 name|entryEventMediator
