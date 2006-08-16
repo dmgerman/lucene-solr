@@ -82,6 +82,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|Token
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenStream
 import|;
 end_import
@@ -666,18 +680,29 @@ operator|new
 name|TokenGroup
 argument_list|()
 decl_stmt|;
-while|while
-condition|(
-operator|(
 name|token
 operator|=
 name|tokenStream
 operator|.
 name|next
 argument_list|()
-operator|)
+expr_stmt|;
+while|while
+condition|(
+operator|(
+name|token
 operator|!=
 literal|null
+operator|)
+operator|&&
+operator|(
+name|token
+operator|.
+name|startOffset
+argument_list|()
+operator|<
+name|maxDocBytesToAnalyze
+operator|)
 condition|)
 block|{
 if|if
@@ -870,15 +895,17 @@ name|token
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|lastEndOffset
-operator|>
-name|maxDocBytesToAnalyze
-condition|)
-block|{
-break|break;
-block|}
+comment|//				if(lastEndOffset>maxDocBytesToAnalyze)
+comment|//				{
+comment|//					break;
+comment|//				}
+name|token
+operator|=
+name|tokenStream
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
 block|}
 name|currentFrag
 operator|.
@@ -985,9 +1012,49 @@ name|endOffset
 argument_list|)
 expr_stmt|;
 block|}
-comment|// append text after end of last token
-comment|//			if (lastEndOffset< text.length())
-comment|//				newText.append(encoder.encodeText(text.substring(lastEndOffset)));
+comment|//Test what remains of the original text beyond the point where we stopped analyzing
+if|if
+condition|(
+comment|//					if there is text beyond the last token considered..
+operator|(
+name|lastEndOffset
+operator|<
+name|text
+operator|.
+name|length
+argument_list|()
+operator|)
+operator|&&
+comment|//					and that text is not too large...
+operator|(
+name|text
+operator|.
+name|length
+argument_list|()
+operator|<
+name|maxDocBytesToAnalyze
+operator|)
+condition|)
+block|{
+comment|//append it to the last fragment
+name|newText
+operator|.
+name|append
+argument_list|(
+name|encoder
+operator|.
+name|encodeText
+argument_list|(
+name|text
+operator|.
+name|substring
+argument_list|(
+name|lastEndOffset
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 name|currentFrag
 operator|.
 name|textEndPos
