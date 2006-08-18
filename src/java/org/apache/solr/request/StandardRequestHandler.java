@@ -32,79 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -196,20 +128,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
-operator|.
-name|IndexSchema
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|core
 operator|.
 name|SolrCore
@@ -245,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * @author yonik  * @version $Id$  *  * All of the following options may be configured for this handler  * in the solrconfig as defaults, and may be overriden as request parameters.  * (TODO: complete documentation of request parameters here, rather than only  * on the wiki).  *</p>  *  *<ul>  *<li> highlight - Set to any value not .equal() to "false" to enable highlight  * generation</li>  *<li> highlightFields - Set to a comma- or space-delimited list of fields to  * highlight.  If unspecified, uses the default query field</li>  *<li> maxSnippets - maximum number of snippets to generate per field-highlight.  *</li>  *</ul>  *  */
 end_comment
 
 begin_class
@@ -269,7 +187,7 @@ DECL|field|numErrors
 name|long
 name|numErrors
 decl_stmt|;
-comment|/** shorten the class referneces for utilities */
+comment|/** shorten the class references for utilities */
 DECL|class|U
 specifier|private
 specifier|static
