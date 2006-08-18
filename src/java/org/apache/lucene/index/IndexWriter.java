@@ -2069,7 +2069,6 @@ name|mergeDocs
 operator|>=
 name|targetMergeDocs
 condition|)
-block|{
 comment|// found a merge to do
 name|mergeSegments
 argument_list|(
@@ -2078,15 +2077,8 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|singleDocSegmentsCount
-operator|=
-literal|0
-expr_stmt|;
-block|}
 else|else
-block|{
 break|break;
-block|}
 name|targetMergeDocs
 operator|*=
 name|mergeFactor
@@ -2273,6 +2265,31 @@ name|reader
 argument_list|)
 expr_stmt|;
 comment|// queue segment for deletion
+block|}
+comment|// update 1-doc segments counter accordin to range of merged segments
+if|if
+condition|(
+name|singleDocSegmentsCount
+operator|>
+literal|0
+condition|)
+block|{
+name|singleDocSegmentsCount
+operator|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|singleDocSegmentsCount
+argument_list|,
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+operator|-
+name|end
+argument_list|)
+expr_stmt|;
 block|}
 name|int
 name|mergedDocCount
