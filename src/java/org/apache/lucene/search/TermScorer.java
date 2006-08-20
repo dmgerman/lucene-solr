@@ -647,7 +647,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    * @todo Modify to make use of {@link TermDocs#skipTo(int)}.    */
+comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    */
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -716,12 +716,14 @@ operator|==
 literal|0
 condition|)
 block|{
-while|while
+if|if
 condition|(
 name|termDocs
 operator|.
-name|next
-argument_list|()
+name|skipTo
+argument_list|(
+name|doc
+argument_list|)
 condition|)
 block|{
 if|if
