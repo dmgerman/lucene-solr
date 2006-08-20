@@ -324,9 +324,6 @@ name|feedRequest
 operator|.
 name|getConfigurator
 argument_list|()
-operator|.
-name|getExtensionProfile
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -20,6 +20,18 @@ end_package
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Templates
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -215,6 +227,16 @@ return|return
 name|this
 operator|.
 name|indexSchema
+return|;
+block|}
+DECL|method|getTransformTemplate
+specifier|public
+name|Templates
+name|getTransformTemplate
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}

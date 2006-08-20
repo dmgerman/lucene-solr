@@ -22,6 +22,18 @@ end_package
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Templates
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -108,6 +120,14 @@ specifier|public
 specifier|abstract
 name|IndexSchema
 name|getIndexSchema
+parameter_list|()
+function_decl|;
+comment|/**      * @return the compiled xslt stylesheet to transform the feed / entry for preview      */
+DECL|method|getTransformTemplate
+specifier|public
+specifier|abstract
+name|Templates
+name|getTransformTemplate
 parameter_list|()
 function_decl|;
 block|}

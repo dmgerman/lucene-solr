@@ -348,6 +348,15 @@ argument_list|,
 literal|"extensionProfileClass"
 argument_list|)
 expr_stmt|;
+name|digester
+operator|.
+name|addBeanPropertySetter
+argument_list|(
+literal|"gdata/service/previewStyleSheet"
+argument_list|,
+literal|"xsltStylesheet"
+argument_list|)
+expr_stmt|;
 name|addIndexRule
 argument_list|(
 name|digester
