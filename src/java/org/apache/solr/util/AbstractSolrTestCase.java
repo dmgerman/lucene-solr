@@ -797,6 +797,7 @@ name|SolrQueryRequest
 name|req
 parameter_list|(
 name|String
+modifier|...
 name|q
 parameter_list|)
 block|{

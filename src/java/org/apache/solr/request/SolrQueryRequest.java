@@ -68,6 +68,27 @@ specifier|public
 interface|interface
 name|SolrQueryRequest
 block|{
+DECL|method|getParams
+specifier|public
+name|SolrParams
+name|getParams
+parameter_list|()
+function_decl|;
+DECL|method|setParams
+specifier|public
+name|void
+name|setParams
+parameter_list|(
+name|SolrParams
+name|params
+parameter_list|)
+function_decl|;
+DECL|method|getOriginalParams
+specifier|public
+name|SolrParams
+name|getOriginalParams
+parameter_list|()
+function_decl|;
 comment|/**    * This method should be called when all uses of this request are    * finished, so that resources can be freed.    */
 DECL|method|close
 specifier|public
@@ -76,6 +97,8 @@ name|close
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the input parameter value for the specified name    * @return the value, or the first value if the parameter was    * specified more then once; may be null.    */
+annotation|@
+name|Deprecated
 DECL|method|getParam
 specifier|public
 name|String
@@ -86,6 +109,8 @@ name|name
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the input parameter values for the specified name    * @return the values; may be null or empty depending on implementation    */
+annotation|@
+name|Deprecated
 DECL|method|getParams
 specifier|public
 name|String
@@ -97,6 +122,8 @@ name|name
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the primary query string parameter of the request    */
+annotation|@
+name|Deprecated
 DECL|method|getQueryString
 specifier|public
 name|String
@@ -104,6 +131,8 @@ name|getQueryString
 parameter_list|()
 function_decl|;
 comment|/**    * Signifies the syntax and the handler that should be used    * to execute this query.    */
+annotation|@
+name|Deprecated
 DECL|method|getQueryType
 specifier|public
 name|String
@@ -111,6 +140,8 @@ name|getQueryType
 parameter_list|()
 function_decl|;
 comment|/** starting position in matches to return to client */
+annotation|@
+name|Deprecated
 DECL|method|getStart
 specifier|public
 name|int
@@ -118,6 +149,8 @@ name|getStart
 parameter_list|()
 function_decl|;
 comment|/** number of matching documents to return */
+annotation|@
+name|Deprecated
 DECL|method|getLimit
 specifier|public
 name|int
