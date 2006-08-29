@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>  *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * @author Doug Cutting  */
+comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>  *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * Directory locking is implemented by an instance of {@link  * LockFactory}, and can be changed for each Directory  * instance using {@link #setLockFactory}.  *  * @author Doug Cutting  */
 end_comment
 
 begin_class
@@ -37,6 +37,12 @@ specifier|abstract
 class|class
 name|Directory
 block|{
+comment|/** Holds the LockFactory instance (implements locking for    * this Directory instance). */
+DECL|field|lockFactory
+specifier|protected
+name|LockFactory
+name|lockFactory
+decl_stmt|;
 comment|/** Returns an array of strings, one for each file in the directory. */
 DECL|method|list
 specifier|public
@@ -158,14 +164,22 @@ function_decl|;
 comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
 DECL|method|makeLock
 specifier|public
-specifier|abstract
 name|Lock
 name|makeLock
 parameter_list|(
 name|String
 name|name
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|lockFactory
+operator|.
+name|makeLock
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 comment|/** Closes the store. */
 DECL|method|close
 specifier|public
@@ -176,6 +190,60 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Set the LockFactory that this Directory instance should    * use for its locking implementation.  Each * instance of    * LockFactory should only be used for one directory (ie,    * do not share a single instance across multiple    * Directories).    *    * @param lockFactory instance of {@link LockFactory}.    */
+DECL|method|setLockFactory
+specifier|public
+name|void
+name|setLockFactory
+parameter_list|(
+name|LockFactory
+name|lockFactory
+parameter_list|)
+block|{
+name|this
+operator|.
+name|lockFactory
+operator|=
+name|lockFactory
+expr_stmt|;
+name|lockFactory
+operator|.
+name|setLockPrefix
+argument_list|(
+name|this
+operator|.
+name|getLockID
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Get the LockFactory that this Directory instance is using for its locking implementation.    */
+DECL|method|getLockFactory
+specifier|public
+name|LockFactory
+name|getLockFactory
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|lockFactory
+return|;
+block|}
+comment|/**    * Return a string identifier that uniquely differentiates    * this Directory instance from other Directory instances.    * This ID should be the same if two Directory instances    * (even in different JVMs and/or on different machines)    * are considered "the same index".  This is how locking    * "scopes" to the right index.    */
+DECL|method|getLockID
+specifier|public
+name|String
+name|getLockID
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

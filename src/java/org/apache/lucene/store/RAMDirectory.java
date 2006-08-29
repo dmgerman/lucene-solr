@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A memory-resident {@link Directory} implementation.  *  * @version $Id$  */
+comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -145,7 +145,15 @@ DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
 parameter_list|()
-block|{   }
+block|{
+name|setLockFactory
+argument_list|(
+operator|new
+name|SingleInstanceLockFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
 DECL|method|RAMDirectory
 specifier|public
@@ -178,6 +186,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|this
+argument_list|()
+expr_stmt|;
 specifier|final
 name|String
 index|[]
@@ -746,87 +757,6 @@ name|RAMInputStream
 argument_list|(
 name|file
 argument_list|)
-return|;
-block|}
-comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
-DECL|method|makeLock
-specifier|public
-specifier|final
-name|Lock
-name|makeLock
-parameter_list|(
-specifier|final
-name|String
-name|name
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Lock
-argument_list|()
-block|{
-specifier|public
-name|boolean
-name|obtain
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-synchronized|synchronized
-init|(
-name|files
-init|)
-block|{
-if|if
-condition|(
-operator|!
-name|fileExists
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
-name|createOutput
-argument_list|(
-name|name
-argument_list|)
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
-block|}
-block|}
-specifier|public
-name|void
-name|release
-parameter_list|()
-block|{
-name|deleteFile
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|boolean
-name|isLocked
-parameter_list|()
-block|{
-return|return
-name|fileExists
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
-block|}
 return|;
 block|}
 comment|/** Closes the store to future operations, releasing associated memory. */
