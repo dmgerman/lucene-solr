@@ -444,7 +444,7 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the param, or the default if it's empty or not specified.    */
+comment|/**    * Returns the param, or the default if it's empty or not specified.    * @deprecated use SolrParam.get(String,String)    */
 DECL|method|getParam
 specifier|public
 specifier|static
@@ -498,7 +498,7 @@ return|return
 name|v
 return|;
 block|}
-comment|/**    * Treats the param value as a Number, returns the default if nothing is    * there or if it's not a number.    */
+comment|/**    * Treats the param value as a Number, returns the default if nothing is    * there or if it's not a number.    * @deprecated use SolrParam.getFloat(String,float)    */
 DECL|method|getNumberParam
 specifier|public
 specifier|static
@@ -574,7 +574,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/**    * Treats parameter value as a boolean.  The string 'false' is false;     * any other non-empty string is true.    */
+comment|/**    * Treats parameter value as a boolean.  The string 'false' is false;     * any other non-empty string is true.    * @deprecated use SolrParam.getBool(String,boolean)    */
 DECL|method|getBooleanParam
 specifier|public
 specifier|static
@@ -825,7 +825,7 @@ return|return
 name|flags
 return|;
 block|}
-comment|/**    *<p>    * Returns a NamedList containing many "standard" pieces of debugging    * information.    *</p>    *    *<ul>    *<li>rawquerystring - the 'q' param exactly as specified by the client    *</li>    *<li>querystring - the 'q' param after any preprocessing done by the plugin    *</li>    *<li>parsedquery - the main query executed formated by the Solr    *     QueryParsing utils class (which knows about field types)    *</li>    *<li>parsedquery_toString - the main query executed formated by it's    *     own toString method (in case it has internal state Solr    *     doesn't know about)    *</li>    *<li>expain - the list of score explanations for each document in    *     results against query.    *</li>    *<li>otherQuery - the query string specified in 'explainOther' query param.    *</li>    *<li>explainOther - the list of score explanations for each document in    *     results against 'otherQuery'    *</li>    *</ul>    *    * @param req the request we are dealing with    * @param userQuery the users query as a string, after any basic    *                  preprocessing has been done    * @param query the query built from the userQuery    *              (and perhaps other clauses) that identifies the main    *              result set of the response.    * @param results the main result set of the response    */
+comment|/**    *<p>    * Returns a NamedList containing many "standard" pieces of debugging    * information.    *</p>    *    *<ul>    *<li>rawquerystring - the 'q' param exactly as specified by the client    *</li>    *<li>querystring - the 'q' param after any preprocessing done by the plugin    *</li>    *<li>parsedquery - the main query executed formated by the Solr    *     QueryParsing utils class (which knows about field types)    *</li>    *<li>parsedquery_toString - the main query executed formated by it's    *     own toString method (in case it has internal state Solr    *     doesn't know about)    *</li>    *<li>expain - the list of score explanations for each document in    *     results against query.    *</li>    *<li>otherQuery - the query string specified in 'explainOther' query param.    *</li>    *<li>explainOther - the list of score explanations for each document in    *     results against 'otherQuery'    *</li>    *</ul>    *    * @param req the request we are dealing with    * @param userQuery the users query as a string, after any basic    *                  preprocessing has been done    * @param query the query built from the userQuery    *              (and perhaps other clauses) that identifies the main    *              result set of the response.    * @param results the main result set of the response    * @deprecated Use doStandardDebug(SolrQueryRequest,String,Query,DocList) with setDefaults    */
 DECL|method|doStandardDebug
 specifier|public
 specifier|static

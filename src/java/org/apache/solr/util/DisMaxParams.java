@@ -317,7 +317,7 @@ name|GEN
 init|=
 literal|"gen"
 decl_stmt|;
-comment|/** the default tie breaker to use in DisjunctionMaxQueries */
+comment|/**      * the default tie breaker to use in DisjunctionMaxQueries      * @deprecated - use explicit default with SolrParams.getFloat      */
 DECL|field|tiebreaker
 specifier|public
 name|float
@@ -325,7 +325,7 @@ name|tiebreaker
 init|=
 literal|0.0f
 decl_stmt|;
-comment|/** the default query fields to be used */
+comment|/**      * the default query fields to be used      * @deprecated - use explicit default with SolrParams.get      */
 DECL|field|qf
 specifier|public
 name|String
@@ -333,7 +333,7 @@ name|qf
 init|=
 literal|null
 decl_stmt|;
-comment|/** the default phrase boosting fields to be used */
+comment|/**      * the default phrase boosting fields to be used      * @deprecated - use explicit default with SolrParams.get      */
 DECL|field|pf
 specifier|public
 name|String
@@ -341,7 +341,7 @@ name|pf
 init|=
 literal|null
 decl_stmt|;
-comment|/** the default min should match to be used */
+comment|/**      * the default min should match to be used      * @deprecated - use explicit default with SolrParams.get      */
 DECL|field|mm
 specifier|public
 name|String
@@ -349,7 +349,7 @@ name|mm
 init|=
 literal|"100%"
 decl_stmt|;
-comment|/** the default phrase slop to be used */
+comment|/**      * the default phrase slop to be used       * @deprecated - use explicit default with SolrParams.getInt      */
 DECL|field|pslop
 specifier|public
 name|int
@@ -357,7 +357,7 @@ name|pslop
 init|=
 literal|0
 decl_stmt|;
-comment|/** the default boosting query to be used */
+comment|/**      * the default boosting query to be used      * @deprecated - use explicit default with SolrParams.get      */
 DECL|field|bq
 specifier|public
 name|String
@@ -365,7 +365,7 @@ name|bq
 init|=
 literal|null
 decl_stmt|;
-comment|/** the default boosting functions to be used */
+comment|/**      * the default boosting functions to be used      * @deprecated - use explicit default with SolrParams.get      */
 DECL|field|bf
 specifier|public
 name|String
@@ -373,7 +373,7 @@ name|bf
 init|=
 literal|null
 decl_stmt|;
-comment|/** the default filtering query to be used */
+comment|/**      * the default filtering query to be used      * @deprecated - use explicit default with SolrParams.get      */
 DECL|field|fq
 specifier|public
 name|String
@@ -381,7 +381,7 @@ name|fq
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Sets the params using values from a NamedList, usefull in the      * init method for your handler.      *      *<p>      * If any param is not of the expected type, a severe error is      * logged,and the param is skipped.      *</p>      *      *<p>      * If any param is not of in the NamedList, it is skipped and the      * old value is left alone.      *</p>      *      */
+comment|/**      * Sets the params using values from a NamedList, usefull in the      * init method for your handler.      *      *<p>      * If any param is not of the expected type, a severe error is      * logged,and the param is skipped.      *</p>      *      *<p>      * If any param is not of in the NamedList, it is skipped and the      * old value is left alone.      *</p>      * @deprecated use SolrParams.toSolrParams      */
 DECL|method|setValues
 specifier|public
 name|void
