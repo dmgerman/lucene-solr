@@ -135,6 +135,16 @@ name|Q
 init|=
 literal|"q"
 decl_stmt|;
+comment|/** Lucene query string(s) for filtering the results without affecting scoring */
+DECL|field|FQ
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FQ
+init|=
+literal|"fq"
+decl_stmt|;
 comment|/** zero based offset of matching documents to retrieve */
 DECL|field|START
 specifier|public
@@ -254,6 +264,66 @@ name|String
 name|HIGHLIGHT_FORMATTER_CLASS
 init|=
 literal|"highlightFormatterClass"
+decl_stmt|;
+comment|/**    * Should facet counts be calculated?    */
+DECL|field|FACET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET
+init|=
+literal|"facet"
+decl_stmt|;
+comment|/**    * Any lucene formated queries the user would like to use for    * Facet Contraint Counts (multi-value)    */
+DECL|field|FACET_QUERY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_QUERY
+init|=
+literal|"facet.query"
+decl_stmt|;
+comment|/**    * Any field whose terms the user wants to enumerate over for    * Facet Contraint Counts (multi-value)    */
+DECL|field|FACET_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_FIELD
+init|=
+literal|"facet.field"
+decl_stmt|;
+comment|/**    * Numeric option indicating the maximum number of facet field counts    * be included in the response for each field - in descending order of count.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_LIMIT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_LIMIT
+init|=
+literal|"facet.limit"
+decl_stmt|;
+comment|/**    * Boolean option indicating whether facet field counts of "0" should     * be included in the response.  Can be overriden on a per field basis.    */
+DECL|field|FACET_ZEROS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_ZEROS
+init|=
+literal|"facet.zeros"
+decl_stmt|;
+comment|/**    * Boolean option indicating whether the response should include a     * facet field count for all records which have no value for the     * facet field. Can be overriden on a per field basis.    */
+DECL|field|FACET_MISSING
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_MISSING
+init|=
+literal|"facet.missing"
 decl_stmt|;
 comment|/** returns the String value of a param, or null if not set */
 DECL|method|get

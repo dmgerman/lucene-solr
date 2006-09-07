@@ -299,7 +299,7 @@ name|BF
 init|=
 literal|"bf"
 decl_stmt|;
-comment|/** query and init param for filtering query */
+comment|/** query and init param for filtering query      * @deprecated use SolrParams.FQ or SolrPluginUtils.parseFilterQueries      */
 DECL|field|FQ
 specifier|public
 specifier|static
