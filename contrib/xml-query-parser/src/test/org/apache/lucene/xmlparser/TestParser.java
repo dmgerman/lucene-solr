@@ -903,6 +903,34 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNestedBooleanQuery
+specifier|public
+name|void
+name|testNestedBooleanQuery
+parameter_list|()
+throws|throws
+name|ParserException
+throws|,
+name|IOException
+block|{
+name|Query
+name|q
+init|=
+name|parse
+argument_list|(
+literal|"NestedBooleanQuery.xml"
+argument_list|)
+decl_stmt|;
+name|dumpResults
+argument_list|(
+literal|"Nested Boolean query"
+argument_list|,
+name|q
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
+block|}
 comment|//================= Helper methods ===================================
 DECL|method|parse
 specifier|private
