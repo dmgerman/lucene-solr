@@ -240,7 +240,7 @@ literal|"//lst[@name='highlighting']/lst[@name='1']"
 argument_list|,
 literal|"//lst[@name='1']/arr[@name='tv_text']/str[.='a<em>long</em> days night this should be a piece of text which']"
 argument_list|,
-literal|"//arr[@name='tv_text']/str[.='<em>long</em> fragments']"
+literal|"//arr[@name='tv_text']/str[.='<em>long</em> fragments.']"
 argument_list|)
 expr_stmt|;
 block|}
