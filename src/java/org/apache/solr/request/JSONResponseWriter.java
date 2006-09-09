@@ -3509,8 +3509,8 @@ comment|// Ruby doesn't do unicode escapes... so let the servlet container write
 comment|// bytes into the string.
 comment|//
 comment|// Use single quoted strings for safety since no evaluation is done within them.
-comment|// Also, there are very few escapes recognized in a singe quoted string, so
-comment|// only escape the backspace and single quote.
+comment|// Also, there are very few escapes recognized in a single quoted string, so
+comment|// only escape the backslash and single quote.
 name|writer
 operator|.
 name|write
