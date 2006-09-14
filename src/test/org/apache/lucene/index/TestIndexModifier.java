@@ -403,16 +403,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|3
-argument_list|,
-name|i
-operator|.
-name|docCount
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// depend on merge policy - assertEquals(3, i.docCount());
 name|i
 operator|.
 name|deleteDocuments

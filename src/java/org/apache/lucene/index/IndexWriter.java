@@ -327,6 +327,16 @@ name|SegmentInfos
 argument_list|()
 decl_stmt|;
 comment|// the segments
+DECL|field|ramSegmentInfos
+specifier|private
+name|SegmentInfos
+name|ramSegmentInfos
+init|=
+operator|new
+name|SegmentInfos
+argument_list|()
+decl_stmt|;
+comment|// the segments in ramDirectory
 DECL|field|ramDirectory
 specifier|private
 specifier|final
@@ -338,14 +348,6 @@ name|RAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// for temp segs
-DECL|field|singleDocSegmentsCount
-specifier|private
-name|int
-name|singleDocSegmentsCount
-init|=
-literal|0
-decl_stmt|;
-comment|// for speeding decision on merge candidates
 DECL|field|writeLock
 specifier|private
 name|Lock
@@ -988,7 +990,6 @@ block|{
 name|flushRamSegments
 argument_list|()
 expr_stmt|;
-comment|// testInvariants();
 name|ramDirectory
 operator|.
 name|close
@@ -1083,7 +1084,10 @@ block|{
 name|int
 name|count
 init|=
-literal|0
+name|ramSegmentInfos
+operator|.
+name|size
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -1190,7 +1194,7 @@ expr_stmt|;
 name|String
 name|segmentName
 init|=
-name|newSegmentName
+name|newRAMSegmentName
 argument_list|()
 decl_stmt|;
 name|dw
@@ -1207,7 +1211,7 @@ init|(
 name|this
 init|)
 block|{
-name|segmentInfos
+name|ramSegmentInfos
 operator|.
 name|addElement
 argument_list|(
@@ -1222,26 +1226,110 @@ name|ramDirectory
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|singleDocSegmentsCount
-operator|++
-expr_stmt|;
-name|maybeMergeSegments
+name|maybeFlushRamSegments
 argument_list|()
 expr_stmt|;
 block|}
-comment|// testInvariants();
 block|}
-DECL|method|getSegmentsCounter
+comment|// for test purpose
+DECL|method|getRAMSegmentCount
 specifier|final
+specifier|synchronized
 name|int
-name|getSegmentsCounter
+name|getRAMSegmentCount
+parameter_list|()
+block|{
+return|return
+name|ramSegmentInfos
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
+DECL|method|newRAMSegmentName
+specifier|private
+specifier|final
+specifier|synchronized
+name|String
+name|newRAMSegmentName
+parameter_list|()
+block|{
+return|return
+literal|"_ram_"
+operator|+
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|ramSegmentInfos
+operator|.
+name|counter
+operator|++
+argument_list|,
+name|Character
+operator|.
+name|MAX_RADIX
+argument_list|)
+return|;
+block|}
+comment|// for test purpose
+DECL|method|getSegmentCount
+specifier|final
+specifier|synchronized
+name|int
+name|getSegmentCount
 parameter_list|()
 block|{
 return|return
 name|segmentInfos
 operator|.
-name|counter
+name|size
+argument_list|()
 return|;
+block|}
+comment|// for test purpose
+DECL|method|getDocCount
+specifier|final
+specifier|synchronized
+name|int
+name|getDocCount
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{
+if|if
+condition|(
+name|i
+operator|>=
+literal|0
+operator|&&
+name|i
+operator|<
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+return|return
+name|segmentInfos
+operator|.
+name|info
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|docCount
+return|;
+block|}
+else|else
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 block|}
 DECL|method|newSegmentName
 specifier|private
@@ -1401,6 +1489,8 @@ name|mergeFactor
 decl_stmt|;
 name|mergeSegments
 argument_list|(
+name|segmentInfos
+argument_list|,
 name|minSegment
 operator|<
 literal|0
@@ -1408,10 +1498,14 @@ condition|?
 literal|0
 else|:
 name|minSegment
+argument_list|,
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// testInvariants();
 block|}
 comment|/** Merges all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing.  A large document    * collection can be broken into sub-collections.  Each sub-collection can be    * indexed in parallel, on a different thread, process or machine.  The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>After this completes, the index is optimized. */
 DECL|method|addIndexes
@@ -1565,6 +1659,8 @@ literal|1
 condition|)
 name|mergeSegments
 argument_list|(
+name|segmentInfos
+argument_list|,
 name|base
 argument_list|,
 name|end
@@ -1576,7 +1672,6 @@ name|optimize
 argument_list|()
 expr_stmt|;
 comment|// final cleanup
-comment|// testInvariants();
 block|}
 comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>    */
 DECL|method|addIndexes
@@ -1867,9 +1962,65 @@ name|filesToDelete
 argument_list|)
 expr_stmt|;
 block|}
-comment|// testInvariants();
 block|}
-comment|/** Merges all RAM-resident segments. */
+comment|// Overview of merge policy:
+comment|//
+comment|// A flush is triggered either by close() or by the number of ram segments
+comment|// reaching maxBufferedDocs. After a disk segment is created by the flush,
+comment|// further merges may be triggered.
+comment|//
+comment|// LowerBound and upperBound set the limits on the doc count of a segment
+comment|// which may be merged. Initially, lowerBound is set to 0 and upperBound
+comment|// to maxBufferedDocs. Starting from the rightmost* segment whose doc count
+comment|//> lowerBound and<= upperBound, count the number of consecutive segments
+comment|// whose doc count<= upperBound.
+comment|//
+comment|// Case 1: number of worthy segments< mergeFactor, no merge, done.
+comment|// Case 2: number of worthy segments == mergeFactor, merge these segments.
+comment|//         If the doc count of the merged segment<= upperBound, done.
+comment|//         Otherwise, set lowerBound to upperBound, and multiply upperBound
+comment|//         by mergeFactor, go through the process again.
+comment|// Case 3: number of worthy segments> mergeFactor (in the case mergeFactor
+comment|//         M changes), merge the leftmost* M segments. If the doc count of
+comment|//         the merged segment<= upperBound, consider the merged segment for
+comment|//         further merges on this same level. Merge the now leftmost* M
+comment|//         segments, and so on, until number of worthy segments< mergeFactor.
+comment|//         If the doc count of all the merged segments<= upperBound, done.
+comment|//         Otherwise, set lowerBound to upperBound, and multiply upperBound
+comment|//         by mergeFactor, go through the process again.
+comment|// Note that case 2 can be considerd as a special case of case 3.
+comment|//
+comment|// This merge policy guarantees two invariants if M does not change and
+comment|// segment doc count is not reaching maxMergeDocs:
+comment|// B for maxBufferedDocs, f(n) defined as ceil(log_M(ceil(n/B)))
+comment|//      1: If i (left*) and i+1 (right*) are two consecutive segments of doc
+comment|//         counts x and y, then f(x)>= f(y).
+comment|//      2: The number of committed segments on the same level (f(n))<= M.
+DECL|method|maybeFlushRamSegments
+specifier|private
+specifier|final
+name|void
+name|maybeFlushRamSegments
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|ramSegmentInfos
+operator|.
+name|size
+argument_list|()
+operator|>=
+name|minMergeDocs
+condition|)
+block|{
+name|flushRamSegments
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/** Merges all RAM-resident segments, then may merge segments. */
 DECL|method|flushRamSegments
 specifier|private
 specifier|final
@@ -1879,116 +2030,38 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|int
-name|minSegment
-init|=
-name|segmentInfos
+if|if
+condition|(
+name|ramSegmentInfos
 operator|.
 name|size
 argument_list|()
-operator|-
-literal|1
-decl_stmt|;
-name|int
-name|docCount
-init|=
+operator|>
 literal|0
-decl_stmt|;
-while|while
-condition|(
-name|minSegment
-operator|>=
-literal|0
-operator|&&
-operator|(
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|minSegment
-argument_list|)
-operator|)
-operator|.
-name|dir
-operator|==
-name|ramDirectory
 condition|)
 block|{
-name|docCount
-operator|+=
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|minSegment
-argument_list|)
-operator|.
-name|docCount
-expr_stmt|;
-name|minSegment
-operator|--
-expr_stmt|;
-block|}
 if|if
 condition|(
-name|minSegment
-operator|<
-literal|0
-operator|||
-comment|// add one FS segment?
-operator|(
-name|docCount
-operator|+
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|minSegment
-argument_list|)
-operator|.
-name|docCount
-operator|)
-operator|>
-name|mergeFactor
-operator|||
-operator|!
-operator|(
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-operator|-
-literal|1
-argument_list|)
-operator|.
-name|dir
-operator|==
-name|ramDirectory
-operator|)
-condition|)
-name|minSegment
-operator|++
-expr_stmt|;
-if|if
-condition|(
-name|minSegment
-operator|>=
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-condition|)
-return|return;
-comment|// none to merge
 name|mergeSegments
 argument_list|(
-name|minSegment
+name|ramSegmentInfos
+argument_list|,
+literal|0
+argument_list|,
+name|ramSegmentInfos
+operator|.
+name|size
+argument_list|()
 argument_list|)
+operator|>
+literal|0
+condition|)
+block|{
+name|maybeMergeSegments
+argument_list|()
 expr_stmt|;
+block|}
+block|}
 block|}
 comment|/** Incremental segment merger.  */
 DECL|method|maybeMergeSegments
@@ -2001,18 +2074,24 @@ throws|throws
 name|IOException
 block|{
 name|long
-name|targetMergeDocs
+name|lowerBound
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|upperBound
 init|=
 name|minMergeDocs
 decl_stmt|;
 while|while
 condition|(
-name|targetMergeDocs
+name|upperBound
+operator|*
+name|mergeFactor
 operator|<=
 name|maxMergeDocs
 condition|)
 block|{
-comment|// find segments smaller than current target size
 name|int
 name|minSegment
 init|=
@@ -2020,15 +2099,14 @@ name|segmentInfos
 operator|.
 name|size
 argument_list|()
-operator|-
-name|singleDocSegmentsCount
 decl_stmt|;
-comment|// top 1-doc segments are taken for sure
 name|int
-name|mergeDocs
+name|maxSegment
 init|=
-name|singleDocSegmentsCount
+operator|-
+literal|1
 decl_stmt|;
+comment|// find merge-worthy segments
 while|while
 condition|(
 operator|--
@@ -2049,74 +2127,162 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|maxSegment
+operator|==
+operator|-
+literal|1
+operator|&&
 name|si
 operator|.
 name|docCount
-operator|>=
-name|targetMergeDocs
+operator|>
+name|lowerBound
+operator|&&
+name|si
+operator|.
+name|docCount
+operator|<=
+name|upperBound
 condition|)
-break|break;
-name|mergeDocs
-operator|+=
+block|{
+comment|// start from the rightmost* segment whose doc count is in bounds
+name|maxSegment
+operator|=
+name|minSegment
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
 name|si
 operator|.
 name|docCount
+operator|>
+name|upperBound
+condition|)
+block|{
+comment|// until the segment whose doc count exceeds upperBound
+break|break;
+block|}
+block|}
+name|minSegment
+operator|++
 expr_stmt|;
+name|maxSegment
+operator|++
+expr_stmt|;
+name|int
+name|numSegments
+init|=
+name|maxSegment
+operator|-
+name|minSegment
+decl_stmt|;
+if|if
+condition|(
+name|numSegments
+operator|<
+name|mergeFactor
+condition|)
+block|{
+break|break;
+block|}
+else|else
+block|{
+name|boolean
+name|exceedsUpperLimit
+init|=
+literal|false
+decl_stmt|;
+comment|// number of merge-worthy segments may exceed mergeFactor when
+comment|// mergeFactor and/or maxBufferedDocs change(s)
+while|while
+condition|(
+name|numSegments
+operator|>=
+name|mergeFactor
+condition|)
+block|{
+comment|// merge the leftmost* mergeFactor segments
+name|int
+name|docCount
+init|=
+name|mergeSegments
+argument_list|(
+name|segmentInfos
+argument_list|,
+name|minSegment
+argument_list|,
+name|minSegment
+operator|+
+name|mergeFactor
+argument_list|)
+decl_stmt|;
+name|numSegments
+operator|-=
+name|mergeFactor
+expr_stmt|;
+if|if
+condition|(
+name|docCount
+operator|>
+name|upperBound
+condition|)
+block|{
+comment|// continue to merge the rest of the worthy segments on this level
+name|minSegment
+operator|++
+expr_stmt|;
+name|exceedsUpperLimit
+operator|=
+literal|true
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|docCount
+operator|>
+literal|0
+condition|)
+block|{
+comment|// if the merged segment does not exceed upperBound, consider
+comment|// this segment for further merges on this same level
+name|numSegments
+operator|++
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
-name|mergeDocs
-operator|>=
-name|targetMergeDocs
+operator|!
+name|exceedsUpperLimit
 condition|)
-comment|// found a merge to do
-name|mergeSegments
-argument_list|(
-name|minSegment
-operator|+
-literal|1
-argument_list|)
-expr_stmt|;
-else|else
+block|{
+comment|// if none of the merged segments exceed upperBound, done
 break|break;
-name|targetMergeDocs
+block|}
+block|}
+name|lowerBound
+operator|=
+name|upperBound
+expr_stmt|;
+name|upperBound
 operator|*=
 name|mergeFactor
 expr_stmt|;
-comment|// increase target size
 block|}
 block|}
-comment|/** Pops segments off of segmentInfos stack down to minSegment, merges them,     and pushes the merged index onto the top of the segmentInfos stack. */
+comment|/**    * Merges the named range of segments, replacing them in the stack with a    * single segment.    */
 DECL|method|mergeSegments
 specifier|private
 specifier|final
-name|void
-name|mergeSegments
-parameter_list|(
 name|int
-name|minSegment
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|mergeSegments
-argument_list|(
-name|minSegment
-argument_list|,
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Merges the named range of segments, replacing them in the stack with a    * single segment. */
-DECL|method|mergeSegments
-specifier|private
-specifier|final
-name|void
 name|mergeSegments
 parameter_list|(
+name|SegmentInfos
+name|sourceSegments
+parameter_list|,
 name|int
 name|minSegment
 parameter_list|,
@@ -2157,6 +2323,11 @@ argument_list|,
 name|mergedName
 argument_list|)
 decl_stmt|;
+name|boolean
+name|fromRAM
+init|=
+literal|false
+decl_stmt|;
 specifier|final
 name|Vector
 name|segmentsToDelete
@@ -2183,7 +2354,7 @@ block|{
 name|SegmentInfo
 name|si
 init|=
-name|segmentInfos
+name|sourceSegments
 operator|.
 name|info
 argument_list|(
@@ -2265,31 +2436,28 @@ name|reader
 argument_list|)
 expr_stmt|;
 comment|// queue segment for deletion
-block|}
-comment|// update 1-doc segments counter accordin to range of merged segments
 if|if
 condition|(
-name|singleDocSegmentsCount
-operator|>
-literal|0
+operator|!
+name|fromRAM
+operator|&&
+operator|(
+name|reader
+operator|.
+name|directory
+argument_list|()
+operator|==
+name|this
+operator|.
+name|ramDirectory
+operator|)
 condition|)
 block|{
-name|singleDocSegmentsCount
+name|fromRAM
 operator|=
-name|Math
-operator|.
-name|min
-argument_list|(
-name|singleDocSegmentsCount
-argument_list|,
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-operator|-
-name|end
-argument_list|)
+literal|true
 expr_stmt|;
+block|}
 block|}
 name|int
 name|mergedDocCount
@@ -2322,6 +2490,45 @@ literal|" docs)"
 argument_list|)
 expr_stmt|;
 block|}
+name|SegmentInfo
+name|newSegment
+init|=
+operator|new
+name|SegmentInfo
+argument_list|(
+name|mergedName
+argument_list|,
+name|mergedDocCount
+argument_list|,
+name|directory
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fromRAM
+condition|)
+block|{
+name|sourceSegments
+operator|.
+name|removeAllElements
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|mergedDocCount
+operator|>
+literal|0
+condition|)
+name|segmentInfos
+operator|.
+name|addElement
+argument_list|(
+name|newSegment
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 for|for
 control|(
 name|int
@@ -2339,30 +2546,37 @@ name|i
 operator|--
 control|)
 comment|// remove old infos& add new
-name|segmentInfos
+name|sourceSegments
 operator|.
 name|remove
 argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|mergedDocCount
+operator|>
+literal|0
+condition|)
 name|segmentInfos
 operator|.
 name|set
 argument_list|(
 name|minSegment
 argument_list|,
-operator|new
-name|SegmentInfo
-argument_list|(
-name|mergedName
-argument_list|,
-name|mergedDocCount
-argument_list|,
-name|directory
-argument_list|)
+name|newSegment
 argument_list|)
 expr_stmt|;
+else|else
+name|sourceSegments
+operator|.
+name|remove
+argument_list|(
+name|minSegment
+argument_list|)
+expr_stmt|;
+block|}
 comment|// close readers before we attempt to delete now-obsolete segments
 name|merger
 operator|.
@@ -2498,8 +2712,10 @@ name|filesToDelete
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|mergedDocCount
+return|;
 block|}
-comment|/***   private synchronized void testInvariants() {     // index segments should decrease in size     int maxSegLevel = 0;     for (int i=segmentInfos.size()-1; i>=0; i--) {       SegmentInfo si = segmentInfos.info(i);       int segLevel = (si.docCount)/minMergeDocs;       if (segLevel< maxSegLevel) {          throw new RuntimeException("Segment #" + i + " is too small. " + segInfo());       }       maxSegLevel = Math.max(maxSegLevel,segLevel);     }      // check if merges needed     long targetMergeDocs = minMergeDocs;     int minSegment = segmentInfos.size();      while (targetMergeDocs<= maxMergeDocs&& minSegment>=0) {       int mergeDocs = 0;       while (--minSegment>= 0) {         SegmentInfo si = segmentInfos.info(minSegment);         if (si.docCount>= targetMergeDocs) break;         mergeDocs += si.docCount;       }        if (mergeDocs>= targetMergeDocs) {         throw new RuntimeException("Merge needed at level "+targetMergeDocs + " :"+segInfo());       }        targetMergeDocs *= mergeFactor;		  // increase target size     }   }    private String segInfo() {     StringBuffer sb = new StringBuffer("minMergeDocs="+minMergeDocs+" singleDocSegmentsCount="+singleDocSegmentsCount+" segsizes:");     for (int i=0; i<segmentInfos.size(); i++) {       sb.append(segmentInfos.info(i).docCount);       sb.append(",");     }     return sb.toString();   }   ***/
 comment|/*    * Some operating systems (e.g. Windows) don't permit a file to be deleted    * while it is opened for read (e.g. by another process or thread). So we    * assume that when a delete fails it is because the file is open in another    * process, and queue the file for subsequent deletion.    */
 DECL|method|deleteSegments
 specifier|private
