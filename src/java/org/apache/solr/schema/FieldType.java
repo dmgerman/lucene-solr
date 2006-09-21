@@ -335,7 +335,7 @@ name|properties
 decl_stmt|;
 comment|/** Returns true if fields of this type should be tokenized */
 DECL|method|isTokenized
-specifier|protected
+specifier|public
 name|boolean
 name|isTokenized
 parameter_list|()

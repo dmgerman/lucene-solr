@@ -58,8 +58,18 @@ name|SolrCore
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
-comment|/**  * Container for a request to execute a query.  *   * @author yonik  * @version $Id$  */
+comment|/**  *<p>Container for a request to execute a query.</p>  *<p><code>SolrQueryRequest</code> is not thread safe.</p>  *   * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -68,12 +78,14 @@ specifier|public
 interface|interface
 name|SolrQueryRequest
 block|{
+comment|/** returns the current request parameters */
 DECL|method|getParams
 specifier|public
 name|SolrParams
 name|getParams
 parameter_list|()
 function_decl|;
+comment|/** Change the parameters for this request.  This does not affect    *  the original parameters returned by getOriginalParams()    */
 DECL|method|setParams
 specifier|public
 name|void
@@ -83,10 +95,23 @@ name|SolrParams
 name|params
 parameter_list|)
 function_decl|;
+comment|/** Returns the original request parameters.  As this    * does not normally include configured defaults    * it's more suitable for logging.    */
 DECL|method|getOriginalParams
 specifier|public
 name|SolrParams
 name|getOriginalParams
+parameter_list|()
+function_decl|;
+comment|/**    * Generic information associated with this request that may be both read and updated.    */
+DECL|method|getContext
+specifier|public
+name|Map
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|getContext
 parameter_list|()
 function_decl|;
 comment|/**    * This method should be called when all uses of this request are    * finished, so that resources can be freed.    */
