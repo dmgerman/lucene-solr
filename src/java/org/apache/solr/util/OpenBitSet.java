@@ -137,7 +137,7 @@ operator|<<
 literal|6
 return|;
 block|}
-comment|/**   * Returns the current capacity of this set.  Included for   * compatibility.  This is *not* equal to {@see cardinality}   */
+comment|/**   * Returns the current capacity of this set.  Included for   * compatibility.  This is *not* equal to {@link #cardinality}   */
 DECL|method|size
 specifier|public
 name|long

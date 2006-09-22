@@ -66,7 +66,7 @@ name|NamedList
 name|args
 parameter_list|)
 function_decl|;
-comment|/**    * Handles a query request.  This method must be thread safe.    *<p>    * Information about the request may be obtained from<code>req</code> and    * response information may be set using<code>rsp</code>.    *<p>    * There are no mandatory actions that handleRequest must perform.    * An empty handleRequest implementation would fulfill    * all interface obligations.    */
+comment|/**    * Handles a query request, this method must be thread safe.    *<p>    * Information about the request may be obtained from<code>req</code> and    * response information may be set using<code>rsp</code>.    *<p>    * There are no mandatory actions that handleRequest must perform.    * An empty handleRequest implementation would fulfill    * all interface obligations.    */
 DECL|method|handleRequest
 specifier|public
 name|void

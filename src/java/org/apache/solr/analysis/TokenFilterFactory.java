@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory to create a token filter that transforms one TokenStream to another.  *   * @author yonik  * @version $Id$  */
+comment|/**  * A<code>TokenFilterFactory</code> creates a   *<code>TokenFilter</code> to transform one<code>TokenStream</code>   * into another.  *  *<p>  * TokenFilterFactories are registered for<code>FieldType</code>s with the  *<code>IndexSchema</code> through the<code>schema.xml</code> file.  *</p>  *<p>  * Example<code>schema.xml</code> entry to register a TokenFilterFactory   * implementation to transform tokens in a field of type "cool"  *</p>  *<pre>  *&lt;fieldtype name="cool" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *      ...  *&lt;filter class="foo.MyTokenFilterFactory"/&gt;  *      ...  *</pre>  *<p>  * A single instance of any registered TokenizerFactory is created  * via the default constructor and is reused for each FieldType.  *</p>  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -50,6 +50,7 @@ specifier|public
 interface|interface
 name|TokenFilterFactory
 block|{
+comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a the factory in the    * schema.xml    */
 DECL|method|init
 specifier|public
 name|void
@@ -64,6 +65,7 @@ argument_list|>
 name|args
 parameter_list|)
 function_decl|;
+comment|/**    * Accessor method for reporting the args used to initialize this factory.    *<p>    * Implementations are<strong>strongly</strong> encouraged to return     * the contents of the Map passed to to the init method    *</p>    */
 DECL|method|getArgs
 specifier|public
 name|Map
@@ -75,6 +77,7 @@ argument_list|>
 name|getArgs
 parameter_list|()
 function_decl|;
+comment|/** Transform the specified input TokenStream */
 DECL|method|create
 specifier|public
 name|TokenStream

@@ -240,6 +240,7 @@ specifier|public
 class|class
 name|QueryParsing
 block|{
+comment|/** the SolrParam used to override the QueryParser "default operator" */
 DECL|field|OP
 specifier|public
 specifier|static
@@ -249,6 +250,7 @@ name|OP
 init|=
 literal|"q.op"
 decl_stmt|;
+comment|/**     * Helper utility for parsing a query using the Lucene QueryParser syntax.     * @param qs query expression in standard Lucene syntax    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    */
 DECL|method|parseQuery
 specifier|public
 specifier|static
@@ -273,6 +275,7 @@ name|schema
 argument_list|)
 return|;
 block|}
+comment|/**     * Helper utility for parsing a query using the Lucene QueryParser syntax.     * @param qs query expression in standard Lucene syntax    * @param defaultField default field used for unqualified search terms in the query expression    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    */
 DECL|method|parseQuery
 specifier|public
 specifier|static
@@ -363,7 +366,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @param qs query expression    * @param defaultField default field used for unqualified search terms in the query expression    * @param params used to determine the default operator, overriding the schema specified operator    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    * @return    */
+comment|/**    * @param qs query expression in standard Lucene syntax    * @param defaultField default field used for unqualified search terms in the query expression    * @param params used to determine the default operator, overriding the schema specified operator    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    */
 DECL|method|parseQuery
 specifier|public
 specifier|static
@@ -586,7 +589,7 @@ argument_list|(
 literal|"[\\s,]+"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns null if the sortSpec string doesn't look like a sort specification,    * or if the sort specification couldn't be converted into a Lucene Sort    * (because of a field not being indexed or undefined, etc).    *    * The form of the sort specification string currently parsed is:    * SortSpec ::= SingleSort [, SingleSort]*<number>?    * SingleSort ::=<fieldname> SortDirection    * SortDirection ::= top | desc | bottom | asc    *    * Examples:    *   top 10                        #take the top 10 by score    *   desc 10                       #take the top 10 by score    *   score desc 10                 #take the top 10 by score    *   weight bottom 10              #sort by weight ascending and take the first 10    *   weight desc                   #sort by weight descending    *   height desc,weight desc       #sort by height descending, and use weight descending to break any ties    *   height desc,weight asc top 20 #sort by height descending, using weight ascending as a tiebreaker    *    */
+comment|/**    * Returns null if the sortSpec string doesn't look like a sort specification,    * or if the sort specification couldn't be converted into a Lucene Sort    * (because of a field not being indexed or undefined, etc).    *    *<p>    * The form of the sort specification string currently parsed is:    *</p>    *<pre>>    * SortSpec ::= SingleSort [, SingleSort]*<number>?    * SingleSort ::=<fieldname> SortDirection    * SortDirection ::= top | desc | bottom | asc    *</pre>    * Examples:    *<pre>    *   top 10                        #take the top 10 by score    *   desc 10                       #take the top 10 by score    *   score desc 10                 #take the top 10 by score    *   weight bottom 10              #sort by weight ascending and take the first 10    *   weight desc                   #sort by weight descending    *   height desc,weight desc       #sort by height descending, and use weight descending to break any ties    *   height desc,weight asc top 20 #sort by height descending, using weight ascending as a tiebreaker    *</pre>    *    */
 DECL|method|parseSort
 specifier|public
 specifier|static
@@ -1164,6 +1167,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** @see #toString(Query,IndexSchema) */
 DECL|method|toString
 specifier|public
 specifier|static
@@ -2043,6 +2047,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Formats a Query for debugging, using the IndexSchema to make     * complex field types readable.    *    *<p>    * The benefit of using this method instead of calling     *<code>Query.toString</code> directly is that it knows about the data    *  types of each field, so any field which is encoded in a particularly     * complex way is still readable.  The downside is thta it only knows     * about built in Query types, and will not be able to format custom     * Query classes.    *</p>    */
 DECL|method|toString
 specifier|public
 specifier|static
@@ -2820,7 +2825,7 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/** Parse a function, returning a FunctionQuery    */
+comment|/**     * Parse a function, returning a FunctionQuery    *    * :TODO: need examples    */
 DECL|method|parseFunction
 specifier|public
 specifier|static

@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * Simple abstract implementation that handles init arg processing.  *   * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -39,6 +39,7 @@ name|BaseTokenizerFactory
 implements|implements
 name|TokenizerFactory
 block|{
+comment|/** The init args */
 DECL|field|args
 specifier|protected
 name|Map

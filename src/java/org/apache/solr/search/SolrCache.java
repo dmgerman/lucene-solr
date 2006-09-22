@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author yonik  * @version $Id$  */
+comment|/**  * Primary API for dealing with Solr's internal caches.  *   * @author yonik  * @version $Id$  */
 end_comment
 
 begin_interface
@@ -93,7 +93,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * The initialization routine.  Instance specific arguments are passed in    * the<code>args</code> map.    *<p>    * The persistence object will exist across different lifetimes of similar caches.    * For example, all filter caches will share the same persistence object, sometimes    * at the same time (it must be threadsafe).  If null is passed, then the cache    * implementation should create and return a new persistence object.  If not null,    * the passed in object should be returned again.    *<p>    * Since it will exist across the lifetime of many caches, care should be taken to    * not reference any particular cache instance and prevent it from being    * garbage collected (no using inner classes unless they are static).    *<p>    * Since the persistence object is designed to be used as a way for statistics    * to accumulate across all instances of the same type of cache, however the    * object may be of any type desired by the cache implementation.    *<p>    * The {@link CacheRegenerator} is what the cache uses during auto-warming to    * renenerate an item in the new cache from an entry in the old cache.    *    */
+comment|/**    * The initialization routine.  Instance specific arguments are passed in    * the<code>args</code> map.    *<p>    * The persistence object will exist across different lifetimes of similar caches.    * For example, all filter caches will share the same persistence object, sometimes    * at the same time (it must be threadsafe).  If null is passed, then the cache    * implementation should create and return a new persistence object.  If not null,    * the passed in object should be returned again.    *<p>    * Since it will exist across the lifetime of many caches, care should be taken to    * not reference any particular cache instance and prevent it from being    * garbage collected (no using inner classes unless they are static).    *<p>    * The persistence object is designed to be used as a way for statistics    * to accumulate across all instances of the same type of cache, however the    * object may be of any type desired by the cache implementation.    *<p>    * The {@link CacheRegenerator} is what the cache uses during auto-warming to    * renenerate an item in the new cache from an entry in the old cache.    *    */
 DECL|method|init
 specifier|public
 name|Object
@@ -112,7 +112,7 @@ function_decl|;
 comment|// I don't think we need a factory for faster creation given that these
 comment|// will be associated with slow-to-create SolrIndexSearchers.
 comment|// change to NamedList when other plugins do?
-comment|// symbolic name for this cache
+comment|/**    * Name the Cache can be refrenced with by SolrRequestHandlers.    *    * This method must return the identifier that the Cache instance     * expects SolrRequestHandlers to use when requesting access to it     * from the SolrIndexSearcher.  It is<strong>strongly</strong>     * recommended thta this method return the value of the "name"     * paramater from the init args.    *    * :TODO: verify this.    */
 DECL|method|name
 specifier|public
 name|String
@@ -121,12 +121,14 @@ parameter_list|()
 function_decl|;
 comment|// Should SolrCache just extend the java.util.Map interface?
 comment|// Following the conventions of the java.util.Map interface in any case.
+comment|/** :TODO: copy from Map */
 DECL|method|size
 specifier|public
 name|int
 name|size
 parameter_list|()
 function_decl|;
+comment|/** :TODO: copy from Map */
 DECL|method|put
 specifier|public
 name|Object
@@ -139,6 +141,7 @@ name|Object
 name|value
 parameter_list|)
 function_decl|;
+comment|/** :TODO: copy from Map */
 DECL|method|get
 specifier|public
 name|Object
@@ -148,30 +151,36 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
+comment|/** :TODO: copy from Map */
 DECL|method|clear
 specifier|public
 name|void
 name|clear
 parameter_list|()
 function_decl|;
-comment|/**    * Set different cache states.    * The state a cache is in can have an effect on how statistics are kept.    * The cache user (SolrIndexSearcher) will take care of switching    * cache states.    */
+comment|/**     * Enumeration of possible States for cache instances.    * :TODO: only state that seems to ever be set is LIVE ?   */
 DECL|enum|State
-DECL|enum constant|CREATED
-DECL|enum constant|STATICWARMING
-DECL|enum constant|AUTOWARMING
-DECL|enum constant|LIVE
 specifier|public
 enum|enum
 name|State
 block|{
+comment|/** :TODO */
+DECL|enum constant|CREATED
 name|CREATED
 block|,
+comment|/** :TODO */
+DECL|enum constant|STATICWARMING
 name|STATICWARMING
 block|,
+comment|/** :TODO */
+DECL|enum constant|AUTOWARMING
 name|AUTOWARMING
 block|,
+comment|/** :TODO */
+DECL|enum constant|LIVE
 name|LIVE
 block|}
+comment|/**    * Set different cache states.    * The state a cache is in can have an effect on how statistics are kept.    * The cache user (SolrIndexSearcher) will take care of switching    * cache states.    */
 DECL|method|setState
 specifier|public
 name|void
@@ -181,6 +190,7 @@ name|State
 name|state
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the last State set on this instance    *    * @see #setState    */
 DECL|method|getState
 specifier|public
 name|State
