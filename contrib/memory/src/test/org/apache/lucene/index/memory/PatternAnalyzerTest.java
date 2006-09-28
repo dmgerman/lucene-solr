@@ -304,6 +304,11 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+comment|//    String[] files = MemoryIndexTest.listFiles(new String[] {
+comment|//      "*.txt", "*.html", "*.xml", "xdocs/*.xml",
+comment|//      "src/test/org/apache/lucene/queryParser/*.java",
+comment|//      "src/org/apache/lucene/index/memory/*.java",
+comment|//    });
 name|String
 index|[]
 name|files
@@ -316,17 +321,17 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"*.txt"
+literal|"../../*.txt"
 block|,
-literal|"*.html"
+literal|"../../*.html"
 block|,
-literal|"*.xml"
+literal|"../../*.xml"
 block|,
-literal|"xdocs/*.xml"
+literal|"../../xdocs/*.xml"
 block|,
-literal|"src/test/org/apache/lucene/queryParser/*.java"
+literal|"../../src/test/org/apache/lucene/queryParser/*.java"
 block|,
-literal|"src/org/apache/lucene/index/memory/*.java"
+literal|"src/java/org/apache/lucene/index/memory/*.java"
 block|,     }
 argument_list|)
 decl_stmt|;
