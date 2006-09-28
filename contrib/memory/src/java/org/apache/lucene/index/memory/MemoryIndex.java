@@ -84,6 +84,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Field
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|FieldSelector
 import|;
 end_import
@@ -383,6 +397,16 @@ specifier|private
 specifier|final
 name|int
 name|stride
+decl_stmt|;
+comment|/** Could be made configurable; See {@link Document#setBoost(float)} */
+DECL|field|docBoost
+specifier|private
+specifier|static
+specifier|final
+name|float
+name|docBoost
+init|=
+literal|1.0f
 decl_stmt|;
 DECL|field|serialVersionUID
 specifier|private
@@ -764,7 +788,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene contrib<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    */
+comment|/**    * Equivalent to<code>addField(fieldName, stream, 1.0f)</code>.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from    */
 DECL|method|addField
 specifier|public
 name|void
@@ -775,6 +799,32 @@ name|fieldName
 parameter_list|,
 name|TokenStream
 name|stream
+parameter_list|)
+block|{
+name|addField
+argument_list|(
+name|fieldName
+argument_list|,
+name|stream
+argument_list|,
+literal|1.0f
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene contrib<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    * @see Field#setBoost(float)    */
+DECL|method|addField
+specifier|public
+name|void
+name|addField
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|TokenStream
+name|stream
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 block|{
 comment|/*      * Note that this method signature avoids having a user call new      * o.a.l.d.Field(...) which would be much too expensive due to the      * String.intern() usage of that class.      *       * More often than not, String.intern() leads to serious performance      * degradations rather than improvements! If you're curious why, check      * out the JDK's native code, see how it oscillates multiple times back      * and forth between Java code and native code on each intern() call,      * only to end up using a plain vanilla java.util.HashMap on the Java      * heap for it's interned strings! String.equals() has a small cost      * compared to String.intern(), trust me. Application level interning      * (e.g. a HashMap per Directory/Index) typically leads to better      * solutions than frequent hidden low-level calls to String.intern().      *       * Perhaps with some luck, Lucene's Field.java (and Term.java) and      * cousins could be fixed to not use String.intern(). Sigh :-(      */
@@ -804,6 +854,19 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"token stream must not be null"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|boost
+operator|<=
+literal|0.0f
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"boost factor must be greater than 0.0"
 argument_list|)
 throw|;
 if|if
@@ -972,6 +1035,13 @@ operator|>
 literal|0
 condition|)
 block|{
+name|boost
+operator|=
+name|boost
+operator|*
+name|docBoost
+expr_stmt|;
+comment|// see DocumentWriter.addDocument(...)
 name|fields
 operator|.
 name|put
@@ -984,6 +1054,8 @@ argument_list|(
 name|terms
 argument_list|,
 name|numTokens
+argument_list|,
+name|boost
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1355,6 +1427,8 @@ decl_stmt|;
 name|size
 operator|+=
 name|HEADER
+operator|+
+literal|4
 operator|+
 literal|4
 operator|+
@@ -1981,6 +2055,13 @@ specifier|final
 name|int
 name|numTokens
 decl_stmt|;
+comment|/** Boost factor for hits for this field */
+DECL|field|boost
+specifier|private
+specifier|final
+name|float
+name|boost
+decl_stmt|;
 comment|/** Term for this field's fieldName, lazily computed on demand */
 DECL|field|template
 specifier|public
@@ -2006,6 +2087,9 @@ name|terms
 parameter_list|,
 name|int
 name|numTokens
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 block|{
 name|this
@@ -2019,6 +2103,12 @@ operator|.
 name|numTokens
 operator|=
 name|numTokens
+expr_stmt|;
+name|this
+operator|.
+name|boost
+operator|=
+name|boost
 expr_stmt|;
 block|}
 comment|/**      * Sorts hashed terms into ascending order, reusing memory along the      * way. Note that sorting is lazily delayed until required (often it's      * not required at all). If a sorted view is required then hashing +      * sort + binary search is still faster and smaller than TreeMap usage      * (which would be an alternative and somewhat more elegant approach,      * apart from more sophisticated Tries / prefix trees).      */
@@ -2085,6 +2175,16 @@ index|]
 operator|.
 name|getValue
 argument_list|()
+return|;
+block|}
+DECL|method|getBoost
+specifier|public
+name|float
+name|getBoost
+parameter_list|()
+block|{
+return|return
+name|boost
 return|;
 block|}
 block|}
@@ -4408,6 +4508,27 @@ argument_list|,
 name|numTokens
 argument_list|)
 decl_stmt|;
+name|float
+name|boost
+init|=
+name|info
+operator|!=
+literal|null
+condition|?
+name|info
+operator|.
+name|getBoost
+argument_list|()
+else|:
+literal|1.0f
+decl_stmt|;
+name|n
+operator|=
+name|n
+operator|*
+name|boost
+expr_stmt|;
+comment|// see DocumentWriter.writeNorms(String segment)
 name|byte
 name|norm
 init|=
