@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * Collection of static utilities usefull for query parsing.  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -366,7 +366,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @param qs query expression in standard Lucene syntax    * @param defaultField default field used for unqualified search terms in the query expression    * @param params used to determine the default operator, overriding the schema specified operator    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    */
+comment|/**    * Helper utility for parsing a query using the Lucene QueryParser syntax.     * @param qs query expression in standard Lucene syntax    * @param defaultField default field used for unqualified search terms in the query expression    * @param params used to determine the default operator, overriding the schema specified operator    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    */
 DECL|method|parseQuery
 specifier|public
 specifier|static
@@ -2825,7 +2825,7 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/**     * Parse a function, returning a FunctionQuery    *    * :TODO: need examples    */
+comment|/**     * Parse a function, returning a FunctionQuery    *    *<p>    * Syntax Examples....    *</p>    *    *<pre>    * // Numeric fields default to correct type    * // (ie: IntFieldSource or FloatFieldSource)    * // Others use implicit ord(...) to generate numeric field value    * myfield    *    * // OrdFieldSource    * ord(myfield)    *    * // ReverseOrdFieldSource    * rord(myfield)    *    * // LinearFloatFunction on numeric field value    * linear(myfield,1,2)    *    * // MaxFloatFunction of LinearFloatFunction on numeric field value or constant    * max(linear(myfield,1,2),100)    *    * // ReciprocalFloatFunction on numeric field value    * recip(myfield,1,2,3)    *    * // ReciprocalFloatFunction on ReverseOrdFieldSource    * recip(rord(myfield),1,2,3)    *    * // ReciprocalFloatFunction on LinearFloatFunction on ReverseOrdFieldSource    * recip(linear(rord(myfield),1,2),3,4,5)    *</pre>    */
 DECL|method|parseFunction
 specifier|public
 specifier|static
