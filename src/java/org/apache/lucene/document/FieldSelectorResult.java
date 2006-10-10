@@ -31,6 +31,7 @@ specifier|final
 class|class
 name|FieldSelectorResult
 block|{
+comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encounterd.      *  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.       */
 DECL|field|LOAD
 specifier|public
 specifier|static
@@ -44,6 +45,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/**      * Lazily load this {@link Field}.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} SHOULD NOT BE USED.  {@link Document#getFieldable(String)} is safe to use and should      * return a valid instance of a {@link Fieldable}.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
 DECL|field|LAZY_LOAD
 specifier|public
 specifier|static
@@ -57,6 +59,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+comment|/**      * Do not load the {@link Field}.  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should return null.      * {@link Document#add(Fieldable)} is not called.      *<p/>      * {@link Document#add(Fieldable)} should not be called by the Reader.      */
 DECL|field|NO_LOAD
 specifier|public
 specifier|static
@@ -70,6 +73,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
+comment|/**      * Load this field as in the {@link #LOAD} case, but immediately return from {@link Field} loading for the {@link Document}.  Thus, the      * Document may not have its complete set of Fields.  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should      * both be valid for this {@link Field}      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
 DECL|field|LOAD_AND_BREAK
 specifier|public
 specifier|static
@@ -83,6 +87,7 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
+comment|/**      * Behaves much like {@link #LOAD} but does not uncompress any compressed data.  This is used for internal purposes.      * {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
 DECL|field|LOAD_FOR_MERGE
 specifier|public
 specifier|static
