@@ -280,7 +280,7 @@ literal|8
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Cloeses the underlying {@link org.apache.lucene.store.IndexInput} streams, including any ones associated with a    * lazy implementation of a Field.  This means that the Fields values will not be accessible.    *    * @throws IOException    */
+comment|/**    * Closes the underlying {@link org.apache.lucene.store.IndexInput} streams, including any ones associated with a    * lazy implementation of a Field.  This means that the Fields values will not be accessible.    *    * @throws IOException    */
 DECL|method|close
 specifier|final
 name|void

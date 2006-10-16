@@ -683,8 +683,8 @@ name|IOException
 block|{
 comment|// Set up lockFactory with cascaded defaults: if an instance was passed in,
 comment|// use that; else if locks are disabled, use NoLockFactory; else if the
-comment|// system property org.apache.lucene.lockClass is set, instantiate that;
-comment|// else, use SimpleFSLockFactory:
+comment|// system property org.apache.lucene.store.FSDirectoryLockFactoryClass is set,
+comment|// instantiate that; else, use SimpleFSLockFactory:
 if|if
 condition|(
 name|lockFactory

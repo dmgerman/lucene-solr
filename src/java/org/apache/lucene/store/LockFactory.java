@@ -44,7 +44,7 @@ name|lockPrefix
 init|=
 literal|""
 decl_stmt|;
-comment|/**    * Set the prefix in use for all locks created in this LockFactory.    */
+comment|/**    * Set the prefix in use for all locks created in this    * LockFactory.  This is normally called once, when a    * Directory gets this LockFactory instance.  However, you    * can also call this (after this instance is assigned to    * a Directory) to override the prefix in use.  This    * is helpful if you're running Lucene on machines that    * have different mount points for the same shared    * directory.    */
 DECL|method|setLockPrefix
 specifier|public
 name|void
