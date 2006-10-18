@@ -36,6 +36,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementations of<code>QueryResponseWriter</code> are used to format responses to query requests.  *  * Different<code>QueryResponseWriter</code>s are registered with the<code>SolrCore</code>.  * One way to register a QueryResponseWriter with the core is thorugh the<code>solrconfig.xml</code> file.  *<p>  * Example<code>solrconfig.xml</code> entry to register a<code>QueryResponseWRiter</code> implementation to  * handle all queries with a writer type of "simple":  *<p>  *<code>  *&lt;queryResponseWriter name="simple" class="foo.SimpleResponseWriter" /&gt;  *</code>  *<p>  * A single instance of any registered QueryResponseWriter is created  * via the default constructor and is reused for all relevant queries.  *  * @author yonik  * @version $Id$  */
 end_comment
@@ -99,6 +113,16 @@ name|request
 parameter_list|,
 name|SolrQueryResponse
 name|response
+parameter_list|)
+function_decl|;
+comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a response writer in    * solrconfig.xml    */
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|NamedList
+name|args
 parameter_list|)
 function_decl|;
 block|}

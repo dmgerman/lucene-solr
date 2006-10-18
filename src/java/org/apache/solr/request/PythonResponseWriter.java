@@ -32,6 +32,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
 begin_class
 DECL|class|PythonResponseWriter
 specifier|public
@@ -47,6 +61,17 @@ name|CONTENT_TYPE_PYTHON_ASCII
 init|=
 literal|"text/x-python;charset=US-ASCII"
 decl_stmt|;
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|NamedList
+name|n
+parameter_list|)
+block|{
+comment|/* NOOP */
+block|}
 DECL|method|write
 specifier|public
 name|void

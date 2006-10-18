@@ -159,6 +159,15 @@ name|CONTENT_TYPE_JSON_UTF8
 init|=
 literal|"text/x-json; charset=UTF-8"
 decl_stmt|;
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|NamedList
+name|n
+parameter_list|)
+block|{   }
 DECL|method|write
 specifier|public
 name|void
