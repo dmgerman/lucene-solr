@@ -811,11 +811,19 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+comment|// Intentionally do not close the first writer here.
+comment|// The goal is to "simulate" a crashed writer and
+comment|// ensure the second writer, with create=true, is
+comment|// able to remove the lock files.  This works OK
+comment|// with SimpleFSLockFactory as the locking
+comment|// implementation.  Note, however, that this test
+comment|// will not work on WIN32 when we switch to
+comment|// NativeFSLockFactory as the default locking for
+comment|// FSDirectory because the second IndexWriter cannot
+comment|// remove those lock files since they are held open
+comment|// by the first writer.  This is because leaving the
+comment|// first IndexWriter open is not really a good way
+comment|// to simulate a crashed writer.
 comment|// Create a 2nd IndexWriter.  This should not fail:
 name|IndexWriter
 name|writer2
@@ -845,6 +853,15 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should not have hit an IOException with two IndexWriters with create=true, on default SimpleFSLockFactory"
@@ -1265,9 +1282,8 @@ name|IOException
 block|{
 name|_testStressLocks
 argument_list|(
+operator|new
 name|NativeFSLockFactory
-operator|.
-name|getLockFactory
 argument_list|()
 argument_list|,
 literal|"index.TestLockFactory7"
@@ -1427,33 +1443,20 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// Make sure we get identical instances:
 name|NativeFSLockFactory
 name|f
 init|=
+operator|new
 name|NativeFSLockFactory
-operator|.
-name|getLockFactory
 argument_list|()
 decl_stmt|;
 name|NativeFSLockFactory
 name|f2
 init|=
+operator|new
 name|NativeFSLockFactory
-operator|.
-name|getLockFactory
 argument_list|()
 decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"got different NativeFSLockFactory instances for same directory"
-argument_list|,
-name|f
-operator|==
-name|f2
-argument_list|)
-expr_stmt|;
-comment|// Make sure we get identical locks:
 name|f
 operator|.
 name|setLockPrefix
@@ -1483,15 +1486,6 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"got different Lock instances for same lock name"
-argument_list|,
-name|l
-operator|==
-name|l2
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
 literal|"failed to obtain lock"
 argument_list|,
 name|l
@@ -1505,7 +1499,7 @@ argument_list|(
 literal|"succeeded in obtaining lock twice"
 argument_list|,
 operator|!
-name|l
+name|l2
 operator|.
 name|obtain
 argument_list|()
@@ -1516,7 +1510,22 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
-comment|// Make sure we can obtain it again:
+name|assertTrue
+argument_list|(
+literal|"failed to obtain 2nd lock after first one was freed"
+argument_list|,
+name|l2
+operator|.
+name|obtain
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|l2
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+comment|// Make sure we can obtain first one again:
 name|assertTrue
 argument_list|(
 literal|"failed to obtain lock"
@@ -1531,6 +1540,183 @@ name|l
 operator|.
 name|release
 argument_list|()
+expr_stmt|;
+block|}
+comment|// Verify: NativeFSLockFactory assigns different lock
+comment|// prefixes to different directories:
+DECL|method|testNativeFSLockFactoryPrefix
+specifier|public
+name|void
+name|testNativeFSLockFactoryPrefix
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// Make sure we get identical instances:
+name|Directory
+name|dir1
+init|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+literal|"TestLockFactory.8"
+argument_list|,
+literal|true
+argument_list|,
+operator|new
+name|NativeFSLockFactory
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|Directory
+name|dir2
+init|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+literal|"TestLockFactory.9"
+argument_list|,
+literal|true
+argument_list|,
+operator|new
+name|NativeFSLockFactory
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|String
+name|prefix1
+init|=
+name|dir1
+operator|.
+name|getLockFactory
+argument_list|()
+operator|.
+name|getLockPrefix
+argument_list|()
+decl_stmt|;
+name|String
+name|prefix2
+init|=
+name|dir2
+operator|.
+name|getLockFactory
+argument_list|()
+operator|.
+name|getLockPrefix
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Native Lock Factories are incorrectly shared: dir1 and dir2 have same lock prefix '"
+operator|+
+name|prefix1
+operator|+
+literal|"'; they should be different"
+argument_list|,
+operator|!
+name|prefix1
+operator|.
+name|equals
+argument_list|(
+name|prefix2
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|rmDir
+argument_list|(
+literal|"TestLockFactory.8"
+argument_list|)
+expr_stmt|;
+name|rmDir
+argument_list|(
+literal|"TestLockFactory.9"
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Verify: default LockFactory assigns different lock prefixes:
+DECL|method|testDefaultFSLockFactoryPrefix
+specifier|public
+name|void
+name|testDefaultFSLockFactoryPrefix
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// Make sure we get identical instances:
+name|Directory
+name|dir1
+init|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+literal|"TestLockFactory.10"
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+name|Directory
+name|dir2
+init|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+literal|"TestLockFactory.11"
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+name|String
+name|prefix1
+init|=
+name|dir1
+operator|.
+name|getLockFactory
+argument_list|()
+operator|.
+name|getLockPrefix
+argument_list|()
+decl_stmt|;
+name|String
+name|prefix2
+init|=
+name|dir2
+operator|.
+name|getLockFactory
+argument_list|()
+operator|.
+name|getLockPrefix
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Default Lock Factories are incorrectly shared: dir1 and dir2 have same lock prefix '"
+operator|+
+name|prefix1
+operator|+
+literal|"'; they should be different"
+argument_list|,
+operator|!
+name|prefix1
+operator|.
+name|equals
+argument_list|(
+name|prefix2
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|rmDir
+argument_list|(
+literal|"TestLockFactory.10"
+argument_list|)
+expr_stmt|;
+name|rmDir
+argument_list|(
+literal|"TestLockFactory.11"
+argument_list|)
 expr_stmt|;
 block|}
 DECL|class|WriterThread
