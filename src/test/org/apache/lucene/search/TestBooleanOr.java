@@ -306,6 +306,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|QueryUtils
+operator|.
+name|check
+argument_list|(
+name|q
+argument_list|,
+name|searcher
+argument_list|)
+expr_stmt|;
 return|return
 name|searcher
 operator|.

@@ -3151,13 +3151,6 @@ argument_list|,
 name|results
 argument_list|)
 expr_stmt|;
-name|QueryUtils
-operator|.
-name|check
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

@@ -555,6 +555,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|QueryUtils
+operator|.
+name|check
+argument_list|(
+name|query
+argument_list|,
+name|s
+argument_list|)
+expr_stmt|;
 specifier|final
 name|float
 name|tolerance
