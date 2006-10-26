@@ -991,7 +991,8 @@ expr_stmt|;
 name|int
 name|lowerBound
 init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 name|int
 name|upperBound
@@ -1043,10 +1044,6 @@ argument_list|(
 name|docCount
 operator|>
 name|lowerBound
-operator|||
-name|docCount
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 if|if
@@ -1079,6 +1076,8 @@ name|mergeFactor
 argument_list|)
 expr_stmt|;
 block|}
+do|do
+block|{
 name|lowerBound
 operator|=
 name|upperBound
@@ -1087,6 +1086,14 @@ name|upperBound
 operator|*=
 name|mergeFactor
 expr_stmt|;
+block|}
+do|while
+condition|(
+name|docCount
+operator|>
+name|upperBound
+condition|)
+do|;
 name|numSegments
 operator|=
 literal|1
