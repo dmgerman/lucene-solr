@@ -89,7 +89,6 @@ end_comment
 begin_class
 DECL|class|FuzzyQuery
 specifier|public
-specifier|final
 class|class
 name|FuzzyQuery
 extends|extends
@@ -616,7 +615,7 @@ argument_list|()
 return|;
 block|}
 DECL|class|ScoreTerm
-specifier|private
+specifier|protected
 specifier|static
 class|class
 name|ScoreTerm
@@ -657,7 +656,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|ScoreTermQueue
-specifier|private
+specifier|protected
 specifier|static
 class|class
 name|ScoreTermQueue
