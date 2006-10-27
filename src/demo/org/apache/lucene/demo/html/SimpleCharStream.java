@@ -811,6 +811,34 @@ name|c
 operator|)
 return|;
 block|}
+comment|/**    * @deprecated     * @see #getEndColumn    */
+DECL|method|getColumn
+specifier|public
+name|int
+name|getColumn
+parameter_list|()
+block|{
+return|return
+name|bufcolumn
+index|[
+name|bufpos
+index|]
+return|;
+block|}
+comment|/**    * @deprecated     * @see #getEndLine    */
+DECL|method|getLine
+specifier|public
+name|int
+name|getLine
+parameter_list|()
+block|{
+return|return
+name|bufline
+index|[
+name|bufpos
+index|]
+return|;
+block|}
 DECL|method|getEndColumn
 specifier|public
 name|int
