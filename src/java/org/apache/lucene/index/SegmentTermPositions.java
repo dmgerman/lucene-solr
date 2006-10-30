@@ -65,6 +65,22 @@ specifier|private
 name|int
 name|position
 decl_stmt|;
+comment|// these variables are being used to remember information
+comment|// for a lazy skip
+DECL|field|lazySkipPointer
+specifier|private
+name|long
+name|lazySkipPointer
+init|=
+literal|0
+decl_stmt|;
+DECL|field|lazySkipDocCount
+specifier|private
+name|int
+name|lazySkipDocCount
+init|=
+literal|0
+decl_stmt|;
 DECL|method|SegmentTermPositions
 name|SegmentTermPositions
 parameter_list|(
@@ -116,14 +132,15 @@ name|ti
 operator|!=
 literal|null
 condition|)
-name|proxStream
-operator|.
-name|seek
-argument_list|(
+name|lazySkipPointer
+operator|=
 name|ti
 operator|.
 name|proxPointer
-argument_list|)
+expr_stmt|;
+name|lazySkipDocCount
+operator|=
+literal|0
 expr_stmt|;
 name|proxCount
 operator|=
@@ -159,6 +176,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// perform lazy skips if neccessary
+name|lazySkip
+argument_list|()
+expr_stmt|;
 name|proxCount
 operator|--
 expr_stmt|;
@@ -180,25 +201,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-for|for
-control|(
-name|int
-name|f
-init|=
+comment|// we remember to skip the remaining positions of the current
+comment|// document lazily
+name|lazySkipDocCount
+operator|+=
 name|freq
-init|;
-name|f
-operator|>
-literal|0
-condition|;
-name|f
-operator|--
-control|)
-comment|// skip all positions
-name|proxStream
-operator|.
-name|readVInt
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|next
@@ -210,25 +217,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-for|for
-control|(
-name|int
-name|f
-init|=
+comment|// we remember to skip a document lazily
+name|lazySkipDocCount
+operator|+=
 name|proxCount
-init|;
-name|f
-operator|>
-literal|0
-condition|;
-name|f
-operator|--
-control|)
-comment|// skip unread positions
-name|proxStream
-operator|.
-name|readVInt
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -294,17 +286,106 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|proxStream
-operator|.
-name|seek
-argument_list|(
+comment|// we save the pointer, we might have to skip there lazily
+name|lazySkipPointer
+operator|=
 name|proxPointer
-argument_list|)
+expr_stmt|;
+name|lazySkipDocCount
+operator|=
+literal|0
 expr_stmt|;
 name|proxCount
 operator|=
 literal|0
 expr_stmt|;
+block|}
+DECL|method|skipPositions
+specifier|private
+name|void
+name|skipPositions
+parameter_list|(
+name|int
+name|n
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+for|for
+control|(
+name|int
+name|f
+init|=
+name|n
+init|;
+name|f
+operator|>
+literal|0
+condition|;
+name|f
+operator|--
+control|)
+comment|// skip unread positions
+name|proxStream
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+block|}
+comment|// It is not always neccessary to move the prox pointer
+comment|// to a new document after the freq pointer has been moved.
+comment|// Consider for example a phrase query with two terms:
+comment|// the freq pointer for term 1 has to move to document x
+comment|// to answer the question if the term occurs in that document. But
+comment|// only if term 2 also matches document x, the positions have to be
+comment|// read to figure out if term 1 and term 2 appear next
+comment|// to each other in document x and thus satisfy the query.
+comment|// So we move the prox pointer lazily to the document
+comment|// as soon as positions are requested.
+DECL|method|lazySkip
+specifier|private
+name|void
+name|lazySkip
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|lazySkipPointer
+operator|!=
+literal|0
+condition|)
+block|{
+name|proxStream
+operator|.
+name|seek
+argument_list|(
+name|lazySkipPointer
+argument_list|)
+expr_stmt|;
+name|lazySkipPointer
+operator|=
+literal|0
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|lazySkipDocCount
+operator|!=
+literal|0
+condition|)
+block|{
+name|skipPositions
+argument_list|(
+name|lazySkipDocCount
+argument_list|)
+expr_stmt|;
+name|lazySkipDocCount
+operator|=
+literal|0
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
