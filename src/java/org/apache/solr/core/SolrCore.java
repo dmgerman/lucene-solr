@@ -4121,6 +4121,13 @@ argument_list|(
 name|attrVal
 argument_list|)
 expr_stmt|;
+name|builder
+operator|.
+name|setBoost
+argument_list|(
+name|docBoost
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -4363,7 +4370,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|docBoost
+name|boost
 operator|!=
 literal|1.0f
 condition|)
@@ -4376,7 +4383,7 @@ name|name
 argument_list|,
 name|val
 argument_list|,
-name|docBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}
