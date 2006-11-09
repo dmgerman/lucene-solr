@@ -702,7 +702,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<result status=\"0\"></result><result status=\"0\"></result>"
+literal|"<result status=\"0\"></result>"
 argument_list|,
 name|res
 argument_list|)
@@ -753,7 +753,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<result status=\"0\"></result><result status=\"0\"></result>"
+literal|"<result status=\"0\"></result>"
 argument_list|,
 name|res
 argument_list|)
@@ -844,7 +844,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<result status=\"0\"></result><result status=\"0\"></result>"
+literal|"<result status=\"0\"></result>"
 argument_list|,
 name|res
 argument_list|)
