@@ -186,7 +186,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|UpdataAccountStrategy
+name|UpdateAccountStrategy
 argument_list|()
 return|;
 block|}
