@@ -232,6 +232,12 @@ name|lowercaseExpandedTerms
 init|=
 literal|true
 decl_stmt|;
+DECL|field|useOldRangeQuery
+name|boolean
+name|useOldRangeQuery
+init|=
+literal|false
+decl_stmt|;
 DECL|field|allowLeadingWildcard
 name|boolean
 name|allowLeadingWildcard
@@ -652,6 +658,34 @@ parameter_list|()
 block|{
 return|return
 name|lowercaseExpandedTerms
+return|;
+block|}
+comment|/**    * By default QueryParser uses new ConstantScoreRangeQuery in preference to RangeQuery    * for range queries. This implementation is generally preferable because it     * a) Runs faster b) Does not have the scarcity of range terms unduly influence score     * c) avoids any "TooManyBooleanClauses" exception.    * However, if your application really needs to use the old-fashioned RangeQuery and the above    * points are not required then set this option to<code>true</code>    * Default is<code>false</code>.    */
+DECL|method|setUseOldRangeQuery
+specifier|public
+name|void
+name|setUseOldRangeQuery
+parameter_list|(
+name|boolean
+name|useOldRangeQuery
+parameter_list|)
+block|{
+name|this
+operator|.
+name|useOldRangeQuery
+operator|=
+name|useOldRangeQuery
+expr_stmt|;
+block|}
+comment|/**    * @see #setUseOldRangeQuery(boolean)    */
+DECL|method|getUseOldRangeQuery
+specifier|public
+name|boolean
+name|getUseOldRangeQuery
+parameter_list|()
+block|{
+return|return
+name|useOldRangeQuery
 return|;
 block|}
 comment|/**    * Set locale used by date range parsing.    */
@@ -1754,6 +1788,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{ }
+if|if
+condition|(
+name|useOldRangeQuery
+condition|)
+block|{
 return|return
 operator|new
 name|RangeQuery
@@ -1777,6 +1816,25 @@ argument_list|,
 name|inclusive
 argument_list|)
 return|;
+block|}
+else|else
+block|{
+return|return
+operator|new
+name|ConstantScoreRangeQuery
+argument_list|(
+name|field
+argument_list|,
+name|part1
+argument_list|,
+name|part2
+argument_list|,
+name|inclusive
+argument_list|,
+name|inclusive
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * Factory method for generating query, given a set of clauses.    * By default creates a boolean query composed of clauses passed in.    *    * Can be overridden by extending classes, to modify query being    * returned.    *    * @param clauses Vector that contains {@link BooleanClause} instances    *    to join.    *    * @return Resulting {@link Query} object.    * @exception ParseException throw in overridden method to disallow    */
 DECL|method|getBooleanQuery

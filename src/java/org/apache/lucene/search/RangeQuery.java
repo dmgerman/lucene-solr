@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an exclusive range. A RangeQuery  * is built by QueryParser for input like<code>[010 TO 120]</code>.  *  * @version $Id$  */
+comment|/**  * A Query that matches documents within an exclusive range. A RangeQuery  * is built by QueryParser for input like<code>[010 TO 120]</code> but only if the QueryParser has   * the useOldRangeQuery property set to true. The QueryParser default behaviour is to use  * the newer ConstantScoreRangeQuery class. This is generally preferable because:  *<ul>  *<li>It is faster than RangeQuery</li>  *<li>Unlike RangeQuery, it does not cause a BooleanQuery.TooManyClauses exception if the range of values is large</li>  *<li>Unlike RangeQuery it does not influence scoring based on the scarcity of individual terms that may match</li>  *</ul>  *   *   * @see ConstantScoreRangeQuery  *   *  * @version $Id$  */
 end_comment
 
 begin_class
