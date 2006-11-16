@@ -1579,6 +1579,8 @@ name|boolean
 name|is64BitVM
 parameter_list|()
 block|{
+try|try
+block|{
 name|int
 name|bits
 init|=
@@ -1624,6 +1626,18 @@ argument_list|)
 operator|>=
 literal|0
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+comment|// better safe than sorry (applets, security managers, etc.) ...
+block|}
 block|}
 DECL|method|numPositions
 specifier|private
