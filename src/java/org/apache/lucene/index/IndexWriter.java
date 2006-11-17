@@ -631,6 +631,8 @@ operator|=
 name|writeLock
 expr_stmt|;
 comment|// save it
+try|try
+block|{
 synchronized|synchronized
 init|(
 name|directory
@@ -689,6 +691,31 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// the doBody method failed
+name|this
+operator|.
+name|writeLock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|writeLock
+operator|=
+literal|null
+expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
 block|}
 comment|/** Determines the largest number of documents ever merged by addDocument().    * Small values (e.g., less than 10,000) are best for interactive indexing,    * as this limits the length of pauses while indexing to a few seconds.    * Larger values are best for batched indexing and speedier searches.    *    *<p>The default value is {@link Integer#MAX_VALUE}.    */
