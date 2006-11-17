@@ -98,14 +98,14 @@ name|boolean
 name|preLockless
 decl_stmt|;
 comment|// true if this is a segments file written before
-comment|// lock-less commits (XXX)
+comment|// lock-less commits (2.1)
 DECL|field|delGen
 specifier|private
 name|long
 name|delGen
 decl_stmt|;
 comment|// current generation of del file; -1 if there
-comment|// are no deletes; 0 if it's a pre-XXX segment
+comment|// are no deletes; 0 if it's a pre-2.1 segment
 comment|// (and we must check filesystem); 1 or higher if
 comment|// there are deletes at generation N
 DECL|field|normGen
@@ -124,7 +124,7 @@ name|byte
 name|isCompoundFile
 decl_stmt|;
 comment|// -1 if it is not; 1 if it is; 0 if it's
-comment|// pre-XXX (ie, must check file system to see
+comment|// pre-2.1 (ie, must check file system to see
 comment|// if<name>.cfs exists)
 DECL|method|SegmentInfo
 specifier|public
@@ -385,7 +385,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// normGen is null if we loaded a pre-XXX segment
+comment|// normGen is null if we loaded a pre-2.1 segment
 comment|// file, or, if this segments file hasn't had any
 comment|// norms set against it yet:
 name|normGen
@@ -1002,7 +1002,7 @@ literal|1
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns true if this segment is stored as a compound    * file; else, false.    *    * @param directory directory to check.  This parameter is    * only used when the segment was written before version    * XXX (at which point compound file or not became stored    * in the segments info file).    */
+comment|/**    * Returns true if this segment is stored as a compound    * file; else, false.    *    * @param directory directory to check.  This parameter is    * only used when the segment was written before version    * 2.1 (at which point compound file or not became stored    * in the segments info file).    */
 DECL|method|getUseCompoundFile
 name|boolean
 name|getUseCompoundFile

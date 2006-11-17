@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*   Verify we can read the pre-XXX file format, do searches   against it, and add documents to it. */
+comment|/*   Verify we can read the pre-2.1 file format, do searches   against it, and add documents to it. */
 end_comment
 
 begin_class
