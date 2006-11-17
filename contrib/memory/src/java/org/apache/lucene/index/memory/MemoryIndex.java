@@ -5048,18 +5048,20 @@ name|DOUBLE
 init|=
 literal|8
 decl_stmt|;
-comment|/**      * Object header of any heap allocated Java object.       * 1 word: ptr to class, 1 word: info for monitor, gc, hash, etc.      */
-DECL|field|HEADER
+comment|/**      * Object header of any heap allocated Java object.       * ptr to class, info for monitor, gc, hash, etc.      */
+DECL|field|OBJECT_HEADER
 specifier|private
 specifier|static
 specifier|final
 name|int
-name|HEADER
+name|OBJECT_HEADER
 init|=
 literal|2
 operator|*
-name|PTR
+literal|4
 decl_stmt|;
+comment|// typically even on 64 bit VMs
+comment|//  private static final int OBJECT_HEADER = 2*PTR;
 comment|/** 	 * Modern VMs tend to trade space for time, allocating memory on word 	 * boundaries. For example, on a 64 bit VM, the variables of a class with 	 * one 32 bit integer and one Java char really consume 8 bytes instead of 6 	 * bytes. 2 bytes are spent on padding. Similary, on a 64 bit VM a 	 * java.lang.Integer consumes OBJECT_HEADER + 8 bytes rather than 	 * OBJECT_HEADER + 4 bytes. 	 */
 DECL|field|IS_WORD_ALIGNED_VM
 specifier|private
@@ -5124,7 +5126,7 @@ block|{
 return|return
 name|sizeOf
 argument_list|(
-name|HEADER
+name|OBJECT_HEADER
 operator|+
 name|n
 argument_list|)
