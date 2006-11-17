@@ -297,7 +297,7 @@ name|assertEquals
 argument_list|(
 literal|"# of unique locks created (after instantiating IndexWriter)"
 argument_list|,
-literal|2
+literal|1
 argument_list|,
 name|lf
 operator|.
@@ -309,13 +309,13 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"# calls to makeLock<= 2 (after instantiating IndexWriter)"
+literal|"# calls to makeLock is 0 (after instantiating IndexWriter)"
 argument_list|,
 name|lf
 operator|.
 name|makeLockCount
-operator|>
-literal|2
+operator|>=
+literal|1
 argument_list|)
 expr_stmt|;
 for|for
@@ -475,6 +475,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should not have hit an IOException with no locking"
@@ -1086,6 +1095,15 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should not have hit an IOException with locking disabled"
@@ -1218,6 +1236,15 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should not have hit an IOException because LockFactory instances are the same"
@@ -1318,7 +1345,6 @@ argument_list|,
 name|lockFactory
 argument_list|)
 decl_stmt|;
-comment|// fs1.setLockFactory(NoLockFactory.getNoLockFactory());
 comment|// First create a 1 doc index:
 name|IndexWriter
 name|w
@@ -1887,6 +1913,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 if|if
 condition|(
@@ -1936,6 +1963,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 try|try
 block|{
@@ -1978,6 +2006,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 name|writer
 operator|=
@@ -2129,6 +2158,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 if|if
 condition|(
@@ -2187,6 +2217,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 comment|// System.out.println(hits.length() + " total results");
 try|try
@@ -2230,6 +2261,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 name|searcher
 operator|=

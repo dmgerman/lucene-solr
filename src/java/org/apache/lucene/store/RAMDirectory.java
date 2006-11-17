@@ -32,6 +32,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileNotFoundException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -401,6 +411,7 @@ block|}
 comment|/** Returns an array of strings, one for each file in the directory. */
 DECL|method|list
 specifier|public
+specifier|synchronized
 specifier|final
 name|String
 index|[]
@@ -737,6 +748,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|RAMFile
 name|file
@@ -751,6 +764,21 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|file
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|FileNotFoundException
+argument_list|(
+name|name
+argument_list|)
+throw|;
+block|}
 return|return
 operator|new
 name|RAMInputStream

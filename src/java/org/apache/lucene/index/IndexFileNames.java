@@ -35,7 +35,16 @@ name|SEGMENTS
 init|=
 literal|"segments"
 decl_stmt|;
-comment|/** Name of the index deletable file */
+comment|/** Name of the generation reference file name */
+DECL|field|SEGMENTS_GEN
+specifier|static
+specifier|final
+name|String
+name|SEGMENTS_GEN
+init|=
+literal|"segments.gen"
+decl_stmt|;
+comment|/** Name of the index deletable file (only used in    * pre-lockless indices) */
 DECL|field|DELETABLE
 specifier|static
 specifier|final
@@ -44,7 +53,7 @@ name|DELETABLE
 init|=
 literal|"deletable"
 decl_stmt|;
-comment|/**    * This array contains all filename extensions used by Lucene's index files, with    * one exception, namely the extension made up from<code>.f</code> + a number.    * Also note that two of Lucene's files (<code>deletable</code> and    *<code>segments</code>) don't have any filename extension.    */
+comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with two exceptions, namely the    * extension made up from<code>.f</code> + a number and    * from<code>.s</code> + a number.  Also note that    * Lucene's<code>segments_N</code> files do not have any    * filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|static
 specifier|final
@@ -81,6 +90,8 @@ block|,
 literal|"tvf"
 block|,
 literal|"tvp"
+block|,
+literal|"gen"
 block|}
 decl_stmt|;
 comment|/** File extensions of old-style index files */
@@ -129,6 +140,72 @@ block|,
 literal|"tvf"
 block|}
 decl_stmt|;
+comment|/**    * Computes the full file name from base, extension and    * generation.  If the generation is -1, the file name is    * null.  If it's 0, the file name is<base><extension>.    * If it's> 0, the file name is<base>_<generation><extension>.    *    * @param base -- main part of the file name    * @param extension -- extension of the filename (including .)    * @param gen -- generation    */
+DECL|method|fileNameFromGeneration
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|fileNameFromGeneration
+parameter_list|(
+name|String
+name|base
+parameter_list|,
+name|String
+name|extension
+parameter_list|,
+name|long
+name|gen
+parameter_list|)
+block|{
+if|if
+condition|(
+name|gen
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|gen
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+name|base
+operator|+
+name|extension
+return|;
+block|}
+else|else
+block|{
+return|return
+name|base
+operator|+
+literal|"_"
+operator|+
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|gen
+argument_list|,
+name|Character
+operator|.
+name|MAX_RADIX
+argument_list|)
+operator|+
+name|extension
+return|;
+block|}
+block|}
 block|}
 end_class
 
