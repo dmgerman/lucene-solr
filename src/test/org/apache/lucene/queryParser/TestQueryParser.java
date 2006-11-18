@@ -3045,6 +3045,60 @@ argument_list|,
 literal|"[a\\ TO a*]"
 argument_list|)
 expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[\"c\\:\\\\temp\\\\\\~foo0.txt\" TO \"c\\:\\\\temp\\\\\\~foo9.txt\"]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[c:\\temp\\~foo0.txt TO c:\\temp\\~foo9.txt]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a\\\\\\+b"
+argument_list|,
+name|a
+argument_list|,
+literal|"a\\+b"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a \\\"b c\\\" d"
+argument_list|,
+name|a
+argument_list|,
+literal|"a \"b c\" d"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"a \\\"b c\\\" d\""
+argument_list|,
+name|a
+argument_list|,
+literal|"\"a \"b c\" d\""
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"a \\+b c d\""
+argument_list|,
+name|a
+argument_list|,
+literal|"\"a +b c d\""
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"c\\:\\\\temp\\\\\\~foo.txt"
+argument_list|,
+name|a
+argument_list|,
+literal|"c:\\temp\\~foo.txt"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testQueryStringEscaping
 specifier|public
