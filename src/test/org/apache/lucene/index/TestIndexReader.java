@@ -1696,6 +1696,11 @@ parameter_list|)
 block|{
 comment|// GOOD
 block|}
+name|rmDir
+argument_list|(
+name|fileDirName
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testDeleteReaderWriterConflictOptimized
 specifier|public
