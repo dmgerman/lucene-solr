@@ -428,12 +428,12 @@ init|=
 literal|2
 decl_stmt|;
 comment|/**      * Ignore words which do not occur in at least this many docs. 	 * @see #getMinDocFreq 	 * @see #setMinDocFreq	       */
-DECL|field|DEFALT_MIN_DOC_FREQ
+DECL|field|DEFAULT_MIN_DOC_FREQ
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|DEFALT_MIN_DOC_FREQ
+name|DEFAULT_MIN_DOC_FREQ
 init|=
 literal|5
 decl_stmt|;
@@ -533,7 +533,7 @@ specifier|private
 name|int
 name|minDocFreq
 init|=
-name|DEFALT_MIN_DOC_FREQ
+name|DEFAULT_MIN_DOC_FREQ
 decl_stmt|;
 comment|/**      * Should we apply a boost to the Query based on the scores?      */
 DECL|field|boost
@@ -673,7 +673,7 @@ operator|=
 name|minTermFreq
 expr_stmt|;
 block|}
-comment|/**      * Returns the frequency at which words will be ignored which do not occur in at least this      * many docs. The default frequency is {@link #DEFALT_MIN_DOC_FREQ}.      *      * @return the frequency at which words will be ignored which do not occur in at least this      * many docs.      */
+comment|/**      * Returns the frequency at which words will be ignored which do not occur in at least this      * many docs. The default frequency is {@link #DEFAULT_MIN_DOC_FREQ}.      *      * @return the frequency at which words will be ignored which do not occur in at least this      * many docs.      */
 DECL|method|getMinDocFreq
 specifier|public
 name|int
