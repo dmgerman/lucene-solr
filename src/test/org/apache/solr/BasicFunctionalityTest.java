@@ -3009,6 +3009,180 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @see org.apache.solr.util.DateMathParserTest */
+DECL|method|testDateMath
+specifier|public
+name|void
+name|testDateMath
+parameter_list|()
+block|{
+comment|// testing everything from query level is hard because
+comment|// time marches on ... and there is no easy way to reach into the
+comment|// bowels of DateField and muck with the definition of "now"
+comment|//    ...
+comment|// BUT: we can test that crazy combinations of "NOW" all work correctly,
+comment|// assuming the test doesn't take too long to run...
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"bday"
+argument_list|,
+literal|"1976-07-04T12:08:56.235Z"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"bday"
+argument_list|,
+literal|"NOW"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"bday"
+argument_list|,
+literal|"NOW/HOUR"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"4"
+argument_list|,
+literal|"bday"
+argument_list|,
+literal|"NOW-30MINUTES"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"bday"
+argument_list|,
+literal|"NOW+30MINUTES"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"6"
+argument_list|,
+literal|"bday"
+argument_list|,
+literal|"NOW+2YEARS"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check count for before now"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[* TO NOW]"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=4]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check count for after now"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[NOW TO *]"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=2]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check count for old stuff"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[* TO NOW-2YEARS]"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check count for future stuff"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[NOW+1MONTH TO *]"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check count for near stuff"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[NOW-1MONTH TO NOW+2HOURS]"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=4]"
+argument_list|)
+expr_stmt|;
+block|}
 comment|//   /** this doesn't work, but if it did, this is how we'd test it. */
 comment|//   public void testOverwriteFalse() {
 comment|//     assertU(adoc("id", "overwrite", "val_s", "AAA"));
