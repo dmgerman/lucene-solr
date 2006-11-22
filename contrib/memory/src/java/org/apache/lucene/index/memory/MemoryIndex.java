@@ -1257,7 +1257,7 @@ comment|// searcher.close();
 comment|/*        * Note that it is harmless and important for good performance to        * NOT close the index reader!!! This avoids all sorts of        * unnecessary baggage and locking in the Lucene IndexReader        * superclass, all of which is completely unnecessary for this main        * memory index data structure without thread-safety claims.        *         * Wishing IndexReader would be an interface...        *         * Actually with the new tight createSearcher() API auto-closing is now        * made impossible, hence searcher.close() would be harmless...        */
 block|}
 block|}
-comment|/**    * Returns a reasonable approximation of the main memory [bytes] consumed by    * this instance. Useful for smart memory sensititve caches/pools. Assumes    * fieldNames are interned, whereas tokenized terms are memory-overlaid. For    * simplicity, assumes no VM word boundary alignment of instance vars.    *     * @return the main memory consumption    */
+comment|/**    * Returns a reasonable approximation of the main memory [bytes] consumed by    * this instance. Useful for smart memory sensititive caches/pools. Assumes    * fieldNames are interned, whereas tokenized terms are memory-overlaid.    *     * @return the main memory consumption    */
 DECL|method|getMemorySize
 specifier|public
 name|int
@@ -2361,6 +2361,7 @@ name|stride
 operator|==
 literal|1
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -2377,7 +2378,9 @@ name|size
 argument_list|)
 expr_stmt|;
 comment|// fast path
+block|}
 else|else
+block|{
 for|for
 control|(
 name|int
@@ -2410,6 +2413,7 @@ index|[
 name|j
 index|]
 expr_stmt|;
+block|}
 return|return
 name|arr
 return|;
@@ -4497,6 +4501,7 @@ block|{
 name|norm
 block|}
 expr_stmt|;
+comment|// cache it for future reuse
 name|cachedNorms
 operator|=
 name|norms
