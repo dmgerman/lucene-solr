@@ -1254,7 +1254,7 @@ block|}
 finally|finally
 block|{
 comment|// searcher.close();
-comment|/*        * Note that it is harmless and important for good performance to        * NOT close the index reader!!! This avoids all sorts of        * unnecessary baggage and locking in the Lucene IndexReader        * superclass, all of which is completely unnecessary for this main        * memory index data structure without thread-safety claims.        *         * Wishing IndexReader would be an interface...        *         * Actually with the new tight createSearcher() API auto-closing is now        * made impossible, hence searcher.close() would be harmless...        */
+comment|/*        * Note that it is harmless and important for good performance to        * NOT close the index reader!!! This avoids all sorts of        * unnecessary baggage and locking in the Lucene IndexReader        * superclass, all of which is completely unnecessary for this main        * memory index data structure without thread-safety claims.        *         * Wishing IndexReader would be an interface...        *         * Actually with the new tight createSearcher() API auto-closing is now        * made impossible, hence searcher.close() would be harmless and also         * would not degrade performance...        */
 block|}
 block|}
 comment|/**    * Returns a reasonable approximation of the main memory [bytes] consumed by    * this instance. Useful for smart memory sensititive caches/pools. Assumes    * fieldNames are interned, whereas tokenized terms are memory-overlaid.    *     * @return the main memory consumption    */
