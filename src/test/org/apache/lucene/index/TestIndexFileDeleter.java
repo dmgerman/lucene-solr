@@ -266,23 +266,10 @@ name|TestIndexFileDeleter
 extends|extends
 name|TestCase
 block|{
-comment|// disable until hardcoded file names are fixes:
-DECL|method|testDummy
+DECL|method|testDeleteLeftoverFiles
 specifier|public
 name|void
-name|testDummy
-parameter_list|()
-block|{
-name|assertTrue
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|_testDeleteLeftoverFiles
-specifier|public
-name|void
-name|_testDeleteLeftoverFiles
+name|testDeleteLeftoverFiles
 parameter_list|()
 throws|throws
 name|IOException
@@ -410,6 +397,104 @@ name|list
 argument_list|()
 decl_stmt|;
 comment|/*     for(int i=0;i<files.length;i++) {       System.out.println(i + ": " + files[i]);     }     */
+comment|// The numbering of fields can vary depending on which
+comment|// JRE is in use.  On some JREs we see content bound to
+comment|// field 0; on others, field 1.  So, here we have to
+comment|// figure out which field number corresponds to
+comment|// "content", and then set our expected file names below
+comment|// accordingly:
+name|CompoundFileReader
+name|cfsReader
+init|=
+operator|new
+name|CompoundFileReader
+argument_list|(
+name|dir
+argument_list|,
+literal|"_2.cfs"
+argument_list|)
+decl_stmt|;
+name|FieldInfos
+name|fieldInfos
+init|=
+operator|new
+name|FieldInfos
+argument_list|(
+name|cfsReader
+argument_list|,
+literal|"_2.fnm"
+argument_list|)
+decl_stmt|;
+name|int
+name|contentFieldIndex
+init|=
+operator|-
+literal|1
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|fieldInfos
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|FieldInfo
+name|fi
+init|=
+name|fieldInfos
+operator|.
+name|fieldInfo
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fi
+operator|.
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"content"
+argument_list|)
+condition|)
+block|{
+name|contentFieldIndex
+operator|=
+name|i
+expr_stmt|;
+break|break;
+block|}
+block|}
+name|assertTrue
+argument_list|(
+literal|"could not locate the 'content' field number in the _2.cfs segment"
+argument_list|,
+name|contentFieldIndex
+operator|!=
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|String
+name|normSuffix
+init|=
+literal|"s"
+operator|+
+name|contentFieldIndex
+decl_stmt|;
 comment|// Create a bogus separate norms file for a
 comment|// segment/field that actually has a separate norms file
 comment|// already:
@@ -417,9 +502,13 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_2_1.s0"
+literal|"_2_1."
+operator|+
+name|normSuffix
 argument_list|,
-literal|"_2_2.s0"
+literal|"_2_2."
+operator|+
+name|normSuffix
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus separate norms file for a
@@ -429,9 +518,13 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_2_1.s0"
+literal|"_2_1."
+operator|+
+name|normSuffix
 argument_list|,
-literal|"_2_2.f0"
+literal|"_2_2.f"
+operator|+
+name|contentFieldIndex
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus separate norms file for a
@@ -441,9 +534,13 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_2_1.s0"
+literal|"_2_1."
+operator|+
+name|normSuffix
 argument_list|,
-literal|"_1_1.s0"
+literal|"_1_1."
+operator|+
+name|normSuffix
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus separate norms file for a
@@ -453,9 +550,13 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_2_1.s0"
+literal|"_2_1."
+operator|+
+name|normSuffix
 argument_list|,
-literal|"_1_1.f0"
+literal|"_1_1.f"
+operator|+
+name|contentFieldIndex
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus separate del file for a

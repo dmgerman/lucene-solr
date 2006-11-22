@@ -1587,10 +1587,10 @@ expr_stmt|;
 block|}
 comment|/* Verifies that the expected file names were produced */
 comment|// disable until hardcoded file names are fixes:
-DECL|method|_testExactFileNames
+DECL|method|testExactFileNames
 specifier|public
 name|void
-name|_testExactFileNames
+name|testExactFileNames
 parameter_list|()
 throws|throws
 name|IOException
@@ -1728,6 +1728,97 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// The numbering of fields can vary depending on which
+comment|// JRE is in use.  On some JREs we see content bound to
+comment|// field 0; on others, field 1.  So, here we have to
+comment|// figure out which field number corresponds to
+comment|// "content", and then set our expected file names below
+comment|// accordingly:
+name|CompoundFileReader
+name|cfsReader
+init|=
+operator|new
+name|CompoundFileReader
+argument_list|(
+name|dir
+argument_list|,
+literal|"_2.cfs"
+argument_list|)
+decl_stmt|;
+name|FieldInfos
+name|fieldInfos
+init|=
+operator|new
+name|FieldInfos
+argument_list|(
+name|cfsReader
+argument_list|,
+literal|"_2.fnm"
+argument_list|)
+decl_stmt|;
+name|int
+name|contentFieldIndex
+init|=
+operator|-
+literal|1
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|fieldInfos
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|FieldInfo
+name|fi
+init|=
+name|fieldInfos
+operator|.
+name|fieldInfo
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fi
+operator|.
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"content"
+argument_list|)
+condition|)
+block|{
+name|contentFieldIndex
+operator|=
+name|i
+expr_stmt|;
+break|break;
+block|}
+block|}
+name|assertTrue
+argument_list|(
+literal|"could not locate the 'content' field number in the _2.cfs segment"
+argument_list|,
+name|contentFieldIndex
+operator|!=
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 comment|// Now verify file names:
 name|String
 index|[]
@@ -1742,7 +1833,9 @@ literal|"_1.cfs"
 block|,
 literal|"_2.cfs"
 block|,
-literal|"_2_1.s0"
+literal|"_2_1.s"
+operator|+
+name|contentFieldIndex
 block|,
 literal|"_3.cfs"
 block|,
