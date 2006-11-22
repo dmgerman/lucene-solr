@@ -3826,7 +3826,9 @@ operator|>=
 name|minScore
 condition|)
 block|{
-comment|// if docs are always delivered in order, we could use "score>minScore"
+comment|// TODO: if docs are always delivered in order, we could use "score>minScore"
+comment|// instead of "score>=minScore" and avoid tiebreaking scores
+comment|// in the priority queue.
 comment|// but might BooleanScorer14 might still be used and deliver docs out-of-order?
 name|hq
 operator|.
