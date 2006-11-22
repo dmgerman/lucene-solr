@@ -24,7 +24,17 @@ name|java
 operator|.
 name|io
 operator|.
-name|*
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringReader
 import|;
 end_import
 
@@ -34,7 +44,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|HashSet
 import|;
 end_import
 
@@ -42,9 +52,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|util
 operator|.
-name|*
+name|Set
 import|;
 end_import
 
@@ -58,7 +68,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|Analyzer
 import|;
 end_import
 
@@ -72,37 +82,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|standard
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|*
+name|TokenStream
 import|;
 end_import
 
@@ -116,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|*
+name|Term
 import|;
 end_import
 
@@ -128,14 +108,70 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|search
 operator|.
-name|*
+name|BooleanClause
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|IndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermQuery
 import|;
 end_import
 
 begin_comment
-comment|/**  * Simple similarity measures.  *  *  * @see MoreLikeThis  */
+comment|/**  * Simple similarity measures.  *  * @see MoreLikeThis  */
 end_comment
 
 begin_class
@@ -151,7 +187,7 @@ specifier|private
 name|SimilarityQueries
 parameter_list|()
 block|{ 	}
-comment|/**      * Simple similarity query generators. 	 * Takes every unique word and forms a boolean query where all words are optional. 	 * After you get this you'll use to to query your {@link IndexSearcher} for similar docs. 	 * The only caveat is the first hit returned<b>should be</b> your source document - you'll 	 * need to then ignore that. 	 * 	 *<p> 	 * 	 * So, if you have a code fragment like this: 	 *<br> 	 *<code> 	 * Query q = formSimilaryQuery( "I use Lucene to search fast. Fast searchers are good", new StandardAnalyzer(), "contents", null); 	 *</code> 	 * 	 *<p> 	 * 	  	 * The query returned, in string form, will be<code>'(i use lucene to search fast searchers are good')</code>. 	 * 	 *<p> 	 * The philosophy behind this method is "two documents are similar if they share lots of words". 	 * Note that behind the scenes, Lucenes scoring algorithm will tend to give two documents a higher similarity score if the share more uncommon words. 	 * 	 *<P> 	 * This method is fail-safe in that if a long 'body' is passed in and 	 * {@link BooleanQuery#add BooleanQuery.add()} (used internally) 	 * throws 	 * {@link org.apache.lucene.search.BooleanQuery.TooManyClauses BooleanQuery.TooManyClauses}, the 	 * query as it is will be returned. 	 * 	 *  	 *  	 * 	 * 	 * @param body the body of the document you want to find similar documents to 	 * @param a the analyzer to use to parse the body 	 * @param field the field you want to search on, probably something like "contents" or "body" 	 * @param stop optional set of stop words to ignore 	 * @return a query with all unique words in 'body' 	 * @throws IOException this can't happen... 	 */
+comment|/** 	 * Simple similarity query generators. 	 * Takes every unique word and forms a boolean query where all words are optional. 	 * After you get this you'll use to to query your {@link IndexSearcher} for similar docs. 	 * The only caveat is the first hit returned<b>should be</b> your source document - you'll 	 * need to then ignore that. 	 * 	 *<p> 	 * So, if you have a code fragment like this: 	 *<br> 	 *<code> 	 * Query q = formSimilaryQuery( "I use Lucene to search fast. Fast searchers are good", new StandardAnalyzer(), "contents", null); 	 *</code> 	 * 	 *<p> 	 * The query returned, in string form, will be<code>'(i use lucene to search fast searchers are good')</code>. 	 * 	 *<p> 	 * The philosophy behind this method is "two documents are similar if they share lots of words". 	 * Note that behind the scenes, Lucenes scoring algorithm will tend to give two documents a higher similarity score if the share more uncommon words. 	 * 	 *<P> 	 * This method is fail-safe in that if a long 'body' is passed in and 	 * {@link BooleanQuery#add BooleanQuery.add()} (used internally) 	 * throws 	 * {@link org.apache.lucene.search.BooleanQuery.TooManyClauses BooleanQuery.TooManyClauses}, the 	 * query as it is will be returned. 	 * 	 * @param body the body of the document you want to find similar documents to 	 * @param a the analyzer to use to parse the body 	 * @param field the field you want to search on, probably something like "contents" or "body" 	 * @param stop optional set of stop words to ignore 	 * @return a query with all unique words in 'body' 	 * @throws IOException this can't happen... 	 */
 DECL|method|formSimilarQuery
 specifier|public
 specifier|static
