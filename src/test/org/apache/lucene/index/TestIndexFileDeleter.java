@@ -478,6 +478,11 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+name|cfsReader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|assertTrue
 argument_list|(
 literal|"could not locate the 'content' field number in the _2.cfs segment"
@@ -680,6 +685,11 @@ operator|.
 name|list
 argument_list|()
 decl_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|Arrays
 operator|.
 name|sort
