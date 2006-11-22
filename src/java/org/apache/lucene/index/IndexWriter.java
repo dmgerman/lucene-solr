@@ -315,7 +315,7 @@ comment|// the segments in ramDirectory
 DECL|field|ramDirectory
 specifier|private
 specifier|final
-name|Directory
+name|RAMDirectory
 name|ramDirectory
 init|=
 operator|new
@@ -2372,10 +2372,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Merges all RAM-resident segments, then may merge segments. */
+comment|/** Expert:  Flushes all RAM-resident segments (buffered documents), then may merge segments. */
 DECL|method|flushRamSegments
-specifier|private
+specifier|public
 specifier|final
+specifier|synchronized
 name|void
 name|flushRamSegments
 parameter_list|()
@@ -2410,6 +2411,37 @@ name|minMergeDocs
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/** Expert:  Return the total size of all index files currently cached in memory.    * Useful for size management with flushRamDocs()    */
+DECL|method|ramSizeInBytes
+specifier|public
+specifier|final
+name|long
+name|ramSizeInBytes
+parameter_list|()
+block|{
+return|return
+name|ramDirectory
+operator|.
+name|sizeInBytes
+argument_list|()
+return|;
+block|}
+comment|/** Expert:  Return the number of documents whose segments are currently cached in memory.    * Useful when calling flushRamSegments()    */
+DECL|method|numRamDocs
+specifier|public
+specifier|final
+specifier|synchronized
+name|int
+name|numRamDocs
+parameter_list|()
+block|{
+return|return
+name|ramSegmentInfos
+operator|.
+name|size
+argument_list|()
+return|;
 block|}
 comment|/** Incremental segment merger.  */
 DECL|method|maybeMergeSegments
