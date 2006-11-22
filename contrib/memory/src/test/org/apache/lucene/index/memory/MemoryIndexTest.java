@@ -136,7 +136,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Enumeration
 import|;
 end_import
 
@@ -1677,22 +1677,19 @@ operator|new
 name|MemoryIndex
 argument_list|()
 decl_stmt|;
-name|Iterator
+name|Enumeration
 name|iter
 init|=
 name|doc
 operator|.
-name|getFields
-argument_list|()
-operator|.
-name|iterator
+name|fields
 argument_list|()
 decl_stmt|;
 while|while
 condition|(
 name|iter
 operator|.
-name|hasNext
+name|hasMoreElements
 argument_list|()
 condition|)
 block|{
@@ -1704,7 +1701,7 @@ name|Field
 operator|)
 name|iter
 operator|.
-name|next
+name|nextElement
 argument_list|()
 decl_stmt|;
 name|index
