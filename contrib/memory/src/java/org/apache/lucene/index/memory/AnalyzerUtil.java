@@ -750,7 +750,7 @@ name|reader
 parameter_list|)
 block|{
 name|Pair
-name|pair
+name|key
 init|=
 operator|new
 name|Pair
@@ -771,7 +771,7 @@ name|cache
 operator|.
 name|get
 argument_list|(
-name|pair
+name|key
 argument_list|)
 decl_stmt|;
 if|if
@@ -794,7 +794,7 @@ name|cache
 operator|.
 name|put
 argument_list|(
-name|pair
+name|key
 argument_list|,
 name|tokens2
 argument_list|)
