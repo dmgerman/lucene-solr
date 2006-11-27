@@ -1924,6 +1924,8 @@ operator|.
 name|doc
 argument_list|(
 name|id
+argument_list|,
+name|fields
 argument_list|)
 decl_stmt|;
 if|if

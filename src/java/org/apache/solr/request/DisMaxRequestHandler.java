@@ -1396,6 +1396,22 @@ operator|.
 name|docList
 argument_list|)
 expr_stmt|;
+comment|// pre-fetch returned documents
+name|U
+operator|.
+name|optimizePreFetchDocs
+argument_list|(
+name|results
+operator|.
+name|docList
+argument_list|,
+name|query
+argument_list|,
+name|req
+argument_list|,
+name|rsp
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 literal|null

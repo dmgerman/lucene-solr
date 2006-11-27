@@ -1087,7 +1087,7 @@ name|f
 parameter_list|)
 block|{
 comment|// currently used in writing XML of the search result (but perhaps
-comment|// a more efficient toXML(Field f, Writer w) should be used
+comment|// a more efficient toXML(Fieldable f, Writer w) should be used
 comment|// in the future.
 return|return
 name|f
@@ -1400,7 +1400,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|Field
+name|Fieldable
 name|f
 parameter_list|)
 throws|throws
