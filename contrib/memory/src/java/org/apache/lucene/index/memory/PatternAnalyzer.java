@@ -194,7 +194,7 @@ name|PatternAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/**<code>"\\W+"</code>; Divides text at non-letters (Character.isLetter(c)) */
+comment|/**<code>"\\W+"</code>; Divides text at non-letters (!Character.isLetter(c)) */
 DECL|field|NON_WORD_PATTERN
 specifier|public
 specifier|static
