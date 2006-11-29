@@ -5053,7 +5053,28 @@ name|DOUBLE
 init|=
 literal|8
 decl_stmt|;
+DECL|field|LOG_PTR
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|LOG_PTR
+init|=
+operator|(
+name|int
+operator|)
+name|Math
+operator|.
+name|round
+argument_list|(
+name|log2
+argument_list|(
+name|PTR
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|/**      * Object header of any heap allocated Java object.       * ptr to class, info for monitor, gc, hash, etc.      */
+comment|//	private static final int OBJECT_HEADER = 2*4; // even on 64 bit VMs?
 DECL|field|OBJECT_HEADER
 specifier|private
 specifier|static
@@ -5063,10 +5084,8 @@ name|OBJECT_HEADER
 init|=
 literal|2
 operator|*
-literal|4
+name|PTR
 decl_stmt|;
-comment|// typically even on 64 bit VMs
-comment|//  private static final int OBJECT_HEADER = 2*PTR;
 comment|/** 	 * Modern VMs tend to trade space for time, allocating memory on word 	 * boundaries. For example, on a 64 bit VM, the variables of a class with 	 * one 32 bit integer and one Java char really consume 8 bytes instead of 6 	 * bytes. 2 bytes are spent on padding. Similary, on a 64 bit VM a 	 * java.lang.Integer consumes OBJECT_HEADER + 8 bytes rather than 	 * OBJECT_HEADER + 4 bytes. 	 */
 DECL|field|IS_WORD_ALIGNED_VM
 specifier|private
@@ -5101,20 +5120,24 @@ block|{
 return|return
 name|IS_WORD_ALIGNED_VM
 condition|?
+comment|//              ((n-1)/PTR + 1) * PTR :               // slow version
+operator|(
 operator|(
 operator|(
 name|n
 operator|-
 literal|1
 operator|)
-operator|/
-name|PTR
+operator|>>
+name|LOG_PTR
+operator|)
 operator|+
 literal|1
 operator|)
-operator|*
-name|PTR
+operator|<<
+name|LOG_PTR
 else|:
+comment|// fast version
 name|n
 return|;
 block|}
@@ -5383,6 +5406,33 @@ literal|false
 return|;
 comment|// better safe than sorry (applets, security managers, etc.) ...
 block|}
+block|}
+comment|/** logarithm to the base 2. Example: log2(4) == 2, log2(8) == 3 */
+DECL|method|log2
+specifier|private
+specifier|static
+name|double
+name|log2
+parameter_list|(
+name|double
+name|value
+parameter_list|)
+block|{
+return|return
+name|Math
+operator|.
+name|log
+argument_list|(
+name|value
+argument_list|)
+operator|/
+name|Math
+operator|.
+name|log
+argument_list|(
+literal|2
+argument_list|)
+return|;
 block|}
 block|}
 block|}
