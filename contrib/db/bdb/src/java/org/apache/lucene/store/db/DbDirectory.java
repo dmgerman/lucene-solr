@@ -730,6 +730,10 @@ init|=
 operator|new
 name|DatabaseEntry
 argument_list|(
+operator|(
+name|byte
+index|[]
+operator|)
 literal|null
 argument_list|)
 decl_stmt|;
