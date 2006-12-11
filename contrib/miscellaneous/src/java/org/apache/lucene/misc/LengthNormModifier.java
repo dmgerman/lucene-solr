@@ -375,7 +375,7 @@ specifier|private
 name|Similarity
 name|sim
 decl_stmt|;
-comment|/**    * Constructor for code that wishes to use this class progromaticaly    *    * @param d The Directory to modify    * @param s The Similarity to use in<code>reSetNorms</code>    */
+comment|/**    * Constructor for code that wishes to use this class progaomatically.    *    * @param d The Directory to modify    * @param s The Similarity to use in<code>reSetNorms</code>    */
 DECL|method|LengthNormModifier
 specifier|public
 name|LengthNormModifier
@@ -396,7 +396,7 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|/**    * Re-Set the norms for the specified field.    *    *<p>    * Opens a new IndexReader on the Directory given to this instance,    * modifies the norms using the Similarity given to this instance,    * and closes the IndexReader.    *</p>    *    * @param field the field whose norms    */
+comment|/**    * Resets the norms for the specified field.    *    *<p>    * Opens a new IndexReader on the Directory given to this instance,    * modifies the norms using the Similarity given to this instance,    * and closes the IndexReader.    *</p>    *    * @param field the field whose norms should be reset    */
 DECL|method|reSetNorms
 specifier|public
 name|void
