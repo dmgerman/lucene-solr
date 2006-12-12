@@ -1195,6 +1195,16 @@ literal|"java.io.tmpdir"
 argument_list|)
 decl_stmt|;
 name|String
+name|userName
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"user.name"
+argument_list|)
+decl_stmt|;
+name|String
 name|path
 init|=
 name|tmpIODir
@@ -1204,6 +1214,8 @@ operator|.
 name|separator
 operator|+
 literal|"lazyDir"
+operator|+
+name|userName
 decl_stmt|;
 name|File
 name|file
