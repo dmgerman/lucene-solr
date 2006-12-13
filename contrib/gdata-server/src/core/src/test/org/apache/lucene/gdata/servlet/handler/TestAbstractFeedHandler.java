@@ -404,7 +404,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"src/test/org/apache/lucene/gdata/server/registry/TestEntityBuilderIncomingFeed.xml"
+literal|"src/core/src/test/org/apache/lucene/gdata/server/registry/TestEntityBuilderIncomingFeed.xml"
 argument_list|)
 decl_stmt|;
 DECL|field|reader
