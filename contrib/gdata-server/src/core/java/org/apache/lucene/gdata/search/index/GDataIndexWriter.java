@@ -274,25 +274,10 @@ name|getWriteLockTimeout
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|config
-operator|.
-name|getCommitLockTimeout
-argument_list|()
-operator|!=
-name|IndexSchema
-operator|.
-name|NOT_SET_VALUE
-condition|)
-name|setCommitLockTimeout
-argument_list|(
-name|config
-operator|.
-name|getCommitLockTimeout
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//no commit lock anymore
+comment|//TODO fix this
+comment|//        if (config.getCommitLockTimeout() != IndexSchema.NOT_SET_VALUE)
+comment|//            setCommitLockTimeout(config.getCommitLockTimeout());
 block|}
 comment|/**      * Creates and configures a new GdataIndexWriter      *       * @param arg0 -      *            the index directory      * @param arg1 -      *            create index      * @param arg2 -      *            the index schema configuration including all parameter to set      *            up the index writer      * @throws IOException      *             -if the directory cannot be read/written to, or if it does      *             not exist, and<code>create</code> is<code>false</code>      */
 DECL|method|GDataIndexWriter
