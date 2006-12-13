@@ -384,16 +384,8 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|VALUE_GT_DEFAULT_LONG
-argument_list|,
-name|writer
-operator|.
-name|getCommitLockTimeout
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//TODO fix this - index writer has no commitlocktimeout setter anymore (lockless commits)
+comment|//        assertEquals(VALUE_GT_DEFAULT_LONG,writer.getCommitLockTimeout());
 name|assertEquals
 argument_list|(
 name|VALUE_GT_DEFAULT_LONG
