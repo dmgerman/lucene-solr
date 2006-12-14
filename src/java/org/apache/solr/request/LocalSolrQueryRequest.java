@@ -432,6 +432,25 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|LocalSolrQueryRequest
+specifier|public
+name|LocalSolrQueryRequest
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|SolrParams
+name|args
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|core
+argument_list|,
+name|args
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
