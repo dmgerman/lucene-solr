@@ -103,6 +103,17 @@ name|void
 name|testSimple
 parameter_list|()
 block|{
+name|lrf
+operator|.
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"version"
+argument_list|,
+literal|"2.0"
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 literal|"Simple assertion that adding a document works"
@@ -170,6 +181,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|lrf
+operator|.
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"version"
+argument_list|,
+literal|"2.0"
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 literal|"less common case, a complex addition with options"

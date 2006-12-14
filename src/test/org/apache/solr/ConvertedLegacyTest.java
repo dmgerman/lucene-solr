@@ -123,6 +123,17 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|lrf
+operator|.
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"version"
+argument_list|,
+literal|"2.0"
+argument_list|)
+expr_stmt|;
 comment|// compact the index, keep things from getting out of hand
 name|assertU
 argument_list|(

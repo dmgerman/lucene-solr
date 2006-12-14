@@ -1389,7 +1389,7 @@ name|rsp
 operator|.
 name|add
 argument_list|(
-literal|"search-results"
+literal|"response"
 argument_list|,
 name|results
 operator|.

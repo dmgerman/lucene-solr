@@ -294,6 +294,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|lrf
+operator|.
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"version"
+argument_list|,
+literal|"2.0"
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 literal|"test query on empty index"
@@ -3132,7 +3143,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|null
+literal|"response"
 argument_list|)
 decl_stmt|;
 name|org
@@ -3297,7 +3308,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|null
+literal|"response"
 argument_list|)
 decl_stmt|;
 name|DocIterator
