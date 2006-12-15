@@ -82,6 +82,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|DOMUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -727,16 +741,15 @@ condition|)
 return|return
 literal|null
 return|;
-comment|// should do the right thing for both attributes and elements.
-comment|// Oops, when running in Resin, I get an unsupported operation
-comment|// exception... need to use Sun default (apache)
 name|String
 name|txt
 init|=
-name|nd
+name|DOMUtil
 operator|.
-name|getTextContent
-argument_list|()
+name|getText
+argument_list|(
+name|nd
+argument_list|)
 decl_stmt|;
 name|log
 operator|.
