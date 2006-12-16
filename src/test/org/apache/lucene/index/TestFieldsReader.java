@@ -1191,7 +1191,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"java.io.tmpdir"
+literal|"tempDir"
 argument_list|)
 decl_stmt|;
 name|String
