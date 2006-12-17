@@ -76,27 +76,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Vector
+name|*
 import|;
 end_import
 
@@ -193,11 +173,11 @@ expr_stmt|;
 block|}
 DECL|field|clauses
 specifier|private
-name|Vector
+name|ArrayList
 name|clauses
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|()
 decl_stmt|;
 DECL|field|disableCoord
@@ -383,7 +363,7 @@ argument_list|()
 throw|;
 name|clauses
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|clause
 argument_list|)
@@ -409,9 +389,23 @@ argument_list|(
 operator|new
 name|BooleanClause
 index|[
-literal|0
+name|clauses
+operator|.
+name|size
+argument_list|()
 index|]
 argument_list|)
+return|;
+block|}
+comment|/** Returns the list of clauses in this query. */
+DECL|method|clauses
+specifier|public
+name|List
+name|clauses
+parameter_list|()
+block|{
+return|return
+name|clauses
 return|;
 block|}
 DECL|class|BooleanWeight
@@ -480,7 +474,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -564,7 +558,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -660,7 +654,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -742,7 +736,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -888,7 +882,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1045,7 +1039,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1476,7 +1470,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1659,7 +1653,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 literal|0
 argument_list|)
@@ -1769,7 +1763,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1818,8 +1812,10 @@ name|clone
 operator|.
 name|clauses
 operator|.
-name|setElementAt
+name|set
 argument_list|(
+name|i
+argument_list|,
 operator|new
 name|BooleanClause
 argument_list|(
@@ -1830,8 +1826,6 @@ operator|.
 name|getOccur
 argument_list|()
 argument_list|)
-argument_list|,
-name|i
 argument_list|)
 expr_stmt|;
 block|}
@@ -1926,7 +1920,7 @@ operator|.
 name|clauses
 operator|=
 operator|(
-name|Vector
+name|ArrayList
 operator|)
 name|this
 operator|.
@@ -2012,7 +2006,7 @@ name|BooleanClause
 operator|)
 name|clauses
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
