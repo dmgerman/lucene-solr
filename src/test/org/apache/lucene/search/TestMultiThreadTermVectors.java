@@ -921,7 +921,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"worng term result"
+literal|"wrong term result"
 argument_list|)
 expr_stmt|;
 block|}
