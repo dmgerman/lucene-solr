@@ -470,6 +470,17 @@ specifier|private
 name|boolean
 name|hasChanges
 decl_stmt|;
+comment|/** Used by commit() to record pre-commit state in case    * rollback is necessary */
+DECL|field|rollbackHasChanges
+specifier|private
+name|boolean
+name|rollbackHasChanges
+decl_stmt|;
+DECL|field|rollbackSegmentInfos
+specifier|private
+name|SegmentInfos
+name|rollbackSegmentInfos
+decl_stmt|;
 comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path. */
 DECL|method|open
 specifier|public
@@ -1732,7 +1743,95 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Commit changes resulting from delete, undeleteAll, or setNorm operations    *     * @throws IOException    */
+comment|/**    * Should internally checkpoint state that will change    * during commit so that we can rollback if necessary.    */
+DECL|method|startCommit
+name|void
+name|startCommit
+parameter_list|()
+block|{
+if|if
+condition|(
+name|directoryOwner
+condition|)
+block|{
+name|rollbackSegmentInfos
+operator|=
+operator|(
+name|SegmentInfos
+operator|)
+name|segmentInfos
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
+name|rollbackHasChanges
+operator|=
+name|hasChanges
+expr_stmt|;
+block|}
+comment|/**    * Rolls back state to just before the commit (this is    * called by commit() if there is some exception while    * committing).    */
+DECL|method|rollbackCommit
+name|void
+name|rollbackCommit
+parameter_list|()
+block|{
+if|if
+condition|(
+name|directoryOwner
+condition|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|// Rollback each segmentInfo.  Because the
+comment|// SegmentReader holds a reference to the
+comment|// SegmentInfo we can't [easily] just replace
+comment|// segmentInfos, so we reset it in place instead:
+name|segmentInfos
+operator|.
+name|info
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|reset
+argument_list|(
+name|rollbackSegmentInfos
+operator|.
+name|info
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+name|rollbackSegmentInfos
+operator|=
+literal|null
+expr_stmt|;
+block|}
+name|hasChanges
+operator|=
+name|rollbackHasChanges
+expr_stmt|;
+block|}
+comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    *     * @throws IOException    */
 DECL|method|commit
 specifier|protected
 specifier|final
@@ -1779,12 +1878,11 @@ condition|(
 name|directoryOwner
 condition|)
 block|{
+comment|// Should not be necessary: no prior commit should
+comment|// have left pending files, so just defensive:
 name|deleter
 operator|.
 name|clearPendingFiles
-argument_list|()
-expr_stmt|;
-name|doCommit
 argument_list|()
 expr_stmt|;
 name|String
@@ -1795,6 +1893,29 @@ operator|.
 name|getCurrentSegmentFileName
 argument_list|()
 decl_stmt|;
+name|String
+name|nextSegmentsFileName
+init|=
+name|segmentInfos
+operator|.
+name|getNextSegmentFileName
+argument_list|()
+decl_stmt|;
+comment|// Checkpoint the state we are about to change, in
+comment|// case we have to roll back:
+name|startCommit
+argument_list|()
+expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+name|doCommit
+argument_list|()
+expr_stmt|;
 name|segmentInfos
 operator|.
 name|write
@@ -1802,6 +1923,57 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// Rollback changes that were made to
+comment|// SegmentInfos but failed to get [fully]
+comment|// committed.  This way this reader instance
+comment|// remains consistent (matched to what's
+comment|// actually in the index):
+name|rollbackCommit
+argument_list|()
+expr_stmt|;
+comment|// Erase any pending files that we were going to delete:
+name|deleter
+operator|.
+name|clearPendingFiles
+argument_list|()
+expr_stmt|;
+comment|// Remove possibly partially written next
+comment|// segments file:
+name|deleter
+operator|.
+name|deleteFile
+argument_list|(
+name|nextSegmentsFileName
+argument_list|)
+expr_stmt|;
+comment|// Recompute deletable files& remove them (so
+comment|// partially written .del files, etc, are
+comment|// removed):
+name|deleter
+operator|.
+name|findDeletableFiles
+argument_list|()
+expr_stmt|;
+name|deleter
+operator|.
+name|deleteFiles
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|// Attempt to delete all files we just obsoleted:
 name|deleter
 operator|.
@@ -1813,11 +1985,6 @@ expr_stmt|;
 name|deleter
 operator|.
 name|commitPendingFiles
-argument_list|()
-expr_stmt|;
-name|deleter
-operator|.
-name|deleteFiles
 argument_list|()
 expr_stmt|;
 if|if

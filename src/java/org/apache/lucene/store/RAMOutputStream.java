@@ -228,6 +228,8 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|byte
 index|[]

@@ -188,6 +188,20 @@ name|English
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|MockRAMDirectory
+import|;
+end_import
+
 begin_comment
 comment|/**  * JUnit testcase to test RAMDirectory. RAMDirectory itself is used in many testcases,  * but not one of them uses an different constructor other than the default constructor.  *   * @author Bernhard Messer  *   * @version $Id: RAMDirectory.java 150537 2004-09-28 22:45:26 +0200 (Di, 28 Sep 2004) cutting $  */
 end_comment
@@ -377,11 +391,11 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|(
 name|dir
 argument_list|)
@@ -496,11 +510,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|(
 name|indexDir
 argument_list|)
@@ -609,11 +623,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|(
 name|indexDir
 operator|.
@@ -744,11 +758,11 @@ throws|,
 name|InterruptedException
 block|{
 specifier|final
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|(
 name|indexDir
 operator|.

@@ -113,7 +113,6 @@ end_comment
 begin_class
 DECL|class|RAMDirectory
 specifier|public
-specifier|final
 class|class
 name|RAMDirectory
 extends|extends
@@ -131,7 +130,6 @@ init|=
 literal|1l
 decl_stmt|;
 DECL|field|fileMap
-specifier|private
 name|HashMap
 name|fileMap
 init|=
@@ -150,7 +148,6 @@ name|keySet
 argument_list|()
 decl_stmt|;
 DECL|field|files
-specifier|private
 name|Collection
 name|files
 init|=
@@ -732,7 +729,7 @@ name|getLength
 argument_list|()
 return|;
 block|}
-comment|/** Return total size in bytes of all files in this directory */
+comment|/** Return total size in bytes of all files in this    * directory.  This is currently quantized to    * BufferedIndexOutput.BUFFER_SIZE. */
 DECL|method|sizeInBytes
 specifier|public
 specifier|synchronized
@@ -743,54 +740,6 @@ parameter_list|()
 block|{
 return|return
 name|sizeInBytes
-return|;
-block|}
-comment|/** Provided for testing purposes.  Use sizeInBytes() instead. */
-DECL|method|getRecomputedSizeInBytes
-specifier|public
-specifier|synchronized
-specifier|final
-name|long
-name|getRecomputedSizeInBytes
-parameter_list|()
-block|{
-name|long
-name|size
-init|=
-literal|0
-decl_stmt|;
-name|Iterator
-name|it
-init|=
-name|files
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|it
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|size
-operator|+=
-operator|(
-operator|(
-name|RAMFile
-operator|)
-name|it
-operator|.
-name|next
-argument_list|()
-operator|)
-operator|.
-name|getSizeInBytes
-argument_list|()
-expr_stmt|;
-return|return
-name|size
 return|;
 block|}
 comment|/** Removes an existing file in the directory.    * @throws IOException if the file does not exist    */
@@ -954,7 +903,6 @@ block|}
 comment|/** Creates a new, empty file in the directory with the given name. Returns a stream writing this file. */
 DECL|method|createOutput
 specifier|public
-specifier|final
 name|IndexOutput
 name|createOutput
 parameter_list|(

@@ -182,6 +182,16 @@ name|Vector
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_comment
 comment|/**   An IndexWriter creates and maintains an index.    The third argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer, boolean)"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened for the addition of new documents.    In either case, documents are added with the<a   href="#addDocument(org.apache.lucene.document.Document)"><b>addDocument</b></a> method.     When finished adding documents,<a href="#close()"><b>close</b></a> should be called.<p>If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize()"><b>optimize</b></a>   method should be called before the index is closed.<p>Opening an IndexWriter creates a lock file for the directory in use. Trying to open   another IndexWriter on the same directory will lead to an IOException. The IOException   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.      @see IndexModifier IndexModifier supports the important methods of IndexWriter plus deletion   */
 end_comment
@@ -292,6 +302,32 @@ name|getDefault
 argument_list|()
 decl_stmt|;
 comment|// how to normalize
+DECL|field|inTransaction
+specifier|private
+name|boolean
+name|inTransaction
+init|=
+literal|false
+decl_stmt|;
+comment|// true iff we are in a transaction
+DECL|field|commitPending
+specifier|private
+name|boolean
+name|commitPending
+decl_stmt|;
+comment|// true if segmentInfos has changes not yet committed
+DECL|field|protectedSegments
+specifier|private
+name|HashSet
+name|protectedSegments
+decl_stmt|;
+comment|// segment names that should not be deleted until commit
+DECL|field|rollbackSegmentInfos
+specifier|private
+name|SegmentInfos
+name|rollbackSegmentInfos
+decl_stmt|;
+comment|// segmentInfos we will fallback to if the commit fails
 DECL|field|segmentInfos
 specifier|private
 name|SegmentInfos
@@ -1102,7 +1138,7 @@ name|maxFieldLength
 init|=
 name|DEFAULT_MAX_FIELD_LENGTH
 decl_stmt|;
-comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    */
+comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    *    * Note that if an Exception is hit (eg disk full) then    * the index will be consistent, but this document will    * not have been added.  Furthermore, it's possible the    * index will have one segment in non-compound format even    * when using compound files.    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -1122,7 +1158,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    *    * See @link #addDocument(Document) for details on index    * state after an IOException.    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -1357,7 +1393,7 @@ name|infoStream
 init|=
 literal|null
 decl_stmt|;
-comment|/** Merges all segments together into a single segment, optimizing an index       for search. */
+comment|/** Merges all segments together into a single segment,    * optimizing an index for search..    *     *<p>Note that this requires temporary free space in the    * Directory up to the size of the starting index (exact    * usage could be less but will depend on many    * factors).</p>     *<p>If an Exception is hit during optimize() (eg, due to    * disk full), the index will not be corrupted.  However    * it's possible that one of the segments in the index    * will be in non-CFS format even when using compound file    * format.  This will occur when the Exception is hit    * during conversion of the segment into compound    * format.</p>   */
 DECL|method|optimize
 specifier|public
 specifier|synchronized
@@ -1475,7 +1511,220 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Merges all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing.  A large document    * collection can be broken into sub-collections.  Each sub-collection can be    * indexed in parallel, on a different thread, process or machine.  The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>After this completes, the index is optimized. */
+comment|/*    * Begin a transaction.  During a transaction, any segment    * merges that happen (or ram segments flushed) will not    * write a new segments file and will not remove any files    * that were present at the start of the transaction.  You    * must make a matched (try/finall) call to    * commitTransaction() or rollbackTransaction() to finish    * the transaction.    */
+DECL|method|startTransaction
+specifier|private
+name|void
+name|startTransaction
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|inTransaction
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"transaction is already in process"
+argument_list|)
+throw|;
+block|}
+name|rollbackSegmentInfos
+operator|=
+operator|(
+name|SegmentInfos
+operator|)
+name|segmentInfos
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|protectedSegments
+operator|=
+operator|new
+name|HashSet
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|SegmentInfo
+name|si
+init|=
+operator|(
+name|SegmentInfo
+operator|)
+name|segmentInfos
+operator|.
+name|elementAt
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+name|protectedSegments
+operator|.
+name|add
+argument_list|(
+name|si
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+name|inTransaction
+operator|=
+literal|true
+expr_stmt|;
+block|}
+comment|/*    * Rolls back the transaction and restores state to where    * we were at the start.    */
+DECL|method|rollbackTransaction
+specifier|private
+name|void
+name|rollbackTransaction
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// Keep the same segmentInfos instance but replace all
+comment|// of its SegmentInfo instances.  This is so the next
+comment|// attempt to commit using this instance of IndexWriter
+comment|// will always write to a new generation ("write once").
+name|segmentInfos
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|addAll
+argument_list|(
+name|rollbackSegmentInfos
+argument_list|)
+expr_stmt|;
+comment|// Ask deleter to locate unreferenced files& remove
+comment|// them:
+name|deleter
+operator|.
+name|clearPendingFiles
+argument_list|()
+expr_stmt|;
+name|deleter
+operator|.
+name|findDeletableFiles
+argument_list|()
+expr_stmt|;
+name|deleter
+operator|.
+name|deleteFiles
+argument_list|()
+expr_stmt|;
+name|clearTransaction
+argument_list|()
+expr_stmt|;
+block|}
+comment|/*    * Commits the transaction.  This will write the new    * segments file and remove and pending deletions we have    * accumulated during the transaction    */
+DECL|method|commitTransaction
+specifier|private
+name|void
+name|commitTransaction
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|commitPending
+condition|)
+block|{
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+comment|// If we hit eg disk full during this write we have
+comment|// to rollback.:
+name|segmentInfos
+operator|.
+name|write
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
+comment|// commit changes
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|rollbackTransaction
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+name|deleter
+operator|.
+name|commitPendingFiles
+argument_list|()
+expr_stmt|;
+name|commitPending
+operator|=
+literal|false
+expr_stmt|;
+block|}
+name|clearTransaction
+argument_list|()
+expr_stmt|;
+block|}
+comment|/* Should only be called by rollbackTransaction&    * commitTransaction */
+DECL|method|clearTransaction
+specifier|private
+name|void
+name|clearTransaction
+parameter_list|()
+block|{
+name|protectedSegments
+operator|=
+literal|null
+expr_stmt|;
+name|rollbackSegmentInfos
+operator|=
+literal|null
+expr_stmt|;
+name|inTransaction
+operator|=
+literal|false
+expr_stmt|;
+block|}
+comment|/** Merges all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing.  A large document    * collection can be broken into sub-collections.  Each sub-collection can be    * indexed in parallel, on a different thread, process or machine.  The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>After this completes, the index is optimized.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (eg disk full), then either no indexes will have    * been added or they all will have been.</p>    *    *<p>If an Exception is hit, it's still possible that all    * indexes were successfully added.  This happens when the    * Exception is hit when trying to build a CFS file.  In    * this case, one segment in the index will be in non-CFS    * format, even when using compound file format.</p>    *    *<p>Also note that on an Exception, the index may still    * have been partially or fully optimized even though none    * of the input indexes were added.</p>    *    *<p>Note that this requires temporary free space in the    * Directory up to 2X the sum of all input indexes    * (including the starting index).  Exact usage could be    * less but will depend on many factors.</p>    *    *<p>See<a target="_top"    * href="http://issues.apache.org/jira/browse/LUCENE-702">LUCENE-702</a>    * for details.</p>    */
 DECL|method|addIndexes
 specifier|public
 specifier|synchronized
@@ -1501,6 +1750,16 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+name|startTransaction
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -1625,6 +1884,7 @@ name|base
 operator|>
 literal|1
 condition|)
+block|{
 name|mergeSegments
 argument_list|(
 name|segmentInfos
@@ -1636,12 +1896,36 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|success
+condition|)
+block|{
+name|commitTransaction
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|rollbackTransaction
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 name|optimize
 argument_list|()
 expr_stmt|;
 comment|// final cleanup
 block|}
-comment|/**    * Merges all segments from an array of indexes into this index.    *<p>    * This is similar to addIndexes(Directory[]). However, no optimize()    * is called either at the beginning or at the end. Instead, merges    * are carried out as necessary.    *<p>    * This requires this index not be among those to be added, and the    * upper bound* of those segment doc counts not exceed maxMergeDocs.    */
+comment|/**    * Merges all segments from an array of indexes into this index.    *<p>    * This is similar to addIndexes(Directory[]). However, no optimize()    * is called either at the beginning or at the end. Instead, merges    * are carried out as necessary.    *<p>    * This requires this index not be among those to be added, and the    * upper bound* of those segment doc counts not exceed maxMergeDocs.    *    *<p>See {@link #addIndexes(Directory[])} for    * details on transactional semantics, temporary free    * space required in the Directory, and non-CFS segments    * on an Exception.</p>    */
 DECL|method|addIndexesNoOptimize
 specifier|public
 specifier|synchronized
@@ -1680,12 +1964,6 @@ comment|// not support copy yet. In addition, source may use compound file or no
 comment|// and target may use compound file or not. So we use mergeSegments() to
 comment|// copy a segment, which may cause doc count to change because deleted
 comment|// docs are garbage collected.
-comment|//
-comment|// In current addIndexes(Directory[]), segment infos in S are added to
-comment|// T's "segmentInfos" upfront. Then segments in S are merged to T several
-comment|// at a time. Every merge is committed with T's "segmentInfos". So if
-comment|// a reader is opened on T while addIndexes() is going on, it could see
-comment|// an inconsistent index. AddIndexesNoOptimize() has a similar behaviour.
 comment|// 1 flush ram segments
 name|flushRamSegments
 argument_list|()
@@ -1704,6 +1982,16 @@ name|startUpperBound
 init|=
 name|minMergeDocs
 decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+name|startTransaction
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 try|try
 block|{
 for|for
@@ -1921,6 +2209,10 @@ operator|==
 literal|0
 condition|)
 block|{
+name|success
+operator|=
+literal|true
+expr_stmt|;
 return|return;
 block|}
 comment|// 4 make sure invariants hold for the tail segments whose levels<= h
@@ -1973,6 +2265,10 @@ operator|==
 literal|0
 condition|)
 block|{
+name|success
+operator|=
+literal|true
+expr_stmt|;
 return|return;
 block|}
 comment|// copy those segments from S
@@ -2015,6 +2311,10 @@ name|numSegmentsToCopy
 argument_list|)
 condition|)
 block|{
+name|success
+operator|=
+literal|true
+expr_stmt|;
 return|return;
 block|}
 block|}
@@ -2058,8 +2358,31 @@ name|mergeFactor
 argument_list|)
 expr_stmt|;
 block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
 block|}
-comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>    */
+finally|finally
+block|{
+if|if
+condition|(
+name|success
+condition|)
+block|{
+name|commitTransaction
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|rollbackTransaction
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>     *<p>See {@link #addIndexes(Directory[])} for    * details on transactional semantics, temporary free    * space required in the Directory, and non-CFS segments    * on an Exception.</p>    */
 DECL|method|addIndexes
 specifier|public
 specifier|synchronized
@@ -2176,6 +2499,27 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+name|SegmentInfo
+name|info
+decl_stmt|;
+name|String
+name|segmentsInfosFileName
+init|=
+name|segmentInfos
+operator|.
+name|getCurrentSegmentFileName
+argument_list|()
+decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+name|startTransaction
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 name|int
 name|docCount
 init|=
@@ -2193,9 +2537,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|// pop old infos& add new
-name|SegmentInfo
 name|info
-init|=
+operator|=
 operator|new
 name|SegmentInfo
 argument_list|(
@@ -2207,13 +2550,17 @@ name|directory
 argument_list|,
 literal|false
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|segmentInfos
 operator|.
 name|addElement
 argument_list|(
 name|info
 argument_list|)
+expr_stmt|;
+name|commitPending
+operator|=
+literal|true
 expr_stmt|;
 if|if
 condition|(
@@ -2226,22 +2573,30 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|String
-name|segmentsInfosFileName
-init|=
-name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
-argument_list|()
-decl_stmt|;
-name|segmentInfos
-operator|.
-name|write
-argument_list|(
-name|directory
-argument_list|)
+name|success
+operator|=
+literal|true
 expr_stmt|;
-comment|// commit changes
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|rollbackTransaction
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|commitTransaction
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 name|deleter
 operator|.
 name|deleteFile
@@ -2263,9 +2618,27 @@ condition|(
 name|useCompoundFile
 condition|)
 block|{
+name|success
+operator|=
+literal|false
+expr_stmt|;
+name|segmentsInfosFileName
+operator|=
+name|segmentInfos
+operator|.
+name|getCurrentSegmentFileName
+argument_list|()
+expr_stmt|;
 name|Vector
 name|filesToDelete
-init|=
+decl_stmt|;
+name|startTransaction
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+name|filesToDelete
+operator|=
 name|merger
 operator|.
 name|createCompoundFile
@@ -2274,13 +2647,6 @@ name|mergedName
 operator|+
 literal|".cfs"
 argument_list|)
-decl_stmt|;
-name|segmentsInfosFileName
-operator|=
-name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
-argument_list|()
 expr_stmt|;
 name|info
 operator|.
@@ -2289,14 +2655,34 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|segmentInfos
-operator|.
-name|write
-argument_list|(
-name|directory
-argument_list|)
+name|commitPending
+operator|=
+literal|true
 expr_stmt|;
-comment|// commit again so readers know we've switched this segment to a compound file
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|rollbackTransaction
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|commitTransaction
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 name|deleter
 operator|.
 name|deleteFile
@@ -2707,6 +3093,33 @@ operator|new
 name|Vector
 argument_list|()
 decl_stmt|;
+name|String
+name|segmentsInfosFileName
+init|=
+name|segmentInfos
+operator|.
+name|getCurrentSegmentFileName
+argument_list|()
+decl_stmt|;
+name|String
+name|nextSegmentsFileName
+init|=
+name|segmentInfos
+operator|.
+name|getNextSegmentFileName
+argument_list|()
+decl_stmt|;
+name|SegmentInfo
+name|newSegment
+init|=
+literal|null
+decl_stmt|;
+name|int
+name|mergedDocCount
+decl_stmt|;
+comment|// This is try/finally to make sure merger's readers are closed:
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -2808,14 +3221,27 @@ argument_list|)
 expr_stmt|;
 comment|// queue segment for deletion
 block|}
-name|int
-name|mergedDocCount
+name|SegmentInfos
+name|rollback
 init|=
+literal|null
+decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+comment|// This is try/finally to rollback our internal state
+comment|// if we hit exception when doing the merge:
+try|try
+block|{
+name|mergedDocCount
+operator|=
 name|merger
 operator|.
 name|merge
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -2839,9 +3265,8 @@ literal|" docs)"
 argument_list|)
 expr_stmt|;
 block|}
-name|SegmentInfo
 name|newSegment
-init|=
+operator|=
 operator|new
 name|SegmentInfo
 argument_list|(
@@ -2853,7 +3278,7 @@ name|directory
 argument_list|,
 literal|false
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|sourceSegments
@@ -2861,11 +3286,6 @@ operator|==
 name|ramSegmentInfos
 condition|)
 block|{
-name|sourceSegments
-operator|.
-name|removeAllElements
-argument_list|()
-expr_stmt|;
 name|segmentInfos
 operator|.
 name|addElement
@@ -2876,6 +3296,25 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+operator|!
+name|inTransaction
+condition|)
+block|{
+comment|// Now save the SegmentInfo instances that
+comment|// we are replacing:
+name|rollback
+operator|=
+operator|(
+name|SegmentInfos
+operator|)
+name|segmentInfos
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -2910,20 +3349,12 @@ name|newSegment
 argument_list|)
 expr_stmt|;
 block|}
-comment|// close readers before we attempt to delete now-obsolete segments
-name|merger
-operator|.
-name|closeReaders
-argument_list|()
-expr_stmt|;
-name|String
-name|segmentsInfosFileName
-init|=
-name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
-argument_list|()
-decl_stmt|;
+if|if
+condition|(
+operator|!
+name|inTransaction
+condition|)
+block|{
 name|segmentInfos
 operator|.
 name|write
@@ -2932,6 +3363,164 @@ name|directory
 argument_list|)
 expr_stmt|;
 comment|// commit before deleting
+block|}
+else|else
+block|{
+name|commitPending
+operator|=
+literal|true
+expr_stmt|;
+block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|success
+condition|)
+block|{
+comment|// The non-ram-segments case is already committed
+comment|// (above), so all the remains for ram segments case
+comment|// is to clear the ram segments:
+if|if
+condition|(
+name|sourceSegments
+operator|==
+name|ramSegmentInfos
+condition|)
+block|{
+name|ramSegmentInfos
+operator|.
+name|removeAllElements
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+operator|!
+name|inTransaction
+condition|)
+block|{
+comment|// Must rollback so our state matches index:
+if|if
+condition|(
+name|sourceSegments
+operator|==
+name|ramSegmentInfos
+condition|)
+block|{
+comment|// Simple case: newSegment may or may not have
+comment|// been added to the end of our segment infos,
+comment|// so just check& remove if so:
+if|if
+condition|(
+name|newSegment
+operator|!=
+literal|null
+operator|&&
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|segmentInfos
+operator|.
+name|info
+argument_list|(
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+operator|==
+name|newSegment
+condition|)
+block|{
+name|segmentInfos
+operator|.
+name|remove
+argument_list|(
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|rollback
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Rollback the individual SegmentInfo
+comment|// instances, but keep original SegmentInfos
+comment|// instance (so we don't try to write again the
+comment|// same segments_N file -- write once):
+name|segmentInfos
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|addAll
+argument_list|(
+name|rollback
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Delete any partially created files:
+name|deleter
+operator|.
+name|deleteFile
+argument_list|(
+name|nextSegmentsFileName
+argument_list|)
+expr_stmt|;
+name|deleter
+operator|.
+name|findDeletableFiles
+argument_list|()
+expr_stmt|;
+name|deleter
+operator|.
+name|deleteFiles
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+finally|finally
+block|{
+comment|// close readers before we attempt to delete now-obsolete segments
+name|merger
+operator|.
+name|closeReaders
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|inTransaction
+condition|)
+block|{
 name|deleter
 operator|.
 name|deleteFile
@@ -2948,14 +3537,56 @@ name|segmentsToDelete
 argument_list|)
 expr_stmt|;
 comment|// delete now-unused segments
+block|}
+else|else
+block|{
+name|deleter
+operator|.
+name|addPendingFile
+argument_list|(
+name|segmentsInfosFileName
+argument_list|)
+expr_stmt|;
+comment|// delete old segments_N file
+name|deleter
+operator|.
+name|deleteSegments
+argument_list|(
+name|segmentsToDelete
+argument_list|,
+name|protectedSegments
+argument_list|)
+expr_stmt|;
+comment|// delete now-unused segments
+block|}
 if|if
 condition|(
 name|useCompoundFile
 condition|)
 block|{
+name|segmentsInfosFileName
+operator|=
+name|nextSegmentsFileName
+expr_stmt|;
+name|nextSegmentsFileName
+operator|=
+name|segmentInfos
+operator|.
+name|getNextSegmentFileName
+argument_list|()
+expr_stmt|;
 name|Vector
 name|filesToDelete
+decl_stmt|;
+name|boolean
+name|success
 init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+name|filesToDelete
+operator|=
 name|merger
 operator|.
 name|createCompoundFile
@@ -2964,13 +3595,6 @@ name|mergedName
 operator|+
 literal|".cfs"
 argument_list|)
-decl_stmt|;
-name|segmentsInfosFileName
-operator|=
-name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
-argument_list|()
 expr_stmt|;
 name|newSegment
 operator|.
@@ -2979,6 +3603,12 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|inTransaction
+condition|)
+block|{
 name|segmentInfos
 operator|.
 name|write
@@ -2987,6 +3617,55 @@ name|directory
 argument_list|)
 expr_stmt|;
 comment|// commit again so readers know we've switched this segment to a compound file
+block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+operator|!
+name|inTransaction
+condition|)
+block|{
+comment|// Must rollback:
+name|newSegment
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|deleter
+operator|.
+name|deleteFile
+argument_list|(
+name|mergedName
+operator|+
+literal|".cfs"
+argument_list|)
+expr_stmt|;
+name|deleter
+operator|.
+name|deleteFile
+argument_list|(
+name|nextSegmentsFileName
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+operator|!
+name|inTransaction
+condition|)
+block|{
 name|deleter
 operator|.
 name|deleteFile
@@ -2995,6 +3674,11 @@ name|segmentsInfosFileName
 argument_list|)
 expr_stmt|;
 comment|// delete old segments_N file
+block|}
+comment|// We can delete these segments whether or not we are
+comment|// in a transaction because we had just written them
+comment|// above so they can't need protection by the
+comment|// transaction:
 name|deleter
 operator|.
 name|deleteFiles
