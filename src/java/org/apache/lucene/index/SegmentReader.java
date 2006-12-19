@@ -867,6 +867,10 @@ specifier|protected
 name|void
 name|finalize
 parameter_list|()
+throws|throws
+name|Throwable
+block|{
+try|try
 block|{
 comment|// patch for pre-1.4.2 JVMs, whose ThreadLocals leak
 name|termVectorsLocal
@@ -876,11 +880,15 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|super
 operator|.
 name|finalize
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|doCommit
 specifier|protected
