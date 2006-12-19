@@ -1083,6 +1083,10 @@ block|}
 if|if
 condition|(
 name|waitSearcher
+operator|!=
+literal|null
+operator|&&
+name|waitSearcher
 index|[
 literal|0
 index|]
