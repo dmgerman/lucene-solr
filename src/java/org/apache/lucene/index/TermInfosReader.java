@@ -225,8 +225,10 @@ argument_list|()
 expr_stmt|;
 name|enumerators
 operator|.
-name|remove
-argument_list|()
+name|set
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Returns the number of term/value pairs in the set. */
