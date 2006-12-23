@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the input into n-grams of given size(s).  * @author Otis Gospodnetic  */
+comment|/**  * Tokenizes the input into n-grams of the given size.  * @author Otis Gospodnetic  */
 end_comment
 
 begin_class
@@ -84,12 +84,14 @@ comment|//  public enum Side {
 comment|//    FRONT (),
 comment|//    BACK ();
 comment|//  }
+comment|/** Specifies which side of the input the n-gram should be generated from */
 DECL|class|Side
 specifier|public
 specifier|static
 class|class
 name|Side
 block|{
+comment|/** Get the n-gram from the front of the input */
 DECL|field|FRONT
 specifier|public
 specifier|static
@@ -102,6 +104,7 @@ argument_list|(
 literal|"front"
 argument_list|)
 decl_stmt|;
+comment|/** Get the n-gram from the end of the input */
 DECL|field|BACK
 specifier|public
 specifier|static
@@ -150,7 +153,7 @@ name|started
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Creates EdgeNGramTokenizer with given min and max n-grams.    * @param input Reader holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram     * @param gramSize the n-gram size to generate    */
+comment|/**    * Creates EdgeNGramTokenizer that can generate an n-gram of the given size.    * @param input Reader holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram     * @param gramSize the size of the n-gram to generate    */
 DECL|method|EdgeNGramTokenizer
 specifier|public
 name|EdgeNGramTokenizer
