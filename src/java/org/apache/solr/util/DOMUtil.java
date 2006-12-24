@@ -1045,12 +1045,6 @@ comment|/* fall through */
 case|case
 name|Node
 operator|.
-name|ATTRIBUTE_NODE
-case|:
-comment|/* fall through */
-case|case
-name|Node
-operator|.
 name|ENTITY_NODE
 case|:
 comment|/* fall through */
@@ -1134,6 +1128,13 @@ expr_stmt|;
 block|}
 block|}
 break|break;
+case|case
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+case|:
+comment|/* fall through */
+comment|/* Putting Attribute nodes in this section does not exactly           match the definition of how textContent should behave           according to the DOM Level-3 Core documentation - which           specifies that the Attr's children should have their           textContent concated (Attr's can have a single child which           is either Text node or an EntityRefrence).  In practice,          DOM implementations do not seem to use child nodes of           Attributes, storing the "text" directly as the nodeValue.          Fortunately, the DOM Spec indicates that when Attr.nodeValue           is read, it should return the nodeValue from the child Node,           so this approach should work both for strict implementations,           and implementations actually encountered.       */
 case|case
 name|Node
 operator|.
