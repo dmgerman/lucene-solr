@@ -179,7 +179,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *<P>    * Note that the resulting<code>RAMDirectory</code> instance is fully    * independent from the original<code>Directory</code> (it is a    * complete copy).  Any subsequent changes to the    * original<code>Directory</code> will not be visible in the    *<code>RAMDirectory</code> instance.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
@@ -371,7 +371,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>File</code> specifying the index directory    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>File</code> specifying the index directory    *    * @see #RAMDirectory(Directory)    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
@@ -397,7 +397,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>String</code> specifying the full index directory path    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>String</code> specifying the full index directory path    *    * @see #RAMDirectory(Directory)    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
