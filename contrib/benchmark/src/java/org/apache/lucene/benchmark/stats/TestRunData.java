@@ -708,13 +708,25 @@ operator|.
 name|append
 argument_list|(
 name|id
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"-"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|label
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|getTotals
 argument_list|(
 name|label
@@ -724,7 +736,10 @@ name|toString
 argument_list|(
 literal|false
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
@@ -745,7 +760,10 @@ literal|1024
 argument_list|,
 literal|"MB"
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
