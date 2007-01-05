@@ -510,6 +510,13 @@ return|return
 literal|null
 return|;
 block|}
+if|if
+condition|(
+name|n
+operator|instanceof
+name|Element
+condition|)
+block|{
 name|Element
 name|parent
 init|=
@@ -526,6 +533,11 @@ argument_list|,
 name|attributeName
 argument_list|)
 return|;
+block|}
+return|return
+literal|null
+return|;
+comment|//we reached the top level of the document without finding attribute
 block|}
 return|return
 name|result

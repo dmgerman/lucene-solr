@@ -150,6 +150,27 @@ name|builder
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getQueryBuilder
+specifier|public
+name|QueryBuilder
+name|getQueryBuilder
+parameter_list|(
+name|String
+name|nodeName
+parameter_list|)
+block|{
+return|return
+operator|(
+name|QueryBuilder
+operator|)
+name|builders
+operator|.
+name|get
+argument_list|(
+name|nodeName
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

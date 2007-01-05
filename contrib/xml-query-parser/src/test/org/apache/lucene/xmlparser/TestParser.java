@@ -931,6 +931,34 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testCachedFilterXML
+specifier|public
+name|void
+name|testCachedFilterXML
+parameter_list|()
+throws|throws
+name|ParserException
+throws|,
+name|IOException
+block|{
+name|Query
+name|q
+init|=
+name|parse
+argument_list|(
+literal|"CachedFilter.xml"
+argument_list|)
+decl_stmt|;
+name|dumpResults
+argument_list|(
+literal|"Cached filter"
+argument_list|,
+name|q
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
+block|}
 comment|//================= Helper methods ===================================
 DECL|method|parse
 specifier|private
