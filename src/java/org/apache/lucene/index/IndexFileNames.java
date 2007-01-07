@@ -53,6 +53,15 @@ name|DELETABLE
 init|=
 literal|"deletable"
 decl_stmt|;
+comment|/** Extension of norms file */
+DECL|field|NORMS_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|NORMS_EXTENSION
+init|=
+literal|"nrm"
+decl_stmt|;
 comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with two exceptions, namely the    * extension made up from<code>.f</code> + a number and    * from<code>.s</code> + a number.  Also note that    * Lucene's<code>segments_N</code> files do not have any    * filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|static
@@ -92,6 +101,8 @@ block|,
 literal|"tvp"
 block|,
 literal|"gen"
+block|,
+literal|"nrm"
 block|}
 decl_stmt|;
 comment|/** File extensions of old-style index files */
