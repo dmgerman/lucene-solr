@@ -1614,14 +1614,14 @@ condition|)
 name|aquireWriteLock
 argument_list|()
 expr_stmt|;
+name|hasChanges
+operator|=
+literal|true
+expr_stmt|;
 name|doDelete
 argument_list|(
 name|docNum
 argument_list|)
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|true
 expr_stmt|;
 block|}
 comment|/** Implements deletion of the document numbered<code>docNum</code>.    * Applications should call {@link #deleteDocument(int)} or {@link #deleteDocuments(Term)}.    */
