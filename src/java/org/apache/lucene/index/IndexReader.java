@@ -1302,6 +1302,10 @@ condition|)
 name|aquireWriteLock
 argument_list|()
 expr_stmt|;
+name|hasChanges
+operator|=
+literal|true
+expr_stmt|;
 name|doSetNorm
 argument_list|(
 name|doc
@@ -1310,10 +1314,6 @@ name|field
 argument_list|,
 name|value
 argument_list|)
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|true
 expr_stmt|;
 block|}
 comment|/** Implements setNorm in subclass.*/
@@ -1725,12 +1725,12 @@ condition|)
 name|aquireWriteLock
 argument_list|()
 expr_stmt|;
-name|doUndeleteAll
-argument_list|()
-expr_stmt|;
 name|hasChanges
 operator|=
 literal|true
+expr_stmt|;
+name|doUndeleteAll
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Implements actual undeleteAll() in subclass. */
