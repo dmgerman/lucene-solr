@@ -777,6 +777,44 @@ argument_list|,
 name|fieldInfos
 argument_list|)
 expr_stmt|;
+comment|// Verify two sources of "maxDoc" agree:
+if|if
+condition|(
+name|fieldsReader
+operator|.
+name|size
+argument_list|()
+operator|!=
+name|si
+operator|.
+name|docCount
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"doc counts differ for segment "
+operator|+
+name|si
+operator|.
+name|name
+operator|+
+literal|": fieldsReader shows "
+operator|+
+name|fieldsReader
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" but segmentInfo shows "
+operator|+
+name|si
+operator|.
+name|docCount
+argument_list|)
+throw|;
+block|}
 name|tis
 operator|=
 operator|new
@@ -812,6 +850,42 @@ name|getDelFileName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Verify # deletes does not exceed maxDoc for this segment:
+if|if
+condition|(
+name|deletedDocs
+operator|.
+name|count
+argument_list|()
+operator|>
+name|maxDoc
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"number of deletes ("
+operator|+
+name|deletedDocs
+operator|.
+name|count
+argument_list|()
+operator|+
+literal|") exceeds max doc ("
+operator|+
+name|maxDoc
+argument_list|()
+operator|+
+literal|") for segment "
+operator|+
+name|si
+operator|.
+name|name
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// make sure that all index files have been read or are kept open
 comment|// so that if an index update removes them we'll still have them

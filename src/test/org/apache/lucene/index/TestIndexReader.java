@@ -4246,31 +4246,15 @@ literal|"aaa"
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
+comment|// Without the fix for LUCENE-140 this call will
+comment|// [incorrectly] hit a "docs out of order"
+comment|// IllegalStateException because above out-of-bounds
+comment|// deleteDocument corrupted the index:
 name|writer
 operator|.
 name|optimize
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"hit unexpected illegal state exception during optimize"
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!

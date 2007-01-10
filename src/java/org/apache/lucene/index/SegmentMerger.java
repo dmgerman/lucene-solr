@@ -1745,13 +1745,19 @@ expr_stmt|;
 comment|// convert to merged space
 if|if
 condition|(
-name|lastDoc
-operator|!=
+name|doc
+operator|<
+literal|0
+operator|||
+operator|(
+name|df
+operator|>
 literal|0
 operator|&&
 name|doc
 operator|<=
 name|lastDoc
+operator|)
 condition|)
 throw|throw
 operator|new
