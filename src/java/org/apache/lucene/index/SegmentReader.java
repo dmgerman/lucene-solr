@@ -1685,10 +1685,9 @@ name|maxDoc
 parameter_list|()
 block|{
 return|return
-name|fieldsReader
+name|si
 operator|.
-name|size
-argument_list|()
+name|docCount
 return|;
 block|}
 comment|/**    * @see IndexReader#getFieldNames(IndexReader.FieldOption fldOption)    */
