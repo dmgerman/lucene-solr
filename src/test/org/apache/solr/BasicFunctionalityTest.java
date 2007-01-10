@@ -3677,6 +3677,89 @@ literal|"*[count(//doc)=4]"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testPatternReplaceFilter
+specifier|public
+name|void
+name|testPatternReplaceFilter
+parameter_list|()
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"patternreplacefilt"
+argument_list|,
+literal|"My  fine-feathered friend!"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"patternreplacefilt"
+argument_list|,
+literal|"  What's Up Doc?"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"don't find Up"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"patternreplacefilt:Up"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"find doc"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"patternreplacefilt:__What_s_Up_Doc_"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"find birds"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"patternreplacefilt:My__fine_feathered_friend_"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+block|}
 comment|//   /** this doesn't work, but if it did, this is how we'd test it. */
 comment|//   public void testOverwriteFalse() {
 comment|//     assertU(adoc("id", "overwrite", "val_s", "AAA"));
