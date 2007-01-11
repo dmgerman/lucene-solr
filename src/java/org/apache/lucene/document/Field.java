@@ -204,7 +204,7 @@ argument_list|(
 literal|"UN_TOKENIZED"
 argument_list|)
 decl_stmt|;
-comment|/** Index the field's value without an Analyzer, and disable      * the storing of norms.  No norms means that index-time boosting      * and field length normalization will be disabled.  The benefit is      * less memory usage as norms take up one byte per indexed field      * for every document in the index.      */
+comment|/** Index the field's value without an Analyzer, and disable      * the storing of norms.  No norms means that index-time boosting      * and field length normalization will be disabled.  The benefit is      * less memory usage as norms take up one byte per indexed field      * for every document in the index.      * Note that once you index a given field<i>with</i> norms enabled,      * disabling norms will have no effect.  In other words, for NO_NORMS      * to have the above described effect on a field, all instances of that      * field must be indexed with NO_NORMS from the beginning.      */
 DECL|field|NO_NORMS
 specifier|public
 specifier|static
