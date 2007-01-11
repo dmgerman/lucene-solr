@@ -1042,6 +1042,27 @@ name|getVersion
 argument_list|()
 return|;
 block|}
+comment|/**    * Checks is the index is optimized (if it has a single segment and no deletions)    * @return<code>true</code> if the index is optimized;<code>false</code> otherwise    */
+DECL|method|isOptimized
+specifier|public
+name|boolean
+name|isOptimized
+parameter_list|()
+block|{
+return|return
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+operator|&&
+name|hasDeletions
+argument_list|()
+operator|==
+literal|false
+return|;
+block|}
 comment|/**    *  Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector contains terms and frequencies for all terms in a given vectorized field.    *  If no such fields existed, the method returns null. The term vectors that are    * returned my either be of type TermFreqVector or of type TermPositionsVector if    * positions or offsets have been stored.    *     * @param docNumber document for which term frequency vectors are returned    * @return array of term frequency vectors. May be null if no term vectors have been    *  stored for the specified document.    * @throws IOException if index cannot be accessed    * @see org.apache.lucene.document.Field.TermVector    */
 DECL|method|getTermFreqVectors
 specifier|abstract
