@@ -1270,7 +1270,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns true iff this segment stores filed norms in a single .nrm file.    */
+comment|/**    * Returns true iff this segment stores field norms in a single .nrm file.    */
 DECL|method|withNrm
 specifier|private
 name|boolean
