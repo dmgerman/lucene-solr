@@ -970,13 +970,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Put back to the correct default for subsequent tests:
+comment|// System.clearProperty("org.apache.lucene.store.FSDirectoryLockFactoryClass");
 name|System
 operator|.
 name|setProperty
 argument_list|(
 literal|"org.apache.lucene.store.FSDirectoryLockFactoryClass"
 argument_list|,
-literal|"org.apache.lucene.store.SimpleFSLockFactory"
+literal|""
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1311,7 +1312,9 @@ name|_testStressLocks
 argument_list|(
 operator|new
 name|NativeFSLockFactory
-argument_list|()
+argument_list|(
+literal|"index.TestLockFactory7"
+argument_list|)
 argument_list|,
 literal|"index.TestLockFactory7"
 argument_list|)
@@ -1474,14 +1477,28 @@ name|f
 init|=
 operator|new
 name|NativeFSLockFactory
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tempDir"
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|NativeFSLockFactory
 name|f2
 init|=
 operator|new
 name|NativeFSLockFactory
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tempDir"
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|f
 operator|.
@@ -1592,7 +1609,9 @@ literal|true
 argument_list|,
 operator|new
 name|NativeFSLockFactory
-argument_list|()
+argument_list|(
+literal|"TestLockFactory.8"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -1608,7 +1627,9 @@ literal|true
 argument_list|,
 operator|new
 name|NativeFSLockFactory
-argument_list|()
+argument_list|(
+literal|"TestLockFactory.9"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|String
@@ -1661,7 +1682,8 @@ literal|"TestLockFactory.9"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Verify: default LockFactory assigns different lock prefixes:
+comment|// Verify: default LockFactory has no prefix (ie
+comment|// write.lock is stored in index):
 DECL|method|testDefaultFSLockFactoryPrefix
 specifier|public
 name|void
@@ -1672,7 +1694,7 @@ name|IOException
 block|{
 comment|// Make sure we get identical instances:
 name|Directory
-name|dir1
+name|dir
 init|=
 name|FSDirectory
 operator|.
@@ -1683,33 +1705,10 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|Directory
-name|dir2
-init|=
-name|FSDirectory
-operator|.
-name|getDirectory
-argument_list|(
-literal|"TestLockFactory.11"
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
 name|String
-name|prefix1
+name|prefix
 init|=
-name|dir1
-operator|.
-name|getLockFactory
-argument_list|()
-operator|.
-name|getLockPrefix
-argument_list|()
-decl_stmt|;
-name|String
-name|prefix2
-init|=
-name|dir2
+name|dir
 operator|.
 name|getLockFactory
 argument_list|()
@@ -1719,29 +1718,16 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Default Lock Factories are incorrectly shared: dir1 and dir2 have same lock prefix '"
-operator|+
-name|prefix1
-operator|+
-literal|"'; they should be different"
+literal|"Default lock prefix should be null"
 argument_list|,
-operator|!
-name|prefix1
-operator|.
-name|equals
-argument_list|(
-name|prefix2
-argument_list|)
+literal|null
+operator|==
+name|prefix
 argument_list|)
 expr_stmt|;
 name|rmDir
 argument_list|(
 literal|"TestLockFactory.10"
-argument_list|)
-expr_stmt|;
-name|rmDir
-argument_list|(
-literal|"TestLockFactory.11"
 argument_list|)
 expr_stmt|;
 block|}

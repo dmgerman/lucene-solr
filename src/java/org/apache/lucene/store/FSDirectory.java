@@ -111,6 +111,24 @@ import|;
 end_import
 
 begin_comment
+comment|// Used only for WRITE_LOCK_NAME:
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_comment
 comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  * Locking implementation is by default the {@link SimpleFSLockFactory}, but  * can be changed either by passing in a {@link LockFactory} instance to  *<code>getDirectory</code>, or specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code> Java system  * property, or by calling {@link #setLockFactory} after creating  * the Directory.  *  * @see Directory  * @author Doug Cutting  */
 end_comment
 
@@ -176,11 +194,7 @@ operator|.
 name|disableLocks
 return|;
 block|}
-comment|// TODO: LOCK_DIR really should only appear in the SimpleFSLockFactory
-comment|// (and any other file-system based locking implementations).  When we
-comment|// can next break backwards compatibility we should deprecate it and then
-comment|// move it.
-comment|/**    * Directory specified by<code>org.apache.lucene.lockDir</code>    * or<code>java.io.tmpdir</code> system property.  This may be deprecated in the future.  Please use    * {@link SimpleFSLockFactory#LOCK_DIR} instead.    */
+comment|/**    * Directory specified by<code>org.apache.lucene.lockDir</code>    * or<code>java.io.tmpdir</code> system property.     * @deprecated As of 2.1,<code>LOCK_DIR</code> is unused    * because the write.lock is now stored by default in the    * index directory.  If you really want to store locks    * elsewhere you can create your own {@link    * SimpleFSLockFactory} (or {@link NativeFSLockFactory},    * etc.) passing in your preferred lock directory.  Then,    * pass this<code>LockFactory</code> instance to one of    * the<code>getDirectory</code> methods that take a    *<code>lockFactory</code> (for example, {@link    * #getDirectory(String, boolean, LockFactory)}).    */
 DECL|field|LOCK_DIR
 specifier|public
 specifier|static
@@ -188,9 +202,19 @@ specifier|final
 name|String
 name|LOCK_DIR
 init|=
-name|SimpleFSLockFactory
+name|System
 operator|.
-name|LOCK_DIR
+name|getProperty
+argument_list|(
+literal|"org.apache.lucene.lockDir"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.io.tmpdir"
+argument_list|)
+argument_list|)
 decl_stmt|;
 comment|/** The default class which implements filesystem-based directories. */
 DECL|field|IMPL
@@ -808,6 +832,11 @@ comment|// Set up lockFactory with cascaded defaults: if an instance was passed 
 comment|// use that; else if locks are disabled, use NoLockFactory; else if the
 comment|// system property org.apache.lucene.store.FSDirectoryLockFactoryClass is set,
 comment|// instantiate that; else, use SimpleFSLockFactory:
+name|boolean
+name|doClearLockID
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|lockFactory
@@ -846,6 +875,14 @@ condition|(
 name|lockClassName
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|lockClassName
+operator|.
+name|equals
+argument_list|(
+literal|""
+argument_list|)
 condition|)
 block|{
 name|Class
@@ -945,40 +982,19 @@ block|}
 block|}
 else|else
 block|{
-comment|// Our default lock is SimpleFSLockFactory:
-name|File
-name|lockDir
-decl_stmt|;
-if|if
-condition|(
-name|LOCK_DIR
-operator|==
-literal|null
-condition|)
-block|{
-name|lockDir
-operator|=
-name|directory
-expr_stmt|;
-block|}
-else|else
-block|{
-name|lockDir
-operator|=
-operator|new
-name|File
-argument_list|(
-name|LOCK_DIR
-argument_list|)
-expr_stmt|;
-block|}
+comment|// Our default lock is SimpleFSLockFactory;
+comment|// default lockDir is our index directory:
 name|lockFactory
 operator|=
 operator|new
 name|SimpleFSLockFactory
 argument_list|(
-name|lockDir
+name|path
 argument_list|)
+expr_stmt|;
+name|doClearLockID
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
@@ -997,6 +1013,21 @@ argument_list|(
 name|lockFactory
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|doClearLockID
+condition|)
+block|{
+comment|// Clear the prefix because write.lock will be
+comment|// stored in our directory:
+name|lockFactory
+operator|.
+name|setLockPrefix
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 name|init
 argument_list|(
 name|path
@@ -1149,11 +1180,62 @@ argument_list|)
 throw|;
 block|}
 block|}
+if|if
+condition|(
+name|lockFactory
+operator|.
+name|getLockPrefix
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 name|lockFactory
 operator|.
 name|clearAllLocks
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Lock file is stored in the index, so we just remove
+comment|// it ourselves here:
+name|File
+name|lockFile
+init|=
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+name|IndexWriter
+operator|.
+name|WRITE_LOCK_NAME
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|lockFile
+operator|.
+name|exists
+argument_list|()
+operator|&&
+operator|!
+name|lockFile
+operator|.
+name|delete
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot delete "
+operator|+
+name|lockFile
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/** Returns an array of strings, one for each Lucene index file in the directory. */
 DECL|method|list

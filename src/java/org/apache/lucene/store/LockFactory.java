@@ -87,7 +87,6 @@ parameter_list|)
 function_decl|;
 comment|/**    * Clear any existing locks.  Only call this at a time when you    * are certain the lock files are not in use. {@link FSDirectory}    * calls this when creating a new index.    */
 DECL|method|clearAllLocks
-specifier|public
 specifier|abstract
 name|void
 name|clearAllLocks
