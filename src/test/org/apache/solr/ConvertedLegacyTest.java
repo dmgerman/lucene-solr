@@ -2758,6 +2758,55 @@ argument_list|,
 literal|"//doc[3]/int[.='1001']"
 argument_list|)
 expr_stmt|;
+comment|// Sort parsing exception tests.  (SOLR-6, SOLR-99)
+name|assertQEx
+argument_list|(
+literal|"can not sort unindexed fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"id_i:1000; shouldbeunindexed asc"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
+name|assertQEx
+argument_list|(
+literal|"invalid query format"
+argument_list|,
+name|req
+argument_list|(
+literal|"id_i:1000; nullfirst"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
+name|assertQEx
+argument_list|(
+literal|"unknown sort field"
+argument_list|,
+name|req
+argument_list|(
+literal|"id_i:1000; abcde12345 asc"
+argument_list|)
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertQEx
+argument_list|(
+literal|"unknown sort order"
+argument_list|,
+name|req
+argument_list|(
+literal|"id_i:1000; nullfirst aaa"
+argument_list|)
+argument_list|,
+literal|400
+argument_list|)
+expr_stmt|;
 comment|// test prefix query
 name|assertU
 argument_list|(
