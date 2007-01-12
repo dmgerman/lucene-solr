@@ -1186,6 +1186,23 @@ literal|"/"
 operator|+
 literal|"index"
 expr_stmt|;
+name|this
+operator|.
+name|maxWarmingSearchers
+operator|=
+name|SolrConfig
+operator|.
+name|config
+operator|.
+name|getInt
+argument_list|(
+literal|"query/maxWarmingSearchers"
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
 name|parseListeners
 argument_list|()
 expr_stmt|;
@@ -1379,6 +1396,13 @@ name|Object
 argument_list|()
 decl_stmt|;
 comment|// the sync object for the searcher
+DECL|field|maxWarmingSearchers
+specifier|private
+specifier|final
+name|int
+name|maxWarmingSearchers
+decl_stmt|;
+comment|// max number of on-deck searchers allowed
 DECL|method|getSearcher
 specifier|public
 name|RefCounted
@@ -1567,14 +1591,6 @@ comment|//        opening a new searcher.
 name|onDeckSearchers
 operator|++
 expr_stmt|;
-block|}
-comment|// open the index synchronously
-comment|// if this fails, we need to decrement onDeckSearchers again.
-name|SolrIndexSearcher
-name|tmp
-decl_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|onDeckSearchers
@@ -1592,11 +1608,51 @@ operator|+
 name|onDeckSearchers
 argument_list|)
 expr_stmt|;
-comment|// reset to 1 (don't bother synchronizing)
 name|onDeckSearchers
 operator|=
 literal|1
 expr_stmt|;
+comment|// reset
+block|}
+elseif|else
+if|if
+condition|(
+name|onDeckSearchers
+operator|>
+name|maxWarmingSearchers
+condition|)
+block|{
+name|onDeckSearchers
+operator|--
+expr_stmt|;
+name|String
+name|msg
+init|=
+literal|"Error opening new searcher. exceeded limit of maxWarmingSearchers="
+operator|+
+name|maxWarmingSearchers
+operator|+
+literal|", try again later."
+decl_stmt|;
+name|log
+operator|.
+name|warning
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+comment|// HTTP 503==service unavailable, or 409==Conflict
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+literal|503
+argument_list|,
+name|msg
+argument_list|,
+literal|true
+argument_list|)
+throw|;
 block|}
 elseif|else
 if|if
@@ -1616,6 +1672,14 @@ name|onDeckSearchers
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// open the index synchronously
+comment|// if this fails, we need to decrement onDeckSearchers again.
+name|SolrIndexSearcher
+name|tmp
+decl_stmt|;
+try|try
+block|{
 name|tmp
 operator|=
 operator|new
