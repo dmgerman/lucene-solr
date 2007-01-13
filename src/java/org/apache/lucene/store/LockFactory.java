@@ -85,12 +85,16 @@ name|String
 name|lockName
 parameter_list|)
 function_decl|;
-comment|/**    * Clear any existing locks.  Only call this at a time when you    * are certain the lock files are not in use. {@link FSDirectory}    * calls this when creating a new index.    */
-DECL|method|clearAllLocks
+comment|/**    * Attempt to clear (forcefully unlock and remove) the    * specified lock.  Only call this at a time when you are    * certain this lock is no longer in use.    * @param lockName name of the lock to be cleared.    */
+DECL|method|clearLock
 specifier|abstract
+specifier|public
 name|void
-name|clearAllLocks
-parameter_list|()
+name|clearLock
+parameter_list|(
+name|String
+name|lockName
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

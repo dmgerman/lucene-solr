@@ -83,11 +83,14 @@ return|return
 name|singletonLock
 return|;
 block|}
-DECL|method|clearAllLocks
+DECL|method|clearLock
 specifier|public
 name|void
-name|clearAllLocks
-parameter_list|()
+name|clearLock
+parameter_list|(
+name|String
+name|lockName
+parameter_list|)
 block|{}
 empty_stmt|;
 block|}
