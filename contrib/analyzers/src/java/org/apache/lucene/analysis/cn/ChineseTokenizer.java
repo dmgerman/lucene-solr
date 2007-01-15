@@ -273,7 +273,6 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-empty_stmt|;
 if|if
 condition|(
 name|dataLen
