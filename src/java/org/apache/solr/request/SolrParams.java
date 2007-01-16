@@ -315,6 +315,16 @@ name|FACET_FIELD
 init|=
 literal|"facet.field"
 decl_stmt|;
+comment|/**    * The offset into the list of facets.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_OFFSET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_OFFSET
+init|=
+literal|"facet.offset"
+decl_stmt|;
 comment|/**    * Numeric option indicating the maximum number of facet field counts    * be included in the response for each field - in descending order of count.    * Can be overriden on a per field basis.    */
 DECL|field|FACET_LIMIT
 specifier|public
@@ -324,6 +334,16 @@ name|String
 name|FACET_LIMIT
 init|=
 literal|"facet.limit"
+decl_stmt|;
+comment|/**    * Numeric option indicating the minimum number of hits before a facet should    * be included in the response.  Can be overriden on a per field basis.    */
+DECL|field|FACET_MINCOUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_MINCOUNT
+init|=
+literal|"facet.mincount"
 decl_stmt|;
 comment|/**    * Boolean option indicating whether facet field counts of "0" should     * be included in the response.  Can be overriden on a per field basis.    */
 DECL|field|FACET_ZEROS
@@ -344,6 +364,16 @@ name|String
 name|FACET_MISSING
 init|=
 literal|"facet.missing"
+decl_stmt|;
+comment|/**    * Boolean option: true causes facets to be sorted    * by the count, false results in natural index order.    */
+DECL|field|FACET_SORT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_SORT
+init|=
+literal|"facet.sort"
 decl_stmt|;
 comment|/** returns the String value of a param, or null if not set */
 DECL|method|get
@@ -671,6 +701,44 @@ operator|==
 literal|null
 condition|?
 name|def
+else|:
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|val
+argument_list|)
+return|;
+block|}
+comment|/** Returns the int value of the field param,   or the value for param, or def if neither is set. */
+DECL|method|getFieldInt
+specifier|public
+name|Integer
+name|getFieldInt
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|String
+name|param
+parameter_list|)
+block|{
+name|String
+name|val
+init|=
+name|getFieldParam
+argument_list|(
+name|field
+argument_list|,
+name|param
+argument_list|)
+decl_stmt|;
+return|return
+name|val
+operator|==
+literal|null
+condition|?
+literal|null
 else|:
 name|Integer
 operator|.
