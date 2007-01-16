@@ -355,8 +355,13 @@ literal|null
 operator|||
 name|label
 operator|.
-name|isEmpty
+name|trim
 argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
 condition|)
 throw|throw
 operator|new
