@@ -387,8 +387,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|indexDir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|MockRAMDirectory

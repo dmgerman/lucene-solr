@@ -136,6 +136,20 @@ name|_TestHelper
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author dmitrys@earthlink.net  * @version $Id$  */
 end_comment
@@ -197,13 +211,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//dir = new RAMDirectory();
-name|dir
-operator|=
-name|FSDirectory
-operator|.
-name|getDirectory
-argument_list|(
+name|File
+name|file
+init|=
 operator|new
 name|File
 argument_list|(
@@ -216,8 +226,21 @@ argument_list|)
 argument_list|,
 literal|"testIndex"
 argument_list|)
-argument_list|,
-literal|true
+decl_stmt|;
+name|_TestUtil
+operator|.
+name|rmDir
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
+name|dir
+operator|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+name|file
 argument_list|)
 expr_stmt|;
 block|}

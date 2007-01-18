@@ -222,6 +222,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestFieldsReader
 specifier|public
@@ -1226,6 +1240,13 @@ argument_list|(
 name|path
 argument_list|)
 decl_stmt|;
+name|_TestUtil
+operator|.
+name|rmDir
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
 name|FSDirectory
 name|tmpDir
 init|=
@@ -1234,8 +1255,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|file
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue

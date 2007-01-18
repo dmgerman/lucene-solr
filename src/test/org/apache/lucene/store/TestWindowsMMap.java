@@ -346,8 +346,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|storePathname
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 comment|// plan to add a set of useful stopwords, consider changing some of the
