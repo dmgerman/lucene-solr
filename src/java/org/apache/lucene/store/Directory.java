@@ -180,6 +180,34 @@ name|name
 argument_list|)
 return|;
 block|}
+comment|/**    * Attempt to clear (forcefully unlock and remove) the    * specified lock.  Only call this at a time when you are    * certain this lock is no longer in use.    * @param lockName name of the lock to be cleared.    */
+DECL|method|clearLock
+specifier|public
+name|void
+name|clearLock
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|lockFactory
+operator|!=
+literal|null
+condition|)
+block|{
+name|lockFactory
+operator|.
+name|clearLock
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** Closes the store. */
 DECL|method|close
 specifier|public
@@ -217,7 +245,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Get the LockFactory that this Directory instance is using for its locking implementation.    */
+comment|/**    * Get the LockFactory that this Directory instance is    * using for its locking implementation.  Note that this    * may be null for Directory implementations that provide    * their own locking implementation.    */
 DECL|method|getLockFactory
 specifier|public
 name|LockFactory

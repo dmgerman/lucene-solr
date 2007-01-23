@@ -846,9 +846,6 @@ block|{
 comment|// Clear the write lock in case it's leftover:
 name|directory
 operator|.
-name|getLockFactory
-argument_list|()
-operator|.
 name|clearLock
 argument_list|(
 name|IndexWriter
