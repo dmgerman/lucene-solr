@@ -375,6 +375,16 @@ name|FACET_SORT
 init|=
 literal|"facet.sort"
 decl_stmt|;
+comment|/**    * Only return constraints of a facet field with the given prefix.    */
+DECL|field|FACET_PREFIX
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_PREFIX
+init|=
+literal|"facet.prefix"
+decl_stmt|;
 comment|/** returns the String value of a param, or null if not set */
 DECL|method|get
 specifier|public
