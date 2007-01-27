@@ -377,7 +377,10 @@ decl_stmt|;
 name|Iterator
 name|it
 init|=
-name|files
+name|fileMap
+operator|.
+name|values
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -423,7 +426,10 @@ decl_stmt|;
 name|Iterator
 name|it
 init|=
-name|files
+name|fileMap
+operator|.
+name|values
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
