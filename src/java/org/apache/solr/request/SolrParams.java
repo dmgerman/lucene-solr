@@ -385,6 +385,26 @@ name|FACET_PREFIX
 init|=
 literal|"facet.prefix"
 decl_stmt|;
+comment|/** If the content stream should come from a URL */
+DECL|field|STREAM_URL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STREAM_URL
+init|=
+literal|"stream.url"
+decl_stmt|;
+comment|/** If the content stream should come directly from a field */
+DECL|field|STREAM_BODY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STREAM_BODY
+init|=
+literal|"stream.body"
+decl_stmt|;
 comment|/** returns the String value of a param, or null if not set */
 DECL|method|get
 specifier|public

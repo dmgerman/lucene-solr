@@ -95,6 +95,16 @@ name|SolrParams
 name|params
 parameter_list|)
 function_decl|;
+comment|/** A Collection of ContentStreams passed to the request    */
+DECL|method|getContentStreams
+specifier|public
+name|Iterable
+argument_list|<
+name|ContentStream
+argument_list|>
+name|getContentStreams
+parameter_list|()
+function_decl|;
 comment|/** Returns the original request parameters.  As this    * does not normally include configured defaults    * it's more suitable for logging.    */
 DECL|method|getOriginalParams
 specifier|public
