@@ -138,6 +138,20 @@ name|SolrPluginUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SimpleOrderedMap
+import|;
+end_import
+
 begin_comment
 comment|/**  *  */
 end_comment
@@ -465,7 +479,7 @@ name|NamedList
 name|lst
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|lst

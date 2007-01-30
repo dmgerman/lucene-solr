@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SimpleOrderedMap
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -1197,11 +1211,11 @@ name|toNamedList
 parameter_list|()
 block|{
 specifier|final
-name|NamedList
+name|SimpleOrderedMap
 name|result
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 for|for

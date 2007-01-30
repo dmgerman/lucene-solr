@@ -1163,7 +1163,7 @@ block|{
 name|dbg
 operator|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 expr_stmt|;
 comment|/* userQuery may have been pre-processes .. expose that */
@@ -1378,7 +1378,7 @@ block|{
 name|dbg
 operator|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 expr_stmt|;
 comment|/* userQuery may have been pre-processes .. expose that */
@@ -1570,7 +1570,7 @@ name|NamedList
 name|explainList
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|DocIterator

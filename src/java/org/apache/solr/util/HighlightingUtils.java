@@ -912,7 +912,7 @@ name|NamedList
 name|fragments
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|String
@@ -1062,7 +1062,7 @@ name|NamedList
 name|docSummaries
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 for|for

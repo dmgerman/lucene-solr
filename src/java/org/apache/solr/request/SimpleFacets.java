@@ -228,6 +228,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SimpleOrderedMap
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -346,7 +360,7 @@ name|NamedList
 name|res
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 try|try
@@ -425,7 +439,7 @@ name|NamedList
 name|res
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 comment|/* Ignore SolrParams.DF - could have init param facet.query assuming      * the schema default with query param DF intented to only affect Q.      * If user doesn't want schema default for facet.query, they should be      * explicit.      */
@@ -760,7 +774,7 @@ name|NamedList
 name|res
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|String

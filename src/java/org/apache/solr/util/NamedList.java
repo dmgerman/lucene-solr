@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * :TODO: In the future, it would be nice if this extended Map or Collection,  * had iterators, used java5 generics, had a faster lookup for  * large lists, etc...  * It could also have an interface, and multiple implementations.  * One might have indexed lookup, one might not.  *</p>  *  * @author yonik  * @version $Id$  */
+comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * A NamedList provides fast access by element number, but not by name.  *</p>  *<p>  * When a NamedList is serialized, order is considered more important than access  * by key, so ResponseWriters that output to a format such as JSON will normally  * choose a data structure that allows order to be easily preserved in various  * clients (i.e. not a straight map).  * If access by key is more important, see {@link SimpleOrderedMap},  * or simply use a regular {@link Map}  *</p>  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -646,6 +646,9 @@ comment|/**    * Makes a<i>shallow copy</i> of the named list.    */
 DECL|method|clone
 specifier|public
 name|NamedList
+argument_list|<
+name|T
+argument_list|>
 name|clone
 parameter_list|()
 block|{
@@ -671,6 +674,9 @@ expr_stmt|;
 return|return
 operator|new
 name|NamedList
+argument_list|<
+name|T
+argument_list|>
 argument_list|(
 name|newList
 argument_list|)

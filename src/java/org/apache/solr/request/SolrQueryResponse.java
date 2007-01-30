@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SimpleOrderedMap
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -57,7 +71,7 @@ name|NamedList
 name|values
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 DECL|field|defaultReturnFields

@@ -194,20 +194,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|servlet
-operator|.
-name|SolrServlet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|update
 operator|.
 name|AddUpdateCommand
@@ -309,6 +295,20 @@ operator|.
 name|util
 operator|.
 name|XML
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SimpleOrderedMap
 import|;
 end_import
 
@@ -663,11 +663,11 @@ name|getUpdateHandler
 argument_list|()
 decl_stmt|;
 comment|// TODO: What results should be returned?
-name|NamedList
+name|SimpleOrderedMap
 name|res
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|XmlPullParser
@@ -2221,7 +2221,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"$Revision:$"
+literal|"$Revision$"
 return|;
 block|}
 annotation|@
@@ -2233,7 +2233,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id:$"
+literal|"$Id$"
 return|;
 block|}
 annotation|@
@@ -2245,7 +2245,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL:$"
+literal|"$URL$"
 return|;
 block|}
 block|}
