@@ -138,7 +138,7 @@ end_comment
 
 begin_class
 DECL|class|IndexFileDeleter
-specifier|public
+specifier|final
 class|class
 name|IndexFileDeleter
 block|{
@@ -168,7 +168,6 @@ name|PrintStream
 name|infoStream
 decl_stmt|;
 DECL|method|IndexFileDeleter
-specifier|public
 name|IndexFileDeleter
 parameter_list|(
 name|SegmentInfos
@@ -234,7 +233,6 @@ expr_stmt|;
 block|}
 comment|/** Determine index files that are no longer referenced    * and therefore should be deleted.  This is called once    * (by the writer), and then subsequently we add onto    * deletable any files that are no longer needed at the    * point that we create the unused file (eg when merging    * segments), and we only remove from deletable when a    * file is successfully deleted.    */
 DECL|method|findDeletableFiles
-specifier|public
 name|void
 name|findDeletableFiles
 parameter_list|()
@@ -716,8 +714,6 @@ block|}
 block|}
 comment|/*    * Some operating systems (e.g. Windows) don't permit a file to be deleted    * while it is opened for read (e.g. by another process or thread). So we    * assume that when a delete fails it is because the file is open in another    * process, and queue the file for subsequent deletion.    */
 DECL|method|deleteSegments
-specifier|public
-specifier|final
 name|void
 name|deleteSegments
 parameter_list|(
@@ -801,8 +797,6 @@ block|}
 block|}
 comment|/**    * Delete these segments, as long as they are not listed    * in protectedSegments.  If they are, then, instead, add    * them to the pending set.   */
 DECL|method|deleteSegments
-specifier|public
-specifier|final
 name|void
 name|deleteSegments
 parameter_list|(
@@ -918,8 +912,6 @@ block|}
 block|}
 block|}
 DECL|method|deleteFiles
-specifier|public
-specifier|final
 name|void
 name|deleteFiles
 parameter_list|(
@@ -966,8 +958,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|deleteFiles
-specifier|public
-specifier|final
 name|void
 name|deleteFiles
 parameter_list|(
@@ -1015,8 +1005,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|deleteFile
-specifier|public
-specifier|final
 name|void
 name|deleteFile
 parameter_list|(
@@ -1088,7 +1076,6 @@ block|}
 block|}
 block|}
 DECL|method|clearPendingFiles
-specifier|final
 name|void
 name|clearPendingFiles
 parameter_list|()
@@ -1100,7 +1087,6 @@ expr_stmt|;
 block|}
 comment|/*     Record that the files for these segments should be     deleted, once the pending deletes are committed.    */
 DECL|method|addPendingSegments
-specifier|final
 name|void
 name|addPendingSegments
 parameter_list|(
@@ -1166,7 +1152,6 @@ block|}
 block|}
 comment|/*     Record list of files for deletion, but do not delete     them until commitPendingFiles is called.   */
 DECL|method|addPendingFiles
-specifier|final
 name|void
 name|addPendingFiles
 parameter_list|(
@@ -1209,7 +1194,6 @@ block|}
 block|}
 comment|/*     Record a file for deletion, but do not delete it until     commitPendingFiles is called.   */
 DECL|method|addPendingFile
-specifier|final
 name|void
 name|addPendingFile
 parameter_list|(
@@ -1240,7 +1224,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|commitPendingFiles
-specifier|final
 name|void
 name|commitPendingFiles
 parameter_list|()
@@ -1305,8 +1288,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|addDeletableFile
-specifier|public
-specifier|final
 name|void
 name|addDeletableFile
 parameter_list|(
@@ -1337,8 +1318,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|deleteFiles
-specifier|public
-specifier|final
 name|void
 name|deleteFiles
 parameter_list|()
