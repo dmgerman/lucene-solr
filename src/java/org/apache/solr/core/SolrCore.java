@@ -712,7 +712,7 @@ name|getDataDir
 parameter_list|()
 block|{
 return|return
-name|index_path
+name|dataDir
 return|;
 block|}
 DECL|method|getIndexDir
@@ -777,7 +777,7 @@ name|schema
 argument_list|,
 name|name
 argument_list|,
-name|getDataDir
+name|getIndexDir
 argument_list|()
 argument_list|,
 literal|false
@@ -859,7 +859,7 @@ name|warning
 argument_list|(
 literal|"WARNING: Solr index directory '"
 operator|+
-name|getDataDir
+name|getIndexDir
 argument_list|()
 operator|+
 literal|"' is locked.  Unlocking..."
@@ -903,7 +903,7 @@ name|SolrIndexWriter
 argument_list|(
 literal|"SolrCore.initIndex"
 argument_list|,
-name|getDataDir
+name|getIndexDir
 argument_list|()
 argument_list|,
 literal|true
