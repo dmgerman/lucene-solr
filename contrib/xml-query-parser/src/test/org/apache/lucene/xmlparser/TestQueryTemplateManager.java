@@ -26,26 +26,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Properties
@@ -82,33 +62,7 @@ name|xml
 operator|.
 name|transform
 operator|.
-name|Source
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
 name|TransformerException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|dom
-operator|.
-name|DOMSource
 import|;
 end_import
 
@@ -302,14 +256,6 @@ operator|new
 name|StandardAnalyzer
 argument_list|()
 decl_stmt|;
-DECL|field|templates
-name|HashMap
-name|templates
-init|=
-operator|new
-name|HashMap
-argument_list|()
-decl_stmt|;
 DECL|field|searcher
 specifier|private
 name|IndexSearcher
@@ -341,15 +287,15 @@ name|queryForms
 index|[]
 init|=
 block|{
-literal|"artist=Fugazi \texpectedMatches=2 \ttemplate=albumBooleanQuery.xsl"
+literal|"artist=Fugazi \texpectedMatches=2 \ttemplate=albumBooleanQuery"
 block|,
-literal|"artist=Fugazi \treleaseDate=1990 \texpectedMatches=1 \ttemplate=albumBooleanQuery.xsl"
+literal|"artist=Fugazi \treleaseDate=1990 \texpectedMatches=1 \ttemplate=albumBooleanQuery"
 block|,
-literal|"artist=Buckley \tgenre=rock \texpectedMatches=1 \ttemplate=albumFilteredQuery.xsl"
+literal|"artist=Buckley \tgenre=rock \texpectedMatches=1 \ttemplate=albumFilteredQuery"
 block|,
-literal|"artist=Buckley \tgenre=electronic \texpectedMatches=0 \ttemplate=albumFilteredQuery.xsl"
+literal|"artist=Buckley \tgenre=electronic \texpectedMatches=0 \ttemplate=albumFilteredQuery"
 block|,
-literal|"queryString=artist:buckly~ NOT genre:electronic \texpectedMatches=1 \ttemplate=albumLuceneClassicQuery.xsl"
+literal|"queryString=artist:buckly~ NOT genre:electronic \texpectedMatches=1 \ttemplate=albumLuceneClassicQuery"
 block|}
 decl_stmt|;
 DECL|method|testFormTransforms
@@ -368,6 +314,59 @@ name|TransformerException
 throws|,
 name|ParserException
 block|{
+comment|//Cache all the query templates we will be referring to.
+name|QueryTemplateManager
+name|qtm
+init|=
+operator|new
+name|QueryTemplateManager
+argument_list|()
+decl_stmt|;
+name|qtm
+operator|.
+name|addQueryTemplate
+argument_list|(
+literal|"albumBooleanQuery"
+argument_list|,
+name|getClass
+argument_list|()
+operator|.
+name|getResourceAsStream
+argument_list|(
+literal|"albumBooleanQuery.xsl"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|qtm
+operator|.
+name|addQueryTemplate
+argument_list|(
+literal|"albumFilteredQuery"
+argument_list|,
+name|getClass
+argument_list|()
+operator|.
+name|getResourceAsStream
+argument_list|(
+literal|"albumFilteredQuery.xsl"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|qtm
+operator|.
+name|addQueryTemplate
+argument_list|(
+literal|"albumLuceneClassicQuery"
+argument_list|,
+name|getClass
+argument_list|()
+operator|.
+name|getResourceAsStream
+argument_list|(
+literal|"albumLuceneClassicQuery.xsl"
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|//Run all of our test queries
 for|for
 control|(
@@ -398,30 +397,23 @@ index|]
 argument_list|)
 decl_stmt|;
 comment|//Get the required query XSL template for this test
-name|Source
-name|template
+comment|//			Templates template=getTemplate(queryFormProperties.getProperty("template"));
+comment|//Transform the queryFormProperties into a Lucene XML query
+name|Document
+name|doc
 init|=
-name|getTemplate
+name|qtm
+operator|.
+name|getQueryAsDOM
 argument_list|(
+name|queryFormProperties
+argument_list|,
 name|queryFormProperties
 operator|.
 name|getProperty
 argument_list|(
 literal|"template"
 argument_list|)
-argument_list|)
-decl_stmt|;
-comment|//Transform the queryFormProperties into a Lucene XML query
-name|Document
-name|doc
-init|=
-name|QueryTemplateManager
-operator|.
-name|getQueryAsDOM
-argument_list|(
-name|queryFormProperties
-argument_list|,
-name|template
 argument_list|)
 decl_stmt|;
 comment|//Parse the XML query using the XML parser
@@ -483,71 +475,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-DECL|method|getTemplate
-specifier|private
-name|Source
-name|getTemplate
-parameter_list|(
-name|String
-name|templateName
-parameter_list|)
-throws|throws
-name|ParserConfigurationException
-throws|,
-name|SAXException
-throws|,
-name|IOException
-block|{
-name|Source
-name|result
-init|=
-operator|(
-name|Source
-operator|)
-name|templates
-operator|.
-name|get
-argument_list|(
-name|templateName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|result
-operator|==
-literal|null
-condition|)
-block|{
-comment|//Not yet loaded - load the stylesheet
-name|result
-operator|=
-name|QueryTemplateManager
-operator|.
-name|getDOMSource
-argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|getResourceAsStream
-argument_list|(
-name|templateName
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|templates
-operator|.
-name|put
-argument_list|(
-name|templateName
-argument_list|,
-name|result
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|result
-return|;
 block|}
 comment|//Helper method to construct Lucene query forms used in our test
 DECL|method|getPropsFromString
