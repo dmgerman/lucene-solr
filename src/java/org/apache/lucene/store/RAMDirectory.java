@@ -62,26 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Enumeration
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -646,7 +626,7 @@ name|name
 argument_list|)
 throw|;
 block|}
-comment|/** Removes an existing file in the directory.    * @throws IOException if from does not exist    */
+comment|/** Renames an existing file in the directory.    * @throws FileNotFoundException if from does not exist    * @deprecated    */
 DECL|method|renameFile
 specifier|public
 specifier|synchronized
