@@ -101,6 +101,34 @@ argument_list|(
 literal|4
 argument_list|)
 decl_stmt|;
+comment|/** Expert:  Load the size of this {@link Field} rather than its value.        * Size is measured as number of bytes required to store the field == bytes for a binary or any compressed value, and 2*chars for a String value.       * The size is stored as a binary value, represented as an int in a byte[], with the higher order byte first in [0]       */
+DECL|field|SIZE
+specifier|public
+specifier|static
+specifier|final
+name|FieldSelectorResult
+name|SIZE
+init|=
+operator|new
+name|FieldSelectorResult
+argument_list|(
+literal|5
+argument_list|)
+decl_stmt|;
+comment|/** Expert: Like {@link #SIZE} but immediately break from the field loading loop, i.e. stop loading further fields, after the size is loaded */
+DECL|field|SIZE_AND_BREAK
+specifier|public
+specifier|static
+specifier|final
+name|FieldSelectorResult
+name|SIZE_AND_BREAK
+init|=
+operator|new
+name|FieldSelectorResult
+argument_list|(
+literal|6
+argument_list|)
+decl_stmt|;
 DECL|field|id
 specifier|private
 name|int
