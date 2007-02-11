@@ -330,6 +330,19 @@ argument_list|(
 name|rep
 argument_list|)
 expr_stmt|;
+comment|// print algorithm
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|top
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// execute
 name|top
 operator|.
