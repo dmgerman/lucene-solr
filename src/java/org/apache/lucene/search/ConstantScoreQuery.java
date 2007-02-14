@@ -93,6 +93,17 @@ operator|=
 name|filter
 expr_stmt|;
 block|}
+comment|/** Returns the encapsulated filter */
+DECL|method|getFilter
+specifier|public
+name|Filter
+name|getFilter
+parameter_list|()
+block|{
+return|return
+name|filter
+return|;
+block|}
 DECL|method|rewrite
 specifier|public
 name|Query
