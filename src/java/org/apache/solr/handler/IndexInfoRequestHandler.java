@@ -358,7 +358,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Number
+name|Object
 argument_list|>
 name|indexInfo
 init|=
@@ -367,7 +367,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|Number
+name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -401,10 +401,15 @@ name|put
 argument_list|(
 literal|"version"
 argument_list|,
+name|Long
+operator|.
+name|toString
+argument_list|(
 name|reader
 operator|.
 name|getVersion
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// indexInfo.put("age", );  // computed from SolrIndexSearcher.openedAt?
