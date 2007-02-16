@@ -1226,7 +1226,7 @@ default|default:
 comment|/* :NOOP: */
 block|}
 block|}
-comment|/**    * Replaces ${system.property[:default value]} references in all attributes    * and text nodes of supplied node.  If the system property is not defined, an empty string    * is substituted or the default value if provided.    *    * @param node DOM node to walk for substitutions    */
+comment|/**    * Replaces ${system.property[:default value]} references in all attributes    * and text nodes of supplied node.  If the system property is not defined and no    * default value is provided, a runtime exception is thrown.    *    * @param node DOM node to walk for substitutions    */
 DECL|method|substituteSystemProperties
 specifier|public
 specifier|static
