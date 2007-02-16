@@ -379,6 +379,13 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+name|DOMUtil
+operator|.
+name|substituteSystemProperties
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getDocument
 specifier|public
