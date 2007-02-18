@@ -1443,6 +1443,19 @@ return|return
 name|instanceDir
 return|;
 block|}
+DECL|method|isInstanceDirInitalized
+specifier|public
+specifier|static
+name|boolean
+name|isInstanceDirInitalized
+parameter_list|()
+block|{
+return|return
+name|instanceDir
+operator|!=
+literal|null
+return|;
+block|}
 comment|// The directory where solr will look for config files by default.
 comment|// defaults to "./solr/conf/"
 DECL|method|getConfigDir

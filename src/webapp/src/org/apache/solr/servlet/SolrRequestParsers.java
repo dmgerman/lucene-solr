@@ -730,27 +730,8 @@ argument_list|,
 name|streams
 argument_list|)
 decl_stmt|;
-comment|// If there is some path left over, add it to the context
-name|int
-name|idx
-init|=
-name|req
-operator|.
-name|getServletPath
-argument_list|()
-operator|.
-name|indexOf
-argument_list|(
-literal|':'
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|idx
-operator|>
-literal|0
-condition|)
-block|{
+comment|// Handlers and loggin will want to know the path. If it contains a ':'
+comment|// the handler could use it for RESTfull URLs
 name|sreq
 operator|.
 name|getContext
@@ -760,20 +741,9 @@ name|put
 argument_list|(
 literal|"path"
 argument_list|,
-name|req
-operator|.
-name|getServletPath
-argument_list|()
-operator|.
-name|substring
-argument_list|(
-name|idx
-operator|+
-literal|1
-argument_list|)
+name|path
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|sreq
 return|;
