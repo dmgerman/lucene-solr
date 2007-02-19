@@ -2619,6 +2619,10 @@ condition|)
 block|{
 if|if
 condition|(
+name|docsUpperBound
+operator|>
+literal|0
+operator|&&
 name|docsSinceCommit
 operator|>
 name|docsUpperBound
