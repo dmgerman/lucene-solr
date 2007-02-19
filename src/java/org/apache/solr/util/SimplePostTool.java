@@ -204,14 +204,14 @@ name|POST_ENCODING
 init|=
 literal|"UTF-8"
 decl_stmt|;
-DECL|field|VERSION
+DECL|field|VERSION_OF_THIS_TOOL
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|VERSION
+name|VERSION_OF_THIS_TOOL
 init|=
-literal|"$Id$"
+literal|"1.0"
 decl_stmt|;
 DECL|field|SOLR_OK_RESPONSE
 specifier|private
@@ -272,7 +272,9 @@ parameter_list|)
 block|{
 name|info
 argument_list|(
-name|VERSION
+literal|"version "
+operator|+
+name|VERSION_OF_THIS_TOOL
 argument_list|)
 expr_stmt|;
 if|if
