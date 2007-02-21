@@ -116,6 +116,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|LockObtainFailedException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -450,6 +464,11 @@ specifier|protected
 name|IndexFileDeleter
 name|deleter
 decl_stmt|;
+DECL|field|isClosed
+specifier|private
+name|boolean
+name|isClosed
+decl_stmt|;
 DECL|field|segmentInfos
 specifier|private
 name|SegmentInfos
@@ -481,7 +500,7 @@ specifier|private
 name|SegmentInfos
 name|rollbackSegmentInfos
 decl_stmt|;
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path. */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -492,6 +511,8 @@ name|String
 name|path
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -508,7 +529,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path. */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error   */
 DECL|method|open
 specifier|public
 specifier|static
@@ -519,6 +540,8 @@ name|File
 name|path
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -535,7 +558,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in the given Directory. */
+comment|/** Returns an IndexReader reading the index in the given Directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -547,6 +570,8 @@ name|Directory
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -573,6 +598,8 @@ name|boolean
 name|closeDirectory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -595,6 +622,8 @@ name|String
 name|segmentFileName
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|SegmentInfos
@@ -770,7 +799,7 @@ return|return
 name|directory
 return|;
 block|}
-comment|/**    * Returns the time the index in the named directory was last modified.    * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
+comment|/**    * Returns the time the index in the named directory was last modified.    * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -781,6 +810,8 @@ name|String
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -794,7 +825,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
+comment|/**    * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -805,6 +836,8 @@ name|File
 name|fileDirectory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -853,7 +886,7 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     */
+comment|/**    * Returns the time the index in the named directory was last modified.     * Do not use this to check whether the reader is still up-to-date, use    * {@link #isCurrent()} instead.     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|lastModified
 specifier|public
 specifier|static
@@ -865,6 +898,8 @@ name|Directory
 name|directory2
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -913,7 +948,7 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -924,6 +959,8 @@ name|String
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -937,7 +974,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -948,6 +985,8 @@ name|File
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|Directory
@@ -977,7 +1016,7 @@ return|return
 name|version
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws IOException if segments file cannot be read.    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -988,6 +1027,8 @@ name|Directory
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -1013,13 +1054,15 @@ name|getVersion
 argument_list|()
 return|;
 block|}
-comment|/**    * Check whether this IndexReader still works on a current version of the index.    * If this is not the case you will need to re-open the IndexReader to    * make sure you see the latest changes made to the index.    *     * @throws IOException    */
+comment|/**    * Check whether this IndexReader still works on a current version of the index.    * If this is not the case you will need to re-open the IndexReader to    * make sure you see the latest changes made to the index.    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|isCurrent
 specifier|public
 name|boolean
 name|isCurrent
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -1176,7 +1219,7 @@ name|int
 name|maxDoc
 parameter_list|()
 function_decl|;
-comment|/** Returns the stored fields of the<code>n</code><sup>th</sup><code>Document</code> in this index. */
+comment|/** Returns the stored fields of the<code>n</code><sup>th</sup><code>Document</code> in this index.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|document
 specifier|public
 name|Document
@@ -1186,6 +1229,8 @@ name|int
 name|n
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -1197,7 +1242,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Get the {@link org.apache.lucene.document.Document} at the<code>n</code><sup>th</sup> position. The {@link org.apache.lucene.document.FieldSelector}    * may be used to determine what {@link org.apache.lucene.document.Field}s to load and how they should be loaded.    *     *<b>NOTE:</b> If this Reader (more specifically, the underlying {@link FieldsReader}) is closed before the lazy {@link org.apache.lucene.document.Field} is    * loaded an exception may be thrown.  If you want the value of a lazy {@link org.apache.lucene.document.Field} to be available after closing you must    * explicitly load it or fetch the Document again with a new loader.    *     *      * @param n Get the document at the<code>n</code><sup>th</sup> position    * @param fieldSelector The {@link org.apache.lucene.document.FieldSelector} to use to determine what Fields should be loaded on the Document.  May be null, in which case all Fields will be loaded.    * @return The stored fields of the {@link org.apache.lucene.document.Document} at the nth position    * @throws IOException If there is a problem reading this document    *     * @see org.apache.lucene.document.Fieldable    * @see org.apache.lucene.document.FieldSelector    * @see org.apache.lucene.document.SetBasedFieldSelector    * @see org.apache.lucene.document.LoadFirstFieldSelector    */
+comment|/**    * Get the {@link org.apache.lucene.document.Document} at the<code>n</code><sup>th</sup> position. The {@link org.apache.lucene.document.FieldSelector}    * may be used to determine what {@link org.apache.lucene.document.Field}s to load and how they should be loaded.    *     *<b>NOTE:</b> If this Reader (more specifically, the underlying<code>FieldsReader</code>) is closed before the lazy {@link org.apache.lucene.document.Field} is    * loaded an exception may be thrown.  If you want the value of a lazy {@link org.apache.lucene.document.Field} to be available after closing you must    * explicitly load it or fetch the Document again with a new loader.    *     *      * @param n Get the document at the<code>n</code><sup>th</sup> position    * @param fieldSelector The {@link org.apache.lucene.document.FieldSelector} to use to determine what Fields should be loaded on the Document.  May be null, in which case all Fields will be loaded.    * @return The stored fields of the {@link org.apache.lucene.document.Document} at the nth position    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *     * @see org.apache.lucene.document.Fieldable    * @see org.apache.lucene.document.FieldSelector    * @see org.apache.lucene.document.SetBasedFieldSelector    * @see org.apache.lucene.document.LoadFirstFieldSelector    */
 comment|//When we convert to JDK 1.5 make this Set<String>
 DECL|method|document
 specifier|public
@@ -1212,6 +1257,8 @@ name|FieldSelector
 name|fieldSelector
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 function_decl|;
 comment|/** Returns true if document<i>n</i> has been deleted */
@@ -1290,7 +1337,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * Fieldable#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * org.apache.lucene.document.Fieldable#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if this reader was closed already    *  or there is a low-level IO error    */
 DECL|method|setNorm
 specifier|public
 specifier|final
@@ -1308,13 +1355,19 @@ name|byte
 name|value
 parameter_list|)
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 if|if
 condition|(
 name|directoryOwner
 condition|)
-name|aquireWriteLock
+name|acquireWriteLock
 argument_list|()
 expr_stmt|;
 name|hasChanges
@@ -1348,9 +1401,11 @@ name|byte
 name|value
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    */
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    *     * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if this reader was closed already    *  or there is a low-level IO error    */
 DECL|method|setNorm
 specifier|public
 name|void
@@ -1366,6 +1421,12 @@ name|float
 name|value
 parameter_list|)
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|setNorm
@@ -1497,13 +1558,19 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Tries to acquire the WriteLock on this directory.    * this method is only valid if this IndexReader is directory owner.    *     * @throws IOException If WriteLock cannot be acquired.    */
-DECL|method|aquireWriteLock
+comment|/**    * Tries to acquire the WriteLock on this directory.    * this method is only valid if this IndexReader is directory owner.    *     * @throws StaleReaderException if the index has changed    * since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
+DECL|method|acquireWriteLock
 specifier|private
 name|void
-name|aquireWriteLock
+name|acquireWriteLock
 parameter_list|()
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 if|if
@@ -1512,9 +1579,20 @@ name|stale
 condition|)
 throw|throw
 operator|new
-name|IOException
+name|StaleReaderException
 argument_list|(
 literal|"IndexReader out of date and no longer valid for delete, undelete, or setNorm operations"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|isClosed
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"this reader is closed"
 argument_list|)
 throw|;
 if|if
@@ -1551,7 +1629,7 @@ condition|)
 comment|// obtain write lock
 throw|throw
 operator|new
-name|IOException
+name|LockObtainFailedException
 argument_list|(
 literal|"Index locked for write: "
 operator|+
@@ -1600,7 +1678,7 @@ literal|null
 expr_stmt|;
 throw|throw
 operator|new
-name|IOException
+name|StaleReaderException
 argument_list|(
 literal|"IndexReader out of date and no longer valid for delete, undelete, or setNorm operations"
 argument_list|)
@@ -1608,7 +1686,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    */
+comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    *    * @throws StaleReaderException if the index has changed    * since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if this reader was closed already    *  or there is a low-level IO error    */
 DECL|method|deleteDocument
 specifier|public
 specifier|final
@@ -1620,13 +1698,19 @@ name|int
 name|docNum
 parameter_list|)
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 if|if
 condition|(
 name|directoryOwner
 condition|)
-name|aquireWriteLock
+name|acquireWriteLock
 argument_list|()
 expr_stmt|;
 name|hasChanges
@@ -1650,9 +1734,11 @@ name|int
 name|docNum
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 function_decl|;
-comment|/** Deletes all documents that have a given<code>term</code> indexed.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #deleteDocument(int)} for information about when this deletion will     * become effective.    * @return the number of documents deleted    */
+comment|/** Deletes all documents that have a given<code>term</code> indexed.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #deleteDocument(int)} for information about when this deletion will     * become effective.    *    * @return the number of documents deleted    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if this reader was closed already    *  or there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
 specifier|final
@@ -1663,6 +1749,12 @@ name|Term
 name|term
 parameter_list|)
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|TermDocs
@@ -1722,7 +1814,7 @@ return|return
 name|n
 return|;
 block|}
-comment|/** Undeletes all documents currently marked as deleted in this index.*/
+comment|/** Undeletes all documents currently marked as deleted in this index.    *    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if this reader was closed already    *  or there is a low-level IO error    */
 DECL|method|undeleteAll
 specifier|public
 specifier|final
@@ -1731,13 +1823,19 @@ name|void
 name|undeleteAll
 parameter_list|()
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 if|if
 condition|(
 name|directoryOwner
 condition|)
-name|aquireWriteLock
+name|acquireWriteLock
 argument_list|()
 expr_stmt|;
 name|hasChanges
@@ -1756,6 +1854,8 @@ name|void
 name|doUndeleteAll
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 function_decl|;
 comment|/**    * Should internally checkpoint state that will change    * during commit so that we can rollback if necessary.    */
@@ -1846,7 +1946,7 @@ operator|=
 name|rollbackHasChanges
 expr_stmt|;
 block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    *     * @throws IOException    */
+comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
 DECL|method|commit
 specifier|protected
 specifier|final
@@ -2062,7 +2162,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    */
+comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    * @throws IOException if this reader was closed already    *  or there is a low-level IO error    */
 DECL|method|close
 specifier|public
 specifier|final
@@ -2073,6 +2173,21 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|directoryOwner
+operator|&&
+name|isClosed
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"this reader is already closed"
+argument_list|)
+throw|;
+block|}
 name|commit
 argument_list|()
 expr_stmt|;
@@ -2088,6 +2203,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|directoryOwner
+condition|)
+block|{
+name|isClosed
+operator|=
+literal|true
+expr_stmt|;
+block|}
 block|}
 comment|/** Implements close. */
 DECL|method|doClose
@@ -2149,7 +2274,7 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
 DECL|method|isLocked
 specifier|public
 specifier|static
@@ -2176,7 +2301,7 @@ name|isLocked
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
 DECL|method|isLocked
 specifier|public
 specifier|static

@@ -547,7 +547,7 @@ name|nextGeneration
 argument_list|)
 return|;
 block|}
-comment|/**    * Read a particular segmentFileName.  Note that this may    * throw an IOException if a commit is in process.    *    * @param directory -- directory containing the segments file    * @param segmentFileName -- segment file to load    */
+comment|/**    * Read a particular segmentFileName.  Note that this may    * throw an IOException if a commit is in process.    *    * @param directory -- directory containing the segments file    * @param segmentFileName -- segment file to load    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|read
 specifier|public
 specifier|final
@@ -561,6 +561,8 @@ name|String
 name|segmentFileName
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|boolean
@@ -654,7 +656,7 @@ name|FORMAT_SINGLE_NORM_FILE
 condition|)
 throw|throw
 operator|new
-name|IOException
+name|CorruptIndexException
 argument_list|(
 literal|"Unknown format version: "
 operator|+
@@ -783,7 +785,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * This version of read uses the retry logic (for lock-less    * commits) to find the right segments file to load.    */
+comment|/**    * This version of read uses the retry logic (for lock-less    * commits) to find the right segments file to load.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|read
 specifier|public
 specifier|final
@@ -794,6 +796,8 @@ name|Directory
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|generation
@@ -817,6 +821,8 @@ name|String
 name|segmentFileName
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|read
@@ -1091,7 +1097,7 @@ return|return
 name|version
 return|;
 block|}
-comment|/**    * Current version number from segments file.    */
+comment|/**    * Current version number from segments file.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|readCurrentVersion
 specifier|public
 specifier|static
@@ -1102,6 +1108,8 @@ name|Directory
 name|directory
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -1123,6 +1131,8 @@ name|String
 name|segmentFileName
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|IndexInput
@@ -1169,7 +1179,7 @@ name|FORMAT_SINGLE_NORM_FILE
 condition|)
 throw|throw
 operator|new
-name|IOException
+name|CorruptIndexException
 argument_list|(
 literal|"Unknown format version: "
 operator|+
@@ -1473,6 +1483,8 @@ name|Object
 name|run
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|String
@@ -1621,7 +1633,11 @@ throw|throw
 operator|new
 name|FileNotFoundException
 argument_list|(
-literal|"no segments* file found: files:"
+literal|"no segments* file found in "
+operator|+
+name|directory
+operator|+
+literal|": files:"
 operator|+
 name|s
 argument_list|)
@@ -2124,6 +2140,8 @@ name|String
 name|segmentFileName
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 function_decl|;
 block|}

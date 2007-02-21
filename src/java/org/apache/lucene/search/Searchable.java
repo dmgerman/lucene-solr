@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|CorruptIndexException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -162,7 +176,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns the stored fields of document<code>i</code>.    * Called by {@link HitCollector} implementations.    * @see IndexReader#document(int)    */
+comment|/** Expert: Returns the stored fields of document<code>i</code>.    * Called by {@link HitCollector} implementations.    * @see IndexReader#document(int)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|doc
 name|Document
 name|doc
@@ -171,6 +185,8 @@ name|int
 name|i
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 function_decl|;
 comment|/** Expert: called to re-write queries into primitive queries.    * @throws BooleanQuery.TooManyClauses    */

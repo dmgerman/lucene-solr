@@ -60,6 +60,20 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|CorruptIndexException
+import|;
+end_import
+
 begin_comment
 comment|/** A ranked list of documents, used to hold search results. */
 end_comment
@@ -411,7 +425,7 @@ return|return
 name|length
 return|;
 block|}
-comment|/** Returns the stored fields of the n<sup>th</sup> document in this set.<p>Documents are cached, so that repeated requests for the same element may    return the same Document object. */
+comment|/** Returns the stored fields of the n<sup>th</sup> document in this set.    *<p>Documents are cached, so that repeated requests for the same element may    * return the same Document object.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|doc
 specifier|public
 specifier|final
@@ -422,6 +436,8 @@ name|int
 name|n
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|HitDoc

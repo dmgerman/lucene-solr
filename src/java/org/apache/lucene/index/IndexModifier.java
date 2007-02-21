@@ -74,6 +74,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|LockObtainFailedException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -189,7 +203,7 @@ name|IndexWriter
 operator|.
 name|DEFAULT_MERGE_FACTOR
 decl_stmt|;
-comment|/**    * Open an index with write access.    *    * @param directory the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
+comment|/**    * Open an index with write access.    *    * @param directory the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexModifier
 specifier|public
 name|IndexModifier
@@ -204,6 +218,10 @@ name|boolean
 name|create
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|init
@@ -216,7 +234,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Open an index with write access.    *    * @param dirName the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
+comment|/**    * Open an index with write access.    *    * @param dirName the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexModifier
 specifier|public
 name|IndexModifier
@@ -231,6 +249,10 @@ name|boolean
 name|create
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|Directory
@@ -253,7 +275,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Open an index with write access.    *    * @param file the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    */
+comment|/**    * Open an index with write access.    *    * @param file the index directory    * @param analyzer the analyzer to use for adding new documents    * @param create<code>true</code> to create the index or overwrite the existing one;    *<code>false</code> to append to the existing index    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexModifier
 specifier|public
 name|IndexModifier
@@ -268,6 +290,10 @@ name|boolean
 name|create
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|Directory
@@ -290,7 +316,7 @@ name|create
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initialize an IndexWriter.    * @throws IOException    */
+comment|/**    * Initialize an IndexWriter.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|init
 specifier|protected
 name|void
@@ -306,6 +332,10 @@ name|boolean
 name|create
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|this
@@ -367,13 +397,17 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Close the IndexReader and open an IndexWriter.    * @throws IOException    */
+comment|/**    * Close the IndexReader and open an IndexWriter.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|createIndexWriter
 specifier|protected
 name|void
 name|createIndexWriter
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 if|if
@@ -449,13 +483,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Close the IndexWriter and open an IndexReader.    * @throws IOException    */
+comment|/**    * Close the IndexWriter and open an IndexReader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|createIndexReader
 specifier|protected
 name|void
 name|createIndexReader
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 if|if
@@ -493,13 +529,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Make sure all changes are written to disk.    * @throws IOException    */
+comment|/**    * Make sure all changes are written to disk.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|flush
 specifier|public
 name|void
 name|flush
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -547,7 +587,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * one specific in the constructor.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    * @see IndexWriter#addDocument(Document, Analyzer)    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * one specific in the constructor.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    * @see IndexWriter#addDocument(Document, Analyzer)    * @throws IllegalStateException if the index is closed    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -560,6 +600,10 @@ name|Analyzer
 name|docAnalyzer
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -598,7 +642,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    * @see IndexWriter#addDocument(Document)    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    * @see IndexWriter#addDocument(Document)    * @throws IllegalStateException if the index is closed    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -608,6 +652,10 @@ name|Document
 name|doc
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|addDocument
@@ -618,7 +666,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.  Returns the number of documents deleted.    * @return the number of documents deleted    * @see IndexReader#deleteDocuments(Term)    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Deletes all documents containing<code>term</code>.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.  Returns the number of documents deleted.    * @return the number of documents deleted    * @see IndexReader#deleteDocuments(Term)    * @throws IllegalStateException if the index is closed    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
 name|int
@@ -628,6 +676,12 @@ name|Term
 name|term
 parameter_list|)
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -651,7 +705,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Deletes the document numbered<code>docNum</code>.    * @see IndexReader#deleteDocument(int)    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Deletes the document numbered<code>docNum</code>.    * @see IndexReader#deleteDocument(int)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IllegalStateException if the index is closed    */
 DECL|method|deleteDocument
 specifier|public
 name|void
@@ -661,6 +715,12 @@ name|int
 name|docNum
 parameter_list|)
 throws|throws
+name|StaleReaderException
+throws|,
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -723,13 +783,17 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Merges all segments together into a single segment, optimizing an index    * for search.    * @see IndexWriter#optimize()    * @throws IllegalStateException if the index is closed    */
+comment|/**    * Merges all segments together into a single segment, optimizing an index    * for search.    * @see IndexWriter#optimize()    * @throws IllegalStateException if the index is closed    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|optimize
 specifier|public
 name|void
 name|optimize
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -791,13 +855,17 @@ name|infoStream
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @throws IOException    * @see IndexModifier#setInfoStream(PrintStream)    */
+comment|/**    * @see IndexModifier#setInfoStream(PrintStream)    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|getInfoStream
 specifier|public
 name|PrintStream
 name|getInfoStream
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -860,13 +928,17 @@ name|useCompoundFile
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @throws IOException    * @see IndexModifier#setUseCompoundFile(boolean)    */
+comment|/**    * @see IndexModifier#setUseCompoundFile(boolean)    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|getUseCompoundFile
 specifier|public
 name|boolean
 name|getUseCompoundFile
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -929,13 +1001,17 @@ name|maxFieldLength
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @throws IOException    * @see IndexModifier#setMaxFieldLength(int)    */
+comment|/**    * @see IndexModifier#setMaxFieldLength(int)    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|getMaxFieldLength
 specifier|public
 name|int
 name|getMaxFieldLength
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -998,13 +1074,17 @@ name|maxBufferedDocs
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @throws IOException    * @see IndexModifier#setMaxBufferedDocs(int)    */
+comment|/**    * @see IndexModifier#setMaxBufferedDocs(int)    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|getMaxBufferedDocs
 specifier|public
 name|int
 name|getMaxBufferedDocs
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -1067,13 +1147,17 @@ name|mergeFactor
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @throws IOException    * @see IndexModifier#setMergeFactor(int)    */
+comment|/**    * @see IndexModifier#setMergeFactor(int)    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|getMergeFactor
 specifier|public
 name|int
 name|getMergeFactor
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized
@@ -1095,13 +1179,15 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Close this index, writing all pending changes to disk.    *    * @throws IllegalStateException if the index has been closed before already    */
+comment|/**    * Close this index, writing all pending changes to disk.    *    * @throws IllegalStateException if the index has been closed before already    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
 specifier|public
 name|void
 name|close
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 synchronized|synchronized

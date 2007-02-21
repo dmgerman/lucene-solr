@@ -180,7 +180,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Attempt to clear (forcefully unlock and remove) the    * specified lock.  Only call this at a time when you are    * certain this lock is no longer in use.    * @param lockName name of the lock to be cleared.    */
+comment|/**    * Attempt to clear (forcefully unlock and remove) the    * specified lock.  Only call this at a time when you are    * certain this lock is no longer in use.    * @param name name of the lock to be cleared.    */
 DECL|method|clearLock
 specifier|public
 name|void

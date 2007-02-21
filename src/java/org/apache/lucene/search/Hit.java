@@ -40,6 +40,20 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|CorruptIndexException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Wrapper used by {@link HitIterator} to provide a lazily loaded hit  * from {@link Hits}.  *  * @author Jeremy Rayner  */
 end_comment
@@ -106,13 +120,15 @@ operator|=
 name|hitNumber
 expr_stmt|;
 block|}
-comment|/**    * Returns document for this hit.    *    * @see Hits#doc(int)    */
+comment|/**    * Returns document for this hit.    *    * @see Hits#doc(int)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|getDocument
 specifier|public
 name|Document
 name|getDocument
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 if|if
@@ -169,6 +185,8 @@ name|void
 name|fetchTheHit
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|doc
@@ -186,13 +204,15 @@ literal|true
 expr_stmt|;
 block|}
 comment|// provide some of the Document style interface (the simple stuff)
-comment|/**    * Returns the boost factor for this hit on any field of the underlying document.    *    * @see Document#getBoost()    */
+comment|/**    * Returns the boost factor for this hit on any field of the underlying document.    *    * @see Document#getBoost()    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|getBoost
 specifier|public
 name|float
 name|getBoost
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -203,7 +223,7 @@ name|getBoost
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    *    * @see Document#get(String)    */
+comment|/**    * Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    *    * @see Document#get(String)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|get
 specifier|public
 name|String
@@ -213,6 +233,8 @@ name|String
 name|name
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return

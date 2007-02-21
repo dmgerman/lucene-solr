@@ -122,6 +122,8 @@ name|FieldInfos
 name|fis
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|directory

@@ -492,6 +492,8 @@ name|FieldSelector
 name|fieldSelector
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return
@@ -542,6 +544,8 @@ name|void
 name|doUndeleteAll
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|in
@@ -636,6 +640,8 @@ name|byte
 name|b
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|in
@@ -744,6 +750,8 @@ name|int
 name|n
 parameter_list|)
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 name|in
@@ -821,6 +829,8 @@ name|boolean
 name|isCurrent
 parameter_list|()
 throws|throws
+name|CorruptIndexException
+throws|,
 name|IOException
 block|{
 return|return

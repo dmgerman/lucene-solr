@@ -61,7 +61,7 @@ specifier|protected
 name|Throwable
 name|failureReason
 decl_stmt|;
-comment|/** Attempts to obtain an exclusive lock within amount    *  of time given. Currently polls once per second until    *  lockWaitTimeout is passed.    * @param lockWaitTimeout length of time to wait in ms    * @return true if lock was obtained    * @throws IOException if lock wait times out or obtain() throws an IOException    */
+comment|/** Attempts to obtain an exclusive lock within amount    *  of time given. Currently polls once per second until    *  lockWaitTimeout is passed.    * @param lockWaitTimeout length of time to wait in ms    * @return true if lock was obtained    * @throws LockObtainFailedException if lock wait times out    * @throws IOException if obtain() throws IOException    */
 DECL|method|obtain
 specifier|public
 name|boolean
@@ -71,6 +71,8 @@ name|long
 name|lockWaitTimeout
 parameter_list|)
 throws|throws
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|failureReason
@@ -138,11 +140,11 @@ operator|+
 name|failureReason
 expr_stmt|;
 block|}
-name|IOException
+name|LockObtainFailedException
 name|e
 init|=
 operator|new
-name|IOException
+name|LockObtainFailedException
 argument_list|(
 name|reason
 argument_list|)
@@ -272,13 +274,15 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Calls {@link #doBody} while<i>lock</i> is obtained.  Blocks if lock      * cannot be obtained immediately.  Retries to obtain lock once per second      * until it is obtained, or until it has tried ten times. Lock is released when      * {@link #doBody} exits. */
+comment|/** Calls {@link #doBody} while<i>lock</i> is obtained.  Blocks if lock      * cannot be obtained immediately.  Retries to obtain lock once per second      * until it is obtained, or until it has tried ten times. Lock is released when      * {@link #doBody} exits.      * @throws LockObtainFailedException if lock could not      * be obtained      * @throws IOException if {@link Lock#obtain} throws IOException      */
 DECL|method|run
 specifier|public
 name|Object
 name|run
 parameter_list|()
 throws|throws
+name|LockObtainFailedException
+throws|,
 name|IOException
 block|{
 name|boolean
