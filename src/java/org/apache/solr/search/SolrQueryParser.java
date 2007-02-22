@@ -130,7 +130,7 @@ specifier|final
 name|IndexSchema
 name|schema
 decl_stmt|;
-comment|/**    *    * @param schema Used for default search field name if defaultField is null and field information is used for analysis    * @param defaultField default field used for unspecified search terms.  if null, the schema default field is used    */
+comment|/**    * Constructs a SolrQueryParser using the schema to understand the    * formats and datatypes of each field.  Only the defaultSearchField    * will be used from the IndexSchema (unless overridden),    *&lt;solrQueryParser&gt; will not be used.    *     * @param schema Used for default search field name if defaultField is null and field information is used for analysis    * @param defaultField default field used for unspecified search terms.  if null, the schema default field is used    * @see IndexSchema.getSolrQueryParser    */
 DECL|method|SolrQueryParser
 specifier|public
 name|SolrQueryParser
@@ -170,36 +170,6 @@ expr_stmt|;
 name|setLowercaseExpandedTerms
 argument_list|(
 literal|false
-argument_list|)
-expr_stmt|;
-name|String
-name|operator
-init|=
-name|schema
-operator|.
-name|getQueryParserDefaultOperator
-argument_list|()
-decl_stmt|;
-name|setDefaultOperator
-argument_list|(
-literal|"AND"
-operator|.
-name|equals
-argument_list|(
-name|operator
-argument_list|)
-condition|?
-name|QueryParser
-operator|.
-name|Operator
-operator|.
-name|AND
-else|:
-name|QueryParser
-operator|.
-name|Operator
-operator|.
-name|OR
 argument_list|)
 expr_stmt|;
 block|}

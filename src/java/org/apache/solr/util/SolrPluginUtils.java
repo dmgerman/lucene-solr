@@ -2719,6 +2719,16 @@ argument_list|,
 name|defaultField
 argument_list|)
 expr_stmt|;
+comment|// don't trust that our parent class won't ever change it's default
+name|setDefaultOperator
+argument_list|(
+name|QueryParser
+operator|.
+name|Operator
+operator|.
+name|OR
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|DisjunctionMaxQueryParser
 specifier|public

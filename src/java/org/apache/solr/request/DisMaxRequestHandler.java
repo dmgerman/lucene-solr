@@ -617,11 +617,10 @@ comment|/* a generic parser for parsing regular lucene queries */
 name|QueryParser
 name|p
 init|=
-operator|new
-name|SolrQueryParser
-argument_list|(
 name|schema
-argument_list|,
+operator|.
+name|getSolrQueryParser
+argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;

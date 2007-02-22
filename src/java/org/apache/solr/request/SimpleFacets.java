@@ -446,14 +446,13 @@ comment|/* Ignore SolrParams.DF - could have init param facet.query assuming    
 name|SolrQueryParser
 name|qp
 init|=
-operator|new
-name|SolrQueryParser
-argument_list|(
 name|searcher
 operator|.
 name|getSchema
 argument_list|()
-argument_list|,
+operator|.
+name|getSolrQueryParser
+argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
