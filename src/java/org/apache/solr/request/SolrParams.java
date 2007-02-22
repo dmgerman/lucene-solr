@@ -259,46 +259,6 @@ name|EXPLAIN_OTHER
 init|=
 literal|"explainOther"
 decl_stmt|;
-comment|/** wether to highlight */
-DECL|field|HIGHLIGHT
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|HIGHLIGHT
-init|=
-literal|"highlight"
-decl_stmt|;
-comment|/** fields to highlight */
-DECL|field|HIGHLIGHT_FIELDS
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|HIGHLIGHT_FIELDS
-init|=
-literal|"highlightFields"
-decl_stmt|;
-comment|/** maximum highlight fragments to return */
-DECL|field|MAX_SNIPPETS
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|MAX_SNIPPETS
-init|=
-literal|"maxSnippets"
-decl_stmt|;
-comment|/** override default highlight Formatter class */
-DECL|field|HIGHLIGHT_FORMATTER_CLASS
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|HIGHLIGHT_FORMATTER_CLASS
-init|=
-literal|"highlightFormatterClass"
-decl_stmt|;
 comment|/**    * Should facet counts be calculated?    */
 DECL|field|FACET
 specifier|public
