@@ -383,7 +383,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A Generic query plugin designed to be given a simple query expression  * from a user, which it will then query against a variety of  * pre-configured fields, in a variety of ways, using BooleanQueries,  * DisjunctionMaxQueries, and PhraseQueries.  *</p>  *  *<p>  * All of the following options may be configured for this plugin  * in the solrconfig as defaults, and may be overriden as request parameters  *</p>  *  *<ul>  *<li>q.alt - An alternate query to be used in cases where the main  *             query (q) is not specified (or blank).  This query should  *             be expressed in the Standard SolrQueryParser syntax (you  *             can use<code>q.alt=*:*</code> to denote that all documents  *             should be returned when no query is specified)  *</li>  *<li>tie - (Tie breaker) float value to use as tiebreaker in  *           DisjunctionMaxQueries (should be something much less than 1)  *</li>  *<li> qf - (Query Fields) fields and boosts to use when building  *           DisjunctionMaxQueries from the users query.  Format is:  *           "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> mm - (Minimum Match) this supports a wide variety of  *           complex expressions.  *           read {@link SolrPluginUtils#setMinShouldMatch SolrPluginUtils.setMinShouldMatch} for full details.  *</li>  *<li> pf - (Phrase Fields) fields/boosts to make phrase queries out  *           of, to boost the users query for exact matches on the specified fields.  *           Format is: "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> ps - (Phrase Slop) amount of slop on phrase queries built for pf  *           fields.  *</li>  *<li> bq - (Boost Query) a raw lucene query that will be included in the   *           users query to influence the score.  If this is a BooleanQuery  *           with a default boost (1.0f), then the individual clauses will be  *           added directly to the main query.  Otherwise, the query will be  *           included as is.  *</li>  *<li> bf - (Boost Functions) functions (with optional boosts) that will be  *           included in the users query to influence the score.  *           Format is: "<code>funcA(arg1,arg2)^1.2  *           funcB(arg3,arg4)^2.2</code>".  NOTE: Whitespace is not allowed  *           in the function arguments.  *</li>  *<li> fq - (Filter Query) a raw lucene query that can be used  *           to restrict the super set of products we are interested in - more  *           efficient then using bq, but doesn't influence score.  *           This param can be specified multiple times, and the filters  *           are additive.  *</li>  *</ul>  *  *<p>  * The following options are only available as request params...  *</p>  *  *<ul>  *<li>   q - (Query) the raw unparsed, unescaped, query from the user.  *</li>  *<li>sort - (Order By) list of fields and direction to sort on.  *</li>  *</ul>  *  *<pre>  * :TODO: document facet param support  *  * :TODO: make bf,pf,qf multival params now that SolrParams supports them  *</pre>  */
+comment|/**  *<p>  * A Generic query plugin designed to be given a simple query expression  * from a user, which it will then query against a variety of  * pre-configured fields, in a variety of ways, using BooleanQueries,  * DisjunctionMaxQueries, and PhraseQueries.  *</p>  *  *<p>  * All of the following options may be configured for this plugin  * in the solrconfig as defaults, and may be overriden as request parameters  *</p>  *  *<ul>  *<li>q.alt - An alternate query to be used in cases where the main  *             query (q) is not specified (or blank).  This query should  *             be expressed in the Standard SolrQueryParser syntax (you  *             can use<code>q.alt=*:*</code> to denote that all documents  *             should be returned when no query is specified)  *</li>  *<li>tie - (Tie breaker) float value to use as tiebreaker in  *           DisjunctionMaxQueries (should be something much less than 1)  *</li>  *<li> qf - (Query Fields) fields and boosts to use when building  *           DisjunctionMaxQueries from the users query.  Format is:  *           "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> mm - (Minimum Match) this supports a wide variety of  *           complex expressions.  *           read {@link SolrPluginUtils#setMinShouldMatch SolrPluginUtils.setMinShouldMatch} for full details.  *</li>  *<li> pf - (Phrase Fields) fields/boosts to make phrase queries out  *           of, to boost the users query for exact matches on the specified fields.  *           Format is: "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> ps - (Phrase Slop) amount of slop on phrase queries built for pf  *           fields.  *</li>  *<li> ps - (Query Slop) amount of slop on phrase queries explicitly  *           specified in the "q" for qf fields.  *</li>  *<li> bq - (Boost Query) a raw lucene query that will be included in the   *           users query to influence the score.  If this is a BooleanQuery  *           with a default boost (1.0f), then the individual clauses will be  *           added directly to the main query.  Otherwise, the query will be  *           included as is.  *</li>  *<li> bf - (Boost Functions) functions (with optional boosts) that will be  *           included in the users query to influence the score.  *           Format is: "<code>funcA(arg1,arg2)^1.2  *           funcB(arg3,arg4)^2.2</code>".  NOTE: Whitespace is not allowed  *           in the function arguments.  *</li>  *<li> fq - (Filter Query) a raw lucene query that can be used  *           to restrict the super set of products we are interested in - more  *           efficient then using bq, but doesn't influence score.  *           This param can be specified multiple times, and the filters  *           are additive.  *</li>  *</ul>  *  *<p>  * The following options are only available as request params...  *</p>  *  *<ul>  *<li>   q - (Query) the raw unparsed, unescaped, query from the user.  *</li>  *<li>sort - (Order By) list of fields and direction to sort on.  *</li>  *</ul>  *  *<pre>  * :TODO: document facet param support  *  * :TODO: make bf,pf,qf multival params now that SolrParams supports them  *</pre>  */
 end_comment
 
 begin_class
@@ -599,6 +599,20 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+name|int
+name|qslop
+init|=
+name|params
+operator|.
+name|getInt
+argument_list|(
+name|DMP
+operator|.
+name|QS
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 comment|/* a generic parser for parsing regular lucene queries */
 name|QueryParser
 name|p
@@ -636,6 +650,13 @@ argument_list|,
 name|tiebreaker
 argument_list|,
 name|queryFields
+argument_list|)
+expr_stmt|;
+name|up
+operator|.
+name|setPhraseSlop
+argument_list|(
+name|qslop
 argument_list|)
 expr_stmt|;
 comment|/* for parsing slopy phrases using DisjunctionMaxQueries */

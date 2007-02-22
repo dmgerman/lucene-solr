@@ -477,6 +477,46 @@ argument_list|,
 literal|"//*[@numFound='0']"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"no query slop == no match"
+argument_list|,
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"dismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"\"cool chick\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"query slop == match"
+argument_list|,
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"dismax"
+argument_list|,
+literal|"qs"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"\"cool chick\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testOldStyleDefaults
 specifier|public

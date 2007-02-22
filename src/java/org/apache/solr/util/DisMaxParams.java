@@ -272,7 +272,7 @@ name|MM
 init|=
 literal|"mm"
 decl_stmt|;
-comment|/** query and init param for Phrase Slop value */
+comment|/**      * query and init param for Phrase Slop value in phrase      * boost query (in pf fields)      */
 DECL|field|PS
 specifier|public
 specifier|static
@@ -280,6 +280,15 @@ name|String
 name|PS
 init|=
 literal|"ps"
+decl_stmt|;
+comment|/**      * query and init param for phrase Slop value in phrases      * explicitly included in the user's query string ( in qf fields)      */
+DECL|field|QS
+specifier|public
+specifier|static
+name|String
+name|QS
+init|=
+literal|"qs"
 decl_stmt|;
 comment|/** query and init param for boosting query */
 DECL|field|BQ
