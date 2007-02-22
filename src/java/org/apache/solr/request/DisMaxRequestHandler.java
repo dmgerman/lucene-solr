@@ -166,6 +166,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MatchAllDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Query
 import|;
 end_import
@@ -369,7 +383,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A Generic query plugin designed to be given a simple query expression  * from a user, which it will then query against a variety of  * pre-configured fields, in a variety of ways, using BooleanQueries,  * DisjunctionMaxQueries, and PhraseQueries.  *</p>  *  *<p>  * All of the following options may be configured for this plugin  * in the solrconfig as defaults, and may be overriden as request parameters  *</p>  *  *<ul>  *<li>tie - (Tie breaker) float value to use as tiebreaker in  *           DisjunctionMaxQueries (should be something much less than 1)  *</li>  *<li> qf - (Query Fields) fields and boosts to use when building  *           DisjunctionMaxQueries from the users query.  Format is:  *           "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> mm - (Minimum Match) this supports a wide variety of  *           complex expressions.  *           read {@link SolrPluginUtils#setMinShouldMatch SolrPluginUtils.setMinShouldMatch} for full details.  *</li>  *<li> pf - (Phrase Fields) fields/boosts to make phrase queries out  *           of, to boost the users query for exact matches on the specified fields.  *           Format is: "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> ps - (Phrase Slop) amount of slop on phrase queries built for pf  *           fields.  *</li>  *<li> bq - (Boost Query) a raw lucene query that will be included in the   *           users query to influence the score.  If this is a BooleanQuery  *           with a default boost (1.0f), then the individual clauses will be  *           added directly to the main query.  Otherwise, the query will be  *           included as is.  *</li>  *<li> bf - (Boost Functions) functions (with optional boosts) that will be  *           included in the users query to influence the score.  *           Format is: "<code>funcA(arg1,arg2)^1.2  *           funcB(arg3,arg4)^2.2</code>".  NOTE: Whitespace is not allowed  *           in the function arguments.  *</li>  *<li> fq - (Filter Query) a raw lucene query that can be used  *           to restrict the super set of products we are interested in - more  *           efficient then using bq, but doesn't influence score.  *           This param can be specified multiple times, and the filters  *           are additive.  *</li>  *</ul>  *  *<p>  * The following options are only available as request params...  *</p>  *  *<ul>  *<li>   q - (Query) the raw unparsed, unescaped, query from the user.  *</li>  *<li>sort - (Order By) list of fields and direction to sort on.  *</li>  *</ul>  *  *<pre>  * :TODO: document facet param support  *  * :TODO: make bf,pf,qf multival params now that SolrParams supports them  *</pre>  */
+comment|/**  *<p>  * A Generic query plugin designed to be given a simple query expression  * from a user, which it will then query against a variety of  * pre-configured fields, in a variety of ways, using BooleanQueries,  * DisjunctionMaxQueries, and PhraseQueries.  *</p>  *  *<p>  * All of the following options may be configured for this plugin  * in the solrconfig as defaults, and may be overriden as request parameters  *</p>  *  *<ul>  *<li>q.alt - An alternate query to be used in cases where the main  *             query (q) is not specified (or blank).  This query should  *             be expressed in the Standard SolrQueryParser syntax (you  *             can use<code>q.alt=*:*</code> to denote that all documents  *             should be returned when no query is specified)  *</li>  *<li>tie - (Tie breaker) float value to use as tiebreaker in  *           DisjunctionMaxQueries (should be something much less than 1)  *</li>  *<li> qf - (Query Fields) fields and boosts to use when building  *           DisjunctionMaxQueries from the users query.  Format is:  *           "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> mm - (Minimum Match) this supports a wide variety of  *           complex expressions.  *           read {@link SolrPluginUtils#setMinShouldMatch SolrPluginUtils.setMinShouldMatch} for full details.  *</li>  *<li> pf - (Phrase Fields) fields/boosts to make phrase queries out  *           of, to boost the users query for exact matches on the specified fields.  *           Format is: "<code>fieldA^1.0 fieldB^2.2</code>".  *</li>  *<li> ps - (Phrase Slop) amount of slop on phrase queries built for pf  *           fields.  *</li>  *<li> bq - (Boost Query) a raw lucene query that will be included in the   *           users query to influence the score.  If this is a BooleanQuery  *           with a default boost (1.0f), then the individual clauses will be  *           added directly to the main query.  Otherwise, the query will be  *           included as is.  *</li>  *<li> bf - (Boost Functions) functions (with optional boosts) that will be  *           included in the users query to influence the score.  *           Format is: "<code>funcA(arg1,arg2)^1.2  *           funcB(arg3,arg4)^2.2</code>".  NOTE: Whitespace is not allowed  *           in the function arguments.  *</li>  *<li> fq - (Filter Query) a raw lucene query that can be used  *           to restrict the super set of products we are interested in - more  *           efficient then using bq, but doesn't influence score.  *           This param can be specified multiple times, and the filters  *           are additive.  *</li>  *</ul>  *  *<p>  * The following options are only available as request params...  *</p>  *  *<ul>  *<li>   q - (Query) the raw unparsed, unescaped, query from the user.  *</li>  *<li>sort - (Order By) list of fields and direction to sort on.  *</li>  *</ul>  *  *<pre>  * :TODO: document facet param support  *  * :TODO: make bf,pf,qf multival params now that SolrParams supports them  *</pre>  */
 end_comment
 
 begin_class
@@ -658,30 +672,6 @@ argument_list|(
 name|pslop
 argument_list|)
 expr_stmt|;
-comment|/* * * Main User Query * * */
-name|String
-name|userQuery
-init|=
-name|U
-operator|.
-name|partialEscape
-argument_list|(
-name|U
-operator|.
-name|stripUnbalancedQuotes
-argument_list|(
-name|params
-operator|.
-name|get
-argument_list|(
-name|Q
-argument_list|)
-argument_list|)
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-decl_stmt|;
 comment|/* the main query we will execute.  we disable the coord because        * this query is an artificial construct        */
 name|BooleanQuery
 name|query
@@ -692,6 +682,118 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+comment|/* * * Main User Query * * */
+name|Query
+name|parsedUserQuery
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|userQuery
+init|=
+name|params
+operator|.
+name|get
+argument_list|(
+name|Q
+argument_list|)
+decl_stmt|;
+name|Query
+name|altUserQuery
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|userQuery
+operator|==
+literal|null
+operator|||
+name|userQuery
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|<
+literal|1
+condition|)
+block|{
+comment|// If no query is specified, we may have an alternate
+name|String
+name|altQ
+init|=
+name|params
+operator|.
+name|get
+argument_list|(
+name|DMP
+operator|.
+name|ALTQ
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|altQ
+operator|!=
+literal|null
+condition|)
+block|{
+name|altUserQuery
+operator|=
+name|p
+operator|.
+name|parse
+argument_list|(
+name|altQ
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
+name|add
+argument_list|(
+name|altUserQuery
+argument_list|,
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+literal|400
+argument_list|,
+literal|"missing query string"
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+comment|// There is a valid query string
+name|userQuery
+operator|=
+name|U
+operator|.
+name|partialEscape
+argument_list|(
+name|U
+operator|.
+name|stripUnbalancedQuotes
+argument_list|(
+name|userQuery
+argument_list|)
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
 name|String
 name|minShouldMatch
 init|=
@@ -716,11 +818,10 @@ argument_list|(
 name|userQuery
 argument_list|)
 decl_stmt|;
-name|Query
 name|parsedUserQuery
-init|=
+operator|=
 name|dis
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|dis
@@ -774,7 +875,7 @@ argument_list|)
 expr_stmt|;
 comment|/* * * Add on Phrases for the Query * * */
 comment|/* build up phrase boosting queries */
-comment|/* if the userQuery already has some quotes, stip them out.        * we've already done the phrases they asked for in the main        * part of the query, this is to boost docs that may not have        * matched those phrases but do match looser phrases.        */
+comment|/* if the userQuery already has some quotes, stip them out.          * we've already done the phrases they asked for in the main          * part of the query, this is to boost docs that may not have          * matched those phrases but do match looser phrases.          */
 name|String
 name|userPhraseQuery
 init|=
@@ -819,6 +920,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* * * Boosting Query * * */
 name|String
@@ -1182,6 +1284,15 @@ name|debug
 operator|.
 name|add
 argument_list|(
+literal|"altquerystring"
+argument_list|,
+name|altUserQuery
+argument_list|)
+expr_stmt|;
+name|debug
+operator|.
+name|add
+argument_list|(
 literal|"boostquery"
 argument_list|,
 name|boostQuery
@@ -1325,6 +1436,10 @@ name|isHighlightingEnabled
 argument_list|(
 name|req
 argument_list|)
+operator|&&
+name|parsedUserQuery
+operator|!=
+literal|null
 condition|)
 block|{
 name|String
@@ -1446,7 +1561,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"$Revision:$"
+literal|"$Revision$"
 return|;
 block|}
 annotation|@
@@ -1458,7 +1573,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id:$"
+literal|"$Id$"
 return|;
 block|}
 annotation|@
@@ -1470,7 +1585,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL:$"
+literal|"$URL$"
 return|;
 block|}
 annotation|@

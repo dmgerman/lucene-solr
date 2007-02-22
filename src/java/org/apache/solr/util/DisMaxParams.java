@@ -299,6 +299,15 @@ name|BF
 init|=
 literal|"bf"
 decl_stmt|;
+comment|/**      * Alternate query (expressed in Solr QuerySyntax)      * to use if main query (q) is empty      */
+DECL|field|ALTQ
+specifier|public
+specifier|static
+name|String
+name|ALTQ
+init|=
+literal|"q.alt"
+decl_stmt|;
 comment|/** query and init param for filtering query      * @deprecated use SolrParams.FQ or SolrPluginUtils.parseFilterQueries      */
 DECL|field|FQ
 specifier|public
