@@ -110,7 +110,6 @@ end_import
 
 begin_class
 DECL|class|SegmentInfos
-specifier|public
 specifier|final
 class|class
 name|SegmentInfos
@@ -813,7 +812,7 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
-specifier|public
+specifier|protected
 name|Object
 name|doBody
 parameter_list|(
@@ -1123,7 +1122,7 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
-specifier|public
+specifier|protected
 name|Object
 name|doBody
 parameter_list|(

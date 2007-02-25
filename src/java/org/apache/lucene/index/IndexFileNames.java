@@ -151,7 +151,6 @@ block|}
 decl_stmt|;
 comment|/**    * Computes the full file name from base, extension and    * generation.  If the generation is -1, the file name is    * null.  If it's 0, the file name is<base><extension>.    * If it's> 0, the file name is<base>_<generation><extension>.    *    * @param base -- main part of the file name    * @param extension -- extension of the filename (including .)    * @param gen -- generation    */
 DECL|method|fileNameFromGeneration
-specifier|public
 specifier|static
 specifier|final
 name|String

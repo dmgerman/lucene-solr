@@ -346,7 +346,6 @@ expr_stmt|;
 block|}
 comment|/**    * Construct a new SegmentInfo instance by reading a    * previously saved SegmentInfo from input.    *    * @param dir directory to load from    * @param format format of the segments info file    * @param input input handle to read segment info from    */
 DECL|method|SegmentInfo
-specifier|public
 name|SegmentInfo
 parameter_list|(
 name|Directory

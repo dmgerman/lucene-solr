@@ -614,7 +614,7 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
-specifier|public
+specifier|protected
 name|Object
 name|doBody
 parameter_list|(
