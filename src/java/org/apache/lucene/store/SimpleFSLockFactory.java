@@ -54,6 +54,22 @@ specifier|private
 name|File
 name|lockDir
 decl_stmt|;
+comment|/**    * Create a SimpleFSLockFactory instance, with null (unset)    * lock directory.  This is package-private and is only    * used by FSDirectory when creating this LockFactory via    * the System property    * org.apache.lucene.store.FSDirectoryLockFactoryClass.    */
+DECL|method|SimpleFSLockFactory
+name|SimpleFSLockFactory
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+operator|(
+name|File
+operator|)
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Instantiate using the provided directory (as a File instance).    * @param lockDir where lock files should be created.    */
 DECL|method|SimpleFSLockFactory
 specifier|public
@@ -65,7 +81,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|init
+name|setLockDir
 argument_list|(
 name|lockDir
 argument_list|)
@@ -90,16 +106,16 @@ argument_list|(
 name|lockDirName
 argument_list|)
 expr_stmt|;
-name|init
+name|setLockDir
 argument_list|(
 name|lockDir
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|init
-specifier|protected
+comment|/**    * Set the lock directory.  This is package-private and is    * only used externally by FSDirectory when creating this    * LockFactory via the System property    * org.apache.lucene.store.FSDirectoryLockFactoryClass.    */
+DECL|method|setLockDir
 name|void
-name|init
+name|setLockDir
 parameter_list|(
 name|File
 name|lockDir

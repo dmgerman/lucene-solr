@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements {@link LockFactory} using native OS file locks  * (available through java.nio.*).  Note that for certain  * filesystems native locks are possible but must be  * explicity configured and enabled (and may be disabled by  * default).  For example, for NFS servers there sometimes  * must be a separate lockd process running, and other  * configuration may be required such as running the server  * in kernel mode.  Other filesystems may not even support  * native OS locks in which case you must use a different  * {@link LockFactory} implementation.  *  *<p>The advantage of this lock factory over  * {@link SimpleFSLockFactory} is that the locks should be  * "correct", whereas {@link SimpleFSLockFactory} uses  * java.io.File.createNewFile which  *<a target="_top" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/File.html#createNewFile()">has warnings</a> about not  * using it for locking.  Furthermore, if the JVM crashes,  * the OS will free any held locks, whereas  * {@link SimpleFSLockFactory} will keep the locks held, requiring  * manual removal before re-running Lucene.</p>  *  *<p>Note that, unlike {@link SimpleFSLockFactory}, the existence of  * leftover lock files in the filesystem on exiting the JVM  * is fine because the OS will free the locks held against  * these files even though the files still remain.</p>  *  *<p>Native locks file names have the substring "-n-", which  * you can use to differentiate them from lock files created  * by {@link SimpleFSLockFactory}.</p>  *  * @see LockFactory  */
+comment|/**  * Implements {@link LockFactory} using native OS file locks  * (available through java.nio.*).  Note that for certain  * filesystems native locks are possible but must be  * explicity configured and enabled (and may be disabled by  * default).  For example, for NFS servers there sometimes  * must be a separate lockd process running, and other  * configuration may be required such as running the server  * in kernel mode.  Other filesystems may not even support  * native OS locks in which case you must use a different  * {@link LockFactory} implementation.  *  *<p>The advantage of this lock factory over  * {@link SimpleFSLockFactory} is that the locks should be  * "correct", whereas {@link SimpleFSLockFactory} uses  * java.io.File.createNewFile which  *<a target="_top" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/File.html#createNewFile()">has warnings</a> about not  * using it for locking.  Furthermore, if the JVM crashes,  * the OS will free any held locks, whereas  * {@link SimpleFSLockFactory} will keep the locks held, requiring  * manual removal before re-running Lucene.</p>  *  *<p>Note that, unlike {@link SimpleFSLockFactory}, the existence of  * leftover lock files in the filesystem on exiting the JVM  * is fine because the OS will free the locks held against  * these files even though the files still remain.</p>  *  * @see LockFactory  */
 end_comment
 
 begin_class
@@ -197,6 +197,22 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Create a NativeFSLockFactory instance, with null (unset)    * lock directory.  This is package-private and is only    * used by FSDirectory when creating this LockFactory via    * the System property    * org.apache.lucene.store.FSDirectoryLockFactoryClass.    */
+DECL|method|NativeFSLockFactory
+name|NativeFSLockFactory
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+operator|(
+name|File
+operator|)
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Create a NativeFSLockFactory instance, storing lock    * files into the specified lockDirName:    *    * @param lockDirName where lock files are created.    */
 DECL|method|NativeFSLockFactory
 specifier|public
@@ -229,12 +245,36 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|setLockDir
+argument_list|(
+name|lockDir
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Set the lock directory.  This is package-private and is    * only used externally by FSDirectory when creating this    * LockFactory via the System property    * org.apache.lucene.store.FSDirectoryLockFactoryClass.    */
+DECL|method|setLockDir
+name|void
+name|setLockDir
+parameter_list|(
+name|File
+name|lockDir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|this
 operator|.
 name|lockDir
 operator|=
 name|lockDir
 expr_stmt|;
+if|if
+condition|(
+name|lockDir
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// Ensure that lockDir exists and is a directory.
 if|if
 condition|(
@@ -292,6 +332,7 @@ block|}
 name|acquireTestLock
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|makeLock
 specifier|public
