@@ -194,7 +194,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** 	 * Compares two ScoreDoc objects and returns a result indicating their 	 * sort order. 	 * @param i First ScoreDoc 	 * @param j Second ScoreDoc 	 * @return<code>-1</code> if<code>i</code> should come before<code>j</code><br><code>1</code> if<code>i</code> should come after<code>j</code><br><code>0</code> if they are equal 	 * @see java.util.Comparator 	 */
+comment|/** 	 * Compares two ScoreDoc objects and returns a result indicating their 	 * sort order. 	 * @param i First ScoreDoc 	 * @param j Second ScoreDoc 	 * @return<code>-1</code> if<code>i</code> should come before<code>j</code><br>      *<code>1</code> if<code>i</code> should come after<code>j</code><br>      *<code>0</code> if they are equal 	 * @see java.util.Comparator 	 */
 DECL|method|compare
 name|int
 name|compare
@@ -206,7 +206,7 @@ name|ScoreDoc
 name|j
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the value used to sort the given document.  The 	 * object returned must implement the java.io.Serializable 	 * interface.  This is used by multisearchers to determine how to collate results from their searchers. 	 * @see FieldDoc 	 * @param i Document 	 * @return Serializable object 	 */
+comment|/** 	 * Returns the value used to sort the given document.  The 	 * object returned must implement the java.io.Serializable 	 * interface.  This is used by multisearchers to determine how      * to collate results from their searchers. 	 * @see FieldDoc 	 * @param i Document 	 * @return Serializable object 	 */
 DECL|method|sortValue
 name|Comparable
 name|sortValue
@@ -215,7 +215,7 @@ name|ScoreDoc
 name|i
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the type of sort.  Should return<code>SortField.SCORE</code>,<code>SortField.DOC</code>,<code>SortField.STRING</code>,<code>SortField.INTEGER</code>,  	 *<code>SortField.FLOAT</code> or<code>SortField.CUSTOM</code>.  It is not valid to return<code>SortField.AUTO</code>. 	 * This is used by multisearchers to determine how to collate results from their searchers. 	 * @return One of the constants in SortField. 	 * @see SortField 	 */
+comment|/** 	 * Returns the type of sort.  Should return<code>SortField.SCORE</code>,      *<code>SortField.DOC</code>,<code>SortField.STRING</code>,      *<code>SortField.INTEGER</code>,<code>SortField.FLOAT</code> or      *<code>SortField.CUSTOM</code>.  It is not valid to return      *<code>SortField.AUTO</code>.      * This is used by multisearchers to determine how to collate results      * from their searchers. 	 * @return One of the constants in SortField. 	 * @see SortField 	 */
 DECL|method|sortType
 name|int
 name|sortType
