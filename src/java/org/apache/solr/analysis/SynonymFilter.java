@@ -263,13 +263,6 @@ return|return
 name|firstTok
 return|;
 comment|// OK, we matched a token, so find the longest match.
-comment|// since matched is only used for matches>= 2, defer creation until now
-if|if
-condition|(
-name|matched
-operator|==
-literal|null
-condition|)
 name|matched
 operator|=
 operator|new
