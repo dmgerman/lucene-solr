@@ -566,7 +566,6 @@ comment|/** Removes an existing file in the directory.    * @throws IOException 
 DECL|method|deleteFile
 specifier|public
 specifier|synchronized
-specifier|final
 name|void
 name|deleteFile
 parameter_list|(
@@ -798,7 +797,6 @@ block|}
 comment|/** Returns a stream reading an existing file. */
 DECL|method|openInput
 specifier|public
-specifier|final
 name|IndexInput
 name|openInput
 parameter_list|(
