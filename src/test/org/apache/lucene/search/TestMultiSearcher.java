@@ -837,11 +837,6 @@ name|i
 argument_list|)
 decl_stmt|;
 block|}
-name|mSearcher2
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// test the subSearcher() method:
 name|Query
 name|subSearcherQuery
@@ -954,6 +949,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// hit from searchers2[1]
+name|mSearcher2
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|//--------------------------------------------------------------------
 comment|// scenario 3
 comment|//--------------------------------------------------------------------
