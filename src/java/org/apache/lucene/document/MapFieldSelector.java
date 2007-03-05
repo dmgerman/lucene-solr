@@ -62,7 +62,7 @@ DECL|field|fieldSelections
 name|Map
 name|fieldSelections
 decl_stmt|;
-comment|/** Create a a MapFieldSelector      * @param fieldSelections maps from field names to FieldSelectorResults      */
+comment|/** Create a a MapFieldSelector      * @param fieldSelections maps from field names (String) to FieldSelectorResults      */
 DECL|method|MapFieldSelector
 specifier|public
 name|MapFieldSelector
@@ -78,7 +78,7 @@ operator|=
 name|fieldSelections
 expr_stmt|;
 block|}
-comment|/** Create a a MapFieldSelector      * @param fields fields to LOAD.  All other fields are NO_LOAD.      */
+comment|/** Create a a MapFieldSelector      * @param fields fields to LOAD.  List of Strings.  All other fields are NO_LOAD.      */
 DECL|method|MapFieldSelector
 specifier|public
 name|MapFieldSelector
