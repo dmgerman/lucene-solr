@@ -781,6 +781,17 @@ operator|.
 name|docList
 argument_list|,
 name|query
+operator|.
+name|rewrite
+argument_list|(
+name|req
+operator|.
+name|getSearcher
+argument_list|()
+operator|.
+name|getReader
+argument_list|()
+argument_list|)
 argument_list|,
 name|req
 argument_list|,

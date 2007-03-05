@@ -601,6 +601,29 @@ literal|" \t fieldOne^2.3 \n  fieldTwo fieldThree^-0.4   "
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"really spacey e1"
+argument_list|,
+name|e1
+argument_list|,
+name|SolrPluginUtils
+operator|.
+name|parseFieldBoosts
+argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|" \t fieldOne^2.3 \n"
+block|,
+literal|"  fieldTwo fieldThree^-0.4   "
+block|,
+literal|" "
+block|}
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|String
