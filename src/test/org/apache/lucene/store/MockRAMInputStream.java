@@ -38,6 +38,11 @@ specifier|private
 name|String
 name|name
 decl_stmt|;
+DECL|field|isClone
+specifier|private
+name|boolean
+name|isClone
+decl_stmt|;
 comment|/** Construct an empty output buffer. */
 DECL|method|MockRAMInputStream
 specifier|public
@@ -82,6 +87,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// Pending resolution on LUCENE-686 we may want to
+comment|// remove the conditional check so we also track that
+comment|// all clones get closed:
+if|if
+condition|(
+operator|!
+name|isClone
+condition|)
+block|{
 synchronized|synchronized
 init|(
 name|dir
@@ -153,6 +167,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 DECL|method|clone
 specifier|public
 name|Object
@@ -170,76 +185,16 @@ operator|.
 name|clone
 argument_list|()
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|dir
+name|clone
 operator|.
-name|openFiles
-init|)
-block|{
-if|if
-condition|(
-name|dir
-operator|.
-name|openFiles
-operator|.
-name|containsKey
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
-name|Integer
-name|v
-init|=
-operator|(
-name|Integer
-operator|)
-name|dir
-operator|.
-name|openFiles
-operator|.
-name|get
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
-name|v
+name|isClone
 operator|=
-operator|new
-name|Integer
-argument_list|(
-name|v
-operator|.
-name|intValue
-argument_list|()
-operator|+
-literal|1
-argument_list|)
+literal|true
 expr_stmt|;
-name|dir
-operator|.
-name|openFiles
-operator|.
-name|put
-argument_list|(
-name|name
-argument_list|,
-name|v
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"BUG: cloned file was not open?"
-argument_list|)
-throw|;
-block|}
-block|}
+comment|// Pending resolution on LUCENE-686 we may want to
+comment|// uncomment this code so that we also track that all
+comment|// clones get closed:
+comment|/*     synchronized(dir.openFiles) {       if (dir.openFiles.containsKey(name)) {         Integer v = (Integer) dir.openFiles.get(name);         v = new Integer(v.intValue()+1);         dir.openFiles.put(name, v);       } else {         throw new RuntimeException("BUG: cloned file was not open?");       }     }     */
 return|return
 name|clone
 return|;

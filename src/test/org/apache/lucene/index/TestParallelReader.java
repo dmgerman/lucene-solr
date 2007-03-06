@@ -242,6 +242,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|MockRAMDirectory
+import|;
+end_import
+
 begin_class
 DECL|class|TestParallelReader
 specifier|public
@@ -807,7 +821,7 @@ name|Directory
 name|dir2
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1101,7 +1115,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1432,7 +1446,7 @@ name|Directory
 name|dir1
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

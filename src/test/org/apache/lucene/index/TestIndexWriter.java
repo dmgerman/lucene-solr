@@ -2242,6 +2242,11 @@ operator|*
 name|startDiskUsage
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|arrayToString
 specifier|private

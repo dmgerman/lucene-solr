@@ -851,7 +851,6 @@ block|}
 comment|/** Closes the store to future operations, releasing associated memory. */
 DECL|method|close
 specifier|public
-specifier|final
 name|void
 name|close
 parameter_list|()

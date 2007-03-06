@@ -344,7 +344,7 @@ name|RAMDirectory
 name|d
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -462,6 +462,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|d
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**      * Tests the IndexReader.getFieldNames implementation      * @throws Exception on error      */
 DECL|method|testGetFieldNames
@@ -476,7 +481,7 @@ name|RAMDirectory
 name|d
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// set up writer
@@ -569,6 +574,11 @@ argument_list|(
 literal|"unstored"
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 comment|// add more documents
 name|writer
@@ -1152,6 +1162,16 @@ literal|"tvpositionoffset"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|d
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|assertTermDocsCount
 specifier|private
@@ -1254,7 +1274,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1359,6 +1379,11 @@ name|searchTerm
 argument_list|,
 literal|100
 argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 comment|// DELETE DOCUMENTS CONTAINING TERM: aaa
 name|int
@@ -1472,6 +1497,16 @@ literal|0
 argument_list|)
 expr_stmt|;
 name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader2
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()
@@ -2994,7 +3029,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -3154,6 +3189,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testVersion
 specifier|public
@@ -3177,7 +3217,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -3337,6 +3377,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testLock
 specifier|public
@@ -3350,7 +3395,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -3450,6 +3495,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testUndeleteAll
 specifier|public
@@ -3463,7 +3513,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -3551,6 +3601,11 @@ argument_list|)
 expr_stmt|;
 comment|// nothing has really been deleted thanks to undeleteAll()
 name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()
@@ -3568,7 +3623,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -3656,6 +3711,11 @@ argument_list|)
 expr_stmt|;
 comment|// nothing has really been deleted thanks to undeleteAll()
 name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()
@@ -3673,7 +3733,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -3775,6 +3835,11 @@ argument_list|)
 expr_stmt|;
 comment|// nothing has really been deleted thanks to undeleteAll()
 name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()
@@ -3848,7 +3913,7 @@ name|RAMDirectory
 name|startDir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -4638,6 +4703,11 @@ operator|+=
 literal|10
 expr_stmt|;
 block|}
+name|startDir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testDocsOutOfOrderJIRA140
 specifier|public
@@ -4651,7 +4721,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -4799,6 +4869,11 @@ literal|"delete of out-of-bounds doc number failed to hit exception"
 argument_list|)
 expr_stmt|;
 block|}
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testExceptionReleaseWriteLockJIRA768
 specifier|public
@@ -4812,7 +4887,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -4956,6 +5031,11 @@ literal|"write lock is still held after close"
 argument_list|)
 expr_stmt|;
 block|}
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|arrayToString
 specifier|private

@@ -184,6 +184,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|MockRAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -282,14 +296,14 @@ name|Directory
 name|indexStoreA
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|Directory
 name|indexStoreB
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// creating a document to store
@@ -1144,6 +1158,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|indexStoreA
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|indexStoreB
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|createDocument
 specifier|private
@@ -1794,7 +1818,7 @@ decl_stmt|;
 name|ramDirectory1
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 comment|// First put the documents in the same index
@@ -1927,13 +1951,13 @@ decl_stmt|;
 name|ramDirectory1
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|ramDirectory2
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 comment|// Now put the documents in a different index

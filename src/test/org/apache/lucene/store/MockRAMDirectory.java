@@ -810,6 +810,57 @@ return|return
 name|size
 return|;
 block|}
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{
+if|if
+condition|(
+name|openFiles
+operator|==
+literal|null
+condition|)
+block|{
+name|openFiles
+operator|=
+operator|new
+name|HashMap
+argument_list|()
+expr_stmt|;
+block|}
+synchronized|synchronized
+init|(
+name|openFiles
+init|)
+block|{
+if|if
+condition|(
+name|noDeleteOpenFile
+operator|&&
+name|openFiles
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|// RuntimeException instead of IOException because
+comment|// super() does not throw IOException currently:
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"MockRAMDirectory: cannot close: there are still open files: "
+operator|+
+name|openFiles
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
 block|}
 end_class
 
