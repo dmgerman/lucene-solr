@@ -24,6 +24,7 @@ end_comment
 
 begin_interface
 DECL|interface|RegexCapabilities
+specifier|public
 interface|interface
 name|RegexCapabilities
 block|{
