@@ -1581,6 +1581,25 @@ name|list
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|files
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|FileNotFoundException
+argument_list|(
+literal|"no segments* file found in directory "
+operator|+
+name|directory
+operator|+
+literal|": list() returned null"
+argument_list|)
+throw|;
+block|}
 name|gen
 operator|=
 name|getCurrentSegmentGeneration
