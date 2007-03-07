@@ -820,6 +820,16 @@ name|docCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|writer
+operator|.
+name|getSegmentCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|writer
 operator|.
