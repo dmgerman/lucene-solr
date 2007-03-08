@@ -902,6 +902,23 @@ operator|.
 name|list
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"cannot read directory "
+operator|+
+name|dir
+operator|+
+literal|": list() returned null"
+argument_list|)
+throw|;
 name|String
 name|pattern
 decl_stmt|;

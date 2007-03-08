@@ -5141,7 +5141,7 @@ argument_list|)
 decl_stmt|;
 name|fail
 argument_list|(
-literal|"expected CorruptIndexException"
+literal|"expected FileNotFoundException"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5173,7 +5173,7 @@ argument_list|)
 decl_stmt|;
 name|fail
 argument_list|(
-literal|"expected CorruptIndexException"
+literal|"expected FileNotFoundException"
 argument_list|)
 expr_stmt|;
 block|}

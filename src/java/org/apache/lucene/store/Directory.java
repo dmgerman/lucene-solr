@@ -43,7 +43,7 @@ specifier|protected
 name|LockFactory
 name|lockFactory
 decl_stmt|;
-comment|/** Returns an array of strings, one for each file in the directory. */
+comment|/** Returns an array of strings, one for each file in the    * directory.  This method may return null (for example for    * {@link FSDirectory} if the underlying directory doesn't    * exist in the filesystem or there are permissions    * problems).*/
 DECL|method|list
 specifier|public
 specifier|abstract
@@ -301,6 +301,23 @@ operator|.
 name|list
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|files
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"cannot read directory "
+operator|+
+name|src
+operator|+
+literal|": list() returned null"
+argument_list|)
+throw|;
 name|byte
 index|[]
 name|buf

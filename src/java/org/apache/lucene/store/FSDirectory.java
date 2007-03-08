@@ -757,12 +757,14 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Cannot read directory "
+literal|"cannot read directory "
 operator|+
 name|directory
 operator|.
 name|getAbsolutePath
 argument_list|()
+operator|+
+literal|": list() returned null"
 argument_list|)
 throw|;
 for|for
