@@ -1968,28 +1968,12 @@ name|getPrefixLength
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|getQuery
+name|assertParseException
 argument_list|(
 literal|"term~1.1"
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 comment|// value> 1, throws exception
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|pe
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 name|assertTrue
 argument_list|(
 name|getQuery
@@ -3605,29 +3589,12 @@ argument_list|,
 literal|"c:\\temp\\~foo.txt"
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|assertQueryEquals
+name|assertParseException
 argument_list|(
 literal|"XY\\"
-argument_list|,
-name|a
-argument_list|,
-literal|"XYZ"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected, not thrown"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{}
+comment|// there must be a character after the escape char
 comment|// test unicode escaping
 name|assertQueryEquals
 argument_list|(
@@ -3665,52 +3632,18 @@ argument_list|,
 literal|"\"a \\(b\" c\""
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|assertQueryEquals
+name|assertParseException
 argument_list|(
 literal|"XY\\u005G"
-argument_list|,
-name|a
-argument_list|,
-literal|"XYZ"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected, not thrown"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{}
-try|try
-block|{
-name|assertQueryEquals
+comment|// test non-hex character in escaped unicode sequence
+name|assertParseException
 argument_list|(
 literal|"XY\\u005"
-argument_list|,
-name|a
-argument_list|,
-literal|"XYZ"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected, not thrown"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{}
+comment|// test incomplete escaped unicode sequence
 comment|// Tests bug LUCENE-800
 name|assertQueryEquals
 argument_list|(
@@ -3721,6 +3654,12 @@ argument_list|,
 literal|"item:\\ item:ABCD\\"
 argument_list|)
 expr_stmt|;
+name|assertParseException
+argument_list|(
+literal|"(item:\\\\ item:ABCD\\\\))"
+argument_list|)
+expr_stmt|;
+comment|// unmatched closing paranthesis
 name|assertQueryEquals
 argument_list|(
 literal|"\\*"
@@ -3740,29 +3679,12 @@ literal|"\\"
 argument_list|)
 expr_stmt|;
 comment|// escaped backslash
-try|try
-block|{
-name|assertQueryEquals
+name|assertParseException
 argument_list|(
-literal|"\\"
-argument_list|,
-name|a
-argument_list|,
 literal|"\\"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected not thrown (backslash must be escaped)"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{}
+comment|// a backslash must always be escaped
 block|}
 DECL|method|testQueryStringEscaping
 specifier|public
@@ -4353,6 +4275,44 @@ literal|0.01f
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|assertParseException
+specifier|public
+name|void
+name|assertParseException
+parameter_list|(
+name|String
+name|queryString
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+try|try
+block|{
+name|Query
+name|q
+init|=
+name|getQuery
+argument_list|(
+name|queryString
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ParseException
+name|expected
+parameter_list|)
+block|{
+return|return;
+block|}
+name|fail
+argument_list|(
+literal|"ParseException expected, not thrown"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testException
 specifier|public
 name|void
@@ -4361,29 +4321,36 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
-block|{
-name|assertQueryEquals
+name|assertParseException
 argument_list|(
 literal|"\"some phrase"
-argument_list|,
-literal|null
-argument_list|,
-literal|"abc"
 argument_list|)
 expr_stmt|;
-name|fail
+name|assertParseException
 argument_list|(
-literal|"ParseException expected, not thrown"
+literal|"(foo bar"
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{     }
+name|assertParseException
+argument_list|(
+literal|"foo bar))"
+argument_list|)
+expr_stmt|;
+name|assertParseException
+argument_list|(
+literal|"field:term:with:colon some more terms"
+argument_list|)
+expr_stmt|;
+name|assertParseException
+argument_list|(
+literal|"(sub query)^5.0^2.0 plus more"
+argument_list|)
+expr_stmt|;
+name|assertParseException
+argument_list|(
+literal|"secret AND illegal) AND access:confidential"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testCustomQueryParserWildcard
 specifier|public

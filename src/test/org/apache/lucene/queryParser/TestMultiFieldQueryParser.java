@@ -347,7 +347,7 @@ name|mfqp
 operator|.
 name|parse
 argument_list|(
-literal|"+one -two -three)"
+literal|"+one -two -three"
 argument_list|)
 expr_stmt|;
 name|assertEquals
