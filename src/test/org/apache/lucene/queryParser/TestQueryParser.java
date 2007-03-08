@@ -3337,6 +3337,15 @@ decl_stmt|;
 comment|/*assertQueryEquals("\\[brackets", a, "\\[brackets");     assertQueryEquals("\\[brackets", null, "brackets");     assertQueryEquals("\\\\", a, "\\\\");     assertQueryEquals("\\+blah", a, "\\+blah");     assertQueryEquals("\\(blah", a, "\\(blah");      assertQueryEquals("\\-blah", a, "\\-blah");     assertQueryEquals("\\!blah", a, "\\!blah");     assertQueryEquals("\\{blah", a, "\\{blah");     assertQueryEquals("\\}blah", a, "\\}blah");     assertQueryEquals("\\:blah", a, "\\:blah");     assertQueryEquals("\\^blah", a, "\\^blah");     assertQueryEquals("\\[blah", a, "\\[blah");     assertQueryEquals("\\]blah", a, "\\]blah");     assertQueryEquals("\\\"blah", a, "\\\"blah");     assertQueryEquals("\\(blah", a, "\\(blah");     assertQueryEquals("\\)blah", a, "\\)blah");     assertQueryEquals("\\~blah", a, "\\~blah");     assertQueryEquals("\\*blah", a, "\\*blah");     assertQueryEquals("\\?blah", a, "\\?blah");     //assertQueryEquals("foo \\&\\& bar", a, "foo \\&\\& bar");     //assertQueryEquals("foo \\|| bar", a, "foo \\|| bar");     //assertQueryEquals("foo \\AND bar", a, "foo \\AND bar");*/
 name|assertQueryEquals
 argument_list|(
+literal|"\\a"
+argument_list|,
+name|a
+argument_list|,
+literal|"a"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
 literal|"a\\-b:c"
 argument_list|,
 name|a
@@ -3693,6 +3702,58 @@ expr_stmt|;
 name|fail
 argument_list|(
 literal|"ParseException expected, not thrown"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ParseException
+name|expected
+parameter_list|)
+block|{}
+comment|// Tests bug LUCENE-800
+name|assertQueryEquals
+argument_list|(
+literal|"(item:\\\\ item:ABCD\\\\)"
+argument_list|,
+name|a
+argument_list|,
+literal|"item:\\ item:ABCD\\"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\\*"
+argument_list|,
+name|a
+argument_list|,
+literal|"*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\\\\"
+argument_list|,
+name|a
+argument_list|,
+literal|"\\"
+argument_list|)
+expr_stmt|;
+comment|// escaped backslash
+try|try
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"\\"
+argument_list|,
+name|a
+argument_list|,
+literal|"\\"
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"ParseException expected not thrown (backslash must be escaped)"
 argument_list|)
 expr_stmt|;
 block|}

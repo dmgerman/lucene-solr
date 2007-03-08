@@ -2719,7 +2719,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|// NOTE: keep this in sync with _ESCAPED_CHAR below!
+comment|// These characters are part of the query syntax and must be escaped
 if|if
 condition|(
 name|c
