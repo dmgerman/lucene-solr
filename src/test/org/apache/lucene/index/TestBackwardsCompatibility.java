@@ -298,7 +298,7 @@ argument_list|)
 decl_stmt|;
 name|rmDir
 argument_list|(
-name|dirName
+name|destDirName
 argument_list|)
 expr_stmt|;
 name|fileDir
