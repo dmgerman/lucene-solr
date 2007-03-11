@@ -74,10 +74,10 @@ name|lazySkipPointer
 init|=
 literal|0
 decl_stmt|;
-DECL|field|lazySkipDocCount
+DECL|field|lazySkipProxCount
 specifier|private
 name|int
-name|lazySkipDocCount
+name|lazySkipProxCount
 init|=
 literal|0
 decl_stmt|;
@@ -131,7 +131,7 @@ name|ti
 operator|.
 name|proxPointer
 expr_stmt|;
-name|lazySkipDocCount
+name|lazySkipProxCount
 operator|=
 literal|0
 expr_stmt|;
@@ -200,9 +200,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// we remember to skip the remaining positions of the current
-comment|// document lazily
-name|lazySkipDocCount
+comment|// we remember to skip a document lazily
+name|lazySkipProxCount
 operator|+=
 name|freq
 expr_stmt|;
@@ -216,8 +215,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// we remember to skip a document lazily
-name|lazySkipDocCount
+comment|// we remember to skip the remaining positions of the current
+comment|// document lazily
+name|lazySkipProxCount
 operator|+=
 name|proxCount
 expr_stmt|;
@@ -290,7 +290,7 @@ name|lazySkipPointer
 operator|=
 name|proxPointer
 expr_stmt|;
-name|lazySkipDocCount
+name|lazySkipProxCount
 operator|=
 literal|0
 expr_stmt|;
@@ -391,17 +391,17 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|lazySkipDocCount
+name|lazySkipProxCount
 operator|!=
 literal|0
 condition|)
 block|{
 name|skipPositions
 argument_list|(
-name|lazySkipDocCount
+name|lazySkipProxCount
 argument_list|)
 expr_stmt|;
-name|lazySkipDocCount
+name|lazySkipProxCount
 operator|=
 literal|0
 expr_stmt|;
