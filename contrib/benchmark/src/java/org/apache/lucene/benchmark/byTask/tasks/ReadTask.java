@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read index (abstract) task.  * Sub classes implement withSearch(), withWarm(), withTraverse() and withRetrieve()  * methods to configure the actual action.  * Other side effects: none.  */
+comment|/**  * Read index (abstract) task.  * Sub classes implement withSearch(), withWarm(), withTraverse() and withRetrieve()  * methods to configure the actual action.  *   *<p>Note: All ReadTasks reuse the reader if it is already open.   * Otherwise a reader is opened at start and closed at the end.  *    *<p>Other side effects: none.  */
 end_comment
 
 begin_class

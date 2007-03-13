@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Search task.  */
+comment|/**  * Search task.  *   *<p>Note: This task reuses the reader if it is already open.   * Otherwise a reader is opened at start and closed at the end.  */
 end_comment
 
 begin_class

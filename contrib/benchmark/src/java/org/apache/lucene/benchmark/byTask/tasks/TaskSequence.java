@@ -998,7 +998,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Execute child tasks in a way that they do not reprt their time separately.    * Current implementation if child tasks has child tasks of their own, those are not affected by this call.     */
+comment|/**    * Execute child tasks in a way that they do not report their time separately.    */
 DECL|method|setNoChildReport
 specifier|public
 name|void
