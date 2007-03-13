@@ -957,6 +957,16 @@ operator|-=
 name|len
 expr_stmt|;
 block|}
+name|in
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|out
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|addDoc
 specifier|private

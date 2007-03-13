@@ -459,10 +459,10 @@ specifier|private
 name|boolean
 name|closeDirectory
 decl_stmt|;
-DECL|field|deleter
-specifier|protected
-name|IndexFileDeleter
-name|deleter
+DECL|field|deletionPolicy
+specifier|private
+name|IndexDeletionPolicy
+name|deletionPolicy
 decl_stmt|;
 DECL|field|isClosed
 specifier|private
@@ -500,7 +500,7 @@ specifier|private
 name|SegmentInfos
 name|rollbackSegmentInfos
 decl_stmt|;
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory */
 DECL|method|open
 specifier|public
 specifier|static
@@ -526,10 +526,12 @@ name|path
 argument_list|)
 argument_list|,
 literal|true
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error   */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    * path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory */
 DECL|method|open
 specifier|public
 specifier|static
@@ -555,10 +557,12 @@ name|path
 argument_list|)
 argument_list|,
 literal|true
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in the given Directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an IndexReader reading the index in the given Directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param directory the index directory    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -580,6 +584,38 @@ argument_list|(
 name|directory
 argument_list|,
 literal|false
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns an IndexReader reading the index in the given    * Directory, with a custom {@link IndexDeletionPolicy}.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|Directory
+name|directory
+parameter_list|,
+name|IndexDeletionPolicy
+name|deletionPolicy
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|directory
+argument_list|,
+literal|false
+argument_list|,
+name|deletionPolicy
 argument_list|)
 return|;
 block|}
@@ -596,6 +632,10 @@ parameter_list|,
 specifier|final
 name|boolean
 name|closeDirectory
+parameter_list|,
+specifier|final
+name|IndexDeletionPolicy
+name|deletionPolicy
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -642,6 +682,9 @@ argument_list|,
 name|segmentFileName
 argument_list|)
 expr_stmt|;
+name|IndexReader
+name|reader
+decl_stmt|;
 if|if
 condition|(
 name|infos
@@ -653,7 +696,8 @@ literal|1
 condition|)
 block|{
 comment|// index is optimized
-return|return
+name|reader
+operator|=
 name|SegmentReader
 operator|.
 name|get
@@ -669,7 +713,7 @@ argument_list|)
 argument_list|,
 name|closeDirectory
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -767,7 +811,8 @@ name|e
 throw|;
 block|}
 block|}
-return|return
+name|reader
+operator|=
 operator|new
 name|MultiReader
 argument_list|(
@@ -779,8 +824,17 @@ name|closeDirectory
 argument_list|,
 name|readers
 argument_list|)
-return|;
+expr_stmt|;
 block|}
+name|reader
+operator|.
+name|deletionPolicy
+operator|=
+name|deletionPolicy
+expr_stmt|;
+return|return
+name|reader
+return|;
 block|}
 block|}
 operator|.
@@ -1964,52 +2018,33 @@ condition|)
 block|{
 if|if
 condition|(
-name|deleter
-operator|==
-literal|null
-condition|)
-block|{
-comment|// In the MultiReader case, we share this deleter
-comment|// across all SegmentReaders:
-name|setDeleter
-argument_list|(
-operator|new
-name|IndexFileDeleter
-argument_list|(
-name|segmentInfos
-argument_list|,
-name|directory
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
 name|directoryOwner
 condition|)
 block|{
-comment|// Should not be necessary: no prior commit should
-comment|// have left pending files, so just defensive:
+comment|// Default deleter (for backwards compatibility) is
+comment|// KeepOnlyLastCommitDeleter:
+name|IndexFileDeleter
 name|deleter
-operator|.
-name|clearPendingFiles
-argument_list|()
-expr_stmt|;
-name|String
-name|oldInfoFileName
 init|=
-name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
+operator|new
+name|IndexFileDeleter
+argument_list|(
+name|directory
+argument_list|,
+name|deletionPolicy
+operator|==
+literal|null
+condition|?
+operator|new
+name|KeepOnlyLastCommitDeletionPolicy
 argument_list|()
-decl_stmt|;
-name|String
-name|nextSegmentsFileName
-init|=
+else|:
+name|deletionPolicy
+argument_list|,
 name|segmentInfos
-operator|.
-name|getNextSegmentFileName
-argument_list|()
+argument_list|,
+literal|null
+argument_list|)
 decl_stmt|;
 comment|// Checkpoint the state we are about to change, in
 comment|// case we have to roll back:
@@ -2054,48 +2089,26 @@ comment|// actually in the index):
 name|rollbackCommit
 argument_list|()
 expr_stmt|;
-comment|// Erase any pending files that we were going to delete:
-name|deleter
-operator|.
-name|clearPendingFiles
-argument_list|()
-expr_stmt|;
-comment|// Remove possibly partially written next
-comment|// segments file:
-name|deleter
-operator|.
-name|deleteFile
-argument_list|(
-name|nextSegmentsFileName
-argument_list|)
-expr_stmt|;
 comment|// Recompute deletable files& remove them (so
 comment|// partially written .del files, etc, are
 comment|// removed):
 name|deleter
 operator|.
-name|findDeletableFiles
-argument_list|()
-expr_stmt|;
-name|deleter
-operator|.
-name|deleteFiles
+name|refresh
 argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// Attempt to delete all files we just obsoleted:
+comment|// Have the deleter remove any now unreferenced
+comment|// files due to this commit:
 name|deleter
 operator|.
-name|deleteFile
+name|checkpoint
 argument_list|(
-name|oldInfoFileName
+name|segmentInfos
+argument_list|,
+literal|true
 argument_list|)
-expr_stmt|;
-name|deleter
-operator|.
-name|commitPendingFiles
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -2125,32 +2138,6 @@ name|hasChanges
 operator|=
 literal|false
 expr_stmt|;
-block|}
-DECL|method|setDeleter
-specifier|protected
-name|void
-name|setDeleter
-parameter_list|(
-name|IndexFileDeleter
-name|deleter
-parameter_list|)
-block|{
-name|this
-operator|.
-name|deleter
-operator|=
-name|deleter
-expr_stmt|;
-block|}
-DECL|method|getDeleter
-specifier|protected
-name|IndexFileDeleter
-name|getDeleter
-parameter_list|()
-block|{
-return|return
-name|deleter
-return|;
 block|}
 comment|/** Implements commit. */
 DECL|method|doCommit

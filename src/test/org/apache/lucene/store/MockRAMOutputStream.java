@@ -253,7 +253,7 @@ literal|"fake disk full at "
 operator|+
 name|dir
 operator|.
-name|sizeInBytes
+name|getRecomputedActualSizeInBytes
 argument_list|()
 operator|+
 literal|" bytes"

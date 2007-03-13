@@ -2291,6 +2291,18 @@ operator|=
 name|infoStream
 expr_stmt|;
 block|}
+DECL|method|getNumFields
+name|int
+name|getNumFields
+parameter_list|()
+block|{
+return|return
+name|fieldInfos
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

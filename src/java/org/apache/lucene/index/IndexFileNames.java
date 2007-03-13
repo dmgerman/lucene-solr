@@ -62,6 +62,42 @@ name|NORMS_EXTENSION
 init|=
 literal|"nrm"
 decl_stmt|;
+comment|/** Extension of compound file */
+DECL|field|COMPOUND_FILE_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|COMPOUND_FILE_EXTENSION
+init|=
+literal|"cfs"
+decl_stmt|;
+comment|/** Extension of deletes */
+DECL|field|DELETES_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|DELETES_EXTENSION
+init|=
+literal|"del"
+decl_stmt|;
+comment|/** Extension of single norms */
+DECL|field|SINGLE_NORMS_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|SINGLE_NORMS_EXTENSION
+init|=
+literal|"f"
+decl_stmt|;
+comment|/** Extension of separate norms */
+DECL|field|SEPARATE_NORMS_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|SEPARATE_NORMS_EXTENSION
+init|=
+literal|"s"
+decl_stmt|;
 comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with two exceptions, namely the    * extension made up from<code>.f</code> + a number and    * from<code>.s</code> + a number.  Also note that    * Lucene's<code>segments_N</code> files do not have any    * filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|static
@@ -99,6 +135,41 @@ block|,
 literal|"tvf"
 block|,
 literal|"gen"
+block|,
+literal|"nrm"
+block|}
+decl_stmt|;
+comment|/** File extensions that are added to a compound file    * (same as above, minus "del", "gen", "cfs"). */
+DECL|field|INDEX_EXTENSIONS_IN_COMPOUND_FILE
+specifier|static
+specifier|final
+name|String
+index|[]
+name|INDEX_EXTENSIONS_IN_COMPOUND_FILE
+init|=
+operator|new
+name|String
+index|[]
+block|{
+literal|"fnm"
+block|,
+literal|"fdx"
+block|,
+literal|"fdt"
+block|,
+literal|"tii"
+block|,
+literal|"tis"
+block|,
+literal|"frq"
+block|,
+literal|"prx"
+block|,
+literal|"tvx"
+block|,
+literal|"tvd"
+block|,
+literal|"tvf"
 block|,
 literal|"nrm"
 block|}
