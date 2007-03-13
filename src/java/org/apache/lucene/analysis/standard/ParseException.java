@@ -19,6 +19,10 @@ package|;
 end_package
 
 begin_comment
+comment|/* Note: This file was also manually modified.   * Regenerating it by JavaCC might undo these changes!. */
+end_comment
+
+begin_comment
 comment|/**  * This exception is thrown when parse errors are encountered.  * You can explicitly create objects of this exception type by  * calling the method generateParseException in the generated  * parser.  *  * You can modify this class to customize your error reporting  * mechanisms so long as you retain the public fields.  */
 end_comment
 
