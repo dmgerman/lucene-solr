@@ -245,6 +245,9 @@ index|[]
 name|list
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|Set
 name|fileNames
 init|=
@@ -315,6 +318,9 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 decl_stmt|;
@@ -355,6 +361,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 decl_stmt|;
@@ -408,6 +417,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 decl_stmt|;
@@ -508,6 +520,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 decl_stmt|;
@@ -558,6 +573,9 @@ name|long
 name|sizeInBytes
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|sizeInBytes
 return|;
@@ -575,6 +593,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 init|=
@@ -642,6 +663,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|fromFile
 init|=
@@ -729,6 +753,9 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 init|=
@@ -806,6 +833,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|RAMFile
 name|file
 decl_stmt|;
@@ -859,6 +889,32 @@ name|fileMap
 operator|=
 literal|null
 expr_stmt|;
+block|}
+comment|/**    * @throws AlreadyClosedException if this IndexReader is closed    */
+DECL|method|ensureOpen
+specifier|protected
+specifier|final
+name|void
+name|ensureOpen
+parameter_list|()
+throws|throws
+name|AlreadyClosedException
+block|{
+if|if
+condition|(
+name|fileMap
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"this RAMDirectory is closed"
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 end_class

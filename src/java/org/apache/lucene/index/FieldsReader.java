@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -154,6 +168,11 @@ specifier|private
 name|int
 name|size
 decl_stmt|;
+DECL|field|closed
+specifier|private
+name|boolean
+name|closed
+decl_stmt|;
 DECL|field|fieldsStreamTL
 specifier|private
 name|ThreadLocal
@@ -229,6 +248,30 @@ literal|8
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @throws AlreadyClosedException if this FieldsReader is closed    */
+DECL|method|ensureOpen
+specifier|protected
+specifier|final
+name|void
+name|ensureOpen
+parameter_list|()
+throws|throws
+name|AlreadyClosedException
+block|{
+if|if
+condition|(
+name|closed
+condition|)
+block|{
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"this FieldsReader is closed"
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/**    * Closes the underlying {@link org.apache.lucene.store.IndexInput} streams, including any ones associated with a    * lazy implementation of a Field.  This means that the Fields values will not be accessible.    *    * @throws IOException    */
 DECL|method|close
 specifier|final
@@ -237,6 +280,12 @@ name|close
 parameter_list|()
 throws|throws
 name|IOException
+block|{
+if|if
+condition|(
+operator|!
+name|closed
+condition|)
 block|{
 name|fieldsStream
 operator|.
@@ -282,6 +331,11 @@ name|set
 argument_list|(
 literal|null
 argument_list|)
+expr_stmt|;
+block|}
+name|closed
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
@@ -1865,6 +1919,9 @@ index|[]
 name|binaryValue
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|fieldsData
@@ -1973,6 +2030,9 @@ name|Reader
 name|readerValue
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|fieldsData
 operator|instanceof
@@ -1993,6 +2053,9 @@ name|String
 name|stringValue
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|fieldsData
@@ -2126,6 +2189,9 @@ name|long
 name|getPointer
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|pointer
 return|;
@@ -2139,6 +2205,9 @@ name|long
 name|pointer
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|pointer
@@ -2152,6 +2221,9 @@ name|int
 name|getToRead
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|toRead
 return|;
@@ -2165,6 +2237,9 @@ name|int
 name|toRead
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|toRead

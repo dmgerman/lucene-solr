@@ -124,6 +124,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|RAMDirectory
 import|;
 end_import
@@ -450,6 +464,35 @@ specifier|private
 name|boolean
 name|closeDir
 decl_stmt|;
+DECL|field|closed
+specifier|private
+name|boolean
+name|closed
+decl_stmt|;
+comment|/**    * @throws AlreadyClosedException if this IndexWriter is closed    */
+DECL|method|ensureOpen
+specifier|protected
+specifier|final
+name|void
+name|ensureOpen
+parameter_list|()
+throws|throws
+name|AlreadyClosedException
+block|{
+if|if
+condition|(
+name|closed
+condition|)
+block|{
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"this IndexWriter is closed"
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/** Get the current setting of whether to use the compound file format.    *  Note that this just returns the value you set with setUseCompoundFile(boolean)    *  or the default. You cannot use this to query the status of an existing index.    *  @see #setUseCompoundFile(boolean)    */
 DECL|method|getUseCompoundFile
 specifier|public
@@ -457,6 +500,9 @@ name|boolean
 name|getUseCompoundFile
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|useCompoundFile
 return|;
@@ -471,6 +517,9 @@ name|boolean
 name|value
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|useCompoundFile
 operator|=
 name|value
@@ -486,6 +535,9 @@ name|Similarity
 name|similarity
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|similarity
@@ -500,6 +552,9 @@ name|Similarity
 name|getSimilarity
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|this
 operator|.
@@ -516,6 +571,9 @@ name|int
 name|interval
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|termIndexInterval
@@ -530,6 +588,9 @@ name|int
 name|getTermIndexInterval
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|termIndexInterval
 return|;
@@ -1229,6 +1290,9 @@ name|int
 name|maxMergeDocs
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|maxMergeDocs
@@ -1243,6 +1307,9 @@ name|int
 name|getMaxMergeDocs
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|maxMergeDocs
 return|;
@@ -1257,6 +1324,9 @@ name|int
 name|maxFieldLength
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|maxFieldLength
@@ -1271,6 +1341,9 @@ name|int
 name|getMaxFieldLength
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|maxFieldLength
 return|;
@@ -1285,6 +1358,9 @@ name|int
 name|maxBufferedDocs
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|maxBufferedDocs
@@ -1312,6 +1388,9 @@ name|int
 name|getMaxBufferedDocs
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|minMergeDocs
 return|;
@@ -1326,6 +1405,9 @@ name|int
 name|maxBufferedDeleteTerms
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|maxBufferedDeleteTerms
@@ -1353,6 +1435,9 @@ name|int
 name|getMaxBufferedDeleteTerms
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|maxBufferedDeleteTerms
 return|;
@@ -1367,6 +1452,9 @@ name|int
 name|mergeFactor
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|mergeFactor
@@ -1394,6 +1482,9 @@ name|int
 name|getMergeFactor
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|mergeFactor
 return|;
@@ -1440,6 +1531,9 @@ name|PrintStream
 name|infoStream
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|infoStream
@@ -1461,6 +1555,9 @@ name|PrintStream
 name|getInfoStream
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|infoStream
 return|;
@@ -1475,6 +1572,9 @@ name|long
 name|writeLockTimeout
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|writeLockTimeout
@@ -1489,6 +1589,9 @@ name|long
 name|getWriteLockTimeout
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|writeLockTimeout
 return|;
@@ -1536,6 +1639,12 @@ throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
+block|{
+if|if
+condition|(
+operator|!
+name|closed
+condition|)
 block|{
 name|flushRamSegments
 argument_list|()
@@ -1594,6 +1703,10 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|closeDir
@@ -1603,6 +1716,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/** Release the write lock, if needed. */
 DECL|method|finalize
@@ -1650,6 +1764,9 @@ name|Directory
 name|getDirectory
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|directory
 return|;
@@ -1661,6 +1778,9 @@ name|Analyzer
 name|getAnalyzer
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|analyzer
 return|;
@@ -1673,6 +1793,9 @@ name|int
 name|docCount
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|int
 name|count
 init|=
@@ -1767,6 +1890,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|SegmentInfo
 name|newSegmentInfo
 init|=
@@ -1890,6 +2016,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|bufferDeleteTerm
 argument_list|(
 name|term
@@ -1915,6 +2044,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1962,6 +2094,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|updateDocument
 argument_list|(
 name|term
@@ -1993,6 +2128,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|SegmentInfo
 name|newSegmentInfo
 init|=
@@ -2201,6 +2339,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|flushRamSegments
 argument_list|()
 expr_stmt|;
@@ -2464,6 +2605,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -2582,6 +2726,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|optimize
 argument_list|()
 expr_stmt|;
@@ -2811,6 +2958,9 @@ comment|// and target may use compound file or not. So we use mergeSegments() to
 comment|// copy a segment, which may cause doc count to change because deleted
 comment|// docs are garbage collected.
 comment|// 1 flush ram segments
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|flushRamSegments
 argument_list|()
 expr_stmt|;
@@ -3203,6 +3353,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|optimize
 argument_list|()
 expr_stmt|;
@@ -3593,6 +3746,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|flushRamSegments
 argument_list|()
 expr_stmt|;
@@ -3605,6 +3761,9 @@ name|long
 name|ramSizeInBytes
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|ramDirectory
 operator|.
@@ -3621,6 +3780,9 @@ name|int
 name|numRamDocs
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|ramSegmentInfos
 operator|.

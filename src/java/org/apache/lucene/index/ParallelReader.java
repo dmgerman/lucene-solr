@@ -269,7 +269,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add an IndexReader. */
+comment|/** Add an IndexReader.   * @throws IOException if there is a low-level IO error   */
 DECL|method|add
 specifier|public
 name|void
@@ -281,6 +281,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|add
 argument_list|(
 name|reader
@@ -289,7 +292,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add an IndexReader whose stored fields will not be returned.  This can   * accellerate search when stored fields are only needed from a subset of   * the IndexReaders.   *   * @throws IllegalArgumentException if not all indexes contain the same number   *     of documents   * @throws IllegalArgumentException if not all indexes have the same value   *     of {@link IndexReader#maxDoc()}   */
+comment|/** Add an IndexReader whose stored fields will not be returned.  This can   * accellerate search when stored fields are only needed from a subset of   * the IndexReaders.   *   * @throws IllegalArgumentException if not all indexes contain the same number   *     of documents   * @throws IllegalArgumentException if not all indexes have the same value   *     of {@link IndexReader#maxDoc()}   * @throws IOException if there is a low-level IO error   */
 DECL|method|add
 specifier|public
 name|void
@@ -304,6 +307,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|readers
@@ -492,6 +498,7 @@ name|int
 name|numDocs
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|numDocs
 return|;
@@ -502,6 +509,7 @@ name|int
 name|maxDoc
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|maxDoc
 return|;
@@ -512,6 +520,7 @@ name|boolean
 name|hasDeletions
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|hasDeletions
 return|;
@@ -526,6 +535,7 @@ name|int
 name|n
 parameter_list|)
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 if|if
 condition|(
 name|readers
@@ -679,6 +689,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|Document
 name|result
 init|=
@@ -848,6 +861,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|ArrayList
 name|results
 init|=
@@ -971,6 +987,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -1014,6 +1033,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -1056,6 +1078,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -1104,6 +1129,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -1197,6 +1225,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ParallelTermEnum
@@ -1214,6 +1245,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ParallelTermEnum
@@ -1233,6 +1267,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -1277,6 +1314,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ParallelTermDocs
@@ -1293,6 +1333,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ParallelTermDocs
@@ -1310,6 +1353,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ParallelTermPositions
@@ -1326,6 +1372,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ParallelTermPositions
@@ -1426,6 +1475,9 @@ name|FieldOption
 name|fieldNames
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|Set
 name|fieldSet
 init|=

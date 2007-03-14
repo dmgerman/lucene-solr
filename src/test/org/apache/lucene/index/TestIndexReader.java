@@ -110,6 +110,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|analysis
 operator|.
 name|standard
@@ -1629,7 +1643,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|AlreadyClosedException
 name|e
 parameter_list|)
 block|{
@@ -1656,7 +1670,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|AlreadyClosedException
 name|e
 parameter_list|)
 block|{
@@ -1677,7 +1691,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|AlreadyClosedException
 name|e
 parameter_list|)
 block|{

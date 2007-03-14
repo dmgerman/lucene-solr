@@ -1186,6 +1186,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|si
 operator|.
@@ -1199,6 +1200,7 @@ name|boolean
 name|hasDeletions
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|deletedDocs
 operator|!=
@@ -1324,6 +1326,9 @@ name|TermEnum
 name|terms
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|tis
 operator|.
@@ -1342,6 +1347,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|tis
 operator|.
@@ -1369,6 +1377,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|isDeleted
@@ -1427,6 +1438,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|SegmentTermDocs
@@ -1443,6 +1457,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|SegmentTermPositions
@@ -1462,6 +1479,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|TermInfo
 name|ti
 init|=
@@ -1494,6 +1514,7 @@ name|int
 name|numDocs
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 name|int
 name|n
 init|=
@@ -1523,6 +1544,7 @@ name|int
 name|maxDoc
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|si
 operator|.
@@ -1541,6 +1563,9 @@ name|FieldOption
 name|fieldOption
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|Set
 name|fieldSet
 init|=
@@ -1863,6 +1888,9 @@ name|String
 name|field
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|norms
 operator|.
@@ -2043,6 +2071,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|byte
 index|[]
 name|bytes
@@ -2148,6 +2179,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|Norm
 name|norm
 init|=
@@ -2578,6 +2612,9 @@ throws|throws
 name|IOException
 block|{
 comment|// Check if this field is invalid or has no stored term vector
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|FieldInfo
 name|fi
 init|=
@@ -2645,6 +2682,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|termVectorsReaderOrig

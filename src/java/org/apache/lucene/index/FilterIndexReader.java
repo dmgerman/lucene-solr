@@ -420,6 +420,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -443,6 +446,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -460,6 +466,7 @@ name|int
 name|numDocs
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|in
 operator|.
@@ -473,6 +480,7 @@ name|int
 name|maxDoc
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|in
 operator|.
@@ -496,6 +504,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -516,6 +527,7 @@ name|int
 name|n
 parameter_list|)
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|in
 operator|.
@@ -531,6 +543,7 @@ name|boolean
 name|hasDeletions
 parameter_list|()
 block|{
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|in
 operator|.
@@ -565,6 +578,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -586,6 +602,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -613,6 +632,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|in
 operator|.
 name|norms
@@ -664,6 +686,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -682,6 +707,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -702,6 +730,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -719,6 +750,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -734,6 +768,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -801,6 +838,9 @@ name|FieldOption
 name|fieldNames
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -816,6 +856,9 @@ name|long
 name|getVersion
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
@@ -833,6 +876,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|in
 operator|.
