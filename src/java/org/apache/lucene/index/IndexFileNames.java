@@ -80,12 +80,12 @@ name|DELETES_EXTENSION
 init|=
 literal|"del"
 decl_stmt|;
-comment|/** Extension of single norms */
-DECL|field|SINGLE_NORMS_EXTENSION
+comment|/** Extension of plain norms */
+DECL|field|PLAIN_NORMS_EXTENSION
 specifier|static
 specifier|final
 name|String
-name|SINGLE_NORMS_EXTENSION
+name|PLAIN_NORMS_EXTENSION
 init|=
 literal|"f"
 decl_stmt|;
@@ -241,8 +241,9 @@ if|if
 condition|(
 name|gen
 operator|==
-operator|-
-literal|1
+name|SegmentInfo
+operator|.
+name|NO
 condition|)
 block|{
 return|return
@@ -254,7 +255,9 @@ if|if
 condition|(
 name|gen
 operator|==
-literal|0
+name|SegmentInfo
+operator|.
+name|WITHOUT_GEN
 condition|)
 block|{
 return|return

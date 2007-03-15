@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Represents a single commit into an index as seen by the  * {@link IndexDeletionPolicy}.  */
+comment|/**  *<p>Expert: represents a single commit into an index as seen by the  * {@link IndexDeletionPolicy}.   *<p>  * Changes to the content of an index are made visible only  * after the writer who made that change had written to the  * directory a new segments file (<code>segments_N</code>). This point in   * time, when the action of writing of a new segments file to the  * directory is completed, is therefore an index commit point.  *<p>  * Each index commit point has a unique segments file associated  * with it. The segments file associated with a later   * index commit point would have a larger N.  */
 end_comment
 
 begin_interface
@@ -26,14 +26,14 @@ specifier|public
 interface|interface
 name|IndexCommitPoint
 block|{
-comment|/**    * Get the segments file (ie,<code>segments_N</code>) of    * this commit point.    */
+comment|/**    * Get the segments file (<code>segments_N</code>) associated     * with this commit point.    */
 DECL|method|getSegmentsFileName
 specifier|public
 name|String
 name|getSegmentsFileName
 parameter_list|()
 function_decl|;
-comment|/**    * Notify the writer that this commit point should be    * deleted.  This should only be called by the {@link    * IndexDeletionPolicy} during its {@link    * IndexDeletionPolicy#onInit} or {@link   * IndexDeletionPolicy#onCommit} method.   */
+comment|/**    * Delete this commit point.    *<p>    * Upon calling this, the writer is notified that this commit     * point should be deleted.     *<p>    * Decision that a commit-point should be deleted is taken by the {@link IndexDeletionPolicy} in effect    * and therefore this should only be called by its {@link IndexDeletionPolicy#onInit onInit()} or     * {@link IndexDeletionPolicy#onCommit onCommit()} methods.   */
 DECL|method|delete
 specifier|public
 name|void
