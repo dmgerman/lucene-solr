@@ -330,6 +330,9 @@ index|[]
 name|b
 parameter_list|,
 name|int
+name|offset
+parameter_list|,
+name|int
 name|len
 parameter_list|)
 throws|throws
@@ -346,11 +349,6 @@ name|position
 operator|&
 name|BLOCK_MASK
 argument_list|)
-decl_stmt|;
-name|int
-name|offset
-init|=
-literal|0
 decl_stmt|;
 while|while
 condition|(
