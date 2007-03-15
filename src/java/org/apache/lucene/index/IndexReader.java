@@ -275,6 +275,20 @@ argument_list|(
 literal|"INDEXED"
 argument_list|)
 decl_stmt|;
+comment|// all fields that store payloads
+DECL|field|STORES_PAYLOADS
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|STORES_PAYLOADS
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"STORES_PAYLOADS"
+argument_list|)
+decl_stmt|;
 comment|// all fields which are not indexed
 DECL|field|UNINDEXED
 specifier|public

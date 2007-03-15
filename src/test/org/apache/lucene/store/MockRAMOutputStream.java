@@ -134,6 +134,9 @@ index|[]
 name|src
 parameter_list|,
 name|int
+name|offset
+parameter_list|,
+name|int
 name|len
 parameter_list|)
 throws|throws
@@ -222,6 +225,8 @@ name|flushBuffer
 argument_list|(
 name|src
 argument_list|,
+name|offset
+argument_list|,
 operator|(
 name|int
 operator|)
@@ -267,6 +272,8 @@ operator|.
 name|flushBuffer
 argument_list|(
 name|src
+argument_list|,
+name|offset
 argument_list|,
 name|len
 argument_list|)

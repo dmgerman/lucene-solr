@@ -12,12 +12,44 @@ name|analysis
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Payload
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|TermPositions
+import|;
+end_import
+
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
-comment|/** A Token is an occurence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.    The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.    The type is an interned string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".  */
+comment|/** A Token is an occurence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is an interned string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><b>   Warning: The status of the Payloads feature is experimental. The APIs   introduced here might change in the future and will not be supported anymore   in such a case. If you want to use this feature in a production environment   you should wait for an official release.</b>     @see org.apache.lucene.index.Payload   */
+end_comment
+
+begin_comment
+comment|// TODO: Remove warning after API has been finalized
 end_comment
 
 begin_class
@@ -50,6 +82,10 @@ init|=
 literal|"word"
 decl_stmt|;
 comment|// lexical type
+DECL|field|payload
+name|Payload
+name|payload
+decl_stmt|;
 DECL|field|positionIncrement
 specifier|private
 name|int
@@ -224,6 +260,38 @@ parameter_list|()
 block|{
 return|return
 name|type
+return|;
+block|}
+comment|/**     * Sets this Token's payload.<br>    *<br>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>      */
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|setPayload
+specifier|public
+name|void
+name|setPayload
+parameter_list|(
+name|Payload
+name|payload
+parameter_list|)
+block|{
+name|this
+operator|.
+name|payload
+operator|=
+name|payload
+expr_stmt|;
+block|}
+comment|/**     * Returns this Token's payload.<br>     *<br>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>       */
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|getPayload
+specifier|public
+name|Payload
+name|getPayload
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|payload
 return|;
 block|}
 DECL|method|toString

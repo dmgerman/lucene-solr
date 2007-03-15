@@ -226,6 +226,9 @@ index|[]
 name|src
 parameter_list|,
 name|int
+name|offset
+parameter_list|,
+name|int
 name|len
 parameter_list|)
 throws|throws
@@ -338,6 +341,8 @@ name|arraycopy
 argument_list|(
 name|src
 argument_list|,
+name|offset
+operator|+
 name|bufferPos
 argument_list|,
 name|buffer

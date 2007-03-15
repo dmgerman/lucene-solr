@@ -803,6 +803,42 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Not implemented.    * @throws UnsupportedOperationException    */
+DECL|method|getPayloadLength
+specifier|public
+name|int
+name|getPayloadLength
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Not implemented.    * @throws UnsupportedOperationException    */
+DECL|method|getPayload
+specifier|public
+name|byte
+index|[]
+name|getPayload
+parameter_list|(
+name|byte
+index|[]
+name|data
+parameter_list|,
+name|int
+name|offset
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 

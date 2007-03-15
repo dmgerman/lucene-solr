@@ -53,6 +53,32 @@ function_decl|;
 comment|/** Writes an array of bytes.    * @param b the bytes to write    * @param length the number of bytes to write    * @see IndexInput#readBytes(byte[],int,int)    */
 DECL|method|writeBytes
 specifier|public
+name|void
+name|writeBytes
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|,
+name|int
+name|length
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|writeBytes
+argument_list|(
+name|b
+argument_list|,
+literal|0
+argument_list|,
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Writes an array of bytes.    * @param b the bytes to write    * @param offset the offset in the byte array    * @param length the number of bytes to write    * @see IndexInput#readBytes(byte[],int,int)    */
+DECL|method|writeBytes
+specifier|public
 specifier|abstract
 name|void
 name|writeBytes
@@ -60,6 +86,9 @@ parameter_list|(
 name|byte
 index|[]
 name|b
+parameter_list|,
+name|int
+name|offset
 parameter_list|,
 name|int
 name|length

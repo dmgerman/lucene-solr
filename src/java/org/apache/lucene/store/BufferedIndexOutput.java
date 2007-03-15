@@ -117,6 +117,9 @@ index|[]
 name|b
 parameter_list|,
 name|int
+name|offset
+parameter_list|,
+name|int
 name|length
 parameter_list|)
 throws|throws
@@ -144,7 +147,7 @@ name|arraycopy
 argument_list|(
 name|b
 argument_list|,
-literal|0
+name|offset
 argument_list|,
 name|buffer
 argument_list|,
@@ -194,6 +197,8 @@ comment|// and write data at once
 name|flushBuffer
 argument_list|(
 name|b
+argument_list|,
+name|offset
 argument_list|,
 name|length
 argument_list|)
@@ -245,6 +250,8 @@ argument_list|(
 name|b
 argument_list|,
 name|pos
+operator|+
+name|offset
 argument_list|,
 name|buffer
 argument_list|,
@@ -314,6 +321,32 @@ expr_stmt|;
 block|}
 comment|/** Expert: implements buffer write.  Writes bytes at the current position in    * the output.    * @param b the bytes to write    * @param len the number of bytes to write    */
 DECL|method|flushBuffer
+specifier|private
+name|void
+name|flushBuffer
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|,
+name|int
+name|len
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|flushBuffer
+argument_list|(
+name|b
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Expert: implements buffer write.  Writes bytes at the current position in    * the output.    * @param b the bytes to write    * @param offset the offset in the byte array    * @param len the number of bytes to write    */
+DECL|method|flushBuffer
 specifier|protected
 specifier|abstract
 name|void
@@ -322,6 +355,9 @@ parameter_list|(
 name|byte
 index|[]
 name|b
+parameter_list|,
+name|int
+name|offset
 parameter_list|,
 name|int
 name|len

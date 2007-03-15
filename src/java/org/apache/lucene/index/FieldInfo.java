@@ -52,6 +52,11 @@ name|boolean
 name|omitNorms
 decl_stmt|;
 comment|// omit norms associated with indexed fields
+DECL|field|storePayloads
+name|boolean
+name|storePayloads
+decl_stmt|;
+comment|// whether this field stores payloads together with term positions
 DECL|method|FieldInfo
 name|FieldInfo
 parameter_list|(
@@ -75,6 +80,9 @@ name|storeOffsetWithTermVector
 parameter_list|,
 name|boolean
 name|omitNorms
+parameter_list|,
+name|boolean
+name|storePayloads
 parameter_list|)
 block|{
 name|name
@@ -112,6 +120,12 @@ operator|.
 name|omitNorms
 operator|=
 name|omitNorms
+expr_stmt|;
+name|this
+operator|.
+name|storePayloads
+operator|=
+name|storePayloads
 expr_stmt|;
 block|}
 block|}
