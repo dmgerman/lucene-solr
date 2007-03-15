@@ -139,7 +139,7 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
-comment|/** This is the current file format written.  It adds a    * "hasSingleNormFile" flag into each segment info.    * See<a href="http://issues.apache.org/jira/browse/LUCENE-756">LUCENE-756</a>    * for details.    */
+comment|/** This format adds a "hasSingleNormFile" flag into each segment info.    * See<a href="http://issues.apache.org/jira/browse/LUCENE-756">LUCENE-756</a>    * for details.    */
 DECL|field|FORMAT_SINGLE_NORM_FILE
 specifier|public
 specifier|static
@@ -149,6 +149,16 @@ name|FORMAT_SINGLE_NORM_FILE
 init|=
 operator|-
 literal|3
+decl_stmt|;
+comment|/* This must always point to the most recent file format. */
+DECL|field|CURRENT_FORMAT
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CURRENT_FORMAT
+init|=
+name|FORMAT_SINGLE_NORM_FILE
 decl_stmt|;
 DECL|field|counter
 specifier|public
@@ -242,18 +252,6 @@ name|long
 name|max
 init|=
 operator|-
-literal|1
-decl_stmt|;
-name|int
-name|prefixLen
-init|=
-name|IndexFileNames
-operator|.
-name|SEGMENTS
-operator|.
-name|length
-argument_list|()
-operator|+
 literal|1
 decl_stmt|;
 for|for
@@ -654,7 +652,7 @@ if|if
 condition|(
 name|format
 operator|<
-name|FORMAT_SINGLE_NORM_FILE
+name|CURRENT_FORMAT
 condition|)
 throw|throw
 operator|new
@@ -903,7 +901,7 @@ name|output
 operator|.
 name|writeInt
 argument_list|(
-name|FORMAT_SINGLE_NORM_FILE
+name|CURRENT_FORMAT
 argument_list|)
 expr_stmt|;
 comment|// write FORMAT
@@ -1218,7 +1216,7 @@ if|if
 condition|(
 name|format
 operator|<
-name|FORMAT_SINGLE_NORM_FILE
+name|CURRENT_FORMAT
 condition|)
 throw|throw
 operator|new
