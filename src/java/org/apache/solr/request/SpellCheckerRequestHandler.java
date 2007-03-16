@@ -258,7 +258,7 @@ argument_list|(
 name|args
 argument_list|)
 decl_stmt|;
-name|restrictToField
+name|termSourceField
 operator|=
 name|p
 operator|.
