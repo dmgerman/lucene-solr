@@ -223,7 +223,7 @@ name|get
 argument_list|(
 literal|"analyzer"
 argument_list|,
-literal|"org.apache.lucene.analysis.StandardAnalyzer"
+literal|"org.apache.lucene.analysis.standard.StandardAnalyzer"
 argument_list|)
 argument_list|)
 operator|.
