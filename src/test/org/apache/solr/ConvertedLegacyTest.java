@@ -2617,37 +2617,37 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1000</field><field name=\"a_i\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1000</field><field name=\"a_i\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1001</field><field name=\"a_i\">10</field><field name=\"nullfirst\">A</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1001</field><field name=\"a_i\">10</field><field name=\"nullfirst\">A</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1002</field><field name=\"a_i\">1</field><field name=\"b_i\">100</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1002</field><field name=\"a_i\">1</field><field name=\"b_i\">100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1003</field><field name=\"a_i\">-1</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1003</field><field name=\"a_i\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1004</field><field name=\"a_i\">15</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1004</field><field name=\"a_i\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1005</field><field name=\"a_i\">1</field><field name=\"b_i\">50</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1005</field><field name=\"a_i\">1</field><field name=\"b_i\">50</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">1006</field><field name=\"a_i\">0</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1006</field><field name=\"a_i\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2659,7 +2659,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1010]"
+literal|"id_i:[1000 TO 1010]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7]"
@@ -2669,7 +2669,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1010]; b_i asc"
+literal|"id_i:[1000 TO 1010]; b_i asc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2683,7 +2683,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1010]; b_i desc"
+literal|"id_i:[1000 TO 1010]; b_i desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2697,7 +2697,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1010]; a_i asc,b_i desc"
+literal|"id_i:[1000 TO 1010]; a_i asc,b_i desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2713,7 +2713,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1010]; a_i asc,b_i asc"
+literal|"id_i:[1000 TO 1010]; a_i asc,b_i asc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2730,7 +2730,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1002]; nullfirst asc"
+literal|"id_i:[1000 TO 1002]; nullfirst asc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3] "
@@ -2746,7 +2746,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:[1000 TO 1002]; nullfirst desc"
+literal|"id_i:[1000 TO 1002]; nullfirst desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3] "
@@ -2765,7 +2765,7 @@ literal|"can not sort unindexed fields"
 argument_list|,
 name|req
 argument_list|(
-literal|"id:1000; shouldbeunindexed asc"
+literal|"id_i:1000; shouldbeunindexed asc"
 argument_list|)
 argument_list|,
 literal|400
@@ -2777,7 +2777,7 @@ literal|"invalid query format"
 argument_list|,
 name|req
 argument_list|(
-literal|"id:1000; nullfirst"
+literal|"id_i:1000; nullfirst"
 argument_list|)
 argument_list|,
 literal|400
@@ -2789,7 +2789,7 @@ literal|"unknown sort field"
 argument_list|,
 name|req
 argument_list|(
-literal|"id:1000; abcde12345 asc"
+literal|"id_i:1000; abcde12345 asc"
 argument_list|)
 argument_list|,
 literal|1
@@ -2801,7 +2801,7 @@ literal|"unknown sort order"
 argument_list|,
 name|req
 argument_list|(
-literal|"id:1000; nullfirst aaa"
+literal|"id_i:1000; nullfirst aaa"
 argument_list|)
 argument_list|,
 literal|400
