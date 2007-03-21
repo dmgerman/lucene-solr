@@ -207,6 +207,7 @@ argument_list|()
 operator|==
 name|prefixField
 condition|)
+comment|// interned comparison
 block|{
 name|TermQuery
 name|tq

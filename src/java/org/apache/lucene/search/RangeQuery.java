@@ -295,6 +295,7 @@ operator|==
 name|testField
 condition|)
 block|{
+comment|// interned comparison
 if|if
 condition|(
 operator|!
