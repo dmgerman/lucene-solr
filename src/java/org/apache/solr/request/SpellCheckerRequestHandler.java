@@ -538,9 +538,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-name|SolrCore
-operator|.
-name|version
+literal|"$Revision$"
 return|;
 block|}
 DECL|method|getDescription
