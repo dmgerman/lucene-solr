@@ -51,6 +51,7 @@ name|int
 name|reported
 decl_stmt|;
 DECL|method|Report
+specifier|public
 name|Report
 parameter_list|(
 name|String

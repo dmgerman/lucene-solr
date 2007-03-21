@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Close index reader.  * Other side effects: index reader in perfRunData is nullified.  * This would cause read related tasks to reopen their own reader.   */
+comment|/**  * Close index reader.  *<br>Other side effects: index reader in perfRunData is nullified.  *<br>This would cause read related tasks to reopen their own reader.   */
 end_comment
 
 begin_class

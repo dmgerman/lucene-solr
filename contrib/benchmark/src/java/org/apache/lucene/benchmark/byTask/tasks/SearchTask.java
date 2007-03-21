@@ -130,8 +130,10 @@ return|return
 name|getRunData
 argument_list|()
 operator|.
-name|getSearchQueryMaker
-argument_list|()
+name|getQueryMaker
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 block|}

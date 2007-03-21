@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A (abstract)  task to be tested for performance.  *<br>  * Every performance task extends this class, and provides its own doLogic() method,   * which performss the actual task.  *<br>  * Tasks performing some work that should be measured for the task, can overide setup() and/or tearDown() and   * placed that work there.   */
+comment|/**  * A (abstract)  task to be tested for performance.  *<br>  * Every performance task extends this class, and provides its own doLogic() method,   * which performss the actual task.  *<br>  * Tasks performing some work that should be measured for the task, can overide setup() and/or tearDown() and   * placed that work there.   *<br>  * Relevant properties:<code>task.max.depth.log</code>.  */
 end_comment
 
 begin_class
@@ -129,7 +129,7 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|params
-specifier|protected
+specifier|private
 name|String
 name|params
 init|=
@@ -607,7 +607,18 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{   }
-comment|/**    * Set the params of this task.    * Sub classes that supports parameters may overide this method for fetching/processing the params.    */
+comment|/**    * Sub classes that supports parameters must overide this method to return true.    * @return true iff this task supports command line params.    */
+DECL|method|supportsParams
+specifier|public
+name|boolean
+name|supportsParams
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+comment|/**    * Set the params of this task.    * @exception UnsupportedOperationException for tasks supporting command line parameters.    */
 DECL|method|setParams
 specifier|public
 name|void
@@ -617,6 +628,24 @@ name|String
 name|params
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|supportsParams
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+name|getName
+argument_list|()
+operator|+
+literal|" does not support command line parameters."
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|params

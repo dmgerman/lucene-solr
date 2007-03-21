@@ -37,7 +37,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Increment the counter for properties maintained by Round Number.  * Other side effects: if there are props by round number, log value change.  */
+comment|/**  * Increment the counter for properties maintained by Round Number.  *<br>Other side effects: if there are props by round number, log value change.  */
 end_comment
 
 begin_class

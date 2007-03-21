@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Close index writer.  * Other side effects: index writer object in perfRunData is nullified.  */
+comment|/**  * Close index writer.  *<br>Other side effects: index writer object in perfRunData is nullified.  */
 end_comment
 
 begin_class

@@ -37,7 +37,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Reset all index and input data and call gc, does NOT erase index/dir, does NOT clear statistics.  * This contains ResetInputs.  * Other side effects: writers/readers nulified, closed.  * Index is NOT erased.  * Directory is NOT erased.  */
+comment|/**  * Reset all index and input data and call gc, does NOT erase index/dir, does NOT clear statistics.  * This contains ResetInputs.  *<br>Other side effects: writers/readers nulified, closed.  * Index is NOT erased.  * Directory is NOT erased.  */
 end_comment
 
 begin_class

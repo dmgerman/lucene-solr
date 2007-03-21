@@ -272,7 +272,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|SimpleDocMaker
+name|BasicDocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,
@@ -360,7 +360,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|SimpleDocMaker
+name|BasicDocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,

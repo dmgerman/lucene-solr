@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Open an index writer.  * Other side effects: index writer object in perfRunData is set.  */
+comment|/**  * Open an index writer.  *<br>Other side effects: index writer object in perfRunData is set.  *<br>Relevant properties:<code>merge.factor , max.buffered</code>.  */
 end_comment
 
 begin_class
@@ -118,6 +118,24 @@ name|OpenIndexTask
 extends|extends
 name|PerfTask
 block|{
+DECL|field|DEFAULT_MAX_BUFFERED
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_BUFFERED
+init|=
+literal|10
+decl_stmt|;
+DECL|field|DEFAULT_MERGE_PFACTOR
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MERGE_PFACTOR
+init|=
+literal|10
+decl_stmt|;
 DECL|method|OpenIndexTask
 specifier|public
 name|OpenIndexTask
@@ -201,7 +219,7 @@ name|get
 argument_list|(
 literal|"merge.factor"
 argument_list|,
-literal|10
+name|DEFAULT_MERGE_PFACTOR
 argument_list|)
 decl_stmt|;
 name|int
@@ -213,7 +231,7 @@ name|get
 argument_list|(
 literal|"max.buffered"
 argument_list|,
-literal|10
+name|DEFAULT_MAX_BUFFERED
 argument_list|)
 decl_stmt|;
 comment|// must update params for newly opened writer

@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Open an index reader.  * Other side effects: index redaer object in perfRunData is set.  */
+comment|/**  * Open an index reader.  *<br>Other side effects: index redaer object in perfRunData is set.  */
 end_comment
 
 begin_class

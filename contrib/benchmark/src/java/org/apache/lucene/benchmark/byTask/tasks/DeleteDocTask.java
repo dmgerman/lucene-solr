@@ -37,7 +37,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Delete a document by docid.  * Other side effects: none.  */
+comment|/**  * Delete a document by docid.  *<br>Other side effects: none.  *<br>Relevant properties:<code>doc.delete.log.step , doc.delete.step</code>.  *<br>If no docid param is supplied, deletes doc with<code>id = last-deleted-doc + doc.delete.step</code>.   *<br>Takes optional param: document id.   */
 end_comment
 
 begin_class
@@ -48,6 +48,26 @@ name|DeleteDocTask
 extends|extends
 name|PerfTask
 block|{
+comment|/**    * Gap between ids of deleted docs, applies when no docid param is provided.    */
+DECL|field|DEFAULT_DOC_DELETE_STEP
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_DOC_DELETE_STEP
+init|=
+literal|8
+decl_stmt|;
+comment|/**    * Default value for property<code>doc.delete.log.step<code> - indicating how often     * an "deleted N docs" message should be logged.      */
+DECL|field|DEFAULT_DELETE_DOC_LOG_STEP
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_DELETE_DOC_LOG_STEP
+init|=
+literal|500
+decl_stmt|;
 DECL|method|DeleteDocTask
 specifier|public
 name|DeleteDocTask
@@ -174,7 +194,7 @@ name|get
 argument_list|(
 literal|"doc.delete.log.step"
 argument_list|,
-literal|500
+name|DEFAULT_DELETE_DOC_LOG_STEP
 argument_list|)
 expr_stmt|;
 block|}
@@ -197,7 +217,7 @@ name|get
 argument_list|(
 literal|"doc.delete.step"
 argument_list|,
-literal|8
+name|DEFAULT_DOC_DELETE_STEP
 argument_list|)
 expr_stmt|;
 block|}
@@ -266,7 +286,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"--> processed "
+literal|"--> processed (delete) "
 operator|+
 name|count
 operator|+
@@ -314,6 +334,17 @@ operator|<
 literal|0
 operator|)
 expr_stmt|;
+block|}
+comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#supportsParams()    */
+DECL|method|supportsParams
+specifier|public
+name|boolean
+name|supportsParams
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 end_class

@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Search and Travrese task.  *   *<p>Note: This task reuses the reader if it is already open.   * Otherwise a reader is opened at start and closed at the end.  */
+comment|/**  * Search and Travrese task.  *   *<p>Note: This task reuses the reader if it is already open.   * Otherwise a reader is opened at start and closed at the end.  *<p/>  *   * Takes optional param: traversal size (otherwise all results are traversed).  */
 end_comment
 
 begin_class
@@ -66,6 +66,15 @@ name|SearchTravTask
 extends|extends
 name|ReadTask
 block|{
+DECL|field|traversalSize
+specifier|protected
+name|int
+name|traversalSize
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 DECL|method|SearchTravTask
 specifier|public
 name|SearchTravTask
@@ -130,8 +139,60 @@ return|return
 name|getRunData
 argument_list|()
 operator|.
-name|getSearchTravRetQueryMaker
-argument_list|()
+name|getQueryMaker
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+DECL|method|traversalSize
+specifier|public
+name|int
+name|traversalSize
+parameter_list|()
+block|{
+return|return
+name|traversalSize
+return|;
+block|}
+DECL|method|setParams
+specifier|public
+name|void
+name|setParams
+parameter_list|(
+name|String
+name|params
+parameter_list|)
+block|{
+name|super
+operator|.
+name|setParams
+argument_list|(
+name|params
+argument_list|)
+expr_stmt|;
+name|traversalSize
+operator|=
+operator|(
+name|int
+operator|)
+name|Float
+operator|.
+name|parseFloat
+argument_list|(
+name|params
+argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#supportsParams()    */
+DECL|method|supportsParams
+specifier|public
+name|boolean
+name|supportsParams
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 block|}
