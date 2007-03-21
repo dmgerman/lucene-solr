@@ -22,7 +22,17 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileInputStream
 import|;
 end_import
 
@@ -42,47 +52,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStreamReader
+name|IOException
 import|;
 end_import
 
@@ -102,7 +72,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|StringWriter
+name|InputStreamReader
 import|;
 end_import
 
@@ -112,7 +82,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Writer
+name|OutputStream
 import|;
 end_import
 
@@ -132,7 +102,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|OutputStream
+name|Reader
 import|;
 end_import
 
@@ -140,9 +110,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|io
 operator|.
-name|URL
+name|StringReader
 import|;
 end_import
 
@@ -150,9 +120,29 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|io
 operator|.
-name|ProtocolException
+name|StringWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|UnsupportedEncodingException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
 import|;
 end_import
 
@@ -173,6 +163,26 @@ operator|.
 name|net
 operator|.
 name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|ProtocolException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
 import|;
 end_import
 
@@ -702,7 +712,7 @@ name|output
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Opens the file and posts it's contents to the solrUrl,    * writes to response to output.    */
+comment|/**    * Opens the file and posts it's contents to the solrUrl,    * writes to response to output.    * @throws UnsupportedEncodingException     */
 DECL|method|postFile
 specifier|public
 name|void
@@ -716,14 +726,24 @@ name|output
 parameter_list|)
 throws|throws
 name|FileNotFoundException
+throws|,
+name|UnsupportedEncodingException
 block|{
-name|FileReader
+comment|// FIXME; use a real XML parser to read files, so as to support various encodings
+comment|// (and we can only post well-formed XML anyway)
+name|Reader
 name|reader
 init|=
 operator|new
-name|FileReader
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
 argument_list|(
 name|file
+argument_list|)
+argument_list|,
+name|POST_ENCODING
 argument_list|)
 decl_stmt|;
 try|try
