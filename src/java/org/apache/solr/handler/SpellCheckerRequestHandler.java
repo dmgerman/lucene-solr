@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.request
+DECL|package|org.apache.solr.handler
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|handler
 package|;
 end_package
 
@@ -27,6 +27,20 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|IndexSearcher
 import|;
 end_import
 
@@ -100,9 +114,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|request
 operator|.
-name|SolrCore
+name|SolrParams
 import|;
 end_import
 
@@ -114,9 +128,23 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|handler
+name|request
 operator|.
-name|RequestHandlerBase
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryResponse
 import|;
 end_import
 
