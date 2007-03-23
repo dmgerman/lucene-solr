@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A DocMaker using the Reuters collection for its input.  *  * Config properties:  * docs.dir=&lt;path to the docs dir| Default: reuters-out&gt;  * reuters.doc.maker.store.bytes=true|false Default: false  *  */
+comment|/**  * A DocMaker using the Reuters collection for its input.  *  * Config properties:  * docs.dir=&lt;path to the docs dir| Default: reuters-out&gt;   *  */
 end_comment
 
 begin_class
@@ -155,13 +155,6 @@ name|iteration
 init|=
 literal|0
 decl_stmt|;
-DECL|field|storeBytes
-specifier|private
-name|boolean
-name|storeBytes
-init|=
-literal|false
-decl_stmt|;
 comment|/* (non-Javadoc)    * @see SimpleDocMaker#setConfig(java.util.Properties)    */
 DECL|method|setConfig
 specifier|public
@@ -203,17 +196,6 @@ literal|"work"
 argument_list|)
 argument_list|,
 name|d
-argument_list|)
-expr_stmt|;
-name|storeBytes
-operator|=
-name|config
-operator|.
-name|get
-argument_list|(
-literal|"reuters.doc.maker.store.bytes"
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|collectFiles
@@ -472,27 +454,6 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|storeBytes
-operator|==
-literal|true
-condition|)
-block|{
-name|dd
-operator|.
-name|bytes
-operator|=
-name|dd
-operator|.
-name|body
-operator|.
-name|getBytes
-argument_list|(
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|dd
 return|;

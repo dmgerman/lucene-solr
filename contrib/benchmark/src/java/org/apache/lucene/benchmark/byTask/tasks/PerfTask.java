@@ -129,7 +129,7 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|params
-specifier|private
+specifier|protected
 name|String
 name|params
 init|=

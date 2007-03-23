@@ -211,6 +211,12 @@ name|String
 name|params
 parameter_list|)
 block|{
+name|this
+operator|.
+name|params
+operator|=
+name|params
+expr_stmt|;
 name|Set
 name|fieldsToLoad
 init|=
@@ -266,6 +272,17 @@ operator|.
 name|EMPTY_SET
 argument_list|)
 expr_stmt|;
+block|}
+comment|/* (non-Javadoc)   * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#supportsParams()   */
+DECL|method|supportsParams
+specifier|public
+name|boolean
+name|supportsParams
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 end_class
