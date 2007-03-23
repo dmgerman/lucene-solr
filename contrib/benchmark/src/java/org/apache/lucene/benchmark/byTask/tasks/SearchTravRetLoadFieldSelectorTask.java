@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Search and Travrese and Retrieve docs task using a SetBasedFieldSelector.  *  *<p>Note: This task reuses the reader if it is already open.  * Otherwise a reader is opened at start and closed at the end.  *  * Takes optional param: comma separated list of Fields to load.  */
+comment|/**  * Search and Travrese and Retrieve docs task using a SetBasedFieldSelector.  *  *<p>Note: This task reuses the reader if it is already open.  * Otherwise a reader is opened at start and closed at the end.  *  *<p>Takes optional param: comma separated list of Fields to load.</p>  *   *<p>Other side effects: counts additional 1 (record) for each traversed hit,   * and 1 more for each retrieved (non null) document.</p>  */
 end_comment
 
 begin_class
@@ -217,6 +217,7 @@ name|params
 operator|=
 name|params
 expr_stmt|;
+comment|// cannot just call super.setParams(), b/c it's params differ.
 name|Set
 name|fieldsToLoad
 init|=

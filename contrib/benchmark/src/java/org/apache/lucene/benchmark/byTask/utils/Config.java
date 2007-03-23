@@ -169,7 +169,7 @@ specifier|private
 name|String
 name|algorithmText
 decl_stmt|;
-comment|/**    * Read config from file containing both algorithm and config properties.    * @param algFile file containing both algorithm and config properties.    * @throws IOException    */
+comment|/**    * Read both algorithm and config properties.    * @param algReader from where to read algorithm and config properties.    * @throws IOException    */
 DECL|method|Config
 specifier|public
 name|Config

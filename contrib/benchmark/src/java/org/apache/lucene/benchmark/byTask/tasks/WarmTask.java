@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Warm reader task.  *   *<p>Note: This task reuses the reader if it is already open.   * Otherwise a reader is opened at start and closed at the end.  */
+comment|/**  * Warm reader task: retrieve all reader documents.  *   *<p>Note: This task reuses the reader if it is already open.   * Otherwise a reader is opened at start and closed at the end.  *</p>  *   *<p>Other side effects: counts additional 1 (record) for each   * retrieved (non null) document.</p>  */
 end_comment
 
 begin_class

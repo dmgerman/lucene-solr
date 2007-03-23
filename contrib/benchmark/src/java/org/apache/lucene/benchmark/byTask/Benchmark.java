@@ -196,7 +196,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|Exception
+name|IllegalStateException
 argument_list|(
 literal|"Benchmark was already executed"
 argument_list|)

@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create documents for the test.  * Maintains counters of chars etc. so that sub-classes just need to   * provide textual content, and the create-by-size is handled here.  *  *<p/>  * Config Params (default is in caps):  * doc.stored=true|FALSE<br/>  * doc.tokenized=TRUE|false<br/>  * doc.term.vector=true|FALSE<br/>  * doc.store.bytes=true|FALSE //Store the body contents raw UTF-8 bytes as a field<br/>  */
+comment|/**  * Create documents for the test.  * Maintains counters of chars etc. so that sub-classes just need to   * provide textual content, and the create-by-size is handled here.  *  *<p/>  * Config Params (default is in caps):  * doc.stored=true|FALSE<br/>  * doc.tokenized=TRUE|false<br/>  * doc.term.vector=true|FALSE<br/>  * doc.store.body.bytes=true|FALSE //Store the body contents raw UTF-8 bytes as a field<br/>  */
 end_comment
 
 begin_class
