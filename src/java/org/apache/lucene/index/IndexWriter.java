@@ -2491,6 +2491,18 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+else|else
+comment|// We must "protect" our files at this point from
+comment|// deletion in case we need to rollback:
+name|deleter
+operator|.
+name|incRef
+argument_list|(
+name|segmentInfos
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/*    * Rolls back the transaction and restores state to where    * we were at the start.    */
 DECL|method|rollbackTransaction
@@ -2535,6 +2547,19 @@ argument_list|(
 name|segmentInfos
 argument_list|,
 literal|false
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|autoCommit
+condition|)
+comment|// Remove the incRef we did in startTransaction:
+name|deleter
+operator|.
+name|decRef
+argument_list|(
+name|segmentInfos
 argument_list|)
 expr_stmt|;
 name|deleter
@@ -2585,6 +2610,19 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|autoCommit
+condition|)
+comment|// Remove the incRef we did in startTransaction.
+name|deleter
+operator|.
+name|decRef
+argument_list|(
+name|localRollbackSegmentInfos
+argument_list|)
+expr_stmt|;
 name|localRollbackSegmentInfos
 operator|=
 literal|null

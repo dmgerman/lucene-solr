@@ -1201,21 +1201,6 @@ operator|=
 literal|"addIndexesNoOptimize(Directory[])"
 expr_stmt|;
 block|}
-name|String
-name|testName
-init|=
-literal|"disk full test for method "
-operator|+
-name|methodName
-operator|+
-literal|" with disk full at "
-operator|+
-name|diskFree
-operator|+
-literal|" bytes with autoCommit = "
-operator|+
-name|autoCommit
-decl_stmt|;
 name|int
 name|cycleCount
 init|=
@@ -1299,6 +1284,11 @@ decl_stmt|;
 name|long
 name|thisDiskFree
 decl_stmt|;
+name|String
+name|testName
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 literal|0
@@ -1350,25 +1340,20 @@ if|if
 condition|(
 name|debug
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\ncycle: "
+name|testName
+operator|=
+literal|"disk full test "
 operator|+
 name|methodName
 operator|+
-literal|": "
+literal|" with disk full at "
 operator|+
 name|diskFree
 operator|+
-literal|" bytes"
-argument_list|)
+literal|" bytes autoCommit="
+operator|+
+name|autoCommit
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -1384,7 +1369,21 @@ if|if
 condition|(
 name|debug
 condition|)
-block|{
+name|testName
+operator|=
+literal|"disk full test "
+operator|+
+name|methodName
+operator|+
+literal|" with unlimited disk space autoCommit="
+operator|+
+name|autoCommit
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|debug
+condition|)
 name|System
 operator|.
 name|out
@@ -1393,13 +1392,9 @@ name|println
 argument_list|(
 literal|"\ncycle: "
 operator|+
-name|methodName
-operator|+
-literal|", same writer: unlimited disk space"
+name|testName
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 name|dir
 operator|.
 name|setMaxSizeInBytes
@@ -1598,6 +1593,7 @@ operator|+
 name|e
 argument_list|)
 expr_stmt|;
+comment|// e.printStackTrace(System.out);
 block|}
 if|if
 condition|(
@@ -1609,7 +1605,11 @@ block|{
 name|e
 operator|.
 name|printStackTrace
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
@@ -1718,7 +1718,11 @@ block|{
 name|e
 operator|.
 name|printStackTrace
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
@@ -1814,7 +1818,11 @@ block|{
 name|err
 operator|.
 name|printStackTrace
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
@@ -1868,7 +1876,11 @@ block|{
 name|e
 operator|.
 name|printStackTrace
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
@@ -1929,7 +1941,11 @@ block|{
 name|err
 operator|.
 name|printStackTrace
-argument_list|()
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
