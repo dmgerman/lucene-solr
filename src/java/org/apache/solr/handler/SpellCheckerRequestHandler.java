@@ -305,7 +305,7 @@ specifier|private
 name|SpellChecker
 name|spellChecker
 decl_stmt|;
-comment|/*      * From http://wiki.apache.org/jakarta-lucene/SpellChecker      * If reader and restrictToField are both not null:      * 1. The returned words are restricted only to the words presents in the field      * "restrictToField "of the Lucene Index "reader".      *      * 2. The list is also sorted with a second criterium: the popularity (the      * frequence) of the word in the user field.      *      * 3. If "onlyMorePopular" is true and the mispelled word exist in the user field,      * return only the words more frequent than this.      *       */
+comment|/*    * From http://wiki.apache.org/jakarta-lucene/SpellChecker    * If reader and restrictToField are both not null:    * 1. The returned words are restricted only to the words presents in the field    * "restrictToField "of the Lucene Index "reader".    *    * 2. The list is also sorted with a second criterium: the popularity (the    * frequence) of the word in the user field.    *    * 3. If "onlyMorePopular" is true and the mispelled word exist in the user field,    * return only the words more frequent than this.    *     */
 DECL|field|nullReader
 specifier|private
 specifier|static
@@ -764,7 +764,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Rebuilds the SpellChecker index using values from the<code>termSourceField</code> from the      * index pointed to by the current {@link IndexSearcher}.      */
+comment|/** Rebuilds the SpellChecker index using values from the<code>termSourceField</code> from the    * index pointed to by the current {@link IndexSearcher}.    */
 DECL|method|rebuild
 specifier|private
 name|void
@@ -828,7 +828,7 @@ name|reopen
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Reopens the SpellChecker index directory.      * Useful if an external process is responsible for building      * the spell checker index.      */
+comment|/**    * Reopens the SpellChecker index directory.    * Useful if an external process is responsible for building    * the spell checker index.    */
 DECL|method|reopen
 specifier|private
 name|void
