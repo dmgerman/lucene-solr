@@ -135,6 +135,23 @@ name|void
 name|printDocStatistics
 parameter_list|()
 function_decl|;
+comment|/** Set the html parser to use, when appropriate */
+DECL|method|setHTMLParser
+specifier|public
+name|void
+name|setHTMLParser
+parameter_list|(
+name|HTMLParser
+name|htmlParser
+parameter_list|)
+function_decl|;
+comment|/** Returns the htmlParser. */
+DECL|method|getHtmlParser
+specifier|public
+name|HTMLParser
+name|getHtmlParser
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

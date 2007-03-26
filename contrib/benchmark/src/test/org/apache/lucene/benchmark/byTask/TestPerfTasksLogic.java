@@ -299,6 +299,158 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Test Exhasting Doc Maker logic    */
+DECL|method|testExhaustDocMaker
+specifier|public
+name|void
+name|testExhaustDocMaker
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// 1. alg definition (required in every "logic" test)
+name|String
+name|algLines
+index|[]
+init|=
+block|{
+literal|"# ----- properties "
+block|,
+literal|"doc.maker=org.apache.lucene.benchmark.byTask.feeds.SimpleDocMaker"
+block|,
+literal|"doc.add.log.step=1"
+block|,
+literal|"doc.term.vector=false"
+block|,
+literal|"doc.maker.forever=false"
+block|,
+literal|"directory=RAMDirectory"
+block|,
+literal|"doc.stored=false"
+block|,
+literal|"doc.tokenized=false"
+block|,
+literal|"# ----- alg "
+block|,
+literal|"CreateIndex"
+block|,
+literal|"{ AddDoc } : * "
+block|,
+literal|"Optimize"
+block|,
+literal|"CloseIndex"
+block|,
+literal|"OpenReader"
+block|,
+literal|"{ CountingSearchTest } : 100"
+block|,
+literal|"CloseReader"
+block|,
+literal|"[ CountingSearchTest> : 30"
+block|,
+literal|"[ CountingSearchTest> : 9"
+block|,     }
+decl_stmt|;
+comment|// 2. we test this value later
+name|CountingSearchTestTask
+operator|.
+name|numSearches
+operator|=
+literal|0
+expr_stmt|;
+comment|// 3. execute the algorithm  (required in every "logic" test)
+name|Benchmark
+name|benchmark
+init|=
+name|execBenchmark
+argument_list|(
+name|algLines
+argument_list|)
+decl_stmt|;
+comment|// 4. test specific checks after the benchmark run completed.
+name|assertEquals
+argument_list|(
+literal|"TestSearchTask was supposed to be called!"
+argument_list|,
+literal|139
+argument_list|,
+name|CountingSearchTestTask
+operator|.
+name|numSearches
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Index does not exist?...!"
+argument_list|,
+name|IndexReader
+operator|.
+name|indexExists
+argument_list|(
+name|benchmark
+operator|.
+name|getRunData
+argument_list|()
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// now we should be able to open the index for write.
+name|IndexWriter
+name|iw
+init|=
+operator|new
+name|IndexWriter
+argument_list|(
+name|benchmark
+operator|.
+name|getRunData
+argument_list|()
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|,
+literal|null
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|iw
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|IndexReader
+name|ir
+init|=
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|benchmark
+operator|.
+name|getRunData
+argument_list|()
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1 docs were added to the index, this is what we expect to find!"
+argument_list|,
+literal|1
+argument_list|,
+name|ir
+operator|.
+name|numDocs
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|// create the benchmark and execute it.
 DECL|method|execBenchmark
 specifier|private
