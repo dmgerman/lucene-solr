@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -37,6 +27,16 @@ operator|.
 name|store
 operator|.
 name|IndexInput
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -662,6 +662,21 @@ literal|false
 expr_stmt|;
 return|return
 name|retArray
+return|;
+block|}
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|isPayloadAvailable
+specifier|public
+name|boolean
+name|isPayloadAvailable
+parameter_list|()
+block|{
+return|return
+name|needToLoadPayload
+operator|&&
+name|payloadLength
+operator|>
+literal|0
 return|;
 block|}
 block|}

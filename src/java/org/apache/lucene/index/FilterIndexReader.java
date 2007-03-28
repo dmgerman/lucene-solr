@@ -347,6 +347,27 @@ name|offset
 argument_list|)
 return|;
 block|}
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|isPayloadAvailable
+specifier|public
+name|boolean
+name|isPayloadAvailable
+parameter_list|()
+block|{
+return|return
+operator|(
+operator|(
+name|TermPositions
+operator|)
+name|this
+operator|.
+name|in
+operator|)
+operator|.
+name|isPayloadAvailable
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermEnum} implementations. */
 DECL|class|FilterTermEnum

@@ -70,6 +70,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Can we load the payload at this position?  Payloads can only be loaded once per call    * to {@link #nextPosition()}    * @return true if there is a payload available at this position that can be loaded    *    * *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>    */
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|isPayloadAvailable
+specifier|public
+name|boolean
+name|isPayloadAvailable
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
