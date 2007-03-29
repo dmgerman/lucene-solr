@@ -319,7 +319,7 @@ name|FACET_PREFIX
 init|=
 literal|"facet.prefix"
 decl_stmt|;
-comment|/** If the content stream should come from a URL */
+comment|/** If the content stream should come from a URL (using URLConnection) */
 DECL|field|STREAM_URL
 specifier|public
 specifier|static
@@ -328,6 +328,16 @@ name|String
 name|STREAM_URL
 init|=
 literal|"stream.url"
+decl_stmt|;
+comment|/** If the content stream should come from a File (using FileReader) */
+DECL|field|STREAM_FILE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STREAM_FILE
+init|=
+literal|"stream.file"
 decl_stmt|;
 comment|/** If the content stream should come directly from a field */
 DECL|field|STREAM_BODY
@@ -338,6 +348,16 @@ name|String
 name|STREAM_BODY
 init|=
 literal|"stream.body"
+decl_stmt|;
+comment|/**     * Explicity set the content type for the input stream    * If multiple streams are specified, the explicit contentType    * will be used for all of them.      */
+DECL|field|STREAM_CONTENTTYPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STREAM_CONTENTTYPE
+init|=
+literal|"stream.contentType"
 decl_stmt|;
 comment|/** returns the String value of a param, or null if not set */
 DECL|method|get

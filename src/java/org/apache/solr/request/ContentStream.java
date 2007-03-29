@@ -16,60 +16,28 @@ name|request
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
 begin_interface
+annotation|@
+name|Deprecated
 DECL|interface|ContentStream
 specifier|public
 interface|interface
 name|ContentStream
+extends|extends
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|ContentStream
 block|{
-DECL|method|getName
-name|String
-name|getName
-parameter_list|()
-function_decl|;
-DECL|method|getSourceInfo
-name|String
-name|getSourceInfo
-parameter_list|()
-function_decl|;
-DECL|method|getContentType
-name|String
-name|getContentType
-parameter_list|()
-function_decl|;
-DECL|method|getSize
-name|Long
-name|getSize
-parameter_list|()
-function_decl|;
-comment|// size if we know it, otherwise null
-DECL|method|getStream
-name|InputStream
-name|getStream
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
+comment|// The contentstream should go in util because it is needed for
+comment|// SOLR-20 and does not need any lucene specific libraries.
+comment|// it is new since solr 1.1 so I think we can move it without the
+comment|// deprication...
 block|}
 end_interface
 
