@@ -414,6 +414,13 @@ name|SKIP
 init|=
 literal|"skip"
 decl_stmt|;
+DECL|field|SKIPLINES
+specifier|static
+name|String
+name|SKIPLINES
+init|=
+literal|"skipLines"
+decl_stmt|;
 DECL|field|MAP
 specifier|static
 name|String
@@ -1251,7 +1258,7 @@ name|params
 operator|.
 name|getInt
 argument_list|(
-name|SKIP
+name|SKIPLINES
 argument_list|,
 literal|0
 argument_list|)
@@ -2006,7 +2013,7 @@ name|getBool
 argument_list|(
 name|COMMIT
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 condition|)
 block|{
