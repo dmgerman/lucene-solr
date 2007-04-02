@@ -117,7 +117,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  *  Sets up the  *  **/
+comment|/**  *  Sets up the benchmark driver.  *  **/
 end_comment
 
 begin_class
