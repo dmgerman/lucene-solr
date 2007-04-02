@@ -603,8 +603,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|indexDir
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
