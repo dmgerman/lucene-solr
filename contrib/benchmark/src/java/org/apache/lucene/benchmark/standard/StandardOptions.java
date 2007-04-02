@@ -16,11 +16,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|File
+name|lucene
+operator|.
+name|benchmark
+operator|.
+name|BenchmarkOptions
 import|;
 end_import
 
@@ -35,20 +39,6 @@ operator|.
 name|benchmark
 operator|.
 name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|BenchmarkOptions
 import|;
 end_import
 
