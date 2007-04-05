@@ -733,15 +733,6 @@ name|req2
 parameter_list|)
 block|{
 comment|// non counting.
-specifier|final
-name|int
-name|requiredNrMatchers
-init|=
-name|requiredScorers
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
 name|ConjunctionScorer
 name|cs
 init|=
