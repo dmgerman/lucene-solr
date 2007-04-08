@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A ranked list of documents, used to hold search results. */
+comment|/** A ranked list of documents, used to hold search results.  *<p>  *<b>Caution:</b> Iterate only over the hits needed.  Iterating over all  * hits is generally not desirable and may be the source of  * performance issues. If you need to iterate over many or all hits, consider  * using the search method that takes a {@link HitCollector}.  *</p>  */
 end_comment
 
 begin_class
@@ -518,7 +518,7 @@ operator|.
 name|doc
 return|;
 block|}
-comment|/** Returns the score for the nth document in this set. */
+comment|/** Returns the score for the n<sup>th</sup> document in this set. */
 DECL|method|score
 specifier|public
 specifier|final
@@ -540,7 +540,7 @@ operator|.
 name|score
 return|;
 block|}
-comment|/** Returns the id for the nth document in this set. */
+comment|/** Returns the id for the n<sup>th</sup> document in this set.    * Note that ids may change when the index changes, so you cannot    * rely on the id to be stable.    */
 DECL|method|id
 specifier|public
 specifier|final
@@ -562,7 +562,7 @@ operator|.
 name|id
 return|;
 block|}
-comment|/**    * Returns a {@link HitIterator} to navigate the Hits.  Each item returned    * from {@link Iterator#next()} is a {@link Hit}.    *<p>    *<b>Caution:</b> Iterate only over the hits needed.  Iterating over all    * hits is generally not desirable and may be the source of    * performance issues.    *</p>    */
+comment|/**    * Returns a {@link HitIterator} to navigate the Hits.  Each item returned    * from {@link Iterator#next()} is a {@link Hit}.    *<p>    *<b>Caution:</b> Iterate only over the hits needed.  Iterating over all    * hits is generally not desirable and may be the source of    * performance issues. If you need to iterate over many or all hits, consider    * using a search method that takes a {@link HitCollector}.    *</p>    */
 DECL|method|iterator
 specifier|public
 name|Iterator
