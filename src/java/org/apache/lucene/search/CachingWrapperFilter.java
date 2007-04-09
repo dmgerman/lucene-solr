@@ -87,7 +87,7 @@ specifier|protected
 name|Filter
 name|filter
 decl_stmt|;
-comment|/**    * @todo What about serialization in RemoteSearchable?  Caching won't work.    *       Should transient be removed?    */
+comment|/**    * A transient Filter cache.  To cache Filters even when using {@link RemoteSearchable} use    * {@link RemoteCachingWrapperFilter} instead.    */
 DECL|field|cache
 specifier|protected
 specifier|transient
