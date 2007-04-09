@@ -2057,7 +2057,7 @@ comment|// do I have to do a nextTag here to read the end_tag?
 block|}
 comment|// end field loop
 block|}
-comment|/**    * A Convinince method for getting back a simple XML string indicating    * successs of failure from an XML formated Update (from the Reader)    */
+comment|/**    * A Convenience method for getting back a simple XML string indicating    * successs or failure from an XML formated Update (from the Reader)    */
 DECL|method|doLegacyUpdate
 specifier|public
 name|void
