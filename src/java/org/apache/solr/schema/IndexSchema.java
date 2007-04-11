@@ -1257,7 +1257,7 @@ expr_stmt|;
 name|String
 name|expression
 init|=
-literal|"/schema/types/fieldtype"
+literal|"/schema/types/fieldtype | /schema/types/fieldType"
 decl_stmt|;
 name|NodeList
 name|nodes
