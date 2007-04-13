@@ -256,7 +256,10 @@ condition|(
 name|repetitions
 operator|==
 name|REPEAT_EXHAUST
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|isParallel
 argument_list|()
 condition|)
@@ -268,6 +271,31 @@ argument_list|(
 literal|"REPEAT_EXHAUST is not allowed for parallel tasks"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|getRunData
+argument_list|()
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"doc.maker.forever"
+argument_list|,
+literal|true
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|Exception
+argument_list|(
+literal|"REPEAT_EXHAUST requires setting doc.maker.forever=false"
+argument_list|)
+throw|;
+block|}
 block|}
 name|setSequenceName
 argument_list|()

@@ -906,17 +906,6 @@ block|{
 name|roundNumber
 operator|++
 expr_stmt|;
-comment|// log changes in values
-if|if
-condition|(
-name|valByRound
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
 name|StringBuffer
 name|sb
 init|=
@@ -942,12 +931,25 @@ name|append
 argument_list|(
 name|roundNumber
 argument_list|)
+decl_stmt|;
+comment|// log changes in values
+if|if
+condition|(
+name|valByRound
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|sb
 operator|.
 name|append
 argument_list|(
 literal|": "
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 for|for
 control|(
 name|Iterator
@@ -1142,6 +1144,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 name|System
 operator|.
 name|out
@@ -1168,7 +1171,6 @@ operator|.
 name|println
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 name|roundNumber
 return|;
