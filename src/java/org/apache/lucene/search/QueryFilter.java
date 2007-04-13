@@ -26,7 +26,7 @@ specifier|public
 class|class
 name|QueryFilter
 extends|extends
-name|QueryWrapperFilter
+name|CachingWrapperFilter
 block|{
 comment|/** Constructs a filter which only matches documents matching    *<code>query</code>.    */
 DECL|method|QueryFilter
@@ -39,7 +39,11 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+operator|new
+name|QueryWrapperFilter
+argument_list|(
 name|query
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
