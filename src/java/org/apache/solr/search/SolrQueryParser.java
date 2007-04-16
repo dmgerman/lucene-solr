@@ -130,7 +130,7 @@ specifier|final
 name|IndexSchema
 name|schema
 decl_stmt|;
-comment|/**    * Constructs a SolrQueryParser using the schema to understand the    * formats and datatypes of each field.  Only the defaultSearchField    * will be used from the IndexSchema (unless overridden),    *&lt;solrQueryParser&gt; will not be used.    *     * @param schema Used for default search field name if defaultField is null and field information is used for analysis    * @param defaultField default field used for unspecified search terms.  if null, the schema default field is used    * @see IndexSchema.getSolrQueryParser    */
+comment|/**    * Constructs a SolrQueryParser using the schema to understand the    * formats and datatypes of each field.  Only the defaultSearchField    * will be used from the IndexSchema (unless overridden),    *&lt;solrQueryParser&gt; will not be used.    *     * @param schema Used for default search field name if defaultField is null and field information is used for analysis    * @param defaultField default field used for unspecified search terms.  if null, the schema default field is used    * @see IndexSchema#getSolrQueryParser(String defaultField)    */
 DECL|method|SolrQueryParser
 specifier|public
 name|SolrQueryParser
@@ -325,13 +325,13 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// TODO: toInternal() won't necessarily work on partial
-comment|// values, so it looks like i need a getPrefix() function
+comment|// values, so it looks like we need a getPrefix() function
 comment|// on fieldtype?  Or at the minimum, a method on fieldType
 comment|// that can tell me if I should lowercase or not...
 comment|// Schema could tell if lowercase filter is in the chain,
 comment|// but a more sure way would be to run something through
 comment|// the first time and check if it got lowercased.
-comment|// TODO: throw exception of field type doesn't support prefixes?
+comment|// TODO: throw exception if field type doesn't support prefixes?
 comment|// (sortable numeric types don't do prefixes, but can do range queries)
 name|Term
 name|t

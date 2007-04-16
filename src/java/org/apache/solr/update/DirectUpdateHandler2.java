@@ -802,7 +802,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|// We can't using iwCommit to protect internal data here, since it would
+comment|// We can't use iwCommit to protect internal data here, since it would
 comment|// block other addDoc calls.  Hence, we synchronize to protect internal
 comment|// state.  This is safe as all other state-changing operations are
 comment|// protected with iwCommit (which iwAccess excludes from this block).
