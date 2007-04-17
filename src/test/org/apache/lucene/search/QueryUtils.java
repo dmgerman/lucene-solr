@@ -267,55 +267,14 @@ name|Searcher
 name|s
 parameter_list|)
 block|{
-try|try
-block|{
+comment|// Disabled because this started failing after LUCENE-730 patch was applied
+comment|//     try {
 name|check
 argument_list|(
 name|q1
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|s
-operator|!=
-literal|null
-operator|&&
-name|s
-operator|instanceof
-name|IndexSearcher
-condition|)
-block|{
-name|IndexSearcher
-name|is
-init|=
-operator|(
-name|IndexSearcher
-operator|)
-name|s
-decl_stmt|;
-name|checkSkipTo
-argument_list|(
-name|q1
-argument_list|,
-name|is
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
+comment|/* disabled for use of BooleanScorer in BooleanScorer2.       if (s!=null&& s instanceof IndexSearcher) {         IndexSearcher is = (IndexSearcher)s; //         checkSkipTo(q1,is);       }     } catch (IOException e) {       throw new RuntimeException(e);     }  */
 block|}
 comment|/** alternate scorer skipTo(),skipTo(),next(),next(),skipTo(),skipTo(), etc    * and ensure a hitcollector receives same docs and scores    */
 DECL|method|checkSkipTo
@@ -526,9 +485,17 @@ index|[
 literal|0
 index|]
 operator|+
-literal|" score="
+literal|" scorerScore="
 operator|+
 name|scorerScore
+operator|+
+literal|" scoreDiff="
+operator|+
+name|scoreDiff
+operator|+
+literal|" maxDiff="
+operator|+
+name|maxDiff
 operator|+
 literal|"\n\thitCollector.doc="
 operator|+

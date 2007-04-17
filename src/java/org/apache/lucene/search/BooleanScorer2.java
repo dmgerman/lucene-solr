@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An alternative to BooleanScorer.  *<br>Uses ConjunctionScorer, DisjunctionScorer, ReqOptScorer and ReqExclScorer.  *<br>Implements skipTo(), and has no limitations on the numbers of added scorers.  */
+comment|/** An alternative to BooleanScorer that also allows a minimum number  * of optional scorers that should match.  *<br>Implements skipTo(), and has no limitations on the numbers of added scorers.  *<br>Uses ConjunctionScorer, DisjunctionScorer, ReqOptScorer and ReqExclScorer.  */
 end_comment
 
 begin_class
@@ -530,11 +530,12 @@ specifier|private
 name|Scorer
 name|countingDisjunctionSumScorer
 parameter_list|(
+specifier|final
 name|List
 name|scorers
 parameter_list|,
 name|int
-name|minMrShouldMatch
+name|minNrShouldMatch
 parameter_list|)
 comment|// each scorer from the list counted as a single matcher
 block|{
@@ -544,7 +545,7 @@ name|DisjunctionSumScorer
 argument_list|(
 name|scorers
 argument_list|,
-name|minMrShouldMatch
+name|minNrShouldMatch
 argument_list|)
 block|{
 specifier|private
@@ -742,7 +743,7 @@ argument_list|(
 name|defaultSimilarity
 argument_list|)
 decl_stmt|;
-comment|// All scorers match, so defaultSimilarity super.score() always has 1 as
+comment|// All scorers match, so defaultSimilarity always has 1 as
 comment|// the coordination factor.
 comment|// Therefore the sum of the scores of two scorers
 comment|// is used as score.
@@ -1149,6 +1150,119 @@ name|IOException
 block|{
 if|if
 condition|(
+operator|(
+name|requiredScorers
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+operator|)
+operator|&&
+name|prohibitedScorers
+operator|.
+name|size
+argument_list|()
+operator|<
+literal|32
+condition|)
+block|{
+comment|// fall back to BooleanScorer, scores documents somewhat out of order
+name|BooleanScorer
+name|bs
+init|=
+operator|new
+name|BooleanScorer
+argument_list|(
+name|getSimilarity
+argument_list|()
+argument_list|,
+name|minNrShouldMatch
+argument_list|)
+decl_stmt|;
+name|Iterator
+name|si
+init|=
+name|optionalScorers
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|si
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|bs
+operator|.
+name|add
+argument_list|(
+operator|(
+name|Scorer
+operator|)
+name|si
+operator|.
+name|next
+argument_list|()
+argument_list|,
+literal|false
+comment|/* required */
+argument_list|,
+literal|false
+comment|/* prohibited */
+argument_list|)
+expr_stmt|;
+block|}
+name|si
+operator|=
+name|prohibitedScorers
+operator|.
+name|iterator
+argument_list|()
+expr_stmt|;
+while|while
+condition|(
+name|si
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|bs
+operator|.
+name|add
+argument_list|(
+operator|(
+name|Scorer
+operator|)
+name|si
+operator|.
+name|next
+argument_list|()
+argument_list|,
+literal|false
+comment|/* required */
+argument_list|,
+literal|true
+comment|/* prohibited */
+argument_list|)
+expr_stmt|;
+block|}
+name|bs
+operator|.
+name|score
+argument_list|(
+name|hc
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
 name|countingSumScorer
 operator|==
 literal|null
@@ -1179,6 +1293,7 @@ name|score
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** Expert: Collects matching documents in a range.    *<br>Note that {@link #next()} must be called once before this method is    * called for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
