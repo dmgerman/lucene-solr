@@ -175,6 +175,8 @@ name|boost
 operator|=
 name|boost
 expr_stmt|;
+name|this
+operator|.
 name|context
 operator|.
 name|setBoost
