@@ -335,7 +335,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  *  Reads in the Reuters Collection, downloaded from http://www.daviddlewis.com/resources/testcollections/reuters21578/reuters21578.tar.gz  * in the workingDir/reuters and indexes them using the {@link org.apache.lucene.analysis.standard.StandardAnalyzer}  *<p/>  * Runs a standard set of documents through an Indexer and then runs a standard set of queries against the index.  *  * @see org.apache.lucene.benchmark.standard.StandardBenchmarker#benchmark(java.io.File, org.apache.lucene.benchmark.BenchmarkOptions)  *  *  **/
+comment|/**  *  Reads in the Reuters Collection, downloaded from http://www.daviddlewis.com/resources/testcollections/reuters21578/reuters21578.tar.gz  * in the workingDir/reuters and indexes them using the {@link org.apache.lucene.analysis.standard.StandardAnalyzer}  *<p/>  * Runs a standard set of documents through an Indexer and then runs a standard set of queries against the index.  *  * @see org.apache.lucene.benchmark.standard.StandardBenchmarker#benchmark(java.io.File, org.apache.lucene.benchmark.BenchmarkOptions)  *  * @deprecated use the byTask code instead. See http://lucene.zones.apache.org:8080/hudson/job/Lucene-Nightly/javadoc/org/apache/lucene/benchmark/byTask/package-summary.html .  **/
 end_comment
 
 begin_class
