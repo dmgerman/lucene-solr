@@ -2443,7 +2443,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"CommitTracker: "
+literal|"AutoCommit: "
 operator|+
 name|this
 argument_list|)
@@ -2697,6 +2697,64 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+if|if
+condition|(
+name|timeUpperBound
+operator|>
+literal|0
+operator|||
+name|docsUpperBound
+operator|>
+literal|0
+condition|)
+block|{
+return|return
+operator|(
+name|timeUpperBound
+operator|>
+literal|0
+condition|?
+operator|(
+literal|"if uncommited for "
+operator|+
+name|timeUpperBound
+operator|+
+literal|"ms; "
+operator|)
+else|:
+literal|""
+operator|)
+operator|+
+operator|(
+name|docsUpperBound
+operator|>
+literal|0
+condition|?
+operator|(
+literal|"if "
+operator|+
+name|docsUpperBound
+operator|+
+literal|" uncommited docs "
+operator|)
+else|:
+literal|""
+operator|)
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|"disabled"
+return|;
+block|}
+block|}
 block|}
 comment|/////////////////////////////////////////////////////////////////////
 comment|// SolrInfoMBean stuff: Statistics and Module Info
@@ -2806,6 +2864,52 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|tracker
+operator|.
+name|docsUpperBound
+operator|>
+literal|0
+condition|)
+block|{
+name|lst
+operator|.
+name|add
+argument_list|(
+literal|"autocommit maxDocs"
+argument_list|,
+name|tracker
+operator|.
+name|docsUpperBound
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|tracker
+operator|.
+name|timeUpperBound
+operator|>
+literal|0
+condition|)
+block|{
+name|lst
+operator|.
+name|add
+argument_list|(
+literal|"autocommit maxTime"
+argument_list|,
+literal|""
+operator|+
+name|tracker
+operator|.
+name|timeUpperBound
+operator|+
+literal|"ms"
+argument_list|)
+expr_stmt|;
+block|}
 name|lst
 operator|.
 name|add
