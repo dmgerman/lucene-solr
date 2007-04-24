@@ -90,6 +90,28 @@ name|pp2
 operator|.
 name|doc
 condition|)
+if|if
+condition|(
+name|pp1
+operator|.
+name|position
+operator|==
+name|pp2
+operator|.
+name|position
+condition|)
+comment|// same doc and pp.position, so decide by actual term positions.
+comment|// rely on: pp.position == tp.position - offset.
+return|return
+name|pp1
+operator|.
+name|offset
+operator|<
+name|pp2
+operator|.
+name|offset
+return|;
+else|else
 return|return
 name|pp1
 operator|.

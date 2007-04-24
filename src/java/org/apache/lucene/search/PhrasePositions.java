@@ -40,6 +40,10 @@ name|*
 import|;
 end_import
 
+begin_comment
+comment|/**  * Position of a term in a document that takes into account the term offset within the phrase.   */
+end_comment
+
 begin_class
 DECL|class|PhrasePositions
 specifier|final
@@ -76,6 +80,11 @@ name|PhrasePositions
 name|next
 decl_stmt|;
 comment|// used to make lists
+DECL|field|repeats
+name|boolean
+name|repeats
+decl_stmt|;
+comment|// there's other pp for same term (e.g. query="1st word 2nd word"~1)
 DECL|method|PhrasePositions
 name|PhrasePositions
 parameter_list|(
@@ -219,6 +228,7 @@ name|nextPosition
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Go to next location of this term current document, and set     *<code>position</code> as<code>location - offset</code>, so that a     * matching exact phrase is easily identified when all PhrasePositions     * have exactly the same<code>position</code>.    */
 DECL|method|nextPosition
 specifier|final
 name|boolean

@@ -40,6 +40,10 @@ name|*
 import|;
 end_import
 
+begin_comment
+comment|/** Expert: Scoring functionality for phrase queries.  *<br>A document is considered matching if it contains the phrase-query terms    * at "valid" positons. What "valid positions" are  * depends on the type of the phrase query: for an exact phrase query terms are required   * to appear in adjacent locations, while for a sloppy phrase query some distance between   * the terms is allowed. The abstract method {@link #phraseFreq()} of extending classes  * is invoked for each document containing all the phrase query terms, in order to   * compute the frequency of the phrase query in that document. A non zero frequency  * means a match.   */
+end_comment
+
 begin_class
 DECL|class|PhraseScorer
 specifier|abstract
@@ -96,6 +100,7 @@ specifier|private
 name|float
 name|freq
 decl_stmt|;
+comment|//prhase frequency in current doc as computed by phraseFreq().
 DECL|method|PhraseScorer
 name|PhraseScorer
 parameter_list|(
@@ -108,7 +113,7 @@ name|tps
 parameter_list|,
 name|int
 index|[]
-name|positions
+name|offsets
 parameter_list|,
 name|Similarity
 name|similarity
@@ -144,7 +149,11 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
-comment|// convert tps to a list
+comment|// convert tps to a list of phrase positions.
+comment|// note: phrase-position differs from term-position in that its position
+comment|// reflects the phrase offset: pp.pos = tp.pos - offset.
+comment|// this allows to easily identify a matching (exact) phrase
+comment|// when all PhrasePositions have exactly the same position.
 for|for
 control|(
 name|int
@@ -173,7 +182,7 @@ index|[
 name|i
 index|]
 argument_list|,
-name|positions
+name|offsets
 index|[
 name|i
 index|]
@@ -404,6 +413,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|firstTime
+operator|=
+literal|false
+expr_stmt|;
 for|for
 control|(
 name|PhrasePositions
@@ -447,6 +460,7 @@ name|doNext
 argument_list|()
 return|;
 block|}
+comment|/**    * For a document containing all the phrase query terms, compute the    * frequency of the phrase in that document.     * A non zero frequency means a match.    *<br>Note, that containing all phrase terms does not guarantee a match - they have to be found in matching locations.      * @return frequency of the phrase in current doc, 0 if not found.     */
 DECL|method|phraseFreq
 specifier|protected
 specifier|abstract
