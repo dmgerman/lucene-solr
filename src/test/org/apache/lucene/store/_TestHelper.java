@@ -22,6 +22,22 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|FSDirectory
+operator|.
+name|FSIndexInput
+import|;
+end_import
+
 begin_comment
 comment|/** This class provides access to package-level features defined in the  *  store package. It is used for testing only.  */
 end_comment

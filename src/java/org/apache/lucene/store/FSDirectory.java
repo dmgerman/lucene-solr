@@ -1914,11 +1914,9 @@ operator|+
 name|directory
 return|;
 block|}
-block|}
-end_class
-
-begin_class
 DECL|class|FSIndexInput
+specifier|protected
+specifier|static
 class|class
 name|FSIndexInput
 extends|extends
@@ -2197,7 +2195,7 @@ parameter_list|(
 name|long
 name|position
 parameter_list|)
-block|{   }
+block|{     }
 DECL|method|length
 specifier|public
 name|long
@@ -2237,7 +2235,7 @@ return|return
 name|clone
 return|;
 block|}
-comment|/** Method used for testing. Returns true if the underlying    *  file descriptor is valid.    */
+comment|/** Method used for testing. Returns true if the underlying      *  file descriptor is valid.      */
 DECL|method|isFDValid
 name|boolean
 name|isFDValid
@@ -2256,10 +2254,9 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_class
 DECL|class|FSIndexOutput
+specifier|protected
+specifier|static
 class|class
 name|FSIndexOutput
 extends|extends
@@ -2405,6 +2402,7 @@ operator|.
 name|length
 argument_list|()
 return|;
+block|}
 block|}
 block|}
 end_class
