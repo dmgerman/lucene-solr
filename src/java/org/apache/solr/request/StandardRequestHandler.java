@@ -183,28 +183,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|com
-operator|.
-name|sun
-operator|.
-name|org
-operator|.
-name|apache
-operator|.
-name|xerces
-operator|.
-name|internal
-operator|.
-name|util
-operator|.
-name|URI
-operator|.
-name|MalformedURIException
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
