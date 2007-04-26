@@ -3314,6 +3314,15 @@ name|Exception
 name|ex
 parameter_list|)
 block|{
+name|SolrConfig
+operator|.
+name|severeErrors
+operator|.
+name|add
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
 name|SolrException
 operator|.
 name|logOnce

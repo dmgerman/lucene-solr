@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -683,7 +673,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|// TODO: SOLR-179
+name|SolrConfig
+operator|.
+name|severeErrors
+operator|.
+name|add
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|SolrException
 operator|.
 name|logOnce
@@ -746,7 +744,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|// TODO: SOLR-179
+name|SolrConfig
+operator|.
+name|severeErrors
+operator|.
+name|add
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|SolrException
 operator|.
 name|logOnce
