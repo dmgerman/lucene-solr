@@ -112,7 +112,7 @@ function_decl|;
 comment|// I don't think we need a factory for faster creation given that these
 comment|// will be associated with slow-to-create SolrIndexSearchers.
 comment|// change to NamedList when other plugins do?
-comment|/**    * Name the Cache can be refrenced with by SolrRequestHandlers.    *    * This method must return the identifier that the Cache instance     * expects SolrRequestHandlers to use when requesting access to it     * from the SolrIndexSearcher.  It is<strong>strongly</strong>     * recommended thta this method return the value of the "name"     * paramater from the init args.    *    * :TODO: verify this.    */
+comment|/**    * Name the Cache can be referenced with by SolrRequestHandlers.    *    * This method must return the identifier that the Cache instance     * expects SolrRequestHandlers to use when requesting access to it     * from the SolrIndexSearcher.  It is<strong>strongly</strong>     * recommended that this method return the value of the "name"     * parameter from the init args.    *    * :TODO: verify this.    */
 DECL|method|name
 specifier|public
 name|String
