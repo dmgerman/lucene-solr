@@ -186,7 +186,13 @@ name|HashMap
 import|;
 end_import
 
+begin_comment
+comment|/**  * TODO? delete me? This is now a subset of LukeRequestHandler.    * Since it was not released in 1.1 should it be deleted before 1.2?  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|IndexInfoRequestHandler
 specifier|public
 class|class
