@@ -89,7 +89,6 @@ specifier|final
 name|Sort
 name|sort
 decl_stmt|;
-comment|// change to normal Sort after Lucene 1.4.3
 DECL|field|sfields
 specifier|final
 name|SortField
