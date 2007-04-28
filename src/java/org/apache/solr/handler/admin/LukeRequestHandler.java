@@ -534,7 +534,7 @@ specifier|final
 name|String
 name|DOC_ID
 init|=
-literal|"docID"
+literal|"docId"
 decl_stmt|;
 DECL|field|ID
 specifier|public
@@ -623,7 +623,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|Integer
-name|docID
+name|docId
 init|=
 name|params
 operator|.
@@ -634,7 +634,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|docID
+name|docId
 operator|==
 literal|null
 operator|&&
@@ -689,7 +689,7 @@ argument_list|,
 name|v
 argument_list|)
 decl_stmt|;
-name|docID
+name|docId
 operator|=
 name|searcher
 operator|.
@@ -700,7 +700,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|docID
+name|docId
 operator|<
 literal|0
 condition|)
@@ -726,7 +726,7 @@ block|}
 comment|// Read the document from the index
 if|if
 condition|(
-name|docID
+name|docId
 operator|!=
 literal|null
 condition|)
@@ -744,7 +744,7 @@ name|reader
 operator|.
 name|document
 argument_list|(
-name|docID
+name|docId
 argument_list|)
 expr_stmt|;
 block|}
@@ -769,7 +769,7 @@ literal|404
 argument_list|,
 literal|"Can't find document: "
 operator|+
-name|docID
+name|docId
 argument_list|)
 throw|;
 block|}
@@ -783,7 +783,7 @@ name|getDocumentFieldsInfo
 argument_list|(
 name|doc
 argument_list|,
-name|docID
+name|docId
 argument_list|,
 name|reader
 argument_list|,
@@ -807,9 +807,9 @@ name|docinfo
 operator|.
 name|add
 argument_list|(
-literal|"docID"
+literal|"docId"
 argument_list|,
-name|docID
+name|docId
 argument_list|)
 expr_stmt|;
 name|docinfo
@@ -1663,7 +1663,7 @@ name|Document
 name|doc
 parameter_list|,
 name|int
-name|docID
+name|docId
 parameter_list|,
 name|IndexReader
 name|reader
@@ -1919,7 +1919,7 @@ name|reader
 operator|.
 name|getTermFreqVector
 argument_list|(
-name|docID
+name|docId
 argument_list|,
 name|fieldable
 operator|.
