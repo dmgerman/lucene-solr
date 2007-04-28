@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.handler
+DECL|package|org.apache.solr.util
 package|package
 name|org
 operator|.
@@ -12,12 +12,12 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|handler
+name|util
 package|;
 end_package
 
 begin_comment
-comment|/**  * A collection of params used by Update handlers  */
+comment|/**  * A collection of standard params used by Update handlers  *  * @author ryan  * @version $Id$  * @since solr 1.2  */
 end_comment
 
 begin_interface

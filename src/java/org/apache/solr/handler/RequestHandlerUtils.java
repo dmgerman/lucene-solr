@@ -106,6 +106,20 @@ name|CommitUpdateCommand
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|UpdateParams
+import|;
+end_import
+
 begin_comment
 comment|/**  * Common helper functions for RequestHandlers  *   * @author ryan  * @version $Id$  * @since solr 1.2  */
 end_comment
