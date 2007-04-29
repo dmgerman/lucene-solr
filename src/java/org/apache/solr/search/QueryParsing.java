@@ -508,7 +508,12 @@ name|SolrException
 argument_list|(
 literal|400
 argument_list|,
-literal|"Error parsing Lucene query"
+literal|"Query parsing error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
