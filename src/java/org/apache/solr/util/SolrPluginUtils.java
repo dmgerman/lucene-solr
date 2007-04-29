@@ -3012,7 +3012,9 @@ name|req
 operator|.
 name|getParam
 argument_list|(
-literal|"sort"
+name|SolrParams
+operator|.
+name|SORT
 argument_list|)
 decl_stmt|;
 if|if

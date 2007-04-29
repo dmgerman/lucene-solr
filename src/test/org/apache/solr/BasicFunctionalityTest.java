@@ -2935,10 +2935,6 @@ argument_list|,
 literal|"facet.limit"
 argument_list|,
 literal|"3"
-argument_list|,
-literal|"sort"
-argument_list|,
-literal|"true"
 argument_list|)
 argument_list|,
 literal|"*[count(//lst[@name='trait_s']/int)=3]"

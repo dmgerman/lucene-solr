@@ -129,6 +129,16 @@ name|Q
 init|=
 literal|"q"
 decl_stmt|;
+comment|/** sort order */
+DECL|field|SORT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SORT
+init|=
+literal|"sort"
+decl_stmt|;
 comment|/** Lucene query string(s) for filtering the results without affecting scoring */
 DECL|field|FQ
 specifier|public
