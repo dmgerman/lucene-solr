@@ -145,6 +145,14 @@ name|SORT_MISSING_LAST
 init|=
 literal|0x00000800
 decl_stmt|;
+DECL|field|REQUIRED
+specifier|final
+specifier|static
+name|int
+name|REQUIRED
+init|=
+literal|0x00001000
+decl_stmt|;
 DECL|field|propertyNames
 specifier|static
 specifier|final
@@ -176,6 +184,8 @@ block|,
 literal|"sortMissingFirst"
 block|,
 literal|"sortMissingLast"
+block|,
+literal|"required"
 block|}
 decl_stmt|;
 DECL|field|propertyMap

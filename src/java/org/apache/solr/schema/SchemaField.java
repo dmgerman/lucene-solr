@@ -139,6 +139,13 @@ specifier|final
 name|String
 name|defaultValue
 decl_stmt|;
+DECL|field|required
+name|boolean
+name|required
+init|=
+literal|false
+decl_stmt|;
+comment|// this can't be final since it may be changed dynamically
 comment|/** Create a new SchemaField with the given name and type,    *  using all the default properties from the type.    */
 DECL|method|SchemaField
 specifier|public
@@ -236,6 +243,17 @@ operator|.
 name|defaultValue
 operator|=
 name|defaultValue
+expr_stmt|;
+comment|// initalize with the required property flag
+name|required
+operator|=
+operator|(
+name|properties
+operator|&
+name|REQUIRED
+operator|)
+operator|!=
+literal|0
 expr_stmt|;
 block|}
 DECL|method|getName
@@ -427,6 +445,16 @@ operator|!=
 literal|0
 return|;
 block|}
+DECL|method|isRequired
+specifier|public
+name|boolean
+name|isRequired
+parameter_list|()
+block|{
+return|return
+name|required
+return|;
+block|}
 comment|// things that should be determined by field type, not set as options
 DECL|method|isTokenized
 name|boolean
@@ -483,6 +511,8 @@ name|boost
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -521,6 +551,14 @@ name|propertiesToString
 argument_list|(
 name|properties
 argument_list|)
+operator|+
+operator|(
+name|required
+condition|?
+literal|", required=true"
+else|:
+literal|""
+operator|)
 operator|+
 literal|"}"
 return|;
@@ -617,6 +655,11 @@ name|FieldType
 name|ft
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|props
 parameter_list|)
 block|{
