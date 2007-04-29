@@ -819,6 +819,11 @@ argument_list|)
 decl_stmt|;
 name|spellChecker
 operator|.
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|spellChecker
+operator|.
 name|indexDictionary
 argument_list|(
 name|dictionary
