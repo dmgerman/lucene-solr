@@ -47,6 +47,15 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Resets this stream to the beginning. This is an    *  optional operation, so subclasses may or may not    *  implement this method. Reset() is not needed for    *  the standard indexing process. However, if the Tokens     *  of a TokenStream are intended to be consumed more than     *  once, it is neccessary to implement reset().     */
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 comment|/** Releases resources associated with this stream. */
 DECL|method|close
 specifier|public

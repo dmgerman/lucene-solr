@@ -36,6 +36,20 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
 begin_comment
 comment|/**  * Synonymous with {@link Field}.  *  **/
 end_comment
@@ -69,23 +83,33 @@ name|String
 name|name
 parameter_list|()
 function_decl|;
-comment|/** The value of the field as a String, or null.  If null, the Reader value    * or binary value is used.  Exactly one of stringValue(), readerValue(), and    * binaryValue() must be set. */
+comment|/** The value of the field as a String, or null.  If null, the Reader value,    * binary value, or TokenStream value is used.  Exactly one of stringValue(),     * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
 DECL|method|stringValue
+specifier|public
 name|String
 name|stringValue
 parameter_list|()
 function_decl|;
-comment|/** The value of the field as a Reader, or null.  If null, the String value    * or binary value is  used.  Exactly one of stringValue(), readerValue(),    * and binaryValue() must be set. */
+comment|/** The value of the field as a Reader, or null.  If null, the String value,    * binary value, or TokenStream value is used.  Exactly one of stringValue(),     * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
 DECL|method|readerValue
+specifier|public
 name|Reader
 name|readerValue
 parameter_list|()
 function_decl|;
-comment|/** The value of the field in Binary, or null.  If null, the Reader or    * String value is used.  Exactly one of stringValue(), readerValue() and    * binaryValue() must be set. */
+comment|/** The value of the field in Binary, or null.  If null, the Reader value,    * String value, or TokenStream value is used. Exactly one of stringValue(),     * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
 DECL|method|binaryValue
+specifier|public
 name|byte
 index|[]
 name|binaryValue
+parameter_list|()
+function_decl|;
+comment|/** The value of the field as a TokesStream, or null.  If null, the Reader value,    * String value, or binary value is used. Exactly one of stringValue(),     * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
+DECL|method|tokenStreamValue
+specifier|public
+name|TokenStream
+name|tokenStreamValue
 parameter_list|()
 function_decl|;
 comment|/** True iff the value of the field is to be stored in the index for return     with search hits.  It is an error for this to be true if a field is     Reader-valued. */

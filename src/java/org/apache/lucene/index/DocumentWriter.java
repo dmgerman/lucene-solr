@@ -775,6 +775,24 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// tokenized field
+name|TokenStream
+name|stream
+init|=
+name|field
+operator|.
+name|tokenStreamValue
+argument_list|()
+decl_stmt|;
+comment|// the field does not have a TokenStream,
+comment|// so we have to obtain one from the analyzer
+if|if
+condition|(
+name|stream
+operator|==
+literal|null
+condition|)
+block|{
 name|Reader
 name|reader
 decl_stmt|;
@@ -825,9 +843,8 @@ literal|"field must have either String or Reader value"
 argument_list|)
 throw|;
 comment|// Tokenize field and add to postingTable
-name|TokenStream
 name|stream
-init|=
+operator|=
 name|analyzer
 operator|.
 name|tokenStream
@@ -836,7 +853,14 @@ name|fieldName
 argument_list|,
 name|reader
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+comment|// reset the TokenStream to the first token
+name|stream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|Token
