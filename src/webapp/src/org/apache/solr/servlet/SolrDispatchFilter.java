@@ -347,20 +347,20 @@ argument_list|(
 literal|"path-prefix"
 argument_list|)
 expr_stmt|;
+comment|// Let this filter take care of /select?xxx format
 name|this
 operator|.
 name|handleSelect
 operator|=
-literal|"true"
+name|SolrConfig
 operator|.
-name|equals
-argument_list|(
 name|config
 operator|.
-name|getInitParameter
+name|getBool
 argument_list|(
-literal|"handle-select"
-argument_list|)
+literal|"requestDispatcher/@handleSelect"
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|log
