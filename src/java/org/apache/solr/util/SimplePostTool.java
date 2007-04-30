@@ -221,7 +221,7 @@ specifier|final
 name|String
 name|VERSION_OF_THIS_TOOL
 init|=
-literal|"1.0"
+literal|"1.1"
 decl_stmt|;
 DECL|field|SOLR_OK_RESPONSE_EXCERPT
 specifier|private
