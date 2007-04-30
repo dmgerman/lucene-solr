@@ -223,14 +223,14 @@ name|VERSION_OF_THIS_TOOL
 init|=
 literal|"1.0"
 decl_stmt|;
-DECL|field|SOLR_OK_RESPONSE
+DECL|field|SOLR_OK_RESPONSE_EXCERPT
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|SOLR_OK_RESPONSE
+name|SOLR_OK_RESPONSE_EXCERPT
 init|=
-literal|"<result status=\"0\"></result>"
+literal|"<int name=\"status\">0</int>"
 decl_stmt|;
 DECL|field|solrUrl
 specifier|protected
@@ -414,7 +414,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|SOLR_OK_RESPONSE
+name|SOLR_OK_RESPONSE_EXCERPT
 argument_list|)
 expr_stmt|;
 block|}
@@ -535,7 +535,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|SOLR_OK_RESPONSE
+name|SOLR_OK_RESPONSE_EXCERPT
 argument_list|)
 expr_stmt|;
 block|}
@@ -569,13 +569,14 @@ parameter_list|)
 block|{
 if|if
 condition|(
-operator|!
 name|actual
 operator|.
-name|equals
+name|indexOf
 argument_list|(
 name|expected
 argument_list|)
+operator|<
+literal|0
 condition|)
 block|{
 name|warn
@@ -584,7 +585,7 @@ literal|"Unexpected response from Solr: '"
 operator|+
 name|actual
 operator|+
-literal|"', expected '"
+literal|"' does not contain '"
 operator|+
 name|expected
 operator|+
