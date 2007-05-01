@@ -271,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Takes a string (e.g. a query string) as the value of the "q" parameter  * and looks up alternative spelling suggestions in the spellchecker.  * The spellchecker used by this handler is the Lucene contrib SpellChecker.  * @see http://wiki.apache.org/jakarta-lucene/SpellChecker  *  * @author Otis Gospodnetic  */
+comment|/**  * Takes a string (e.g. a query string) as the value of the "q" parameter  * and looks up alternative spelling suggestions in the spellchecker.  * The spellchecker used by this handler is the Lucene contrib SpellChecker.  * @see<a href="http://wiki.apache.org/jakarta-lucene/SpellChecker">The Lucene Spellchecker documentation</a>  *  * @author Otis Gospodnetic  */
 end_comment
 
 begin_class

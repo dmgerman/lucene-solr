@@ -218,7 +218,7 @@ return|;
 block|}
 comment|//------------------------------------------------------------------------
 comment|//------------------------------------------------------------------------
-comment|/**    * Construct a<code>ContentStream</code> from a<code>URL</code>    *     * This uses a {@Link URLConnection} to get the content stream    */
+comment|/**    * Construct a<code>ContentStream</code> from a<code>URL</code>    *     * This uses a<code>URLConnection</code> to get the content stream    * @see  URLConnection    */
 DECL|class|URLStream
 specifier|public
 specifier|static
