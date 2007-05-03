@@ -294,33 +294,13 @@ argument_list|(
 name|cmd
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|optimize
-condition|)
-block|{
-name|rsp
-operator|.
-name|add
-argument_list|(
-literal|"optimize"
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|rsp
-operator|.
-name|add
-argument_list|(
-literal|"commit"
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
+comment|// Lets wait till after solr1.2 to define consistent output format
+comment|//if( optimize ) {
+comment|//  rsp.add( "optimize", true );
+comment|//}
+comment|//else {
+comment|//  rsp.add( "commit", true );
+comment|//}
 return|return
 literal|true
 return|;
