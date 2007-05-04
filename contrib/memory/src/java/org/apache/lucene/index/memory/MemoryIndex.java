@@ -3775,6 +3775,16 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+specifier|public
+name|boolean
+name|isPayloadAvailable
+parameter_list|()
+block|{
+comment|// unsuported
+return|return
+literal|false
+return|;
+block|}
 block|}
 return|;
 block|}
