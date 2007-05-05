@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides a static refrence to a Config object modeling the main  * configuration data for a a Solr instance -- typically found in  * "solrconfig.xml".  *  * @author yonik  * @version $Id$  */
+comment|/**  * Provides a static reference to a Config object modeling the main  * configuration data for a a Solr instance -- typically found in  * "solrconfig.xml".  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -176,7 +176,7 @@ name|Throwable
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * (Re)loads the static configation information from the specified file.    *    *<p>    * This method is called implicitly on ClassLoad, but it may be    * called explicitly to change the Configuration used for the purpose    * of testing - in which case it should be called prior to initializing    * a SolrCore.    *</p>    *    *<p>    * This method should<b>only</b> be called for testing purposes.    * Because it modifies a singleton, it is not suitable for running    * multi-threaded tests.    *</p>    *    * @param file file name to load    * @see Config#openResource    */
+comment|/**    * (Re)loads the static configuration information from the specified file.    *    *<p>    * This method is called implicitly on ClassLoad, but it may be    * called explicitly to change the Configuration used for the purpose    * of testing - in which case it should be called prior to initializing    * a SolrCore.    *</p>    *    *<p>    * This method should<b>only</b> be called for testing purposes.    * Because it modifies a singleton, it is not suitable for running    * multi-threaded tests.    *</p>    *    * @param file file name to load    * @see Config#openResource    */
 DECL|method|initConfig
 specifier|public
 specifier|static
