@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Allows a class to act as a Lucene document handler  *  *@author     Erik Hatcher  *@created    October 27, 2001  */
+comment|/**  *  Allows a class to act as a Lucene document handler  *  *@author     Erik Hatcher  *@since    October 27, 2001  */
 end_comment
 
 begin_interface

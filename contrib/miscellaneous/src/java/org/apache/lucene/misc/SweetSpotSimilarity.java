@@ -333,7 +333,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Implimented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimiation is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
+comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimiation is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
 DECL|method|lengthNorm
 specifier|public
 name|float
@@ -511,7 +511,7 @@ name|freq
 argument_list|)
 return|;
 block|}
-comment|/**    * Implimented as:    *<code>    *  (x&lt;= min) ? base : sqrt(x+(base**2)-min)    *</code>    * ...but with a special case check for 0.    *<p>    * This degrates to<code>sqrt(x)</code> when min and base are both 0    *</p>    *    * @see #setBaselineTfFactors    */
+comment|/**    * Implemented as:    *<code>    *  (x&lt;= min)&#63; base : sqrt(x+(base**2)-min)    *</code>    * ...but with a special case check for 0.    *<p>    * This degrates to<code>sqrt(x)</code> when min and base are both 0    *</p>    *    * @see #setBaselineTfFactors    */
 DECL|method|baselineTf
 specifier|public
 name|float

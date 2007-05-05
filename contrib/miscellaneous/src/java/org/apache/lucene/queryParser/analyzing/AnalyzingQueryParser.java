@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Overrides Lucene's default QueryParser so that Fuzzy-, Prefix-, Range-, and WildcardQuerys  * are also passed through the given analyzer, but<code>?</code> and<code>*</code> don't get   * removed from the search terms.  *   *<p><b>Warning:</b> This class should only be used with analyzers that do not use stopwords  * or that add tokens. Also, several stemming analyzers are inappropriate: for example, GermanAnalyzer   * will turn<code>H&auml;user</code> into<code>hau</code>, but<code>H?user</code> will   * become<code>h?user</code> when using this parser and thus no match would be found (i.e.  * using this parser will be no improvement over QueryParser in such cases).   *  * @author  Ronnie Kolehmainen (ronnie.kolehmainen at ub.uu.se)  * @version $Revision$, $Date$  */
+comment|/**  * Overrides Lucene's default QueryParser so that Fuzzy-, Prefix-, Range-, and WildcardQuerys  * are also passed through the given analyzer, but wild card characters (like<code>*</code>)   * don't get removed from the search terms.  *   *<p><b>Warning:</b> This class should only be used with analyzers that do not use stopwords  * or that add tokens. Also, several stemming analyzers are inappropriate: for example, GermanAnalyzer   * will turn<code>H&auml;user</code> into<code>hau</code>, but<code>H?user</code> will   * become<code>h?user</code> when using this parser and thus no match would be found (i.e.  * using this parser will be no improvement over QueryParser in such cases).   *  * @author  Ronnie Kolehmainen (ronnie.kolehmainen at ub.uu.se)  * @version $Revision$, $Date$  */
 end_comment
 
 begin_class
@@ -154,7 +154,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Called when parser    * parses an input term token that contains one or more wildcard    * characters (? and *), but is not a prefix term token (one    * that has just a single * character at the end)    *<p>    * Depending on analyzer and settings, a wildcard term may (most probably will)    * be lower-cased automatically. It<b>will</b> go through the default Analyzer.    *<p>    * Overrides super class, by passing terms through analyzer.    *    * @param  field   Name of the field query will use.    * @param  termStr Term token that contains one or more wild card    *                 characters (? or *), but is not simple prefix term    *    * @return Resulting {@link Query} built for the term    * @throws ParseException    */
+comment|/**    * Called when parser    * parses an input term token that contains one or more wildcard    * characters (like<code>*</code>), but is not a prefix term token (one    * that has just a single * character at the end).    *<p>    * Example: will be called for<code>H?user</code> or for<code>H*user</code>     * but not for<code>*user</code>.    *<p>    * Depending on analyzer and settings, a wildcard term may (most probably will)    * be lower-cased automatically. It<b>will</b> go through the default Analyzer.    *<p>    * Overrides super class, by passing terms through analyzer.    *    * @param  field   Name of the field query will use.    * @param  termStr Term token that contains one or more wild card    *                 characters (? or *), but is not simple prefix term    *    * @return Resulting {@link Query} built for the term    * @throws ParseException    */
 DECL|method|getWildcardQuery
 specifier|protected
 name|Query

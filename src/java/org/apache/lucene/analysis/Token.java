@@ -262,7 +262,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/**     * Sets this Token's payload.<br>    *<br>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>      */
+comment|/**     * Sets this Token's payload.    *<p>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>      */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|setPayload
 specifier|public
@@ -280,7 +280,7 @@ operator|=
 name|payload
 expr_stmt|;
 block|}
-comment|/**     * Returns this Token's payload.<br>     *<br>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>       */
+comment|/**     * Returns this Token's payload.     *<p>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>       */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|getPayload
 specifier|public

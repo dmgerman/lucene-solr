@@ -440,7 +440,7 @@ return|return
 name|v
 return|;
 block|}
-comment|/** Get memory usage stats. for a given data type. */
+comment|/** Get memory usage stats for a given data type. */
 DECL|method|getMemUsage
 specifier|public
 name|MemUsage

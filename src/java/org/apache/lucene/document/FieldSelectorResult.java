@@ -133,7 +133,7 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-comment|/** Expert: Like {@link #SIZE} but immediately break from the field loading loop, i.e. stop loading further fields, after the size is loaded */
+comment|/** Expert: Like {@link #SIZE} but immediately break from the field loading loop, i.e., stop loading further fields, after the size is loaded */
 DECL|field|SIZE_AND_BREAK
 specifier|public
 specifier|transient

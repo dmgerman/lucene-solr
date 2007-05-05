@@ -120,7 +120,7 @@ operator|=
 name|maximumDocumentsToIndex
 expr_stmt|;
 block|}
-comment|/**      * How often to print out log messages when in benchmark loops      * @return      */
+comment|/**      * How often to print out log messages when in benchmark loops      */
 DECL|method|getLogStep
 specifier|public
 name|int
@@ -147,7 +147,7 @@ operator|=
 name|logStep
 expr_stmt|;
 block|}
-comment|/**      * The number of times to run the benchmark      * @return      */
+comment|/**      * The number of times to run the benchmark      */
 DECL|method|getRunCount
 specifier|public
 name|int
@@ -174,7 +174,6 @@ operator|=
 name|runCount
 expr_stmt|;
 block|}
-comment|/**      *      * @return      */
 DECL|method|getScaleUp
 specifier|public
 name|int

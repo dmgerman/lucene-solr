@@ -154,7 +154,7 @@ specifier|public
 class|class
 name|LengthNormModifier
 block|{
-comment|/**    * Command Line Execution method    *    *<pre>    * Usage: LengthNormModifier /path/index package.SimilarityClassName field1 field2 ...    *</pre>    */
+comment|/**    * Command Line Execution method.    *    *<pre>    * Usage: LengthNormModifier /path/index package.SimilarityClassName field1 field2 ...    *</pre>    */
 DECL|method|main
 specifier|public
 specifier|static
