@@ -299,6 +299,13 @@ name|endsWith
 argument_list|(
 literal|"/"
 argument_list|)
+operator|&&
+name|p
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|1
 condition|)
 return|return
 name|p
