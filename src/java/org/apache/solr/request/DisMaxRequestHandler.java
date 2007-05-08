@@ -1022,7 +1022,7 @@ block|{
 comment|/* if the default boost was used, and we've got a BooleanQuery              * extract the subqueries out and use them directly              */
 for|for
 control|(
-name|BooleanClause
+name|Object
 name|c
 range|:
 operator|(
@@ -1032,7 +1032,7 @@ operator|)
 name|f
 operator|)
 operator|.
-name|getClauses
+name|clauses
 argument_list|()
 control|)
 block|{
@@ -1040,6 +1040,9 @@ name|query
 operator|.
 name|add
 argument_list|(
+operator|(
+name|BooleanClause
+operator|)
 name|c
 argument_list|)
 expr_stmt|;
