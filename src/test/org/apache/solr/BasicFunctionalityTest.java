@@ -278,6 +278,65 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|testIgnoredFields
+specifier|public
+name|void
+name|testIgnoredFields
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|lrf
+operator|.
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"version"
+argument_list|,
+literal|"2.0"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+literal|"adding doc with ignored field"
+argument_list|,
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"42"
+argument_list|,
+literal|"foo_ignored"
+argument_list|,
+literal|"blah blah"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+literal|"commit"
+argument_list|,
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// :TODO: the behavior of querying on an unindexed field should be better specified in the future.
+name|assertQ
+argument_list|(
+literal|"query with ignored field"
+argument_list|,
+name|req
+argument_list|(
+literal|"bar_ignored:yo id:42"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|,
+literal|"//int[@name='id'][.='42']"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testSomeStuff
 specifier|public
 name|void
