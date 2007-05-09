@@ -1059,7 +1059,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	* Helper method to parse an XML file into a DOM tree, given a filename. 	* @param pXmlFile name of the XML file to be parsed 	* @return an org.w3c.dom.Document object 	*/
+comment|/** 	* Helper method to parse an XML file into a DOM tree, given a reader. 	* @param is reader of the XML file to be parsed 	* @return an org.w3c.dom.Document object 	*/
 DECL|method|loadXML
 specifier|public
 specifier|static

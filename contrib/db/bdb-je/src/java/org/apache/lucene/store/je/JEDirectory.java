@@ -364,7 +364,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Flush the currently open files. After they have been flushed it is safe      * to commit the transaction without closing this DbDirectory instance      * first.      *       * @see setTransaction      */
+comment|/**      * Flush the currently open files. After they have been flushed it is safe      * to commit the transaction without closing this DbDirectory instance      * first.      *       * @see #setTransaction      */
 DECL|method|flush
 specifier|public
 name|void
