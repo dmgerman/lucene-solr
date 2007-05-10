@@ -135,6 +135,15 @@ name|ContentStreamBase
 implements|implements
 name|ContentStream
 block|{
+DECL|field|DEFAULT_CHARSET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_CHARSET
+init|=
+literal|"utf-8"
+decl_stmt|;
 DECL|field|name
 specifier|protected
 name|String
@@ -536,7 +545,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Base reader implementation.  If the contentType declares a     * charset use it, otherwise use the system default.    */
+comment|/**    * Base reader implementation.  If the contentType declares a     * charset use it, otherwise use "utf-8".    */
 DECL|method|getReader
 specifier|public
 name|Reader
@@ -550,7 +559,8 @@ name|charset
 init|=
 name|getCharsetFromContentType
 argument_list|(
-name|contentType
+name|getContentType
+argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
@@ -563,6 +573,8 @@ name|InputStreamReader
 argument_list|(
 name|getStream
 argument_list|()
+argument_list|,
+name|DEFAULT_CHARSET
 argument_list|)
 else|:
 operator|new
