@@ -218,6 +218,26 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|LinkedList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_class
 DECL|class|DocumentWriter
 specifier|final
@@ -466,6 +486,8 @@ name|getBoost
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 comment|// Before we write the FieldInfos we invert the Document. The reason is that
 comment|// during invertion the TokenStreams of tokenized fields are being processed
 comment|// and we might encounter tokens that have payloads associated with them. In
@@ -527,7 +549,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*     for (int i = 0; i< postings.length; i++) {       Posting posting = postings[i];       System.out.print(posting.term);       System.out.print(" freq=" + posting.freq);       System.out.print(" pos=");       System.out.print(posting.positions[0]);       for (int j = 1; j< posting.freq; j++) 	System.out.print("," + posting.positions[j]);       System.out.println("");     }     */
+comment|/*       for (int i = 0; i< postings.length; i++) {         Posting posting = postings[i];         System.out.print(posting.term);         System.out.print(" freq=" + posting.freq);         System.out.print(" pos=");         System.out.print(posting.positions[0]);         for (int j = 1; j< posting.freq; j++) 	  System.out.print("," + posting.positions[j]);         System.out.println("");       }        */
 comment|// write postings
 name|writePostings
 argument_list|(
@@ -542,6 +564,84 @@ argument_list|(
 name|segment
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// close TokenStreams
+name|IOException
+name|ex
+init|=
+literal|null
+decl_stmt|;
+name|Iterator
+name|it
+init|=
+name|openTokenStreams
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+operator|(
+operator|(
+name|TokenStream
+operator|)
+name|it
+operator|.
+name|next
+argument_list|()
+operator|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|ex
+operator|!=
+literal|null
+condition|)
+block|{
+name|ex
+operator|=
+name|e
+expr_stmt|;
+block|}
+block|}
+block|}
+name|openTokenStreams
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|ex
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+name|ex
+throw|;
+block|}
+block|}
 block|}
 comment|// Keys are Terms, values are Postings.
 comment|// Used to buffer a document before it is written to the index.
@@ -585,6 +685,17 @@ DECL|field|fieldStoresPayloads
 specifier|private
 name|BitSet
 name|fieldStoresPayloads
+decl_stmt|;
+comment|// Keep references of the token streams. We must close them after
+comment|// the postings are written to the segment.
+DECL|field|openTokenStreams
+specifier|private
+name|List
+name|openTokenStreams
+init|=
+operator|new
+name|LinkedList
+argument_list|()
 decl_stmt|;
 comment|// Tokenizes the fields of a document into Postings.
 DECL|method|invertDocument
@@ -855,14 +966,20 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+comment|// remember this TokenStream, we must close it later
+name|openTokenStreams
+operator|.
+name|add
+argument_list|(
+name|stream
+argument_list|)
+expr_stmt|;
 comment|// reset the TokenStream to the first token
 name|stream
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 name|Token
 name|lastToken
 init|=
@@ -1028,15 +1145,6 @@ argument_list|()
 operator|+
 literal|1
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|stream
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 name|fieldLengths
 index|[
