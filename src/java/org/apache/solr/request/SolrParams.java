@@ -329,6 +329,16 @@ name|FACET_PREFIX
 init|=
 literal|"facet.prefix"
 decl_stmt|;
+comment|/**    * When faceting by enumerating the terms in a field,    * only use the filterCache for terms with a df>= to this parameter.    */
+DECL|field|FACET_ENUM_CACHE_MINDF
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_ENUM_CACHE_MINDF
+init|=
+literal|"facet.enum.cache.minDf"
+decl_stmt|;
 comment|/** If the content stream should come from a URL (using URLConnection) */
 DECL|field|STREAM_URL
 specifier|public
