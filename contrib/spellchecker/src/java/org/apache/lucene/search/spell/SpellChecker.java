@@ -1365,6 +1365,42 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// close reader so it will be re-opened (and see the new content) when exist()
+comment|// is called the next time:
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader
+operator|=
+literal|null
+expr_stmt|;
+block|}
+comment|// also re-open the spell index to see our own changes when the next suggestion
+comment|// is fetched:
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|searcher
+operator|=
+operator|new
+name|IndexSearcher
+argument_list|(
+name|this
+operator|.
+name|spellIndex
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getMin
 specifier|private
