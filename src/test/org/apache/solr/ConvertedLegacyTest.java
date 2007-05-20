@@ -3539,7 +3539,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:42 AND subword:http://www.yahoo.com"
+literal|"id:42 AND subword:http\\://www.yahoo.com"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
