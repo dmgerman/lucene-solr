@@ -119,7 +119,7 @@ argument_list|(
 literal|"MUST"
 argument_list|)
 decl_stmt|;
-comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with two<code>SHOULD</code>       * subqueries, at least one of the clauses must appear in the matching documents. */
+comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with no<code>MUST</code>       * clauses one or more<code>SHOULD</code> clauses must match a document       * for the BooleanQuery to match.      * @see BooleanQuery#setMinimumNumberShouldMatch      */
 DECL|field|SHOULD
 specifier|public
 specifier|static
