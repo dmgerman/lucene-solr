@@ -2289,6 +2289,15 @@ condition|(
 name|ttinfo
 operator|!=
 literal|null
+operator|&&
+name|sfield
+operator|!=
+literal|null
+operator|&&
+name|sfield
+operator|.
+name|indexed
+argument_list|()
 condition|)
 block|{
 name|Query
