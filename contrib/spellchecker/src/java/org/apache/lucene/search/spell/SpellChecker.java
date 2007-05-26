@@ -278,6 +278,7 @@ name|minScore
 init|=
 literal|0.5f
 decl_stmt|;
+comment|/**    * Use the given directory as a spell checker index. The directory    * is created if it doesn't exist yet.    *     * @param spellIndex    * @throws IOException    */
 DECL|method|SpellChecker
 specifier|public
 name|SpellChecker
@@ -296,6 +297,7 @@ name|spellIndex
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Use a different index as the spell checker index or re-open    * the existing index if<code>spellIndex</code> is the same value    * as given in the constructor.    *     * @param spellIndex    * @throws IOException    */
 DECL|method|setSpellIndex
 specifier|public
 name|void
@@ -375,17 +377,17 @@ name|void
 name|setAccuracy
 parameter_list|(
 name|float
-name|min
+name|minScore
 parameter_list|)
 block|{
 name|this
 operator|.
 name|minScore
 operator|=
-name|min
+name|minScore
 expr_stmt|;
 block|}
-comment|/**    * As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    * I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * Suggest similar words    * @param word String the word you want a spell check done on    * @param numSug int the number of suggest words    * @throws IOException    * @return String[]    */
+comment|/**    * Suggest similar words.    *     *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @throws IOException    * @return String[]    */
 DECL|method|suggestSimilar
 specifier|public
 name|String
@@ -418,7 +420,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    * I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * Suggest similar words (restricted or not to a field of a user index)    * @param word String the word you want a spell check done on    * @param numSug int the number of suggest words    * @param ir the indexReader of the user index (can be null see field param)    * @param field String the field of the user index: if field is not null, the suggested    * words are restricted to the words present in this field.    * @param morePopular boolean return only the suggest words that are more frequent than the searched word    * (only if restricted mode = (indexReader!=null and field!=null)    * @throws IOException    * @return String[] the sorted list of the suggest words with this 2 criteria:    * first criteria: the edit distance, second criteria (only if restricted mode): the popularity    * of the suggest words in the field of the user index    */
+comment|/**    * Suggest similar words (optionally restricted to a field of an index).    *     *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @param ir the indexReader of the user index (can be null see field param)    * @param field the field of the user index: if field is not null, the suggested    * words are restricted to the words present in this field.    * @param morePopular return only the suggest words that are more frequent than the searched word    * (only if restricted mode = (indexReader!=null and field!=null)    * @throws IOException    * @return String[] the sorted list of the suggest words with these 2 criteria:    * first criteria: the edit distance, second criteria (only if restricted mode): the popularity    * of the suggest words in the field of the user index    */
 DECL|method|suggestSimilar
 specifier|public
 name|String
@@ -1135,6 +1137,7 @@ return|return
 name|res
 return|;
 block|}
+comment|/**    * Removes all terms from the spell check index.    * @throws IOException    */
 DECL|method|clearIndex
 specifier|public
 name|void
@@ -1169,7 +1172,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Check whether the word exists in the index.    * @param word String    * @throws IOException    * @return true iff the word exists in the index    */
+comment|/**    * Check whether the word exists in the index.    * @param word    * @throws IOException    * @return true iff the word exists in the index    */
 DECL|method|exist
 specifier|public
 name|boolean
@@ -1726,6 +1729,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * Closes the internal IndexReader.    */
 DECL|method|finalize
 specifier|protected
 name|void

@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene Dictionary  *  * @author Nicolas Maisonneuve  */
+comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * @author Nicolas Maisonneuve  */
 end_comment
 
 begin_class
@@ -192,11 +192,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+argument_list|)
+throw|;
 block|}
 block|}
 DECL|method|next
@@ -316,14 +318,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-return|return
-literal|false
-return|;
+argument_list|)
+throw|;
 block|}
 block|}
 DECL|method|remove
