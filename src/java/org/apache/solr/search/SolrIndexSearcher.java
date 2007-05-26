@@ -1866,7 +1866,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Retrieve a {@link Document} using a {@link org.apache.lucene.document.FieldSelector}    * This method does not currently use the Solr document cache.    *     * @see Searchable#document(int, FieldSelector) */
+comment|/** Retrieve a {@link Document} using a {@link org.apache.lucene.document.FieldSelector}    * This method does not currently use the Solr document cache.    *     * @see IndexReader#document(int, FieldSelector) */
 DECL|method|doc
 specifier|public
 name|Document
