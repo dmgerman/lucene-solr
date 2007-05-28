@@ -358,7 +358,7 @@ argument_list|)
 decl_stmt|;
 name|BooleanQuery
 operator|.
-name|setUseScorer14
+name|setAllowDocsOutOfOrder
 argument_list|(
 literal|true
 argument_list|)
@@ -384,7 +384,7 @@ decl_stmt|;
 comment|// there should be no need to parse again...
 name|BooleanQuery
 operator|.
-name|setUseScorer14
+name|setAllowDocsOutOfOrder
 argument_list|(
 literal|false
 argument_list|)
@@ -418,7 +418,7 @@ block|{
 comment|// even when a test fails.
 name|BooleanQuery
 operator|.
-name|setUseScorer14
+name|setAllowDocsOutOfOrder
 argument_list|(
 literal|false
 argument_list|)
@@ -877,7 +877,7 @@ name|INDEXORDER
 decl_stmt|;
 name|BooleanQuery
 operator|.
-name|setUseScorer14
+name|setAllowDocsOutOfOrder
 argument_list|(
 literal|false
 argument_list|)
@@ -926,7 +926,7 @@ argument_list|)
 expr_stmt|;
 name|BooleanQuery
 operator|.
-name|setUseScorer14
+name|setAllowDocsOutOfOrder
 argument_list|(
 literal|true
 argument_list|)
@@ -989,7 +989,7 @@ block|{
 comment|// even when a test fails.
 name|BooleanQuery
 operator|.
-name|setUseScorer14
+name|setAllowDocsOutOfOrder
 argument_list|(
 literal|false
 argument_list|)

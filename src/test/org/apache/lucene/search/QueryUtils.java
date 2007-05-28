@@ -340,7 +340,7 @@ if|if
 condition|(
 name|BooleanQuery
 operator|.
-name|getUseScorer14
+name|getAllowDocsOutOfOrder
 argument_list|()
 condition|)
 return|return;
@@ -479,20 +479,6 @@ name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|scorer
-operator|instanceof
-name|BooleanScorer
-operator|||
-name|scorer
-operator|instanceof
-name|BooleanScorer2
-condition|)
-block|{
-return|return;
-comment|// TODO change this if BooleanScorers would once again guarantee docs in order.
-block|}
 comment|// FUTURE: ensure scorer.doc()==-1
 specifier|final
 name|int

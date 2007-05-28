@@ -216,7 +216,13 @@ specifier|final
 name|int
 name|minNrShouldMatch
 decl_stmt|;
-comment|/** Create a BooleanScorer2.    * @param similarity The similarity to be used.    * @param minNrShouldMatch The minimum number of optional added scorers    *                         that should match during the search.    *                         In case no required scorers are added,    *                         at least one of the optional scorers will have to    *                         match during the search.    */
+comment|/** Whether it is allowed to return documents out of order.    *  This can accelerate the scoring of disjunction queries.      */
+DECL|field|allowDocsOutOfOrder
+specifier|private
+name|boolean
+name|allowDocsOutOfOrder
+decl_stmt|;
+comment|/** Create a BooleanScorer2.    * @param similarity The similarity to be used.    * @param minNrShouldMatch The minimum number of optional added scorers    *                         that should match during the search.    *                         In case no required scorers are added,    *                         at least one of the optional scorers will have to    *                         match during the search.    * @param allowDocsOutOfOrder Whether it is allowed to return documents out of order.    *                            This can accelerate the scoring of disjunction queries.                             */
 DECL|method|BooleanScorer2
 specifier|public
 name|BooleanScorer2
@@ -226,6 +232,9 @@ name|similarity
 parameter_list|,
 name|int
 name|minNrShouldMatch
+parameter_list|,
+name|boolean
+name|allowDocsOutOfOrder
 parameter_list|)
 block|{
 name|super
@@ -260,6 +269,34 @@ name|minNrShouldMatch
 operator|=
 name|minNrShouldMatch
 expr_stmt|;
+name|this
+operator|.
+name|allowDocsOutOfOrder
+operator|=
+name|allowDocsOutOfOrder
+expr_stmt|;
+block|}
+comment|/** Create a BooleanScorer2.    *  In no required scorers are added,    *  at least one of the optional scorers will have to match during the search.    * @param similarity The similarity to be used.    * @param minNrShouldMatch The minimum number of optional added scorers    *                         that should match during the search.    *                         In case no required scorers are added,    *                         at least one of the optional scorers will have to    *                         match during the search.    */
+DECL|method|BooleanScorer2
+specifier|public
+name|BooleanScorer2
+parameter_list|(
+name|Similarity
+name|similarity
+parameter_list|,
+name|int
+name|minNrShouldMatch
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|similarity
+argument_list|,
+name|minNrShouldMatch
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Create a BooleanScorer2.    *  In no required scorers are added,    *  at least one of the optional scorers will have to match during the search.    * @param similarity The similarity to be used.    */
 DECL|method|BooleanScorer2
@@ -275,6 +312,8 @@ argument_list|(
 name|similarity
 argument_list|,
 literal|0
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1150,14 +1189,14 @@ name|IOException
 block|{
 if|if
 condition|(
-operator|(
+name|allowDocsOutOfOrder
+operator|&&
 name|requiredScorers
 operator|.
 name|size
 argument_list|()
 operator|==
 literal|0
-operator|)
 operator|&&
 name|prohibitedScorers
 operator|.
