@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create tokens based on phonetic encoders  *   * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *   * This takes two arguments:  *  "encoder" required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex"  *   * "inject" (default=true) add tokens to the stream with the offset=0  *   * @version $Id:$  * @see PhoneticFilter  */
+comment|/**  * Create tokens based on phonetic encoders  *   * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *   * This takes two arguments:  *  "encoder" required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex"  *   * "inject" (default=true) add tokens to the stream with the offset=0  *   * @version $Id$  * @see PhoneticFilter  */
 end_comment
 
 begin_class
@@ -357,7 +357,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|500
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
 argument_list|,
 literal|"Missing required parameter: "
 operator|+
@@ -403,7 +407,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|500
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
 argument_list|,
 literal|"Unknown encoder: "
 operator|+
@@ -440,7 +448,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|500
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
 argument_list|,
 literal|"Error initializing: "
 operator|+

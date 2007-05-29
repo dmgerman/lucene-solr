@@ -404,7 +404,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"If you want to use multiple ';' in the query, use the 'sort' param."
 argument_list|)

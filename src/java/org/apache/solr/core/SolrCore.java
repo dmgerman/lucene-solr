@@ -1154,7 +1154,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|500
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
 argument_list|,
 literal|"Error Instantiating Update Handler "
 operator|+
@@ -1863,7 +1867,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|503
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
 argument_list|,
 name|msg
 argument_list|,
@@ -2891,7 +2899,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Unknown Request Handler '"
 operator|+
@@ -3062,7 +3074,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Invalid value '"
 operator|+

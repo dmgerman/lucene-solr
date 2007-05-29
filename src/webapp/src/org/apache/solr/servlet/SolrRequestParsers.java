@@ -734,15 +734,18 @@ operator|!
 name|enableRemoteStreams
 condition|)
 block|{
-throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Remote Streaming is disabled."
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 for|for
 control|(
@@ -817,15 +820,18 @@ operator|!
 name|enableRemoteStreams
 condition|)
 block|{
-throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Remote Streaming is disabled."
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 for|for
 control|(
@@ -1140,7 +1146,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|500
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
 argument_list|,
 name|uex
 argument_list|)
@@ -1527,11 +1537,14 @@ name|req
 argument_list|)
 condition|)
 block|{
-throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Not multipart content! "
 operator|+
@@ -1540,7 +1553,7 @@ operator|.
 name|getContentType
 argument_list|()
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 name|MultiMapSolrParams
 name|params
@@ -1888,7 +1901,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Unsuported method: "
 operator|+

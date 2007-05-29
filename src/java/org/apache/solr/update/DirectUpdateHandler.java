@@ -506,7 +506,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Operation requires schema to have a unique key field"
 argument_list|)
@@ -609,7 +613,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Operation requires schema to have a unique key field"
 argument_list|)
@@ -793,7 +801,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"meaningless command: "
 operator|+
@@ -816,7 +828,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"operation not supported"
 operator|+
@@ -883,7 +899,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"meaningless command: "
 operator|+
@@ -906,7 +926,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"operation not supported"
 operator|+
@@ -1000,7 +1024,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**************** old hit collector... new one is in base class   // final DeleteHitCollector deleter = new DeleteHitCollector();   class DeleteHitCollector extends HitCollector {     public int deleted=0;     public void collect(int doc, float score) {       try {         searcher.getReader().delete(doc);         deleted++;       } catch (IOException e) {         try { closeSearcher(); } catch (Exception ee) { SolrException.log(SolrCore.log,ee); }         SolrException.log(SolrCore.log,e);         throw new SolrException(500,"Error deleting doc# "+doc,e);       }     }   }   ***************************/
+comment|/**************** old hit collector... new one is in base class   // final DeleteHitCollector deleter = new DeleteHitCollector();   class DeleteHitCollector extends HitCollector {     public int deleted=0;     public void collect(int doc, float score) {       try {         searcher.getReader().delete(doc);         deleted++;       } catch (IOException e) {         try { closeSearcher(); } catch (Exception ee) { SolrException.log(SolrCore.log,ee); }         SolrException.log(SolrCore.log,e);         throw new SolrException( SolrException.StatusCode.SERVER_ERROR,"Error deleting doc# "+doc,e);       }     }   }   ***************************/
 DECL|method|commit
 specifier|public
 name|void
@@ -1459,7 +1483,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"unsupported param combo:"
 operator|+
@@ -1538,7 +1566,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"unsupported param combo:"
 operator|+
@@ -1568,7 +1600,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"unsupported param combo:"
 operator|+
@@ -1603,7 +1639,11 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"unsupported param combo:"
 operator|+

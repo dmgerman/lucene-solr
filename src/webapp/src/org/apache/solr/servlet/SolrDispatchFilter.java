@@ -805,17 +805,20 @@ literal|"/"
 argument_list|)
 condition|)
 block|{
-throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"Invalid query type.  Do not use /select to access: "
 operator|+
 name|qt
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 name|handler
 operator|=
@@ -833,17 +836,20 @@ operator|==
 literal|null
 condition|)
 block|{
-throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|400
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
 literal|"unknown handler: "
 operator|+
 name|qt
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 block|}
