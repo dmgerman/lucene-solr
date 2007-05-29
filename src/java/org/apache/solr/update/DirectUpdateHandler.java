@@ -506,7 +506,7 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|2
+literal|400
 argument_list|,
 literal|"Operation requires schema to have a unique key field"
 argument_list|)
@@ -609,7 +609,7 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|2
+literal|400
 argument_list|,
 literal|"Operation requires schema to have a unique key field"
 argument_list|)

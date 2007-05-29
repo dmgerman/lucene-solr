@@ -2856,7 +2856,7 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|1
+literal|500
 argument_list|,
 literal|"Schema Parsing Failed"
 argument_list|,
@@ -3083,7 +3083,7 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
-literal|1
+literal|500
 argument_list|,
 literal|"analyzer without class or tokenizer& filter list"
 argument_list|)
@@ -3097,7 +3097,7 @@ argument_list|(
 name|tokNode
 argument_list|)
 decl_stmt|;
-comment|/******     // oops, getChildNodes() includes text (newlines, etc) in addition     // to the actual child elements     NodeList nList = node.getChildNodes();     TokenizerFactory tfac = readTokenizerFactory(nList.item(0));      if (tfac==null) {        throw new SolrException(1,"TokenizerFactory must be specified first in analyzer");      }     ******/
+comment|/******     // oops, getChildNodes() includes text (newlines, etc) in addition     // to the actual child elements     NodeList nList = node.getChildNodes();     TokenizerFactory tfac = readTokenizerFactory(nList.item(0));      if (tfac==null) {        throw new SolrException(500,"TokenizerFactory must be specified first in analyzer");      }     ******/
 name|ArrayList
 argument_list|<
 name|TokenFilterFactory
