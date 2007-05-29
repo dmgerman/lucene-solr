@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/** Keep track of a reference count on a resource and close it when  * the count hits zero.  *  * By itself, this class could have some race conditions  * since there is no synchronization between the refcount  * check and the close.  Solr's use in reference counting searchers  * is safe since the count can only hit zero if it's unregistered (and  * hence incref() will not be called again on it).  *  * @author yonik  * @version $Id$  */
 end_comment
 
 begin_class
@@ -120,9 +120,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|close
 specifier|protected
