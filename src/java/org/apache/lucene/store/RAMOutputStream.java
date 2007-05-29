@@ -44,9 +44,7 @@ specifier|final
 name|int
 name|BUFFER_SIZE
 init|=
-name|BufferedIndexOutput
-operator|.
-name|BUFFER_SIZE
+literal|1024
 decl_stmt|;
 DECL|field|file
 specifier|private

@@ -564,7 +564,7 @@ name|getLength
 argument_list|()
 return|;
 block|}
-comment|/** Return total size in bytes of all files in this    * directory.  This is currently quantized to    * BufferedIndexOutput.BUFFER_SIZE. */
+comment|/** Return total size in bytes of all files in this    * directory.  This is currently quantized to    * RAMOutputStream.BUFFER_SIZE. */
 DECL|method|sizeInBytes
 specifier|public
 specifier|synchronized

@@ -326,6 +326,21 @@ name|DEFAULT_TERM_INDEX_INTERVAL
 init|=
 literal|128
 decl_stmt|;
+comment|// The normal read buffer size defaults to 1024, but
+comment|// increasing this during merging seems to yield
+comment|// performance gains.  However we don't want to increase
+comment|// it too much because there are quite a few
+comment|// BufferedIndexInputs created during merging.  See
+comment|// LUCENE-888 for details.
+DECL|field|MERGE_READ_BUFFER_SIZE
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|MERGE_READ_BUFFER_SIZE
+init|=
+literal|4096
+decl_stmt|;
 DECL|field|directory
 specifier|private
 name|Directory
@@ -4194,6 +4209,8 @@ operator|.
 name|get
 argument_list|(
 name|si
+argument_list|,
+name|MERGE_READ_BUFFER_SIZE
 argument_list|)
 decl_stmt|;
 comment|// no need to set deleter (yet)
