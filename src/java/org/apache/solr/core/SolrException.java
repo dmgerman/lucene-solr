@@ -72,6 +72,18 @@ argument_list|(
 literal|400
 argument_list|)
 block|,
+DECL|enum constant|UNAUTHORIZED
+name|UNAUTHORIZED
+argument_list|(
+literal|401
+argument_list|)
+block|,
+DECL|enum constant|FORBIDDEN
+name|FORBIDDEN
+argument_list|(
+literal|403
+argument_list|)
+block|,
 DECL|enum constant|NOT_FOUND
 name|NOT_FOUND
 argument_list|(
