@@ -453,7 +453,30 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
-comment|//  public void setUp() {  }
+comment|/* all files will be open relative to this */
+DECL|field|fileDir
+specifier|public
+name|String
+name|fileDir
+decl_stmt|;
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+block|{
+name|fileDir
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"lucene.common.dir"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 comment|//  public void tearDown() {}
 DECL|method|testMany
 specifier|public
@@ -483,7 +506,7 @@ literal|"xdocs/*.xml"
 block|,
 literal|"src/java/test/org/apache/lucene/queryParser/*.java"
 block|,
-literal|"src/java/org/apache/lucene/index/memory/*.java"
+literal|"contrib/memory/src/java/org/apache/lucene/index/memory/*.java"
 block|,     }
 argument_list|)
 decl_stmt|;
@@ -521,7 +544,7 @@ literal|"1"
 block|,
 literal|"memram"
 block|,
-literal|"@src/test/org/apache/lucene/index/memory/testqueries.txt"
+literal|"@contrib/memory/src/test/org/apache/lucene/index/memory/testqueries.txt"
 block|,     }
 decl_stmt|;
 name|String
@@ -761,6 +784,8 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+name|fileDir
+argument_list|,
 name|arg
 operator|.
 name|substring
