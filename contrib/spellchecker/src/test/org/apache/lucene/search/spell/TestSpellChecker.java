@@ -16,39 +16,21 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
 operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriter
+name|TestCase
 import|;
 end_import
 
@@ -88,9 +70,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|document
 operator|.
-name|English
+name|Field
 import|;
 end_import
 
@@ -102,9 +84,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Field
+name|CorruptIndexException
 import|;
 end_import
 
@@ -124,11 +106,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriter
 import|;
 end_import
 
@@ -146,8 +132,36 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|English
+import|;
+end_import
+
 begin_comment
-comment|/**  * Test case  *  * @author Nicolas Maisonneuve  */
+comment|/**  * Spell checker test case  *  * @author Nicolas Maisonneuve  */
 end_comment
 
 begin_class
@@ -325,8 +339,10 @@ specifier|public
 name|void
 name|testBuild
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
 block|{
 name|IndexReader
 name|r
@@ -641,22 +657,6 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// there is the term thousand in the field field2
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 DECL|method|addwords
 specifier|private
