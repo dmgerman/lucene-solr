@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * @author Nicolas Maisonneuve  */
+comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  * @author Nicolas Maisonneuve  * @author Christian Mallwitz  */
 end_comment
 
 begin_class
@@ -221,6 +221,28 @@ name|hasNextCalled
 operator|=
 literal|false
 expr_stmt|;
+try|try
+block|{
+name|termEnum
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 return|return
 operator|(
 name|actualTerm
@@ -257,27 +279,6 @@ name|hasNextCalled
 operator|=
 literal|true
 expr_stmt|;
-try|try
-block|{
-comment|// if there are no more words
-if|if
-condition|(
-operator|!
-name|termEnum
-operator|.
-name|next
-argument_list|()
-condition|)
-block|{
-name|actualTerm
-operator|=
-literal|null
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-comment|// if the next word is in the field
 name|actualTerm
 operator|=
 name|termEnum
@@ -285,6 +286,18 @@ operator|.
 name|term
 argument_list|()
 expr_stmt|;
+comment|// if there are no words return false
+if|if
+condition|(
+name|actualTerm
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|String
 name|currentField
 init|=
@@ -293,6 +306,7 @@ operator|.
 name|field
 argument_list|()
 decl_stmt|;
+comment|// if the next word doesn't have the same field return false
 if|if
 condition|(
 name|currentField
@@ -311,21 +325,6 @@ block|}
 return|return
 literal|true
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 DECL|method|remove
 specifier|public
