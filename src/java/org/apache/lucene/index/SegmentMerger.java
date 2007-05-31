@@ -112,20 +112,6 @@ name|IndexOutput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMOutputStream
-import|;
-end_import
-
 begin_comment
 comment|/**  * The SegmentMerger class combines two or more Segments, represented by an IndexReader ({@link #add},  * into a single Segment.  After adding the appropriate readers, call the merge method to combine the   * segments.  *<P>   * If the compoundFile flag is set, then the segments will be merged into a compound file.  *     *   * @see #merge  * @see #add  */
 end_comment
@@ -190,6 +176,11 @@ DECL|field|fieldInfos
 specifier|private
 name|FieldInfos
 name|fieldInfos
+decl_stmt|;
+DECL|field|mergedDocs
+specifier|private
+name|int
+name|mergedDocs
 decl_stmt|;
 comment|/** This ctor used only by test code.    *     * @param dir The Directory to merge the other segments into    * @param name The name of the new segment    */
 DECL|method|SegmentMerger
@@ -294,7 +285,7 @@ block|{
 name|int
 name|value
 decl_stmt|;
-name|value
+name|mergedDocs
 operator|=
 name|mergeFields
 argument_list|()
@@ -316,7 +307,7 @@ name|mergeVectors
 argument_list|()
 expr_stmt|;
 return|return
-name|value
+name|mergedDocs
 return|;
 block|}
 comment|/**    * close all IndexReaders that have been added.    * Should not be called before merge().    * @throws IOException    */
@@ -1187,10 +1178,22 @@ specifier|private
 name|int
 name|skipInterval
 decl_stmt|;
+DECL|field|maxSkipLevels
+specifier|private
+name|int
+name|maxSkipLevels
+decl_stmt|;
 DECL|field|queue
 specifier|private
 name|SegmentMergeQueue
 name|queue
+init|=
+literal|null
+decl_stmt|;
+DECL|field|skipListWriter
+specifier|private
+name|DefaultSkipListWriter
+name|skipListWriter
 init|=
 literal|null
 decl_stmt|;
@@ -1248,6 +1251,28 @@ operator|=
 name|termInfosWriter
 operator|.
 name|skipInterval
+expr_stmt|;
+name|maxSkipLevels
+operator|=
+name|termInfosWriter
+operator|.
+name|maxSkipLevels
+expr_stmt|;
+name|skipListWriter
+operator|=
+operator|new
+name|DefaultSkipListWriter
+argument_list|(
+name|skipInterval
+argument_list|,
+name|maxSkipLevels
+argument_list|,
+name|mergedDocs
+argument_list|,
+name|freqOutput
+argument_list|,
+name|proxOutput
+argument_list|)
 expr_stmt|;
 name|queue
 operator|=
@@ -1625,8 +1650,12 @@ comment|// append posting data
 name|long
 name|skipPointer
 init|=
+name|skipListWriter
+operator|.
 name|writeSkip
-argument_list|()
+argument_list|(
+name|freqOutput
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1710,6 +1739,8 @@ init|=
 literal|0
 decl_stmt|;
 comment|// number of docs w/ term
+name|skipListWriter
+operator|.
 name|resetSkip
 argument_list|()
 expr_stmt|;
@@ -1875,13 +1906,22 @@ operator|==
 literal|0
 condition|)
 block|{
-name|bufferSkip
+name|skipListWriter
+operator|.
+name|setSkipData
 argument_list|(
 name|lastDoc
 argument_list|,
 name|storePayloads
 argument_list|,
 name|lastPayloadLength
+argument_list|)
+expr_stmt|;
+name|skipListWriter
+operator|.
+name|bufferSkip
+argument_list|(
+name|df
 argument_list|)
 expr_stmt|;
 block|}
@@ -2108,264 +2148,6 @@ block|}
 block|}
 return|return
 name|df
-return|;
-block|}
-DECL|field|skipBuffer
-specifier|private
-name|RAMOutputStream
-name|skipBuffer
-init|=
-operator|new
-name|RAMOutputStream
-argument_list|()
-decl_stmt|;
-DECL|field|lastSkipDoc
-specifier|private
-name|int
-name|lastSkipDoc
-decl_stmt|;
-DECL|field|lastSkipPayloadLength
-specifier|private
-name|int
-name|lastSkipPayloadLength
-decl_stmt|;
-DECL|field|lastSkipFreqPointer
-specifier|private
-name|long
-name|lastSkipFreqPointer
-decl_stmt|;
-DECL|field|lastSkipProxPointer
-specifier|private
-name|long
-name|lastSkipProxPointer
-decl_stmt|;
-DECL|method|resetSkip
-specifier|private
-name|void
-name|resetSkip
-parameter_list|()
-block|{
-name|skipBuffer
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-name|lastSkipDoc
-operator|=
-literal|0
-expr_stmt|;
-name|lastSkipPayloadLength
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-comment|// we don't have to write the first length in the skip list
-name|lastSkipFreqPointer
-operator|=
-name|freqOutput
-operator|.
-name|getFilePointer
-argument_list|()
-expr_stmt|;
-name|lastSkipProxPointer
-operator|=
-name|proxOutput
-operator|.
-name|getFilePointer
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|bufferSkip
-specifier|private
-name|void
-name|bufferSkip
-parameter_list|(
-name|int
-name|doc
-parameter_list|,
-name|boolean
-name|storePayloads
-parameter_list|,
-name|int
-name|payloadLength
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|long
-name|freqPointer
-init|=
-name|freqOutput
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|long
-name|proxPointer
-init|=
-name|proxOutput
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-comment|// To efficiently store payloads in the posting lists we do not store the length of
-comment|// every payload. Instead we omit the length for a payload if the previous payload had
-comment|// the same length.
-comment|// However, in order to support skipping the payload length at every skip point must be known.
-comment|// So we use the same length encoding that we use for the posting lists for the skip data as well:
-comment|// Case 1: current field does not store payloads
-comment|//           SkipDatum                 --> DocSkip, FreqSkip, ProxSkip
-comment|//           DocSkip,FreqSkip,ProxSkip --> VInt
-comment|//           DocSkip records the document number before every SkipInterval th  document in TermFreqs.
-comment|//           Document numbers are represented as differences from the previous value in the sequence.
-comment|// Case 2: current field stores payloads
-comment|//           SkipDatum                 --> DocSkip, PayloadLength?, FreqSkip,ProxSkip
-comment|//           DocSkip,FreqSkip,ProxSkip --> VInt
-comment|//           PayloadLength             --> VInt
-comment|//         In this case DocSkip/2 is the difference between
-comment|//         the current and the previous value. If DocSkip
-comment|//         is odd, then a PayloadLength encoded as VInt follows,
-comment|//         if DocSkip is even, then it is assumed that the
-comment|//         current payload length equals the length at the previous
-comment|//         skip point
-if|if
-condition|(
-name|storePayloads
-condition|)
-block|{
-name|int
-name|delta
-init|=
-name|doc
-operator|-
-name|lastSkipDoc
-decl_stmt|;
-if|if
-condition|(
-name|payloadLength
-operator|==
-name|lastSkipPayloadLength
-condition|)
-block|{
-comment|// the current payload length equals the length at the previous skip point,
-comment|// so we don't store the length again
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-name|delta
-operator|*
-literal|2
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// the payload length is different from the previous one. We shift the DocSkip,
-comment|// set the lowest bit and store the current payload length as VInt.
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-name|delta
-operator|*
-literal|2
-operator|+
-literal|1
-argument_list|)
-expr_stmt|;
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-name|payloadLength
-argument_list|)
-expr_stmt|;
-name|lastSkipPayloadLength
-operator|=
-name|payloadLength
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|// current field does not store payloads
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-name|doc
-operator|-
-name|lastSkipDoc
-argument_list|)
-expr_stmt|;
-block|}
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-call|(
-name|int
-call|)
-argument_list|(
-name|freqPointer
-operator|-
-name|lastSkipFreqPointer
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-call|(
-name|int
-call|)
-argument_list|(
-name|proxPointer
-operator|-
-name|lastSkipProxPointer
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|lastSkipDoc
-operator|=
-name|doc
-expr_stmt|;
-name|lastSkipFreqPointer
-operator|=
-name|freqPointer
-expr_stmt|;
-name|lastSkipProxPointer
-operator|=
-name|proxPointer
-expr_stmt|;
-block|}
-DECL|method|writeSkip
-specifier|private
-name|long
-name|writeSkip
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|long
-name|skipPointer
-init|=
-name|freqOutput
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|skipBuffer
-operator|.
-name|writeTo
-argument_list|(
-name|freqOutput
-argument_list|)
-expr_stmt|;
-return|return
-name|skipPointer
 return|;
 block|}
 DECL|method|mergeNorms

@@ -87,7 +87,7 @@ name|int
 name|FORMAT
 init|=
 operator|-
-literal|2
+literal|3
 decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
@@ -147,6 +147,13 @@ name|int
 name|skipInterval
 init|=
 literal|16
+decl_stmt|;
+comment|/** Expert: The maximum number of skip levels. Smaller values result in     * slightly smaller indexes, but slower skipping in big posting lists.    */
+DECL|field|maxSkipLevels
+name|int
+name|maxSkipLevels
+init|=
+literal|10
 decl_stmt|;
 DECL|field|lastIndexPointer
 specifier|private
@@ -343,6 +350,14 @@ name|skipInterval
 argument_list|)
 expr_stmt|;
 comment|// write skipInterval
+name|output
+operator|.
+name|writeInt
+argument_list|(
+name|maxSkipLevels
+argument_list|)
+expr_stmt|;
+comment|// write maxSkipLevels
 block|}
 comment|/** Adds a new<Term, TermInfo> pair to the set.     Term must be lexicographically greater than all previous Terms added.     TermInfo pointers must be positive and greater than all previous.*/
 DECL|method|add

@@ -129,6 +129,10 @@ DECL|field|skipInterval
 name|int
 name|skipInterval
 decl_stmt|;
+DECL|field|maxSkipLevels
+name|int
+name|maxSkipLevels
+decl_stmt|;
 DECL|field|formatM1SkipInterval
 specifier|private
 name|int
@@ -163,6 +167,11 @@ name|isIndex
 operator|=
 name|isi
 expr_stmt|;
+name|maxSkipLevels
+operator|=
+literal|1
+expr_stmt|;
+comment|// use single-level skip lists for formats> -3
 name|int
 name|firstInt
 init|=
@@ -287,6 +296,23 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|format
+operator|==
+operator|-
+literal|3
+condition|)
+block|{
+comment|// this new format introduces multi-level skipping
+name|maxSkipLevels
+operator|=
+name|input
+operator|.
+name|readInt
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
