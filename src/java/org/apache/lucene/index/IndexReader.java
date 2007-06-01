@@ -583,7 +583,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    * path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory */
+comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    * path.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -614,7 +614,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in the given Directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param directory the index directory    */
+comment|/** Returns an IndexReader reading the index in the given Directory.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -1574,7 +1574,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns an enumeration of all the terms in the index.    * The enumeration is ordered by Term.compareTo().  Each term    * is greater than all that precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an enumeration of all the terms in the index. The    * enumeration is ordered by Term.compareTo(). Each term is greater    * than all that precede it in the enumeration. Note that after    * calling terms(), {@link TermEnum#next()} must be called    * on the resulting enumeration before calling other methods such as    * {@link TermEnum#term()}.    * @throws IOException if there is a low-level IO error    */
 DECL|method|terms
 specifier|public
 specifier|abstract
@@ -1584,7 +1584,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all terms after a given term.    * The enumeration is ordered by Term.compareTo().  Each term    * is greater than all that precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an enumeration of all terms starting at a given term. If    * the given term does not exist, the enumeration is positioned at the    * first term greater than the supplied therm. The enumeration is    * ordered by Term.compareTo(). Each term is greater than all that    * precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
 DECL|method|terms
 specifier|public
 specifier|abstract
