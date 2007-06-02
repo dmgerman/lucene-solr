@@ -578,7 +578,7 @@ return|;
 block|}
 comment|/**    * Get system info    */
 DECL|method|getSystemInfo
-specifier|private
+specifier|public
 specifier|static
 name|SimpleOrderedMap
 argument_list|<
@@ -977,7 +977,7 @@ block|}
 block|}
 comment|/**    * Get JVM Info - including memory info    */
 DECL|method|getJvmInfo
-specifier|private
+specifier|public
 specifier|static
 name|SimpleOrderedMap
 argument_list|<
