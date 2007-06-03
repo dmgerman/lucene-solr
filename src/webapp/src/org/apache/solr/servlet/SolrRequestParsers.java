@@ -685,7 +685,7 @@ parameter_list|(
 name|SolrParams
 name|params
 parameter_list|,
-name|List
+name|Collection
 argument_list|<
 name|ContentStream
 argument_list|>
