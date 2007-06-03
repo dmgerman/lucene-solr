@@ -477,7 +477,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Check your log files for more detailed infomation on what may be wrong.\n"
+literal|"Check your log files for more detailed information on what may be wrong.\n"
 argument_list|)
 expr_stmt|;
 name|out
@@ -531,8 +531,8 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-comment|// Servlet containers behave slightly differntly if you throw an exception durring
-comment|// initalization.  Resin will display that error for every page, jetty prints it in
+comment|// Servlet containers behave slightly differently if you throw an exception during
+comment|// initialization.  Resin will display that error for every page, jetty prints it in
 comment|// the logs, but continues normally.  (We will see a 404 rather then the real error)
 comment|// rather then leave the behavior undefined, lets cache the error and spit it out
 comment|// for every request.
