@@ -253,7 +253,39 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** various query sanity checks on a searcher */
+comment|/** deep check that explanations of a query 'score' correctly */
+DECL|method|checkExplanations
+specifier|public
+specifier|static
+name|void
+name|checkExplanations
+parameter_list|(
+specifier|final
+name|Query
+name|q
+parameter_list|,
+specifier|final
+name|Searcher
+name|s
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|CheckHits
+operator|.
+name|checkExplanations
+argument_list|(
+name|q
+argument_list|,
+literal|null
+argument_list|,
+name|s
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**     * various query sanity checks on a searcher, including explanation checks.    * @see #checkExplanations    * @see #checkSkipTo    * @see #check(Query)    */
 DECL|method|check
 specifier|public
 specifier|static
@@ -279,7 +311,10 @@ condition|(
 name|s
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|s
 operator|instanceof
 name|IndexSearcher
@@ -298,6 +333,14 @@ argument_list|(
 name|q1
 argument_list|,
 name|is
+argument_list|)
+expr_stmt|;
+block|}
+name|checkExplanations
+argument_list|(
+name|q1
+argument_list|,
+name|s
 argument_list|)
 expr_stmt|;
 block|}

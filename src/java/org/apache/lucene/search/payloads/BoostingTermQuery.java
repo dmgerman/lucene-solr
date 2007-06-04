@@ -615,7 +615,7 @@ name|result
 operator|.
 name|setDescription
 argument_list|(
-literal|"btq"
+literal|"btq, product of:"
 argument_list|)
 expr_stmt|;
 return|return
