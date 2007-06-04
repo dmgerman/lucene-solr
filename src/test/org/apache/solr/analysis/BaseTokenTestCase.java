@@ -836,7 +836,6 @@ block|}
 comment|//------------------------------------------------------------------------
 comment|// These may be useful beyond test cases...
 comment|//------------------------------------------------------------------------
-comment|// This could probably be put in a utility class
 DECL|method|getTokens
 specifier|static
 name|List
@@ -896,7 +895,6 @@ return|return
 name|tokens
 return|;
 block|}
-comment|// This could probably be put in a utility class
 DECL|class|IterTokenStream
 specifier|public
 specifier|static
@@ -931,6 +929,27 @@ name|asList
 argument_list|(
 name|toks
 argument_list|)
+operator|.
+name|iterator
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|IterTokenStream
+specifier|public
+name|IterTokenStream
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Token
+argument_list|>
+name|toks
+parameter_list|)
+block|{
+name|this
+operator|.
+name|toks
+operator|=
+name|toks
 operator|.
 name|iterator
 argument_list|()
