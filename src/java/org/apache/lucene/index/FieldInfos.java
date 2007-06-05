@@ -551,7 +551,7 @@ block|}
 comment|/** If the field is not yet known, adds it. If it is known, checks to make    *  sure that the isIndexed flag is the same as was given previously for this    *  field. If not - marks it as being indexed.  Same goes for the TermVector    * parameters.    *    * @param name The name of the field    * @param isIndexed true if the field is indexed    * @param storeTermVector true if the term vector should be stored    * @param storePositionWithTermVector true if the term vector with positions should be stored    * @param storeOffsetWithTermVector true if the term vector with offsets should be stored    * @param omitNorms true if the norms for the indexed field should be omitted    * @param storePayloads true if payloads should be stored for this field    */
 DECL|method|add
 specifier|public
-name|void
+name|FieldInfo
 name|add
 parameter_list|(
 name|String
@@ -591,6 +591,7 @@ operator|==
 literal|null
 condition|)
 block|{
+return|return
 name|addInternal
 argument_list|(
 name|name
@@ -607,7 +608,7 @@ name|omitNorms
 argument_list|,
 name|storePayloads
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 else|else
 block|{
@@ -713,10 +714,13 @@ literal|true
 expr_stmt|;
 block|}
 block|}
+return|return
+name|fi
+return|;
 block|}
 DECL|method|addInternal
 specifier|private
-name|void
+name|FieldInfo
 name|addInternal
 parameter_list|(
 name|String
@@ -783,6 +787,9 @@ argument_list|,
 name|fi
 argument_list|)
 expr_stmt|;
+return|return
+name|fi
+return|;
 block|}
 DECL|method|fieldNumber
 specifier|public
