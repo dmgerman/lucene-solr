@@ -114,6 +114,40 @@ name|lookup
 expr_stmt|;
 block|}
 block|}
+comment|/** Interface to parse bytes from document fields.    * @see FieldCache#getBytes(IndexReader, String, FieldCache.ByteParser)    */
+DECL|interface|ByteParser
+specifier|public
+interface|interface
+name|ByteParser
+block|{
+comment|/** Return a single Byte representation of this field's value. */
+DECL|method|parseByte
+specifier|public
+name|byte
+name|parseByte
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Interface to parse shorts from document fields.    * @see FieldCache#getShorts(IndexReader, String, FieldCache.ShortParser)    */
+DECL|interface|ShortParser
+specifier|public
+interface|interface
+name|ShortParser
+block|{
+comment|/** Return a short representation of this field's value. */
+DECL|method|parseShort
+specifier|public
+name|short
+name|parseShort
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+function_decl|;
+block|}
 comment|/** Interface to parse ints from document fields.    * @see FieldCache#getInts(IndexReader, String, FieldCache.IntParser)    */
 DECL|interface|IntParser
 specifier|public
@@ -159,6 +193,76 @@ operator|new
 name|FieldCacheImpl
 argument_list|()
 decl_stmt|;
+comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as a single byte and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the single byte values.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+DECL|method|getBytes
+specifier|public
+name|byte
+index|[]
+name|getBytes
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as bytes and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    * @param reader  Used to get field values.    * @param field   Which field contains the bytes.    * @param parser  Computes byte for string values.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+DECL|method|getBytes
+specifier|public
+name|byte
+index|[]
+name|getBytes
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|ByteParser
+name|parser
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as shorts and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the shorts.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+DECL|method|getShorts
+specifier|public
+name|short
+index|[]
+name|getShorts
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as shorts and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    * @param reader  Used to get field values.    * @param field   Which field contains the shorts.    * @param parser  Computes short for string values.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+DECL|method|getShorts
+specifier|public
+name|short
+index|[]
+name|getShorts
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|ShortParser
+name|parser
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as integers and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the integers.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getInts
 specifier|public
