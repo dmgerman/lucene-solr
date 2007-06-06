@@ -46,14 +46,14 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**       * Returns the length of the payload at the current term position.      * This is invalid until {@link #nextPosition()} is called for      * the first time.<br>      *<br>      *<b>      * Warning: The status of the Payloads feature is experimental. The APIs      * introduced here might change in the future and will not be supported anymore      * in such a case. If you want to use this feature in a production environment      * you should wait for an official release.      *</b>       * @return length of the current payload in number of bytes      */
+comment|/**       * Returns the length of the payload at the current term position.      * This is invalid until {@link #nextPosition()} is called for      * the first time.<br>      *<br>      *<p><font color="#FF0000">      * WARNING: The status of the<b>Payloads</b> feature is experimental.       * The APIs introduced here might change in the future and will not be       * supported anymore in such a case.</font>      * @return length of the current payload in number of bytes      */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|getPayloadLength
 name|int
 name|getPayloadLength
 parameter_list|()
 function_decl|;
-comment|/**       * Returns the payload data at the current term position.      * This is invalid until {@link #nextPosition()} is called for      * the first time.      * This method must not be called more than once after each call      * of {@link #nextPosition()}. However, payloads are loaded lazily,      * so if the payload data for the current position is not needed,      * this method may not be called at all for performance reasons.<br>      *<br>      *<b>      * Warning: The status of the Payloads feature is experimental. The APIs      * introduced here might change in the future and will not be supported anymore      * in such a case. If you want to use this feature in a production environment      * you should wait for an official release.      *</b>      *       * @param data the array into which the data of this payload is to be      *             stored, if it is big enough; otherwise, a new byte[] array      *             is allocated for this purpose.       * @param offset the offset in the array into which the data of this payload      *               is to be stored.      * @return a byte[] array containing the data of this payload      * @throws IOException      */
+comment|/**       * Returns the payload data at the current term position.      * This is invalid until {@link #nextPosition()} is called for      * the first time.      * This method must not be called more than once after each call      * of {@link #nextPosition()}. However, payloads are loaded lazily,      * so if the payload data for the current position is not needed,      * this method may not be called at all for performance reasons.<br>      *<br>      *<p><font color="#FF0000">      * WARNING: The status of the<b>Payloads</b> feature is experimental.       * The APIs introduced here might change in the future and will not be       * supported anymore in such a case.</font>      *       * @param data the array into which the data of this payload is to be      *             stored, if it is big enough; otherwise, a new byte[] array      *             is allocated for this purpose.       * @param offset the offset in the array into which the data of this payload      *               is to be stored.      * @return a byte[] array containing the data of this payload      * @throws IOException      */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|getPayload
 name|byte
@@ -70,7 +70,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Checks if a payload can be loaded at this position.    *<p>    * Payloads can only be loaded once per call to     * {@link #nextPosition()}.    *     * @return true if there is a payload available at this position that can be loaded    *    * *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>    */
+comment|/**    * Checks if a payload can be loaded at this position.    *<p>    * Payloads can only be loaded once per call to     * {@link #nextPosition()}.    *     *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.     * The APIs introduced here might change in the future and will not be     * supported anymore in such a case.</font>    *     * @return true if there is a payload available at this position that can be loaded    */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|isPayloadAvailable
 specifier|public

@@ -45,7 +45,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** A Token is an occurence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is an interned string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><b>   Warning: The status of the Payloads feature is experimental. The APIs   introduced here might change in the future and will not be supported anymore   in such a case. If you want to use this feature in a production environment   you should wait for an official release.</b>     @see org.apache.lucene.index.Payload   */
+comment|/** A Token is an occurence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is an interned string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><p><font color="#FF0000">   WARNING: The status of the<b>Payloads</b> feature is experimental.    The APIs introduced here might change in the future and will not be    supported anymore in such a case.</font>    @see org.apache.lucene.index.Payload   */
 end_comment
 
 begin_comment
@@ -262,7 +262,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/**     * Sets this Token's payload.    *<p>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>      */
+comment|/**     * Sets this Token's payload.    *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.     * The APIs introduced here might change in the future and will not be     * supported anymore in such a case.</font>    */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|setPayload
 specifier|public
@@ -280,7 +280,7 @@ operator|=
 name|payload
 expr_stmt|;
 block|}
-comment|/**     * Returns this Token's payload.     *<p>    *<b>    * Warning: The status of the Payloads feature is experimental. The APIs    * introduced here might change in the future and will not be supported anymore    * in such a case. If you want to use this feature in a production environment    * you should wait for an official release.    *</b>       */
+comment|/**     * Returns this Token's payload.     *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.     * The APIs introduced here might change in the future and will not be     * supported anymore in such a case.</font>    */
 comment|// TODO: Remove warning after API has been finalized
 DECL|method|getPayload
 specifier|public

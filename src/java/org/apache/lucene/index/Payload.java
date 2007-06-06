@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   *  A Payload is metadata that can be stored together with each occurrence    *  of a term. This metadata is stored inline in the posting list of the   *  specific term.     *<p>   *  To store payloads in the index a {@link TokenStream} has to be used that   *  produces {@link Token}s containing payload data.   *<p>   *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}   *  to retrieve the payloads from the index.<br>   *<br>   *     *<b>   *  Warning: The status of the Payloads feature is experimental. The APIs   *  introduced here might change in the future and will not be supported anymore   *  in such a case. If you want to use this feature in a production environment   *  you should wait for an official release.   *</b>   */
+comment|/**   *  A Payload is metadata that can be stored together with each occurrence    *  of a term. This metadata is stored inline in the posting list of the   *  specific term.     *<p>   *  To store payloads in the index a {@link TokenStream} has to be used that   *  produces {@link Token}s containing payload data.   *<p>   *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}   *  to retrieve the payloads from the index.<br>   *<br>   *     *<p><font color="#FF0000">   * WARNING: The status of the<b>Payloads</b> feature is experimental.    * The APIs introduced here might change in the future and will not be    * supported anymore in such a case.</font>   */
 end_comment
 
 begin_comment
