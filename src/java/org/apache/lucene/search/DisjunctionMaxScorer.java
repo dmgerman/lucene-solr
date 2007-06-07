@@ -559,10 +559,6 @@ name|firstTime
 operator|=
 literal|false
 expr_stmt|;
-return|return
-literal|true
-return|;
-comment|// more would have been false if no subScorers had any docs
 block|}
 while|while
 condition|(
