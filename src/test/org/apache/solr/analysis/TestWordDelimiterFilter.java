@@ -291,6 +291,61 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testIgnoreCaseChange
+specifier|public
+name|void
+name|testIgnoreCaseChange
+parameter_list|()
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"43"
+argument_list|,
+literal|"wdf_nocase"
+argument_list|,
+literal|"HellO WilliAM"
+argument_list|,
+literal|"subword"
+argument_list|,
+literal|"GoodBye JonEs"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"no case change"
+argument_list|,
+name|req
+argument_list|(
+literal|"wdf_nocase:(hell o am)"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"case change"
+argument_list|,
+name|req
+argument_list|(
+literal|"subword:(good jon)"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=1]"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

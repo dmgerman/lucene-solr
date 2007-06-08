@@ -82,6 +82,12 @@ name|catenateAll
 init|=
 literal|0
 decl_stmt|;
+DECL|field|splitOnCaseChange
+name|int
+name|splitOnCaseChange
+init|=
+literal|0
+decl_stmt|;
 DECL|method|init
 specifier|public
 name|void
@@ -148,6 +154,15 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|splitOnCaseChange
+operator|=
+name|getInt
+argument_list|(
+literal|"splitOnCaseChange"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|create
 specifier|public
@@ -173,6 +188,8 @@ argument_list|,
 name|catenateNumbers
 argument_list|,
 name|catenateAll
+argument_list|,
+name|splitOnCaseChange
 argument_list|)
 return|;
 block|}
