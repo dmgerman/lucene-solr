@@ -56,7 +56,6 @@ end_comment
 
 begin_class
 DECL|class|DefaultSkipListReader
-specifier|public
 class|class
 name|DefaultSkipListReader
 extends|extends
