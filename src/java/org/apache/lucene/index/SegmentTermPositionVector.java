@@ -18,7 +18,6 @@ end_comment
 
 begin_class
 DECL|class|SegmentTermPositionVector
-specifier|public
 class|class
 name|SegmentTermPositionVector
 extends|extends
