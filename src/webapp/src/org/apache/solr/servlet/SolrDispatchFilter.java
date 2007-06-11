@@ -60,6 +60,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -404,6 +416,19 @@ name|t
 parameter_list|)
 block|{
 comment|// catch this so our filter still works
+name|log
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|SEVERE
+argument_list|,
+literal|"Could not start SOLR. Check solr/home property"
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
 name|SolrConfig
 operator|.
 name|severeErrors
