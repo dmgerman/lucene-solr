@@ -60,6 +60,34 @@ name|_boost
 init|=
 literal|null
 decl_stmt|;
+comment|/**    * Remove all fields and boosts from the document    */
+annotation|@
+name|Override
+DECL|method|clear
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|super
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|_boost
+operator|!=
+literal|null
+condition|)
+block|{
+name|_boost
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Set the document boost.  null will remove the boost    */
 DECL|method|setDocumentBoost
 specifier|public

@@ -153,6 +153,19 @@ block|}
 comment|///////////////////////////////////////////////////////////////////
 comment|// Add / Set / Remove Fields
 comment|///////////////////////////////////////////////////////////////////
+comment|/**    * Remove all fields from the document    */
+DECL|method|clear
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|_fields
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**    * Remove all fields with the name    */
 DECL|method|removeFields
 specifier|public
