@@ -36,15 +36,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|solr
+name|logging
 operator|.
-name|core
-operator|.
-name|SolrCore
+name|Logger
 import|;
 end_import
 
@@ -60,6 +58,24 @@ specifier|public
 class|class
 name|CommonParams
 block|{
+DECL|field|log
+specifier|public
+specifier|static
+name|Logger
+name|log
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|CommonParams
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Deprecated
 DECL|field|FL
@@ -240,8 +256,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|SolrCore
-operator|.
 name|log
 operator|.
 name|severe
@@ -290,8 +304,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|SolrCore
-operator|.
 name|log
 operator|.
 name|severe
@@ -340,8 +352,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|SolrCore
-operator|.
 name|log
 operator|.
 name|severe
@@ -390,8 +400,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|SolrCore
-operator|.
 name|log
 operator|.
 name|severe
