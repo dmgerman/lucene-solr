@@ -48,20 +48,6 @@ name|Reader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|IOUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author ryan  * @version $Id$  * @since solr 1.2  */
 end_comment
@@ -94,7 +80,7 @@ name|getSize
 parameter_list|()
 function_decl|;
 comment|// size if we know it, otherwise null
-comment|/**    * Get an open stream.  You are responsible for closing it.  Consider using     * something like:    *<pre>    *   InputStream stream = stream.getStream();    *   try {    *     // use the stream...    *   }    *   finally {    *     IOUtils.closeQuietly(reader);    *   }    *</pre>    *      * Only the first call to<code>getStream()</code> or<code>getReader()</code>    * is gaurenteed to work.  The runtime behavior for aditional calls is undefined.    */
+comment|/**    * Get an open stream.  You are responsible for closing it.  Consider using     * something like:    *<pre>    *   InputStream stream = stream.getStream();    *   try {    *     // use the stream...    *   }    *   finally {    *     IOUtils.closeQuietly(reader);    *   }    *</pre>    *      * Only the first call to<code>getStream()</code> or<code>getReader()</code>    * is guaranteed to work.  The runtime behavior for additional calls is undefined.    */
 DECL|method|getStream
 name|InputStream
 name|getStream
@@ -102,7 +88,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Get an open stream.  You are responsible for closing it.  Consider using     * something like:    *<pre>    *   Reader reader = stream.getReader();    *   try {    *     // use the reader...    *   }    *   finally {    *     IOUtils.closeQuietly(reader);    *   }    *</pre>    *      * Only the first call to<code>getStream()</code> or<code>getReader()</code>    * is gaurenteed to work.  The runtime behavior for aditional calls is undefined.    */
+comment|/**    * Get an open stream.  You are responsible for closing it.  Consider using     * something like:    *<pre>    *   Reader reader = stream.getReader();    *   try {    *     // use the reader...    *   }    *   finally {    *     IOUtils.closeQuietly(reader);    *   }    *</pre>    *      * Only the first call to<code>getStream()</code> or<code>getReader()</code>    * is guaranteed to work.  The runtime behavior for additional calls is undefined.    */
 DECL|method|getReader
 name|Reader
 name|getReader

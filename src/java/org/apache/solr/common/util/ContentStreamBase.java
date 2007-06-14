@@ -401,7 +401,9 @@ name|file
 argument_list|)
 return|;
 block|}
-comment|/**      * If an charset is defined (by the contentType) ues that, otherwise       * use a file reader      */
+comment|/**      * If an charset is defined (by the contentType) use that, otherwise       * use a file reader      */
+annotation|@
+name|Override
 DECL|method|getReader
 specifier|public
 name|Reader
@@ -512,7 +514,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * If an charset is defined (by the contentType) ues that, otherwise       * use a StringReader      */
+comment|/**      * If an charset is defined (by the contentType) use that, otherwise       * use a StringReader      */
+annotation|@
+name|Override
 DECL|method|getReader
 specifier|public
 name|Reader

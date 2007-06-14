@@ -92,6 +92,8 @@ operator|=
 name|defaults
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get
 specifier|public
 name|String
@@ -126,6 +128,8 @@ name|param
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParams
 specifier|public
 name|String
@@ -162,6 +166,8 @@ name|param
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParameterNamesIterator
 specifier|public
 name|Iterator
@@ -209,6 +215,8 @@ return|return
 name|c
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

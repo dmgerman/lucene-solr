@@ -49,6 +49,8 @@ name|extra
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParams
 specifier|public
 name|String
@@ -171,6 +173,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
