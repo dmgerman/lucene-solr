@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.util
+DECL|package|org.apache.solr.common
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|common
 package|;
 end_package
 
@@ -43,6 +43,34 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrInputDocument
 import|;
 end_import
 

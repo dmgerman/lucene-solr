@@ -26,6 +26,22 @@ name|ServletRequest
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|MultiMapSolrParams
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author yonik  * @version $Id$  */
 end_comment

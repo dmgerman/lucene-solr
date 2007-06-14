@@ -301,7 +301,7 @@ argument_list|)
 argument_list|,
 name|HEADER_XPATH
 operator|+
-literal|"/str[@name='handler'][.='org.apache.solr.request.StandardRequestHandler']"
+literal|"/str[@name='handler'][.='org.apache.solr.handler.StandardRequestHandler']"
 argument_list|)
 expr_stmt|;
 block|}

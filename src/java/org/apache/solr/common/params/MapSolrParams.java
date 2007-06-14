@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.request
+DECL|package|org.apache.solr.common.params
 package|package
 name|org
 operator|.
@@ -12,7 +12,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|common
+operator|.
+name|params
 package|;
 end_package
 

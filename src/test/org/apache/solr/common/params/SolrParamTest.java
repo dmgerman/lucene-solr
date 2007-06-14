@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.util
+DECL|package|org.apache.solr.common.params
 package|package
 name|org
 operator|.
@@ -12,7 +12,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|common
+operator|.
+name|params
 package|;
 end_package
 
@@ -54,7 +56,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
 name|SolrException
 import|;
@@ -68,9 +70,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|common
 operator|.
-name|SolrParams
+name|params
+operator|.
+name|DefaultSolrParams
 import|;
 end_import
 
@@ -82,7 +86,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|common
+operator|.
+name|params
 operator|.
 name|MapSolrParams
 import|;
@@ -96,9 +102,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|common
 operator|.
-name|DefaultSolrParams
+name|params
+operator|.
+name|SolrParams
 import|;
 end_import
 

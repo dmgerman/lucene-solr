@@ -58,9 +58,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|common
 operator|.
-name|DOMUtil
+name|SolrException
 import|;
 end_import
 
@@ -72,9 +72,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|SolrException
+name|util
+operator|.
+name|DOMUtil
 import|;
 end_import
 

@@ -108,9 +108,25 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|SolrConfig
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|DOMUtil
 import|;
 end_import
 
@@ -124,7 +140,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrException
+name|SolrConfig
 import|;
 end_import
 
@@ -195,20 +211,6 @@ operator|.
 name|search
 operator|.
 name|SolrQueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DOMUtil
 import|;
 end_import
 

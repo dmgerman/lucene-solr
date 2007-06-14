@@ -102,9 +102,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|SolrCore
+name|SolrException
 import|;
 end_import
 
@@ -118,7 +118,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrException
+name|SolrCore
 import|;
 end_import
 

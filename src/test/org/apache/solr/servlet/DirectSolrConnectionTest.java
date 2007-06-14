@@ -24,7 +24,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|common
+operator|.
+name|params
 operator|.
 name|SolrParams
 import|;

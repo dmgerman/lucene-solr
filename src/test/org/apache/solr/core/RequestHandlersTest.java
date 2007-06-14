@@ -24,9 +24,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|handler
 operator|.
-name|SolrRequestHandler
+name|StandardRequestHandler
 import|;
 end_import
 
@@ -40,7 +40,7 @@ name|solr
 operator|.
 name|request
 operator|.
-name|StandardRequestHandler
+name|SolrRequestHandler
 import|;
 end_import
 

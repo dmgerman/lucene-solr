@@ -158,9 +158,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|SolrConfig
+name|params
+operator|.
+name|SolrParams
 import|;
 end_import
 
@@ -172,9 +174,25 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrConfig
 import|;
 end_import
 
