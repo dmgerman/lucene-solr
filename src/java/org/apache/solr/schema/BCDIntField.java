@@ -198,6 +198,7 @@ name|String
 name|val
 parameter_list|)
 block|{
+comment|// TODO? make sure each character is a digit?
 return|return
 name|BCDUtils
 operator|.
@@ -223,6 +224,30 @@ name|f
 operator|.
 name|stringValue
 argument_list|()
+argument_list|)
+return|;
+block|}
+comment|// Note, this can't return type 'Integer' because BCDStrField and BCDLong extend it
+annotation|@
+name|Override
+DECL|method|toObject
+specifier|public
+name|Object
+name|toObject
+parameter_list|(
+name|Fieldable
+name|f
+parameter_list|)
+block|{
+return|return
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
+name|toExternal
+argument_list|(
+name|f
+argument_list|)
 argument_list|)
 return|;
 block|}

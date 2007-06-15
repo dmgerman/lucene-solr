@@ -96,6 +96,25 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * This only works for strings that represent an interger.  If the string    * is not an integer, it will not survive the base10k conversion!    */
+annotation|@
+name|Override
+DECL|method|toObject
+specifier|public
+name|String
+name|toObject
+parameter_list|(
+name|Fieldable
+name|f
+parameter_list|)
+block|{
+return|return
+name|toExternal
+argument_list|(
+name|f
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

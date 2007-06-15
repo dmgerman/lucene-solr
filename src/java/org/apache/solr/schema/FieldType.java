@@ -1128,6 +1128,24 @@ name|stringValue
 argument_list|()
 return|;
 block|}
+comment|/**    * Convert the stored-field format to an external object.      * @see #toInternal    * @since solr 1.3    */
+DECL|method|toObject
+specifier|public
+name|Object
+name|toObject
+parameter_list|(
+name|Fieldable
+name|f
+parameter_list|)
+block|{
+return|return
+name|toExternal
+argument_list|(
+name|f
+argument_list|)
+return|;
+comment|// by default use the string
+block|}
 comment|/** :TODO: document this method */
 DECL|method|indexedToReadable
 specifier|public

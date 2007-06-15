@@ -2810,6 +2810,13 @@ argument_list|,
 name|destArr
 argument_list|)
 expr_stmt|;
+name|copyFieldTarget
+operator|.
+name|add
+argument_list|(
+name|d
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 name|log
@@ -4276,6 +4283,22 @@ name|DynamicCopy
 index|[]
 name|dynamicCopyFields
 decl_stmt|;
+DECL|field|copyFieldTarget
+specifier|private
+specifier|final
+name|Set
+argument_list|<
+name|SchemaField
+argument_list|>
+name|copyFieldTarget
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|SchemaField
+argument_list|>
+argument_list|()
+decl_stmt|;
 comment|/**    * Get all copy fields, both the static and the dynamic ones.    * @param sourceField    * @return Array of fields to copy to.    */
 DECL|method|getCopyFields
 specifier|public
@@ -4414,6 +4437,25 @@ expr_stmt|;
 block|}
 return|return
 name|results
+return|;
+block|}
+comment|/**    * Check if a field is used as the destination of a copyField operation     *     * @since solr 1.3    */
+DECL|method|isCopyFieldTarget
+specifier|public
+name|boolean
+name|isCopyFieldTarget
+parameter_list|(
+name|SchemaField
+name|f
+parameter_list|)
+block|{
+return|return
+name|copyFieldTarget
+operator|.
+name|contains
+argument_list|(
+name|f
+argument_list|)
 return|;
 block|}
 comment|/**    * Is the given field name a wildcard?  I.e. does it begin or end with *?    * @param name    * @return true/false    */
