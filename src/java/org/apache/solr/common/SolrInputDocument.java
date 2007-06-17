@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represent the field and boost information needed to construct and index  * a Lucene Document.  Like the SolrDocument, the field values need to  * match those specified in schema.xml   *   * By default, this will keep every field value added to the document.  To only  * keep distinct values, use setKeepDuplicateFieldValues( "fieldname", false);  *  * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Represent the field and boost information needed to construct and index  * a Lucene Document.  Like the SolrDocument, the field values need to  * match those specified in schema.xml   *   * By default, this will keep every field value added to the document.  To only  * keep distinct values, use setRemoveDuplicateFieldValues( "fieldname", true );  *  * @author ryan  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -90,7 +90,7 @@ name|_boost
 init|=
 literal|null
 decl_stmt|;
-DECL|field|_keepDuplicates
+DECL|field|_removeDuplicates
 specifier|private
 name|Map
 argument_list|<
@@ -98,7 +98,7 @@ name|String
 argument_list|,
 name|Boolean
 argument_list|>
-name|_keepDuplicates
+name|_removeDuplicates
 init|=
 literal|null
 decl_stmt|;
@@ -119,15 +119,15 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|_keepDuplicates
+name|_removeDuplicates
 operator|==
 literal|null
 operator|||
 name|Boolean
 operator|.
-name|TRUE
+name|FALSE
 operator|==
-name|_keepDuplicates
+name|_removeDuplicates
 operator|.
 name|get
 argument_list|(
@@ -183,12 +183,12 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|_keepDuplicates
+name|_removeDuplicates
 operator|!=
 literal|null
 condition|)
 block|{
-name|_keepDuplicates
+name|_removeDuplicates
 operator|.
 name|clear
 argument_list|()
@@ -322,10 +322,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Should the Document be able to contain duplicate values for the same field?    *     * By default, all field values are maintained.  If you only want to distinct values    * set setKeepDuplicateFieldValues( "fieldname", false );    *     * To change the default behavior, use<code>null</code> as the fieldname.    *     * NOTE: this must be called before adding any values to the given field.    */
-DECL|method|setKeepDuplicateFieldValues
+DECL|method|setRemoveDuplicateFieldValues
 specifier|public
 name|void
-name|setKeepDuplicateFieldValues
+name|setRemoveDuplicateFieldValues
 parameter_list|(
 name|String
 name|name
@@ -357,7 +357,7 @@ throw|;
 block|}
 if|if
 condition|(
-name|_keepDuplicates
+name|_removeDuplicates
 operator|==
 literal|null
 condition|)
@@ -366,14 +366,14 @@ if|if
 condition|(
 name|v
 operator|==
-literal|true
+literal|false
 condition|)
 block|{
-comment|// we only care about 'false'  we don't need to make a map unless
+comment|// we only care about 'true'  we don't need to make a map unless
 comment|// something does not want multiple values
 return|return;
 block|}
-name|_keepDuplicates
+name|_removeDuplicates
 operator|=
 operator|new
 name|HashMap
@@ -385,7 +385,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-name|_keepDuplicates
+name|_removeDuplicates
 operator|.
 name|put
 argument_list|(
