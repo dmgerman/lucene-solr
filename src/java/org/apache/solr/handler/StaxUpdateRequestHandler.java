@@ -2034,6 +2034,41 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// The lucene API and solr XML field specification make it possible to set boosts
+comment|// on multi-value fields even though lucene indexing does not support this.
+comment|// To keep behavior consistent with what happens in the lucene index, we accumulate
+comment|// the product of all boosts specified for this field.
+name|Float
+name|old
+init|=
+name|doc
+operator|.
+name|getBoost
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|old
+operator|!=
+literal|null
+condition|)
+block|{
+name|doc
+operator|.
+name|setBoost
+argument_list|(
+name|name
+argument_list|,
+name|boost
+operator|*
+name|old
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|doc
 operator|.
 name|setBoost
@@ -2043,6 +2078,7 @@ argument_list|,
 name|boost
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

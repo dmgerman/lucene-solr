@@ -1024,6 +1024,14 @@ name|boost
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// In lucene, the boost for a given field is the product of the
+comment|// document boost and *all* boosts on values of that field.
+comment|// For multi-valued fields, we only want to set the boost on the
+comment|// first field.
+name|boost
+operator|=
+literal|1.0f
+expr_stmt|;
 block|}
 block|}
 comment|// Now validate required fields or add default values
