@@ -443,6 +443,19 @@ name|name
 argument_list|)
 return|;
 block|}
+comment|/** clear all parameters */
+DECL|method|clear
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|vals
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**     * remove the given value for the given name    *     * @return true if the item was removed, false if null or not present    */
 DECL|method|remove
 specifier|public
