@@ -534,6 +534,12 @@ argument_list|,
 name|o
 argument_list|)
 expr_stmt|;
+comment|// only write the boost for the first mulit-valued field
+comment|// otherwise, the used boost is the product of all the boost values
+name|boost
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 name|writer
