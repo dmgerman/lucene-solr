@@ -211,16 +211,15 @@ return|return
 operator|(
 name|rand
 operator|.
-name|nextBoolean
+name|nextInt
 argument_list|()
+operator|&
+literal|0x2
 operator|)
-condition|?
-literal|1
-else|:
 operator|-
 literal|1
 return|;
-comment|//rand.nextInt()>>> 31; ??
+comment|// (rand.nextBoolean()) ? 1 : -1;
 block|}
 specifier|public
 name|Comparable
