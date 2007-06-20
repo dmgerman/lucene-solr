@@ -853,7 +853,7 @@ name|sfield
 init|=
 name|schema
 operator|.
-name|getField
+name|getFieldOrNull
 argument_list|(
 name|name
 argument_list|)
@@ -883,6 +883,11 @@ name|b
 operator|.
 name|floatValue
 argument_list|()
+decl_stmt|;
+name|boolean
+name|used
+init|=
+literal|false
 decl_stmt|;
 comment|// Make sure it has the correct number
 name|Collection
@@ -940,6 +945,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|SchemaField
+index|[]
+name|destArr
+init|=
+name|schema
+operator|.
+name|getCopyFields
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
 comment|// load each field value
 for|for
 control|(
@@ -954,8 +970,13 @@ name|val
 init|=
 literal|null
 decl_stmt|;
+comment|// HACK -- date conversion
 if|if
 condition|(
+name|sfield
+operator|!=
+literal|null
+operator|&&
 name|v
 operator|instanceof
 name|Date
@@ -1010,10 +1031,20 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-name|out
-operator|.
-name|add
-argument_list|(
+if|if
+condition|(
+name|sfield
+operator|!=
+literal|null
+condition|)
+block|{
+name|used
+operator|=
+literal|true
+expr_stmt|;
+name|Field
+name|f
+init|=
 name|sfield
 operator|.
 name|createField
@@ -1022,8 +1053,111 @@ name|val
 argument_list|,
 name|boost
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|f
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// null fields are not added
+name|out
+operator|.
+name|add
+argument_list|(
+name|f
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+comment|// Add the copy fields
+for|for
+control|(
+name|SchemaField
+name|sf
+range|:
+name|destArr
+control|)
+block|{
+comment|// check if the copy field is a multivalued or not
+if|if
+condition|(
+operator|!
+name|sf
+operator|.
+name|multiValued
+argument_list|()
+operator|&&
+name|out
+operator|.
+name|get
+argument_list|(
+name|sf
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"ERROR: multiple values encountered for non multiValued copy field "
+operator|+
+name|sf
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|val
+argument_list|)
+throw|;
+block|}
+name|used
+operator|=
+literal|true
+expr_stmt|;
+name|Field
+name|f
+init|=
+name|sf
+operator|.
+name|createField
+argument_list|(
+name|val
+argument_list|,
+name|boost
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|f
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// null fields are not added
+name|out
+operator|.
+name|add
+argument_list|(
+name|f
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// In lucene, the boost for a given field is the product of the
 comment|// document boost and *all* boosts on values of that field.
 comment|// For multi-valued fields, we only want to set the boost on the
@@ -1032,6 +1166,31 @@ name|boost
 operator|=
 literal|1.0f
 expr_stmt|;
+block|}
+comment|// make sure the field was used somehow...
+if|if
+condition|(
+operator|!
+name|used
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"ERROR:unknown field '"
+operator|+
+name|name
+operator|+
+literal|"'"
+argument_list|)
+throw|;
 block|}
 block|}
 comment|// Now validate required fields or add default values

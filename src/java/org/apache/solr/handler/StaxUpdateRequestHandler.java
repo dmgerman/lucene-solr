@@ -422,7 +422,7 @@ specifier|public
 class|class
 name|StaxUpdateRequestHandler
 extends|extends
-name|RequestHandlerBase
+name|XmlUpdateRequestHandler
 block|{
 DECL|field|log
 specifier|public
