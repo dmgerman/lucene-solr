@@ -148,16 +148,9 @@ name|reverse
 parameter_list|)
 block|{
 return|return
-operator|new
-name|SortField
+name|getStringSort
 argument_list|(
 name|field
-operator|.
-name|name
-argument_list|,
-name|SortField
-operator|.
-name|STRING
 argument_list|,
 name|reverse
 argument_list|)
