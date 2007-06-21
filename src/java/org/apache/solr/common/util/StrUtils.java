@@ -894,15 +894,26 @@ argument_list|(
 literal|'%'
 argument_list|)
 expr_stmt|;
-comment|// Hmmm, if we used StringBuilder rather than Appendable, it
-comment|// could add an integer more efficiently.
+if|if
+condition|(
+name|ch
+operator|<
+literal|0x10
+condition|)
+name|dest
+operator|.
+name|append
+argument_list|(
+literal|'0'
+argument_list|)
+expr_stmt|;
 name|dest
 operator|.
 name|append
 argument_list|(
 name|Integer
 operator|.
-name|toString
+name|toHexString
 argument_list|(
 name|ch
 argument_list|)
