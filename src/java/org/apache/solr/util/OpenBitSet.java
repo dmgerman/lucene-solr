@@ -973,6 +973,13 @@ operator|>>
 literal|6
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|startWord
+operator|>=
+name|wlen
+condition|)
+return|return;
 comment|// since endIndex is one past the end, this is index of the last
 comment|// word to be changed.
 name|int
@@ -1529,7 +1536,7 @@ operator|>>>
 operator|-
 name|endIndex
 decl_stmt|;
-comment|// 64-endIndex is the same as -endIndex due to wrap
+comment|// 64-(endIndex&0x3f) is the same as -endIndex due to wrap
 if|if
 condition|(
 name|startWord
@@ -1557,18 +1564,6 @@ index|]
 operator|^=
 name|startmask
 expr_stmt|;
-name|int
-name|middle
-init|=
-name|Math
-operator|.
-name|min
-argument_list|(
-name|oldlen
-argument_list|,
-name|endWord
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1580,7 +1575,7 @@ literal|1
 init|;
 name|i
 operator|<
-name|middle
+name|endWord
 condition|;
 name|i
 operator|++
@@ -1596,28 +1591,6 @@ name|bits
 index|[
 name|i
 index|]
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|endWord
-operator|>
-name|middle
-condition|)
-block|{
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|bits
-argument_list|,
-name|middle
-argument_list|,
-name|endWord
-argument_list|,
-operator|-
-literal|1L
-argument_list|)
 expr_stmt|;
 block|}
 name|bits
