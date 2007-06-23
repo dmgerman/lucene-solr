@@ -1350,6 +1350,25 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+try|try
+block|{
+name|fatal
+argument_list|(
+literal|"Solr returned an error: "
+operator|+
+name|urlc
+operator|.
+name|getResponseMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|f
+parameter_list|)
+block|{ }
 name|fatal
 argument_list|(
 literal|"Connection error (is Solr running at "
