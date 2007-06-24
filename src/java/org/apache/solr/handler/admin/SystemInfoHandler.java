@@ -787,7 +787,7 @@ return|return
 name|info
 return|;
 block|}
-comment|/**    * Try to run a getter function.  This is usefull because java 1.6 has a few extra    * usefull functions on the<code>OperatingSystemMXBean</code>    *     * If you are running a sun jvm, there are nice functions in:    * UnixOperatingSystemMXBean and com.sun.management.OperatingSystemMXBean    *     * it is package protected so it can be tested...    */
+comment|/**    * Try to run a getter function.  This is useful because java 1.6 has a few extra    * useful functions on the<code>OperatingSystemMXBean</code>    *     * If you are running a sun jvm, there are nice functions in:    * UnixOperatingSystemMXBean and com.sun.management.OperatingSystemMXBean    *     * it is package protected so it can be tested...    */
 DECL|method|addGetterIfAvaliable
 specifier|static
 name|void
@@ -806,7 +806,7 @@ argument_list|>
 name|info
 parameter_list|)
 block|{
-comment|// This is a 1.6 functon, so lets do a little magic to *try* to make it work
+comment|// This is a 1.6 function, so lets do a little magic to *try* to make it work
 try|try
 block|{
 name|String
@@ -888,7 +888,7 @@ parameter_list|)
 block|{}
 comment|// don't worry, this only works for 1.6
 block|}
-comment|/**    * Utility function to execute a funciton    */
+comment|/**    * Utility function to execute a function    */
 DECL|method|execute
 specifier|private
 specifier|static
