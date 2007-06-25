@@ -2391,6 +2391,15 @@ name|CommitTracker
 implements|implements
 name|Runnable
 block|{
+comment|// scheduler delay for maxDoc-triggered autocommits
+DECL|field|DOC_COMMIT_DELAY_MS
+specifier|public
+specifier|final
+name|int
+name|DOC_COMMIT_DELAY_MS
+init|=
+literal|250
+decl_stmt|;
 comment|// settings, not final so we can change them in testing
 DECL|field|docsUpperBound
 name|int
@@ -2506,38 +2515,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|pending
-operator|==
-literal|null
-condition|)
-block|{
-comment|// Don't start a new event if one is already waiting
-if|if
-condition|(
-name|timeUpperBound
-operator|>
-literal|0
-condition|)
-block|{
-name|pending
-operator|=
-name|scheduler
-operator|.
-name|schedule
-argument_list|(
-name|this
-argument_list|,
-name|timeUpperBound
-argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
+comment|// maxDocs-triggered autoCommit
 if|if
 condition|(
 name|docsUpperBound
@@ -2551,6 +2529,45 @@ name|docsUpperBound
 operator|)
 condition|)
 block|{
+if|if
+condition|(
+name|pending
+operator|!=
+literal|null
+operator|&&
+name|pending
+operator|.
+name|getDelay
+argument_list|(
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
+operator|>
+name|DOC_COMMIT_DELAY_MS
+condition|)
+block|{
+comment|// another commit is pending, but too far away (probably due to
+comment|// maxTime)
+name|pending
+operator|.
+name|cancel
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|pending
+operator|=
+literal|null
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|pending
+operator|==
+literal|null
+condition|)
+block|{
 comment|// 1/4 second seems fast enough for anyone using maxDocs
 name|pending
 operator|=
@@ -2560,7 +2577,7 @@ name|schedule
 argument_list|(
 name|this
 argument_list|,
-literal|250
+name|DOC_COMMIT_DELAY_MS
 argument_list|,
 name|TimeUnit
 operator|.
@@ -2568,6 +2585,35 @@ name|MILLISECONDS
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// maxTime-triggered autoCommit
+if|if
+condition|(
+name|pending
+operator|==
+literal|null
+operator|&&
+name|timeUpperBound
+operator|>
+literal|0
+condition|)
+block|{
+comment|// Don't start a new event if one is already waiting
+name|pending
+operator|=
+name|scheduler
+operator|.
+name|schedule
+argument_list|(
+name|this
+argument_list|,
+name|timeUpperBound
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/** Inform tracker that a commit has occurred, cancel any pending commits */
