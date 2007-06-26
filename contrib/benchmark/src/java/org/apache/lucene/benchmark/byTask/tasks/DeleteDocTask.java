@@ -84,7 +84,6 @@ expr_stmt|;
 block|}
 DECL|field|logStep
 specifier|private
-specifier|static
 name|int
 name|logStep
 init|=
@@ -93,7 +92,6 @@ literal|1
 decl_stmt|;
 DECL|field|deleteStep
 specifier|private
-specifier|static
 name|int
 name|deleteStep
 init|=

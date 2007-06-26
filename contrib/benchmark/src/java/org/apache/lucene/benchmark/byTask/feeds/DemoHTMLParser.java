@@ -74,29 +74,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|SimpleDateFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Date
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
 import|;
 end_import
 
@@ -134,36 +114,11 @@ name|feeds
 operator|.
 name|HTMLParser
 block|{
-DECL|field|dateFormat
-name|DateFormat
-name|dateFormat
-decl_stmt|;
 DECL|method|DemoHTMLParser
 specifier|public
 name|DemoHTMLParser
 parameter_list|()
-block|{
-name|dateFormat
-operator|=
-operator|new
-name|SimpleDateFormat
-argument_list|(
-literal|"EEE, dd MMM yyyy kk:mm:ss "
-argument_list|,
-name|Locale
-operator|.
-name|US
-argument_list|)
-expr_stmt|;
-comment|//Tue, 09 Dec 2003 22:39:08 GMT
-name|dateFormat
-operator|.
-name|setLenient
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 comment|/*    *  (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.feeds.HTMLParser#parse(java.lang.String, java.util.Date, java.io.Reader, java.text.DateFormat)    */
 DECL|method|parse
 specifier|public
@@ -391,6 +346,7 @@ name|date
 argument_list|)
 return|;
 block|}
+comment|/*    *  (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.feeds.HTMLParser#parse(java.lang.String, java.util.Date, java.lang.StringBuffer, java.text.DateFormat)    */
 DECL|method|parse
 specifier|public
 name|DocData
@@ -413,7 +369,6 @@ name|IOException
 throws|,
 name|InterruptedException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 name|parse
 argument_list|(

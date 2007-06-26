@@ -451,6 +451,91 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Test Parallel Doc Maker logic (for LUCENE-940)    */
+DECL|method|testParallelDocMaker
+specifier|public
+name|void
+name|testParallelDocMaker
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// 1. alg definition (required in every "logic" test)
+name|String
+name|algLines
+index|[]
+init|=
+block|{
+literal|"# ----- properties "
+block|,
+literal|"doc.maker=org.apache.lucene.benchmark.byTask.feeds.ReutersDocMaker"
+block|,
+literal|"doc.add.log.step=2697"
+block|,
+literal|"doc.term.vector=false"
+block|,
+literal|"doc.maker.forever=false"
+block|,
+literal|"directory=FSDirectory"
+block|,
+literal|"doc.stored=false"
+block|,
+literal|"doc.tokenized=false"
+block|,
+literal|"# ----- alg "
+block|,
+literal|"CreateIndex"
+block|,
+literal|"[ { AddDoc } : * ] : 4 "
+block|,
+literal|"CloseIndex"
+block|,     }
+decl_stmt|;
+comment|// 2. execute the algorithm  (required in every "logic" test)
+name|Benchmark
+name|benchmark
+init|=
+name|execBenchmark
+argument_list|(
+name|algLines
+argument_list|)
+decl_stmt|;
+comment|// 3. test number of docs in the index
+name|IndexReader
+name|ir
+init|=
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|benchmark
+operator|.
+name|getRunData
+argument_list|()
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|int
+name|ndocsExpected
+init|=
+literal|21578
+decl_stmt|;
+comment|// that's how many docs there are in the Reuters collecton.
+name|assertEquals
+argument_list|(
+literal|"wrong number of docs in the index!"
+argument_list|,
+name|ndocsExpected
+argument_list|,
+name|ir
+operator|.
+name|numDocs
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|// create the benchmark and execute it.
 DECL|method|execBenchmark
 specifier|private

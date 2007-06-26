@@ -132,8 +132,12 @@ name|BasicDocMaker
 block|{
 DECL|field|dateFormat
 specifier|private
-name|DateFormat
+name|ThreadLocal
 name|dateFormat
+init|=
+operator|new
+name|ThreadLocal
+argument_list|()
 decl_stmt|;
 DECL|field|dataDir
 specifier|private
@@ -238,8 +242,36 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|// date format: 30-MAR-1987 14:22:36.87
+block|}
+comment|// get/initiate a thread-local simple date format (must do so
+comment|// because SimpleDateFormat is not thread-safe.
+DECL|method|getDateFormat
+specifier|protected
+specifier|synchronized
+name|DateFormat
+name|getDateFormat
+parameter_list|()
+block|{
+name|DateFormat
+name|df
+init|=
+operator|(
+name|DateFormat
+operator|)
 name|dateFormat
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|df
+operator|==
+literal|null
+condition|)
+block|{
+comment|// date format: 30-MAR-1987 14:22:36.87
+name|df
 operator|=
 operator|new
 name|SimpleDateFormat
@@ -251,13 +283,24 @@ operator|.
 name|US
 argument_list|)
 expr_stmt|;
-name|dateFormat
+name|df
 operator|.
 name|setLenient
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|dateFormat
+operator|.
+name|set
+argument_list|(
+name|df
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|df
+return|;
 block|}
 DECL|method|getNextDocData
 specifier|protected
@@ -437,7 +480,8 @@ expr_stmt|;
 name|Date
 name|date
 init|=
-name|dateFormat
+name|getDateFormat
+argument_list|()
 operator|.
 name|parse
 argument_list|(
