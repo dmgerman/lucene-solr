@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Data maintained by a performance test run.  *<p>  * Data includes:  *<ul>  *<li>Configuration.  *<li>Directory, Writer, Reader.  *<li>Docmaker and a few instances of QueryMaker.  *<li>Analyzer.  *<li>Statistics data which updated during the run.  *</ul>  */
+comment|/**  * Data maintained by a performance test run.  *<p>  * Data includes:  *<ul>  *<li>Configuration.  *<li>Directory, Writer, Reader.  *<li>Docmaker and a few instances of QueryMaker.  *<li>Analyzer.  *<li>Statistics data which updated during the run.  *</ul>  * Config properties: work.dir=&lt;path to root of docs and index dirs| Default: work&gt;  *</ul>  */
 end_comment
 
 begin_class
@@ -612,7 +612,14 @@ init|=
 operator|new
 name|File
 argument_list|(
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"work.dir"
+argument_list|,
 literal|"work"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|File

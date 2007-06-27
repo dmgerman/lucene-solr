@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A DocMaker using the Reuters collection for its input.  *  * Config properties:  * docs.dir=&lt;path to the docs dir| Default: reuters-out&gt;   *  */
+comment|/**  * A DocMaker using the Reuters collection for its input.  *<p>  * Config properties:<ul>  *<li>work.dir=&lt;path to the root of docs and indexes dirs| Default: work&gt;</li>  *<li>docs.dir=&lt;path to the docs dir| Default: reuters-out&gt;</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -186,6 +186,22 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+name|File
+name|workDir
+init|=
+operator|new
+name|File
+argument_list|(
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"work.dir"
+argument_list|,
+literal|"work"
+argument_list|)
+argument_list|)
+decl_stmt|;
 name|String
 name|d
 init|=
@@ -203,11 +219,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-operator|new
-name|File
-argument_list|(
-literal|"work"
-argument_list|)
+name|workDir
 argument_list|,
 name|d
 argument_list|)

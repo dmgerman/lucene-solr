@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Perf run configuration properties.  * Numeric peroperty containing ":", e.g. "10:100:5" is interpreted   * as array of numeric values. It is extracted once, on first use, and   * maintain an round number to return the appropriate value.     */
+comment|/**  * Perf run configuration properties.  *<p>  * Numeric peroperty containing ":", e.g. "10:100:5" is interpreted   * as array of numeric values. It is extracted once, on first use, and   * maintain a round number to return the appropriate value.  *<p>  * The config property "work.dir" tells where is the root of   * docs data dirs and indexes dirs. It is set to either of:<ul>  *<li>value supplied for it in the alg file;</li>  *<li>otherwise, value of System property "benchmark.work.dir";</li>  *<li>otherwise, "work".</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -326,6 +326,36 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// make sure work dir is set properly
+if|if
+condition|(
+name|props
+operator|.
+name|get
+argument_list|(
+literal|"work.dir"
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|props
+operator|.
+name|setProperty
+argument_list|(
+literal|"work.dir"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"benchmark.work.dir"
+argument_list|,
+literal|"work"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|Boolean
