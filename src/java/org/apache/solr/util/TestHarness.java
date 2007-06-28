@@ -474,6 +474,25 @@ parameter_list|)
 block|{
 try|try
 block|{
+comment|// set some system properties for use by tests
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.test.sys.prop1"
+argument_list|,
+literal|"propone"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.test.sys.prop2"
+argument_list|,
+literal|"proptwo"
+argument_list|)
+expr_stmt|;
 name|SolrConfig
 operator|.
 name|initConfig
