@@ -229,26 +229,33 @@ name|DOC_TEXT_LINES
 index|[]
 init|=
 block|{
-comment|// from a public first aid info at http://firstaid.ie.eu.org
-literal|"Well it may be a little dramatic but sometimes it true. "
+literal|"Well, this is just some plain text we use for creating the "
 block|,
-literal|"If you call the emergency medical services to an incident, "
+literal|"test documents. It used to be a text from an online collection "
 block|,
-literal|"your actions have started the chain of survival. "
+literal|"devoted to first aid, but if there was there an (online) lawyers "
 block|,
-literal|"You have acted to help someone you may not even know. "
+literal|"first aid collection with legal advices, \"it\" might have quite "
 block|,
-literal|"First aid is helping, first aid is making that call, "
+literal|"probably advised one not to include \"it\"'s text or the text of "
 block|,
-literal|"putting a Band-Aid on a small wound, controlling bleeding in large "
+literal|"any other online collection in one's code, unless one has money "
 block|,
-literal|"wounds or providing CPR for a collapsed person whose not breathing "
+literal|"that one don't need and one is happy to donate for lawyers "
 block|,
-literal|"and heart has stopped beating. You can help yourself, your loved "
+literal|"charity. Anyhow at some point, rechecking the usage of this text, "
 block|,
-literal|"ones and the stranger whose life may depend on you being in the "
+literal|"it became uncertain that this text is free to use, because "
 block|,
-literal|"right place at the right time with the right knowledge."
+literal|"the web site in the disclaimer of he eBook containing that text "
+block|,
+literal|"was not responding anymore, and at the same time, in projGut, "
+block|,
+literal|"searching for first aid no longer found that eBook as well. "
+block|,
+literal|"So here we are, with a perhaps much less interesting "
+block|,
+literal|"text for the test, but oh much much safer. "
 block|,   }
 decl_stmt|;
 DECL|field|dir
