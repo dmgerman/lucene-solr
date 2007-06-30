@@ -110,11 +110,11 @@ argument_list|()
 decl_stmt|;
 DECL|field|handler
 specifier|protected
-name|StaxUpdateRequestHandler
+name|XmlUpdateRequestHandler
 name|handler
 init|=
 operator|new
-name|StaxUpdateRequestHandler
+name|XmlUpdateRequestHandler
 argument_list|()
 decl_stmt|;
 annotation|@

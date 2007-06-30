@@ -405,12 +405,12 @@ comment|/**  * Add documents to solr using the STAX XML parser.  *   * To change
 end_comment
 
 begin_class
-DECL|class|StaxUpdateRequestHandler
+DECL|class|XmlUpdateRequestHandler
 specifier|public
 class|class
-name|StaxUpdateRequestHandler
-extends|extends
 name|XmlUpdateRequestHandler
+extends|extends
+name|RequestHandlerBase
 block|{
 DECL|field|log
 specifier|public
@@ -422,7 +422,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|StaxUpdateRequestHandler
+name|XmlUpdateRequestHandler
 operator|.
 name|class
 operator|.
