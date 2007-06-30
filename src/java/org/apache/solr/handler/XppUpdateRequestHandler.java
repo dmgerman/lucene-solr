@@ -362,11 +362,17 @@ name|XmlPullParserFactory
 import|;
 end_import
 
+begin_comment
+comment|/**  * This is an XPP implementaion of the XmlUpdateRequestHandler -- it is getting  * replaced with a more flexible StAX implementation.  This will be remove   * before the next official release: solr 1.3  */
+end_comment
+
 begin_class
-DECL|class|XmlUpdateRequestHandler
+annotation|@
+name|Deprecated
+DECL|class|XppUpdateRequestHandler
 specifier|public
 class|class
-name|XmlUpdateRequestHandler
+name|XppUpdateRequestHandler
 extends|extends
 name|RequestHandlerBase
 block|{
@@ -380,7 +386,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|XmlUpdateRequestHandler
+name|XppUpdateRequestHandler
 operator|.
 name|class
 operator|.
