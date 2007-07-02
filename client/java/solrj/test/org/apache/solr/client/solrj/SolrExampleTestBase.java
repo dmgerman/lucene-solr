@@ -255,6 +255,8 @@ argument_list|(
 literal|"id"
 argument_list|,
 name|docID
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc
@@ -264,6 +266,8 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"my name!"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|Assert
@@ -274,7 +278,7 @@ literal|null
 argument_list|,
 name|doc
 operator|.
-name|getFieldValue
+name|getField
 argument_list|(
 literal|"foo"
 argument_list|)
@@ -286,10 +290,13 @@ name|assertTrue
 argument_list|(
 name|doc
 operator|.
-name|getFieldValue
+name|getField
 argument_list|(
 literal|"name"
 argument_list|)
+operator|.
+name|getValue
+argument_list|()
 operator|!=
 literal|null
 argument_list|)
@@ -480,6 +487,8 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -489,6 +498,8 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|true
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -498,6 +509,8 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|2
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -513,6 +526,8 @@ name|util
 operator|.
 name|Date
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|docs
@@ -536,6 +551,8 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"3"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -545,6 +562,8 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|false
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -554,6 +573,8 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|3
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -569,6 +590,8 @@ name|util
 operator|.
 name|Date
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|docs
@@ -592,6 +615,8 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"4"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -601,6 +626,8 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|true
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -610,6 +637,8 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|4
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -625,6 +654,8 @@ name|util
 operator|.
 name|Date
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|docs
@@ -648,6 +679,8 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"5"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc5
@@ -657,6 +690,8 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|false
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc5
@@ -666,6 +701,8 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|5
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doc5
@@ -681,6 +718,8 @@ name|util
 operator|.
 name|Date
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|docs
@@ -1162,6 +1201,8 @@ argument_list|,
 name|i
 operator|+
 literal|"& 222"
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -1176,10 +1217,13 @@ index|[
 literal|0
 index|]
 operator|.
-name|getFieldValue
+name|getField
 argument_list|(
 literal|"id"
 argument_list|)
+operator|.
+name|getFirstValue
+argument_list|()
 decl_stmt|;
 name|server
 operator|.
@@ -1347,10 +1391,13 @@ name|String
 operator|)
 name|d
 operator|.
-name|getFieldValue
+name|getField
 argument_list|(
 literal|"id"
 argument_list|)
+operator|.
+name|getFirstValue
+argument_list|()
 argument_list|,
 name|xml
 argument_list|)

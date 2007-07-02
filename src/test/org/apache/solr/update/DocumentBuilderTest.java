@@ -141,6 +141,8 @@ argument_list|(
 literal|"unknown field"
 argument_list|,
 literal|12345
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|DocumentBuilder
