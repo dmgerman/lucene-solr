@@ -103,24 +103,13 @@ parameter_list|(
 name|Object
 name|v
 parameter_list|,
-name|Float
+name|float
 name|b
 parameter_list|)
 block|{
 name|boost
 operator|=
-operator|(
 name|b
-operator|==
-literal|null
-operator|)
-condition|?
-literal|1.0f
-else|:
-name|b
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -200,7 +189,7 @@ parameter_list|(
 name|Object
 name|v
 parameter_list|,
-name|Float
+name|float
 name|b
 parameter_list|)
 block|{
@@ -224,21 +213,10 @@ comment|// The lucene API and solr XML field specification make it possible to s
 comment|// on multi-value fields even though lucene indexing does not support this.
 comment|// To keep behavior consistent with what happens in the lucene index, we accumulate
 comment|// the product of all boosts specified for this field.
-if|if
-condition|(
-name|b
-operator|!=
-literal|null
-condition|)
-block|{
 name|boost
 operator|*=
 name|b
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
-block|}
 name|Collection
 argument_list|<
 name|Object

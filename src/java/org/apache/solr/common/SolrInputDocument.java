@@ -62,16 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -251,7 +241,7 @@ name|name
 argument_list|,
 name|value
 argument_list|,
-literal|null
+literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -370,7 +360,7 @@ name|name
 argument_list|,
 name|value
 argument_list|,
-literal|null
+literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -385,7 +375,7 @@ parameter_list|,
 name|Object
 name|value
 parameter_list|,
-name|Float
+name|float
 name|boost
 parameter_list|)
 block|{
@@ -463,7 +453,7 @@ parameter_list|,
 name|Object
 name|value
 parameter_list|,
-name|Float
+name|float
 name|boost
 parameter_list|)
 block|{
