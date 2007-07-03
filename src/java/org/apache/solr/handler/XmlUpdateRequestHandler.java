@@ -903,7 +903,7 @@ expr_stmt|;
 return|return
 name|processor
 operator|.
-name|getResponse
+name|finish
 argument_list|()
 return|;
 case|case
