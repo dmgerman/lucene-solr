@@ -510,7 +510,9 @@ argument_list|(
 name|str
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+name|DEFAULT_CHARSET
+argument_list|)
 argument_list|)
 return|;
 block|}
