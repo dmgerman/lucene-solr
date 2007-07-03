@@ -42,20 +42,6 @@ name|NamedList
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * MBean interface for getting various ui friendly strings and URLs  * for use by objects which are 'pluggable' to make server administration  * easier.  *  * @author ronp  * @version $Id$  */
 end_comment
@@ -71,6 +57,7 @@ DECL|enum constant|CORE
 DECL|enum constant|QUERYHANDLER
 DECL|enum constant|UPDATEHANDLER
 DECL|enum constant|CACHE
+DECL|enum constant|HIGHLIGHTING
 DECL|enum constant|OTHER
 specifier|public
 enum|enum
@@ -83,6 +70,8 @@ block|,
 name|UPDATEHANDLER
 block|,
 name|CACHE
+block|,
+name|HIGHLIGHTING
 block|,
 name|OTHER
 block|}

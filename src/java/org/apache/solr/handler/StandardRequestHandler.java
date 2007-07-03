@@ -247,6 +247,20 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|highlight
+operator|.
+name|SolrHighlighter
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -933,10 +947,21 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|SolrHighlighter
+name|highlighter
+init|=
+name|req
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getHighlighter
+argument_list|()
+decl_stmt|;
 name|NamedList
 name|sumData
 init|=
-name|HighlightingUtils
+name|highlighter
 operator|.
 name|doHighlighting
 argument_list|(

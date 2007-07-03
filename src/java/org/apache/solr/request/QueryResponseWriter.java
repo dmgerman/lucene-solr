@@ -52,6 +52,22 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|plugin
+operator|.
+name|NamedListInitializedPlugin
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementations of<code>QueryResponseWriter</code> are used to format responses to query requests.  *  * Different<code>QueryResponseWriter</code>s are registered with the<code>SolrCore</code>.  * One way to register a QueryResponseWriter with the core is thorugh the<code>solrconfig.xml</code> file.  *<p>  * Example<code>solrconfig.xml</code> entry to register a<code>QueryResponseWRiter</code> implementation to  * handle all queries with a writer type of "simple":  *<p>  *<code>  *&lt;queryResponseWriter name="simple" class="foo.SimpleResponseWriter" /&gt;  *</code>  *<p>  * A single instance of any registered QueryResponseWriter is created  * via the default constructor and is reused for all relevant queries.  *  * @author yonik  * @version $Id$  */
 end_comment
@@ -61,6 +77,8 @@ DECL|interface|QueryResponseWriter
 specifier|public
 interface|interface
 name|QueryResponseWriter
+extends|extends
+name|NamedListInitializedPlugin
 block|{
 DECL|field|CONTENT_TYPE_XML_UTF8
 specifier|public
@@ -104,7 +122,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**     * Return the applicable Content Type for a request, this method     * must be thread safe.    *    *<p>    * QueryResponseWriter's must implement this method to return a valid     * HTTP Content-Type header for the request, that will logically     * corrispond with the output produced by the write method.    *</p>    * @return a Content-Type string, which may not be null.    */
+comment|/**     * Return the applicable Content Type for a request, this method     * must be thread safe.    *    *<p>    * QueryResponseWriter's must implement this method to return a valid     * HTTP Content-Type header for the request, that will logically     * correspond with the output produced by the write method.    *</p>    * @return a Content-Type string, which may not be null.    */
 DECL|method|getContentType
 specifier|public
 name|String
