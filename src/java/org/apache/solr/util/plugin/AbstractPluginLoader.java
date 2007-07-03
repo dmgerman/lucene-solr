@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract super class that manages standard solr-style plugin configuration.  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * An abstract super class that manages standard solr-style plugin configuration.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -242,7 +242,7 @@ index|[]
 block|{}
 return|;
 block|}
-comment|/**    * @param name - The registered name    * @param className - class name for requested plugin    * @param params - the parameters specified in the XML    * @param node - the XML node defining this plugin    */
+comment|/**    * Create a plugin from an XML configuration.  Plugins are defined using:    *<plugin name="name1" class="solr.ClassName" arg1="val1">    *      ...    *</plugin>    *     * @param name - The registered name.  In the above example: "name1"    * @param className - class name for requested plugin.  In the above example: "solr.ClassName"    * @param params - the parameters specified in the XML.  In the example above,    * this would be a map containing [name=name1, class=solr.ClassName, arg1=val1]    * @param node - the XML node defining this plugin    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -304,7 +304,7 @@ parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Initialize the plugin    */
+comment|/**    * Initialize the plugin.  For example, given the configuration:    *     *<plugin name="name1" class="solr.ClassName" arg1="val1">    *      ...    *</plugin>    *     * @param plugin - the plugin to initialize    * @param params - the parameters specified in the XML.  In the example above,    * this would be a map containing [name=name1, class=solr.ClassName, arg1=val1]    * @param node - the XML node defining this plugin    */
 DECL|method|init
 specifier|abstract
 specifier|protected
@@ -328,7 +328,7 @@ parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Given a NodeList from XML, this will    */
+comment|/**    * Given a NodeList from XML in the form:    *     *<plugins>    *<plugin name="name1" class="solr.ClassName">    *      ...    *</plugin>    *<plugin name="name2" class="solr.ClassName">    *      ...    *</plugin>    *</plugins>    *     * This will initialize and register each plugin from the list.  A class will     * be generated for each class name and registered to the given name.    *     * If 'preRegister' is true, each plugin will be registered *before* it is initialized    * This may be useful for implementations that need to inspect other registered     * plugins at startup.    *     * One (and only one) plugin may declare itself to be the 'default' plugin using:    *<plugin name="name2" class="solr.ClassName" default="true">    * If a default element is defined, it will be returned from this function.    *     */
 DECL|method|load
 specifier|public
 name|T
