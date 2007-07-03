@@ -940,6 +940,47 @@ argument_list|,
 literal|"//result[@numFound=0]"
 argument_list|)
 expr_stmt|;
+comment|// Delete the document
+name|assertU
+argument_list|(
+name|delI
+argument_list|(
+literal|"529"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"deleted, but should still be there"
+argument_list|,
+name|req
+argument_list|(
+literal|"id:529"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=1]"
+argument_list|)
+expr_stmt|;
+comment|// Wait longer then the autocommit time
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"deleted and time has passed"
+argument_list|,
+name|req
+argument_list|(
+literal|"id:529"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
 comment|// now make the call 10 times really fast and make sure it
 comment|// only commits once
 name|req
@@ -998,7 +1039,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|tracker
 operator|.
@@ -1064,7 +1105,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|3
 argument_list|,
 name|tracker
 operator|.
