@@ -123,14 +123,6 @@ parameter_list|(
 name|T
 name|plugin
 parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|params
-parameter_list|,
 name|Node
 name|node
 parameter_list|)
