@@ -82,16 +82,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|LinkedList
 import|;
 end_import
@@ -732,6 +722,14 @@ name|length
 operator|==
 literal|0
 operator|||
+operator|(
+name|arr
+operator|.
+name|length
+operator|==
+literal|1
+operator|&&
+operator|(
 name|arr
 index|[
 literal|0
@@ -751,6 +749,8 @@ name|length
 argument_list|()
 operator|==
 literal|0
+operator|)
+operator|)
 operator|)
 return|;
 block|}
@@ -887,6 +887,11 @@ argument_list|)
 return|;
 block|}
 comment|/**     * Generates a list of Highlighted query fragments for each item in a list     * of documents, or returns null if highlighting is disabled.     *     * @param docs query results     * @param query the query     * @param req the current request     * @param defaultFields default list of fields to summarize     *     * @return NamedList containing a NamedList for each document, which in     * turns contains sets (field, summary) pairs.     */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|doHighlighting
 specifier|public
 specifier|static
@@ -1540,6 +1545,8 @@ name|orderTokenOffsets
 expr_stmt|;
 block|}
 comment|/** Returns the next token in the stream, or null at EOS. */
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|Token
@@ -1794,6 +1801,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.TextFragmenter#start(java.lang.String)    */
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|void
@@ -1809,6 +1818,8 @@ literal|0
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.TextFragmenter#isNewFragment(org.apache.lucene.analysis.Token)    */
+annotation|@
+name|Override
 DECL|method|isNewFragment
 specifier|public
 name|boolean
@@ -1923,6 +1934,8 @@ operator|=
 name|windowSize
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|Token
