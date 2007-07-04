@@ -904,6 +904,8 @@ argument_list|,
 name|offset
 argument_list|,
 name|len
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

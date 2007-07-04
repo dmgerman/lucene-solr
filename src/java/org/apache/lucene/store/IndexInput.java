@@ -76,6 +76,39 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Reads a specified number of bytes into an array at the    * specified offset with control over whether the read    * should be buffered (callers who have their own buffer    * should pass in "false" for useBuffer).  Currently only    * {@link BufferedIndexInput} respects this parameter.    * @param b the array to read bytes into    * @param offset the offset in the array to start storing bytes    * @param len the number of bytes to read    * @param useBuffer set to false if the caller will handle    * buffering.    * @see IndexOutput#writeBytes(byte[],int)    */
+DECL|method|readBytes
+specifier|public
+name|void
+name|readBytes
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|,
+name|int
+name|offset
+parameter_list|,
+name|int
+name|len
+parameter_list|,
+name|boolean
+name|useBuffer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// Default to ignoring useBuffer entirely
+name|readBytes
+argument_list|(
+name|b
+argument_list|,
+name|offset
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Reads four bytes and returns an int.    * @see IndexOutput#writeInt(int)    */
 DECL|method|readInt
 specifier|public

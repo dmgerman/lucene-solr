@@ -311,6 +311,39 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|readBytes
+argument_list|(
+name|b
+argument_list|,
+name|offset
+argument_list|,
+name|len
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|readBytes
+specifier|public
+name|void
+name|readBytes
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|,
+name|int
+name|offset
+parameter_list|,
+name|int
+name|len
+parameter_list|,
+name|boolean
+name|useBuffer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 if|if
 condition|(
 name|len
@@ -322,7 +355,7 @@ name|bufferPosition
 operator|)
 condition|)
 block|{
-comment|// the buffer contains enough data to satistfy this request
+comment|// the buffer contains enough data to satisfy this request
 if|if
 condition|(
 name|len
@@ -398,12 +431,15 @@ block|}
 comment|// and now, read the remaining 'len' bytes:
 if|if
 condition|(
+name|useBuffer
+operator|&&
 name|len
 operator|<
 name|bufferSize
 condition|)
 block|{
-comment|// If the amount left to read is small enough, do it in the usual
+comment|// If the amount left to read is small enough, and
+comment|// we are allowed to use our buffer, do it in the usual
 comment|// buffered way: fill the buffer and copy from it:
 name|refill
 argument_list|()
@@ -464,10 +500,13 @@ block|}
 block|}
 else|else
 block|{
-comment|// The amount left to read is larger than the buffer - there's no
-comment|// performance reason not to read it all at once. Note that unlike
-comment|// the previous code of this function, there is no need to do a seek
-comment|// here, because there's no need to reread what we had in the buffer.
+comment|// The amount left to read is larger than the buffer
+comment|// or we've been asked to not use our buffer -
+comment|// there's no performance reason not to read it all
+comment|// at once. Note that unlike the previous code of
+comment|// this function, there is no need to do a seek
+comment|// here, because there's no need to reread what we
+comment|// had in the buffer.
 name|long
 name|after
 init|=
