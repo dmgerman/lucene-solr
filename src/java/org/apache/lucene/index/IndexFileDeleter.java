@@ -223,6 +223,11 @@ specifier|private
 name|IndexDeletionPolicy
 name|policy
 decl_stmt|;
+DECL|field|docWriter
+specifier|private
+name|DocumentsWriter
+name|docWriter
+decl_stmt|;
 DECL|method|setInfoStream
 name|void
 name|setInfoStream
@@ -285,12 +290,21 @@ name|segmentInfos
 parameter_list|,
 name|PrintStream
 name|infoStream
+parameter_list|,
+name|DocumentsWriter
+name|docWriter
 parameter_list|)
 throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|this
+operator|.
+name|docWriter
+operator|=
+name|docWriter
+expr_stmt|;
 name|this
 operator|.
 name|infoStream
@@ -1031,7 +1045,16 @@ operator|.
 name|getCurrentSegmentFileName
 argument_list|()
 operator|+
-literal|"\" [isCommit = "
+literal|"\" ["
+operator|+
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" segments "
+operator|+
+literal|"; isCommit = "
 operator|+
 name|isCommit
 operator|+
@@ -1105,6 +1128,20 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|docWriter
+operator|!=
+literal|null
+condition|)
+name|incRef
+argument_list|(
+name|docWriter
+operator|.
+name|files
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|isCommit
 condition|)
 block|{
@@ -1163,7 +1200,6 @@ condition|;
 name|i
 operator|++
 control|)
-block|{
 name|decRef
 argument_list|(
 operator|(
@@ -1177,7 +1213,6 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|lastFiles
 operator|.
 name|clear
@@ -1244,6 +1279,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|docWriter
+operator|!=
+literal|null
+condition|)
+name|lastFiles
+operator|.
+name|add
+argument_list|(
+name|docWriter
+operator|.
+name|files
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|method|incRef

@@ -270,7 +270,7 @@ if|if
 condition|(
 name|writer
 operator|.
-name|getRamSegmentCount
+name|getNumBufferedDocuments
 argument_list|()
 operator|+
 name|writer
@@ -982,7 +982,7 @@ name|ramSegmentCount
 init|=
 name|writer
 operator|.
-name|getRamSegmentCount
+name|getNumBufferedDocuments
 argument_list|()
 decl_stmt|;
 name|assertTrue

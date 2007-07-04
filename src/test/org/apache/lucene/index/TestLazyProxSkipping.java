@@ -266,6 +266,13 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|setMaxBufferedDocs
+argument_list|(
+literal|10
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int

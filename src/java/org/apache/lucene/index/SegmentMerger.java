@@ -182,6 +182,15 @@ specifier|private
 name|int
 name|mergedDocs
 decl_stmt|;
+comment|// Whether we should merge doc stores (stored fields and
+comment|// vectors files).  When all segments we are merging
+comment|// already share the same doc store files, we don't need
+comment|// to merge the doc stores.
+DECL|field|mergeDocStores
+specifier|private
+name|boolean
+name|mergeDocStores
+decl_stmt|;
 comment|/** This ctor used only by test code.    *     * @param dir The Directory to merge the other segments into    * @param name The name of the new segment    */
 DECL|method|SegmentMerger
 name|SegmentMerger
@@ -282,9 +291,33 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+return|return
+name|merge
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Merges the readers specified by the {@link #add} method    * into the directory passed to the constructor.    * @param mergeDocStores if false, we will not merge the    * stored fields nor vectors files    * @return The number of documents that were merged    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|merge
+specifier|final
 name|int
-name|value
-decl_stmt|;
+name|merge
+parameter_list|(
+name|boolean
+name|mergeDocStores
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|this
+operator|.
+name|mergeDocStores
+operator|=
+name|mergeDocStores
+expr_stmt|;
 name|mergedDocs
 operator|=
 name|mergeFields
@@ -298,6 +331,8 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+name|mergeDocStores
+operator|&&
 name|fieldInfos
 operator|.
 name|hasVectors
@@ -415,6 +450,42 @@ name|i
 operator|++
 control|)
 block|{
+name|String
+name|ext
+init|=
+name|IndexFileNames
+operator|.
+name|COMPOUND_EXTENSIONS
+index|[
+name|i
+index|]
+decl_stmt|;
+if|if
+condition|(
+name|mergeDocStores
+operator|||
+operator|(
+operator|!
+name|ext
+operator|.
+name|equals
+argument_list|(
+name|IndexFileNames
+operator|.
+name|FIELDS_EXTENSION
+argument_list|)
+operator|&&
+operator|!
+name|ext
+operator|.
+name|equals
+argument_list|(
+name|IndexFileNames
+operator|.
+name|FIELDS_INDEX_EXTENSION
+argument_list|)
+operator|)
+condition|)
 name|files
 operator|.
 name|add
@@ -423,12 +494,7 @@ name|segment
 operator|+
 literal|"."
 operator|+
-name|IndexFileNames
-operator|.
-name|COMPOUND_EXTENSIONS
-index|[
-name|i
-index|]
+name|ext
 argument_list|)
 expr_stmt|;
 block|}
@@ -496,6 +562,8 @@ name|fieldInfos
 operator|.
 name|hasVectors
 argument_list|()
+operator|&&
+name|mergeDocStores
 condition|)
 block|{
 for|for
@@ -671,6 +739,52 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|mergeDocStores
+condition|)
+block|{
+comment|// When we are not merging by doc stores, that means
+comment|// all segments were written as part of a single
+comment|// autoCommit=false IndexWriter session, so their field
+comment|// name -> number mapping are the same.  So, we start
+comment|// with the fieldInfos of the last segment in this
+comment|// case, to keep that numbering.
+specifier|final
+name|SegmentReader
+name|sr
+init|=
+operator|(
+name|SegmentReader
+operator|)
+name|readers
+operator|.
+name|elementAt
+argument_list|(
+name|readers
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+decl_stmt|;
+name|fieldInfos
+operator|=
+operator|(
+name|FieldInfos
+operator|)
+name|sr
+operator|.
+name|fieldInfos
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
 name|fieldInfos
 operator|=
 operator|new
@@ -678,6 +792,7 @@ name|FieldInfos
 argument_list|()
 expr_stmt|;
 comment|// merge field names
+block|}
 name|int
 name|docCount
 init|=
@@ -900,6 +1015,11 @@ operator|+
 literal|".fnm"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|mergeDocStores
+condition|)
+block|{
 name|FieldsWriter
 name|fieldsWriter
 init|=
@@ -1034,6 +1154,45 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+else|else
+comment|// If we are skipping the doc stores, that means there
+comment|// are no deletions in any of these segments, so we
+comment|// just sum numDocs() of each segment to get total docCount
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|readers
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+name|docCount
+operator|+=
+operator|(
+operator|(
+name|IndexReader
+operator|)
+name|readers
+operator|.
+name|elementAt
+argument_list|(
+name|i
+argument_list|)
+operator|)
+operator|.
+name|numDocs
+argument_list|()
+expr_stmt|;
 return|return
 name|docCount
 return|;
@@ -1801,6 +1960,11 @@ operator|.
 name|getPositions
 argument_list|()
 decl_stmt|;
+assert|assert
+name|postings
+operator|!=
+literal|null
+assert|;
 name|int
 name|base
 init|=

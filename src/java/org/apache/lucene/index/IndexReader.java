@@ -2127,6 +2127,8 @@ argument_list|,
 name|segmentInfos
 argument_list|,
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 comment|// Checkpoint the state we are about to change, in

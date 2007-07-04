@@ -150,6 +150,17 @@ init|=
 operator|-
 literal|3
 decl_stmt|;
+comment|/** This format allows multiple segments to share a single    * vectors and stored fields file. */
+DECL|field|FORMAT_SHARED_DOC_STORE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_SHARED_DOC_STORE
+init|=
+operator|-
+literal|4
+decl_stmt|;
 comment|/* This must always point to the most recent file format. */
 DECL|field|CURRENT_FORMAT
 specifier|private
@@ -158,7 +169,7 @@ specifier|final
 name|int
 name|CURRENT_FORMAT
 init|=
-name|FORMAT_SINGLE_NORM_FILE
+name|FORMAT_SHARED_DOC_STORE
 decl_stmt|;
 DECL|field|counter
 specifier|public

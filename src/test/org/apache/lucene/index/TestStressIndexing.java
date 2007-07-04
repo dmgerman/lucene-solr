@@ -410,11 +410,6 @@ name|count
 operator|++
 expr_stmt|;
 block|}
-name|modifier
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -624,6 +619,20 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+name|IndexerThread
+name|indexerThread2
+init|=
+operator|new
+name|IndexerThread
+argument_list|(
+name|modifier
+argument_list|)
+decl_stmt|;
+name|indexerThread2
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 comment|// Two searchers that constantly just re-instantiate the searcher:
 name|SearcherThread
 name|searcherThread1
@@ -658,6 +667,11 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
+name|indexerThread2
+operator|.
+name|join
+argument_list|()
+expr_stmt|;
 name|searcherThread1
 operator|.
 name|join
@@ -668,12 +682,27 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
+name|modifier
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|assertTrue
 argument_list|(
 literal|"hit unexpected exception in indexer"
 argument_list|,
 operator|!
 name|indexerThread
+operator|.
+name|failed
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"hit unexpected exception in indexer 2"
+argument_list|,
+operator|!
+name|indexerThread2
 operator|.
 name|failed
 argument_list|)

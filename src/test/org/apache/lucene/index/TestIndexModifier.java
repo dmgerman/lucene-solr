@@ -453,6 +453,7 @@ name|getUseCompoundFile
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/* new merge policy     assertEquals(0, i.getMaxBufferedDocs());     */
 name|assertEquals
 argument_list|(
 literal|10

@@ -460,6 +460,12 @@ argument_list|(
 name|useCompoundFile
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|maxBufferedDocs
+operator|!=
+literal|0
+condition|)
 name|indexWriter
 operator|.
 name|setMaxBufferedDocs

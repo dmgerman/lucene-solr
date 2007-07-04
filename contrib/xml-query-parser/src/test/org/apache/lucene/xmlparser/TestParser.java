@@ -491,6 +491,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 name|reader
 operator|=
