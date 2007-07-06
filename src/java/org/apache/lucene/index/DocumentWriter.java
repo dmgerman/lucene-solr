@@ -1686,8 +1686,8 @@ name|lo
 operator|+
 name|hi
 operator|)
-operator|/
-literal|2
+operator|>>>
+literal|1
 decl_stmt|;
 if|if
 condition|(
