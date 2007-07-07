@@ -1725,6 +1725,20 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Used only for testing
+DECL|method|getWriter
+specifier|protected
+specifier|synchronized
+name|IndexWriter
+name|getWriter
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|writer
+return|;
+block|}
 comment|/**      * This factory method creates a new GDataIndexer using a instance of      * {@link IndexTask}      *       * @param config -      *            the config to be used to configure the indexer      * @param dir -      *            the directory to index to      * @param create -      *<code>true</code> to create a new index,<code>false</code>      *            to use the existing one.      * @return - a new GDataIndexer instance      * @throws IOException -      *             if an IOException occurs while initializing the indexer      */
 DECL|method|createGdataIndexer
 specifier|public
