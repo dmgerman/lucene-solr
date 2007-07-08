@@ -503,10 +503,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Remove a field    *     * @param the field name    * @return true if a field was removed    */
+comment|/**    * Remove a field from the document    *     * @param key The field name whose field is to be removed from the document    * @return the previous field with<tt>name</tt>, or    *<tt>null</tt> if there was no field for<tt>key</tt>.    */
 DECL|method|removeField
 specifier|public
-name|boolean
+name|SolrInputField
 name|removeField
 parameter_list|(
 name|String
@@ -520,8 +520,6 @@ name|remove
 argument_list|(
 name|name
 argument_list|)
-operator|!=
-literal|null
 return|;
 block|}
 comment|/**    * Should the Document be able to contain duplicate values for the same field?    *     * By default, all field values are maintained.  If you only want to distinct values    * set setKeepDuplicateFieldValues( "fieldname", false );    *     * To change the default behavior, use<code>null</code> as the fieldname.    *     * NOTE: this must be called before adding any values to the given field.    */
