@@ -519,7 +519,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This handler exposes the internal lucene index.  It is inspired by and   * modeled on Luke, the Lucene Index Browser by Andrzej Bialecki.  *   http://www.getopt.org/luke/  *<p>  * NOTE: the response format is still likely to change.  It should be designed so  * that it works nicely with an XSLT transformation.  Until we have a nice  * XSLT front end for /admin, the format is still open to change.  *</p>  *   * For more documentation see:  *  http://wiki.apache.org/solr/LukeRequestHandler  *   * @author ryan  * @version $Id$  * @since solr 1.2  */
+comment|/**  * This handler exposes the internal lucene index.  It is inspired by and   * modeled on Luke, the Lucene Index Browser by Andrzej Bialecki.  *   http://www.getopt.org/luke/  *<p>  * NOTE: the response format is still likely to change.  It should be designed so  * that it works nicely with an XSLT transformation.  Until we have a nice  * XSLT front end for /admin, the format is still open to change.  *</p>  *   * For more documentation see:  *  http://wiki.apache.org/solr/LukeRequestHandler  *   * @version $Id$  * @since solr 1.2  */
 end_comment
 
 begin_class
@@ -3002,11 +3002,17 @@ block|{
 name|TermEnum
 name|te
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|te
+operator|=
 name|reader
 operator|.
 name|terms
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|int
 name|numTerms
 init|=
@@ -3033,6 +3039,21 @@ argument_list|,
 name|numTerms
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|te
+operator|!=
+literal|null
+condition|)
+name|te
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|indexInfo
 operator|.
@@ -3745,11 +3766,17 @@ decl_stmt|;
 name|TermEnum
 name|terms
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|terms
+operator|=
 name|reader
 operator|.
 name|terms
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 while|while
 condition|(
 name|terms
@@ -3804,6 +3831,8 @@ operator|new
 name|TopTermQueue
 argument_list|(
 name|numTerms
+operator|+
+literal|1
 argument_list|)
 expr_stmt|;
 name|info
@@ -3918,7 +3947,7 @@ name|tiq
 operator|.
 name|size
 argument_list|()
-operator|>=
+operator|>
 name|numTerms
 condition|)
 block|{
@@ -3950,6 +3979,21 @@ expr_stmt|;
 comment|// reset minFreq
 block|}
 block|}
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|terms
+operator|!=
+literal|null
+condition|)
+name|terms
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 return|return
 name|info
