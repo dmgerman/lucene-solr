@@ -113,7 +113,7 @@ comment|// analyzer.  Should lead to faster query parsing.
 end_comment
 
 begin_comment
-comment|/**  * A variation on the Lucene QueryParser which knows about the field   * types and query time analyzers configured in Solr's schema.xml.  *  *<p>  * This class also deviates from the Lucene QueryParser by using   * ConstantScore versions of RangeQuery and PrefixQuery to prevent   * TooManyClauses exceptions.  *</p>   *  *<p>  * If the magic field name "<code>_val_</code>" is used in a term or   * phrase query, the value is parsed as a function.  *</p>  *  * @see QueryParsing#parseFunction  * @see ConstantScoreRangeQuery  * @see ConstantScorePrefixQuery  * @author yonik  */
+comment|/**  * A variation on the Lucene QueryParser which knows about the field   * types and query time analyzers configured in Solr's schema.xml.  *  *<p>  * This class also deviates from the Lucene QueryParser by using   * ConstantScore versions of RangeQuery and PrefixQuery to prevent   * TooManyClauses exceptions.  *</p>   *  *<p>  * If the magic field name "<code>_val_</code>" is used in a term or   * phrase query, the value is parsed as a function.  *</p>  *  * @see QueryParsing#parseFunction  * @see ConstantScoreRangeQuery  * @see ConstantScorePrefixQuery  */
 end_comment
 
 begin_class

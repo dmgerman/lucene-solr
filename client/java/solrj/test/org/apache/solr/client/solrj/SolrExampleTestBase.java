@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This should include tests against the example solr config  *   * This lets us try various SolrServer implementations with the same tests.  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * This should include tests against the example solr config  *   * This lets us try various SolrServer implementations with the same tests.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class

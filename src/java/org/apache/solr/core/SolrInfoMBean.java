@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * MBean interface for getting various ui friendly strings and URLs  * for use by objects which are 'pluggable' to make server administration  * easier.  *  * @author ronp  * @version $Id$  */
+comment|/**  * MBean interface for getting various ui friendly strings and URLs  * for use by objects which are 'pluggable' to make server administration  * easier.  *  * @version $Id$  */
 end_comment
 
 begin_interface

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *<code>DocList</code> represents the result of a query: an ordered list of document ids with optional score.  * This list contains a subset of the complete list of documents actually matched:<code>size()</code>  * document ids starting at<code>offset()</code>.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>DocList</code> represents the result of a query: an ordered list of document ids with optional score.  * This list contains a subset of the complete list of documents actually matched:<code>size()</code>  * document ids starting at<code>offset()</code>.  *  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_interface

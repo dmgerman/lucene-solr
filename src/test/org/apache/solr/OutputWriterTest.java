@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests the ability to configure multiple query output writers, and select those  * at query time.  *  * @author<a href='mailto:mbaranczak@epublishing.com'> Mike Baranczak</a>  * @author the Solr project  */
+comment|/** Tests the ability to configure multiple query output writers, and select those  * at query time.  *  */
 end_comment
 
 begin_class

@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Reader that wraps another reader and attempts to strip out HTML constructs.  *  *  * @author yonik  * @version $Id$  */
+comment|/**  * A Reader that wraps another reader and attempts to strip out HTML constructs.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

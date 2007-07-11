@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A factory to generate UpdateRequestProcessors for each request.  The default  * implementation does nothing except pass the commands directly to the   * UpdateHandler  *   * @author ryan  * @since solr 1.3  */
+comment|/**  * A factory to generate UpdateRequestProcessors for each request.  The default  * implementation does nothing except pass the commands directly to the   * UpdateHandler  *   * @since solr 1.3  */
 end_comment
 
 begin_class

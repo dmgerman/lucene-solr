@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Obtains the ordinal of the field value from the default Lucene {@link org.apache.lucene.search.FieldCache} using getStringIndex().  *<br>  * The native lucene index order is used to assign an ordinal value for each field value.  *<br>Field values (terms) are lexicographically ordered by unicode value, and numbered starting at 1.  *<br>  * Example:<br>  *  If there were only three field values: "apple","banana","pear"  *<br>then ord("apple")=1, ord("banana")=2, ord("pear")=3  *<p>  * WARNING: ord() depends on the position in an index and can thus change when other documents are inserted or deleted,  *  or if a MultiSearcher is used.  * @author yonik  * @version $Id$  */
+comment|/**  * Obtains the ordinal of the field value from the default Lucene {@link org.apache.lucene.search.FieldCache} using getStringIndex().  *<br>  * The native lucene index order is used to assign an ordinal value for each field value.  *<br>Field values (terms) are lexicographically ordered by unicode value, and numbered starting at 1.  *<br>  * Example:<br>  *  If there were only three field values: "apple","banana","pear"  *<br>then ord("apple")=1, ord("banana")=2, ord("pear")=3  *<p>  * WARNING: ord() depends on the position in an index and can thus change when other documents are inserted or deleted,  *  or if a MultiSearcher is used.  * @version $Id$  */
 end_comment
 
 begin_class

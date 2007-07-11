@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO -- mostly a stub until we have a defined output format  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * TODO -- mostly a stub until we have a defined output format  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class

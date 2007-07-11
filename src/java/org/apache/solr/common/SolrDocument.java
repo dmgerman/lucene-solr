@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A concrete representation of a document within a Solr index.  Unlike a lucene  * Document, a SolrDocument may have an Object value matching the type defined in  * schema.xml  *   * For indexing documents, use the SolrInputDocumet that contains extra information  * for document and field boosting.  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * A concrete representation of a document within a Solr index.  Unlike a lucene  * Document, a SolrDocument may have an Object value matching the type defined in  * schema.xml  *   * For indexing documents, use the SolrInputDocumet that contains extra information  * for document and field boosting.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class

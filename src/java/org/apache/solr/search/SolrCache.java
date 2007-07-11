@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Primary API for dealing with Solr's internal caches.  *   * @author yonik  * @version $Id$  */
+comment|/**  * Primary API for dealing with Solr's internal caches.  *   * @version $Id$  */
 end_comment
 
 begin_interface

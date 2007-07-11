@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * @author yonik  */
+comment|/**  */
 end_comment
 
 begin_package
@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where documents are added  * directly to the main lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where documents are added  * directly to the main lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  *  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

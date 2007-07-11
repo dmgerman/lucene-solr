@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>BitDocSet</code> represents an unordered set of Lucene Document Ids  * using a BitSet.  A set bit represents inclusion in the set for that document.  *  * @author yonik  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>BitDocSet</code> represents an unordered set of Lucene Document Ids  * using a BitSet.  A set bit represents inclusion in the set for that document.  *  * @version $Id$  * @since solr 0.9  */
 end_comment
 
 begin_class

@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is similar to MultiMapSolrParams except you can edit the   * parameters after it is initialized.  It has helper functions to set/add  * integer and boolean param values.  *   * @author ryan  * @since solr 1.3  */
+comment|/**  * This class is similar to MultiMapSolrParams except you can edit the   * parameters after it is initialized.  It has helper functions to set/add  * integer and boolean param values.  *   * @since solr 1.3  */
 end_comment
 
 begin_class

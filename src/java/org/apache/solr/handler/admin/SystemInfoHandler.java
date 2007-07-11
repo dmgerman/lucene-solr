@@ -313,7 +313,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This handler returns system info  *   * NOTE: the response format is still likely to change.  It should be designed so  * that it works nicely with an XSLT transformation.  Until we have a nice  * XSLT front end for /admin, the format is still open to change.  *   * @author ryan  * @version $Id$  * @since solr 1.2  */
+comment|/**  * This handler returns system info  *   * NOTE: the response format is still likely to change.  It should be designed so  * that it works nicely with an XSLT transformation.  Until we have a nice  * XSLT front end for /admin, the format is still open to change.  *   * @version $Id$  * @since solr 1.2  */
 end_comment
 
 begin_class

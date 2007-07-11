@@ -35,7 +35,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A plugin that can be initialized with a NamedList  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * A plugin that can be initialized with a NamedList  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_interface

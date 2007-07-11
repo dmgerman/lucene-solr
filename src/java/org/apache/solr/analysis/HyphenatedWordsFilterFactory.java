@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for HyphenatedWordsFilter  * @author Boris Vitez  */
+comment|/**  * Factory for HyphenatedWordsFilter  */
 end_comment
 
 begin_class

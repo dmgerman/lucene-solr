@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represent the field and boost information needed to construct and index  * a Lucene Document.  Like the SolrDocument, the field values should  * match those specified in schema.xml   *   * By default, this will keep every field value added to the document.  To only  * keep distinct values, use setRemoveDuplicateFieldValues( "fieldname", true );  *  * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Represent the field and boost information needed to construct and index  * a Lucene Document.  Like the SolrDocument, the field values should  * match those specified in schema.xml   *   * By default, this will keep every field value added to the document.  To only  * keep distinct values, use setRemoveDuplicateFieldValues( "fieldname", true );  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class

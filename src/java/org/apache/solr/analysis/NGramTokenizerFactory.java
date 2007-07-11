@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates new instances of {@link NGramTokenizer}.  * @author Otis Gospodnetic  * @author Adam Hiatt  */
+comment|/**  * Creates new instances of {@link NGramTokenizer}.  */
 end_comment
 
 begin_class

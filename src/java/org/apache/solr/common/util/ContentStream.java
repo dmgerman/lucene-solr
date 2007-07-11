@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author ryan  * @version $Id$  * @since solr 1.2  */
+comment|/**  * @version $Id$  * @since solr 1.2  */
 end_comment
 
 begin_interface

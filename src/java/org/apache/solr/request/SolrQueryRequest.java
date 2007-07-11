@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Container for a request to execute a query.</p>  *<p><code>SolrQueryRequest</code> is not thread safe.</p>  *   * @author yonik  * @version $Id$  */
+comment|/**  *<p>Container for a request to execute a query.</p>  *<p><code>SolrQueryRequest</code> is not thread safe.</p>  *   * @version $Id$  */
 end_comment
 
 begin_interface

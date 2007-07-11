@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author ryan  */
+comment|/**  */
 end_comment
 
 begin_class

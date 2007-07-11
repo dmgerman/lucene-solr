@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class that converts the server request into the more verbose general request framework.  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Base class that converts the server request into the more verbose general request framework.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class

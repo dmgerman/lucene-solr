@@ -117,7 +117,7 @@ comment|// retained more for backward compatibility.
 end_comment
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  * @version $Id$  */
 end_comment
 
 begin_class

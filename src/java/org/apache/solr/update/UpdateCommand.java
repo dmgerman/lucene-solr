@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An index update command encapsulated in an object (Command pattern)  *  * @author yonik  * @version $Id$  */
+comment|/** An index update command encapsulated in an object (Command pattern)  *  * @version $Id$  */
 end_comment
 
 begin_class

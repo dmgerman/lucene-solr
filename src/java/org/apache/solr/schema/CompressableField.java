@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**<code>CompressableField</code> is an abstract field type which enables a  * field to be compressed (by specifying<code>compressed="true"</code> at the  * field definition level) and provides optional support for specifying a  * threshold at which compression is enabled.  *  * Optional settings:  *<ul>  *<li><code>compressThreshold</code>: length, in characters, at which point the   *      field contents should be compressed [default: 0]</li>  *</ul></p>  *   * TODO: Enable compression level specification (not yet in lucene)  *   * @author klaas  * @version $Id$  */
+comment|/**<code>CompressableField</code> is an abstract field type which enables a  * field to be compressed (by specifying<code>compressed="true"</code> at the  * field definition level) and provides optional support for specifying a  * threshold at which compression is enabled.  *  * Optional settings:  *<ul>  *<li><code>compressThreshold</code>: length, in characters, at which point the   *      field contents should be compressed [default: 0]</li>  *</ul></p>  *   * TODO: Enable compression level specification (not yet in lucene)  *   * @version $Id$  */
 end_comment
 
 begin_class

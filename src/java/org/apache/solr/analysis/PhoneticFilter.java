@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create tokens for phonetic matches.  See:  * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *  * @version $Id:$  */
+comment|/**  * Create tokens for phonetic matches.  See:  * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *  * @version $Id$  */
 end_comment
 
 begin_class

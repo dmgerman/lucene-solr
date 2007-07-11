@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/** An iterator to iterate over set bits in an OpenBitSet.  * This is faster than nextSetBit() for iterating over the complete set of bits,  * especially when the density of the bits set is high.  *  * @author yonik  * @version $Id$  */
+comment|/** An iterator to iterate over set bits in an OpenBitSet.  * This is faster than nextSetBit() for iterating over the complete set of bits,  * especially when the density of the bits set is high.  *  * @version $Id$  */
 end_comment
 
 begin_class

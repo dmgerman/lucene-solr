@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Performance tester for OpenBitSet.  * Use -Xbatch for more predictable results, and run tests such that the duration  * is at least 10 seconds for better accuracy.  Close browsers on your system (javascript  * or flash may be running and cause more erratic results).  *  * @author yonik  * @version $Id$  */
+comment|/** Performance tester for OpenBitSet.  * Use -Xbatch for more predictable results, and run tests such that the duration  * is at least 10 seconds for better accuracy.  Close browsers on your system (javascript  * or flash may be running and cause more erratic results).  *  * @version $Id$  */
 end_comment
 
 begin_class

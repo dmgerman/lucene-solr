@@ -351,7 +351,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Kind of cool but kind of slow compared to regular fragmenting  *  * Interestingly, the slowdown comes almost entirely from the pre-analysis,  * and could be completely avoided by pre-computation.  *  * it is also possible that a hand-crafted state machine (switch statement)  * could be significantly faster.  Could even build in custom tricks...  * perhaps JavaCC should be used? TODO  *   * @author Mike Klaas  */
+comment|/**  * Kind of cool but kind of slow compared to regular fragmenting  *  * Interestingly, the slowdown comes almost entirely from the pre-analysis,  * and could be completely avoided by pre-computation.  *  * it is also possible that a hand-crafted state machine (switch statement)  * could be significantly faster.  Could even build in custom tricks...  * perhaps JavaCC should be used? TODO  *   */
 end_comment
 
 begin_class

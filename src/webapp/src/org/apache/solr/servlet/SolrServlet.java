@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @author<a href='mailto:mbaranczak@epublishing.com'> Mike Baranczak</a>  */
+comment|/**  */
 end_comment
 
 begin_class

@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for SnowballFilters, with configurable language  *   * Browsing the code, SnowballFilter uses reflection to adapt to Lucene... don't  * use this if you are concerned about speed. Use EnglishPorterFilterFactory.  *   * @author yonik  * @version $Id$  */
+comment|/**  * Factory for SnowballFilters, with configurable language  *   * Browsing the code, SnowballFilter uses reflection to adapt to Lucene... don't  * use this if you are concerned about speed. Use EnglishPorterFilterFactory.  *   * @version $Id$  */
 end_comment
 
 begin_class

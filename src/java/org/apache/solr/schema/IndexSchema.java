@@ -369,7 +369,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>IndexSchema</code> contains information about the valid fields in an index  * and the types of those fields.  *  * @author yonik  * @version $Id$  */
+comment|/**  *<code>IndexSchema</code> contains information about the valid fields in an index  * and the types of those fields.  *  * @version $Id$  */
 end_comment
 
 begin_class

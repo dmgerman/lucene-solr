@@ -269,7 +269,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for all field types used by an index schema.  *  * @author yonik  * @version $Id$  */
+comment|/**  * Base class for all field types used by an index schema.  *  * @version $Id$  */
 end_comment
 
 begin_class

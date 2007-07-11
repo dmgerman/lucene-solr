@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of<code>QueryResponseWriter</code> are used to format responses to query requests.  *  * Different<code>QueryResponseWriter</code>s are registered with the<code>SolrCore</code>.  * One way to register a QueryResponseWriter with the core is thorugh the<code>solrconfig.xml</code> file.  *<p>  * Example<code>solrconfig.xml</code> entry to register a<code>QueryResponseWRiter</code> implementation to  * handle all queries with a writer type of "simple":  *<p>  *<code>  *&lt;queryResponseWriter name="simple" class="foo.SimpleResponseWriter" /&gt;  *</code>  *<p>  * A single instance of any registered QueryResponseWriter is created  * via the default constructor and is reused for all relevant queries.  *  * @author yonik  * @version $Id$  */
+comment|/**  * Implementations of<code>QueryResponseWriter</code> are used to format responses to query requests.  *  * Different<code>QueryResponseWriter</code>s are registered with the<code>SolrCore</code>.  * One way to register a QueryResponseWriter with the core is thorugh the<code>solrconfig.xml</code> file.  *<p>  * Example<code>solrconfig.xml</code> entry to register a<code>QueryResponseWRiter</code> implementation to  * handle all queries with a writer type of "simple":  *<p>  *<code>  *&lt;queryResponseWriter name="simple" class="foo.SimpleResponseWriter" /&gt;  *</code>  *<p>  * A single instance of any registered QueryResponseWriter is created  * via the default constructor and is reused for all relevant queries.  *  * @version $Id$  */
 end_comment
 
 begin_interface

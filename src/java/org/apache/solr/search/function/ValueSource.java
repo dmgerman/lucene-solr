@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Instantiates {@link org.apache.solr.search.function.DocValues} for a particular reader.  *<br>  * Often used when creating a {@link FunctionQuery}.  *  * @author yonik  * @version $Id$  */
+comment|/**  * Instantiates {@link org.apache.solr.search.function.DocValues} for a particular reader.  *<br>  * Often used when creating a {@link FunctionQuery}.  *  * @version $Id$  */
 end_comment
 
 begin_class

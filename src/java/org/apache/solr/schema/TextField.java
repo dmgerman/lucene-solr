@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**<code>TextField</code> is the basic type for configurable text analysis.  * Analyzers for field types using this implementation should be defined in the schema.  * @author yonik  * @version $Id$  */
+comment|/**<code>TextField</code> is the basic type for configurable text analysis.  * Analyzers for field types using this implementation should be defined in the schema.  * @version $Id$  */
 end_comment
 
 begin_class

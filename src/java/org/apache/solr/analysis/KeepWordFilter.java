@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TokenFilter that only keeps tokens with text contained in the  * required words.  This filter behaves like the inverse of StopFilter.  *   * @author ryan  * @version $Id$  * @since solr 1.3  */
+comment|/**  * A TokenFilter that only keeps tokens with text contained in the  * required words.  This filter behaves like the inverse of StopFilter.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class

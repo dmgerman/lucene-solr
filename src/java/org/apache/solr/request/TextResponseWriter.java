@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Base class for text-oriented response writers.  *  * @author yonik  * @version $Id$  */
+comment|/** Base class for text-oriented response writers.  *  * @version $Id$  */
 end_comment
 
 begin_class
