@@ -732,6 +732,15 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|childPointer
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 name|haveSkipped
 operator|=
 literal|false
@@ -753,7 +762,7 @@ control|)
 block|{
 name|skipStream
 index|[
-literal|0
+name|i
 index|]
 operator|=
 literal|null
