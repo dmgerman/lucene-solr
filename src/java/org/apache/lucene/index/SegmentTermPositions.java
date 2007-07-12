@@ -85,7 +85,8 @@ specifier|private
 name|long
 name|lazySkipPointer
 init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|lazySkipProxCount
 specifier|private
@@ -523,7 +524,8 @@ if|if
 condition|(
 name|lazySkipPointer
 operator|!=
-literal|0
+operator|-
+literal|1
 condition|)
 block|{
 name|proxStream
@@ -535,7 +537,8 @@ argument_list|)
 expr_stmt|;
 name|lazySkipPointer
 operator|=
-literal|0
+operator|-
+literal|1
 expr_stmt|;
 block|}
 if|if
