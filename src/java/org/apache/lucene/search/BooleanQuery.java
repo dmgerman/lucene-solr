@@ -275,7 +275,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Specifies a minimum number of the optional BooleanClauses    * which must be satisifed.    *    *<p>    * By default no optional clauses are neccessary for a match    * (unless there are no required clauses).  If this method is used,    * then the specified numebr of clauses is required.    *</p>    *<p>    * Use of this method is totally independant of specifying that    * any specific clauses are required (or prohibited).  This number will    * only be compared against the number of matching optional clauses.    *</p>    *<p>    * EXPERT NOTE: Using this method will force the use of BooleanWeight2,    * regardless of wether setUseScorer14(true) has been called.    *</p>    *    * @param min the number of optional clauses that must match    * @see #setUseScorer14    */
+comment|/**    * Specifies a minimum number of the optional BooleanClauses    * which must be satisifed.    *    *<p>    * By default no optional clauses are neccessary for a match    * (unless there are no required clauses).  If this method is used,    * then the specified number of clauses is required.    *</p>    *<p>    * Use of this method is totally independant of specifying that    * any specific clauses are required (or prohibited).  This number will    * only be compared against the number of matching optional clauses.    *</p>    *<p>    * EXPERT NOTE: Using this method may force collecting docs in order,    * regardless of wether setAllowDocsOutOfOrder(true) has been called.    *</p>    *    * @param min the number of optional clauses that must match    * @see #setAllowDocsOutOfOrder    */
 DECL|method|setMinimumNumberShouldMatch
 specifier|public
 name|void
@@ -1257,7 +1257,7 @@ name|allowDocsOutOfOrder
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Indicates whether hit docs may be collected out of docid    * order. In other words, with this setting,     * {@link HitCollector#collect(int,float)} might be    * invoked first for docid N and only later for docid N-1.    * Being static, this setting is system wide.    * If docs out of order are allowed scoring might be faster    * for certain queries (disjunction queries with less than    * 32 prohibited terms). This setting has no effect for     * other queries.    */
+comment|/**    * Indicates whether hit docs may be collected out of docid    * order. In other words, with this setting,     * {@link HitCollector#collect(int,float)} might be    * invoked first for docid N and only later for docid N-1.    * Being static, this setting is system wide.    * If collecting docs out of order is allowed, scoring might be faster    * for certain queries, for example disjunction queries with    * less than 32 prohibited clauses.    * This setting has no effect for other queries.    */
 DECL|method|setAllowDocsOutOfOrder
 specifier|public
 specifier|static
@@ -1283,36 +1283,6 @@ parameter_list|()
 block|{
 return|return
 name|allowDocsOutOfOrder
-return|;
-block|}
-comment|/**    * @deprecated Use {@link #setAllowDocsOutOfOrder(boolean)} instead.    */
-DECL|method|setUseScorer14
-specifier|public
-specifier|static
-name|void
-name|setUseScorer14
-parameter_list|(
-name|boolean
-name|use14
-parameter_list|)
-block|{
-name|setAllowDocsOutOfOrder
-argument_list|(
-name|use14
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * @deprecated Use {@link #getAllowDocsOutOfOrder()} instead.    */
-DECL|method|getUseScorer14
-specifier|public
-specifier|static
-name|boolean
-name|getUseScorer14
-parameter_list|()
-block|{
-return|return
-name|getAllowDocsOutOfOrder
-argument_list|()
 return|;
 block|}
 DECL|method|createWeight
