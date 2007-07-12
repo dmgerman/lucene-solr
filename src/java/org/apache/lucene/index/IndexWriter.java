@@ -4000,6 +4000,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.     *<p>Note: if<code>autoCommit=false</code>, flushed data would still     * not be visible to readers, until {@link #close} is called.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|flush
 specifier|public
 specifier|final
@@ -4020,9 +4021,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.     *<p>Note: if<code>autoCommit=false</code>, flushed data would still     * not be visible to readers, until {@link #close} is called.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Flush all in-memory buffered udpates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param flushDocStores if false we are allowed to keep    *  doc stores open to share with the next segment    */
 DECL|method|flush
-specifier|public
+specifier|protected
 specifier|final
 specifier|synchronized
 name|void
@@ -4533,6 +4534,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* new merge policy         if (0 == docWriter.getMaxBufferedDocs())           maybeMergeSegments(mergeFactor * numDocs / 2);         else           maybeMergeSegments(docWriter.getMaxBufferedDocs());         */
+if|if
+condition|(
+name|triggerMerge
+condition|)
 name|maybeMergeSegments
 argument_list|(
 name|docWriter
