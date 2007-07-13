@@ -245,7 +245,7 @@ name|FACET
 init|=
 literal|"facet"
 decl_stmt|;
-comment|/**    * Any lucene formated queries the user would like to use for    * Facet Contraint Counts (multi-value)    */
+comment|/**    * Any lucene formated queries the user would like to use for    * Facet Constraint Counts (multi-value)    */
 DECL|field|FACET_QUERY
 specifier|public
 specifier|static
@@ -255,7 +255,7 @@ name|FACET_QUERY
 init|=
 literal|"facet.query"
 decl_stmt|;
-comment|/**    * Any field whose terms the user wants to enumerate over for    * Facet Contraint Counts (multi-value)    */
+comment|/**    * Any field whose terms the user wants to enumerate over for    * Facet Constraint Counts (multi-value)    */
 DECL|field|FACET_FIELD
 specifier|public
 specifier|static
@@ -265,7 +265,7 @@ name|FACET_FIELD
 init|=
 literal|"facet.field"
 decl_stmt|;
-comment|/**    * The offset into the list of facets.    * Can be overriden on a per field basis.    */
+comment|/**    * The offset into the list of facets.    * Can be overridden on a per field basis.    */
 DECL|field|FACET_OFFSET
 specifier|public
 specifier|static
@@ -275,7 +275,7 @@ name|FACET_OFFSET
 init|=
 literal|"facet.offset"
 decl_stmt|;
-comment|/**    * Numeric option indicating the maximum number of facet field counts    * be included in the response for each field - in descending order of count.    * Can be overriden on a per field basis.    */
+comment|/**    * Numeric option indicating the maximum number of facet field counts    * be included in the response for each field - in descending order of count.    * Can be overridden on a per field basis.    */
 DECL|field|FACET_LIMIT
 specifier|public
 specifier|static
@@ -285,7 +285,7 @@ name|FACET_LIMIT
 init|=
 literal|"facet.limit"
 decl_stmt|;
-comment|/**    * Numeric option indicating the minimum number of hits before a facet should    * be included in the response.  Can be overriden on a per field basis.    */
+comment|/**    * Numeric option indicating the minimum number of hits before a facet should    * be included in the response.  Can be overridden on a per field basis.    */
 DECL|field|FACET_MINCOUNT
 specifier|public
 specifier|static
@@ -295,7 +295,7 @@ name|FACET_MINCOUNT
 init|=
 literal|"facet.mincount"
 decl_stmt|;
-comment|/**    * Boolean option indicating whether facet field counts of "0" should     * be included in the response.  Can be overriden on a per field basis.    */
+comment|/**    * Boolean option indicating whether facet field counts of "0" should     * be included in the response.  Can be overridden on a per field basis.    */
 DECL|field|FACET_ZEROS
 specifier|public
 specifier|static
@@ -305,7 +305,7 @@ name|FACET_ZEROS
 init|=
 literal|"facet.zeros"
 decl_stmt|;
-comment|/**    * Boolean option indicating whether the response should include a     * facet field count for all records which have no value for the     * facet field. Can be overriden on a per field basis.    */
+comment|/**    * Boolean option indicating whether the response should include a     * facet field count for all records which have no value for the     * facet field. Can be overridden on a per field basis.    */
 DECL|field|FACET_MISSING
 specifier|public
 specifier|static
@@ -375,7 +375,7 @@ name|STREAM_BODY
 init|=
 literal|"stream.body"
 decl_stmt|;
-comment|/**     * Explicity set the content type for the input stream    * If multiple streams are specified, the explicit contentType    * will be used for all of them.      */
+comment|/**     * Explicitly set the content type for the input stream    * If multiple streams are specified, the explicit contentType    * will be used for all of them.      */
 DECL|field|STREAM_CONTENTTYPE
 specifier|public
 specifier|static
