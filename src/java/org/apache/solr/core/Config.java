@@ -1138,6 +1138,8 @@ literal|"core."
 block|,
 literal|"request."
 block|,
+literal|"update.processor."
+block|,
 literal|"util."
 block|}
 decl_stmt|;

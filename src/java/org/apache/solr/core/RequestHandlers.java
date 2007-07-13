@@ -513,6 +513,8 @@ argument_list|(
 literal|"[solrconfig.xml] requestHandler"
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 block|{
 annotation|@

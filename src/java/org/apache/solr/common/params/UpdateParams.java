@@ -73,6 +73,16 @@ name|OPTIMIZE
 init|=
 literal|"optimize"
 decl_stmt|;
+comment|/** Select the update processor to use.  A RequestHandler may or may not respect this parameter */
+DECL|field|UPDATE_PROCESSOR
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UPDATE_PROCESSOR
+init|=
+literal|"update.processor"
+decl_stmt|;
 block|}
 end_interface
 

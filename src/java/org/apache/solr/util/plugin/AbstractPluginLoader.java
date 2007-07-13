@@ -176,6 +176,12 @@ specifier|final
 name|boolean
 name|preRegister
 decl_stmt|;
+DECL|field|requireName
+specifier|private
+specifier|final
+name|boolean
+name|requireName
+decl_stmt|;
 comment|/**    * @param type is the 'type' name included in error messages.    * @param preRegister, if true, this will first register all Plugins, then it will initialize them.    */
 DECL|method|AbstractPluginLoader
 specifier|public
@@ -186,6 +192,9 @@ name|type
 parameter_list|,
 name|boolean
 name|preRegister
+parameter_list|,
+name|boolean
+name|requireName
 parameter_list|)
 block|{
 name|this
@@ -199,6 +208,12 @@ operator|.
 name|preRegister
 operator|=
 name|preRegister
+expr_stmt|;
+name|this
+operator|.
+name|requireName
+operator|=
+name|requireName
 expr_stmt|;
 block|}
 DECL|method|AbstractPluginLoader
@@ -214,6 +229,8 @@ argument_list|(
 name|type
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -380,7 +397,11 @@ name|node
 argument_list|,
 literal|"name"
 argument_list|,
+name|requireName
+condition|?
 name|type
+else|:
+literal|null
 argument_list|)
 decl_stmt|;
 name|String
