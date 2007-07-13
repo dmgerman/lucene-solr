@@ -516,6 +516,9 @@ DECL|method|childNodesToNamedList
 specifier|public
 specifier|static
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|childNodesToNamedList
 parameter_list|(
 name|Node
@@ -556,6 +559,9 @@ DECL|method|nodesToNamedList
 specifier|public
 specifier|static
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|nodesToNamedList
 parameter_list|(
 name|NodeList
@@ -563,10 +569,16 @@ name|nlst
 parameter_list|)
 block|{
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|clst
 init|=
 operator|new
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
