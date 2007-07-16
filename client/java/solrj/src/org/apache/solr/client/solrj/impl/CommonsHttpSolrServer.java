@@ -1386,6 +1386,17 @@ block|}
 block|}
 comment|//-------------------------------------------------------------------
 comment|//-------------------------------------------------------------------
+comment|/**    * Parameters are added to ever request regardless.  This may be a place to add     * something like an authentication token.    */
+DECL|method|getInvariantParams
+specifier|public
+name|ModifiableSolrParams
+name|getInvariantParams
+parameter_list|()
+block|{
+return|return
+name|_invariantParams
+return|;
+block|}
 DECL|method|getBaseURL
 specifier|public
 name|String
