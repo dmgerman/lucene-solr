@@ -293,17 +293,7 @@ operator|.
 name|INFO
 argument_list|)
 decl_stmt|;
-name|LogUpdateProcessor
-operator|.
-name|log
-operator|.
-name|severe
-argument_list|(
-literal|"Will Log="
-operator|+
-name|doLog
-argument_list|)
-expr_stmt|;
+comment|// LogUpdateProcessor.log.severe("Will Log=" + doLog);
 if|if
 condition|(
 name|doLog
