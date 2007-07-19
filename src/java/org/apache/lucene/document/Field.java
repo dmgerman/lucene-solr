@@ -431,7 +431,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+comment|/**<p>Expert: change the value of this field.  This can    *  be used during indexing to re-use a single Field    *  instance to improve indexing speed by avoiding GC cost    *  of new'ing and reclaiming Field instances.  Typically    *  a single {@link Document} instance is re-used as    *  well.  This helps most on small documents.</p>    *     *<p>Note that you should only use this method after the    *  Field has been consumed (ie, the {@link Document}    *  containing this Field has been added to the index).    *  Also, each Field instance should only be used once    *  within a single {@link Document} instance.  See<a    *  href="http://wiki.apache.org/lucene-java/ImproveIndexingSpeed">ImproveIndexingSpeed</a>    *  for details.</p> */
 DECL|method|setValue
 specifier|public
 name|void
@@ -446,7 +446,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+comment|/** Expert: change the value of this field.  See<a href="#setValue(java.lang.String)">setValue(String)</a>. */
 DECL|method|setValue
 specifier|public
 name|void
@@ -461,7 +461,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+comment|/** Expert: change the value of this field.  See<a href="#setValue(java.lang.String)">setValue(String)</a>. */
 DECL|method|setValue
 specifier|public
 name|void
@@ -477,7 +477,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+comment|/** Expert: change the value of this field.  See<a href="#setValue(java.lang.String)">setValue(String)</a>. */
 DECL|method|setValue
 specifier|public
 name|void
