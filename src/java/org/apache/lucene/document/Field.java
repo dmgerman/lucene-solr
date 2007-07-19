@@ -431,6 +431,67 @@ else|:
 literal|null
 return|;
 block|}
+comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+DECL|method|setValue
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|String
+name|value
+parameter_list|)
+block|{
+name|fieldsData
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+DECL|method|setValue
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|Reader
+name|value
+parameter_list|)
+block|{
+name|fieldsData
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+DECL|method|setValue
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|byte
+index|[]
+name|value
+parameter_list|)
+block|{
+name|fieldsData
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|/** Expert: change the value of this field.  This can be    *  used during indexing to re-use a single Field instance    *  to improve indexing speed. */
+DECL|method|setValue
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|TokenStream
+name|value
+parameter_list|)
+block|{
+name|fieldsData
+operator|=
+name|value
+expr_stmt|;
+block|}
 comment|/**    * Create a field by specifying its name, value and how it will    * be saved in the index. Term vectors will not be stored in the index.    *     * @param name The name of the field    * @param value The string to process    * @param store Whether<code>value</code> should be stored in the index    * @param index Whether the field should be indexed, and if so, if it should    *  be tokenized before indexing     * @throws NullPointerException if name or value is<code>null</code>    * @throws IllegalArgumentException if the field is neither stored nor indexed     */
 DECL|method|Field
 specifier|public
