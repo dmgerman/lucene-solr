@@ -173,11 +173,10 @@ name|byte
 index|[]
 name|buffer
 init|=
-operator|new
-name|byte
-index|[
+name|newBuffer
+argument_list|(
 name|size
-index|]
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -219,6 +218,24 @@ argument_list|)
 expr_stmt|;
 return|return
 name|buffer
+return|;
+block|}
+comment|/**    * Expert: allocate a new buffer.     * Subclasses can allocate differently.     * @param size size of allocated buffer.    * @return allocated buffer.    */
+DECL|method|newBuffer
+name|byte
+index|[]
+name|newBuffer
+parameter_list|(
+name|int
+name|size
+parameter_list|)
+block|{
+return|return
+operator|new
+name|byte
+index|[
+name|size
+index|]
 return|;
 block|}
 comment|// Only valid if in a directory

@@ -511,8 +511,14 @@ literal|0
 expr_stmt|;
 name|bufferStart
 operator|=
+operator|(
+name|long
+operator|)
 name|BUFFER_SIZE
 operator|*
+operator|(
+name|long
+operator|)
 name|currentBufferIndex
 expr_stmt|;
 name|bufferLength
