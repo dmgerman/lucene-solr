@@ -5490,11 +5490,19 @@ block|}
 finally|finally
 block|{
 comment|// close readers before we attempt to delete now-obsolete segments
+if|if
+condition|(
+name|merger
+operator|!=
+literal|null
+condition|)
+block|{
 name|merger
 operator|.
 name|closeReaders
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|// Give deleter a chance to remove files now.
 name|deleter
