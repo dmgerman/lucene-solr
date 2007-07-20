@@ -154,6 +154,26 @@ name|SolrParams
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
+begin_comment
+comment|/**  * Fragmenter that tries to produce snippets that "look" like a regular   * expression.  *  *<code>solrconfig.xml</code> parameters:  *<ul>  *<li><code>hl.regex.pattern</code>: regular expression corresponding to "nice" fragments.</li>  *<li><code>hl.regex.slop</code>: how far the fragmenter can stray from the ideal fragment size.        A slop of 0.2 means that the fragmenter can go over or under by 20%.</li>  *<li><code>hl.regex.maxAnalyzedChars</code>: how many characters to apply the        regular expression to (independent from the global highlighter setting).</li>  *</ul>  *  * NOTE: the default for<code>maxAnalyzedChars</code> is much lower for this   * fragmenter.  After this limit is exhausted, fragments are produced in the  * same way as<code>GapFragmenter</code>  */
+end_comment
+
 begin_class
 DECL|class|RegexFragmenter
 specifier|public
@@ -164,6 +184,71 @@ name|HighlightingPluginBase
 implements|implements
 name|SolrFragmenter
 block|{
+DECL|field|defaultPatternRaw
+specifier|protected
+name|String
+name|defaultPatternRaw
+decl_stmt|;
+DECL|field|defaultPattern
+specifier|protected
+name|Pattern
+name|defaultPattern
+decl_stmt|;
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|NamedList
+name|args
+parameter_list|)
+block|{
+name|super
+operator|.
+name|init
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+name|defaultPatternRaw
+operator|=
+name|LuceneRegexFragmenter
+operator|.
+name|DEFAULT_PATTERN_RAW
+expr_stmt|;
+if|if
+condition|(
+name|defaults
+operator|!=
+literal|null
+condition|)
+block|{
+name|defaultPatternRaw
+operator|=
+name|defaults
+operator|.
+name|get
+argument_list|(
+name|HighlightParams
+operator|.
+name|PATTERN
+argument_list|,
+name|LuceneRegexFragmenter
+operator|.
+name|DEFAULT_PATTERN_RAW
+argument_list|)
+expr_stmt|;
+block|}
+name|defaultPattern
+operator|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|defaultPatternRaw
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|getFragmenter
 specifier|public
 name|Fragmenter
@@ -262,11 +347,45 @@ name|fieldName
 argument_list|,
 name|HighlightParams
 operator|.
-name|MAX_CHARS
+name|MAX_RE_CHARS
 argument_list|,
 name|LuceneRegexFragmenter
 operator|.
 name|DEFAULT_MAX_ANALYZED_CHARS
+argument_list|)
+decl_stmt|;
+name|String
+name|rawpat
+init|=
+name|params
+operator|.
+name|getFieldParam
+argument_list|(
+name|fieldName
+argument_list|,
+name|HighlightParams
+operator|.
+name|PATTERN
+argument_list|,
+name|LuceneRegexFragmenter
+operator|.
+name|DEFAULT_PATTERN_RAW
+argument_list|)
+decl_stmt|;
+name|Pattern
+name|p
+init|=
+name|rawpat
+operator|==
+name|defaultPatternRaw
+condition|?
+name|defaultPattern
+else|:
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|rawpat
 argument_list|)
 decl_stmt|;
 if|if
@@ -293,6 +412,8 @@ argument_list|,
 name|slop
 argument_list|,
 name|maxchars
+argument_list|,
+name|p
 argument_list|)
 return|;
 block|}
@@ -308,7 +429,11 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"GapFragmenter"
+literal|"RegexFragmenter ("
+operator|+
+name|defaultPatternRaw
+operator|+
+literal|")"
 return|;
 block|}
 annotation|@
@@ -351,7 +476,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Kind of cool but kind of slow compared to regular fragmenting  *  * Interestingly, the slowdown comes almost entirely from the pre-analysis,  * and could be completely avoided by pre-computation.  *  * it is also possible that a hand-crafted state machine (switch statement)  * could be significantly faster.  Could even build in custom tricks...  * perhaps JavaCC should be used? TODO  *   */
+comment|/**  * Fragmenter that tries to produce snippets that "look" like a regular   * expression.  *  * NOTE: the default for<code>maxAnalyzedChars</code> is much lower for this   * fragmenter.  After this limit is exhausted, fragments are produced in the  * same way as<code>GapFragmenter</code>  */
 end_comment
 
 begin_class
@@ -396,7 +521,7 @@ specifier|final
 name|int
 name|DEFAULT_MAX_ANALYZED_CHARS
 init|=
-literal|3000
+literal|10000
 decl_stmt|;
 comment|// ** settings
 comment|// desired length of fragments, in characters
@@ -424,6 +549,12 @@ specifier|protected
 name|int
 name|maxAnalyzedChars
 decl_stmt|;
+comment|// default desirable pattern for text fragments.
+DECL|field|textRE
+specifier|protected
+name|Pattern
+name|textRE
+decl_stmt|;
 comment|// ** state
 DECL|field|currentNumFrags
 specifier|protected
@@ -449,22 +580,29 @@ decl_stmt|;
 comment|// ** other
 comment|// note: could dynamically change size of sentences extracted to match
 comment|// target frag size
-DECL|field|textRE
-specifier|protected
+specifier|public
+specifier|static
+specifier|final
+name|String
+DECL|field|DEFAULT_PATTERN_RAW
+name|DEFAULT_PATTERN_RAW
+init|=
+literal|"[-\\w ,\\n\"']{20,200}"
+decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|Pattern
-name|textRE
+DECL|field|DEFAULT_PATTERN
+name|DEFAULT_PATTERN
 init|=
 name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"[-\\w ,\"']{20,200}"
+name|DEFAULT_PATTERN_RAW
 argument_list|)
 decl_stmt|;
-comment|// twice as fast, but not terribly good.
-comment|//protected static final Pattern textRE = Pattern.compile("\\w{20,200}");
 DECL|method|LuceneRegexFragmenter
 specifier|public
 name|LuceneRegexFragmenter
@@ -520,6 +658,40 @@ name|maxAnalyzedChars
 parameter_list|)
 block|{
 name|this
+argument_list|(
+name|targetFragChars
+argument_list|,
+name|incrementGapThreshold
+argument_list|,
+name|slop
+argument_list|,
+name|maxAnalyzedChars
+argument_list|,
+name|DEFAULT_PATTERN
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|LuceneRegexFragmenter
+specifier|public
+name|LuceneRegexFragmenter
+parameter_list|(
+name|int
+name|targetFragChars
+parameter_list|,
+name|int
+name|incrementGapThreshold
+parameter_list|,
+name|float
+name|slop
+parameter_list|,
+name|int
+name|maxAnalyzedChars
+parameter_list|,
+name|Pattern
+name|targetPattern
+parameter_list|)
+block|{
+name|this
 operator|.
 name|targetFragChars
 operator|=
@@ -542,6 +714,12 @@ operator|.
 name|maxAnalyzedChars
 operator|=
 name|maxAnalyzedChars
+expr_stmt|;
+name|this
+operator|.
+name|textRE
+operator|=
+name|targetPattern
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.TextFragmenter#start(java.lang.String)    */
@@ -663,7 +841,6 @@ name|end
 expr_stmt|;
 comment|//System.out.println("Matched " + match.group());
 block|}
-comment|//System.out.println("matches: " + temphs.size() + "\n\n");
 name|hotspots
 operator|=
 operator|new
