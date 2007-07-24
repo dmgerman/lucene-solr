@@ -2151,7 +2151,7 @@ name|currentPosition
 operator|++
 expr_stmt|;
 block|}
-comment|/**    * Construct the vector    * @return    */
+comment|/**    * Construct the vector    * @return The {@link TermFreqVector} based on the mappings.    */
 DECL|method|materializeVector
 specifier|public
 name|TermFreqVector
