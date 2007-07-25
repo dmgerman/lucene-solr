@@ -388,7 +388,9 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-literal|"body"
+name|BasicDocMaker
+operator|.
+name|BODY_FIELD
 argument_list|,
 name|a
 argument_list|)
@@ -595,7 +597,9 @@ name|asList
 argument_list|(
 name|getPrebuiltQueries
 argument_list|(
-literal|"body"
+name|BasicDocMaker
+operator|.
+name|BODY_FIELD
 argument_list|)
 argument_list|)
 argument_list|)

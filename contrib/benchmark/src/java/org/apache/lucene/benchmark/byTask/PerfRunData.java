@@ -340,6 +340,11 @@ specifier|private
 name|Config
 name|config
 decl_stmt|;
+DECL|field|startTimeMillis
+specifier|private
+name|long
+name|startTimeMillis
+decl_stmt|;
 comment|// constructor
 DECL|method|PerfRunData
 specifier|public
@@ -690,6 +695,24 @@ operator|.
 name|gc
 argument_list|()
 expr_stmt|;
+name|startTimeMillis
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @return Start time in milliseconds    */
+DECL|method|getStartTimeMillis
+specifier|public
+name|long
+name|getStartTimeMillis
+parameter_list|()
+block|{
+return|return
+name|startTimeMillis
+return|;
 block|}
 comment|/**    * @return Returns the points.    */
 DECL|method|getPoints

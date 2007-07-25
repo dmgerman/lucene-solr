@@ -161,7 +161,9 @@ name|get
 argument_list|(
 literal|"file.query.maker.default.field"
 argument_list|,
-literal|"body"
+name|BasicDocMaker
+operator|.
+name|BODY_FIELD
 argument_list|)
 decl_stmt|;
 name|QueryParser

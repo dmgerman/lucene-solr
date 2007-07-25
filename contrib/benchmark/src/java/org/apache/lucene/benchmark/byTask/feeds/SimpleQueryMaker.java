@@ -184,7 +184,9 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-literal|"body"
+name|BasicDocMaker
+operator|.
+name|BODY_FIELD
 argument_list|,
 name|anlzr
 argument_list|)
@@ -205,7 +207,9 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-literal|"docid"
+name|BasicDocMaker
+operator|.
+name|ID_FIELD
 argument_list|,
 literal|"doc2"
 argument_list|)
@@ -227,7 +231,9 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-literal|"body"
+name|BasicDocMaker
+operator|.
+name|BODY_FIELD
 argument_list|,
 literal|"simple"
 argument_list|)
