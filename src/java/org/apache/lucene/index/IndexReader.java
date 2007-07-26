@@ -796,7 +796,7 @@ block|}
 name|reader
 operator|=
 operator|new
-name|MultiReader
+name|MultiSegmentReader
 argument_list|(
 name|directory
 argument_list|,
