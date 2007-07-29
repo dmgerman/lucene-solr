@@ -345,6 +345,151 @@ name|FACET_ENUM_CACHE_MINDF
 init|=
 literal|"facet.enum.cache.minDf"
 decl_stmt|;
+comment|/**    * Any field whose terms the user wants to enumerate over for    * Facet Contraint Counts (multi-value)    */
+DECL|field|FACET_DATE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE
+init|=
+literal|"facet.date"
+decl_stmt|;
+comment|/**    * Date string indicating the starting point for a date facet range.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_DATE_START
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE_START
+init|=
+literal|"facet.date.start"
+decl_stmt|;
+comment|/**    * Date string indicating the endinging point for a date facet range.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_DATE_END
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE_END
+init|=
+literal|"facet.date.end"
+decl_stmt|;
+comment|/**    * Date Math string indicating the interval of sub-ranges for a date    * facet range.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_DATE_GAP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE_GAP
+init|=
+literal|"facet.date.gap"
+decl_stmt|;
+comment|/**    * Boolean indicating how counts should be computed if the range    * between 'start' and 'end' is not evenly divisible by 'gap'.  If    * this value is true, then all counts of ranges involving the 'end'    * point will use the exact endpoint specified -- this includes the    * 'between' and 'after' counts as well as the last range computed    * using the 'gap'.  If the value is false, then 'gap' is used to    * compute the effective endpoint closest to the 'end' param which    * results in the range between 'start' and 'end' being evenly    * divisible by 'gap'.    * The default is false.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_DATE_HARD_END
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE_HARD_END
+init|=
+literal|"facet.date.hardend"
+decl_stmt|;
+comment|/**    * String indicating what "other" ranges should be computed for a    * date facet range (multi-value).    * Can be overriden on a per field basis.    * @see FacetDateOther    */
+DECL|field|FACET_DATE_OTHER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE_OTHER
+init|=
+literal|"facet.date.other"
+decl_stmt|;
+comment|/**    * An enumeration of the legal values for FACET_DATE_OTHER...    *<ul>    *<li>before = the count of matches before the start date</li>    *<li>after = the count of matches after the end date</li>    *<li>between = the count of all matches between start and end</li>    *<li>all = all of the above (default value)</li>    *<li>none = no additional info requested</li>    *</ul>    * @see #FACET_DATE_OTHER    */
+DECL|enum|FacetDateOther
+specifier|public
+enum|enum
+name|FacetDateOther
+block|{
+DECL|enum constant|BEFORE
+DECL|enum constant|AFTER
+DECL|enum constant|BETWEEN
+DECL|enum constant|ALL
+DECL|enum constant|NONE
+name|BEFORE
+block|,
+name|AFTER
+block|,
+name|BETWEEN
+block|,
+name|ALL
+block|,
+name|NONE
+block|;
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|()
+return|;
+block|}
+DECL|method|get
+specifier|public
+specifier|static
+name|FacetDateOther
+name|get
+parameter_list|(
+name|String
+name|label
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|valueOf
+argument_list|(
+name|label
+operator|.
+name|toUpperCase
+argument_list|()
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+name|label
+operator|+
+literal|" is not a valid type of 'other' date facet information"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
 comment|/** If the content stream should come from a URL (using URLConnection) */
 DECL|field|STREAM_URL
 specifier|public
