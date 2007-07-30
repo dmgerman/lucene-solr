@@ -519,6 +519,14 @@ name|directory
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|assertTrue
+argument_list|(
+name|reader
+operator|.
+name|isOptimized
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|TermEnum
 name|terms
 init|=

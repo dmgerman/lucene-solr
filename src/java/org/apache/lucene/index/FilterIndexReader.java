@@ -1020,6 +1020,22 @@ name|isCurrent
 argument_list|()
 return|;
 block|}
+DECL|method|isOptimized
+specifier|public
+name|boolean
+name|isOptimized
+parameter_list|()
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+return|return
+name|in
+operator|.
+name|isOptimized
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
