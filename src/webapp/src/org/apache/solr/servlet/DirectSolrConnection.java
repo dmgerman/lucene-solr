@@ -875,6 +875,19 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Use this method to close the underlying SolrCore.    *     * @since solr 1.3    */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
