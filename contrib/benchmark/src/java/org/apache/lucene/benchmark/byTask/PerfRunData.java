@@ -695,6 +695,13 @@ operator|.
 name|gc
 argument_list|()
 expr_stmt|;
+block|}
+DECL|method|setStartTimeMillis
+specifier|public
+name|long
+name|setStartTimeMillis
+parameter_list|()
+block|{
 name|startTimeMillis
 operator|=
 name|System
@@ -702,6 +709,9 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+return|return
+name|startTimeMillis
+return|;
 block|}
 comment|/**    * @return Start time in milliseconds    */
 DECL|method|getStartTimeMillis

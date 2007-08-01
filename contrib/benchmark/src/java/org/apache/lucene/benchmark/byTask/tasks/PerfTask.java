@@ -286,11 +286,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|shouldNotRecordStats
-argument_list|()
-operator|||
 operator|!
 name|reportStats
+operator|||
+name|shouldNotRecordStats
+argument_list|()
 condition|)
 block|{
 name|setup
