@@ -48,7 +48,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|MapSolrParams
+name|CommonParams
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|SolrParams
+name|MapSolrParams
 import|;
 end_import
 
@@ -278,7 +278,7 @@ name|args
 operator|.
 name|put
 argument_list|(
-name|SolrParams
+name|CommonParams
 operator|.
 name|Q
 argument_list|,
@@ -325,7 +325,7 @@ name|args
 operator|.
 name|put
 argument_list|(
-name|SolrParams
+name|CommonParams
 operator|.
 name|SORT
 argument_list|,
@@ -351,7 +351,7 @@ name|args
 operator|.
 name|put
 argument_list|(
-name|SolrParams
+name|CommonParams
 operator|.
 name|SORT
 argument_list|,
@@ -378,7 +378,7 @@ name|args
 operator|.
 name|remove
 argument_list|(
-name|SolrParams
+name|CommonParams
 operator|.
 name|SORT
 argument_list|)
@@ -387,7 +387,7 @@ name|args
 operator|.
 name|put
 argument_list|(
-name|SolrParams
+name|CommonParams
 operator|.
 name|Q
 argument_list|,
@@ -413,7 +413,7 @@ name|args
 operator|.
 name|put
 argument_list|(
-name|SolrParams
+name|CommonParams
 operator|.
 name|Q
 argument_list|,

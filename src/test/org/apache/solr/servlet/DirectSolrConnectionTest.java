@@ -28,7 +28,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|SolrParams
+name|CommonParams
 import|;
 end_import
 
@@ -216,7 +216,7 @@ name|request
 argument_list|(
 literal|"/update?"
 operator|+
-name|SolrParams
+name|CommonParams
 operator|.
 name|STREAM_BODY
 operator|+
