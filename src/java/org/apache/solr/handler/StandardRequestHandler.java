@@ -212,7 +212,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|SolrParams
+name|MoreLikeThisParams
 import|;
 end_import
 
@@ -226,9 +226,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|util
+name|params
 operator|.
-name|MoreLikeThisParams
+name|SolrParams
 import|;
 end_import
 
