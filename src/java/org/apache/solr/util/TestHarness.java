@@ -599,7 +599,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if succesful, otherwise the XML response to the update    */
+comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if successful, otherwise the XML response to the update    */
 DECL|method|validateUpdate
 specifier|public
 name|String
@@ -620,7 +620,7 @@ literal|"0"
 argument_list|)
 return|;
 block|}
-comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if succesful, otherwise the XML response to the update    */
+comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if successful, otherwise the XML response to the update    */
 DECL|method|validateErrorUpdate
 specifier|public
 name|String
@@ -641,7 +641,7 @@ literal|"1"
 argument_list|)
 return|;
 block|}
-comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if succesful, otherwise the XML response to the update    */
+comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if successful, otherwise the XML response to the update    */
 DECL|method|checkUpdateStatus
 specifier|public
 name|String
@@ -709,7 +709,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Validates that an add of a single document results in success.    *    * @param fieldsAndValues Odds are field names, Evens are values    * @return null if succesful, otherwise the XML response to the update    * @see #appendSimpleDoc    */
+comment|/**    * Validates that an add of a single document results in success.    *    * @param fieldsAndValues Odds are field names, Evens are values    * @return null if successful, otherwise the XML response to the update    * @see #appendSimpleDoc    */
 DECL|method|validateAddDoc
 specifier|public
 name|String
@@ -1397,7 +1397,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
-comment|// this is anoying
+comment|// this is annoying
 if|if
 condition|(
 literal|null
