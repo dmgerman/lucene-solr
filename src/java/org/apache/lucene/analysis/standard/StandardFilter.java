@@ -28,7 +28,21 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|TokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
 import|;
 end_import
 
@@ -44,8 +58,6 @@ class|class
 name|StandardFilter
 extends|extends
 name|TokenFilter
-implements|implements
-name|StandardTokenizerConstants
 block|{
 comment|/** Construct filtering<i>in</i>. */
 DECL|method|StandardFilter
@@ -69,8 +81,12 @@ specifier|final
 name|String
 name|APOSTROPHE_TYPE
 init|=
-name|tokenImage
+name|StandardTokenizerImpl
+operator|.
+name|TOKEN_TYPES
 index|[
+name|StandardTokenizerImpl
+operator|.
 name|APOSTROPHE
 index|]
 decl_stmt|;
@@ -81,8 +97,12 @@ specifier|final
 name|String
 name|ACRONYM_TYPE
 init|=
-name|tokenImage
+name|StandardTokenizerImpl
+operator|.
+name|TOKEN_TYPES
 index|[
+name|StandardTokenizerImpl
+operator|.
 name|ACRONYM
 index|]
 decl_stmt|;
