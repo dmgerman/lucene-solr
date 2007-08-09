@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * FilteredQuery JUnit tests.  *  *<p>Created: Apr 21, 2004 1:21:46 PM  *  * @author  Tim Jones  * @version $Id$  * @since   1.4  */
+comment|/**  * FilteredQuery JUnit tests.  *  *<p>Created: Apr 21, 2004 1:21:46 PM  *  *  * @version $Id$  * @since   1.4  */
 end_comment
 
 begin_class

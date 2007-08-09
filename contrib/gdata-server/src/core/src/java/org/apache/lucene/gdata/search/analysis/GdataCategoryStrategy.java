@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This strategy retrieves the category term and and the scheme from a category  * element. The content is represented by the term which can be configured via  * the configuration file.  *<p>  * The category element has at least one attribute with the name "scheme" which  * is not mandatory. The term can be the default attribute "term" or the text  * content of the element, this is configured via the path of the field.  *</p>  *<p>  *<tt>&lt;category scheme="http://www.example.com/type" term="blog.post"/&gt;<tt>  *</p>  * TODO extend javadoc for search info  * @author Simon Willnauer  *  */
+comment|/**  * This strategy retrieves the category term and and the scheme from a category  * element. The content is represented by the term which can be configured via  * the configuration file.  *<p>  * The category element has at least one attribute with the name "scheme" which  * is not mandatory. The term can be the default attribute "term" or the text  * content of the element, this is configured via the path of the field.  *</p>  *<p>  *<tt>&lt;category scheme="http://www.example.com/type" term="blog.post"/&gt;<tt>  *</p>  * TODO extend javadoc for search info  *  *  */
 end_comment
 
 begin_class

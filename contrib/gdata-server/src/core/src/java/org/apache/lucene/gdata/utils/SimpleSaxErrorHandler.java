@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * For use with Digester to throw exceptions on errors  * @author Simon Willnauer  *  */
+comment|/**  * For use with Digester to throw exceptions on errors  *  *  */
 end_comment
 
 begin_class

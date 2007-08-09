@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<tt>Indexable</tt> implementation using the W3C Dom API and JAXP XPath  * engine  *   * @author Simon Willnauer  * @param<R> -  *            a subtype of {@link org.w3c.dom.Node} returned by the applyPath  *            method  * @param<I> -  *            a subtype of {@link org.apache.lucene.gdata.data.ServerBaseEntry}  */
+comment|/**  *<tt>Indexable</tt> implementation using the W3C Dom API and JAXP XPath  * engine  *   *  * @param<R> -  *            a subtype of {@link org.w3c.dom.Node} returned by the applyPath  *            method  * @param<I> -  *            a subtype of {@link org.apache.lucene.gdata.data.ServerBaseEntry}  */
 end_comment
 
 begin_class

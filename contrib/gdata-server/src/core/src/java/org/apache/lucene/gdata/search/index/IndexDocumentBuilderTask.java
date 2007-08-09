@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This callable does all of the entiti processing concurrently while added to  * the {@link org.apache.lucene.gdata.search.index.GDataIndexer} task queue;  *   * @see org.apache.lucene.gdata.search.analysis.Indexable  * @see org.apache.lucene.gdata.search.analysis.ContentStrategy  * @author Simon Willnauer  *   */
+comment|/**  * This callable does all of the entiti processing concurrently while added to  * the {@link org.apache.lucene.gdata.search.index.GDataIndexer} task queue;  *   * @see org.apache.lucene.gdata.search.analysis.Indexable  * @see org.apache.lucene.gdata.search.analysis.ContentStrategy  *  *   */
 end_comment
 
 begin_class

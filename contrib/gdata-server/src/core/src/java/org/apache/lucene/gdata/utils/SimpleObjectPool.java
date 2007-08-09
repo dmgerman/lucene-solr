@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Simple implementation of the {@link org.apache.lucene.gdata.utils.Pool}  * interface using a {@link java.util.Stack} as a buffer for the pooled objects.  * This implementation does not provide any timeout mechanismn. Objects will  * stay inside the pool until the pool is destroyed.  *<p>  * If any object will be released e.g. handover to the pool and the pool has  * already enought objects in the pool the released object will be destroyed. If  * the pool is empty a new Object will be created.  *</p>  *<p>  * This implementation does not track any references to the objects aquired by  * any other resource. The objects must be destroyed manually if not released to  * the pool after aquired.  *</p>  *   * @author Simon Willnauer  * @param<Type>  *   */
+comment|/**  * A Simple implementation of the {@link org.apache.lucene.gdata.utils.Pool}  * interface using a {@link java.util.Stack} as a buffer for the pooled objects.  * This implementation does not provide any timeout mechanismn. Objects will  * stay inside the pool until the pool is destroyed.  *<p>  * If any object will be released e.g. handover to the pool and the pool has  * already enought objects in the pool the released object will be destroyed. If  * the pool is empty a new Object will be created.  *</p>  *<p>  * This implementation does not track any references to the objects aquired by  * any other resource. The objects must be destroyed manually if not released to  * the pool after aquired.  *</p>  *   *  * @param<Type>  *   */
 end_comment
 
 begin_class

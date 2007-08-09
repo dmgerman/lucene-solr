@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class tests the MultiPhraseQuery class.  *  * @author Otis Gospodnetic, Daniel Naber  * @version $Id$  */
+comment|/**  * This class tests the MultiPhraseQuery class.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

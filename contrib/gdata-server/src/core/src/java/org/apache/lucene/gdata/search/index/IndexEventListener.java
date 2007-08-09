@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * This interface should be implemented by classes need to be notified when an  * index is commited  *   * @author Simon Willnauer  *   */
+comment|/**  * This interface should be implemented by classes need to be notified when an  * index is commited  *   *  *   */
 end_comment
 
 begin_interface

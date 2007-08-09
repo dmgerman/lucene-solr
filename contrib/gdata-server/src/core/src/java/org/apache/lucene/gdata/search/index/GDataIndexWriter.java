@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Configurable decorator for a lucene {@link IndexWriter}  *   * @author Simon Willnauer  *   */
+comment|/**  * Configurable decorator for a lucene {@link IndexWriter}  *   *  *   */
 end_comment
 
 begin_class

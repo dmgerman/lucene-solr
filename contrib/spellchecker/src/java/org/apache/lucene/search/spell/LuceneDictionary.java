@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  * @author Nicolas Maisonneuve  * @author Christian Mallwitz  */
+comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  *  *  */
 end_comment
 
 begin_class

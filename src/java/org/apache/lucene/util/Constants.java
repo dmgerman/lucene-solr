@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Some useful constants.  *  * @author  Doug Cutting  * @version $Id$  **/
+comment|/**  * Some useful constants.  *  *  * @version $Id$  **/
 end_comment
 
 begin_class

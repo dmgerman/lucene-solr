@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Implementation of this interface accept  * {@link org.apache.lucene.gdata.server.registry.ScopeVisitor} objects and call  * their methods on the desired action.  *   * @author Simon Willnauer  *   */
+comment|/**  * Implementation of this interface accept  * {@link org.apache.lucene.gdata.server.registry.ScopeVisitor} objects and call  * their methods on the desired action.  *   *  *   */
 end_comment
 
 begin_interface

@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This annotation is used to define mandatory properties via their setter  * methodes. It will be present at runtime.  *   * @see org.apache.lucene.gdata.server.registry.configuration.PropertyInjector  * @see org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration  * @author Simon Willnauer  *   */
+comment|/**  * This annotation is used to define mandatory properties via their setter  * methodes. It will be present at runtime.  *   * @see org.apache.lucene.gdata.server.registry.configuration.PropertyInjector  * @see org.apache.lucene.gdata.server.registry.configuration.ComponentConfiguration  *  *   */
 end_comment
 
 begin_annotation_defn

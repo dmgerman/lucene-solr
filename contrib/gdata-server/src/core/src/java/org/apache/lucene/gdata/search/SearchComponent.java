@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO document this when Search comes into play  *   * @author Simon Willnauer  *   */
+comment|/**  * TODO document this when Search comes into play  *   *  *   */
 end_comment
 
 begin_interface

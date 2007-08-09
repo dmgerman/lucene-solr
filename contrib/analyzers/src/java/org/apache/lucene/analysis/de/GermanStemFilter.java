@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stems German words. It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a GermanStemmer).  *  * @author    Gerhard Schwarz  * @version   $Id$  */
+comment|/**  * A filter that stems German words. It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a GermanStemmer).  *  *  * @version   $Id$  */
 end_comment
 
 begin_class

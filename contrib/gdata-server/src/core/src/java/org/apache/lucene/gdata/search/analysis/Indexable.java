@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class wraps the access to the GData entities to access them via xpath  * expressions. An arbitrary valid Xpath expression can be passed to the  *<tt>applyPath</tt> method to access an element, attribute etc. in the gdata  * entity.  *   * @author Simon Willnauer  * @param<R> -  *            a subtype of {@link org.w3c.dom.Node} returned by the applyPath  *            method  * @param<I> -  *            a subtype of {@link org.apache.lucene.gdata.data.ServerBaseEntry}  */
+comment|/**  * This class wraps the access to the GData entities to access them via xpath  * expressions. An arbitrary valid Xpath expression can be passed to the  *<tt>applyPath</tt> method to access an element, attribute etc. in the gdata  * entity.  *   *  * @param<R> -  *            a subtype of {@link org.w3c.dom.Node} returned by the applyPath  *            method  * @param<I> -  *            a subtype of {@link org.apache.lucene.gdata.data.ServerBaseEntry}  */
 end_comment
 
 begin_class

@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * This exception will be thrown if a Version conflict occures while updateing  * or deleteing an entry. Or if one entry is modified concurrently.  *   * @author Simon Willnauer  *   */
+comment|/**  * This exception will be thrown if a Version conflict occures while updateing  * or deleteing an entry. Or if one entry is modified concurrently.  *   *  *   */
 end_comment
 
 begin_class

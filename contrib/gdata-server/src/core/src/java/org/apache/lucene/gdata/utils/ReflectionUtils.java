@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of static helper methods solve common reflection problems  *   * @author Simon Willnauer  *   */
+comment|/**  * A collection of static helper methods solve common reflection problems  *   *  *   */
 end_comment
 
 begin_class
@@ -576,7 +576,7 @@ return|return
 name|primitive
 return|;
 block|}
-comment|/**  * Exception wrapper for all thrown exception in the ReflectionUtils methods  * @author Simon Willnauer  *  */
+comment|/**  * Exception wrapper for all thrown exception in the ReflectionUtils methods  *  *  */
 DECL|class|ReflectionException
 specifier|public
 specifier|static

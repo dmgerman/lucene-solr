@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>TestBitVector</code> tests the<code>BitVector</code>, obviously.  *  * @author "Peter Mularien"<pmularien@deploy.com>  * @version $Id$  */
+comment|/**  *<code>TestBitVector</code> tests the<code>BitVector</code>, obviously.  *  *   * @version $Id$  */
 end_comment
 
 begin_class

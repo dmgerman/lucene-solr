@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Document boost unit test.  *  * @author Doug Cutting  * @version $Revision$  */
+comment|/** Document boost unit test.  *  *  * @version $Revision$  */
 end_comment
 
 begin_class

@@ -179,7 +179,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id$  */
+comment|/**  *  * @version $Id$  */
 end_comment
 
 begin_class

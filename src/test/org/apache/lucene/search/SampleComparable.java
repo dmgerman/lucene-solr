@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An example Comparable for use with the custom sort tests.  * It implements a comparable for "id" sort of values which  * consist of an alphanumeric part and a numeric part, such as:  *<p/>  *<P>ABC-123, A-1, A-7, A-100, B-99999  *<p/>  *<p>Such values cannot be sorted as strings, since A-100 needs  * to come after A-7.  *<p/>  *<p>It could be argued that the "ids" should be rewritten as  * A-0001, A-0100, etc. so they will sort as strings.  That is  * a valid alternate way to solve it - but  * this is only supposed to be a simple test case.  *<p/>  *<p>Created: Apr 21, 2004 5:34:47 PM  *  * @author Tim Jones  * @version $Id$  * @since 1.4  */
+comment|/**  * An example Comparable for use with the custom sort tests.  * It implements a comparable for "id" sort of values which  * consist of an alphanumeric part and a numeric part, such as:  *<p/>  *<P>ABC-123, A-1, A-7, A-100, B-99999  *<p/>  *<p>Such values cannot be sorted as strings, since A-100 needs  * to come after A-7.  *<p/>  *<p>It could be argued that the "ids" should be rewritten as  * A-0001, A-0100, etc. so they will sort as strings.  That is  * a valid alternate way to solve it - but  * this is only supposed to be a simple test case.  *<p/>  *<p>Created: Apr 21, 2004 5:34:47 PM  *  *  * @version $Id$  * @since 1.4  */
 end_comment
 
 begin_class

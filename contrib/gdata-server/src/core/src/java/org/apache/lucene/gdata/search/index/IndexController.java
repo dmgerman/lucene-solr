@@ -501,7 +501,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of the {@link SearchComponent} interface. All actions  * on the index will be controlled from this class. Only this class grants read  * or write actions access to the index.  *   * @author Simon Willnauer  *   */
+comment|/**  * Default implementation of the {@link SearchComponent} interface. All actions  * on the index will be controlled from this class. Only this class grants read  * or write actions access to the index.  *   *  *   */
 end_comment
 
 begin_class

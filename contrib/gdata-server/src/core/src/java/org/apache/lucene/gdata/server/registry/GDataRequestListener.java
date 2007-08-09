@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This<tt>ServletRequestListener</tt> is used by the registry to notify  * registered {@link org.apache.lucene.gdata.server.registry.ScopeVisitor}  * implementations when a request is initialized e.g destroyed.  *   *   * @see org.apache.lucene.gdata.server.registry.ScopeVisitable  * @see javax.servlet.ServletRequestListener  * @author Simon Willnauer  *   */
+comment|/**  * This<tt>ServletRequestListener</tt> is used by the registry to notify  * registered {@link org.apache.lucene.gdata.server.registry.ScopeVisitor}  * implementations when a request is initialized e.g destroyed.  *   *   * @see org.apache.lucene.gdata.server.registry.ScopeVisitable  * @see javax.servlet.ServletRequestListener  *  *   */
 end_comment
 
 begin_class

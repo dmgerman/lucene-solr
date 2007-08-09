@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Each field in the search index is defined by a instance of  * {@link IndexSchemaField}. The schema definition will be loaded at startup  * and the defined values will be set to instances of this class. Each  * constructed field will be passed to an instance of  * {@link org.apache.lucene.gdata.search.config.IndexSchema}.  *<p>  * IndexSchemaField contains all informations about how the content from  * incoming entries has to be extracted and how the actual content has to be  * index into the lucene index.  *</p>  *<p>  * Each field will have a defined  * {@link org.apache.lucene.gdata.search.analysis.ContentStrategy} which does  * process the extraction of the field content from an incoming entry.  *</p>  * @see org.apache.lucene.gdata.search.analysis.ContentStrategy  * @see org.apache.lucene.gdata.search.config.IndexSchema  *   * @author Simon Willnauer  *   */
+comment|/**  * Each field in the search index is defined by a instance of  * {@link IndexSchemaField}. The schema definition will be loaded at startup  * and the defined values will be set to instances of this class. Each  * constructed field will be passed to an instance of  * {@link org.apache.lucene.gdata.search.config.IndexSchema}.  *<p>  * IndexSchemaField contains all informations about how the content from  * incoming entries has to be extracted and how the actual content has to be  * index into the lucene index.  *</p>  *<p>  * Each field will have a defined  * {@link org.apache.lucene.gdata.search.analysis.ContentStrategy} which does  * process the extraction of the field content from an incoming entry.  *</p>  * @see org.apache.lucene.gdata.search.analysis.ContentStrategy  * @see org.apache.lucene.gdata.search.config.IndexSchema  *   *  *   */
 end_comment
 
 begin_class
@@ -912,7 +912,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Defines the {@link ContentStrategy} to use for a      *<tt>IndexSchemaField</tt> to extract the content from the entry      *       * @author Simon Willnauer      *       */
+comment|/**      * Defines the {@link ContentStrategy} to use for a      *<tt>IndexSchemaField</tt> to extract the content from the entry      *       *      *       */
 end_comment
 
 begin_enum

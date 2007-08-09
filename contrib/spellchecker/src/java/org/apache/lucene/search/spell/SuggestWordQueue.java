@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Sorts SuggestWord instances  * @author Nicolas Maisonneuve  */
+comment|/**  * Sorts SuggestWord instances  *  */
 end_comment
 
 begin_class

@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A reference counting utility. This is use to keep track of released objects   * of<code>Type</code>.   *    * @author Simon Willnauer   * @param<Type> -   *            the type of the object   *    */
+comment|/**   * A reference counting utility. This is use to keep track of released objects   * of<code>Type</code>.   *    *  * @param<Type> -   *            the type of the object   *    */
 end_comment
 
 begin_class

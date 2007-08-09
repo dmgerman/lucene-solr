@@ -271,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * Storage implementation for the DB4o storage component  * @author Simon Willnauer  *   */
+comment|/**  *   * Storage implementation for the DB4o storage component  *  *   */
 end_comment
 
 begin_class

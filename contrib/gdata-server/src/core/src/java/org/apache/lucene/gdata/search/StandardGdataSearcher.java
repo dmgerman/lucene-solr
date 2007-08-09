@@ -229,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Standard implementation of  * {@link org.apache.lucene.gdata.search.GDataSearcher}  *   * @author Simon Willnauer  *   */
+comment|/**  * Standard implementation of  * {@link org.apache.lucene.gdata.search.GDataSearcher}  *   *  *   */
 end_comment
 
 begin_class

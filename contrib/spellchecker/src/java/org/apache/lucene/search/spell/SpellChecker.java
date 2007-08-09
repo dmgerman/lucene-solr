@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -210,18 +220,8 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
-comment|/**  *<p>  *   Spell Checker class  (Main class)<br/>  *  (initially inspired by the David Spencer code).  *</p>  *  *<p>Example Usage:  *   *<pre>  *  SpellChecker spellchecker = new SpellChecker(spellIndexDirectory);  *  // To index a field of a user index:  *  spellchecker.indexDictionary(new LuceneDictionary(my_lucene_reader, a_field));  *  // To index a file containing words:  *  spellchecker.indexDictionary(new PlainTextDictionary(new File("myfile.txt")));  *  String[] suggestions = spellchecker.suggestSimilar("misspelt", 5);  *</pre>  *   * @author Nicolas Maisonneuve  * @version 1.0  */
+comment|/**  *<p>  *   Spell Checker class  (Main class)<br/>  *  (initially inspired by the David Spencer code).  *</p>  *  *<p>Example Usage:  *   *<pre>  *  SpellChecker spellchecker = new SpellChecker(spellIndexDirectory);  *  // To index a field of a user index:  *  spellchecker.indexDictionary(new LuceneDictionary(my_lucene_reader, a_field));  *  // To index a file containing words:  *  spellchecker.indexDictionary(new PlainTextDictionary(new File("myfile.txt")));  *  String[] suggestions = spellchecker.suggestSimilar("misspelt", 5);  *</pre>  *   *  * @version 1.0  */
 end_comment
 
 begin_class

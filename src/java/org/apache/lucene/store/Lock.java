@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An interprocess mutex lock.  *<p>Typical use might look like:<pre>  * new Lock.With(directory.makeLock("my.lock")) {  *     public Object doBody() {  *<i>... code to execute while locked ...</i>  *     }  *   }.run();  *</pre>  *  * @author Doug Cutting  * @version $Id$  * @see Directory#makeLock(String)  */
+comment|/** An interprocess mutex lock.  *<p>Typical use might look like:<pre>  * new Lock.With(directory.makeLock("my.lock")) {  *     public Object doBody() {  *<i>... code to execute while locked ...</i>  *     }  *   }.run();  *</pre>  *  *  * @version $Id$  * @see Directory#makeLock(String)  */
 end_comment
 
 begin_class

@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Bernhard Messer  * @version $rcs = ' $Id$ ' ;  */
+comment|/**  *  * @version $rcs = ' $Id$ ' ;  */
 end_comment
 
 begin_class

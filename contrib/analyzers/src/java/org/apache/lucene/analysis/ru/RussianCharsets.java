@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * RussianCharsets class contains encodings schemes (charsets) and toLowerCase() method implementation  * for russian characters in Unicode, KOI8 and CP1252.  * Each encoding scheme contains lowercase (positions 0-31) and uppercase (position 32-63) characters.  * One should be able to add other encoding schemes (like ISO-8859-5 or customized) by adding a new charset  * and adding logic to toLowerCase() method for that charset.  *  * @author  Boris Okner, b.okner@rogers.com  * @version $Id$  */
+comment|/**  * RussianCharsets class contains encodings schemes (charsets) and toLowerCase() method implementation  * for russian characters in Unicode, KOI8 and CP1252.  * Each encoding scheme contains lowercase (positions 0-31) and uppercase (position 32-63) characters.  * One should be able to add other encoding schemes (like ISO-8859-5 or customized) by adding a new charset  * and adding logic to toLowerCase() method for that charset.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

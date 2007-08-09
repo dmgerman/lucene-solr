@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** JUnit adaptation of an older test case DocTest.  * @author dmitrys@earthlink.net  * @version $Id$  */
+comment|/** JUnit adaptation of an older test case DocTest.  *  * @version $Id$  */
 end_comment
 
 begin_class

@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The Scope annotation is used in  * {@link org.apache.lucene.gdata.server.registry.ScopeVisitable} and  * {@link org.apache.lucene.gdata.server.registry.ScopeVisitor} implementations  * to indicate which scope should be visited.  *   * @author Simon Willnauer  *   */
+comment|/**  * The Scope annotation is used in  * {@link org.apache.lucene.gdata.server.registry.ScopeVisitable} and  * {@link org.apache.lucene.gdata.server.registry.ScopeVisitor} implementations  * to indicate which scope should be visited.  *   *  *   */
 end_comment
 
 begin_annotation_defn
@@ -102,7 +102,7 @@ name|ScopeType
 name|scope
 parameter_list|()
 function_decl|;
-comment|/**      * Defines a Scope for {@link Scope} annotations      *       * @author Simon Willnauer      *       */
+comment|/**      * Defines a Scope for {@link Scope} annotations      *       *      *       */
 DECL|enum|ScopeType
 specifier|public
 specifier|static

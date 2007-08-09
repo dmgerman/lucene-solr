@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for French language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author Patrick Talbot (based on Gerhard Schwarz's work for German)  * @version $Id$  */
+comment|/**  * Analyzer for French language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

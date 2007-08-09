@@ -23,7 +23,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Will be throw if an exception occures while injecting properties, a type or  * cast exception occures or a  * {@link org.apache.lucene.gdata.server.registry.configuration.Requiered}  * property is not available.  *   * @author Simon Willnauer  *   */
+comment|/**  * Will be throw if an exception occures while injecting properties, a type or  * cast exception occures or a  * {@link org.apache.lucene.gdata.server.registry.configuration.Requiered}  * property is not available.  *   *  *   */
 end_comment
 
 begin_class

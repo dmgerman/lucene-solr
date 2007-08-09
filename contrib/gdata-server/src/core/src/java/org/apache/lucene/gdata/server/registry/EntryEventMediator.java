@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class will be informed about every successful entry event and  * distributes all event to all registered  * {@link org.apache.lucene.gdata.server.registry.EntryEventListener}  *   * @author Simon Willnauer  *   */
+comment|/**  * This class will be informed about every successful entry event and  * distributes all event to all registered  * {@link org.apache.lucene.gdata.server.registry.EntryEventListener}  *   *  *   */
 end_comment
 
 begin_class

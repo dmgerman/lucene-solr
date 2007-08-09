@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A RussianLetterTokenizer is a tokenizer that extends LetterTokenizer by additionally looking up letters  * in a given "russian charset". The problem with LeterTokenizer is that it uses Character.isLetter() method,  * which doesn't know how to detect letters in encodings like CP1252 and KOI8  * (well-known problems with 0xD7 and 0xF7 chars)  *  * @author  Boris Okner, b.okner@rogers.com  * @version $Id$  */
+comment|/**  * A RussianLetterTokenizer is a tokenizer that extends LetterTokenizer by additionally looking up letters  * in a given "russian charset". The problem with LeterTokenizer is that it uses Character.isLetter() method,  * which doesn't know how to detect letters in encodings like CP1252 and KOI8  * (well-known problems with 0xD7 and 0xF7 chars)  *  *  * @version $Id$  */
 end_comment
 
 begin_class

@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for RussianAnalyzer.  *  * @author    Boris Okner  * @version   $Id$  */
+comment|/**  * Test case for RussianAnalyzer.  *  *  * @version   $Id$  */
 end_comment
 
 begin_class

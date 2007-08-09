@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This IndexDocumentBuilder deletes a entire feed form the index the builder is  * passed to if the feed has any entries in the search index. Each created and  * passed IndexFeedDeleteTask forces a commit.  *   * @author Simon Willnauer  *   */
+comment|/**  * This IndexDocumentBuilder deletes a entire feed form the index the builder is  * passed to if the feed has any entries in the search index. Each created and  * passed IndexFeedDeleteTask forces a commit.  *   *  *   */
 end_comment
 
 begin_class

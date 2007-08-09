@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Spell checker test case  *  * @author Nicolas Maisonneuve  */
+comment|/**  * Spell checker test case  *  *  */
 end_comment
 
 begin_class

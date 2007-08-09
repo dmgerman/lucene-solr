@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Combines multiple files into a single compound file.  * The file format:<br>  *<ul>  *<li>VInt fileCount</li>  *<li>{Directory}  *         fileCount entries with the following structure:</li>  *<ul>  *<li>long dataOffset</li>  *<li>String fileName</li>  *</ul>  *<li>{File Data}  *         fileCount entries with the raw data of the corresponding file</li>  *</ul>  *  * The fileCount integer indicates how many files are contained in this compound  * file. The {directory} that follows has that many entries. Each directory entry  * contains a long pointer to the start of this file's data section, and a String  * with that file's name.  *  * @author Dmitry Serebrennikov  * @version $Id$  */
+comment|/**  * Combines multiple files into a single compound file.  * The file format:<br>  *<ul>  *<li>VInt fileCount</li>  *<li>{Directory}  *         fileCount entries with the following structure:</li>  *<ul>  *<li>long dataOffset</li>  *<li>String fileName</li>  *</ul>  *<li>{File Data}  *         fileCount entries with the raw data of the corresponding file</li>  *</ul>  *  * The fileCount integer indicates how many files are contained in this compound  * file. The {directory} that follows has that many entries. Each directory entry  * contains a long pointer to the start of this file's data section, and a String  * with that file's name.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

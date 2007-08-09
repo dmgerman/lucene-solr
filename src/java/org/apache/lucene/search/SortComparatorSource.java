@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: returns a comparator for sorting ScoreDocs.  *  *<p>Created: Apr 21, 2004 3:49:28 PM  *   * @author  Tim Jones  * @version $Id$  * @since   1.4  */
+comment|/**  * Expert: returns a comparator for sorting ScoreDocs.  *  *<p>Created: Apr 21, 2004 3:49:28 PM  *   *  * @version $Id$  * @since   1.4  */
 end_comment
 
 begin_interface

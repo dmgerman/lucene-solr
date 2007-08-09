@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * IndexDocument encapsulates the acual entity to store, update or delete. All  * infomation to process the action on this document are provided via this  * interface.  *<p>  * This enables the GDataIndexer to index every kind of document. All the  * processing of the original document happens somewhere behind this facade.  * {@link org.apache.lucene.gdata.search.index.IndexDocumentBuilderTask} passed  * to the {@link org.apache.lucene.gdata.search.index.GDataIndexer} task queue  * produce instances of this interface concurrently.  *</p>  *   * @author Simon Willnauer  *   *   */
+comment|/**  * IndexDocument encapsulates the acual entity to store, update or delete. All  * infomation to process the action on this document are provided via this  * interface.  *<p>  * This enables the GDataIndexer to index every kind of document. All the  * processing of the original document happens somewhere behind this facade.  * {@link org.apache.lucene.gdata.search.index.IndexDocumentBuilderTask} passed  * to the {@link org.apache.lucene.gdata.search.index.GDataIndexer} task queue  * produce instances of this interface concurrently.  *</p>  *   *  *   *   */
 end_comment
 
 begin_interface

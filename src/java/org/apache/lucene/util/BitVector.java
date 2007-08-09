@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Optimized implementation of a vector of bits.  This is more-or-less like   java.util.BitSet, but also includes the following:<ul><li>a count() method, which efficiently computes the number of one bits;</li><li>optimized read from and write to disk;</li><li>inlinable get() method;</li><li>store and load, as bit set or d-gaps, depending on sparseness;</li></ul>    @author Doug Cutting   @version $Id$   */
+comment|/** Optimized implementation of a vector of bits.  This is more-or-less like   java.util.BitSet, but also includes the following:<ul><li>a count() method, which efficiently computes the number of one bits;</li><li>optimized read from and write to disk;</li><li>inlinable get() method;</li><li>store and load, as bit set or d-gaps, depending on sparseness;</li></ul>     @version $Id$   */
 end_comment
 
 begin_class

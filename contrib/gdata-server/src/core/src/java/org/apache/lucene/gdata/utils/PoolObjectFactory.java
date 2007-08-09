@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *<p>  * This interface enables {@link org.apache.lucene.gdata.utils.Pool} users to  * build a custom creation and destroy mechanismn for pooled objects.  * Implementations can use standart creation to prevent the pool from using  * reflection to create objects of the specific type. This implementation  * seperates the Pool implementation from the creation or the destruction of a  * pooled type.  *</p>  *<p>  * The destroy method can be used to close datasource connections or release  * resources if the object will be removed from the pool  *</p>  *   *   * @see org.apache.lucene.gdata.utils.Pool  * @author Simon Willnauer  * @param<Type> -  *            the type to be created  *   */
+comment|/**  *<p>  * This interface enables {@link org.apache.lucene.gdata.utils.Pool} users to  * build a custom creation and destroy mechanismn for pooled objects.  * Implementations can use standart creation to prevent the pool from using  * reflection to create objects of the specific type. This implementation  * seperates the Pool implementation from the creation or the destruction of a  * pooled type.  *</p>  *<p>  * The destroy method can be used to close datasource connections or release  * resources if the object will be removed from the pool  *</p>  *   *   * @see org.apache.lucene.gdata.utils.Pool  *  * @param<Type> -  *            the type to be created  *   */
 end_comment
 
 begin_interface

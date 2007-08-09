@@ -85,7 +85,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Tests {@link Document} class.  *  * @author Bernhard Messer  * @version $Id$  */
+comment|/**  * Tests {@link Document} class.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *  SuggestWord, used in suggestSimilar method in SpellChecker class.  *   *  @author Nicolas Maisonneuve  */
+comment|/**  *  SuggestWord, used in suggestSimilar method in SpellChecker class.  *   *  */
 end_comment
 
 begin_class

@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Loader for text files that represent a list of stopwords.  *  * @author Gerhard Schwarz  * @version $Id$  */
+comment|/**  * Loader for text files that represent a list of stopwords.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

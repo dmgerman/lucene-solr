@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes words that are too long and too short from the stream.  *  * @author David Spencer  * @version $Id$  */
+comment|/**  * Removes words that are too long and too short from the stream.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

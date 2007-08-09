@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case, analyzing given ("russian") charset.  *  * @author  Boris Okner, b.okner@rogers.com  * @version $Id$  */
+comment|/**  * Normalizes token text to lower case, analyzing given ("russian") charset.  *  *  * @version $Id$  */
 end_comment
 
 begin_class

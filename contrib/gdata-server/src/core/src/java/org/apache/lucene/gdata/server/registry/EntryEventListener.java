@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The EntryEventListener interface should be implemented by any class needs to be informed about any changes on entries.  * To register a class as a EntryEventListener use:  *<p>  *<tt>  * GdataServerRegistry.registerEntryEventListener(EntryEventListener);  *<tt>  *</p>  * @author Simon Willnauer  *  */
+comment|/**  * The EntryEventListener interface should be implemented by any class needs to be informed about any changes on entries.  * To register a class as a EntryEventListener use:  *<p>  *<tt>  * GdataServerRegistry.registerEntryEventListener(EntryEventListener);  *<tt>  *</p>  *  *  */
 end_comment
 
 begin_interface

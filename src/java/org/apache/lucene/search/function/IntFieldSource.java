@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: obtains int field values from the   * {@link org.apache.lucene.search.FieldCache FieldCache}  * using<code>getInts()</code> and makes those values   * available as other numeric types, casting as needed.  *   *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *   * @see org.apache.lucene.search.function.FieldCacheSource for requirements   * on the field.  *  * @author yonik  */
+comment|/**  * Expert: obtains int field values from the   * {@link org.apache.lucene.search.FieldCache FieldCache}  * using<code>getInts()</code> and makes those values   * available as other numeric types, casting as needed.  *   *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *   * @see org.apache.lucene.search.function.FieldCacheSource for requirements   * on the field.  *  *  */
 end_comment
 
 begin_class
