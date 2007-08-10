@@ -550,6 +550,7 @@ argument_list|,
 name|token
 operator|.
 name|termText
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|count

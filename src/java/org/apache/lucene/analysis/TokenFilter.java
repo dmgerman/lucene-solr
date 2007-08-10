@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A TokenFilter is a TokenStream whose input is another token stream.<p>   This is an abstract class.   */
+comment|/** A TokenFilter is a TokenStream whose input is another token stream.<p>   This is an abstract class.   NOTE: subclasses must override at least one of {@link   #next()} or {@link #next(Token)}.   */
 end_comment
 
 begin_class

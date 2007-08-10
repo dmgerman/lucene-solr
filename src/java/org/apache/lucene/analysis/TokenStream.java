@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A TokenStream enumerates the sequence of tokens, either from   fields of a document or from query text.<p>   This is an abstract class.  Concrete subclasses are:<ul><li>{@link Tokenizer}, a TokenStream   whose input is a Reader; and<li>{@link TokenFilter}, a TokenStream   whose input is another TokenStream.</ul>   */
+comment|/** A TokenStream enumerates the sequence of tokens, either from   fields of a document or from query text.<p>   This is an abstract class.  Concrete subclasses are:<ul><li>{@link Tokenizer}, a TokenStream   whose input is a Reader; and<li>{@link TokenFilter}, a TokenStream   whose input is another TokenStream.</ul>   NOTE: subclasses must override at least one of {@link   #next()} or {@link #next(Token)}.   */
 end_comment
 
 begin_class
@@ -37,16 +37,46 @@ specifier|abstract
 class|class
 name|TokenStream
 block|{
-comment|/** Returns the next token in the stream, or null at EOS. */
+comment|/** Returns the next token in the stream, or null at EOS.    *  The returned Token is a "full private copy" (not    *  re-used across calls to next()) but will be slower    *  than calling {@link #next(Token)} instead.. */
 DECL|method|next
 specifier|public
-specifier|abstract
 name|Token
 name|next
 parameter_list|()
 throws|throws
 name|IOException
-function_decl|;
+block|{
+name|Token
+name|result
+init|=
+name|next
+argument_list|(
+operator|new
+name|Token
+argument_list|()
+argument_list|)
+decl_stmt|;
+return|return
+name|result
+return|;
+block|}
+comment|/** Returns the next token in the stream, or null at EOS.    *  When possible, the input Token should be used as the    *  returned Token (this gives fastest tokenization    *  performance), but this is not required and a new Token    *  may be returned.  Callers may re-use a single Token    *  instance for successive calls to this method and must    *  therefore fully consume the previously returned Token    *  before calling this method again.    *  @param result a Token that may or may not be used to    *   return    *  @return next token in the stream or null if    *   end-of-stream was hit*/
+DECL|method|next
+specifier|public
+name|Token
+name|next
+parameter_list|(
+name|Token
+name|result
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|next
+argument_list|()
+return|;
+block|}
 comment|/** Resets this stream to the beginning. This is an    *  optional operation, so subclasses may or may not    *  implement this method. Reset() is not needed for    *  the standard indexing process. However, if the Tokens     *  of a TokenStream are intended to be consumed more than     *  once, it is neccessary to implement reset().     */
 DECL|method|reset
 specifier|public

@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class.  */
+comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class.   NOTE: subclasses must override at least one of {@link   #next()} or {@link #next(Token)}.  */
 end_comment
 
 begin_class
@@ -90,6 +90,25 @@ name|input
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+block|}
+comment|/** Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
+DECL|method|reset
+specifier|protected
+name|void
+name|reset
+parameter_list|(
+name|Reader
+name|input
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+operator|.
+name|input
+operator|=
+name|input
 expr_stmt|;
 block|}
 block|}
