@@ -971,6 +971,27 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|openInput
+specifier|public
+name|IndexInput
+name|openInput
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|int
+name|bufferSize
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|openInput
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
