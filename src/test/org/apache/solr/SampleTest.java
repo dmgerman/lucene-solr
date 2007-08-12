@@ -42,26 +42,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is an example of how to write a JUnit tests for Solr using the  * AbstractSolrTestCase  */
 end_comment

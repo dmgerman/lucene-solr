@@ -64,20 +64,6 @@ name|BitSetIterator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|BitUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment

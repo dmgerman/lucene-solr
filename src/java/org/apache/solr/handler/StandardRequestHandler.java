@@ -80,20 +80,6 @@ name|solr
 operator|.
 name|util
 operator|.
-name|HighlightingUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
 name|SolrPluginUtils
 import|;
 end_import
@@ -289,24 +275,6 @@ operator|.
 name|highlight
 operator|.
 name|SolrHighlighter
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|SolrParams
-operator|.
-name|*
 import|;
 end_import
 

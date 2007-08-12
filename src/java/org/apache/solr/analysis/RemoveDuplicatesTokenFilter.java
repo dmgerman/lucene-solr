@@ -54,26 +54,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/**  * A TokenFilter which filters out Tokens at the same position and Term  * text as the previous token in the stream.  */
 end_comment

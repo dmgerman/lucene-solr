@@ -563,7 +563,7 @@ name|param
 argument_list|)
 decl_stmt|;
 comment|// Note: parameters passed but given only white-space value are
-comment|// considered equvalent to passing nothing for that parameter.
+comment|// considered equivalent to passing nothing for that parameter.
 if|if
 condition|(
 literal|null

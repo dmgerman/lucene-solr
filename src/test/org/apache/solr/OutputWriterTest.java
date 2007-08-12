@@ -106,20 +106,6 @@ name|AbstractSolrTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|TestHarness
-import|;
-end_import
-
 begin_comment
 comment|/** Tests the ability to configure multiple query output writers, and select those  * at query time.  *  */
 end_comment

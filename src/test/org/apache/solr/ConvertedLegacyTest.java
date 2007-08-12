@@ -52,16 +52,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * This tests was converted from a legacy testing system.  *  * it does not represent the best practices that should be used when  * writing Solr JUnit tests  */
 end_comment

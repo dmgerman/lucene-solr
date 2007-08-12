@@ -76,20 +76,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|SolrIndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -105,16 +91,6 @@ operator|.
 name|io
 operator|.
 name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
 import|;
 end_import
 

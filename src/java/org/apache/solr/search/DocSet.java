@@ -44,16 +44,6 @@ name|OpenBitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|BitSet
-import|;
-end_import
-
 begin_comment
 comment|/**  *<code>DocSet</code> represents an unordered set of Lucene Document Ids.  *  *<p>  * WARNING: Any DocSet returned from SolrIndexSearcher should<b>not</b> be modified as it may have been retrieved from  * a cache and could be shared.  *</p>  *  * @version $Id$  * @since solr 0.9  */
 end_comment

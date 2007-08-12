@@ -64,16 +64,6 @@ name|LinkedList
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/**  * Handles input and output buffering of TokenStream  *  *<pre>  * // Example of a class implementing the rule "A" "B" => "Q" "B"  * class MyTokenStream extends BufferedTokenStream {  *   public MyTokenStream(TokenStream input) {super(input);}  *   protected Token process(Token t) throws IOException {  *     if ("A".equals(t.termText())) {  *       Token t2 = read();  *       if (t2!=null&& "B".equals(t2.termText())) t.setTermText("Q");  *       if (t2!=null) pushBack(t2);  *     }  *     return t;  *   }  * }  *  * // Example of a class implementing "A" "B" => "A" "A" "B"  * class MyTokenStream extends BufferedTokenStream {  *   public MyTokenStream(TokenStream input) {super(input);}  *   protected Token process(Token t) throws IOException {  *     if ("A".equals(t.termText())&& "B".equals(peek(1).termText()))  *       write(t);  *     return t;  *   }  * }  *</pre>  *  *  * @version $Id$  */
 end_comment
