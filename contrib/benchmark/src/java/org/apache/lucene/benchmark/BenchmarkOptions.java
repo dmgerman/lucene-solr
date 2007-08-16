@@ -17,7 +17,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * Marker Interface defining some common options.  Implementations should define their own set of options that can be  * cast to in the {@link Benchmarker} interface.  *<p/>  * As benchmarks are added, perhaps a common set of Options will become clear  *  *  **/
+comment|/**  * Marker Interface defining some common options.  Implementations should define their own set of options that can be  * cast to in the {@link Benchmarker} interface.  *<p/>  * As benchmarks are added, perhaps a common set of Options will become clear  *  *  * @deprecated Use the task based approach instead  **/
 end_comment
 
 begin_interface

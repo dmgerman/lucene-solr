@@ -37,7 +37,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  *  * @deprecated Use the Task based benchmarker  **/
 end_comment
 
 begin_class
