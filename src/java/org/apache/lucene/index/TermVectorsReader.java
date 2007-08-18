@@ -217,6 +217,13 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|d
@@ -369,6 +376,29 @@ name|fieldInfos
 operator|=
 name|fieldInfos
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// With lock-less commits, it's entirely possible (and
+comment|// fine) to hit a FileNotFound exception above. In
+comment|// this case, we want to explicitly close any subset
+comment|// of things that were opened so that we don't have to
+comment|// wait for a GC to do so.
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 DECL|method|checkValidFormat
 specifier|private

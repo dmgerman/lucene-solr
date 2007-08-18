@@ -310,6 +310,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|fieldInfos
 operator|=
 name|fn
@@ -420,6 +427,29 @@ literal|3
 argument_list|)
 expr_stmt|;
 block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// With lock-less commits, it's entirely possible (and
+comment|// fine) to hit a FileNotFound exception above. In
+comment|// this case, we want to explicitly close any subset
+comment|// of things that were opened so that we don't have to
+comment|// wait for a GC to do so.
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|/**    * @throws AlreadyClosedException if this FieldsReader is closed    */
 DECL|method|ensureOpen
@@ -460,21 +490,45 @@ operator|!
 name|closed
 condition|)
 block|{
+if|if
+condition|(
+name|fieldsStream
+operator|!=
+literal|null
+condition|)
+block|{
 name|fieldsStream
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|cloneableFieldsStream
+operator|!=
+literal|null
+condition|)
+block|{
 name|cloneableFieldsStream
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|indexStream
+operator|!=
+literal|null
+condition|)
+block|{
 name|indexStream
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|IndexInput
 name|localFieldsStream
 init|=
