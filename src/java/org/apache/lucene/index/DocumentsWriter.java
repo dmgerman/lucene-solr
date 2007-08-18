@@ -6498,11 +6498,36 @@ name|byteUpto
 operator|>
 name|CHAR_BLOCK_SIZE
 condition|)
+block|{
+if|if
+condition|(
+name|textLen1
+operator|>
+name|CHAR_BLOCK_SIZE
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"term length "
+operator|+
+name|tokenTextLen
+operator|+
+literal|" exceeds max term length "
+operator|+
+operator|(
+name|CHAR_BLOCK_SIZE
+operator|-
+literal|1
+operator|)
+argument_list|)
+throw|;
 name|charPool
 operator|.
 name|nextBuffer
 argument_list|()
 expr_stmt|;
+block|}
 specifier|final
 name|char
 index|[]
