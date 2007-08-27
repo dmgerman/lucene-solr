@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexModifier
+name|IndexWriter
 import|;
 end_import
 
@@ -310,7 +310,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|IndexModifier
+name|IndexWriter
 name|im
 decl_stmt|;
 try|try
@@ -318,7 +318,7 @@ block|{
 name|im
 operator|=
 operator|new
-name|IndexModifier
+name|IndexWriter
 argument_list|(
 name|this
 operator|.
@@ -353,7 +353,7 @@ block|{
 name|im
 operator|=
 operator|new
-name|IndexModifier
+name|IndexWriter
 argument_list|(
 name|this
 operator|.

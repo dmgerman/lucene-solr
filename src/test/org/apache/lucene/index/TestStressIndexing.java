@@ -197,7 +197,7 @@ extends|extends
 name|Thread
 block|{
 DECL|field|modifier
-name|IndexModifier
+name|IndexWriter
 name|modifier
 decl_stmt|;
 DECL|field|nextID
@@ -217,7 +217,7 @@ DECL|method|IndexerThread
 specifier|public
 name|IndexerThread
 parameter_list|(
-name|IndexModifier
+name|IndexWriter
 name|modifier
 parameter_list|)
 block|{
@@ -590,11 +590,11 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|IndexModifier
+name|IndexWriter
 name|modifier
 init|=
 operator|new
-name|IndexModifier
+name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
@@ -699,7 +699,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"hit unexpected exception in indexer 2"
+literal|"hit unexpected exception in indexer2"
 argument_list|,
 operator|!
 name|indexerThread2
