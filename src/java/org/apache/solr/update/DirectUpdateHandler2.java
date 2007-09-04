@@ -501,6 +501,23 @@ name|Integer
 argument_list|>
 name|pset
 decl_stmt|;
+DECL|field|maxPendingDeletes
+specifier|protected
+name|int
+name|maxPendingDeletes
+init|=
+name|SolrConfig
+operator|.
+name|config
+operator|.
+name|getInt
+argument_list|(
+literal|"updateHandler/maxPendingDeletes"
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+decl_stmt|;
 comment|// commonly used constants for the count in the pset
 DECL|field|ZERO
 specifier|protected
@@ -1129,6 +1146,43 @@ block|{
 name|numDocsPending
 operator|.
 name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|maxPendingDeletes
+operator|>
+literal|0
+operator|&&
+name|pset
+operator|.
+name|size
+argument_list|()
+operator|>
+name|maxPendingDeletes
+condition|)
+block|{
+name|iwCommit
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+comment|// note: this may be entered multiple times since the synchro is
+comment|// inside the if(), but doDeletions() is a cheap no-op if it has
+comment|// already executed
+name|doDeletions
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|iwCommit
+operator|.
+name|unlock
 argument_list|()
 expr_stmt|;
 block|}
