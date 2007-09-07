@@ -1634,7 +1634,7 @@ literal|": multi valued explanation description=\""
 operator|+
 name|descr
 operator|+
-literal|"\" must be 'max of plus x times others' or end with 'prodoct of'"
+literal|"\" must be 'max of plus x times others' or end with 'product of'"
 operator|+
 literal|" or 'sum of:' or 'max of:' - "
 operator|+
