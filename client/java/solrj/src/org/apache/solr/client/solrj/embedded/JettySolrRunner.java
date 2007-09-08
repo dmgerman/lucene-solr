@@ -245,6 +245,13 @@ argument_list|(
 name|port
 argument_list|)
 expr_stmt|;
+name|server
+operator|.
+name|setStopAtShutdown
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// Initialize the servlets
 name|Context
 name|root
