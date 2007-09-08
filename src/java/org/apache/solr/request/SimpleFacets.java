@@ -469,7 +469,7 @@ operator|=
 name|params
 expr_stmt|;
 block|}
-comment|/**    * Looks at various Params to determing if any simple Facet Constraint count    * computations are desired.    *    * @see #getFacetQueryCounts    * @see #getFacetFieldCounts    * @see #getFacetDateCounts    * @see SolrParams#FACET    * @return a NamedList of Facet Count info or null    */
+comment|/**    * Looks at various Params to determing if any simple Facet Constraint count    * computations are desired.    *    * @see #getFacetQueryCounts    * @see #getFacetFieldCounts    * @see #getFacetDateCounts    * @see FacetParams#FACET    * @return a NamedList of Facet Count info or null    */
 DECL|method|getFacetCounts
 specifier|public
 name|NamedList
@@ -572,7 +572,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Returns a list of facet counts for each of the facet queries     * specified in the params    *    * @see SolrParams#FACET_QUERY    */
+comment|/**    * Returns a list of facet counts for each of the facet queries     * specified in the params    *    * @see FacetParams#FACET_QUERY    */
 DECL|method|getFacetQueryCounts
 specifier|public
 name|NamedList
@@ -908,7 +908,7 @@ return|return
 name|counts
 return|;
 block|}
-comment|/**    * Returns a list of value constraints and the associated facet counts     * for each facet field specified in the params.    *    * @see SolrParams#FACET_FIELD    * @see #getFieldMissingCount    * @see #getFacetTermEnumCounts    */
+comment|/**    * Returns a list of value constraints and the associated facet counts     * for each facet field specified in the params.    *    * @see FacetParams#FACET_FIELD    * @see #getFieldMissingCount    * @see #getFacetTermEnumCounts    */
 DECL|method|getFacetFieldCounts
 specifier|public
 name|NamedList
@@ -970,7 +970,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Returns a count of the documents in the set which do not have any     * terms for for the specified field.    *    * @see SolrParams#FACET_MISSING    */
+comment|/**    * Returns a count of the documents in the set which do not have any     * terms for for the specified field.    *    * @see FacetParams#FACET_MISSING    */
 DECL|method|getFieldMissingCount
 specifier|public
 specifier|static
@@ -1700,7 +1700,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Returns a list of terms in the specified field along with the     * corresponding count of documents in the set that match that constraint.    * This method uses the FilterCache to get the intersection count between<code>docs</code>    * and the DocSet for each term in the filter.    *    * @see SolrParams#FACET_LIMIT    * @see SolrParams#FACET_ZEROS    * @see SolrParams#FACET_MISSING    */
+comment|/**    * Returns a list of terms in the specified field along with the     * corresponding count of documents in the set that match that constraint.    * This method uses the FilterCache to get the intersection count between<code>docs</code>    * and the DocSet for each term in the filter.    *    * @see FacetParams#FACET_LIMIT    * @see FacetParams#FACET_ZEROS    * @see FacetParams#FACET_MISSING    */
 DECL|method|getFacetTermEnumCounts
 specifier|public
 name|NamedList
@@ -2241,7 +2241,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Returns a list of value constraints and the associated facet counts     * for each facet date field, range, and interval specified in the    * SolrParams    *    * @see SolrParams#FACET_DATE    */
+comment|/**    * Returns a list of value constraints and the associated facet counts     * for each facet date field, range, and interval specified in the    * SolrParams    *    * @see FacetParams#FACET_DATE    */
 DECL|method|getFacetDateCounts
 specifier|public
 name|NamedList
@@ -3012,7 +3012,7 @@ return|return
 name|resOuter
 return|;
 block|}
-comment|/**    * Macro for getting the numDocs of a ConstantScoreRangeQuery over docs    * @see docs    * @see SolrIndexSearcher#numDocs    * @see ConstantScoreRangeQuery    */
+comment|/**    * Macro for getting the numDocs of a ConstantScoreRangeQuery over docs    * @see SolrIndexSearcher#numDocs    * @see ConstantScoreRangeQuery    */
 DECL|method|rangeCount
 specifier|protected
 name|int
