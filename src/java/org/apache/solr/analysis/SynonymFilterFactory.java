@@ -38,11 +38,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
+name|core
 operator|.
-name|util
-operator|.
-name|StrUtils
+name|SolrConfig
 import|;
 end_import
 
@@ -54,9 +52,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|Config
+name|util
+operator|.
+name|StrUtils
 import|;
 end_import
 
@@ -126,11 +126,16 @@ name|SynonymFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
 name|init
 parameter_list|(
+name|SolrConfig
+name|solrConfig
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -144,6 +149,8 @@ name|super
 operator|.
 name|init
 argument_list|(
+name|solrConfig
+argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -194,7 +201,7 @@ try|try
 block|{
 name|wlist
 operator|=
-name|Config
+name|solrConfig
 operator|.
 name|getLines
 argument_list|(

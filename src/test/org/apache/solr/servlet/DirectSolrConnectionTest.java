@@ -97,7 +97,12 @@ name|direct
 operator|=
 operator|new
 name|DirectSolrConnection
+argument_list|(
+name|h
+operator|.
+name|getCore
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Check that a request gets back the echoParams call

@@ -2103,6 +2103,9 @@ specifier|public
 name|void
 name|doLegacyUpdate
 parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
 name|Reader
 name|input
 parameter_list|,
@@ -2112,14 +2115,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|SolrCore
-name|core
-init|=
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-decl_stmt|;
+comment|//SolrCore core = SolrCore.getSolrCore();
 comment|// Old style requests do not choose a custom handler
 name|UpdateRequestProcessorFactory
 name|processorFactory

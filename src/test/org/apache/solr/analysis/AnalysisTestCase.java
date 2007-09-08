@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.core
+DECL|package|org.apache.solr.analysis
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|analysis
 package|;
 end_package
 
@@ -26,7 +26,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrConfig
 import|;
 end_import
 
@@ -38,61 +38,80 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|util
 operator|.
-name|SolrCore
+name|TestHarness
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|util
+name|framework
 operator|.
-name|*
+name|TestCase
 import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
-end_comment
-
-begin_comment
-comment|// A Registry to hold a collection of SolrInfo objects
+comment|/**  *  * @author hbiestro  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|SolrInfoRegistry
+DECL|class|AnalysisTestCase
 specifier|public
 class|class
-name|SolrInfoRegistry
+name|AnalysisTestCase
+extends|extends
+name|TestCase
 block|{
-annotation|@
-name|Deprecated
-DECL|method|getRegistry
+DECL|field|solrConfig
+specifier|protected
+name|SolrConfig
+name|solrConfig
+decl_stmt|;
+comment|/** Creates a new instance of AnalysisTestCase */
+DECL|method|AnalysisTestCase
 specifier|public
-specifier|static
-name|Map
-argument_list|<
+name|AnalysisTestCase
+parameter_list|()
+block|{   }
+DECL|method|getSolrConfigFile
+specifier|public
 name|String
-argument_list|,
-name|SolrInfoMBean
-argument_list|>
-name|getRegistry
+name|getSolrConfigFile
 parameter_list|()
 block|{
 return|return
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-operator|.
-name|getInfoRegistry
-argument_list|()
+literal|"solrconfig.xml"
 return|;
+block|}
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// if you override setUp or tearDown, you better call
+comment|// the super classes version
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+name|solrConfig
+operator|=
+name|TestHarness
+operator|.
+name|createConfig
+argument_list|(
+name|getSolrConfigFile
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

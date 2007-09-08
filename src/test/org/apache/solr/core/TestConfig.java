@@ -104,9 +104,7 @@ comment|// property values defined in build.xml
 name|String
 name|s
 init|=
-name|SolrConfig
-operator|.
-name|config
+name|solrConfig
 operator|.
 name|get
 argument_list|(
@@ -122,9 +120,7 @@ argument_list|)
 expr_stmt|;
 name|s
 operator|=
-name|SolrConfig
-operator|.
-name|config
+name|solrConfig
 operator|.
 name|get
 argument_list|(
@@ -142,9 +138,7 @@ argument_list|)
 expr_stmt|;
 name|s
 operator|=
-name|SolrConfig
-operator|.
-name|config
+name|solrConfig
 operator|.
 name|get
 argument_list|(
@@ -162,9 +156,7 @@ argument_list|)
 expr_stmt|;
 name|s
 operator|=
-name|SolrConfig
-operator|.
-name|config
+name|solrConfig
 operator|.
 name|get
 argument_list|(
@@ -186,9 +178,7 @@ init|=
 operator|(
 name|NodeList
 operator|)
-name|SolrConfig
-operator|.
-name|config
+name|solrConfig
 operator|.
 name|evaluate
 argument_list|(
@@ -227,9 +217,7 @@ expr_stmt|;
 name|Node
 name|node
 init|=
-name|SolrConfig
-operator|.
-name|config
+name|solrConfig
 operator|.
 name|getNode
 argument_list|(

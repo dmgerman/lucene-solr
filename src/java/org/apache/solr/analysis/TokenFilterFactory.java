@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrConfig
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -50,7 +64,9 @@ specifier|public
 interface|interface
 name|TokenFilterFactory
 block|{
-comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a the factory in the    * schema.xml    */
+comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a the factory in the    * schema.xml    * This method is deprecated; the replacement is to have your class implement SolrConfig.Initializable    * and implement 'void init(SolrConfig solrConfig, Map<String,String> args);'    */
+annotation|@
+name|Deprecated
 DECL|method|init
 specifier|public
 name|void

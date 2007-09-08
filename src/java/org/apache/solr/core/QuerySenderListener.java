@@ -123,6 +123,22 @@ name|QuerySenderListener
 extends|extends
 name|AbstractSolrEventListener
 block|{
+DECL|method|QuerySenderListener
+specifier|public
+name|QuerySenderListener
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|core
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|newSearcher
 specifier|public
 name|void
@@ -191,6 +207,8 @@ argument_list|,
 name|nlst
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|SolrIndexSearcher
 name|getSearcher
@@ -200,11 +218,13 @@ return|return
 name|searcher
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
 parameter_list|()
-block|{           }
+block|{ }
 block|}
 decl_stmt|;
 name|SolrQueryResponse

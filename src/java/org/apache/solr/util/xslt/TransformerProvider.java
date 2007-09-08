@@ -134,7 +134,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|Config
+name|SolrConfig
 import|;
 end_import
 
@@ -235,6 +235,9 @@ specifier|synchronized
 name|Transformer
 name|getTransformer
 parameter_list|(
+name|SolrConfig
+name|solrConfig
+parameter_list|,
 name|String
 name|filename
 parameter_list|,
@@ -296,6 +299,8 @@ name|lastTemplates
 operator|=
 name|getTemplates
 argument_list|(
+name|solrConfig
+argument_list|,
 name|filename
 argument_list|,
 name|cacheLifetimeSeconds
@@ -373,6 +378,9 @@ specifier|private
 name|Templates
 name|getTemplates
 parameter_list|(
+name|SolrConfig
+name|solrConfig
+parameter_list|,
 name|String
 name|filename
 parameter_list|,
@@ -419,7 +427,7 @@ specifier|final
 name|InputStream
 name|xsltStream
 init|=
-name|Config
+name|solrConfig
 operator|.
 name|openResource
 argument_list|(

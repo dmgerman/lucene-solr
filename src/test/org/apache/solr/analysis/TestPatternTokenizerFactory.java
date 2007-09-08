@@ -90,7 +90,7 @@ specifier|public
 class|class
 name|TestPatternTokenizerFactory
 extends|extends
-name|TestCase
+name|AnalysisTestCase
 block|{
 DECL|method|testSplitting
 specifier|public
@@ -259,6 +259,8 @@ name|tokenizer
 operator|.
 name|init
 argument_list|(
+name|solrConfig
+argument_list|,
 name|args
 argument_list|)
 expr_stmt|;

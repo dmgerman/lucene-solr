@@ -326,6 +326,16 @@ return|return
 literal|"solrconfig.xml"
 return|;
 block|}
+DECL|method|getCoreName
+specifier|public
+name|String
+name|getCoreName
+parameter_list|()
+block|{
+return|return
+literal|"basic"
+return|;
+block|}
 DECL|method|setUp
 specifier|public
 name|void
@@ -1539,6 +1549,8 @@ init|=
 operator|new
 name|IndexSchema
 argument_list|(
+name|solrConfig
+argument_list|,
 name|getSchemaFile
 argument_list|()
 argument_list|)
@@ -5506,6 +5518,8 @@ init|=
 operator|new
 name|IndexSchema
 argument_list|(
+name|solrConfig
+argument_list|,
 name|getSchemaFile
 argument_list|()
 argument_list|)

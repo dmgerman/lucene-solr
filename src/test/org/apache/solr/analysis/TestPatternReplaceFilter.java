@@ -86,7 +86,7 @@ specifier|public
 class|class
 name|TestPatternReplaceFilter
 extends|extends
-name|TestCase
+name|AnalysisTestCase
 block|{
 DECL|method|testReplaceAll
 specifier|public

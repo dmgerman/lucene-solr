@@ -103,9 +103,9 @@ operator|=
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
-name|SolrCore
+name|h
 operator|.
-name|getSolrCore
+name|getCore
 argument_list|()
 argument_list|)
 expr_stmt|;

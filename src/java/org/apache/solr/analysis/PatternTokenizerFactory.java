@@ -74,6 +74,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrConfig
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -165,8 +179,8 @@ DECL|class|PatternTokenizerFactory
 specifier|public
 class|class
 name|PatternTokenizerFactory
-implements|implements
-name|TokenizerFactory
+extends|extends
+name|BaseTokenizerFactory
 block|{
 DECL|field|PATTERN
 specifier|public
@@ -212,6 +226,9 @@ specifier|public
 name|void
 name|init
 parameter_list|(
+name|SolrConfig
+name|solrConfig
+parameter_list|,
 name|Map
 argument_list|<
 name|String

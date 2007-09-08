@@ -145,9 +145,9 @@ block|{
 name|SolrCore
 name|core
 init|=
-name|SolrCore
+name|h
 operator|.
-name|getSolrCore
+name|getCore
 argument_list|()
 decl_stmt|;
 name|IndexSchema
@@ -233,6 +233,14 @@ name|void
 name|testRequiredFieldsSingleAdd
 parameter_list|()
 block|{
+name|SolrCore
+name|core
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+decl_stmt|;
 comment|// Add a single document
 name|assertU
 argument_list|(
@@ -309,10 +317,7 @@ comment|// Add another document without a subject, which has a default in schema
 name|String
 name|subjectDefault
 init|=
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
+name|core
 operator|.
 name|getSchema
 argument_list|()
@@ -351,10 +356,7 @@ expr_stmt|;
 comment|// Add another document without a required name, which has no default
 name|assertNull
 argument_list|(
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
+name|core
 operator|.
 name|getSchema
 argument_list|()

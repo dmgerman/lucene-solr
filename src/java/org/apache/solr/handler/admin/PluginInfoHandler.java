@@ -90,7 +90,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrCore
 import|;
 end_import
 
@@ -104,7 +104,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoRegistry
+name|SolrInfoMBean
 import|;
 end_import
 
@@ -227,6 +227,11 @@ literal|"plugins"
 argument_list|,
 name|getSolrInfoBeans
 argument_list|(
+name|req
+operator|.
+name|getCore
+argument_list|()
+argument_list|,
 name|stats
 argument_list|)
 argument_list|)
@@ -241,6 +246,9 @@ name|Object
 argument_list|>
 name|getSolrInfoBeans
 parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
 name|boolean
 name|stats
 parameter_list|)
@@ -306,9 +314,9 @@ name|SolrInfoMBean
 argument_list|>
 name|reg
 init|=
-name|SolrInfoRegistry
+name|core
 operator|.
-name|getRegistry
+name|getInfoRegistry
 argument_list|()
 decl_stmt|;
 synchronized|synchronized

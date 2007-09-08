@@ -158,6 +158,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|SolrConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|params
@@ -573,6 +587,21 @@ literal|"' request parameter is required to use the XSLTResponseWriter"
 argument_list|)
 throw|;
 block|}
+comment|// not the cleanest way to achieve this
+name|SolrConfig
+name|solrConfig
+init|=
+name|request
+operator|.
+name|getSearcher
+argument_list|()
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getSolrConfig
+argument_list|()
+decl_stmt|;
 comment|// no need to synchronize access to context, right?
 comment|// Nothing else happens with it at the same time
 specifier|final
@@ -617,6 +646,8 @@ name|instance
 operator|.
 name|getTransformer
 argument_list|(
+name|solrConfig
+argument_list|,
 name|xslt
 argument_list|,
 name|xsltCacheLifetimeSeconds
