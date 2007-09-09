@@ -586,6 +586,11 @@ operator|+
 name|file
 argument_list|)
 expr_stmt|;
+comment|// TODO -- at solr 2.0. this should go away
+name|config
+operator|=
+name|this
+expr_stmt|;
 block|}
 comment|/* The set of materialized parameters: */
 DECL|field|booleanQueryMaxClauseCount

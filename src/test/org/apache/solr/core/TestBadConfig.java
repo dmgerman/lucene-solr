@@ -137,16 +137,6 @@ operator|=
 operator|new
 name|TestHarness
 argument_list|(
-name|getName
-argument_list|()
-operator|+
-literal|"-"
-operator|+
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-argument_list|,
 name|dataDir
 operator|.
 name|getAbsolutePath

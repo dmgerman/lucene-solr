@@ -434,16 +434,11 @@ specifier|public
 name|TestHarness
 parameter_list|(
 name|String
-name|name
-parameter_list|,
-name|String
 name|dataDirectory
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|name
-argument_list|,
 name|dataDirectory
 argument_list|,
 literal|"schema.xml"
@@ -456,9 +451,6 @@ specifier|public
 name|TestHarness
 parameter_list|(
 name|String
-name|name
-parameter_list|,
-name|String
 name|dataDirectory
 parameter_list|,
 name|String
@@ -467,8 +459,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|name
-argument_list|,
 name|dataDirectory
 argument_list|,
 literal|"solrconfig.xml"
@@ -483,9 +473,6 @@ specifier|public
 name|TestHarness
 parameter_list|(
 name|String
-name|name
-parameter_list|,
-name|String
 name|dataDirectory
 parameter_list|,
 name|String
@@ -497,8 +484,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|name
-argument_list|,
 name|dataDirectory
 argument_list|,
 name|createConfig
@@ -516,9 +501,6 @@ specifier|public
 name|TestHarness
 parameter_list|(
 name|String
-name|name
-parameter_list|,
-name|String
 name|dataDirectory
 parameter_list|,
 name|SolrConfig
@@ -530,8 +512,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|name
-argument_list|,
 name|dataDirectory
 argument_list|,
 name|solrConfig
@@ -552,9 +532,6 @@ specifier|public
 name|TestHarness
 parameter_list|(
 name|String
-name|name
-parameter_list|,
-name|String
 name|dataDirectory
 parameter_list|,
 name|SolrConfig
@@ -571,8 +548,6 @@ operator|=
 operator|new
 name|SolrCore
 argument_list|(
-name|name
-argument_list|,
 name|dataDirectory
 argument_list|,
 name|solrConfig
