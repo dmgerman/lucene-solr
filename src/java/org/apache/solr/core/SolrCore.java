@@ -62,16 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -179,20 +169,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriter
 import|;
 end_import
 
@@ -515,20 +491,6 @@ operator|.
 name|update
 operator|.
 name|DirectUpdateHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|update
-operator|.
-name|SolrIndexConfig
 import|;
 end_import
 
@@ -1031,7 +993,7 @@ init|=
 operator|(
 name|SolrEventListener
 operator|)
-name|Config
+name|solrConfig
 operator|.
 name|newInstance
 argument_list|(
@@ -1602,9 +1564,16 @@ name|cores
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|SolrCore
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** Alias for SolrCore.getSolrCore(null). */
+annotation|@
+name|Deprecated
 DECL|method|getSolrCore
 specifier|public
 specifier|static
@@ -2274,6 +2243,12 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// If this is a more general use-case, this could be a regular type
+specifier|final
+name|SolrCore
+name|thiscore
+init|=
+name|this
+decl_stmt|;
 name|AbstractPluginLoader
 argument_list|<
 name|UpdateRequestProcessorFactory
@@ -2308,6 +2283,8 @@ name|plugin
 operator|.
 name|init
 argument_list|(
+name|thiscore
+argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
@@ -2364,6 +2341,8 @@ name|loader
 operator|.
 name|load
 argument_list|(
+name|solrConfig
+argument_list|,
 name|nodes
 argument_list|)
 decl_stmt|;
@@ -2385,6 +2364,8 @@ name|def
 operator|.
 name|init
 argument_list|(
+name|thiscore
+argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -4534,7 +4515,7 @@ name|loader
 operator|.
 name|load
 argument_list|(
-name|this
+name|solrConfig
 argument_list|,
 name|nodes
 argument_list|)

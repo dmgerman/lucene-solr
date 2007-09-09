@@ -509,6 +509,7 @@ DECL|method|initHandlersFromConfig
 name|void
 name|initHandlersFromConfig
 parameter_list|(
+specifier|final
 name|Config
 name|config
 parameter_list|)
@@ -544,8 +545,8 @@ specifier|protected
 name|SolrRequestHandler
 name|create
 parameter_list|(
-name|SolrCore
-name|core
+name|Config
+name|config
 parameter_list|,
 name|String
 name|name
@@ -641,7 +642,7 @@ name|super
 operator|.
 name|create
 argument_list|(
-name|core
+name|config
 argument_list|,
 name|name
 argument_list|,
@@ -732,7 +733,7 @@ name|loader
 operator|.
 name|load
 argument_list|(
-name|core
+name|config
 argument_list|,
 name|nodes
 argument_list|)

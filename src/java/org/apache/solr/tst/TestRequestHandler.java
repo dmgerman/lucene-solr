@@ -263,6 +263,8 @@ comment|/**  * @version $Id$  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestRequestHandler
 specifier|public
 class|class
@@ -288,25 +290,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|core
-name|SolrCore
-name|core
-decl_stmt|;
-DECL|method|TestRequestHandler
-specifier|public
-name|TestRequestHandler
-parameter_list|(
-name|SolrCore
-name|core
-parameter_list|)
-block|{
-name|this
-operator|.
-name|core
-operator|=
-name|core
-expr_stmt|;
-block|}
 DECL|method|init
 specifier|public
 name|void

@@ -436,66 +436,16 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// Set the instance directory
-if|if
-condition|(
-name|instanceDir
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|Config
-operator|.
-name|isInstanceDirInitialized
-argument_list|()
-condition|)
-block|{
-name|String
-name|dir
-init|=
-name|Config
-operator|.
-name|getInstanceDir
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|dir
-operator|.
-name|equals
-argument_list|(
-name|instanceDir
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"already initalized: "
-operator|+
-name|dir
-argument_list|)
-throw|;
-block|}
-block|}
-name|Config
-operator|.
-name|setInstanceDir
-argument_list|(
-name|instanceDir
-argument_list|)
-expr_stmt|;
-block|}
+comment|// TODO! Set the instance directory
+comment|//    if( instanceDir != null ) {
+comment|//      if( Config.isInstanceDirInitialized() ) {
+comment|//        String dir = Config.getInstanceDir();
+comment|//        if( !dir.equals( instanceDir ) ) {
+comment|//          throw new SolrException( SolrException.ErrorCode.SERVER_ERROR, "already initalized: "+dir  );
+comment|//        }
+comment|//      }
+comment|//      Config.setInstanceDir( instanceDir );
+comment|//    }
 name|SolrConfig
 name|config
 init|=
@@ -559,7 +509,7 @@ name|core
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * For example:    *     * String json = solr.request( "/select?qt=dismax&wt=json&q=...", null );    * String xml = solr.request( "/update", "&lt;add><doc><field ..." );    *     */
+comment|/**    * For example:    *     * String json = solr.request( "/select?qt=dismax&wt=json&q=...", null );    * String xml = solr.request( "/update", "&lt;add><doc><field ..." );    */
 DECL|method|request
 specifier|public
 name|String

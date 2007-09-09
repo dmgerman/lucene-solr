@@ -96,20 +96,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|Config
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -138,6 +124,11 @@ decl_stmt|;
 DECL|field|args
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|args
 decl_stmt|;
 DECL|field|cacheImpl
@@ -283,6 +274,8 @@ index|]
 operator|=
 name|getConfig
 argument_list|(
+name|solrConfig
+argument_list|,
 name|nodes
 operator|.
 name|item
@@ -327,6 +320,8 @@ decl_stmt|;
 return|return
 name|getConfig
 argument_list|(
+name|solrConfig
+argument_list|,
 name|node
 argument_list|)
 return|;
@@ -337,6 +332,9 @@ specifier|static
 name|CacheConfig
 name|getConfig
 parameter_list|(
+name|SolrConfig
+name|solrConfig
+parameter_list|,
 name|Node
 name|node
 parameter_list|)
@@ -453,7 +451,7 @@ name|config
 operator|.
 name|clazz
 operator|=
-name|Config
+name|solrConfig
 operator|.
 name|findClass
 argument_list|(
@@ -478,7 +476,7 @@ operator|=
 operator|(
 name|CacheRegenerator
 operator|)
-name|Config
+name|solrConfig
 operator|.
 name|newInstance
 argument_list|(

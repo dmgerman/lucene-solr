@@ -157,14 +157,6 @@ name|searcher
 init|=
 name|newSearcher
 decl_stmt|;
-name|SolrCore
-name|core
-init|=
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-decl_stmt|;
 name|log
 operator|.
 name|info

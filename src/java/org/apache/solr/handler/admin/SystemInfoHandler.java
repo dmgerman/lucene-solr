@@ -521,7 +521,10 @@ argument_list|,
 operator|new
 name|File
 argument_list|(
-name|Config
+name|core
+operator|.
+name|getSolrConfig
+argument_list|()
 operator|.
 name|getInstanceDir
 argument_list|()
