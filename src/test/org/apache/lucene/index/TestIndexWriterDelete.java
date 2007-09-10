@@ -2576,6 +2576,15 @@ operator|+
 name|e
 argument_list|)
 expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 name|err
 operator|=
@@ -2848,6 +2857,10 @@ condition|)
 block|{
 if|if
 condition|(
+name|x
+operator|==
+literal|0
+operator|&&
 name|result2
 operator|!=
 name|END_COUNT
@@ -2862,6 +2875,46 @@ operator|+
 name|result2
 operator|+
 literal|" instead of expected "
+operator|+
+name|END_COUNT
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|x
+operator|==
+literal|1
+operator|&&
+name|result2
+operator|!=
+name|START_COUNT
+operator|&&
+name|result2
+operator|!=
+name|END_COUNT
+condition|)
+block|{
+comment|// It's possible that the first exception was
+comment|// "recoverable" wrt pending deletes, in which
+comment|// case the pending deletes are retained and
+comment|// then re-flushing (with plenty of disk
+comment|// space) will succeed in flushing the
+comment|// deletes:
+name|fail
+argument_list|(
+name|testName
+operator|+
+literal|": method did not throw exception but hits.length for search on term 'aaa' is "
+operator|+
+name|result2
+operator|+
+literal|" instead of expected "
+operator|+
+name|START_COUNT
+operator|+
+literal|" or "
 operator|+
 name|END_COUNT
 argument_list|)
@@ -2899,6 +2952,10 @@ operator|+
 literal|" instead of expected "
 operator|+
 name|START_COUNT
+operator|+
+literal|" or "
+operator|+
+name|END_COUNT
 argument_list|)
 expr_stmt|;
 block|}
@@ -2936,9 +2993,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// This test tests that buffered deletes are not lost due to i/o
-comment|// errors occurring after the buffered deletes have been flushed but
-comment|// before the segmentInfos have been successfully written
+comment|// This test tests that buffered deletes are cleared when
+comment|// an Exception is hit during flush.
 DECL|method|testErrorAfterApplyDeletes
 specifier|public
 name|void
@@ -3506,9 +3562,16 @@ argument_list|,
 name|term
 argument_list|)
 expr_stmt|;
-comment|// If we haven't lost the delete the hit count will be zero
+comment|// If the delete was not cleared then hit count will
+comment|// be 0.  With autoCommit=false, we hit the exception
+comment|// on creating the compound file, so the delete was
+comment|// flushed successfully.
 name|assertEquals
 argument_list|(
+name|autoCommit
+condition|?
+literal|1
+else|:
 literal|0
 argument_list|,
 name|hitCount
