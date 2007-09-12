@@ -870,6 +870,9 @@ case|case
 literal|':'
 case|:
 case|case
+literal|'~'
+case|:
+case|case
 literal|'\\'
 case|:
 name|str
