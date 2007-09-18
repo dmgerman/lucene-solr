@@ -143,8 +143,6 @@ DECL|method|MockRAMDirectory
 specifier|public
 name|MockRAMDirectory
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|()
