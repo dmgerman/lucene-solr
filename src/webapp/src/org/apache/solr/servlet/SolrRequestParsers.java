@@ -627,7 +627,7 @@ init|=
 name|standard
 decl_stmt|;
 comment|// TODO -- in the future, we could pick a different parser based on the request
-comment|// Pick the parer from the request...
+comment|// Pick the parser from the request...
 name|ArrayList
 argument_list|<
 name|ContentStream
