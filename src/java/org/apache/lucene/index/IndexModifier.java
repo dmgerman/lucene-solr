@@ -446,6 +446,18 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+comment|// IndexModifier cannot use ConcurrentMergeScheduler
+comment|// because it synchronizes on the directory which can
+comment|// cause deadlock
+name|indexWriter
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|indexWriter
 operator|.
 name|setInfoStream

@@ -1376,16 +1376,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
-argument_list|,
-name|writer
-operator|.
-name|getSegmentCount
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
 literal|1000
 argument_list|,
 name|writer
@@ -1996,7 +1986,7 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-comment|// add 1000 documents
+comment|// add 1000 documents in 1 segment
 name|addDocs
 argument_list|(
 name|writer

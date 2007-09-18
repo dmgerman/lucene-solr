@@ -121,7 +121,7 @@ name|ignoringOffsets
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Never ignores positions.  This mapper doesn't make much sense unless there are positions    * @return    */
+comment|/**    * Never ignores positions.  This mapper doesn't make much sense unless there are positions    * @return false    */
 DECL|method|isIgnoringPositions
 specifier|public
 name|boolean

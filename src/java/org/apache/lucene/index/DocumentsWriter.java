@@ -324,6 +324,12 @@ name|int
 name|numDocsInRAM
 decl_stmt|;
 comment|// # docs buffered in RAM
+DECL|field|numDocsInStore
+specifier|private
+name|int
+name|numDocsInStore
+decl_stmt|;
+comment|// # docs written to doc stores
 DECL|field|nextWriteDocID
 specifier|private
 name|int
@@ -752,6 +758,10 @@ name|docStoreOffset
 operator|=
 literal|0
 expr_stmt|;
+name|numDocsInStore
+operator|=
+literal|0
+expr_stmt|;
 return|return
 name|s
 return|;
@@ -771,6 +781,23 @@ init|=
 literal|null
 decl_stmt|;
 comment|// Cached list of files we've created
+DECL|field|abortedFiles
+specifier|private
+name|List
+name|abortedFiles
+init|=
+literal|null
+decl_stmt|;
+comment|// List of files that were written before last abort()
+DECL|method|abortedFiles
+name|List
+name|abortedFiles
+parameter_list|()
+block|{
+return|return
+name|abortedFiles
+return|;
+block|}
 comment|/* Returns list of files in use by this instance,    * including any flushed segments. */
 DECL|method|files
 name|List
@@ -898,6 +925,19 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
+operator|.
+name|println
+argument_list|(
+literal|"docWriter: now abort"
+argument_list|)
+expr_stmt|;
 comment|// Forcefully remove waiting ThreadStates from line
 for|for
 control|(
@@ -940,6 +980,11 @@ literal|0
 expr_stmt|;
 try|try
 block|{
+name|abortedFiles
+operator|=
+name|files
+argument_list|()
+expr_stmt|;
 comment|// Discard pending norms:
 specifier|final
 name|int
@@ -1381,8 +1426,8 @@ name|ArrayList
 argument_list|()
 expr_stmt|;
 name|docStoreOffset
-operator|+=
-name|numDocsInRAM
+operator|=
+name|numDocsInStore
 expr_stmt|;
 if|if
 condition|(
@@ -9984,6 +10029,9 @@ name|newSegmentName
 argument_list|()
 expr_stmt|;
 name|numDocsInRAM
+operator|++
+expr_stmt|;
+name|numDocsInStore
 operator|++
 expr_stmt|;
 comment|// We must at this point commit to flushing to ensure we
