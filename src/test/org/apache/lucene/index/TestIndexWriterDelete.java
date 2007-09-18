@@ -3652,6 +3652,10 @@ operator|!
 name|failed
 condition|)
 block|{
+name|failed
+operator|=
+literal|true
+expr_stmt|;
 throw|throw
 operator|new
 name|IOException

@@ -3315,6 +3315,15 @@ init|(
 name|segmentInfos
 init|)
 block|{
+comment|// Important to set commitPending so that the
+comment|// segmentInfos is written on close.  Otherwise we
+comment|// could close, re-open and re-return the same segment
+comment|// name that was previously returned which can cause
+comment|// problems at least with ConcurrentMergeScheduler.
+name|commitPending
+operator|=
+literal|true
+expr_stmt|;
 return|return
 literal|"_"
 operator|+
@@ -4551,6 +4560,10 @@ name|write
 argument_list|(
 name|directory
 argument_list|)
+expr_stmt|;
+name|commitPending
+operator|=
+literal|false
 expr_stmt|;
 if|if
 condition|(
