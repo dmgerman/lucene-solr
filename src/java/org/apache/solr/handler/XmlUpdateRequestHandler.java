@@ -597,6 +597,12 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|// The java 1.6 bundled stax parser (sjsxp) does not currently have a thread-safe
+comment|// XMLInputFactory, as that implementation tries to cache and reuse the
+comment|// XMLStreamReader.  Setting the parser-specific "reuse-instance" property to false
+comment|// prevents this.
+comment|// All other known open-source stax parsers (and the bea ref impl)
+comment|// have thread-safe factories.
 name|inputFactory
 operator|.
 name|setProperty
@@ -615,11 +621,11 @@ name|IllegalArgumentException
 name|ex
 parameter_list|)
 block|{
-comment|// The java 1.5 com.bea.xml does not support this property, but behaves properly in a
-comment|// multi-threaded environment.  Ignore the error for 1.5
+comment|// Other implementations will likely throw this exception since "reuse-instance"
+comment|// isimplementation specific.
 name|log
 operator|.
-name|info
+name|fine
 argument_list|(
 literal|"Unable to set the 'reuse-instance' property for the input factory: "
 operator|+
