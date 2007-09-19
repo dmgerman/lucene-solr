@@ -32,7 +32,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrExampleTestBase
+name|SolrExampleTests
 import|;
 end_import
 
@@ -52,31 +52,17 @@ name|SolrServer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
 begin_comment
 comment|/**  * This runs SolrServer test using   *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|TestEmbeddedSolrServer
+DECL|class|SolrExampleEmbeddedTest
 specifier|public
 class|class
-name|TestEmbeddedSolrServer
+name|SolrExampleEmbeddedTest
 extends|extends
-name|SolrExampleTestBase
+name|SolrExampleTests
 block|{
 DECL|field|server
 name|SolrServer
@@ -100,14 +86,8 @@ expr_stmt|;
 comment|// setup the server...
 name|server
 operator|=
-operator|new
-name|EmbeddedSolrServer
-argument_list|(
-name|h
-operator|.
-name|getCore
+name|createNewSolrServer
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -120,6 +100,25 @@ parameter_list|()
 block|{
 return|return
 name|server
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|createNewSolrServer
+specifier|protected
+name|SolrServer
+name|createNewSolrServer
+parameter_list|()
+block|{
+return|return
+operator|new
+name|EmbeddedSolrServer
+argument_list|(
+name|h
+operator|.
+name|getCore
+argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
