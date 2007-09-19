@@ -98,16 +98,6 @@ name|SolrInputDocument
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-import|;
-end_import
-
 begin_comment
 comment|/**  * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -305,8 +295,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|0
@@ -317,8 +305,6 @@ name|getStatus
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 name|count
@@ -600,8 +586,6 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-name|Assert
-operator|.
 name|fail
 argument_list|(
 name|getName
