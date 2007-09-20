@@ -160,6 +160,10 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+name|formatedDate
+operator|+
+literal|" does not match expected pattern"
+argument_list|,
 name|pattern
 operator|.
 name|matcher
