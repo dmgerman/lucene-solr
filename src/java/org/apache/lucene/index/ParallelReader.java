@@ -164,9 +164,7 @@ throws|throws
 name|IOException
 block|{
 name|super
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Add an IndexReader.   * @throws IOException if there is a low-level IO error   */
