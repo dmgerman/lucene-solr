@@ -147,17 +147,6 @@ operator|.
 name|HTTP_HEADER_DATE_FORMAT
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"DATE: "
-operator|+
-name|formatedDate
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|formatedDate
