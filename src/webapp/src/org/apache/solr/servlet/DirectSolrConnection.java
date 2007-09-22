@@ -170,20 +170,6 @@ name|solr
 operator|.
 name|core
 operator|.
-name|Config
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
 name|SolrConfig
 import|;
 end_import
@@ -310,7 +296,11 @@ operator|=
 operator|new
 name|SolrRequestParsers
 argument_list|(
-name|core
+literal|true
+argument_list|,
+name|Long
+operator|.
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
@@ -332,7 +322,11 @@ operator|=
 operator|new
 name|SolrRequestParsers
 argument_list|(
-name|core
+literal|true
+argument_list|,
+name|Long
+operator|.
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
@@ -436,34 +430,36 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// TODO! Set the instance directory
-comment|//    if( instanceDir != null ) {
-comment|//      if( Config.isInstanceDirInitialized() ) {
-comment|//        String dir = Config.getInstanceDir();
-comment|//        if( !dir.equals( instanceDir ) ) {
-comment|//          throw new SolrException( SolrException.ErrorCode.SERVER_ERROR, "already initalized: "+dir  );
-comment|//        }
-comment|//      }
-comment|//      Config.setInstanceDir( instanceDir );
-comment|//    }
+comment|// Initalize SolrConfig
 name|SolrConfig
 name|config
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|config
+operator|=
+operator|new
+name|SolrConfig
+argument_list|(
+name|instanceDir
+argument_list|,
 name|SolrConfig
 operator|.
-name|createInstance
-argument_list|(
-literal|"solrconfig.xml"
-argument_list|)
-decl_stmt|;
-comment|// If the Data directory is specified, initialize SolrCore directly
-if|if
-condition|(
-name|dataDir
-operator|!=
+name|DEFAULT_CONF_FILE
+argument_list|,
 literal|null
-condition|)
-block|{
+argument_list|)
+expr_stmt|;
+name|instanceDir
+operator|=
+name|config
+operator|.
+name|getInstanceDir
+argument_list|()
+expr_stmt|;
+comment|// If the Data directory is specified, initialize SolrCore directly
 name|IndexSchema
 name|schema
 init|=
@@ -489,25 +485,33 @@ argument_list|,
 name|schema
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|core
-operator|=
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-expr_stmt|;
-block|}
 name|parser
 operator|=
 operator|new
 name|SolrRequestParsers
 argument_list|(
-name|core
+literal|true
+argument_list|,
+name|Long
+operator|.
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ee
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ee
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * For example:    *     * String json = solr.request( "/select?qt=dismax&wt=json&q=...", null );    * String xml = solr.request( "/update", "&lt;add><doc><field ..." );    */
 DECL|method|request
@@ -756,6 +760,8 @@ name|parser
 operator|.
 name|buildRequestFrom
 argument_list|(
+name|core
+argument_list|,
 name|params
 argument_list|,
 name|streams

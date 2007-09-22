@@ -367,7 +367,11 @@ operator|=
 operator|new
 name|SolrRequestParsers
 argument_list|(
-name|core
+literal|true
+argument_list|,
+name|Long
+operator|.
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 comment|// by default use the XML one
@@ -606,6 +610,8 @@ name|parser
 operator|.
 name|buildRequestFrom
 argument_list|(
+name|core
+argument_list|,
 name|params
 argument_list|,
 name|request

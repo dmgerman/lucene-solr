@@ -634,12 +634,12 @@ argument_list|(
 literal|32000
 argument_list|)
 decl_stmt|;
+comment|// This relies on the fact that SolrCore.getSolrCore() uses the
+comment|// last instantiated SolrCore.
 name|updater
 operator|.
 name|doLegacyUpdate
 argument_list|(
-name|core
-argument_list|,
 name|req
 argument_list|,
 name|writer
