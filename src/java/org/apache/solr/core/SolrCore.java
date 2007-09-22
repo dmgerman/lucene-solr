@@ -981,12 +981,7 @@ decl_stmt|;
 name|SolrEventListener
 name|listener
 init|=
-operator|(
-name|SolrEventListener
-operator|)
-name|solrConfig
-operator|.
-name|newInstance
+name|createEventListener
 argument_list|(
 name|className
 argument_list|)
