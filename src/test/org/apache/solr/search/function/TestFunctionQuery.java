@@ -766,6 +766,18 @@ argument_list|,
 literal|28.846153f
 argument_list|)
 expr_stmt|;
+comment|// test that infinity doesn't mess up scale function
+name|singleTest
+argument_list|(
+name|field
+argument_list|,
+literal|"scale(log(\0),-1000,1000)"
+argument_list|,
+literal|100
+argument_list|,
+literal|1000
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testFunctions
 specifier|public

@@ -221,6 +221,32 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
+name|Float
+operator|.
+name|floatToRawIntBits
+argument_list|(
+name|val
+argument_list|)
+operator|&
+operator|(
+literal|0xff
+operator|<<
+literal|23
+operator|)
+operator|)
+operator|==
+literal|0xff
+operator|<<
+literal|23
+condition|)
+block|{
+comment|// if the exponent in the float is all ones, then this is +Inf, -Inf or NaN
+comment|// which don't make sense to factor into the scale function
+continue|continue;
+block|}
+if|if
+condition|(
 name|val
 operator|<
 name|minVal
