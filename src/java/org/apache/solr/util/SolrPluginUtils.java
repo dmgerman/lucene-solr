@@ -3204,7 +3204,7 @@ name|getSort
 argument_list|()
 return|;
 block|}
-comment|/**    * Builds a list of Query objects that should be used to filter results    * @see SolrParams#FQ    * @return null if no filter queries    */
+comment|/**    * Builds a list of Query objects that should be used to filter results    * @see CommonParams#FQ    * @return null if no filter queries    */
 DECL|method|parseFilterQueries
 specifier|public
 specifier|static

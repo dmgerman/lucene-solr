@@ -467,7 +467,7 @@ name|schemaFile
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * @param name the core name    * @param dataDirectory path for index data, will not be cleaned up     * @param configFile solrconfig filename    * @param schemaFile schema filename    */
+comment|/**    * @param dataDirectory path for index data, will not be cleaned up    * @param configFile solrconfig filename    * @param schemaFile schema filename    */
 DECL|method|TestHarness
 specifier|public
 name|TestHarness
@@ -495,7 +495,7 @@ name|schemaFile
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * @param name the core name     * @param dataDirectory path for index data, will not be cleaned up     * @param solrConfig solronfig instance     * @param schemaFile schema filename     */
+comment|/**     * @param dataDirectory path for index data, will not be cleaned up     * @param solrConfig solronfig instance     * @param schemaFile schema filename     */
 DECL|method|TestHarness
 specifier|public
 name|TestHarness
@@ -526,7 +526,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * @param name the core name     * @param dataDirectory path for index data, will not be cleaned up     * @param solrConfig solrconfig instance     * @param schema schema instance     */
+comment|/**     * @param dataDirectory path for index data, will not be cleaned up     * @param solrConfig solrconfig instance     * @param indexSchema schema instance     */
 DECL|method|TestHarness
 specifier|public
 name|TestHarness

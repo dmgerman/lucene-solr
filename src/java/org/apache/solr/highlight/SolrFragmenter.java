@@ -114,7 +114,7 @@ name|NamedList
 name|args
 parameter_list|)
 function_decl|;
-comment|/**    * Return a fragmenter appropriate for this field.     *     * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @return An appropriate Fragmenter.    */
+comment|/**    * Return a fragmenter appropriate for this field.     *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate Fragmenter.    */
 DECL|method|getFragmenter
 specifier|public
 name|Fragmenter

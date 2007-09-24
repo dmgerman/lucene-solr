@@ -796,7 +796,7 @@ name|fmt
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Check whether Highlighting is enabled for this request.    * @param request The current SolrQueryRequest    * @return<code>true</code> if highlighting enabled,<code>false</code> if not.    */
+comment|/**    * Check whether Highlighting is enabled for this request.    * @param params The params controlling Highlighting    * @return<code>true</code> if highlighting enabled,<code>false</code> if not.    */
 DECL|method|isHighlightingEnabled
 specifier|public
 name|boolean
@@ -1119,7 +1119,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Return the max number of snippets for this field. If this has not    * been configured for this field, fall back to the configured default    * or the solr default.    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    */
+comment|/**    * Return the max number of snippets for this field. If this has not    * been configured for this field, fall back to the configured default    * or the solr default.    * @param fieldName The name of the field    * @param params The params controlling Highlighting    */
 DECL|method|getMaxSnippets
 specifier|protected
 name|int
@@ -1147,7 +1147,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a formatter appropriate for this field. If a formatter    * has not been configured for this field, fall back to the configured    * default or the solr default (SimpleHTMLFormatter).    *     * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @return An appropriate Formatter.    */
+comment|/**    * Return a formatter appropriate for this field. If a formatter    * has not been configured for this field, fall back to the configured    * default or the solr default (SimpleHTMLFormatter).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate Formatter.    */
 DECL|method|getFormatter
 specifier|protected
 name|Formatter
@@ -1218,7 +1218,7 @@ name|params
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a fragmenter appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default (GapFragmenter).    *     * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @return An appropriate Fragmenter.    */
+comment|/**    * Return a fragmenter appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default (GapFragmenter).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate Fragmenter.    */
 DECL|method|getFragmenter
 specifier|protected
 name|Fragmenter

@@ -196,7 +196,7 @@ specifier|final
 name|boolean
 name|requireName
 decl_stmt|;
-comment|/**    * @param type is the 'type' name included in error messages.    * @param preRegister, if true, this will first register all Plugins, then it will initialize them.    */
+comment|/**    * @param type is the 'type' name included in error messages.    * @param preRegister if true, this will first register all Plugins, then it will initialize them.    */
 DECL|method|AbstractPluginLoader
 specifier|public
 name|AbstractPluginLoader
