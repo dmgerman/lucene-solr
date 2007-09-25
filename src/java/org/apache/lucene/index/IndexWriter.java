@@ -265,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The<code>create</code> argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer, boolean)"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened.  Note that you   can open an index with<code>create=true</code> even while readers are   using the index.  The old readers will continue to search   the "point in time" snapshot they had opened, and won't   see the newly created index until they re-open.  There are   also<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   with no<code>create</code> argument which   will create a new index if there is not already an index at the   provided path and otherwise open the existing index.</p><p>In either case, documents are added with<a   href="#addDocument(org.apache.lucene.document.Document)"><b>addDocument</b></a>   and removed with<a   href="#deleteDocuments(org.apache.lucene.index.Term)"><b>deleteDocuments</b></a>.   A document can be updated with<a href="#updateDocument(org.apache.lucene.index.Term, org.apache.lucene.document.Document)"><b>updateDocument</b></a>    (which just deletes and then adds the entire document).   When finished adding, deleting and updating documents,<a href="#close()"><b>close</b></a> should be called.</p><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls).  A flush is triggered when there are enough   buffered deletes (see {@link #setMaxBufferedDeleteTerms})   or enough added documents since the last flush, whichever   is sooner.  For the added documents, flushing is triggered   either by RAM usage of the documents (see {@link   #setRAMBufferSizeMB}) or the number of added documents   (this is the default; see {@link #setMaxBufferedDocs}).   For best indexing speed you should flush by RAM usage with   a large RAM buffer.  You can also force a flush by calling   {@link #flush}.  When a flush occurs, both pending deletes   and added documents are flushed to the index.  A flush may   also trigger one or more segment merges which by default   run (blocking) with the current thread (see<a   href="#mergePolicy">below</a> for changing the {@link   MergeScheduler}).</p><a name="autoCommit"></a><p>The optional<code>autoCommit</code> argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, boolean, org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   controls visibility of the changes to {@link IndexReader} instances reading the same index.   When this is<code>false</code>, changes are not   visible until {@link #close()} is called.   Note that changes will still be flushed to the   {@link org.apache.lucene.store.Directory} as new files,   but are not committed (no new<code>segments_N</code> file   is written referencing the new files) until {@link #close} is   called.  If something goes terribly wrong (for example the   JVM crashes) before {@link #close()}, then   the index will reflect none of the changes made (it will   remain in its starting state).   You can also call {@link #abort()}, which closes the writer without committing any   changes, and removes any index   files that had been flushed but are now unreferenced.   This mode is useful for preventing readers from refreshing   at a bad time (for example after you've done all your   deletes but before you've done your adds).   It can also be used to implement simple single-writer   transactional semantics ("all or none").</p><p>When<code>autoCommit</code> is<code>true</code> then   every flush is also a commit ({@link IndexReader}   instances will see each flush as changes to the index).   This is the default, to match the behavior before 2.2.   When running in this mode, be careful not to refresh your   readers while optimize or segment merges are taking place   as this can tie up substantial disk space.</p><p>Regardless of<code>autoCommit</code>, an {@link   IndexReader} or {@link org.apache.lucene.search.IndexSearcher} will only see the   index as of the "point in time" that it was opened.  Any   changes committed to the index after the reader was opened   are not visible until the reader is re-opened.</p><p>If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize()"><b>optimize</b></a>   method should be called before the index is closed.</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.  It   also selects merges to do for optimize().  (The default is   {@link LogDocMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link SerialMergeScheduler}.</p> */
+comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The<code>create</code> argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer, boolean)"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened.  Note that you   can open an index with<code>create=true</code> even while readers are   using the index.  The old readers will continue to search   the "point in time" snapshot they had opened, and won't   see the newly created index until they re-open.  There are   also<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   with no<code>create</code> argument which   will create a new index if there is not already an index at the   provided path and otherwise open the existing index.</p><p>In either case, documents are added with<a   href="#addDocument(org.apache.lucene.document.Document)"><b>addDocument</b></a>   and removed with<a   href="#deleteDocuments(org.apache.lucene.index.Term)"><b>deleteDocuments</b></a>.   A document can be updated with<a href="#updateDocument(org.apache.lucene.index.Term, org.apache.lucene.document.Document)"><b>updateDocument</b></a>    (which just deletes and then adds the entire document).   When finished adding, deleting and updating documents,<a href="#close()"><b>close</b></a> should be called.</p><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls).  A flush is triggered when there are enough   buffered deletes (see {@link #setMaxBufferedDeleteTerms})   or enough added documents since the last flush, whichever   is sooner.  For the added documents, flushing is triggered   either by RAM usage of the documents (see {@link   #setRAMBufferSizeMB}) or the number of added documents.   The default is to flush when RAM usage hits 16 MB.  For   best indexing speed you should flush by RAM usage with a   large RAM buffer.  You can also force a flush by calling   {@link #flush}.  When a flush occurs, both pending deletes   and added documents are flushed to the index.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><a name="autoCommit"></a><p>The optional<code>autoCommit</code> argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, boolean, org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   controls visibility of the changes to {@link IndexReader} instances reading the same index.   When this is<code>false</code>, changes are not   visible until {@link #close()} is called.   Note that changes will still be flushed to the   {@link org.apache.lucene.store.Directory} as new files,   but are not committed (no new<code>segments_N</code> file   is written referencing the new files) until {@link #close} is   called.  If something goes terribly wrong (for example the   JVM crashes) before {@link #close()}, then   the index will reflect none of the changes made (it will   remain in its starting state).   You can also call {@link #abort()}, which closes the writer without committing any   changes, and removes any index   files that had been flushed but are now unreferenced.   This mode is useful for preventing readers from refreshing   at a bad time (for example after you've done all your   deletes but before you've done your adds).   It can also be used to implement simple single-writer   transactional semantics ("all or none").</p><p>When<code>autoCommit</code> is<code>true</code> then   every flush is also a commit ({@link IndexReader}   instances will see each flush as changes to the index).   This is the default, to match the behavior before 2.2.   When running in this mode, be careful not to refresh your   readers while optimize or segment merges are taking place   as this can tie up substantial disk space.</p><p>Regardless of<code>autoCommit</code>, an {@link   IndexReader} or {@link org.apache.lucene.search.IndexSearcher} will only see the   index as of the "point in time" that it was opened.  Any   changes committed to the index after the reader was opened   are not visible until the reader is re-opened.</p><p>If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize()"><b>optimize</b></a>   method should be called before the index is closed.</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.  It   also selects merges to do for optimize().  (The default is   {@link LogByteMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p> */
 end_comment
 
 begin_comment
@@ -316,7 +316,7 @@ name|LogMergePolicy
 operator|.
 name|DEFAULT_MERGE_FACTOR
 decl_stmt|;
-comment|/**    * Default value is 10. Change using {@link #setMaxBufferedDocs(int)}.    */
+comment|/**    * Default value is 0 (because IndexWriter flushes by RAM    * usage by default). Change using {@link #setMaxBufferedDocs(int)}.    */
 DECL|field|DEFAULT_MAX_BUFFERED_DOCS
 specifier|public
 specifier|final
@@ -324,10 +324,9 @@ specifier|static
 name|int
 name|DEFAULT_MAX_BUFFERED_DOCS
 init|=
-literal|10
+literal|0
 decl_stmt|;
-comment|/* new merge policy   public final static int DEFAULT_MAX_BUFFERED_DOCS = 0;   */
-comment|/**    * Default value is 0 MB (which means flush only by doc    * count).  Change using {@link #setRAMBufferSizeMB}.    */
+comment|/**    * Default value is 16 MB (which means flush when buffered    * docs consume 16 MB RAM).  Change using {@link #setRAMBufferSizeMB}.    */
 DECL|field|DEFAULT_RAM_BUFFER_SIZE_MB
 specifier|public
 specifier|final
@@ -335,9 +334,8 @@ specifier|static
 name|double
 name|DEFAULT_RAM_BUFFER_SIZE_MB
 init|=
-literal|0.0
+literal|16.0
 decl_stmt|;
-comment|/* new merge policy   public final static double DEFAULT_RAM_BUFFER_SIZE_MB = 16.0;   */
 comment|/**    * Default value is 1000. Change using {@link #setMaxBufferedDeleteTerms(int)}.    */
 DECL|field|DEFAULT_MAX_BUFFERED_DELETE_TERMS
 specifier|public
@@ -524,7 +522,7 @@ name|MergePolicy
 name|mergePolicy
 init|=
 operator|new
-name|LogDocMergePolicy
+name|LogByteSizeMergePolicy
 argument_list|()
 decl_stmt|;
 DECL|field|mergeScheduler
@@ -533,7 +531,7 @@ name|MergeScheduler
 name|mergeScheduler
 init|=
 operator|new
-name|SerialMergeScheduler
+name|ConcurrentMergeScheduler
 argument_list|()
 decl_stmt|;
 DECL|field|pendingMerges
@@ -2322,6 +2320,20 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"at close: "
+operator|+
+name|segString
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|writeLock
@@ -5501,6 +5513,7 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  flush: segment="
@@ -5548,6 +5561,15 @@ name|getNumBufferedDeleteTerms
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|message
+argument_list|(
+literal|"  index before flush "
+operator|+
+name|segString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|int
 name|docStoreOffset
 init|=

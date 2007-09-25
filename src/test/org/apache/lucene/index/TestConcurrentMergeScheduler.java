@@ -616,18 +616,24 @@ argument_list|(
 name|cms
 argument_list|)
 expr_stmt|;
+name|LogDocMergePolicy
+name|mp
+init|=
+operator|new
+name|LogDocMergePolicy
+argument_list|()
+decl_stmt|;
+name|writer
+operator|.
+name|setMergePolicy
+argument_list|(
+name|mp
+argument_list|)
+expr_stmt|;
 comment|// Force degenerate merging so we can get a mix of
 comment|// merging of segments with and without deletes at the
 comment|// start:
-operator|(
-operator|(
-name|LogDocMergePolicy
-operator|)
-name|writer
-operator|.
-name|getMergePolicy
-argument_list|()
-operator|)
+name|mp
 operator|.
 name|setMinMergeDocs
 argument_list|(

@@ -735,6 +735,11 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+name|writer
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 name|IndexerThread
 name|indexerThread
 init|=
