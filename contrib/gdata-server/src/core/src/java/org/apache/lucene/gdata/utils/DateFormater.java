@@ -68,6 +68,16 @@ name|Stack
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TimeZone
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class uses the {@link java.text.SimpleDateFormat} class to format dates  * into strings according to given date pattern.  *<p>  * As the creation of<tt>SimpleDateFormat</tt> objects is quiet expensive and  * formating dates is used quiet fequently the objects will be cached and reused  * in subsequent calls.  *</p>  *<p>  * This implementation is thread safe as it uses {@link java.util.Stack} as a  * cache  *</p>  *   * @author Simon Willnauer  *   */
 end_comment
@@ -360,7 +370,10 @@ operator|.
 name|empty
 argument_list|()
 condition|)
-return|return
+block|{
+name|SimpleDateFormat
+name|dateFormat
+init|=
 operator|new
 name|SimpleDateFormat
 argument_list|(
@@ -372,7 +385,23 @@ name|Locale
 operator|.
 name|ENGLISH
 argument_list|)
+decl_stmt|;
+name|dateFormat
+operator|.
+name|setTimeZone
+argument_list|(
+name|TimeZone
+operator|.
+name|getTimeZone
+argument_list|(
+literal|"GMT"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|dateFormat
 return|;
+block|}
 return|return
 name|this
 operator|.
