@@ -1957,13 +1957,6 @@ name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|numVectorFields
-operator|>
-literal|0
-condition|)
-block|{
 name|tvd
 operator|.
 name|writeVInt
@@ -1971,6 +1964,13 @@ argument_list|(
 name|numVectorFields
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|numVectorFields
+operator|>
+literal|0
+condition|)
+block|{
 for|for
 control|(
 name|int
