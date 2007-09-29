@@ -833,6 +833,14 @@ name|fieldPointer
 expr_stmt|;
 block|}
 block|}
+else|else
+name|tvd
+operator|.
+name|writeVInt
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Close all streams. */
 DECL|method|close
