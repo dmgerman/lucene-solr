@@ -700,6 +700,11 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 return|return
 name|_processor
 operator|.
