@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.client.solrj
+DECL|package|org.apache.solr.client.solrj.request
 package|package
 name|org
 operator|.
@@ -15,6 +15,8 @@ operator|.
 name|client
 operator|.
 name|solrj
+operator|.
+name|request
 package|;
 end_package
 
@@ -67,24 +69,6 @@ operator|.
 name|solrj
 operator|.
 name|SolrServerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|request
-operator|.
-name|RequestBase
 import|;
 end_import
 
@@ -157,14 +141,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * Send arbitrary XML to a request handler  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|DirectXmlUpdateRequest
+DECL|class|DirectXmlRequest
 specifier|public
 class|class
-name|DirectXmlUpdateRequest
+name|DirectXmlRequest
 extends|extends
 name|RequestBase
 block|{
@@ -173,9 +157,9 @@ specifier|final
 name|String
 name|xml
 decl_stmt|;
-DECL|method|DirectXmlUpdateRequest
+DECL|method|DirectXmlRequest
 specifier|public
-name|DirectXmlUpdateRequest
+name|DirectXmlRequest
 parameter_list|(
 name|String
 name|path
