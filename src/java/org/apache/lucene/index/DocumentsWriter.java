@@ -10740,11 +10740,7 @@ operator|)
 operator|*
 name|BYTES_PER_CHAR
 operator|+
-name|Integer
-operator|.
-name|SIZE
-operator|/
-literal|8
+literal|4
 operator|+
 literal|5
 operator|*
