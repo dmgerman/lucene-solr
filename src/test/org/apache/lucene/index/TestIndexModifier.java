@@ -455,7 +455,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|0
+name|IndexWriter
+operator|.
+name|DISABLE_AUTO_FLUSH
 argument_list|,
 name|i
 operator|.

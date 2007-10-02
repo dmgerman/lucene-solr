@@ -476,7 +476,9 @@ if|if
 condition|(
 name|maxBufferedDocs
 operator|!=
-literal|0
+name|IndexWriter
+operator|.
+name|DISABLE_AUTO_FLUSH
 condition|)
 name|indexWriter
 operator|.
