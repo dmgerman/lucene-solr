@@ -252,6 +252,19 @@ name|infoStream
 operator|=
 name|infoStream
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setInfoStream deletionPolicy="
+operator|+
+name|policy
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|message
 specifier|private
@@ -266,7 +279,7 @@ name|infoStream
 operator|.
 name|println
 argument_list|(
-literal|"Deleter ["
+literal|"IFD ["
 operator|+
 name|Thread
 operator|.
@@ -334,7 +347,9 @@ operator|.
 name|getCurrentSegmentFileName
 argument_list|()
 operator|+
-literal|"\""
+literal|"\"; deletionPolicy="
+operator|+
+name|policy
 argument_list|)
 expr_stmt|;
 name|this
@@ -609,6 +624,41 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// We did not in fact see the segments_N file
+comment|// corresponding to the segmentInfos that was passed
+comment|// in.  Yet, it must exist, because our caller holds
+comment|// the write lock.  This can happen when the directory
+comment|// listing was stale (eg when index accessed via NFS
+comment|// client with stale directory listing cache).  So we
+comment|// try now to explicitly open this commit point:
+name|SegmentInfos
+name|sis
+init|=
+operator|new
+name|SegmentInfos
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|sis
+operator|.
+name|read
+argument_list|(
+name|directory
+argument_list|,
+name|segmentInfos
+operator|.
+name|getCurrentSegmentFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
 throw|throw
 operator|new
 name|CorruptIndexException
@@ -616,6 +666,45 @@ argument_list|(
 literal|"failed to locate current segments_N file"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"forced open of current segments file "
+operator|+
+name|segmentInfos
+operator|.
+name|getCurrentSegmentFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|currentCommitPoint
+operator|=
+operator|new
+name|CommitPoint
+argument_list|(
+name|sis
+argument_list|)
+expr_stmt|;
+name|commits
+operator|.
+name|add
+argument_list|(
+name|currentCommitPoint
+argument_list|)
+expr_stmt|;
+name|incRef
+argument_list|(
+name|sis
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 comment|// We keep commits list in sorted order (oldest to newest):
 name|Collections

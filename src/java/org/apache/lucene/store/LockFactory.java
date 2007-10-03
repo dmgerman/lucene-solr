@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for Locking implementation.  {@link Directory} uses  * instances of this class to implement locking.  */
+comment|/**  *<p>Base class for Locking implementation.  {@link Directory} uses  * instances of this class to implement locking.</p>  *  *<p>Note that there are some useful tools to verify that  * your LockFactory is working correctly: {@link  * VerifyingLockFactory}, {@link LockStressTest}, {@link  * LockVerifyServer}.</p>  *  * @see LockVerifyServer  * @see LockStressTest  * @see VerifyingLockFactory  */
 end_comment
 
 begin_class

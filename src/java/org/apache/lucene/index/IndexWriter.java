@@ -394,6 +394,33 @@ name|MERGE_READ_BUFFER_SIZE
 init|=
 literal|4096
 decl_stmt|;
+comment|// Used for printing messages
+DECL|field|MESSAGE_ID_LOCK
+specifier|private
+specifier|static
+name|Object
+name|MESSAGE_ID_LOCK
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+DECL|field|MESSAGE_ID
+specifier|private
+specifier|static
+name|int
+name|MESSAGE_ID
+init|=
+literal|0
+decl_stmt|;
+DECL|field|messageID
+specifier|private
+name|int
+name|messageID
+init|=
+operator|-
+literal|1
+decl_stmt|;
 DECL|field|directory
 specifier|private
 name|Directory
@@ -604,7 +631,11 @@ name|infoStream
 operator|.
 name|println
 argument_list|(
-literal|"IW ["
+literal|"IW "
+operator|+
+name|messageID
+operator|+
+literal|" ["
 operator|+
 name|Thread
 operator|.
@@ -619,6 +650,38 @@ operator|+
 name|message
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|setMessageID
+specifier|private
+specifier|synchronized
+name|void
+name|setMessageID
+parameter_list|()
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+operator|&&
+name|messageID
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|MESSAGE_ID_LOCK
+init|)
+block|{
+name|messageID
+operator|=
+name|MESSAGE_ID
+operator|++
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|/**    * Casts current mergePolicy to LogMergePolicy, and throws    * an exception if the mergePolicy is not a LogMergePolicy.    */
 DECL|method|getLogMergePolicy
@@ -1285,6 +1348,9 @@ name|infoStream
 operator|=
 name|defaultInfoStream
 expr_stmt|;
+name|setMessageID
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|create
@@ -1461,6 +1527,24 @@ expr_stmt|;
 name|pushMaxBufferedDocs
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"init: create="
+operator|+
+name|create
+argument_list|)
+expr_stmt|;
+name|messageState
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1529,6 +1613,19 @@ name|mp
 expr_stmt|;
 name|pushMaxBufferedDocs
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setMergePolicy "
+operator|+
+name|mp
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: returns the current MergePolicy in use by this writer.    * @see #setMergePolicy    */
@@ -1603,6 +1700,19 @@ name|mergeScheduler
 operator|=
 name|mergeScheduler
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setMergeScheduler "
+operator|+
+name|mergeScheduler
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Expert: returns the current MergePolicy in use by this    * writer.    * @see #setMergePolicy    */
 DECL|method|getMergeScheduler
@@ -1670,6 +1780,19 @@ operator|.
 name|maxFieldLength
 operator|=
 name|maxFieldLength
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setMaxFieldLength "
+operator|+
+name|maxFieldLength
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the maximum number of terms that will be    * indexed for a single field in a document.    * @see #setMaxFieldLength    */
@@ -1743,6 +1866,19 @@ argument_list|)
 expr_stmt|;
 name|pushMaxBufferedDocs
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setMaxBufferedDocs "
+operator|+
+name|maxBufferedDocs
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * If we are flushing by doc count (not by RAM usage), and    * using LogDocMergePolicy then push maxBufferedDocs down    * as its minMergeDocs, to keep backwards compatibility.    */
@@ -1897,6 +2033,19 @@ argument_list|(
 name|mb
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setRAMBufferSizeMB "
+operator|+
+name|mb
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Returns the value set by {@link #setRAMBufferSizeMB} if enabled.    */
 DECL|method|getRAMBufferSizeMB
@@ -1946,6 +2095,19 @@ name|docWriter
 operator|.
 name|setMaxBufferedDeleteTerms
 argument_list|(
+name|maxBufferedDeleteTerms
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"setMaxBufferedDeleteTerms "
+operator|+
 name|maxBufferedDeleteTerms
 argument_list|)
 expr_stmt|;
@@ -2052,6 +2214,9 @@ name|infoStream
 operator|=
 name|infoStream
 expr_stmt|;
+name|setMessageID
+argument_list|()
+expr_stmt|;
 name|docWriter
 operator|.
 name|setInfoStream
@@ -2064,6 +2229,71 @@ operator|.
 name|setInfoStream
 argument_list|(
 name|infoStream
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|messageState
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|messageState
+specifier|private
+name|void
+name|messageState
+parameter_list|()
+block|{
+name|message
+argument_list|(
+literal|"setInfoStream: dir="
+operator|+
+name|directory
+operator|+
+literal|" autoCommit="
+operator|+
+name|autoCommit
+operator|+
+literal|" mergePolicy="
+operator|+
+name|mergePolicy
+operator|+
+literal|" mergeScheduler="
+operator|+
+name|mergeScheduler
+operator|+
+literal|" ramBufferSizeMB="
+operator|+
+name|docWriter
+operator|.
+name|getRAMBufferSizeMB
+argument_list|()
+operator|+
+literal|" maxBuffereDocs="
+operator|+
+name|docWriter
+operator|.
+name|getMaxBufferedDocs
+argument_list|()
+operator|+
+literal|" maxBuffereDeleteTerms="
+operator|+
+name|docWriter
+operator|.
+name|getMaxBufferedDeleteTerms
+argument_list|()
+operator|+
+literal|" maxFieldLength="
+operator|+
+name|maxFieldLength
+operator|+
+literal|" index="
+operator|+
+name|segString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2269,6 +2499,17 @@ name|IOException
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"now flush at close"
+argument_list|)
+expr_stmt|;
 name|flush
 argument_list|(
 literal|true
@@ -3467,9 +3708,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|flush
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -3483,6 +3721,9 @@ operator|+
 name|segString
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|flush
+argument_list|()
 expr_stmt|;
 synchronized|synchronized
 init|(
@@ -4130,6 +4371,17 @@ condition|(
 name|localAutoCommit
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"flush at startTransaction"
+argument_list|)
+expr_stmt|;
 name|flush
 argument_list|()
 expr_stmt|;
@@ -4673,6 +4925,17 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"flush at addIndexes"
+argument_list|)
+expr_stmt|;
 name|flush
 argument_list|()
 expr_stmt|;
@@ -4824,6 +5087,17 @@ name|IOException
 block|{
 name|ensureOpen
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"flush at addIndexesNoOptimize"
+argument_list|)
 expr_stmt|;
 name|flush
 argument_list|()
@@ -7998,6 +8272,17 @@ comment|// live doc stores.
 comment|// TODO: if we know we are about to merge away these
 comment|// newly flushed doc store files then we should not
 comment|// make compound file out of them...
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"flush at merge"
+argument_list|)
+expr_stmt|;
 name|flush
 argument_list|(
 literal|false

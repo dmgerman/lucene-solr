@@ -619,6 +619,10 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+comment|// Clear any previous segments:
+name|clear
+argument_list|()
+expr_stmt|;
 name|IndexInput
 name|input
 init|=
@@ -1478,6 +1482,8 @@ name|infoStream
 operator|.
 name|println
 argument_list|(
+literal|"SIS ["
+operator|+
 name|Thread
 operator|.
 name|currentThread
@@ -1486,7 +1492,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": "
+literal|"]: "
 operator|+
 name|message
 argument_list|)
@@ -1596,36 +1602,43 @@ comment|// which generation we are trying to load.  If we
 comment|// don't, then the original error is real and we throw
 comment|// it.
 comment|// We have three methods for determining the current
-comment|// generation.  We try each in sequence.
+comment|// generation.  We try the first two in parallel, and
+comment|// fall back to the third when necessary.
 while|while
 condition|(
 literal|true
 condition|)
 block|{
+if|if
+condition|(
+literal|0
+operator|==
+name|method
+condition|)
+block|{
 comment|// Method 1: list the directory and use the highest
 comment|// segments_N file.  This method works well as long
 comment|// as there is no stale caching on the directory
-comment|// contents:
+comment|// contents (NOTE: NFS clients often have such stale
+comment|// caching):
 name|String
 index|[]
 name|files
 init|=
 literal|null
 decl_stmt|;
-if|if
-condition|(
-literal|0
-operator|==
-name|method
-condition|)
-block|{
+name|long
+name|genA
+init|=
+operator|-
+literal|1
+decl_stmt|;
 if|if
 condition|(
 name|directory
 operator|!=
 literal|null
 condition|)
-block|{
 name|files
 operator|=
 name|directory
@@ -1633,26 +1646,7 @@ operator|.
 name|list
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|files
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|FileNotFoundException
-argument_list|(
-literal|"cannot read directory "
-operator|+
-name|directory
-operator|+
-literal|": list() returned null"
-argument_list|)
-throw|;
-block|}
 else|else
-block|{
 name|files
 operator|=
 name|fileDirectory
@@ -1663,109 +1657,34 @@ expr_stmt|;
 if|if
 condition|(
 name|files
-operator|==
+operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|FileNotFoundException
-argument_list|(
-literal|"cannot read directory "
-operator|+
-name|fileDirectory
-operator|+
-literal|": list() returned null"
-argument_list|)
-throw|;
-block|}
-name|gen
+name|genA
 operator|=
 name|getCurrentSegmentGeneration
 argument_list|(
 name|files
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|gen
-operator|==
+name|message
+argument_list|(
+literal|"directory listing genA="
+operator|+
+name|genA
+argument_list|)
+expr_stmt|;
+comment|// Method 2: open segments.gen and read its
+comment|// contents.  Then we take the larger of the two
+comment|// gen's.  This way, if either approach is hitting
+comment|// a stale cache (NFS) we have a better chance of
+comment|// getting the right generation.
+name|long
+name|genB
+init|=
 operator|-
 literal|1
-condition|)
-block|{
-name|String
-name|s
-init|=
-literal|""
 decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|files
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|s
-operator|+=
-literal|" "
-operator|+
-name|files
-index|[
-name|i
-index|]
-expr_stmt|;
-block|}
-throw|throw
-operator|new
-name|FileNotFoundException
-argument_list|(
-literal|"no segments* file found in "
-operator|+
-name|directory
-operator|+
-literal|": files:"
-operator|+
-name|s
-argument_list|)
-throw|;
-block|}
-block|}
-comment|// Method 2 (fallback if Method 1 isn't reliable):
-comment|// if the directory listing seems to be stale, then
-comment|// try loading the "segments.gen" file.
-if|if
-condition|(
-literal|1
-operator|==
-name|method
-operator|||
-operator|(
-literal|0
-operator|==
-name|method
-operator|&&
-name|lastGen
-operator|==
-name|gen
-operator|&&
-name|retry
-operator|)
-condition|)
-block|{
-name|method
-operator|=
-literal|1
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -1799,6 +1718,21 @@ operator|.
 name|SEGMENTS_GEN
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|FileNotFoundException
+name|e
+parameter_list|)
+block|{
+name|message
+argument_list|(
+literal|"segments.gen open: FileNotFoundException "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+break|break;
 block|}
 catch|catch
 parameter_list|(
@@ -1873,35 +1807,10 @@ name|gen1
 condition|)
 block|{
 comment|// The file is consistent.
-if|if
-condition|(
-name|gen0
-operator|>
-name|gen
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"fallback to '"
-operator|+
-name|IndexFileNames
-operator|.
-name|SEGMENTS_GEN
-operator|+
-literal|"' check: now try generation "
-operator|+
-name|gen0
-operator|+
-literal|"> "
-operator|+
-name|gen
-argument_list|)
-expr_stmt|;
-name|gen
+name|genB
 operator|=
 name|gen0
 expr_stmt|;
-block|}
 break|break;
 block|}
 block|}
@@ -1942,19 +1851,114 @@ block|{
 comment|// will retry
 block|}
 block|}
-block|}
-comment|// Method 3 (fallback if Methods 2& 3 are not
-comment|// reliable): since both directory cache and file
-comment|// contents cache seem to be stale, just advance the
-comment|// generation.
+name|message
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+operator|+
+literal|" check: genB="
+operator|+
+name|genB
+argument_list|)
+expr_stmt|;
+comment|// Pick the larger of the two gen's:
 if|if
 condition|(
-literal|2
+name|genA
+operator|>
+name|genB
+condition|)
+name|gen
+operator|=
+name|genA
+expr_stmt|;
+else|else
+name|gen
+operator|=
+name|genB
+expr_stmt|;
+if|if
+condition|(
+name|gen
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|// Neither approach found a generation
+name|String
+name|s
+decl_stmt|;
+if|if
+condition|(
+name|files
+operator|!=
+literal|null
+condition|)
+block|{
+name|s
+operator|=
+literal|""
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|files
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+name|s
+operator|+=
+literal|" "
+operator|+
+name|files
+index|[
+name|i
+index|]
+expr_stmt|;
+block|}
+else|else
+name|s
+operator|=
+literal|" null"
+expr_stmt|;
+throw|throw
+operator|new
+name|FileNotFoundException
+argument_list|(
+literal|"no segments* file found in "
+operator|+
+name|directory
+operator|+
+literal|": files:"
+operator|+
+name|s
+argument_list|)
+throw|;
+block|}
+block|}
+comment|// Third method (fallback if first& second methods
+comment|// are not reliable): since both directory cache and
+comment|// file contents cache seem to be stale, just
+comment|// advance the generation.
+if|if
+condition|(
+literal|1
 operator|==
 name|method
 operator|||
 operator|(
-literal|1
+literal|0
 operator|==
 name|method
 operator|&&
@@ -1968,7 +1972,7 @@ condition|)
 block|{
 name|method
 operator|=
-literal|2
+literal|1
 expr_stmt|;
 if|if
 condition|(

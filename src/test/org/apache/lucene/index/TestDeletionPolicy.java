@@ -1092,6 +1092,15 @@ argument_list|,
 name|gen
 argument_list|)
 decl_stmt|;
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|gen
@@ -1388,6 +1397,15 @@ expr_stmt|;
 block|}
 comment|// Simplistic check: just verify all segments_N's still
 comment|// exist, and, I can open a reader on each:
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+expr_stmt|;
 name|long
 name|gen
 init|=
@@ -1920,6 +1938,15 @@ expr_stmt|;
 block|}
 comment|// Simplistic check: just verify only the past N segments_N's still
 comment|// exist, and, I can open a reader on each:
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+expr_stmt|;
 name|long
 name|gen
 init|=
@@ -2439,6 +2466,15 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+expr_stmt|;
 name|int
 name|expectedCount
 init|=
@@ -3011,6 +3047,15 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+expr_stmt|;
 name|int
 name|expectedCount
 init|=

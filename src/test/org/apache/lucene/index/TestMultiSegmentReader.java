@@ -176,12 +176,6 @@ operator|new
 name|RAMDirectory
 argument_list|()
 expr_stmt|;
-name|sis
-operator|=
-operator|new
-name|SegmentInfos
-argument_list|()
-expr_stmt|;
 name|doc1
 operator|=
 operator|new
@@ -233,8 +227,14 @@ name|doc2
 argument_list|)
 decl_stmt|;
 name|sis
+operator|=
+operator|new
+name|SegmentInfos
+argument_list|()
+expr_stmt|;
+name|sis
 operator|.
-name|write
+name|read
 argument_list|(
 name|dir
 argument_list|)
@@ -530,6 +530,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|instanceof
+name|MultiReader
+condition|)
+comment|// MultiReader does not "own" the directory so it does
+comment|// not write the changes to sis on commit:
+name|sis
+operator|.
+name|write
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|sis
 operator|.
 name|read
@@ -578,6 +593,21 @@ name|reader
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|instanceof
+name|MultiReader
+condition|)
+comment|// MultiReader does not "own" the directory so it does
+comment|// not write the changes to sis on commit:
+name|sis
+operator|.
+name|write
+argument_list|(
+name|dir
+argument_list|)
 expr_stmt|;
 name|sis
 operator|.

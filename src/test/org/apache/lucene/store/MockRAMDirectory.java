@@ -480,6 +480,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -511,12 +513,9 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
-block|{
-comment|// RuntimeException instead of IOException because
-comment|// super() does not throw IOException currently:
 throw|throw
 operator|new
-name|RuntimeException
+name|IOException
 argument_list|(
 literal|"MockRAMDirectory: file \""
 operator|+
@@ -525,7 +524,6 @@ operator|+
 literal|"\" is still open: cannot overwrite"
 argument_list|)
 throw|;
-block|}
 block|}
 name|RAMFile
 name|file
