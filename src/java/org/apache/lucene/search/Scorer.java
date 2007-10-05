@@ -150,7 +150,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Advances to the document matching this Scorer with the lowest doc Id    * greater then the current value of {@link doc()} (or to the matching    * document with the lowest doc Id if next has never been called on    * this Scorer).    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @return true iff there is another document matching the query.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
+comment|/**    * Advances to the document matching this Scorer with the lowest doc Id    * greater then the current value of {@link #doc()} (or to the matching    * document with the lowest doc Id if next has never been called on    * this Scorer).    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @return true iff there is another document matching the query.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
 DECL|method|next
 specifier|public
 specifier|abstract
