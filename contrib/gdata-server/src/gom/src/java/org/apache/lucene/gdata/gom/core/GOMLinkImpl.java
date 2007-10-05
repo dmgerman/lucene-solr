@@ -311,7 +311,7 @@ operator|.
 name|length
 return|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMLink#setLength(java.lang.String) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMLink#setLength(java.lang.Integer) 	 */
 DECL|method|setLength
 specifier|public
 name|void
@@ -824,7 +824,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeAtomOutput
 specifier|public
 name|void
@@ -1006,7 +1006,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeRssOutput
 specifier|public
 name|void

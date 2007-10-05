@@ -139,7 +139,7 @@ name|localName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.core.GOMPersonImpl#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.core.GOMPersonImpl#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 annotation|@
 name|Override
 DECL|method|writeRssOutput

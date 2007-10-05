@@ -416,7 +416,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param type 	 * @return 	 */
 DECL|method|getAttributeByContentType
 specifier|public
 specifier|static
@@ -450,7 +449,6 @@ name|TEXT_TYPE
 return|;
 block|}
 block|}
-comment|/** 	 * @param type 	 * @return 	 */
 DECL|method|getAttributeByContentTypeDefaultNs
 specifier|public
 specifier|static
@@ -525,7 +523,6 @@ name|aValue
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param aValue 	 * @param aName 	 * @return 	 */
 DECL|method|buildDefaultNamespaceAttribute
 specifier|public
 specifier|static
@@ -549,7 +546,6 @@ name|aValue
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param aValue 	 * @param aName 	 * @return 	 */
 DECL|method|buildXMLNamespaceAttribute
 specifier|public
 specifier|static
@@ -581,7 +577,6 @@ name|aValue
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param aString 	 * @return 	 */
 DECL|method|isRfc3339DateFormat
 specifier|public
 specifier|static
@@ -609,7 +604,6 @@ name|matches
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param aString 	 * @return 	 */
 DECL|method|parseRfc3339DateFormat
 specifier|public
 specifier|static
@@ -1005,7 +999,6 @@ return|return
 name|retVal
 return|;
 block|}
-comment|/** 	 * @param aMillisecondLong 	 * @return 	 */
 DECL|method|buildRfc3339DateFormat
 specifier|public
 specifier|static
@@ -1334,7 +1327,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param aMillisecondLong 	 * @return 	 */
 DECL|method|buildRfc822Date
 specifier|public
 specifier|static

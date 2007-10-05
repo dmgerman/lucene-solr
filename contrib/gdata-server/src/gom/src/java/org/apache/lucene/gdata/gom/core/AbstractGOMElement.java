@@ -588,7 +588,7 @@ return|return
 name|retVal
 return|;
 block|}
-comment|/** 	 * {@inheritDoc} 	 *  	 * @see org.apache.lucene.gdata.gom.GOMElement#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter, 	 *      java.lang.String) 	 */
+comment|/** 	 * {@inheritDoc} 	 *  	 * @see org.apache.lucene.gdata.gom.GOMElement#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter, 	 *      java.lang.String) 	 */
 DECL|method|writeRssOutput
 specifier|public
 name|void

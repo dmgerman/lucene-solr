@@ -182,7 +182,6 @@ name|INVALID_ELEMENT_VALUE
 init|=
 literal|"The element value '%s' must be an %s"
 decl_stmt|;
-comment|/** 	 * @param aValue 	 */
 DECL|method|processElementValue
 specifier|public
 specifier|abstract
@@ -193,7 +192,6 @@ name|String
 name|aValue
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param aQName 	 * @param aValue 	 */
 DECL|method|processAttribute
 specifier|public
 specifier|abstract
@@ -207,7 +205,6 @@ name|String
 name|aValue
 parameter_list|)
 function_decl|;
-comment|/** 	 *  	 */
 DECL|method|processEndElement
 specifier|public
 specifier|abstract
@@ -215,7 +212,6 @@ name|void
 name|processEndElement
 parameter_list|()
 function_decl|;
-comment|/** 	 * @param name 	 * @return 	 */
 DECL|method|getChildParser
 specifier|public
 specifier|abstract

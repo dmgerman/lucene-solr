@@ -235,7 +235,7 @@ operator|=
 name|aEncoding
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMDocument#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMDocument#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeAtomOutput
 specifier|public
 name|void
@@ -315,7 +315,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMDocument#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMDocument#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeRssOutput
 specifier|public
 name|void

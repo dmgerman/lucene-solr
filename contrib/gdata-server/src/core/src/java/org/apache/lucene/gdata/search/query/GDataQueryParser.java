@@ -78,7 +78,7 @@ name|GDataQueryParser
 extends|extends
 name|QueryParser
 block|{
-comment|/**      * Creates a new QueryParser instance and sets the default operator to      * {@link Operator#AND}      *       * @param field -      *            the parser field      * @param analyzer -      *            the parser analyzer      */
+comment|/**      * Creates a new QueryParser instance and sets the default operator to      * {@link org.apache.lucene.queryParser.QueryParser.Operator#AND}      *       * @param field -      *            the parser field      * @param analyzer -      *            the parser analyzer      */
 DECL|method|GDataQueryParser
 specifier|public
 name|GDataQueryParser
@@ -107,7 +107,7 @@ name|AND
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new QueryParser instance and sets the default operator to      * {@link Operator#AND}. The parser will use      * {@link IndexSchema#getDefaultSearchField} as the field and      * {@link IndexSchema#getSchemaAnalyzer()} as the analyzer.      *       * @param schema -      *            the schema to set the default fields      */
+comment|/**      * Creates a new QueryParser instance and sets the default operator to      * {@link org.apache.lucene.queryParser.QueryParser.Operator#AND}.      * The parser will use      * {@link IndexSchema#getDefaultSearchField} as the field and      * {@link IndexSchema#getSchemaAnalyzer()} as the analyzer.      *       * @param schema -      *            the schema to set the default fields      */
 DECL|method|GDataQueryParser
 specifier|public
 name|GDataQueryParser

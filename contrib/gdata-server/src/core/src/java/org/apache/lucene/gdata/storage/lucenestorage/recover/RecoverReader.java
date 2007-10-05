@@ -289,7 +289,7 @@ name|RecoverStrategy
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @param reader      * @return      * @throws IOException      */
+comment|/**      * @param reader      * @throws IOException      */
 DECL|method|recoverEntries
 specifier|public
 name|List

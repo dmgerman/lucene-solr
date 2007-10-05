@@ -693,7 +693,7 @@ name|aName
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeAtomOutput
 specifier|public
 name|void
@@ -801,7 +801,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.core.GOMTextContructImpl#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.core.GOMTextContructImpl#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 annotation|@
 name|Override
 DECL|method|writeRssOutput

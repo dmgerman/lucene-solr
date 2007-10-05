@@ -258,7 +258,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeAtomOutput
 specifier|public
 name|void

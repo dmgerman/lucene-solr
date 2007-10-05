@@ -322,7 +322,7 @@ operator|.
 name|uri
 return|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeAtomOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeAtomOutput
 specifier|public
 name|void
@@ -465,7 +465,7 @@ name|writeEndElement
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMStaxWriter) 	 */
+comment|/** 	 * @see org.apache.lucene.gdata.gom.GOMElement#writeRssOutput(org.apache.lucene.gdata.gom.writer.GOMOutputWriter) 	 */
 DECL|method|writeRssOutput
 specifier|public
 name|void

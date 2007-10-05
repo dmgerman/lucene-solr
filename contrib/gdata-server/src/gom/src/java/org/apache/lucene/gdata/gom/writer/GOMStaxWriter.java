@@ -900,7 +900,7 @@ name|aContent
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.apache.lucene.gdata.gom.writer.GOMOutputWriter#writeDefaultNamespace(java.lang.String) 	 */
+comment|/** 	 * @see XMLStreamWriter#writeDefaultNamespace(java.lang.String) 	 */
 DECL|method|writeDefaultNamespace
 specifier|public
 name|void

@@ -38,10 +38,6 @@ name|IndexSchemaField
 import|;
 end_import
 
-begin_comment
-comment|/**  *  * @see org.apache.lucene.gdata.search.analysis.TestHTMLStrategy  */
-end_comment
-
 begin_class
 DECL|class|XHtmlStrategy
 specifier|public
