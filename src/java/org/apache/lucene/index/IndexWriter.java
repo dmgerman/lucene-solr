@@ -711,33 +711,6 @@ literal|"this method can only be called when the merge policy is the default Log
 argument_list|)
 throw|;
 block|}
-DECL|method|getLogDocMergePolicy
-specifier|private
-name|LogDocMergePolicy
-name|getLogDocMergePolicy
-parameter_list|()
-block|{
-if|if
-condition|(
-name|mergePolicy
-operator|instanceof
-name|LogDocMergePolicy
-condition|)
-return|return
-operator|(
-name|LogDocMergePolicy
-operator|)
-name|mergePolicy
-return|;
-else|else
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"this method can only be called when the merge policy is LogDocMergePolicy"
-argument_list|)
-throw|;
-block|}
 comment|/**<p>Get the current setting of whether newly flushed    *  segments will use the compound file format.  Note that    *  this just returns the value previously set with    *  setUseCompoundFile(boolean), or the default value    *  (true).  You cannot use this to query the status of    *  previously flushed segments.</p>    *    *<p>Note that this method is a convenience method: it    *  just calls mergePolicy.getUseCompoundFile as long as    *  mergePolicy is an instance of {@link LogMergePolicy}.    *  Otherwise an IllegalArgumentException is thrown.</p>    *    *  @see #setUseCompoundFile(boolean)    */
 DECL|method|getUseCompoundFile
 specifier|public
@@ -1746,7 +1719,7 @@ name|int
 name|maxMergeDocs
 parameter_list|)
 block|{
-name|getLogDocMergePolicy
+name|getLogMergePolicy
 argument_list|()
 operator|.
 name|setMaxMergeDocs
@@ -1763,7 +1736,7 @@ name|getMaxMergeDocs
 parameter_list|()
 block|{
 return|return
-name|getLogDocMergePolicy
+name|getLogMergePolicy
 argument_list|()
 operator|.
 name|getMaxMergeDocs

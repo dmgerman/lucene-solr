@@ -38,18 +38,6 @@ name|DEFAULT_MIN_MERGE_DOCS
 init|=
 literal|1000
 decl_stmt|;
-comment|/** Default maximum segment size.  A segment of this size    *  or larger will never be merged.  @see setMaxMergeDocs */
-DECL|field|DEFAULT_MAX_MERGE_DOCS
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_MAX_MERGE_DOCS
-init|=
-name|Integer
-operator|.
-name|MAX_VALUE
-decl_stmt|;
 DECL|method|LogDocMergePolicy
 specifier|public
 name|LogDocMergePolicy
@@ -62,9 +50,13 @@ name|minMergeSize
 operator|=
 name|DEFAULT_MIN_MERGE_DOCS
 expr_stmt|;
+comment|// maxMergeSize is never used by LogDocMergePolicy; set
+comment|// it to Long.MAX_VALUE to disable it
 name|maxMergeSize
 operator|=
-name|DEFAULT_MAX_MERGE_DOCS
+name|Long
+operator|.
+name|MAX_VALUE
 expr_stmt|;
 block|}
 DECL|method|size
@@ -80,35 +72,6 @@ return|return
 name|info
 operator|.
 name|docCount
-return|;
-block|}
-comment|/** Sets the maximum size for a segment to be merged.    *  When a segment is this size or larger it will never be    *  merged. */
-DECL|method|setMaxMergeDocs
-specifier|public
-name|void
-name|setMaxMergeDocs
-parameter_list|(
-name|int
-name|maxMergeDocs
-parameter_list|)
-block|{
-name|maxMergeSize
-operator|=
-name|maxMergeDocs
-expr_stmt|;
-block|}
-comment|/** Get the maximum size for a segment to be merged.    *  @see #setMaxMergeDocs */
-DECL|method|getMaxMergeDocs
-specifier|public
-name|int
-name|getMaxMergeDocs
-parameter_list|()
-block|{
-return|return
-operator|(
-name|int
-operator|)
-name|maxMergeSize
 return|;
 block|}
 comment|/** Sets the minimum size for the lowest level segments.    * Any segments below this size are considered to be on    * the same level (even if they vary drastically in size)    * and will be merged whenever there are mergeFactor of    * them.  This effectively truncates the "long tail" of    * small segments that would otherwise be created into a    * single level.  If you set this too large, it could    * greatly increase the merging cost during indexing (if    * you flush many small segments). */

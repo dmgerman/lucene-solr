@@ -116,7 +116,7 @@ name|sizeInBytes
 argument_list|()
 return|;
 block|}
-comment|/** Sets the maximum size for a segment to be merged.    *  When a segment is this size or larger it will never be    *  merged. */
+comment|/** Sets the maximum size for a segment to be merged.    *  When a segment is this size or larger it will never be    *  merged.  Note that {@link #setMaxMergeDocs} is also    *  used to check whether a segment is too large for    *  merging (it's either or). */
 DECL|method|setMaxMergeMB
 specifier|public
 name|void
