@@ -771,6 +771,14 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+name|getLogMergePolicy
+argument_list|()
+operator|.
+name|setUseCompoundDocStore
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Expert: Set the Similarity implementation used by this IndexWriter.    *    * @see Similarity#setDefault(Similarity)    */
 DECL|method|setSimilarity
