@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Expert: Common scoring functionality for different types of queries.  *<br>A<code>Scorer</code> either iterates over documents matching a query,  * or provides an explanation of the score for a query for a given document.  *<br>Document scores are computed using a given<code>Similarity</code> implementation.  */
+comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> either iterates over documents matching a  * query in increasing order of doc Id, or provides an explanation of  * the score for a query for a given document.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  * @see BooleanQuery#setAllowDocsOutOfOrder  */
 end_comment
 
 begin_class
@@ -150,7 +150,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Advances to the next document matching the query.    * @return true iff there is another document matching the query.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+comment|/**    * Advances to the document matching this Scorer with the lowest doc Id    * greater then the current value of {@link doc()} (or to the matching    * document with the lowest doc Id if next has never been called on    * this Scorer).    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @return true iff there is another document matching the query.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
 DECL|method|next
 specifier|public
 specifier|abstract
@@ -178,7 +178,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.    *<br>When this method is used the {@link #explain(int)} method should not be used.    * @param target The target document number.    * @return true iff there is such a match.    *<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>Most implementations are considerably more efficient than that.    */
+comment|/**    * Skips to the document matching this Scorer with the lowest doc Id    * greater than or equal to a given target.    *    *<p>    * The behavior of this method is undefined if the target specified is    * less then or equal to the current value of {@link #doc()}    *<p>    * Behaves as if written:    *<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    *</p>    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @param target The target document number.    * @return true iff there is such a match.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
 DECL|method|skipTo
 specifier|public
 specifier|abstract
