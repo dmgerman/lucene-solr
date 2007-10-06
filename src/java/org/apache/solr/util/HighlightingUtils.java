@@ -331,7 +331,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collection of Utility and Factory methods for Highlighting.  */
+comment|/**  * Collection of Utility and Factory methods for Highlighting.  *  * @deprecated use highlit.SolrHighlighter  */
 end_comment
 
 begin_class
