@@ -1318,10 +1318,10 @@ block|}
 catch|catch
 parameter_list|(
 name|RuntimeException
-name|ioe
+name|re
 parameter_list|)
 block|{
-comment|// MockRAMDirectory will throw IOExceptions when there
+comment|// MockRAMDirectory will throw RuntimeExceptions when there
 comment|// are still open files, which is OK since some merge
 comment|// threads may still be running at this point.
 block|}
