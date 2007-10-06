@@ -150,7 +150,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Advances to the document matching this Scorer with the lowest doc Id    * greater then the current value of {@link #doc()} (or to the matching    * document with the lowest doc Id if next has never been called on    * this Scorer).    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @return true iff there is another document matching the query.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
+comment|/**    * Advances to the document matching this Scorer with the lowest doc Id    * greater than the current value of {@link #doc()} (or to the matching    * document with the lowest doc Id if next has never been called on    * this Scorer).    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @return true iff there is another document matching the query.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
 DECL|method|next
 specifier|public
 specifier|abstract
@@ -178,7 +178,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Skips to the document matching this Scorer with the lowest doc Id    * greater than or equal to a given target.    *    *<p>    * The behavior of this method is undefined if the target specified is    * less then or equal to the current value of {@link #doc()}    *<p>    * Behaves as if written:    *<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    *</p>    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @param target The target document number.    * @return true iff there is such a match.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
+comment|/**    * Skips to the document matching this Scorer with the lowest doc Id    * greater than or equal to a given target.    *    *<p>    * The behavior of this method is undefined if the target specified is    * less than or equal to the current value of {@link #doc()}.    *<p>    * Behaves as if written:    *<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Most implementations are considerably more efficient than that.    *</p>    *    *<p>    * When this method is used the {@link #explain(int)} method should not    * be used.    *</p>    *    * @param target The target document number.    * @return true iff there is such a match.    * @see BooleanQuery#setAllowDocsOutOfOrder    */
 DECL|method|skipTo
 specifier|public
 specifier|abstract
