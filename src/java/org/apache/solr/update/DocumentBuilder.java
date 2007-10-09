@@ -890,6 +890,43 @@ operator|>
 literal|1
 condition|)
 block|{
+name|String
+name|id
+init|=
+literal|""
+decl_stmt|;
+name|SchemaField
+name|sf
+init|=
+name|schema
+operator|.
+name|getUniqueKeyField
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|sf
+operator|!=
+literal|null
+condition|)
+block|{
+name|id
+operator|=
+literal|"["
+operator|+
+name|doc
+operator|.
+name|getFieldValue
+argument_list|(
+name|sf
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|+
+literal|"] "
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|SolrException
@@ -900,7 +937,11 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"ERROR: multiple values encountered for non multiValued field "
+literal|"ERROR: "
+operator|+
+name|id
+operator|+
+literal|"multiple values encountered for non multiValued field "
 operator|+
 name|sfield
 operator|.
