@@ -822,6 +822,12 @@ name|other
 operator|.
 name|keepMode
 operator|&&
+name|processingMode
+operator|==
+name|other
+operator|.
+name|processingMode
+operator|&&
 operator|(
 name|fieldName
 operator|==
@@ -864,6 +870,14 @@ operator|*
 name|hash
 operator|+
 name|keepMode
+expr_stmt|;
+name|hash
+operator|=
+literal|31
+operator|*
+name|hash
+operator|+
+name|processingMode
 expr_stmt|;
 name|hash
 operator|=
