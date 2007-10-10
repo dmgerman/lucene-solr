@@ -18,11 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -44,7 +48,7 @@ specifier|public
 class|class
 name|TestMMapDirectory
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|// Simply verify that if there is a method in FSDirectory
 comment|// that returns IndexInput or a subclass, that

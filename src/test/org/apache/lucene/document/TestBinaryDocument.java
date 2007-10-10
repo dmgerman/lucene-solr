@@ -14,11 +14,15 @@ end_package
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -94,7 +98,7 @@ specifier|public
 class|class
 name|TestBinaryDocument
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|binaryValStored
 name|String

@@ -18,11 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -204,7 +208,7 @@ specifier|public
 class|class
 name|TestSpanQueryFilter
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|TestSpanQueryFilter
 specifier|public
@@ -220,18 +224,6 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setUp
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-block|{   }
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|testFilterWorks
 specifier|public
 name|void

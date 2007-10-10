@@ -158,11 +158,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -192,7 +196,7 @@ specifier|public
 class|class
 name|TestConcurrentMergeScheduler
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|ANALYZER
 specifier|private
@@ -523,19 +527,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|cms
-operator|.
-name|getExceptions
-argument_list|()
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -775,19 +766,6 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|cms
-operator|.
-name|getExceptions
-argument_list|()
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -982,19 +960,6 @@ argument_list|,
 literal|"testNoExtraFiles autoCommit="
 operator|+
 name|autoCommit
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|cms
-operator|.
-name|getExceptions
-argument_list|()
-operator|.
-name|size
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Reopen
@@ -1239,19 +1204,6 @@ operator|.
 name|close
 argument_list|(
 literal|false
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|cms
-operator|.
-name|getExceptions
-argument_list|()
-operator|.
-name|size
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|IndexReader

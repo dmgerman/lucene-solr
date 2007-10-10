@@ -134,11 +134,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -153,7 +157,7 @@ specifier|abstract
 class|class
 name|FunctionTestSetup
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|/**    * Actual score computation order is slightly different than assumptios    * this allows for a small amount of variation    */
 DECL|field|TEST_SCORE_TOLERANCE_DELTA
@@ -297,6 +301,11 @@ operator|.
 name|tearDown
 argument_list|()
 expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 name|dir
 operator|=
 literal|null
@@ -315,6 +324,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 comment|// prepare a small index with just a few documents.
 name|super
 operator|.

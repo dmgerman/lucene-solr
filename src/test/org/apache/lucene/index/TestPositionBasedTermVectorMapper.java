@@ -18,11 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -72,7 +76,7 @@ specifier|public
 class|class
 name|TestPositionBasedTermVectorMapper
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|tokens
 specifier|protected
@@ -118,7 +122,14 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
+throws|throws
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|tokens
 operator|=
 operator|new
@@ -357,12 +368,6 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|test
 specifier|public
 name|void

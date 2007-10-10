@@ -18,11 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -176,7 +180,7 @@ specifier|public
 class|class
 name|TestTermVectorsReader
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|//Must be lexicographically sorted, will do in setup, versus trying to maintain here
 DECL|field|testFields
@@ -387,8 +391,13 @@ name|void
 name|setUp
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 comment|/*     for (int i = 0; i< testFields.length; i++) {       fieldInfos.add(testFields[i], true, true, testFieldsStorePos[i], testFieldsStoreOff[i]);     }     */
 name|Arrays
 operator|.
@@ -942,12 +951,6 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|test
 specifier|public
 name|void

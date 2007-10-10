@@ -18,11 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -220,7 +224,7 @@ specifier|public
 class|class
 name|TestIndexReader
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|/** Main for running test case by itself. */
 DECL|method|main

@@ -48,11 +48,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -80,7 +84,7 @@ specifier|public
 class|class
 name|TestIndexWriterLockRelease
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|__test_dir
 specifier|private
@@ -97,8 +101,13 @@ name|void
 name|setUp
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|this
@@ -203,8 +212,13 @@ name|void
 name|tearDown
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|this
