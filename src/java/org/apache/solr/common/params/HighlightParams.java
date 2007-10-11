@@ -125,6 +125,17 @@ name|HIGHLIGHT
 operator|+
 literal|".requireFieldMatch"
 decl_stmt|;
+DECL|field|ALTERNATE_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ALTERNATE_FIELD
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".alternateField"
+decl_stmt|;
 comment|// Formatter
 DECL|field|SIMPLE
 specifier|public
