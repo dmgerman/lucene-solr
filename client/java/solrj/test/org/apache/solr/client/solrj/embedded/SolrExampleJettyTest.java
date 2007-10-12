@@ -240,9 +240,10 @@ name|s
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|5
+literal|100
 argument_list|)
 expr_stmt|;
+comment|// 1/10th sec
 name|s
 operator|.
 name|setDefaultMaxConnectionsPerHost
