@@ -114,13 +114,7 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
-name|log
-operator|.
-name|warning
-argument_list|(
-literal|"calling the deprecated form of init; should be calling init(SolrConfig solrConfig, Map<String,String> args)"
-argument_list|)
-expr_stmt|;
+comment|//log.warning("calling the deprecated form of init; should be calling init(SolrConfig solrConfig, Map<String,String> args)");
 name|this
 operator|.
 name|args
@@ -145,6 +139,13 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
+name|this
+operator|.
+name|init
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|args
