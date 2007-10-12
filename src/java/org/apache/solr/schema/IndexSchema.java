@@ -3320,6 +3320,7 @@ name|SolrConfig
 operator|.
 name|Initializable
 condition|)
+block|{
 operator|(
 operator|(
 name|SolrConfig
@@ -3343,7 +3344,18 @@ literal|"class"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+name|log
+operator|.
+name|warning
+argument_list|(
+literal|"calling the deprecated form of init; should be calling init(SolrConfig solrConfig, Map<String,String> args) "
+operator|+
+name|className
+argument_list|)
+expr_stmt|;
 name|tfac
 operator|.
 name|init
@@ -3358,6 +3370,7 @@ literal|"class"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|tfac
 return|;
@@ -3419,6 +3432,7 @@ name|SolrConfig
 operator|.
 name|Initializable
 condition|)
+block|{
 operator|(
 operator|(
 name|SolrConfig
@@ -3442,7 +3456,18 @@ literal|"class"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+name|log
+operator|.
+name|warning
+argument_list|(
+literal|"calling the deprecated form of init; should be calling init(SolrConfig solrConfig, Map<String,String> args) "
+operator|+
+name|className
+argument_list|)
+expr_stmt|;
 name|tfac
 operator|.
 name|init
@@ -3457,6 +3482,7 @@ literal|"class"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|tfac
 return|;

@@ -114,7 +114,6 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
-comment|//log.warning("calling the deprecated form of init; should be calling init(SolrConfig solrConfig, Map<String,String> args)");
 name|this
 operator|.
 name|args
