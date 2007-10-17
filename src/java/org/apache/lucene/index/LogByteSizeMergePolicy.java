@@ -116,7 +116,7 @@ name|sizeInBytes
 argument_list|()
 return|;
 block|}
-comment|/** Sets the maximum size for a segment to be merged.    *  When a segment is this size or larger it will never be    *  merged.  Note that {@link #setMaxMergeDocs} is also    *  used to check whether a segment is too large for    *  merging (it's either or). */
+comment|/**<p>Determines the largest segment (measured by total    *  byte size of the segment's files, in MB) that may be    *  merged with other segments.  Small values (e.g., less    *  than 50 MB) are best for interactive indexing, as this    *  limits the length of pauses while indexing to a few    *  seconds.  Larger values are best for batched indexing    *  and speedier searches.</p>    *    *<p>Note that {@link #setMaxMergeDocs} is also    *  used to check whether a segment is too large for    *  merging (it's either or).</p>*/
 DECL|method|setMaxMergeMB
 specifier|public
 name|void
@@ -140,7 +140,7 @@ literal|1024
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Get the maximum size for a segment to be merged.    *  @see #setMaxMergeMB */
+comment|/** Returns the largest segment (meaured by total byte    *  size of the segment's files, in MB) that may be merged    *  with other segments.    *  @see #setMaxMergeMB */
 DECL|method|getMaxMergeMB
 specifier|public
 name|double

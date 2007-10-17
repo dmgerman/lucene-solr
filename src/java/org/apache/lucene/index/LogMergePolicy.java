@@ -1108,7 +1108,7 @@ return|return
 name|spec
 return|;
 block|}
-comment|/** Sets the maximum docs for a segment to be merged.    *  When a segment has this many docs or more it will never be    *  merged. */
+comment|/**<p>Determines the largest segment (measured by    * document count) that may be merged with other segments.    * Small values (e.g., less than 10,000) are best for    * interactive indexing, as this limits the length of    * pauses while indexing to a few seconds.  Larger values    * are best for batched indexing and speedier    * searches.</p>    *    *<p>The default value is {@link Integer#MAX_VALUE}.</p>    *    *<p>The default merge policy ({@link    * LogByteSizeMergePolicy}) also allows you to set this    * limit by net size (in MB) of the segment, using {@link    * LogByteSizeMergePolicy#setMaxMergeMB}.</p>    */
 DECL|method|setMaxMergeDocs
 specifier|public
 name|void
@@ -1125,7 +1125,7 @@ operator|=
 name|maxMergeDocs
 expr_stmt|;
 block|}
-comment|/** Get the maximum docs for a segment to be merged.    *  @see #setMaxMergeDocs */
+comment|/** Returns the largest segment (measured by document    *  count) that may be merged with other segments.    *  @see #setMaxMergeDocs */
 DECL|method|getMaxMergeDocs
 specifier|public
 name|int
