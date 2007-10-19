@@ -296,6 +296,21 @@ name|getReturnFields
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** done with this ResponseWriter... make sure any buffers are flushed to writer */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|writer
+operator|.
+name|flushBuffer
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** returns the Writer that the response is being written to */
 DECL|method|getWriter
 specifier|public
