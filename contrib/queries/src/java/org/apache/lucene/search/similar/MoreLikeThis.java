@@ -1616,7 +1616,7 @@ name|append
 argument_list|(
 literal|"\t"
 operator|+
-literal|"fieldNames     : \""
+literal|"fieldNames     : "
 argument_list|)
 expr_stmt|;
 name|String
