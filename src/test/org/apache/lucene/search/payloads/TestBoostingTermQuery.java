@@ -1348,7 +1348,9 @@ name|results
 argument_list|)
 expr_stmt|;
 block|}
+comment|// must be static for weight serialization tests
 DECL|class|BoostingSimilarity
+specifier|static
 class|class
 name|BoostingSimilarity
 extends|extends

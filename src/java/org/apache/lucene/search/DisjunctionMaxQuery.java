@@ -210,12 +210,12 @@ name|DisjunctionMaxWeight
 implements|implements
 name|Weight
 block|{
-DECL|field|searcher
+DECL|field|similarity
 specifier|private
-name|Searcher
-name|searcher
+name|Similarity
+name|similarity
 decl_stmt|;
-comment|// The searcher with which we are associated.
+comment|// The similarity which we are associated.
 DECL|field|weights
 specifier|private
 name|ArrayList
@@ -239,9 +239,12 @@ name|IOException
 block|{
 name|this
 operator|.
-name|searcher
+name|similarity
 operator|=
 name|searcher
+operator|.
+name|getSimilarity
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -473,10 +476,7 @@ name|DisjunctionMaxScorer
 argument_list|(
 name|tieBreakerMultiplier
 argument_list|,
-name|getSimilarity
-argument_list|(
-name|searcher
-argument_list|)
+name|similarity
 argument_list|)
 decl_stmt|;
 for|for
