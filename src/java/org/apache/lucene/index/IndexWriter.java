@@ -618,8 +618,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Prints a message to the infoStream (if non-null),    * prefixed with the identifying information for this    * writer and the thread that's calling it.    */
 DECL|method|message
-specifier|private
+specifier|public
 name|void
 name|message
 parameter_list|(
@@ -627,6 +628,12 @@ name|String
 name|message
 parameter_list|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|infoStream
 operator|.
 name|println

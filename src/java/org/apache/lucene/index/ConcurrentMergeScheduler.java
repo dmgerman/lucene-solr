@@ -72,14 +72,6 @@ name|ConcurrentMergeScheduler
 implements|implements
 name|MergeScheduler
 block|{
-DECL|field|VERBOSE
-specifier|public
-specifier|static
-name|boolean
-name|VERBOSE
-init|=
-literal|false
-decl_stmt|;
 DECL|field|mergeThreadPriority
 specifier|private
 name|int
@@ -122,6 +114,11 @@ DECL|field|closed
 specifier|private
 name|boolean
 name|closed
+decl_stmt|;
+DECL|field|writer
+specifier|private
+name|IndexWriter
+name|writer
 decl_stmt|;
 DECL|method|ConcurrentMergeScheduler
 specifier|public
@@ -275,23 +272,17 @@ name|String
 name|message
 parameter_list|)
 block|{
-name|System
+if|if
+condition|(
+name|writer
+operator|!=
+literal|null
+condition|)
+name|writer
 operator|.
-name|out
-operator|.
-name|println
+name|message
 argument_list|(
-literal|"CMS ["
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"]: "
+literal|"CMS: "
 operator|+
 name|message
 argument_list|)
@@ -352,11 +343,6 @@ operator|>
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
 name|message
 argument_list|(
 literal|"now wait for threads; currently "
@@ -369,6 +355,15 @@ operator|+
 literal|" still running"
 argument_list|)
 expr_stmt|;
+specifier|final
+name|int
+name|count
+init|=
+name|mergeThreads
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -378,10 +373,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|mergeThreads
-operator|.
-name|size
-argument_list|()
+name|count
 condition|;
 name|i
 operator|++
@@ -407,7 +399,6 @@ argument_list|)
 operator|)
 argument_list|)
 expr_stmt|;
-block|}
 try|try
 block|{
 name|wait
@@ -449,6 +440,12 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|this
+operator|.
+name|writer
+operator|=
+name|writer
+expr_stmt|;
 name|initMergeThreadPriority
 argument_list|()
 expr_stmt|;
@@ -465,11 +462,6 @@ comment|// involving segments already pending to be merged) to
 comment|// the queue.  If we are way behind on merging, many of
 comment|// these newly proposed merges will likely already be
 comment|// registered.
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
 name|message
 argument_list|(
 literal|"now merge"
@@ -485,7 +477,6 @@ name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 comment|// Iterate, pulling from the IndexWriter's queue of
 comment|// pending merges, until its empty:
 while|while
@@ -513,10 +504,6 @@ operator|==
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"  no more merges pending; now return"
@@ -533,10 +520,6 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"  consider merge "
@@ -556,10 +539,6 @@ operator|.
 name|isExternal
 condition|)
 block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"    merge involves segments from an external directory; now run in foreground"
@@ -601,10 +580,6 @@ argument_list|(
 name|merger
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"    launch new thread ["
@@ -643,11 +618,7 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
-elseif|else
-if|if
-condition|(
-name|VERBOSE
-condition|)
+else|else
 name|message
 argument_list|(
 literal|"    too many merge threads running; run merge in foreground"
@@ -766,10 +737,6 @@ name|startMerge
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"  merge thread: start"
@@ -815,10 +782,6 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"  merge thread: do another merge "
@@ -835,10 +798,6 @@ block|}
 else|else
 break|break;
 block|}
-if|if
-condition|(
-name|VERBOSE
-condition|)
 name|message
 argument_list|(
 literal|"  merge thread: done"
