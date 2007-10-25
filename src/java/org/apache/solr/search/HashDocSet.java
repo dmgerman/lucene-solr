@@ -178,6 +178,8 @@ index|[
 name|tsize
 index|]
 expr_stmt|;
+comment|// (for now) better then: Arrays.fill(table, EMPTY);
+comment|// https://issues.apache.org/jira/browse/SOLR-390
 for|for
 control|(
 name|int
