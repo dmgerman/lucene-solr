@@ -882,6 +882,8 @@ argument_list|()
 return|;
 block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String
@@ -892,6 +894,8 @@ return|return
 literal|"$Revision$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -902,6 +906,8 @@ return|return
 literal|"The standard Solr request handler"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSourceId
 specifier|public
 name|String
@@ -912,6 +918,8 @@ return|return
 literal|"$Id$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 name|String
@@ -922,6 +930,8 @@ return|return
 literal|"$URL$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocs
 specifier|public
 name|URL
