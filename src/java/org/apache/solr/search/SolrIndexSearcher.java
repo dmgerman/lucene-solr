@@ -3523,6 +3523,7 @@ name|GET_SCORES
 init|=
 literal|0x01
 decl_stmt|;
+comment|/** getDocList version that uses+populates query and filter caches.    * This should only be called using either filterList or filter, but not both.    */
 DECL|method|getDocListC
 specifier|private
 name|void
