@@ -60,6 +60,7 @@ end_comment
 
 begin_class
 DECL|class|AnalysisTestCase
+specifier|abstract
 specifier|public
 class|class
 name|AnalysisTestCase
