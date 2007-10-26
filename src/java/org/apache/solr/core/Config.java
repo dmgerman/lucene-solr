@@ -2081,7 +2081,7 @@ name|home
 argument_list|)
 return|;
 block|}
-comment|/** Singleton classloader loading resources specified in any configs */
+comment|/**     * Classloader loading resources specified in any configs     * @see #getClassLoader()    */
 DECL|field|classLoader
 specifier|private
 name|ClassLoader
@@ -2089,7 +2089,7 @@ name|classLoader
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Returns the singleton classloader to be use when loading resources    * specified in any configs.    *    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources useing any jar files    * found in the "lib/" directory in the "Solr Home" directory.    *<p>    */
+comment|/**    * Returns the classloader to be use when loading resources    * specified in this config    *    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources useing any jar files    * found in the "lib/" directory in the "Solr Home" directory.    *<p>    */
 DECL|method|getClassLoader
 specifier|private
 name|ClassLoader
