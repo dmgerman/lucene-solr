@@ -108,6 +108,26 @@ name|FLOAT
 init|=
 literal|5
 decl_stmt|;
+comment|/** Sort using term values as encoded Longs.  Sort values are Long and    * lower values are at the front. */
+DECL|field|LONG
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LONG
+init|=
+literal|6
+decl_stmt|;
+comment|/** Sort using term values as encoded Doubles.  Sort values are Double and    * lower values are at the front. */
+DECL|field|DOUBLE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DOUBLE
+init|=
+literal|7
+decl_stmt|;
 comment|/** Sort using a custom Comparator.  Sort values are any Comparable and    * sorting is done according to natural order. */
 DECL|field|CUSTOM
 specifier|public
