@@ -68,7 +68,7 @@ name|BaseTokenizerFactory
 block|{
 DECL|method|create
 specifier|public
-name|TokenStream
+name|KeywordTokenizer
 name|create
 parameter_list|(
 name|Reader

@@ -44,7 +44,7 @@ name|BaseTokenFilterFactory
 block|{
 DECL|method|create
 specifier|public
-name|TokenStream
+name|RemoveDuplicatesTokenFilter
 name|create
 parameter_list|(
 name|TokenStream

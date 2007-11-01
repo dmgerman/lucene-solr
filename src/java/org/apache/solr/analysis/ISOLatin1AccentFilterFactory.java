@@ -58,7 +58,7 @@ name|BaseTokenFilterFactory
 block|{
 DECL|method|create
 specifier|public
-name|TokenStream
+name|ISOLatin1AccentFilter
 name|create
 parameter_list|(
 name|TokenStream

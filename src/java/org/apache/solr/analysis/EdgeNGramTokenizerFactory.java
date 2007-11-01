@@ -226,7 +226,7 @@ block|}
 block|}
 DECL|method|create
 specifier|public
-name|TokenStream
+name|EdgeNGramTokenizer
 name|create
 parameter_list|(
 name|Reader

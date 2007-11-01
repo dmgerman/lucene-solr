@@ -195,7 +195,7 @@ block|}
 comment|/** Creates the {@link TokenStream} of n-grams from the given {@link Reader}. */
 DECL|method|create
 specifier|public
-name|TokenStream
+name|NGramTokenizer
 name|create
 parameter_list|(
 name|Reader

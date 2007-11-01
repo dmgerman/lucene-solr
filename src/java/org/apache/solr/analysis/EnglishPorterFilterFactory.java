@@ -246,7 +246,7 @@ literal|null
 decl_stmt|;
 DECL|method|create
 specifier|public
-name|TokenStream
+name|EnglishPorterFilter
 name|create
 parameter_list|(
 name|TokenStream

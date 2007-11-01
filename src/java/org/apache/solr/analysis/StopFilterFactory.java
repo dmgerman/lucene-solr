@@ -255,7 +255,7 @@ name|ignoreCase
 decl_stmt|;
 DECL|method|create
 specifier|public
-name|TokenStream
+name|StopFilter
 name|create
 parameter_list|(
 name|TokenStream
