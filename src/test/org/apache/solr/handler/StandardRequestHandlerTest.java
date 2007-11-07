@@ -378,6 +378,27 @@ argument_list|,
 literal|"//result/doc[3]/int[@name='id'][.='10']"
 argument_list|)
 expr_stmt|;
+comment|// Make sure score parsing works
+name|args
+operator|.
+name|put
+argument_list|(
+name|CommonParams
+operator|.
+name|SORT
+argument_list|,
+literal|"score desc"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"with sort param [desc]"
+argument_list|,
+name|req
+argument_list|,
+literal|"//*[@numFound='3']"
+argument_list|)
+expr_stmt|;
 comment|// Using legacy ';' param
 name|args
 operator|.
