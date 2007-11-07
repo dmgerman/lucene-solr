@@ -689,6 +689,13 @@ name|getSchema
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|oldSort
+operator|!=
+literal|null
+condition|)
+block|{
 name|sort
 operator|.
 name|sort
@@ -697,6 +704,7 @@ name|oldSort
 operator|.
 name|sort
 expr_stmt|;
+block|}
 block|}
 return|return
 name|sort
