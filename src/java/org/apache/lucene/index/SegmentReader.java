@@ -1482,6 +1482,15 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+DECL|method|getFieldsReader
+name|FieldsReader
+name|getFieldsReader
+parameter_list|()
+block|{
+return|return
+name|fieldsReader
+return|;
+block|}
 DECL|method|doClose
 specifier|protected
 name|void
@@ -1763,6 +1772,15 @@ name|terms
 argument_list|(
 name|t
 argument_list|)
+return|;
+block|}
+DECL|method|getFieldInfos
+name|FieldInfos
+name|getFieldInfos
+parameter_list|()
+block|{
+return|return
+name|fieldInfos
 return|;
 block|}
 comment|/**    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
