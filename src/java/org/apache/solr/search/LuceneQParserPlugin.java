@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parse Solr's variant on the Lucene QueryParser syntax.  *<br>Other parameters:<ul>  *<li>q.op - the default operator "OR" or "AND"</li>  *<li>df - the default field name</li>  *<li>df - the default field name</li>  *</ul>  *<br>Example:<code>&lt;!lucene q.op=AND df=text sort='price asc'&gt;myfield:foo +bar -baz</code>  */
+comment|/**  * Parse Solr's variant on the Lucene QueryParser syntax.  *<br>Other parameters:<ul>  *<li>q.op - the default operator "OR" or "AND"</li>  *<li>df - the default field name</li>  *</ul>  *<br>Example:<code>&lt;!lucene q.op=AND df=text sort='price asc'&gt;myfield:foo +bar -baz</code>  */
 end_comment
 
 begin_class
