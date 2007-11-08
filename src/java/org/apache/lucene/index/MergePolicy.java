@@ -74,10 +74,11 @@ begin_comment
 comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations to be used for overall merge  * and optimize operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.optimize is called, it calls  * {@link #findMergesForOptimize} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * LogByteSizeMergePolicy}.</p>  */
 end_comment
 
-begin_interface
-DECL|interface|MergePolicy
+begin_class
+DECL|class|MergePolicy
 specifier|public
-interface|interface
+specifier|abstract
+class|class
 name|MergePolicy
 block|{
 comment|/** OneMerge provides the information necessary to perform    *  an individual primitive merge operation, resulting in    *  a single new segment.  The merge spec includes the    *  subset of segments to be merged as well as whether the    *  new segment should use the compound file format. */
@@ -472,6 +473,7 @@ block|}
 comment|/** Exception thrown if there are any problems while    *  executing a merge. */
 DECL|class|MergeException
 specifier|public
+specifier|static
 class|class
 name|MergeException
 extends|extends
@@ -508,6 +510,7 @@ block|}
 block|}
 comment|/**    * Determine what set of merge operations are now    * necessary on the index.  The IndexWriter calls this    * whenever there is a change to the segments.  This call    * is always synchronized on the IndexWriter instance so    * only one thread at a time will call this method.    *    * @param segmentInfos the total set of segments in the index    * @param writer IndexWriter instance    */
 DECL|method|findMerges
+specifier|abstract
 name|MergeSpecification
 name|findMerges
 parameter_list|(
@@ -524,6 +527,7 @@ name|IOException
 function_decl|;
 comment|/**    * Determine what set of merge operations are necessary in    * order to optimize the index.  The IndexWriter calls    * this when its optimize() method is called.  This call    * is always synchronized on the IndexWriter instance so    * only one thread at a time will call this method.    *    * @param segmentInfos the total set of segments in the index    * @param writer IndexWriter instance    * @param maxSegmentCount requested maximum number of    *   segments in the index (currently this is always 1)    * @param segmentsToOptimize contains the specific    *   SegmentInfo instances that must be merged away.  This    *   may be a subset of all SegmentInfos.    */
 DECL|method|findMergesForOptimize
+specifier|abstract
 name|MergeSpecification
 name|findMergesForOptimize
 parameter_list|(
@@ -546,12 +550,14 @@ name|IOException
 function_decl|;
 comment|/**    * Release all resources for the policy.    */
 DECL|method|close
+specifier|abstract
 name|void
 name|close
 parameter_list|()
 function_decl|;
 comment|/**    * Returns true if a newly flushed (not from merge)    * segment should use the compound file format.    */
 DECL|method|useCompoundFile
+specifier|abstract
 name|boolean
 name|useCompoundFile
 parameter_list|(
@@ -564,6 +570,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns true if the doc store files should use the    * compound file format.    */
 DECL|method|useCompoundDocStore
+specifier|abstract
 name|boolean
 name|useCompoundDocStore
 parameter_list|(
@@ -572,7 +579,7 @@ name|segments
 parameter_list|)
 function_decl|;
 block|}
-end_interface
+end_class
 
 end_unit
 

@@ -35,7 +35,7 @@ DECL|class|SerialMergeScheduler
 specifier|public
 class|class
 name|SerialMergeScheduler
-implements|implements
+extends|extends
 name|MergeScheduler
 block|{
 comment|/** Just do the merges in sequence. We do this    * "synchronized" so that even if the application is using    * multiple threads, only one merge may run at a time. */

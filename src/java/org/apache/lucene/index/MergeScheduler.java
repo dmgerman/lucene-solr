@@ -30,14 +30,16 @@ begin_comment
 comment|/** Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}. */
 end_comment
 
-begin_interface
-DECL|interface|MergeScheduler
+begin_class
+DECL|class|MergeScheduler
 specifier|public
-interface|interface
+specifier|abstract
+class|class
 name|MergeScheduler
 block|{
 comment|/** Run the merges provided by {@link IndexWriter#getNextMerge()}. */
 DECL|method|merge
+specifier|abstract
 name|void
 name|merge
 parameter_list|(
@@ -51,6 +53,7 @@ name|IOException
 function_decl|;
 comment|/** Close this MergeScheduler. */
 DECL|method|close
+specifier|abstract
 name|void
 name|close
 parameter_list|()
@@ -60,7 +63,7 @@ throws|,
 name|IOException
 function_decl|;
 block|}
-end_interface
+end_class
 
 end_unit
 

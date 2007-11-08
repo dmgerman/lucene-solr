@@ -69,7 +69,7 @@ DECL|class|ConcurrentMergeScheduler
 specifier|public
 class|class
 name|ConcurrentMergeScheduler
-implements|implements
+extends|extends
 name|MergeScheduler
 block|{
 DECL|field|mergeThreadPriority
