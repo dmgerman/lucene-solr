@@ -324,6 +324,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|handler
+operator|.
+name|PingRequestHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|highlight
 operator|.
 name|SolrHighlighter
@@ -1570,7 +1584,7 @@ literal|"Update Handler"
 argument_list|)
 return|;
 block|}
-comment|/**     * @return the last core initalized.  If you are using multiple cores,     * this is not a function to use.    */
+comment|/**     * @return the last core initialized.  If you are using multiple cores,     * this is not a function to use.    */
 annotation|@
 name|Deprecated
 DECL|method|getSolrCore
@@ -2191,7 +2205,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns a Request object based on the admin/pingQuery section    * of the Solr config file.    */
+comment|/**    * Returns a Request object based on the admin/pingQuery section    * of the Solr config file.    *     * @use {@link PingRequestHandler} instead     */
+annotation|@
+name|Deprecated
 DECL|method|getPingQueryRequest
 specifier|public
 name|SolrQueryRequest
