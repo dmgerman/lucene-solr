@@ -37,6 +37,7 @@ specifier|abstract
 class|class
 name|Lock
 block|{
+comment|/** How long {@link #obtain(long)} waits, in milliseconds,    *  in between attempts to acquire the lock. */
 DECL|field|LOCK_POLL_INTERVAL
 specifier|public
 specifier|static
@@ -44,6 +45,17 @@ name|long
 name|LOCK_POLL_INTERVAL
 init|=
 literal|1000
+decl_stmt|;
+comment|/** Pass this value to {@link #obtain(long)} to try    *  forever to obtain the lock. */
+DECL|field|LOCK_OBTAIN_WAIT_FOREVER
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|LOCK_OBTAIN_WAIT_FOREVER
+init|=
+operator|-
+literal|1
 decl_stmt|;
 comment|/** Attempts to obtain exclusive access and immediately return    *  upon success or failure.    * @return true iff exclusive access is obtained    */
 DECL|method|obtain
@@ -61,7 +73,7 @@ specifier|protected
 name|Throwable
 name|failureReason
 decl_stmt|;
-comment|/** Attempts to obtain an exclusive lock within amount    *  of time given. Currently polls once per second until    *  lockWaitTimeout is passed.    * @param lockWaitTimeout length of time to wait in ms    * @return true if lock was obtained    * @throws LockObtainFailedException if lock wait times out    * @throws IOException if obtain() throws IOException    */
+comment|/** Attempts to obtain an exclusive lock within amount of    *  time given. Polls once per {@link #LOCK_POLL_INTERVAL}    *  (currently 1000) milliseconds until lockWaitTimeout is    *  passed.    * @param lockWaitTimeout length of time to wait in    *        milliseconds or {@link    *        #LOCK_OBTAIN_WAIT_FOREVER} to retry forever    * @return true if lock was obtained    * @throws LockObtainFailedException if lock wait times out    * @throws IllegalArgumentException if lockWaitTimeout is    *         out of bounds    * @throws IOException if obtain() throws IOException    */
 DECL|method|obtain
 specifier|public
 name|boolean
@@ -85,19 +97,35 @@ init|=
 name|obtain
 argument_list|()
 decl_stmt|;
-name|int
+if|if
+condition|(
+name|lockWaitTimeout
+operator|<
+literal|0
+operator|&&
+name|lockWaitTimeout
+operator|!=
+name|LOCK_OBTAIN_WAIT_FOREVER
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"lockWaitTimeout should be LOCK_OBTAIN_WAIT_FOREVER or a non-negative number (got "
+operator|+
+name|lockWaitTimeout
+operator|+
+literal|")"
+argument_list|)
+throw|;
+name|long
 name|maxSleepCount
 init|=
-call|(
-name|int
-call|)
-argument_list|(
 name|lockWaitTimeout
 operator|/
 name|LOCK_POLL_INTERVAL
-argument_list|)
 decl_stmt|;
-name|int
+name|long
 name|sleepCount
 init|=
 literal|0
@@ -110,9 +138,13 @@ condition|)
 block|{
 if|if
 condition|(
+name|lockWaitTimeout
+operator|!=
+name|LOCK_OBTAIN_WAIT_FOREVER
+operator|&&
 name|sleepCount
 operator|++
-operator|==
+operator|>=
 name|maxSleepCount
 condition|)
 block|{
