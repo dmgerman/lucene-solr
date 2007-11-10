@@ -1526,6 +1526,8 @@ argument_list|(
 name|indexDirName
 argument_list|,
 name|lockFactory
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// First create a 1 doc index:

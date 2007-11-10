@@ -388,6 +388,10 @@ operator|.
 name|getDirectory
 argument_list|(
 name|indexDir1
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|norms
@@ -463,6 +467,10 @@ operator|.
 name|getDirectory
 argument_list|(
 name|indexDir2
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|createIndex
@@ -495,6 +503,10 @@ operator|.
 name|getDirectory
 argument_list|(
 name|indexDir3
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|createIndex
