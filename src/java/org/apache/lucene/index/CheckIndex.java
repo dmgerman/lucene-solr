@@ -709,6 +709,11 @@ name|info
 operator|.
 name|docCount
 decl_stmt|;
+name|SegmentReader
+name|reader
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|System
@@ -871,16 +876,15 @@ argument_list|(
 literal|"    test: open reader........."
 argument_list|)
 expr_stmt|;
-name|SegmentReader
 name|reader
-init|=
+operator|=
 name|SegmentReader
 operator|.
 name|get
 argument_list|(
 name|info
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 specifier|final
 name|int
 name|numDocs
@@ -1652,6 +1656,20 @@ operator|=
 literal|true
 expr_stmt|;
 continue|continue;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Keeper
 name|newSIS
