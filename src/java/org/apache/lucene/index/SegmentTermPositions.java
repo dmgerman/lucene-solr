@@ -270,17 +270,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-else|else
-block|{
-name|payloadLength
-operator|=
-literal|0
-expr_stmt|;
-name|needToLoadPayload
-operator|=
-literal|false
-expr_stmt|;
-block|}
 return|return
 name|delta
 return|;
