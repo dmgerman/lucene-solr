@@ -166,7 +166,7 @@ specifier|static
 name|boolean
 name|DEFAULT_DO_SYNC
 init|=
-literal|true
+literal|false
 decl_stmt|;
 comment|// True if we should call sync() before closing a file.
 comment|// This improves chances that index will still be
