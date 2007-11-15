@@ -244,6 +244,8 @@ specifier|abstract
 name|void
 name|release
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Returns true if the resource is currently locked.  Note that one must    * still call {@link #obtain()} before using the resource. */
 DECL|method|isLocked

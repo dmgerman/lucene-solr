@@ -893,11 +893,27 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|writer2
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|fail
+argument_list|(
+literal|"writer2.close() should have hit LockReleaseFailedException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|LockReleaseFailedException
+name|e
+parameter_list|)
+block|{
+comment|// expected
+block|}
 block|}
 comment|// Cleanup
 name|rmDir

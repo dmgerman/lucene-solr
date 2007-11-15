@@ -361,12 +361,26 @@ specifier|public
 name|void
 name|release
 parameter_list|()
+throws|throws
+name|LockReleaseFailedException
 block|{
+if|if
+condition|(
+operator|!
 name|lockFile
 operator|.
 name|delete
 argument_list|()
-expr_stmt|;
+condition|)
+throw|throw
+operator|new
+name|LockReleaseFailedException
+argument_list|(
+literal|"failed to delete "
+operator|+
+name|lockFile
+argument_list|)
+throw|;
 block|}
 DECL|method|isLocked
 specifier|public

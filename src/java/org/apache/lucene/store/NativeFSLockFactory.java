@@ -833,8 +833,8 @@ specifier|synchronized
 name|void
 name|release
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -903,26 +903,21 @@ block|}
 block|}
 block|}
 block|}
+if|if
+condition|(
+operator|!
 name|path
 operator|.
 name|delete
 argument_list|()
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// Not sure how to better message/handle this without
-comment|// changing API?
+condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|LockReleaseFailedException
 argument_list|(
-name|e
+literal|"failed to delete "
+operator|+
+name|path
 argument_list|)
 throw|;
 block|}

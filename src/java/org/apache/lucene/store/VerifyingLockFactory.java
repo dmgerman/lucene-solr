@@ -293,6 +293,8 @@ specifier|synchronized
 name|void
 name|release
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
