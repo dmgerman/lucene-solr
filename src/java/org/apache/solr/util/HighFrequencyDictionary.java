@@ -99,10 +99,10 @@ comment|/**  * Hi Frequency Dictionary: terms taken from the given field  * of a
 end_comment
 
 begin_class
-DECL|class|HiFrequencyDictionary
+DECL|class|HighFrequencyDictionary
 specifier|public
 class|class
-name|HiFrequencyDictionary
+name|HighFrequencyDictionary
 implements|implements
 name|Dictionary
 block|{
@@ -121,9 +121,9 @@ specifier|private
 name|float
 name|thresh
 decl_stmt|;
-DECL|method|HiFrequencyDictionary
+DECL|method|HighFrequencyDictionary
 specifier|public
-name|HiFrequencyDictionary
+name|HighFrequencyDictionary
 parameter_list|(
 name|IndexReader
 name|reader
@@ -166,14 +166,14 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|HiFrequencyIterator
+name|HighFrequencyIterator
 argument_list|()
 return|;
 block|}
-DECL|class|HiFrequencyIterator
+DECL|class|HighFrequencyIterator
 specifier|final
 class|class
-name|HiFrequencyIterator
+name|HighFrequencyIterator
 implements|implements
 name|Iterator
 block|{
@@ -197,8 +197,8 @@ specifier|private
 name|int
 name|minNumDocs
 decl_stmt|;
-DECL|method|HiFrequencyIterator
-name|HiFrequencyIterator
+DECL|method|HighFrequencyIterator
+name|HighFrequencyIterator
 parameter_list|()
 block|{
 try|try

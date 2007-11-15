@@ -674,6 +674,8 @@ argument_list|(
 literal|"cat"
 argument_list|)
 argument_list|,
+literal|"//int[@name='numDocs'][.=10]"
+argument_list|,
 literal|"//lst[@name='cat']"
 argument_list|,
 literal|"//lst[@name='cat']/int[@name='frequency'][.>0]"
@@ -717,6 +719,8 @@ name|req
 argument_list|(
 literal|"cat"
 argument_list|)
+argument_list|,
+literal|"//int[@name='numDocs'][.=10]"
 argument_list|,
 literal|"//lst[@name='cat']"
 argument_list|,
@@ -771,7 +775,7 @@ argument_list|,
 literal|"//lst[@name='cat']/lst[@name='suggestions']/lst[@name='cot']"
 argument_list|)
 expr_stmt|;
-comment|/* The following is the generated XML response for the next query with three words:<response><responseHeader><status>0</status><QTime>0</QTime></responseHeader><lst name="result"><lst name="cat"><int name="frequency">1</int><lst name="suggestions"><lst name="cart"><int name="frequency">1</int></lst><lst name="cot"><int name="frequency">1</int></lst></lst></lst><lst name="card"><int name="frequency">1</int><lst name="suggestions"><lst name="carp"><int name="frequency">1</int></lst><lst name="cat"><int name="frequency">1</int></lst></lst></lst><lst name="carp"><int name="frequency">1</int><lst name="suggestions"><lst name="cart"><int name="frequency">1</int></lst><lst name="corn"><int name="frequency">1</int></lst></lst></lst></lst></response>     */
+comment|/* The following is the generated XML response for the next query with three words:<response><responseHeader><status>0</status><QTime>0</QTime></responseHeader><int name="numDocs">10</int><lst name="result"><lst name="cat"><int name="frequency">1</int><lst name="suggestions"><lst name="cart"><int name="frequency">1</int></lst><lst name="cot"><int name="frequency">1</int></lst></lst></lst><lst name="card"><int name="frequency">1</int><lst name="suggestions"><lst name="carp"><int name="frequency">1</int></lst><lst name="cat"><int name="frequency">1</int></lst></lst></lst><lst name="carp"><int name="frequency">1</int><lst name="suggestions"><lst name="cart"><int name="frequency">1</int></lst><lst name="corn"><int name="frequency">1</int></lst></lst></lst></lst></response>     */
 name|lrf
 operator|.
 name|args
@@ -909,6 +913,8 @@ argument_list|(
 literal|"coat"
 argument_list|)
 argument_list|,
+literal|"//int[@name='numDocs'][.=10]"
+argument_list|,
 literal|"//lst[@name='coat']"
 argument_list|,
 literal|"//lst[@name='coat']/int[@name='frequency'][.=0]"
@@ -1019,6 +1025,8 @@ name|req
 argument_list|(
 literal|"cet cert corp"
 argument_list|)
+argument_list|,
+literal|"//int[@name='numDocs'][.=10]"
 argument_list|,
 literal|"//lst[@name='cet']"
 argument_list|,
