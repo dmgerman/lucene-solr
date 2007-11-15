@@ -916,6 +916,41 @@ literal|"This reader does not support this method."
 argument_list|)
 throw|;
 block|}
+comment|/**<p>For IndexReader implementations that use    * TermInfosReader to read terms, this sets the    * indexDivisor to subsample the number of indexed terms    * loaded into memory.  This has the same effect as {@link    * IndexWriter#setTermIndexInterval} except that setting    * must be done at indexing time while this setting can be    * set per reader.  When set to N, then one in every    * N*termIndexInterval terms in the index is loaded into    * memory.  By setting this to a value> 1 you can reduce    * memory usage, at the expense of higher latency when    * loading a TermInfo.  The default value is 1.</p>    *    *<b>NOTE:</b> you must call this before the term    * index is loaded.  If the index is already loaded,     * an IllegalStateException is thrown.    * @throws IllegalStateException if the term index has already been loaded into memory    */
+DECL|method|setTermInfosIndexDivisor
+specifier|public
+name|void
+name|setTermInfosIndexDivisor
+parameter_list|(
+name|int
+name|indexDivisor
+parameter_list|)
+throws|throws
+name|IllegalStateException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This reader does not support this method."
+argument_list|)
+throw|;
+block|}
+comment|/**<p>For IndexReader implementations that use    *  TermInfosReader to read terms, this returns the    *  current indexDivisor.    *  @see #setTermInfosIndexDivisor */
+DECL|method|getTermInfosIndexDivisor
+specifier|public
+name|int
+name|getTermInfosIndexDivisor
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This reader does not support this method."
+argument_list|)
+throw|;
+block|}
 comment|/**    * Check whether this IndexReader is still using the    * current (i.e., most recently committed) version of the    * index.  If a writer has committed any changes to the    * index since this reader was opened, this will return    *<code>false</code>, in which case you must open a new    * IndexReader in order to see the changes.  See the    * description of the<a href="IndexWriter.html#autoCommit"><code>autoCommit</code></a>    * flag which controls when the {@link IndexWriter}    * actually commits changes to the index.    *     *<p>    * Not implemented in the IndexReader base class.    *</p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws UnsupportedOperationException unless overridden in subclass    */
 DECL|method|isCurrent
 specifier|public
