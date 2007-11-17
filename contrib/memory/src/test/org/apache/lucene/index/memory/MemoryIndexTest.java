@@ -420,6 +420,14 @@ name|fastMode
 init|=
 literal|false
 decl_stmt|;
+DECL|field|verbose
+specifier|private
+specifier|final
+name|boolean
+name|verbose
+init|=
+literal|false
+decl_stmt|;
 DECL|field|FIELD_NAME
 specifier|private
 specifier|static
@@ -1067,6 +1075,10 @@ argument_list|(
 name|text
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|verbose
+condition|)
 name|System
 operator|.
 name|out
@@ -1236,6 +1248,10 @@ operator|&&
 name|useRAMIndex
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+condition|)
 name|System
 operator|.
 name|out
