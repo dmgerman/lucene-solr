@@ -766,6 +766,40 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// test maxint
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[100 TO 110]"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"2147483647"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='4']"
+argument_list|)
+expr_stmt|;
+comment|// test big limit
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[100 TO 111]"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1147483647"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='4']"
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 name|req
