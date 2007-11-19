@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.solr.util
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|util
 package|;
 end_package
-
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Hi Frequency Dictionary: terms taken from the given field  * of a Lucene index, which appear in a number of documents  * above a given threshold.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  * Threshold is a value in [0..1] representing the minimum  * number of documents (of the total) where a term should appear.  *  * @author Mike Krimerman  *  * Based on LuceneDictionary, by  * @author Nicolas Maisonneuve  * @author Christian Mallwitz  */
+comment|/**  * HighFrequencyDictionary: terms taken from the given field  * of a Lucene index, which appear in a number of documents  * above a given threshold.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  * Threshold is a value in [0..1] representing the minimum  * number of documents (of the total) where a term should appear.  *   * Based on LuceneDictionary.  */
 end_comment
 
 begin_class
