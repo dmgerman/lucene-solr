@@ -671,7 +671,7 @@ name|get
 argument_list|(
 literal|"fsdirectory.dosync"
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 decl_stmt|;
 name|directory
