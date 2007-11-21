@@ -105,7 +105,7 @@ index|[]
 name|binaryValue
 parameter_list|()
 function_decl|;
-comment|/** The value of the field as a TokesStream, or null.  If null, the Reader value,    * String value, or binary value is used. Exactly one of stringValue(),     * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
+comment|/** The value of the field as a TokenStream, or null.  If null, the Reader value,    * String value, or binary value is used. Exactly one of stringValue(),     * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
 DECL|method|tokenStreamValue
 specifier|public
 name|TokenStream
