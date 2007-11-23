@@ -402,6 +402,8 @@ specifier|private
 name|void
 name|initCountingSumScorer
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|coordinator
 operator|.
@@ -655,6 +657,8 @@ parameter_list|(
 name|List
 name|requiredScorers
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// each scorer from the list counted as a single matcher
 specifier|final
@@ -666,13 +670,13 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-name|ConjunctionScorer
-name|cs
-init|=
+return|return
 operator|new
 name|ConjunctionScorer
 argument_list|(
 name|defaultSimilarity
+argument_list|,
+name|requiredScorers
 argument_list|)
 block|{
 specifier|private
@@ -725,39 +729,6 @@ argument_list|()
 return|;
 block|}
 block|}
-decl_stmt|;
-name|Iterator
-name|rsi
-init|=
-name|requiredScorers
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|rsi
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|cs
-operator|.
-name|add
-argument_list|(
-operator|(
-name|Scorer
-operator|)
-name|rsi
-operator|.
-name|next
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|cs
 return|;
 block|}
 DECL|method|dualConjunctionSumScorer
@@ -771,38 +742,30 @@ parameter_list|,
 name|Scorer
 name|req2
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// non counting.
-name|ConjunctionScorer
-name|cs
-init|=
+return|return
 operator|new
 name|ConjunctionScorer
 argument_list|(
 name|defaultSimilarity
+argument_list|,
+operator|new
+name|Scorer
+index|[]
+block|{
+name|req1
+block|,
+name|req2
+block|}
 argument_list|)
-decl_stmt|;
+return|;
 comment|// All scorers match, so defaultSimilarity always has 1 as
 comment|// the coordination factor.
 comment|// Therefore the sum of the scores of two scorers
 comment|// is used as score.
-name|cs
-operator|.
-name|add
-argument_list|(
-name|req1
-argument_list|)
-expr_stmt|;
-name|cs
-operator|.
-name|add
-argument_list|(
-name|req2
-argument_list|)
-expr_stmt|;
-return|return
-name|cs
-return|;
 block|}
 comment|/** Returns the scorer to be used for match counting and score summing.    * Uses requiredScorers, optionalScorers and prohibitedScorers.    */
 DECL|method|makeCountingSumScorer
@@ -810,6 +773,8 @@ specifier|private
 name|Scorer
 name|makeCountingSumScorer
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// each scorer counted as a single matcher
 return|return
@@ -834,6 +799,8 @@ specifier|private
 name|Scorer
 name|makeCountingSumScorerNoReq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// No required scorers
 if|if
@@ -952,6 +919,8 @@ specifier|private
 name|Scorer
 name|makeCountingSumScorerSomeReq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// At least one required scorer.
 if|if
