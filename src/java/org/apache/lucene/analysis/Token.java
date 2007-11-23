@@ -48,10 +48,6 @@ begin_comment
 comment|/** A Token is an occurence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is an interned string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><p><font color="#FF0000">   WARNING: The status of the<b>Payloads</b> feature is experimental.    The APIs introduced here might change in the future and will not be    supported anymore in such a case.</font><br><br><p><b>NOTE:</b> As of 2.3, Token stores the term text   internally as a malleable char[] termBuffer instead of   String termText.  The indexing code and core tokenizers   have been changed re-use a single Token instance, changing   its buffer and other fields in-place as the Token is   processed.  This provides substantially better indexing   performance as it saves the GC cost of new'ing a Token and   String for every term.  The APIs that accept String   termText are still available but a warning about the   associated performance cost has been added (below).  The   {@link #termText()} method has been deprecated.</p><p>Tokenizers and filters should try to re-use a Token   instance when possible for best performance, by   implementing the {@link TokenStream#next(Token)} API.   Failing that, to create a new Token you should first use   one of the constructors that starts with null text.  Then   you should call either {@link #termBuffer()} or {@link   #resizeTermBuffer(int)} to retrieve the Token's   termBuffer.  Fill in the characters of your term into this   buffer, and finally call {@link #setTermLength(int)} to   set the length of the term text.  See<a target="_top"   href="https://issues.apache.org/jira/browse/LUCENE-969">LUCENE-969</a>   for details.</p>    @see org.apache.lucene.index.Payload */
 end_comment
 
-begin_comment
-comment|// TODO: Remove warning after API has been finalized
-end_comment
-
 begin_class
 DECL|class|Token
 specifier|public
@@ -697,8 +693,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**     * Returns this Token's payload.     *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.     * The APIs introduced here might change in the future and will not be     * supported anymore in such a case.</font>    */
-comment|// TODO: Remove warning after API has been finalized
+comment|/**     * Returns this Token's payload.    */
 DECL|method|getPayload
 specifier|public
 name|Payload
@@ -711,8 +706,7 @@ operator|.
 name|payload
 return|;
 block|}
-comment|/**     * Sets this Token's payload.    *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.     * The APIs introduced here might change in the future and will not be     * supported anymore in such a case.</font>    */
-comment|// TODO: Remove warning after API has been finalized
+comment|/**     * Sets this Token's payload.    */
 DECL|method|setPayload
 specifier|public
 name|void
@@ -906,6 +900,27 @@ argument_list|,
 literal|0
 argument_list|,
 name|termLength
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|payload
+operator|!=
+literal|null
+condition|)
+block|{
+name|t
+operator|.
+name|setPayload
+argument_list|(
+operator|(
+name|Payload
+operator|)
+name|payload
+operator|.
+name|clone
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -149,7 +149,7 @@ comment|/**  * Copyright 2004 The Apache Software Foundation  *<p/>  * Licensed 
 end_comment
 
 begin_comment
-comment|/**  * The BoostingTermQuery is very similar to the {@link org.apache.lucene.search.spans.SpanTermQuery} except  * that it factors in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p>  * In order to take advantage of this, you must override {@link org.apache.lucene.search.Similarity#scorePayload(byte[],int,int)}  * which returns 1 by default.  *<p>  * Payload scores are averaged across term occurrences in the document.    *   *<p><font color="#FF0000">  * WARNING: The status of the<b>Payloads</b> feature is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *  * @see org.apache.lucene.search.Similarity#scorePayload(byte[], int, int)  */
+comment|/**  * The BoostingTermQuery is very similar to the {@link org.apache.lucene.search.spans.SpanTermQuery} except  * that it factors in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p>  * In order to take advantage of this, you must override {@link org.apache.lucene.search.Similarity#scorePayload(byte[],int,int)}  * which returns 1 by default.  *<p>  * Payload scores are averaged across term occurrences in the document.    *   * @see org.apache.lucene.search.Similarity#scorePayload(byte[], int, int)  */
 end_comment
 
 begin_class
@@ -477,6 +477,11 @@ name|similarity
 operator|.
 name|scorePayload
 argument_list|(
+name|term
+operator|.
+name|field
+argument_list|()
+argument_list|,
 name|payload
 argument_list|,
 literal|0

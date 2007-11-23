@@ -452,13 +452,15 @@ name|int
 name|maxOverlap
 parameter_list|)
 function_decl|;
-comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *<br>    *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.     * The APIs introduced here might change in the future and will not be     * supported anymore in such a case.</font>    *    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor     */
-comment|// TODO: Remove warning after API has been finalized
+comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param fieldName The fieldName of the term this payload belongs to    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor     */
 DECL|method|scorePayload
 specifier|public
 name|float
 name|scorePayload
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
 name|byte
 index|[]
 name|payload

@@ -55,11 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   *  A Payload is metadata that can be stored together with each occurrence    *  of a term. This metadata is stored inline in the posting list of the   *  specific term.     *<p>   *  To store payloads in the index a {@link TokenStream} has to be used that   *  produces {@link Token}s containing payload data.   *<p>   *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}   *  to retrieve the payloads from the index.<br>   *<br>   *     *<p><font color="#FF0000">   * WARNING: The status of the<b>Payloads</b> feature is experimental.    * The APIs introduced here might change in the future and will not be    * supported anymore in such a case.</font>   */
-end_comment
-
-begin_comment
-comment|// TODO: Remove warning after API has been finalized
+comment|/**   *  A Payload is metadata that can be stored together with each occurrence    *  of a term. This metadata is stored inline in the posting list of the   *  specific term.     *<p>   *  To store payloads in the index a {@link TokenStream} has to be used that   *  produces {@link Token}s containing payload data.   *<p>   *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}   *  to retrieve the payloads from the index.<br>   *   */
 end_comment
 
 begin_class
@@ -69,6 +65,8 @@ class|class
 name|Payload
 implements|implements
 name|Serializable
+implements|,
+name|Cloneable
 block|{
 comment|/** the byte array containing the payload data */
 DECL|field|data
@@ -91,13 +89,13 @@ name|length
 decl_stmt|;
 comment|/** Creates an empty payload and does not allocate a byte array. */
 DECL|method|Payload
-specifier|protected
+specifier|public
 name|Payload
 parameter_list|()
 block|{
-comment|// no-arg constructor since this class implements Serializable
+comment|// nothing to do
 block|}
-comment|/**      * Creates a new payload with the the given array as data.      *       * @param data the data of this payload      */
+comment|/**      * Creates a new payload with the the given array as data.      * A reference to the passed-in array is held, i. e. no       * copy is made.      *       * @param data the data of this payload      */
 DECL|method|Payload
 specifier|public
 name|Payload
@@ -119,7 +117,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new payload with the the given array as data.       *       * @param data the data of this payload      * @param offset the offset in the data byte array      * @param length the length of the data      */
+comment|/**      * Creates a new payload with the the given array as data.       * A reference to the passed-in array is held, i. e. no       * copy is made.      *       * @param data the data of this payload      * @param offset the offset in the data byte array      * @param length the length of the data      */
 DECL|method|Payload
 specifier|public
 name|Payload
@@ -174,6 +172,92 @@ name|length
 operator|=
 name|length
 expr_stmt|;
+block|}
+comment|/**      * Sets this payloads data.       * A reference to the passed-in array is held, i. e. no       * copy is made.      */
+DECL|method|setData
+specifier|public
+name|void
+name|setData
+parameter_list|(
+name|byte
+index|[]
+name|data
+parameter_list|)
+block|{
+name|setData
+argument_list|(
+name|data
+argument_list|,
+literal|0
+argument_list|,
+name|data
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Sets this payloads data.       * A reference to the passed-in array is held, i. e. no       * copy is made.      */
+DECL|method|setData
+specifier|public
+name|void
+name|setData
+parameter_list|(
+name|byte
+index|[]
+name|data
+parameter_list|,
+name|int
+name|offset
+parameter_list|,
+name|int
+name|length
+parameter_list|)
+block|{
+name|this
+operator|.
+name|data
+operator|=
+name|data
+expr_stmt|;
+name|this
+operator|.
+name|offset
+operator|=
+name|offset
+expr_stmt|;
+name|this
+operator|.
+name|length
+operator|=
+name|length
+expr_stmt|;
+block|}
+comment|/**      * Returns a reference to the underlying byte array      * that holds this payloads data.      */
+DECL|method|getData
+specifier|public
+name|byte
+index|[]
+name|getData
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|data
+return|;
+block|}
+comment|/**      * Returns the offset in the underlying byte array       */
+DECL|method|getOffset
+specifier|public
+name|int
+name|getOffset
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|offset
+return|;
 block|}
 comment|/**      * Returns the length of the payload data.       */
 DECL|method|length
@@ -331,6 +415,29 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * Clones this payload by creating a copy of the underlying      * byte array.      */
+DECL|method|clone
+specifier|public
+name|Object
+name|clone
+parameter_list|()
+block|{
+name|Payload
+name|clone
+init|=
+operator|new
+name|Payload
+argument_list|(
+name|this
+operator|.
+name|toByteArray
+argument_list|()
+argument_list|)
+decl_stmt|;
+return|return
+name|clone
+return|;
 block|}
 block|}
 end_class

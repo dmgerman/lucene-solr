@@ -91,27 +91,21 @@ name|p
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|setPayload
 argument_list|(
-operator|new
+operator|(
 name|Payload
-argument_list|(
+operator|)
 name|p
 operator|.
-name|toByteArray
+name|clone
 argument_list|()
-argument_list|,
-literal|0
-argument_list|,
-name|p
-operator|.
-name|length
-argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -134,7 +128,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/** Resets this stream to the beginning. This is an    *  optional operation, so subclasses may or may not    *  implement this method. Reset() is not needed for    *  the standard indexing process. However, if the Tokens     *  of a TokenStream are intended to be consumed more than     *  once, it is neccessary to implement reset().     */
+comment|/** Resets this stream to the beginning. This is an    *  optional operation, so subclasses may or may not    *  implement this method. Reset() is not needed for    *  the standard indexing process. However, if the Tokens     *  of a TokenStream are intended to be consumed more than     *  once, it is necessary to implement reset().     */
 DECL|method|reset
 specifier|public
 name|void
