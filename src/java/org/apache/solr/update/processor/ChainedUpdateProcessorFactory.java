@@ -319,7 +319,7 @@ name|load
 argument_list|(
 name|core
 operator|.
-name|getSolrConfig
+name|getResourceLoader
 argument_list|()
 argument_list|,
 operator|(

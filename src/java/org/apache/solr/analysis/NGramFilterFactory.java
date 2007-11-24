@@ -32,20 +32,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|lucene
 operator|.
 name|analysis
@@ -96,7 +82,7 @@ name|minGramSize
 init|=
 literal|0
 decl_stmt|;
-comment|/** Initializes the n-gram min and max sizes and the side from which one should start tokenizing. */
+comment|/** Initialize the n-gram min and max sizes and the side from which one should start tokenizing. */
 annotation|@
 name|Override
 DECL|method|init
@@ -104,9 +90,6 @@ specifier|public
 name|void
 name|init
 parameter_list|(
-name|SolrConfig
-name|solrConfig
-parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -120,8 +103,6 @@ name|super
 operator|.
 name|init
 argument_list|(
-name|solrConfig
-argument_list|,
 name|args
 argument_list|)
 expr_stmt|;

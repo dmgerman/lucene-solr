@@ -214,6 +214,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|ResourceLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|SolrException
 import|;
 end_import
@@ -495,34 +509,6 @@ operator|.
 name|search
 operator|.
 name|QParserPlugin
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|LuceneQParserPlugin
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|OldLuceneQParserPlugin
 import|;
 end_import
 
@@ -895,6 +881,20 @@ parameter_list|()
 block|{
 return|return
 name|solrConfig
+return|;
+block|}
+comment|/**    * @since solr 1.3    */
+DECL|method|getResourceLoader
+specifier|public
+name|SolrResourceLoader
+name|getResourceLoader
+parameter_list|()
+block|{
+return|return
+name|solrConfig
+operator|.
+name|getResourceLoader
+argument_list|()
 return|;
 block|}
 DECL|method|getConfigFile
@@ -1370,6 +1370,9 @@ name|clazz
 operator|=
 name|solrConfig
 operator|.
+name|getResourceLoader
+argument_list|()
+operator|.
 name|findClass
 argument_list|(
 name|className
@@ -1682,6 +1685,14 @@ operator|=
 name|this
 expr_stmt|;
 comment|// set singleton
+name|SolrResourceLoader
+name|loader
+init|=
+name|config
+operator|.
+name|getResourceLoader
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|dataDir
@@ -1697,7 +1708,7 @@ name|get
 argument_list|(
 literal|"dataDir"
 argument_list|,
-name|config
+name|loader
 operator|.
 name|getInstanceDir
 argument_list|()
@@ -1712,7 +1723,7 @@ name|info
 argument_list|(
 literal|"Opening new SolrCore at "
 operator|+
-name|config
+name|loader
 operator|.
 name|getInstanceDir
 argument_list|()
@@ -1880,6 +1891,21 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|// Finally tell anyone who wants to know
+name|loader
+operator|.
+name|inform
+argument_list|(
+name|loader
+argument_list|)
+expr_stmt|;
+name|loader
+operator|.
+name|inform
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Load the request processors configured in solrconfig.xml    */
@@ -2012,6 +2038,9 @@ operator|.
 name|load
 argument_list|(
 name|solrConfig
+operator|.
+name|getResourceLoader
+argument_list|()
 argument_list|,
 name|nodes
 argument_list|)
@@ -4041,6 +4070,9 @@ operator|.
 name|load
 argument_list|(
 name|solrConfig
+operator|.
+name|getResourceLoader
+argument_list|()
 argument_list|,
 name|nodes
 argument_list|)
@@ -4291,6 +4323,9 @@ operator|.
 name|load
 argument_list|(
 name|solrConfig
+operator|.
+name|getResourceLoader
+argument_list|()
 argument_list|,
 name|nodes
 argument_list|)

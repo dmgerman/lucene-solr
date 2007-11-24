@@ -221,14 +221,13 @@ name|int
 name|group
 decl_stmt|;
 comment|/**    * Require a configured pattern    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
 name|init
 parameter_list|(
-name|SolrConfig
-name|solrConfig
-parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -352,24 +351,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-block|}
-comment|/**    * The arguments passed to init()    */
-DECL|method|getArgs
-specifier|public
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|getArgs
-parameter_list|()
-block|{
-return|return
-name|this
-operator|.
-name|args
-return|;
 block|}
 comment|/**    * Split the input using configured pattern    */
 DECL|method|create

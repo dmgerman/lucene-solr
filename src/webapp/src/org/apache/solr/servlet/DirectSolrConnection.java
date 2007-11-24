@@ -456,6 +456,9 @@ name|instanceDir
 operator|=
 name|config
 operator|.
+name|getResourceLoader
+argument_list|()
+operator|.
 name|getInstanceDir
 argument_list|()
 expr_stmt|;

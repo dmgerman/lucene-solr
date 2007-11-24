@@ -669,6 +669,9 @@ operator|.
 name|load
 argument_list|(
 name|config
+operator|.
+name|getResourceLoader
+argument_list|()
 argument_list|,
 operator|(
 name|NodeList
@@ -747,6 +750,9 @@ operator|.
 name|load
 argument_list|(
 name|config
+operator|.
+name|getResourceLoader
+argument_list|()
 argument_list|,
 operator|(
 name|NodeList

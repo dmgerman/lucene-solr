@@ -146,16 +146,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -232,30 +222,6 @@ name|config
 init|=
 literal|null
 decl_stmt|;
-comment|/** An interface to denote objects that need a SolrConfig to be initialized.    *  These are mainly TokenFilterFactory and TokenizerFactory subclasses.    */
-DECL|interface|Initializable
-specifier|public
-interface|interface
-name|Initializable
-block|{
-comment|/**<code>init</code> will be called just once, immediately after creation.      */
-DECL|method|init
-name|void
-name|init
-parameter_list|(
-name|SolrConfig
-name|solrConfig
-parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-parameter_list|)
-function_decl|;
-block|}
 DECL|field|configFile
 specifier|public
 specifier|final

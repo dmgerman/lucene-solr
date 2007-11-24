@@ -38,20 +38,6 @@ name|Logger
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrConfig
-import|;
-end_import
-
 begin_comment
 comment|/**  * Simple abstract implementation that handles init arg processing.  *   * @version $Id$  */
 end_comment
@@ -64,10 +50,6 @@ class|class
 name|BaseTokenFilterFactory
 implements|implements
 name|TokenFilterFactory
-implements|,
-name|SolrConfig
-operator|.
-name|Initializable
 block|{
 DECL|field|log
 specifier|final
@@ -98,8 +80,6 @@ name|String
 argument_list|>
 name|args
 decl_stmt|;
-annotation|@
-name|Deprecated
 DECL|method|init
 specifier|public
 name|void
@@ -114,39 +94,6 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
-name|this
-operator|.
-name|args
-operator|=
-name|args
-expr_stmt|;
-block|}
-comment|/**    * @since solr 1.3    */
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|SolrConfig
-name|solrConfig
-parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-parameter_list|)
-block|{
-name|this
-operator|.
-name|init
-argument_list|(
-name|args
-argument_list|)
-expr_stmt|;
-comment|// maintain backwards compatibility
 name|this
 operator|.
 name|args

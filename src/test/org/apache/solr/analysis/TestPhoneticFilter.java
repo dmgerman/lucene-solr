@@ -186,8 +186,6 @@ name|ff
 operator|.
 name|init
 argument_list|(
-name|solrConfig
-argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -220,8 +218,6 @@ name|ff
 operator|.
 name|init
 argument_list|(
-name|solrConfig
-argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -252,8 +248,6 @@ name|ff
 operator|.
 name|init
 argument_list|(
-name|solrConfig
-argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -289,8 +283,6 @@ name|ff
 operator|.
 name|init
 argument_list|(
-name|solrConfig
-argument_list|,
 name|args
 argument_list|)
 expr_stmt|;

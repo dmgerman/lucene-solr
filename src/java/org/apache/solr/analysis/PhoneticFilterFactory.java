@@ -307,9 +307,6 @@ specifier|public
 name|void
 name|init
 parameter_list|(
-name|SolrConfig
-name|solrConfig
-parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -323,8 +320,6 @@ name|super
 operator|.
 name|init
 argument_list|(
-name|solrConfig
-argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
