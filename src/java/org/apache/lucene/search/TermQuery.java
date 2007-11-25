@@ -366,6 +366,13 @@ argument_list|(
 name|term
 argument_list|)
 operator|+
+literal|", numDocs="
+operator|+
+name|reader
+operator|.
+name|numDocs
+argument_list|()
+operator|+
 literal|")"
 argument_list|)
 decl_stmt|;
