@@ -89,7 +89,7 @@ operator|=
 name|description
 expr_stmt|;
 block|}
-comment|/**    * Indicates wether or not this Explanation models a good match.    *    *<p>    * By default, an Explanation represents a "match" if the value is positive.    *</p>    * @see #getValue    */
+comment|/**    * Indicates whether or not this Explanation models a good match.    *    *<p>    * By default, an Explanation represents a "match" if the value is positive.    *</p>    * @see #getValue    */
 DECL|method|isMatch
 specifier|public
 name|boolean
