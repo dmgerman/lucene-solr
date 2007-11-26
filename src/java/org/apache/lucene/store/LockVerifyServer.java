@@ -200,16 +200,6 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|char
-index|[]
-name|message
-init|=
-operator|new
-name|char
-index|[
-literal|3
-index|]
-decl_stmt|;
 while|while
 condition|(
 literal|true

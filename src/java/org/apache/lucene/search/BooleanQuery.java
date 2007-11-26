@@ -275,7 +275,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Specifies a minimum number of the optional BooleanClauses    * which must be satisifed.    *    *<p>    * By default no optional clauses are neccessary for a match    * (unless there are no required clauses).  If this method is used,    * then the specified number of clauses is required.    *</p>    *<p>    * Use of this method is totally independant of specifying that    * any specific clauses are required (or prohibited).  This number will    * only be compared against the number of matching optional clauses.    *</p>    *<p>    * EXPERT NOTE: Using this method may force collecting docs in order,    * regardless of wether setAllowDocsOutOfOrder(true) has been called.    *</p>    *    * @param min the number of optional clauses that must match    * @see #setAllowDocsOutOfOrder    */
+comment|/**    * Specifies a minimum number of the optional BooleanClauses    * which must be satisfied.    *    *<p>    * By default no optional clauses are necessary for a match    * (unless there are no required clauses).  If this method is used,    * then the specified number of clauses is required.    *</p>    *<p>    * Use of this method is totally independent of specifying that    * any specific clauses are required (or prohibited).  This number will    * only be compared against the number of matching optional clauses.    *</p>    *<p>    * EXPERT NOTE: Using this method may force collecting docs in order,    * regardless of whether setAllowDocsOutOfOrder(true) has been called.    *</p>    *    * @param min the number of optional clauses that must match    * @see #setAllowDocsOutOfOrder    */
 DECL|method|setMinimumNumberShouldMatch
 specifier|public
 name|void
@@ -646,19 +646,6 @@ name|i
 operator|++
 control|)
 block|{
-name|BooleanClause
-name|c
-init|=
-operator|(
-name|BooleanClause
-operator|)
-name|clauses
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
 name|Weight
 name|w
 init|=
