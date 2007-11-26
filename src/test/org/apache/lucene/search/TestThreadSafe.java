@@ -618,8 +618,11 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" "
-operator|+
+literal|' '
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|words
 index|[
 name|r
