@@ -133,6 +133,7 @@ specifier|abstract
 class|class
 name|IndexReader
 block|{
+comment|/**    * Constants describing field properties, for example used for    * {@link IndexReader#getFieldNames(FieldOption)}.    */
 DECL|class|FieldOption
 specifier|public
 specifier|static
@@ -177,7 +178,7 @@ operator|.
 name|option
 return|;
 block|}
-comment|// all fields
+comment|/** All fields */
 DECL|field|ALL
 specifier|public
 specifier|static
@@ -191,7 +192,7 @@ argument_list|(
 literal|"ALL"
 argument_list|)
 decl_stmt|;
-comment|// all indexed fields
+comment|/** All indexed fields */
 DECL|field|INDEXED
 specifier|public
 specifier|static
@@ -205,7 +206,7 @@ argument_list|(
 literal|"INDEXED"
 argument_list|)
 decl_stmt|;
-comment|// all fields that store payloads
+comment|/** All fields that store payloads */
 DECL|field|STORES_PAYLOADS
 specifier|public
 specifier|static
@@ -219,7 +220,7 @@ argument_list|(
 literal|"STORES_PAYLOADS"
 argument_list|)
 decl_stmt|;
-comment|// all fields which are not indexed
+comment|/** All fields which are not indexed */
 DECL|field|UNINDEXED
 specifier|public
 specifier|static
@@ -233,7 +234,7 @@ argument_list|(
 literal|"UNINDEXED"
 argument_list|)
 decl_stmt|;
-comment|// all fields which are indexed with termvectors enables
+comment|/** All fields which are indexed with termvectors enabled */
 DECL|field|INDEXED_WITH_TERMVECTOR
 specifier|public
 specifier|static
@@ -247,7 +248,7 @@ argument_list|(
 literal|"INDEXED_WITH_TERMVECTOR"
 argument_list|)
 decl_stmt|;
-comment|// all fields which are indexed but don't have termvectors enabled
+comment|/** All fields which are indexed but don't have termvectors enabled */
 DECL|field|INDEXED_NO_TERMVECTOR
 specifier|public
 specifier|static
@@ -261,7 +262,7 @@ argument_list|(
 literal|"INDEXED_NO_TERMVECTOR"
 argument_list|)
 decl_stmt|;
-comment|// all fields where termvectors are enabled. Please note that only standard termvector fields are returned
+comment|/** All fields with termvectors enabled. Please note that only standard termvector fields are returned */
 DECL|field|TERMVECTOR
 specifier|public
 specifier|static
@@ -275,7 +276,7 @@ argument_list|(
 literal|"TERMVECTOR"
 argument_list|)
 decl_stmt|;
-comment|// all field with termvectors wiht positions enabled
+comment|/** All fields with termvectors with position values enabled */
 DECL|field|TERMVECTOR_WITH_POSITION
 specifier|public
 specifier|static
@@ -289,7 +290,7 @@ argument_list|(
 literal|"TERMVECTOR_WITH_POSITION"
 argument_list|)
 decl_stmt|;
-comment|// all fields where termvectors with offset position are set
+comment|/** All fields with termvectors with offset values enabled */
 DECL|field|TERMVECTOR_WITH_OFFSET
 specifier|public
 specifier|static
@@ -303,7 +304,7 @@ argument_list|(
 literal|"TERMVECTOR_WITH_OFFSET"
 argument_list|)
 decl_stmt|;
-comment|// all fields where termvectors with offset and position values set
+comment|/** All fields with termvectors with offset values and position values enabled */
 DECL|field|TERMVECTOR_WITH_POSITION_OFFSET
 specifier|public
 specifier|static
@@ -1453,7 +1454,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain    *<code>term</code>.  For each document, in addition to the document number    * and frequency of the term in that document, a list of all of the ordinal    * positions of the term in the document is available.  Thus, this method    * implements the mapping:    *    *<p><ul>    * Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,    *&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...    * pos<sub>freq-1</sub>&gt;    *&gt;<sup>*</sup>    *</ul>    *<p> This positional information faciliates phrase and proximity searching.    *<p>The enumeration is ordered by document number.  Each document number is    * greater than all that precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an enumeration of all the documents which contain    *<code>term</code>.  For each document, in addition to the document number    * and frequency of the term in that document, a list of all of the ordinal    * positions of the term in the document is available.  Thus, this method    * implements the mapping:    *    *<p><ul>    * Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq,    *&lt;pos<sub>1</sub>, pos<sub>2</sub>, ...    * pos<sub>freq-1</sub>&gt;    *&gt;<sup>*</sup>    *</ul>    *<p> This positional information facilitates phrase and proximity searching.    *<p>The enumeration is ordered by document number.  Each document number is    * greater than all that precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
 DECL|method|termPositions
 specifier|public
 name|TermPositions
