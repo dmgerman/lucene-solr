@@ -52,8 +52,8 @@ name|serialVersionUID
 init|=
 literal|1l
 decl_stmt|;
-comment|// Direct read-only access to state supported for streams since a writing stream implies no other concurrent streams
 DECL|field|buffers
+specifier|private
 name|ArrayList
 name|buffers
 init|=
@@ -158,9 +158,9 @@ operator|=
 name|lastModified
 expr_stmt|;
 block|}
-comment|// Only one writing stream with no concurrent reading streams, so no file synchronization required
 DECL|method|addBuffer
 specifier|final
+specifier|synchronized
 name|byte
 index|[]
 name|addBuffer
@@ -218,6 +218,44 @@ argument_list|)
 expr_stmt|;
 return|return
 name|buffer
+return|;
+block|}
+DECL|method|getBuffer
+specifier|final
+specifier|synchronized
+name|byte
+index|[]
+name|getBuffer
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+block|{
+return|return
+operator|(
+name|byte
+index|[]
+operator|)
+name|buffers
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
+return|;
+block|}
+DECL|method|numBuffers
+specifier|final
+specifier|synchronized
+name|int
+name|numBuffers
+parameter_list|()
+block|{
+return|return
+name|buffers
+operator|.
+name|size
+argument_list|()
 return|;
 block|}
 comment|/**    * Expert: allocate a new buffer.     * Subclasses can allocate differently.     * @param size size of allocated buffer.    * @return allocated buffer.    */

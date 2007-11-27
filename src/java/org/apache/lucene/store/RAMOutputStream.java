@@ -196,9 +196,7 @@ index|[]
 operator|)
 name|file
 operator|.
-name|buffers
-operator|.
-name|get
+name|getBuffer
 argument_list|(
 name|buffer
 operator|++
@@ -471,9 +469,7 @@ name|currentBufferIndex
 operator|==
 name|file
 operator|.
-name|buffers
-operator|.
-name|size
+name|numBuffers
 argument_list|()
 condition|)
 block|{
@@ -497,9 +493,7 @@ index|[]
 operator|)
 name|file
 operator|.
-name|buffers
-operator|.
-name|get
+name|getBuffer
 argument_list|(
 name|currentBufferIndex
 argument_list|)
