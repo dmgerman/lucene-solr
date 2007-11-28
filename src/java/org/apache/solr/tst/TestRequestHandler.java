@@ -618,11 +618,8 @@ operator|>=
 literal|2
 condition|)
 block|{
-name|QueryParsing
-operator|.
-name|SortSpec
-name|sortSpec
-init|=
+name|sort
+operator|=
 name|QueryParsing
 operator|.
 name|parseSort
@@ -639,24 +636,7 @@ operator|.
 name|getSchema
 argument_list|()
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|sortSpec
-operator|!=
-literal|null
-condition|)
-block|{
-name|sort
-operator|=
-name|sortSpec
-operator|.
-name|getSort
-argument_list|()
 expr_stmt|;
-comment|// ignore the count for now... it's currently only controlled by start& limit on req
-comment|// count = sortSpec.getCount();
-block|}
 block|}
 name|SolrIndexSearcher
 name|searcher
