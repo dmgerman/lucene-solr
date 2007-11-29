@@ -656,7 +656,6 @@ return|return
 name|retArray
 return|;
 block|}
-comment|// TODO: Remove warning after API has been finalized
 DECL|method|isPayloadAvailable
 specifier|public
 name|boolean
