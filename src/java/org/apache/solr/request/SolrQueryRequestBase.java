@@ -757,6 +757,10 @@ operator|.
 name|decref
 argument_list|()
 expr_stmt|;
+name|searcherHolder
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 comment|/** A Collection of ContentStreams passed to the request    */

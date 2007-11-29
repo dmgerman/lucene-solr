@@ -399,6 +399,26 @@ argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|)
 expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+name|CommonParams
+operator|.
+name|SORT
+argument_list|,
+literal|"score asc"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"with sort param [desc]"
+argument_list|,
+name|req
+argument_list|,
+literal|"//*[@numFound='3']"
+argument_list|)
+expr_stmt|;
 comment|// Using legacy ';' param
 name|args
 operator|.
