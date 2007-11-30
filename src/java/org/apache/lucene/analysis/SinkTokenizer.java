@@ -114,7 +114,7 @@ comment|/*<Token>*/
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * only valid if tokens have not been consumed,    * i.e. if this tokenizer is not part of another tokenstream    *    * @return A List of {@link org.apache.lucene.analysis.Token}s    */
+comment|/**    * Get the tokens in the internal List.    *<p/>    * WARNING: Adding tokens to this list requires the {@link #reset()} method to be called in order for them    * to be made available.  Also, this Tokenizer does nothing to protect against {@link java.util.ConcurrentModificationException}s    * in the case of adds happening while {@link #next(org.apache.lucene.analysis.Token)} is being called.    *    * @return A List of {@link org.apache.lucene.analysis.Token}s    */
 DECL|method|getTokens
 specifier|public
 name|List
@@ -126,7 +126,7 @@ return|return
 name|lst
 return|;
 block|}
-comment|/**    * Ignores the input result Token    * @param result    * @return The next {@link org.apache.lucene.analysis.Token} in the Sink.    * @throws IOException    */
+comment|/**    * Ignores the input result Token and returns the next token out of the list of cached tokens    * @param result The input token    * @return The next {@link org.apache.lucene.analysis.Token} in the Sink.    * @throws IOException    */
 DECL|method|next
 specifier|public
 name|Token
@@ -199,6 +199,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Reset the internal data structures to the start at the front of the list of tokens.  Should be called    * if tokens were added to the list after an invocation of {@link #next(Token)}    * @throws IOException    */
 DECL|method|reset
 specifier|public
 name|void
