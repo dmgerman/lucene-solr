@@ -128,6 +128,11 @@ name|boolean
 name|isExternal
 decl_stmt|;
 comment|// used by IndexWriter
+DECL|field|maxNumSegmentsOptimize
+name|int
+name|maxNumSegmentsOptimize
+decl_stmt|;
+comment|// used by IndexWriter
 DECL|field|segments
 specifier|final
 name|SegmentInfos
