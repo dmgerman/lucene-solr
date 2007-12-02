@@ -3272,9 +3272,9 @@ throws|throws
 name|Exception
 block|{
 return|return
-name|plugin
+literal|null
 return|;
-comment|// does not need to do anything
+comment|// used for map registration
 block|}
 block|}
 decl_stmt|;
@@ -3304,7 +3304,7 @@ name|NODESET
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Make sure somethign was loaded
+comment|// Make sure something was loaded
 if|if
 condition|(
 name|tokenizers
@@ -3426,9 +3426,9 @@ throws|throws
 name|Exception
 block|{
 return|return
-name|plugin
+literal|null
 return|;
-comment|// does not need to do anything
+comment|// used for map registration
 block|}
 block|}
 decl_stmt|;
