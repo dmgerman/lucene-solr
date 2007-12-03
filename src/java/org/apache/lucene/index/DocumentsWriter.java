@@ -1233,6 +1233,10 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+name|docStoreSegment
+operator|=
+literal|null
+expr_stmt|;
 name|files
 operator|=
 literal|null
@@ -1823,6 +1827,11 @@ DECL|field|fieldDataHashMask
 name|int
 name|fieldDataHashMask
 decl_stmt|;
+DECL|field|maxTermHit
+name|int
+name|maxTermHit
+decl_stmt|;
+comment|// Set to> 0 if this doc has a too-large term
 DECL|field|doFlushAfter
 name|boolean
 name|doFlushAfter
@@ -2279,6 +2288,10 @@ operator|=
 literal|0
 expr_stmt|;
 name|numVectorFields
+operator|=
+literal|0
+expr_stmt|;
+name|maxTermHit
 operator|=
 literal|0
 expr_stmt|;
@@ -6597,15 +6610,6 @@ name|postingsFreeList
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Pull next free Posting from free list
-name|p
-operator|=
-name|postingsFreeList
-index|[
-operator|--
-name|postingsFreeCount
-index|]
-expr_stmt|;
 specifier|final
 name|int
 name|textLen1
@@ -6631,23 +6635,16 @@ name|textLen1
 operator|>
 name|CHAR_BLOCK_SIZE
 condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"term length "
-operator|+
+block|{
+name|maxTermHit
+operator|=
 name|tokenTextLen
-operator|+
-literal|" exceeds max term length "
-operator|+
-operator|(
-name|CHAR_BLOCK_SIZE
-operator|-
-literal|1
-operator|)
-argument_list|)
-throw|;
+expr_stmt|;
+comment|// Just skip this term; we will throw an
+comment|// exception after processing all accepted
+comment|// terms in the doc
+return|return;
+block|}
 name|charPool
 operator|.
 name|nextBuffer
@@ -6671,6 +6668,15 @@ name|charPool
 operator|.
 name|byteUpto
 decl_stmt|;
+comment|// Pull next free Posting from free list
+name|p
+operator|=
+name|postingsFreeList
+index|[
+operator|--
+name|postingsFreeCount
+index|]
+expr_stmt|;
 name|p
 operator|.
 name|textStart
@@ -10211,7 +10217,7 @@ return|;
 block|}
 comment|/** Returns true if the caller (IndexWriter) should now    * flush. */
 DECL|method|addDocument
-name|boolean
+name|int
 name|addDocument
 parameter_list|(
 name|Document
@@ -10237,7 +10243,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|updateDocument
-name|boolean
+name|int
 name|updateDocument
 parameter_list|(
 name|Term
@@ -10266,7 +10272,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|updateDocument
-name|boolean
+name|int
 name|updateDocument
 parameter_list|(
 name|Document
@@ -10300,6 +10306,9 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+name|int
+name|maxTermHit
+decl_stmt|;
 try|try
 block|{
 comment|// This call is not synchronized and does all the work
@@ -10311,6 +10320,12 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 comment|// This call synchronized but fast
+name|maxTermHit
+operator|=
+name|state
+operator|.
+name|maxTermHit
+expr_stmt|;
 name|finishDocument
 argument_list|(
 name|state
@@ -10340,13 +10355,28 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-return|return
+name|int
+name|status
+init|=
+name|maxTermHit
+operator|<<
+literal|1
+decl_stmt|;
+if|if
+condition|(
 name|state
 operator|.
 name|doFlushAfter
 operator|||
 name|timeToFlushDeletes
 argument_list|()
+condition|)
+name|status
+operator|+=
+literal|1
+expr_stmt|;
+return|return
+name|status
 return|;
 block|}
 DECL|method|getNumBufferedDeleteTerms
