@@ -610,6 +610,32 @@ argument_list|,
 literal|"//*[@numFound='4']"
 argument_list|)
 expr_stmt|;
+comment|// test explicitly adding header=true (the default)
+name|loadLocal
+argument_list|(
+literal|"stream.file"
+argument_list|,
+name|filename
+argument_list|,
+literal|"commit"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"header"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:[100 TO 110]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='4']"
+argument_list|)
+expr_stmt|;
 comment|// test no overwrites
 name|loadLocal
 argument_list|(

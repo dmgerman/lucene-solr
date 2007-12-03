@@ -1330,6 +1330,7 @@ block|}
 elseif|else
 if|if
 condition|(
+operator|!
 name|hasHeader
 condition|)
 block|{
