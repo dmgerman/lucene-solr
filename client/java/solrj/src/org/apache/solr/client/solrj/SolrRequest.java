@@ -32,6 +32,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -79,6 +89,8 @@ DECL|interface|SolrRequest
 specifier|public
 interface|interface
 name|SolrRequest
+extends|extends
+name|Serializable
 block|{
 DECL|enum|METHOD
 specifier|public
