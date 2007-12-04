@@ -857,6 +857,7 @@ return|;
 block|}
 comment|/* Returns list of files in use by this instance,    * including any flushed segments. */
 DECL|method|files
+specifier|synchronized
 name|List
 name|files
 parameter_list|()

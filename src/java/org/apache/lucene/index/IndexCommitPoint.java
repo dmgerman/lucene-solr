@@ -20,6 +20,26 @@ begin_comment
 comment|/**  *<p>Expert: represents a single commit into an index as seen by the  * {@link IndexDeletionPolicy}.   *<p>  * Changes to the content of an index are made visible only  * after the writer who made that change had written to the  * directory a new segments file (<code>segments_N</code>). This point in   * time, when the action of writing of a new segments file to the  * directory is completed, is therefore an index commit point.  *<p>  * Each index commit point has a unique segments file associated  * with it. The segments file associated with a later   * index commit point would have a larger N.  */
 end_comment
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_interface
 DECL|interface|IndexCommitPoint
 specifier|public
@@ -32,6 +52,15 @@ specifier|public
 name|String
 name|getSegmentsFileName
 parameter_list|()
+function_decl|;
+comment|/**    * Returns all index files referenced by this commit point.    */
+DECL|method|getFileNames
+specifier|public
+name|Collection
+name|getFileNames
+parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Delete this commit point.    *<p>    * Upon calling this, the writer is notified that this commit     * point should be deleted.     *<p>    * Decision that a commit-point should be deleted is taken by the {@link IndexDeletionPolicy} in effect    * and therefore this should only be called by its {@link IndexDeletionPolicy#onInit onInit()} or     * {@link IndexDeletionPolicy#onCommit onCommit()} methods.   */
 DECL|method|delete
