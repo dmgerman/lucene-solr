@@ -1370,7 +1370,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * The simple parser just uses the params directly  */
+comment|/**  * The raw parser just uses the params directly  */
 end_comment
 
 begin_class
