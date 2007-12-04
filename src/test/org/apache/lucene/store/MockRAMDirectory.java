@@ -552,6 +552,34 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+comment|// Enforce write once:
+if|if
+condition|(
+name|existing
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"segments.gen"
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"file "
+operator|+
+name|name
+operator|+
+literal|" already exists"
+argument_list|)
+throw|;
+else|else
+block|{
 if|if
 condition|(
 name|existing
@@ -581,6 +609,7 @@ argument_list|,
 name|file
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 operator|new
