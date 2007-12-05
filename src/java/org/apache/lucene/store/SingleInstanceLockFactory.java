@@ -36,16 +36,6 @@ name|HashSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Enumeration
-import|;
-end_import
-
 begin_comment
 comment|/**  * Implements {@link LockFactory} for a single in-process instance,  * meaning all locking will take place through this one instance.  * Only use this {@link LockFactory} when you are certain all  * IndexReaders and IndexWriters for a given index are running  * against a single shared in-process Directory instance.  This is  * currently the default locking for RAMDirectory.  *  * @see LockFactory  */
 end_comment

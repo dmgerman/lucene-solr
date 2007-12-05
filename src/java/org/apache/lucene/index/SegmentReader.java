@@ -218,26 +218,6 @@ name|BitVector
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment
@@ -1368,10 +1348,6 @@ specifier|final
 name|String
 name|fieldsSegment
 decl_stmt|;
-specifier|final
-name|Directory
-name|dir
-decl_stmt|;
 if|if
 condition|(
 name|si
@@ -2028,10 +2004,6 @@ comment|// TODO: Change this in case FieldsReader becomes thread-safe in the fut
 specifier|final
 name|String
 name|fieldsSegment
-decl_stmt|;
-specifier|final
-name|Directory
-name|dir
 decl_stmt|;
 name|Directory
 name|storeDir

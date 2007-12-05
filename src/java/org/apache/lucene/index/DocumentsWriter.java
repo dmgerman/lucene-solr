@@ -8706,11 +8706,6 @@ operator|new
 name|ByteSliceReader
 argument_list|()
 decl_stmt|;
-DECL|field|lastDocID
-specifier|private
-name|int
-name|lastDocID
-decl_stmt|;
 DECL|field|docID
 specifier|private
 name|int
