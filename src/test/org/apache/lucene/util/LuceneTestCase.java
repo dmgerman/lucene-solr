@@ -47,6 +47,7 @@ end_comment
 begin_class
 DECL|class|LuceneTestCase
 specifier|public
+specifier|abstract
 class|class
 name|LuceneTestCase
 extends|extends
