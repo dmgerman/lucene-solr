@@ -232,6 +232,24 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//nothing to close
+name|input
+operator|=
+literal|null
+expr_stmt|;
+name|lst
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/**    * Reset the internal data structures to the start at the front of the list of tokens.  Should be called    * if tokens were added to the list after an invocation of {@link #next(Token)}    * @throws IOException    */
 DECL|method|reset
 specifier|public
