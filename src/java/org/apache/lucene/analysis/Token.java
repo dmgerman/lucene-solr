@@ -57,7 +57,7 @@ implements|implements
 name|Cloneable
 block|{
 DECL|field|DEFAULT_TYPE
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
