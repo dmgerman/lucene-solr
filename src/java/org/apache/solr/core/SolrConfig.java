@@ -537,8 +537,7 @@ name|getInt
 argument_list|(
 literal|"//HashDocSet/@maxSize"
 argument_list|,
-operator|-
-literal|1
+literal|3000
 argument_list|)
 expr_stmt|;
 name|pingQueryParams
