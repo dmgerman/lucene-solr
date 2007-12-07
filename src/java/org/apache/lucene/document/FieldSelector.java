@@ -38,7 +38,7 @@ name|FieldSelector
 extends|extends
 name|Serializable
 block|{
-comment|/**    *     * @param fieldName    * @return true if the {@link Field} with<code>fieldName</code> should be loaded or not    */
+comment|/**    *     * @param fieldName the field to accept or reject    * @return an instance of {@link FieldSelectorResult}    * if the {@link Field} named<code>fieldName</code> should be loaded.    */
 DECL|method|accept
 name|FieldSelectorResult
 name|accept
