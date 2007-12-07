@@ -66,11 +66,11 @@ block|{
 DECL|enum constant|STATUS
 name|STATUS
 block|,
-DECL|enum constant|STOP
-name|STOP
-block|,
 DECL|enum constant|LOAD
 name|LOAD
+block|,
+DECL|enum constant|UNLOAD
+name|UNLOAD
 block|,
 DECL|enum constant|RELOAD
 name|RELOAD
