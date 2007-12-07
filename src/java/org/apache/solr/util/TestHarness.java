@@ -548,6 +548,13 @@ operator|=
 operator|new
 name|SolrCore
 argument_list|(
+literal|"test-"
+operator|+
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+argument_list|,
 name|dataDirectory
 argument_list|,
 name|solrConfig

@@ -679,7 +679,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
@@ -691,13 +691,20 @@ name|FINEST
 argument_list|)
 condition|)
 block|{
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
 name|finest
 argument_list|(
-literal|"deleted "
+literal|"["
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"] deleted "
 operator|+
 name|num
 operator|+
@@ -1005,7 +1012,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
@@ -1017,13 +1024,20 @@ name|FINE
 argument_list|)
 condition|)
 block|{
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
 name|fine
 argument_list|(
-literal|"docs deleted:"
+literal|"["
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"] docs deleted:"
 operator|+
 name|totDeleted
 argument_list|)

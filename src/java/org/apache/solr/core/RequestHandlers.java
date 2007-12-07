@@ -963,9 +963,6 @@ try|try
 block|{
 name|_handler
 operator|=
-operator|(
-name|SolrRequestHandler
-operator|)
 name|core
 operator|.
 name|createRequestHandler

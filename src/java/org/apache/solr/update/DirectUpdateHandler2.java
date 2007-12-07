@@ -644,13 +644,20 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"REMOVING ALL DOCUMENTS FROM INDEX"
+literal|"["
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"] REMOVING ALL DOCUMENTS FROM INDEX"
 argument_list|)
 expr_stmt|;
 name|closeWriter
@@ -1624,7 +1631,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
@@ -1636,13 +1643,20 @@ name|FINE
 argument_list|)
 condition|)
 block|{
-name|SolrCore
+name|core
 operator|.
 name|log
 operator|.
 name|fine
 argument_list|(
-literal|"docs deleted by query:"
+literal|"["
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"] docs deleted by query:"
 operator|+
 name|totDeleted
 argument_list|)

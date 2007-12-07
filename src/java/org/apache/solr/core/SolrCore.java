@@ -142,6 +142,18 @@ name|javax
 operator|.
 name|xml
 operator|.
+name|parsers
+operator|.
+name|ParserConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
 name|xpath
 operator|.
 name|XPathConstants
@@ -201,20 +213,6 @@ operator|.
 name|store
 operator|.
 name|FSDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|ResourceLoader
 import|;
 end_import
 
@@ -656,6 +654,18 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment
@@ -694,6 +704,12 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|name
+specifier|private
+specifier|final
+name|String
+name|name
+decl_stmt|;
 DECL|field|solrConfig
 specifier|private
 specifier|final
@@ -729,11 +745,6 @@ specifier|private
 specifier|final
 name|long
 name|startTime
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
 decl_stmt|;
 DECL|field|reqHandlers
 specifier|private
@@ -922,6 +933,16 @@ name|getSchemaFile
 argument_list|()
 return|;
 block|}
+DECL|method|getName
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
+block|}
 comment|/**    * @since solr 1.3    */
 DECL|method|getInfoRegistry
 specifier|public
@@ -967,7 +988,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Searching for listeners: "
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Searching for listeners: "
 operator|+
 name|path
 argument_list|)
@@ -1067,7 +1092,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"added SolrEventListener: "
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Added SolrEventListener: "
 operator|+
 name|listener
 argument_list|)
@@ -1243,7 +1272,11 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"WARNING: Solr index directory '"
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] WARNING: Solr index directory '"
 operator|+
 name|getIndexDir
 argument_list|()
@@ -1272,7 +1305,11 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"Solr index directory '"
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Solr index directory '"
 operator|+
 name|dirFile
 operator|+
@@ -1619,6 +1656,8 @@ operator|=
 operator|new
 name|SolrCore
 argument_list|(
+literal|"default"
+argument_list|,
 literal|null
 argument_list|,
 operator|new
@@ -1657,11 +1696,45 @@ return|return
 name|instance
 return|;
 block|}
+DECL|method|SolrCore
+specifier|public
+name|SolrCore
+parameter_list|(
+name|String
+name|dataDir
+parameter_list|,
+name|IndexSchema
+name|schema
+parameter_list|)
+throws|throws
+name|ParserConfigurationException
+throws|,
+name|IOException
+throws|,
+name|SAXException
+block|{
+name|this
+argument_list|(
+literal|"core"
+argument_list|,
+name|dataDir
+argument_list|,
+operator|new
+name|SolrConfig
+argument_list|()
+argument_list|,
+name|schema
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Creates a new core and register it in the list of cores.    * If a core with the same name already exists, it will be stopped and replaced by this one.    *@param dataDir the index directory    *@param config a solr config instance    *@param schema a solr schema instance    */
 DECL|method|SolrCore
 specifier|public
 name|SolrCore
 parameter_list|(
+name|String
+name|name
+parameter_list|,
 name|String
 name|dataDir
 parameter_list|,
@@ -1686,6 +1759,12 @@ operator|=
 name|this
 expr_stmt|;
 comment|// set singleton
+name|this
+operator|.
+name|name
+operator|=
+name|name
+expr_stmt|;
 name|SolrResourceLoader
 name|loader
 init|=
@@ -1722,7 +1801,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Opening new SolrCore at "
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Opening new SolrCore at "
 operator|+
 name|loader
 operator|.
@@ -1779,6 +1862,15 @@ operator|.
 name|solrConfig
 operator|=
 name|config
+expr_stmt|;
+name|this
+operator|.
+name|startTime
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -2149,7 +2241,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"CLOSING SolrCore!"
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] CLOSING SolrCore!"
 argument_list|)
 expr_stmt|;
 try|try
@@ -2590,7 +2686,11 @@ name|log
 operator|.
 name|severe
 argument_list|(
-literal|"ERROR!!! onDeckSearchers is "
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] ERROR!!! onDeckSearchers is "
 operator|+
 name|onDeckSearchers
 argument_list|)
@@ -2625,6 +2725,12 @@ name|log
 operator|.
 name|warning
 argument_list|(
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] "
+operator|+
 name|msg
 argument_list|)
 expr_stmt|;
@@ -2657,7 +2763,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"PERFORMANCE WARNING: Overlapping onDeckSearchers="
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] PERFORMANCE WARNING: Overlapping onDeckSearchers="
 operator|+
 name|onDeckSearchers
 argument_list|)
@@ -3262,7 +3372,11 @@ name|log
 operator|.
 name|severe
 argument_list|(
-literal|"ERROR!!! onDeckSearchers after decrement="
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] ERROR!!! onDeckSearchers after decrement="
 operator|+
 name|onDeckSearchers
 argument_list|)
@@ -3433,7 +3547,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Registered new searcher "
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Registered new searcher "
 operator|+
 name|newSearcher
 argument_list|)
@@ -3476,7 +3594,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Closing main searcher on request."
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Closing main searcher on request."
 argument_list|)
 expr_stmt|;
 synchronized|synchronized
@@ -3537,7 +3659,11 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"Null Request Handler '"
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Null Request Handler '"
 operator|+
 name|req
 operator|.
@@ -3620,6 +3746,12 @@ name|log
 operator|.
 name|info
 argument_list|(
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] "
+operator|+
 name|req
 operator|.
 name|getContext
@@ -3692,7 +3824,11 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"Unknown Request Handler '"
+literal|"["
+operator|+
+name|name
+operator|+
+literal|"] Unknown Request Handler '"
 operator|+
 name|req
 operator|.

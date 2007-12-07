@@ -3228,7 +3228,7 @@ name|finfo
 return|;
 block|}
 DECL|method|getIndexInfo
-specifier|private
+specifier|public
 specifier|static
 name|SimpleOrderedMap
 argument_list|<

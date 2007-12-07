@@ -32,7 +32,7 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|LargeVolumeTestBase
+name|MultiCoreExampleTestBase
 import|;
 end_import
 
@@ -70,45 +70,17 @@ name|CommonsHttpSolrServer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|SchemaField
-import|;
-end_import
-
 begin_comment
-comment|/**  * @version $Id$  * @since solr 1.3  */
+comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|LargeVolumeJettyTest
+DECL|class|MultiCoreExampleJettyTest
 specifier|public
 class|class
-name|LargeVolumeJettyTest
+name|MultiCoreExampleJettyTest
 extends|extends
-name|LargeVolumeTestBase
+name|MultiCoreExampleTestBase
 block|{
 DECL|field|server
 name|SolrServer

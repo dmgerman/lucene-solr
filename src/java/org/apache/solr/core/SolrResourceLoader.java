@@ -487,7 +487,7 @@ name|String
 name|instanceDir
 parameter_list|,
 name|ClassLoader
-name|loader
+name|parent
 parameter_list|)
 block|{
 if|if
@@ -496,7 +496,6 @@ name|instanceDir
 operator|==
 literal|null
 condition|)
-block|{
 name|instanceDir
 operator|=
 name|SolrResourceLoader
@@ -504,7 +503,6 @@ operator|.
 name|locateInstanceDir
 argument_list|()
 expr_stmt|;
-block|}
 name|this
 operator|.
 name|instanceDir
@@ -527,6 +525,38 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|classLoader
+operator|=
+name|createClassLoader
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|this
+operator|.
+name|instanceDir
+operator|+
+literal|"lib/"
+argument_list|)
+argument_list|,
+name|parent
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|createClassLoader
+specifier|static
+name|ClassLoader
+name|createClassLoader
+parameter_list|(
+name|File
+name|f
+parameter_list|,
+name|ClassLoader
+name|loader
+parameter_list|)
+block|{
 if|if
 condition|(
 name|loader
@@ -534,7 +564,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// NB5.5/win32/1.5_10: need to go thru local var or classLoader is not set!
 name|loader
 operator|=
 name|Thread
@@ -546,17 +575,6 @@ name|getContextClassLoader
 argument_list|()
 expr_stmt|;
 block|}
-name|File
-name|f
-init|=
-operator|new
-name|File
-argument_list|(
-name|instanceDir
-operator|+
-literal|"lib/"
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|f
@@ -644,8 +662,7 @@ literal|"' to Solr classloader"
 argument_list|)
 expr_stmt|;
 block|}
-name|loader
-operator|=
+return|return
 name|URLClassLoader
 operator|.
 name|newInstance
@@ -654,7 +671,7 @@ name|jars
 argument_list|,
 name|loader
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -675,12 +692,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|this
+name|log
 operator|.
-name|classLoader
-operator|=
-name|loader
+name|info
+argument_list|(
+literal|"Reusing parent classloader"
+argument_list|)
 expr_stmt|;
+return|return
+name|loader
+return|;
 block|}
 DECL|method|SolrResourceLoader
 specifier|public
@@ -792,7 +813,7 @@ name|isAbsolute
 argument_list|()
 condition|)
 block|{
-comment|// try $CWD/solrconf/
+comment|// try $CWD/conf/
 name|f
 operator|=
 operator|new
@@ -1454,7 +1475,11 @@ name|c
 operator|.
 name|lookup
 argument_list|(
-literal|"java:comp/env/solr/home"
+literal|"java:comp/env/"
+operator|+
+name|project
+operator|+
+literal|"/home"
 argument_list|)
 expr_stmt|;
 name|log
@@ -1477,7 +1502,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"JNDI not configured for Solr (NoInitialContextEx)"
+literal|"JNDI not configured for "
+operator|+
+name|project
+operator|+
+literal|" (NoInitialContextEx)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1491,7 +1520,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"No /solr/home in JNDI"
+literal|"No /"
+operator|+
+name|project
+operator|+
+literal|"/home in JNDI"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1552,7 +1585,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"using system property solr.home: "
+literal|"using system property "
+operator|+
+name|prop
+operator|+
+literal|": "
 operator|+
 name|home
 argument_list|)
@@ -1577,7 +1614,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Solr home defaulted to '"
+name|project
+operator|+
+literal|" home defaulted to '"
 operator|+
 name|home
 operator|+

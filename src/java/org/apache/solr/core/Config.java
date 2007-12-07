@@ -303,7 +303,11 @@ name|SAXException
 block|{
 name|this
 argument_list|(
+operator|new
+name|SolrResourceLoader
+argument_list|(
 name|instanceDir
+argument_list|)
 argument_list|,
 name|name
 argument_list|,
@@ -317,8 +321,8 @@ DECL|method|Config
 specifier|public
 name|Config
 parameter_list|(
-name|String
-name|instanceDir
+name|SolrResourceLoader
+name|loader
 parameter_list|,
 name|String
 name|name
@@ -340,11 +344,7 @@ name|this
 operator|.
 name|loader
 operator|=
-operator|new
-name|SolrResourceLoader
-argument_list|(
-name|instanceDir
-argument_list|)
+name|loader
 expr_stmt|;
 name|this
 operator|.
