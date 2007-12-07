@@ -768,10 +768,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|dirName
-argument_list|,
-literal|null
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -879,10 +875,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|dirName
-argument_list|,
-literal|null
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|// open writer
@@ -1277,10 +1269,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|dirName
-argument_list|,
-literal|null
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|// make sure searching sees right # hits
@@ -1618,10 +1606,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|dirName
-argument_list|,
-literal|null
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|IndexWriter
@@ -1795,10 +1779,6 @@ name|fullDir
 argument_list|(
 name|outputDir
 argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|boolean

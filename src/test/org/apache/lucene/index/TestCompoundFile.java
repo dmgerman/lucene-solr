@@ -250,10 +250,6 @@ operator|.
 name|getDirectory
 argument_list|(
 name|file
-argument_list|,
-literal|null
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

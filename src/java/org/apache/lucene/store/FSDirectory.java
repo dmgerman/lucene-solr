@@ -160,25 +160,6 @@ name|disableLocks
 init|=
 literal|false
 decl_stmt|;
-DECL|field|DEFAULT_DO_SYNC
-specifier|private
-specifier|static
-name|boolean
-name|DEFAULT_DO_SYNC
-init|=
-literal|false
-decl_stmt|;
-comment|// True if we should call sync() before closing a file.
-comment|// This improves chances that index will still be
-comment|// consistent if the machine or OS abruptly crashes.  See
-comment|// LUCENE-1044.
-DECL|field|doSync
-specifier|private
-name|boolean
-name|doSync
-init|=
-name|DEFAULT_DO_SYNC
-decl_stmt|;
 comment|// TODO: should this move up to the Directory base class?  Also: should we
 comment|// make a per-instance (in addition to the static "default") version?
 comment|/**    * Set whether Lucene's use of lock files is disabled. By default,     * lock files are enabled. They should only be disabled if the index    * is on a read-only medium like a CD-ROM.    */
@@ -412,12 +393,10 @@ name|path
 argument_list|)
 argument_list|,
 literal|null
-argument_list|,
-name|DEFAULT_DO_SYNC
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.  If null, the default    *        {@link SimpleFSLockFactory} is used.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -443,42 +422,6 @@ name|path
 argument_list|)
 argument_list|,
 name|lockFactory
-argument_list|,
-name|DEFAULT_DO_SYNC
-argument_list|)
-return|;
-block|}
-comment|/** Returns the directory instance for the named location.    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.  If null, the default    *        {@link SimpleFSLockFactory} is used.    * @param doSync if true (the default), sync() is called    *        on all file descriptors before close().  This    *        improves the likelihood that the index will    *        remain consistent when the OS or machine crashes    *        or the power cord is pulled.    * @return the FSDirectory for the named file.  */
-DECL|method|getDirectory
-specifier|public
-specifier|static
-name|FSDirectory
-name|getDirectory
-parameter_list|(
-name|String
-name|path
-parameter_list|,
-name|LockFactory
-name|lockFactory
-parameter_list|,
-name|boolean
-name|doSync
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|getDirectory
-argument_list|(
-operator|new
-name|File
-argument_list|(
-name|path
-argument_list|)
-argument_list|,
-name|lockFactory
-argument_list|,
-name|doSync
 argument_list|)
 return|;
 block|}
@@ -501,12 +444,10 @@ argument_list|(
 name|file
 argument_list|,
 literal|null
-argument_list|,
-name|DEFAULT_DO_SYNC
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.  If null, the default    *        {@link SimpleFSLockFactory} is used.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -518,36 +459,6 @@ name|file
 parameter_list|,
 name|LockFactory
 name|lockFactory
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|getDirectory
-argument_list|(
-name|file
-argument_list|,
-name|lockFactory
-argument_list|,
-name|DEFAULT_DO_SYNC
-argument_list|)
-return|;
-block|}
-comment|/** Returns the directory instance for the named location.    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.  If null, the default    *        {@link SimpleFSLockFactory} is used.    * @param doSync if true (the default), sync() is called    *        on all file descriptors before close().  This    *        improves the likelihood that the index will    *        remain consistent when the OS or machine crashes    *        or the power cord is pulled.    * @return the FSDirectory for the named file.  */
-DECL|method|getDirectory
-specifier|public
-specifier|static
-name|FSDirectory
-name|getDirectory
-parameter_list|(
-name|File
-name|file
-parameter_list|,
-name|LockFactory
-name|lockFactory
-parameter_list|,
-name|boolean
-name|doSync
 parameter_list|)
 throws|throws
 name|IOException
@@ -678,8 +589,6 @@ argument_list|(
 name|file
 argument_list|,
 name|lockFactory
-argument_list|,
-name|doSync
 argument_list|)
 expr_stmt|;
 name|DIRECTORIES
@@ -947,9 +856,6 @@ name|path
 parameter_list|,
 name|LockFactory
 name|lockFactory
-parameter_list|,
-name|boolean
-name|doSync
 parameter_list|)
 throws|throws
 name|IOException
@@ -961,12 +867,6 @@ comment|// instantiate that; else, use SimpleFSLockFactory:
 name|directory
 operator|=
 name|path
-expr_stmt|;
-name|this
-operator|.
-name|doSync
-operator|=
-name|doSync
 expr_stmt|;
 name|boolean
 name|doClearLockID
@@ -1744,8 +1644,6 @@ operator|new
 name|FSIndexOutput
 argument_list|(
 name|file
-argument_list|,
-name|doSync
 argument_list|)
 return|;
 block|}
@@ -2436,38 +2334,12 @@ specifier|private
 name|boolean
 name|isOpen
 decl_stmt|;
-DECL|field|doSync
-specifier|private
-name|boolean
-name|doSync
-decl_stmt|;
 DECL|method|FSIndexOutput
 specifier|public
 name|FSIndexOutput
 parameter_list|(
 name|File
 name|path
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|path
-argument_list|,
-name|DEFAULT_DO_SYNC
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|FSIndexOutput
-specifier|public
-name|FSIndexOutput
-parameter_list|(
-name|File
-name|path
-parameter_list|,
-name|boolean
-name|doSync
 parameter_list|)
 throws|throws
 name|IOException
@@ -2485,12 +2357,6 @@ expr_stmt|;
 name|isOpen
 operator|=
 literal|true
-expr_stmt|;
-name|this
-operator|.
-name|doSync
-operator|=
-name|doSync
 expr_stmt|;
 block|}
 comment|/** output methods: */
@@ -2538,28 +2404,11 @@ condition|(
 name|isOpen
 condition|)
 block|{
-try|try
-block|{
 name|super
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|doSync
-condition|)
-name|file
-operator|.
-name|getFD
-argument_list|()
-operator|.
-name|sync
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
 name|file
 operator|.
 name|close
@@ -2569,7 +2418,6 @@ name|isOpen
 operator|=
 literal|false
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/** Random-access methods */
