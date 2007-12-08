@@ -200,6 +200,15 @@ name|QueryComponent
 extends|extends
 name|SearchComponent
 block|{
+DECL|field|COMPONENT_NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COMPONENT_NAME
+init|=
+literal|"query"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|prepare

@@ -106,6 +106,20 @@ operator|=
 name|num
 expr_stmt|;
 block|}
+DECL|method|setSort
+specifier|public
+name|void
+name|setSort
+parameter_list|(
+name|Sort
+name|s
+parameter_list|)
+block|{
+name|sort
+operator|=
+name|s
+expr_stmt|;
+block|}
 comment|/**    * Gets the Lucene Sort object, or null for the default sort    * by score descending.    */
 DECL|method|getSort
 specifier|public

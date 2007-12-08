@@ -126,6 +126,22 @@ name|SolrQueryResponse
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|plugin
+operator|.
+name|NamedListInitializedPlugin
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO!  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -138,6 +154,8 @@ class|class
 name|SearchComponent
 implements|implements
 name|SolrInfoMBean
+implements|,
+name|NamedListInitializedPlugin
 block|{
 DECL|method|prepare
 specifier|public
@@ -171,6 +189,18 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|//////////////////////// NamedListInitializedPlugin methods //////////////////////
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|NamedList
+name|args
+parameter_list|)
+block|{
+comment|// By default do nothing
+block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
 DECL|method|getName
 specifier|public
