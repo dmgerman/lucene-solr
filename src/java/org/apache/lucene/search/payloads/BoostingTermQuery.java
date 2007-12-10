@@ -338,8 +338,6 @@ name|getPositions
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**        * Go to the next document        *         */
-comment|/*public boolean next() throws IOException {          boolean result = super.next();         //set the payload.  super.next() properly increments the term positions         if (result) {           //Load the payloads for all            processPayload();         }          return result;       }        public boolean skipTo(int target) throws IOException {         boolean result = super.skipTo(target);          if (result) {           processPayload();         }          return result;       }*/
 DECL|method|setFreqCurrentDoc
 specifier|protected
 name|boolean
