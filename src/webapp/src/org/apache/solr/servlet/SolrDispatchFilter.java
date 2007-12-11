@@ -1384,6 +1384,62 @@ comment|// otherwise, let's ensure the core is in the SolrCore request attribute
 comment|// the servlet can retrieve it
 else|else
 block|{
+comment|// TEMP -- to support /admin multicore grab the core from the request
+comment|// TODO -- for muticore /admin support, strip the corename from the path
+comment|// and forward to the /admin jsp file
+comment|//  req.getRequestDispatcher( path ).forward( request, response );
+name|String
+name|corename
+init|=
+name|request
+operator|.
+name|getParameter
+argument_list|(
+literal|"core"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|corename
+operator|!=
+literal|null
+condition|)
+block|{
+name|core
+operator|=
+name|multicore
+operator|.
+name|getCore
+argument_list|(
+name|corename
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|core
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Can not find core: '"
+operator|+
+name|corename
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
+block|}
 name|req
 operator|.
 name|setAttribute
