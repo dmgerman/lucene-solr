@@ -1272,6 +1272,36 @@ return|return
 name|allowDocsOutOfOrder
 return|;
 block|}
+comment|/**    * @deprecated Use {@link #setAllowDocsOutOfOrder(boolean)} instead.     */
+DECL|method|setUseScorer14
+specifier|public
+specifier|static
+name|void
+name|setUseScorer14
+parameter_list|(
+name|boolean
+name|use14
+parameter_list|)
+block|{
+name|setAllowDocsOutOfOrder
+argument_list|(
+name|use14
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @deprecated Use {@link #getAllowDocsOutOfOrder()} instead.    */
+DECL|method|getUseScorer14
+specifier|public
+specifier|static
+name|boolean
+name|getUseScorer14
+parameter_list|()
+block|{
+return|return
+name|getAllowDocsOutOfOrder
+argument_list|()
+return|;
+block|}
 DECL|method|createWeight
 specifier|protected
 name|Weight
