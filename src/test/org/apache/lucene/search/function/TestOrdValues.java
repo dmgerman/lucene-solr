@@ -801,6 +801,12 @@ name|innerArray
 init|=
 literal|null
 decl_stmt|;
+name|boolean
+name|warned
+init|=
+literal|false
+decl_stmt|;
+comment|// print warning once
 for|for
 control|(
 name|int
@@ -863,6 +869,8 @@ argument_list|(
 name|q
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|assertEquals
 argument_list|(
 literal|"All docs should be matched!"
@@ -952,6 +960,41 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|warned
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: "
+operator|+
+name|testName
+argument_list|()
+operator|+
+literal|" cannot fully test values of "
+operator|+
+name|q
+argument_list|)
+expr_stmt|;
+name|warned
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
+block|}
 name|ValueSource
 name|vs
 decl_stmt|;
@@ -1032,6 +1075,8 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|log
 argument_list|(
 literal|"compare (should differ): "
@@ -1078,6 +1123,41 @@ name|getInnerArray
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|warned
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: "
+operator|+
+name|testName
+argument_list|()
+operator|+
+literal|" cannot fully test values of "
+operator|+
+name|q
+argument_list|)
+expr_stmt|;
+name|warned
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
 comment|// verify new values are reloaded (not reused) for a new reader
 name|s
 operator|=
@@ -1141,6 +1221,8 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|log
 argument_list|(
 literal|"compare (should differ): "
@@ -1187,6 +1269,60 @@ name|getInnerArray
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|warned
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: "
+operator|+
+name|testName
+argument_list|()
+operator|+
+literal|" cannot fully test values of "
+operator|+
+name|q
+argument_list|)
+expr_stmt|;
+name|warned
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
+block|}
+DECL|method|testName
+specifier|private
+name|String
+name|testName
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"."
+operator|+
+name|getName
+argument_list|()
+return|;
 block|}
 block|}
 end_class

@@ -44,33 +44,6 @@ class|class
 name|DocValues
 block|{
 comment|/*    * DocValues is distinct from ValueSource because    * there needs to be an object created at query evaluation time that    * is not referenced by the query itself because:    * - Query objects should be MT safe    * - For caching, Query objects are often used as keys... you don't    *   want the Query carrying around big objects    */
-DECL|field|nVals
-specifier|private
-name|int
-name|nVals
-decl_stmt|;
-comment|/**    * Constructor with input number of values(docs).    * @param nVals    */
-DECL|method|DocValues
-specifier|public
-name|DocValues
-parameter_list|(
-name|int
-name|nVals
-parameter_list|)
-block|{
-name|this
-operator|.
-name|nVals
-operator|=
-name|nVals
-expr_stmt|;
-block|}
-comment|// prevent using this constructor
-DECL|method|DocValues
-specifier|private
-name|DocValues
-parameter_list|()
-block|{        }
 comment|/**    * Return doc value as a float.     *<P>Mandatory: every DocValues implementation must implement at least this method.     * @param doc document whose float value is requested.     */
 DECL|method|floatVal
 specifier|public
@@ -201,19 +174,19 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: for test purposes only, return the inner array of values, or null if not applicable.    *<p>    * Allows tests to verify that loaded values are:    *<ol>    *<li>indeed cached/reused.</li>    *<li>stored in the expected size/type (byte/short/int/float).</li>    *</ol>    * Note: Tested implementations of DocValues must override this method for the test to pass!    */
+comment|/**    * Expert: for test purposes only, return the inner array of values, or null if not applicable.    *<p>    * Allows tests to verify that loaded values are:    *<ol>    *<li>indeed cached/reused.</li>    *<li>stored in the expected size/type (byte/short/int/float).</li>    *</ol>    * Note: implementations of DocValues must override this method for     * these test elements to be tested, Otherwise the test would not fail, just     * print a warning.    */
 DECL|method|getInnerArray
 name|Object
 name|getInnerArray
 parameter_list|()
 block|{
-return|return
+throw|throw
 operator|new
-name|Object
-index|[
-literal|0
-index|]
-return|;
+name|UnsupportedOperationException
+argument_list|(
+literal|"this optional method is for test purposes only"
+argument_list|)
+throw|;
 block|}
 comment|// --- some simple statistics on values
 DECL|field|minVal
@@ -267,29 +240,37 @@ name|sum
 init|=
 literal|0
 decl_stmt|;
-for|for
-control|(
 name|int
-name|i
+name|n
 init|=
 literal|0
-init|;
-name|i
-operator|<
-name|nVals
-condition|;
-name|i
-operator|++
-control|)
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|float
 name|val
-init|=
+decl_stmt|;
+try|try
+block|{
+name|val
+operator|=
 name|floatVal
 argument_list|(
-name|i
+name|n
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ArrayIndexOutOfBoundsException
+name|e
+parameter_list|)
+block|{
+break|break;
+block|}
 name|sum
 operator|+=
 name|val
@@ -321,7 +302,7 @@ name|avgVal
 operator|=
 name|sum
 operator|/
-name|nVals
+name|n
 expr_stmt|;
 name|computed
 operator|=
