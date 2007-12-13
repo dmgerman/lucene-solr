@@ -166,7 +166,7 @@ specifier|static
 name|float
 name|TEST_SCORE_TOLERANCE_DELTA
 init|=
-literal|0.00005f
+literal|0.001f
 decl_stmt|;
 DECL|field|DBG
 specifier|protected
