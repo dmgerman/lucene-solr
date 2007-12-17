@@ -52,6 +52,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|LinkedHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -109,7 +119,7 @@ block|{
 name|_fields
 operator|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<
 name|String
 argument_list|,
