@@ -27,12 +27,6 @@ specifier|abstract
 class|class
 name|PriorityQueue
 block|{
-DECL|field|heap
-specifier|private
-name|Object
-index|[]
-name|heap
-decl_stmt|;
 DECL|field|size
 specifier|private
 name|int
@@ -42,6 +36,12 @@ DECL|field|maxSize
 specifier|private
 name|int
 name|maxSize
+decl_stmt|;
+DECL|field|heap
+specifier|protected
+name|Object
+index|[]
+name|heap
 decl_stmt|;
 comment|/** Determines the ordering of objects in this priority queue.  Subclasses     must define this one method. */
 DECL|method|lessThan
@@ -74,11 +74,25 @@ literal|0
 expr_stmt|;
 name|int
 name|heapSize
-init|=
+decl_stmt|;
+if|if
+condition|(
+literal|0
+operator|==
+name|maxSize
+condition|)
+comment|// We allocate 1 extra to avoid if statement in top()
+name|heapSize
+operator|=
+literal|2
+expr_stmt|;
+else|else
+name|heapSize
+operator|=
 name|maxSize
 operator|+
 literal|1
-decl_stmt|;
+expr_stmt|;
 name|heap
 operator|=
 operator|new
@@ -129,6 +143,25 @@ name|Object
 name|element
 parameter_list|)
 block|{
+return|return
+name|insertWithOverflow
+argument_list|(
+name|element
+argument_list|)
+operator|!=
+name|element
+return|;
+block|}
+comment|/**    * insertWithOverflow() is the same as insert() except its    * return value: it returns the object (if any) that was    * dropped off the heap because it was full. This can be    * the given parameter (in case it is smaller than the    * full heap's minimum, and couldn't be added), or another    * object that was previously the smallest value in the    * heap and now has been replaced by a larger one, or null    * if the queue wasn't yet full with maxSize elements.    */
+DECL|method|insertWithOverflow
+specifier|public
+name|Object
+name|insertWithOverflow
+parameter_list|(
+name|Object
+name|element
+parameter_list|)
+block|{
 if|if
 condition|(
 name|size
@@ -142,7 +175,7 @@ name|element
 argument_list|)
 expr_stmt|;
 return|return
-literal|true
+literal|null
 return|;
 block|}
 elseif|else
@@ -157,11 +190,21 @@ name|lessThan
 argument_list|(
 name|element
 argument_list|,
-name|top
-argument_list|()
+name|heap
+index|[
+literal|1
+index|]
 argument_list|)
 condition|)
 block|{
+name|Object
+name|ret
+init|=
+name|heap
+index|[
+literal|1
+index|]
+decl_stmt|;
 name|heap
 index|[
 literal|1
@@ -173,13 +216,15 @@ name|adjustTop
 argument_list|()
 expr_stmt|;
 return|return
-literal|true
+name|ret
 return|;
 block|}
 else|else
+block|{
 return|return
-literal|false
+name|element
 return|;
+block|}
 block|}
 comment|/** Returns the least element of the PriorityQueue in constant time. */
 DECL|method|top
@@ -189,21 +234,14 @@ name|Object
 name|top
 parameter_list|()
 block|{
-if|if
-condition|(
-name|size
-operator|>
-literal|0
-condition|)
+comment|// We don't need to check size here: if maxSize is 0,
+comment|// then heap is length 2 array with both entries null.
+comment|// If size is 0 then heap[1] is already null.
 return|return
 name|heap
 index|[
 literal|1
 index|]
-return|;
-else|else
-return|return
-literal|null
 return|;
 block|}
 comment|/** Removes and returns the least element of the PriorityQueue in log(size)     time. */

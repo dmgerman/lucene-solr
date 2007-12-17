@@ -311,13 +311,12 @@ return|return
 name|maxscore
 return|;
 block|}
-comment|// The signature of this method takes a FieldDoc in order to avoid
-comment|// the unneeded cast to retrieve the score.
-comment|// inherit javadoc
-DECL|method|insert
-specifier|public
-name|boolean
-name|insert
+comment|// Update maxscore.
+DECL|method|updateMaxScore
+specifier|private
+specifier|final
+name|void
+name|updateMaxScore
 parameter_list|(
 name|FieldDoc
 name|fdoc
@@ -334,6 +333,24 @@ argument_list|,
 name|fdoc
 operator|.
 name|score
+argument_list|)
+expr_stmt|;
+block|}
+comment|// The signature of this method takes a FieldDoc in order to avoid
+comment|// the unneeded cast to retrieve the score.
+comment|// inherit javadoc
+DECL|method|insert
+specifier|public
+name|boolean
+name|insert
+parameter_list|(
+name|FieldDoc
+name|fdoc
+parameter_list|)
+block|{
+name|updateMaxScore
+argument_list|(
+name|fdoc
 argument_list|)
 expr_stmt|;
 return|return
@@ -364,6 +381,35 @@ operator|(
 name|FieldDoc
 operator|)
 name|fdoc
+argument_list|)
+return|;
+block|}
+comment|// This overrides PriorityQueue.insertWithOverflow() so that
+comment|// updateMaxScore(FieldDoc) that keeps track of the score isn't accidentally
+comment|// bypassed.
+DECL|method|insertWithOverflow
+specifier|public
+name|Object
+name|insertWithOverflow
+parameter_list|(
+name|Object
+name|element
+parameter_list|)
+block|{
+name|updateMaxScore
+argument_list|(
+operator|(
+name|FieldDoc
+operator|)
+name|element
+argument_list|)
+expr_stmt|;
+return|return
+name|super
+operator|.
+name|insertWithOverflow
+argument_list|(
+name|element
 argument_list|)
 return|;
 block|}

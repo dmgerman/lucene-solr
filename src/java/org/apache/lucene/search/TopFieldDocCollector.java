@@ -52,6 +52,11 @@ name|TopFieldDocCollector
 extends|extends
 name|TopDocCollector
 block|{
+DECL|field|reusableFD
+specifier|private
+name|FieldDoc
+name|reusableFD
+decl_stmt|;
 comment|/** Construct to collect a given number of hits.    * @param reader the index to be searched    * @param sort the sort criteria    * @param numHits the maximum number of hits to collect    */
 DECL|method|TopFieldDocCollector
 specifier|public
@@ -110,10 +115,14 @@ block|{
 name|totalHits
 operator|++
 expr_stmt|;
-name|hq
-operator|.
-name|insert
-argument_list|(
+if|if
+condition|(
+name|reusableFD
+operator|==
+literal|null
+condition|)
+name|reusableFD
+operator|=
 operator|new
 name|FieldDoc
 argument_list|(
@@ -121,6 +130,37 @@ name|doc
 argument_list|,
 name|score
 argument_list|)
+expr_stmt|;
+else|else
+block|{
+comment|// Whereas TopDocCollector can skip this if the
+comment|// score is not competitive, we cannot because the
+comment|// comparators in the FieldSortedHitQueue.lessThan
+comment|// aren't in general congruent with "higher score
+comment|// wins"
+name|reusableFD
+operator|.
+name|score
+operator|=
+name|score
+expr_stmt|;
+name|reusableFD
+operator|.
+name|doc
+operator|=
+name|doc
+expr_stmt|;
+block|}
+name|reusableFD
+operator|=
+operator|(
+name|FieldDoc
+operator|)
+name|hq
+operator|.
+name|insertWithOverflow
+argument_list|(
+name|reusableFD
 argument_list|)
 expr_stmt|;
 block|}
