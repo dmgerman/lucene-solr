@@ -604,6 +604,23 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|// increase the default connections
+name|this
+operator|.
+name|setDefaultMaxConnectionsPerHost
+argument_list|(
+literal|32
+argument_list|)
+expr_stmt|;
+comment|// 2
+name|this
+operator|.
+name|setMaxTotalConnections
+argument_list|(
+literal|128
+argument_list|)
+expr_stmt|;
+comment|// 20
 comment|// by default use the XML one
 name|_processor
 operator|=
