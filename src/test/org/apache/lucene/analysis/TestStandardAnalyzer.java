@@ -20,9 +20,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|analysis
 operator|.
-name|LuceneTestCase
+name|standard
+operator|.
+name|StandardAnalyzer
 import|;
 end_import
 
@@ -34,11 +36,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|util
 operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
+name|LuceneTestCase
 import|;
 end_import
 
@@ -654,6 +654,13 @@ name|String
 index|[]
 block|{
 literal|"21.35"
+block|}
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"<NUM>"
 block|}
 argument_list|)
 expr_stmt|;
