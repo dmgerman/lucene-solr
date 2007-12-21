@@ -165,6 +165,19 @@ name|SolrServerException
 throws|,
 name|IOException
 function_decl|;
+DECL|method|setDefaultCore
+name|void
+name|setDefaultCore
+parameter_list|(
+name|String
+name|core
+parameter_list|)
+function_decl|;
+DECL|method|getDefaultCore
+name|String
+name|getDefaultCore
+parameter_list|()
+function_decl|;
 comment|// Standard methods
 DECL|method|add
 name|UpdateResponse

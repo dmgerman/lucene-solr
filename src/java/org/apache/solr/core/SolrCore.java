@@ -802,7 +802,6 @@ argument_list|)
 decl_stmt|;
 DECL|field|name
 specifier|private
-specifier|final
 name|String
 name|name
 decl_stmt|;
@@ -1049,6 +1048,22 @@ block|{
 return|return
 name|name
 return|;
+block|}
+DECL|method|setName
+specifier|public
+name|void
+name|setName
+parameter_list|(
+name|String
+name|v
+parameter_list|)
+block|{
+name|this
+operator|.
+name|name
+operator|=
+name|v
+expr_stmt|;
 block|}
 comment|/**    * @since solr 1.3    */
 DECL|method|getInfoRegistry
