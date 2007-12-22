@@ -193,7 +193,6 @@ expr_stmt|;
 block|}
 comment|/** Record that an exception occurred while executing      *  this merge */
 DECL|method|setException
-specifier|public
 specifier|synchronized
 name|void
 name|setException
@@ -211,7 +210,6 @@ expr_stmt|;
 block|}
 comment|/** Retrieve previous exception set by {@link      *  #setException}. */
 DECL|method|getException
-specifier|public
 specifier|synchronized
 name|Throwable
 name|getException
@@ -223,7 +221,6 @@ return|;
 block|}
 comment|/** Mark this merge as aborted.  If this is called      *  before the merge is committed then the merge will      *  not be committed. */
 DECL|method|abort
-specifier|public
 specifier|synchronized
 name|void
 name|abort
@@ -236,7 +233,6 @@ expr_stmt|;
 block|}
 comment|/** Returns true if this merge was aborted. */
 DECL|method|isAborted
-specifier|public
 specifier|synchronized
 name|boolean
 name|isAborted
@@ -246,8 +242,35 @@ return|return
 name|aborted
 return|;
 block|}
+DECL|method|checkAborted
+specifier|synchronized
+name|void
+name|checkAborted
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|)
+throws|throws
+name|MergeAbortedException
+block|{
+if|if
+condition|(
+name|aborted
+condition|)
+throw|throw
+operator|new
+name|MergeAbortedException
+argument_list|(
+literal|"merge is aborted: "
+operator|+
+name|segString
+argument_list|(
+name|dir
+argument_list|)
+argument_list|)
+throw|;
+block|}
 DECL|method|segString
-specifier|public
 name|String
 name|segString
 parameter_list|(
@@ -519,6 +542,40 @@ block|{
 name|super
 argument_list|(
 name|exc
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|class|MergeAbortedException
+specifier|public
+specifier|static
+class|class
+name|MergeAbortedException
+extends|extends
+name|IOException
+block|{
+DECL|method|MergeAbortedException
+specifier|public
+name|MergeAbortedException
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|"merge is aborted"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|MergeAbortedException
+specifier|public
+name|MergeAbortedException
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
 argument_list|)
 expr_stmt|;
 block|}

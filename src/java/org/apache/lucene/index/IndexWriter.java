@@ -594,6 +594,11 @@ specifier|private
 name|long
 name|mergeGen
 decl_stmt|;
+DECL|field|stopMerges
+specifier|private
+name|boolean
+name|stopMerges
+decl_stmt|;
 comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is    */
 DECL|method|ensureOpen
 specifier|protected
@@ -2382,7 +2387,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Closes the index with or without waiting for currently    * running merges to finish.  This is only meaningful when    * using a MergeScheduler that runs merges in background    * threads.    * @param waitForMerges if true, this call will block    * until all merges complete; else, it will abort all    * running merges and return right away    */
+comment|/**    * Closes the index with or without waiting for currently    * running merges to finish.  This is only meaningful when    * using a MergeScheduler that runs merges in background    * threads.    * @param waitForMerges if true, this call will block    * until all merges complete; else, it will ask all    * running merges to abort, wait until those merges have    * finished (which should be at most a few seconds), and    * then return.    */
 DECL|method|close
 specifier|public
 name|void
@@ -2498,6 +2503,11 @@ argument_list|(
 literal|"now flush at close"
 argument_list|)
 expr_stmt|;
+name|docWriter
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// Only allow a new merge to be triggered if we are
 comment|// going to wait for merges:
 name|flush
@@ -2522,6 +2532,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
 name|commitPending
@@ -2589,11 +2604,6 @@ operator|+
 literal|"\""
 argument_list|)
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|deleter
 operator|.
 name|checkpoint
@@ -2603,7 +2613,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
 name|commitPending
 operator|=
 literal|false
@@ -2631,11 +2640,6 @@ name|docWriter
 operator|=
 literal|null
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|deleter
 operator|.
 name|close
@@ -3270,6 +3274,13 @@ init|)
 block|{
 comment|// If docWriter has some aborted files that were
 comment|// never incref'd, then we clean them up here
+if|if
+condition|(
+name|docWriter
+operator|!=
+literal|null
+condition|)
+block|{
 specifier|final
 name|List
 name|files
@@ -3292,6 +3303,7 @@ argument_list|(
 name|files
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -4294,6 +4306,11 @@ name|maxNumSegmentsOptimize
 operator|>
 literal|0
 assert|;
+if|if
+condition|(
+name|stopMerges
+condition|)
+return|return;
 specifier|final
 name|MergePolicy
 operator|.
@@ -4675,6 +4692,10 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|stopMerges
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|/*    * Commits the transaction.  This will write the new    * segments file and remove and pending deletions we have    * accumulated during the transaction    */
 DECL|method|commitTransaction
@@ -4887,11 +4908,6 @@ operator|.
 name|refresh
 argument_list|()
 expr_stmt|;
-name|finishMerges
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 name|commitPending
 operator|=
@@ -4917,6 +4933,8 @@ parameter_list|(
 name|boolean
 name|waitForMerges
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -4924,6 +4942,10 @@ operator|!
 name|waitForMerges
 condition|)
 block|{
+name|stopMerges
+operator|=
+literal|true
+expr_stmt|;
 comment|// Abort all pending& running merges:
 name|Iterator
 name|it
@@ -4979,6 +5001,11 @@ name|merge
 operator|.
 name|abort
 argument_list|()
+expr_stmt|;
+name|mergeFinish
+argument_list|(
+name|merge
+argument_list|)
 expr_stmt|;
 block|}
 name|pendingMerges
@@ -5041,18 +5068,79 @@ name|abort
 argument_list|()
 expr_stmt|;
 block|}
+comment|// These merges periodically check whether they have
+comment|// been aborted, and stop if so.  We wait here to make
+comment|// sure they all stop.  It should not take very long
+comment|// because the merge threads periodically check if
+comment|// they are aborted.
+while|while
+condition|(
 name|runningMerges
 operator|.
-name|clear
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"now wait for "
+operator|+
+name|runningMerges
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" running merge to abort"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|wait
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+assert|assert
+literal|0
+operator|==
 name|mergingSegments
 operator|.
-name|clear
+name|size
 argument_list|()
-expr_stmt|;
-name|notifyAll
-argument_list|()
+assert|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"all running merges have aborted"
+argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -5651,6 +5739,8 @@ argument_list|(
 name|this
 argument_list|,
 name|mergedName
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|SegmentInfo
@@ -7368,6 +7458,13 @@ name|currentInfo
 operator|.
 name|docCount
 expr_stmt|;
+name|merge
+operator|.
+name|checkAborted
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -7816,6 +7913,8 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|merge
@@ -7861,6 +7960,42 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|MergePolicy
+operator|.
+name|MergeAbortedException
+name|e
+parameter_list|)
+block|{
+name|merge
+operator|.
+name|setException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+name|addMergeException
+argument_list|(
+name|merge
+argument_list|)
+expr_stmt|;
+comment|// We can ignore this exception, unless the merge
+comment|// involves segments from external directories, in
+comment|// which case we must throw it so, for example, the
+comment|// rollbackTransaction code in addIndexes* is
+comment|// executed.
+if|if
+condition|(
+name|merge
+operator|.
+name|isExternal
+condition|)
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 finally|finally
 block|{
@@ -8150,6 +8285,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|merge
+operator|.
+name|registerDone
+assert|;
 if|if
 condition|(
 name|merge
@@ -8157,18 +8297,7 @@ operator|.
 name|isAborted
 argument_list|()
 condition|)
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"merge is aborted"
-argument_list|)
-throw|;
-assert|assert
-name|merge
-operator|.
-name|registerDone
-assert|;
+return|return;
 specifier|final
 name|SegmentInfos
 name|sourceSegments
@@ -8726,6 +8855,13 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|merge
+operator|.
+name|checkAborted
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
 specifier|final
 name|String
 name|mergedName
@@ -8795,6 +8931,8 @@ argument_list|(
 name|this
 argument_list|,
 name|mergedName
+argument_list|,
+name|merge
 argument_list|)
 expr_stmt|;
 comment|// This is try/finally to make sure merger's readers are
@@ -8885,20 +9023,13 @@ literal|" docs"
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
 name|merge
 operator|.
-name|isAborted
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|IOException
+name|checkAborted
 argument_list|(
-literal|"merge is aborted"
+name|directory
 argument_list|)
-throw|;
+expr_stmt|;
 name|mergedDocCount
 operator|=
 name|merge

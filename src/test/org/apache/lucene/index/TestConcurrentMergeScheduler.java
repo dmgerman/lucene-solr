@@ -1221,24 +1221,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-try|try
-block|{
 name|directory
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|re
-parameter_list|)
-block|{
-comment|// MockRAMDirectory will throw RuntimeExceptions when there
-comment|// are still open files, which is OK since some merge
-comment|// threads may still be running at this point.
-block|}
 block|}
 block|}
 end_class

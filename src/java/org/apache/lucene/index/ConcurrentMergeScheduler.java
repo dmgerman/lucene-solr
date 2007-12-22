@@ -919,13 +919,10 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
+name|IOException
 name|exc
 parameter_list|)
 block|{
-comment|// When a merge was aborted& IndexWriter closed,
-comment|// it's possible to get various IOExceptions,
-comment|// NullPointerExceptions, AlreadyClosedExceptions:
 if|if
 condition|(
 name|merge
@@ -948,21 +945,19 @@ name|merge
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Ignore the exception if it was due to abort:
 if|if
 condition|(
-name|merge
-operator|==
-literal|null
-operator|||
 operator|!
-name|merge
+operator|(
+name|exc
+operator|instanceof
+name|MergePolicy
 operator|.
-name|isAborted
-argument_list|()
+name|MergeAbortedException
+operator|)
 condition|)
 block|{
-comment|// If the merge was not aborted then the exception
-comment|// is real
 synchronized|synchronized
 init|(
 name|ConcurrentMergeScheduler

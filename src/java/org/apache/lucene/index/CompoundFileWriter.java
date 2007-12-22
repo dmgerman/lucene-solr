@@ -158,6 +158,13 @@ name|merged
 init|=
 literal|false
 decl_stmt|;
+DECL|field|checkAbort
+specifier|private
+name|SegmentMerger
+operator|.
+name|CheckAbort
+name|checkAbort
+decl_stmt|;
 comment|/** Create the compound stream in the specified file. The file name is the      *  entire name (no extensions are added).      *  @throws NullPointerException if<code>dir</code> or<code>name</code> is null      */
 DECL|method|CompoundFileWriter
 specifier|public
@@ -168,6 +175,31 @@ name|dir
 parameter_list|,
 name|String
 name|name
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|dir
+argument_list|,
+name|name
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|CompoundFileWriter
+name|CompoundFileWriter
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|SegmentMerger
+operator|.
+name|CheckAbort
+name|checkAbort
 parameter_list|)
 block|{
 if|if
@@ -196,6 +228,12 @@ argument_list|(
 literal|"name cannot be null"
 argument_list|)
 throw|;
+name|this
+operator|.
+name|checkAbort
+operator|=
+name|checkAbort
+expr_stmt|;
 name|directory
 operator|=
 name|dir
@@ -694,6 +732,21 @@ expr_stmt|;
 name|remainder
 operator|-=
 name|len
+expr_stmt|;
+if|if
+condition|(
+name|checkAbort
+operator|!=
+literal|null
+condition|)
+comment|// Roughly every 2 MB we will check if
+comment|// it's time to abort
+name|checkAbort
+operator|.
+name|work
+argument_list|(
+literal|80
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Verify that remainder is 0

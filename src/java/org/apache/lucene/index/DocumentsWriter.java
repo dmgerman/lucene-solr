@@ -158,6 +158,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -470,6 +484,11 @@ init|=
 name|IndexWriter
 operator|.
 name|DEFAULT_MAX_BUFFERED_DOCS
+decl_stmt|;
+DECL|field|closed
+specifier|private
+name|boolean
+name|closed
 decl_stmt|;
 comment|// Coarse estimates used to measure RAM usage of buffered deletes
 DECL|field|OBJECT_HEADER_BYTES
@@ -10005,6 +10024,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|close
+specifier|synchronized
+name|void
+name|close
+parameter_list|()
+block|{
+name|closed
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|/** Returns a free (idle) ThreadState that may be used for    * indexing this one document.  This call also pauses if a    * flush is pending.  If delTerm is non-null then we    * buffer this deleted term after the thread state has    * been acquired. */
 DECL|method|getThreadState
 specifier|synchronized
@@ -10237,6 +10267,17 @@ name|interrupt
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|closed
+condition|)
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"this IndexWriter is closed"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|segment
