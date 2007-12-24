@@ -385,8 +385,6 @@ specifier|public
 specifier|static
 class|class
 name|MergeSpecification
-implements|implements
-name|Cloneable
 block|{
 comment|/**      * The subset of segments to be included in the primitive merge.      */
 DECL|field|merges
