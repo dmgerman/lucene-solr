@@ -92,9 +92,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
+comment|/** Expert: Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
 DECL|method|reset
-specifier|protected
+specifier|public
 name|void
 name|reset
 parameter_list|(
