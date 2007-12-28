@@ -512,7 +512,7 @@ operator|=
 operator|new
 name|SolrCore
 argument_list|(
-literal|"core"
+literal|null
 argument_list|,
 literal|null
 argument_list|,

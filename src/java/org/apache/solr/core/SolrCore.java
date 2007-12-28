@@ -805,6 +805,12 @@ specifier|private
 name|String
 name|name
 decl_stmt|;
+DECL|field|logid
+specifier|private
+name|String
+name|logid
+decl_stmt|;
+comment|// used to show what name is set
 DECL|field|solrConfig
 specifier|private
 specifier|final
@@ -1064,6 +1070,38 @@ name|name
 operator|=
 name|v
 expr_stmt|;
+name|this
+operator|.
+name|logid
+operator|=
+operator|(
+name|v
+operator|==
+literal|null
+operator|)
+condition|?
+literal|""
+else|:
+operator|(
+literal|"["
+operator|+
+name|v
+operator|+
+literal|"] "
+operator|)
+expr_stmt|;
+block|}
+DECL|method|getLogId
+specifier|public
+name|String
+name|getLogId
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|logid
+return|;
 block|}
 comment|/**    * @since solr 1.3    */
 DECL|method|getInfoRegistry
@@ -1110,11 +1148,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Searching for listeners: "
+literal|"Searching for listeners: "
 operator|+
 name|path
 argument_list|)
@@ -1214,11 +1250,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Added SolrEventListener: "
+literal|"Added SolrEventListener: "
 operator|+
 name|listener
 argument_list|)
@@ -1394,11 +1428,9 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] WARNING: Solr index directory '"
+literal|"WARNING: Solr index directory '"
 operator|+
 name|getIndexDir
 argument_list|()
@@ -1427,11 +1459,9 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Solr index directory '"
+literal|"Solr index directory '"
 operator|+
 name|dirFile
 operator|+
@@ -1778,7 +1808,7 @@ operator|=
 operator|new
 name|SolrCore
 argument_list|(
-literal|"default"
+literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -1837,7 +1867,7 @@ name|SAXException
 block|{
 name|this
 argument_list|(
-literal|"core"
+literal|null
 argument_list|,
 name|dataDir
 argument_list|,
@@ -1883,9 +1913,10 @@ expr_stmt|;
 comment|// set singleton
 name|this
 operator|.
+name|setName
+argument_list|(
 name|name
-operator|=
-name|name
+argument_list|)
 expr_stmt|;
 name|SolrResourceLoader
 name|loader
@@ -1923,11 +1954,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Opening new SolrCore at "
+literal|"Opening new SolrCore at "
 operator|+
 name|loader
 operator|.
@@ -2372,11 +2401,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] CLOSING SolrCore!"
+literal|"CLOSING SolrCore!"
 argument_list|)
 expr_stmt|;
 try|try
@@ -3012,11 +3039,9 @@ name|log
 operator|.
 name|severe
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] ERROR!!! onDeckSearchers is "
+literal|"ERROR!!! onDeckSearchers is "
 operator|+
 name|onDeckSearchers
 argument_list|)
@@ -3051,11 +3076,9 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] "
+literal|""
 operator|+
 name|msg
 argument_list|)
@@ -3089,11 +3112,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] PERFORMANCE WARNING: Overlapping onDeckSearchers="
+literal|"PERFORMANCE WARNING: Overlapping onDeckSearchers="
 operator|+
 name|onDeckSearchers
 argument_list|)
@@ -3698,11 +3719,9 @@ name|log
 operator|.
 name|severe
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] ERROR!!! onDeckSearchers after decrement="
+literal|"ERROR!!! onDeckSearchers after decrement="
 operator|+
 name|onDeckSearchers
 argument_list|)
@@ -3873,11 +3892,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Registered new searcher "
+literal|"Registered new searcher "
 operator|+
 name|newSearcher
 argument_list|)
@@ -3920,11 +3937,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Closing main searcher on request."
+literal|"Closing main searcher on request."
 argument_list|)
 expr_stmt|;
 synchronized|synchronized
@@ -3985,11 +4000,9 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Null Request Handler '"
+literal|"Null Request Handler '"
 operator|+
 name|req
 operator|.
@@ -4072,11 +4085,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] "
+literal|""
 operator|+
 name|req
 operator|.
@@ -4150,11 +4161,9 @@ name|log
 operator|.
 name|warning
 argument_list|(
-literal|"["
+name|logid
 operator|+
-name|name
-operator|+
-literal|"] Unknown Request Handler '"
+literal|"Unknown Request Handler '"
 operator|+
 name|req
 operator|.

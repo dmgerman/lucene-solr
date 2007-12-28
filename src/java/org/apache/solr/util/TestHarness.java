@@ -548,12 +548,7 @@ operator|=
 operator|new
 name|SolrCore
 argument_list|(
-literal|"test-"
-operator|+
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
+literal|null
 argument_list|,
 name|dataDirectory
 argument_list|,

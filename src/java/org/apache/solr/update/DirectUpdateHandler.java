@@ -697,14 +697,12 @@ name|log
 operator|.
 name|finest
 argument_list|(
-literal|"["
-operator|+
 name|core
 operator|.
-name|getName
+name|getLogId
 argument_list|()
 operator|+
-literal|"] deleted "
+literal|"deleted "
 operator|+
 name|num
 operator|+
@@ -1030,14 +1028,12 @@ name|log
 operator|.
 name|fine
 argument_list|(
-literal|"["
-operator|+
 name|core
 operator|.
-name|getName
+name|getLogId
 argument_list|()
 operator|+
-literal|"] docs deleted:"
+literal|"docs deleted:"
 operator|+
 name|totDeleted
 argument_list|)

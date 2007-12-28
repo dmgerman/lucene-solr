@@ -650,14 +650,12 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"["
-operator|+
 name|core
 operator|.
-name|getName
+name|getLogId
 argument_list|()
 operator|+
-literal|"] REMOVING ALL DOCUMENTS FROM INDEX"
+literal|"REMOVING ALL DOCUMENTS FROM INDEX"
 argument_list|)
 expr_stmt|;
 name|closeWriter
@@ -1649,14 +1647,12 @@ name|log
 operator|.
 name|fine
 argument_list|(
-literal|"["
-operator|+
 name|core
 operator|.
-name|getName
+name|getLogId
 argument_list|()
 operator|+
-literal|"] docs deleted by query:"
+literal|"docs deleted by query:"
 operator|+
 name|totDeleted
 argument_list|)
