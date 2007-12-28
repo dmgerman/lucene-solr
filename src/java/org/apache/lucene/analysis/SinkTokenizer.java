@@ -159,15 +159,12 @@ return|return
 name|lst
 return|;
 block|}
-comment|/**    * Ignores the input result Token and returns the next token out of the list of cached tokens    * @param result The input token    * @return The next {@link org.apache.lucene.analysis.Token} in the Sink.    * @throws IOException    */
+comment|/**    * Returns the next token out of the list of cached tokens    * @return The next {@link org.apache.lucene.analysis.Token} in the Sink.    * @throws IOException    */
 DECL|method|next
 specifier|public
 name|Token
 name|next
-parameter_list|(
-name|Token
-name|result
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
