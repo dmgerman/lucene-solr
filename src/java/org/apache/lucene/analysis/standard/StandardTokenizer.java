@@ -202,6 +202,11 @@ return|return
 literal|null
 return|;
 block|}
+name|result
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|scanner
 operator|.
 name|getText

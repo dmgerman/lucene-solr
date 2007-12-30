@@ -6055,11 +6055,6 @@ init|;
 condition|;
 control|)
 block|{
-name|localToken
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|token
 operator|=
 name|stream

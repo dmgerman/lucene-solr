@@ -148,6 +148,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|token
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|int
 name|length
 init|=
