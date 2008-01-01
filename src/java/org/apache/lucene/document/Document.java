@@ -110,7 +110,7 @@ specifier|public
 name|Document
 parameter_list|()
 block|{}
-comment|/** Sets a boost factor for hits on any field of this document.  This value    * will be multiplied into the score of all hits on this document.    *    *<p>Values are multiplied into the value of {@link Fieldable#getBoost()} of    * each field in this document.  Thus, this method in effect sets a default    * boost for the fields of this document.    *    * @see Fieldable#setBoost(float)    */
+comment|/** Sets a boost factor for hits on any field of this document.  This value    * will be multiplied into the score of all hits on this document.    *    *<p>The default value is 1.0.    *     *<p>Values are multiplied into the value of {@link Fieldable#getBoost()} of    * each field in this document.  Thus, this method in effect sets a default    * boost for the fields of this document.    *    * @see Fieldable#setBoost(float)    */
 DECL|method|setBoost
 specifier|public
 name|void
@@ -127,7 +127,7 @@ operator|=
 name|boost
 expr_stmt|;
 block|}
-comment|/** Returns the boost factor for hits on any field of this document.    *    *<p>The default value is 1.0.    *    *<p>Note: This value is not stored directly with the document in the index.    * Documents returned from {@link IndexReader#document(int)} and    * {@link Hits#doc(int)} may thus not have the same value present as when    * this document was indexed.    *    * @see #setBoost(float)    */
+comment|/** Returns, at indexing time, the boost factor as set by {@link #setBoost(float)}.     *    *<p>Note that once a document is indexed this value is no longer available    * from the index.  At search time, for retrieved documents, this method always     * returns 1. This however does not mean that the boost value set at  indexing     * time was ignored - it was just combined with other indexing time factors and     * stored elsewhere, for better indexing and search performance. (For more     * information see the "norm(t,d)" part of the scoring formula in     * {@link org.apache.lucene.search.Similarity Similarity}.)    *    * @see #setBoost(float)    */
 DECL|method|getBoost
 specifier|public
 name|float
