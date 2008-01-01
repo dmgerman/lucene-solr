@@ -832,7 +832,7 @@ return|;
 block|}
 else|else
 block|{
-comment|/* this means that the analyzer used consumed the only token we had,        * and we can't build a PrefixQuery */
+comment|/* this means that the analyzer used either added or consumed        * (common for a stemmer) tokens, and we can't build a PrefixQuery */
 throw|throw
 operator|new
 name|ParseException
@@ -845,7 +845,18 @@ operator|.
 name|getClass
 argument_list|()
 operator|+
-literal|" - token was consumed"
+operator|(
+name|tlist
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|1
+condition|?
+literal|" - token(s) added"
+else|:
+literal|" - token consumed"
+operator|)
 argument_list|)
 throw|;
 block|}
