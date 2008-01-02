@@ -402,6 +402,16 @@ operator|new
 name|PropertiesRequestHandler
 argument_list|()
 argument_list|)
+block|,
+operator|new
+name|StandardHandler
+argument_list|(
+literal|"file"
+argument_list|,
+operator|new
+name|ShowFileRequestHandler
+argument_list|()
+argument_list|)
 block|}
 decl_stmt|;
 for|for
