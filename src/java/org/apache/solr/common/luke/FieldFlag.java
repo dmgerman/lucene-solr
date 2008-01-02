@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  The FieldFlag class is used to store   *  **/
+comment|/**  * @version $Id: AdminHandlers.java 608150 2008-01-02 17:15:30Z ryan $  * @since solr 1.3  */
 end_comment
 
 begin_enum
@@ -25,9 +25,6 @@ enum|enum
 name|FieldFlag
 block|{
 DECL|enum constant|INDEXED
-DECL|enum constant|TOKENIZED
-DECL|enum constant|STORED
-DECL|enum constant|MULTI_VALUED
 name|INDEXED
 argument_list|(
 literal|'I'
@@ -35,6 +32,7 @@ argument_list|,
 literal|"Indexed"
 argument_list|)
 block|,
+DECL|enum constant|TOKENIZED
 name|TOKENIZED
 argument_list|(
 literal|'T'
@@ -42,6 +40,7 @@ argument_list|,
 literal|"Tokenized"
 argument_list|)
 block|,
+DECL|enum constant|STORED
 name|STORED
 argument_list|(
 literal|'S'
@@ -49,6 +48,7 @@ argument_list|,
 literal|"Stored"
 argument_list|)
 block|,
+DECL|enum constant|MULTI_VALUED
 name|MULTI_VALUED
 argument_list|(
 literal|'M'
@@ -57,7 +57,6 @@ literal|"Multivalued"
 argument_list|)
 block|,
 DECL|enum constant|TERM_VECTOR_STORED
-DECL|enum constant|TERM_VECTOR_OFFSET
 name|TERM_VECTOR_STORED
 argument_list|(
 literal|'V'
@@ -65,6 +64,7 @@ argument_list|,
 literal|"TermVector Stored"
 argument_list|)
 block|,
+DECL|enum constant|TERM_VECTOR_OFFSET
 name|TERM_VECTOR_OFFSET
 argument_list|(
 literal|'o'
@@ -81,9 +81,6 @@ literal|"Store Position With TermVector"
 argument_list|)
 block|,
 DECL|enum constant|OMIT_NORMS
-DECL|enum constant|LAZY
-DECL|enum constant|BINARY
-DECL|enum constant|COMPRESSED
 name|OMIT_NORMS
 argument_list|(
 literal|'O'
@@ -91,6 +88,7 @@ argument_list|,
 literal|"Omit Norms"
 argument_list|)
 block|,
+DECL|enum constant|LAZY
 name|LAZY
 argument_list|(
 literal|'L'
@@ -98,6 +96,7 @@ argument_list|,
 literal|"Lazy"
 argument_list|)
 block|,
+DECL|enum constant|BINARY
 name|BINARY
 argument_list|(
 literal|'B'
@@ -105,6 +104,7 @@ argument_list|,
 literal|"Binary"
 argument_list|)
 block|,
+DECL|enum constant|COMPRESSED
 name|COMPRESSED
 argument_list|(
 literal|'C'
@@ -113,7 +113,6 @@ literal|"Compressed"
 argument_list|)
 block|,
 DECL|enum constant|SORT_MISSING_FIRST
-DECL|enum constant|SORT_MISSING_LAST
 name|SORT_MISSING_FIRST
 argument_list|(
 literal|'f'
@@ -121,6 +120,7 @@ argument_list|,
 literal|"Sort Missing First"
 argument_list|)
 block|,
+DECL|enum constant|SORT_MISSING_LAST
 name|SORT_MISSING_LAST
 argument_list|(
 literal|'l'
@@ -130,11 +130,13 @@ argument_list|)
 block|;
 DECL|field|abbreviation
 specifier|private
+specifier|final
 name|char
 name|abbreviation
 decl_stmt|;
 DECL|field|display
 specifier|private
+specifier|final
 name|String
 name|display
 decl_stmt|;
