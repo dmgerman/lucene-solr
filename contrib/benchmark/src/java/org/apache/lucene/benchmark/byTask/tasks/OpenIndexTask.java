@@ -325,12 +325,6 @@ literal|false
 argument_list|)
 decl_stmt|;
 comment|// must update params for newly opened writer
-if|if
-condition|(
-name|flushAtRAMUsage
-operator|>
-literal|0
-condition|)
 name|writer
 operator|.
 name|setRAMBufferSizeMB
@@ -338,13 +332,6 @@ argument_list|(
 name|flushAtRAMUsage
 argument_list|)
 expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|mxbf
-operator|!=
-literal|0
-condition|)
 name|writer
 operator|.
 name|setMaxBufferedDocs
@@ -352,14 +339,6 @@ argument_list|(
 name|mxbf
 argument_list|)
 expr_stmt|;
-else|else
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"either max.buffered or ram.flush.mb must be non-zero"
-argument_list|)
-throw|;
 name|writer
 operator|.
 name|setMaxFieldLength
