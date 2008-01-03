@@ -1469,35 +1469,11 @@ operator|=
 name|t
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
+comment|/*** actually, there is no rule that arrays need the same type         else if( type != t&& !(t == KnownType.NULL || type == KnownType.NULL)) {           throw new RuntimeException( "arrays must have the same type! ("+type+"!="+t+") "+parser.getLocalName() );         }         ***/
 name|type
-operator|!=
+operator|=
 name|t
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"arrays must have the same type! ("
-operator|+
-name|type
-operator|+
-literal|"!="
-operator|+
-name|t
-operator|+
-literal|") "
-operator|+
-name|parser
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|builder
 operator|.
 name|setLength
@@ -1630,6 +1606,12 @@ condition|(
 name|val
 operator|==
 literal|null
+operator|&&
+name|type
+operator|!=
+name|KnownType
+operator|.
+name|NULL
 condition|)
 block|{
 throw|throw
