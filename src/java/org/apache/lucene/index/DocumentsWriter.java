@@ -261,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class accepts multiple added documents and directly  * writes a single segment file.  It does this more  * efficiently than creating a single segment per document  * (with DocumentWriter) and doing standard merges on those  * segments.  *  * When a document is added, its stored fields (if any) and  * term vectors (if any) are immediately written to the  * Directory (ie these do not consume RAM).  The freq/prox  * postings are accumulated into a Postings hash table keyed  * by term.  Each entry in this hash table holds a separate  * byte stream (allocated as incrementally growing slices  * into large shared byte[] arrays) for freq and prox, that  * contains the postings data for multiple documents.  If  * vectors are enabled, each unique term for each document  * also allocates a PostingVector instance to similarly  * track the offsets& positions byte stream.  *  * Once the Postings hash is full (ie is consuming the  * allowed RAM) or the number of added docs is large enough  * (in the case we are flushing by doc count instead of RAM  * usage), we create a real segment and flush it to disk and  * reset the Postings hash.  *  * In adding a document we first organize all of its fields  * by field name.  We then process field by field, and  * record the Posting hash per-field.  After each field we  * flush its term vectors.  When it's time to flush the full  * segment we first sort the fields by name, and then go  * field by field and sorts its postings.  *  *  * Threads:  *  * Multiple threads are allowed into addDocument at once.  * There is an initial synchronized call to getThreadState  * which allocates a ThreadState for this thread.  The same  * thread will get the same ThreadState over time (thread  * affinity) so that if there are consistent patterns (for  * example each thread is indexing a different content  * source) then we make better use of RAM.  Then  * processDocument is called on that ThreadState without  * synchronization (most of the "heavy lifting" is in this  * call).  Finally the synchronized "finishDocument" is  * called to flush changes to the directory.  *  * Each ThreadState instance has its own Posting hash. Once  * we're using too much RAM, we flush all Posting hashes to  * a segment by merging the docIDs in the posting lists for  * the same term across multiple thread states (see  * writeSegment and appendPostings).  *  * When flush is called by IndexWriter, or, we flush  * internally when autoCommit=false, we forcefully idle all  * threads and flush only once they are all idle.  This  * means you can call flush with a given thread even while  * other threads are actively adding/deleting documents.  */
+comment|/**  * This class accepts multiple added documents and directly  * writes a single segment file.  It does this more  * efficiently than creating a single segment per document  * (with DocumentWriter) and doing standard merges on those  * segments.  *  * When a document is added, its stored fields (if any) and  * term vectors (if any) are immediately written to the  * Directory (ie these do not consume RAM).  The freq/prox  * postings are accumulated into a Postings hash table keyed  * by term.  Each entry in this hash table holds a separate  * byte stream (allocated as incrementally growing slices  * into large shared byte[] arrays) for freq and prox, that  * contains the postings data for multiple documents.  If  * vectors are enabled, each unique term for each document  * also allocates a PostingVector instance to similarly  * track the offsets& positions byte stream.  *  * Once the Postings hash is full (ie is consuming the  * allowed RAM) or the number of added docs is large enough  * (in the case we are flushing by doc count instead of RAM  * usage), we create a real segment and flush it to disk and  * reset the Postings hash.  *  * In adding a document we first organize all of its fields  * by field name.  We then process field by field, and  * record the Posting hash per-field.  After each field we  * flush its term vectors.  When it's time to flush the full  * segment we first sort the fields by name, and then go  * field by field and sorts its postings.  *  *  * Threads:  *  * Multiple threads are allowed into addDocument at once.  * There is an initial synchronized call to getThreadState  * which allocates a ThreadState for this thread.  The same  * thread will get the same ThreadState over time (thread  * affinity) so that if there are consistent patterns (for  * example each thread is indexing a different content  * source) then we make better use of RAM.  Then  * processDocument is called on that ThreadState without  * synchronization (most of the "heavy lifting" is in this  * call).  Finally the synchronized "finishDocument" is  * called to flush changes to the directory.  *  * Each ThreadState instance has its own Posting hash. Once  * we're using too much RAM, we flush all Posting hashes to  * a segment by merging the docIDs in the posting lists for  * the same term across multiple thread states (see  * writeSegment and appendPostings).  *  * When flush is called by IndexWriter, or, we flush  * internally when autoCommit=false, we forcefully idle all  * threads and flush only once they are all idle.  This  * means you can call flush with a given thread even while  * other threads are actively adding/deleting documents.  *  *  * Exceptions:  *  * Because this class directly updates in-memory posting  * lists, and flushes stored fields and term vectors  * directly to files in the directory, there are certain  * limited times when an exception can corrupt this state.  * For example, a disk full while flushing stored fields  * leaves this file in a corrupt state.  Or, an OOM  * exception while appending to the in-memory posting lists  * can corrupt that posting list.  We call such exceptions  * "aborting exceptions".  In these cases we must call  * abort() to discard all docs added since the last flush.  *  * All other exceptions ("non-aborting exceptions") can  * still partially update the index structures.  These  * updates are consistent, but, they represent only a part  * of the document seen up until the exception was hit.  * When this happens, we immediately mark the document as  * deleted so that the document is always atomically ("all  * or none") added to the index.  */
 end_comment
 
 begin_class
@@ -443,6 +443,16 @@ name|numBufferedDeleteTerms
 init|=
 literal|0
 decl_stmt|;
+comment|// Currently used only for deleting a doc on hitting an non-aborting exception
+DECL|field|bufferedDeleteDocIDs
+specifier|private
+name|List
+name|bufferedDeleteDocIDs
+init|=
+operator|new
+name|ArrayList
+argument_list|()
+decl_stmt|;
 comment|// The max number of delete terms that can be buffered before
 comment|// they must be flushed to disk.
 DECL|field|maxBufferedDeleteTerms
@@ -515,6 +525,14 @@ name|int
 name|BYTES_PER_CHAR
 init|=
 literal|2
+decl_stmt|;
+DECL|field|BYTES_PER_INT
+specifier|private
+specifier|static
+name|int
+name|BYTES_PER_INT
+init|=
+literal|4
 decl_stmt|;
 DECL|field|norms
 specifier|private
@@ -1047,6 +1065,11 @@ name|pauseAllThreads
 argument_list|()
 expr_stmt|;
 name|bufferedDeleteTerms
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|bufferedDeleteDocIDs
 operator|.
 name|clear
 argument_list|()
@@ -1856,11 +1879,12 @@ DECL|field|fieldDataHashMask
 name|int
 name|fieldDataHashMask
 decl_stmt|;
-DECL|field|maxTermHit
-name|int
-name|maxTermHit
+DECL|field|maxTermPrefix
+name|String
+name|maxTermPrefix
 decl_stmt|;
-comment|// Set to> 0 if this doc has a too-large term
+comment|// Non-null prefix of a too-large term if this
+comment|// doc has one
 DECL|field|doFlushAfter
 name|boolean
 name|doFlushAfter
@@ -2346,9 +2370,9 @@ name|numVectorFields
 operator|=
 literal|0
 expr_stmt|;
-name|maxTermHit
+name|maxTermPrefix
 operator|=
-literal|0
+literal|null
 expr_stmt|;
 assert|assert
 literal|0
@@ -2932,10 +2956,7 @@ operator|!
 name|fp
 operator|.
 name|doVectors
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|numVectorFields
 operator|++
 operator|==
@@ -2973,7 +2994,6 @@ index|[
 name|newSize
 index|]
 expr_stmt|;
-block|}
 block|}
 name|fp
 operator|.
@@ -4375,6 +4395,31 @@ operator|.
 name|processField
 argument_list|(
 name|analyzer
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|maxTermPrefix
+operator|!=
+literal|null
+operator|&&
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: document contains at least one immense term (longer than the max length "
+operator|+
+name|MAX_TERM_LENGTH
+operator|+
+literal|"), all of which were skipped.  Please correct the analyzer to not produce such terms.  The prefix of the first immense term is: '"
+operator|+
+name|maxTermPrefix
+operator|+
+literal|"...'"
 argument_list|)
 expr_stmt|;
 if|if
@@ -6818,16 +6863,36 @@ operator|>
 name|CHAR_BLOCK_SIZE
 condition|)
 block|{
-name|maxTermHit
-operator|=
-name|tokenTextLen
-expr_stmt|;
-comment|// Just skip this term; we will throw an
-comment|// exception after processing all accepted
-comment|// terms in the doc
+comment|// Just skip this term, to remain as robust as
+comment|// possible during indexing.  A TokenFilter
+comment|// can be inserted into the analyzer chain if
+comment|// other behavior is wanted (pruning the term
+comment|// to a prefix, throwing an exception, etc).
 name|abortOnExc
 operator|=
 literal|false
+expr_stmt|;
+if|if
+condition|(
+name|maxTermPrefix
+operator|==
+literal|null
+condition|)
+name|maxTermPrefix
+operator|=
+operator|new
+name|String
+argument_list|(
+name|tokenText
+argument_list|,
+literal|0
+argument_list|,
+literal|30
+argument_list|)
+expr_stmt|;
+comment|// Still increment position:
+name|position
+operator|++
 expr_stmt|;
 return|return;
 block|}
@@ -10437,7 +10502,7 @@ return|;
 block|}
 comment|/** Returns true if the caller (IndexWriter) should now    * flush. */
 DECL|method|addDocument
-name|int
+name|boolean
 name|addDocument
 parameter_list|(
 name|Document
@@ -10463,7 +10528,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|updateDocument
-name|int
+name|boolean
 name|updateDocument
 parameter_list|(
 name|Term
@@ -10492,7 +10557,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|updateDocument
-name|int
+name|boolean
 name|updateDocument
 parameter_list|(
 name|Document
@@ -10526,9 +10591,6 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-name|int
-name|maxTermHit
-decl_stmt|;
 try|try
 block|{
 try|try
@@ -10544,12 +10606,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|maxTermHit
-operator|=
-name|state
-operator|.
-name|maxTermHit
-expr_stmt|;
 comment|// This call is synchronized but fast
 name|finishDocument
 argument_list|(
@@ -10587,8 +10643,21 @@ name|state
 operator|.
 name|abortOnExc
 condition|)
+comment|// Abort all buffered docs since last flush
 name|abort
 argument_list|()
+expr_stmt|;
+else|else
+comment|// Immediately mark this document as deleted
+comment|// since likely it was partially added.  This
+comment|// keeps indexing as "all or none" (atomic) when
+comment|// adding a document:
+name|addDeleteDocID
+argument_list|(
+name|state
+operator|.
+name|docID
+argument_list|)
 expr_stmt|;
 name|notifyAll
 argument_list|()
@@ -10596,28 +10665,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|int
-name|status
-init|=
-name|maxTermHit
-operator|<<
-literal|1
-decl_stmt|;
-if|if
-condition|(
+return|return
 name|state
 operator|.
 name|doFlushAfter
 operator|||
 name|timeToFlushDeletes
 argument_list|()
-condition|)
-name|status
-operator|+=
-literal|1
-expr_stmt|;
-return|return
-name|status
 return|;
 block|}
 DECL|method|getNumBufferedDeleteTerms
@@ -10640,16 +10694,31 @@ return|return
 name|bufferedDeleteTerms
 return|;
 block|}
+DECL|method|getBufferedDeleteDocIDs
+specifier|synchronized
+name|List
+name|getBufferedDeleteDocIDs
+parameter_list|()
+block|{
+return|return
+name|bufferedDeleteDocIDs
+return|;
+block|}
 comment|// Reset buffered deletes.
-DECL|method|clearBufferedDeleteTerms
+DECL|method|clearBufferedDeletes
 specifier|synchronized
 name|void
-name|clearBufferedDeleteTerms
+name|clearBufferedDeletes
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 name|bufferedDeleteTerms
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|bufferedDeleteDocIDs
 operator|.
 name|clear
 argument_list|()
@@ -10857,6 +10926,13 @@ name|size
 argument_list|()
 operator|>
 literal|0
+operator|||
+name|bufferedDeleteDocIDs
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
 return|;
 block|}
 comment|// Number of documents a delete term applies to.
@@ -11037,6 +11113,38 @@ expr_stmt|;
 block|}
 name|numBufferedDeleteTerms
 operator|++
+expr_stmt|;
+block|}
+comment|// Buffer a specific docID for deletion.  Currently only
+comment|// used when we hit a exception when adding a document
+DECL|method|addDeleteDocID
+specifier|synchronized
+specifier|private
+name|void
+name|addDeleteDocID
+parameter_list|(
+name|int
+name|docId
+parameter_list|)
+block|{
+name|bufferedDeleteDocIDs
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Integer
+argument_list|(
+name|docId
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|numBytesUsed
+operator|+=
+name|OBJECT_HEADER_BYTES
+operator|+
+name|BYTES_PER_INT
+operator|+
+name|OBJECT_POINTER_BYTES
 expr_stmt|;
 block|}
 comment|/** Does the synchronized work to finish/flush the    * inverted document. */
@@ -13459,6 +13567,16 @@ specifier|final
 specifier|static
 name|int
 name|CHAR_BLOCK_MASK
+init|=
+name|CHAR_BLOCK_SIZE
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|MAX_TERM_LENGTH
+specifier|final
+specifier|static
+name|int
+name|MAX_TERM_LENGTH
 init|=
 name|CHAR_BLOCK_SIZE
 operator|-

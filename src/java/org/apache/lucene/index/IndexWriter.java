@@ -379,6 +379,18 @@ name|DEFAULT_TERM_INDEX_INTERVAL
 init|=
 literal|128
 decl_stmt|;
+comment|/**    * Absolute hard maximum length for a term.  If a term    * arrives from the analyzer longer than this length, it    * is skipped and a message is printed to infoStream, if    * set (see {@link setInfoStream}).    */
+DECL|field|MAX_TERM_LENGTH
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAX_TERM_LENGTH
+init|=
+name|DocumentsWriter
+operator|.
+name|MAX_TERM_LENGTH
+decl_stmt|;
 comment|// The normal read buffer size defaults to 1024, but
 comment|// increasing this during merging seems to yield
 comment|// performance gains.  However we don't want to increase
@@ -3220,10 +3232,10 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|int
-name|status
+name|boolean
+name|doFlush
 init|=
-literal|0
+literal|false
 decl_stmt|;
 name|boolean
 name|success
@@ -3232,7 +3244,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|status
+name|doFlush
 operator|=
 name|docWriter
 operator|.
@@ -3309,24 +3321,13 @@ block|}
 block|}
 if|if
 condition|(
-operator|(
-name|status
-operator|&
-literal|1
-operator|)
-operator|!=
-literal|0
+name|doFlush
 condition|)
 name|flush
 argument_list|(
 literal|true
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|checkMaxTermLength
-argument_list|(
-name|status
 argument_list|)
 expr_stmt|;
 block|}
@@ -3463,10 +3464,10 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|int
-name|status
+name|boolean
+name|doFlush
 init|=
-literal|0
+literal|false
 decl_stmt|;
 name|boolean
 name|success
@@ -3475,7 +3476,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|status
+name|doFlush
 operator|=
 name|docWriter
 operator|.
@@ -3546,13 +3547,7 @@ block|}
 block|}
 if|if
 condition|(
-operator|(
-name|status
-operator|&
-literal|1
-operator|)
-operator|!=
-literal|0
+name|doFlush
 condition|)
 name|flush
 argument_list|(
@@ -3561,54 +3556,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|checkMaxTermLength
-argument_list|(
-name|status
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Throws IllegalArgumentException if the return status    *  from DocumentsWriter.{add,update}Document indicates    *  that a too-long term was encountered */
-DECL|method|checkMaxTermLength
-specifier|final
-specifier|private
-name|void
-name|checkMaxTermLength
-parameter_list|(
-name|int
-name|status
-parameter_list|)
-block|{
-if|if
-condition|(
-name|status
-operator|>
-literal|1
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"at least one term (length "
-operator|+
-operator|(
-name|status
-operator|>>
-literal|1
-operator|)
-operator|+
-literal|") exceeds max term length "
-operator|+
-operator|(
-name|DocumentsWriter
-operator|.
-name|CHAR_BLOCK_SIZE
-operator|-
-literal|1
-operator|)
-operator|+
-literal|"; these terms were skipped"
-argument_list|)
-throw|;
 block|}
 comment|// for test purpose
 DECL|method|getSegmentCount
@@ -6426,29 +6373,9 @@ comment|// we should be able to change this so we can
 comment|// buffer deletes longer and then flush them to
 comment|// multiple flushed segments, when
 comment|// autoCommit=false
-name|int
-name|delCount
-init|=
 name|applyDeletes
 argument_list|(
 name|flushDocs
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|infoStream
-operator|.
-name|println
-argument_list|(
-literal|"flushed "
-operator|+
-name|delCount
-operator|+
-literal|" deleted documents"
 argument_list|)
 expr_stmt|;
 name|doAfterFlush
@@ -9521,7 +9448,7 @@ comment|// selectively apply the deletes to that new segment.
 DECL|method|applyDeletes
 specifier|private
 specifier|final
-name|int
+name|void
 name|applyDeletes
 parameter_list|(
 name|boolean
@@ -9541,21 +9468,15 @@ operator|.
 name|getBufferedDeleteTerms
 argument_list|()
 decl_stmt|;
-name|int
-name|delCount
+specifier|final
+name|List
+name|bufferedDeleteDocIDs
 init|=
-literal|0
-decl_stmt|;
-if|if
-condition|(
-name|bufferedDeleteTerms
+name|docWriter
 operator|.
-name|size
+name|getBufferedDeleteDocIDs
 argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
+decl_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -9571,7 +9492,14 @@ operator|.
 name|getNumBufferedDeleteTerms
 argument_list|()
 operator|+
-literal|" buffered deleted terms on "
+literal|" buffered deleted terms and "
+operator|+
+name|bufferedDeleteDocIDs
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" deleted docIDs on "
 operator|+
 name|segmentInfos
 operator|.
@@ -9620,11 +9548,11 @@ expr_stmt|;
 comment|// Apply delete terms to the segment just flushed from ram
 comment|// apply appropriately so that a delete term is only applied to
 comment|// the documents buffered before it, not those buffered after it.
-name|delCount
-operator|+=
 name|applyDeletesSelectively
 argument_list|(
 name|bufferedDeleteTerms
+argument_list|,
+name|bufferedDeleteDocIDs
 argument_list|,
 name|reader
 argument_list|)
@@ -9715,8 +9643,6 @@ argument_list|)
 expr_stmt|;
 comment|// Apply delete terms to disk segments
 comment|// except the one just flushed from ram.
-name|delCount
-operator|+=
 name|applyDeletes
 argument_list|(
 name|bufferedDeleteTerms
@@ -9756,13 +9682,9 @@ block|}
 comment|// Clean up bufferedDeleteTerms.
 name|docWriter
 operator|.
-name|clearBufferedDeleteTerms
+name|clearBufferedDeletes
 argument_list|()
 expr_stmt|;
-block|}
-return|return
-name|delCount
-return|;
 block|}
 comment|// For test purposes.
 DECL|method|getBufferedDeleteTermsSize
@@ -9803,11 +9725,14 @@ comment|// the documents buffered before it, not those buffered after it.
 DECL|method|applyDeletesSelectively
 specifier|private
 specifier|final
-name|int
+name|void
 name|applyDeletesSelectively
 parameter_list|(
 name|HashMap
 name|deleteTerms
+parameter_list|,
+name|List
+name|deleteIds
 parameter_list|,
 name|IndexReader
 name|reader
@@ -9827,11 +9752,6 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
-name|int
-name|delCount
-init|=
-literal|0
 decl_stmt|;
 while|while
 condition|(
@@ -9932,9 +9852,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|delCount
-operator|++
-expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -9947,15 +9864,55 @@ expr_stmt|;
 block|}
 block|}
 block|}
-return|return
-name|delCount
-return|;
+if|if
+condition|(
+name|deleteIds
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|iter
+operator|=
+name|deleteIds
+operator|.
+name|iterator
+argument_list|()
+expr_stmt|;
+while|while
+condition|(
+name|iter
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+name|reader
+operator|.
+name|deleteDocument
+argument_list|(
+operator|(
+operator|(
+name|Integer
+operator|)
+name|iter
+operator|.
+name|next
+argument_list|()
+operator|)
+operator|.
+name|intValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|// Apply buffered delete terms to this reader.
 DECL|method|applyDeletes
 specifier|private
 specifier|final
-name|int
+name|void
 name|applyDeletes
 parameter_list|(
 name|HashMap
@@ -9980,11 +9937,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|int
-name|delCount
-init|=
-literal|0
-decl_stmt|;
 while|while
 condition|(
 name|iter
@@ -10004,8 +9956,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|delCount
-operator|+=
 name|reader
 operator|.
 name|deleteDocuments
@@ -10020,9 +9970,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-name|delCount
-return|;
 block|}
 comment|// utility routines for tests
 DECL|method|newestSegment
