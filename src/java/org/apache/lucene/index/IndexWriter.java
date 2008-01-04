@@ -379,7 +379,7 @@ name|DEFAULT_TERM_INDEX_INTERVAL
 init|=
 literal|128
 decl_stmt|;
-comment|/**    * Absolute hard maximum length for a term.  If a term    * arrives from the analyzer longer than this length, it    * is skipped and a message is printed to infoStream, if    * set (see {@link setInfoStream}).    */
+comment|/**    * Absolute hard maximum length for a term.  If a term    * arrives from the analyzer longer than this length, it    * is skipped and a message is printed to infoStream, if    * set (see {@link #setInfoStream}).    */
 DECL|field|MAX_TERM_LENGTH
 specifier|public
 specifier|final

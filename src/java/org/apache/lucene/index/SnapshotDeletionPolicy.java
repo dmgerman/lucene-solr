@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link DeletionPolicy} that wraps around any other  *  {@link DeletionPolicy} and adds the ability to hold and  *  later release a single "snapshot" of an index.  While  *  the snapshot is held, the {@link IndexWriter} will not  *  remove any files associated with it even if the index is  *  otherwise being actively, arbitrarily changed.  Because  *  we wrap another arbitrary {@link DeletionPolicy}, this  *  gives you the freedom to continue using whatever {@link  *  DeletionPolicy} you would normally want to use with your  *  index. */
+comment|/** A {@link IndexDeletionPolicy} that wraps around any other  *  {@link IndexDeletionPolicy} and adds the ability to hold and  *  later release a single "snapshot" of an index.  While  *  the snapshot is held, the {@link IndexWriter} will not  *  remove any files associated with it even if the index is  *  otherwise being actively, arbitrarily changed.  Because  *  we wrap another arbitrary {@link IndexDeletionPolicy}, this  *  gives you the freedom to continue using whatever {@link  *  IndexDeletionPolicy} you would normally want to use with your  *  index. */
 end_comment
 
 begin_class
