@@ -1282,14 +1282,14 @@ argument_list|()
 operator|+
 literal|" does not equal: "
 operator|+
-literal|0
+literal|1
 argument_list|,
 name|token
 operator|.
 name|getPositionIncrement
 argument_list|()
 operator|==
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|token
