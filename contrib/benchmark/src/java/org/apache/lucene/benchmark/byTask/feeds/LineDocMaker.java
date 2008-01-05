@@ -462,27 +462,6 @@ name|doc
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)    * @see SimpleDocMaker#setConfig(java.util.Properties)    */
-DECL|method|setConfig
-specifier|public
-name|void
-name|setConfig
-parameter_list|(
-name|Config
-name|config
-parameter_list|)
-block|{
-name|super
-operator|.
-name|setConfig
-argument_list|(
-name|config
-argument_list|)
-expr_stmt|;
-name|resetInputs
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|getNextDocData
 specifier|protected
 name|DocData
@@ -667,6 +646,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|openFile
+specifier|synchronized
 name|void
 name|openFile
 parameter_list|()
