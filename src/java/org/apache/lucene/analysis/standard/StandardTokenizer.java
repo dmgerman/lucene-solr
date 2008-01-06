@@ -108,6 +108,43 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
+DECL|field|maxTokenLength
+specifier|private
+name|int
+name|maxTokenLength
+init|=
+name|StandardAnalyzer
+operator|.
+name|DEFAULT_MAX_TOKEN_LENGTH
+decl_stmt|;
+comment|/** Set the max allowed token length.  Any token longer    *  than this is skipped. */
+DECL|method|setMaxTokenLength
+specifier|public
+name|void
+name|setMaxTokenLength
+parameter_list|(
+name|int
+name|length
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxTokenLength
+operator|=
+name|length
+expr_stmt|;
+block|}
+comment|/** @see #setMaxTokenLength */
+DECL|method|getMaxTokenLength
+specifier|public
+name|int
+name|getMaxTokenLength
+parameter_list|()
+block|{
+return|return
+name|maxTokenLength
+return|;
+block|}
 comment|/**      * Creates a new instance of the {@link StandardTokenizer}. Attaches the      *<code>input</code> to a newly created JFlex scanner.      */
 DECL|method|StandardTokenizer
 specifier|public
@@ -169,7 +206,7 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.apache.lucene.analysis.TokenStream#next()      */
+comment|/*    * (non-Javadoc)    *    * @see org.apache.lucene.analysis.TokenStream#next()    */
 DECL|method|next
 specifier|public
 name|Token
@@ -180,6 +217,16 @@ name|result
 parameter_list|)
 throws|throws
 name|IOException
+block|{
+name|int
+name|posIncr
+init|=
+literal|1
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|int
 name|tokenType
@@ -202,10 +249,27 @@ return|return
 literal|null
 return|;
 block|}
+if|if
+condition|(
+name|scanner
+operator|.
+name|yylength
+argument_list|()
+operator|<=
+name|maxTokenLength
+condition|)
+block|{
 name|result
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|result
+operator|.
+name|setPositionIncrement
+argument_list|(
+name|posIncr
+argument_list|)
 expr_stmt|;
 name|scanner
 operator|.
@@ -323,6 +387,14 @@ block|}
 return|return
 name|result
 return|;
+block|}
+else|else
+comment|// When we skip a too-long term, we still increment the
+comment|// position increment
+name|posIncr
+operator|++
+expr_stmt|;
+block|}
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.apache.lucene.analysis.TokenStream#reset()      */
 DECL|method|reset
