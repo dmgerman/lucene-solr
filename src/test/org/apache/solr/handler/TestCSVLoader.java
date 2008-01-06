@@ -1382,6 +1382,9 @@ operator|+
 literal|"102|a;;b\n"
 operator|+
 literal|"103|\n"
+operator|+
+literal|"104|a\\\\b\n"
+comment|// no backslash escaping should be done by default
 argument_list|)
 expr_stmt|;
 name|loadLocal
@@ -1426,7 +1429,7 @@ argument_list|(
 literal|"id:[100 TO 110]"
 argument_list|)
 argument_list|,
-literal|"//*[@numFound='4']"
+literal|"//*[@numFound='5']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1487,6 +1490,116 @@ literal|"id:103"
 argument_list|)
 argument_list|,
 literal|"//str[@name='str_s'][.='EMPTY']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:104"
+argument_list|)
+argument_list|,
+literal|"//str[@name='str_s'][.='a\\\\b']"
+argument_list|)
+expr_stmt|;
+comment|// test no escaping + double encapsulator escaping by default
+name|makeFile
+argument_list|(
+literal|"id,str_s\n"
+operator|+
+literal|"100,\"quoted \"\" \\ string\"\n"
+operator|+
+literal|"101,unquoted \"\" \\ string\n"
+comment|// double encap shouldn't be an escape outside encap
+operator|+
+literal|"102,end quote \\\n"
+argument_list|)
+expr_stmt|;
+name|loadLocal
+argument_list|(
+literal|"stream.file"
+argument_list|,
+name|filename
+argument_list|,
+literal|"commit"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:100"
+argument_list|)
+argument_list|,
+literal|"//str[@name='str_s'][.='quoted \" \\ string']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:101"
+argument_list|)
+argument_list|,
+literal|"//str[@name='str_s'][.='unquoted \"\" \\ string']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:102"
+argument_list|)
+argument_list|,
+literal|"//str[@name='str_s'][.='end quote \\']"
+argument_list|)
+expr_stmt|;
+comment|// setting an escape should disable encapsulator
+name|makeFile
+argument_list|(
+literal|"id,str_s\n"
+operator|+
+literal|"100,\"quoted \"\" \\\" \\\\ string\"\n"
+comment|// quotes should be part of value
+operator|+
+literal|"101,unquoted \"\" \\\" \\, \\\\ string\n"
+argument_list|)
+expr_stmt|;
+name|loadLocal
+argument_list|(
+literal|"stream.file"
+argument_list|,
+name|filename
+argument_list|,
+literal|"commit"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"escape"
+argument_list|,
+literal|"\\"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:100"
+argument_list|)
+argument_list|,
+literal|"//str[@name='str_s'][.='\"quoted \"\" \" \\ string\"']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"id:101"
+argument_list|)
+argument_list|,
+literal|"//str[@name='str_s'][.='unquoted \"\" \" , \\ string']"
 argument_list|)
 expr_stmt|;
 block|}
