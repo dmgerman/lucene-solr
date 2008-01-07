@@ -507,7 +507,7 @@ specifier|static
 name|int
 name|OBJECT_HEADER_BYTES
 init|=
-literal|12
+literal|8
 decl_stmt|;
 DECL|field|OBJECT_POINTER_BYTES
 specifier|private
@@ -5921,6 +5921,15 @@ operator|.
 name|stringValue
 argument_list|()
 decl_stmt|;
+specifier|final
+name|int
+name|valueLength
+init|=
+name|stringValue
+operator|.
+name|length
+argument_list|()
+decl_stmt|;
 name|Token
 name|token
 init|=
@@ -5931,11 +5940,50 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|char
+index|[]
+name|termBuffer
+init|=
 name|token
 operator|.
-name|setTermText
+name|termBuffer
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|termBuffer
+operator|.
+name|length
+operator|<
+name|valueLength
+condition|)
+name|termBuffer
+operator|=
+name|token
+operator|.
+name|resizeTermBuffer
 argument_list|(
+name|valueLength
+argument_list|)
+expr_stmt|;
 name|stringValue
+operator|.
+name|getChars
+argument_list|(
+literal|0
+argument_list|,
+name|valueLength
+argument_list|,
+name|termBuffer
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|token
+operator|.
+name|setTermLength
+argument_list|(
+name|valueLength
 argument_list|)
 expr_stmt|;
 name|token
@@ -13094,27 +13142,26 @@ name|CHAR_NUM_BYTE
 init|=
 literal|2
 decl_stmt|;
-DECL|field|OBJECT_HEADER_NUM_BYTE
-specifier|final
-specifier|private
-specifier|static
-name|int
-name|OBJECT_HEADER_NUM_BYTE
-init|=
-literal|8
-decl_stmt|;
+comment|// Why + 5*POINTER_NUM_BYTE below?
+comment|//   1: Posting has "vector" field which is a pointer
+comment|//   2: Posting is referenced by postingsFreeList array
+comment|//   3,4,5: Posting is referenced by postings hash, which
+comment|//          targets 25-50% fill factor; approximate this
+comment|//          as 3X # pointers
 DECL|field|POSTING_NUM_BYTE
 specifier|final
 specifier|static
 name|int
 name|POSTING_NUM_BYTE
 init|=
-name|OBJECT_HEADER_NUM_BYTE
+name|OBJECT_HEADER_BYTES
 operator|+
 literal|9
 operator|*
 name|INT_NUM_BYTE
 operator|+
+literal|5
+operator|*
 name|POINTER_NUM_BYTE
 decl_stmt|;
 comment|// Holds free pool of Posting instances
@@ -13620,7 +13667,7 @@ operator|=
 operator|new
 name|char
 index|[
-name|BYTE_BLOCK_SIZE
+name|CHAR_BLOCK_SIZE
 index|]
 expr_stmt|;
 block|}
