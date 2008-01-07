@@ -473,6 +473,13 @@ operator|-
 literal|1
 condition|)
 block|{
+name|prevBuffer
+operator|.
+name|set
+argument_list|(
+name|termBuffer
+argument_list|)
+expr_stmt|;
 name|termBuffer
 operator|.
 name|reset
