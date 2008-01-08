@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -43,6 +53,8 @@ DECL|interface|SolrResponse
 specifier|public
 interface|interface
 name|SolrResponse
+extends|extends
+name|Serializable
 block|{
 DECL|method|getElapsedTime
 name|long
