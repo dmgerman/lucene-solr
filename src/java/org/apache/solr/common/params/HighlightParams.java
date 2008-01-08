@@ -136,6 +136,17 @@ name|HIGHLIGHT
 operator|+
 literal|".alternateField"
 decl_stmt|;
+DECL|field|MERGE_CONTIGUOUS_FRAGMENTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MERGE_CONTIGUOUS_FRAGMENTS
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".mergeContiguous"
+decl_stmt|;
 comment|// Formatter
 DECL|field|SIMPLE
 specifier|public
