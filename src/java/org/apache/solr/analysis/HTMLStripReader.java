@@ -76,16 +76,6 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
 begin_comment
 comment|/**  * A Reader that wraps another reader and attempts to strip out HTML constructs.  *  *  * @version $Id$  */
 end_comment
@@ -104,13 +94,21 @@ specifier|final
 name|Reader
 name|in
 decl_stmt|;
-DECL|field|READAHEAD
+DECL|field|readAheadLimit
 specifier|private
-specifier|final
 name|int
-name|READAHEAD
+name|readAheadLimit
 init|=
-literal|4096
+name|DEFAULT_READ_AHEAD
+decl_stmt|;
+DECL|field|readAheadLimitMinus1
+specifier|private
+name|int
+name|readAheadLimitMinus1
+init|=
+name|readAheadLimit
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|numWhitespace
 specifier|private
@@ -125,6 +123,11 @@ name|int
 name|numRead
 init|=
 literal|0
+decl_stmt|;
+DECL|field|lastMark
+specifier|private
+name|int
+name|lastMark
 decl_stmt|;
 DECL|field|escapedTags
 specifier|private
@@ -185,6 +188,15 @@ init|=
 operator|new
 name|StringBuilder
 argument_list|()
+decl_stmt|;
+DECL|field|DEFAULT_READ_AHEAD
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_READ_AHEAD
+init|=
+literal|8192
 decl_stmt|;
 DECL|method|main
 specifier|public
@@ -298,6 +310,57 @@ name|escapedTags
 operator|=
 name|escapedTags
 expr_stmt|;
+block|}
+DECL|method|HTMLStripReader
+specifier|public
+name|HTMLStripReader
+parameter_list|(
+name|Reader
+name|source
+parameter_list|,
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|escapedTags
+parameter_list|,
+name|int
+name|readAheadLimit
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|source
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|escapedTags
+operator|=
+name|escapedTags
+expr_stmt|;
+name|this
+operator|.
+name|readAheadLimit
+operator|=
+name|readAheadLimit
+expr_stmt|;
+name|readAheadLimitMinus1
+operator|=
+name|readAheadLimit
+operator|-
+literal|1
+expr_stmt|;
+block|}
+DECL|method|getReadAheadLimit
+specifier|public
+name|int
+name|getReadAheadLimit
+parameter_list|()
+block|{
+return|return
+name|readAheadLimit
+return|;
 block|}
 DECL|method|next
 specifier|private
@@ -657,11 +720,15 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|lastMark
+operator|=
+name|numRead
+expr_stmt|;
 name|in
 operator|.
 name|mark
 argument_list|(
-name|READAHEAD
+name|readAheadLimit
 argument_list|)
 expr_stmt|;
 block|}
@@ -857,6 +924,8 @@ block|}
 comment|// In older HTML, an entity may not have always been terminated
 comment|// with a semicolon.  We'll also treat EOF or whitespace as terminating
 comment|// the entity.
+try|try
+block|{
 if|if
 condition|(
 name|ch
@@ -869,6 +938,16 @@ operator|-
 literal|1
 condition|)
 block|{
+name|numWhitespace
+operator|=
+name|sb
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|2
+expr_stmt|;
+comment|// + 2 accounts for&, #, and ;, then, take away 1 for the fact that we do output a char
 return|return
 name|Integer
 operator|.
@@ -898,6 +977,16 @@ argument_list|(
 name|ch
 argument_list|)
 expr_stmt|;
+name|numWhitespace
+operator|=
+name|sb
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|2
+expr_stmt|;
+comment|// + 2 accounts for&, #, and ;, then, take away 1 for the fact that we do output a char
 return|return
 name|Integer
 operator|.
@@ -910,6 +999,17 @@ argument_list|()
 argument_list|,
 name|base
 argument_list|)
+return|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+return|return
+name|MISMATCH
 return|;
 block|}
 comment|// Not an entity...
@@ -974,7 +1074,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|READAHEAD
+name|readAheadLimitMinus1
 condition|;
 name|i
 operator|++
@@ -1043,6 +1143,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|numWhitespace
+operator|=
+name|entity
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|1
+expr_stmt|;
 return|return
 name|entityChar
 operator|.
@@ -1085,6 +1194,22 @@ condition|)
 return|return
 name|MATCH
 return|;
+if|if
+condition|(
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
+operator|||
+name|peek
+argument_list|()
+operator|==
+literal|'>'
+condition|)
+block|{
 name|int
 name|ch
 init|=
@@ -1102,9 +1227,17 @@ name|MATCH
 return|;
 comment|// if it starts with<! and isn't a comment,
 comment|// simply read until ">"
+comment|//since we did readComment already, it may be the case that we are already deep into the read ahead buffer
+comment|//so, we may need to abort sooner
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|ch
@@ -1136,6 +1269,10 @@ name|MISMATCH
 return|;
 block|}
 block|}
+block|}
+return|return
+name|MISMATCH
+return|;
 block|}
 comment|// tries to read comments the way browsers do, not
 comment|// strictly by the standards.
@@ -1206,9 +1343,18 @@ return|return
 name|MISMATCH
 return|;
 block|}
+comment|/*two extra calls to next() here, so make sure we don't read past our mark*/
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
+operator|-
+literal|3
 condition|)
 block|{
 name|ch
@@ -1341,6 +1487,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+return|return
+name|MISMATCH
+return|;
 block|}
 DECL|method|readTag
 specifier|private
@@ -1394,7 +1543,13 @@ argument_list|)
 expr_stmt|;
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|ch
@@ -1500,7 +1655,13 @@ block|{
 comment|// process attributes
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|ch
@@ -1585,6 +1746,22 @@ name|MISMATCH
 return|;
 block|}
 block|}
+if|if
+condition|(
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|>=
+name|readAheadLimitMinus1
+condition|)
+block|{
+return|return
+name|MISMATCH
+return|;
+comment|//exit out if we exceeded the buffer
+block|}
 block|}
 comment|// We only get to this point after we have read the
 comment|// entire tag.  Now let's see if it's a special tag.
@@ -1653,7 +1830,13 @@ name|IOException
 block|{
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|int
@@ -1801,6 +1984,9 @@ name|MISMATCH
 return|;
 block|}
 block|}
+return|return
+name|MISMATCH
+return|;
 block|}
 comment|// read a string escaped by backslashes
 DECL|method|readScriptString
@@ -1832,7 +2018,13 @@ name|MISMATCH
 return|;
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|int
@@ -1889,6 +2081,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+return|return
+name|MISMATCH
+return|;
 block|}
 DECL|method|readName
 specifier|private
@@ -2052,193 +2247,6 @@ name|MATCH
 return|;
 block|}
 comment|/***   [10]   	AttValue	   ::=   	'"' ([^<&"] | Reference)* '"'         |  "'" ([^<&'] | Reference)* "'"    need to also handle unquoted attributes, and attributes w/o values:<td id=msviGlobalToolbar height="22" nowrap align=left>    ***/
-DECL|method|readAttr
-specifier|private
-name|int
-name|readAttr
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|int
-name|ch
-init|=
-name|read
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|isFirstIdChar
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-return|return
-name|MISMATCH
-return|;
-name|ch
-operator|=
-name|read
-argument_list|()
-expr_stmt|;
-while|while
-condition|(
-name|isIdChar
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-name|ch
-operator|=
-name|read
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|isSpace
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-name|ch
-operator|=
-name|nextSkipWS
-argument_list|()
-expr_stmt|;
-comment|// attributes may not have a value at all!
-comment|// if (ch != '=') return MISMATCH;
-if|if
-condition|(
-name|ch
-operator|!=
-literal|'='
-condition|)
-block|{
-name|push
-argument_list|(
-name|ch
-argument_list|)
-expr_stmt|;
-return|return
-name|MATCH
-return|;
-block|}
-name|int
-name|quoteChar
-init|=
-name|nextSkipWS
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|quoteChar
-operator|==
-literal|'"'
-operator|||
-name|quoteChar
-operator|==
-literal|'\''
-condition|)
-block|{
-comment|// TODO: should I set a max size to try and find the other
-comment|// quote?  Otherwise, I may read to much to restore
-comment|// the stream.
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-name|ch
-operator|=
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|ch
-operator|<
-literal|0
-condition|)
-return|return
-name|MISMATCH
-return|;
-elseif|else
-if|if
-condition|(
-name|ch
-operator|==
-name|quoteChar
-condition|)
-block|{
-return|return
-name|MATCH
-return|;
-comment|//} else if (ch=='<') {
-comment|//  return MISMATCH;
-block|}
-block|}
-block|}
-else|else
-block|{
-comment|// unquoted attribute
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-name|ch
-operator|=
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|ch
-operator|<
-literal|0
-condition|)
-return|return
-name|MISMATCH
-return|;
-elseif|else
-if|if
-condition|(
-name|isSpace
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-block|{
-name|push
-argument_list|(
-name|ch
-argument_list|)
-expr_stmt|;
-return|return
-name|MATCH
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|ch
-operator|==
-literal|'>'
-condition|)
-block|{
-name|push
-argument_list|(
-name|ch
-argument_list|)
-expr_stmt|;
-return|return
-name|MATCH
-return|;
-block|}
-block|}
-block|}
-block|}
 comment|// This reads attributes and attempts to handle any
 comment|// embedded server side includes that would otherwise
 comment|// mess up the quote handling.
@@ -2251,6 +2259,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|<
+name|readAheadLimitMinus1
+operator|)
+condition|)
+block|{
 name|int
 name|ch
 init|=
@@ -2279,12 +2298,26 @@ name|isIdChar
 argument_list|(
 name|ch
 argument_list|)
+operator|&&
+operator|(
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
+operator|-
+literal|1
+operator|)
 condition|)
+block|{
 name|ch
 operator|=
 name|read
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isSpace
@@ -2332,12 +2365,15 @@ operator|==
 literal|'\''
 condition|)
 block|{
-comment|// TODO: should I set a max size to try and find the other
-comment|// quote?  Otherwise, I may read to much to restore
-comment|// the stream.
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|ch
@@ -2387,7 +2423,13 @@ block|{
 comment|// unquoted attribute
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|ch
@@ -2453,6 +2495,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+return|return
+name|MISMATCH
+return|;
 block|}
 comment|// skip past server side include
 DECL|method|eatSSI
@@ -2584,7 +2630,13 @@ block|{
 comment|// "<?" has already been read
 while|while
 condition|(
-literal|true
+operator|(
+name|numRead
+operator|-
+name|lastMark
+operator|)
+operator|<
+name|readAheadLimitMinus1
 condition|)
 block|{
 name|int
@@ -2626,6 +2678,9 @@ name|MISMATCH
 return|;
 block|}
 block|}
+return|return
+name|MISMATCH
+return|;
 block|}
 DECL|method|read
 specifier|public
@@ -2652,6 +2707,7 @@ return|return
 literal|' '
 return|;
 block|}
+comment|//do not limit this one by the READAHEAD
 while|while
 condition|(
 literal|true
