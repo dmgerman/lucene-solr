@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.handler
+DECL|package|org.apache.solr.handler.component
 package|package
 name|org
 operator|.
@@ -13,6 +13,8 @@ operator|.
 name|solr
 operator|.
 name|handler
+operator|.
+name|component
 package|;
 end_package
 
@@ -111,6 +113,22 @@ operator|.
 name|component
 operator|.
 name|SearchComponent
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|component
+operator|.
+name|SearchHandler
 import|;
 end_import
 
