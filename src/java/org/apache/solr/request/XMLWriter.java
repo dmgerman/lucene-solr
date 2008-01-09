@@ -1937,12 +1937,12 @@ name|getCount
 parameter_list|()
 function_decl|;
 DECL|method|getNumFound
-name|int
+name|long
 name|getNumFound
 parameter_list|()
 function_decl|;
 DECL|method|getStart
-name|int
+name|long
 name|getStart
 parameter_list|()
 function_decl|;
@@ -2073,7 +2073,7 @@ name|writeAttr
 argument_list|(
 literal|"numFound"
 argument_list|,
-name|Integer
+name|Long
 operator|.
 name|toString
 argument_list|(
@@ -2089,7 +2089,7 @@ name|writeAttr
 argument_list|(
 literal|"start"
 argument_list|,
-name|Integer
+name|Long
 operator|.
 name|toString
 argument_list|(
@@ -2242,7 +2242,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|int
+name|long
 name|getNumFound
 parameter_list|()
 block|{
@@ -2254,7 +2254,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|int
+name|long
 name|getStart
 parameter_list|()
 block|{
@@ -2365,7 +2365,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|int
+name|long
 name|getNumFound
 parameter_list|()
 block|{
@@ -2377,7 +2377,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|int
+name|long
 name|getStart
 parameter_list|()
 block|{

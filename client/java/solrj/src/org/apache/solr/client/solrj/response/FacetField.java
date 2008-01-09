@@ -97,7 +97,7 @@ literal|null
 decl_stmt|;
 DECL|field|_count
 specifier|private
-name|int
+name|long
 name|_count
 init|=
 literal|0
@@ -120,7 +120,7 @@ parameter_list|,
 name|String
 name|n
 parameter_list|,
-name|int
+name|long
 name|c
 parameter_list|)
 block|{
@@ -163,7 +163,7 @@ expr_stmt|;
 block|}
 DECL|method|getCount
 specifier|public
-name|int
+name|long
 name|getCount
 parameter_list|()
 block|{
@@ -176,7 +176,7 @@ specifier|public
 name|void
 name|setCount
 parameter_list|(
-name|int
+name|long
 name|c
 parameter_list|)
 block|{
@@ -297,7 +297,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
+name|long
 name|cnt
 parameter_list|)
 block|{
@@ -345,7 +345,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
+name|long
 name|cnt
 parameter_list|)
 block|{
@@ -433,7 +433,7 @@ specifier|public
 name|FacetField
 name|getLimitingFields
 parameter_list|(
-name|int
+name|long
 name|max
 parameter_list|)
 block|{

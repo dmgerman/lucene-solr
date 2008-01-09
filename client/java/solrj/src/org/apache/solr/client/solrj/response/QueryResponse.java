@@ -886,11 +886,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Parse the facet info into fields
+comment|// TODO?? The list could be<int> or<long>?  If always<long> then we can switch to<Long>
 name|NamedList
 argument_list|<
 name|NamedList
 argument_list|<
-name|Integer
+name|Number
 argument_list|>
 argument_list|>
 name|ff
@@ -900,7 +901,7 @@ name|NamedList
 argument_list|<
 name|NamedList
 argument_list|<
-name|Integer
+name|Number
 argument_list|>
 argument_list|>
 operator|)
@@ -946,7 +947,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|int
+name|long
 name|minsize
 init|=
 name|_results
@@ -964,7 +965,7 @@ name|String
 argument_list|,
 name|NamedList
 argument_list|<
-name|Integer
+name|Number
 argument_list|>
 argument_list|>
 name|facet
@@ -992,7 +993,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|Integer
+name|Number
 argument_list|>
 name|entry
 range|:
@@ -1014,6 +1015,9 @@ argument_list|,
 name|entry
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;

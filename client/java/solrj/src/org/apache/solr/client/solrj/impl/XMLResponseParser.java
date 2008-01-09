@@ -1738,9 +1738,9 @@ name|docs
 operator|.
 name|setNumFound
 argument_list|(
-name|Integer
+name|Long
 operator|.
-name|parseInt
+name|parseLong
 argument_list|(
 name|v
 argument_list|)
@@ -1762,9 +1762,9 @@ name|docs
 operator|.
 name|setStart
 argument_list|(
-name|Integer
+name|Long
 operator|.
-name|parseInt
+name|parseLong
 argument_list|(
 name|v
 argument_list|)

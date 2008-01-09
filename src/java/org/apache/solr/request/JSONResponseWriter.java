@@ -2472,7 +2472,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|writeInt
+name|writeLong
 argument_list|(
 literal|null
 argument_list|,
@@ -2492,7 +2492,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|writeInt
+name|writeLong
 argument_list|(
 literal|null
 argument_list|,
