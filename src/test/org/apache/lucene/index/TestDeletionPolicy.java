@@ -1160,12 +1160,20 @@ literal|"commit point was older than "
 operator|+
 name|SECONDS
 operator|+
-literal|" seconds but did not get deleted"
+literal|" seconds ("
+operator|+
+operator|(
+name|lastDeleteTime
+operator|-
+name|modTime
+operator|)
+operator|+
+literal|" msec) but did not get deleted"
 argument_list|,
 name|lastDeleteTime
 operator|-
 name|modTime
-operator|<
+operator|<=
 operator|(
 name|SECONDS
 operator|*
