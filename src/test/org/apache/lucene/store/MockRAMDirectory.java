@@ -378,9 +378,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|maybeThrowDeterministicException
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|randomIOExceptionRate
@@ -802,6 +799,7 @@ return|;
 block|}
 comment|/** Like getRecomputedSizeInBytes(), but, uses actual file    * lengths rather than buffer allocations (which are    * quantized up to nearest    * RAMOutputStream.BUFFER_SIZE (now 1024) bytes.    */
 DECL|method|getRecomputedActualSizeInBytes
+specifier|public
 specifier|final
 specifier|synchronized
 name|long
@@ -930,6 +928,33 @@ return|return
 name|this
 return|;
 block|}
+DECL|field|doFail
+specifier|protected
+name|boolean
+name|doFail
+decl_stmt|;
+DECL|method|setDoFail
+specifier|public
+name|void
+name|setDoFail
+parameter_list|()
+block|{
+name|doFail
+operator|=
+literal|true
+expr_stmt|;
+block|}
+DECL|method|clearDoFail
+specifier|public
+name|void
+name|clearDoFail
+parameter_list|()
+block|{
+name|doFail
+operator|=
+literal|false
+expr_stmt|;
+block|}
 block|}
 DECL|field|failures
 name|ArrayList
@@ -937,6 +962,7 @@ name|failures
 decl_stmt|;
 comment|/**    * add a Failure object to the list of objects to be evaluated    * at every potential failure point    */
 DECL|method|failOn
+specifier|synchronized
 specifier|public
 name|void
 name|failOn
@@ -967,8 +993,9 @@ name|fail
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Itterate through the failures list, giving each object a    * chance to throw an IOE    */
+comment|/**    * Iterate through the failures list, giving each object a    * chance to throw an IOE    */
 DECL|method|maybeThrowDeterministicException
+specifier|synchronized
 name|void
 name|maybeThrowDeterministicException
 parameter_list|()

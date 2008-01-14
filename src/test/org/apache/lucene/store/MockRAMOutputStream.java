@@ -26,16 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Used by MockRAMDirectory to create an output stream that  * will throw an IOException on fake disk full, track max  * disk space actually used, and maybe throw random  * IOExceptions.  */
 end_comment
@@ -134,6 +124,25 @@ operator|=
 name|size
 expr_stmt|;
 block|}
+block|}
+DECL|method|flush
+specifier|public
+name|void
+name|flush
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|dir
+operator|.
+name|maybeThrowDeterministicException
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|writeByte
 specifier|public
@@ -318,6 +327,11 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+name|dir
+operator|.
+name|maybeThrowDeterministicException
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|first
