@@ -52,7 +52,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
+name|IOException
 import|;
 end_import
 
@@ -62,12 +62,12 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Reader
 import|;
 end_import
 
 begin_comment
-comment|/**  * Extension of StandardTokenizer that is aware of Wikipedia syntax.  It is based off of the  * Wikipedia tutorial available at http://en.wikipedia.org/wiki/Wikipedia:Tutorial, but it may not be complete.  *  *  **/
+comment|/**  * Extension of StandardTokenizer that is aware of Wikipedia syntax.  It is based off of the  * Wikipedia tutorial available at http://en.wikipedia.org/wiki/Wikipedia:Tutorial, but it may not be complete.  *  *<p/>  * EXPERIMENTAL !!!!!!!!!  * NOTE: This Tokenizer is considered experimental and the grammar is subject to change in the trunk and in follow up releases.  *  **/
 end_comment
 
 begin_class
