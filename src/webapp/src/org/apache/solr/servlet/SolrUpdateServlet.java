@@ -252,6 +252,35 @@ operator|.
 name|CONTENT_TYPE_XML_UTF8
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|request
+operator|.
+name|getQueryString
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|warning
+argument_list|(
+literal|"The @Deprecated SolrUpdateServlet does not accept query parameters: "
+operator|+
+name|request
+operator|.
+name|getQueryString
+argument_list|()
+operator|+
+literal|"\n"
+operator|+
+literal|"  If you are using solrj, make sure to register a request handler to /update rather then use this servlet.\n"
+operator|+
+literal|"  Add:<requestHandler name=\"/update\" class=\"solr.XmlUpdateRequestHandler\"> to your solrconfig.xml\n\n"
+argument_list|)
+expr_stmt|;
+block|}
 name|PrintWriter
 name|writer
 init|=
