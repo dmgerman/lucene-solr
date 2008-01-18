@@ -150,6 +150,14 @@ operator|.
 name|getSolrServer
 argument_list|()
 expr_stmt|;
+name|gserver
+operator|.
+name|deleteByQuery
+argument_list|(
+literal|"*:*"
+argument_list|)
+expr_stmt|;
+comment|// delete everything!
 name|DocThread
 index|[]
 name|threads
