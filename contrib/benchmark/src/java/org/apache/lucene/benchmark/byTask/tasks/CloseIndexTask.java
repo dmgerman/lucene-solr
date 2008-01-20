@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Close index writer.  *<br>Other side effects: index writer object in perfRunData is nullified.  */
+comment|/**  * Close index writer.  *<br>Other side effects: index writer object in perfRunData is nullified.  *<br>Takes optional param "doWait": if false, then close(false) is called.  */
 end_comment
 
 begin_class
@@ -86,6 +86,12 @@ name|runData
 argument_list|)
 expr_stmt|;
 block|}
+DECL|field|doWait
+name|boolean
+name|doWait
+init|=
+literal|true
+decl_stmt|;
 DECL|method|doLogic
 specifier|public
 name|int
@@ -113,7 +119,9 @@ block|{
 name|iw
 operator|.
 name|close
-argument_list|()
+argument_list|(
+name|doWait
+argument_list|)
 expr_stmt|;
 block|}
 name|getRunData
@@ -126,6 +134,45 @@ argument_list|)
 expr_stmt|;
 return|return
 literal|1
+return|;
+block|}
+DECL|method|setParams
+specifier|public
+name|void
+name|setParams
+parameter_list|(
+name|String
+name|params
+parameter_list|)
+block|{
+name|super
+operator|.
+name|setParams
+argument_list|(
+name|params
+argument_list|)
+expr_stmt|;
+name|doWait
+operator|=
+name|Boolean
+operator|.
+name|valueOf
+argument_list|(
+name|params
+argument_list|)
+operator|.
+name|booleanValue
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|supportsParams
+specifier|public
+name|boolean
+name|supportsParams
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 block|}
