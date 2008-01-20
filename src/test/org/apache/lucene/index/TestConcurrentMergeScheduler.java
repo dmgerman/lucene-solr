@@ -414,20 +414,11 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Even though this won't delete any docs,
-comment|// IndexWriter's flush will still make a clone for all
-comment|// SegmentInfos on hitting the exception:
 name|writer
 operator|.
-name|deleteDocuments
+name|addDocument
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-literal|"id"
-argument_list|,
-literal|"1000"
-argument_list|)
+name|doc
 argument_list|)
 expr_stmt|;
 name|failure

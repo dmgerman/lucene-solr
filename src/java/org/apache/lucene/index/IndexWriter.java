@@ -6192,6 +6192,16 @@ operator|.
 name|getDocStoreOffset
 argument_list|()
 decl_stmt|;
+comment|// docStoreOffset should only be non-zero when
+comment|// autoCommit == false
+assert|assert
+operator|!
+name|autoCommit
+operator|||
+literal|0
+operator|==
+name|docStoreOffset
+assert|;
 name|boolean
 name|docStoreIsCompoundFile
 init|=
