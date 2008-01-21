@@ -2129,6 +2129,134 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Test that IndexWriter settings stick.    */
+DECL|method|testIndexWriterSettings
+specifier|public
+name|void
+name|testIndexWriterSettings
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// 1. alg definition (required in every "logic" test)
+name|String
+name|algLines
+index|[]
+init|=
+block|{
+literal|"# ----- properties "
+block|,
+literal|"doc.maker="
+operator|+
+name|Reuters20DocMaker
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+block|,
+literal|"doc.add.log.step=3"
+block|,
+literal|"ram.flush.mb=-1"
+block|,
+literal|"max.buffered=2"
+block|,
+literal|"compound=false"
+block|,
+literal|"doc.term.vector=false"
+block|,
+literal|"doc.maker.forever=false"
+block|,
+literal|"directory=RAMDirectory"
+block|,
+literal|"doc.stored=false"
+block|,
+literal|"merge.factor=3"
+block|,
+literal|"doc.tokenized=false"
+block|,
+literal|"debug.level=1"
+block|,
+literal|"# ----- alg "
+block|,
+literal|"{ \"Rounds\""
+block|,
+literal|"  ResetSystemErase"
+block|,
+literal|"  CreateIndex"
+block|,
+literal|"  { \"AddDocs\"  AddDoc> : * "
+block|,
+literal|"} : 2"
+block|,     }
+decl_stmt|;
+comment|// 2. execute the algorithm  (required in every "logic" test)
+name|Benchmark
+name|benchmark
+init|=
+name|execBenchmark
+argument_list|(
+name|algLines
+argument_list|)
+decl_stmt|;
+specifier|final
+name|IndexWriter
+name|writer
+init|=
+name|benchmark
+operator|.
+name|getRunData
+argument_list|()
+operator|.
+name|getIndexWriter
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|writer
+operator|.
+name|getMaxBufferedDocs
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|writer
+operator|.
+name|DISABLE_AUTO_FLUSH
+argument_list|,
+operator|(
+name|int
+operator|)
+name|writer
+operator|.
+name|getRAMBufferSizeMB
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|3
+argument_list|,
+name|writer
+operator|.
+name|getMergeFactor
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|false
+argument_list|,
+name|writer
+operator|.
+name|getUseCompoundFile
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Test that we can call optimize(maxNumSegments).    */
 DECL|method|testOptimizeMaxNumSegments
 specifier|public
