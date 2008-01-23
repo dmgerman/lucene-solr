@@ -70,34 +70,6 @@ name|CommonsHttpSolrServer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|SchemaField
-import|;
-end_import
-
 begin_comment
 comment|/**  * @version $Id$  * @since solr 1.3  */
 end_comment
