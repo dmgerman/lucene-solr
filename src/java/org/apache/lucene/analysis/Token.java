@@ -44,6 +44,16 @@ name|TermPositions
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|BitSet
+import|;
+end_import
+
 begin_comment
 comment|/** A Token is an occurence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is an interned string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><p><font color="#FF0000">   WARNING: The status of the<b>Payloads</b> feature is experimental.    The APIs introduced here might change in the future and will not be    supported anymore in such a case.</font><br><br><p><b>NOTE:</b> As of 2.3, Token stores the term text   internally as a malleable char[] termBuffer instead of   String termText.  The indexing code and core tokenizers   have been changed re-use a single Token instance, changing   its buffer and other fields in-place as the Token is   processed.  This provides substantially better indexing   performance as it saves the GC cost of new'ing a Token and   String for every term.  The APIs that accept String   termText are still available but a warning about the   associated performance cost has been added (below).  The   {@link #termText()} method has been deprecated.</p><p>Tokenizers and filters should try to re-use a Token   instance when possible for best performance, by   implementing the {@link TokenStream#next(Token)} API.   Failing that, to create a new Token you should first use   one of the constructors that starts with null text.  Then   you should call either {@link #termBuffer()} or {@link   #resizeTermBuffer(int)} to retrieve the Token's   termBuffer.  Fill in the characters of your term into this   buffer, and finally call {@link #setTermLength(int)} to   set the length of the term text.  See<a target="_top"   href="https://issues.apache.org/jira/browse/LUCENE-969">LUCENE-969</a>   for details.</p>    @see org.apache.lucene.index.Payload */
 end_comment
@@ -107,6 +117,11 @@ init|=
 name|DEFAULT_TYPE
 decl_stmt|;
 comment|// lexical type
+DECL|field|flags
+specifier|private
+name|int
+name|flags
+decl_stmt|;
 DECL|field|payload
 name|Payload
 name|payload
@@ -172,6 +187,36 @@ operator|=
 name|typ
 expr_stmt|;
 block|}
+comment|/**    * Constructs a Token with null text and start& end    *  offsets plus the Token type.    *  @param start start offset    *  @param end end offset    * @param flags The bits to set for this token    */
+DECL|method|Token
+specifier|public
+name|Token
+parameter_list|(
+name|int
+name|start
+parameter_list|,
+name|int
+name|end
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+block|{
+name|startOffset
+operator|=
+name|start
+expr_stmt|;
+name|endOffset
+operator|=
+name|end
+expr_stmt|;
+name|this
+operator|.
+name|flags
+operator|=
+name|flags
+expr_stmt|;
+block|}
 comment|/** Constructs a Token with the given term text, and start    *& end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset    *  @param end end offset */
 DECL|method|Token
 specifier|public
@@ -233,6 +278,43 @@ expr_stmt|;
 name|type
 operator|=
 name|typ
+expr_stmt|;
+block|}
+comment|/**    *  Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    * @param text    * @param start    * @param end    * @param typ token type bits    */
+DECL|method|Token
+specifier|public
+name|Token
+parameter_list|(
+name|String
+name|text
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|end
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+block|{
+name|termText
+operator|=
+name|text
+expr_stmt|;
+name|startOffset
+operator|=
+name|start
+expr_stmt|;
+name|endOffset
+operator|=
+name|end
+expr_stmt|;
+name|this
+operator|.
+name|flags
+operator|=
+name|flags
 expr_stmt|;
 block|}
 comment|/** Set the position increment.  This determines the position of this token    * relative to the previous Token in a {@link TokenStream}, used in phrase    * searching.    *    *<p>The default value is one.    *    *<p>Some common uses for this are:<ul>    *    *<li>Set it to zero to put multiple terms in the same position.  This is    * useful if, e.g., a word has multiple stems.  Searches for phrases    * including either stem will match.  In this case, all but the first stem's    * increment should be set to zero: the increment of the first instance    * should be one.  Repeating a token with an increment of zero can also be    * used to boost the scores of matches on that token.    *    *<li>Set it to values greater than one to inhibit exact phrase matches.    * If, for example, one does not want phrases to match across removed stop    * words, then one could build a stop word filter that removes stop words and    * also sets the increment to the number of stop words removed before each    * non-stop word.  Then exact phrase queries will only match when the terms    * occur with no intervening stop words.    *    *</ul>    * @see org.apache.lucene.index.TermPositions    */
@@ -693,7 +775,35 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**     * Returns this Token's payload.    */
+comment|/**    * EXPERIMENTAL:  While we think this is here to stay, we may want to change it to be a long.    *<p/>    *    * Get the bitset for any bits that have been set.  This is completely distinct from {@link #type()}, although they do share similar purposes.    * The flags can be used to encode information about the token for use by other {@link org.apache.lucene.analysis.TokenFilter}s.    *    *    * @return The bits    */
+DECL|method|getFlags
+specifier|public
+name|int
+name|getFlags
+parameter_list|()
+block|{
+return|return
+name|flags
+return|;
+block|}
+comment|/**    * @see #getFlags()    */
+DECL|method|setFlags
+specifier|public
+name|void
+name|setFlags
+parameter_list|(
+name|int
+name|flags
+parameter_list|)
+block|{
+name|this
+operator|.
+name|flags
+operator|=
+name|flags
+expr_stmt|;
+block|}
+comment|/**    * Returns this Token's payload.    */
 DECL|method|getPayload
 specifier|public
 name|Payload
@@ -847,7 +957,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Resets the term text, payload, and positionIncrement to default.    * Other fields such as startOffset, endOffset and the token type are    * not reset since they are normally overwritten by the tokenizer. */
+comment|/** Resets the term text, payload, flags, and positionIncrement to default.    * Other fields such as startOffset, endOffset and the token type are    * not reset since they are normally overwritten by the tokenizer. */
 DECL|method|clear
 specifier|public
 name|void
@@ -870,6 +980,10 @@ expr_stmt|;
 name|positionIncrement
 operator|=
 literal|1
+expr_stmt|;
+name|flags
+operator|=
+literal|0
 expr_stmt|;
 comment|// startOffset = endOffset = 0;
 comment|// type = DEFAULT_TYPE;
