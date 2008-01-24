@@ -206,6 +206,7 @@ name|BOTH
 init|=
 literal|2
 decl_stmt|;
+comment|/**    * This flag is used to indicate that the produced "Token" would, if {@link #TOKENS_ONLY} was used, produce multiple tokens.    */
 DECL|field|UNTOKENIZED_TOKEN_FLAG
 specifier|public
 specifier|static
