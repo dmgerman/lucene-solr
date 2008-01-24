@@ -248,11 +248,24 @@ argument_list|(
 literal|')'
 argument_list|)
 expr_stmt|;
+name|stok
+operator|.
+name|ordinaryChar
+argument_list|(
+literal|'-'
+argument_list|)
+expr_stmt|;
 name|boolean
 name|colonOk
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|isDisableCountNextTask
+init|=
+literal|false
+decl_stmt|;
+comment|// only for primitive tasks
 name|currSequence
 operator|.
 name|setDepth
@@ -356,6 +369,17 @@ argument_list|(
 name|paramObj
 argument_list|)
 decl_stmt|;
+name|task
+operator|.
+name|setDisableCounting
+argument_list|(
+name|isDisableCountNextTask
+argument_list|)
+expr_stmt|;
+name|isDisableCountNextTask
+operator|=
+literal|false
+expr_stmt|;
 name|currSequence
 operator|.
 name|addTask
@@ -1062,6 +1086,14 @@ name|getParent
 argument_list|()
 expr_stmt|;
 break|break;
+case|case
+literal|'-'
+case|:
+name|isDisableCountNextTask
+operator|=
+literal|true
+expr_stmt|;
+break|break;
 block|}
 comment|//switch(c)
 break|break;
@@ -1086,6 +1118,11 @@ block|}
 comment|// remove redundant top level enclosing sequences
 while|while
 condition|(
+name|sequence
+operator|.
+name|isCollapsable
+argument_list|()
+operator|&&
 name|sequence
 operator|.
 name|getRepetitions
@@ -1215,8 +1252,10 @@ name|Exception
 block|{
 name|sequence
 operator|.
-name|doLogic
-argument_list|()
+name|runAndMaybeStats
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: for test purposes, return all tasks participating in this algorithm.    * @return all tasks participating in this algorithm.    */

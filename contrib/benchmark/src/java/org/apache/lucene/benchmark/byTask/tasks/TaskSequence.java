@@ -169,6 +169,14 @@ specifier|private
 name|boolean
 name|anyExhaustibleTasks
 decl_stmt|;
+DECL|field|collapsable
+specifier|private
+name|boolean
+name|collapsable
+init|=
+literal|false
+decl_stmt|;
+comment|// to not collapse external sequence named in alg.
 DECL|method|TaskSequence
 specifier|public
 name|TaskSequence
@@ -190,6 +198,14 @@ name|super
 argument_list|(
 name|runData
 argument_list|)
+expr_stmt|;
+name|collapsable
+operator|=
+operator|(
+name|name
+operator|==
+literal|null
+operator|)
 expr_stmt|;
 name|name
 operator|=
@@ -1637,6 +1653,17 @@ expr_stmt|;
 block|}
 return|return
 name|res
+return|;
+block|}
+comment|/**    * Return true if can be collapsed in case it is outermost sequence    */
+DECL|method|isCollapsable
+specifier|public
+name|boolean
+name|isCollapsable
+parameter_list|()
+block|{
+return|return
+name|collapsable
 return|;
 block|}
 block|}
