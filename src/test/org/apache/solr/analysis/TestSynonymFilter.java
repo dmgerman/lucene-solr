@@ -229,8 +229,6 @@ argument_list|(
 name|ts
 argument_list|,
 name|dict
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 while|while
