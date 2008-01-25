@@ -430,6 +430,11 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+name|long
+name|totalSize
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|it
@@ -475,7 +480,42 @@ operator|.
 name|file
 argument_list|)
 expr_stmt|;
+name|totalSize
+operator|+=
+name|directory
+operator|.
+name|fileLength
+argument_list|(
+name|fe
+operator|.
+name|file
+argument_list|)
+expr_stmt|;
 block|}
+comment|// Pre-allocate size of file as optimization --
+comment|// this can potentially help IO performance as
+comment|// we write the file and also later during
+comment|// searching.  It also uncovers a disk-full
+comment|// situation earlier and hopefully without
+comment|// actually filling disk to 100%:
+specifier|final
+name|long
+name|finalLength
+init|=
+name|totalSize
+operator|+
+name|os
+operator|.
+name|getFilePointer
+argument_list|()
+decl_stmt|;
+name|os
+operator|.
+name|setLength
+argument_list|(
+name|finalLength
+argument_list|)
+expr_stmt|;
 comment|// Open the files and copy their data into the stream.
 comment|// Remember the locations of each file's data section.
 name|byte
@@ -579,6 +619,14 @@ name|dataOffset
 argument_list|)
 expr_stmt|;
 block|}
+assert|assert
+name|finalLength
+operator|==
+name|os
+operator|.
+name|length
+argument_list|()
+assert|;
 comment|// Close the output stream. Set the os to null before trying to
 comment|// close so that if an exception occurs during the close, the
 comment|// finally clause below will not attempt to close the stream
