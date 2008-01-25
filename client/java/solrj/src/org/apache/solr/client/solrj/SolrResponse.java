@@ -48,20 +48,25 @@ begin_comment
 comment|/**  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
-begin_interface
-DECL|interface|SolrResponse
+begin_class
+DECL|class|SolrResponse
 specifier|public
-interface|interface
+specifier|abstract
+class|class
 name|SolrResponse
-extends|extends
+implements|implements
 name|Serializable
 block|{
 DECL|method|getElapsedTime
+specifier|public
+specifier|abstract
 name|long
 name|getElapsedTime
 parameter_list|()
 function_decl|;
 DECL|method|getResponse
+specifier|public
+specifier|abstract
 name|NamedList
 argument_list|<
 name|Object
@@ -70,7 +75,7 @@ name|getResponse
 parameter_list|()
 function_decl|;
 block|}
-end_interface
+end_class
 
 end_unit
 

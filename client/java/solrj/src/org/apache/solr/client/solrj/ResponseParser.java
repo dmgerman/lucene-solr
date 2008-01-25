@@ -30,6 +30,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStreamReader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -48,19 +68,40 @@ begin_comment
 comment|/**  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
-begin_interface
-DECL|interface|ResponseParser
+begin_class
+DECL|class|ResponseParser
 specifier|public
-interface|interface
+specifier|abstract
+class|class
 name|ResponseParser
 block|{
 DECL|method|getWriterType
+specifier|public
+specifier|abstract
 name|String
 name|getWriterType
 parameter_list|()
 function_decl|;
 comment|// for example: wt=XML, JSON, etc
 DECL|method|processResponse
+specifier|public
+specifier|abstract
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+name|processResponse
+parameter_list|(
+name|InputStream
+name|body
+parameter_list|,
+name|String
+name|encoding
+parameter_list|)
+function_decl|;
+DECL|method|processResponse
+specifier|public
+specifier|abstract
 name|NamedList
 argument_list|<
 name|Object
@@ -68,11 +109,11 @@ argument_list|>
 name|processResponse
 parameter_list|(
 name|Reader
-name|body
+name|reader
 parameter_list|)
 function_decl|;
 block|}
-end_interface
+end_class
 
 end_unit
 

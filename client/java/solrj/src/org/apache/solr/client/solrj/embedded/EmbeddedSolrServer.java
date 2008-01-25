@@ -950,6 +950,7 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
+comment|// TODO: writers might be able to output binary someday
 name|req
 operator|.
 name|close
