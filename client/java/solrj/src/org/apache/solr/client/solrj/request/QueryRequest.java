@@ -258,6 +258,8 @@ return|;
 block|}
 comment|//---------------------------------------------------------------------------------
 comment|//---------------------------------------------------------------------------------
+annotation|@
+name|Override
 DECL|method|getContentStreams
 specifier|public
 name|Collection
@@ -271,6 +273,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParams
 specifier|public
 name|SolrParams
@@ -281,6 +285,8 @@ return|return
 name|query
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|process
 specifier|public
 name|QueryResponse
