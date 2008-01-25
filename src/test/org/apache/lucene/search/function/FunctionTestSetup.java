@@ -356,6 +356,12 @@ argument_list|(
 name|dir
 argument_list|,
 name|anlzr
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 comment|// add docs not exactly in natural ID order, to verify we do check the order of docs by scores

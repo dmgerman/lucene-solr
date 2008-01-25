@@ -411,6 +411,12 @@ argument_list|,
 name|analyzer
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 comment|// iterate through all rows
