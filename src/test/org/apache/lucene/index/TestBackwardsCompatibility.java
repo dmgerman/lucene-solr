@@ -258,9 +258,15 @@ name|TestBackwardsCompatibility
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// Uncomment these cases& run in a pre-lockless checkout
-comment|// to create indices:
-comment|/*   public void testCreatePreLocklessCFS() throws IOException {     createIndex("src/test/org/apache/lucene/index/index.cfs", true);   }    public void testCreatePreLocklessNoCFS() throws IOException {     createIndex("src/test/org/apache/lucene/index/index.nocfs", false);   }   */
+comment|// Uncomment these cases& run them on an older Lucene
+comment|// version, to generate an index to test backwards
+comment|// compatibility.  Then, cd to build/test/index.cfs and
+comment|// run "zip index.<VERSION>.cfs.zip *"; cd to
+comment|// build/test/index.nocfs and run "zip
+comment|// index.<VERSION>.nocfs.zip *".  Then move those 2 zip
+comment|// files to your trunk checkout and add them to the
+comment|// oldNames array.
+comment|/*   public void testCreatePreLocklessCFS() throws IOException {     createIndex("index.cfs", true);   }    public void testCreatePreLocklessNoCFS() throws IOException {     createIndex("index.nocfs", false);   }   */
 comment|/* Unzips dirName + ".zip" --> dirName, removing dirName      first */
 DECL|method|unzip
 specifier|public
@@ -509,7 +515,11 @@ block|,
 literal|"22.cfs"
 block|,
 literal|"22.nocfs"
-block|}
+block|,
+literal|"23.cfs"
+block|,
+literal|"23.nocfs"
+block|,   }
 decl_stmt|;
 DECL|method|testSearchOldIndex
 specifier|public
