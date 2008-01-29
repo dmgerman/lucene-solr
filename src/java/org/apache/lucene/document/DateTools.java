@@ -241,7 +241,7 @@ specifier|private
 name|DateTools
 parameter_list|()
 block|{}
-comment|/**    * Converts a Date to a string suitable for indexing.    *     * @param date the date to be converted    * @param resolution the desired resolution, see    *  {@link #round(Date, DateTools.Resolution)}    * @return a string in format<code>yyyyMMddHHmmssSSS</code> or shorter,    *  depeding on<code>resolution</code>; using UTC as timezone     */
+comment|/**    * Converts a Date to a string suitable for indexing.    *     * @param date the date to be converted    * @param resolution the desired resolution, see    *  {@link #round(Date, DateTools.Resolution)}    * @return a string in format<code>yyyyMMddHHmmssSSS</code> or shorter,    *  depeding on<code>resolution</code>; using GMT as timezone     */
 DECL|method|dateToString
 specifier|public
 specifier|static
@@ -267,7 +267,7 @@ name|resolution
 argument_list|)
 return|;
 block|}
-comment|/**    * Converts a millisecond time to a string suitable for indexing.    *     * @param time the date expressed as milliseconds since January 1, 1970, 00:00:00 GMT    * @param resolution the desired resolution, see    *  {@link #round(long, DateTools.Resolution)}    * @return a string in format<code>yyyyMMddHHmmssSSS</code> or shorter,    *  depeding on<code>resolution</code>; using UTC as timezone    */
+comment|/**    * Converts a millisecond time to a string suitable for indexing.    *     * @param time the date expressed as milliseconds since January 1, 1970, 00:00:00 GMT    * @param resolution the desired resolution, see    *  {@link #round(long, DateTools.Resolution)}    * @return a string in format<code>yyyyMMddHHmmssSSS</code> or shorter,    *  depeding on<code>resolution</code>; using GMT as timezone    */
 DECL|method|timeToString
 specifier|public
 specifier|static
