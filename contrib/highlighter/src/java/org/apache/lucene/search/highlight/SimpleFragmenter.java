@@ -74,7 +74,7 @@ name|DEFAULT_FRAGMENT_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  	 * @param fragmentSize size in bytes of each fragment 	 */
+comment|/** 	 *  	 * @param fragmentSize size in number of characters of each fragment 	 */
 DECL|method|SimpleFragmenter
 specifier|public
 name|SimpleFragmenter
@@ -142,7 +142,7 @@ return|return
 name|isNewFrag
 return|;
 block|}
-comment|/** 	 * @return size in bytes of each fragment 	 */
+comment|/** 	 * @return size in number of characters of each fragment 	 */
 DECL|method|getFragmentSize
 specifier|public
 name|int
@@ -153,7 +153,7 @@ return|return
 name|fragmentSize
 return|;
 block|}
-comment|/** 	 * @param size size in bytes of each fragment 	 */
+comment|/** 	 * @param size size in characters of each fragment 	 */
 DECL|method|setFragmentSize
 specifier|public
 name|void

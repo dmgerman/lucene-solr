@@ -82,20 +82,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -124,6 +110,18 @@ specifier|public
 class|class
 name|Highlighter
 block|{
+DECL|field|DEFAULT_MAX_CHARS_TO_ANALYZE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_CHARS_TO_ANALYZE
+init|=
+literal|50
+operator|*
+literal|1024
+decl_stmt|;
+comment|/**    * @deprecated See {@link #DEFAULT_MAX_CHARS_TO_ANALYZE}    */
 DECL|field|DEFAULT_MAX_DOC_BYTES_TO_ANALYZE
 specifier|public
 specifier|static
@@ -131,16 +129,14 @@ specifier|final
 name|int
 name|DEFAULT_MAX_DOC_BYTES_TO_ANALYZE
 init|=
-literal|50
-operator|*
-literal|1024
+name|DEFAULT_MAX_CHARS_TO_ANALYZE
 decl_stmt|;
-DECL|field|maxDocBytesToAnalyze
+DECL|field|maxDocCharsToAnalyze
 specifier|private
 name|int
-name|maxDocBytesToAnalyze
+name|maxDocCharsToAnalyze
 init|=
-name|DEFAULT_MAX_DOC_BYTES_TO_ANALYZE
+name|DEFAULT_MAX_CHARS_TO_ANALYZE
 decl_stmt|;
 DECL|field|formatter
 specifier|private
@@ -701,7 +697,7 @@ operator|.
 name|startOffset
 argument_list|()
 operator|<
-name|maxDocBytesToAnalyze
+name|maxDocCharsToAnalyze
 operator|)
 condition|)
 block|{
@@ -1032,7 +1028,7 @@ operator|.
 name|length
 argument_list|()
 operator|<
-name|maxDocBytesToAnalyze
+name|maxDocCharsToAnalyze
 operator|)
 condition|)
 block|{
@@ -1647,7 +1643,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return the maximum number of bytes to be tokenized per doc  	 */
+comment|/** 	 * @return the maximum number of bytes to be tokenized per doc    *    * @deprecated See {@link #getMaxDocCharsToAnalyze()}, since this value has always counted on chars.  They both set the same internal value, however 	 */
 DECL|method|getMaxDocBytesToAnalyze
 specifier|public
 name|int
@@ -1655,10 +1651,10 @@ name|getMaxDocBytesToAnalyze
 parameter_list|()
 block|{
 return|return
-name|maxDocBytesToAnalyze
+name|maxDocCharsToAnalyze
 return|;
 block|}
-comment|/** 	 * @param byteCount the maximum number of bytes to be tokenized per doc 	 * (This can improve performance with large documents) 	 */
+comment|/** 	 * @param byteCount the maximum number of bytes to be tokenized per doc 	 * (This can improve performance with large documents)    *    * @deprecated See {@link #setMaxDocCharsToAnalyze(int)}, since this value has always counted chars 	 */
 DECL|method|setMaxDocBytesToAnalyze
 specifier|public
 name|void
@@ -1668,9 +1664,35 @@ name|int
 name|byteCount
 parameter_list|)
 block|{
-name|maxDocBytesToAnalyze
+name|maxDocCharsToAnalyze
 operator|=
 name|byteCount
+expr_stmt|;
+block|}
+DECL|method|getMaxDocCharsToAnalyze
+specifier|public
+name|int
+name|getMaxDocCharsToAnalyze
+parameter_list|()
+block|{
+return|return
+name|maxDocCharsToAnalyze
+return|;
+block|}
+DECL|method|setMaxDocCharsToAnalyze
+specifier|public
+name|void
+name|setMaxDocCharsToAnalyze
+parameter_list|(
+name|int
+name|maxDocCharsToAnalyze
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxDocCharsToAnalyze
+operator|=
+name|maxDocCharsToAnalyze
 expr_stmt|;
 block|}
 comment|/** 	 */
