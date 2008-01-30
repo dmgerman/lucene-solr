@@ -2005,7 +2005,7 @@ name|searcher
 argument_list|)
 return|;
 block|}
-comment|/**    * Checks if this is strict custom scoring.    * In strict custom scoring, the ValueSource part of does not participate in weight normalization.    * This may be useful when one wants full control over how scores are modified, and does     * not care about normalizing by the ValueSource part.    * One particular case where this is useful if for testing this query.       *<P>    * Note: only has effect when the ValueSource part is not null.    */
+comment|/**    * Checks if this is strict custom scoring.    * In strict custom scoring, the ValueSource part does not participate in weight normalization.    * This may be useful when one wants full control over how scores are modified, and does     * not care about normalizing by the ValueSource part.    * One particular case where this is useful if for testing this query.       *<P>    * Note: only has effect when the ValueSource part is not null.    */
 DECL|method|isStrict
 specifier|public
 name|boolean
