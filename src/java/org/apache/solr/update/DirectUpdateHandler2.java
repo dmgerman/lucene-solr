@@ -3034,6 +3034,18 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// to facilitate testing: blocks if called during commit
+DECL|method|getCommitCount
+specifier|public
+specifier|synchronized
+name|int
+name|getCommitCount
+parameter_list|()
+block|{
+return|return
+name|autoCommitCount
+return|;
+block|}
 DECL|method|toString
 specifier|public
 name|String
