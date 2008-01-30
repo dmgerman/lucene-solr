@@ -151,7 +151,7 @@ extends|extends
 name|BasicDocMaker
 block|{
 DECL|field|dateFormat
-specifier|private
+specifier|protected
 name|ThreadLocal
 name|dateFormat
 init|=
@@ -160,14 +160,14 @@ name|ThreadLocal
 argument_list|()
 decl_stmt|;
 DECL|field|dataDir
-specifier|private
+specifier|protected
 name|File
 name|dataDir
 init|=
 literal|null
 decl_stmt|;
 DECL|field|iteration
-specifier|private
+specifier|protected
 name|int
 name|iteration
 init|=
@@ -581,7 +581,7 @@ return|;
 block|}
 block|}
 DECL|field|inputFiles
-specifier|private
+specifier|protected
 name|Iterator
 name|inputFiles
 init|=
