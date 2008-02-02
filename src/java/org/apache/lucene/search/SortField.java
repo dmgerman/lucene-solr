@@ -128,6 +128,16 @@ name|DOUBLE
 init|=
 literal|7
 decl_stmt|;
+comment|/**    * Sort using term values as encoded Shorts.  Sort values are shorts and lower values are at the front    */
+DECL|field|SHORT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|SHORT
+init|=
+literal|8
+decl_stmt|;
 comment|/** Sort using a custom Comparator.  Sort values are any Comparable and    * sorting is done according to natural order. */
 DECL|field|CUSTOM
 specifier|public
@@ -137,6 +147,16 @@ name|int
 name|CUSTOM
 init|=
 literal|9
+decl_stmt|;
+comment|/**    * Sort using term values as encoded bytes.  Sort values are bytes and lower values are at the front    */
+DECL|field|BYTE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BYTE
+init|=
+literal|10
 decl_stmt|;
 comment|// IMPLEMENTATION NOTE: the FieldCache.STRING_INDEX is in the same "namespace"
 comment|// as the above static int values.  Any new values must not have the same value
