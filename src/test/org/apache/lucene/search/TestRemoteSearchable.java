@@ -779,7 +779,7 @@ argument_list|)
 argument_list|)
 argument_list|,
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery
@@ -825,7 +825,7 @@ argument_list|)
 argument_list|)
 argument_list|,
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery
@@ -890,7 +890,7 @@ operator|new
 name|ConstantScoreQuery
 argument_list|(
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery

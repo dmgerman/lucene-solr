@@ -116,10 +116,10 @@ operator|=
 name|shouldHaveCache
 expr_stmt|;
 block|}
-DECL|method|bits
+DECL|method|getDocIdSet
 specifier|public
-name|BitSet
-name|bits
+name|DocIdSet
+name|getDocIdSet
 parameter_list|(
 name|IndexReader
 name|reader
@@ -204,7 +204,7 @@ block|}
 return|return
 name|cachedFilter
 operator|.
-name|bits
+name|getDocIdSet
 argument_list|(
 name|reader
 argument_list|)

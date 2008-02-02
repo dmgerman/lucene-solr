@@ -611,7 +611,7 @@ operator|new
 name|CachingWrapperFilterHelper
 argument_list|(
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery
@@ -757,7 +757,7 @@ operator|new
 name|RemoteCachingWrapperFilterHelper
 argument_list|(
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery
@@ -809,7 +809,7 @@ operator|new
 name|RemoteCachingWrapperFilterHelper
 argument_list|(
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery
@@ -862,7 +862,7 @@ operator|new
 name|RemoteCachingWrapperFilterHelper
 argument_list|(
 operator|new
-name|QueryFilter
+name|QueryWrapperFilter
 argument_list|(
 operator|new
 name|TermQuery

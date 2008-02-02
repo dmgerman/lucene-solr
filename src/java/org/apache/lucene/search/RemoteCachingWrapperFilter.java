@@ -82,7 +82,7 @@ operator|=
 name|filter
 expr_stmt|;
 block|}
-comment|/**    * Uses the {@link FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the bitset    */
+comment|/**    * Uses the {@link FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the bitset    * @deprecated Use {@link #getDocIdSet(IndexReader)} instead.    */
 DECL|method|bits
 specifier|public
 name|BitSet
@@ -111,6 +111,40 @@ return|return
 name|cachedFilter
 operator|.
 name|bits
+argument_list|(
+name|reader
+argument_list|)
+return|;
+block|}
+comment|/**    * Uses the {@link FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the DocIdSet    */
+DECL|method|getDocIdSet
+specifier|public
+name|DocIdSet
+name|getDocIdSet
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|Filter
+name|cachedFilter
+init|=
+name|FilterManager
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getFilter
+argument_list|(
+name|filter
+argument_list|)
+decl_stmt|;
+return|return
+name|cachedFilter
+operator|.
+name|getDocIdSet
 argument_list|(
 name|reader
 argument_list|)

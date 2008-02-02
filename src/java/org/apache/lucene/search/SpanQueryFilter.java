@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OpenBitSet
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -140,10 +154,10 @@ operator|=
 name|query
 expr_stmt|;
 block|}
-DECL|method|bits
+DECL|method|getDocIdSet
 specifier|public
-name|BitSet
-name|bits
+name|DocIdSet
+name|getDocIdSet
 parameter_list|(
 name|IndexReader
 name|reader
@@ -162,7 +176,7 @@ decl_stmt|;
 return|return
 name|result
 operator|.
-name|getBits
+name|getDocIdSet
 argument_list|()
 return|;
 block|}
@@ -178,11 +192,11 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|BitSet
+name|OpenBitSet
 name|bits
 init|=
 operator|new
-name|BitSet
+name|OpenBitSet
 argument_list|(
 name|reader
 operator|.

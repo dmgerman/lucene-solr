@@ -156,6 +156,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|DocIdBitSet
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -5267,8 +5281,8 @@ name|Filter
 argument_list|()
 block|{
 specifier|public
-name|BitSet
-name|bits
+name|DocIdSet
+name|getDocIdSet
 parameter_list|(
 name|IndexReader
 name|reader
@@ -5303,7 +5317,11 @@ name|doc
 argument_list|)
 expr_stmt|;
 return|return
+operator|new
+name|DocIdBitSet
+argument_list|(
 name|bs
+argument_list|)
 return|;
 block|}
 block|}

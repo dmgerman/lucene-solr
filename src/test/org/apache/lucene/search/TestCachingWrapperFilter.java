@@ -174,7 +174,7 @@ decl_stmt|;
 comment|// first time, nested filter is called
 name|cacher
 operator|.
-name|bits
+name|getDocIdSet
 argument_list|(
 name|reader
 argument_list|)
@@ -197,7 +197,7 @@ argument_list|()
 expr_stmt|;
 name|cacher
 operator|.
-name|bits
+name|getDocIdSet
 argument_list|(
 name|reader
 argument_list|)
