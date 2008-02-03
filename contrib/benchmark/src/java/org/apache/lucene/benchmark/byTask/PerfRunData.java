@@ -695,6 +695,10 @@ operator|.
 name|gc
 argument_list|()
 expr_stmt|;
+comment|// Re-init clock
+name|setStartTimeMillis
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|setStartTimeMillis
 specifier|public
