@@ -95,8 +95,79 @@ specifier|private
 name|boolean
 name|replaceInvalidAcronym
 init|=
-literal|false
+name|defaultReplaceInvalidAcronym
 decl_stmt|;
+DECL|field|defaultReplaceInvalidAcronym
+specifier|private
+specifier|static
+name|boolean
+name|defaultReplaceInvalidAcronym
+decl_stmt|;
+comment|// Default to false (fixed the bug), unless the system prop is set
+static|static
+block|{
+specifier|final
+name|String
+name|v
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"org.apache.lucene.analysis.standard.StandardAnalyzer.replaceInvalidAcronym"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|v
+operator|==
+literal|null
+operator|||
+name|v
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+condition|)
+name|defaultReplaceInvalidAcronym
+operator|=
+literal|true
+expr_stmt|;
+else|else
+name|defaultReplaceInvalidAcronym
+operator|=
+literal|false
+expr_stmt|;
+block|}
+comment|/**    *    * @return true if new instances of StandardTokenizer will    * replace mischaracterized acronyms    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    * @deprecated This will be removed (hardwired to true) in 3.0    */
+DECL|method|getDefaultReplaceInvalidAcronym
+specifier|public
+specifier|static
+name|boolean
+name|getDefaultReplaceInvalidAcronym
+parameter_list|()
+block|{
+return|return
+name|defaultReplaceInvalidAcronym
+return|;
+block|}
+comment|/**    *    * @param replaceInvalidAcronym Set to true to have new    * instances of StandardTokenizer replace mischaracterized    * acronyms by default.  Set to false to preseve the    * previous (before 2.4) buggy behavior.  Alternatively,    * set the system property    * org.apache.lucene.analysis.standard.StandardAnalyzer.replaceInvalidAcronym    * to false.    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    * @deprecated This will be removed (hardwired to true) in 3.0    */
+DECL|method|setDefaultReplaceInvalidAcronym
+specifier|public
+specifier|static
+name|void
+name|setDefaultReplaceInvalidAcronym
+parameter_list|(
+name|boolean
+name|replaceInvalidAcronym
+parameter_list|)
+block|{
+name|defaultReplaceInvalidAcronym
+operator|=
+name|replaceInvalidAcronym
+expr_stmt|;
+block|}
 comment|/** An array containing some common English words that are usually not   useful for searching. */
 DECL|field|STOP_WORDS
 specifier|public
@@ -571,7 +642,7 @@ operator|.
 name|filteredTokenStream
 return|;
 block|}
-comment|/**    *    * @return true if this Analyzer is replacing mischaracterized acronyms in the StandardTokenizer    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    */
+comment|/**    *    * @return true if this Analyzer is replacing mischaracterized acronyms in the StandardTokenizer    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    * @deprecated This will be removed (hardwired to true) in 3.0    */
 DECL|method|isReplaceInvalidAcronym
 specifier|public
 name|boolean
@@ -582,7 +653,7 @@ return|return
 name|replaceInvalidAcronym
 return|;
 block|}
-comment|/**    *    * @param replaceInvalidAcronym Set to true if this Analyzer is replacing mischaracterized acronyms in the StandardTokenizer    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    */
+comment|/**    *    * @param replaceInvalidAcronym Set to true if this Analyzer is replacing mischaracterized acronyms in the StandardTokenizer    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    * @deprecated This will be removed (hardwired to true) in 3.0    */
 DECL|method|setReplaceInvalidAcronym
 specifier|public
 name|void
