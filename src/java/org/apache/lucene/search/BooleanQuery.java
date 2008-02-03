@@ -1334,6 +1334,10 @@ name|IOException
 block|{
 if|if
 condition|(
+name|minNrShouldMatch
+operator|==
+literal|0
+operator|&&
 name|clauses
 operator|.
 name|size
