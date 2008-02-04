@@ -46,7 +46,7 @@ name|String
 name|string
 parameter_list|)
 function_decl|;
-comment|/**    * A wise prefix implementation can reduce the term enumeration (and thus performance)    * of RegexQuery dramatically!    *    * @return static non-regex prefix of the pattern last passed to {@link #compile}.  May return null.    */
+comment|/**    * A wise prefix implementation can reduce the term enumeration (and thus increase performance)    * of RegexQuery dramatically!    *    * @return static non-regex prefix of the pattern last passed to {@link #compile}.  May return null.    */
 DECL|method|prefix
 name|String
 name|prefix
