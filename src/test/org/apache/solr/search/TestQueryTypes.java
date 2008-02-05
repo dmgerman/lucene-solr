@@ -269,6 +269,20 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"test custom plugin query"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"<!foo f=v_t>hello"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"test single term field query on text type"
 argument_list|,
 name|req
