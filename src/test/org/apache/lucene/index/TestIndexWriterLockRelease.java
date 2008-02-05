@@ -353,6 +353,12 @@ name|StandardAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 block|}
@@ -388,6 +394,12 @@ name|StandardAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 block|}

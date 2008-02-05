@@ -997,6 +997,12 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 comment|// add 10 docs
@@ -1270,6 +1276,12 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1627,6 +1639,12 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -1773,6 +1791,12 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -1962,6 +1986,12 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 name|writer

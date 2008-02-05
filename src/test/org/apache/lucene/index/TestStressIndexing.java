@@ -652,6 +652,12 @@ argument_list|,
 name|ANALYZER
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 name|modifier

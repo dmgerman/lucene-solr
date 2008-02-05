@@ -928,6 +928,12 @@ name|SimpleAnalyzer
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 for|for
@@ -1254,6 +1260,12 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 for|for
