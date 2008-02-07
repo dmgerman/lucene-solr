@@ -861,7 +861,7 @@ return|return
 name|termIndexInterval
 return|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -955,7 +955,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in<code>path</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>path</code>, replacing the index already there, if any.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1049,7 +1049,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param d the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param d the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1133,7 +1133,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in    *<code>path</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in    *<code>path</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1217,7 +1217,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in    *<code>path</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in    *<code>path</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param path the path to the index directory    * @param a the analyzer to use    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1301,7 +1301,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in    *<code>d</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param d the index directory    * @param a the analyzer to use    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in    *<code>d</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param d the index directory    * @param a the analyzer to use    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1375,7 +1375,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in    *<code>d</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in    *<code>d</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1455,7 +1455,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
+comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1545,7 +1545,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: constructs an IndexWriter with a custom {@link    * IndexDeletionPolicy}, for the index in<code>d</code>,    * first creating it if it does not already exist.  Text    * will be analyzed with<code>a</code>.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
+comment|/**    * Expert: constructs an IndexWriter with a custom {@link    * IndexDeletionPolicy}, for the index in<code>d</code>,    * first creating it if it does not already exist.  Text    * will be analyzed with<code>a</code>.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1631,7 +1631,7 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: constructs an IndexWriter with a custom {@link    * IndexDeletionPolicy}, for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If    *<code>create</code> is true, then a new, empty index    * will be created in<code>d</code>, replacing the index    * already there, if any.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
+comment|/**    * Expert: constructs an IndexWriter with a custom {@link    * IndexDeletionPolicy}, for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If    *<code>create</code> is true, then a new, empty index    * will be created in<code>d</code>, replacing the index    * already there, if any.    *    * @param d the index directory    * @param autoCommit see<a href="#autoCommit">above</a>    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl Maximum field length: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -10619,20 +10619,18 @@ specifier|static
 specifier|final
 class|class
 name|MaxFieldLength
-extends|extends
-name|Parameter
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 block|{
 DECL|field|limit
 specifier|private
 name|int
 name|limit
 decl_stmt|;
+DECL|field|name
+specifier|private
+name|String
+name|name
+decl_stmt|;
+comment|/**      * Private type-safe-enum-pattern constructor.      *       * @param name instance name      * @param limit maximum field length      */
 DECL|method|MaxFieldLength
 specifier|private
 name|MaxFieldLength
@@ -10644,17 +10642,34 @@ name|int
 name|limit
 parameter_list|)
 block|{
-comment|// typesafe enum pattern, no public constructor
-name|super
-argument_list|(
+name|this
+operator|.
 name|name
-argument_list|)
+operator|=
+name|name
 expr_stmt|;
 name|this
 operator|.
 name|limit
 operator|=
 name|limit
+expr_stmt|;
+block|}
+comment|/**      * Public constructor to allow users to specify the maximum field size limit.      *       * @param limit The maximum field length      */
+DECL|method|MaxFieldLength
+specifier|public
+name|MaxFieldLength
+parameter_list|(
+name|int
+name|limit
+parameter_list|)
+block|{
+name|this
+argument_list|(
+literal|"User-specified"
+argument_list|,
+name|limit
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getLimit
@@ -10664,6 +10679,20 @@ name|getLimit
 parameter_list|()
 block|{
 return|return
+name|limit
+return|;
+block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|name
+operator|+
+literal|":"
+operator|+
 name|limit
 return|;
 block|}
