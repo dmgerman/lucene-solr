@@ -451,11 +451,13 @@ name|analyzer
 argument_list|,
 literal|false
 argument_list|,
+operator|new
 name|IndexWriter
 operator|.
 name|MaxFieldLength
-operator|.
-name|LIMITED
+argument_list|(
+name|maxFieldLength
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// IndexModifier cannot use ConcurrentMergeScheduler
@@ -497,13 +499,6 @@ operator|.
 name|setMaxBufferedDocs
 argument_list|(
 name|maxBufferedDocs
-argument_list|)
-expr_stmt|;
-name|indexWriter
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|maxFieldLength
 argument_list|)
 expr_stmt|;
 name|indexWriter

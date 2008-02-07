@@ -8773,11 +8773,13 @@ argument_list|()
 argument_list|,
 literal|true
 argument_list|,
+operator|new
 name|IndexWriter
 operator|.
 name|MaxFieldLength
-operator|.
-name|LIMITED
+argument_list|(
+literal|100000000
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|writer
@@ -8785,13 +8787,6 @@ operator|.
 name|setRAMBufferSizeMB
 argument_list|(
 literal|0.01
-argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|setMaxFieldLength
-argument_list|(
-literal|100000000
 argument_list|)
 expr_stmt|;
 comment|// Massive doc that has 128 K a's
