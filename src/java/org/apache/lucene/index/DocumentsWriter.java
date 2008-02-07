@@ -3526,8 +3526,24 @@ operator|.
 name|FORMAT_VERSION2
 argument_list|)
 expr_stmt|;
-comment|// We must "catch up" for all docIDs that had no
-comment|// vectors before this one
+comment|// We must "catch up" for all docs before us
+comment|// that had no vectors:
+specifier|final
+name|long
+name|tvdPos
+init|=
+name|tvd
+operator|.
+name|getFilePointer
+argument_list|()
+decl_stmt|;
+name|tvd
+operator|.
+name|writeVInt
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -3537,7 +3553,9 @@ literal|0
 init|;
 name|i
 operator|<
-name|docID
+name|numDocsInStore
+operator|-
+literal|1
 condition|;
 name|i
 operator|++
@@ -3547,7 +3565,7 @@ name|tvx
 operator|.
 name|writeLong
 argument_list|(
-literal|0
+name|tvdPos
 argument_list|)
 expr_stmt|;
 name|tvx
