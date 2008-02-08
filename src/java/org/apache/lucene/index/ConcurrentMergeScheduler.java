@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link MergeScheduler} that runs each merge using a  *  separate thread, up until a maximum number of threads  *  ({@link #setMaxThreadCount}) at which points merges are  *  run in the foreground, serially.  This is a simple way  *  to use concurrency in the indexing process without  *  having to create and manage application level  *  threads. */
+comment|/** A {@link MergeScheduler} that runs each merge using a  *  separate thread, up until a maximum number of threads  *  ({@link #setMaxThreadCount}) at which when a merge is  *  needed, the thread(s) that are updating the index will  *  pause until one or more merges completes.  This is a  *  simple way to use concurrency in the indexing process  *  without having to create and manage application level  *  threads. */
 end_comment
 
 begin_class
@@ -89,6 +89,7 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
+comment|// Max number of threads allowed to be merging at once
 DECL|field|maxThreadCount
 specifier|private
 name|int
@@ -138,7 +139,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Sets the max # simultaneous threads that may be    *  running.  If a merge is necessary yet we already have    *  this many threads running, the merge is returned back    *  to IndexWriter so that it runs in the "foreground". */
+comment|/** Sets the max # simultaneous threads that may be    *  running.  If a merge is necessary yet we already have    *  this many threads running, the incoming thread (that    *  is calling add/updateDocument) will block until    *  a merge thread has completed. */
 DECL|method|setMaxThreadCount
 specifier|public
 name|void
@@ -560,7 +561,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Iterate, pulling from the IndexWriter's queue of
-comment|// pending merges, until its empty:
+comment|// pending merges, until it's empty:
 while|while
 condition|(
 literal|true
@@ -602,6 +603,46 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+while|while
+condition|(
+name|mergeThreadCount
+argument_list|()
+operator|>=
+name|maxThreadCount
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"    too many merge threads running; stalling..."
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|wait
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 name|message
 argument_list|(
 literal|"  consider merge "
@@ -629,19 +670,12 @@ expr_stmt|;
 block|}
 else|else
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-if|if
-condition|(
+assert|assert
 name|mergeThreadCount
 argument_list|()
 operator|<
 name|maxThreadCount
-condition|)
-block|{
+assert|;
 comment|// OK to spawn a new merge thread to handle this
 comment|// merge:
 specifier|final
@@ -681,16 +715,9 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
-else|else
-name|message
-argument_list|(
-literal|"    too many merge threads running; run merge in foreground"
-argument_list|)
-expr_stmt|;
 block|}
-block|}
-comment|// Too many merge threads already running, so we do
-comment|// this in the foreground of the calling thread
+comment|// This merge involves segments outside our index
+comment|// Directory so we must merge in foreground
 name|doMerge
 argument_list|(
 name|merge
@@ -1053,13 +1080,19 @@ operator|.
 name|this
 init|)
 block|{
+name|boolean
+name|removed
+init|=
 name|mergeThreads
 operator|.
 name|remove
 argument_list|(
 name|this
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+assert|assert
+name|removed
+assert|;
 name|ConcurrentMergeScheduler
 operator|.
 name|this
