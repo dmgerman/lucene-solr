@@ -976,7 +976,11 @@ name|indexStream
 operator|.
 name|seek
 argument_list|(
+operator|(
+name|docStoreOffset
+operator|+
 name|startDocID
+operator|)
 operator|*
 literal|8L
 argument_list|)
