@@ -148,6 +148,18 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Ensure that any writes to this file are moved to    *  stable storage.  Lucene uses this to properly commit    *  changes to the index, to prevent a machine/OS crash    *  from corrupting the index. */
+DECL|method|sync
+specifier|public
+name|void
+name|sync
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+block|{}
 comment|/** Returns a stream reading an existing file. */
 DECL|method|openInput
 specifier|public

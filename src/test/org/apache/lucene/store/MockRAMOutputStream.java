@@ -207,6 +207,21 @@ name|realUsage
 init|=
 literal|0
 decl_stmt|;
+comment|// If MockRAMDir crashed since we were opened, then
+comment|// don't write anything:
+if|if
+condition|(
+name|dir
+operator|.
+name|crashed
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"MockRAMDirectory was crashed"
+argument_list|)
+throw|;
 comment|// Enforce disk full:
 if|if
 condition|(

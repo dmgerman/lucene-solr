@@ -130,6 +130,14 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+comment|// Could be null when MockRAMDirectory.crash() was called
+if|if
+condition|(
+name|v
+operator|!=
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|v
@@ -176,6 +184,7 @@ argument_list|,
 name|v
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

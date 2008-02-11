@@ -2001,7 +2001,6 @@ argument_list|(
 literal|16.0
 argument_list|)
 expr_stmt|;
-comment|//IndexWriter writer = new IndexWriter(dir, new WhitespaceAnalyzer(), true);
 for|for
 control|(
 name|int
@@ -2218,22 +2217,10 @@ literal|"_0_1.s"
 operator|+
 name|contentFieldIndex
 block|,
-literal|"segments_4"
+literal|"segments_3"
 block|,
 literal|"segments.gen"
 block|}
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|autoCommit
-condition|)
-name|expected
-index|[
-literal|3
-index|]
-operator|=
-literal|"segments_3"
 expr_stmt|;
 name|String
 index|[]

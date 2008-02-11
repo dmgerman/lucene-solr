@@ -1491,6 +1491,12 @@ block|}
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|ae
+operator|!=
+literal|null
+condition|)
 name|abortCount
 operator|--
 expr_stmt|;

@@ -121,6 +121,11 @@ specifier|protected
 name|IndexWriter
 name|writer
 decl_stmt|;
+DECL|field|mergeThreadCount
+specifier|protected
+name|int
+name|mergeThreadCount
+decl_stmt|;
 DECL|method|ConcurrentMergeScheduler
 specifier|public
 name|ConcurrentMergeScheduler
@@ -750,6 +755,7 @@ block|}
 comment|/** Create and return a new MergeThread */
 DECL|method|getMergeThread
 specifier|protected
+specifier|synchronized
 name|MergeThread
 name|getMergeThread
 parameter_list|(
@@ -788,6 +794,16 @@ operator|.
 name|setDaemon
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|thread
+operator|.
+name|setName
+argument_list|(
+literal|"Lucene Merge Thread #"
+operator|+
+name|mergeThreadCount
+operator|++
 argument_list|)
 expr_stmt|;
 return|return
@@ -1080,6 +1096,13 @@ operator|.
 name|this
 init|)
 block|{
+name|ConcurrentMergeScheduler
+operator|.
+name|this
+operator|.
+name|notifyAll
+argument_list|()
+expr_stmt|;
 name|boolean
 name|removed
 init|=
@@ -1093,13 +1116,6 @@ decl_stmt|;
 assert|assert
 name|removed
 assert|;
-name|ConcurrentMergeScheduler
-operator|.
-name|this
-operator|.
-name|notifyAll
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 block|}
@@ -1233,6 +1249,24 @@ expr_stmt|;
 return|return
 name|v
 return|;
+block|}
+block|}
+DECL|method|clearUnhandledExceptions
+specifier|public
+specifier|static
+name|void
+name|clearUnhandledExceptions
+parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|allInstances
+init|)
+block|{
+name|anyExceptions
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 comment|/** Used for testing */

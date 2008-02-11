@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a   * segments_N file in the Directory (a "commit", i.e. a   * committed SegmentInfos) or because it's the in-memory SegmentInfos   * that a writer is actively updating but has not yet committed   * (currently this only applies when autoCommit=false in IndexWriter).  * This class uses simple reference counting to map the live  * SegmentInfos instances to individual files in the Directory.   *   * The same directory file may be referenced by more than  * one IndexCommitPoints, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
+comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * When autoCommit=true, IndexWriter currently commits only  * on completion of a merge (though this may change with  * time: it is not a guarantee).  When autoCommit=false,  * IndexWriter only commits when it is closed.  Regardless  * of autoCommit, the user may call IndexWriter.commit() to  * force a blocking commit.  *   * The same directory file may be referenced by more than  * one IndexCommitPoints, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
 end_comment
 
 begin_class
@@ -864,7 +864,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"deleteCommits: now remove commit \""
+literal|"deleteCommits: now decRef commit \""
 operator|+
 name|commit
 operator|.
@@ -1376,41 +1376,6 @@ argument_list|,
 name|isCommit
 argument_list|)
 expr_stmt|;
-specifier|final
-name|List
-name|docWriterFiles
-decl_stmt|;
-if|if
-condition|(
-name|docWriter
-operator|!=
-literal|null
-condition|)
-block|{
-name|docWriterFiles
-operator|=
-name|docWriter
-operator|.
-name|files
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|docWriterFiles
-operator|!=
-literal|null
-condition|)
-name|incRef
-argument_list|(
-name|docWriterFiles
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-name|docWriterFiles
-operator|=
-literal|null
-expr_stmt|;
 if|if
 condition|(
 name|isCommit
@@ -1441,6 +1406,46 @@ name|deleteCommits
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
+specifier|final
+name|List
+name|docWriterFiles
+decl_stmt|;
+if|if
+condition|(
+name|docWriter
+operator|!=
+literal|null
+condition|)
+block|{
+name|docWriterFiles
+operator|=
+name|docWriter
+operator|.
+name|files
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|docWriterFiles
+operator|!=
+literal|null
+condition|)
+comment|// We must incRef thes files before decRef'ing
+comment|// last files to make sure we don't accidentally
+comment|// delete them:
+name|incRef
+argument_list|(
+name|docWriterFiles
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|docWriterFiles
+operator|=
+literal|null
+expr_stmt|;
 comment|// DecRef old files from the last checkpoint, if any:
 name|int
 name|size
@@ -1490,12 +1495,6 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-operator|!
-name|isCommit
-condition|)
-block|{
 comment|// Save files so we can decr on next checkpoint/commit:
 name|size
 operator|=
@@ -1550,7 +1549,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 if|if
 condition|(
 name|docWriterFiles
@@ -1564,6 +1562,7 @@ argument_list|(
 name|docWriterFiles
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|incRef
 name|void
@@ -1783,7 +1782,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|decRef
-specifier|private
 name|void
 name|decRef
 parameter_list|(

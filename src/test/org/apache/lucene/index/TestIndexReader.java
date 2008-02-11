@@ -2670,15 +2670,12 @@ block|}
 try|try
 block|{
 name|IndexReader
-name|reader
-init|=
-name|IndexReader
 operator|.
 name|open
 argument_list|(
 name|fileDirName
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"opening IndexReader on empty directory failed to produce FileNotFoundException"
@@ -4647,6 +4644,15 @@ argument_list|(
 name|startDir
 argument_list|)
 decl_stmt|;
+comment|// If IndexReader hits disk full, it can write to
+comment|// the same files again.
+name|dir
+operator|.
+name|setPreventDoubleWrite
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -4925,6 +4931,15 @@ operator|+
 name|e
 argument_list|)
 expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 name|err
 operator|=
@@ -4980,9 +4995,6 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
-name|IndexFileDeleter
-name|d
-init|=
 operator|new
 name|IndexFileDeleter
 argument_list|(
@@ -4998,7 +5010,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|String
 index|[]
 name|endFiles
@@ -5729,15 +5741,12 @@ decl_stmt|;
 try|try
 block|{
 name|IndexReader
-name|reader
-init|=
-name|IndexReader
 operator|.
 name|open
 argument_list|(
 name|dir
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"expected FileNotFoundException"
@@ -5761,15 +5770,12 @@ comment|// Make sure we still get a CorruptIndexException (not NPE):
 try|try
 block|{
 name|IndexReader
-name|reader
-init|=
-name|IndexReader
 operator|.
 name|open
 argument_list|(
 name|dir
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"expected FileNotFoundException"

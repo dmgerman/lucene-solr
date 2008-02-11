@@ -106,6 +106,13 @@ name|anyUnhandledExceptions
 argument_list|()
 condition|)
 block|{
+comment|// Clear the failure so that we don't just keep
+comment|// failing subsequent test cases
+name|ConcurrentMergeScheduler
+operator|.
+name|clearUnhandledExceptions
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"ConcurrentMergeScheduler hit unhandled exceptions"
