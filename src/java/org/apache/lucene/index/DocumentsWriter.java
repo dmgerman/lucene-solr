@@ -775,6 +775,10 @@ operator|+
 literal|" files to flush to segment "
 operator|+
 name|docStoreSegment
+operator|+
+literal|" numDocs="
+operator|+
+name|numDocsInStore
 argument_list|)
 expr_stmt|;
 if|if
@@ -2278,6 +2282,9 @@ comment|// abort all documents since we last flushed because
 comment|// it means those files are possibly inconsistent.
 try|try
 block|{
+name|numDocsInStore
+operator|++
+expr_stmt|;
 comment|// Append stored fields to the real FieldsWriter:
 name|fieldsWriter
 operator|.
@@ -3566,22 +3573,6 @@ argument_list|)
 expr_stmt|;
 comment|// We must "catch up" for all docs before us
 comment|// that had no vectors:
-specifier|final
-name|long
-name|tvdPos
-init|=
-name|tvd
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|tvd
-operator|.
-name|writeVInt
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -3592,8 +3583,6 @@ init|;
 name|i
 operator|<
 name|numDocsInStore
-operator|-
-literal|1
 condition|;
 name|i
 operator|++
@@ -3603,7 +3592,17 @@ name|tvx
 operator|.
 name|writeLong
 argument_list|(
-name|tvdPos
+name|tvd
+operator|.
+name|getFilePointer
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|tvd
+operator|.
+name|writeVInt
+argument_list|(
+literal|0
 argument_list|)
 expr_stmt|;
 name|tvx
@@ -10793,9 +10792,6 @@ name|newSegmentName
 argument_list|()
 expr_stmt|;
 name|numDocsInRAM
-operator|++
-expr_stmt|;
-name|numDocsInStore
 operator|++
 expr_stmt|;
 comment|// We must at this point commit to flushing to ensure we

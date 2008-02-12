@@ -488,6 +488,18 @@ operator|>=
 name|size
 operator|+
 name|docStoreOffset
+operator|:
+literal|"numTotalDocs="
+operator|+
+name|numTotalDocs
+operator|+
+literal|" size="
+operator|+
+name|size
+operator|+
+literal|" docStoreOffset="
+operator|+
+name|docStoreOffset
 assert|;
 block|}
 block|}
