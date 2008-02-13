@@ -494,7 +494,7 @@ elseif|else
 if|if
 condition|(
 name|format
-operator|<
+operator|==
 name|SegmentInfos
 operator|.
 name|FORMAT_CHECKSUM
@@ -503,10 +503,6 @@ block|{
 name|sFormat
 operator|=
 literal|"FORMAT_CHECKSUM [Lucene 2.4]"
-expr_stmt|;
-name|skip
-operator|=
-literal|true
 expr_stmt|;
 block|}
 elseif|else
