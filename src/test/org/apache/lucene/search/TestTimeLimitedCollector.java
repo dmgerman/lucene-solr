@@ -185,7 +185,31 @@ specifier|final
 name|int
 name|SLOW_DOWN
 init|=
-literal|10
+literal|47
+decl_stmt|;
+DECL|field|TIME_ALLOWED
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|TIME_ALLOWED
+init|=
+literal|17
+operator|*
+name|SLOW_DOWN
+decl_stmt|;
+comment|// so searches can find about 17 docs.
+comment|// max time allowed is relaxed for multithreading tests.
+comment|// the multithread case fails when setting this to 1 (no slack) and launching many threads (>2000).
+comment|// but this is not a real failure, just noise.
+DECL|field|MULTI_THREAD_SLACK
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|MULTI_THREAD_SLACK
+init|=
+literal|3
 decl_stmt|;
 DECL|field|N_DOCS
 specifier|private
@@ -194,7 +218,7 @@ specifier|final
 name|int
 name|N_DOCS
 init|=
-literal|2000
+literal|3000
 decl_stmt|;
 DECL|field|N_THREADS
 specifier|private
@@ -389,6 +413,14 @@ operator|.
 name|parse
 argument_list|(
 name|qtxt
+argument_list|)
+expr_stmt|;
+comment|// warm the searcher
+name|searcher
+operator|.
+name|search
+argument_list|(
+name|query
 argument_list|)
 expr_stmt|;
 block|}
@@ -623,14 +655,6 @@ argument_list|(
 name|SLOW_DOWN
 argument_list|)
 expr_stmt|;
-name|long
-name|timeAllowed
-init|=
-name|timeAllowed
-argument_list|(
-name|multiThreaded
-argument_list|)
-decl_stmt|;
 name|HitCollector
 name|tlCollector
 init|=
@@ -639,7 +663,7 @@ name|TimeLimitedCollector
 argument_list|(
 name|myHc
 argument_list|,
-name|timeAllowed
+name|TIME_ALLOWED
 argument_list|)
 decl_stmt|;
 name|TimeLimitedCollector
@@ -725,7 +749,7 @@ operator|.
 name|getTimeAllowed
 argument_list|()
 argument_list|,
-name|timeAllowed
+name|TIME_ALLOWED
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -740,7 +764,7 @@ operator|+
 literal|"<= (allowed-resolution)="
 operator|+
 operator|(
-name|timeAllowed
+name|TIME_ALLOWED
 operator|-
 name|TimeLimitedCollector
 operator|.
@@ -753,7 +777,7 @@ operator|.
 name|getTimeElapsed
 argument_list|()
 operator|>
-name|timeAllowed
+name|TIME_ALLOWED
 operator|-
 name|TimeLimitedCollector
 operator|.
@@ -770,6 +794,13 @@ operator|.
 name|getLastDocCollected
 argument_list|()
 operator|+
+literal|" ,&& allowed="
+operator|+
+name|exception
+operator|.
+name|getTimeAllowed
+argument_list|()
+operator|+
 literal|" ,&& elapsed="
 operator|+
 name|exception
@@ -777,51 +808,37 @@ operator|.
 name|getTimeElapsed
 argument_list|()
 operator|+
-literal|">= (allowed+resolution+slowdown)="
+literal|">= "
 operator|+
-operator|(
-name|timeAllowed
-operator|+
-name|TimeLimitedCollector
-operator|.
-name|getResolution
-argument_list|()
-operator|+
-name|SLOW_DOWN
-operator|)
+name|maxTimeStr
+argument_list|(
+name|multiThreaded
+argument_list|)
 argument_list|,
 name|exception
 operator|.
 name|getTimeElapsed
 argument_list|()
 operator|<
-name|timeAllowed
-operator|+
-name|TimeLimitedCollector
-operator|.
-name|getResolution
-argument_list|()
-operator|+
-name|SLOW_DOWN
+name|maxTime
+argument_list|(
+name|multiThreaded
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeAllowed
+DECL|method|maxTime
 specifier|private
 name|long
-name|timeAllowed
+name|maxTime
 parameter_list|(
 name|boolean
 name|multiThreaded
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|multiThreaded
-condition|)
-block|{
-return|return
+name|long
+name|res
+init|=
 literal|2
 operator|*
 name|TimeLimitedCollector
@@ -829,23 +846,83 @@ operator|.
 name|getResolution
 argument_list|()
 operator|+
+name|TIME_ALLOWED
+operator|+
 name|SLOW_DOWN
-return|;
-comment|// be on the safe side with this test
+decl_stmt|;
+comment|// some slack for less noise in this test
+if|if
+condition|(
+name|multiThreaded
+condition|)
+block|{
+name|res
+operator|*=
+name|MULTI_THREAD_SLACK
+expr_stmt|;
+comment|// larger slack
 block|}
 return|return
-literal|3
-operator|*
-operator|(
+name|res
+return|;
+block|}
+DECL|method|maxTimeStr
+specifier|private
+name|String
+name|maxTimeStr
+parameter_list|(
+name|boolean
+name|multiThreaded
+parameter_list|)
+block|{
+name|String
+name|s
+init|=
+literal|"( "
+operator|+
+literal|"2*resolution +  TIME_ALLOWED + SLOW_DOWN = "
+operator|+
+literal|"2*"
+operator|+
 name|TimeLimitedCollector
 operator|.
 name|getResolution
 argument_list|()
 operator|+
+literal|" + "
+operator|+
+name|TIME_ALLOWED
+operator|+
+literal|" + "
+operator|+
 name|SLOW_DOWN
-operator|)
+operator|+
+literal|")"
+decl_stmt|;
+if|if
+condition|(
+name|multiThreaded
+condition|)
+block|{
+name|s
+operator|=
+name|MULTI_THREAD_SLACK
+operator|+
+literal|" * "
+operator|+
+name|s
+expr_stmt|;
+block|}
+return|return
+name|maxTime
+argument_list|(
+name|multiThreaded
+argument_list|)
+operator|+
+literal|" = "
+operator|+
+name|s
 return|;
-comment|// even safer (avoid noise in tests)
 block|}
 comment|/**    * Test timeout behavior when resolution is modified.     */
 DECL|method|testModifyResolution
@@ -1167,6 +1244,8 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
+literal|"some threads failed!"
+argument_list|,
 name|N_THREADS
 argument_list|,
 name|success
