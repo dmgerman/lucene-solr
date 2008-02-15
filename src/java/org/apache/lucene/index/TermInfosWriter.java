@@ -647,6 +647,60 @@ name|lastTermTextLength
 operator|==
 literal|0
 operator|)
+operator|:
+literal|"Terms are out of order: field="
+operator|+
+name|fieldInfos
+operator|.
+name|fieldName
+argument_list|(
+name|fieldNumber
+argument_list|)
+operator|+
+literal|" (number "
+operator|+
+name|fieldNumber
+operator|+
+literal|")"
+operator|+
+literal|" lastField="
+operator|+
+name|fieldInfos
+operator|.
+name|fieldName
+argument_list|(
+name|lastFieldNumber
+argument_list|)
+operator|+
+literal|" (number "
+operator|+
+name|lastFieldNumber
+operator|+
+literal|")"
+operator|+
+literal|" text="
+operator|+
+operator|new
+name|String
+argument_list|(
+name|termText
+argument_list|,
+name|termTextStart
+argument_list|,
+name|termTextLength
+argument_list|)
+operator|+
+literal|" lastText="
+operator|+
+operator|new
+name|String
+argument_list|(
+name|lastTermText
+argument_list|,
+literal|0
+argument_list|,
+name|lastTermTextLength
+argument_list|)
 assert|;
 assert|assert
 name|ti
