@@ -475,7 +475,11 @@ name|lastFieldNumber
 operator|!=
 name|fieldNumber
 condition|)
-return|return
+block|{
+specifier|final
+name|int
+name|cmp
+init|=
 name|fieldInfos
 operator|.
 name|fieldName
@@ -492,7 +496,26 @@ argument_list|(
 name|fieldNumber
 argument_list|)
 argument_list|)
+decl_stmt|;
+comment|// If there is a field named "" (empty string) then we
+comment|// will get 0 on this comparison, yet, it's "OK".  But
+comment|// it's not OK if two different field numbers map to
+comment|// the same name.
+if|if
+condition|(
+name|cmp
+operator|!=
+literal|0
+operator|||
+name|lastFieldNumber
+operator|!=
+operator|-
+literal|1
+condition|)
+return|return
+name|cmp
 return|;
+block|}
 while|while
 condition|(
 name|pos
