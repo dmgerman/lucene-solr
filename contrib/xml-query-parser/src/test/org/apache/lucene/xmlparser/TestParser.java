@@ -142,20 +142,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
-operator|.
-name|QueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Hits
@@ -287,15 +273,9 @@ operator|=
 operator|new
 name|CorePlusExtensionsParser
 argument_list|(
-name|analyzer
-argument_list|,
-operator|new
-name|QueryParser
-argument_list|(
 literal|"contents"
 argument_list|,
 name|analyzer
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//initialize the index (done once, then cached in static data for use with ALL tests)

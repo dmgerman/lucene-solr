@@ -22,6 +22,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|Analyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queryParser
 operator|.
 name|ParseException
@@ -115,7 +129,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * @author maharwood  */
+comment|/**  * UserInputQueryBuilder uses 1 of 2 strategies for thread-safe parsing:  * 1) Synchronizing access to "parse" calls on a previously supplied QueryParser  * or..  * 2) creating a new QueryParser object for each parse request  * @author maharwood  */
 end_comment
 
 begin_class
@@ -126,11 +140,21 @@ name|UserInputQueryBuilder
 implements|implements
 name|QueryBuilder
 block|{
-DECL|field|parser
+DECL|field|unSafeParser
 name|QueryParser
-name|parser
+name|unSafeParser
 decl_stmt|;
-comment|/** 	 * @param parser 	 */
+DECL|field|analyzer
+specifier|private
+name|Analyzer
+name|analyzer
+decl_stmt|;
+DECL|field|defaultField
+specifier|private
+name|String
+name|defaultField
+decl_stmt|;
+comment|/** 	 * @param parser thread un-safe query parser 	 */
 DECL|method|UserInputQueryBuilder
 specifier|public
 name|UserInputQueryBuilder
@@ -141,9 +165,33 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|parser
+name|unSafeParser
 operator|=
 name|parser
+expr_stmt|;
+block|}
+DECL|method|UserInputQueryBuilder
+specifier|public
+name|UserInputQueryBuilder
+parameter_list|(
+name|String
+name|defaultField
+parameter_list|,
+name|Analyzer
+name|analyzer
+parameter_list|)
+block|{
+name|this
+operator|.
+name|analyzer
+operator|=
+name|analyzer
+expr_stmt|;
+name|this
+operator|.
+name|defaultField
+operator|=
+name|defaultField
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.apache.lucene.xmlparser.QueryObjectBuilder#process(org.w3c.dom.Element) 	 */
@@ -173,13 +221,56 @@ block|{
 name|Query
 name|q
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|unSafeParser
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//synchronize on unsafe parser
+synchronized|synchronized
+init|(
+name|unSafeParser
+init|)
+block|{
+name|q
+operator|=
+name|unSafeParser
+operator|.
+name|parse
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|//Create new parser
+name|QueryParser
+name|parser
+init|=
+operator|new
+name|QueryParser
+argument_list|(
+name|defaultField
+argument_list|,
+name|analyzer
+argument_list|)
+decl_stmt|;
+name|q
+operator|=
 name|parser
 operator|.
 name|parse
 argument_list|(
 name|text
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|q
 operator|.
 name|setBoost
