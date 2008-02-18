@@ -255,6 +255,7 @@ expr_stmt|;
 block|}
 DECL|method|getFilter
 specifier|public
+specifier|synchronized
 name|Filter
 name|getFilter
 parameter_list|(
@@ -360,16 +361,6 @@ block|}
 name|Filter
 name|cachedFilter
 init|=
-literal|null
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|filterCache
-init|)
-block|{
-comment|// check cache
-name|cachedFilter
-operator|=
 operator|(
 name|Filter
 operator|)
@@ -379,7 +370,7 @@ name|get
 argument_list|(
 name|cacheKey
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|cachedFilter
@@ -391,7 +382,6 @@ return|return
 name|cachedFilter
 return|;
 comment|// cache hit
-block|}
 block|}
 comment|//cache miss
 if|if
@@ -421,12 +411,6 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|filterCache
-init|)
-block|{
-comment|// update cache
 name|filterCache
 operator|.
 name|put
@@ -436,7 +420,6 @@ argument_list|,
 name|cachedFilter
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|cachedFilter
 return|;
