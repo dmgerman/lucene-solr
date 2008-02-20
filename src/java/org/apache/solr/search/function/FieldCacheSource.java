@@ -32,6 +32,20 @@ name|FieldCache
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|ExtendedFieldCache
+import|;
+end_import
+
 begin_comment
 comment|/**  * A base class for ValueSource implementations that retrieve values for  * a single field from the {@link org.apache.lucene.search.FieldCache}.  *  * @version $Id$  */
 end_comment
@@ -55,9 +69,9 @@ specifier|protected
 name|FieldCache
 name|cache
 init|=
-name|FieldCache
+name|ExtendedFieldCache
 operator|.
-name|DEFAULT
+name|EXT_DEFAULT
 decl_stmt|;
 DECL|method|FieldCacheSource
 specifier|public
@@ -74,6 +88,7 @@ operator|=
 name|field
 expr_stmt|;
 block|}
+comment|/**    * If you are using longs or doubles, this needs to be a {@link org.apache.lucene.search.ExtendedFieldCache}.    *    * @param cache The {@link org.apache.lucene.search.FieldCache}    */
 DECL|method|setFieldCache
 specifier|public
 name|void
