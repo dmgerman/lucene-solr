@@ -349,7 +349,7 @@ name|add
 argument_list|(
 name|SearchHandler
 operator|.
-name|INIT_FISRT_COMPONENTS
+name|INIT_FIRST_COMPONENTS
 argument_list|,
 name|names0
 argument_list|)
