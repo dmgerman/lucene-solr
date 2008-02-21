@@ -1729,6 +1729,13 @@ name|equals
 argument_list|(
 name|method
 argument_list|)
+operator|||
+literal|"HEAD"
+operator|.
+name|equals
+argument_list|(
+name|method
+argument_list|)
 condition|)
 block|{
 return|return
@@ -1859,7 +1866,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Unsuported method: "
+literal|"Unsupported method: "
 operator|+
 name|method
 argument_list|)

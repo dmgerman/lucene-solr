@@ -183,6 +183,39 @@ name|port
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|JettySolrRunner
+specifier|public
+name|JettySolrRunner
+parameter_list|(
+name|String
+name|context
+parameter_list|,
+name|int
+name|port
+parameter_list|,
+name|String
+name|solrConfigFilename
+parameter_list|)
+block|{
+name|this
+operator|.
+name|init
+argument_list|(
+name|context
+argument_list|,
+name|port
+argument_list|)
+expr_stmt|;
+name|dispatchFilter
+operator|.
+name|setInitParameter
+argument_list|(
+literal|"solrconfig-filename"
+argument_list|,
+name|solrConfigFilename
+argument_list|)
+expr_stmt|;
+block|}
 comment|//  public JettySolrRunner( String context, String home, String dataDir, int port, boolean log )
 comment|//  {
 comment|//    if(!log) {
@@ -315,6 +348,11 @@ block|{
 name|server
 operator|.
 name|stop
+argument_list|()
+expr_stmt|;
+name|server
+operator|.
+name|join
 argument_list|()
 expr_stmt|;
 block|}

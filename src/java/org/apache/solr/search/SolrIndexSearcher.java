@@ -6592,6 +6592,16 @@ name|val
 argument_list|)
 return|;
 block|}
+DECL|method|getOpenTime
+specifier|public
+name|long
+name|getOpenTime
+parameter_list|()
+block|{
+return|return
+name|openTime
+return|;
+block|}
 comment|/////////////////////////////////////////////////////////////////////
 comment|// SolrInfoMBean stuff: Statistics and Module Info
 comment|/////////////////////////////////////////////////////////////////////
