@@ -173,7 +173,7 @@ literal|"This response format is experimental.  It is likely to change in the fu
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Check the request parameters and decide if it should commit or optimize.    * If it does, it will check parameters for "waitFlush" and "waitSearcher"    *     * Use the update processor version    *     * @since solr 1.2    */
+comment|/**    * Check the request parameters and decide if it should commit or optimize.    * If it does, it will check parameters for "waitFlush" and "waitSearcher"    *     * @deprecated Use {@link #handleCommit(UpdateRequestProcessor,SolrParams,boolean)}    *    * @since solr 1.2    */
 annotation|@
 name|Deprecated
 DECL|method|handleCommit

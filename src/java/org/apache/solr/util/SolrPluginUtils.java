@@ -466,7 +466,7 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** standard param for field list */
+comment|/**    * standard param for field list    *    * @deprecated Use org.apache.solr.common.params.CommonParams.FL.    */
 annotation|@
 name|Deprecated
 DECL|field|FL

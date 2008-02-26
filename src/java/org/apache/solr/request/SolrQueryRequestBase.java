@@ -167,6 +167,7 @@ name|SolrQueryRequestBase
 implements|implements
 name|SolrQueryRequest
 block|{
+comment|/**    * @deprecated Use org.apache.solr.common.params.CommonParams    */
 annotation|@
 name|Deprecated
 DECL|field|QUERY_NAME
@@ -178,6 +179,7 @@ name|QUERY_NAME
 init|=
 literal|"q"
 decl_stmt|;
+comment|/**    * @deprecated Use org.apache.solr.common.params.CommonParams    */
 annotation|@
 name|Deprecated
 DECL|field|START_NAME
@@ -189,6 +191,7 @@ name|START_NAME
 init|=
 literal|"start"
 decl_stmt|;
+comment|/**    * @deprecated Use org.apache.solr.common.params.CommonParams    */
 annotation|@
 name|Deprecated
 DECL|field|ROWS_NAME
@@ -200,6 +203,7 @@ name|ROWS_NAME
 init|=
 literal|"rows"
 decl_stmt|;
+comment|/**    * @deprecated Use org.apache.solr.common.params.CommonParams    */
 annotation|@
 name|Deprecated
 DECL|field|XSL_NAME
@@ -211,6 +215,7 @@ name|XSL_NAME
 init|=
 literal|"xsl"
 decl_stmt|;
+comment|/**    * @deprecated Use org.apache.solr.common.params.CommonParams    */
 annotation|@
 name|Deprecated
 DECL|field|QUERYTYPE_NAME

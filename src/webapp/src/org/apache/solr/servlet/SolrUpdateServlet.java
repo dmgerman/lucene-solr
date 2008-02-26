@@ -148,7 +148,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
+comment|/**  * @version $Id$  *  * @deprecated Register a request handler to /update rather then use this servlet.  Add:&lt;requestHandler name="/update" class="solr.XmlUpdateRequestHandler"> to your solrconfig.xml  */
 end_comment
 
 begin_class
