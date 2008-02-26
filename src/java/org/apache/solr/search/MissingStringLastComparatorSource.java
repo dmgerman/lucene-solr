@@ -64,6 +64,7 @@ end_comment
 
 begin_class
 DECL|class|MissingStringLastComparatorSource
+specifier|public
 class|class
 name|MissingStringLastComparatorSource
 implements|implements

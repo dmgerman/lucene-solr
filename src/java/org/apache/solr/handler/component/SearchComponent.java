@@ -163,16 +163,11 @@ specifier|abstract
 name|void
 name|prepare
 parameter_list|(
-name|SolrQueryRequest
-name|req
-parameter_list|,
-name|SolrQueryResponse
-name|rsp
+name|ResponseBuilder
+name|rb
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|ParseException
 function_decl|;
 DECL|method|process
 specifier|public
@@ -180,15 +175,69 @@ specifier|abstract
 name|void
 name|process
 parameter_list|(
-name|SolrQueryRequest
-name|req
-parameter_list|,
-name|SolrQueryResponse
-name|rsp
+name|ResponseBuilder
+name|rb
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Process for a distributed search.    * @returns the next stage for this component */
+DECL|method|distributedProcess
+specifier|public
+name|int
+name|distributedProcess
+parameter_list|(
+name|ResponseBuilder
+name|rb
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|ResponseBuilder
+operator|.
+name|STAGE_DONE
+return|;
+block|}
+comment|/** Called after another component adds a request */
+DECL|method|modifyRequest
+specifier|public
+name|void
+name|modifyRequest
+parameter_list|(
+name|ResponseBuilder
+name|rb
+parameter_list|,
+name|SearchComponent
+name|who
+parameter_list|,
+name|ShardRequest
+name|sreq
+parameter_list|)
+block|{   }
+comment|/** Called after all responses for a single request were received */
+DECL|method|handleResponses
+specifier|public
+name|void
+name|handleResponses
+parameter_list|(
+name|ResponseBuilder
+name|rb
+parameter_list|,
+name|ShardRequest
+name|sreq
+parameter_list|)
+block|{   }
+comment|/** Called after all responses have been received for this stage.    * Useful when different requests are sent to each shard.    */
+DECL|method|finishStage
+specifier|public
+name|void
+name|finishStage
+parameter_list|(
+name|ResponseBuilder
+name|rb
+parameter_list|)
+block|{   }
 comment|//////////////////////// NamedListInitializedPlugin methods //////////////////////
 DECL|method|init
 specifier|public

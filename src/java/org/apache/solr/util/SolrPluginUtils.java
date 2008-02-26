@@ -1669,38 +1669,14 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|String
-name|docname
-init|=
-literal|""
-decl_stmt|;
-if|if
-condition|(
-name|strid
-operator|!=
-literal|null
-condition|)
-name|docname
-operator|=
-literal|"id="
-operator|+
-name|strid
-operator|+
-literal|","
-expr_stmt|;
-name|docname
-operator|=
-name|docname
-operator|+
-literal|"internal_docid="
-operator|+
-name|id
-expr_stmt|;
+comment|// String docname = "";
+comment|// if (strid != null) docname="id="+strid+",";
+comment|// docname = docname + "internal_docid="+id;
 name|explainList
 operator|.
 name|add
 argument_list|(
-name|docname
+name|strid
 argument_list|,
 literal|"\n"
 operator|+

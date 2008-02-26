@@ -2552,8 +2552,9 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 decl_stmt|;
+comment|/**    * Returns the set of document ids matching all queries.    * This method is cache-aware and attempts to retrieve the answer from the cache if possible.    * If the answer was not cached, it may have been inserted into the cache as a result of this call.    * This method can handle negative queries.    *<p>    * The DocSet returned should<b>not</b> be modified.    */
 DECL|method|getDocSet
-specifier|protected
+specifier|public
 name|DocSet
 name|getDocSet
 parameter_list|(

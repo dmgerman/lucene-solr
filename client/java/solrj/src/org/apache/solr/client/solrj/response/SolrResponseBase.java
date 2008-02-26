@@ -59,7 +59,6 @@ end_comment
 begin_class
 DECL|class|SolrResponseBase
 specifier|public
-specifier|abstract
 class|class
 name|SolrResponseBase
 extends|extends

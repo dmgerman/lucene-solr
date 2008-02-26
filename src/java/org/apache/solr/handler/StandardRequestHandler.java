@@ -18,21 +18,17 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|net
+name|apache
 operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|solr
 operator|.
-name|net
+name|common
 operator|.
-name|URL
+name|util
+operator|.
+name|NamedList
 import|;
 end_import
 
@@ -48,7 +44,27 @@ name|handler
 operator|.
 name|component
 operator|.
-name|SearchHandler
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
 import|;
 end_import
 
