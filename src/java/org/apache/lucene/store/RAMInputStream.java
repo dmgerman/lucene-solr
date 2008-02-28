@@ -174,7 +174,9 @@ name|currentBufferIndex
 operator|++
 expr_stmt|;
 name|switchCurrentBuffer
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 return|return
@@ -221,7 +223,9 @@ name|currentBufferIndex
 operator|++
 expr_stmt|;
 name|switchCurrentBuffer
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 name|int
@@ -276,7 +280,10 @@ specifier|private
 specifier|final
 name|void
 name|switchCurrentBuffer
-parameter_list|()
+parameter_list|(
+name|boolean
+name|enforceEOF
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -291,6 +298,10 @@ argument_list|()
 condition|)
 block|{
 comment|// end of file reached, no more buffers left
+if|if
+condition|(
+name|enforceEOF
+condition|)
 throw|throw
 operator|new
 name|IOException
@@ -298,6 +309,17 @@ argument_list|(
 literal|"Read past EOF"
 argument_list|)
 throw|;
+else|else
+block|{
+comment|// Force EOF if a read takes place at this position
+name|currentBufferIndex
+operator|--
+expr_stmt|;
+name|bufferPosition
+operator|=
+name|BUFFER_SIZE
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -410,7 +432,9 @@ name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 name|switchCurrentBuffer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 name|bufferPosition
