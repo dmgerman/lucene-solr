@@ -121,6 +121,11 @@ name|path
 init|=
 literal|null
 decl_stmt|;
+DECL|field|responseParser
+specifier|private
+name|ResponseParser
+name|responseParser
+decl_stmt|;
 comment|//---------------------------------------------------------
 comment|//---------------------------------------------------------
 DECL|method|SolrRequest
@@ -199,6 +204,34 @@ operator|.
 name|path
 operator|=
 name|path
+expr_stmt|;
+block|}
+comment|/**    *    * @return The {@link org.apache.solr.client.solrj.ResponseParser}    */
+DECL|method|getResponseParser
+specifier|public
+name|ResponseParser
+name|getResponseParser
+parameter_list|()
+block|{
+return|return
+name|responseParser
+return|;
+block|}
+comment|/**    * Optionally specify how the Response should be parsed.  Not all server implementations require a ResponseParser    * to be specified.    * @param responseParser The {@link org.apache.solr.client.solrj.ResponseParser}    */
+DECL|method|setResponseParser
+specifier|public
+name|void
+name|setResponseParser
+parameter_list|(
+name|ResponseParser
+name|responseParser
+parameter_list|)
+block|{
+name|this
+operator|.
+name|responseParser
+operator|=
+name|responseParser
 expr_stmt|;
 block|}
 DECL|method|getParams

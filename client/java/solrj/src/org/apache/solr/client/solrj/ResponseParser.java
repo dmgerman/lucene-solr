@@ -102,6 +102,17 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
+comment|/**    * @return the version param passed to solr    */
+DECL|method|getVersion
+specifier|public
+name|String
+name|getVersion
+parameter_list|()
+block|{
+return|return
+literal|"2.2"
+return|;
+block|}
 block|}
 end_class
 
