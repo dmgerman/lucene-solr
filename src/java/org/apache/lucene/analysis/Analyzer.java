@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An Analyzer builds TokenStreams, which analyze text.  It thus represents a  *  policy for extracting index terms from text.  *<p>  *  Typical implementations first build a Tokenizer, which breaks the stream of  *  characters from the Reader into raw Tokens.  One or more TokenFilters may  *  then be applied to the output of the Tokenizer.  *<p>  *  WARNING: You must override one of the methods defined by this class in your  *  subclass or the Analyzer will enter an infinite loop.  */
+comment|/** An Analyzer builds TokenStreams, which analyze text.  It thus represents a  *  policy for extracting index terms from text.  *<p>  *  Typical implementations first build a Tokenizer, which breaks the stream of  *  characters from the Reader into raw Tokens.  One or more TokenFilters may  *  then be applied to the output of the Tokenizer.  */
 end_comment
 
 begin_class
@@ -47,7 +47,7 @@ specifier|abstract
 class|class
 name|Analyzer
 block|{
-comment|/** Creates a TokenStream which tokenizes all the text in the provided     Reader.  Default implementation forwards to tokenStream(Reader) for      compatibility with older version.  Override to allow Analyzer to choose      strategy based on document and/or field.  Must be able to handle null     field name for backward compatibility. */
+comment|/** Creates a TokenStream which tokenizes all the text in the provided    * Reader.  Must be able to handle null field name for backward compatibility.    */
 DECL|method|tokenStream
 specifier|public
 specifier|abstract
