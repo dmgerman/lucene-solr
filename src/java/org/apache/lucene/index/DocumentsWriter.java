@@ -2596,6 +2596,14 @@ assert|assert
 operator|!
 name|isIdle
 assert|;
+assert|assert
+name|writer
+operator|.
+name|testPoint
+argument_list|(
+literal|"DocumentsWriter.ThreadState.init start"
+argument_list|)
+assert|;
 name|this
 operator|.
 name|docID
@@ -11151,46 +11159,6 @@ operator|.
 name|newSegmentName
 argument_list|()
 expr_stmt|;
-name|numDocsInRAM
-operator|++
-expr_stmt|;
-comment|// We must at this point commit to flushing to ensure we
-comment|// always get N docs when we flush by doc count, even if
-comment|//> 1 thread is adding documents:
-if|if
-condition|(
-operator|!
-name|flushPending
-operator|&&
-name|maxBufferedDocs
-operator|!=
-name|IndexWriter
-operator|.
-name|DISABLE_AUTO_FLUSH
-operator|&&
-name|numDocsInRAM
-operator|>=
-name|maxBufferedDocs
-condition|)
-block|{
-name|flushPending
-operator|=
-literal|true
-expr_stmt|;
-name|state
-operator|.
-name|doFlushAfter
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-name|state
-operator|.
-name|doFlushAfter
-operator|=
-literal|false
-expr_stmt|;
 name|state
 operator|.
 name|isIdle
@@ -11231,13 +11199,6 @@ operator|.
 name|docID
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|state
-operator|.
-name|doFlushAfter
-condition|)
 name|state
 operator|.
 name|doFlushAfter
@@ -11246,10 +11207,43 @@ name|timeToFlushDeletes
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Only increment nextDocID on successful init
+comment|// Only increment nextDocID& numDocsInRAM on successful init
 name|nextDocID
 operator|++
 expr_stmt|;
+name|numDocsInRAM
+operator|++
+expr_stmt|;
+comment|// We must at this point commit to flushing to ensure we
+comment|// always get N docs when we flush by doc count, even if
+comment|//> 1 thread is adding documents:
+if|if
+condition|(
+operator|!
+name|flushPending
+operator|&&
+name|maxBufferedDocs
+operator|!=
+name|IndexWriter
+operator|.
+name|DISABLE_AUTO_FLUSH
+operator|&&
+name|numDocsInRAM
+operator|>=
+name|maxBufferedDocs
+condition|)
+block|{
+name|flushPending
+operator|=
+literal|true
+expr_stmt|;
+name|state
+operator|.
+name|doFlushAfter
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|success
 operator|=
 literal|true

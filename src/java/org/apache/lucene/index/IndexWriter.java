@@ -12309,6 +12309,20 @@ name|DEFAULT_MAX_FIELD_LENGTH
 argument_list|)
 decl_stmt|;
 block|}
+comment|// Used only by assert for testing.  Current points:
+comment|//  "DocumentsWriter.ThreadState.init start"
+DECL|method|testPoint
+name|boolean
+name|testPoint
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 end_class
 
