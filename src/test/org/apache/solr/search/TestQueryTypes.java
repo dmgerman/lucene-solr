@@ -579,6 +579,50 @@ argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"test nested query"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_query_:\"<!query v=$q1>\""
+argument_list|,
+literal|"q1"
+argument_list|,
+literal|"<!prefix f=v_t>hel"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"test nested nested query"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_query_:\"<!query defType=query v=$q1>\""
+argument_list|,
+literal|"q1"
+argument_list|,
+literal|"<!v=$q2>"
+argument_list|,
+literal|"q2"
+argument_list|,
+literal|"<!prefix f=v_t v=$qqq>"
+argument_list|,
+literal|"qqq"
+argument_list|,
+literal|"hel"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

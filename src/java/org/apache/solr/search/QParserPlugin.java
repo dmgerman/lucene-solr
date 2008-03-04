@@ -151,6 +151,14 @@ block|,
 name|RawQParserPlugin
 operator|.
 name|class
+block|,
+name|NestedQParserPlugin
+operator|.
+name|NAME
+block|,
+name|NestedQParserPlugin
+operator|.
+name|class
 block|,   }
 decl_stmt|;
 comment|/** return a {@link QParser} */
