@@ -40,20 +40,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|handler
-operator|.
-name|PingRequestHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|LocalSolrQueryRequest
@@ -259,7 +245,7 @@ name|DEFAULT_CONF_FILE
 init|=
 literal|"solrconfig.xml"
 decl_stmt|;
-comment|/**    * Singleton containing all configuration.    * Compatibility feature for single-core (pre-solr215 patch) code.    * Most usage should be converted by:    * - using the configuration directly when used in Abstract{Tokeinizer,TokenFilter}Factory.init().    * - getting the configuration through the owning core if accessible (SolrCore.getSolrConfig()).    * - getting the core by name then its configuration as above    */
+comment|// Compatibility feature for single-core (pre-solr{215,350} patch); should go away at solr-2.0
 annotation|@
 name|Deprecated
 DECL|field|config
@@ -269,12 +255,6 @@ name|SolrConfig
 name|config
 init|=
 literal|null
-decl_stmt|;
-DECL|field|configFile
-specifier|public
-specifier|final
-name|String
-name|configFile
 decl_stmt|;
 comment|/**    * Singleton keeping track of configuration errors    */
 DECL|field|severeErrors
@@ -308,11 +288,10 @@ name|SAXException
 block|{
 name|this
 argument_list|(
-operator|new
+operator|(
 name|SolrResourceLoader
-argument_list|(
+operator|)
 literal|null
-argument_list|)
 argument_list|,
 name|DEFAULT_CONF_FILE
 argument_list|,
@@ -320,13 +299,13 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a configuration instance from a file. */
+comment|/** Creates a configuration instance from a configuration name.    * A default resource loader will be created (@see SolrResourceLoader)    *@param name the configuration name used by the loader    */
 DECL|method|SolrConfig
 specifier|public
 name|SolrConfig
 parameter_list|(
 name|String
-name|file
+name|name
 parameter_list|)
 throws|throws
 name|ParserConfigurationException
@@ -337,26 +316,24 @@ name|SAXException
 block|{
 name|this
 argument_list|(
-operator|new
+operator|(
 name|SolrResourceLoader
-argument_list|(
+operator|)
 literal|null
-argument_list|)
 argument_list|,
-name|file
+name|name
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Deprecated
+comment|/** Creates a configuration instance from a configuration name and stream.    * A default resource loader will be created (@see SolrResourceLoader).    * If the stream is null, the resource loader will open the configuration stream.    * If the stream is not null, no attempt to load the resource will occur (the name is not used).    *@param name the configuration name    *@param is the configuration stream    */
 DECL|method|SolrConfig
 specifier|public
 name|SolrConfig
 parameter_list|(
 name|String
-name|file
+name|name
 parameter_list|,
 name|InputStream
 name|is
@@ -370,19 +347,18 @@ name|SAXException
 block|{
 name|this
 argument_list|(
-operator|new
+operator|(
 name|SolrResourceLoader
-argument_list|(
+operator|)
 literal|null
-argument_list|)
 argument_list|,
-name|file
+name|name
 argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a configuration instance from an input stream. */
+comment|/** Creates a configuration instance from an instance directory, configuration name and stream.    *@param instanceDir the directory used to create the resource loader    *@param name the configuration name used by the loader if the stream is null    *@param is the configuration stream     */
 DECL|method|SolrConfig
 specifier|public
 name|SolrConfig
@@ -391,7 +367,7 @@ name|String
 name|instanceDir
 parameter_list|,
 name|String
-name|file
+name|name
 parameter_list|,
 name|InputStream
 name|is
@@ -411,12 +387,13 @@ argument_list|(
 name|instanceDir
 argument_list|)
 argument_list|,
-name|file
+name|name
 argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Creates a configuration instance from a resource loader, a configuration name and a stream.    * If the stream is null, the resource loader will open the configuration stream.    * If the stream is not null, no attempt to load the resource will occur (the name is not used).    *@param loader the resource loader    *@param name the configuration name    *@param is the configuration stream    */
 DECL|method|SolrConfig
 name|SolrConfig
 parameter_list|(
@@ -424,7 +401,7 @@ name|SolrResourceLoader
 name|loader
 parameter_list|,
 name|String
-name|file
+name|name
 parameter_list|,
 name|InputStream
 name|is
@@ -440,18 +417,12 @@ name|super
 argument_list|(
 name|loader
 argument_list|,
-name|file
+name|name
 argument_list|,
 name|is
 argument_list|,
 literal|"/config/"
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|configFile
-operator|=
-name|file
 expr_stmt|;
 name|defaultIndexConfig
 operator|=
@@ -656,7 +627,7 @@ name|info
 argument_list|(
 literal|"Loaded SolrConfig: "
 operator|+
-name|file
+name|name
 argument_list|)
 expr_stmt|;
 comment|// TODO -- at solr 2.0. this should go away

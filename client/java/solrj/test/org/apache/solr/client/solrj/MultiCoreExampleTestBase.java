@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -192,6 +202,25 @@ argument_list|()
 operator|+
 literal|"core0/conf/solrconfig.xml"
 return|;
+block|}
+DECL|method|setUp
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|//    File src = new File(getSolrHome(), "multicore-base.xml");
+comment|//    File dest = new File(getSolrHome(), "multicore.xml");
+comment|//    org.apache.solr.core.MultiCore.fileCopy(src, dest);
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override

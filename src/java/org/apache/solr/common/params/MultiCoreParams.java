@@ -58,6 +58,16 @@ name|WITH
 init|=
 literal|"with"
 decl_stmt|;
+comment|/** If you rename something, what is the new name **/
+DECL|field|NAME
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|NAME
+init|=
+literal|"name"
+decl_stmt|;
 comment|/** What action **/
 DECL|field|ACTION
 specifier|public
@@ -67,6 +77,36 @@ name|String
 name|ACTION
 init|=
 literal|"action"
+decl_stmt|;
+comment|/** If you specify a schema, what is its name **/
+DECL|field|SCHEMA
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SCHEMA
+init|=
+literal|"schema"
+decl_stmt|;
+comment|/** If you specify a config, what is its name **/
+DECL|field|CONFIG
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CONFIG
+init|=
+literal|"config"
+decl_stmt|;
+comment|/** Specifies a core instance dir. */
+DECL|field|INSTANCE_DIR
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INSTANCE_DIR
+init|=
+literal|"instanceDir"
 decl_stmt|;
 DECL|enum|MultiCoreAction
 specifier|public
@@ -84,6 +124,15 @@ name|UNLOAD
 block|,
 DECL|enum constant|RELOAD
 name|RELOAD
+block|,
+DECL|enum constant|CREATE
+name|CREATE
+block|,
+DECL|enum constant|DROP
+name|DROP
+block|,
+DECL|enum constant|PERSIST
+name|PERSIST
 block|,
 DECL|enum constant|SWAP
 name|SWAP

@@ -498,11 +498,7 @@ return|return
 operator|new
 name|SolrRequestParsers
 argument_list|(
-literal|true
-argument_list|,
-name|Long
-operator|.
-name|MAX_VALUE
+literal|null
 argument_list|)
 return|;
 block|}

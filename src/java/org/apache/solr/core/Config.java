@@ -284,6 +284,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Builds a config from a resource name with no xpath prefix.    * @param loader    * @param name    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
 DECL|method|Config
 specifier|public
 name|Config
@@ -313,6 +314,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Builds a config:    *<p>    * Note that the 'name' parameter is used to obtain a valid input stream if no valid one is provided through 'is'.    * If no valid stream is provided, a valid SolrResourceLoader instance should be provided through 'loader' so    * the resource can be opened (@see SolrResourceLoader#openResource); if no SolrResourceLoader instance is provided, a default one    * will be created.    *</p>    *<p>    * Consider passing a non-null 'name' parameter in all use-cases since it is used for logging& exception reporting.    *</p>    * @param loader the resource loader used to obtain an input stream if 'is' is null    * @param name the resource name used if the input stream 'is' is null    * @param is the resource as a stream    * @param prefix an optional prefix that will be preprended to all non-absolute xpath expressions    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
 DECL|method|Config
 specifier|public
 name|Config
@@ -368,10 +370,7 @@ name|this
 operator|.
 name|prefix
 operator|=
-name|prefix
-expr_stmt|;
-if|if
-condition|(
+operator|(
 name|prefix
 operator|!=
 literal|null
@@ -383,10 +382,13 @@ name|endsWith
 argument_list|(
 literal|"/"
 argument_list|)
-condition|)
+operator|)
+condition|?
 name|prefix
-operator|+=
+operator|+
 literal|'/'
+else|:
+name|prefix
 expr_stmt|;
 name|InputStream
 name|lis
@@ -401,15 +403,17 @@ name|lis
 operator|==
 literal|null
 condition|)
+block|{
 name|lis
 operator|=
 name|loader
 operator|.
-name|openResource
+name|openConfig
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+block|}
 name|javax
 operator|.
 name|xml
@@ -492,6 +496,27 @@ parameter_list|()
 block|{
 return|return
 name|loader
+return|;
+block|}
+comment|/**    * @since solr 1.3    */
+DECL|method|getResourceName
+specifier|public
+name|String
+name|getResourceName
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
+block|}
+DECL|method|getName
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|name
 return|;
 block|}
 DECL|method|getDocument
@@ -1125,17 +1150,6 @@ name|val
 argument_list|)
 else|:
 name|def
-return|;
-block|}
-comment|/**    * @return the XML filename    */
-DECL|method|getName
-specifier|public
-name|String
-name|getName
-parameter_list|()
-block|{
-return|return
-name|name
 return|;
 block|}
 comment|// The following functions were moved to ResourceLoader

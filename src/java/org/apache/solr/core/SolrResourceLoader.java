@@ -478,7 +478,7 @@ name|ResourceLoaderAware
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the "Solr Home" directory.    *<p>    */
+comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the specified instance directory.    * If the instance directory is not specified (=null), SolrResourceLoader#locateInstanceDir will provide one.    *<p>    */
 DECL|method|SolrResourceLoader
 specifier|public
 name|SolrResourceLoader
@@ -726,8 +726,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Ensures a directory name allways ends with a '/'. */
 DECL|method|normalizeDir
-specifier|protected
+specifier|public
 specifier|static
 name|String
 name|normalizeDir
@@ -736,17 +737,13 @@ name|String
 name|path
 parameter_list|)
 block|{
-if|if
-condition|(
-name|path
-operator|==
-literal|null
-condition|)
 return|return
+operator|(
+name|path
+operator|!=
 literal|null
-return|;
-if|if
-condition|(
+operator|&&
+operator|(
 operator|!
 operator|(
 name|path
@@ -763,14 +760,13 @@ argument_list|(
 literal|"\\"
 argument_list|)
 operator|)
-condition|)
-block|{
+operator|)
+operator|)
+condition|?
 name|path
-operator|+=
+operator|+
 literal|'/'
-expr_stmt|;
-block|}
-return|return
+else|:
 name|path
 return|;
 block|}
@@ -786,6 +782,41 @@ operator|+
 literal|"conf/"
 return|;
 block|}
+comment|/** Opens a schema resource by its name.    * Override this method to customize loading schema resources.    *@return the stream for the named schema    */
+DECL|method|openSchema
+specifier|public
+name|InputStream
+name|openSchema
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|openResource
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
+comment|/** Opens a config resource by its name.    * Override this method to customize loading config resources.    *@return the stream for the named configuration    */
+DECL|method|openConfig
+specifier|public
+name|InputStream
+name|openConfig
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|openResource
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
+comment|/** Opens any resource by its name.    * By default, this will look in multiple locations to load the resource:    * $configDir/$resource (if resource is not absolute)    * $CWD/$resource    * otherwise, it will look for it in any jar accessible through the class loader.    * Override this method to customize loading resources.    *@return the stream for the named resource    */
 DECL|method|openResource
 specifier|public
 name|InputStream
@@ -803,13 +834,18 @@ decl_stmt|;
 try|try
 block|{
 name|File
-name|f
+name|f0
 init|=
 operator|new
 name|File
 argument_list|(
 name|resource
 argument_list|)
+decl_stmt|;
+name|File
+name|f
+init|=
+name|f0
 decl_stmt|;
 if|if
 condition|(
@@ -820,7 +856,7 @@ name|isAbsolute
 argument_list|()
 condition|)
 block|{
-comment|// try $CWD/conf/
+comment|// try $CWD/$configDir/$resource
 name|f
 operator|=
 operator|new
@@ -854,39 +890,36 @@ name|f
 argument_list|)
 return|;
 block|}
-else|else
-block|{
-comment|// try $CWD
-name|f
-operator|=
-operator|new
-name|File
-argument_list|(
-name|resource
-argument_list|)
-expr_stmt|;
+elseif|else
 if|if
 condition|(
 name|f
+operator|!=
+name|f0
+condition|)
+block|{
+comment|// no success with $CWD/$configDir/$resource
+if|if
+condition|(
+name|f0
 operator|.
 name|isFile
 argument_list|()
 operator|&&
-name|f
+name|f0
 operator|.
 name|canRead
 argument_list|()
 condition|)
-block|{
 return|return
 operator|new
 name|FileInputStream
 argument_list|(
-name|f
+name|f0
 argument_list|)
 return|;
 block|}
-block|}
+comment|// delegate to the class loader (looking into $INSTANCE_DIR/lib jars)
 name|is
 operator|=
 name|classLoader
@@ -1451,6 +1484,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Determines the instanceDir from the environment.    * Tries JNDI (java:comp/env/solr/home) then system property (solr.solr.home);    * if both fail, defaults to solr/    * @return the instance directory name    */
 comment|/**    * Finds the instanceDir based on looking up the value in one of three places:    *<ol>    *<li>JNDI: via java:comp/env/solr/home</li>    *<li>The system property solr.solr.home</li>    *<li>Look in the current working directory for a solr/ directory</li>     *</ol>    *    * The return value is normalized.  Normalization essentially means it ends in a trailing slash.    * @return A normalized instanceDir    *    * @see #normalizeDir(String)     */
 DECL|method|locateInstanceDir
 specifier|public
