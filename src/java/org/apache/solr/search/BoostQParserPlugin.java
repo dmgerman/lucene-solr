@@ -322,7 +322,7 @@ operator|=
 operator|new
 name|QueryValueSource
 argument_list|(
-name|q
+name|bq
 argument_list|,
 literal|0.0f
 argument_list|)
