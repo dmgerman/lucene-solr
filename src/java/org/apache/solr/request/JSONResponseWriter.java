@@ -1921,6 +1921,8 @@ name|writeArrayCloser
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
 name|writeVal
 argument_list|(
 name|fname
@@ -1928,6 +1930,7 @@ argument_list|,
 name|val
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
