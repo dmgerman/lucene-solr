@@ -999,7 +999,7 @@ decl_stmt|;
 DECL|field|maxAge
 specifier|private
 specifier|final
-name|Integer
+name|Long
 name|maxAge
 decl_stmt|;
 DECL|field|lastModFrom
@@ -1073,7 +1073,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|Integer
+name|Long
 name|tmp
 init|=
 literal|null
@@ -1133,7 +1133,7 @@ name|ttlStr
 argument_list|)
 operator|)
 condition|?
-name|Integer
+name|Long
 operator|.
 name|valueOf
 argument_list|(
@@ -1207,7 +1207,7 @@ block|}
 comment|/** null if no max age limitation */
 DECL|method|getMaxAge
 specifier|public
-name|Integer
+name|Long
 name|getMaxAge
 parameter_list|()
 block|{

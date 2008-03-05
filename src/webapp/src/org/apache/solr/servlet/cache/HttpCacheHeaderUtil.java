@@ -748,7 +748,7 @@ name|cc
 argument_list|)
 expr_stmt|;
 block|}
-name|Integer
+name|Long
 name|maxAge
 init|=
 name|conf
@@ -780,7 +780,7 @@ operator|+
 operator|(
 name|maxAge
 operator|*
-literal|1000
+literal|1000L
 operator|)
 argument_list|)
 expr_stmt|;
