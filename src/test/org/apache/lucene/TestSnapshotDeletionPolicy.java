@@ -172,7 +172,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexCommitPoint
+name|IndexCommit
 import|;
 end_import
 
@@ -479,9 +479,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|IndexCommitPoint
+name|IndexCommit
 name|cp
 init|=
+operator|(
+name|IndexCommit
+operator|)
 name|dp
 operator|.
 name|snapshot
@@ -490,8 +493,6 @@ decl_stmt|;
 name|copyFiles
 argument_list|(
 name|dir
-argument_list|,
-name|dp
 argument_list|,
 name|cp
 argument_list|)
@@ -504,8 +505,6 @@ expr_stmt|;
 name|copyFiles
 argument_list|(
 name|dir
-argument_list|,
-name|dp
 argument_list|,
 name|cp
 argument_list|)
@@ -536,8 +535,6 @@ name|copyFiles
 argument_list|(
 name|dir
 argument_list|,
-name|dp
-argument_list|,
 name|cp
 argument_list|)
 expr_stmt|;
@@ -566,8 +563,6 @@ name|copyFiles
 argument_list|(
 name|dir
 argument_list|,
-name|dp
-argument_list|,
 name|cp
 argument_list|)
 expr_stmt|;
@@ -579,8 +574,6 @@ expr_stmt|;
 name|copyFiles
 argument_list|(
 name|dir
-argument_list|,
-name|dp
 argument_list|,
 name|cp
 argument_list|)
@@ -622,8 +615,6 @@ block|{
 name|copyFiles
 argument_list|(
 name|dir
-argument_list|,
-name|dp
 argument_list|,
 name|cp
 argument_list|)
@@ -1025,8 +1016,9 @@ name|copyFiles
 argument_list|(
 name|dir
 argument_list|,
-name|dp
-argument_list|,
+operator|(
+name|IndexCommit
+operator|)
 name|dp
 operator|.
 name|snapshot
@@ -1054,10 +1046,7 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|SnapshotDeletionPolicy
-name|dp
-parameter_list|,
-name|IndexCommitPoint
+name|IndexCommit
 name|cp
 parameter_list|)
 throws|throws

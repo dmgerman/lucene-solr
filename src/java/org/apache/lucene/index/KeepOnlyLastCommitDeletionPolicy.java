@@ -95,7 +95,7 @@ control|)
 block|{
 operator|(
 operator|(
-name|IndexCommitPoint
+name|IndexCommit
 operator|)
 name|commits
 operator|.

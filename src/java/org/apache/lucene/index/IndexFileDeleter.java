@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * When autoCommit=true, IndexWriter currently commits only  * on completion of a merge (though this may change with  * time: it is not a guarantee).  When autoCommit=false,  * IndexWriter only commits when it is closed.  Regardless  * of autoCommit, the user may call IndexWriter.commit() to  * force a blocking commit.  *   * The same directory file may be referenced by more than  * one IndexCommitPoints, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
+comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * When autoCommit=true, IndexWriter currently commits only  * on completion of a merge (though this may change with  * time: it is not a guarantee).  When autoCommit=false,  * IndexWriter only commits when it is closed.  Regardless  * of autoCommit, the user may call IndexWriter.commit() to  * force a blocking commit.  *   * The same directory file may be referenced by more than  * one IndexCommit, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
 end_comment
 
 begin_class
@@ -2248,10 +2248,10 @@ specifier|private
 specifier|static
 class|class
 name|CommitPoint
+extends|extends
+name|IndexCommit
 implements|implements
 name|Comparable
-implements|,
-name|IndexCommitPoint
 block|{
 DECL|field|gen
 name|long
@@ -2389,7 +2389,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Get the segments_N file for this commit point.      */
 DECL|method|getSegmentsFileName
 specifier|public
 name|String
@@ -2415,6 +2414,16 @@ name|unmodifiableCollection
 argument_list|(
 name|files
 argument_list|)
+return|;
+block|}
+DECL|method|getDirectory
+specifier|public
+name|Directory
+name|getDirectory
+parameter_list|()
+block|{
+return|return
+name|directory
 return|;
 block|}
 comment|/**      * Called only be the deletion policy, to remove this      * commit point from the index.      */
