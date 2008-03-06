@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -266,20 +280,8 @@ name|Iterator
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-operator|.
-name|Entry
-import|;
-end_import
-
 begin_comment
-comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The<code>create</code> argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer, boolean)"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened.  Note that you   can open an index with<code>create=true</code> even while readers are   using the index.  The old readers will continue to search   the "point in time" snapshot they had opened, and won't   see the newly created index until they re-open.  There are   also<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   with no<code>create</code> argument which   will create a new index if there is not already an index at the   provided path and otherwise open the existing index.</p><p>In either case, documents are added with<a   href="#addDocument(org.apache.lucene.document.Document)"><b>addDocument</b></a>   and removed with<a   href="#deleteDocuments(org.apache.lucene.index.Term)"><b>deleteDocuments</b></a>.   A document can be updated with<a href="#updateDocument(org.apache.lucene.index.Term, org.apache.lucene.document.Document)"><b>updateDocument</b></a>    (which just deletes and then adds the entire document).   When finished adding, deleting and updating documents,<a href="#close()"><b>close</b></a> should be called.</p><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls).  A flush is triggered when there are enough   buffered deletes (see {@link #setMaxBufferedDeleteTerms})   or enough added documents since the last flush, whichever   is sooner.  For the added documents, flushing is triggered   either by RAM usage of the documents (see {@link   #setRAMBufferSizeMB}) or the number of added documents.   The default is to flush when RAM usage hits 16 MB.  For   best indexing speed you should flush by RAM usage with a   large RAM buffer.  You can also force a flush by calling   {@link #flush}.  When a flush occurs, both pending deletes   and added documents are flushed to the index.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><a name="autoCommit"></a><p>[<b>Deprecated</b>: Note that in 3.0, IndexWriter will   no longer accept autoCommit=true (it will be hardwired to   false).  You can always call {@link IndexWriter#commit()} yourself   when needed].  The optional<code>autoCommit</code> argument to the<a   href="#IndexWriter(org.apache.lucene.store.Directory,   boolean,   org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   controls visibility of the changes to {@link IndexReader}   instances reading the same index.  When this is<code>false</code>, changes are not visible until {@link   #close()} is called.  Note that changes will still be   flushed to the {@link org.apache.lucene.store.Directory}   as new files, but are not committed (no new<code>segments_N</code> file is written referencing the   new files, nor are the files sync'd to stable storage)   until {@link #commit} or {@link #close} is called.  If something   goes terribly wrong (for example the JVM crashes), then   the index will reflect none of the changes made since the   last commit, or the starting state if commit was not called.   You can also call {@link #abort}, which closes the writer   without committing any changes, and removes any index   files that had been flushed but are now unreferenced.   This mode is useful for preventing readers from refreshing   at a bad time (for example after you've done all your   deletes but before you've done your adds).  It can also be   used to implement simple single-writer transactional   semantics ("all or none").</p><p>When<code>autoCommit</code> is<code>true</code> then   the writer will periodically commit on its own.  This is   the default, to match the behavior before 2.2.  However,   in 3.0, autoCommit will be hardwired to false.  There is   no guarantee when exactly an auto commit will occur (it   used to be after every flush, but it is now after every   completed merge, as of 2.4).  If you want to force a   commit, call {@link #commit}, or, close the writer.  Once   a commit has finished, ({@link IndexReader} instances will   see the changes to the index as of that commit.  When   running in this mode, be careful not to refresh your   readers while optimize or segment merges are taking place   as this can tie up substantial disk space.</p><p>Regardless of<code>autoCommit</code>, an {@link   IndexReader} or {@link org.apache.lucene.search.IndexSearcher} will only see the   index as of the "point in time" that it was opened.  Any   changes committed to the index after the reader was opened   are not visible until the reader is re-opened.</p><p>If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize()"><b>optimize</b></a>   method should be called before the index is closed.</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.  It   also selects merges to do for optimize().  (The default is   {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p> */
+comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The<code>create</code> argument to the<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer, boolean)"><b>constructor</b></a>   determines whether a new index is created, or whether an existing index is   opened.  Note that you   can open an index with<code>create=true</code> even while readers are   using the index.  The old readers will continue to search   the "point in time" snapshot they had opened, and won't   see the newly created index until they re-open.  There are   also<a href="#IndexWriter(org.apache.lucene.store.Directory, org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   with no<code>create</code> argument which   will create a new index if there is not already an index at the   provided path and otherwise open the existing index.</p><p>In either case, documents are added with<a   href="#addDocument(org.apache.lucene.document.Document)"><b>addDocument</b></a>   and removed with<a   href="#deleteDocuments(org.apache.lucene.index.Term)"><b>deleteDocuments</b></a>   or<a   href="#deleteDocuments(org.apache.lucene.search.Query)"><b>deleteDocuments</b></a>.   A document can be updated with<a href="#updateDocument(org.apache.lucene.index.Term, org.apache.lucene.document.Document)"><b>updateDocument</b></a>    (which just deletes and then adds the entire document).   When finished adding, deleting and updating documents,<a href="#close()"><b>close</b></a> should be called.</p><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls).  A flush is triggered when there are enough   buffered deletes (see {@link #setMaxBufferedDeleteTerms})   or enough added documents since the last flush, whichever   is sooner.  For the added documents, flushing is triggered   either by RAM usage of the documents (see {@link   #setRAMBufferSizeMB}) or the number of added documents.   The default is to flush when RAM usage hits 16 MB.  For   best indexing speed you should flush by RAM usage with a   large RAM buffer.  Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><a name="autoCommit"></a><p>[<b>Deprecated</b>: Note that in 3.0, IndexWriter will   no longer accept autoCommit=true (it will be hardwired to   false).  You can always call {@link IndexWriter#commit()} yourself   when needed].  The optional<code>autoCommit</code> argument to the<a   href="#IndexWriter(org.apache.lucene.store.Directory,   boolean,   org.apache.lucene.analysis.Analyzer)"><b>constructors</b></a>   controls visibility of the changes to {@link IndexReader}   instances reading the same index.  When this is<code>false</code>, changes are not visible until {@link   #close()} is called.  Note that changes will still be   flushed to the {@link org.apache.lucene.store.Directory}   as new files, but are not committed (no new<code>segments_N</code> file is written referencing the   new files, nor are the files sync'd to stable storage)   until {@link #commit} or {@link #close} is called.  If something   goes terribly wrong (for example the JVM crashes), then   the index will reflect none of the changes made since the   last commit, or the starting state if commit was not called.   You can also call {@link #abort}, which closes the writer   without committing any changes, and removes any index   files that had been flushed but are now unreferenced.   This mode is useful for preventing readers from refreshing   at a bad time (for example after you've done all your   deletes but before you've done your adds).  It can also be   used to implement simple single-writer transactional   semantics ("all or none").</p><p>When<code>autoCommit</code> is<code>true</code> then   the writer will periodically commit on its own.  This is   the default, to match the behavior before 2.2.  However,   in 3.0, autoCommit will be hardwired to false.  There is   no guarantee when exactly an auto commit will occur (it   used to be after every flush, but it is now after every   completed merge, as of 2.4).  If you want to force a   commit, call {@link #commit}, or, close the writer.  Once   a commit has finished, ({@link IndexReader} instances will   see the changes to the index as of that commit.  When   running in this mode, be careful not to refresh your   readers while optimize or segment merges are taking place   as this can tie up substantial disk space.</p><p>Regardless of<code>autoCommit</code>, an {@link   IndexReader} or {@link org.apache.lucene.search.IndexSearcher} will only see the   index as of the "point in time" that it was opened.  Any   changes committed to the index after the reader was opened   are not visible until the reader is re-opened.</p><p>If an index will not have more documents added for a while and optimal search   performance is desired, then the<a href="#optimize()"><b>optimize</b></a>   method should be called before the index is closed.</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.  It   also selects merges to do for optimize().  (The default is   {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p> */
 end_comment
 
 begin_comment
@@ -512,13 +514,19 @@ name|getDefault
 argument_list|()
 decl_stmt|;
 comment|// how to normalize
-DECL|field|commitPending
+DECL|field|changeCount
 specifier|private
 specifier|volatile
-name|boolean
-name|commitPending
+name|long
+name|changeCount
 decl_stmt|;
-comment|// true if segmentInfos has changes not yet committed
+comment|// increments every a change is completed
+DECL|field|lastCommitChangeCount
+specifier|private
+name|long
+name|lastCommitChangeCount
+decl_stmt|;
+comment|// last changeCount that was committed
 DECL|field|rollbackSegmentInfos
 specifier|private
 name|SegmentInfos
@@ -542,6 +550,12 @@ name|boolean
 name|localAutoCommit
 decl_stmt|;
 comment|// saved autoCommit during local transaction
+DECL|field|localFlushedDocCount
+specifier|private
+name|int
+name|localFlushedDocCount
+decl_stmt|;
+comment|// saved docWriter.getFlushedDocCount during local transaction
 DECL|field|autoCommit
 specifier|private
 name|boolean
@@ -560,19 +574,6 @@ name|SegmentInfos
 argument_list|()
 decl_stmt|;
 comment|// the segments
-DECL|field|syncCount
-specifier|private
-name|int
-name|syncCount
-decl_stmt|;
-DECL|field|syncCountSaved
-specifier|private
-name|int
-name|syncCountSaved
-init|=
-operator|-
-literal|1
-decl_stmt|;
 DECL|field|docWriter
 specifier|private
 name|DocumentsWriter
@@ -691,18 +692,17 @@ specifier|private
 name|int
 name|flushCount
 decl_stmt|;
+DECL|field|flushDeletesCount
+specifier|private
+name|int
+name|flushDeletesCount
+decl_stmt|;
 DECL|field|maxSyncPauseSeconds
 specifier|private
 name|double
 name|maxSyncPauseSeconds
 init|=
 name|DEFAULT_MAX_SYNC_PAUSE_SECONDS
-decl_stmt|;
-comment|// Last (right most) SegmentInfo created by a merge
-DECL|field|lastMergeInfo
-specifier|private
-name|SegmentInfo
-name|lastMergeInfo
 decl_stmt|;
 comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is    */
 DECL|method|ensureOpen
@@ -2049,8 +2049,6 @@ name|directory
 operator|.
 name|clearLock
 argument_list|(
-name|IndexWriter
-operator|.
 name|WRITE_LOCK_NAME
 argument_list|)
 expr_stmt|;
@@ -2062,8 +2060,6 @@ name|directory
 operator|.
 name|makeLock
 argument_list|(
-name|IndexWriter
-operator|.
 name|WRITE_LOCK_NAME
 argument_list|)
 decl_stmt|;
@@ -3365,6 +3361,8 @@ argument_list|(
 name|waitForMerges
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|mergePolicy
@@ -3390,10 +3388,10 @@ literal|null
 condition|)
 name|message
 argument_list|(
-literal|"now call final sync()"
+literal|"now call final commit()"
 argument_list|)
 expr_stmt|;
-name|sync
+name|commit
 argument_list|(
 literal|true
 argument_list|,
@@ -3864,12 +3862,25 @@ argument_list|()
 expr_stmt|;
 name|int
 name|count
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|docWriter
+operator|!=
+literal|null
+condition|)
+name|count
+operator|=
 name|docWriter
 operator|.
 name|getNumDocsInRAM
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+else|else
+name|count
+operator|=
+literal|0
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -3907,6 +3918,64 @@ expr_stmt|;
 block|}
 return|return
 name|count
+return|;
+block|}
+DECL|method|hasDeletions
+specifier|public
+specifier|synchronized
+name|boolean
+name|hasDeletions
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|docWriter
+operator|.
+name|hasDeletes
+argument_list|()
+condition|)
+return|return
+literal|true
+return|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+if|if
+condition|(
+name|segmentInfos
+operator|.
+name|info
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|hasDeletions
+argument_list|()
+condition|)
+return|return
+literal|true
+return|;
+return|return
+literal|false
 return|;
 block|}
 comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    * @see MaxFieldLength    */
@@ -4055,6 +4124,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -4109,6 +4180,8 @@ condition|)
 name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|,
 literal|false
 argument_list|)
@@ -4168,6 +4241,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -4185,6 +4260,89 @@ throw|throw
 name|oom
 throw|;
 block|}
+block|}
+comment|/**    * Deletes the document(s) matching the provided query.    * @param query the query to identify the documents to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|deleteDocuments
+specifier|public
+name|void
+name|deleteDocuments
+parameter_list|(
+name|Query
+name|query
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|boolean
+name|doFlush
+init|=
+name|docWriter
+operator|.
+name|bufferDeleteQuery
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|doFlush
+condition|)
+name|flush
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Deletes the document(s) matching any of the provided queries.    * All deletes are flushed at the same time.    * @param queries array of queries to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|deleteDocuments
+specifier|public
+name|void
+name|deleteDocuments
+parameter_list|(
+name|Query
+index|[]
+name|queries
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|boolean
+name|doFlush
+init|=
+name|docWriter
+operator|.
+name|bufferDeleteQueries
+argument_list|(
+name|queries
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|doFlush
+condition|)
+name|flush
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|updateDocument
@@ -4332,6 +4490,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -4436,6 +4596,18 @@ return|return
 name|flushCount
 return|;
 block|}
+comment|// for test purpose
+DECL|method|getFlushDeletesCount
+specifier|final
+specifier|synchronized
+name|int
+name|getFlushDeletesCount
+parameter_list|()
+block|{
+return|return
+name|flushDeletesCount
+return|;
+block|}
 DECL|method|newSegmentName
 specifier|final
 name|String
@@ -4449,14 +4621,13 @@ init|(
 name|segmentInfos
 init|)
 block|{
-comment|// Important to set commitPending so that the
+comment|// Important to increment changeCount so that the
 comment|// segmentInfos is written on close.  Otherwise we
 comment|// could close, re-open and re-return the same segment
 comment|// name that was previously returned which can cause
 comment|// problems at least with ConcurrentMergeScheduler.
-name|commitPending
-operator|=
-literal|true
+name|changeCount
+operator|++
 expr_stmt|;
 return|return
 literal|"_"
@@ -4608,6 +4779,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 synchronized|synchronized
@@ -5650,6 +5823,13 @@ name|localAutoCommit
 operator|=
 name|autoCommit
 expr_stmt|;
+name|localFlushedDocCount
+operator|=
+name|docWriter
+operator|.
+name|getFlushedDocCount
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|localAutoCommit
@@ -5669,6 +5849,8 @@ expr_stmt|;
 name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|,
 literal|false
 argument_list|)
@@ -5716,6 +5898,13 @@ comment|// First restore autoCommit in case we hit an exception below:
 name|autoCommit
 operator|=
 name|localAutoCommit
+expr_stmt|;
+name|docWriter
+operator|.
+name|setFlushedDocCount
+argument_list|(
+name|localFlushedDocCount
+argument_list|)
 expr_stmt|;
 comment|// Keep the same segmentInfos instance but replace all
 comment|// of its SegmentInfo instances.  This is so the next
@@ -5771,10 +5960,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|lastMergeInfo
-operator|=
-literal|null
-expr_stmt|;
 name|stopMerges
 operator|=
 literal|false
@@ -5821,7 +6006,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|sync
+name|commit
 argument_list|(
 literal|true
 argument_list|,
@@ -5935,9 +6120,9 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// Must pre-close these two, in case they set
-comment|// commitPending=true, so that we can then set it to
-comment|// false before calling closeInternal
+comment|// Must pre-close these two, in case they increment
+comment|// changeCount so that we can then set it to false
+comment|// before calling closeInternal
 name|mergePolicy
 operator|.
 name|close
@@ -5994,9 +6179,9 @@ name|refresh
 argument_list|()
 expr_stmt|;
 block|}
-name|commitPending
+name|lastCommitChangeCount
 operator|=
-literal|false
+name|changeCount
 expr_stmt|;
 name|closeInternal
 argument_list|(
@@ -6280,9 +6465,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|commitPending
-operator|=
-literal|true
+name|changeCount
+operator|++
 expr_stmt|;
 name|deleter
 operator|.
@@ -6331,6 +6515,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -6343,6 +6529,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|int
+name|docCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -6396,21 +6587,41 @@ name|j
 operator|++
 control|)
 block|{
-name|segmentInfos
-operator|.
-name|addElement
-argument_list|(
+specifier|final
+name|SegmentInfo
+name|info
+init|=
 name|sis
 operator|.
 name|info
 argument_list|(
 name|j
 argument_list|)
+decl_stmt|;
+name|docCount
+operator|+=
+name|info
+operator|.
+name|docCount
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|addElement
+argument_list|(
+name|info
 argument_list|)
 expr_stmt|;
 comment|// add each info
 block|}
 block|}
+comment|// Notify DocumentsWriter that the flushed count just increased
+name|docWriter
+operator|.
+name|updateFlushedDocCount
+argument_list|(
+name|docCount
+argument_list|)
+expr_stmt|;
 name|optimize
 argument_list|()
 expr_stmt|;
@@ -6507,6 +6718,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -6519,6 +6732,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|int
+name|docCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -6601,6 +6819,12 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+name|docCount
+operator|+=
+name|info
+operator|.
+name|docCount
+expr_stmt|;
 name|segmentInfos
 operator|.
 name|addElement
@@ -6611,6 +6835,14 @@ expr_stmt|;
 comment|// add each info
 block|}
 block|}
+comment|// Notify DocumentsWriter that the flushed count just increased
+name|docWriter
+operator|.
+name|updateFlushedDocCount
+argument_list|(
+name|docCount
+argument_list|)
+expr_stmt|;
 name|maybeMerge
 argument_list|()
 expr_stmt|;
@@ -6989,6 +7221,14 @@ argument_list|(
 name|info
 argument_list|)
 expr_stmt|;
+comment|// Notify DocumentsWriter that the flushed count just increased
+name|docWriter
+operator|.
+name|updateFlushedDocCount
+argument_list|(
+name|docCount
+argument_list|)
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -7152,6 +7392,8 @@ argument_list|(
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -7192,9 +7434,11 @@ argument_list|(
 name|triggerMerges
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
-name|sync
+name|commit
 argument_list|(
 literal|true
 argument_list|,
@@ -7202,7 +7446,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Flush all in-memory buffered udpates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param flushDocStores if false we are allowed to keep    *  doc stores open to share with the next segment    */
+comment|/**    * Flush all in-memory buffered udpates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param flushDocStores if false we are allowed to keep    *  doc stores open to share with the next segment    * @param flushDeletes whether pending deletes should also    *  be flushed    */
 DECL|method|flush
 specifier|protected
 specifier|final
@@ -7214,6 +7458,9 @@ name|triggerMerge
 parameter_list|,
 name|boolean
 name|flushDocStores
+parameter_list|,
+name|boolean
+name|flushDeletes
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -7228,6 +7475,8 @@ condition|(
 name|doFlush
 argument_list|(
 name|flushDocStores
+argument_list|,
+name|flushDeletes
 argument_list|)
 operator|&&
 name|triggerMerge
@@ -7248,6 +7497,9 @@ name|doFlush
 parameter_list|(
 name|boolean
 name|flushDocStores
+parameter_list|,
+name|boolean
+name|flushDeletes
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -7255,8 +7507,33 @@ throws|,
 name|IOException
 block|{
 comment|// Make sure no threads are actively adding a document
+assert|assert
+name|testPoint
+argument_list|(
+literal|"startDoFlush"
+argument_list|)
+assert|;
 name|flushCount
 operator|++
+expr_stmt|;
+name|flushDeletes
+operator||=
+name|docWriter
+operator|.
+name|deletesFull
+argument_list|()
+expr_stmt|;
+comment|// When autoCommit=true we must always flush deletes
+comment|// when flushing a segment; otherwise deletes may become
+comment|// visible before their corresponding added document
+comment|// from an updateDocument call
+if|if
+condition|(
+name|autoCommit
+condition|)
+name|flushDeletes
+operator|=
+literal|true
 expr_stmt|;
 comment|// Returns true if docWriter is currently aborting, in
 comment|// which case we skip flushing this segment
@@ -7325,21 +7602,6 @@ name|flushDocStores
 operator|=
 literal|false
 expr_stmt|;
-comment|// Always flush deletes if there are any delete terms.
-comment|// TODO: when autoCommit=false we don't have to flush
-comment|// deletes with every flushed segment; we can save
-comment|// CPU/IO by buffering longer& flushing deletes only
-comment|// when they are full or writer is being closed.  We
-comment|// have to fix the "applyDeletesSelectively" logic to
-comment|// apply to more than just the last flushed segment
-name|boolean
-name|flushDeletes
-init|=
-name|docWriter
-operator|.
-name|hasDeletes
-argument_list|()
-decl_stmt|;
 name|int
 name|docStoreOffset
 init|=
@@ -7623,177 +7885,11 @@ name|docStoreIsCompoundFile
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|flushDeletes
-condition|)
-block|{
-try|try
-block|{
-name|SegmentInfos
-name|rollback
-init|=
-operator|(
-name|SegmentInfos
-operator|)
-name|segmentInfos
-operator|.
-name|clone
-argument_list|()
-decl_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
-comment|// we should be able to change this so we can
-comment|// buffer deletes longer and then flush them to
-comment|// multiple flushed segments only when a commit()
-comment|// finally happens
-name|applyDeletes
-argument_list|(
-name|newSegment
-argument_list|)
-expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"hit exception flushing deletes"
-argument_list|)
-expr_stmt|;
-comment|// Carefully remove any partially written .del
-comment|// files
-specifier|final
-name|int
-name|size
-init|=
-name|rollback
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|size
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|String
-name|newDelFileName
-init|=
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getDelFileName
-argument_list|()
-decl_stmt|;
-specifier|final
-name|String
-name|delFileName
-init|=
-name|rollback
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getDelFileName
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|newDelFileName
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|newDelFileName
-operator|.
-name|equals
-argument_list|(
-name|delFileName
-argument_list|)
-condition|)
-name|deleter
-operator|.
-name|deleteFile
-argument_list|(
-name|newDelFileName
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Remove just flushed segment
-name|deleter
-operator|.
-name|refresh
-argument_list|(
-name|segment
-argument_list|)
-expr_stmt|;
-comment|// Fully replace the segmentInfos since flushed
-comment|// deletes could have changed any of the
-comment|// SegmentInfo instances:
-name|segmentInfos
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|segmentInfos
-operator|.
-name|addAll
-argument_list|(
-name|rollback
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-finally|finally
-block|{
-comment|// Regardless of success of failure in flushing
-comment|// deletes, we must clear them from our buffer:
 name|docWriter
 operator|.
-name|clearBufferedDeletes
+name|pushDeletes
 argument_list|()
 expr_stmt|;
-block|}
-block|}
 if|if
 condition|(
 name|flushDocs
@@ -7807,9 +7903,19 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|flushDocs
-operator|||
 name|flushDeletes
+condition|)
+block|{
+name|flushDeletesCount
+operator|++
+expr_stmt|;
+name|applyDeletes
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|flushDocs
 condition|)
 name|checkpoint
 argument_list|()
@@ -7900,8 +8006,6 @@ expr_stmt|;
 block|}
 return|return
 name|flushDocs
-operator|||
-name|flushDeletes
 return|;
 block|}
 catch|catch
@@ -8171,6 +8275,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|testPoint
+argument_list|(
+literal|"startCommitMergeDeletes"
+argument_list|)
+assert|;
 specifier|final
 name|SegmentInfos
 name|sourceSegmentsClone
@@ -8195,7 +8305,7 @@ literal|null
 condition|)
 name|message
 argument_list|(
-literal|"commitMerge "
+literal|"commitMergeDeletes "
 operator|+
 name|merge
 operator|.
@@ -8540,6 +8650,18 @@ operator|.
 name|advanceDelGen
 argument_list|()
 expr_stmt|;
+name|message
+argument_list|(
+literal|"commit merge deletes to "
+operator|+
+name|merge
+operator|.
+name|info
+operator|.
+name|getDelFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|deletes
 operator|.
 name|write
@@ -8567,10 +8689,22 @@ name|MergePolicy
 operator|.
 name|OneMerge
 name|merge
+parameter_list|,
+name|SegmentMerger
+name|merger
+parameter_list|,
+name|int
+name|mergedDocCount
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|testPoint
+argument_list|(
+literal|"startCommitMerge"
+argument_list|)
+assert|;
 if|if
 condition|(
 name|hitOOM
@@ -8662,6 +8796,27 @@ decl_stmt|;
 name|commitMergedDeletes
 argument_list|(
 name|merge
+argument_list|)
+expr_stmt|;
+name|docWriter
+operator|.
+name|remapDeletes
+argument_list|(
+name|segmentInfos
+argument_list|,
+name|merger
+operator|.
+name|getDocMaps
+argument_list|()
+argument_list|,
+name|merger
+operator|.
+name|getDelCounts
+argument_list|()
+argument_list|,
+name|merge
+argument_list|,
+name|mergedDocCount
 argument_list|)
 expr_stmt|;
 comment|// Simple optimization: if the doc store we are using
@@ -8800,26 +8955,16 @@ operator|.
 name|info
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|lastMergeInfo
-operator|==
-literal|null
-operator|||
-name|segmentInfos
-operator|.
-name|indexOf
+comment|// Must checkpoint before decrefing so any newly
+comment|// referenced files in the new merge.info are incref'd
+comment|// first:
+name|checkpoint
+argument_list|()
+expr_stmt|;
+name|decrefMergeSegments
 argument_list|(
-name|lastMergeInfo
-argument_list|)
-operator|<
-name|start
-condition|)
-name|lastMergeInfo
-operator|=
 name|merge
-operator|.
-name|info
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -8834,17 +8979,6 @@ argument_list|(
 name|merge
 operator|.
 name|info
-argument_list|)
-expr_stmt|;
-comment|// Must checkpoint before decrefing so any newly
-comment|// referenced files in the new merge.info are incref'd
-comment|// first:
-name|checkpoint
-argument_list|()
-expr_stmt|;
-name|decrefMergeSegments
-argument_list|(
-name|merge
 argument_list|)
 expr_stmt|;
 return|return
@@ -9383,6 +9517,12 @@ throws|throws
 name|IOException
 block|{
 assert|assert
+name|testPoint
+argument_list|(
+literal|"startMergeInit"
+argument_list|)
+assert|;
+assert|assert
 name|merge
 operator|.
 name|registerDone
@@ -9417,6 +9557,21 @@ name|isAborted
 argument_list|()
 condition|)
 return|return;
+name|boolean
+name|changed
+init|=
+name|applyDeletes
+argument_list|()
+decl_stmt|;
+comment|// If autoCommit == true then all deletes should have
+comment|// been flushed when we flushed the last segment
+assert|assert
+operator|!
+name|changed
+operator|||
+operator|!
+name|autoCommit
+assert|;
 specifier|final
 name|SegmentInfos
 name|sourceSegments
@@ -9434,11 +9589,6 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-name|ensureContiguousMerge
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
 comment|// Check whether this merge will allow us to skip
 comment|// merging the doc stores (stored field& vectors).
 comment|// This is a very substantial optimization (saves tons
@@ -9768,6 +9918,8 @@ argument_list|(
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -10399,6 +10551,10 @@ operator|!
 name|commitMerge
 argument_list|(
 name|merge
+argument_list|,
+name|merger
+argument_list|,
+name|mergedDocCount
 argument_list|)
 condition|)
 comment|// commitMerge will return false if this merge was aborted
@@ -10443,7 +10599,7 @@ name|sizeInBytes
 argument_list|()
 expr_stmt|;
 block|}
-name|sync
+name|commit
 argument_list|(
 literal|false
 argument_list|,
@@ -10635,7 +10791,7 @@ name|sizeInBytes
 argument_list|()
 expr_stmt|;
 block|}
-name|sync
+name|commit
 argument_list|(
 literal|false
 argument_list|,
@@ -10682,42 +10838,68 @@ name|merge
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Called during flush to apply any buffered deletes.  If
-comment|// flushedNewSegment is true then a new segment was just
-comment|// created and flushed from the ram segments, so we will
-comment|// selectively apply the deletes to that new segment.
+comment|// Apply buffered deletes to all segments.
 DECL|method|applyDeletes
 specifier|private
 specifier|final
-name|void
+specifier|synchronized
+name|boolean
 name|applyDeletes
-parameter_list|(
-name|SegmentInfo
-name|newSegment
-parameter_list|)
+parameter_list|()
 throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-specifier|final
-name|HashMap
-name|bufferedDeleteTerms
+assert|assert
+name|testPoint
+argument_list|(
+literal|"startApplyDeletes"
+argument_list|)
+assert|;
+name|SegmentInfos
+name|rollback
 init|=
-name|docWriter
+operator|(
+name|SegmentInfos
+operator|)
+name|segmentInfos
 operator|.
-name|getBufferedDeleteTerms
+name|clone
 argument_list|()
 decl_stmt|;
-specifier|final
-name|List
-name|bufferedDeleteDocIDs
+name|boolean
+name|success
 init|=
+literal|false
+decl_stmt|;
+name|boolean
+name|changed
+decl_stmt|;
+try|try
+block|{
+name|changed
+operator|=
 name|docWriter
 operator|.
-name|getBufferedDeleteDocIDs
-argument_list|()
-decl_stmt|;
+name|applyDeletes
+argument_list|(
+name|segmentInfos
+argument_list|)
+expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
 if|if
 condition|(
 name|infoStream
@@ -10726,104 +10908,16 @@ literal|null
 condition|)
 name|message
 argument_list|(
-literal|"flush "
-operator|+
-name|docWriter
-operator|.
-name|getNumBufferedDeleteTerms
-argument_list|()
-operator|+
-literal|" buffered deleted terms and "
-operator|+
-name|bufferedDeleteDocIDs
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" deleted docIDs on "
-operator|+
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" segments."
+literal|"hit exception flushing deletes"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|newSegment
-operator|!=
-literal|null
-condition|)
-block|{
-name|IndexReader
-name|reader
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-comment|// Open readers w/o opening the stored fields /
-comment|// vectors because these files may still be held
-comment|// open for writing by docWriter
-name|reader
-operator|=
-name|SegmentReader
-operator|.
-name|get
-argument_list|(
-name|newSegment
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// Apply delete terms to the segment just flushed from ram
-comment|// apply appropriately so that a delete term is only applied to
-comment|// the documents buffered before it, not those buffered after it.
-name|applyDeletesSelectively
-argument_list|(
-name|bufferedDeleteTerms
-argument_list|,
-name|bufferedDeleteDocIDs
-argument_list|,
-name|reader
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|reader
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|reader
-operator|.
-name|doCommit
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|reader
-operator|.
-name|doClose
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
+comment|// Carefully remove any partially written .del
+comment|// files
 specifier|final
 name|int
-name|infosEnd
+name|size
 init|=
-name|segmentInfos
+name|rollback
 operator|.
 name|size
 argument_list|()
@@ -10837,73 +10931,89 @@ literal|0
 init|;
 name|i
 operator|<
-name|infosEnd
+name|size
 condition|;
 name|i
 operator|++
 control|)
 block|{
-name|IndexReader
-name|reader
+specifier|final
+name|String
+name|newDelFileName
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|reader
-operator|=
-name|SegmentReader
-operator|.
-name|get
-argument_list|(
 name|segmentInfos
 operator|.
 name|info
 argument_list|(
 name|i
 argument_list|)
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// Apply delete terms to disk segments
-comment|// except the one just flushed from ram.
-name|applyDeletes
+operator|.
+name|getDelFileName
+argument_list|()
+decl_stmt|;
+specifier|final
+name|String
+name|delFileName
+init|=
+name|rollback
+operator|.
+name|info
 argument_list|(
-name|bufferedDeleteTerms
-argument_list|,
-name|reader
+name|i
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
+operator|.
+name|getDelFileName
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-name|reader
+name|newDelFileName
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|newDelFileName
+operator|.
+name|equals
+argument_list|(
+name|delFileName
+argument_list|)
 condition|)
-block|{
-try|try
-block|{
-name|reader
+name|deleter
 operator|.
-name|doCommit
-argument_list|()
+name|deleteFile
+argument_list|(
+name|newDelFileName
+argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|reader
+comment|// Fully replace the segmentInfos since flushed
+comment|// deletes could have changed any of the
+comment|// SegmentInfo instances:
+name|segmentInfos
 operator|.
-name|doClose
+name|clear
 argument_list|()
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|addAll
+argument_list|(
+name|rollback
+argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-block|}
+if|if
+condition|(
+name|changed
+condition|)
+name|checkpoint
+argument_list|()
+expr_stmt|;
+return|return
+name|changed
+return|;
 block|}
 comment|// For test purposes.
 DECL|method|getBufferedDeleteTermsSize
@@ -10938,258 +11048,6 @@ name|getNumBufferedDeleteTerms
 argument_list|()
 return|;
 block|}
-comment|// Apply buffered delete terms to the segment just flushed from ram
-comment|// apply appropriately so that a delete term is only applied to
-comment|// the documents buffered before it, not those buffered after it.
-DECL|method|applyDeletesSelectively
-specifier|private
-specifier|final
-name|void
-name|applyDeletesSelectively
-parameter_list|(
-name|HashMap
-name|deleteTerms
-parameter_list|,
-name|List
-name|deleteIds
-parameter_list|,
-name|IndexReader
-name|reader
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-name|Iterator
-name|iter
-init|=
-name|deleteTerms
-operator|.
-name|entrySet
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|Entry
-name|entry
-init|=
-operator|(
-name|Entry
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-name|Term
-name|term
-init|=
-operator|(
-name|Term
-operator|)
-name|entry
-operator|.
-name|getKey
-argument_list|()
-decl_stmt|;
-name|TermDocs
-name|docs
-init|=
-name|reader
-operator|.
-name|termDocs
-argument_list|(
-name|term
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|docs
-operator|!=
-literal|null
-condition|)
-block|{
-name|int
-name|num
-init|=
-operator|(
-operator|(
-name|DocumentsWriter
-operator|.
-name|Num
-operator|)
-name|entry
-operator|.
-name|getValue
-argument_list|()
-operator|)
-operator|.
-name|getNum
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-while|while
-condition|(
-name|docs
-operator|.
-name|next
-argument_list|()
-condition|)
-block|{
-name|int
-name|doc
-init|=
-name|docs
-operator|.
-name|doc
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|doc
-operator|>=
-name|num
-condition|)
-block|{
-break|break;
-block|}
-name|reader
-operator|.
-name|deleteDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|docs
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-if|if
-condition|(
-name|deleteIds
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|iter
-operator|=
-name|deleteIds
-operator|.
-name|iterator
-argument_list|()
-expr_stmt|;
-while|while
-condition|(
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|reader
-operator|.
-name|deleteDocument
-argument_list|(
-operator|(
-operator|(
-name|Integer
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-operator|)
-operator|.
-name|intValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|// Apply buffered delete terms to this reader.
-DECL|method|applyDeletes
-specifier|private
-specifier|final
-name|void
-name|applyDeletes
-parameter_list|(
-name|HashMap
-name|deleteTerms
-parameter_list|,
-name|IndexReader
-name|reader
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-name|Iterator
-name|iter
-init|=
-name|deleteTerms
-operator|.
-name|entrySet
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|Entry
-name|entry
-init|=
-operator|(
-name|Entry
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-name|reader
-operator|.
-name|deleteDocuments
-argument_list|(
-operator|(
-name|Term
-operator|)
-name|entry
-operator|.
-name|getKey
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|// utility routines for tests
 DECL|method|newestSegment
 name|SegmentInfo
@@ -11217,11 +11075,37 @@ name|String
 name|segString
 parameter_list|()
 block|{
+return|return
+name|segString
+argument_list|(
+name|segmentInfos
+argument_list|)
+return|;
+block|}
+DECL|method|segString
+specifier|private
+specifier|synchronized
+name|String
+name|segString
+parameter_list|(
+name|SegmentInfos
+name|infos
+parameter_list|)
+block|{
 name|StringBuffer
 name|buffer
 init|=
 operator|new
 name|StringBuffer
+argument_list|()
+decl_stmt|;
+specifier|final
+name|int
+name|count
+init|=
+name|infos
+operator|.
+name|size
 argument_list|()
 decl_stmt|;
 for|for
@@ -11233,10 +11117,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
+name|count
 condition|;
 name|i
 operator|++
@@ -11261,7 +11142,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|segmentInfos
+name|infos
 operator|.
 name|info
 argument_list|(
@@ -11651,13 +11532,13 @@ block|}
 block|}
 block|}
 comment|/** Walk through all files referenced by the current    *  segmentInfos, minus flushes, and ask the Directory to    *  sync each file, if it wasn't already.  If that    *  succeeds, then we write a new segments_N file& sync    *  that. */
-DECL|method|sync
+DECL|method|commit
 specifier|private
 name|void
-name|sync
+name|commit
 parameter_list|(
 name|boolean
-name|includeFlushes
+name|skipWait
 parameter_list|,
 name|long
 name|sizeInBytes
@@ -11665,6 +11546,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|testPoint
+argument_list|(
+literal|"startCommit"
+argument_list|)
+assert|;
 if|if
 condition|(
 name|hitOOM
@@ -11672,58 +11559,77 @@ condition|)
 return|return;
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|message
 argument_list|(
-literal|"start sync() includeFlushes="
+literal|"start commit() skipWait="
 operator|+
-name|includeFlushes
+name|skipWait
+operator|+
+literal|" sizeInBytes="
+operator|+
+name|sizeInBytes
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 operator|!
-name|includeFlushes
+name|skipWait
 condition|)
 name|syncPause
 argument_list|(
 name|sizeInBytes
 argument_list|)
 expr_stmt|;
-comment|// First, we clone& incref the segmentInfos we intend
-comment|// to sync, then, without locking, we sync() each file
-comment|// referenced by toSync, in the background.  Multiple
-comment|// threads can be doing this at once, if say a large
-comment|// merge and a small merge finish at the same time:
 name|SegmentInfos
 name|toSync
 init|=
 literal|null
 decl_stmt|;
 specifier|final
-name|int
-name|mySyncCount
+name|long
+name|myChangeCount
 decl_stmt|;
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
+assert|assert
+name|lastCommitChangeCount
+operator|<=
+name|changeCount
+assert|;
 if|if
 condition|(
-operator|!
-name|commitPending
+name|changeCount
+operator|==
+name|lastCommitChangeCount
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|message
 argument_list|(
-literal|"  skip sync(): no commit pending"
+literal|"  skip commit(): no changes pending"
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|// Create the segmentInfos we want to sync, by copying
-comment|// the current one and possibly removing flushed
-comment|// segments:
+comment|// First, we clone& incref the segmentInfos we intend
+comment|// to sync, then, without locking, we sync() each file
+comment|// referenced by toSync, in the background.  Multiple
+comment|// threads can be doing this at once, if say a large
+comment|// merge and a small merge finish at the same time:
 name|toSync
 operator|=
 operator|(
@@ -11734,121 +11640,6 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
-specifier|final
-name|int
-name|numSegmentsToSync
-init|=
-name|toSync
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-name|boolean
-name|newCommitPending
-init|=
-literal|false
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|includeFlushes
-condition|)
-block|{
-comment|// Do not sync flushes:
-assert|assert
-name|lastMergeInfo
-operator|!=
-literal|null
-assert|;
-assert|assert
-name|toSync
-operator|.
-name|contains
-argument_list|(
-name|lastMergeInfo
-argument_list|)
-assert|;
-name|int
-name|downTo
-init|=
-name|numSegmentsToSync
-operator|-
-literal|1
-decl_stmt|;
-while|while
-condition|(
-operator|!
-name|toSync
-operator|.
-name|info
-argument_list|(
-name|downTo
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-name|lastMergeInfo
-argument_list|)
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"  skip segment "
-operator|+
-name|toSync
-operator|.
-name|info
-argument_list|(
-name|downTo
-argument_list|)
-operator|.
-name|name
-argument_list|)
-expr_stmt|;
-name|toSync
-operator|.
-name|remove
-argument_list|(
-name|downTo
-argument_list|)
-expr_stmt|;
-name|downTo
-operator|--
-expr_stmt|;
-name|newCommitPending
-operator|=
-literal|true
-expr_stmt|;
-block|}
-block|}
-elseif|else
-if|if
-condition|(
-name|numSegmentsToSync
-operator|>
-literal|0
-condition|)
-comment|// Force all subsequent syncs to include up through
-comment|// the final info in the current segments.  This
-comment|// ensure that a call to commit() will force another
-comment|// sync (due to merge finishing) to sync all flushed
-comment|// segments as well:
-name|lastMergeInfo
-operator|=
-name|toSync
-operator|.
-name|info
-argument_list|(
-name|numSegmentsToSync
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-name|mySyncCount
-operator|=
-name|syncCount
-operator|++
-expr_stmt|;
 name|deleter
 operator|.
 name|incRef
@@ -11858,16 +11649,33 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|commitPending
+name|myChangeCount
 operator|=
-name|newCommitPending
+name|changeCount
 expr_stmt|;
 block|}
-name|boolean
-name|success0
-init|=
-literal|false
-decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"commit index="
+operator|+
+name|segString
+argument_list|(
+name|toSync
+argument_list|)
+argument_list|)
+expr_stmt|;
+assert|assert
+name|testPoint
+argument_list|(
+literal|"midCommit"
+argument_list|)
+assert|;
 try|try
 block|{
 comment|// Loop until all files toSync references are sync'd:
@@ -12028,6 +11836,12 @@ argument_list|)
 condition|)
 break|break;
 block|}
+assert|assert
+name|testPoint
+argument_list|(
+literal|"midCommit2"
+argument_list|)
+assert|;
 synchronized|synchronized
 init|(
 name|this
@@ -12039,9 +11853,9 @@ comment|// safely skip saving myself since I've been
 comment|// superseded:
 if|if
 condition|(
-name|mySyncCount
+name|myChangeCount
 operator|>
-name|syncCountSaved
+name|lastCommitChangeCount
 condition|)
 block|{
 if|if
@@ -12098,26 +11912,20 @@ condition|(
 operator|!
 name|success
 condition|)
-block|{
-name|commitPending
-operator|=
-literal|true
-expr_stmt|;
 name|message
 argument_list|(
 literal|"hit exception committing segments file"
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 name|message
 argument_list|(
 literal|"commit complete"
 argument_list|)
 expr_stmt|;
-name|syncCountSaved
+name|lastCommitChangeCount
 operator|=
-name|mySyncCount
+name|myChangeCount
 expr_stmt|;
 name|deleter
 operator|.
@@ -12144,10 +11952,12 @@ argument_list|(
 literal|"done all syncs"
 argument_list|)
 expr_stmt|;
-name|success0
-operator|=
-literal|true
-expr_stmt|;
+assert|assert
+name|testPoint
+argument_list|(
+literal|"midCommitSuccess"
+argument_list|)
+assert|;
 block|}
 finally|finally
 block|{
@@ -12162,15 +11972,6 @@ name|decRef
 argument_list|(
 name|toSync
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|success0
-condition|)
-name|commitPending
-operator|=
-literal|true
 expr_stmt|;
 block|}
 block|}
@@ -12189,6 +11990,104 @@ throw|throw
 name|oom
 throw|;
 block|}
+assert|assert
+name|testPoint
+argument_list|(
+literal|"finishCommit"
+argument_list|)
+assert|;
+block|}
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
+DECL|method|isLocked
+specifier|public
+specifier|static
+name|boolean
+name|isLocked
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|directory
+operator|.
+name|makeLock
+argument_list|(
+name|WRITE_LOCK_NAME
+argument_list|)
+operator|.
+name|isLocked
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
+DECL|method|isLocked
+specifier|public
+specifier|static
+name|boolean
+name|isLocked
+parameter_list|(
+name|String
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|Directory
+name|dir
+init|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+name|directory
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+return|return
+name|isLocked
+argument_list|(
+name|dir
+argument_list|)
+return|;
+block|}
+finally|finally
+block|{
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Forcibly unlocks the index in the named directory.    *<P>    * Caution: this should only be used by failure recovery code,    * when it is known that no other process nor thread is in fact    * currently accessing this index.    */
+DECL|method|unlock
+specifier|public
+specifier|static
+name|void
+name|unlock
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|directory
+operator|.
+name|makeLock
+argument_list|(
+name|IndexWriter
+operator|.
+name|WRITE_LOCK_NAME
+argument_list|)
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Specifies maximum field length in {@link IndexWriter} constructors.    * {@link IndexWriter#setMaxFieldLength(int)} overrides the value set by    * the constructor.    */
 DECL|class|MaxFieldLength
@@ -12310,7 +12209,17 @@ argument_list|)
 decl_stmt|;
 block|}
 comment|// Used only by assert for testing.  Current points:
-comment|//  "DocumentsWriter.ThreadState.init start"
+comment|//   startDoFlush
+comment|//   startCommitMerge
+comment|//   startCommit
+comment|//   midCommit
+comment|//   midCommit2
+comment|//   midCommitSuccess
+comment|//   finishCommit
+comment|//   startCommitMergeDeletes
+comment|//   startMergeInit
+comment|//   startApplyDeletes
+comment|//   DocumentsWriter.ThreadState.init start
 DECL|method|testPoint
 name|boolean
 name|testPoint

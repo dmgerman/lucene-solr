@@ -7828,9 +7828,7 @@ name|writer
 operator|.
 name|setMaxBufferedDeleteTerms
 argument_list|(
-name|IndexWriter
-operator|.
-name|DISABLE_AUTO_FLUSH
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -7921,6 +7919,13 @@ argument_list|(
 name|IndexWriter
 operator|.
 name|DISABLE_AUTO_FLUSH
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|setMaxBufferedDeleteTerms
+argument_list|(
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -9281,6 +9286,8 @@ operator|.
 name|flush
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)

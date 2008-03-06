@@ -1781,7 +1781,7 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    * @deprecated Please use {@link IndexWriter#isLocked(Directory)} instead    */
 DECL|method|isLocked
 specifier|public
 specifier|static
@@ -1808,7 +1808,7 @@ name|isLocked
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    * @deprecated Please use {@link IndexWriter#isLocked(String)} instead    */
 DECL|method|isLocked
 specifier|public
 specifier|static
@@ -1848,7 +1848,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Forcibly unlocks the index in the named directory.    *<P>    * Caution: this should only be used by failure recovery code,    * when it is known that no other process nor thread is in fact    * currently accessing this index.    */
+comment|/**    * Forcibly unlocks the index in the named directory.    *<P>    * Caution: this should only be used by failure recovery code,    * when it is known that no other process nor thread is in fact    * currently accessing this index.    * @deprecated Please use {@link IndexWriter#unlock(Directory)} instead    */
 DECL|method|unlock
 specifier|public
 specifier|static
