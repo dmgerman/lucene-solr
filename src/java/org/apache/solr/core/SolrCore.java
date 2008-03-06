@@ -1995,7 +1995,6 @@ operator|+
 literal|"data/"
 argument_list|)
 expr_stmt|;
-else|else
 name|dataDir
 operator|=
 name|SolrResourceLoader
