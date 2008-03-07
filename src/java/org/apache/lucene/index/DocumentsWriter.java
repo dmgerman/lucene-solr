@@ -11975,6 +11975,29 @@ init|(
 name|this
 init|)
 block|{
+comment|// If this thread state had decided to flush, we
+comment|// must clear it so another thread can flush
+if|if
+condition|(
+name|state
+operator|.
+name|doFlushAfter
+condition|)
+block|{
+name|state
+operator|.
+name|doFlushAfter
+operator|=
+literal|false
+expr_stmt|;
+name|flushPending
+operator|=
+literal|false
+expr_stmt|;
+name|notifyAll
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Immediately mark this document as deleted
 comment|// since likely it was partially added.  This
 comment|// keeps indexing as "all or none" (atomic) when
