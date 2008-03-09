@@ -471,7 +471,7 @@ operator|/
 name|maxGoodPoints
 return|;
 block|}
-comment|/**    * Return the recall: |{relevant hits}| / |{hits}|.    */
+comment|/**    * Return the recall: |{relevant hits found}| / |{relevant hits existing}|.    */
 DECL|method|getRecall
 specifier|public
 name|double
