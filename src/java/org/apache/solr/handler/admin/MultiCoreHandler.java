@@ -253,6 +253,7 @@ end_comment
 begin_class
 DECL|class|MultiCoreHandler
 specifier|public
+specifier|abstract
 class|class
 name|MultiCoreHandler
 extends|extends
@@ -297,6 +298,14 @@ literal|"it is a special Handler configured directly by the RequestDispatcher"
 argument_list|)
 throw|;
 block|}
+comment|/**    * The instance of multicore this handler handles.    * This should be the MultiCore instance that created this handler.    * @return a MultiCore instance    */
+DECL|method|getMultiCore
+specifier|public
+specifier|abstract
+name|MultiCore
+name|getMultiCore
+parameter_list|()
+function_decl|;
 annotation|@
 name|Override
 DECL|method|handleRequestBody
@@ -317,9 +326,7 @@ comment|// Make sure the manager is enabled
 name|MultiCore
 name|manager
 init|=
-name|MultiCore
-operator|.
-name|getRegistry
+name|getMultiCore
 argument_list|()
 decl_stmt|;
 if|if

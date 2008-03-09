@@ -2528,6 +2528,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|isClosed
+specifier|public
+name|boolean
+name|isClosed
+parameter_list|()
+block|{
+return|return
+name|_searcher
+operator|==
+literal|null
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|finalize
@@ -4145,6 +4157,7 @@ name|_searcher
 operator|=
 literal|null
 expr_stmt|;
+comment|// isClosed() does check this
 name|infoRegistry
 operator|.
 name|remove

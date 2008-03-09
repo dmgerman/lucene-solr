@@ -62,20 +62,6 @@ name|SolrServer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|MultiCore
-import|;
-end_import
-
 begin_comment
 comment|/**  * This runs SolrServer test using   *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -124,10 +110,7 @@ argument_list|,
 literal|"multicore.xml"
 argument_list|)
 decl_stmt|;
-name|MultiCore
-operator|.
-name|getRegistry
-argument_list|()
+name|multicore
 operator|.
 name|load
 argument_list|(
@@ -150,6 +133,8 @@ return|return
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
+name|multicore
+argument_list|,
 literal|"core0"
 argument_list|)
 return|;
@@ -166,6 +151,8 @@ return|return
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
+name|multicore
+argument_list|,
 literal|"core1"
 argument_list|)
 return|;
@@ -182,6 +169,8 @@ return|return
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
+name|multicore
+argument_list|,
 literal|"core0"
 argument_list|)
 return|;
