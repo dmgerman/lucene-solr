@@ -341,6 +341,14 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+name|resetUniqueBytes
+argument_list|()
+expr_stmt|;
+name|inputFiles
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|collectFiles
 argument_list|(
 name|dataDir

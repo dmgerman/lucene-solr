@@ -1299,6 +1299,12 @@ block|{
 name|printDocStatistics
 argument_list|()
 expr_stmt|;
+name|setConfig
+argument_list|(
+name|config
+argument_list|)
+expr_stmt|;
+comment|//re-initiate since properties by round may have changed.
 name|numBytes
 operator|=
 literal|0
@@ -1358,6 +1364,17 @@ block|{
 name|numUniqueBytes
 operator|+=
 name|n
+expr_stmt|;
+block|}
+DECL|method|resetUniqueBytes
+specifier|protected
+name|void
+name|resetUniqueBytes
+parameter_list|()
+block|{
+name|numUniqueBytes
+operator|=
+literal|0
 expr_stmt|;
 block|}
 DECL|method|addBytes
