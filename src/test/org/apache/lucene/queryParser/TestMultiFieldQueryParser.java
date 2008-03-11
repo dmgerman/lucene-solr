@@ -731,6 +731,26 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// LUCENE-1213: MultiFieldQueryParser was ignoring slop when phrase had a field.
+name|q
+operator|=
+name|mfqp
+operator|.
+name|parse
+argument_list|(
+literal|"b:\"foo bar\"~4"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"b:\"foo bar\"~4"
+argument_list|,
+name|q
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// make sure that terms which have a field are not touched:
 name|q
 operator|=
