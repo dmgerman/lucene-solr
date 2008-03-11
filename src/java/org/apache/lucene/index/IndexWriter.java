@@ -8016,14 +8016,14 @@ name|applyDeletes
 argument_list|()
 expr_stmt|;
 block|}
+name|doAfterFlush
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|flushDocs
 condition|)
 name|checkpoint
-argument_list|()
-expr_stmt|;
-name|doAfterFlush
 argument_list|()
 expr_stmt|;
 if|if
