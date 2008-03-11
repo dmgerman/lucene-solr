@@ -2341,7 +2341,7 @@ init|=
 name|getFieldStream
 argument_list|()
 decl_stmt|;
-comment|//Throw this IO Exception since IndexREader.document does so anyway, so probably not that big of a change for people
+comment|//Throw this IO Exception since IndexReader.document does so anyway, so probably not that big of a change for people
 comment|//since they are already handling this exception when getting the document
 try|try
 block|{
@@ -2387,6 +2387,10 @@ operator|=
 name|b
 expr_stmt|;
 block|}
+name|isBinary
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2404,10 +2408,7 @@ throw|;
 block|}
 block|}
 return|return
-name|fieldsData
-operator|instanceof
-name|byte
-index|[]
+name|isBinary
 condition|?
 operator|(
 name|byte

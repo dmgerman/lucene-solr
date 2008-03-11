@@ -397,10 +397,7 @@ name|binaryValue
 parameter_list|()
 block|{
 return|return
-name|fieldsData
-operator|instanceof
-name|byte
-index|[]
+name|isBinary
 condition|?
 operator|(
 name|byte
