@@ -1090,6 +1090,16 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// We hit an exception above; try to close the file
+comment|// but suppress any exception:
+try|try
+block|{
 name|output
 operator|.
 name|close
@@ -1099,6 +1109,28 @@ name|success2
 operator|=
 literal|true
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Suppress so we keep throwing the original exception
+block|}
+block|}
+else|else
+block|{
+name|output
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|success2
+operator|=
+literal|true
+expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -1110,6 +1142,9 @@ operator|||
 operator|!
 name|success2
 condition|)
+block|{
+try|try
+block|{
 comment|// Try not to leave a truncated segments_N file in
 comment|// the index:
 name|directory
@@ -1119,6 +1154,16 @@ argument_list|(
 name|segmentFileName
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Suppress so we keep throwing the original exception
+block|}
+block|}
 block|}
 block|}
 try|try
@@ -2524,6 +2569,8 @@ argument_list|,
 name|generation
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|dir
 operator|.
 name|deleteFile
@@ -2531,6 +2578,15 @@ argument_list|(
 name|segmentFileName
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Suppress so we keep throwing the original exception
+block|}
 block|}
 block|}
 comment|// NOTE: if we crash here, we have left a segments_N
@@ -2574,6 +2630,9 @@ condition|(
 operator|!
 name|success
 condition|)
+block|{
+try|try
+block|{
 name|dir
 operator|.
 name|deleteFile
@@ -2581,6 +2640,16 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Suppress so we keep throwing the original exception
+block|}
+block|}
 block|}
 block|}
 block|}
