@@ -66,20 +66,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|FSDirectory
@@ -758,6 +744,18 @@ name|isLazy
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"binaryValue isn't null for lazy string field"
+argument_list|,
+name|field
+operator|.
+name|binaryValue
+argument_list|()
+operator|==
+literal|null
+argument_list|)
+expr_stmt|;
 name|value
 operator|=
 name|field
@@ -965,6 +963,18 @@ literal|"field is null and it shouldn't be"
 argument_list|,
 name|field
 operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"stringValue isn't null for lazy binary field"
+argument_list|,
+name|field
+operator|.
+name|stringValue
+argument_list|()
+operator|==
 literal|null
 argument_list|)
 expr_stmt|;
@@ -1240,14 +1250,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|String
-name|value
-init|=
 name|field
 operator|.
 name|stringValue
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"did not hit AlreadyClosedException as expected"
