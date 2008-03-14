@@ -2511,6 +2511,12 @@ name|other
 operator|.
 name|generation
 expr_stmt|;
+name|version
+operator|=
+name|other
+operator|.
+name|version
+expr_stmt|;
 block|}
 comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception */
 DECL|method|commit
