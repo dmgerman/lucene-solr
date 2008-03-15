@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the input from an edge into n-grams of given size(s).  * @author Otis Gospodnetic  * @author Adam Hiatt  */
+comment|/**  * Tokenizes the input from an edge into n-grams of given size(s).  *  * This tokenizer create n-grams from the beginning edge or ending edge of a input token.  * MaxGram can't be larger than 1024 because of limitation.  *  */
 end_comment
 
 begin_class

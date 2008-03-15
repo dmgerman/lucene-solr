@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the given token into n-grams of given size(s).  * @author Otis Gospodnetic  */
+comment|/**  * Tokenizes the given token into n-grams of given size(s).  *  * This filter create n-grams from the beginning edge or ending edge of a input token.  *   */
 end_comment
 
 begin_class
