@@ -267,6 +267,7 @@ argument_list|)
 return|;
 block|}
 DECL|class|BoostingSpanScorer
+specifier|protected
 class|class
 name|BoostingSpanScorer
 extends|extends
