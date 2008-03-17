@@ -505,7 +505,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns an array of {@link Field}s with the given name.    * Do not use with lazy loaded fields.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
+comment|/**    * Returns an array of {@link Field}s with the given name.    * Do not use with lazy loaded fields.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
 DECL|method|getFields
 specifier|public
 specifier|final
@@ -623,7 +623,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns an array of {@link Fieldable}s with the given name.    *    * @param name the name of the field    * @return a<code>Fieldable[]</code> array or<code>null</code>    */
+comment|/**    * Returns an array of {@link Fieldable}s with the given name.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    *    * @param name the name of the field    * @return a<code>Fieldable[]</code> array    */
 DECL|method|getFieldables
 specifier|public
 name|Fieldable
@@ -740,7 +740,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns an array of values of the field specified as the method parameter.    *    * @param name the name of the field    * @return a<code>String[]</code> of field values or<code>null</code>    */
+comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
 DECL|method|getValues
 specifier|public
 specifier|final
@@ -869,7 +869,7 @@ literal|0
 index|]
 index|[]
 decl_stmt|;
-comment|/**   * Returns an array of byte arrays for of the fields that have the name specified   * as the method parameter.   *   * @param name the name of the field   * @return a<code>byte[][]</code> of binary field values or<code>null</code>   */
+comment|/**   * Returns an array of byte arrays for of the fields that have the name specified   * as the method parameter.  This method returns an empty   * array when there are no matching fields.  It never   * returns null.   *   * @param name the name of the field   * @return a<code>byte[][]</code> of binary field values   */
 DECL|method|getBinaryValues
 specifier|public
 specifier|final
