@@ -3273,6 +3273,29 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"missing_field_t"
+argument_list|,
+literal|"facet.mincount"
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
 comment|// index the same document to two servers and make sure things
 comment|// don't blow up.
 if|if
