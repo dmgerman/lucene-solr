@@ -26,9 +26,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
+name|WhitespaceAnalyzer
 import|;
 end_import
 
@@ -191,7 +189,7 @@ DECL|field|TIME_ALLOWED
 specifier|private
 specifier|static
 specifier|final
-name|int
+name|long
 name|TIME_ALLOWED
 init|=
 literal|17
@@ -209,7 +207,7 @@ specifier|final
 name|double
 name|MULTI_THREAD_SLACK
 init|=
-literal|3
+literal|7
 decl_stmt|;
 DECL|field|N_DOCS
 specifier|private
@@ -276,6 +274,8 @@ name|docText
 index|[]
 init|=
 block|{
+literal|"docThatNeverMatchesSoWeCanRequireLastDocCollectedToBeGreaterThanZero"
+block|,
 literal|"one blah three"
 block|,
 literal|"one foo three multiOne"
@@ -307,7 +307,7 @@ argument_list|(
 name|directory
 argument_list|,
 operator|new
-name|StandardAnalyzer
+name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
@@ -402,7 +402,7 @@ argument_list|(
 name|FIELD_NAME
 argument_list|,
 operator|new
-name|StandardAnalyzer
+name|WhitespaceAnalyzer
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -567,18 +567,23 @@ operator|new
 name|MyHitCollector
 argument_list|()
 expr_stmt|;
+name|long
+name|oneHour
+init|=
+literal|3600000
+decl_stmt|;
 name|HitCollector
 name|tlCollector
 init|=
-operator|new
-name|TimeLimitedCollector
+name|createTimedCollector
 argument_list|(
 name|myHc
 argument_list|,
-literal|3600000
+name|oneHour
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
-comment|// 1 hour
 name|search
 argument_list|(
 name|tlCollector
@@ -619,15 +624,70 @@ name|totalTLCResults
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|createTimedCollector
+specifier|private
+name|HitCollector
+name|createTimedCollector
+parameter_list|(
+name|MyHitCollector
+name|hc
+parameter_list|,
+name|long
+name|timeAllowed
+parameter_list|,
+name|boolean
+name|greedy
+parameter_list|)
+block|{
+name|TimeLimitedCollector
+name|res
+init|=
+operator|new
+name|TimeLimitedCollector
+argument_list|(
+name|hc
+argument_list|,
+name|timeAllowed
+argument_list|)
+decl_stmt|;
+name|res
+operator|.
+name|setGreedy
+argument_list|(
+name|greedy
+argument_list|)
+expr_stmt|;
+comment|// set to true to make sure at least one doc is collected.
+return|return
+name|res
+return|;
+block|}
 comment|/**    * Test that timeout is obtained, and soon enough!    */
-DECL|method|testTimeout
+DECL|method|testTimeoutGreedy
 specifier|public
 name|void
-name|testTimeout
+name|testTimeoutGreedy
 parameter_list|()
 block|{
 name|doTestTimeout
 argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Test that timeout is obtained, and soon enough!    */
+DECL|method|testTimeoutNotGreedy
+specifier|public
+name|void
+name|testTimeoutNotGreedy
+parameter_list|()
+block|{
+name|doTestTimeout
+argument_list|(
+literal|false
+argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
@@ -639,8 +699,12 @@ name|doTestTimeout
 parameter_list|(
 name|boolean
 name|multiThreaded
+parameter_list|,
+name|boolean
+name|greedy
 parameter_list|)
 block|{
+comment|// setup
 name|MyHitCollector
 name|myHc
 init|=
@@ -658,18 +722,20 @@ expr_stmt|;
 name|HitCollector
 name|tlCollector
 init|=
-operator|new
-name|TimeLimitedCollector
+name|createTimedCollector
 argument_list|(
 name|myHc
 argument_list|,
 name|TIME_ALLOWED
+argument_list|,
+name|greedy
 argument_list|)
 decl_stmt|;
+comment|// search
 name|TimeLimitedCollector
 operator|.
 name|TimeExceededException
-name|exception
+name|timoutException
 init|=
 literal|null
 decl_stmt|;
@@ -689,7 +755,7 @@ name|TimeExceededException
 name|x
 parameter_list|)
 block|{
-name|exception
+name|timoutException
 operator|=
 name|x
 expr_stmt|;
@@ -711,16 +777,67 @@ argument_list|)
 expr_stmt|;
 comment|//==fail
 block|}
+comment|// must get exception
 name|assertNotNull
 argument_list|(
 literal|"Timeout expected!"
 argument_list|,
-name|exception
+name|timoutException
+argument_list|)
+expr_stmt|;
+comment|// greediness affect last doc collected
+name|int
+name|exceptionDoc
+init|=
+name|timoutException
+operator|.
+name|getLastDocCollected
+argument_list|()
+decl_stmt|;
+name|int
+name|lastCollected
+init|=
+name|myHc
+operator|.
+name|getLastDocCollected
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"doc collected at timeout must be> 0!"
+argument_list|,
+name|exceptionDoc
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|greedy
+condition|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"greedy="
+operator|+
+name|greedy
+operator|+
+literal|" exceptionDoc="
+operator|+
+name|exceptionDoc
+operator|+
+literal|" != lastCollected="
+operator|+
+name|lastCollected
+argument_list|,
+name|exceptionDoc
+operator|==
+name|lastCollected
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"no hits found!"
+literal|"greedy, but no hits found!"
 argument_list|,
 name|myHc
 operator|.
@@ -730,21 +847,33 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
 name|assertTrue
 argument_list|(
-literal|"last doc collected cannot be 0!"
+literal|"greedy="
+operator|+
+name|greedy
+operator|+
+literal|" exceptionDoc="
+operator|+
+name|exceptionDoc
+operator|+
+literal|" not> lastCollected="
+operator|+
+name|lastCollected
 argument_list|,
-name|exception
-operator|.
-name|getLastDocCollected
-argument_list|()
+name|exceptionDoc
 operator|>
-literal|0
+name|lastCollected
 argument_list|)
 expr_stmt|;
+block|}
+comment|// verify that elapsed time at exception is within valid limits
 name|assertEquals
 argument_list|(
-name|exception
+name|timoutException
 operator|.
 name|getTimeAllowed
 argument_list|()
@@ -752,11 +881,12 @@ argument_list|,
 name|TIME_ALLOWED
 argument_list|)
 expr_stmt|;
+comment|// a) Not too early
 name|assertTrue
 argument_list|(
 literal|"elapsed="
 operator|+
-name|exception
+name|timoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -772,7 +902,7 @@ name|getResolution
 argument_list|()
 operator|)
 argument_list|,
-name|exception
+name|timoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -785,25 +915,23 @@ name|getResolution
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// b) Not too late  (this part might be problematic in a busy system, consider removing it if it raises false test failures.
 name|assertTrue
 argument_list|(
 literal|"lastDoc="
 operator|+
-name|exception
-operator|.
-name|getLastDocCollected
-argument_list|()
+name|exceptionDoc
 operator|+
 literal|" ,&& allowed="
 operator|+
-name|exception
+name|timoutException
 operator|.
 name|getTimeAllowed
 argument_list|()
 operator|+
 literal|" ,&& elapsed="
 operator|+
-name|exception
+name|timoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -815,7 +943,7 @@ argument_list|(
 name|multiThreaded
 argument_list|)
 argument_list|,
-name|exception
+name|timoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -964,6 +1092,8 @@ expr_stmt|;
 name|doTestTimeout
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// decrease much and test
@@ -991,6 +1121,8 @@ expr_stmt|;
 name|doTestTimeout
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// return to default and test
@@ -1020,6 +1152,8 @@ expr_stmt|;
 name|doTestTimeout
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1136,6 +1270,8 @@ condition|)
 block|{
 name|doTestTimeout
 argument_list|(
+literal|true
+argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -1286,6 +1422,14 @@ name|slowdown
 init|=
 literal|0
 decl_stmt|;
+DECL|field|lastDocCollected
+specifier|private
+name|int
+name|lastDocCollected
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/**      * amount of time to wait on each collect to simulate a long iteration      */
 DECL|method|setSlowDown
 specifier|public
@@ -1358,6 +1502,10 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|lastDocCollected
+operator|=
+name|doc
+expr_stmt|;
 block|}
 DECL|method|hitCount
 specifier|public
@@ -1370,6 +1518,16 @@ name|bits
 operator|.
 name|cardinality
 argument_list|()
+return|;
+block|}
+DECL|method|getLastDocCollected
+specifier|public
+name|int
+name|getLastDocCollected
+parameter_list|()
+block|{
+return|return
+name|lastDocCollected
 return|;
 block|}
 block|}

@@ -38,6 +38,14 @@ name|DEFAULT_RESOLUTION
 init|=
 literal|20
 decl_stmt|;
+comment|/**    * Default for {@link #isGreedy()}.    * @see #isGreedy()    */
+DECL|field|DEFAULT_GREEDY
+specifier|public
+name|boolean
+name|DEFAULT_GREEDY
+init|=
+literal|false
+decl_stmt|;
 DECL|field|resolution
 specifier|private
 specifier|static
@@ -45,6 +53,13 @@ name|long
 name|resolution
 init|=
 name|DEFAULT_RESOLUTION
+decl_stmt|;
+DECL|field|greedy
+specifier|private
+name|boolean
+name|greedy
+init|=
+name|DEFAULT_GREEDY
 decl_stmt|;
 DECL|class|TimerThread
 specifier|private
@@ -312,6 +327,7 @@ specifier|final
 name|HitCollector
 name|hc
 decl_stmt|;
+comment|/**    * Create a TimeLimitedCollector wrapper over another HitCollector with a specified timeout.    * @param hc the wrapped HitCollector    * @param timeAllowed max time allowed for collecting hits after which {@link TimeExceededException} is thrown    */
 DECL|method|TimeLimitedCollector
 specifier|public
 name|TimeLimitedCollector
@@ -377,6 +393,22 @@ operator|<
 name|time
 condition|)
 block|{
+if|if
+condition|(
+name|greedy
+condition|)
+block|{
+comment|//System.out.println(this+"  greedy: before failing, collecting doc: "+doc+"  "+(time-t0));
+name|hc
+operator|.
+name|collect
+argument_list|(
+name|doc
+argument_list|,
+name|score
+argument_list|)
+expr_stmt|;
+block|}
 comment|//System.out.println(this+"  failing on:  "+doc+"  "+(time-t0));
 throw|throw
 operator|new
@@ -440,6 +472,34 @@ literal|5
 argument_list|)
 expr_stmt|;
 comment|// 5 milliseconds is about the minimum reasonable time for a Object.wait(long) call.
+block|}
+comment|/**    * Checks if this time limited collector is greedy in collecting the last hit.    * A non greedy collector, upon a timeout, would throw a {@link TimeExceededException}     * without allowing the wrapped collector to collect current doc. A greedy one would     * first allow the wrapped hit collector to collect current doc and only then     * throw a {@link TimeExceededException}.    * @see #setGreedy(boolean)    */
+DECL|method|isGreedy
+specifier|public
+name|boolean
+name|isGreedy
+parameter_list|()
+block|{
+return|return
+name|greedy
+return|;
+block|}
+comment|/**    * Sets whether this time limited collector is greedy.    * @param greedy true to make this time limited greedy    * @see #isGreedy()    */
+DECL|method|setGreedy
+specifier|public
+name|void
+name|setGreedy
+parameter_list|(
+name|boolean
+name|greedy
+parameter_list|)
+block|{
+name|this
+operator|.
+name|greedy
+operator|=
+name|greedy
+expr_stmt|;
 block|}
 block|}
 end_class
