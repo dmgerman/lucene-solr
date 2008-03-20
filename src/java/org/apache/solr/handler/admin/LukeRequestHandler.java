@@ -2754,6 +2754,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|sfield
+operator|!=
+literal|null
+operator|&&
 name|schema
 operator|.
 name|getDynamicPattern
