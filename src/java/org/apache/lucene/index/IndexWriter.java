@@ -3101,7 +3101,7 @@ operator|.
 name|getRAMBufferSizeMB
 argument_list|()
 operator|+
-literal|" maxBuffereDocs="
+literal|" maxBufferedDocs="
 operator|+
 name|docWriter
 operator|.
@@ -3206,7 +3206,7 @@ operator|.
 name|WRITE_LOCK_TIMEOUT
 return|;
 block|}
-comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *     *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexReader.isLocked(directory)) {    *     IndexReader.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *     *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
 specifier|public
 name|void

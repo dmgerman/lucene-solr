@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/* Used by DocumentsWriter to track postings for a single  * term.  One of these exists per unique term seen since the  * last flush. */
+comment|/* Used by DocumentsWriter to track postings for a single  * term.  One of these exists per unique term seen since the  * last flush.  If you alter this class you must also fix  * DocumentWriter.POSTING_NUM_BYTE to reflect the change as  * this is how RAM usage is measured. */
 end_comment
 
 begin_class
