@@ -1656,6 +1656,14 @@ name|req
 operator|.
 name|getRequestDispatcher
 argument_list|(
+name|pathPrefix
+operator|==
+literal|null
+condition|?
+name|path
+else|:
+name|pathPrefix
+operator|+
 name|path
 argument_list|)
 operator|.
