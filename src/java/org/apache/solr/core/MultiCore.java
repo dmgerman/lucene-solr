@@ -1342,7 +1342,7 @@ return|return
 name|core
 return|;
 block|}
-comment|/**    * Recreates a SolrCore.    * While the new core is loading, requests will continue to be dispatched to    * and processed by the old core    *     * @param core the SolrCore to reload    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
+comment|/**    * Recreates a SolrCore.    * While the new core is loading, requests will continue to be dispatched to    * and processed by the old core    *     * @param dcore the SolrCore to reload    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
 DECL|method|reload
 specifier|public
 name|void
