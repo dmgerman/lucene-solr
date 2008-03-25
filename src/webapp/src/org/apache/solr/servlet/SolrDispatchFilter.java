@@ -1905,7 +1905,7 @@ expr_stmt|;
 block|}
 comment|//---------------------------------------------------------------------
 comment|//---------------------------------------------------------------------
-comment|/**    * set the prefix for all paths.  This is useful if you want to apply the    * filter to something other then *.      *     * For example, if web.xml specifies:    *     *<filter-mapping>    *<filter-name>SolrRequestFilter</filter-name>    *<url-pattern>/xxx/*</url-pattern>    *</filter-mapping>    *     * Make sure to set the PathPrefix to "/xxx" either with this function    * or in web.xml    *     *<init-param>    *<param-name>path-prefix</param-name>    *<param-value>/xxx</param-value>    *</init-param>    *     */
+comment|/**    * Set the prefix for all paths.  This is useful if you want to apply the    * filter to something other then /*, perhaps because you are merging this    * filter into a larger web application.    *     * For example, if web.xml specifies:    *     *<filter-mapping>    *<filter-name>SolrRequestFilter</filter-name>    *<url-pattern>/xxx/*</url-pattern>    *</filter-mapping>    *     * Make sure to set the PathPrefix to "/xxx" either with this function    * or in web.xml.    *     *<init-param>    *<param-name>path-prefix</param-name>    *<param-value>/xxx</param-value>    *</init-param>    *     */
 DECL|method|setPathPrefix
 specifier|public
 name|void
