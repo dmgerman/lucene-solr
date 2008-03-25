@@ -30,6 +30,60 @@ begin_comment
 comment|// for javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Hits
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Searcher
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
 begin_comment
 comment|/** Documents are the unit of indexing and search.  *  * A Document is a set of fields.  Each field has a name and a textual value.  * A field may be {@link Fieldable#isStored() stored} with the document, in which  * case it is returned with search hits on the document.  Thus each document  * should typically contain one or more stored fields which uniquely identify  * it.  *  *<p>Note that fields which are<i>not</i> {@link Fieldable#isStored() stored} are  *<i>not</i> available in documents retrieved from the index, e.g. with {@link  * Hits#doc(int)}, {@link Searcher#doc(int)} or {@link  * IndexReader#document(int)}.  */
 end_comment
