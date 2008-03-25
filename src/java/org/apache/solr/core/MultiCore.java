@@ -400,7 +400,35 @@ DECL|method|MultiCore
 specifier|public
 name|MultiCore
 parameter_list|()
-block|{   }
+block|{        }
+comment|/**    * Initalize MultiCore directly from the constructor    *     * @param dir    * @param configFile    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
+DECL|method|MultiCore
+specifier|public
+name|MultiCore
+parameter_list|(
+name|String
+name|dir
+parameter_list|,
+name|File
+name|configFile
+parameter_list|)
+throws|throws
+name|ParserConfigurationException
+throws|,
+name|IOException
+throws|,
+name|SAXException
+block|{
+name|this
+operator|.
+name|load
+argument_list|(
+name|dir
+argument_list|,
+name|configFile
+argument_list|)
+expr_stmt|;
+block|}
 comment|//-------------------------------------------------------------------
 comment|// Initialization / Cleanup
 comment|//-------------------------------------------------------------------

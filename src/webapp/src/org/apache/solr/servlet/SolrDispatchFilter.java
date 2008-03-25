@@ -742,7 +742,7 @@ literal|"SolrDispatchFilter.init() done"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initializes the multicore instance.    * @param config the filter configuration    * @return the multicore instance or null    * @throws java.lang.Exception    */
+comment|/**    * Initialize the multicore instance.    * @param config the filter configuration    * @return the multicore instance or null    * @throws java.lang.Exception    */
 DECL|method|initMultiCore
 specifier|protected
 name|MultiCore
@@ -754,47 +754,13 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-comment|// since SolrDispatchFilter can be derived& initMultiCore can be overriden
 name|MultiCore
 name|mcore
 init|=
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrMultiCore
-operator|.
-name|getInstance
+operator|new
+name|MultiCore
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|mcore
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Using existing multicore configuration"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// multicore load
 name|String
 name|instanceDir
 init|=
@@ -843,7 +809,6 @@ argument_list|,
 name|fconf
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|mcore
@@ -1635,6 +1600,15 @@ argument_list|(
 literal|"org.apache.solr.SolrCore"
 argument_list|,
 name|core
+argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|setAttribute
+argument_list|(
+literal|"org.apache.solr.MultiCore"
+argument_list|,
+name|multicore
 argument_list|)
 expr_stmt|;
 comment|// Modify the request so each core gets its own /admin
