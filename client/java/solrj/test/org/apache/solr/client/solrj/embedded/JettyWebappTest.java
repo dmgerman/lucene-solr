@@ -284,7 +284,7 @@ name|port
 operator|+
 name|context
 operator|+
-literal|"/admin/"
+literal|"/"
 decl_stmt|;
 name|String
 name|html
@@ -303,6 +303,16 @@ name|openStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|html
+argument_list|)
+expr_stmt|;
+comment|// real error will be an exception
+name|adminPath
+operator|+=
+literal|"admin/"
+expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|html
@@ -347,6 +357,31 @@ argument_list|(
 name|adminPath
 operator|+
 literal|"schema.jsp"
+argument_list|)
+operator|.
+name|openStream
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|html
+argument_list|)
+expr_stmt|;
+comment|// real error will be an exception
+comment|// schema browser
+name|html
+operator|=
+name|IOUtils
+operator|.
+name|toString
+argument_list|(
+operator|new
+name|URL
+argument_list|(
+name|adminPath
+operator|+
+literal|"threaddump.jsp"
 argument_list|)
 operator|.
 name|openStream
