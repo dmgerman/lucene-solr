@@ -172,6 +172,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|UnicodeUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -925,6 +939,8 @@ operator|=
 literal|null
 expr_stmt|;
 assert|assert
+literal|4
+operator|+
 name|numDocsInStore
 operator|*
 literal|8
@@ -2934,6 +2950,7 @@ name|extension
 return|;
 block|}
 DECL|method|compareText
+specifier|private
 specifier|static
 name|int
 name|compareText
@@ -2983,9 +3000,10 @@ decl_stmt|;
 if|if
 condition|(
 name|c1
-operator|<
+operator|!=
 name|c2
 condition|)
+block|{
 if|if
 condition|(
 literal|0xffff
@@ -2993,22 +3011,11 @@ operator|==
 name|c2
 condition|)
 return|return
-literal|1
-return|;
-else|else
-return|return
-operator|-
 literal|1
 return|;
 elseif|else
 if|if
 condition|(
-name|c2
-operator|<
-name|c1
-condition|)
-if|if
-condition|(
 literal|0xffff
 operator|==
 name|c1
@@ -3019,8 +3026,11 @@ literal|1
 return|;
 else|else
 return|return
-literal|1
+name|c1
+operator|-
+name|c2
 return|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -3044,6 +3054,19 @@ name|TermInfo
 argument_list|()
 decl_stmt|;
 comment|// minimize consing
+DECL|field|termsUTF8
+specifier|final
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+name|termsUTF8
+init|=
+operator|new
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+argument_list|()
+decl_stmt|;
 comment|/* Walk through all unique text tokens (Posting    * instances) found in this field and serialize them    * into a single RAM segment. */
 DECL|method|appendPostings
 name|void
@@ -3367,23 +3390,6 @@ index|]
 operator|.
 name|textOffset
 decl_stmt|;
-name|int
-name|pos
-init|=
-name|start
-decl_stmt|;
-while|while
-condition|(
-name|text
-index|[
-name|pos
-index|]
-operator|!=
-literal|0xffff
-condition|)
-name|pos
-operator|++
-expr_stmt|;
 name|long
 name|freqPointer
 init|=
@@ -3871,19 +3877,34 @@ name|freqPointer
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// TODO: we could do this incrementally
+name|UnicodeUtil
+operator|.
+name|UTF16toUTF8
+argument_list|(
+name|text
+argument_list|,
+name|start
+argument_list|,
+name|termsUTF8
+argument_list|)
+expr_stmt|;
+comment|// TODO: we could save O(n) re-scan of the term by
+comment|// computing the shared prefix with the last term
+comment|// while during the UTF8 encoding
 name|termsOut
 operator|.
 name|add
 argument_list|(
 name|fieldNumber
 argument_list|,
-name|text
+name|termsUTF8
+operator|.
+name|result
 argument_list|,
-name|start
-argument_list|,
-name|pos
-operator|-
-name|start
+name|termsUTF8
+operator|.
+name|length
 argument_list|,
 name|termInfo
 argument_list|)
@@ -4375,7 +4396,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// This call is synchronized but fast
+comment|// Note that we must call finishDocument even on
+comment|// exception, because for a non-aborting
+comment|// exception, a portion of the document has been
+comment|// indexed (and its ID is marked for deletion), so
+comment|// all index files must be updated to record this
+comment|// document.  This call is synchronized but fast.
 name|finishDocument
 argument_list|(
 name|state

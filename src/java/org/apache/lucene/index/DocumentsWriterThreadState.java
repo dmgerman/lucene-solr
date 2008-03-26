@@ -106,6 +106,20 @@ name|Analyzer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|UnicodeUtil
+import|;
+end_import
+
 begin_comment
 comment|/** Used by DocumentsWriter to maintain per-thread state.  *  We keep a separate Posting hash and other state for each  *  thread and then merge postings hashes from all threads  *  when writing the segment. */
 end_comment
@@ -1679,6 +1693,12 @@ literal|null
 assert|;
 name|docWriter
 operator|.
+name|files
+operator|=
+literal|null
+expr_stmt|;
+name|docWriter
+operator|.
 name|docStoreSegment
 operator|=
 name|docWriter
@@ -1728,12 +1748,6 @@ name|docWriter
 argument_list|)
 throw|;
 block|}
-name|docWriter
-operator|.
-name|files
-operator|=
-literal|null
-expr_stmt|;
 block|}
 name|localFieldsWriter
 operator|=
@@ -1773,6 +1787,12 @@ name|docStoreSegment
 operator|!=
 literal|null
 assert|;
+name|docWriter
+operator|.
+name|files
+operator|=
+literal|null
+expr_stmt|;
 comment|// If we hit an exception while init'ing the term
 comment|// vector output files, we must abort this segment
 comment|// because those files will be in an unknown
@@ -1808,7 +1828,7 @@ name|writeInt
 argument_list|(
 name|TermVectorsReader
 operator|.
-name|FORMAT_VERSION2
+name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
 name|docWriter
@@ -1840,7 +1860,7 @@ name|writeInt
 argument_list|(
 name|TermVectorsReader
 operator|.
-name|FORMAT_VERSION2
+name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
 name|docWriter
@@ -1872,7 +1892,7 @@ name|writeInt
 argument_list|(
 name|TermVectorsReader
 operator|.
-name|FORMAT_VERSION2
+name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
 comment|// We must "catch up" for all docs before us
@@ -1944,12 +1964,6 @@ name|docWriter
 argument_list|)
 throw|;
 block|}
-name|docWriter
-operator|.
-name|files
-operator|=
-literal|null
-expr_stmt|;
 block|}
 name|numVectorFields
 operator|=
@@ -3663,6 +3677,15 @@ name|DocumentsWriter
 operator|.
 name|CHAR_BLOCK_MASK
 decl_stmt|;
+assert|assert
+name|text1
+operator|!=
+name|text2
+operator|||
+name|pos1
+operator|!=
+name|pos2
+assert|;
 while|while
 condition|(
 literal|true
@@ -3691,9 +3714,10 @@ decl_stmt|;
 if|if
 condition|(
 name|c1
-operator|<
+operator|!=
 name|c2
 condition|)
+block|{
 if|if
 condition|(
 literal|0xffff
@@ -3703,18 +3727,7 @@ condition|)
 return|return
 literal|1
 return|;
-else|else
-return|return
-operator|-
-literal|1
-return|;
 elseif|else
-if|if
-condition|(
-name|c2
-operator|<
-name|c1
-condition|)
 if|if
 condition|(
 literal|0xffff
@@ -3727,18 +3740,19 @@ literal|1
 return|;
 else|else
 return|return
-literal|1
-return|;
-elseif|else
-if|if
-condition|(
-literal|0xffff
-operator|==
 name|c1
-condition|)
-return|return
-literal|0
+operator|-
+name|c2
 return|;
+block|}
+else|else
+comment|// This method should never compare equal postings
+comment|// unless p1==p2
+assert|assert
+name|c1
+operator|!=
+literal|0xffff
+assert|;
 block|}
 block|}
 DECL|field|lastVectorFieldName
@@ -3828,6 +3842,28 @@ init|=
 operator|new
 name|ReusableStringReader
 argument_list|()
+decl_stmt|;
+DECL|field|utf8Results
+specifier|final
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+name|utf8Results
+index|[]
+init|=
+block|{
+operator|new
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+argument_list|()
+block|,
+operator|new
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+argument_list|()
+block|}
 decl_stmt|;
 block|}
 end_class

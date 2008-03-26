@@ -39,13 +39,26 @@ name|IndexInput
 implements|implements
 name|Cloneable
 block|{
+DECL|field|bytes
+specifier|private
+name|byte
+index|[]
+name|bytes
+decl_stmt|;
+comment|// used by readString()
 DECL|field|chars
 specifier|private
 name|char
 index|[]
 name|chars
 decl_stmt|;
-comment|// used by readString()
+comment|// used by readModifiedUTF8String()
+DECL|field|preUTF8Strings
+specifier|private
+name|boolean
+name|preUTF8Strings
+decl_stmt|;
+comment|// true if we are reading old (modified UTF8) string format
 comment|/** Reads and returns a single byte.    * @see IndexOutput#writeByte(byte)    */
 DECL|method|readByte
 specifier|public
@@ -314,11 +327,95 @@ return|return
 name|i
 return|;
 block|}
+comment|/** Call this if readString should read characters stored    *  in the old modified UTF8 format (length in java chars    *  and java's modified UTF8 encoding).  This is used for    *  indices written pre-2.4 See LUCENE-510 for details. */
+DECL|method|setModifiedUTF8StringsMode
+specifier|public
+name|void
+name|setModifiedUTF8StringsMode
+parameter_list|()
+block|{
+name|preUTF8Strings
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|/** Reads a string.    * @see IndexOutput#writeString(String)    */
 DECL|method|readString
 specifier|public
 name|String
 name|readString
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|preUTF8Strings
+condition|)
+return|return
+name|readModifiedUTF8String
+argument_list|()
+return|;
+name|int
+name|length
+init|=
+name|readVInt
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|bytes
+operator|==
+literal|null
+operator|||
+name|length
+operator|>
+name|bytes
+operator|.
+name|length
+condition|)
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+call|(
+name|int
+call|)
+argument_list|(
+name|length
+operator|*
+literal|1.25
+argument_list|)
+index|]
+expr_stmt|;
+name|readBytes
+argument_list|(
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|length
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|String
+argument_list|(
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|length
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+return|;
+block|}
+DECL|method|readModifiedUTF8String
+specifier|private
+name|String
+name|readModifiedUTF8String
 parameter_list|()
 throws|throws
 name|IOException
@@ -370,7 +467,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/** Reads UTF-8 encoded characters into an array.    * @param buffer the array to read characters into    * @param start the offset in the array to start storing characters    * @param length the number of characters to read    * @see IndexOutput#writeChars(String,int,int)    */
+comment|/** Reads Lucene's old "modified UTF-8" encoded    *  characters into an array.    * @param buffer the array to read characters into    * @param start the offset in the array to start storing characters    * @param length the number of characters to read    * @see IndexOutput#writeChars(String,int,int)    * @deprecated -- please use readString or readBytes    *                instead, and construct the string    *                from those utf8 bytes    */
 DECL|method|readChars
 specifier|public
 name|void
@@ -523,7 +620,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Expert    *     * Similar to {@link #readChars(char[], int, int)} but does not do any conversion operations on the bytes it is reading in.  It still    * has to invoke {@link #readByte()} just as {@link #readChars(char[], int, int)} does, but it does not need a buffer to store anything    * and it does not have to do any of the bitwise operations, since we don't actually care what is in the byte except to determine    * how many more bytes to read    * @param length The number of chars to read    */
+comment|/**    * Expert    *     * Similar to {@link #readChars(char[], int, int)} but does not do any conversion operations on the bytes it is reading in.  It still    * has to invoke {@link #readByte()} just as {@link #readChars(char[], int, int)} does, but it does not need a buffer to store anything    * and it does not have to do any of the bitwise operations, since we don't actually care what is in the byte except to determine    * how many more bytes to read    * @param length The number of chars to read    * @deprecated this method operates on old "modified utf8" encoded    *             strings    */
 DECL|method|skipChars
 specifier|public
 name|void
@@ -668,6 +765,12 @@ name|CloneNotSupportedException
 name|e
 parameter_list|)
 block|{}
+name|clone
+operator|.
+name|bytes
+operator|=
+literal|null
+expr_stmt|;
 name|clone
 operator|.
 name|chars

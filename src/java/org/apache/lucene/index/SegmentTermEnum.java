@@ -227,7 +227,7 @@ name|format
 operator|<
 name|TermInfosWriter
 operator|.
-name|FORMAT
+name|FORMAT_CURRENT
 condition|)
 throw|throw
 operator|new
@@ -236,6 +236,14 @@ argument_list|(
 literal|"Unknown format version:"
 operator|+
 name|format
+operator|+
+literal|" expected "
+operator|+
+name|TermInfosWriter
+operator|.
+name|FORMAT_CURRENT
+operator|+
+literal|" or higher"
 argument_list|)
 throw|;
 name|size
@@ -303,9 +311,10 @@ expr_stmt|;
 if|if
 condition|(
 name|format
-operator|==
-operator|-
-literal|3
+operator|<=
+name|TermInfosWriter
+operator|.
+name|FORMAT
 condition|)
 block|{
 comment|// this new format introduces multi-level skipping
@@ -318,6 +327,31 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|format
+operator|>
+name|TermInfosWriter
+operator|.
+name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
+condition|)
+block|{
+name|termBuffer
+operator|.
+name|setPreUTF8Strings
+argument_list|()
+expr_stmt|;
+name|scanBuffer
+operator|.
+name|setPreUTF8Strings
+argument_list|()
+expr_stmt|;
+name|prevBuffer
+operator|.
+name|setPreUTF8Strings
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|clone

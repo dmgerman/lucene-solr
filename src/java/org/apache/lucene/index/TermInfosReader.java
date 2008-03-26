@@ -216,7 +216,11 @@ name|openInput
 argument_list|(
 name|segment
 operator|+
-literal|".tis"
+literal|"."
+operator|+
+name|IndexFileNames
+operator|.
+name|TERMS_EXTENSION
 argument_list|,
 name|readBufferSize
 argument_list|)
@@ -249,7 +253,11 @@ name|openInput
 argument_list|(
 name|segment
 operator|+
-literal|".tii"
+literal|"."
+operator|+
+name|IndexFileNames
+operator|.
+name|TERMS_INDEX_EXTENSION
 argument_list|,
 name|readBufferSize
 argument_list|)

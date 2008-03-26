@@ -26,6 +26,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|UnicodeUtil
+import|;
+end_import
+
 begin_comment
 comment|/** Abstract base class for output to a file in a Directory.  A random-access  * output stream.  Used for all Lucene index output operations.  * @see Directory  * @see IndexInput  */
 end_comment
@@ -37,6 +51,19 @@ specifier|abstract
 class|class
 name|IndexOutput
 block|{
+DECL|field|utf8Result
+specifier|private
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+name|utf8Result
+init|=
+operator|new
+name|UnicodeUtil
+operator|.
+name|UTF8Result
+argument_list|()
+decl_stmt|;
 comment|/** Writes a single byte.    * @see IndexInput#readByte()    */
 DECL|method|writeByte
 specifier|public
@@ -306,30 +333,44 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|int
-name|length
-init|=
-name|s
+name|UnicodeUtil
 operator|.
-name|length
-argument_list|()
-decl_stmt|;
-name|writeVInt
-argument_list|(
-name|length
-argument_list|)
-expr_stmt|;
-name|writeChars
+name|UTF16toUTF8
 argument_list|(
 name|s
 argument_list|,
 literal|0
 argument_list|,
+name|s
+operator|.
+name|length
+argument_list|()
+argument_list|,
+name|utf8Result
+argument_list|)
+expr_stmt|;
+name|writeVInt
+argument_list|(
+name|utf8Result
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|writeBytes
+argument_list|(
+name|utf8Result
+operator|.
+name|result
+argument_list|,
+literal|0
+argument_list|,
+name|utf8Result
+operator|.
 name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Writes a sequence of UTF-8 encoded characters from a string.    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @see IndexInput#readChars(char[],int,int)    */
+comment|/** Writes a sub sequence of characters from s as the old    *  format (modified UTF-8 encoded bytes).    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @deprecated -- please pre-convert to utf8 bytes    * instead or use {@link #writeString}    */
 DECL|method|writeChars
 specifier|public
 name|void
@@ -514,7 +555,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Writes a sequence of UTF-8 encoded characters from a char[].    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @see IndexInput#readChars(char[],int,int)    */
+comment|/** Writes a sub sequence of characters from char[] as    *  the old format (modified UTF-8 encoded bytes).    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @deprecated -- please pre-convert to utf8 bytes instead or use {@link #writeString}    */
 DECL|method|writeChars
 specifier|public
 name|void

@@ -1667,6 +1667,8 @@ argument_list|()
 expr_stmt|;
 block|}
 assert|assert
+literal|4
+operator|+
 name|docCount
 operator|*
 literal|8
