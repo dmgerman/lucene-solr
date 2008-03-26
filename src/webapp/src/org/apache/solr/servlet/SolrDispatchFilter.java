@@ -1033,6 +1033,15 @@ name|isEnabled
 argument_list|()
 condition|)
 block|{
+name|req
+operator|.
+name|setAttribute
+argument_list|(
+literal|"org.apache.solr.MultiCore"
+argument_list|,
+name|multicore
+argument_list|)
+expr_stmt|;
 comment|// if this is the multi-core admin page, it will handle it
 if|if
 condition|(
@@ -1600,15 +1609,6 @@ argument_list|(
 literal|"org.apache.solr.SolrCore"
 argument_list|,
 name|core
-argument_list|)
-expr_stmt|;
-name|req
-operator|.
-name|setAttribute
-argument_list|(
-literal|"org.apache.solr.MultiCore"
-argument_list|,
-name|multicore
 argument_list|)
 expr_stmt|;
 comment|// Modify the request so each core gets its own /admin
