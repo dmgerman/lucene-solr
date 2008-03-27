@@ -212,6 +212,13 @@ DECL|field|numErrors
 name|long
 name|numErrors
 decl_stmt|;
+DECL|field|initArgs
+specifier|protected
+name|NamedList
+name|initArgs
+init|=
+literal|null
+decl_stmt|;
 DECL|field|defaults
 specifier|protected
 name|SolrParams
@@ -263,6 +270,10 @@ name|NamedList
 name|args
 parameter_list|)
 block|{
+name|initArgs
+operator|=
+name|args
+expr_stmt|;
 comment|// Copied from StandardRequestHandler
 if|if
 condition|(
@@ -372,6 +383,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|getInitArgs
+specifier|public
+name|NamedList
+name|getInitArgs
+parameter_list|()
+block|{
+return|return
+name|initArgs
+return|;
 block|}
 DECL|method|handleRequestBody
 specifier|public
