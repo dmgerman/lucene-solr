@@ -1211,65 +1211,6 @@ argument_list|(
 name|info
 argument_list|)
 decl_stmt|;
-comment|// Refuse to import a segment that's too large
-if|if
-condition|(
-name|info
-operator|.
-name|docCount
-operator|>
-name|maxMergeDocs
-operator|&&
-name|info
-operator|.
-name|dir
-operator|!=
-name|directory
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Segment is too large ("
-operator|+
-name|info
-operator|.
-name|docCount
-operator|+
-literal|" docs vs max docs "
-operator|+
-name|maxMergeDocs
-operator|+
-literal|")"
-argument_list|)
-throw|;
-if|if
-condition|(
-name|size
-operator|>=
-name|maxMergeSize
-operator|&&
-name|info
-operator|.
-name|dir
-operator|!=
-name|directory
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Segment is too large ("
-operator|+
-name|size
-operator|+
-literal|" vs max size "
-operator|+
-name|maxMergeSize
-operator|+
-literal|")"
-argument_list|)
-throw|;
 comment|// Floor tiny segments
 if|if
 condition|(
