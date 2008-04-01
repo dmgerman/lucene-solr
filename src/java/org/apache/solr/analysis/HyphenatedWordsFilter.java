@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * When the plain text is extracted from documents, we will often have many words hyphenated and broken into  * two lines. This is often the case with documents where narrow text columns are used, such as newsletters.  * In order to increase search efficiency, this filter puts hyphenated words broken into two lines back together.  * This filter should be used on indexing time only.  * Example field definition in schema.xml:  *<pre>  *<fieldtype name="text" class="solr.TextField" positionIncrementGap="100">  *<analyzer type="index">  *<tokenizer class="solr.WhitespaceTokenizerFactory"/>  *<filter class="solr.SynonymFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/>  *<filter class="solr.StopFilterFactory" ignoreCase="true"/>  *<filter class="solr.HyphenatedWordsFilterFactory"/>  *<filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0"/>  *<filter class="solr.LowerCaseFilterFactory"/>  *<filter class="solr.RemoveDuplicatesTokenFilterFactory"/>  *</analyzer>  *<analyzer type="query">  *<tokenizer class="solr.WhitespaceTokenizerFactory"/>  *<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>  *<filter class="solr.StopFilterFactory" ignoreCase="true"/>  *<filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0"/>  *<filter class="solr.LowerCaseFilterFactory"/>  *<filter class="solr.RemoveDuplicatesTokenFilterFactory"/>  *</analyzer>  *</fieldtype>  *   */
+comment|/**  * When the plain text is extracted from documents, we will often have many words hyphenated and broken into  * two lines. This is often the case with documents where narrow text columns are used, such as newsletters.  * In order to increase search efficiency, this filter puts hyphenated words broken into two lines back together.  * This filter should be used on indexing time only.  * Example field definition in schema.xml:  *<pre>  *&lt;fieldtype name="text" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer type="index"&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.SynonymFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/&gt;  *&lt;filter class="solr.StopFilterFactory" ignoreCase="true"/&gt;  *&lt;filter class="solr.HyphenatedWordsFilterFactory"/&gt;  *&lt;filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.RemoveDuplicatesTokenFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;analyzer type="query"&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/&gt;  *&lt;filter class="solr.StopFilterFactory" ignoreCase="true"/&gt;  *&lt;filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.RemoveDuplicatesTokenFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldtype&gt;  *</pre>  *   */
 end_comment
 
 begin_class
@@ -73,15 +73,18 @@ specifier|public
 specifier|final
 name|Token
 name|next
-parameter_list|()
+parameter_list|(
+name|Token
+name|in
+parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StringBuffer
+name|StringBuilder
 name|termText
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|25
 argument_list|)
@@ -114,7 +117,9 @@ init|=
 name|input
 operator|.
 name|next
-argument_list|()
+argument_list|(
+name|in
+argument_list|)
 init|;
 name|token
 operator|!=
@@ -134,7 +139,14 @@ name|append
 argument_list|(
 name|token
 operator|.
-name|termText
+name|termBuffer
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+name|token
+operator|.
+name|termLength
 argument_list|()
 argument_list|)
 expr_stmt|;

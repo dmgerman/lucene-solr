@@ -77,12 +77,12 @@ block|{
 name|String
 name|input
 init|=
-literal|"ecologi-\r\ncal devel-\r\n\r\nop compre-\u0009hensive-hands-on"
+literal|"ecologi-\r\ncal devel-\r\n\r\nop compre-\u0009hensive-hands-on and ecologi-\ncal"
 decl_stmt|;
 name|String
 name|outputAfterHyphenatedWordsFilter
 init|=
-literal|"ecological develop comprehensive-hands-on"
+literal|"ecological develop comprehensive-hands-on and ecological"
 decl_stmt|;
 comment|// first test
 name|TokenStream

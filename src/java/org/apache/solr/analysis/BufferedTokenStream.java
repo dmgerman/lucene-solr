@@ -77,7 +77,7 @@ name|BufferedTokenStream
 extends|extends
 name|TokenStream
 block|{
-comment|// in the futute, might be faster if we implemented as an array based CircularQueue
+comment|// in the future, might be faster if we implemented as an array based CircularQueue
 DECL|field|inQueue
 specifier|private
 specifier|final
