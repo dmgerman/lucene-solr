@@ -214,17 +214,13 @@ name|ContentStream
 operator|)
 condition|)
 block|{
-comment|// copy the contents to the writer...
-name|ContentStream
-name|content
-init|=
+return|return
+operator|(
 operator|(
 name|ContentStream
 operator|)
 name|obj
-decl_stmt|;
-return|return
-name|content
+operator|)
 operator|.
 name|getContentType
 argument_list|()
