@@ -3491,10 +3491,23 @@ condition|(
 operator|!
 name|closed
 condition|)
+block|{
 name|closing
 operator|=
 literal|false
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"hit exception while closing"
+argument_list|)
+expr_stmt|;
+block|}
 name|notifyAll
 argument_list|()
 expr_stmt|;

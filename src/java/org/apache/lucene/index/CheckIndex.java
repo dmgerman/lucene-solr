@@ -1286,7 +1286,7 @@ throw|;
 if|if
 condition|(
 name|pos
-operator|<=
+operator|<
 name|lastPos
 condition|)
 throw|throw
