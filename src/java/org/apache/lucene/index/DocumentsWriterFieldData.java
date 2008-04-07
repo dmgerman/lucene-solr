@@ -1055,7 +1055,7 @@ operator|-
 literal|1
 operator|)
 expr_stmt|;
-comment|// LUCENE-1255: don't allow negative positon
+comment|// LUCENE-1255: don't allow negative position
 if|if
 condition|(
 name|position
