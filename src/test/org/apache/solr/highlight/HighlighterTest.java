@@ -2388,6 +2388,56 @@ argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='1']/arr[@name='t_text']/str[.='1']"
 argument_list|)
 expr_stmt|;
+comment|// with an alternate + max length
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"hl.alternateField"
+argument_list|,
+literal|"t_text"
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"hl.maxAlternateFieldLength"
+argument_list|,
+literal|"15"
+argument_list|)
+expr_stmt|;
+name|sumLRF
+operator|=
+name|h
+operator|.
+name|getRequestFactory
+argument_list|(
+literal|"standard"
+argument_list|,
+literal|0
+argument_list|,
+literal|200
+argument_list|,
+name|args
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Alternate summarization"
+argument_list|,
+name|sumLRF
+operator|.
+name|makeRequest
+argument_list|(
+literal|"tv_text:keyword"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='1' and count(*)=1]"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='1']/arr[@name='t_text']/str[.='a piece of text']"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

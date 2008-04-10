@@ -136,6 +136,17 @@ name|HIGHLIGHT
 operator|+
 literal|".alternateField"
 decl_stmt|;
+DECL|field|ALTERNATE_FIELD_LENGTH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ALTERNATE_FIELD_LENGTH
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".maxAlternateFieldLength"
+decl_stmt|;
 DECL|field|MERGE_CONTIGUOUS_FRAGMENTS
 specifier|public
 specifier|static
