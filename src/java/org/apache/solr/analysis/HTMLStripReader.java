@@ -1777,14 +1777,14 @@ if|if
 condition|(
 name|name
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"script"
 argument_list|)
 operator|||
 name|name
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"style"
 argument_list|)
