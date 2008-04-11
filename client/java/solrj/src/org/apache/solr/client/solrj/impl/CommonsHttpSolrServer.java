@@ -894,12 +894,6 @@ name|ModifiableSolrParams
 argument_list|()
 decl_stmt|;
 name|wparams
-operator|=
-operator|new
-name|ModifiableSolrParams
-argument_list|()
-expr_stmt|;
-name|wparams
 operator|.
 name|set
 argument_list|(
