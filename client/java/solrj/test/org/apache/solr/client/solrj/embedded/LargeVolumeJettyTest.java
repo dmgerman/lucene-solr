@@ -91,14 +91,11 @@ name|JettySolrRunner
 name|jetty
 decl_stmt|;
 DECL|field|port
-specifier|static
-specifier|final
 name|int
 name|port
 init|=
-literal|8984
+literal|0
 decl_stmt|;
-comment|// not 8983
 DECL|field|context
 specifier|static
 specifier|final
@@ -129,12 +126,19 @@ name|JettySolrRunner
 argument_list|(
 name|context
 argument_list|,
-name|port
+literal|0
 argument_list|)
 expr_stmt|;
 name|jetty
 operator|.
 name|start
+argument_list|()
+expr_stmt|;
+name|port
+operator|=
+name|jetty
+operator|.
+name|getLocalPort
 argument_list|()
 expr_stmt|;
 name|server
