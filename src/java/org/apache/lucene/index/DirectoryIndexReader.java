@@ -469,7 +469,8 @@ name|isCurrent
 argument_list|()
 condition|)
 block|{
-comment|// the index hasn't changed - nothing to do here
+comment|// this has changes, therefore we have the lock and don't need to reopen
+comment|// OR: the index in the directory hasn't changed - nothing to do here
 return|return
 name|this
 return|;
