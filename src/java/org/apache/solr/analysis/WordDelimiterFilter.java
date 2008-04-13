@@ -813,13 +813,17 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|// t is either returned, or a new token is made from it, so it should
+comment|// be safe to use the next(Token) method.
 name|Token
 name|t
 init|=
 name|input
 operator|.
 name|next
-argument_list|()
+argument_list|(
+name|in
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

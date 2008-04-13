@@ -231,6 +231,14 @@ argument_list|,
 name|dict
 argument_list|)
 decl_stmt|;
+name|Token
+name|target
+init|=
+operator|new
+name|Token
+argument_list|()
+decl_stmt|;
+comment|// test with token reuse
 while|while
 condition|(
 literal|true
@@ -242,7 +250,9 @@ init|=
 name|sf
 operator|.
 name|next
-argument_list|()
+argument_list|(
+name|target
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -257,7 +267,13 @@ name|lst
 operator|.
 name|add
 argument_list|(
+operator|(
+name|Token
+operator|)
 name|t
+operator|.
+name|clone
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
