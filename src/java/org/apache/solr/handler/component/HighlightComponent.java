@@ -734,7 +734,7 @@ argument_list|,
 name|removeNulls
 argument_list|(
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|(
 name|Arrays
 operator|.
@@ -790,6 +790,14 @@ block|{
 name|NamedList
 name|newList
 init|=
+name|nl
+operator|instanceof
+name|SimpleOrderedMap
+condition|?
+operator|new
+name|SimpleOrderedMap
+argument_list|()
+else|:
 operator|new
 name|NamedList
 argument_list|()

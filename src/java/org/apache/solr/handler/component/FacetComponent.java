@@ -1828,14 +1828,14 @@ name|NamedList
 name|facet_counts
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|NamedList
 name|facet_queries
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|facet_counts
@@ -1890,7 +1890,7 @@ name|NamedList
 name|facet_fields
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|facet_counts
@@ -1915,13 +1915,14 @@ name|values
 argument_list|()
 control|)
 block|{
-name|SimpleOrderedMap
+name|NamedList
 name|fieldCounts
 init|=
 operator|new
-name|SimpleOrderedMap
+name|NamedList
 argument_list|()
 decl_stmt|;
+comment|// order is more important for facets
 name|facet_fields
 operator|.
 name|add
@@ -2062,7 +2063,7 @@ argument_list|(
 literal|"facet_dates"
 argument_list|,
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -1257,6 +1257,7 @@ operator|new
 name|NamedList
 argument_list|()
 decl_stmt|;
+comment|// order is important for the sort fields
 name|StringFieldable
 name|field
 init|=
