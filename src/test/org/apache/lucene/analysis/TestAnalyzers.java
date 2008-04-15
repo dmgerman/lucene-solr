@@ -714,7 +714,7 @@ name|ts
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Just a compile time test, to ensure the
+comment|// LUCENE-1150: Just a compile time test, to ensure the
 comment|// StandardAnalyzer constants remain publicly accessible
 DECL|method|_testStandardConstants
 specifier|public
@@ -771,6 +771,14 @@ name|StandardTokenizer
 operator|.
 name|CJ
 expr_stmt|;
+name|String
+index|[]
+name|y
+init|=
+name|StandardTokenizer
+operator|.
+name|TOKEN_TYPES
+decl_stmt|;
 block|}
 block|}
 end_class
