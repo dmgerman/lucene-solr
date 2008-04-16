@@ -428,13 +428,13 @@ name|components
 init|=
 literal|null
 decl_stmt|;
-DECL|method|getDefaultComponets
+DECL|method|getDefaultComponents
 specifier|protected
 name|List
 argument_list|<
 name|String
 argument_list|>
-name|getDefaultComponets
+name|getDefaultComponents
 parameter_list|()
 block|{
 name|ArrayList
@@ -582,7 +582,7 @@ block|{
 comment|// Use the default component list
 name|list
 operator|=
-name|getDefaultComponets
+name|getDefaultComponents
 argument_list|()
 expr_stmt|;
 if|if
