@@ -2253,6 +2253,17 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|SolrException
+operator|.
+name|logOnce
+argument_list|(
+name|log
+argument_list|,
+literal|"Error processing \"legacy\" update command"
+argument_list|,
+name|ex
+argument_list|)
+expr_stmt|;
 name|XML
 operator|.
 name|writeXML
