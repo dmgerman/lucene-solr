@@ -488,7 +488,7 @@ name|processor
 expr_stmt|;
 block|}
 return|return
-name|processor
+name|last
 return|;
 block|}
 block|}
