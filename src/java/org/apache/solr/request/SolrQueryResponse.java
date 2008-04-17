@@ -107,20 +107,7 @@ DECL|method|SolrQueryResponse
 specifier|public
 name|SolrQueryResponse
 parameter_list|()
-block|{
-name|add
-argument_list|(
-literal|"responseHeader"
-argument_list|,
-operator|new
-name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 comment|/**    * Gets data to be returned in this response    * @see<a href="#returnable_data">Note on Returnable Data</a>    */
 DECL|method|getValues
 specifier|public
