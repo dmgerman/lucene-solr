@@ -198,6 +198,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|CommonParams
@@ -307,7 +323,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This filter looks at the incoming URL maps them to handlers defined in solrconfig.xml  *   * @since solr 1.2  */
+comment|/**  * This filter looks at the incoming URL maps them to handlers defined in solrconfig.xml  *  * @since solr 1.2  */
 end_comment
 
 begin_class
@@ -1457,7 +1473,7 @@ operator|new
 name|SolrQueryResponse
 argument_list|()
 decl_stmt|;
-comment|/* even for HEAD requests, we need to execute the handler to                  * ensure we don't get an error (and to make sure the correct                   * QueryResponseWriter is selectedand we get the correct                  * Content-Type)                  */
+comment|/* even for HEAD requests, we need to execute the handler to                  * ensure we don't get an error (and to make sure the correct                  * QueryResponseWriter is selectedand we get the correct                  * Content-Type)                  */
 name|this
 operator|.
 name|execute
@@ -1471,6 +1487,96 @@ argument_list|,
 name|solrRsp
 argument_list|)
 expr_stmt|;
+comment|// add info to http headers
+try|try
+block|{
+name|NamedList
+name|solrRspHeader
+init|=
+name|solrRsp
+operator|.
+name|getResponseHeader
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|solrRspHeader
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+operator|(
+operator|(
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpServletResponse
+operator|)
+name|response
+operator|)
+operator|.
+name|addHeader
+argument_list|(
+operator|(
+literal|"Solr-"
+operator|+
+name|solrRspHeader
+operator|.
+name|getName
+argument_list|(
+name|i
+argument_list|)
+operator|)
+argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|solrRspHeader
+operator|.
+name|getVal
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|cce
+parameter_list|)
+block|{
+name|log
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|WARNING
+argument_list|,
+literal|"exception adding response header log information"
+argument_list|,
+name|cce
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|solrRsp
@@ -1730,6 +1836,22 @@ parameter_list|)
 block|{
 comment|// a custom filter could add more stuff to the request before passing it on.
 comment|// for example: sreq.getContext().put( "HttpServletRequest", req );
+comment|// used for logging query stats in SolrCore.execute()
+name|sreq
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|put
+argument_list|(
+literal|"webapp"
+argument_list|,
+name|req
+operator|.
+name|getContextPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|sreq
 operator|.
 name|getCore
@@ -1879,7 +2001,7 @@ expr_stmt|;
 block|}
 comment|//---------------------------------------------------------------------
 comment|//---------------------------------------------------------------------
-comment|/**    * Set the prefix for all paths.  This is useful if you want to apply the    * filter to something other then /*, perhaps because you are merging this    * filter into a larger web application.    *     * For example, if web.xml specifies:    *     *<filter-mapping>    *<filter-name>SolrRequestFilter</filter-name>    *<url-pattern>/xxx/*</url-pattern>    *</filter-mapping>    *     * Make sure to set the PathPrefix to "/xxx" either with this function    * or in web.xml.    *     *<init-param>    *<param-name>path-prefix</param-name>    *<param-value>/xxx</param-value>    *</init-param>    *     */
+comment|/**    * Set the prefix for all paths.  This is useful if you want to apply the    * filter to something other then /*, perhaps because you are merging this    * filter into a larger web application.    *    * For example, if web.xml specifies:    *    *<filter-mapping>    *<filter-name>SolrRequestFilter</filter-name>    *<url-pattern>/xxx/*</url-pattern>    *</filter-mapping>    *    * Make sure to set the PathPrefix to "/xxx" either with this function    * or in web.xml.    *    *<init-param>    *<param-name>path-prefix</param-name>    *<param-value>/xxx</param-value>    *</init-param>    *    */
 DECL|method|setPathPrefix
 specifier|public
 name|void
