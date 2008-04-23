@@ -3365,6 +3365,19 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|waitForMerges
+condition|)
+comment|// Give merge scheduler last chance to run, in case
+comment|// any pending merges are waiting:
+name|mergeScheduler
+operator|.
+name|merge
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|mergePolicy
 operator|.
 name|close
@@ -6958,6 +6971,11 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|boolean
+name|any
+init|=
+literal|false
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -7079,6 +7097,10 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+name|any
+operator|=
+literal|true
+expr_stmt|;
 name|merge
 argument_list|(
 name|merge
@@ -7116,6 +7138,19 @@ else|else
 comment|// No more external segments
 break|break;
 block|}
+if|if
+condition|(
+name|any
+condition|)
+comment|// Sometimes, on copying an external segment over,
+comment|// more merges may become necessary:
+name|mergeScheduler
+operator|.
+name|merge
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>     *<p><b>NOTE:</b> the index in each Directory must not be    * changed (opened by a writer) while this method is    * running.  This method does not acquire a write lock in    * each input Directory, so it is up to the caller to    * enforce this.    *    *<p><b>NOTE:</b> while this is running, any attempts to    * add or delete documents (with another thread) will be    * paused until this method completes.    *    *<p>See {@link #addIndexes(Directory[])} for    * details on transactional semantics, temporary free    * space required in the Directory, and non-CFS segments    * on an Exception.</p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addIndexes
