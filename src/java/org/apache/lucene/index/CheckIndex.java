@@ -440,6 +440,11 @@ name|skip
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|allowMinusOnePosition
+init|=
+literal|true
+decl_stmt|;
 if|if
 condition|(
 name|format
@@ -490,7 +495,15 @@ name|sFormat
 operator|=
 literal|"FORMAT_SHARED_DOC_STORE [Lucene 2.3]"
 expr_stmt|;
-elseif|else
+else|else
+block|{
+comment|// LUCENE-1255: All versions before 2.3.2/2.4 were
+comment|// able to create position=-1 when the very first
+comment|// Token has positionIncrement 0
+name|allowMinusOnePosition
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|format
@@ -536,6 +549,7 @@ name|format
 operator|+
 literal|" [Lucene 1.3 or prior]"
 expr_stmt|;
+block|}
 block|}
 name|out
 operator|.
@@ -1262,7 +1276,18 @@ if|if
 condition|(
 name|pos
 operator|<
-literal|0
+operator|-
+literal|1
+operator|||
+operator|(
+name|pos
+operator|==
+operator|-
+literal|1
+operator|&&
+operator|!
+name|allowMinusOnePosition
+operator|)
 condition|)
 throw|throw
 operator|new
@@ -1939,6 +1964,26 @@ return|return
 literal|false
 return|;
 block|}
+DECL|field|assertsOn
+specifier|static
+name|boolean
+name|assertsOn
+decl_stmt|;
+DECL|method|testAsserts
+specifier|private
+specifier|static
+name|boolean
+name|testAsserts
+parameter_list|()
+block|{
+name|assertsOn
+operator|=
+literal|true
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 DECL|method|main
 specifier|public
 specifier|static
@@ -2205,6 +2250,22 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+assert|assert
+name|testAsserts
+argument_list|()
+assert|;
+if|if
+condition|(
+operator|!
+name|assertsOn
+condition|)
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nNOTE: testing will be more thorough if you run java with '-ea:org.apache.lucene', so assertions are enabled"
+argument_list|)
+expr_stmt|;
 name|out
 operator|.
 name|println
