@@ -379,6 +379,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Add the specified {@link org.apache.solr.schema.SchemaField} to the document.  Does not invoke the copyField mechanism.    * @param sfield The {@link org.apache.solr.schema.SchemaField} to add    * @param val The value to add    * @param boost The boost factor    *    * @see #addField(String, String)    * @see #addField(String, String, float)    * @see #addSingleField(org.apache.solr.schema.SchemaField, String, float)    */
 DECL|method|addField
 specifier|public
 name|void
@@ -404,6 +405,7 @@ name|boost
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Add the Field and value to the document, invoking the copyField mechanism    * @param name The name of the field    * @param val The value to add    *    * @see #addField(String, String, float)    * @see #addField(org.apache.solr.schema.SchemaField, String, float)    * @see #addSingleField(org.apache.solr.schema.SchemaField, String, float)    */
 DECL|method|addField
 specifier|public
 name|void
@@ -426,6 +428,7 @@ literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Add the Field and value to the document with the specified boost, invoking the copyField mechanism    * @param name The name of the field.    * @param val The value to add    * @param boost The boost    *    * @see #addField(String, String)    * @see #addField(org.apache.solr.schema.SchemaField, String, float)    * @see #addSingleField(org.apache.solr.schema.SchemaField, String, float)    *    */
 DECL|method|addField
 specifier|public
 name|void
