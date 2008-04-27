@@ -200,15 +200,25 @@ init|=
 operator|-
 literal|5
 decl_stmt|;
+comment|/** This format adds the deletion count for each segment.    *  This way IndexWriter can efficiently report numDocs(). */
+DECL|field|FORMAT_DEL_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_DEL_COUNT
+init|=
+operator|-
+literal|6
+decl_stmt|;
 comment|/* This must always point to the most recent file format. */
 DECL|field|CURRENT_FORMAT
-specifier|private
 specifier|static
 specifier|final
 name|int
 name|CURRENT_FORMAT
 init|=
-name|FORMAT_CHECKSUM
+name|FORMAT_DEL_COUNT
 decl_stmt|;
 DECL|field|counter
 specifier|public
