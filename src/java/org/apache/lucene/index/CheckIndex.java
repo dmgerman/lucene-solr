@@ -440,11 +440,6 @@ name|skip
 init|=
 literal|false
 decl_stmt|;
-name|boolean
-name|allowMinusOnePosition
-init|=
-literal|true
-decl_stmt|;
 if|if
 condition|(
 name|format
@@ -500,10 +495,6 @@ block|{
 comment|// LUCENE-1255: All versions before 2.3.2/2.4 were
 comment|// able to create position=-1 when the very first
 comment|// Token has positionIncrement 0
-name|allowMinusOnePosition
-operator|=
-literal|false
-expr_stmt|;
 if|if
 condition|(
 name|format
@@ -1359,16 +1350,6 @@ name|pos
 operator|<
 operator|-
 literal|1
-operator|||
-operator|(
-name|pos
-operator|==
-operator|-
-literal|1
-operator|&&
-operator|!
-name|allowMinusOnePosition
-operator|)
 condition|)
 throw|throw
 operator|new

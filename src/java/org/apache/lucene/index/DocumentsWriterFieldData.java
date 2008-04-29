@@ -1055,17 +1055,6 @@ operator|-
 literal|1
 operator|)
 expr_stmt|;
-comment|// LUCENE-1255: don't allow negative position
-if|if
-condition|(
-name|position
-operator|<
-literal|0
-condition|)
-name|position
-operator|=
-literal|0
-expr_stmt|;
 name|addPosition
 argument_list|(
 name|token
