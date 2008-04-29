@@ -144,7 +144,7 @@ literal|"3"
 argument_list|,
 literal|"v_s"
 argument_list|,
-literal|"<!literal>"
+literal|"{!literal}"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -219,7 +219,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix f=v_t>hel"
+literal|"{!prefix f=v_t}hel"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -233,7 +233,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!raw f=v_t>hello"
+literal|"{!raw f=v_t}hello"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -247,7 +247,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!raw f=v_t>Hello"
+literal|"{!raw f=v_t}Hello"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
@@ -261,7 +261,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!raw f=v_f>1.5"
+literal|"{!raw f=v_f}1.5"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
@@ -275,7 +275,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!foo f=v_t>hello"
+literal|"{!foo f=v_t}hello"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -289,7 +289,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!field f=v_t>HELLO"
+literal|"{!field f=v_t}HELLO"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -303,7 +303,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!field f=v_f>1.5"
+literal|"{!field f=v_f}1.5"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
@@ -317,7 +317,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!field f=v_t>Hello  DUDE"
+literal|"{!field f=v_t}Hello  DUDE"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
@@ -331,7 +331,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix f=v_t v=hel>"
+literal|"{!prefix f=v_t v=hel}"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -345,7 +345,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix f='v_t' v=\"hel\">"
+literal|"{!prefix f='v_t' v=\"hel\"}"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -359,7 +359,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix   f=v_t   v=hel>"
+literal|"{!prefix   f=v_t   v=hel   }"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -367,13 +367,13 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"test literal with<! in it"
+literal|"test literal with {! in it"
 argument_list|,
 name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix f=v_s><!lit"
+literal|"{!prefix f=v_s}{!lit"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
@@ -387,7 +387,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix f=$myf v=$my.v>"
+literal|"{!prefix f=$myf v=$my.v}"
 argument_list|,
 literal|"myf"
 argument_list|,
@@ -409,7 +409,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!prefix f=$myf v=$my.v>"
+literal|"{!prefix f=$myf v=$my.v}"
 argument_list|,
 literal|"myf"
 argument_list|,
@@ -417,7 +417,7 @@ literal|"v_s"
 argument_list|,
 literal|"my.v"
 argument_list|,
-literal|"<!lit"
+literal|"{!lit"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
@@ -432,7 +432,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!lucene>v_t:hel*"
+literal|"{!lucene}v_t:hel*"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -447,7 +447,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!df=v_t>hel*"
+literal|"{!df=v_t}hel*"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -462,7 +462,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!q.op=OR df=v_t>Hello Yonik"
+literal|"{!q.op=OR df=v_t}Hello Yonik"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -476,7 +476,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!q.op=AND df=v_t>Hello Yonik"
+literal|"{!q.op=AND df=v_t}Hello Yonik"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
@@ -491,7 +491,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!boost b=sum(v_f,1)>id:[5 TO 6]"
+literal|"{!boost b=sum(v_f,1)}id:[5 TO 6]"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -511,11 +511,11 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!boost v=$q1 b=$q2>"
+literal|"{!boost v=$q1 b=$q2}"
 argument_list|,
 literal|"q1"
 argument_list|,
-literal|"<!func>v_f"
+literal|"{!func}v_f"
 argument_list|,
 literal|"q2"
 argument_list|,
@@ -538,7 +538,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!dismax>hello"
+literal|"{!dismax}hello"
 argument_list|,
 literal|"qf"
 argument_list|,
@@ -550,7 +550,7 @@ literal|"sqrt(v_f)^100 log(sum(v_f,1))^50"
 argument_list|,
 literal|"bq"
 argument_list|,
-literal|"<!prefix f=v_t>he"
+literal|"{!prefix f=v_t}he"
 argument_list|,
 literal|"debugQuery"
 argument_list|,
@@ -569,7 +569,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!dismax qf=v_t>hello"
+literal|"{!dismax qf=v_t}hello"
 argument_list|,
 literal|"qf"
 argument_list|,
@@ -587,11 +587,11 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"_query_:\"<!query v=$q1>\""
+literal|"_query_:\"{!query v=$q1}\""
 argument_list|,
 literal|"q1"
 argument_list|,
-literal|"<!prefix f=v_t>hel"
+literal|"{!prefix f=v_t}hel"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='2']"
@@ -605,15 +605,15 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"_query_:\"<!query defType=query v=$q1>\""
+literal|"_query_:\"{!query defType=query v=$q1}\""
 argument_list|,
 literal|"q1"
 argument_list|,
-literal|"<!v=$q2>"
+literal|"{!v=$q2}"
 argument_list|,
 literal|"q2"
 argument_list|,
-literal|"<!prefix f=v_t v=$qqq>"
+literal|"{!prefix f=v_t v=$qqq}"
 argument_list|,
 literal|"qqq"
 argument_list|,

@@ -352,6 +352,24 @@ init|=
 literal|"defType"
 decl_stmt|;
 comment|// default type for any direct subqueries
+DECL|field|LOCALPARAM_START
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOCALPARAM_START
+init|=
+literal|"{!"
+decl_stmt|;
+DECL|field|LOCALPARAM_END
+specifier|public
+specifier|static
+specifier|final
+name|char
+name|LOCALPARAM_END
+init|=
+literal|'}'
+decl_stmt|;
 comment|/**     * Helper utility for parsing a query using the Lucene QueryParser syntax.     * @param qs query expression in standard Lucene syntax    * @param schema used for default operator (overridden by params) and passed to the query parser for field format analysis information    */
 DECL|method|parseQuery
 specifier|public
@@ -658,7 +676,7 @@ name|txt
 operator|.
 name|startsWith
 argument_list|(
-literal|"<!"
+name|LOCALPARAM_START
 argument_list|,
 name|off
 argument_list|)
@@ -688,14 +706,14 @@ name|pos
 operator|+=
 literal|2
 expr_stmt|;
-comment|// skip over "<!"
+comment|// skip over "{!"
 for|for
 control|(
 init|;
 condition|;
 control|)
 block|{
-comment|/*       if (p.pos>=txt.length()) {         throw new ParseException("Missing '>' parsing local params '" + txt + '"');       }       */
+comment|/*       if (p.pos>=txt.length()) {         throw new ParseException("Missing '}' parsing local params '" + txt + '"');       }       */
 name|char
 name|ch
 init|=
@@ -708,7 +726,7 @@ if|if
 condition|(
 name|ch
 operator|==
-literal|'>'
+name|LOCALPARAM_END
 condition|)
 block|{
 return|return
@@ -741,7 +759,7 @@ throw|throw
 operator|new
 name|ParseException
 argument_list|(
-literal|"Expected identifier '>' parsing local params '"
+literal|"Expected identifier '}' parsing local params '"
 operator|+
 name|txt
 operator|+
@@ -768,7 +786,7 @@ operator|!=
 literal|'='
 condition|)
 block|{
-comment|// single word... treat<!func> as ""=func for easy lookup
+comment|// single word... treat {!func} as type=func for easy lookup
 name|val
 operator|=
 name|id
@@ -854,7 +872,7 @@ block|}
 block|}
 else|else
 block|{
-comment|// read unquoted literal ended by whitespace or '>'
+comment|// read unquoted literal ended by whitespace or '}'
 comment|// there is no escaping.
 name|int
 name|valStart
@@ -914,7 +932,7 @@ if|if
 condition|(
 name|c
 operator|==
-literal|'>'
+name|LOCALPARAM_END
 operator|||
 name|Character
 operator|.
@@ -966,7 +984,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    *  "foo" returns null    *  "<!prefix f=myfield>yes" returns type="prefix",f="myfield",v="yes"    *  "<!prefix f=myfield v=$p>" returns type="prefix",f="myfield",v=params.get("p")    */
+comment|/**    *  "foo" returns null    *  "{!prefix f=myfield}yes" returns type="prefix",f="myfield",v="yes"    *  "{!prefix f=myfield v=$p}" returns type="prefix",f="myfield",v=params.get("p")    */
 DECL|method|getLocalParams
 specifier|public
 specifier|static
@@ -993,7 +1011,7 @@ name|txt
 operator|.
 name|startsWith
 argument_list|(
-literal|"<!"
+name|LOCALPARAM_START
 argument_list|)
 condition|)
 block|{

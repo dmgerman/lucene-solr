@@ -1674,7 +1674,7 @@ operator|.
 name|longValue
 argument_list|()
 decl_stmt|;
-comment|// expect<!field f=field>value style params
+comment|// expect {!field f=field}value style params
 name|SolrParams
 name|qparams
 init|=
@@ -1738,25 +1738,7 @@ name|val
 argument_list|)
 decl_stmt|;
 comment|// TODO REMOVE
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Got "
-operator|+
-name|facet_q
-operator|+
-literal|" , refining count: "
-operator|+
-name|sfc
-operator|+
-literal|" += "
-operator|+
-name|count
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Got " + facet_q + " , refining count: " + sfc + " += " + count);
 name|sfc
 operator|.
 name|count
@@ -2744,11 +2726,11 @@ index|]
 expr_stmt|;
 name|queryPrefix
 operator|=
-literal|"<!field f="
+literal|"{!field f="
 operator|+
 name|field
 operator|+
-literal|'>'
+literal|'}'
 expr_stmt|;
 block|}
 DECL|method|add

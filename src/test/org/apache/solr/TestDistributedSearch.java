@@ -3069,7 +3069,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!func>"
+literal|"{!func}"
 operator|+
 name|i1
 argument_list|)
@@ -3078,7 +3078,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"<!func>"
+literal|"{!func}"
 operator|+
 name|i1
 argument_list|,

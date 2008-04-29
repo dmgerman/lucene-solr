@@ -572,7 +572,7 @@ throw|throw
 operator|new
 name|ParseException
 argument_list|(
-literal|"Nested function query must use $param or<!v=value> forms. got '"
+literal|"Nested function query must use $param or {!v=value} forms. got '"
 operator|+
 name|qs
 operator|+
