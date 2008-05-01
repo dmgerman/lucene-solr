@@ -1417,19 +1417,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
-comment|// NO-OP
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"found none"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>SpanQuery</code>.    *     * @param terms    *          Map to place created WeightedSpanTerms in    * @param spanQuery    *          SpanQuery to extract Terms from    * @throws IOException    */
 DECL|method|extractWeightedSpanTerms
