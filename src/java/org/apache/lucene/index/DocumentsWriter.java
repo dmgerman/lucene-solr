@@ -1187,7 +1187,7 @@ name|abortCount
 operator|++
 expr_stmt|;
 block|}
-comment|/** Called if we hit an exception when adding docs,    *  flushing, etc.  This resets our state, discarding any    *  docs added since last flush.  If ae is non-null, it    *  contains the root cause exception (which we re-throw    *  after we are done aborting). */
+comment|/** Called if we hit an exception at a bad time (when    *  updating the index files) and must discard all    *  currently buffered docs.  This resets our state,    *  discarding any docs added since last flush.  If ae is    *  non-null, it contains the root cause exception (which    *  we re-throw after we are done aborting). */
 DECL|method|abort
 specifier|synchronized
 name|void

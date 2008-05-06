@@ -258,6 +258,20 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|+
+literal|": exc"
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace

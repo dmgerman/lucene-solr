@@ -876,6 +876,14 @@ name|contains
 argument_list|(
 name|name
 argument_list|)
+operator|&&
+operator|!
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"segments.gen"
+argument_list|)
 condition|)
 throw|throw
 operator|new
