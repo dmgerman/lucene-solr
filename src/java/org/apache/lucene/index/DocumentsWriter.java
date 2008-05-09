@@ -6469,7 +6469,7 @@ return|return
 name|b
 return|;
 block|}
-comment|/* Return a byte[] to the pool */
+comment|/* Return byte[]'s to the pool */
 DECL|method|recycleByteBlocks
 specifier|synchronized
 name|void
