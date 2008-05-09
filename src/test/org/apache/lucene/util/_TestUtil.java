@@ -279,6 +279,7 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** This runs the CheckIndex tool on the index in.  If any    *  issues are hit, a RuntimeException is thrown; else,    *  true is returned. */
 DECL|method|checkIndex
 specifier|public
 specifier|static
@@ -346,9 +347,13 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"CheckIndex failed"
+argument_list|)
+throw|;
 block|}
 else|else
 return|return
