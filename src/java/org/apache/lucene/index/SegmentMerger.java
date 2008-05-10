@@ -1697,55 +1697,53 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-assert|assert
+specifier|final
+name|long
+name|fdxFileLength
+init|=
+name|directory
+operator|.
+name|fileLength
+argument_list|(
+name|segment
+operator|+
+literal|"."
+operator|+
+name|IndexFileNames
+operator|.
+name|FIELDS_INDEX_EXTENSION
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
 literal|4
 operator|+
 name|docCount
 operator|*
 literal|8
-operator|==
-name|directory
-operator|.
-name|fileLength
+operator|!=
+name|fdxFileLength
+condition|)
+comment|// This is most like a bug in Sun JRE 1.6.0_04/_05;
+comment|// we detect that the bug has struck, here, and
+comment|// throw an exception to prevent the corruption from
+comment|// entering the index.  See LUCENE-1282 for
+comment|// details.
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-name|segment
-operator|+
-literal|"."
-operator|+
-name|IndexFileNames
-operator|.
-name|FIELDS_INDEX_EXTENSION
-argument_list|)
-operator|:
-literal|"after mergeFields: fdx size mismatch: "
+literal|"mergeFields produced an invalid result: docCount is "
 operator|+
 name|docCount
 operator|+
-literal|" docs vs "
+literal|" but fdx file size is "
 operator|+
-name|directory
-operator|.
-name|fileLength
-argument_list|(
-name|segment
+name|fdxFileLength
 operator|+
-literal|"."
-operator|+
-name|IndexFileNames
-operator|.
-name|FIELDS_INDEX_EXTENSION
+literal|"; now aborting this merge to prevent index corruption"
 argument_list|)
-operator|+
-literal|" length in bytes of "
-operator|+
-name|segment
-operator|+
-literal|"."
-operator|+
-name|IndexFileNames
-operator|.
-name|FIELDS_INDEX_EXTENSION
-assert|;
+throw|;
 block|}
 else|else
 comment|// If we are skipping the doc stores, that means there
