@@ -1328,30 +1328,9 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|updater
-operator|.
-name|numDocsPending
-operator|.
-name|get
-argument_list|()
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|updater
-operator|.
-name|commitCommands
-operator|.
-name|get
-argument_list|()
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
+comment|// Lucene now manages it's own deletes.
+comment|// assertEquals(updater.numDocsPending.get(), 0);
+comment|// assertEquals(updater.commitCommands.get(), 0);
 block|}
 block|}
 end_class
