@@ -426,14 +426,6 @@ specifier|final
 name|CommitTracker
 name|tracker
 decl_stmt|;
-DECL|field|maxPendingDeletes
-specifier|protected
-name|int
-name|maxPendingDeletes
-init|=
-operator|-
-literal|1
-decl_stmt|;
 comment|// iwCommit protects internal data and open/close of the IndexWriter and
 comment|// is a mutex. Any use of the index writer should be protected by iwAccess,
 comment|// which admits multiple simultaneous acquisitions.  iwAccess is
@@ -470,21 +462,6 @@ block|{
 name|super
 argument_list|(
 name|core
-argument_list|)
-expr_stmt|;
-name|maxPendingDeletes
-operator|=
-name|core
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|getInt
-argument_list|(
-literal|"updateHandler/maxPendingDeletes"
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 name|ReadWriteLock
