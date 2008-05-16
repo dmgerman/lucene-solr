@@ -764,7 +764,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a<code>QParser</code> to parse<code>qstr</code>,    * assuming that the default query type is<code>defaultType</code>.    * The query type may be overridden by local parameters in the query    * string itself.  For example if defaultType=<code>"dismax"</code>    * and qstr=<code>foo</code>, then the dismax query parser will be used    * to parse and construct the query object.  However    * if qstr=<code>&lt;!prefix f=myfield&gt;foo</code>    * then the prefix query parser will be used.    */
+comment|/** Create a<code>QParser</code> to parse<code>qstr</code>,    * assuming that the default query type is<code>defaultType</code>.    * The query type may be overridden by local parameters in the query    * string itself.  For example if defaultType=<code>"dismax"</code>    * and qstr=<code>foo</code>, then the dismax query parser will be used    * to parse and construct the query object.  However    * if qstr=<code>{!prefix f=myfield}foo</code>    * then the prefix query parser will be used.    */
 DECL|method|getParser
 specifier|public
 specifier|static
