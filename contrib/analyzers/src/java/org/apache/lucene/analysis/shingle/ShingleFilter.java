@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A ShingleFilter constructs shingles (token n-grams) from a token stream,  * that is, combinations of tokens that are indexed as one token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * would be tokenized into the tokens "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>This filter handles position increments> 1 by inserting filler tokens  * (tokens with termtext "_"). It does not handle a position increment of 0.  */
+comment|/**  *<p>A ShingleFilter constructs shingles (token n-grams) from a token stream.  * In other words, it creates combinations of tokens as a single token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * might be tokenized into shingles "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>This filter handles position increments> 1 by inserting filler tokens  * (tokens with termtext "_"). It does not handle a position increment of 0.  */
 end_comment
 
 begin_class
@@ -186,7 +186,7 @@ specifier|private
 name|int
 name|maxShingleSize
 decl_stmt|;
-comment|/**    * Construct a ShingleFilter with the specified single size from the    * TokenStream<code>input</code>    *    * @param input input stream    * @param maxShingleSize maximum shingle size produced by the filter.    */
+comment|/**    * Constructs a ShingleFilter with the specified single size from the    * TokenStream<code>input</code>    *    * @param input input stream    * @param maxShingleSize maximum shingle size produced by the filter.    */
 DECL|method|ShingleFilter
 specifier|public
 name|ShingleFilter
