@@ -77,7 +77,7 @@ name|MIN_BUFFER_SIZE
 init|=
 literal|10
 decl_stmt|;
-comment|/** @deprecated: we will remove this when we remove the    * deprecated APIs */
+comment|/** @deprecated We will remove this when we remove the    * deprecated APIs */
 DECL|field|termText
 specifier|private
 name|String

@@ -1833,7 +1833,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    *     * @param field The field to read in    * @param tvfPointer The pointer within the tvf file where we should start reading    * @param mapper The mapper used to map the TermVector    * @return The TermVector located at that position    * @throws IOException     */
+comment|/**    *     * @param field The field to read in    * @param tvfPointer The pointer within the tvf file where we should start reading    * @param mapper The mapper used to map the TermVector    * @throws IOException    */
 DECL|method|readTermVector
 specifier|private
 name|void
