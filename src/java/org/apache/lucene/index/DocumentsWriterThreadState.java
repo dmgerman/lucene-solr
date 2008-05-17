@@ -342,6 +342,8 @@ operator|new
 name|ByteBlockPool
 argument_list|(
 name|docWriter
+operator|.
+name|byteBlockAllocator
 argument_list|,
 literal|true
 argument_list|)
@@ -352,6 +354,8 @@ operator|new
 name|ByteBlockPool
 argument_list|(
 name|docWriter
+operator|.
+name|byteBlockAllocator
 argument_list|,
 literal|false
 argument_list|)

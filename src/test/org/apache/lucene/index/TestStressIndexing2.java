@@ -644,6 +644,28 @@ name|IOException
 throws|,
 name|InterruptedException
 block|{
+name|Map
+name|docs
+init|=
+operator|new
+name|HashMap
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|iter
+init|=
+literal|0
+init|;
+name|iter
+operator|<
+literal|3
+condition|;
+name|iter
+operator|++
+control|)
+block|{
 name|IndexWriter
 name|w
 init|=
@@ -674,7 +696,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|/***     w.setMaxMergeDocs(Integer.MAX_VALUE);     w.setMaxFieldLength(10000);     w.setRAMBufferSizeMB(1);     w.setMergeFactor(10);     ***/
+comment|/***           w.setMaxMergeDocs(Integer.MAX_VALUE);           w.setMaxFieldLength(10000);           w.setRAMBufferSizeMB(1);           w.setMergeFactor(10);       ***/
 comment|// force many merges
 name|w
 operator|.
@@ -821,13 +843,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|Map
-name|docs
-init|=
-operator|new
-name|HashMap
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -867,6 +882,7 @@ operator|.
 name|docs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|checkIndex
@@ -3246,7 +3262,12 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"f0"
+literal|"f"
+operator|+
+name|nextInt
+argument_list|(
+literal|100
+argument_list|)
 argument_list|,
 name|getString
 argument_list|(
@@ -3280,7 +3301,12 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"f1"
+literal|"f"
+operator|+
+name|nextInt
+argument_list|(
+literal|100
+argument_list|)
 argument_list|,
 name|getString
 argument_list|(
@@ -3314,7 +3340,12 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"f2"
+literal|"f"
+operator|+
+name|nextInt
+argument_list|(
+literal|100
+argument_list|)
 argument_list|,
 name|getString
 argument_list|(
@@ -3352,7 +3383,12 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
-literal|"f3"
+literal|"f"
+operator|+
+name|nextInt
+argument_list|(
+literal|100
+argument_list|)
 argument_list|,
 name|getString
 argument_list|(
