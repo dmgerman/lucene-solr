@@ -3405,125 +3405,125 @@ literal|"/int)=34]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-01T00:00:00.000Z'][.='0'  ]"
+literal|"/int[@name='1976-07-01T00:00:00Z'][.='0'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-02T00:00:00.000Z'][.='0'  ]"
+literal|"/int[@name='1976-07-02T00:00:00Z'][.='0'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-03T00:00:00.000Z'][.='2'  ]"
+literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
 comment|// july4th = 2 because exists doc @ 00:00:00.000 on July5
 comment|// (date faceting is inclusive)
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-04T00:00:00.000Z'][.='2'  ]"
+literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-05T00:00:00.000Z'][.='2'  ]"
+literal|"/int[@name='1976-07-05T00:00:00Z'][.='2'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-06T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-06T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-07T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-07T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-08T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-08T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-09T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-09T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-10T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-10T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-11T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-11T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-12T00:00:00.000Z'][.='1'  ]"
+literal|"/int[@name='1976-07-12T00:00:00Z'][.='1'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-13T00:00:00.000Z'][.='1'  ]"
+literal|"/int[@name='1976-07-13T00:00:00Z'][.='1'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-14T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-14T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-15T00:00:00.000Z'][.='2'  ]"
+literal|"/int[@name='1976-07-15T00:00:00Z'][.='2'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-16T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-16T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-17T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-17T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-18T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-18T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-19T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-19T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-21T00:00:00.000Z'][.='1'  ]"
+literal|"/int[@name='1976-07-21T00:00:00Z'][.='1'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-22T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-22T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-23T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-23T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-24T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-24T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-25T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-25T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-26T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-26T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-27T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-27T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-28T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-28T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-29T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-29T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-30T00:00:00.000Z'][.='1'  ]"
+literal|"/int[@name='1976-07-30T00:00:00Z'][.='1'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-31T00:00:00.000Z'][.='0']"
+literal|"/int[@name='1976-07-31T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
@@ -3590,15 +3590,15 @@ literal|"/int)=6]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-01T00:00:00.000Z'][.='5'  ]"
+literal|"/int[@name='1976-07-01T00:00:00Z'][.='5'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-06T00:00:00.000Z'][.='0'  ]"
+literal|"/int[@name='1976-07-06T00:00:00Z'][.='0'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-11T00:00:00.000Z'][.='4'  ]"
+literal|"/int[@name='1976-07-11T00:00:00Z'][.='4'  ]"
 argument_list|,
 name|pre
 operator|+
@@ -3665,15 +3665,15 @@ literal|"/int)=6]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-01T00:00:00.000Z'][.='5'  ]"
+literal|"/int[@name='1976-07-01T00:00:00Z'][.='5'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-06T00:00:00.000Z'][.='0'  ]"
+literal|"/int[@name='1976-07-06T00:00:00Z'][.='0'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-11T00:00:00.000Z'][.='1'  ]"
+literal|"/int[@name='1976-07-11T00:00:00Z'][.='1'  ]"
 argument_list|,
 name|pre
 operator|+
