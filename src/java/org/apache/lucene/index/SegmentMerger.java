@@ -80,6 +80,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|FieldSelectorResult
 import|;
 end_import
@@ -1647,10 +1661,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|fieldsWriter
-operator|.
-name|addDocument
-argument_list|(
+comment|// NOTE: it's very important to first assign
+comment|// to doc then pass it to
+comment|// termVectorsWriter.addAllDocVectors; see
+comment|// LUCENE-1282
+name|Document
+name|doc
+init|=
 name|reader
 operator|.
 name|document
@@ -1659,6 +1676,12 @@ name|j
 argument_list|,
 name|fieldSelectorMerge
 argument_list|)
+decl_stmt|;
+name|fieldsWriter
+operator|.
+name|addDocument
+argument_list|(
+name|doc
 argument_list|)
 expr_stmt|;
 name|j
@@ -1724,7 +1747,7 @@ literal|8
 operator|!=
 name|fdxFileLength
 condition|)
-comment|// This is most like a bug in Sun JRE 1.6.0_04/_05;
+comment|// This is most likely a bug in Sun JRE 1.6.0_04/_05;
 comment|// we detect that the bug has struck, here, and
 comment|// throw an exception to prevent the corruption from
 comment|// entering the index.  See LUCENE-1282 for
@@ -2062,16 +2085,26 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|termVectorsWriter
-operator|.
-name|addAllDocVectors
-argument_list|(
+comment|// NOTE: it's very important to first assign
+comment|// to vectors then pass it to
+comment|// termVectorsWriter.addAllDocVectors; see
+comment|// LUCENE-1282
+name|TermFreqVector
+index|[]
+name|vectors
+init|=
 name|reader
 operator|.
 name|getTermFreqVectors
 argument_list|(
 name|docNum
 argument_list|)
+decl_stmt|;
+name|termVectorsWriter
+operator|.
+name|addAllDocVectors
+argument_list|(
+name|vectors
 argument_list|)
 expr_stmt|;
 name|docNum
@@ -2107,55 +2140,53 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-assert|assert
+specifier|final
+name|long
+name|tvxSize
+init|=
+name|directory
+operator|.
+name|fileLength
+argument_list|(
+name|segment
+operator|+
+literal|"."
+operator|+
+name|IndexFileNames
+operator|.
+name|VECTORS_INDEX_EXTENSION
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
 literal|4
 operator|+
 name|mergedDocs
 operator|*
 literal|16
-operator|==
-name|directory
-operator|.
-name|fileLength
+operator|!=
+name|tvxSize
+condition|)
+comment|// This is most likely a bug in Sun JRE 1.6.0_04/_05;
+comment|// we detect that the bug has struck, here, and
+comment|// throw an exception to prevent the corruption from
+comment|// entering the index.  See LUCENE-1282 for
+comment|// details.
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-name|segment
-operator|+
-literal|"."
-operator|+
-name|IndexFileNames
-operator|.
-name|VECTORS_INDEX_EXTENSION
-argument_list|)
-operator|:
-literal|"after mergeVectors: tvx size mismatch: "
+literal|"mergeVectors produced an invalid result: mergedDocs is "
 operator|+
 name|mergedDocs
 operator|+
-literal|" docs vs "
+literal|" but tvx size is "
 operator|+
-name|directory
-operator|.
-name|fileLength
-argument_list|(
-name|segment
+name|tvxSize
 operator|+
-literal|"."
-operator|+
-name|IndexFileNames
-operator|.
-name|VECTORS_INDEX_EXTENSION
+literal|"; now aborting this merge to prevent index corruption"
 argument_list|)
-operator|+
-literal|" length in bytes of "
-operator|+
-name|segment
-operator|+
-literal|"."
-operator|+
-name|IndexFileNames
-operator|.
-name|VECTORS_INDEX_EXTENSION
-assert|;
+throw|;
 block|}
 DECL|field|freqOutput
 specifier|private
