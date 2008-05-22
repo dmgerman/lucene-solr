@@ -205,10 +205,12 @@ comment|// statistics
 comment|// TODO: should we bother synchronizing these, or is an off-by-one error
 comment|// acceptable every million requests or so?
 DECL|field|numRequests
+specifier|volatile
 name|long
 name|numRequests
 decl_stmt|;
 DECL|field|numErrors
+specifier|volatile
 name|long
 name|numErrors
 decl_stmt|;
@@ -235,6 +237,7 @@ name|SolrParams
 name|invariants
 decl_stmt|;
 DECL|field|totalTime
+specifier|volatile
 name|long
 name|totalTime
 init|=
@@ -642,17 +645,17 @@ name|numRequests
 operator|*
 literal|1000
 operator|/
-operator|(
-operator|(
+call|(
 name|float
-operator|)
+call|)
+argument_list|(
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
 operator|-
 name|handlerStart
-operator|)
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
