@@ -415,7 +415,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Suggest similar words (optionally restricted to a field of an index).    *     *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @param ir the indexReader of the user index (can be null see field param)    * @param field the field of the user index: if field is not null, the suggested    * words are restricted to the words present in this field.    * @param morePopular return only the suggest words that are more frequent than the searched word    * (only if restricted mode = (indexReader!=null and field!=null)    * @throws IOException    * @return String[] the sorted list of the suggest words with these 2 criteria:    * first criteria: the edit distance, second criteria (only if restricted mode): the popularity    * of the suggest words in the field of the user index    */
+comment|/**    * Suggest similar words (optionally restricted to a field of an index).    *     *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @param ir the indexReader of the user index (can be null see field param)    * @param field the field of the user index: if field is not null, the suggested    * words are restricted to the words present in this field.    * @param morePopular return only the suggest words that are as frequent or more frequent than the searched word    * (only if restricted mode = (indexReader!=null and field!=null)    * @throws IOException    * @return String[] the sorted list of the suggest words with these 2 criteria:    * first criteria: the edit distance, second criteria (only if restricted mode): the popularity    * of the suggest words in the field of the user index    */
 DECL|method|suggestSimilar
 specifier|public
 name|String
@@ -468,12 +468,14 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|int
-name|goalFreq
+name|freq
 init|=
 operator|(
-name|morePopular
-operator|&&
 name|ir
+operator|!=
+literal|null
+operator|&&
+name|field
 operator|!=
 literal|null
 operator|)
@@ -493,13 +495,33 @@ argument_list|)
 else|:
 literal|0
 decl_stmt|;
+specifier|final
+name|int
+name|goalFreq
+init|=
+operator|(
+name|morePopular
+operator|&&
+name|ir
+operator|!=
+literal|null
+operator|&&
+name|field
+operator|!=
+literal|null
+operator|)
+condition|?
+name|freq
+else|:
+literal|0
+decl_stmt|;
 comment|// if the word exists in the real index and we don't care for word frequency, return the word itself
 if|if
 condition|(
 operator|!
 name|morePopular
 operator|&&
-name|goalFreq
+name|freq
 operator|>
 literal|0
 condition|)
