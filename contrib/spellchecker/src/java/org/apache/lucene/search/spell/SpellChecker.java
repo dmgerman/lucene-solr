@@ -1227,7 +1227,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Index a Dictionary    * @param dict the dictionary to index    * @throws IOException    */
+comment|/**    * Indexes the data from the given {@link Dictionary}.    * @param dict Dictionary to index    * @param mergeFactor mergeFactor to use when indexing    * @param ramMB the max amount or memory in MB to use    * @throws IOException    */
 DECL|method|indexDictionary
 specifier|public
 name|void
@@ -1235,6 +1235,12 @@ name|indexDictionary
 parameter_list|(
 name|Dictionary
 name|dict
+parameter_list|,
+name|int
+name|mergeFactor
+parameter_list|,
+name|int
+name|ramMB
 parameter_list|)
 throws|throws
 name|IOException
@@ -1258,14 +1264,14 @@ name|writer
 operator|.
 name|setMergeFactor
 argument_list|(
-literal|300
+name|mergeFactor
 argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|setMaxBufferedDocs
+name|setRAMBufferSizeMB
 argument_list|(
-literal|150
+name|ramMB
 argument_list|)
 expr_stmt|;
 name|Iterator
@@ -1379,6 +1385,28 @@ argument_list|(
 name|this
 operator|.
 name|spellIndex
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Indexes the data from the given {@link Dictionary}.    * @param dict the dictionary to index    * @throws IOException    */
+DECL|method|indexDictionary
+specifier|public
+name|void
+name|indexDictionary
+parameter_list|(
+name|Dictionary
+name|dict
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|indexDictionary
+argument_list|(
+name|dict
+argument_list|,
+literal|300
+argument_list|,
+literal|10
 argument_list|)
 expr_stmt|;
 block|}
