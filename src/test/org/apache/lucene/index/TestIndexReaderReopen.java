@@ -108,6 +108,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -236,7 +246,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Hits
+name|IndexSearcher
 import|;
 end_import
 
@@ -250,7 +260,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
+name|ScoreDoc
 import|;
 end_import
 
@@ -321,16 +331,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
 import|;
 end_import
 
@@ -3901,7 +3901,8 @@ argument_list|(
 name|refreshed
 argument_list|)
 decl_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|searcher
@@ -3929,23 +3930,33 @@ argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 if|if
 condition|(
 name|hits
 operator|.
 name|length
-argument_list|()
 operator|>
 literal|0
 condition|)
 block|{
-name|hits
+name|searcher
 operator|.
 name|doc
 argument_list|(
+name|hits
+index|[
 literal|0
+index|]
+operator|.
+name|doc
 argument_list|)
 expr_stmt|;
 block|}

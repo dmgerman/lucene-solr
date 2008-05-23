@@ -18,35 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|Hashtable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Enumeration
+name|File
 import|;
 end_import
 
@@ -64,9 +40,33 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|File
+name|Enumeration
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Hashtable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|WhitespaceAnalyzer
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|IndexWriter
 import|;
 end_import
 
@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|Term
 import|;
 end_import
 
@@ -162,9 +162,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|Term
+name|ScoreDoc
 import|;
 end_import
 
@@ -190,23 +190,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|util
 operator|.
-name|Hits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|WhitespaceAnalyzer
+name|LuceneTestCase
 import|;
 end_import
 
@@ -2445,7 +2431,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 literal|null
@@ -2459,7 +2446,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 block|}
 catch|catch

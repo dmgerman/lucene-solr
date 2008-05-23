@@ -258,7 +258,8 @@ literal|"a NOT b"
 argument_list|)
 decl_stmt|;
 comment|//System.out.println(query);
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|searcher
@@ -266,7 +267,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -275,7 +282,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

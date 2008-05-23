@@ -44,20 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|analysis
 operator|.
 name|WhitespaceAnalyzer
@@ -102,7 +88,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Hits
+name|IndexSearcher
 import|;
 end_import
 
@@ -116,7 +102,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
+name|ScoreDoc
 import|;
 end_import
 
@@ -159,6 +145,20 @@ operator|.
 name|store
 operator|.
 name|MockRAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -1885,10 +1885,13 @@ name|TermQuery
 argument_list|(
 name|term
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
 operator|.
-name|length
-argument_list|()
+name|totalHits
 decl_stmt|;
 name|searcher
 operator|.
@@ -2658,7 +2661,8 @@ argument_list|(
 name|newReader
 argument_list|)
 decl_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 literal|null
@@ -2676,7 +2680,13 @@ name|TermQuery
 argument_list|(
 name|searchTerm
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 block|}
 catch|catch
@@ -2706,7 +2716,6 @@ init|=
 name|hits
 operator|.
 name|length
-argument_list|()
 decl_stmt|;
 if|if
 condition|(

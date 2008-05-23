@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This test intentionally not put in the search package in order  * to test HitIterator and Hit package protection.  */
+comment|/**  * This test intentionally not put in the search package in order  * to test HitIterator and Hit package protection.  *   * @deprecated Hits will be removed in Lucene 3.0   */
 end_comment
 
 begin_class

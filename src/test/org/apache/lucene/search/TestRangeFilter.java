@@ -174,7 +174,8 @@ operator|-
 name|minId
 argument_list|)
 expr_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|result
 decl_stmt|;
 name|Query
@@ -214,7 +215,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -225,7 +230,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -249,7 +253,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -262,7 +270,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -286,7 +293,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -299,7 +310,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -323,7 +333,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -336,7 +350,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -360,7 +373,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -375,7 +392,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -399,7 +415,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -414,7 +434,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// unbounded id
@@ -439,7 +458,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -450,7 +473,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -474,7 +496,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -485,7 +511,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -509,7 +534,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -522,7 +551,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -546,7 +574,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -559,7 +591,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -583,7 +614,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -596,7 +631,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -620,7 +654,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -633,7 +671,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// very small sets
@@ -658,7 +695,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -669,7 +710,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -693,7 +733,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -704,7 +748,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -728,7 +771,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -739,7 +786,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -763,7 +809,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -774,7 +824,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -798,7 +847,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -809,7 +862,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -833,7 +885,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -844,7 +900,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -868,7 +923,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -879,7 +938,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -903,7 +961,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -914,7 +976,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -982,7 +1043,8 @@ operator|-
 name|minId
 argument_list|)
 expr_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|result
 decl_stmt|;
 name|Query
@@ -1022,7 +1084,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1033,7 +1099,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1057,7 +1122,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1070,7 +1139,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1094,7 +1162,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1107,7 +1179,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1131,7 +1202,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1144,7 +1219,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// unbounded
@@ -1169,7 +1243,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1180,7 +1258,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1204,7 +1281,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1215,7 +1296,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1239,7 +1319,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1252,7 +1336,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1276,7 +1359,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1289,7 +1376,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// very small sets
@@ -1314,7 +1400,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1325,7 +1415,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1349,7 +1438,11 @@ name|F
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1360,7 +1453,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1384,7 +1476,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1395,7 +1491,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1419,7 +1514,11 @@ name|F
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1430,7 +1529,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1454,7 +1552,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1465,7 +1567,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1489,7 +1590,11 @@ name|T
 argument_list|,
 name|F
 argument_list|)
+argument_list|,
+name|numDocs
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1500,7 +1605,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

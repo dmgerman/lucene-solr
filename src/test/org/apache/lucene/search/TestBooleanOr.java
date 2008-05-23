@@ -325,10 +325,13 @@ operator|.
 name|search
 argument_list|(
 name|q
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
 operator|.
-name|length
-argument_list|()
+name|totalHits
 return|;
 block|}
 DECL|method|testElements

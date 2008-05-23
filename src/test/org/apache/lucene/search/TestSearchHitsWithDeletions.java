@@ -191,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test Hits searches with interleaved deletions.  *   * See {@link http://issues.apache.org/jira/browse/LUCENE-1096}.  */
+comment|/**  * Test Hits searches with interleaved deletions.  *   * See {@link http://issues.apache.org/jira/browse/LUCENE-1096}.  * @deprecated Hits will be removed in Lucene 3.0  */
 end_comment
 
 begin_class

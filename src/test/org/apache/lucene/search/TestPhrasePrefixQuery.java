@@ -600,7 +600,8 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|result
 decl_stmt|;
 name|result
@@ -610,7 +611,13 @@ operator|.
 name|search
 argument_list|(
 name|query1
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -619,7 +626,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -629,7 +635,13 @@ operator|.
 name|search
 argument_list|(
 name|query2
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -638,7 +650,6 @@ argument_list|,
 name|result
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

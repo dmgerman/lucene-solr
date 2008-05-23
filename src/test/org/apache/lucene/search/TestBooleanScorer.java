@@ -382,7 +382,8 @@ argument_list|(
 name|directory
 argument_list|)
 decl_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|indexSearcher
@@ -390,7 +391,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -401,7 +408,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

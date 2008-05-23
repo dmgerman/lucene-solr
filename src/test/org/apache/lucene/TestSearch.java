@@ -474,7 +474,8 @@ block|,
 literal|"\"a c e\""
 block|,       }
 decl_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 literal|null
@@ -552,7 +553,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|out
 operator|.
@@ -561,7 +568,6 @@ argument_list|(
 name|hits
 operator|.
 name|length
-argument_list|()
 operator|+
 literal|" total results"
 argument_list|)
@@ -578,7 +584,6 @@ operator|<
 name|hits
 operator|.
 name|length
-argument_list|()
 operator|&&
 name|i
 operator|<
@@ -591,11 +596,16 @@ block|{
 name|Document
 name|d
 init|=
-name|hits
+name|searcher
 operator|.
 name|doc
 argument_list|(
+name|hits
+index|[
 name|i
+index|]
+operator|.
+name|doc
 argument_list|)
 decl_stmt|;
 name|out
@@ -607,11 +617,11 @@ operator|+
 literal|" "
 operator|+
 name|hits
+index|[
+name|i
+index|]
 operator|.
 name|score
-argument_list|(
-name|i
-argument_list|)
 comment|// 			   + " " + DateField.stringToDate(d.get("modified"))
 operator|+
 literal|" "

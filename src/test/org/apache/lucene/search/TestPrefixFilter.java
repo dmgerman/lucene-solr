@@ -278,7 +278,8 @@ argument_list|(
 name|directory
 argument_list|)
 decl_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|searcher
@@ -286,7 +287,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -295,7 +302,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test middle of values
@@ -328,7 +334,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -337,7 +349,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test start of values
@@ -370,7 +381,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -379,7 +396,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test end of values
@@ -412,7 +428,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -421,7 +443,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test non-existant
@@ -454,7 +475,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -463,7 +490,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test non-existant, before values
@@ -496,7 +522,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -505,7 +537,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test non-existant, after values
@@ -538,7 +569,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -547,7 +584,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test zero length prefix
@@ -580,7 +616,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -589,7 +631,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test non existent field
@@ -622,7 +663,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -631,7 +678,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

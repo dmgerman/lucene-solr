@@ -78,20 +78,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Hits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -107,6 +93,20 @@ operator|.
 name|search
 operator|.
 name|PhraseQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|ScoreDoc
 import|;
 end_import
 
@@ -461,7 +461,8 @@ expr_stmt|;
 block|}
 DECL|method|search
 specifier|private
-name|Hits
+name|ScoreDoc
+index|[]
 name|search
 parameter_list|()
 throws|throws
@@ -517,7 +518,13 @@ operator|.
 name|search
 argument_list|(
 name|pq
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 return|;
 block|}
 DECL|method|performTest
@@ -542,7 +549,8 @@ name|seeksCounter
 operator|=
 literal|0
 expr_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|search
@@ -556,7 +564,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// check if the number of calls of seek() does not exceed the number of hits

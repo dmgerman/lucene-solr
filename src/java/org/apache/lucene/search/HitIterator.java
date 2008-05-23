@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator over {@link Hits} that provides lazy fetching of each document.  * {@link Hits#iterator()} returns an instance of this class.  Calls to {@link #next()}  * return a {@link Hit} instance.  *  * @author Jeremy Rayner  */
+comment|/**  * An iterator over {@link Hits} that provides lazy fetching of each document.  * {@link Hits#iterator()} returns an instance of this class.  Calls to {@link #next()}  * return a {@link Hit} instance.  *  * @deprecated Hits will be removed in Lucene 3.0. Use {@link TopDocCollector} and {@link TopDocs} instead.  * @author Jeremy Rayner  */
 end_comment
 
 begin_class

@@ -16,15 +16,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
+name|IOException
 import|;
 end_import
 
@@ -138,20 +134,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Hits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -167,6 +149,20 @@ operator|.
 name|search
 operator|.
 name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|ScoreDoc
 import|;
 end_import
 
@@ -200,11 +196,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -351,7 +351,8 @@ argument_list|(
 literal|"text"
 argument_list|)
 decl_stmt|;
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|isearcher
@@ -359,7 +360,13 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -368,7 +375,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Iterate through the results:
@@ -384,7 +390,6 @@ operator|<
 name|hits
 operator|.
 name|length
-argument_list|()
 condition|;
 name|i
 operator|++
@@ -393,11 +398,16 @@ block|{
 name|Document
 name|hitDoc
 init|=
-name|hits
+name|isearcher
 operator|.
 name|doc
 argument_list|(
+name|hits
+index|[
 name|i
+index|]
+operator|.
+name|doc
 argument_list|)
 decl_stmt|;
 name|assertEquals
