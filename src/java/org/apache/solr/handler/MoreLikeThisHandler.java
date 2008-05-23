@@ -1880,7 +1880,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|fillInteristingTermsFromMLTQuery
+name|fillInterestingTermsFromMLTQuery
 argument_list|(
 name|mltquery
 argument_list|,
@@ -2053,7 +2053,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|fillInteristingTermsFromMLTQuery
+name|fillInterestingTermsFromMLTQuery
 argument_list|(
 name|mltquery
 argument_list|,
@@ -2237,10 +2237,10 @@ return|return
 name|mlt
 return|;
 block|}
-DECL|method|fillInteristingTermsFromMLTQuery
+DECL|method|fillInterestingTermsFromMLTQuery
 specifier|private
 name|void
-name|fillInteristingTermsFromMLTQuery
+name|fillInterestingTermsFromMLTQuery
 parameter_list|(
 name|Query
 name|query
