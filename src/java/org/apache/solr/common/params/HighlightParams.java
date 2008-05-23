@@ -147,6 +147,17 @@ name|HIGHLIGHT
 operator|+
 literal|".maxAlternateFieldLength"
 decl_stmt|;
+DECL|field|USE_PHRASE_HIGHLIGHTER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|USE_PHRASE_HIGHLIGHTER
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".usePhraseHighlighter"
+decl_stmt|;
 DECL|field|MERGE_CONTIGUOUS_FRAGMENTS
 specifier|public
 specifier|static
