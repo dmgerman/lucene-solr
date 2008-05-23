@@ -102,6 +102,14 @@ specifier|protected
 name|Exception
 name|err
 decl_stmt|;
+comment|/**    * Should this response be tagged with HTTP caching headers?    */
+DECL|field|httpCaching
+specifier|protected
+name|boolean
+name|httpCaching
+init|=
+literal|false
+decl_stmt|;
 comment|/***    // another way of returning an error   int errCode;   String errMsg;   ***/
 DECL|method|SolrQueryResponse
 specifier|public
@@ -354,6 +362,36 @@ parameter_list|()
 block|{
 return|return
 name|toLog
+return|;
+block|}
+comment|/**    * Enables or disables the emission of HTTP caching headers for this response.    * @param httpCaching true=emit caching headers, false otherwise    */
+DECL|method|setHttpCaching
+specifier|public
+name|void
+name|setHttpCaching
+parameter_list|(
+name|boolean
+name|httpCaching
+parameter_list|)
+block|{
+name|this
+operator|.
+name|httpCaching
+operator|=
+name|httpCaching
+expr_stmt|;
+block|}
+comment|/**    * Should this response emit HTTP caching headers?    * @return true=yes emit headers, false otherwise    */
+DECL|method|isHttpCaching
+specifier|public
+name|boolean
+name|isHttpCaching
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|httpCaching
 return|;
 block|}
 block|}

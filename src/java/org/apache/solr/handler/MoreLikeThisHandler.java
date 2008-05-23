@@ -617,6 +617,13 @@ argument_list|(
 name|rsp
 argument_list|)
 expr_stmt|;
+name|rsp
+operator|.
+name|setHttpCaching
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|SolrParams
 name|params
 init|=

@@ -1422,15 +1422,6 @@ name|getMethod
 argument_list|()
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|Method
-operator|.
-name|POST
-operator|!=
-name|reqMethod
-condition|)
-block|{
 name|HttpCacheHeaderUtil
 operator|.
 name|setCacheControlHeader
@@ -1438,9 +1429,10 @@ argument_list|(
 name|config
 argument_list|,
 name|resp
+argument_list|,
+name|reqMethod
 argument_list|)
 expr_stmt|;
-block|}
 comment|// unless we have been explicitly told not to, do cache validation
 comment|// if we fail cache validation, execute the query
 if|if
@@ -1461,6 +1453,8 @@ argument_list|(
 name|solrReq
 argument_list|,
 name|req
+argument_list|,
+name|reqMethod
 argument_list|,
 name|resp
 argument_list|)
@@ -1485,6 +1479,17 @@ argument_list|,
 name|solrReq
 argument_list|,
 name|solrRsp
+argument_list|)
+expr_stmt|;
+name|HttpCacheHeaderUtil
+operator|.
+name|checkHttpCachingVeto
+argument_list|(
+name|solrRsp
+argument_list|,
+name|resp
+argument_list|,
+name|reqMethod
 argument_list|)
 expr_stmt|;
 comment|// add info to http headers
@@ -1547,15 +1552,7 @@ name|Method
 operator|.
 name|HEAD
 operator|!=
-name|Method
-operator|.
-name|getMethod
-argument_list|(
-name|req
-operator|.
-name|getMethod
-argument_list|()
-argument_list|)
+name|reqMethod
 condition|)
 block|{
 if|if
