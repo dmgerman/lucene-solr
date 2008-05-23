@@ -101,7 +101,7 @@ comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/** The interface for search implementations.  *  *<p>Searchable is the abstract network protocol for searching.   * Implementations provide search over a single index, over multiple  * indices, and over indices on remote servers.  *  *<p>Queries, filters and sort criteria are designed to be compact so that  * they may be efficiently passed to a remote index, with only the top-scoring  * hits being returned, rather than every non-zero scoring hit.  */
+comment|/** The interface for search implementations.  *  *<p>Searchable is the abstract network protocol for searching.   * Implementations provide search over a single index, over multiple  * indices, and over indices on remote servers.  *  *<p>Queries, filters and sort criteria are designed to be compact so that  * they may be efficiently passed to a remote index, with only the top-scoring  * hits being returned, rather than every matching hit.  */
 end_comment
 
 begin_interface

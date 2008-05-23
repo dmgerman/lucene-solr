@@ -108,6 +108,20 @@ name|TermDocs
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OpenBitSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Constructs a filter for docs matching any of the terms added to this class.   * Unlike a RangeFilter this can be used for filtering on multiple terms that are not necessarily in   * a sequence. An example might be a collection of primary keys from a database query result or perhaps   * a choice of "category" labels picked by the end user. As a filter, this is much faster than the   * equivalent query (a BooleanQuery with many "should" TermQueries)  *   * @author maharwood  */
 end_comment
@@ -146,11 +160,11 @@ name|term
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.Filter#bits(org.apache.lucene.index.IndexReader) 	 */
-DECL|method|bits
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.IndexReader) 	 */
+DECL|method|getDocIdSet
 specifier|public
-name|BitSet
-name|bits
+name|DocIdSet
+name|getDocIdSet
 parameter_list|(
 name|IndexReader
 name|reader
@@ -158,11 +172,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|BitSet
+name|OpenBitSet
 name|result
 init|=
 operator|new
-name|BitSet
+name|OpenBitSet
 argument_list|(
 name|reader
 operator|.
