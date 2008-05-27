@@ -343,6 +343,24 @@ literal|"/update"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|UpdateRequest
+specifier|public
+name|UpdateRequest
+parameter_list|(
+name|String
+name|url
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|METHOD
+operator|.
+name|POST
+argument_list|,
+name|url
+argument_list|)
+expr_stmt|;
+block|}
 comment|//---------------------------------------------------------------------------
 comment|//---------------------------------------------------------------------------
 comment|/**    * clear the pending documents and delete commands    */
