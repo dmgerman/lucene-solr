@@ -4022,6 +4022,16 @@ literal|"\\"
 argument_list|)
 expr_stmt|;
 comment|// a backslash must always be escaped
+comment|// LUCENE-1189
+name|assertQueryEquals
+argument_list|(
+literal|"(\"a\\\\\") or (\"b\")"
+argument_list|,
+name|a
+argument_list|,
+literal|"a\\ or b"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testQueryStringEscaping
 specifier|public
