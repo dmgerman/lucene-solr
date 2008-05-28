@@ -178,6 +178,36 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+comment|/** Returns the version for this IndexCommit.  This is the       same value that {@link IndexReader#getVersion} would       return if it were opened on this commit. */
+DECL|method|getVersion
+specifier|public
+name|long
+name|getVersion
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This IndexCommit does not support this method."
+argument_list|)
+throw|;
+block|}
+comment|/** Returns the generation (the _N in segments_N) for this       IndexCommit */
+DECL|method|getGeneration
+specifier|public
+name|long
+name|getGeneration
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This IndexCommit does not support this method."
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
