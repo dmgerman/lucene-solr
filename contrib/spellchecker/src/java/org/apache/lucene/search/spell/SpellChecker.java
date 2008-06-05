@@ -830,6 +830,10 @@ condition|(
 name|ir
 operator|!=
 literal|null
+operator|&&
+name|field
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// use the user index
