@@ -98,6 +98,16 @@ name|SchemaField
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -290,6 +300,51 @@ argument_list|(
 name|ex
 argument_list|)
 throw|;
+block|}
+block|}
+DECL|method|testBadSetup
+specifier|public
+name|void
+name|testBadSetup
+parameter_list|()
+block|{
+try|try
+block|{
+comment|// setup the server...
+name|String
+name|url
+init|=
+literal|"http://localhost/?core=xxx"
+decl_stmt|;
+name|CommonsHttpSolrServer
+name|s
+init|=
+operator|new
+name|CommonsHttpSolrServer
+argument_list|(
+name|url
+argument_list|)
+decl_stmt|;
+name|Assert
+operator|.
+name|fail
+argument_list|(
+literal|"CommonsHttpSolrServer should not allow a path with a parameter: "
+operator|+
+name|s
+operator|.
+name|getBaseURL
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+comment|// expected
 block|}
 block|}
 block|}
