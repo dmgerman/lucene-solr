@@ -143,14 +143,11 @@ argument_list|)
 operator|&&
 name|otherCommit
 operator|.
-name|getSegmentsFileName
+name|getVersion
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|getSegmentsFileName
+operator|==
+name|getVersion
 argument_list|()
-argument_list|)
 return|;
 block|}
 else|else
