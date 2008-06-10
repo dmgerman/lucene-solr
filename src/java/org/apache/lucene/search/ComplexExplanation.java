@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Expert: Describes the score computation for document and query, andcan distinguish a match independent of a positive value. */
+comment|/** Expert: Describes the score computation for document and query, and  * can distinguish a match independent of a positive value. */
 end_comment
 
 begin_class
@@ -105,7 +105,7 @@ operator|=
 name|match
 expr_stmt|;
 block|}
-comment|/**    * Indicates wether or not this Explanation models a good match.    *    *<p>    * If the match statis is explicitly set (ie: not null) this method    * uses it; otherwise it defers to the superclass.    *</p>    * @see #getMatch    */
+comment|/**    * Indicates whether or not this Explanation models a good match.    *    *<p>    * If the match status is explicitly set (i.e.: not null) this method    * uses it; otherwise it defers to the superclass.    *</p>    * @see #getMatch    */
 DECL|method|isMatch
 specifier|public
 name|boolean
