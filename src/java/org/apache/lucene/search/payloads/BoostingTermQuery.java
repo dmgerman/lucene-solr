@@ -541,11 +541,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Explanation
+name|ComplexExplanation
 name|result
 init|=
 operator|new
-name|Explanation
+name|ComplexExplanation
 argument_list|()
 decl_stmt|;
 name|Explanation
@@ -632,6 +632,27 @@ argument_list|(
 literal|"btq, product of:"
 argument_list|)
 expr_stmt|;
+name|result
+operator|.
+name|setMatch
+argument_list|(
+name|nonPayloadExpl
+operator|.
+name|getValue
+argument_list|()
+operator|==
+literal|0
+condition|?
+name|Boolean
+operator|.
+name|FALSE
+else|:
+name|Boolean
+operator|.
+name|TRUE
+argument_list|)
+expr_stmt|;
+comment|// LUCENE-1303
 return|return
 name|result
 return|;

@@ -573,13 +573,7 @@ operator|.
 name|TOKENIZED
 argument_list|)
 decl_stmt|;
-name|noPayloadField
-operator|.
-name|setBoost
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
+comment|//noPayloadField.setBoost(0);
 name|doc
 operator|.
 name|add
@@ -1321,7 +1315,25 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//assertTrue("hits Size: " + hits.totalHits + " is not: " + 1, hits.totalHits == 1);
+name|assertTrue
+argument_list|(
+literal|"hits Size: "
+operator|+
+name|hits
+operator|.
+name|totalHits
+operator|+
+literal|" is not: "
+operator|+
+literal|1
+argument_list|,
+name|hits
+operator|.
+name|totalHits
+operator|==
+literal|1
+argument_list|)
+expr_stmt|;
 name|int
 index|[]
 name|results
