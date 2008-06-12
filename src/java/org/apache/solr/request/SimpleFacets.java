@@ -722,6 +722,17 @@ argument_list|,
 literal|100
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|limit
+operator|==
+literal|0
+condition|)
+return|return
+operator|new
+name|NamedList
+argument_list|()
+return|;
 name|Integer
 name|mincount
 init|=
