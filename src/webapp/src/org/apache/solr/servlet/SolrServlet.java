@@ -195,10 +195,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|core
-name|SolrCore
-name|core
-decl_stmt|;
 DECL|method|init
 specifier|public
 name|void
@@ -214,13 +210,8 @@ argument_list|(
 literal|"SolrServlet.init()"
 argument_list|)
 expr_stmt|;
-name|core
-operator|=
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-expr_stmt|;
+comment|// we deliberately do not initialize a SolrCore because of SOLR-597
+comment|// https://issues.apache.org/jira/browse/SOLR-597
 name|log
 operator|.
 name|info
@@ -269,6 +260,15 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+specifier|final
+name|SolrCore
+name|core
+init|=
+name|SolrCore
+operator|.
+name|getSolrCore
+argument_list|()
+decl_stmt|;
 name|SolrServletRequest
 name|solrReq
 init|=
