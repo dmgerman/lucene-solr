@@ -870,10 +870,13 @@ block|}
 return|return
 name|Boolean
 operator|.
-name|getBoolean
+name|valueOf
 argument_list|(
 name|result
 argument_list|)
+operator|.
+name|booleanValue
+argument_list|()
 return|;
 block|}
 comment|/* Returns text of node and all child nodes - without markup */
