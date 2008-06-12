@@ -1862,8 +1862,6 @@ init|=
 operator|new
 name|QueryRequest
 argument_list|(
-name|sreq
-operator|.
 name|params
 argument_list|)
 decl_stmt|;
