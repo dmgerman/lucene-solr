@@ -629,7 +629,7 @@ argument_list|,
 name|client
 argument_list|,
 operator|new
-name|XMLResponseParser
+name|BinaryResponseParser
 argument_list|()
 argument_list|)
 expr_stmt|;
