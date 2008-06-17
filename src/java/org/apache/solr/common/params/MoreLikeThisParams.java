@@ -136,6 +136,18 @@ operator|+
 literal|"boost"
 decl_stmt|;
 comment|// boost or not?
+DECL|field|QF
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|QF
+init|=
+name|PREFIX
+operator|+
+literal|"qf"
+decl_stmt|;
+comment|//boosting applied to mlt fields
 comment|// the /mlt request handler uses 'rows'
 DECL|field|DOC_COUNT
 specifier|public
