@@ -193,9 +193,9 @@ operator|=
 name|req
 expr_stmt|;
 block|}
-comment|/** create and return the<code>Query</code> object represented by<code>qstr</code> */
+comment|/** Create and return the<code>Query</code> object represented by<code>qstr</code>    * @see #getQuery()    **/
 DECL|method|parse
-specifier|protected
+specifier|public
 specifier|abstract
 name|Query
 name|parse
@@ -307,6 +307,7 @@ operator|=
 name|s
 expr_stmt|;
 block|}
+comment|/** Returns the resulting query from this QParser, calling parse() only the    * first time and caching the Query result.    * @return    * @throws ParseException    */
 DECL|method|getQuery
 specifier|public
 name|Query
