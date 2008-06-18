@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Edit distance class.  * Note: this class is not thread-safe.  */
+comment|/**  * Levenshtein edit distance class.  */
 end_comment
 
 begin_class
@@ -27,45 +27,53 @@ DECL|class|TRStringDistance
 specifier|final
 class|class
 name|TRStringDistance
+implements|implements
+name|StringDistance
 block|{
-DECL|field|sa
-specifier|final
+comment|/**      * Optimized to run a bit faster than the static getDistance().      * In one benchmark times were 5.3sec using ctr vs 8.5sec w/ static method, thus 37% faster.      */
+DECL|method|TRStringDistance
+specifier|public
+name|TRStringDistance
+parameter_list|()
+block|{     }
+comment|//*****************************
+comment|// Compute Levenshtein distance: see org.apache.commons.lang.StringUtils#getLevenshteinDistance(String, String)
+comment|//*****************************
+DECL|method|getDistance
+specifier|public
+name|float
+name|getDistance
+parameter_list|(
+name|String
+name|target
+parameter_list|,
+name|String
+name|other
+parameter_list|)
+block|{
 name|char
 index|[]
 name|sa
 decl_stmt|;
-DECL|field|n
-specifier|final
 name|int
 name|n
 decl_stmt|;
-DECL|field|p
 name|int
 name|p
 index|[]
 decl_stmt|;
 comment|//'previous' cost array, horizontally
-DECL|field|d
 name|int
 name|d
 index|[]
 decl_stmt|;
 comment|// cost array, horizontally
-DECL|field|_d
 name|int
 name|_d
 index|[]
 decl_stmt|;
 comment|//placeholder to assist in swapping p and d
-comment|/**      * Optimized to run a bit faster than the static getDistance().      * In one benchmark times were 5.3sec using ctr vs 8.5sec w/ static method, thus 37% faster.      */
-DECL|method|TRStringDistance
-specifier|public
-name|TRStringDistance
-parameter_list|(
-name|String
-name|target
-parameter_list|)
-block|{
+comment|/*            The difference between this impl. and the previous is that, rather            than creating and retaining a matrix of size s.length()+1 by t.length()+1,            we maintain two single-dimensional arrays of length s.length()+1.  The first, d,            is the 'current working' distance array that maintains the newest distance cost            counts as we iterate through the characters of String s.  Each time we increment            the index of String t we are comparing, d is copied to p, the second int[].  Doing so            allows us to retain the previous cost counts as required by the algorithm (taking            the minimum of the cost count to the left, up one, and diagonally up and to the left            of the current cost count being calculated).  (Note that the arrays aren't really            copied anymore, just switched...this is clearly much better than cloning an array            or doing a System.arraycopy() each time  through the outer loop.)             Effectively, the difference between the two implementations is this one does not            cause an out of memory condition when calculating the LD over two very large strings.          */
 name|sa
 operator|=
 name|target
@@ -89,7 +97,6 @@ operator|+
 literal|1
 index|]
 expr_stmt|;
-comment|//'previous' cost array, horizontally
 name|d
 operator|=
 operator|new
@@ -100,22 +107,6 @@ operator|+
 literal|1
 index|]
 expr_stmt|;
-comment|// cost array, horizontally
-block|}
-comment|//*****************************
-comment|// Compute Levenshtein distance: see org.apache.commons.lang.StringUtils#getLevenshteinDistance(String, String)
-comment|//*****************************
-DECL|method|getDistance
-specifier|public
-specifier|final
-name|int
-name|getDistance
-parameter_list|(
-name|String
-name|other
-parameter_list|)
-block|{
-comment|/*            The difference between this impl. and the previous is that, rather            than creating and retaining a matrix of size s.length()+1 by t.length()+1,            we maintain two single-dimensional arrays of length s.length()+1.  The first, d,            is the 'current working' distance array that maintains the newest distance cost            counts as we iterate through the characters of String s.  Each time we increment            the index of String t we are comparing, d is copied to p, the second int[].  Doing so            allows us to retain the previous cost counts as required by the algorithm (taking            the minimum of the cost count to the left, up one, and diagonally up and to the left            of the current cost count being calculated).  (Note that the arrays aren't really            copied anymore, just switched...this is clearly much better than cloning an array            or doing a System.arraycopy() each time  through the outer loop.)             Effectively, the difference between the two implementations is this one does not            cause an out of memory condition when calculating the LD over two very large strings.          */
 specifier|final
 name|int
 name|m
@@ -133,7 +124,7 @@ literal|0
 condition|)
 block|{
 return|return
-name|m
+literal|1
 return|;
 block|}
 elseif|else
@@ -145,7 +136,7 @@ literal|0
 condition|)
 block|{
 return|return
-name|n
+literal|1
 return|;
 block|}
 comment|// indexes into strings s and t
@@ -307,10 +298,31 @@ block|}
 comment|// our last action in the above loop was to switch d and p, so p now
 comment|// actually has the most recent cost counts
 return|return
+literal|1.0f
+operator|-
+operator|(
+operator|(
+name|float
+operator|)
 name|p
 index|[
 name|n
 index|]
+operator|/
+name|Math
+operator|.
+name|min
+argument_list|(
+name|other
+operator|.
+name|length
+argument_list|()
+argument_list|,
+name|sa
+operator|.
+name|length
+argument_list|)
+operator|)
 return|;
 block|}
 block|}
