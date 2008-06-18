@@ -322,7 +322,7 @@ argument_list|(
 name|spellIndex
 argument_list|,
 operator|new
-name|TRStringDistance
+name|LevensteinDistance
 argument_list|()
 argument_list|)
 expr_stmt|;

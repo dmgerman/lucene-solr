@@ -42,7 +42,7 @@ name|StringDistance
 name|sd
 init|=
 operator|new
-name|TRStringDistance
+name|LevensteinDistance
 argument_list|()
 decl_stmt|;
 DECL|method|testGetDistance

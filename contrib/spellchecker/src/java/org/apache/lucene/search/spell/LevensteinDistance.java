@@ -23,17 +23,17 @@ comment|/**  * Levenshtein edit distance class.  */
 end_comment
 
 begin_class
-DECL|class|TRStringDistance
+DECL|class|LevensteinDistance
 specifier|final
 class|class
-name|TRStringDistance
+name|LevensteinDistance
 implements|implements
 name|StringDistance
 block|{
 comment|/**      * Optimized to run a bit faster than the static getDistance().      * In one benchmark times were 5.3sec using ctr vs 8.5sec w/ static method, thus 37% faster.      */
-DECL|method|TRStringDistance
+DECL|method|LevensteinDistance
 specifier|public
-name|TRStringDistance
+name|LevensteinDistance
 parameter_list|()
 block|{     }
 comment|//*****************************
