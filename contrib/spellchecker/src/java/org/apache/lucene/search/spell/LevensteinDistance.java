@@ -24,6 +24,7 @@ end_comment
 
 begin_class
 DECL|class|LevensteinDistance
+specifier|public
 specifier|final
 class|class
 name|LevensteinDistance
