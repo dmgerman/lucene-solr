@@ -271,6 +271,8 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+comment|// these values may be from a legacy lucene index, which may contain
+comment|// integer values padded with zeros, or a zero length value.
 if|if
 condition|(
 name|len
@@ -327,6 +329,26 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|len
+operator|==
+literal|0
+condition|)
+block|{
+comment|// zero length value means someone mistakenly indexed the value
+comment|// instead of simply leaving it out.  Write a null value instead
+comment|// of an integer value in this case.
+name|writer
+operator|.
+name|writeNull
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 name|writer
 operator|.
