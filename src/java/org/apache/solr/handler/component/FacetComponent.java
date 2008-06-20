@@ -917,7 +917,7 @@ operator|.
 name|limit
 expr_stmt|;
 block|}
-comment|// Uncomment the following line when testing to supress over-requesting facets and
+comment|// TEST: Uncomment the following line when testing to supress over-requesting facets and
 comment|// thus cause more facet refinement queries.
 comment|// if (dff.limit> 0) dff.initialLimit = dff.offset + dff.limit;
 name|sreq
@@ -1727,6 +1727,14 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|qparams
+operator|==
+literal|null
+condition|)
+continue|continue;
+comment|// not a refinement
 name|String
 name|field
 init|=
@@ -1764,6 +1772,14 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|dff
+operator|==
+literal|null
+condition|)
+continue|continue;
+comment|// maybe this wasn't for facet count refinement
 comment|// Find the right constraint count for this value
 name|ShardFacetCount
 name|sfc
@@ -1777,6 +1793,18 @@ argument_list|(
 name|val
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|sfc
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+comment|// Just continue, since other components might have added
+comment|// this facet.query for other purposes.  But if there are charset
+comment|// issues then the values coming back may not match the values sent.
+block|}
 comment|// TODO REMOVE
 comment|// System.out.println("Got " + facet_q + " , refining count: " + sfc + " += " + count);
 name|sfc
