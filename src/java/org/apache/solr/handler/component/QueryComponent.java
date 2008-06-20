@@ -564,6 +564,13 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|rb
+operator|.
+name|setQparser
+argument_list|(
+name|parser
+argument_list|)
+expr_stmt|;
 name|String
 index|[]
 name|fqs
