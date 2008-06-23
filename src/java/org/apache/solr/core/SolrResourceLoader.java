@@ -474,6 +474,11 @@ specifier|final
 name|String
 name|instanceDir
 decl_stmt|;
+DECL|field|dataDir
+specifier|private
+name|String
+name|dataDir
+decl_stmt|;
 DECL|field|waitingForCore
 specifier|private
 specifier|final
@@ -822,6 +827,16 @@ return|return
 name|instanceDir
 operator|+
 literal|"conf/"
+return|;
+block|}
+DECL|method|getDataDir
+specifier|public
+name|String
+name|getDataDir
+parameter_list|()
+block|{
+return|return
+name|dataDir
 return|;
 block|}
 comment|/** Opens a schema resource by its name.    * Override this method to customize loading schema resources.    *@return the stream for the named schema    */
@@ -1512,6 +1527,15 @@ name|SolrCore
 name|core
 parameter_list|)
 block|{
+name|this
+operator|.
+name|dataDir
+operator|=
+name|core
+operator|.
+name|getDataDir
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|SolrCoreAware

@@ -664,6 +664,8 @@ operator|+
 literal|" found for dictionary: "
 operator|+
 name|name
+operator|+
+literal|".  Using WhitespaceAnalzyer."
 argument_list|)
 expr_stmt|;
 name|analyzer
