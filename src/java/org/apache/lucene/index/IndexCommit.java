@@ -104,7 +104,7 @@ literal|"This IndexCommit does not support this method."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Two IndexCommits are equal if both their Directory and    * segmentsFileName are equal.    */
+comment|/**    * Two IndexCommits are equal if both their Directory and versions are equal.    */
 DECL|method|equals
 specifier|public
 name|boolean
