@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where documents are added  * directly to the main lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  *  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where documents are added  * directly to the main lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  *  * @version $Id$  * @since solr 0.9  *  * @deprecated Use {@link DirectUpdateHandler2} instead.  This is only kept around for back-compatibility (way back).  */
 end_comment
 
 begin_class
@@ -1102,7 +1102,11 @@ comment|// writer needs to be open to optimize
 name|writer
 operator|.
 name|optimize
-argument_list|()
+argument_list|(
+name|cmd
+operator|.
+name|maxOptimizeSegments
+argument_list|)
 expr_stmt|;
 block|}
 name|closeWriter

@@ -83,6 +83,16 @@ name|UPDATE_PROCESSOR
 init|=
 literal|"update.processor"
 decl_stmt|;
+comment|/**    * If optimizing, set the maximum number of segments left in the index after optimization.  1 is the default (and is equivalent to calling IndexWriter.optimize() in Lucene).    */
+DECL|field|MAX_OPTIMIZE_SEGMENTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MAX_OPTIMIZE_SEGMENTS
+init|=
+literal|"maxSegments"
+decl_stmt|;
 block|}
 end_interface
 
