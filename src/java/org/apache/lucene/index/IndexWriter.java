@@ -8535,7 +8535,7 @@ name|getRAMUsed
 argument_list|()
 return|;
 block|}
-comment|/** Expert:  Return the number of documents whose segments are currently cached in memory.    * Useful when calling flush()    */
+comment|/** Expert:  Return the number of documents currently    *  buffered in RAM. */
 DECL|method|numRamDocs
 specifier|public
 specifier|final
