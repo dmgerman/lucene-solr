@@ -1315,11 +1315,11 @@ name|arraycopy
 argument_list|(
 name|norms
 argument_list|,
-name|offset
+literal|0
 argument_list|,
 name|bytes
 argument_list|,
-literal|0
+name|offset
 argument_list|,
 name|norms
 operator|.
