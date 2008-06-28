@@ -199,7 +199,12 @@ name|term
 parameter_list|()
 block|{
 return|return
-comment|/*term == null ? null :*/
+name|term
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|term
 operator|.
 name|getTerm
