@@ -281,6 +281,14 @@ argument_list|(
 name|cmtCmd
 argument_list|)
 expr_stmt|;
+name|updater
+operator|.
+name|commit
+argument_list|(
+name|cmtCmd
+argument_list|)
+expr_stmt|;
+comment|// commit twice to give systems such as windows a chance to delete the old files
 name|String
 name|indexDir
 init|=
@@ -310,6 +318,13 @@ operator|.
 name|maxOptimizeSegments
 operator|=
 literal|250
+expr_stmt|;
+name|updater
+operator|.
+name|commit
+argument_list|(
+name|cmtCmd
+argument_list|)
 expr_stmt|;
 name|updater
 operator|.
@@ -358,6 +373,13 @@ operator|.
 name|maxOptimizeSegments
 operator|=
 literal|1
+expr_stmt|;
+name|updater
+operator|.
+name|commit
+argument_list|(
+name|cmtCmd
+argument_list|)
 expr_stmt|;
 name|updater
 operator|.
