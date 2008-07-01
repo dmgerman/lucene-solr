@@ -241,7 +241,14 @@ name|this
 operator|.
 name|subReaders
 operator|=
+operator|(
+name|IndexReader
+index|[]
+operator|)
 name|subReaders
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
 name|starts
 operator|=
