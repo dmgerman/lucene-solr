@@ -1027,7 +1027,7 @@ name|text
 operator|.
 name|length
 argument_list|()
-operator|<
+operator|<=
 name|maxDocCharsToAnalyze
 operator|)
 condition|)
