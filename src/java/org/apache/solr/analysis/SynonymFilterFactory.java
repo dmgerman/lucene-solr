@@ -900,6 +900,16 @@ name|reader
 argument_list|)
 return|;
 block|}
+DECL|method|getSynonymMap
+specifier|public
+name|SynonymMap
+name|getSynonymMap
+parameter_list|()
+block|{
+return|return
+name|synMap
+return|;
+block|}
 DECL|method|create
 specifier|public
 name|SynonymFilter
