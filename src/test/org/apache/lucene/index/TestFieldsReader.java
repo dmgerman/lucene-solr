@@ -2632,6 +2632,26 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|clone
+specifier|public
+name|Object
+name|clone
+parameter_list|()
+block|{
+return|return
+operator|new
+name|FaultyIndexInput
+argument_list|(
+operator|(
+name|IndexInput
+operator|)
+name|delegate
+operator|.
+name|clone
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 comment|// LUCENE-1262
 DECL|method|testExceptions
