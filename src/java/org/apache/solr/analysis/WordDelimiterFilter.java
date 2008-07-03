@@ -304,7 +304,13 @@ specifier|final
 name|int
 name|splitOnCaseChange
 decl_stmt|;
-comment|/**    *    * @param in Token stream to be filtered.    * @param charTypeTable    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    */
+comment|/**    * If 1, original words are preserved and added to the subword list (Defaults to 0)    *<p/>    * "500-42" => "500" "42" "500-42"    */
+DECL|field|preserveOriginal
+specifier|final
+name|int
+name|preserveOriginal
+decl_stmt|;
+comment|/**    *    * @param in Token stream to be filtered.    * @param charTypeTable    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param preserveOriginal If 1, includes original words in subwords: "500-42" => "500" "42" "500-42"    */
 DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
@@ -333,6 +339,9 @@ name|catenateAll
 parameter_list|,
 name|int
 name|splitOnCaseChange
+parameter_list|,
+name|int
+name|preserveOriginal
 parameter_list|)
 block|{
 name|super
@@ -378,12 +387,18 @@ name|splitOnCaseChange
 expr_stmt|;
 name|this
 operator|.
+name|preserveOriginal
+operator|=
+name|preserveOriginal
+expr_stmt|;
+name|this
+operator|.
 name|charTypeTable
 operator|=
 name|charTypeTable
 expr_stmt|;
 block|}
-comment|/**    * @param in Token stream to be filtered.    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot", "Power-Shot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    */
+comment|/**    * @param in Token stream to be filtered.    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot", "Power-Shot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param preserveOriginal If 1, includes original words in subwords: "500-42" => "500" "42" "500-42"    */
 DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
@@ -408,6 +423,9 @@ name|catenateAll
 parameter_list|,
 name|int
 name|splitOnCaseChange
+parameter_list|,
+name|int
+name|preserveOriginal
 parameter_list|)
 block|{
 name|this
@@ -427,6 +445,8 @@ argument_list|,
 name|catenateAll
 argument_list|,
 name|splitOnCaseChange
+argument_list|,
+name|preserveOriginal
 argument_list|)
 expr_stmt|;
 block|}
@@ -477,6 +497,8 @@ argument_list|,
 name|catenateAll
 argument_list|,
 literal|1
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -523,6 +545,8 @@ argument_list|,
 name|catenateAll
 argument_list|,
 literal|1
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -807,6 +831,11 @@ comment|// Would it actually be faster to check for the common form
 comment|// of isLetter() isLower()*, and then backtrack if it doesn't match?
 name|int
 name|origPosIncrement
+init|=
+literal|0
+decl_stmt|;
+name|Token
+name|t
 decl_stmt|;
 while|while
 condition|(
@@ -815,16 +844,15 @@ condition|)
 block|{
 comment|// t is either returned, or a new token is made from it, so it should
 comment|// be safe to use the next(Token) method.
-name|Token
 name|t
-init|=
+operator|=
 name|input
 operator|.
 name|next
 argument_list|(
 name|in
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|t
@@ -864,7 +892,7 @@ literal|0
 condition|)
 continue|continue;
 name|origPosIncrement
-operator|=
+operator|+=
 name|t
 operator|.
 name|getPositionIncrement
@@ -1224,6 +1252,41 @@ return|return
 name|t
 return|;
 block|}
+comment|// optimization... if this is the only token,
+comment|// return it immediately.
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+operator|&&
+name|preserveOriginal
+operator|==
+literal|0
+condition|)
+block|{
+comment|// just adjust the text w/o changing the rest
+comment|// of the original token
+name|t
+operator|.
+name|setTermBuffer
+argument_list|(
+name|termBuffer
+argument_list|,
+name|start
+argument_list|,
+name|len
+operator|-
+name|start
+argument_list|)
+expr_stmt|;
+return|return
+name|t
+return|;
+block|}
 name|Token
 name|newtok
 init|=
@@ -1236,29 +1299,6 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
-comment|// optimization... if this is the only token,
-comment|// return it immediately.
-if|if
-condition|(
-name|queue
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|0
-condition|)
-block|{
-name|newtok
-operator|.
-name|setPositionIncrement
-argument_list|(
-name|origPosIncrement
-argument_list|)
-expr_stmt|;
-return|return
-name|newtok
-return|;
-block|}
 name|queue
 operator|.
 name|add
@@ -1326,9 +1366,22 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|// the token might have been all delimiters, in which
+comment|// case return it if we're meant to preserve it
+if|if
+condition|(
+name|preserveOriginal
+operator|!=
+literal|0
+condition|)
+block|{
+return|return
+name|t
+return|;
+block|}
 continue|continue;
 block|}
-comment|// if number of tokens is 1, always return the single tok
+comment|// if number of tokens is 1, there are no catenations to be done.
 if|if
 condition|(
 name|numtok
@@ -1464,6 +1517,10 @@ name|size
 argument_list|()
 operator|>
 literal|0
+operator|||
+name|preserveOriginal
+operator|!=
+literal|0
 condition|)
 break|break;
 else|else
@@ -1508,6 +1565,10 @@ operator|.
 name|size
 argument_list|()
 operator|>
+literal|0
+operator|||
+name|preserveOriginal
+operator|!=
 literal|0
 condition|)
 break|break;
@@ -1560,6 +1621,10 @@ operator|.
 name|size
 argument_list|()
 operator|>
+literal|0
+operator|||
+name|preserveOriginal
+operator|!=
 literal|0
 condition|)
 break|break;
@@ -1751,10 +1816,56 @@ name|size
 argument_list|()
 operator|>
 literal|0
+operator|||
+name|preserveOriginal
+operator|!=
+literal|0
 condition|)
 break|break;
 block|}
 comment|// System.out.println("##########AFTER COMBINATIONS:"+ str(queue));
+if|if
+condition|(
+name|preserveOriginal
+operator|!=
+literal|0
+condition|)
+block|{
+name|queuePos
+operator|=
+literal|0
+expr_stmt|;
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|// overlap first token with the original
+name|queue
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|setPositionIncrement
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|t
+return|;
+comment|// return the original
+block|}
+else|else
+block|{
 name|queuePos
 operator|=
 literal|1
@@ -1779,6 +1890,7 @@ expr_stmt|;
 return|return
 name|tok
 return|;
+block|}
 block|}
 comment|// index "a","b","c" as  pos0="a", pos1="b", pos2="c", pos2="abc"
 DECL|method|addCombos
