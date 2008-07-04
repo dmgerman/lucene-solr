@@ -76,6 +76,26 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Reset the filter as well as the input TokenStream. */
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|input
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
