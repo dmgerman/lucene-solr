@@ -104,6 +104,21 @@ literal|"This IndexCommit does not support this method."
 argument_list|)
 throw|;
 block|}
+comment|/**    * Returns true if this commit is an optimized index.    */
+DECL|method|isOptimized
+specifier|public
+name|boolean
+name|isOptimized
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This IndexCommit does not support this method."
+argument_list|)
+throw|;
+block|}
 comment|/**    * Two IndexCommits are equal if both their Directory and versions are equal.    */
 DECL|method|equals
 specifier|public
