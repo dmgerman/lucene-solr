@@ -198,6 +198,16 @@ name|STREAM_CONTENTTYPE
 init|=
 literal|"stream.contentType"
 decl_stmt|;
+comment|/**    * Timeout value in milliseconds.  If not set, or the value is<= 0, there is no timeout.    */
+DECL|field|TIME_ALLOWED
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TIME_ALLOWED
+init|=
+literal|"timeAllowed"
+decl_stmt|;
 comment|/** 'true' if the header should include the handler name */
 DECL|field|HEADER_ECHO_HANDLER
 specifier|public
