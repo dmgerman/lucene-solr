@@ -2019,7 +2019,7 @@ block|}
 comment|/**   * Set the maximum time allowed for this query. If the query takes more time   * than the specified milliseconds, a timeout occurs and partial (or no)   * results may be returned.   *    * If given Long is null, then this parameter is removed from the request   *    *@param milliseconds the time in milliseconds allowed for this query   */
 DECL|method|setTimeAllowed
 specifier|public
-name|void
+name|SolrQuery
 name|setTimeAllowed
 parameter_list|(
 name|Integer
@@ -2057,6 +2057,9 @@ name|milliseconds
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|this
+return|;
 block|}
 comment|/**   * Get the maximum time allowed for this query.   */
 DECL|method|getTimeAllowed
