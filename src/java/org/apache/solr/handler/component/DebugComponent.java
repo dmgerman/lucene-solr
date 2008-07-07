@@ -449,7 +449,7 @@ name|isDebug
 argument_list|()
 condition|)
 return|return;
-comment|// Turn on debug to get explain only only when retrieving fields
+comment|// Turn on debug to get explain only when retrieving fields
 if|if
 condition|(
 operator|(
@@ -768,6 +768,20 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|info
+operator|==
+literal|null
+condition|)
+block|{
+name|info
+operator|=
+operator|new
+name|NamedList
+argument_list|()
+expr_stmt|;
+block|}
 name|int
 name|idx
 init|=
