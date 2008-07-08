@@ -154,7 +154,7 @@ specifier|private
 name|String
 name|defaultField
 decl_stmt|;
-comment|/** 	 * @param parser thread un-safe query parser 	 */
+comment|/** 	 * This constructor has the disadvantage of not being able to change choice of default field name 	 * @param parser thread un-safe query parser 	 */
 DECL|method|UserInputQueryBuilder
 specifier|public
 name|UserInputQueryBuilder
@@ -249,14 +249,27 @@ block|}
 block|}
 else|else
 block|{
+name|String
+name|fieldName
+init|=
+name|DOMUtils
+operator|.
+name|getAttribute
+argument_list|(
+name|e
+argument_list|,
+literal|"fieldName"
+argument_list|,
+name|defaultField
+argument_list|)
+decl_stmt|;
 comment|//Create new parser
 name|QueryParser
 name|parser
 init|=
-operator|new
-name|QueryParser
+name|createQueryParser
 argument_list|(
-name|defaultField
+name|fieldName
 argument_list|,
 name|analyzer
 argument_list|)
@@ -308,6 +321,29 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/** 	 * Method to create a QueryParser - designed to be overridden 	 * @param fieldName 	 * @param analyzer 	 * @return 	 */
+DECL|method|createQueryParser
+specifier|protected
+name|QueryParser
+name|createQueryParser
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|Analyzer
+name|analyzer
+parameter_list|)
+block|{
+return|return
+operator|new
+name|QueryParser
+argument_list|(
+name|fieldName
+argument_list|,
+name|analyzer
+argument_list|)
+return|;
 block|}
 block|}
 end_class
