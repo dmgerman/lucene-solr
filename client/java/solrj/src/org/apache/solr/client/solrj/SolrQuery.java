@@ -2016,7 +2016,7 @@ return|return
 name|q
 return|;
 block|}
-comment|/**   * Set the maximum time allowed for this query. If the query takes more time   * than the specified milliseconds, a timeout occurs and partial (or no)   * results may be returned.   *    * If given Long is null, then this parameter is removed from the request   *    *@param milliseconds the time in milliseconds allowed for this query   */
+comment|/**   * Set the maximum time allowed for this query. If the query takes more time   * than the specified milliseconds, a timeout occurs and partial (or no)   * results may be returned.   *    * If given Integer is null, then this parameter is removed from the request   *    *@param milliseconds the time in milliseconds allowed for this query   */
 DECL|method|setTimeAllowed
 specifier|public
 name|SolrQuery
