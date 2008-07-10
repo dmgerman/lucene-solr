@@ -37,6 +37,13 @@ specifier|abstract
 class|class
 name|Directory
 block|{
+DECL|field|isOpen
+specifier|volatile
+name|boolean
+name|isOpen
+init|=
+literal|true
+decl_stmt|;
 comment|/** Holds the LockFactory instance (implements locking for    * this Directory instance). */
 DECL|field|lockFactory
 specifier|protected
@@ -532,6 +539,29 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+comment|/**    * @throws AlreadyClosedException if this Directory is closed    */
+DECL|method|ensureOpen
+specifier|protected
+specifier|final
+name|void
+name|ensureOpen
+parameter_list|()
+throws|throws
+name|AlreadyClosedException
+block|{
+if|if
+condition|(
+operator|!
+name|isOpen
+condition|)
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"this Directory is closed"
+argument_list|)
+throw|;
 block|}
 block|}
 end_class
