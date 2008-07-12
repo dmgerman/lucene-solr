@@ -500,7 +500,7 @@ comment|//if (config.commitLockTimeout != -1) setWriteLockTimeout(config.commitL
 block|}
 block|}
 DECL|method|getDirectory
-specifier|private
+specifier|public
 specifier|static
 name|Directory
 name|getDirectory
