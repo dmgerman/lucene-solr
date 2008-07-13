@@ -3065,6 +3065,23 @@ operator|+
 literal|" desc"
 argument_list|)
 expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" desc"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|)
+expr_stmt|;
 name|handle
 operator|.
 name|put

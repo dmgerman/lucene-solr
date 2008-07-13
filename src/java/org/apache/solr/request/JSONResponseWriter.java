@@ -2508,6 +2508,13 @@ expr_stmt|;
 if|if
 condition|(
 name|includeScore
+operator|&&
+name|docs
+operator|.
+name|getMaxScore
+argument_list|()
+operator|!=
+literal|null
 condition|)
 block|{
 name|writeMapSeparator
