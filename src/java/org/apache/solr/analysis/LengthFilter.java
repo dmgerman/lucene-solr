@@ -69,10 +69,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
+comment|/**  * @version $Id$  * @deprecated use {@link org.apache.lucene.analysis.LengthFilter}  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|LengthFilter
 specifier|public
 specifier|final
