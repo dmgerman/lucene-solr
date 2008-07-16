@@ -1105,6 +1105,25 @@ name|dictName
 argument_list|)
 return|;
 block|}
+comment|/**    * @return the spellchecker registered to a given name    */
+DECL|method|getSpellChecker
+specifier|public
+name|SolrSpellChecker
+name|getSpellChecker
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|spellCheckers
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 DECL|method|toNamedList
 specifier|protected
 name|NamedList
