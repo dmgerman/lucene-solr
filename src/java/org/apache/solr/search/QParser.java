@@ -307,7 +307,7 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|/** Returns the resulting query from this QParser, calling parse() only the    * first time and caching the Query result.    * @return    * @throws ParseException    */
+comment|/**    * Returns the resulting query from this QParser, calling parse() only the    * first time and caching the Query result.    *    * @throws ParseException    */
 DECL|method|getQuery
 specifier|public
 name|Query

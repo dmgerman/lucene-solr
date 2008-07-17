@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A recursive timer.  *   * RTimers are started automatically when instantiated; subtimers are also  * started automatically when created.  *  * @since solr 1.3  * @revision $Id$  */
+comment|/** A recursive timer.  *   * RTimers are started automatically when instantiated; subtimers are also  * started automatically when created.  *  * @since solr 1.3  * @version $Id$  */
 end_comment
 
 begin_class

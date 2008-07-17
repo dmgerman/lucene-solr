@@ -2565,7 +2565,7 @@ name|hook
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a Request object based on the admin/pingQuery section    * of the Solr config file.    *     * @use {@link org.apache.solr.handler.PingRequestHandler} instead    */
+comment|/**    * Returns a Request object based on the admin/pingQuery section    * of the Solr config file.    *     * @deprecated use {@link org.apache.solr.handler.PingRequestHandler} instead    */
 annotation|@
 name|Deprecated
 DECL|method|getPingQueryRequest

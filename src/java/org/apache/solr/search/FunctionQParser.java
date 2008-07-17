@@ -245,7 +245,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/**    * TODO: Doc    *     * @return    * @throws ParseException    */
+comment|/**    * TODO: Doc    *     * @throws ParseException    */
 DECL|method|parseId
 specifier|public
 name|String
@@ -348,7 +348,7 @@ return|return
 name|sources
 return|;
 block|}
-comment|/**    * Parse an individual ValueSource.    *     * @return    * @throws ParseException    */
+comment|/**    * Parse an individual ValueSource.    *     * @throws ParseException    */
 DECL|method|parseValueSource
 specifier|public
 name|ValueSource
@@ -365,7 +365,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * TODO: Doc    *     * @return    * @throws ParseException    */
+comment|/**    * TODO: Doc    *     * @throws ParseException    */
 DECL|method|parseNestedQuery
 specifier|public
 name|Query
@@ -604,7 +604,7 @@ return|return
 name|nestedQuery
 return|;
 block|}
-comment|/**    * Parse an individual value source.    *     * @param doConsumeDelimiter whether to consume a delimiter following the ValueSource      * @return    * @throws ParseException    */
+comment|/**    * Parse an individual value source.    *     * @param doConsumeDelimiter whether to consume a delimiter following the ValueSource      * @throws ParseException    */
 DECL|method|parseValueSource
 specifier|protected
 name|ValueSource

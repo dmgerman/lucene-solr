@@ -183,7 +183,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Process for a distributed search.    * @returns the next stage for this component */
+comment|/**    * Process for a distributed search.    * @return the next stage for this component    */
 DECL|method|distributedProcess
 specifier|public
 name|int

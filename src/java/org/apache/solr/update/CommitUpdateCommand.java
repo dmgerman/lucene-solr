@@ -45,7 +45,7 @@ name|waitSearcher
 init|=
 literal|true
 decl_stmt|;
-comment|/**    * During optimize, optimize down to<= this many segments.  Must be>= 1    *    * @see {@link org.apache.lucene.index.IndexWriter#optimize(int)}    */
+comment|/**    * During optimize, optimize down to<= this many segments.  Must be>= 1    *    * @see org.apache.lucene.index.IndexWriter#optimize(int)    */
 DECL|field|maxOptimizeSegments
 specifier|public
 name|int

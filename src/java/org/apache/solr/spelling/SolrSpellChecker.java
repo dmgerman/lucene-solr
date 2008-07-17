@@ -350,7 +350,7 @@ name|extendedResults
 argument_list|)
 return|;
 block|}
-comment|/**    * Get suggestions for the given query.  Tokenizes the query using a field appropriate Analyzer.  The {@link SpellingResult#getSuggestions()} suggestions must be ordered by     * best suggestion first    *    * @param tokens          The Tokens to be spell checked.    * @param reader          The (optional) IndexReader.  If there is not IndexReader, than extendedResults are not possible    * @param count The maximum number of suggestions to return    * @param onlyMorePopular  TODO    * @param extendedResults  TODO    * @return    * @throws IOException    */
+comment|/**    * Get suggestions for the given query.  Tokenizes the query using a field appropriate Analyzer.  The {@link SpellingResult#getSuggestions()} suggestions must be ordered by     * best suggestion first    *    * @param tokens          The Tokens to be spell checked.    * @param reader          The (optional) IndexReader.  If there is not IndexReader, than extendedResults are not possible    * @param count The maximum number of suggestions to return    * @param onlyMorePopular  TODO    * @param extendedResults  TODO    * @throws IOException    */
 DECL|method|getSuggestions
 specifier|public
 specifier|abstract
