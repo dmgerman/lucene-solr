@@ -1870,7 +1870,7 @@ block|}
 block|}
 comment|/**     * Creates a MultiCoreHandler for this MultiCore.    * @return a MultiCoreHandler    */
 DECL|method|createMultiCoreHandler
-specifier|public
+specifier|protected
 name|MultiCoreHandler
 name|createMultiCoreHandler
 parameter_list|()
