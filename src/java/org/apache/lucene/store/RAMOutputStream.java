@@ -593,6 +593,22 @@ operator|+
 name|bufferPosition
 return|;
 block|}
+comment|/** Returns byte usage of all buffers. */
+DECL|method|sizeInBytes
+specifier|public
+name|long
+name|sizeInBytes
+parameter_list|()
+block|{
+return|return
+name|file
+operator|.
+name|numBuffers
+argument_list|()
+operator|*
+name|BUFFER_SIZE
+return|;
+block|}
 block|}
 end_class
 

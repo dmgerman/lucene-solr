@@ -514,6 +514,18 @@ operator|+
 name|this
 operator|.
 name|docStoreOffset
+operator|:
+literal|"indexSize="
+operator|+
+name|indexSize
+operator|+
+literal|" size="
+operator|+
+name|size
+operator|+
+literal|" docStoreOffset="
+operator|+
+name|docStoreOffset
 assert|;
 block|}
 else|else

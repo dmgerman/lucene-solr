@@ -208,6 +208,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *   * @author Daniel Naber  */
 end_comment
@@ -318,6 +332,13 @@ name|iwriter
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+name|_TestUtil
+operator|.
+name|checkIndex
+argument_list|(
+name|directory
+argument_list|)
 expr_stmt|;
 comment|// Now search the index:
 name|IndexSearcher

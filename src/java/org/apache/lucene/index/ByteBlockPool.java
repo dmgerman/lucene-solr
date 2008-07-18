@@ -400,10 +400,10 @@ name|upto
 return|;
 block|}
 comment|// Size of each slice.  These arrays should be at most 16
-comment|// elements.  First array is just a compact way to encode
-comment|// X+1 with a max.  Second array is the length of each
-comment|// slice, ie first slice is 5 bytes, next slice is 14
-comment|// bytes, etc.
+comment|// elements (index is encoded with 4 bits).  First array
+comment|// is just a compact way to encode X+1 with a max.  Second
+comment|// array is the length of each slice, ie first slice is 5
+comment|// bytes, next slice is 14 bytes, etc.
 DECL|field|nextLevelArray
 specifier|final
 specifier|static

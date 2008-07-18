@@ -2972,7 +2972,11 @@ init|=
 operator|new
 name|char
 index|[
-literal|16383
+name|DocumentsWriter
+operator|.
+name|CHAR_BLOCK_SIZE
+operator|-
+literal|1
 index|]
 decl_stmt|;
 name|Arrays
@@ -6344,6 +6348,22 @@ operator|.
 name|LIMITED
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|setMaxBufferedDocs
+argument_list|(
+literal|10
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -6390,6 +6410,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|dir
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|long
 name|endDiskUsage
 init|=
@@ -6417,7 +6447,13 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"writer used to much space after close when autoCommit=false"
+literal|"writer used to much space after close when autoCommit=false endDiskUsage="
+operator|+
+name|endDiskUsage
+operator|+
+literal|" startDiskUsage="
+operator|+
+name|startDiskUsage
 argument_list|,
 name|endDiskUsage
 operator|<
@@ -9612,6 +9648,13 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|_TestUtil
+operator|.
+name|checkIndex
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -11257,7 +11300,7 @@ control|)
 block|{
 if|if
 condition|(
-literal|"org.apache.lucene.index.DocumentsWriter"
+literal|"org.apache.lucene.index.FreqProxTermsWriter"
 operator|.
 name|equals
 argument_list|(
@@ -14028,6 +14071,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|//System.out.println(Thread.currentThread().getName() + ": hit exc");
 comment|//ioe.printStackTrace(System.out);
 if|if
 condition|(
@@ -15068,6 +15112,8 @@ name|doFail
 operator|=
 literal|false
 expr_stmt|;
+comment|//System.out.println(Thread.currentThread().getName() + ": now fail");
+comment|//new Throwable().printStackTrace(System.out);
 throw|throw
 operator|new
 name|IOException
@@ -15973,7 +16019,7 @@ control|)
 block|{
 if|if
 condition|(
-literal|"writeSegment"
+literal|"flush"
 operator|.
 name|equals
 argument_list|(
@@ -15983,6 +16029,19 @@ name|i
 index|]
 operator|.
 name|getMethodName
+argument_list|()
+argument_list|)
+operator|&&
+literal|"org.apache.lucene.index.DocFieldProcessor"
+operator|.
+name|equals
+argument_list|(
+name|trace
+index|[
+name|i
+index|]
+operator|.
+name|getClassName
 argument_list|()
 argument_list|)
 condition|)
@@ -15995,7 +16054,6 @@ name|doFail
 operator|=
 literal|false
 expr_stmt|;
-comment|// new RuntimeException().printStackTrace(System.out);
 throw|throw
 operator|new
 name|IOException
