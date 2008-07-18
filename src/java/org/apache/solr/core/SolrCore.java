@@ -611,6 +611,12 @@ name|String
 name|logid
 decl_stmt|;
 comment|// used to show what name is set
+DECL|field|coreDescriptor
+specifier|private
+specifier|final
+name|CoreDescriptor
+name|coreDescriptor
+decl_stmt|;
 DECL|field|solrConfig
 specifier|private
 specifier|final
@@ -1738,6 +1744,8 @@ name|SolrConfig
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -1769,6 +1777,7 @@ return|return
 name|instance
 return|;
 block|}
+comment|/**    *     * @param dataDir    * @param schema    * @throws SAXException     * @throws IOException     * @throws ParserConfigurationException     *     * @since solr 1.0    */
 DECL|method|SolrCore
 specifier|public
 name|SolrCore
@@ -1797,10 +1806,12 @@ name|SolrConfig
 argument_list|()
 argument_list|,
 name|schema
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new core and register it in the list of cores.    * If a core with the same name already exists, it will be stopped and replaced by this one.    *@param dataDir the index directory    *@param config a solr config instance    *@param schema a solr schema instance    */
+comment|/**    * Creates a new core and register it in the list of cores.    * If a core with the same name already exists, it will be stopped and replaced by this one.    *@param dataDir the index directory    *@param config a solr config instance    *@param schema a solr schema instance    *    *@since solr 1.3    */
 DECL|method|SolrCore
 specifier|public
 name|SolrCore
@@ -1816,6 +1827,9 @@ name|config
 parameter_list|,
 name|IndexSchema
 name|schema
+parameter_list|,
+name|CoreDescriptor
+name|cd
 parameter_list|)
 block|{
 synchronized|synchronized
@@ -1825,6 +1839,10 @@ operator|.
 name|class
 init|)
 block|{
+name|coreDescriptor
+operator|=
+name|cd
+expr_stmt|;
 comment|// this is for backward compatibility (and also the reason
 comment|// the sync block is needed)
 name|instance
@@ -5532,6 +5550,16 @@ name|get
 argument_list|(
 name|parserName
 argument_list|)
+return|;
+block|}
+DECL|method|getCoreDescriptor
+specifier|public
+name|CoreDescriptor
+name|getCoreDescriptor
+parameter_list|()
+block|{
+return|return
+name|coreDescriptor
 return|;
 block|}
 block|}

@@ -555,6 +555,8 @@ argument_list|,
 name|solrConfig
 argument_list|,
 name|indexSchema
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|builder
