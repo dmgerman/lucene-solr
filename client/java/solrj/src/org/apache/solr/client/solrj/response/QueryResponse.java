@@ -579,7 +579,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Parse out interisting bits from the debug info
+comment|// Parse out interesting bits from the debug info
 name|_explainMap
 operator|=
 operator|new
