@@ -3050,6 +3050,30 @@ name|SolrIndexSearcher
 argument_list|>
 name|_searcher
 decl_stmt|;
+comment|// All of the open searchers.  Don't access this directly.
+comment|// protected by synchronizing on searcherLock.
+DECL|field|_searchers
+specifier|private
+specifier|final
+name|LinkedList
+argument_list|<
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+argument_list|>
+name|_searchers
+init|=
+operator|new
+name|LinkedList
+argument_list|<
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+argument_list|>
+argument_list|()
+decl_stmt|;
 DECL|field|searcherExecutor
 specifier|final
 name|ExecutorService
@@ -3083,6 +3107,7 @@ name|int
 name|maxWarmingSearchers
 decl_stmt|;
 comment|// max number of on-deck searchers allowed
+comment|/**   * Return a registered {@link RefCounted}&lt;{@link SolrIndexSearcher}&gt; with   * the reference count incremented.  It<b>must</b> be decremented when no longer needed.   * This method should not be called from SolrCoreAware.inform() since it can result   * in a deadlock if useColdSearcher==false.    */
 DECL|method|getSearcher
 specifier|public
 name|RefCounted
@@ -3124,6 +3149,70 @@ argument_list|)
 expr_stmt|;
 return|return
 literal|null
+return|;
+block|}
+block|}
+comment|/**   * Return the newest {@link RefCounted}&lt;{@link SolrIndexSearcher}&gt; with   * the reference count incremented.  It<b>must</b> be decremented when no longer needed.   * If no searcher is currently open, then if openNew==true a new searcher will be opened,   * or null is returned if openNew==false.   */
+DECL|method|getNewestSearcher
+specifier|public
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|getNewestSearcher
+parameter_list|(
+name|boolean
+name|openNew
+parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|searcherLock
+init|)
+block|{
+if|if
+condition|(
+name|_searchers
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|openNew
+condition|)
+return|return
+literal|null
+return|;
+comment|// Not currently implemented since simply calling getSearcher during inform()
+comment|// can result in a deadlock.  Right now, solr always opens a searcher first
+comment|// before calling inform() anyway, so this should never happen.
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|newest
+init|=
+name|_searchers
+operator|.
+name|getLast
+argument_list|()
+decl_stmt|;
+name|newest
+operator|.
+name|incref
+argument_list|()
+expr_stmt|;
+return|return
+name|newest
 return|;
 block|}
 block|}
@@ -3487,6 +3576,13 @@ init|(
 name|searcherLock
 init|)
 block|{
+name|_searchers
+operator|.
+name|add
+argument_list|(
+name|newSearchHolder
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|_searcher
@@ -4029,6 +4125,34 @@ parameter_list|()
 block|{
 try|try
 block|{
+synchronized|synchronized
+init|(
+name|searcherLock
+init|)
+block|{
+comment|// it's possible for someone to get a reference via the _searchers queue
+comment|// and increment the refcount while RefCounted.close() is being called.
+comment|// we check the refcount again to see if this has happened and abort the close.
+comment|// This relies on the RefCounted class allowing close() to be called every
+comment|// time the counter hits zero.
+if|if
+condition|(
+name|refcount
+operator|.
+name|get
+argument_list|()
+operator|>
+literal|0
+condition|)
+return|return;
+name|_searchers
+operator|.
+name|remove
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 name|resource
 operator|.
 name|close
