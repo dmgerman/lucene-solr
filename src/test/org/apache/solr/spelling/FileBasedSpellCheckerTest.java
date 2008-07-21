@@ -465,6 +465,8 @@ operator|.
 name|build
 argument_list|(
 name|core
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -869,6 +871,8 @@ operator|.
 name|build
 argument_list|(
 name|core
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -1246,6 +1250,8 @@ operator|.
 name|build
 argument_list|(
 name|core
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|IndexReader

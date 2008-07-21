@@ -104,6 +104,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|SolrIndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -231,7 +245,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * (re)Build The Spelling index.  May be a NOOP if the ipmlementation doesn't require building, or can't be rebuilt    *    * @param core The SolrCore    */
+comment|/**    * (re)Build The Spelling index.  May be a NOOP if the ipmlementation doesn't require building, or can't be rebuilt    */
 DECL|method|build
 specifier|public
 specifier|abstract
@@ -240,6 +254,9 @@ name|build
 parameter_list|(
 name|SolrCore
 name|core
+parameter_list|,
+name|SolrIndexSearcher
+name|searcher
 parameter_list|)
 function_decl|;
 comment|/**    * Assumes count = 1, onlyMorePopular = false, extendedResults = false    *    * @see #getSuggestions(Collection, org.apache.lucene.index.IndexReader, int, boolean, boolean)    */

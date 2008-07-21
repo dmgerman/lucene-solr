@@ -660,6 +660,13 @@ name|req
 operator|.
 name|getCore
 argument_list|()
+argument_list|,
+name|rb
+operator|.
+name|req
+operator|.
+name|getSearcher
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|rb
