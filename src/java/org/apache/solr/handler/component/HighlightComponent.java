@@ -635,7 +635,8 @@ name|NamedList
 operator|)
 name|srsp
 operator|.
-name|rsp
+name|getSolrResponse
+argument_list|()
 operator|.
 name|getResponse
 argument_list|()
