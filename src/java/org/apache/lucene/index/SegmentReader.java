@@ -602,7 +602,7 @@ block|}
 block|}
 comment|/**    * Increments the RC of this reader, as well as    * of all norms this reader is using    */
 DECL|method|incRef
-specifier|protected
+specifier|public
 specifier|synchronized
 name|void
 name|incRef
@@ -665,7 +665,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|decRef
-specifier|protected
+specifier|public
 specifier|synchronized
 name|void
 name|decRef
