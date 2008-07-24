@@ -745,6 +745,15 @@ argument_list|,
 literal|"tv_text"
 argument_list|)
 expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"q.alt"
+argument_list|,
+literal|"*:*"
+argument_list|)
+expr_stmt|;
 name|TestHarness
 operator|.
 name|LocalRequestFactory
@@ -803,6 +812,28 @@ argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='1']"
 argument_list|,
 literal|"//lst[@name='1']/arr[@name='tv_text']/str"
+argument_list|)
+expr_stmt|;
+comment|// try the same thing without a q param
+name|assertQ
+argument_list|(
+literal|"Should not explode..."
+argument_list|,
+comment|// q.alt should return everything
+name|sumLRF
+operator|.
+name|makeRequest
+argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|null
+block|}
+argument_list|)
+argument_list|,
+comment|// empty query
+literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 block|}
