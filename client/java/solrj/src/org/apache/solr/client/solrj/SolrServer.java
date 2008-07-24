@@ -322,7 +322,7 @@ name|addBeans
 parameter_list|(
 name|Collection
 argument_list|<
-name|Object
+name|?
 argument_list|>
 name|beans
 parameter_list|,
@@ -549,7 +549,7 @@ name|addBeans
 parameter_list|(
 name|Collection
 argument_list|<
-name|Object
+name|?
 argument_list|>
 name|beans
 parameter_list|)
