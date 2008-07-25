@@ -245,7 +245,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * (re)Build The Spelling index.  May be a NOOP if the ipmlementation doesn't require building, or can't be rebuilt    */
+comment|/**    * (re)Build The Spelling index.  May be a NOOP if the implementation doesn't require building, or can't be rebuilt    */
 DECL|method|build
 specifier|public
 specifier|abstract
