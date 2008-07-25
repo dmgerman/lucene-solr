@@ -315,15 +315,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|FIELD_TYPE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FIELD_TYPE
-init|=
-literal|"fieldType"
-decl_stmt|;
 DECL|field|SOURCE_FILE_CHAR_ENCODING
 specifier|public
 specifier|static
@@ -332,11 +323,6 @@ name|String
 name|SOURCE_FILE_CHAR_ENCODING
 init|=
 literal|"characterEncoding"
-decl_stmt|;
-DECL|field|fieldTypeName
-specifier|private
-name|String
-name|fieldTypeName
 decl_stmt|;
 DECL|field|characterEncoding
 specifier|private
@@ -360,8 +346,8 @@ parameter_list|(
 name|NamedList
 name|config
 parameter_list|,
-name|SolrResourceLoader
-name|loader
+name|SolrCore
+name|core
 parameter_list|)
 block|{
 name|super
@@ -370,19 +356,7 @@ name|init
 argument_list|(
 name|config
 argument_list|,
-name|loader
-argument_list|)
-expr_stmt|;
-name|fieldTypeName
-operator|=
-operator|(
-name|String
-operator|)
-name|config
-operator|.
-name|get
-argument_list|(
-name|FIELD_TYPE
+name|core
 argument_list|)
 expr_stmt|;
 name|characterEncoding
@@ -660,37 +634,9 @@ argument_list|,
 literal|0.0f
 argument_list|)
 expr_stmt|;
-name|analyzer
-operator|=
-name|fieldType
-operator|.
-name|getQueryAnalyzer
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
-name|log
-operator|.
-name|warning
-argument_list|(
-literal|"No fieldType: "
-operator|+
-name|fieldTypeName
-operator|+
-literal|" found for dictionary: "
-operator|+
-name|name
-operator|+
-literal|".  Using WhitespaceAnalzyer."
-argument_list|)
-expr_stmt|;
-name|analyzer
-operator|=
-operator|new
-name|WhitespaceAnalyzer
-argument_list|()
-expr_stmt|;
 comment|// check if character encoding is defined
 if|if
 condition|(

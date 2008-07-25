@@ -536,9 +536,6 @@ argument_list|(
 name|spellchecker
 argument_list|,
 name|core
-operator|.
-name|getResourceLoader
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1253,9 +1250,6 @@ argument_list|(
 name|spellchecker
 argument_list|,
 name|core
-operator|.
-name|getResourceLoader
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1764,9 +1758,6 @@ argument_list|(
 name|spellchecker
 argument_list|,
 name|core
-operator|.
-name|getResourceLoader
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -2153,9 +2144,6 @@ argument_list|(
 name|spellchecker
 argument_list|,
 name|core
-operator|.
-name|getResourceLoader
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue
