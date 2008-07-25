@@ -835,13 +835,16 @@ argument_list|>
 name|fieldTypeInfo
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|LukeResponse
+DECL|method|setResponse
 specifier|public
-name|LukeResponse
+name|void
+name|setResponse
 parameter_list|(
 name|NamedList
 argument_list|<
@@ -851,6 +854,8 @@ name|res
 parameter_list|)
 block|{
 name|super
+operator|.
+name|setResponse
 argument_list|(
 name|res
 argument_list|)

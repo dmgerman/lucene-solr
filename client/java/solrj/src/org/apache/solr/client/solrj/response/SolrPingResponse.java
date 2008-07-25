@@ -48,23 +48,7 @@ name|SolrPingResponse
 extends|extends
 name|SolrResponseBase
 block|{
-DECL|method|SolrPingResponse
-specifier|public
-name|SolrPingResponse
-parameter_list|(
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-name|res
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|res
-argument_list|)
-expr_stmt|;
-block|}
+comment|// nothing special now...
 block|}
 end_class
 

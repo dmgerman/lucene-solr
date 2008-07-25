@@ -48,23 +48,7 @@ name|UpdateResponse
 extends|extends
 name|SolrResponseBase
 block|{
-DECL|method|UpdateResponse
-specifier|public
-name|UpdateResponse
-parameter_list|(
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-name|res
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|res
-argument_list|)
-expr_stmt|;
-block|}
+comment|// nothing special now...
 block|}
 end_class
 

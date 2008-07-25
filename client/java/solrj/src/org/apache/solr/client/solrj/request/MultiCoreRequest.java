@@ -622,6 +622,11 @@ name|res
 init|=
 operator|new
 name|MultiCoreResponse
+argument_list|()
+decl_stmt|;
+name|res
+operator|.
+name|setResponse
 argument_list|(
 name|server
 operator|.
@@ -630,7 +635,7 @@ argument_list|(
 name|this
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|res
 operator|.
 name|setElapsedTime

@@ -186,6 +186,8 @@ operator|new
 name|QueryResponse
 argument_list|(
 name|response
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|Assert

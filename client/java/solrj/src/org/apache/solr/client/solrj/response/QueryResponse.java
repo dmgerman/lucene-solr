@@ -302,9 +302,21 @@ comment|// utility variable used for automatic binding -- it should not be seria
 DECL|field|solrServer
 specifier|private
 specifier|transient
+specifier|final
 name|SolrServer
 name|solrServer
 decl_stmt|;
+DECL|method|QueryResponse
+specifier|public
+name|QueryResponse
+parameter_list|()
+block|{
+name|solrServer
+operator|=
+literal|null
+expr_stmt|;
+block|}
+comment|/**    * Utility constructor to set the solrServer and namedList    */
 DECL|method|QueryResponse
 specifier|public
 name|QueryResponse
@@ -320,6 +332,8 @@ name|solrServer
 parameter_list|)
 block|{
 name|this
+operator|.
+name|setResponse
 argument_list|(
 name|res
 argument_list|)
@@ -331,9 +345,12 @@ operator|=
 name|solrServer
 expr_stmt|;
 block|}
-DECL|method|QueryResponse
+annotation|@
+name|Override
+DECL|method|setResponse
 specifier|public
-name|QueryResponse
+name|void
+name|setResponse
 parameter_list|(
 name|NamedList
 argument_list|<
@@ -343,6 +360,8 @@ name|res
 parameter_list|)
 block|{
 name|super
+operator|.
+name|setResponse
 argument_list|(
 name|res
 argument_list|)

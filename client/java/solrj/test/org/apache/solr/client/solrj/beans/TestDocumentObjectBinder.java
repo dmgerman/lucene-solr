@@ -300,6 +300,8 @@ operator|new
 name|QueryResponse
 argument_list|(
 name|nl
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|SolrDocumentList
