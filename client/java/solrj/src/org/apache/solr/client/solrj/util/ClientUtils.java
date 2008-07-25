@@ -394,7 +394,7 @@ return|return
 name|streams
 return|;
 block|}
-comment|/**    * @param SolrDocument to convert    * @return a SolrInputDocument with the same fields and values as the     *   SolrDocument.  All boosts are 1.0f    */
+comment|/**    * @param d SolrDocument to convert    * @return a SolrInputDocument with the same fields and values as the     *   SolrDocument.  All boosts are 1.0f    */
 DECL|method|toSolrInputDocument
 specifier|public
 specifier|static
@@ -444,7 +444,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/**    * @param SolrInputDocument to convert    * @return a SolrDocument with the same fields and values as the SolrInputDocument    */
+comment|/**    * @param d SolrInputDocument to convert    * @return a SolrDocument with the same fields and values as the SolrInputDocument    */
 DECL|method|toSolrDocument
 specifier|public
 specifier|static
