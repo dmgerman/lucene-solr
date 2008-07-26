@@ -44,7 +44,7 @@ name|update
 operator|.
 name|processor
 operator|.
-name|ChainedUpdateProcessorFactory
+name|UpdateRequestProcessorChain
 import|;
 end_import
 
@@ -115,27 +115,24 @@ name|getCore
 argument_list|()
 decl_stmt|;
 comment|// make sure it loaded the factories
-name|ChainedUpdateProcessorFactory
+name|UpdateRequestProcessorChain
 name|chained
 init|=
-operator|(
-name|ChainedUpdateProcessorFactory
-operator|)
 name|core
 operator|.
-name|getUpdateProcessorFactory
+name|getUpdateProcessingChain
 argument_list|(
 literal|"standard"
 argument_list|)
 decl_stmt|;
-comment|// Make sure it got 3 items and configured the Log factory ok
+comment|// Make sure it got 3 items and configured the Log chain ok
 name|assertEquals
 argument_list|(
 literal|3
 argument_list|,
 name|chained
 operator|.
-name|factory
+name|chain
 operator|.
 name|length
 argument_list|)
@@ -148,7 +145,7 @@ name|LogUpdateProcessorFactory
 operator|)
 name|chained
 operator|.
-name|factory
+name|chain
 index|[
 literal|0
 index|]
@@ -162,18 +159,28 @@ operator|.
 name|maxNumToLog
 argument_list|)
 expr_stmt|;
-name|CustomUpdateRequestProcessorFactory
+name|UpdateRequestProcessorChain
 name|custom
+init|=
+name|core
+operator|.
+name|getUpdateProcessingChain
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+name|CustomUpdateRequestProcessorFactory
+name|link
 init|=
 operator|(
 name|CustomUpdateRequestProcessorFactory
 operator|)
-name|core
+name|custom
 operator|.
-name|getUpdateProcessorFactory
-argument_list|(
-literal|null
-argument_list|)
+name|chain
+index|[
+literal|0
+index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -181,7 +188,7 @@ name|custom
 argument_list|,
 name|core
 operator|.
-name|getUpdateProcessorFactory
+name|getUpdateProcessingChain
 argument_list|(
 literal|""
 argument_list|)
@@ -193,7 +200,7 @@ name|custom
 argument_list|,
 name|core
 operator|.
-name|getUpdateProcessorFactory
+name|getUpdateProcessingChain
 argument_list|(
 literal|"custom"
 argument_list|)
@@ -204,7 +211,7 @@ name|assertEquals
 argument_list|(
 literal|"{name={n8=88,n9=99}}"
 argument_list|,
-name|custom
+name|link
 operator|.
 name|args
 operator|.

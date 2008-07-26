@@ -36,20 +36,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -140,18 +126,6 @@ name|UpdateHandler
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
 begin_comment
 comment|/**  * Pass the command to the UpdateHandler without any modifications  *   * @since solr 1.3  */
 end_comment
@@ -164,22 +138,6 @@ name|RunUpdateProcessorFactory
 extends|extends
 name|UpdateRequestProcessorFactory
 block|{
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-specifier|final
-name|SolrCore
-name|core
-parameter_list|,
-specifier|final
-name|Node
-name|node
-parameter_list|)
-block|{        }
 annotation|@
 name|Override
 DECL|method|getInstance
@@ -215,7 +173,7 @@ DECL|class|RunUpdateProcessor
 class|class
 name|RunUpdateProcessor
 extends|extends
-name|NoOpUpdateProcessor
+name|UpdateRequestProcessor
 block|{
 DECL|field|req
 specifier|private

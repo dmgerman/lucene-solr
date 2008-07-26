@@ -26,6 +26,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|SolrCore
@@ -64,16 +80,36 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|apache
 operator|.
-name|dom
+name|solr
 operator|.
-name|Node
+name|util
+operator|.
+name|plugin
+operator|.
+name|NamedListInitializedPlugin
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|plugin
+operator|.
+name|SolrCoreAware
 import|;
 end_import
 
 begin_comment
-comment|/**  * A factory to generate UpdateRequestProcessors for each request.    *   * @since solr 1.3  */
+comment|/**  * A factory to generate an UpdateRequestProcessor for each request.    *   * If the factory needs access to {@link SolrCore} in initialization, it could   * implement {@link SolrCoreAware}  *   * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -82,19 +118,16 @@ specifier|public
 specifier|abstract
 class|class
 name|UpdateRequestProcessorFactory
+implements|implements
+name|NamedListInitializedPlugin
 block|{
 DECL|method|init
 specifier|public
 name|void
 name|init
 parameter_list|(
-specifier|final
-name|SolrCore
-name|core
-parameter_list|,
-specifier|final
-name|Node
-name|node
+name|NamedList
+name|args
 parameter_list|)
 block|{
 comment|// could process the Node
