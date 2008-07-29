@@ -56,20 +56,6 @@ name|SnowballFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
 begin_comment
 comment|/**  * Factory for SnowballFilters, with configurable language  *   * Browsing the code, SnowballFilter uses reflection to adapt to Lucene... don't  * use this if you are concerned about speed. Use EnglishPorterFilterFactory.  *   * @version $Id$  */
 end_comment
@@ -132,17 +118,6 @@ condition|)
 name|language
 operator|=
 name|cfgLanguage
-expr_stmt|;
-name|SolrCore
-operator|.
-name|log
-operator|.
-name|fine
-argument_list|(
-literal|"SnowballPorterFilterFactory: language="
-operator|+
-name|language
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|create
