@@ -174,7 +174,7 @@ operator|=
 literal|false
 expr_stmt|;
 comment|//add just under the merge factor, so no segments are merged
-comment|//the merge factor is 1000 and the maxBufferedDocs is 2, so there should be 500 segments (498 segs each w/ 2 docs, and 1 segment with 1 doc)
+comment|//the merge factor is 100 and the maxBufferedDocs is 2, so there should be 50 segments
 for|for
 control|(
 name|int
@@ -184,7 +184,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|999
+literal|99
 condition|;
 name|i
 operator|++
@@ -301,7 +301,7 @@ name|assertNumSegments
 argument_list|(
 name|indexDir
 argument_list|,
-literal|500
+literal|50
 argument_list|)
 expr_stmt|;
 comment|//now do an optimize
@@ -317,7 +317,7 @@ name|cmtCmd
 operator|.
 name|maxOptimizeSegments
 operator|=
-literal|250
+literal|25
 expr_stmt|;
 name|updater
 operator|.
@@ -337,7 +337,7 @@ name|assertNumSegments
 argument_list|(
 name|indexDir
 argument_list|,
-literal|250
+literal|25
 argument_list|)
 expr_stmt|;
 name|cmtCmd
