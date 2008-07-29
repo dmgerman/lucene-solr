@@ -7410,6 +7410,15 @@ name|lst
 operator|.
 name|add
 argument_list|(
+literal|"searcherName"
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
+name|lst
+operator|.
+name|add
+argument_list|(
 literal|"caching"
 argument_list|,
 name|cachingEnabled
