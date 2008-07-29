@@ -445,7 +445,7 @@ argument_list|()
 operator|.
 name|endsWith
 argument_list|(
-literal|"tii"
+literal|"cfs"
 argument_list|)
 return|;
 block|}
