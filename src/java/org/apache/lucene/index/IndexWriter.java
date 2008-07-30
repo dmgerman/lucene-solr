@@ -3270,9 +3270,6 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-name|boolean
-name|doClose
-decl_stmt|;
 comment|// If any methods have hit OutOfMemoryError, then abort
 comment|// on close, in case the internal state of IndexWriter
 comment|// or DocumentsWriter is corrupt
@@ -3280,68 +3277,64 @@ if|if
 condition|(
 name|hitOOM
 condition|)
-name|abort
+block|{
+name|rollback
 argument_list|()
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
+return|return;
+block|}
 comment|// Ensure that only one thread actually gets to do the closing:
 if|if
 condition|(
-operator|!
-name|closing
-condition|)
-block|{
-name|doClose
-operator|=
-literal|true
-expr_stmt|;
-name|closing
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-name|doClose
-operator|=
-literal|false
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|doClose
+name|shouldClose
+argument_list|()
 condition|)
 name|closeInternal
 argument_list|(
 name|waitForMerges
 argument_list|)
 expr_stmt|;
-else|else
-comment|// Another thread beat us to it (is actually doing the
-comment|// close), so we will block until that other thread
-comment|// has finished closing
-name|waitForClose
-argument_list|()
-expr_stmt|;
 block|}
-DECL|method|waitForClose
+comment|// Returns true if this thread should attempt to close, or
+comment|// false if IndexWriter is now closed; else, waits until
+comment|// another thread finishes closing
+DECL|method|shouldClose
 specifier|synchronized
 specifier|private
-name|void
-name|waitForClose
+name|boolean
+name|shouldClose
 parameter_list|()
 block|{
 while|while
 condition|(
+literal|true
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|closed
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
+operator|!
 name|closing
 condition|)
 block|{
+name|closing
+operator|=
+literal|true
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+else|else
+block|{
+comment|// Another thread is presently trying to close;
+comment|// wait until it finishes one way (closes
+comment|// successfully) or another (fails to close)
 try|try
 block|{
 name|wait
@@ -3353,7 +3346,13 @@ parameter_list|(
 name|InterruptedException
 name|ie
 parameter_list|)
-block|{       }
+block|{           }
+block|}
+block|}
+else|else
+return|return
+literal|false
+return|;
 block|}
 block|}
 DECL|method|closeInternal
@@ -3530,18 +3529,18 @@ init|(
 name|this
 init|)
 block|{
-if|if
-condition|(
-operator|!
-name|closed
-condition|)
-block|{
 name|closing
 operator|=
 literal|false
 expr_stmt|;
+name|notifyAll
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
+operator|!
+name|closed
+operator|&&
 name|infoStream
 operator|!=
 literal|null
@@ -3550,10 +3549,6 @@ name|message
 argument_list|(
 literal|"hit exception while closing"
 argument_list|)
-expr_stmt|;
-block|}
-name|notifyAll
-argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -6220,12 +6215,52 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"abort() can only be called when IndexWriter was opened with autoCommit=false"
+literal|"rollback() can only be called when IndexWriter was opened with autoCommit=false"
 argument_list|)
 throw|;
+comment|// Ensure that only one thread actually gets to do the closing:
+if|if
+condition|(
+name|shouldClose
+argument_list|()
+condition|)
+name|rollbackInternal
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|rollbackInternal
+specifier|private
+name|void
+name|rollbackInternal
+parameter_list|()
+throws|throws
+name|IOException
+block|{
 name|boolean
-name|doClose
+name|success
+init|=
+literal|false
 decl_stmt|;
+try|try
+block|{
+name|finishMerges
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// Must pre-close these two, in case they increment
+comment|// changeCount so that we can then set it to false
+comment|// before calling closeInternal
+name|mergePolicy
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|mergeScheduler
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -6260,56 +6295,6 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Ensure that only one thread actually gets to do the closing:
-if|if
-condition|(
-operator|!
-name|closing
-condition|)
-block|{
-name|doClose
-operator|=
-literal|true
-expr_stmt|;
-name|closing
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-name|doClose
-operator|=
-literal|false
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|doClose
-condition|)
-block|{
-name|finishMerges
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// Must pre-close these two, in case they increment
-comment|// changeCount so that we can then set it to false
-comment|// before calling closeInternal
-name|mergePolicy
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|mergeScheduler
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 comment|// Keep the same segmentInfos instance but replace all
 comment|// of its SegmentInfo instances.  This is so the next
 comment|// attempt to commit using this instance of IndexWriter
@@ -6332,6 +6317,12 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
+assert|assert
+name|testPoint
+argument_list|(
+literal|"rollback before checkpoint"
+argument_list|)
+assert|;
 comment|// Ask deleter to locate unreferenced files& remove
 comment|// them:
 name|deleter
@@ -6353,15 +6344,63 @@ name|lastCommitChangeCount
 operator|=
 name|changeCount
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|OutOfMemoryError
+name|oom
+parameter_list|)
+block|{
+name|hitOOM
+operator|=
+literal|true
+expr_stmt|;
+throw|throw
+name|oom
+throw|;
+block|}
+finally|finally
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|closing
+operator|=
+literal|false
+expr_stmt|;
+name|notifyAll
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"hit exception during rollback"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 name|closeInternal
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-block|}
-else|else
-name|waitForClose
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|finishMerges
@@ -9250,7 +9289,7 @@ name|merge
 operator|.
 name|registerDone
 assert|;
-comment|// If merge was explicitly aborted, or, if abort() or
+comment|// If merge was explicitly aborted, or, if rollback() or
 comment|// rollbackTransaction() had been called since our merge
 comment|// started (which results in an unqualified
 comment|// deleter.refresh() call that will remove any index
