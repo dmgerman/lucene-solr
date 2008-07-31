@@ -4249,7 +4249,7 @@ name|newSearcher
 argument_list|(
 name|newSearcher
 argument_list|,
-literal|null
+name|currSearcher
 argument_list|)
 expr_stmt|;
 block|}

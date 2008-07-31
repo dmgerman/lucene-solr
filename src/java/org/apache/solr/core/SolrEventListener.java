@@ -101,6 +101,7 @@ name|void
 name|postCommit
 parameter_list|()
 function_decl|;
+comment|/** The searchers passed here are only guaranteed to be valid for the duration    * of this method call, so care should be taken not to spawn threads or asynchronous    * tasks with references to these searchers.    */
 DECL|method|newSearcher
 specifier|public
 name|void
