@@ -1347,11 +1347,11 @@ operator|>
 literal|0
 condition|)
 block|{
-name|NamedList
+name|SimpleOrderedMap
 name|suggestionList
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|suggestionList
