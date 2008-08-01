@@ -517,7 +517,7 @@ return|return
 name|names
 return|;
 block|}
-comment|/**    * Initialize the components based on name    */
+comment|/**    * Initialize the components based on name.  Note, if using {@link #INIT_FIRST_COMPONENTS} or {@link #INIT_LAST_COMPONENTS},    * then the {@link DebugComponent} will always occur last.  If this is not desired, then one must explicitly declare all components using    * the {@link #INIT_COMPONENTS} syntax.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -587,6 +587,11 @@ argument_list|>
 name|list
 init|=
 literal|null
+decl_stmt|;
+name|boolean
+name|makeDebugLast
+init|=
+literal|true
 decl_stmt|;
 if|if
 condition|(
@@ -681,6 +686,10 @@ literal|"First/Last components only valid if you do not declare 'components'"
 argument_list|)
 throw|;
 block|}
+name|makeDebugLast
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|// Build the component list
 name|components
@@ -697,6 +706,11 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|DebugComponent
+name|dbgCmp
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|String
@@ -715,6 +729,27 @@ argument_list|(
 name|c
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|comp
+operator|instanceof
+name|DebugComponent
+operator|&&
+name|makeDebugLast
+operator|==
+literal|true
+condition|)
+block|{
+name|dbgCmp
+operator|=
+operator|(
+name|DebugComponent
+operator|)
+name|comp
+expr_stmt|;
+block|}
+else|else
+block|{
 name|components
 operator|.
 name|add
@@ -729,6 +764,35 @@ argument_list|(
 literal|"Adding  component:"
 operator|+
 name|comp
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|makeDebugLast
+operator|==
+literal|true
+operator|&&
+name|dbgCmp
+operator|!=
+literal|null
+condition|)
+block|{
+name|components
+operator|.
+name|add
+argument_list|(
+name|dbgCmp
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Adding  debug component:"
+operator|+
+name|dbgCmp
 argument_list|)
 expr_stmt|;
 block|}
