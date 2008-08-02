@@ -278,7 +278,9 @@ specifier|final
 name|SolrRequestParsers
 name|parser
 decl_stmt|;
-comment|/**    * Initialize using the static singleton SolrCore.getSolrCore().    */
+comment|/**    * Initialize using the static singleton SolrCore.getSolrCore().    *     * @deprecated use {@link #DirectSolrConnection(SolrCore)}    */
+annotation|@
+name|Deprecated
 DECL|method|DirectSolrConnection
 specifier|public
 name|DirectSolrConnection
