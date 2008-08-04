@@ -1816,7 +1816,7 @@ name|EMPTY_LIST
 return|;
 block|}
 comment|/**    * If where clause is not present the cache is a Map of query vs List of Rows.    * Only used by cache implementations.    *    * @param query string for which cached row is to be returned    * @return the cached row corresponding to the given query    */
-DECL|method|getSimplCacheData
+DECL|method|getSimpleCacheData
 specifier|protected
 name|Map
 argument_list|<
@@ -1824,7 +1824,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|getSimplCacheData
+name|getSimpleCacheData
 parameter_list|(
 name|String
 name|query
