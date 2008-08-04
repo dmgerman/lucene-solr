@@ -29,7 +29,7 @@ specifier|abstract
 class|class
 name|VariableResolver
 block|{
-comment|/**    * Resolves a given value with a name    *    * @param name    * @return    */
+comment|/**    * Resolves a given value with a name    *    * @param name the String to be resolved    * @return an Object which is the result of evaluation of given name    */
 DECL|method|resolve
 specifier|public
 specifier|abstract

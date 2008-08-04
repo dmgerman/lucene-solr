@@ -152,7 +152,7 @@ argument_list|(
 literal|"^(\\w*?)\\((.*?)\\)$"
 argument_list|)
 decl_stmt|;
-comment|/**    *<p>    * Returns an<code>Evaluator</code> instance meant to be used for escaping    * values in SQL queries.    *</p>    *<p>    * It escapes the value of the given expression by replacing all occurrences    * of single-quotes by two single-quotes and similarily for double-quotes    *</p>    *    * @return    */
+comment|/**    *<p>    * Returns an<code>Evaluator</code> instance meant to be used for escaping    * values in SQL queries.    *</p>    *<p>    * It escapes the value of the given expression by replacing all occurrences    * of single-quotes by two single-quotes and similarily for double-quotes    *</p>    *    * @return an<code>Evaluator</code> instance capable of SQL-escaping    *         expressions.    */
 DECL|method|getSqlEscapingEvaluator
 specifier|public
 specifier|static

@@ -1127,7 +1127,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    *<p>    * Stores the last indexed time into the<code>IMPORTER_PROPERTIES</code>    * file. If any properties are already defined in the file, then they are    * preserved.    *</p>    *    * @param date    */
+comment|/**    *<p>    * Stores the last indexed time into the<code>IMPORTER_PROPERTIES</code>    * file. If any properties are already defined in the file, then they are    * preserved.    *</p>    *    * @param date the Date instance to be persisted    */
 DECL|method|persistIndexStartTime
 specifier|public
 name|void
@@ -1152,7 +1152,7 @@ name|SolrDoc
 name|getSolrDocInstance
 parameter_list|()
 function_decl|;
-comment|/**    *<p>    * Write the document to the index    *</p>    *    * @param d . The Document warapper object    * @return    */
+comment|/**    *<p>    * Write the document to the index    *</p>    *    * @param d . The Document warapper object    * @return a boolean value denoting success (true) or failure (false)    */
 DECL|method|upload
 specifier|public
 specifier|abstract

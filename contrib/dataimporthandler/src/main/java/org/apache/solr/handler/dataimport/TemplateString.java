@@ -247,7 +247,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a string with all variables replaced by the known values. An    * unknown variable is replaced by an empty string.    *    * @param string    * @param resolver    * @return    */
+comment|/**    * Returns a string with all variables replaced by the known values. An    * unknown variable is replaced by an empty string.    *    * @param string the String to be resolved    * @param resolver the VariableResolver instance to be used for evaluation    * @return the string with all variables replaced    */
 DECL|method|replaceTokens
 specifier|public
 name|String
@@ -495,7 +495,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the variables in the given string.    *    * @param the templatized string    * @return the list of variables (strings) in the given templatized string.    */
+comment|/**    * Returns the variables in the given string.    *    * @param s the templatized string    * @return the list of variables (strings) in the given templatized string.    */
 DECL|method|getVariables
 specifier|public
 specifier|static

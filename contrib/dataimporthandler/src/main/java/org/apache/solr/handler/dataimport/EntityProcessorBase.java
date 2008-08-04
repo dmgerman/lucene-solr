@@ -1515,7 +1515,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * If the where clause is present the cache is sql Vs Map of key Vs List of    * Rows. Only used by cache implementations.    *    * @param query    * @return    */
+comment|/**    * If the where clause is present the cache is sql Vs Map of key Vs List of    * Rows. Only used by cache implementations.    *    * @param query the query string for which cached data is to be returned    * @return the cached row corresponding to the given query after all variables have been resolved     */
 DECL|method|getIdCacheData
 specifier|protected
 name|Map
@@ -1794,7 +1794,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Get all the rows from the the datasource for the given query. Only used by    * cache implementations.    *<p/>    * This<b>must</b> be implemented by sub-classes which intend to provide a    * cached implementation    *    * @return    */
+comment|/**    *<p>    * Get all the rows from the the datasource for the given query. Only used by    * cache implementations.    *</p>    * This<b>must</b> be implemented by sub-classes which intend to provide a    * cached implementation    *    * @return the list of all rows fetched from the datasource.    */
 DECL|method|getAllNonCachedRows
 specifier|protected
 name|List
@@ -1815,7 +1815,7 @@ operator|.
 name|EMPTY_LIST
 return|;
 block|}
-comment|/**    * If where clause is not present the cache is a Map of query vs List of Rows.    * Only used by cache implementations.    *    * @return    */
+comment|/**    * If where clause is not present the cache is a Map of query vs List of Rows.    * Only used by cache implementations.    *    * @param query string for which cached row is to be returned    * @return the cached row corresponding to the given query    */
 DECL|method|getSimplCacheData
 specifier|protected
 name|Map
