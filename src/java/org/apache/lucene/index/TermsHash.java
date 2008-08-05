@@ -132,11 +132,6 @@ specifier|final
 name|int
 name|postingsFreeChunk
 decl_stmt|;
-DECL|field|streamCount
-specifier|final
-name|int
-name|streamCount
-decl_stmt|;
 DECL|field|docWriter
 specifier|final
 name|DocumentsWriter
@@ -200,14 +195,6 @@ operator|.
 name|consumer
 operator|=
 name|consumer
-expr_stmt|;
-name|this
-operator|.
-name|streamCount
-operator|=
-name|consumer
-operator|.
-name|streamCount
 expr_stmt|;
 name|this
 operator|.

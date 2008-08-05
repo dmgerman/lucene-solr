@@ -211,6 +211,17 @@ init|=
 operator|-
 literal|6
 decl_stmt|;
+comment|/** This format adds the boolean hasProx to record if any    *  fields in the segment store prox information (ie, have    *  omitTf==false) */
+DECL|field|FORMAT_HAS_PROX
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_HAS_PROX
+init|=
+operator|-
+literal|7
+decl_stmt|;
 comment|/* This must always point to the most recent file format. */
 DECL|field|CURRENT_FORMAT
 specifier|static
@@ -218,7 +229,7 @@ specifier|final
 name|int
 name|CURRENT_FORMAT
 init|=
-name|FORMAT_DEL_COUNT
+name|FORMAT_HAS_PROX
 decl_stmt|;
 DECL|field|counter
 specifier|public

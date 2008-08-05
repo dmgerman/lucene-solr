@@ -366,6 +366,11 @@ name|boolean
 name|aborting
 decl_stmt|;
 comment|// True if an abort is pending
+DECL|field|docFieldProcessor
+specifier|private
+name|DocFieldProcessor
+name|docFieldProcessor
+decl_stmt|;
 DECL|field|infoStream
 name|PrintStream
 name|infoStream
@@ -867,6 +872,8 @@ argument_list|)
 decl_stmt|;
 name|consumer
 operator|=
+name|docFieldProcessor
+operator|=
 operator|new
 name|DocFieldProcessor
 argument_list|(
@@ -875,6 +882,21 @@ argument_list|,
 name|docFieldConsumers
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** Returns true if any of the fields in the current    *  buffered docs have omitTf==false */
+DECL|method|hasProx
+name|boolean
+name|hasProx
+parameter_list|()
+block|{
+return|return
+name|docFieldProcessor
+operator|.
+name|fieldInfos
+operator|.
+name|hasProx
+argument_list|()
+return|;
 block|}
 comment|/** If non-null, various details of indexing are printed    *  here. */
 DECL|method|setInfoStream

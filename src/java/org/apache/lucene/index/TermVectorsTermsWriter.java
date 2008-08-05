@@ -160,10 +160,6 @@ name|docWriter
 operator|=
 name|docWriter
 expr_stmt|;
-name|streamCount
-operator|=
-literal|2
-expr_stmt|;
 block|}
 DECL|method|addThread
 specifier|public

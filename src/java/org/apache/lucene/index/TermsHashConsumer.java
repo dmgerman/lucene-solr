@@ -109,10 +109,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|field|streamCount
-name|int
-name|streamCount
-decl_stmt|;
 DECL|field|fieldInfos
 name|FieldInfos
 name|fieldInfos

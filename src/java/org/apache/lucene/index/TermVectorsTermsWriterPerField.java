@@ -193,6 +193,15 @@ operator|.
 name|fieldState
 expr_stmt|;
 block|}
+DECL|method|getStreamCount
+name|int
+name|getStreamCount
+parameter_list|()
+block|{
+return|return
+literal|2
+return|;
+block|}
 DECL|method|start
 name|boolean
 name|start

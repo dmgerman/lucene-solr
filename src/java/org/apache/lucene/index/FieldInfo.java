@@ -52,6 +52,11 @@ name|boolean
 name|omitNorms
 decl_stmt|;
 comment|// omit norms associated with indexed fields
+DECL|field|omitTf
+name|boolean
+name|omitTf
+decl_stmt|;
+comment|// omit tf
 DECL|field|storePayloads
 name|boolean
 name|storePayloads
@@ -83,6 +88,9 @@ name|omitNorms
 parameter_list|,
 name|boolean
 name|storePayloads
+parameter_list|,
+name|boolean
+name|omitTf
 parameter_list|)
 block|{
 name|name
@@ -127,6 +135,12 @@ name|storePayloads
 operator|=
 name|storePayloads
 expr_stmt|;
+name|this
+operator|.
+name|omitTf
+operator|=
+name|omitTf
+expr_stmt|;
 block|}
 DECL|method|clone
 specifier|public
@@ -153,6 +167,8 @@ argument_list|,
 name|omitNorms
 argument_list|,
 name|storePayloads
+argument_list|,
+name|omitTf
 argument_list|)
 return|;
 block|}
@@ -177,6 +193,9 @@ name|omitNorms
 parameter_list|,
 name|boolean
 name|storePayloads
+parameter_list|,
+name|boolean
+name|omitTf
 parameter_list|)
 block|{
 if|if
@@ -263,6 +282,23 @@ operator|=
 literal|false
 expr_stmt|;
 comment|// once norms are stored, always store
+block|}
+if|if
+condition|(
+name|this
+operator|.
+name|omitTf
+operator|!=
+name|omitTf
+condition|)
+block|{
+name|this
+operator|.
+name|omitTf
+operator|=
+literal|true
+expr_stmt|;
+comment|// if one require omitTf at least once, it remains off for life
 block|}
 if|if
 condition|(
@@ -363,6 +399,23 @@ operator|=
 literal|false
 expr_stmt|;
 comment|// once norms are stored, always store
+block|}
+if|if
+condition|(
+name|this
+operator|.
+name|omitTf
+operator|!=
+name|omitTf
+condition|)
+block|{
+name|this
+operator|.
+name|omitTf
+operator|=
+literal|true
+expr_stmt|;
+comment|// if one require omitTf at least once, it remains off for life
 block|}
 if|if
 condition|(

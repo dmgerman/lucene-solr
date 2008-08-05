@@ -7528,6 +7528,11 @@ argument_list|,
 literal|null
 argument_list|,
 literal|false
+argument_list|,
+name|merger
+operator|.
+name|hasProx
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|segmentInfos
@@ -8404,6 +8409,11 @@ argument_list|,
 name|docStoreSegment
 argument_list|,
 name|docStoreIsCompoundFile
+argument_list|,
+name|docWriter
+operator|.
+name|hasProx
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -9479,6 +9489,18 @@ break|break;
 block|}
 block|}
 block|}
+name|merge
+operator|.
+name|info
+operator|.
+name|setHasProx
+argument_list|(
+name|merger
+operator|.
+name|hasProx
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|segmentInfos
 operator|.
 name|subList
@@ -10635,6 +10657,8 @@ argument_list|,
 name|docStoreSegment
 argument_list|,
 name|docStoreIsCompoundFile
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Also enroll the merged segment into mergingSegments;

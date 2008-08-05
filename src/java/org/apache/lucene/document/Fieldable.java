@@ -175,6 +175,21 @@ name|boolean
 name|omitNorms
 parameter_list|)
 function_decl|;
+comment|/** Expert:    *    * If set, omit term freq, positions and payloads from postings for this field.    */
+DECL|method|setOmitTf
+name|void
+name|setOmitTf
+parameter_list|(
+name|boolean
+name|omitTf
+parameter_list|)
+function_decl|;
+comment|/** True if tf is omitted for this indexed field */
+DECL|method|getOmitTf
+name|boolean
+name|getOmitTf
+parameter_list|()
+function_decl|;
 comment|/**    * Indicates whether a Field is Lazy or not.  The semantics of Lazy loading are such that if a Field is lazily loaded, retrieving    * it's values via {@link #stringValue()} or {@link #binaryValue()} is only valid as long as the {@link org.apache.lucene.index.IndexReader} that    * retrieved the {@link Document} is still open.    *      * @return true if this field can be loaded lazily    */
 DECL|method|isLazy
 name|boolean

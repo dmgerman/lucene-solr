@@ -106,6 +106,13 @@ name|lazy
 init|=
 literal|false
 decl_stmt|;
+DECL|field|omitTf
+specifier|protected
+name|boolean
+name|omitTf
+init|=
+literal|false
+decl_stmt|;
 DECL|field|boost
 specifier|protected
 name|float
@@ -707,6 +714,17 @@ return|return
 name|omitNorms
 return|;
 block|}
+comment|/** True if tf is omitted for this indexed field */
+DECL|method|getOmitTf
+specifier|public
+name|boolean
+name|getOmitTf
+parameter_list|()
+block|{
+return|return
+name|omitTf
+return|;
+block|}
 comment|/** Expert:    *    * If set, omit normalization factors associated with this indexed field.    * This effectively disables indexing boosts and length normalization for this field.    */
 DECL|method|setOmitNorms
 specifier|public
@@ -722,6 +740,23 @@ operator|.
 name|omitNorms
 operator|=
 name|omitNorms
+expr_stmt|;
+block|}
+comment|/** Expert:   *   * If set, omit tf from postings of this indexed field.   */
+DECL|method|setOmitTf
+specifier|public
+name|void
+name|setOmitTf
+parameter_list|(
+name|boolean
+name|omitTf
+parameter_list|)
+block|{
+name|this
+operator|.
+name|omitTf
+operator|=
+name|omitTf
 expr_stmt|;
 block|}
 DECL|method|isLazy
@@ -965,6 +1000,19 @@ operator|.
 name|append
 argument_list|(
 literal|",omitNorms"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|omitTf
+condition|)
+block|{
+name|result
+operator|.
+name|append
+argument_list|(
+literal|",omitTf"
 argument_list|)
 expr_stmt|;
 block|}
