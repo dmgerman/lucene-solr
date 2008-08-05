@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Catch commit notifications  *  * It is tricky to be correctly notified when commits occur: Solr's post-commit  * hook is called after commit has completed but before the search is opened.  The  * best that can be done is wait for a post commit hook, then add a document (which  * will block while the searcher is opened)  */
+comment|/** Catch commit notifications  *  * It is tricky to be correctly notified when commits occur: Solr's post-commit  * hook is called after commit has completed but before the search is opened.  The  * best that can be done is wait for a post commit hook, and then wait for a little  * longer for a new searcher to be registered.   */
 end_comment
 
 begin_class
@@ -273,13 +273,22 @@ operator|-=
 literal|250
 control|)
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|triggered
 condition|)
-break|break;
-try|try
 block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|500
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
 name|Thread
 operator|.
 name|sleep
@@ -864,7 +873,7 @@ name|trigger
 operator|.
 name|waitForCommit
 argument_list|(
-literal|10000
+literal|20000
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -956,7 +965,7 @@ name|trigger
 operator|.
 name|waitForCommit
 argument_list|(
-literal|10000
+literal|20000
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1079,7 +1088,7 @@ name|trigger
 operator|.
 name|waitForCommit
 argument_list|(
-literal|10000
+literal|20000
 argument_list|)
 argument_list|)
 expr_stmt|;
