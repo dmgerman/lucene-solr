@@ -144,7 +144,7 @@ literal|'\u00c0'
 operator|&&
 name|c
 operator|<=
-literal|'\u0178'
+literal|'\uFB06'
 condition|)
 block|{
 name|removeAccents
@@ -275,8 +275,12 @@ comment|// current character
 if|if
 condition|(
 name|c
-operator|<
+argument_list|<
 literal|'\u00c0'
+operator|||
+name|c
+argument_list|>
+literal|'\uFB06'
 condition|)
 name|output
 index|[
@@ -408,6 +412,27 @@ operator|++
 index|]
 operator|=
 literal|'I'
+expr_stmt|;
+break|break;
+case|case
+literal|'\u0132'
+case|:
+comment|// Ä²
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'I'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'J'
 expr_stmt|;
 break|break;
 case|case
@@ -671,6 +696,27 @@ literal|'i'
 expr_stmt|;
 break|break;
 case|case
+literal|'\u0133'
+case|:
+comment|// Ä³
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'i'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'j'
+expr_stmt|;
+break|break;
+case|case
 literal|'\u00F0'
 case|:
 comment|// Ã°
@@ -832,6 +878,122 @@ operator|++
 index|]
 operator|=
 literal|'y'
+expr_stmt|;
+break|break;
+case|case
+literal|'\uFB00'
+case|:
+comment|// ï¬
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'f'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'f'
+expr_stmt|;
+break|break;
+case|case
+literal|'\uFB01'
+case|:
+comment|// ï¬
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'f'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'i'
+expr_stmt|;
+break|break;
+case|case
+literal|'\uFB02'
+case|:
+comment|// ï¬
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'f'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'l'
+expr_stmt|;
+break|break;
+comment|// following 2 are commented as they can break the maxSizeNeeded (and doing *3 could be expensive)
+comment|//        case '\uFB03': // ï¬
+comment|//            output[outputPos++] = 'f';
+comment|//            output[outputPos++] = 'f';
+comment|//            output[outputPos++] = 'i';
+comment|//            break;
+comment|//        case '\uFB04': // ï¬
+comment|//            output[outputPos++] = 'f';
+comment|//            output[outputPos++] = 'f';
+comment|//            output[outputPos++] = 'l';
+comment|//            break;
+case|case
+literal|'\uFB05'
+case|:
+comment|// ï¬
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'f'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'t'
+expr_stmt|;
+break|break;
+case|case
+literal|'\uFB06'
+case|:
+comment|// ï¬
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'s'
+expr_stmt|;
+name|output
+index|[
+name|outputPos
+operator|++
+index|]
+operator|=
+literal|'t'
 expr_stmt|;
 break|break;
 default|default :

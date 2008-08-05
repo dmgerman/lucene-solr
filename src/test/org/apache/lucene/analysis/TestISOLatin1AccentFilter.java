@@ -65,7 +65,7 @@ argument_list|(
 operator|new
 name|StringReader
 argument_list|(
-literal|"Des mot clÃ©s Ã LA CHAÃNE Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Å Ã Ã Ã Ã Ã Ã Å¸ Ã  Ã¡ Ã¢ Ã£ Ã¤ Ã¥ Ã¦ Ã§ Ã¨ Ã© Ãª Ã« Ã¬ Ã­ Ã® Ã¯ Ã° Ã± Ã² Ã³ Ã´ Ãµ Ã¶ Ã¸ Å Ã Ã¾ Ã¹ Ãº Ã» Ã¼ Ã½ Ã¿"
+literal|"Des mot clÃ©s Ã LA CHAÃNE Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ã Ä² Ã Ã Ã Ã Ã Ã Ã Ã Å Ã Ã Ã Ã Ã Ã Å¸ Ã  Ã¡ Ã¢ Ã£ Ã¤ Ã¥ Ã¦ Ã§ Ã¨ Ã© Ãª Ã« Ã¬ Ã­ Ã® Ã¯ Ä³ Ã° Ã± Ã² Ã³ Ã´ Ãµ Ã¶ Ã¸ Å Ã Ã¾ Ã¹ Ãº Ã» Ã¼ Ã½ Ã¿ ï¬ ï¬"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -354,6 +354,19 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"I"
+argument_list|,
+name|filter
+operator|.
+name|next
+argument_list|()
+operator|.
+name|termText
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"IJ"
 argument_list|,
 name|filter
 operator|.
@@ -782,6 +795,19 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"ij"
+argument_list|,
+name|filter
+operator|.
+name|next
+argument_list|()
+operator|.
+name|termText
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 literal|"d"
 argument_list|,
 name|filter
@@ -991,6 +1017,32 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"y"
+argument_list|,
+name|filter
+operator|.
+name|next
+argument_list|()
+operator|.
+name|termText
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"fi"
+argument_list|,
+name|filter
+operator|.
+name|next
+argument_list|()
+operator|.
+name|termText
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"fl"
 argument_list|,
 name|filter
 operator|.
