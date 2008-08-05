@@ -18,6 +18,20 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -36,22 +50,8 @@ name|Serializable
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
-import|;
-end_import
-
 begin_comment
-comment|/**  * Synonymous with {@link Field}.  *  **/
+comment|/**  * Synonymous with {@link Field}.  *  *<p><bold>WARNING</bold>: This interface may change within minor versions, despite Lucene's backward compatibility requirements.  * This means new methods may be added from version to version.  This change only affects the Fieldable API; other backwards  * compatibility promises remain intact. For example, Lucene can still  * read and write indices created within the same major version.  *</p>  *  **/
 end_comment
 
 begin_interface
