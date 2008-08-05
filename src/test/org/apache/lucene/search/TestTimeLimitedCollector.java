@@ -919,9 +919,32 @@ name|getResolution
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// b) Not too late  (this part might be problematic in a busy system, consider removing it if it raises false test failures.
-name|assertTrue
+comment|// b) Not too late.
+comment|//    This part is problematic in a busy test system, so we just print a warning.
+comment|//    We already verified that a timeout occurred, we just can't be picky about how long it took.
+if|if
+condition|(
+name|timoutException
+operator|.
+name|getTimeElapsed
+argument_list|()
+operator|>
+name|maxTime
 argument_list|(
+name|multiThreaded
+argument_list|)
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Informative: timeout exceeded (no action required: most probably just "
+operator|+
+literal|" because the test machine is slower than usual):  "
+operator|+
 literal|"lastDoc="
 operator|+
 name|exceptionDoc
@@ -946,18 +969,9 @@ name|maxTimeStr
 argument_list|(
 name|multiThreaded
 argument_list|)
-argument_list|,
-name|timoutException
-operator|.
-name|getTimeElapsed
-argument_list|()
-operator|<
-name|maxTime
-argument_list|(
-name|multiThreaded
-argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|maxTime
 specifier|private
