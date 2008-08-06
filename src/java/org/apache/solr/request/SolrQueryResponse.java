@@ -108,7 +108,7 @@ specifier|protected
 name|boolean
 name|httpCaching
 init|=
-literal|false
+literal|true
 decl_stmt|;
 comment|/***    // another way of returning an error   int errCode;   String errMsg;   ***/
 DECL|method|SolrQueryResponse
