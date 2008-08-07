@@ -110,7 +110,7 @@ name|tieBreakerMultiplier
 init|=
 literal|0.0f
 decl_stmt|;
-comment|/** Creates a new empty DisjunctionMaxQuery.  Use add() to add the subqueries.    * @param tieBreakerMultiplier this score of each non-maximum disjunct for a document is multiplied by this weight    *        and added into the final score.  If non-zero, the value should be small, on the order of 0.1, which says that    *        10 occurrences of word in a lower-scored field that is also in a higher scored field is just as good as a unique    *        word in the lower scored field (i.e., one that is not in any higher scored field.    */
+comment|/** Creates a new empty DisjunctionMaxQuery.  Use add() to add the subqueries.    * @param tieBreakerMultiplier the score of each non-maximum disjunct for a document is multiplied by this weight    *        and added into the final score.  If non-zero, the value should be small, on the order of 0.1, which says that    *        10 occurrences of word in a lower-scored field that is also in a higher scored field is just as good as a unique    *        word in the lower scored field (i.e., one that is not in any higher scored field.    */
 DECL|method|DisjunctionMaxQuery
 specifier|public
 name|DisjunctionMaxQuery
