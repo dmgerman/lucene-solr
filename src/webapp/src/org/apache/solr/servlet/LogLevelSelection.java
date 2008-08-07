@@ -1239,6 +1239,14 @@ block|}
 block|}
 return|return
 name|level
+operator|!=
+literal|null
+condition|?
+name|level
+else|:
+name|Level
+operator|.
+name|OFF
 return|;
 block|}
 DECL|class|LogWrapper
