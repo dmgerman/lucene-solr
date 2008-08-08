@@ -1164,6 +1164,61 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/*   * @return the Accuracy used for the Spellchecker   * */
+DECL|method|getAccuracy
+specifier|public
+name|float
+name|getAccuracy
+parameter_list|()
+block|{
+return|return
+name|accuracy
+return|;
+block|}
+comment|/*   * @return the Field used   *   * */
+DECL|method|getField
+specifier|public
+name|String
+name|getField
+parameter_list|()
+block|{
+return|return
+name|field
+return|;
+block|}
+comment|/*   *   * @return the FieldType name.   * */
+DECL|method|getFieldTypeName
+specifier|public
+name|String
+name|getFieldTypeName
+parameter_list|()
+block|{
+return|return
+name|fieldTypeName
+return|;
+block|}
+comment|/*   * @return the Index directory   * */
+DECL|method|getIndexDir
+specifier|public
+name|String
+name|getIndexDir
+parameter_list|()
+block|{
+return|return
+name|indexDir
+return|;
+block|}
+comment|/*   * @return the location of the source   * */
+DECL|method|getSourceLocation
+specifier|public
+name|String
+name|getSourceLocation
+parameter_list|()
+block|{
+return|return
+name|sourceLocation
+return|;
+block|}
 block|}
 end_class
 

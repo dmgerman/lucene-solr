@@ -104,6 +104,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|ConcurrentHashMap
@@ -2397,6 +2407,26 @@ name|void
 name|postCommit
 parameter_list|()
 block|{     }
+block|}
+DECL|method|getSpellCheckers
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SolrSpellChecker
+argument_list|>
+name|getSpellCheckers
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|unmodifiableMap
+argument_list|(
+name|spellCheckers
+argument_list|)
+return|;
 block|}
 comment|// ///////////////////////////////////////////
 comment|// / SolrInfoMBean
