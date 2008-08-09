@@ -410,8 +410,8 @@ name|getInfoRegistry
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ObjectName
-name|searcher
+name|SolrInfoMBean
+name|bean
 init|=
 literal|null
 decl_stmt|;
@@ -431,12 +431,8 @@ name|i
 operator|++
 control|)
 block|{
-name|searcher
+name|bean
 operator|=
-name|getObjectName
-argument_list|(
-literal|"searcher"
-argument_list|,
 name|h
 operator|.
 name|getCore
@@ -449,11 +445,10 @@ name|get
 argument_list|(
 literal|"searcher"
 argument_list|)
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|searcher
+name|bean
 operator|!=
 literal|null
 condition|)
@@ -468,7 +463,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|searcher
+name|bean
 operator|==
 literal|null
 condition|)
@@ -479,6 +474,16 @@ argument_list|(
 literal|"searcher was never registered"
 argument_list|)
 throw|;
+name|ObjectName
+name|searcher
+init|=
+name|getObjectName
+argument_list|(
+literal|"searcher"
+argument_list|,
+name|bean
+argument_list|)
+decl_stmt|;
 name|MBeanServer
 name|mbeanServer
 init|=
