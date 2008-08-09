@@ -1314,6 +1314,24 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|// protect via synchronized(SolrCore.class)
+DECL|field|dirs
+specifier|private
+specifier|static
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|dirs
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
+comment|// currently only called with SolrCore.class lock held
 DECL|method|initIndex
 name|void
 name|initIndex
@@ -1340,6 +1358,19 @@ name|canRead
 argument_list|()
 decl_stmt|;
 name|boolean
+name|firstTime
+init|=
+name|dirs
+operator|.
+name|add
+argument_list|(
+name|dirFile
+operator|.
+name|getCanonicalPath
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|boolean
 name|removeLocks
 init|=
 name|solrConfig
@@ -1354,6 +1385,8 @@ decl_stmt|;
 if|if
 condition|(
 name|indexExists
+operator|&&
+name|firstTime
 operator|&&
 name|removeLocks
 condition|)
