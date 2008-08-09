@@ -160,15 +160,14 @@ name|path
 init|=
 literal|"../../webapp/web"
 decl_stmt|;
-name|Server
 name|server
-init|=
+operator|=
 operator|new
 name|Server
 argument_list|(
 name|port
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 operator|new
 name|WebAppContext
 argument_list|(
