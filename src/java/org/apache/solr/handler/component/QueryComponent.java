@@ -4285,6 +4285,25 @@ name|boolean
 name|omitNorms
 parameter_list|)
 block|{     }
+DECL|method|setOmitTf
+specifier|public
+name|void
+name|setOmitTf
+parameter_list|(
+name|boolean
+name|omitTf
+parameter_list|)
+block|{     }
+DECL|method|getOmitTf
+specifier|public
+name|boolean
+name|getOmitTf
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|isLazy
 specifier|public
 name|boolean
