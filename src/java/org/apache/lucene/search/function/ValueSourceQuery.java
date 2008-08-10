@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A Query that sets the scores of document to the  * values obtained from a {@link org.apache.lucene.search.function.ValueSource ValueSource}.  *<p>     * The value source can be based on a (cached) value of an indexd  field, but it  * can also be based on an external source, e.g. values read from an external database.   *<p>  * Score is set as: Score(doc,query) = query.getBoost()<sup>2</sup> * valueSource(doc).    *  *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *   * @author yonik  */
+comment|/**  * Expert: A Query that sets the scores of document to the  * values obtained from a {@link org.apache.lucene.search.function.ValueSource ValueSource}.  *<p>     * The value source can be based on a (cached) value of an indexed field, but it  * can also be based on an external source, e.g. values read from an external database.   *<p>  * Score is set as: Score(doc,query) = query.getBoost()<sup>2</sup> * valueSource(doc).    *  *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  */
 end_comment
 
 begin_class

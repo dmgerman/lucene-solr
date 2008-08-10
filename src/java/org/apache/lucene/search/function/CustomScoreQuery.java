@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Query that sets document score as a programmatic function of several (sub) scores.  *<ol>  *<li>the score of its subQuery (any query)</li>  *<li>(optional) the score of its ValueSourtceQuery (or queries),  *        for most simple/convineient use case this query would be a   *        {@link org.apache.lucene.search.function.FieldScoreQuery FieldScoreQuery}</li>  *</ol>  * Subclasses can modify the computation by overriding {@link #customScore(int, float, float)}.  *   *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  */
+comment|/**  * Query that sets document score as a programmatic function of several (sub) scores.  *<ol>  *<li>the score of its subQuery (any query)</li>  *<li>(optional) the score of its ValueSourceQuery (or queries).  *        For most simple/convenient use cases this query is likely to be a   *        {@link org.apache.lucene.search.function.FieldScoreQuery FieldScoreQuery}</li>  *</ol>  * Subclasses can modify the computation by overriding {@link #customScore(int, float, float)}.  *   *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  */
 end_comment
 
 begin_class
