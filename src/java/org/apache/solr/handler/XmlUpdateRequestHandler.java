@@ -2160,7 +2160,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**    * A Convenience method for getting back a simple XML string indicating    * success or failure from an XML formated Update (from the Reader)    *     * @since solr 1.2    */
+comment|/**    * A Convenience method for getting back a simple XML string indicating    * success or failure from an XML formated Update (from the Reader)    *     * @since solr 1.2    *     * @deprecated Use    *             {@link #processUpdate(UpdateRequestProcessor, XMLStreamReader)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|doLegacyUpdate

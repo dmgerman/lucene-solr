@@ -961,7 +961,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This is a utility function that lets you get the contents of an admin file    *     * It is only used so that we can get rid of "/admin/get-file.jsp" and include    * "admin-extra.html" in "/admin/index.html" using jsp scriptlets    */
+comment|/**    * This is a utility function that lets you get the contents of an admin file    *     * It is only used so that we can get rid of "/admin/get-file.jsp" and include    * "admin-extra.html" in "/admin/index.html" using jsp scriptlets    *     * @deprecated This functionality is implemented in    *             {@link #handleRequestBody(SolrQueryRequest, SolrQueryResponse)}.    */
 annotation|@
 name|Deprecated
 DECL|method|getFileContents

@@ -259,7 +259,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
+comment|/**  * @version $Id$  *   * @deprecated Test against the real request handlers instead.  */
 end_comment
 
 begin_class

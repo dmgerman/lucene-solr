@@ -774,6 +774,7 @@ return|return
 name|startTime
 return|;
 block|}
+comment|/**    * @deprecated Use {@link MultiCore#getCore(String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|instance
@@ -883,7 +884,7 @@ name|getResourceName
 argument_list|()
 return|;
 block|}
-comment|/**    * Gets the configuration resource name used by this core instance.    * @see #getConfigResource()    */
+comment|/**    * Gets the configuration resource name used by this core instance.    * @deprecated Use {@link #getConfigResource()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getConfigFile
@@ -924,7 +925,7 @@ name|getResourceName
 argument_list|()
 return|;
 block|}
-comment|/**    * Gets the schema resource name used by this core instance.    * @see #getSchemaResource()     */
+comment|/**    * Gets the schema resource name used by this core instance.    * @deprecated Use {@link #getSchemaResource()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getSchemaFile
@@ -1795,7 +1796,7 @@ literal|"Highlighter"
 argument_list|)
 return|;
 block|}
-comment|/**     * @return the last core initialized.  If you are using multiple cores,     * this is not a function to use.    */
+comment|/**     * @return the last core initialized.  If you are using multiple cores,     * this is not a function to use.    *     * @deprecated Use {@link MultiCore#getCore(String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getSolrCore
@@ -5039,6 +5040,7 @@ argument_list|)
 expr_stmt|;
 comment|/*log.info(logid+"" + req.getContext().get("path") + " "             + req.getParamString()+ " 0 "+        (int)(rsp.getEndTime() - req.getStartTime()));*/
 block|}
+comment|/**    * @deprecated Use {@link #execute(SolrRequestHandler, SolrQueryRequest, SolrQueryResponse)} instead.     */
 annotation|@
 name|Deprecated
 DECL|method|execute

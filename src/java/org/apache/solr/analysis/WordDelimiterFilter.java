@@ -450,7 +450,7 @@ name|preserveOriginal
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Compatibility constructor */
+comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|WordDelimiterFilter
@@ -502,7 +502,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Compatibility constructor */
+comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|WordDelimiterFilter

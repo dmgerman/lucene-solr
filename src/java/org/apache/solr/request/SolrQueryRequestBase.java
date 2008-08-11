@@ -359,6 +359,9 @@ operator|=
 name|params
 expr_stmt|;
 block|}
+comment|/**    * @deprecated Use {@link #getParams()} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|getParam
 specifier|public
 name|String
@@ -377,6 +380,9 @@ name|name
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link #getParams()} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|getParams
 specifier|public
 name|String
@@ -396,7 +402,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * use getParams().required().getInt( name ) instead    */
+comment|/**    * @deprecated use getParams().required().getInt( name ) instead    */
 annotation|@
 name|Deprecated
 DECL|method|getIntParam
@@ -452,7 +458,7 @@ name|s
 argument_list|)
 return|;
 block|}
-comment|/**    * use getParams().required().getInt( name ) instead    */
+comment|/**    * @deprecated use getParams().required().getInt( name ) instead    */
 annotation|@
 name|Deprecated
 DECL|method|getIntParam
@@ -490,7 +496,7 @@ name|s
 argument_list|)
 return|;
 block|}
-comment|/**    * use getParams().required().getParam( name ) instead    */
+comment|/**    * @deprecated use getParams().required().getParam( name ) instead    */
 annotation|@
 name|Deprecated
 DECL|method|getStrParam
@@ -541,7 +547,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/**    * use getParams().required().getParam( name ) instead    */
+comment|/**    * @deprecated use getParams().required().getParam( name ) instead    */
 annotation|@
 name|Deprecated
 DECL|method|getStrParam
@@ -574,6 +580,7 @@ else|:
 name|s
 return|;
 block|}
+comment|/**    * @deprecated Use {@link #getParams()} and {@link CommonParams#Q} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getQueryString
@@ -593,6 +600,7 @@ name|Q
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link #getParams()} and {@link CommonParams#QT} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getQueryType
@@ -612,7 +620,7 @@ name|QT
 argument_list|)
 return|;
 block|}
-comment|// starting position in matches to return to client
+comment|/**    * starting position in matches to return to client    * @deprecated Use {@link #getParams()} and {@link CommonParams#START} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getStart
@@ -634,7 +642,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|// number of matching documents to return
+comment|/**    * number of matching documents to return    * @deprecated Use {@link #getParams()} and {@link CommonParams#ROWS} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getLimit

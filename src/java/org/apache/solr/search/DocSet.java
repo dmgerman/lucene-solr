@@ -99,7 +99,7 @@ name|DocIterator
 name|iterator
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a BitSet view of the DocSet.  Any changes to this BitSet<b>may</b>    * be reflected in the DocSet, hence if the DocSet is shared or was returned from    * a SolrIndexSearcher method, it's not safe to modify the BitSet.    *    * @return    * An OpenBitSet with the bit number of every docid set in the set.    */
+comment|/**    * Returns a BitSet view of the DocSet.  Any changes to this BitSet<b>may</b>    * be reflected in the DocSet, hence if the DocSet is shared or was returned from    * a SolrIndexSearcher method, it's not safe to modify the BitSet.    *    * @return    * An OpenBitSet with the bit number of every docid set in the set.    *     * @deprecated Use {@link #iterator()} to access all docs instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getBits

@@ -259,7 +259,7 @@ name|DEFAULT_CONF_FILE
 init|=
 literal|"solrconfig.xml"
 decl_stmt|;
-comment|// Compatibility feature for single-core (pre-solr{215,350} patch); should go away at solr-2.0
+comment|/**    * Compatibility feature for single-core (pre-solr{215,350} patch); should go away at solr-2.0    * @deprecated Use {@link SolrCore#getSolrConfig()} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|config
@@ -834,7 +834,7 @@ return|return
 name|httpCachingConfig
 return|;
 block|}
-comment|// ping query request parameters
+comment|/**    * ping query request parameters    * @deprecated Use {@link PingRequestHandler} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|pingQueryParams

@@ -250,6 +250,7 @@ specifier|final
 name|SolrResourceLoader
 name|loader
 decl_stmt|;
+comment|/**    * @deprecated Use {@link #Config(SolrResourceLoader, String, InputStream, String)} instead.     */
 annotation|@
 name|Deprecated
 DECL|method|Config
@@ -1214,6 +1215,7 @@ return|;
 block|}
 comment|// The following functions were moved to ResourceLoader
 comment|//-----------------------------------------------------------------------------
+comment|/**     * @deprecated Use {@link SolrResourceLoader#getConfigDir()} instead.     */
 annotation|@
 name|Deprecated
 DECL|method|getConfigDir
@@ -1229,6 +1231,7 @@ name|getConfigDir
 argument_list|()
 return|;
 block|}
+comment|/**    * @deprecated Use {@link SolrResourceLoader#openResource(String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|openResource
@@ -1249,6 +1252,7 @@ name|resource
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link SolrResourceLoader#getLines(String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getLines
@@ -1274,6 +1278,7 @@ name|resource
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link SolrResourceLoader#findClass(String, String[])} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|findClass
@@ -1300,6 +1305,7 @@ name|subpackages
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link SolrResourceLoader#newInstance(String, String[])} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|newInstance
@@ -1326,6 +1332,7 @@ name|subpackages
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link SolrResourceLoader#getInstanceDir()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getInstanceDir

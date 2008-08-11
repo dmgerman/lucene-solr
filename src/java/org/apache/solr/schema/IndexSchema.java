@@ -448,7 +448,7 @@ specifier|private
 name|float
 name|version
 decl_stmt|;
-comment|/**    * Constructs a schema using the specified file name using the normal    * Config path directory searching rules.    *    * @see Config#openResource    */
+comment|/**    * Constructs a schema using the specified file name using the normal    * Config path directory searching rules.    *    * @see Config#openResource    * @deprecated Use {@link #IndexSchema(SolrConfig, String, InputStream)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|IndexSchema
@@ -614,7 +614,7 @@ return|return
 name|version
 return|;
 block|}
-comment|/**    * Direct access to the InputStream for the schemaFile used by this instance.    * @see Config#openResource    */
+comment|/**    * Direct access to the InputStream for the schemaFile used by this instance.    * @see Config#openResource    * @deprecated Use {@link #getSolrConfig()} and open a resource input stream    *             for {@link #getResourceName()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getInputStream
@@ -635,7 +635,7 @@ name|resourceName
 argument_list|)
 return|;
 block|}
-comment|/** Gets the name of the schema file.    * @see IndexSchema#getResourceName    */
+comment|/** Gets the name of the schema file.    * @deprecated Use {@link #getResourceName()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getSchemaFile
@@ -648,7 +648,7 @@ return|return
 name|resourceName
 return|;
 block|}
-comment|/** The Name of this schema (as specified in the schema file)    * @see IndexSchema#getSchemaName    */
+comment|/** The Name of this schema (as specified in the schema file)    * @deprecated Use {@link #getSchemaName()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getName
@@ -925,6 +925,8 @@ name|qp
 return|;
 block|}
 comment|/**    * Name of the default search field specified in the schema file    * @deprecated use getSolrQueryParser().getField()    */
+annotation|@
+name|Deprecated
 DECL|method|getDefaultSearchFieldName
 specifier|public
 name|String
@@ -936,6 +938,8 @@ name|defaultSearchFieldName
 return|;
 block|}
 comment|/**    * default operator ("AND" or "OR") for QueryParser    * @deprecated use getSolrQueryParser().getDefaultOperator()    */
+annotation|@
+name|Deprecated
 DECL|method|getQueryParserDefaultOperator
 specifier|public
 name|String
