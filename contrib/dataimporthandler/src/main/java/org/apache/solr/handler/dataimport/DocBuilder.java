@@ -3381,7 +3381,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|ClassNotFoundException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -3428,12 +3428,36 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|ClassNotFoundException
+name|Exception
 name|e1
 parameter_list|)
 block|{
 throw|throw
+operator|new
+name|ClassNotFoundException
+argument_list|(
+literal|"Unable to load "
+operator|+
+name|name
+operator|+
+literal|" or "
+operator|+
+name|DocBuilder
+operator|.
+name|class
+operator|.
+name|getPackage
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"."
+operator|+
+name|name
+argument_list|,
 name|e
+argument_list|)
 throw|;
 block|}
 block|}
