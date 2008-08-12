@@ -224,9 +224,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//    File src = new File(getSolrHome(), "multicore-base.xml");
-comment|//    File dest = new File(getSolrHome(), "multicore.xml");
-comment|//    org.apache.solr.core.MultiCore.fileCopy(src, dest);
 name|super
 operator|.
 name|setUp

@@ -107,7 +107,7 @@ name|File
 argument_list|(
 name|home
 argument_list|,
-literal|"multicore.xml"
+literal|"solr.xml"
 argument_list|)
 decl_stmt|;
 name|multicore

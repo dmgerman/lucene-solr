@@ -670,7 +670,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"in multicore.xml\n"
+literal|"in solr.xml\n"
 argument_list|)
 expr_stmt|;
 block|}
@@ -771,14 +771,14 @@ name|File
 argument_list|(
 name|instanceDir
 argument_list|,
-literal|"multicore.xml"
+literal|"solr.xml"
 argument_list|)
 decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"looking for multicore.xml: "
+literal|"looking for solr.xml: "
 operator|+
 name|fconf
 operator|.
