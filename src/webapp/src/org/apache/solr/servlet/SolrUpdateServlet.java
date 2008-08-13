@@ -240,7 +240,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-comment|// Check if the "multicore.xml" file exists -- if so, this is an invalid servlet
+comment|// Check if the "solr.xml" file exists -- if so, this is an invalid servlet
 comment|// (even if there is only one core...)
 name|String
 name|instanceDir
