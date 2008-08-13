@@ -222,7 +222,7 @@ name|handler
 operator|.
 name|admin
 operator|.
-name|MultiCoreHandler
+name|CoreAdminHandler
 import|;
 end_import
 
@@ -281,10 +281,10 @@ comment|/**  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|MultiCore
+DECL|class|CoreContainer
 specifier|public
 class|class
-name|MultiCore
+name|CoreContainer
 block|{
 DECL|field|log
 specifier|protected
@@ -296,7 +296,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|MultiCore
+name|CoreContainer
 operator|.
 name|class
 operator|.
@@ -345,10 +345,10 @@ name|adminPath
 init|=
 literal|null
 decl_stmt|;
-DECL|field|multiCoreHandler
+DECL|field|coreAdminHandler
 specifier|protected
-name|MultiCoreHandler
-name|multiCoreHandler
+name|CoreAdminHandler
+name|coreAdminHandler
 init|=
 literal|null
 decl_stmt|;
@@ -396,15 +396,15 @@ name|adminCore
 init|=
 literal|null
 decl_stmt|;
-DECL|method|MultiCore
+DECL|method|CoreContainer
 specifier|public
-name|MultiCore
+name|CoreContainer
 parameter_list|()
 block|{        }
-comment|/**    * Initalize MultiCore directly from the constructor    *     * @param dir    * @param configFile    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
-DECL|method|MultiCore
+comment|/**    * Initalize CoreContainer directly from the constructor    *     * @param dir    * @param configFile    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
+DECL|method|CoreContainer
 specifier|public
-name|MultiCore
+name|CoreContainer
 parameter_list|(
 name|String
 name|dir
@@ -583,7 +583,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|multiCoreHandler
+name|coreAdminHandler
 operator|=
 name|this
 operator|.
@@ -1747,7 +1747,7 @@ name|adminPath
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Sets the preferred core used to handle MultiCore admin tasks.    * Note that getAdminCore is not symmetrical to this method since    * it will allways return an opened SolrCore.    * This however can be useful implementing a "metacore" (a core of cores).    */
+comment|/**    * Sets the preferred core used to handle CoreContainer admin tasks.    * Note that getAdminCore is not symmetrical to this method since    * it will always return an opened SolrCore.    * This however can be useful implementing a "metacore" (a core of cores).    */
 DECL|method|setAdminCore
 specifier|public
 name|void
@@ -1781,7 +1781,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Gets a core to handle MultiCore admin tasks (@see SolrDispatchFilter).    * This makes the best attempt to reuse the same opened SolrCore accross calls.    */
+comment|/**    * Gets a core to handle CoreContainer admin tasks (@see SolrDispatchFilter).    * This makes the best attempt to reuse the same opened SolrCore across calls.    */
 DECL|method|getAdminCore
 specifier|public
 name|SolrCore
@@ -1872,27 +1872,27 @@ name|core
 return|;
 block|}
 block|}
-comment|/**     * Creates a MultiCoreHandler for this MultiCore.    * @return a MultiCoreHandler    */
+comment|/**     * Creates a CoreAdminHandler for this CoreContainer.    * @return a CoreAdminHandler    */
 DECL|method|createMultiCoreHandler
 specifier|protected
-name|MultiCoreHandler
+name|CoreAdminHandler
 name|createMultiCoreHandler
 parameter_list|()
 block|{
 return|return
 operator|new
-name|MultiCoreHandler
+name|CoreAdminHandler
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|MultiCore
+name|CoreContainer
 name|getMultiCore
 parameter_list|()
 block|{
 return|return
-name|MultiCore
+name|CoreContainer
 operator|.
 name|this
 return|;
@@ -1902,12 +1902,12 @@ return|;
 block|}
 DECL|method|getMultiCoreHandler
 specifier|public
-name|MultiCoreHandler
+name|CoreAdminHandler
 name|getMultiCoreHandler
 parameter_list|()
 block|{
 return|return
-name|multiCoreHandler
+name|coreAdminHandler
 return|;
 block|}
 DECL|method|getConfigFile

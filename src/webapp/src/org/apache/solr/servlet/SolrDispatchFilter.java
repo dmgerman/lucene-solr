@@ -298,10 +298,10 @@ specifier|protected
 name|CoreDescriptor
 name|singleCoreDescriptor
 decl_stmt|;
-DECL|field|multicore
+DECL|field|cores
 specifier|protected
-name|MultiCore
-name|multicore
+name|CoreContainer
+name|cores
 decl_stmt|;
 DECL|field|pathPrefix
 specifier|protected
@@ -393,10 +393,10 @@ argument_list|(
 literal|"solrconfig-filename"
 argument_list|)
 expr_stmt|;
-comment|// multicore instantiation
+comment|// cores instantiation
 name|this
 operator|.
-name|multicore
+name|cores
 operator|=
 name|initMultiCore
 argument_list|(
@@ -405,11 +405,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|multicore
+name|cores
 operator|!=
 literal|null
 operator|&&
-name|multicore
+name|cores
 operator|.
 name|isEnabled
 argument_list|()
@@ -429,7 +429,7 @@ control|(
 name|SolrCore
 name|c
 range|:
-name|multicore
+name|cores
 operator|.
 name|getCores
 argument_list|()
@@ -487,7 +487,7 @@ operator|new
 name|CoreDescriptor
 argument_list|(
 operator|(
-name|MultiCore
+name|CoreContainer
 operator|)
 literal|null
 argument_list|)
@@ -656,11 +656,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|multicore
+name|cores
 operator|!=
 literal|null
 operator|&&
-name|multicore
+name|cores
 operator|.
 name|isEnabled
 argument_list|()
@@ -736,10 +736,10 @@ literal|"SolrDispatchFilter.init() done"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initialize the multicore instance.    * @param config the filter configuration    * @return the multicore instance or null    * @throws java.lang.Exception    */
+comment|/**    * Initialize the cores instance.    * @param config the filter configuration    * @return the cores instance or null    * @throws java.lang.Exception    */
 DECL|method|initMultiCore
 specifier|protected
-name|MultiCore
+name|CoreContainer
 name|initMultiCore
 parameter_list|(
 name|FilterConfig
@@ -748,11 +748,11 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|MultiCore
+name|CoreContainer
 name|mcore
 init|=
 operator|new
-name|MultiCore
+name|CoreContainer
 argument_list|()
 decl_stmt|;
 name|String
@@ -816,17 +816,17 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|multicore
+name|cores
 operator|!=
 literal|null
 condition|)
 block|{
-name|multicore
+name|cores
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-name|multicore
+name|cores
 operator|=
 literal|null
 expr_stmt|;
@@ -1013,18 +1013,18 @@ name|idx
 argument_list|)
 expr_stmt|;
 block|}
-comment|// By default use the single core.  If multicore is enabled, look for one.
+comment|// By default use the single core.  If cores is enabled, look for one.
 specifier|final
 name|SolrCore
 name|core
 decl_stmt|;
 if|if
 condition|(
-name|multicore
+name|cores
 operator|!=
 literal|null
 operator|&&
-name|multicore
+name|cores
 operator|.
 name|isEnabled
 argument_list|()
@@ -1034,9 +1034,9 @@ name|req
 operator|.
 name|setAttribute
 argument_list|(
-literal|"org.apache.solr.MultiCore"
+literal|"org.apache.solr.CoreContainer"
 argument_list|,
-name|multicore
+name|cores
 argument_list|)
 expr_stmt|;
 comment|// if this is the multi-core admin page, it will handle it
@@ -1046,7 +1046,7 @@ name|path
 operator|.
 name|equals
 argument_list|(
-name|multicore
+name|cores
 operator|.
 name|getAdminPath
 argument_list|()
@@ -1055,7 +1055,7 @@ condition|)
 block|{
 name|handler
 operator|=
-name|multicore
+name|cores
 operator|.
 name|getMultiCoreHandler
 argument_list|()
@@ -1063,7 +1063,7 @@ expr_stmt|;
 comment|// pick a core to use for output generation
 name|core
 operator|=
-name|multicore
+name|cores
 operator|.
 name|getAdminCore
 argument_list|()
@@ -1079,7 +1079,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not find a valid core for the multicore admin handler"
+literal|"Can not find a valid core for the cores admin handler"
 argument_list|)
 throw|;
 block|}
@@ -1129,7 +1129,7 @@ argument_list|)
 expr_stmt|;
 name|core
 operator|=
-name|multicore
+name|cores
 operator|.
 name|getCore
 argument_list|(
@@ -1214,7 +1214,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Determine the handler from the url path if not set
-comment|// (we might already have selected the multicore handler)
+comment|// (we might already have selected the cores handler)
 if|if
 condition|(
 name|handler

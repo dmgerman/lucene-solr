@@ -144,7 +144,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|MultiCore
+name|CoreContainer
 import|;
 end_import
 
@@ -165,11 +165,11 @@ DECL|field|multicore
 specifier|protected
 specifier|static
 specifier|final
-name|MultiCore
+name|CoreContainer
 name|multicore
 init|=
 operator|new
-name|MultiCore
+name|CoreContainer
 argument_list|()
 decl_stmt|;
 DECL|method|getSolrHome

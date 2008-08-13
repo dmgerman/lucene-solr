@@ -144,7 +144,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|MultiCore
+name|CoreContainer
 import|;
 end_import
 
@@ -251,23 +251,23 @@ comment|/**  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|MultiCoreHandler
+DECL|class|CoreAdminHandler
 specifier|public
 specifier|abstract
 class|class
-name|MultiCoreHandler
+name|CoreAdminHandler
 extends|extends
 name|RequestHandlerBase
 block|{
-DECL|method|MultiCoreHandler
+DECL|method|CoreAdminHandler
 specifier|public
-name|MultiCoreHandler
+name|CoreAdminHandler
 parameter_list|()
 block|{
 name|super
 argument_list|()
 expr_stmt|;
-comment|// Unlike most request handlers, MultiCore initialization
+comment|// Unlike most request handlers, CoreContainer initialization
 comment|// should happen in the constructor...
 block|}
 annotation|@
@@ -292,17 +292,17 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"MultiCoreHandler should not be configured in solrconf.xml\n"
+literal|"CoreAdminHandler should not be configured in solrconf.xml\n"
 operator|+
 literal|"it is a special Handler configured directly by the RequestDispatcher"
 argument_list|)
 throw|;
 block|}
-comment|/**    * The instance of multicore this handler handles.    * This should be the MultiCore instance that created this handler.    * @return a MultiCore instance    */
+comment|/**    * The instance of multicore this handler handles.    * This should be the CoreContainer instance that created this handler.    * @return a CoreContainer instance    */
 DECL|method|getMultiCore
 specifier|public
 specifier|abstract
-name|MultiCore
+name|CoreContainer
 name|getMultiCore
 parameter_list|()
 function_decl|;
@@ -323,7 +323,7 @@ throws|throws
 name|Exception
 block|{
 comment|// Make sure the manager is enabled
-name|MultiCore
+name|CoreContainer
 name|manager
 init|=
 name|getMultiCore
@@ -348,7 +348,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"MultiCore support must be enabled at startup."
+literal|"CoreContainer support must be enabled at startup."
 argument_list|)
 throw|;
 block|}

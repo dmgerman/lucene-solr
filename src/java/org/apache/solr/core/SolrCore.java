@@ -774,7 +774,7 @@ return|return
 name|startTime
 return|;
 block|}
-comment|/**    * @deprecated Use {@link MultiCore#getCore(String)} instead.    */
+comment|/**    * @deprecated Use {@link CoreContainer#getCore(String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|instance
@@ -1796,7 +1796,7 @@ literal|"Highlighter"
 argument_list|)
 return|;
 block|}
-comment|/**     * @return the last core initialized.  If you are using multiple cores,     * this is not a function to use.    *     * @deprecated Use {@link MultiCore#getCore(String)} instead.    */
+comment|/**     * @return the last core initialized.  If you are using multiple cores,     * this is not a function to use.    *     * @deprecated Use {@link CoreContainer#getCore(String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getSolrCore

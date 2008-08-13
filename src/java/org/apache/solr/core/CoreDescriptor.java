@@ -16,42 +16,8 @@ name|core
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
-comment|/**  * A Solr core descriptor  * @since solr 1.3  */
+comment|/**  * A Solr core descriptor  *   * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -89,25 +55,25 @@ name|core
 init|=
 literal|null
 decl_stmt|;
-DECL|field|multiCore
+DECL|field|coreContainer
 specifier|private
 specifier|final
-name|MultiCore
-name|multiCore
+name|CoreContainer
+name|coreContainer
 decl_stmt|;
 DECL|method|CoreDescriptor
 specifier|public
 name|CoreDescriptor
 parameter_list|(
-name|MultiCore
-name|multiCore
+name|CoreContainer
+name|coreContainer
 parameter_list|)
 block|{
 name|this
 operator|.
-name|multiCore
+name|coreContainer
 operator|=
-name|multiCore
+name|coreContainer
 expr_stmt|;
 block|}
 comment|/** Initialize defaults from instance directory. */
@@ -236,11 +202,11 @@ name|descr
 operator|.
 name|schemaName
 expr_stmt|;
-name|multiCore
+name|coreContainer
 operator|=
 name|descr
 operator|.
-name|multiCore
+name|coreContainer
 expr_stmt|;
 block|}
 comment|/**@return the default config name. */
@@ -447,12 +413,12 @@ expr_stmt|;
 block|}
 DECL|method|getMultiCore
 specifier|public
-name|MultiCore
+name|CoreContainer
 name|getMultiCore
 parameter_list|()
 block|{
 return|return
-name|multiCore
+name|coreContainer
 return|;
 block|}
 block|}

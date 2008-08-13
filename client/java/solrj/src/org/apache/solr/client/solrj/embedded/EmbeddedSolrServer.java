@@ -258,7 +258,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|MultiCore
+name|CoreContainer
 import|;
 end_import
 
@@ -375,7 +375,7 @@ block|{
 DECL|field|multicore
 specifier|protected
 specifier|final
-name|MultiCore
+name|CoreContainer
 name|multicore
 decl_stmt|;
 comment|// either multicore
@@ -392,7 +392,7 @@ specifier|final
 name|String
 name|coreName
 decl_stmt|;
-comment|// use MultiCore registry
+comment|// use CoreContainer registry
 DECL|field|_parser
 specifier|private
 specifier|final
@@ -453,7 +453,7 @@ DECL|method|EmbeddedSolrServer
 specifier|public
 name|EmbeddedSolrServer
 parameter_list|(
-name|MultiCore
+name|CoreContainer
 name|multicore
 parameter_list|,
 name|String
@@ -471,7 +471,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"MultiCore instance required"
+literal|"CoreContainer instance required"
 argument_list|)
 throw|;
 block|}
