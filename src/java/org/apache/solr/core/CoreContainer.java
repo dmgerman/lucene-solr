@@ -1468,7 +1468,7 @@ name|IOException
 throws|,
 name|SAXException
 block|{
-comment|// Make the instanceDir relative to the multicore instanceDir if not absolute
+comment|// Make the instanceDir relative to the cores instanceDir if not absolute
 name|File
 name|idir
 init|=
@@ -2364,7 +2364,7 @@ return|return
 name|configFile
 return|;
 block|}
-comment|/** Persists the multicore config file in multicore.xml. */
+comment|/** Persists the cores config file in cores.xml. */
 DECL|method|persist
 specifier|public
 name|void
@@ -2377,7 +2377,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Persists the multicore config file in a user provided file. */
+comment|/** Persists the cores config file in a user provided file. */
 DECL|method|persistFile
 specifier|public
 name|void
@@ -2583,7 +2583,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Write the multicore configuration through a writer.*/
+comment|/** Write the cores configuration through a writer.*/
 DECL|method|persist
 name|void
 name|persist
@@ -2759,7 +2759,7 @@ literal|"</solr>\n"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Writes the multicore configuration node for a given core. */
+comment|/** Writes the cores configuration node for a given core. */
 DECL|method|persist
 name|void
 name|persist

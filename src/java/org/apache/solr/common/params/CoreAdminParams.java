@@ -23,10 +23,10 @@ comment|/**  * @since solr 1.3  */
 end_comment
 
 begin_interface
-DECL|interface|MultiCoreParams
+DECL|interface|CoreAdminParams
 specifier|public
 interface|interface
-name|MultiCoreParams
+name|CoreAdminParams
 block|{
 comment|/** What Core are we talking about **/
 DECL|field|CORE
@@ -38,7 +38,7 @@ name|CORE
 init|=
 literal|"core"
 decl_stmt|;
-comment|/** Persistent -- should it save the multicore state? **/
+comment|/** Persistent -- should it save the cores state? **/
 DECL|field|PERSISTENT
 specifier|public
 specifier|final
@@ -108,10 +108,10 @@ name|INSTANCE_DIR
 init|=
 literal|"instanceDir"
 decl_stmt|;
-DECL|enum|MultiCoreAction
+DECL|enum|CoreAdminAction
 specifier|public
 enum|enum
-name|MultiCoreAction
+name|CoreAdminAction
 block|{
 DECL|enum constant|STATUS
 name|STATUS
@@ -140,7 +140,7 @@ block|;
 DECL|method|get
 specifier|public
 specifier|static
-name|MultiCoreAction
+name|CoreAdminAction
 name|get
 parameter_list|(
 name|String
@@ -157,7 +157,7 @@ block|{
 try|try
 block|{
 return|return
-name|MultiCoreAction
+name|CoreAdminAction
 operator|.
 name|valueOf
 argument_list|(

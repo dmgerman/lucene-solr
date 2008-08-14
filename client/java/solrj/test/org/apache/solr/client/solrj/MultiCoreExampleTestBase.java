@@ -42,7 +42,7 @@ name|solrj
 operator|.
 name|request
 operator|.
-name|MultiCoreRequest
+name|CoreAdminRequest
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|solrj
 operator|.
 name|response
 operator|.
-name|MultiCoreResponse
+name|CoreAdminResponse
 import|;
 end_import
 
@@ -161,12 +161,12 @@ name|MultiCoreExampleTestBase
 extends|extends
 name|SolrExampleTestBase
 block|{
-DECL|field|multicore
+DECL|field|cores
 specifier|protected
 specifier|static
 specifier|final
 name|CoreContainer
-name|multicore
+name|cores
 init|=
 operator|new
 name|CoreContainer
@@ -633,10 +633,10 @@ init|=
 name|getSolrAdmin
 argument_list|()
 decl_stmt|;
-name|MultiCoreResponse
+name|CoreAdminResponse
 name|mcr
 init|=
-name|MultiCoreRequest
+name|CoreAdminRequest
 operator|.
 name|getStatus
 argument_list|(
@@ -658,7 +658,7 @@ operator|.
 name|getTime
 argument_list|()
 decl_stmt|;
-name|MultiCoreRequest
+name|CoreAdminRequest
 operator|.
 name|reloadCore
 argument_list|(
@@ -669,7 +669,7 @@ argument_list|)
 expr_stmt|;
 name|mcr
 operator|=
-name|MultiCoreRequest
+name|CoreAdminRequest
 operator|.
 name|getStatus
 argument_list|(

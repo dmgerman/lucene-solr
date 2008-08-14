@@ -110,7 +110,7 @@ argument_list|,
 literal|"solr.xml"
 argument_list|)
 decl_stmt|;
-name|multicore
+name|cores
 operator|.
 name|load
 argument_list|(
@@ -133,7 +133,7 @@ return|return
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
-name|multicore
+name|cores
 argument_list|,
 literal|"core0"
 argument_list|)
@@ -151,7 +151,7 @@ return|return
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
-name|multicore
+name|cores
 argument_list|,
 literal|"core1"
 argument_list|)
@@ -169,7 +169,7 @@ return|return
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
-name|multicore
+name|cores
 argument_list|,
 literal|"core0"
 argument_list|)

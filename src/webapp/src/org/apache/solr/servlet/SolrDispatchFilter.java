@@ -882,7 +882,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not find a valid core for the multicore admin handler"
+literal|"Can not find a valid core for the cores admin handler"
 argument_list|)
 throw|;
 block|}

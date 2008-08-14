@@ -102,7 +102,7 @@ name|solrj
 operator|.
 name|response
 operator|.
-name|MultiCoreResponse
+name|CoreAdminResponse
 import|;
 end_import
 
@@ -134,7 +134,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|MultiCoreParams
+name|CoreAdminParams
 import|;
 end_import
 
@@ -166,9 +166,9 @@ name|common
 operator|.
 name|params
 operator|.
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
-name|MultiCoreAction
+name|CoreAdminAction
 import|;
 end_import
 
@@ -189,14 +189,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @version $Id: MultiCoreRequest.java 606335 2007-12-21 22:23:39Z ryan $  * @since solr 1.3  */
+comment|/**  *   * @version $Id: CoreAdminRequest.java 606335 2007-12-21 22:23:39Z ryan $  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|MultiCoreRequest
+DECL|class|CoreAdminRequest
 specifier|public
 class|class
-name|MultiCoreRequest
+name|CoreAdminRequest
 extends|extends
 name|SolrRequest
 block|{
@@ -209,9 +209,9 @@ literal|null
 decl_stmt|;
 DECL|field|action
 specifier|protected
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
-name|MultiCoreAction
+name|CoreAdminAction
 name|action
 init|=
 literal|null
@@ -223,7 +223,7 @@ specifier|static
 class|class
 name|Create
 extends|extends
-name|MultiCoreRequest
+name|CoreAdminRequest
 block|{
 DECL|field|instanceDir
 specifier|protected
@@ -251,7 +251,7 @@ parameter_list|()
 block|{
 name|action
 operator|=
-name|MultiCoreAction
+name|CoreAdminAction
 operator|.
 name|CREATE
 expr_stmt|;
@@ -368,7 +368,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|ACTION
 argument_list|,
@@ -382,7 +382,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|CORE
 argument_list|,
@@ -393,7 +393,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|INSTANCE_DIR
 argument_list|,
@@ -411,7 +411,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|CONFIG
 argument_list|,
@@ -430,7 +430,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|SCHEMA
 argument_list|,
@@ -443,9 +443,9 @@ name|params
 return|;
 block|}
 block|}
-DECL|method|MultiCoreRequest
+DECL|method|CoreAdminRequest
 specifier|public
-name|MultiCoreRequest
+name|CoreAdminRequest
 parameter_list|()
 block|{
 name|super
@@ -454,13 +454,13 @@ name|METHOD
 operator|.
 name|GET
 argument_list|,
-literal|"/admin/multicore"
+literal|"/admin/cores"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|MultiCoreRequest
+DECL|method|CoreAdminRequest
 specifier|public
-name|MultiCoreRequest
+name|CoreAdminRequest
 parameter_list|(
 name|String
 name|path
@@ -501,7 +501,7 @@ specifier|public
 name|void
 name|setAction
 parameter_list|(
-name|MultiCoreAction
+name|CoreAdminAction
 name|action
 parameter_list|)
 block|{
@@ -549,7 +549,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|ACTION
 argument_list|,
@@ -563,7 +563,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|MultiCoreParams
+name|CoreAdminParams
 operator|.
 name|CORE
 argument_list|,
@@ -598,7 +598,7 @@ annotation|@
 name|Override
 DECL|method|process
 specifier|public
-name|MultiCoreResponse
+name|CoreAdminResponse
 name|process
 parameter_list|(
 name|SolrServer
@@ -617,11 +617,11 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|MultiCoreResponse
+name|CoreAdminResponse
 name|res
 init|=
 operator|new
-name|MultiCoreResponse
+name|CoreAdminResponse
 argument_list|()
 decl_stmt|;
 name|res
@@ -658,7 +658,7 @@ comment|//----------------------------------------------------------------------
 DECL|method|reloadCore
 specifier|public
 specifier|static
-name|MultiCoreResponse
+name|CoreAdminResponse
 name|reloadCore
 parameter_list|(
 name|String
@@ -672,11 +672,11 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|MultiCoreRequest
+name|CoreAdminRequest
 name|req
 init|=
 operator|new
-name|MultiCoreRequest
+name|CoreAdminRequest
 argument_list|()
 decl_stmt|;
 name|req
@@ -690,7 +690,7 @@ name|req
 operator|.
 name|setAction
 argument_list|(
-name|MultiCoreAction
+name|CoreAdminAction
 operator|.
 name|RELOAD
 argument_list|)
@@ -707,7 +707,7 @@ block|}
 DECL|method|getStatus
 specifier|public
 specifier|static
-name|MultiCoreResponse
+name|CoreAdminResponse
 name|getStatus
 parameter_list|(
 name|String
@@ -721,11 +721,11 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|MultiCoreRequest
+name|CoreAdminRequest
 name|req
 init|=
 operator|new
-name|MultiCoreRequest
+name|CoreAdminRequest
 argument_list|()
 decl_stmt|;
 name|req
@@ -739,7 +739,7 @@ name|req
 operator|.
 name|setAction
 argument_list|(
-name|MultiCoreAction
+name|CoreAdminAction
 operator|.
 name|STATUS
 argument_list|)
@@ -756,7 +756,7 @@ block|}
 DECL|method|createCore
 specifier|public
 specifier|static
-name|MultiCoreResponse
+name|CoreAdminResponse
 name|createCore
 parameter_list|(
 name|String
@@ -773,13 +773,13 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|MultiCoreRequest
+name|CoreAdminRequest
 operator|.
 name|Create
 name|req
 init|=
 operator|new
-name|MultiCoreRequest
+name|CoreAdminRequest
 operator|.
 name|Create
 argument_list|()

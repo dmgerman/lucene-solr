@@ -51,10 +51,10 @@ comment|/**  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
-DECL|class|MultiCoreResponse
+DECL|class|CoreAdminResponse
 specifier|public
 class|class
-name|MultiCoreResponse
+name|CoreAdminResponse
 extends|extends
 name|SolrResponseBase
 block|{
