@@ -1815,7 +1815,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Swaps two SolrCore descriptors.    * @param c0    * @param c1    */
+comment|/**    * Swaps two SolrCore descriptors.    * @param n0    * @param n1    */
 DECL|method|swap
 specifier|public
 name|void
@@ -2337,7 +2337,7 @@ return|return
 name|managementPath
 return|;
 block|}
-comment|/**    * Sets the alternate path for multicore handling:    * This is used in case there is a registered unnamed core (aka name is "") to    * declare an alternate way of accessing named cores.    * This can also be used in a pseudo single-core environment so admins can prepare    * a new version before swapping.    * @param adminPath    */
+comment|/**    * Sets the alternate path for multicore handling:    * This is used in case there is a registered unnamed core (aka name is "") to    * declare an alternate way of accessing named cores.    * This can also be used in a pseudo single-core environment so admins can prepare    * a new version before swapping.    * @param path    */
 DECL|method|setManagementPath
 specifier|public
 name|void
