@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all Lucene based spell checking implementations.  *   *<p>  * Refer to http://wiki.apache.org/solr/SpellCheckComponent for more details  *</p>  *   * @since solr 1.3  */
+comment|/**  * Abstract base class for all Lucene-based spell checking implementations.  *   *<p>  * Refer to<a href="http://wiki.apache.org/solr/SpellCheckComponent">SpellCheckComponent</a>  * for more details.  *</p>  *   * @since solr 1.3  */
 end_comment
 
 begin_class

@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @since solr 1.3  **/
+comment|/**  * Converts the query string to a Collection of Lucene tokens using a regular expression.  * Boolean operators AND and OR are skipped.  *  * @since solr 1.3  **/
 end_comment
 
 begin_class
@@ -142,6 +142,7 @@ argument_list|(
 literal|"(?:(?!(\\w+:|\\d+)))\\w+"
 argument_list|)
 decl_stmt|;
+comment|/**    * Converts the original query string to a collection of Lucene Tokens.    * @param original the original query string    * @return a Collection of Lucene Tokens    */
 DECL|method|convert
 specifier|public
 name|Collection

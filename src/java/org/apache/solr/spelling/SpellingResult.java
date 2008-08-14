@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of SolrSpellChecker must return suggestions as SpellResult instance.  * This is converted into the required NamedList format in SpellCheckComponent  *   * @since solr 1.3  */
+comment|/**  * Implementations of SolrSpellChecker must return suggestions as SpellResult instance.  * This is converted into the required NamedList format in SpellCheckComponent.  *   * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -157,7 +157,7 @@ operator|=
 name|tokens
 expr_stmt|;
 block|}
-comment|/**    * Add a whole bunch of suggestions, and don't worry about frequency    *    * @param token The token to associate the suggestions with    * @param suggestions The suggestions    */
+comment|/**    * Adds a whole bunch of suggestions, and does not worry about frequency.    *    * @param token The token to associate the suggestions with    * @param suggestions The suggestions    */
 DECL|method|add
 specifier|public
 name|void
@@ -280,7 +280,7 @@ name|docFreq
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Suggestions must be added with the best suggestion first.  ORDER is important    * @param token The {@link org.apache.lucene.analysis.Token}    * @param suggestion The suggestion for the Token    * @param docFreq The document frequency    */
+comment|/**    * Suggestions must be added with the best suggestion first.  ORDER is important.    * @param token The {@link org.apache.lucene.analysis.Token}    * @param suggestion The suggestion for the Token    * @param docFreq The document frequency    */
 DECL|method|add
 specifier|public
 name|void
@@ -354,7 +354,7 @@ name|docFreq
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Get the suggestions for the given token    *    * @param token The {@link org.apache.lucene.analysis.Token} to look up    * @return A LinkedHashMap of the suggestions.  Key is the suggestion, value is the token frequency in the index, else {@link #NO_FREQUENCY_INFO}.    *    * The suggestions are added in sorted order (i.e. best suggestion first) then the iterator will return the suggestions in order    */
+comment|/**    * Gets the suggestions for the given token.    *    * @param token The {@link org.apache.lucene.analysis.Token} to look up    * @return A LinkedHashMap of the suggestions.  Key is the suggestion, value is the token frequency in the index, else {@link #NO_FREQUENCY_INFO}.    *    * The suggestions are added in sorted order (i.e. best suggestion first) then the iterator will return the suggestions in order    */
 DECL|method|get
 specifier|public
 name|LinkedHashMap

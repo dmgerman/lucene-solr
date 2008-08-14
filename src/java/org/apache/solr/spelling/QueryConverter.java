@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * The QueryConverter is an abstract base class defining a method for converting  * input "raw" queries into a set of tokens for spell checking. It is used to  * "parse" the CommonParams.Q (the input query) and converts it to tokens.  *</p>  *   *<p>  * It is only invoked for the CommonParams.Q parameter, and<b>not</b> the  * "spellcheck.q" parameter. Systems that use their own query parser or those  * that find issue with the basic implementation will want to implement their  * own QueryConverter instead of using the provided implementation  * (SpellingQueryConverter) by overriding the appropriate methods on the  * SpellingQueryConverter and registering it in the solrconfig.xml  *</p>  *   *<p>  * Refer to http://wiki.apache.org/solr/SpellCheckComponent for more details  *</p>  *   * @since solr 1.3  */
+comment|/**  *<p>  * The QueryConverter is an abstract base class defining a method for converting  * input "raw" queries into a set of tokens for spell checking. It is used to  * "parse" the CommonParams.Q (the input query) and converts it to tokens.  *</p>  *   *<p>  * It is only invoked for the CommonParams.Q parameter, and<b>not</b> the  * "spellcheck.q" parameter. Systems that use their own query parser or those  * that find issue with the basic implementation should implement their  * own QueryConverter instead of using the provided implementation  * (SpellingQueryConverter) by overriding the appropriate methods on the  * SpellingQueryConverter and registering it in the solrconfig.xml  *</p>  *   *<p>  * Refer to<a href="http://wiki.apache.org/solr/SpellCheckComponent">SpellCheckComponent</a>  * for more details  *</p>  *   * @since solr 1.3  */
 end_comment
 
 begin_class

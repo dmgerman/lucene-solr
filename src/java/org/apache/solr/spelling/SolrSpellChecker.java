@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Refer to http://wiki.apache.org/solr/SpellCheckComponent for more details  *</p>  *   * @since solr 1.3  */
+comment|/**  *<p>  * Refer to<a href="http://wiki.apache.org/solr/SpellCheckComponent">SpellCheckComponent</a>  * for more details.  *</p>  *   * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -151,6 +151,7 @@ name|DEFAULT_DICTIONARY_NAME
 init|=
 literal|"default"
 decl_stmt|;
+comment|/** Dictionary name */
 DECL|field|name
 specifier|protected
 name|String
@@ -221,7 +222,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**    * Reload the index.  Useful if an external process is responsible for building the spell checker.    *    * @throws java.io.IOException    */
+comment|/**    * Reloads the index.  Useful if an external process is responsible for building the spell checker.    *    * @throws java.io.IOException    */
 DECL|method|reload
 specifier|public
 specifier|abstract
@@ -231,7 +232,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * (re)Build The Spelling index.  May be a NOOP if the implementation doesn't require building, or can't be rebuilt    */
+comment|/**    * (re)Builds the spelling index.  May be a NOOP if the implementation doesn't require building, or can't be rebuilt.    */
 DECL|method|build
 specifier|public
 specifier|abstract
@@ -353,7 +354,7 @@ name|extendedResults
 argument_list|)
 return|;
 block|}
-comment|/**    * Get suggestions for the given query.  Tokenizes the query using a field appropriate Analyzer.  The {@link SpellingResult#getSuggestions()} suggestions must be ordered by     * best suggestion first    *    * @param tokens          The Tokens to be spell checked.    * @param reader          The (optional) IndexReader.  If there is not IndexReader, than extendedResults are not possible    * @param count The maximum number of suggestions to return    * @param onlyMorePopular  TODO    * @param extendedResults  TODO    * @throws IOException    */
+comment|/**    * Get suggestions for the given query.  Tokenizes the query using a field appropriate Analyzer.    * The {@link SpellingResult#getSuggestions()} suggestions must be ordered by best suggestion first.    *    * @param tokens          The Tokens to be spell checked.    * @param reader          The (optional) IndexReader.  If there is not IndexReader, than extendedResults are not possible    * @param count The maximum number of suggestions to return    * @param onlyMorePopular  TODO    * @param extendedResults  TODO    * @throws IOException    */
 DECL|method|getSuggestions
 specifier|public
 specifier|abstract
