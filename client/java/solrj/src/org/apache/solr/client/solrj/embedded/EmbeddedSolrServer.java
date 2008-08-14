@@ -428,6 +428,43 @@ name|core
 operator|=
 name|core
 expr_stmt|;
+if|if
+condition|(
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|multicore
+operator|=
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getMultiCore
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|coreName
+operator|=
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|multicore
@@ -440,6 +477,7 @@ name|coreName
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|_parser
 operator|=
 operator|new
@@ -492,34 +530,13 @@ operator|.
 name|coreName
 operator|=
 name|coreName
-expr_stmt|;
-name|SolrCore
-name|c
-init|=
-name|multicore
-operator|.
-name|getCore
-argument_list|(
-name|coreName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|c
 operator|==
 literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Unknown core: "
-operator|+
+condition|?
+literal|""
+else|:
 name|coreName
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|_parser
 operator|=
 operator|new
@@ -589,7 +606,6 @@ name|core
 operator|==
 literal|null
 condition|)
-block|{
 name|core
 operator|=
 name|multicore
@@ -599,6 +615,9 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+comment|// solr-647
+comment|//else
+comment|//  core = core.open();
 if|if
 condition|(
 name|core
@@ -616,12 +635,17 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Unknown core: "
+name|coreName
+operator|==
+literal|null
+condition|?
+literal|"No core"
+else|:
+literal|"No such core: "
 operator|+
 name|coreName
 argument_list|)
 throw|;
-block|}
 block|}
 name|SolrParams
 name|params
@@ -745,11 +769,6 @@ operator|.
 name|getAdminPath
 argument_list|()
 argument_list|)
-operator|&&
-name|multicore
-operator|.
-name|isEnabled
-argument_list|()
 condition|)
 block|{
 name|handler
@@ -768,6 +787,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// solr-647
+comment|// core.close();
 throw|throw
 operator|new
 name|SolrException
@@ -900,6 +921,11 @@ argument_list|(
 name|ex
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+comment|// solr-647
+comment|// core.close();
 block|}
 block|}
 comment|/**    * TODO -- in the future, this could perhaps transform the NamedList without serializing it    * then parsing it from the serialized form.    *     * @param req    * @param rsp    * @return a response object equivalent to what you get from the XML/JSON/javabin parser. Documents    * become SolrDocuments, DocList becomes SolrDocumentList etc.    */
