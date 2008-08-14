@@ -340,6 +340,18 @@ name|Pattern
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Matcher
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>Utilities that may be of use to RequestHandlers.</p>  *  *<p>  * Many of these functions have code that was stolen/mutated from  * StandardRequestHandler.  *</p>  *  *<p>:TODO: refactor StandardRequestHandler to use these utilities</p>  *  *<p>:TODO: Many "standard" functionality methods are not cognisant of  * default parameter settings.    */
 end_comment
@@ -2629,6 +2641,78 @@ expr_stmt|;
 block|}
 return|return
 name|sb
+return|;
+block|}
+comment|// Pattern to detect dangling operator(s) at end of query
+comment|// \s+[-+\s]+$
+DECL|field|DANGLING_OP_PATTERN
+specifier|private
+specifier|final
+specifier|static
+name|Pattern
+name|DANGLING_OP_PATTERN
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"\\s+[-+\\s]+$"
+argument_list|)
+decl_stmt|;
+comment|// Pattern to detect consecutive + and/or - operators
+comment|// \s+[+-](?:\s*[+-]+)+
+DECL|field|CONSECUTIVE_OP_PATTERN
+specifier|private
+specifier|final
+specifier|static
+name|Pattern
+name|CONSECUTIVE_OP_PATTERN
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"\\s+[+-](?:\\s*[+-]+)+"
+argument_list|)
+decl_stmt|;
+comment|/**    * Strips operators that are used illegally, otherwise reuturns it's    * input.  Some examples of illegal user queries are: "chocolate +-    * chip", "chocolate - - chip", and "chocolate chip -".    */
+DECL|method|stripIllegalOperators
+specifier|public
+specifier|static
+name|CharSequence
+name|stripIllegalOperators
+parameter_list|(
+name|CharSequence
+name|s
+parameter_list|)
+block|{
+name|String
+name|temp
+init|=
+name|CONSECUTIVE_OP_PATTERN
+operator|.
+name|matcher
+argument_list|(
+name|s
+argument_list|)
+operator|.
+name|replaceAll
+argument_list|(
+literal|" "
+argument_list|)
+decl_stmt|;
+return|return
+name|DANGLING_OP_PATTERN
+operator|.
+name|matcher
+argument_list|(
+name|temp
+argument_list|)
+operator|.
+name|replaceAll
+argument_list|(
+literal|""
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns it's input if there is an even (ie: balanced) number of    * '"' characters -- otherwise returns a String in which all '"'    * characters are striped out.    */

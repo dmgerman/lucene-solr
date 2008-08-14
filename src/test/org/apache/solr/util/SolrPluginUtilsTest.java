@@ -386,6 +386,143 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testStripIllegalOperators
+specifier|public
+name|void
+name|testStripIllegalOperators
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|""
+argument_list|,
+name|stripOp
+argument_list|(
+literal|""
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo -bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo -bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo +bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo +bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo + bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo + bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo+ bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo+ bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo+ bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo+ bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo+"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo+"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo bar -"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo bar "
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo bar - + ++"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo bar"
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo --bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo bar "
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo -------------------------------------------------------------------------------------------------------------------------bar --"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo bar "
+argument_list|,
+name|stripOp
+argument_list|(
+literal|"foo --bar -----------------------------------------------------------------------------------------------------------------------"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testParseFieldBoosts
 specifier|public
 name|void
@@ -2162,6 +2299,28 @@ return|return
 name|SolrPluginUtils
 operator|.
 name|stripUnbalancedQuotes
+argument_list|(
+name|s
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+comment|/** macro */
+DECL|method|stripOp
+specifier|public
+name|String
+name|stripOp
+parameter_list|(
+name|CharSequence
+name|s
+parameter_list|)
+block|{
+return|return
+name|SolrPluginUtils
+operator|.
+name|stripIllegalOperators
 argument_list|(
 name|s
 argument_list|)
