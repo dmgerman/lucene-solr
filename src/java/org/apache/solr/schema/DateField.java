@@ -188,6 +188,16 @@ name|java
 operator|.
 name|text
 operator|.
+name|DecimalFormatSymbols
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
 name|SimpleDateFormat
 import|;
 end_import
@@ -289,6 +299,51 @@ argument_list|(
 literal|"UTC"
 argument_list|)
 decl_stmt|;
+comment|/* :TODO: let Locale/TimeZone come from init args for rounding only */
+comment|/** TimeZone for DateMath (UTC) */
+DECL|field|MATH_TZ
+specifier|protected
+specifier|static
+specifier|final
+name|TimeZone
+name|MATH_TZ
+init|=
+name|UTC
+decl_stmt|;
+comment|/** Locale for DateMath (Locale.US) */
+DECL|field|MATH_LOCALE
+specifier|protected
+specifier|static
+specifier|final
+name|Locale
+name|MATH_LOCALE
+init|=
+name|Locale
+operator|.
+name|US
+decl_stmt|;
+comment|/**     * Fixed TimeZone (UTC) needed for parsing/formating Dates in the     * canonical representation.    */
+DECL|field|CANONICAL_TZ
+specifier|protected
+specifier|static
+specifier|final
+name|TimeZone
+name|CANONICAL_TZ
+init|=
+name|UTC
+decl_stmt|;
+comment|/**     * Fixed Locale needed for parsing/formating Milliseconds in the     * canonical representation.    */
+DECL|field|CANONICAL_LOCALE
+specifier|protected
+specifier|static
+specifier|final
+name|Locale
+name|CANONICAL_LOCALE
+init|=
+name|Locale
+operator|.
+name|US
+decl_stmt|;
 comment|// The XML (external) date format will sort correctly, except if
 comment|// fractions of seconds are present (because '.' is lower than 'Z').
 comment|// The easiest fix is to simply remove the 'Z' for the internal
@@ -365,7 +420,6 @@ name|math
 init|=
 literal|null
 decl_stmt|;
-comment|/* :TODO: let Locale/TimeZone come from init args for rounding only */
 specifier|final
 name|DateMathParser
 name|p
@@ -373,11 +427,9 @@ init|=
 operator|new
 name|DateMathParser
 argument_list|(
-name|UTC
+name|MATH_TZ
 argument_list|,
-name|Locale
-operator|.
-name|US
+name|MATH_LOCALE
 argument_list|)
 decl_stmt|;
 if|if
@@ -880,9 +932,7 @@ name|NumberFormat
 operator|.
 name|getIntegerInstance
 argument_list|(
-name|Locale
-operator|.
-name|US
+name|CANONICAL_LOCALE
 argument_list|)
 decl_stmt|;
 DECL|field|millisFormat
@@ -894,6 +944,12 @@ operator|new
 name|DecimalFormat
 argument_list|(
 literal|".###"
+argument_list|,
+operator|new
+name|DecimalFormatSymbols
+argument_list|(
+name|CANONICAL_LOCALE
+argument_list|)
 argument_list|)
 decl_stmt|;
 DECL|method|ISO8601CanonicalDateFormat
@@ -905,16 +961,14 @@ name|super
 argument_list|(
 literal|"yyyy-MM-dd'T'HH:mm:ss"
 argument_list|,
-name|Locale
-operator|.
-name|US
+name|CANONICAL_LOCALE
 argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|setTimeZone
 argument_list|(
-name|UTC
+name|CANONICAL_TZ
 argument_list|)
 expr_stmt|;
 block|}
@@ -1197,9 +1251,7 @@ name|NumberFormat
 operator|.
 name|getIntegerInstance
 argument_list|(
-name|Locale
-operator|.
-name|US
+name|CANONICAL_LOCALE
 argument_list|)
 expr_stmt|;
 name|c
@@ -1210,6 +1262,12 @@ operator|new
 name|DecimalFormat
 argument_list|(
 literal|".###"
+argument_list|,
+operator|new
+name|DecimalFormatSymbols
+argument_list|(
+name|CANONICAL_LOCALE
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
