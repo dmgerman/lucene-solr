@@ -832,6 +832,8 @@ name|InstantiationException
 throws|,
 name|IllegalAccessException
 block|{
+comment|// int sleep = req.getParams().getInt("sleep",0);
+comment|// if (sleep> 0) {log.severe("SLEEPING for " + sleep);  Thread.sleep(sleep);}
 name|ResponseBuilder
 name|rb
 init|=
