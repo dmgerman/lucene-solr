@@ -364,16 +364,15 @@ decl_stmt|;
 try|try
 block|{
 comment|// web.xml configuration
-name|init
+name|this
 operator|.
-name|setPathPrefix
-argument_list|(
+name|pathPrefix
+operator|=
 name|config
 operator|.
 name|getInitParameter
 argument_list|(
 literal|"path-prefix"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|init
