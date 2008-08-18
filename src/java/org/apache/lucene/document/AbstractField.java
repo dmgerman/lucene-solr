@@ -128,11 +128,22 @@ name|fieldsData
 init|=
 literal|null
 decl_stmt|;
+comment|//length/offset for all primitive types
+DECL|field|binaryLength
+specifier|protected
+name|int
+name|binaryLength
+decl_stmt|;
+DECL|field|binaryOffset
+specifier|protected
+name|int
+name|binaryOffset
+decl_stmt|;
 DECL|method|AbstractField
 specifier|protected
 name|AbstractField
 parameter_list|()
-block|{        }
+block|{   }
 DECL|method|AbstractField
 specifier|protected
 name|AbstractField
@@ -701,6 +712,66 @@ parameter_list|()
 block|{
 return|return
 name|isBinary
+return|;
+block|}
+comment|/**    * Return the raw byte[] for the binary field.  Note that    * you must also call {@link #getBinaryLength} and {@link    * #getBinaryOffset} to know which range of bytes in this    * returned array belong to the field.    * @return reference to the Field value as byte[].    */
+DECL|method|getBinaryValue
+specifier|public
+name|byte
+index|[]
+name|getBinaryValue
+parameter_list|()
+block|{
+return|return
+name|getBinaryValue
+argument_list|(
+literal|null
+argument_list|)
+return|;
+block|}
+DECL|method|getBinaryValue
+specifier|public
+name|byte
+index|[]
+name|getBinaryValue
+parameter_list|(
+name|byte
+index|[]
+name|result
+parameter_list|)
+block|{
+return|return
+name|isBinary
+condition|?
+operator|(
+name|byte
+index|[]
+operator|)
+name|fieldsData
+else|:
+literal|null
+return|;
+block|}
+comment|/**    * Returns length of byte[] segment that is used as value, if Field is not binary    * returned value is undefined    * @return length of byte[] segment that represents this Field value    */
+DECL|method|getBinaryLength
+specifier|public
+name|int
+name|getBinaryLength
+parameter_list|()
+block|{
+return|return
+name|binaryLength
+return|;
+block|}
+comment|/**    * Returns offset into byte[] segment that is used as value, if Field is not binary    * returned value is undefined    * @return index of the first character in byte[] segment that represents this Field value    */
+DECL|method|getBinaryOffset
+specifier|public
+name|int
+name|getBinaryOffset
+parameter_list|()
+block|{
+return|return
+name|binaryOffset
 return|;
 block|}
 comment|/** True if norms are omitted for this indexed field */
