@@ -1505,6 +1505,19 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+block|{
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|// Otherwise let the webapp handle the request
