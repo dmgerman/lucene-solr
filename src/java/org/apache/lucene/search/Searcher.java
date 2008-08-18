@@ -81,7 +81,7 @@ name|Searcher
 implements|implements
 name|Searchable
 block|{
-comment|/** Returns the documents matching<code>query</code>.     * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use    * {@link #search(Query, Filter, int))} instead.    */
+comment|/** Returns the documents matching<code>query</code>.     * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use    * {@link #search(Query, Filter, int)} instead.    */
 DECL|method|search
 specifier|public
 specifier|final
@@ -106,7 +106,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns the documents matching<code>query</code> and    *<code>filter</code>.    * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use    * {@link #search(Query, Filter, int))} instead.    */
+comment|/** Returns the documents matching<code>query</code> and    *<code>filter</code>.    * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use    * {@link #search(Query, Filter, int)} instead.    */
 DECL|method|search
 specifier|public
 name|Hits
@@ -133,7 +133,7 @@ name|filter
 argument_list|)
 return|;
 block|}
-comment|/** Returns documents matching<code>query</code> sorted by    *<code>sort</code>.    * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use     * {@link #search(Query, Filter, int, Sort))} instead.    */
+comment|/** Returns documents matching<code>query</code> sorted by    *<code>sort</code>.    * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use     * {@link #search(Query, Filter, int, Sort)} instead.    */
 DECL|method|search
 specifier|public
 name|Hits
@@ -162,7 +162,7 @@ name|sort
 argument_list|)
 return|;
 block|}
-comment|/** Returns documents matching<code>query</code> and<code>filter</code>,    * sorted by<code>sort</code>.    * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use     * {@link #search(Query, Filter, int, Sort))} instead.    */
+comment|/** Returns documents matching<code>query</code> and<code>filter</code>,    * sorted by<code>sort</code>.    * @throws BooleanQuery.TooManyClauses    * @deprecated Hits will be removed in Lucene 3.0. Use     * {@link #search(Query, Filter, int, Sort)} instead.    */
 DECL|method|search
 specifier|public
 name|Hits
@@ -259,7 +259,7 @@ name|results
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query, Filter, int))}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|public
 name|void
