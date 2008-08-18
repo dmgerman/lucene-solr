@@ -176,7 +176,7 @@ specifier|final
 name|String
 name|MSG
 init|=
-literal|" Processing Documemt # "
+literal|" Processing Document # "
 decl_stmt|;
 block|}
 end_class
