@@ -296,8 +296,6 @@ operator|new
 name|Term
 argument_list|(
 name|field
-argument_list|,
-literal|""
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -541,8 +539,6 @@ operator|new
 name|Term
 argument_list|(
 name|field
-argument_list|,
-literal|""
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -711,8 +707,6 @@ operator|new
 name|Term
 argument_list|(
 name|field
-argument_list|,
-literal|""
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -418,8 +418,6 @@ argument_list|(
 name|f
 operator|.
 name|fieldName
-argument_list|,
-literal|""
 argument_list|)
 decl_stmt|;
 comment|//optimization to avoid constructing new Term() objects

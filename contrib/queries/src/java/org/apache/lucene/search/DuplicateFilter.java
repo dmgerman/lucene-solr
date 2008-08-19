@@ -285,8 +285,6 @@ operator|new
 name|Term
 argument_list|(
 name|fieldName
-argument_list|,
-literal|""
 argument_list|)
 decl_stmt|;
 name|TermEnum
@@ -475,8 +473,6 @@ operator|new
 name|Term
 argument_list|(
 name|fieldName
-argument_list|,
-literal|""
 argument_list|)
 decl_stmt|;
 name|TermEnum
