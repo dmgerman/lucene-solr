@@ -3096,8 +3096,41 @@ operator|<=
 literal|0
 return|;
 block|}
-comment|// this can cause an extra close
-comment|// protected void finalize() { close(); }
+DECL|method|finalize
+specifier|protected
+name|void
+name|finalize
+parameter_list|()
+block|{
+if|if
+condition|(
+name|getOpenCount
+argument_list|()
+operator|!=
+literal|0
+condition|)
+block|{
+name|log
+operator|.
+name|severe
+argument_list|(
+literal|"REFCOUNT ERROR: unreferenced "
+operator|+
+name|this
+operator|+
+literal|" ("
+operator|+
+name|getName
+argument_list|()
+operator|+
+literal|") has a reference count of "
+operator|+
+name|getOpenCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|field|closeHooks
 specifier|private
 name|List
@@ -6510,7 +6543,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id:$"
+literal|"$Id$"
 return|;
 block|}
 DECL|method|getSource
@@ -6520,7 +6553,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL:$"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs

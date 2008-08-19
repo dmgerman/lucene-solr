@@ -48,16 +48,6 @@ name|PERSISTENT
 init|=
 literal|"persistent"
 decl_stmt|;
-comment|/** The name of the the core to swap names with **/
-DECL|field|WITH
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|WITH
-init|=
-literal|"with"
-decl_stmt|;
 comment|/** If you rename something, what is the new name **/
 DECL|field|NAME
 specifier|public
@@ -67,6 +57,16 @@ name|String
 name|NAME
 init|=
 literal|"name"
+decl_stmt|;
+comment|/** Name of the other core in actions involving 2 cores **/
+DECL|field|OTHER
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|OTHER
+init|=
+literal|"other"
 decl_stmt|;
 comment|/** What action **/
 DECL|field|ACTION
@@ -128,14 +128,17 @@ block|,
 DECL|enum constant|CREATE
 name|CREATE
 block|,
-DECL|enum constant|DROP
-name|DROP
-block|,
 DECL|enum constant|PERSIST
 name|PERSIST
 block|,
 DECL|enum constant|SWAP
 name|SWAP
+block|,
+DECL|enum constant|RENAME
+name|RENAME
+block|,
+DECL|enum constant|ALIAS
+name|ALIAS
 block|;
 DECL|method|get
 specifier|public

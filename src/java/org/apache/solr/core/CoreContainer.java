@@ -2253,6 +2253,23 @@ name|File
 name|file
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Persisting cores config to "
+operator|+
+operator|(
+name|file
+operator|==
+literal|null
+condition|?
+name|configFile
+else|:
+name|file
+operator|)
+argument_list|)
+expr_stmt|;
 name|File
 name|tmpFile
 init|=
