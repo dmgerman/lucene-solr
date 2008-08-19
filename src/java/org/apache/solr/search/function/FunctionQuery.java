@@ -322,6 +322,11 @@ specifier|final
 name|DocValues
 name|vals
 decl_stmt|;
+DECL|field|hasDeletions
+specifier|final
+name|boolean
+name|hasDeletions
+decl_stmt|;
 DECL|method|AllScorer
 specifier|public
 name|AllScorer
@@ -373,6 +378,15 @@ operator|.
 name|maxDoc
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
+name|hasDeletions
+operator|=
+name|reader
+operator|.
+name|hasDeletions
+argument_list|()
+expr_stmt|;
 name|vals
 operator|=
 name|func
@@ -417,6 +431,8 @@ return|;
 block|}
 if|if
 condition|(
+name|hasDeletions
+operator|&&
 name|reader
 operator|.
 name|isDeleted
