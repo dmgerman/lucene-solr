@@ -374,6 +374,27 @@ name|term
 argument_list|)
 return|;
 block|}
+DECL|method|getPayloadSpans
+specifier|public
+name|PayloadSpans
+name|getPayloadSpans
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+operator|(
+name|PayloadSpans
+operator|)
+name|getSpans
+argument_list|(
+name|reader
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
