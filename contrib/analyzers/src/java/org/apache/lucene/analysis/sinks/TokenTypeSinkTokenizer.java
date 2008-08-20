@@ -162,14 +162,11 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|lst
+name|super
 operator|.
 name|add
 argument_list|(
 name|t
-operator|.
-name|clone
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

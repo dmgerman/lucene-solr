@@ -54,8 +54,22 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ArrayUtil
+import|;
+end_import
+
 begin_comment
-comment|/**   *  A Payload is metadata that can be stored together with each occurrence    *  of a term. This metadata is stored inline in the posting list of the   *  specific term.     *<p>   *  To store payloads in the index a {@link TokenStream} has to be used that   *  produces {@link Token}s containing payload data.   *<p>   *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}   *  to retrieve the payloads from the index.<br>   *   */
+comment|/**  *  A Payload is metadata that can be stored together with each occurrence   *  of a term. This metadata is stored inline in the posting list of the  *  specific term.    *<p>  *  To store payloads in the index a {@link TokenStream} has to be used that  *  produces {@link Token}s containing payload data.  *<p>  *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}  *  to retrieve the payloads from the index.<br>  *  */
 end_comment
 
 begin_class
@@ -95,7 +109,7 @@ parameter_list|()
 block|{
 comment|// nothing to do
 block|}
-comment|/**      * Creates a new payload with the the given array as data.      * A reference to the passed-in array is held, i. e. no       * copy is made.      *       * @param data the data of this payload      */
+comment|/**    * Creates a new payload with the the given array as data.    * A reference to the passed-in array is held, i. e. no     * copy is made.    *     * @param data the data of this payload    */
 DECL|method|Payload
 specifier|public
 name|Payload
@@ -117,7 +131,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new payload with the the given array as data.       * A reference to the passed-in array is held, i. e. no       * copy is made.      *       * @param data the data of this payload      * @param offset the offset in the data byte array      * @param length the length of the data      */
+comment|/**    * Creates a new payload with the the given array as data.     * A reference to the passed-in array is held, i. e. no     * copy is made.    *     * @param data the data of this payload    * @param offset the offset in the data byte array    * @param length the length of the data    */
 DECL|method|Payload
 specifier|public
 name|Payload
@@ -173,7 +187,7 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**      * Sets this payloads data.       * A reference to the passed-in array is held, i. e. no       * copy is made.      */
+comment|/**    * Sets this payloads data.     * A reference to the passed-in array is held, i. e. no     * copy is made.    */
 DECL|method|setData
 specifier|public
 name|void
@@ -196,7 +210,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Sets this payloads data.       * A reference to the passed-in array is held, i. e. no       * copy is made.      */
+comment|/**    * Sets this payloads data.     * A reference to the passed-in array is held, i. e. no     * copy is made.    */
 DECL|method|setData
 specifier|public
 name|void
@@ -232,7 +246,7 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**      * Returns a reference to the underlying byte array      * that holds this payloads data.      */
+comment|/**    * Returns a reference to the underlying byte array    * that holds this payloads data.    */
 DECL|method|getData
 specifier|public
 name|byte
@@ -246,7 +260,7 @@ operator|.
 name|data
 return|;
 block|}
-comment|/**      * Returns the offset in the underlying byte array       */
+comment|/**    * Returns the offset in the underlying byte array     */
 DECL|method|getOffset
 specifier|public
 name|int
@@ -259,7 +273,7 @@ operator|.
 name|offset
 return|;
 block|}
-comment|/**      * Returns the length of the payload data.       */
+comment|/**    * Returns the length of the payload data.     */
 DECL|method|length
 specifier|public
 name|int
@@ -272,7 +286,7 @@ operator|.
 name|length
 return|;
 block|}
-comment|/**      * Returns the byte at the given index.      */
+comment|/**    * Returns the byte at the given index.    */
 DECL|method|byteAt
 specifier|public
 name|byte
@@ -316,7 +330,7 @@ name|index
 argument_list|)
 throw|;
 block|}
-comment|/**      * Allocates a new byte array, copies the payload data into it and returns it.       */
+comment|/**    * Allocates a new byte array, copies the payload data into it and returns it.     */
 DECL|method|toByteArray
 specifier|public
 name|byte
@@ -361,7 +375,7 @@ return|return
 name|retArray
 return|;
 block|}
-comment|/**      * Copies the payload data to a byte array.      *       * @param target the target byte array      * @param targetOffset the offset in the target byte array      */
+comment|/**    * Copies the payload data to a byte array.    *     * @param target the target byte array    * @param targetOffset the offset in the target byte array    */
 DECL|method|copyTo
 specifier|public
 name|void
@@ -416,27 +430,207 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Clones this payload by creating a copy of the underlying      * byte array.      */
+comment|/**    * Clones this payload by creating a copy of the underlying    * byte array.    */
 DECL|method|clone
 specifier|public
 name|Object
 name|clone
 parameter_list|()
 block|{
+try|try
+block|{
+comment|// Start with a shallow copy of data
 name|Payload
 name|clone
 init|=
-operator|new
+operator|(
 name|Payload
-argument_list|(
+operator|)
+name|super
+operator|.
+name|clone
+argument_list|()
+decl_stmt|;
+comment|// Only copy the part of data that belongs to this Payload
+if|if
+condition|(
+name|offset
+operator|==
+literal|0
+operator|&&
+name|length
+operator|==
+name|data
+operator|.
+name|length
+condition|)
+block|{
+comment|// It is the whole thing, so just clone it.
+name|clone
+operator|.
+name|data
+operator|=
+operator|(
+name|byte
+index|[]
+operator|)
+name|data
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Just get the part
+name|clone
+operator|.
+name|data
+operator|=
 name|this
 operator|.
 name|toByteArray
 argument_list|()
-argument_list|)
-decl_stmt|;
+expr_stmt|;
+name|clone
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+block|}
 return|return
 name|clone
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|CloneNotSupportedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+comment|// shouldn't happen
+block|}
+block|}
+DECL|method|equals
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+name|obj
+operator|==
+name|this
+condition|)
+return|return
+literal|true
+return|;
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|Payload
+condition|)
+block|{
+name|Payload
+name|other
+init|=
+operator|(
+name|Payload
+operator|)
+name|obj
+decl_stmt|;
+if|if
+condition|(
+name|length
+operator|==
+name|other
+operator|.
+name|length
+condition|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|length
+condition|;
+name|i
+operator|++
+control|)
+if|if
+condition|(
+name|data
+index|[
+name|offset
+operator|+
+name|i
+index|]
+operator|!=
+name|other
+operator|.
+name|data
+index|[
+name|other
+operator|.
+name|offset
+operator|+
+name|i
+index|]
+condition|)
+return|return
+literal|false
+return|;
+return|return
+literal|true
+return|;
+block|}
+else|else
+return|return
+literal|false
+return|;
+block|}
+else|else
+return|return
+literal|false
+return|;
+block|}
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|ArrayUtil
+operator|.
+name|hashCode
+argument_list|(
+name|data
+argument_list|,
+name|offset
+argument_list|,
+name|offset
+operator|+
+name|length
+argument_list|)
 return|;
 block|}
 block|}

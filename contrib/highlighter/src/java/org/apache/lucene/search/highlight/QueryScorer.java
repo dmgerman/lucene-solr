@@ -354,7 +354,7 @@ name|termText
 init|=
 name|token
 operator|.
-name|termText
+name|term
 argument_list|()
 decl_stmt|;
 name|WeightedTerm

@@ -251,7 +251,13 @@ index|[
 name|numTokens
 index|]
 operator|=
+operator|(
+name|Token
+operator|)
 name|token
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
 name|scores
 index|[

@@ -127,8 +127,9 @@ specifier|final
 name|Token
 name|next
 parameter_list|(
+specifier|final
 name|Token
-name|result
+name|reusableToken
 parameter_list|)
 throws|throws
 name|java
@@ -137,19 +138,24 @@ name|io
 operator|.
 name|IOException
 block|{
+assert|assert
+name|reusableToken
+operator|!=
+literal|null
+assert|;
 name|Token
-name|t
+name|nextToken
 init|=
 name|input
 operator|.
 name|next
 argument_list|(
-name|result
+name|reusableToken
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|t
+name|nextToken
 operator|==
 literal|null
 condition|)
@@ -160,7 +166,7 @@ name|char
 index|[]
 name|buffer
 init|=
-name|t
+name|nextToken
 operator|.
 name|termBuffer
 argument_list|()
@@ -169,7 +175,7 @@ specifier|final
 name|int
 name|bufferLength
 init|=
-name|t
+name|nextToken
 operator|.
 name|termLength
 argument_list|()
@@ -178,7 +184,7 @@ specifier|final
 name|String
 name|type
 init|=
-name|t
+name|nextToken
 operator|.
 name|type
 argument_list|()
@@ -225,7 +231,7 @@ operator|)
 condition|)
 block|{
 comment|// Strip last 2 characters off
-name|t
+name|nextToken
 operator|.
 name|setTermLength
 argument_list|(
@@ -287,7 +293,7 @@ operator|=
 name|c
 expr_stmt|;
 block|}
-name|t
+name|nextToken
 operator|.
 name|setTermLength
 argument_list|(
@@ -296,7 +302,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|t
+name|nextToken
 return|;
 block|}
 block|}

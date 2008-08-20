@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CJKTokenizer was modified from StopTokenizer which does a decent job for  * most European languages. It performs other token methods for double-byte  * Characters: the token will return at each two charactors with overlap match.<br>  * Example: "java C1C2C3C4" will be segment to: "java" "C1C2" "C2C3" "C3C4" it  * also need filter filter zero length token ""<br>  * for Digit: digit, '+', '#' will token as letter<br>  * for more info on Asia language(Chinese Japanese Korean) text segmentation:  * please search<a  * href="http://www.google.com/search?q=word+chinese+segment">google</a>  *  * @author Che, Dong  */
+comment|/**  * CJKTokenizer was modified from StopTokenizer which does a decent job for  * most European languages. It performs other token methods for double-byte  * Characters: the token will return at each two characters with overlap match.<br>  * Example: "java C1C2C3C4" will be segment to: "java" "C1C2" "C2C3" "C3C4" it  * also need filter filter zero length token ""<br>  * for Digit: digit, '+', '#' will token as letter<br>  * for more info on Asia language(Chinese Japanese Korean) text segmentation:  * please search<a  * href="http://www.google.com/search?q=word+chinese+segment">google</a>  *  * @author Che, Dong  */
 end_comment
 
 begin_class
@@ -175,13 +175,17 @@ name|in
 expr_stmt|;
 block|}
 comment|//~ Methods ----------------------------------------------------------------
-comment|/**      * Returns the next token in the stream, or null at EOS.      * See http://java.sun.com/j2se/1.3/docs/api/java/lang/Character.UnicodeBlock.html      * for detail.      *      * @return Token      *      * @throws java.io.IOException - throw IOException when read error<br>      *         hanppened in the InputStream      *      */
+comment|/**      * Returns the next token in the stream, or null at EOS.      * See http://java.sun.com/j2se/1.3/docs/api/java/lang/Character.UnicodeBlock.html      * for detail.      *      * @param reusableToken a reusable token      * @return Token      *      * @throws java.io.IOException - throw IOException when read error<br>      *         happened in the InputStream      *      */
 DECL|method|next
 specifier|public
 specifier|final
 name|Token
 name|next
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Token
+name|reusableToken
+parameter_list|)
 throws|throws
 name|java
 operator|.
@@ -190,6 +194,11 @@ operator|.
 name|IOException
 block|{
 comment|/** how many character(s) has been stored in buffer */
+assert|assert
+name|reusableToken
+operator|!=
+literal|null
+assert|;
 name|int
 name|length
 init|=
@@ -206,11 +215,11 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|/** current charactor */
+comment|/** current character */
 name|char
 name|c
 decl_stmt|;
-comment|/** unicode block of current charactor for detail */
+comment|/** unicode block of current character for detail */
 name|Character
 operator|.
 name|UnicodeBlock
@@ -515,7 +524,7 @@ block|}
 block|}
 else|else
 block|{
-comment|// non-ASCII letter, eg."C1C2C3C4"
+comment|// non-ASCII letter, e.g."C1C2C3C4"
 if|if
 condition|(
 name|Character
@@ -639,18 +648,15 @@ block|}
 block|}
 block|}
 return|return
-operator|new
-name|Token
-argument_list|(
-operator|new
-name|String
+name|reusableToken
+operator|.
+name|reinit
 argument_list|(
 name|buffer
 argument_list|,
 literal|0
 argument_list|,
 name|length
-argument_list|)
 argument_list|,
 name|start
 argument_list|,

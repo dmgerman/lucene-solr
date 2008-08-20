@@ -117,10 +117,19 @@ DECL|method|next
 specifier|public
 name|Token
 name|next
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Token
+name|reusableToken
+parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|reusableToken
+operator|!=
+literal|null
+assert|;
 if|if
 condition|(
 name|index
@@ -183,8 +192,7 @@ operator|new
 name|Token
 index|[]
 block|{
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please"
 argument_list|,
@@ -193,8 +201,7 @@ argument_list|,
 literal|6
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide"
 argument_list|,
@@ -203,8 +210,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"this"
 argument_list|,
@@ -213,8 +219,7 @@ argument_list|,
 literal|18
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence"
 argument_list|,
@@ -223,8 +228,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"into"
 argument_list|,
@@ -233,8 +237,7 @@ argument_list|,
 literal|32
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"shingles"
 argument_list|,
@@ -263,8 +266,7 @@ operator|new
 name|Token
 index|[]
 block|{
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please"
 argument_list|,
@@ -273,8 +275,7 @@ argument_list|,
 literal|6
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please divide"
 argument_list|,
@@ -283,8 +284,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide"
 argument_list|,
@@ -293,8 +293,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide this"
 argument_list|,
@@ -303,8 +302,7 @@ argument_list|,
 literal|18
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"this"
 argument_list|,
@@ -313,8 +311,7 @@ argument_list|,
 literal|18
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"this sentence"
 argument_list|,
@@ -323,8 +320,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence"
 argument_list|,
@@ -333,8 +329,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence into"
 argument_list|,
@@ -343,8 +338,7 @@ argument_list|,
 literal|32
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"into"
 argument_list|,
@@ -353,8 +347,7 @@ argument_list|,
 literal|32
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"into shingles"
 argument_list|,
@@ -363,8 +356,7 @@ argument_list|,
 literal|39
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"shingles"
 argument_list|,
@@ -456,8 +448,7 @@ operator|new
 name|Token
 index|[]
 block|{
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please"
 argument_list|,
@@ -466,8 +457,7 @@ argument_list|,
 literal|6
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please divide"
 argument_list|,
@@ -476,8 +466,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide"
 argument_list|,
@@ -486,8 +475,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide _"
 argument_list|,
@@ -496,8 +484,7 @@ argument_list|,
 literal|19
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"_"
 argument_list|,
@@ -506,8 +493,7 @@ argument_list|,
 literal|19
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"_ sentence"
 argument_list|,
@@ -516,8 +502,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence"
 argument_list|,
@@ -526,8 +511,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence _"
 argument_list|,
@@ -536,8 +520,7 @@ argument_list|,
 literal|33
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"_"
 argument_list|,
@@ -546,8 +529,7 @@ argument_list|,
 literal|33
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"_ shingles"
 argument_list|,
@@ -556,8 +538,7 @@ argument_list|,
 literal|39
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"shingles"
 argument_list|,
@@ -614,8 +595,7 @@ operator|new
 name|Token
 index|[]
 block|{
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please"
 argument_list|,
@@ -624,8 +604,7 @@ argument_list|,
 literal|6
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please divide"
 argument_list|,
@@ -634,8 +613,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please divide this"
 argument_list|,
@@ -644,8 +622,7 @@ argument_list|,
 literal|18
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide"
 argument_list|,
@@ -654,8 +631,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide this"
 argument_list|,
@@ -664,8 +640,7 @@ argument_list|,
 literal|18
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide this sentence"
 argument_list|,
@@ -674,8 +649,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"this"
 argument_list|,
@@ -684,8 +658,7 @@ argument_list|,
 literal|18
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"this sentence"
 argument_list|,
@@ -694,8 +667,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"this sentence into"
 argument_list|,
@@ -704,8 +676,7 @@ argument_list|,
 literal|32
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence"
 argument_list|,
@@ -714,8 +685,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence into"
 argument_list|,
@@ -724,8 +694,7 @@ argument_list|,
 literal|32
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence into shingles"
 argument_list|,
@@ -734,8 +703,7 @@ argument_list|,
 literal|39
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"into"
 argument_list|,
@@ -744,8 +712,7 @@ argument_list|,
 literal|32
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"into shingles"
 argument_list|,
@@ -754,8 +721,7 @@ argument_list|,
 literal|39
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"shingles"
 argument_list|,
@@ -870,8 +836,7 @@ operator|new
 name|Token
 index|[]
 block|{
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"please"
 argument_list|,
@@ -880,8 +845,7 @@ argument_list|,
 literal|6
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"divide"
 argument_list|,
@@ -890,8 +854,7 @@ argument_list|,
 literal|13
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"sentence"
 argument_list|,
@@ -900,8 +863,7 @@ argument_list|,
 literal|27
 argument_list|)
 block|,
-operator|new
-name|Token
+name|createToken
 argument_list|(
 literal|"shingles"
 argument_list|,
@@ -1047,71 +1009,63 @@ argument_list|,
 name|maxSize
 argument_list|)
 decl_stmt|;
-name|Token
-name|token
-decl_stmt|;
 name|int
 name|i
 init|=
 literal|0
 decl_stmt|;
-while|while
-condition|(
-operator|(
-name|token
+specifier|final
+name|Token
+name|reusableToken
+init|=
+operator|new
+name|Token
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Token
+name|nextToken
+init|=
+name|filter
+operator|.
+name|next
+argument_list|(
+name|reusableToken
+argument_list|)
+init|;
+name|nextToken
+operator|!=
+literal|null
+condition|;
+name|nextToken
 operator|=
 name|filter
 operator|.
 name|next
-argument_list|()
-operator|)
-operator|!=
-literal|null
-condition|)
+argument_list|(
+name|reusableToken
+argument_list|)
+control|)
 block|{
 name|String
 name|termText
 init|=
-operator|new
-name|String
-argument_list|(
-name|token
+name|nextToken
 operator|.
-name|termBuffer
+name|term
 argument_list|()
-argument_list|,
-literal|0
-argument_list|,
-name|token
-operator|.
-name|termLength
-argument_list|()
-argument_list|)
 decl_stmt|;
 name|String
 name|goldText
 init|=
-operator|new
-name|String
-argument_list|(
 name|tokensToCompare
 index|[
 name|i
 index|]
 operator|.
-name|termBuffer
+name|term
 argument_list|()
-argument_list|,
-literal|0
-argument_list|,
-name|tokensToCompare
-index|[
-name|i
-index|]
-operator|.
-name|termLength
-argument_list|()
-argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -1138,7 +1092,7 @@ operator|.
 name|startOffset
 argument_list|()
 argument_list|,
-name|token
+name|nextToken
 operator|.
 name|startOffset
 argument_list|()
@@ -1160,7 +1114,7 @@ operator|.
 name|endOffset
 argument_list|()
 argument_list|,
-name|token
+name|nextToken
 operator|.
 name|endOffset
 argument_list|()
@@ -1179,7 +1133,7 @@ index|[
 name|i
 index|]
 argument_list|,
-name|token
+name|nextToken
 operator|.
 name|getPositionIncrement
 argument_list|()
@@ -1198,7 +1152,7 @@ index|[
 name|i
 index|]
 argument_list|,
-name|token
+name|nextToken
 operator|.
 name|type
 argument_list|()
@@ -1208,6 +1162,44 @@ name|i
 operator|++
 expr_stmt|;
 block|}
+block|}
+DECL|method|createToken
+specifier|private
+specifier|static
+name|Token
+name|createToken
+parameter_list|(
+name|String
+name|term
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|offset
+parameter_list|)
+block|{
+name|Token
+name|token
+init|=
+operator|new
+name|Token
+argument_list|(
+name|start
+argument_list|,
+name|offset
+argument_list|)
+decl_stmt|;
+name|token
+operator|.
+name|setTermBuffer
+argument_list|(
+name|term
+argument_list|)
+expr_stmt|;
+return|return
+name|token
+return|;
 block|}
 block|}
 end_class

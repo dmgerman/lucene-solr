@@ -125,6 +125,7 @@ name|lst
 operator|=
 operator|new
 name|ArrayList
+comment|/*<Token>*/
 argument_list|()
 expr_stmt|;
 block|}
@@ -142,12 +143,13 @@ name|lst
 operator|=
 operator|new
 name|ArrayList
+comment|/*<Token>*/
 argument_list|(
 name|initCap
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Get the tokens in the internal List.    *<p/>    * WARNING: Adding tokens to this list requires the {@link #reset()} method to be called in order for them    * to be made available.  Also, this Tokenizer does nothing to protect against {@link java.util.ConcurrentModificationException}s    * in the case of adds happening while {@link #next(org.apache.lucene.analysis.Token)} is being called.    *    * @return A List of {@link org.apache.lucene.analysis.Token}s    */
+comment|/**    * Get the tokens in the internal List.    *<p/>    * WARNING: Adding tokens to this list requires the {@link #reset()} method to be called in order for them    * to be made available.  Also, this Tokenizer does nothing to protect against {@link java.util.ConcurrentModificationException}s    * in the case of adds happening while {@link #next(org.apache.lucene.analysis.Token)} is being called.    *<p/>    * WARNING: Since this SinkTokenizer can be reset and the cached tokens made available again, do not modify them. Modify clones instead.    *    * @return A List of {@link org.apache.lucene.analysis.Token}s    */
 DECL|method|getTokens
 specifier|public
 name|List
@@ -164,10 +166,19 @@ DECL|method|next
 specifier|public
 name|Token
 name|next
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Token
+name|reusableToken
+parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|reusableToken
+operator|!=
+literal|null
+assert|;
 if|if
 condition|(
 name|iter
@@ -181,12 +192,18 @@ operator|.
 name|iterator
 argument_list|()
 expr_stmt|;
-return|return
+comment|// Since this TokenStream can be reset we have to maintain the tokens as immutable
+if|if
+condition|(
 name|iter
 operator|.
 name|hasNext
 argument_list|()
-condition|?
+condition|)
+block|{
+name|Token
+name|nextToken
+init|=
 operator|(
 name|Token
 operator|)
@@ -194,7 +211,18 @@ name|iter
 operator|.
 name|next
 argument_list|()
-else|:
+decl_stmt|;
+return|return
+operator|(
+name|Token
+operator|)
+name|nextToken
+operator|.
+name|clone
+argument_list|()
+return|;
+block|}
+return|return
 literal|null
 return|;
 block|}

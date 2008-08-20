@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A TokenStream enumerates the sequence of tokens, either from   fields of a document or from query text.<p>   This is an abstract class.  Concrete subclasses are:<ul><li>{@link Tokenizer}, a TokenStream   whose input is a Reader; and<li>{@link TokenFilter}, a TokenStream   whose input is another TokenStream.</ul>   NOTE: subclasses must override at least one of {@link   #next()} or {@link #next(Token)}.   */
+comment|/** A TokenStream enumerates the sequence of tokens, either from   fields of a document or from query text.<p>   This is an abstract class.  Concrete subclasses are:<ul><li>{@link Tokenizer}, a TokenStream   whose input is a Reader; and<li>{@link TokenFilter}, a TokenStream   whose input is another TokenStream.</ul>   NOTE: subclasses must override {@link #next(Token)}.  It's   also OK to instead override {@link #next()} but that   method is now deprecated in favor of {@link #next(Token)}.   */
 end_comment
 
 begin_class
@@ -51,7 +51,7 @@ specifier|abstract
 class|class
 name|TokenStream
 block|{
-comment|/** Returns the next token in the stream, or null at EOS.    *  The returned Token is a "full private copy" (not    *  re-used across calls to next()) but will be slower    *  than calling {@link #next(Token)} instead.. */
+comment|/** Returns the next token in the stream, or null at EOS.    *  @deprecated The returned Token is a "full private copy" (not    *  re-used across calls to next()) but will be slower    *  than calling {@link #next(Token)} instead.. */
 DECL|method|next
 specifier|public
 name|Token
@@ -60,19 +60,25 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|Token
-name|result
+name|reusableToken
 init|=
-name|next
-argument_list|(
 operator|new
 name|Token
 argument_list|()
+decl_stmt|;
+name|Token
+name|nextToken
+init|=
+name|next
+argument_list|(
+name|reusableToken
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|result
+name|nextToken
 operator|!=
 literal|null
 condition|)
@@ -80,7 +86,7 @@ block|{
 name|Payload
 name|p
 init|=
-name|result
+name|nextToken
 operator|.
 name|getPayload
 argument_list|()
@@ -92,7 +98,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|result
+name|nextToken
 operator|.
 name|setPayload
 argument_list|(
@@ -108,27 +114,34 @@ expr_stmt|;
 block|}
 block|}
 return|return
-name|result
+name|nextToken
 return|;
 block|}
-comment|/** Returns the next token in the stream, or null at EOS.    *  When possible, the input Token should be used as the    *  returned Token (this gives fastest tokenization    *  performance), but this is not required and a new Token    *  may be returned. Callers may re-use a single Token    *  instance for successive calls to this method.    *<p>    *  This implicitly defines a "contract" between     *  consumers (callers of this method) and     *  producers (implementations of this method     *  that are the source for tokens):    *<ul>    *<li>A consumer must fully consume the previously     *       returned Token before calling this method again.</li>    *<li>A producer must call {@link Token#clear()}    *       before setting the fields in it& returning it</li>    *</ul>    *  Note that a {@link TokenFilter} is considered a consumer.    *  @param result a Token that may or may not be used to return    *  @return next token in the stream or null if end-of-stream was hit    */
+comment|/** Returns the next token in the stream, or null at EOS.    *  When possible, the input Token should be used as the    *  returned Token (this gives fastest tokenization    *  performance), but this is not required and a new Token    *  may be returned. Callers may re-use a single Token    *  instance for successive calls to this method.    *<p>    *  This implicitly defines a "contract" between     *  consumers (callers of this method) and     *  producers (implementations of this method     *  that are the source for tokens):    *<ul>    *<li>A consumer must fully consume the previously     *       returned Token before calling this method again.</li>    *<li>A producer must call {@link Token#clear()}    *       before setting the fields in it& returning it</li>    *</ul>    *  Also, the producer must make no assumptions about a    *  Token after it has been returned: the caller may    *  arbitrarily change it.  If the producer needs to hold    *  onto the token for subsequent calls, it must clone()    *  it before storing it.    *  Note that a {@link TokenFilter} is considered a consumer.    *  @param reusableToken a Token that may or may not be used to    *  return; this parameter should never be null (the callee    *  is not required to check for null before using it, but it is a    *  good idea to assert that it is not null.)    *  @return next token in the stream or null if end-of-stream was hit    */
 DECL|method|next
 specifier|public
 name|Token
 name|next
 parameter_list|(
+specifier|final
 name|Token
-name|result
+name|reusableToken
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// We don't actually use inputToken, but still add this assert
+assert|assert
+name|reusableToken
+operator|!=
+literal|null
+assert|;
 return|return
 name|next
 argument_list|()
 return|;
 block|}
-comment|/** Resets this stream to the beginning. This is an    *  optional operation, so subclasses may or may not    *  implement this method. Reset() is not needed for    *  the standard indexing process. However, if the Tokens     *  of a TokenStream are intended to be consumed more than     *  once, it is necessary to implement reset().     */
+comment|/** Resets this stream to the beginning. This is an    *  optional operation, so subclasses may or may not    *  implement this method. Reset() is not needed for    *  the standard indexing process. However, if the Tokens     *  of a TokenStream are intended to be consumed more than     *  once, it is necessary to implement reset().  Note that    *  if your TokenStream caches tokens and feeds them back    *  again after a reset, it is imperative that you    *  clone the tokens when you store them away (on the    *  first pass) as well as when you return them (on future    *  passes after reset()).    */
 DECL|method|reset
 specifier|public
 name|void

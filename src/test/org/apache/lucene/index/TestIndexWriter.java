@@ -10919,7 +10919,11 @@ decl_stmt|;
 specifier|public
 name|Token
 name|next
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Token
+name|reusableToken
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -10941,7 +10945,9 @@ return|return
 name|input
 operator|.
 name|next
-argument_list|()
+argument_list|(
+name|reusableToken
+argument_list|)
 return|;
 block|}
 block|}
@@ -11611,8 +11617,9 @@ specifier|public
 name|Token
 name|next
 parameter_list|(
+specifier|final
 name|Token
-name|result
+name|reusableToken
 parameter_list|)
 throws|throws
 name|IOException
@@ -11645,7 +11652,7 @@ name|input
 operator|.
 name|next
 argument_list|(
-name|result
+name|reusableToken
 argument_list|)
 return|;
 block|}
@@ -22000,7 +22007,7 @@ argument_list|()
 decl_stmt|;
 name|t
 operator|.
-name|setTermText
+name|setTermBuffer
 argument_list|(
 literal|"a"
 argument_list|)
@@ -22021,7 +22028,7 @@ argument_list|)
 expr_stmt|;
 name|t
 operator|.
-name|setTermText
+name|setTermBuffer
 argument_list|(
 literal|"b"
 argument_list|)
@@ -22042,7 +22049,7 @@ argument_list|)
 expr_stmt|;
 name|t
 operator|.
-name|setTermText
+name|setTermBuffer
 argument_list|(
 literal|"c"
 argument_list|)
