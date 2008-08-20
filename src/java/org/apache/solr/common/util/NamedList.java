@@ -276,6 +276,45 @@ return|return
 name|old
 return|;
 block|}
+comment|/**    * Removes the name/value pair at the specified index.    * @return the value at the index removed    */
+DECL|method|remove
+specifier|public
+name|T
+name|remove
+parameter_list|(
+name|int
+name|idx
+parameter_list|)
+block|{
+name|int
+name|index
+init|=
+operator|(
+name|idx
+operator|<<
+literal|1
+operator|)
+decl_stmt|;
+name|nvPairs
+operator|.
+name|remove
+argument_list|(
+name|index
+argument_list|)
+expr_stmt|;
+return|return
+operator|(
+name|T
+operator|)
+name|nvPairs
+operator|.
+name|remove
+argument_list|(
+name|index
+argument_list|)
+return|;
+comment|// same index, as things shifted in previous remove
+block|}
 comment|/**    * Scans the list sequentially beginning at the specified index and    * returns the index of the first pair with the specified name.    *    * @param name name to look for, may be null    * @param start index to begin searching from    * @return The index of the first matching pair, -1 if no match    */
 DECL|method|indexOf
 specifier|public
