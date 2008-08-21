@@ -1541,6 +1541,72 @@ argument_list|,
 literal|"//lst[@name='1']/arr[@name='t_text2']/str[.='more random<em>words</em> for second field']"
 argument_list|)
 expr_stmt|;
+comment|// test case for un-optimized index
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"t_text1"
+argument_list|,
+literal|"random words for highlighting tests"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"t_text2"
+argument_list|,
+literal|"more random words for second field"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|delI
+argument_list|(
+literal|"1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sumLRF
+operator|=
+name|h
+operator|.
+name|getRequestFactory
+argument_list|(
+literal|"standard"
+argument_list|,
+literal|0
+argument_list|,
+literal|200
+argument_list|,
+name|args
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Test RequireFieldMatch on un-optimized index"
+argument_list|,
+name|sumLRF
+operator|.
+name|makeRequest
+argument_list|(
+literal|"t_text1:random OR t_text2:words"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='2']"
+argument_list|,
+literal|"//lst[@name='2']/arr[@name='t_text1']/str[.='<em>random</em> words for highlighting tests']"
+argument_list|,
+literal|"//lst[@name='2']/arr[@name='t_text2']/str[.='more random<em>words</em> for second field']"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testCustomSimpleFormatterHighlight
 specifier|public
