@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -42,27 +52,13 @@ name|Token
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_class
 DECL|class|TestSingleTokenTokenFilter
 specifier|public
 class|class
 name|TestSingleTokenTokenFilter
 extends|extends
-name|LuceneTestCase
+name|TestCase
 block|{
 DECL|method|test
 specifier|public
