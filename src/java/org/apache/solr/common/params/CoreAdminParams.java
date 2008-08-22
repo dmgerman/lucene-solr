@@ -108,6 +108,16 @@ name|INSTANCE_DIR
 init|=
 literal|"instanceDir"
 decl_stmt|;
+comment|/** If you specify a file, what is its name **/
+DECL|field|FILE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|FILE
+init|=
+literal|"file"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum
