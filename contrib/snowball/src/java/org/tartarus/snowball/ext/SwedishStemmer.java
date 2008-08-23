@@ -4,11 +4,11 @@ comment|// This file was generated automatically by the Snowball to Java compile
 end_comment
 
 begin_package
-DECL|package|net.sf.snowball.ext
+DECL|package|org.tartarus.snowball.ext
 package|package
-name|net
+name|org
 operator|.
-name|sf
+name|tartarus
 operator|.
 name|snowball
 operator|.
@@ -18,9 +18,9 @@ end_package
 
 begin_import
 import|import
-name|net
+name|org
 operator|.
-name|sf
+name|tartarus
 operator|.
 name|snowball
 operator|.
@@ -30,9 +30,9 @@ end_import
 
 begin_import
 import|import
-name|net
+name|org
 operator|.
-name|sf
+name|tartarus
 operator|.
 name|snowball
 operator|.
@@ -857,6 +857,11 @@ block|,
 literal|149
 block|}
 decl_stmt|;
+DECL|field|I_x
+specifier|private
+name|int
+name|I_x
+decl_stmt|;
 DECL|field|I_p1
 specifier|private
 name|int
@@ -871,6 +876,12 @@ name|SwedishStemmer
 name|other
 parameter_list|)
 block|{
+name|I_x
+operator|=
+name|other
+operator|.
+name|I_x
+expr_stmt|;
 name|I_p1
 operator|=
 name|other
@@ -894,10 +905,57 @@ block|{
 name|int
 name|v_1
 decl_stmt|;
+name|int
+name|v_2
+decl_stmt|;
 comment|// (, line 26
 name|I_p1
 operator|=
 name|limit
+expr_stmt|;
+comment|// test, line 29
+name|v_1
+operator|=
+name|cursor
+expr_stmt|;
+comment|// (, line 29
+comment|// hop, line 29
+block|{
+name|int
+name|c
+init|=
+name|cursor
+operator|+
+literal|3
+decl_stmt|;
+if|if
+condition|(
+literal|0
+operator|>
+name|c
+operator|||
+name|c
+operator|>
+name|limit
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+name|cursor
+operator|=
+name|c
+expr_stmt|;
+block|}
+comment|// setmark x, line 29
+name|I_x
+operator|=
+name|cursor
+expr_stmt|;
+name|cursor
+operator|=
+name|v_1
 expr_stmt|;
 comment|// goto, line 30
 name|golab0
@@ -907,7 +965,7 @@ condition|(
 literal|true
 condition|)
 block|{
-name|v_1
+name|v_2
 operator|=
 name|cursor
 expr_stmt|;
@@ -936,7 +994,7 @@ break|;
 block|}
 name|cursor
 operator|=
-name|v_1
+name|v_2
 expr_stmt|;
 break|break
 name|golab0
@@ -949,7 +1007,7 @@ condition|)
 do|;
 name|cursor
 operator|=
-name|v_1
+name|v_2
 expr_stmt|;
 if|if
 condition|(
@@ -1038,7 +1096,7 @@ operator|!
 operator|(
 name|I_p1
 operator|<
-literal|3
+name|I_x
 operator|)
 condition|)
 block|{
@@ -1048,7 +1106,7 @@ break|;
 block|}
 name|I_p1
 operator|=
-literal|3
+name|I_x
 expr_stmt|;
 block|}
 do|while

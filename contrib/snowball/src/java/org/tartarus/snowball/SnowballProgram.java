@@ -1,18 +1,14 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|net.sf.snowball
+DECL|package|org.tartarus.snowball
 package|package
-name|net
+name|org
 operator|.
-name|sf
+name|tartarus
 operator|.
 name|snowball
 package|;
 end_package
-
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -26,9 +22,14 @@ name|InvocationTargetException
 import|;
 end_import
 
+begin_comment
+comment|/**  * This is the rev 500 of the Snowball SVN trunk,  * but modified:  * made abstract and introduced abstract method stem  * to avoid expensive   */
+end_comment
+
 begin_class
 DECL|class|SnowballProgram
 specifier|public
+specifier|abstract
 class|class
 name|SnowballProgram
 block|{
@@ -49,6 +50,13 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|stem
+specifier|public
+specifier|abstract
+name|boolean
+name|stem
+parameter_list|()
+function_decl|;
 comment|/**      * Set the current string.      */
 DECL|method|setCurrent
 specifier|public
@@ -104,11 +112,28 @@ name|String
 name|getCurrent
 parameter_list|()
 block|{
-return|return
+name|String
+name|result
+init|=
 name|current
 operator|.
 name|toString
 argument_list|()
+decl_stmt|;
+comment|// Make a new StringBuffer.  If we reuse the old one, and a user of
+comment|// the library keeps a reference to the buffer returned (for example,
+comment|// by converting it to a String in a way which doesn't force a copy),
+comment|// the buffer size will not decrease, and we will risk wasting a large
+comment|// amount of memory.
+comment|// Thanks to Wolfram Esser for spotting this problem.
+name|current
+operator|=
+operator|new
+name|StringBuffer
+argument_list|()
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|// current string
@@ -1715,9 +1740,9 @@ name|current
 operator|.
 name|replace
 argument_list|(
-name|bra
+name|c_bra
 argument_list|,
-name|ket
+name|c_ket
 argument_list|,
 name|s
 argument_list|)
