@@ -1127,7 +1127,7 @@ name|aliases
 operator|.
 name|get
 argument_list|(
-name|i
+name|a
 argument_list|)
 argument_list|,
 name|core
