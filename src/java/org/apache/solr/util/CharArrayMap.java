@@ -2066,7 +2066,7 @@ name|map
 operator|.
 name|values
 operator|=
-name|keys
+name|values
 operator|.
 name|clone
 argument_list|()
