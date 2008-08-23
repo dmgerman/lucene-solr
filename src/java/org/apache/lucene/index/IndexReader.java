@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link #open(String)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.<p>  NOTE: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p>   @version $Id$ */
+comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link #open(String)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><b>NOTE</b>: as of 2.4, it's possible to open a read-only  IndexReader using one of the static open methods that  accepts the boolean readOnly parameter.  Such a reader has  better concurrency as it's not necessary to synchronize on  the isDeleted method.  Currently the default for readOnly  is false, meaning if not specified you will get a  read/write IndexReader.  But in 3.0 this default will  change to true, meaning you must explicitly specify false  if you want to make changes with the resulting IndexReader.</p>   @version $Id$ */
 end_comment
 
 begin_class
@@ -133,6 +133,15 @@ specifier|abstract
 class|class
 name|IndexReader
 block|{
+comment|// NOTE: in 3.0 this will change to true
+DECL|field|READ_ONLY_DEFAULT
+specifier|final
+specifier|static
+name|boolean
+name|READ_ONLY_DEFAULT
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * Constants describing field properties, for example used for    * {@link IndexReader#getFieldNames(FieldOption)}.    */
 DECL|class|FieldOption
 specifier|public
@@ -477,7 +486,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory */
+comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    path.<b>NOTE</b>: starting in 3.0 this will return a readOnly IndexReader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory */
 DECL|method|open
 specifier|public
 specifier|static
@@ -507,10 +516,12 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|READ_ONLY_DEFAULT
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an FSDirectory in the named    * path.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    * path.<b>NOTE</b>: starting in 3.0 this will return a readOnly IndexReader.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -540,10 +551,12 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|READ_ONLY_DEFAULT
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in the given Directory.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a read/write IndexReader reading the index in    * the given Directory.<b>NOTE</b>: starting in 3.0 this    * will return a readOnly IndexReader.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -569,10 +582,46 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|READ_ONLY_DEFAULT
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    * {@link IndexCommit}.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a read/write or read only IndexReader reading the index in the given Directory.    * @param directory the index directory    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|Directory
+name|directory
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|directory
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+name|readOnly
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns a read/write IndexReader reading the index in the given    * {@link IndexCommit}.<b>NOTE</b>: starting in 3.0 this    * will return a readOnly IndexReader.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -601,10 +650,12 @@ argument_list|,
 literal|null
 argument_list|,
 name|commit
+argument_list|,
+name|READ_ONLY_DEFAULT
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    * Directory, with a custom {@link IndexDeletionPolicy}.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns a read/write IndexReader reading the index in the given    * Directory, with a custom {@link IndexDeletionPolicy}.    *<b>NOTE</b>: starting in 3.0 this will return a    * readOnly IndexReader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -633,10 +684,49 @@ argument_list|,
 name|deletionPolicy
 argument_list|,
 literal|null
+argument_list|,
+name|READ_ONLY_DEFAULT
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    * Directory, using a specific commit and with a custom {@link IndexDeletionPolicy}.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns a read/write or read only IndexReader reading the index in the given    * Directory, with a custom {@link IndexDeletionPolicy}.    *<b>NOTE</b>: starting in 3.0 this will return a    * readOnly IndexReader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|Directory
+name|directory
+parameter_list|,
+name|IndexDeletionPolicy
+name|deletionPolicy
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|directory
+argument_list|,
+literal|false
+argument_list|,
+name|deletionPolicy
+argument_list|,
+literal|null
+argument_list|,
+name|readOnly
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns a read/write IndexReader reading the index in the given    * Directory, using a specific commit and with a custom    * {@link IndexDeletionPolicy}.<b>NOTE</b>: starting in    * 3.0 this will return a readOnly IndexReader.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -668,6 +758,48 @@ argument_list|,
 name|deletionPolicy
 argument_list|,
 name|commit
+argument_list|,
+name|READ_ONLY_DEFAULT
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns a read/write or read only IndexReader reading the index in the given    * Directory, using a specific commit and with a custom {@link IndexDeletionPolicy}.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|IndexCommit
+name|commit
+parameter_list|,
+name|IndexDeletionPolicy
+name|deletionPolicy
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|commit
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|deletionPolicy
+argument_list|,
+name|commit
+argument_list|,
+name|readOnly
 argument_list|)
 return|;
 block|}
@@ -692,6 +824,10 @@ parameter_list|,
 specifier|final
 name|IndexCommit
 name|commit
+parameter_list|,
+specifier|final
+name|boolean
+name|readOnly
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -710,6 +846,8 @@ argument_list|,
 name|deletionPolicy
 argument_list|,
 name|commit
+argument_list|,
+name|readOnly
 argument_list|)
 return|;
 block|}
@@ -1371,7 +1509,6 @@ function_decl|;
 comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  The norm represents the product of the field's {@link    * org.apache.lucene.document.Fieldable#setBoost(float) boost} and its {@link Similarity#lengthNorm(String,    * int) length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    * @see #norms(String)    * @see Similarity#decodeNorm(byte)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|setNorm
 specifier|public
-specifier|final
 specifier|synchronized
 name|void
 name|setNorm
@@ -1600,7 +1737,6 @@ function_decl|;
 comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPostitions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    *    * @throws StaleReaderException if the index has changed    * since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocument
 specifier|public
-specifier|final
 specifier|synchronized
 name|void
 name|deleteDocument
@@ -1651,7 +1787,6 @@ function_decl|;
 comment|/** Deletes all documents that have a given<code>term</code> indexed.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #deleteDocument(int)} for information about when this deletion will     * become effective.    *    * @return the number of documents deleted    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
-specifier|final
 name|int
 name|deleteDocuments
 parameter_list|(
@@ -1730,7 +1865,6 @@ block|}
 comment|/** Undeletes all documents currently marked as deleted in this index.    *    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|undeleteAll
 specifier|public
-specifier|final
 specifier|synchronized
 name|void
 name|undeleteAll
