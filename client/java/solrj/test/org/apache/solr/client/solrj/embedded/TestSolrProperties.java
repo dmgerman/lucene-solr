@@ -508,6 +508,13 @@ init|=
 operator|new
 name|File
 argument_list|(
+name|getSolrHome
+argument_list|()
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
 literal|"solr-persist.xml"
 argument_list|)
 decl_stmt|;
