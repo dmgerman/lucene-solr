@@ -443,9 +443,14 @@ argument_list|)
 expr_stmt|;
 name|DOMUtil
 operator|.
-name|substituteSystemProperties
+name|substituteProperties
 argument_list|(
 name|doc
+argument_list|,
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
