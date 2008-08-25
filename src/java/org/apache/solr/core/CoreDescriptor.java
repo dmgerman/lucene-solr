@@ -439,7 +439,6 @@ name|coreContainer
 return|;
 block|}
 DECL|method|getCoreProperties
-specifier|public
 name|Properties
 name|getCoreProperties
 parameter_list|()
@@ -450,7 +449,6 @@ return|;
 block|}
 comment|/**    * Set this core's properties. Please note that some implicit values will be added to the    * Properties instance passed into this method. This means that the Properties instance    * set to this method will have different (less) key/value pairs than the Properties    * instance returned by #getCoreProperties method.    *     * @param coreProperties    */
 DECL|method|setCoreProperties
-specifier|public
 name|void
 name|setCoreProperties
 parameter_list|(
