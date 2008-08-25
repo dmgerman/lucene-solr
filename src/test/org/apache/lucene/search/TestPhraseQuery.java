@@ -3813,6 +3813,52 @@ comment|//commented out for sloppy-phrase efficiency (issue 736) - see SloppyPhr
 comment|//assertTrue("reversed scores higher in palindrome",score1+SCORE_COMP_THRESH<score3);
 comment|//assertEquals("ordered or reversed does not matter",score2, score3, SCORE_COMP_THRESH);
 block|}
+comment|// LUCENE-1280
+DECL|method|testEmptyPhraseQuery
+specifier|public
+name|void
+name|testEmptyPhraseQuery
+parameter_list|()
+throws|throws
+name|Throwable
+block|{
+specifier|final
+name|PhraseQuery
+name|q1
+init|=
+operator|new
+name|PhraseQuery
+argument_list|()
+decl_stmt|;
+specifier|final
+name|BooleanQuery
+name|q2
+init|=
+operator|new
+name|BooleanQuery
+argument_list|()
+decl_stmt|;
+name|q2
+operator|.
+name|add
+argument_list|(
+operator|new
+name|PhraseQuery
+argument_list|()
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+expr_stmt|;
+name|q2
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
