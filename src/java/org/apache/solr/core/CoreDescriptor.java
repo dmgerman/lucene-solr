@@ -438,35 +438,14 @@ return|return
 name|coreContainer
 return|;
 block|}
-comment|/**    * Get this core's properties    *     * @return a shallow copy of this core's properties    */
 DECL|method|getCoreProperties
 specifier|public
 name|Properties
 name|getCoreProperties
 parameter_list|()
 block|{
-name|Properties
-name|p
-init|=
-operator|new
-name|Properties
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|coreProperties
-operator|!=
-literal|null
-condition|)
-name|p
-operator|.
-name|putAll
-argument_list|(
-name|coreProperties
-argument_list|)
-expr_stmt|;
 return|return
-name|p
+name|coreProperties
 return|;
 block|}
 comment|/**    * Set this core's properties. Please note that some implicit values will be added to the    * Properties instance passed into this method. This means that the Properties instance    * set to this method will have different (less) key/value pairs than the Properties    * instance returned by #getCoreProperties method.    *     * @param coreProperties    */
