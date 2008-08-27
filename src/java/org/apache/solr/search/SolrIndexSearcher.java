@@ -631,7 +631,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|SolrIndexSearcher
-specifier|private
+specifier|public
 name|SolrIndexSearcher
 parameter_list|(
 name|SolrCore
