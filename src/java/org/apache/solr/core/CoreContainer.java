@@ -1835,7 +1835,7 @@ return|return
 name|lst
 return|;
 block|}
-comment|/**    * @return a Collection of the names that a specific core is mapped to.    */
+comment|/** This method is currently experimental.    * @return a Collection of the names that a specific core is mapped to.    */
 DECL|method|getCoreNames
 specifier|public
 name|Collection
