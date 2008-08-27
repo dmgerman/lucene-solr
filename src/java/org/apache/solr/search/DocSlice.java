@@ -413,11 +413,20 @@ name|nextDoc
 argument_list|()
 return|;
 block|}
+comment|/**        * The remove  operation is not supported by this Iterator.        */
 specifier|public
 name|void
 name|remove
 parameter_list|()
-block|{       }
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"The remove  operation is not supported by this Iterator."
+argument_list|)
+throw|;
+block|}
 specifier|public
 name|int
 name|nextDoc
