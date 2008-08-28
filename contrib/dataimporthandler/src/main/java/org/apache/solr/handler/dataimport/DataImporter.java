@@ -2166,7 +2166,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|rumCmd
+name|runCmd
 argument_list|(
 name|reqParams
 argument_list|,
@@ -2182,9 +2182,9 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|rumCmd
+DECL|method|runCmd
 name|void
-name|rumCmd
+name|runCmd
 parameter_list|(
 name|RequestParams
 name|reqParams

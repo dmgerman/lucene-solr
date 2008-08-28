@@ -990,7 +990,7 @@ condition|)
 block|{
 name|importer
 operator|.
-name|rumCmd
+name|runCmd
 argument_list|(
 name|requestParams
 argument_list|,
@@ -1126,7 +1126,7 @@ block|{
 comment|// Synchronous request for the debug mode
 name|importer
 operator|.
-name|rumCmd
+name|runCmd
 argument_list|(
 name|requestParams
 argument_list|,
