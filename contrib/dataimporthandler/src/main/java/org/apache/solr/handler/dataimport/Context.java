@@ -136,7 +136,7 @@ name|VariableResolver
 name|getVariableResolver
 parameter_list|()
 function_decl|;
-comment|/**    * Gets the datasource instance defined for this entity.    *    * @return a new DataSource instance as configured for the current entity    * @see org.apache.solr.handler.dataimport.DataSource    */
+comment|/**    * Gets the datasource instance defined for this entity. Do not close() this instance.    * Transformers should use the getDataSource(String name) method.    *    * @return a new DataSource instance as configured for the current entity    * @see org.apache.solr.handler.dataimport.DataSource    * @see #getDataSource(String)    */
 DECL|method|getDataSource
 specifier|public
 specifier|abstract
@@ -144,7 +144,7 @@ name|DataSource
 name|getDataSource
 parameter_list|()
 function_decl|;
-comment|/**    * Gets a new DataSource instance with a name.    *    * @param name Name of the dataSource as defined in the dataSource tag    * @return a new DataSource instance as configured for the named entity    * @see org.apache.solr.handler.dataimport.DataSource    */
+comment|/**    * Gets a new DataSource instance with a name. Ensure that you close() this after use    * because this is created just for this method call.    *      * @param name Name of the dataSource as defined in the dataSource tag    * @return a new DataSource instance    * @see org.apache.solr.handler.dataimport.DataSource    */
 DECL|method|getDataSource
 specifier|public
 specifier|abstract

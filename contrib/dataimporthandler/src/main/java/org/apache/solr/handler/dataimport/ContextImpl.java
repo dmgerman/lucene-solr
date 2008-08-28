@@ -311,6 +311,10 @@ operator|.
 name|getDataSourceInstance
 argument_list|(
 name|entity
+argument_list|,
+name|name
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}

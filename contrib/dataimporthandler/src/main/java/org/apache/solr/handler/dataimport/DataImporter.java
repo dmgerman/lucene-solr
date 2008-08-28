@@ -1545,6 +1545,12 @@ operator|=
 name|getDataSourceInstance
 argument_list|(
 name|key
+argument_list|,
+name|key
+operator|.
+name|dataSource
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -1556,6 +1562,12 @@ name|DataConfig
 operator|.
 name|Entity
 name|key
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|Context
+name|ctx
 parameter_list|)
 block|{
 name|Properties
@@ -1565,9 +1577,7 @@ name|dataSourceProps
 operator|.
 name|get
 argument_list|(
-name|key
-operator|.
-name|dataSource
+name|name
 argument_list|)
 decl_stmt|;
 if|if
@@ -1584,9 +1594,7 @@ name|dataSources
 operator|.
 name|get
 argument_list|(
-name|key
-operator|.
-name|dataSource
+name|name
 argument_list|)
 expr_stmt|;
 if|if
@@ -1638,9 +1646,7 @@ name|SEVERE
 argument_list|,
 literal|"No dataSource :"
 operator|+
-name|key
-operator|.
-name|dataSource
+name|name
 operator|+
 literal|" available for entity :"
 operator|+
@@ -1737,10 +1743,14 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-name|dataSrc
-operator|.
-name|init
-argument_list|(
+if|if
+condition|(
+name|ctx
+operator|==
+literal|null
+condition|)
+name|ctx
+operator|=
 operator|new
 name|ContextImpl
 argument_list|(
@@ -1764,6 +1774,12 @@ literal|null
 argument_list|,
 name|this
 argument_list|)
+expr_stmt|;
+name|dataSrc
+operator|.
+name|init
+argument_list|(
+name|ctx
 argument_list|,
 name|copyProps
 argument_list|)
