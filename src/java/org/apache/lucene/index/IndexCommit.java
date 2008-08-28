@@ -104,6 +104,20 @@ literal|"This IndexCommit does not support this method."
 argument_list|)
 throw|;
 block|}
+DECL|method|isDeleted
+specifier|public
+name|boolean
+name|isDeleted
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This IndexCommit does not support this method."
+argument_list|)
+throw|;
+block|}
 comment|/**    * Returns true if this commit is an optimized index.    */
 DECL|method|isOptimized
 specifier|public

@@ -1581,6 +1581,16 @@ return|return
 name|generation
 return|;
 block|}
+DECL|method|isDeleted
+specifier|public
+name|boolean
+name|isDeleted
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|/**    * Expert: return the IndexCommit that this reader has    * opened.    *    *<p><b>WARNING</b>: this API is new and experimental and    * may suddenly change.</p>    */
 DECL|method|getIndexCommit

@@ -2523,6 +2523,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|isDeleted
+specifier|public
+name|boolean
+name|isDeleted
+parameter_list|()
+block|{
+return|return
+name|deleted
+return|;
+block|}
 DECL|method|compareTo
 specifier|public
 name|int
