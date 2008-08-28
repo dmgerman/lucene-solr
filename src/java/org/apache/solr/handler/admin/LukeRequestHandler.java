@@ -688,13 +688,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|RequestHandlerUtils
-operator|.
-name|addExperimentalFormatWarning
-argument_list|(
-name|rsp
-argument_list|)
-expr_stmt|;
 name|IndexSchema
 name|schema
 init|=

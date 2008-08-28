@@ -714,14 +714,6 @@ literal|"]"
 argument_list|)
 throw|;
 block|}
-comment|// Add a warning
-name|RequestHandlerUtils
-operator|.
-name|addExperimentalFormatWarning
-argument_list|(
-name|rsp
-argument_list|)
-expr_stmt|;
 comment|// Show a directory listing
 if|if
 condition|(

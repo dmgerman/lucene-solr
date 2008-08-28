@@ -180,13 +180,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|RequestHandlerUtils
-operator|.
-name|addExperimentalFormatWarning
-argument_list|(
-name|rsp
-argument_list|)
-expr_stmt|;
 name|SimpleOrderedMap
 argument_list|<
 name|Object
