@@ -2869,6 +2869,27 @@ literal|"//*[@numFound='4']"
 argument_list|)
 expr_stmt|;
 comment|// val_s:* %//*[@numFound="8"]
+comment|// test wildcard query
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"val_s:a*p*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='3']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"val_s:p?a*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='3']"
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 literal|"<delete><query>id:[100 TO 110]</query></delete>"
