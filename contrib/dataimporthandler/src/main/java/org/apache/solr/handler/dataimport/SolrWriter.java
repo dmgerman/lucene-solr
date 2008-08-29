@@ -1125,26 +1125,6 @@ name|getStartTime
 argument_list|()
 return|;
 block|}
-DECL|method|loadClass
-specifier|public
-name|Class
-name|loadClass
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|ClassNotFoundException
-block|{
-return|return
-name|Class
-operator|.
-name|forName
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
 comment|/**    *<p>    * Stores the last indexed time into the<code>IMPORTER_PROPERTIES</code>    * file. If any properties are already defined in the file, then they are    * preserved.    *</p>    *    * @param date the Date instance to be persisted    */
 DECL|method|persistIndexStartTime
 specifier|public

@@ -361,6 +361,11 @@ operator|.
 name|loadClass
 argument_list|(
 name|trans
+argument_list|,
+name|context
+operator|.
+name|getSolrCore
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if

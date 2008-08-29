@@ -707,6 +707,12 @@ parameter_list|()
 block|{
 return|return
 name|dataImporter
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|dataImporter
 operator|.
 name|getCore
 argument_list|()

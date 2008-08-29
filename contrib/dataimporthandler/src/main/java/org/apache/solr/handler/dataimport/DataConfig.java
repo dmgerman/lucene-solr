@@ -1247,6 +1247,8 @@ operator|.
 name|loadClass
 argument_list|(
 name|clz
+argument_list|,
+literal|null
 argument_list|)
 operator|.
 name|newInstance
