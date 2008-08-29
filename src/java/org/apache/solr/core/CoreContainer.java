@@ -2280,7 +2280,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Ensures there is a valid core to handle MultiCore admin taks and    * increase its refcount.    * @return the acquired admin core, null if no core is available    */
+comment|/**    * Ensures there is a valid core to handle MultiCore admin taks and    * increase its refcount.    * @see SolrCore#close()     * @return the acquired admin core, null if no core is available    */
 DECL|method|getAdminCore
 specifier|public
 name|SolrCore
