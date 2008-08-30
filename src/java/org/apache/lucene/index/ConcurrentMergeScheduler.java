@@ -662,21 +662,6 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|merge
-operator|.
-name|isExternal
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"    merge involves segments from an external directory; now run in foreground"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 assert|assert
 name|mergeThreadCount
 argument_list|()
@@ -720,16 +705,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-continue|continue;
 block|}
-block|}
-comment|// This merge involves segments outside our index
-comment|// Directory so we must merge in foreground
-name|doMerge
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 comment|/** Does the actual merge, by calling {@link IndexWriter#merge} */
