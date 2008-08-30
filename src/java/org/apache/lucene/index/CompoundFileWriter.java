@@ -766,6 +766,8 @@ argument_list|,
 literal|0
 argument_list|,
 name|len
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|os

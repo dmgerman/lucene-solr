@@ -1149,14 +1149,14 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|37
+argument_list|,
 name|reader
 operator|.
 name|docFreq
 argument_list|(
 name|ccc
 argument_list|)
-argument_list|,
-literal|37
 argument_list|)
 expr_stmt|;
 name|reader
@@ -1168,14 +1168,14 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|37
+argument_list|,
 name|reader
 operator|.
 name|docFreq
 argument_list|(
 name|aaa
 argument_list|)
-argument_list|,
-literal|37
 argument_list|)
 expr_stmt|;
 name|dir
@@ -1372,7 +1372,9 @@ name|rand
 init|=
 operator|new
 name|Random
-argument_list|()
+argument_list|(
+literal|788
+argument_list|)
 decl_stmt|;
 DECL|field|dir
 specifier|private
@@ -1441,11 +1443,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
+comment|//int count = 0;
 while|while
 condition|(
 name|it
@@ -1492,9 +1490,7 @@ argument_list|(
 name|bufferSize
 argument_list|)
 expr_stmt|;
-name|count
-operator|++
-expr_stmt|;
+comment|//count++;
 block|}
 comment|//System.out.println("tweak'd " + count + " buffer sizes");
 block|}

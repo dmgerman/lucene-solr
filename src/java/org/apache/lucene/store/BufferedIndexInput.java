@@ -57,7 +57,7 @@ init|=
 name|BUFFER_SIZE
 decl_stmt|;
 DECL|field|buffer
-specifier|private
+specifier|protected
 name|byte
 index|[]
 name|buffer
@@ -157,6 +157,28 @@ operator|==
 name|buffer
 operator|.
 name|length
+operator|:
+literal|"buffer="
+operator|+
+name|buffer
+operator|+
+literal|" bufferSize="
+operator|+
+name|bufferSize
+operator|+
+literal|" buffer.length="
+operator|+
+operator|(
+name|buffer
+operator|!=
+literal|null
+condition|?
+name|buffer
+operator|.
+name|length
+else|:
+literal|0
+operator|)
 assert|;
 if|if
 condition|(
@@ -248,12 +270,29 @@ name|bufferLength
 operator|=
 name|numToCopy
 expr_stmt|;
+name|newBuffer
+argument_list|(
+name|newBuffer
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+DECL|method|newBuffer
+specifier|protected
+name|void
+name|newBuffer
+parameter_list|(
+name|byte
+index|[]
+name|newBuffer
+parameter_list|)
+block|{
+comment|// Subclasses can do something here
 name|buffer
 operator|=
 name|newBuffer
 expr_stmt|;
-block|}
-block|}
 block|}
 comment|/** Returns buffer size.  @see #setBufferSize */
 DECL|method|getBufferSize
@@ -622,13 +661,14 @@ operator|==
 literal|null
 condition|)
 block|{
-name|buffer
-operator|=
+name|newBuffer
+argument_list|(
 operator|new
 name|byte
 index|[
 name|bufferSize
 index|]
+argument_list|)
 expr_stmt|;
 comment|// allocate buffer lazily
 name|seekInternal
