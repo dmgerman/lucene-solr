@@ -407,7 +407,7 @@ argument_list|()
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"admin/file"
+literal|"/admin/file"
 argument_list|)
 decl_stmt|;
 name|assertTrue

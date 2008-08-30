@@ -6362,7 +6362,7 @@ if|if
 condition|(
 name|getRequestHandler
 argument_list|(
-literal|"admin/file"
+literal|"/admin/file"
 argument_list|)
 operator|==
 literal|null
@@ -6524,7 +6524,7 @@ name|reqHandlers
 operator|.
 name|register
 argument_list|(
-literal|"admin/file"
+literal|"/admin/file"
 argument_list|,
 name|handler
 argument_list|)
