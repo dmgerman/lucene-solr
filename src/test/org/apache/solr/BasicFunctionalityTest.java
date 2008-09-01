@@ -294,6 +294,26 @@ name|HashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests some basic functionality of Solr while demonstrating good  * Best Practices for using AbstractSolrTestCase  */
 end_comment
@@ -368,6 +388,9 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+comment|// tests the performance of dynamic field creation and
+comment|// field property testing.
+comment|/***   public void testFieldPerf() {     IndexSchema schema = h.getCore().getSchema();     SchemaField[] fields = schema.getDynamicFieldPrototypes();     boolean createNew = false;      long start = System.currentTimeMillis();     int ret = 0;     for (int i=0; i<10000000; i++) {       for (SchemaField f : fields) {         if (createNew) f = new SchemaField(f, "fakename");         if (f.indexed()) ret += 1;         if (f.isCompressed()) ret += 2;         if (f.isRequired()) ret += 3;         if (f.multiValued()) ret += 4;         if (f.omitNorms()) ret += 5;         if (f.sortMissingFirst()) ret += 6;         if (f.sortMissingLast())ret += 7;         if (f.stored()) ret += 8;         if (f.storeTermOffsets()) ret += 9;         if (f.storeTermPositions()) ret += 10;         if (f.storeTermVector()) ret += 11;       }     }     long end = System.currentTimeMillis();     System.out.println("ret=" + ret + " time="+ (end-start));   }   ***/
 DECL|method|testIgnoredFields
 specifier|public
 name|void
