@@ -5939,12 +5939,6 @@ name|xhtml
 init|=
 literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 operator|+
-literal|"<!DOCTYPE html\n"
-operator|+
-literal|"PUBLIC \"//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
-operator|+
-literal|"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
-operator|+
 literal|"<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"
 operator|+
 literal|"<head>\n"
