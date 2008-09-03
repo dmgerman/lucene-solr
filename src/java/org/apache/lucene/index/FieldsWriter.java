@@ -789,6 +789,11 @@ operator|.
 name|getBinaryValue
 argument_list|()
 expr_stmt|;
+assert|assert
+name|data
+operator|!=
+literal|null
+assert|;
 name|len
 operator|=
 name|field
