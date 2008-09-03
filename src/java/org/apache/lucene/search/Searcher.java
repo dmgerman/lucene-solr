@@ -322,6 +322,32 @@ name|n
 argument_list|)
 return|;
 block|}
+comment|/** Finds the top<code>n</code>    * hits for<code>query</code>.    *    * @throws BooleanQuery.TooManyClauses    */
+DECL|method|search
+specifier|public
+name|TopDocs
+name|search
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|int
+name|n
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|search
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|n
+argument_list|)
+return|;
+block|}
 comment|/** Returns an Explanation that describes how<code>doc</code> scored against    *<code>query</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    */
 DECL|method|explain
 specifier|public
