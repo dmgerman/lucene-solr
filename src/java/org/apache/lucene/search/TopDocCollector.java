@@ -47,11 +47,15 @@ specifier|private
 name|ScoreDoc
 name|reusableSD
 decl_stmt|;
+comment|/** The total number of hits the collector encountered. */
 DECL|field|totalHits
+specifier|protected
 name|int
 name|totalHits
 decl_stmt|;
+comment|/** The priority queue which holds the top-scoring documents. */
 DECL|field|hq
+specifier|protected
 name|PriorityQueue
 name|hq
 decl_stmt|;
@@ -66,8 +70,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|numHits
-argument_list|,
 operator|new
 name|HitQueue
 argument_list|(
@@ -76,12 +78,29 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @deprecated use TopDocCollector(hq) instead. numHits is not used by this    * constructor. It will be removed in a future release.    */
 DECL|method|TopDocCollector
 name|TopDocCollector
 parameter_list|(
 name|int
 name|numHits
 parameter_list|,
+name|PriorityQueue
+name|hq
+parameter_list|)
+block|{
+name|this
+operator|.
+name|hq
+operator|=
+name|hq
+expr_stmt|;
+block|}
+comment|/** Constructor to collect the top-scoring documents by using the given PQ.    * @hq the PQ to use by this instance.    */
+DECL|method|TopDocCollector
+specifier|protected
+name|TopDocCollector
+parameter_list|(
 name|PriorityQueue
 name|hq
 parameter_list|)

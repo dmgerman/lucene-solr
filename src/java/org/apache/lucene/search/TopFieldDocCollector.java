@@ -76,8 +76,6 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|numHits
-argument_list|,
 operator|new
 name|FieldSortedHitQueue
 argument_list|(
