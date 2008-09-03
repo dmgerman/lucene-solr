@@ -384,6 +384,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|b
+operator|!=
+literal|null
+assert|;
 while|while
 condition|(
 name|len
