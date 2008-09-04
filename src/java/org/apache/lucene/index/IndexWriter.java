@@ -5247,13 +5247,9 @@ init|)
 block|{
 while|while
 condition|(
-name|optimizeMergesPending
-argument_list|()
+literal|true
 condition|)
 block|{
-name|doWait
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|mergeExceptions
@@ -5359,6 +5355,16 @@ throw|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|optimizeMergesPending
+argument_list|()
+condition|)
+name|doWait
+argument_list|()
+expr_stmt|;
+else|else
+break|break;
 block|}
 block|}
 comment|// If close is called while we are still
