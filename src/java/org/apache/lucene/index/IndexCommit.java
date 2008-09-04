@@ -234,6 +234,26 @@ literal|"This IndexCommit does not support this method."
 argument_list|)
 throw|;
 block|}
+comment|/** Convenience method that returns the last modified time    *  of the segments_N file corresponding to this index    *  commit, equivalent to    *  getDirectory().fileModified(getSegmentsFileName()). */
+DECL|method|getTimestamp
+specifier|public
+name|long
+name|getTimestamp
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|getDirectory
+argument_list|()
+operator|.
+name|fileModified
+argument_list|(
+name|getSegmentsFileName
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
