@@ -2017,6 +2017,16 @@ block|}
 name|int
 name|end
 init|=
+name|dff
+operator|.
+name|limit
+operator|<
+literal|0
+condition|?
+name|counts
+operator|.
+name|length
+else|:
 name|Math
 operator|.
 name|min
@@ -2983,6 +2993,10 @@ comment|// than the number requested (provided mincount==0 like it should be for
 comment|// a shard request)
 if|if
 condition|(
+name|numRequested
+operator|<
+literal|0
+operator|||
 name|numRequested
 operator|!=
 literal|0
