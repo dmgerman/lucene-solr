@@ -920,10 +920,18 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// Don't reuse a because we alter its state (setReplaceInvalidAcronym)
+name|StandardAnalyzer
+name|a2
+init|=
+operator|new
+name|StandardAnalyzer
+argument_list|()
+decl_stmt|;
 comment|// domain names
 name|assertAnalyzesTo
 argument_list|(
-name|a
+name|a2
 argument_list|,
 literal|"www.nutch.org"
 argument_list|,
@@ -939,7 +947,7 @@ comment|//Notice the trailing .  See https://issues.apache.org/jira/browse/LUCEN
 comment|// the following should be recognized as HOST:
 name|assertAnalyzesTo
 argument_list|(
-name|a
+name|a2
 argument_list|,
 literal|"www.nutch.org."
 argument_list|,
@@ -958,12 +966,7 @@ literal|"<HOST>"
 block|}
 argument_list|)
 expr_stmt|;
-operator|(
-operator|(
-name|StandardAnalyzer
-operator|)
-name|a
-operator|)
+name|a2
 operator|.
 name|setReplaceInvalidAcronym
 argument_list|(
@@ -972,7 +975,7 @@ argument_list|)
 expr_stmt|;
 name|assertAnalyzesTo
 argument_list|(
-name|a
+name|a2
 argument_list|,
 literal|"www.nutch.org."
 argument_list|,
@@ -989,18 +992,6 @@ index|[]
 block|{
 literal|"<ACRONYM>"
 block|}
-argument_list|)
-expr_stmt|;
-operator|(
-operator|(
-name|StandardAnalyzer
-operator|)
-name|a
-operator|)
-operator|.
-name|setReplaceInvalidAcronym
-argument_list|(
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

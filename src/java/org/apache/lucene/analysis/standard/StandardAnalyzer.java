@@ -103,7 +103,7 @@ specifier|static
 name|boolean
 name|defaultReplaceInvalidAcronym
 decl_stmt|;
-comment|// Default to false (fixed the bug), unless the system prop is set
+comment|// Default to true (fixed the bug), unless the system prop is set
 static|static
 block|{
 specifier|final
