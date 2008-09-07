@@ -24,7 +24,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -37,11 +47,11 @@ block|{
 DECL|field|decoder
 specifier|static
 specifier|final
-name|Hashtable
+name|Map
 name|decoder
 init|=
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|(
 literal|300
 argument_list|)

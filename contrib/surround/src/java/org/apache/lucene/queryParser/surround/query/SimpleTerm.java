@@ -24,6 +24,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -34,23 +44,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
+name|List
 import|;
 end_import
 
@@ -76,9 +72,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|Query
+name|Term
 import|;
 end_import
 
@@ -93,6 +89,20 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
 import|;
 end_import
 
@@ -376,7 +386,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|ArrayList
+name|List
 name|luceneSubQueries
 init|=
 operator|new

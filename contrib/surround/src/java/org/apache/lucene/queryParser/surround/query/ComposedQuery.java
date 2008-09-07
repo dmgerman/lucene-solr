@@ -218,7 +218,7 @@ name|BasicQueryFactory
 name|qf
 parameter_list|)
 block|{
-name|ArrayList
+name|List
 name|luceneSubQueries
 init|=
 operator|new

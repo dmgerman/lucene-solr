@@ -136,7 +136,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Enumeration
+name|Iterator
 import|;
 end_import
 
@@ -147,6 +147,16 @@ operator|.
 name|util
 operator|.
 name|LinkedHashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -1552,7 +1562,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ArrayList
+name|List
 name|lines
 init|=
 operator|new
@@ -1718,19 +1728,22 @@ operator|new
 name|MemoryIndex
 argument_list|()
 decl_stmt|;
-name|Enumeration
+name|Iterator
 name|iter
 init|=
 name|doc
 operator|.
-name|fields
+name|getFields
+argument_list|()
+operator|.
+name|iterator
 argument_list|()
 decl_stmt|;
 while|while
 condition|(
 name|iter
 operator|.
-name|hasMoreElements
+name|hasNext
 argument_list|()
 condition|)
 block|{
@@ -1742,7 +1755,7 @@ name|Field
 operator|)
 name|iter
 operator|.
-name|nextElement
+name|next
 argument_list|()
 decl_stmt|;
 name|index

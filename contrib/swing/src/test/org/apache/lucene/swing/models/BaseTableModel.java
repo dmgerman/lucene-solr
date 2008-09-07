@@ -20,18 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|table
-operator|.
-name|AbstractTableModel
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -50,6 +38,28 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|table
+operator|.
+name|AbstractTableModel
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Jonathan Simon - jonathan_s_simon@yahoo.com  */
 end_comment
@@ -64,7 +74,7 @@ name|AbstractTableModel
 block|{
 DECL|field|columnNames
 specifier|private
-name|ArrayList
+name|List
 name|columnNames
 init|=
 operator|new
@@ -73,7 +83,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|rows
 specifier|private
-name|ArrayList
+name|List
 name|rows
 init|=
 operator|new

@@ -20,16 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -48,6 +38,26 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|AbstractListModel
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Jonathan Simon - jonathan_s_simon@yahoo.com  */
 end_comment
@@ -62,7 +72,7 @@ name|AbstractListModel
 block|{
 DECL|field|data
 specifier|private
-name|ArrayList
+name|List
 name|data
 init|=
 operator|new

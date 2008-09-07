@@ -76,7 +76,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
+name|HashSet
 import|;
 end_import
 
@@ -86,7 +86,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
+name|Map
 import|;
 end_import
 
@@ -301,7 +301,7 @@ specifier|public
 name|void
 name|setExclusionTable
 parameter_list|(
-name|Hashtable
+name|Map
 name|exclusiontable
 parameter_list|)
 block|{

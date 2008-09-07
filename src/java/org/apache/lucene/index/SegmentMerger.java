@@ -20,9 +20,29 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
-name|Vector
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
 import|;
 end_import
 
@@ -42,31 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldSelector
+name|List
 import|;
 end_import
 
@@ -81,6 +77,20 @@ operator|.
 name|document
 operator|.
 name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FieldSelector
 import|;
 end_import
 
@@ -122,7 +132,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexOutput
+name|IndexInput
 import|;
 end_import
 
@@ -136,7 +146,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexInput
+name|IndexOutput
 import|;
 end_import
 
@@ -193,11 +203,11 @@ name|DEFAULT_TERM_INDEX_INTERVAL
 decl_stmt|;
 DECL|field|readers
 specifier|private
-name|Vector
+name|List
 name|readers
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|()
 decl_stmt|;
 DECL|field|fieldInfos
@@ -328,7 +338,7 @@ parameter_list|)
 block|{
 name|readers
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|reader
 argument_list|)
@@ -350,7 +360,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -463,7 +473,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -477,7 +487,7 @@ block|}
 block|}
 DECL|method|createCompoundFile
 specifier|final
-name|Vector
+name|List
 name|createCompoundFile
 parameter_list|(
 name|String
@@ -499,11 +509,11 @@ argument_list|,
 name|checkAbort
 argument_list|)
 decl_stmt|;
-name|Vector
+name|List
 name|files
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|(
 name|IndexFileNames
 operator|.
@@ -900,7 +910,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1035,7 +1045,7 @@ name|SegmentReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|readers
 operator|.
@@ -1094,7 +1104,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1504,7 +1514,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -1874,7 +1884,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -2010,7 +2020,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|r
 argument_list|)
@@ -2503,7 +2513,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -3800,7 +3810,7 @@ name|IndexReader
 operator|)
 name|readers
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|j
 argument_list|)

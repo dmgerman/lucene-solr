@@ -289,7 +289,7 @@ return|return
 operator|(
 name|SegmentInfo
 operator|)
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -786,7 +786,7 @@ operator|--
 control|)
 block|{
 comment|// read segmentInfos
-name|addElement
+name|add
 argument_list|(
 operator|new
 name|SegmentInfo
@@ -1188,8 +1188,10 @@ control|)
 block|{
 name|sis
 operator|.
-name|setElementAt
+name|set
 argument_list|(
+name|i
+argument_list|,
 name|sis
 operator|.
 name|info
@@ -1199,8 +1201,6 @@ argument_list|)
 operator|.
 name|clone
 argument_list|()
-argument_list|,
-name|i
 argument_list|)
 expr_stmt|;
 block|}

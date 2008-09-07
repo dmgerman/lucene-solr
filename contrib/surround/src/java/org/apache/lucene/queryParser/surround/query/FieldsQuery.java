@@ -80,7 +80,7 @@ name|q
 decl_stmt|;
 DECL|field|fieldNames
 specifier|private
-name|ArrayList
+name|List
 name|fieldNames
 decl_stmt|;
 DECL|field|fieldOp
@@ -105,7 +105,7 @@ parameter_list|(
 name|SrndQuery
 name|q
 parameter_list|,
-name|ArrayList
+name|List
 name|fieldNames
 parameter_list|,
 name|char
@@ -223,7 +223,7 @@ block|}
 else|else
 block|{
 comment|/* OR query over the fields */
-name|ArrayList
+name|List
 name|queries
 init|=
 operator|new

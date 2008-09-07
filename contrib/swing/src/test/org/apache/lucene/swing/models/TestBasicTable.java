@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|swing
@@ -74,7 +84,7 @@ name|tableSearcher
 decl_stmt|;
 DECL|field|list
 specifier|private
-name|ArrayList
+name|List
 name|list
 decl_stmt|;
 DECL|method|setUp

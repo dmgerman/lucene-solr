@@ -44,7 +44,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
+name|Map
 import|;
 end_import
 
@@ -1404,7 +1404,7 @@ name|char
 index|[]
 name|charset
 parameter_list|,
-name|Hashtable
+name|Map
 name|stopwords
 parameter_list|)
 block|{

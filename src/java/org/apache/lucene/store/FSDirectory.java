@@ -92,7 +92,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -145,11 +155,11 @@ DECL|field|DIRECTORIES
 specifier|private
 specifier|static
 specifier|final
-name|Hashtable
+name|Map
 name|DIRECTORIES
 init|=
 operator|new
-name|Hashtable
+name|HashMap
 argument_list|()
 decl_stmt|;
 DECL|field|disableLocks
