@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id: ClientUtils.java 601900 2007-12-06 22:55:47Z ryan $  * @since solr 1.3  */
+comment|/**  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_annotation_defn
@@ -84,8 +84,6 @@ block|{
 name|FIELD
 block|,
 name|METHOD
-block|,
-name|TYPE
 block|}
 argument_list|)
 annotation|@
