@@ -167,6 +167,7 @@ name|defaultField
 decl_stmt|;
 DECL|field|highlightCnstScrRngQuery
 specifier|private
+specifier|static
 name|boolean
 name|highlightCnstScrRngQuery
 decl_stmt|;
@@ -676,6 +677,7 @@ block|}
 comment|/**    * @return whether ConstantScoreRangeQuerys are set to be highlighted    */
 DECL|method|isHighlightCnstScrRngQuery
 specifier|public
+specifier|static
 name|boolean
 name|isHighlightCnstScrRngQuery
 parameter_list|()
@@ -697,21 +699,20 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**    * Turns highlighting of ConstantScoreRangeQuery on/off. ConstantScoreRangeQuerys cannot be    * highlighted if you rewrite the query first.    *     * @param highlightCnstScrRngQuery    */
+comment|/**    * Turns highlighting of ConstantScoreRangeQuery on/off. ConstantScoreRangeQuerys cannot be    * highlighted if you rewrite the query first. Must be called before SpanScorer construction.    *     * @param highlightCnstScrRngQuery    */
 DECL|method|setHighlightCnstScrRngQuery
 specifier|public
+specifier|static
 name|void
 name|setHighlightCnstScrRngQuery
 parameter_list|(
 name|boolean
-name|highlightCnstScrRngQuery
+name|highlight
 parameter_list|)
 block|{
-name|this
-operator|.
 name|highlightCnstScrRngQuery
 operator|=
-name|highlightCnstScrRngQuery
+name|highlight
 expr_stmt|;
 block|}
 comment|/*    * (non-Javadoc)    *    * @see org.apache.lucene.search.highlight.Scorer#startFragment(org.apache.lucene.search.highlight.TextFragment)    */
