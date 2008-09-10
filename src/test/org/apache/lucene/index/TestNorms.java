@@ -1253,7 +1253,7 @@ name|NO
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 decl_stmt|;
 name|f

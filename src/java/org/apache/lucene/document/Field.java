@@ -208,7 +208,21 @@ argument_list|(
 literal|"NO"
 argument_list|)
 decl_stmt|;
-comment|/** Index the field's value so it can be searched. An Analyzer will be used      * to tokenize and possibly further normalize the text before its      * terms will be stored in the index. This is useful for common text.      */
+comment|/** Index the tokens produced by running the field's      * value through an Analyzer.  This is useful for      * common text. */
+DECL|field|ANALYZED
+specifier|public
+specifier|static
+specifier|final
+name|Index
+name|ANALYZED
+init|=
+operator|new
+name|Index
+argument_list|(
+literal|"ANALYZED"
+argument_list|)
+decl_stmt|;
+comment|/** @deprecated this has been renamed to {@link #ANALYZED} */
 DECL|field|TOKENIZED
 specifier|public
 specifier|static
@@ -216,13 +230,23 @@ specifier|final
 name|Index
 name|TOKENIZED
 init|=
+name|ANALYZED
+decl_stmt|;
+comment|/** Index the field's value without using an Analyzer, so it can be searched.      * As no analyzer is used the value will be stored as a single term. This is      * useful for unique Ids like product numbers.      */
+DECL|field|NOT_ANALYZED
+specifier|public
+specifier|static
+specifier|final
+name|Index
+name|NOT_ANALYZED
+init|=
 operator|new
 name|Index
 argument_list|(
-literal|"TOKENIZED"
+literal|"NOT_ANALYZED"
 argument_list|)
 decl_stmt|;
-comment|/** Index the field's value without using an Analyzer, so it can be searched.      * As no analyzer is used the value will be stored as a single term. This is      * useful for unique Ids like product numbers.      */
+comment|/** @deprecated This has been renamed to {@link #NOT_ANALYZED} */
 DECL|field|UN_TOKENIZED
 specifier|public
 specifier|static
@@ -230,13 +254,23 @@ specifier|final
 name|Index
 name|UN_TOKENIZED
 init|=
+name|NOT_ANALYZED
+decl_stmt|;
+comment|/** Expert: Index the field's value without an Analyzer,      * and also disable the storing of norms.  Note that you      * can also separately enable/disable norms by calling      * {@link #setOmitNorms}.  No norms means that      * index-time field and document boosting and field      * length normalization are disabled.  The benefit is      * less memory usage as norms take up one byte of RAM      * per indexed field for every document in the index,      * during searching.  Note that once you index a given      * field<i>with</i> norms enabled, disabling norms will      * have no effect.  In other words, for this to have the      * above described effect on a field, all instances of      * that field must be indexed with NOT_ANALYZED_NO_NORMS      * from the beginning. */
+DECL|field|NOT_ANALYZED_NO_NORMS
+specifier|public
+specifier|static
+specifier|final
+name|Index
+name|NOT_ANALYZED_NO_NORMS
+init|=
 operator|new
 name|Index
 argument_list|(
-literal|"UN_TOKENIZED"
+literal|"NOT_ANALYZED_NO_NORMS"
 argument_list|)
 decl_stmt|;
-comment|/** Index the field's value without an Analyzer, and disable      * the storing of norms.  No norms means that index-time boosting      * and field length normalization will be disabled.  The benefit is      * less memory usage as norms take up one byte per indexed field      * for every document in the index.      * Note that once you index a given field<i>with</i> norms enabled,      * disabling norms will have no effect.  In other words, for NO_NORMS      * to have the above described effect on a field, all instances of that      * field must be indexed with NO_NORMS from the beginning.      */
+comment|/** @deprecated This has been renamed to      *  {@link #NOT_ANALYZED_NO_NORMS} */
 DECL|field|NO_NORMS
 specifier|public
 specifier|static
@@ -244,10 +278,20 @@ specifier|final
 name|Index
 name|NO_NORMS
 init|=
+name|NOT_ANALYZED_NO_NORMS
+decl_stmt|;
+comment|/** Expert: Index the tokens produced by running the      *  field's value through an Analyzer, and also      *  separately disable the storing of norms.  See      *  {@link #NOT_ANALYZED_NO_NORMS} for what norms are      *  and why you may want to disable them. */
+DECL|field|ANALYZED_NO_NORMS
+specifier|public
+specifier|static
+specifier|final
+name|Index
+name|ANALYZED_NO_NORMS
+init|=
 operator|new
 name|Index
 argument_list|(
-literal|"NO_NORMS"
+literal|"ANALYZED_NO_NORMS"
 argument_list|)
 decl_stmt|;
 block|}
@@ -855,7 +899,7 @@ name|index
 operator|==
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 condition|)
 block|{
 name|this
@@ -878,7 +922,7 @@ name|index
 operator|==
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 condition|)
 block|{
 name|this
@@ -901,7 +945,7 @@ name|index
 operator|==
 name|Index
 operator|.
-name|NO_NORMS
+name|NOT_ANALYZED_NO_NORMS
 condition|)
 block|{
 name|this
@@ -915,6 +959,35 @@ operator|.
 name|isTokenized
 operator|=
 literal|false
+expr_stmt|;
+name|this
+operator|.
+name|omitNorms
+operator|=
+literal|true
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|index
+operator|==
+name|Index
+operator|.
+name|ANALYZED_NO_NORMS
+condition|)
+block|{
+name|this
+operator|.
+name|isIndexed
+operator|=
+literal|true
+expr_stmt|;
+name|this
+operator|.
+name|isTokenized
+operator|=
+literal|true
 expr_stmt|;
 name|this
 operator|.

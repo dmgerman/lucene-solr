@@ -748,7 +748,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 argument_list|,
 name|tv
 argument_list|)

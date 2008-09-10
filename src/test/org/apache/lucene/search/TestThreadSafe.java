@@ -670,7 +670,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 decl_stmt|;
 comment|// make random later
 name|d

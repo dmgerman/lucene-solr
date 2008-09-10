@@ -813,7 +813,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -838,7 +838,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1619,7 +1619,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1659,7 +1659,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1694,7 +1694,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1719,7 +1719,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;

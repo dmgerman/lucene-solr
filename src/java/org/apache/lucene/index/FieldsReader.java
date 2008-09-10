@@ -2260,7 +2260,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|TOKENIZED
+name|ANALYZED
 expr_stmt|;
 elseif|else
 if|if
@@ -2278,7 +2278,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 expr_stmt|;
 else|else
 name|index
