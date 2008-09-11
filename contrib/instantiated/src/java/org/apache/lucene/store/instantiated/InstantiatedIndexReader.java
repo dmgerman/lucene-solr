@@ -287,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An InstantiatedIndexReader is not a snapshot in time, it is completely in  * sync with the latest commit to the store!  *   * Consider using InstantiatedIndex as if it was immutable.  */
+comment|/**  * An InstantiatedIndexReader is not a snapshot in time, it is completely in  * sync with the latest commit to the store!  *<p>  * Consider using InstantiatedIndex as if it was immutable.  */
 end_comment
 
 begin_class

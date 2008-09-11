@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represented as a coupled graph of class instances, this  * all-in-memory index store implementation delivers search  * results up to a 100 times faster than the file-centric RAMDirectory  * at the cost of greater RAM consumption.  *  *  WARNING: This contrib is experimental and the APIs may change without warning.  *  * There are no read and write locks in this store.  * {@link InstantiatedIndexReader} {@link InstantiatedIndexReader#isCurrent()} all the time  * and {@link org.apache.lucene.store.instantiated.InstantiatedIndexWriter}  * will attempt to update instances of the object graph in memory  * at the same time as a searcher is reading from it.  *  * Consider using InstantiatedIndex as if it was immutable.  */
+comment|/**  * Represented as a coupled graph of class instances, this  * all-in-memory index store implementation delivers search  * results up to a 100 times faster than the file-centric RAMDirectory  * at the cost of greater RAM consumption.  *<p>  * WARNING: This contrib is experimental and the APIs may change without warning.  *<p>  * There are no read and write locks in this store.  * {@link InstantiatedIndexReader} {@link InstantiatedIndexReader#isCurrent()} all the time  * and {@link org.apache.lucene.store.instantiated.InstantiatedIndexWriter}  * will attempt to update instances of the object graph in memory  * at the same time as a searcher is reading from it.  *  * Consider using InstantiatedIndex as if it was immutable.  */
 end_comment
 
 begin_class
