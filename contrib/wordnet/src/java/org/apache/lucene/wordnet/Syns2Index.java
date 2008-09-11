@@ -941,31 +941,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// why?
-comment|// blindly up these parameters for speed
-name|writer
-operator|.
-name|setMergeFactor
-argument_list|(
-name|writer
-operator|.
-name|getMergeFactor
-argument_list|()
-operator|*
-literal|2
-argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|setMaxBufferedDocs
-argument_list|(
-name|writer
-operator|.
-name|getMaxBufferedDocs
-argument_list|()
-operator|*
-literal|2
-argument_list|)
-expr_stmt|;
 name|Iterator
 name|i1
 init|=
