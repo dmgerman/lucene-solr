@@ -6092,7 +6092,6 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-comment|// Advance the merge from pending to running
 name|MergePolicy
 operator|.
 name|OneMerge
@@ -6115,6 +6114,7 @@ operator|.
 name|isExternal
 condition|)
 block|{
+comment|// Advance the merge from pending to running
 name|it
 operator|.
 name|remove
