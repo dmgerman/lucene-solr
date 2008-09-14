@@ -228,6 +228,20 @@ name|BitVector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CloseableThreadLocal
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment
@@ -274,11 +288,11 @@ init|=
 literal|null
 decl_stmt|;
 DECL|field|termVectorsLocal
-name|ThreadLocal
+name|CloseableThreadLocal
 name|termVectorsLocal
 init|=
 operator|new
-name|ThreadLocal
+name|CloseableThreadLocal
 argument_list|()
 decl_stmt|;
 DECL|field|deletedDocs
@@ -3026,6 +3040,11 @@ operator|!=
 literal|null
 operator|)
 decl_stmt|;
+name|termVectorsLocal
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|hasReferencedReader

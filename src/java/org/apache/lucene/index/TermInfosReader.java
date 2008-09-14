@@ -86,6 +86,20 @@ name|SimpleLRUCache
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CloseableThreadLocal
+import|;
+end_import
+
 begin_comment
 comment|/** This stores a monotonically increasing set of<Term, TermInfo> pairs in a  * Directory.  Pairs are accessed either by Term or by ordinal position the  * set.  */
 end_comment
@@ -113,11 +127,11 @@ name|fieldInfos
 decl_stmt|;
 DECL|field|threadResources
 specifier|private
-name|ThreadLocal
+name|CloseableThreadLocal
 name|threadResources
 init|=
 operator|new
-name|ThreadLocal
+name|CloseableThreadLocal
 argument_list|()
 decl_stmt|;
 DECL|field|origEnum
@@ -472,10 +486,8 @@ argument_list|()
 expr_stmt|;
 name|threadResources
 operator|.
-name|set
-argument_list|(
-literal|null
-argument_list|)
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Returns the number of term/value pairs in the set. */
