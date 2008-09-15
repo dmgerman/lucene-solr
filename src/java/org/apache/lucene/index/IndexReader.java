@@ -1382,6 +1382,21 @@ name|int
 name|maxDoc
 parameter_list|()
 function_decl|;
+comment|/** Returns the number of deleted documents. */
+DECL|method|numDeletedDocs
+specifier|public
+name|int
+name|numDeletedDocs
+parameter_list|()
+block|{
+return|return
+name|maxDoc
+argument_list|()
+operator|-
+name|numDocs
+argument_list|()
+return|;
+block|}
 comment|/** Returns the stored fields of the<code>n</code><sup>th</sup><code>Document</code> in this index.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|document
 specifier|public
