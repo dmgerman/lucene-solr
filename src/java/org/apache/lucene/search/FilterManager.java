@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filter caching singleton.  It can be used by {@link org.apache.lucene.search.RemoteCachingWrapperFilter}  * or just to save filters locally for reuse.  * This class makes it possble to cache Filters even when using RMI, as it  * keeps the cache on the seaercher side of the RMI connection.  *   * Also could be used as a persistent storage for any filter as long as the  * filter provides a proper hashCode(), as that is used as the key in the cache.  *   * The cache is periodically cleaned up from a separate thread to ensure the  * cache doesn't exceed the maximum size.  * @author Matt Ericson  */
+comment|/**  * Filter caching singleton.  It can be used by {@link org.apache.lucene.search.RemoteCachingWrapperFilter}  * or just to save filters locally for reuse.  * This class makes it possble to cache Filters even when using RMI, as it  * keeps the cache on the seaercher side of the RMI connection.  *   * Also could be used as a persistent storage for any filter as long as the  * filter provides a proper hashCode(), as that is used as the key in the cache.  *   * The cache is periodically cleaned up from a separate thread to ensure the  * cache doesn't exceed the maximum size.  */
 end_comment
 
 begin_class

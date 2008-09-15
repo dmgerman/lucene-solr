@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class holds together all parameters related to a test. Single test is  * performed several times, and all results are averaged.  *  * @author Andrzej Bialecki&lt;ab@getopt.org&gt;  */
+comment|/**  * This class holds together all parameters related to a test. Single test is  * performed several times, and all results are averaged.  *  */
 end_comment
 
 begin_class

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Title: ChineseAnalyzer  * Description:  *   Subclass of org.apache.lucene.analysis.Analyzer  *   build from a ChineseTokenizer, filtered with ChineseFilter.  * Copyright:   Copyright (c) 2001  * Company:  * @author Yiyi Sun  * @version 1.0  *  */
+comment|/**  * Title: ChineseAnalyzer  * Description:  *   Subclass of org.apache.lucene.analysis.Analyzer  *   build from a ChineseTokenizer, filtered with ChineseFilter.  * Copyright:   Copyright (c) 2001  * Company:  * @version 1.0  *  */
 end_comment
 
 begin_class

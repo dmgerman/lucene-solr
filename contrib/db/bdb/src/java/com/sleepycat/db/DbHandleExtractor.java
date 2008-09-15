@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is a hack to workaround the need to rewrite the entire  * org.apache.lucene.store.db package after Sleepycat radically changed its  * Java API from version 4.2.52 to version 4.3.21.  *   * The code below extracts the package-accessible internal handle instances  * that were the entrypoint objects in the pre-4.3 Java API and that wrap the  * actual Berkeley DB C objects via SWIG.  *  * @author Andi Vajda  */
+comment|/**  * This class is a hack to workaround the need to rewrite the entire  * org.apache.lucene.store.db package after Sleepycat radically changed its  * Java API from version 4.2.52 to version 4.3.21.  *   * The code below extracts the package-accessible internal handle instances  * that were the entrypoint objects in the pre-4.3 Java API and that wrap the  * actual Berkeley DB C objects via SWIG.  *  */
 end_comment
 
 begin_class

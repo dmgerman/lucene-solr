@@ -19,7 +19,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * Simple {@link Encoder} implementation that does not modify the output  * @author Nicko Cadell  *  */
+comment|/**  * Simple {@link Encoder} implementation that does not modify the output  *  */
 end_comment
 
 begin_class

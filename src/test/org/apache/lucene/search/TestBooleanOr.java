@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Created on 2005. 2. 9.  *<br>Adapted to Lucene testcase by Paul Elschot.  * @author appler@gmail.com  */
+comment|/**  * Created on 2005. 2. 9.  *<br>Adapted to Lucene testcase by Paul Elschot.  */
 end_comment
 
 begin_class

@@ -180,10 +180,6 @@ name|MockRAMDirectory
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author goller  */
-end_comment
-
 begin_class
 DECL|class|TestSegmentTermEnum
 specifier|public

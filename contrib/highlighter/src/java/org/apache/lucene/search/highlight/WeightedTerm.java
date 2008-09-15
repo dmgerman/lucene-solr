@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Lightweight class to hold term and a weight value used for scoring this term   * @author Mark Harwood  */
+comment|/** Lightweight class to hold term and a weight value used for scoring this term  */
 end_comment
 
 begin_class

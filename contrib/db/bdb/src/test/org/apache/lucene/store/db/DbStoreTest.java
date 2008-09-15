@@ -205,7 +205,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link DbDirectory}.  *  * Adapted from org.apache.lucene.StoreTest with larger files and random bytes.  * @author Andi Vajda  */
+comment|/**  * Tests {@link DbDirectory}.  *  * Adapted from org.apache.lucene.StoreTest with larger files and random bytes.  */
 end_comment
 
 begin_class

@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link PrefixQuery} class.  *  * @author Erik Hatcher  */
+comment|/**  * Tests {@link PrefixQuery} class.  *  */
 end_comment
 
 begin_class

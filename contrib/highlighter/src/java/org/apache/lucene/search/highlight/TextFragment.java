@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Low-level class used to record information about a section of a document   * with a score.  * @author MAHarwood  *  *   */
+comment|/**  * Low-level class used to record information about a section of a document   * with a score.  *  *   */
 end_comment
 
 begin_class

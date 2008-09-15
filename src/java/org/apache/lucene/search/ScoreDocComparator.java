@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Expert: Compares two ScoreDoc objects for sorting.  *  *<p>Created: Feb 3, 2004 9:00:16 AM   *   * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
+comment|/**  * Expert: Compares two ScoreDoc objects for sorting.  *  *<p>Created: Feb 3, 2004 9:00:16 AM   *  * @since   lucene 1.4  * @version $Id$  */
 end_comment
 
 begin_interface

@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Merges indices specified on the command line into the index  * specified as the first command line argument.  * @author Erik Hatcher  * @version $Id$  */
+comment|/**  * Merges indices specified on the command line into the index  * specified as the first command line argument.  * @version $Id$  */
 end_comment
 
 begin_class

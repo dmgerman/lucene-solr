@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: The default cache implementation, storing all values in memory.  * A WeakHashMap is used for storage.  *  *<p>Created: May 19, 2004 4:40:36 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
+comment|/**  * Expert: The default cache implementation, storing all values in memory.  * A WeakHashMap is used for storage.  *  *<p>Created: May 19, 2004 4:40:36 PM  *  * @since   lucene 1.4  * @version $Id$  */
 end_comment
 
 begin_class

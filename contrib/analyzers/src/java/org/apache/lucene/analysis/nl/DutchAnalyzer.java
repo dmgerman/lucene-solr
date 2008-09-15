@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Dutch language. Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *   * @author Edwin de Jonge  */
+comment|/**  * Analyzer for Dutch language. Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  */
 end_comment
 
 begin_class

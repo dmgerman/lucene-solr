@@ -373,7 +373,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Assembles a QueryBuilder which uses only core Lucene Query objects  * @author Mark  *  */
+comment|/**  * Assembles a QueryBuilder which uses only core Lucene Query objects  *  */
 end_comment
 
 begin_class

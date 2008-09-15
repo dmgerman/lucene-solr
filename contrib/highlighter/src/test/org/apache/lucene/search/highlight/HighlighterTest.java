@@ -731,7 +731,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * JUnit Test for Highlighter class.  *   * @author mark@searcharea.co.uk  */
+comment|/**  * JUnit Test for Highlighter class.  *  */
 end_comment
 
 begin_class
@@ -8789,7 +8789,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Expands a token stream with synonyms (TODO - make the synonyms analyzed by choice of analyzer)  *   * @author MAHarwood  */
+comment|/**  * Expands a token stream with synonyms (TODO - make the synonyms analyzed by choice of analyzer)  *  */
 end_comment
 
 begin_class

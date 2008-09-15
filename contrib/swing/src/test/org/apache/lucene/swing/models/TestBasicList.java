@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Jonathan Simon - jonathan_s_simon@yahoo.com  **/
+comment|/**  **/
 end_comment
 
 begin_class

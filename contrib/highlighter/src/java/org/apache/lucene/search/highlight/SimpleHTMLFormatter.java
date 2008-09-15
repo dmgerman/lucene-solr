@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Simple {@link Formatter} implementation to highlight terms with a pre and post tag  * @author MAHarwood  *  */
+comment|/**  * Simple {@link Formatter} implementation to highlight terms with a pre and post tag  *  */
 end_comment
 
 begin_class

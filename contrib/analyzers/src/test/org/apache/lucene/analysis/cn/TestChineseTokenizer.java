@@ -62,10 +62,6 @@ name|Token
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author rayt  */
-end_comment
-
 begin_class
 DECL|class|TestChineseTokenizer
 specifier|public

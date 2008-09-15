@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Useful constants representing filenames and extensions used by lucene  *   * @author Bernhard Messer  * @version $rcs = ' $Id: Exp $ ' ;  */
+comment|/**  * Useful constants representing filenames and extensions used by lucene  *  * @version $rcs = ' $Id: Exp $ ' ;  */
 end_comment
 
 begin_class

@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes elisions from a token stream. For example, "l'avion" (the plane) will be  * tokenized as "avion" (plane).  *<p>  * Note that StandardTokenizer sees " ' " as a space, and cuts it out.  *   * @see<a href="http://fr.wikipedia.org/wiki/%C3%89lision">Elision in Wikipedia</a>   * @author<a href="mailto:mlecarme@openwide.fr">Mathieu Lecarme</a>  */
+comment|/**  * Removes elisions from a token stream. For example, "l'avion" (the plane) will be  * tokenized as "avion" (plane).  *<p>  * Note that StandardTokenizer sees " ' " as a space, and cuts it out.  *   * @see<a href="http://fr.wikipedia.org/wiki/%C3%89lision">Elision in Wikipedia</a>  */
 end_comment
 
 begin_class

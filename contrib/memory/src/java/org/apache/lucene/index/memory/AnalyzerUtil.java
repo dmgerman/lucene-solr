@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Various fulltext analysis utilities avoiding redundant code in several  * classes.  *   * @author whoschek.AT.lbl.DOT.gov  */
+comment|/**  * Various fulltext analysis utilities avoiding redundant code in several  * classes.  *  */
 end_comment
 
 begin_class

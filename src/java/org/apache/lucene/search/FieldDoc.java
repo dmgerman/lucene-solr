@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Expert: A ScoreDoc which also contains information about  * how to sort the referenced document.  In addition to the  * document number and score, this object contains an array  * of values for the document from the field(s) used to sort.  * For example, if the sort criteria was to sort by fields  * "a", "b" then "c", the<code>fields</code> object array  * will have three elements, corresponding respectively to  * the term values for the document in fields "a", "b" and "c".  * The class of each element in the array will be either  * Integer, Float or String depending on the type of values  * in the terms of each field.  *  *<p>Created: Feb 11, 2004 1:23:38 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see ScoreDoc  * @see TopFieldDocs  */
+comment|/**  * Expert: A ScoreDoc which also contains information about  * how to sort the referenced document.  In addition to the  * document number and score, this object contains an array  * of values for the document from the field(s) used to sort.  * For example, if the sort criteria was to sort by fields  * "a", "b" then "c", the<code>fields</code> object array  * will have three elements, corresponding respectively to  * the term values for the document in fields "a", "b" and "c".  * The class of each element in the array will be either  * Integer, Float or String depending on the type of values  * in the terms of each field.  *  *<p>Created: Feb 11, 2004 1:23:38 PM  *  * @since   lucene 1.4  * @version $Id$  * @see ScoreDoc  * @see TopFieldDocs  */
 end_comment
 
 begin_class

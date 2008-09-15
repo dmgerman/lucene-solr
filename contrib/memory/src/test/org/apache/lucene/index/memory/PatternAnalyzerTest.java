@@ -261,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Verifies that Lucene PatternAnalyzer and normal Lucene Analyzers have the same behaviour, returning the same results for any given free text. Runs a set of texts against a tokenizers/analyzers Can also be used as a simple benchmark.<p> Example usage:<pre> cd lucene-cvs java org.apache.lucene.index.memory.PatternAnalyzerTest 1 1 patluc 1 2 2 *.txt *.xml docs/*.html src/java/org/apache/lucene/index/*.java xdocs/*.xml ../nux/samples/data/*.xml</pre>  with WhitespaceAnalyzer problems can be found; These are not bugs but questionable  Lucene features: CharTokenizer.MAX_WORD_LEN = 255. Thus the PatternAnalyzer produces correct output, whereas the WhitespaceAnalyzer  silently truncates text, and so the comparison results in assertEquals() don't match up.   @author whoschek.AT.lbl.DOT.gov */
+comment|/** Verifies that Lucene PatternAnalyzer and normal Lucene Analyzers have the same behaviour, returning the same results for any given free text. Runs a set of texts against a tokenizers/analyzers Can also be used as a simple benchmark.<p> Example usage:<pre> cd lucene-cvs java org.apache.lucene.index.memory.PatternAnalyzerTest 1 1 patluc 1 2 2 *.txt *.xml docs/*.html src/java/org/apache/lucene/index/*.java xdocs/*.xml ../nux/samples/data/*.xml</pre>  with WhitespaceAnalyzer problems can be found; These are not bugs but questionable  Lucene features: CharTokenizer.MAX_WORD_LEN = 255. Thus the PatternAnalyzer produces correct output, whereas the WhitespaceAnalyzer  silently truncates text, and so the comparison results in assertEquals() don't match up.   */
 end_comment
 
 begin_class

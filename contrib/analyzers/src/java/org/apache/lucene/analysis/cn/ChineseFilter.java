@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Title: ChineseFilter  * Description: Filter with a stop word table  *              Rule: No digital is allowed.  *                    English word/token should larger than 1 character.  *                    One Chinese character as one Chinese word.  * TO DO:  *   1. Add Chinese stop words, such as \ue400  *   2. Dictionary based Chinese word extraction  *   3. Intelligent Chinese word extraction  *  * Copyright:    Copyright (c) 2001  * Company:  * @author Yiyi Sun  * @version 1.0  *  */
+comment|/**  * Title: ChineseFilter  * Description: Filter with a stop word table  *              Rule: No digital is allowed.  *                    English word/token should larger than 1 character.  *                    One Chinese character as one Chinese word.  * TO DO:  *   1. Add Chinese stop words, such as \ue400  *   2. Dictionary based Chinese word extraction  *   3. Intelligent Chinese word extraction  *  * Copyright:    Copyright (c) 2001  * Company:  * @version 1.0  *  */
 end_comment
 
 begin_class

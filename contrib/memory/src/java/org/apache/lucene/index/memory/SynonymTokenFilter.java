@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Injects additional tokens for synonyms of token terms fetched from the  * underlying child stream; the child stream must deliver lowercase tokens  * for synonyms to be found.  *   * @author whoschek.AT.lbl.DOT.gov  */
+comment|/**  * Injects additional tokens for synonyms of token terms fetched from the  * underlying child stream; the child stream must deliver lowercase tokens  * for synonyms to be found.  *  */
 end_comment
 
 begin_class

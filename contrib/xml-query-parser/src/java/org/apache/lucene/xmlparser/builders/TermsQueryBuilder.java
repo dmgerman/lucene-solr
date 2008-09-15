@@ -205,7 +205,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Builds a BooleanQuery from all of the terms found in the XML element using the choice of analyzer  * @author maharwood  */
+comment|/**  * Builds a BooleanQuery from all of the terms found in the XML element using the choice of analyzer  */
 end_comment
 
 begin_class

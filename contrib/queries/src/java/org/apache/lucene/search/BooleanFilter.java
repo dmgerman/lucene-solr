@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A container Filter that allows Boolean composition of Filters.  * Filters are allocated into one of three logical constructs;  * SHOULD, MUST NOT, MUST  * The results Filter BitSet is constructed as follows:  * SHOULD Filters are OR'd together  * The resulting Filter is NOT'd with the NOT Filters  * The resulting Filter is AND'd with the MUST Filters  * @author BPDThebault  */
+comment|/**  * A container Filter that allows Boolean composition of Filters.  * Filters are allocated into one of three logical constructs;  * SHOULD, MUST NOT, MUST  * The results Filter BitSet is constructed as follows:  * SHOULD Filters are OR'd together  * The resulting Filter is NOT'd with the NOT Filters  * The resulting Filter is AND'd with the MUST Filters  */
 end_comment
 
 begin_class

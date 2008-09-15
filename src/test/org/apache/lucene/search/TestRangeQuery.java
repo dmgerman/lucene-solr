@@ -124,10 +124,6 @@ name|IOException
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author goller  */
-end_comment
-
 begin_class
 DECL|class|TestRangeQuery
 specifier|public

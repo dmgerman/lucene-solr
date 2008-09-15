@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class used to markup highlighted terms found in the best sections of a  * text, using configurable {@link Fragmenter}, {@link Scorer}, {@link Formatter},  * {@link Encoder} and tokenizers.  * @author mark@searcharea.co.uk  */
+comment|/**  * Class used to markup highlighted terms found in the best sections of a  * text, using configurable {@link Fragmenter}, {@link Scorer}, {@link Formatter},  * {@link Encoder} and tokenizers.  */
 end_comment
 
 begin_class
@@ -1711,7 +1711,6 @@ operator|=
 name|maxDocCharsToAnalyze
 expr_stmt|;
 block|}
-comment|/** 	 */
 DECL|method|getTextFragmenter
 specifier|public
 name|Fragmenter

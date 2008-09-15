@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class holds parameters for a query benchmark.  *  * @author Andrzej Bialecki&lt;ab@getopt.org&gt;  */
+comment|/**  * This class holds parameters for a query benchmark.  *  */
 end_comment
 
 begin_class

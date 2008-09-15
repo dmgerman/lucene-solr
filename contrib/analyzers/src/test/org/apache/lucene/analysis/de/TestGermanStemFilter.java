@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test the German stemmer. The stemming algorithm is known to work less   * than perfect, as it doesn't use any word lists with exceptions. We   * also check some of the cases where the algorithm is wrong.  *   * @author Daniel Naber  */
+comment|/**  * Test the German stemmer. The stemming algorithm is known to work less   * than perfect, as it doesn't use any word lists with exceptions. We   * also check some of the cases where the algorithm is wrong.  *  */
 end_comment
 
 begin_class

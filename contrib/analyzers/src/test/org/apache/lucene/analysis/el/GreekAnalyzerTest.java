@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A unit test class for verifying the correct operation of the GreekAnalyzer.  *  * @author past  */
+comment|/**  * A unit test class for verifying the correct operation of the GreekAnalyzer.  *  */
 end_comment
 
 begin_class

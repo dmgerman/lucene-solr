@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CJKTokenizer was modified from StopTokenizer which does a decent job for  * most European languages. It performs other token methods for double-byte  * Characters: the token will return at each two characters with overlap match.<br>  * Example: "java C1C2C3C4" will be segment to: "java" "C1C2" "C2C3" "C3C4" it  * also need filter filter zero length token ""<br>  * for Digit: digit, '+', '#' will token as letter<br>  * for more info on Asia language(Chinese Japanese Korean) text segmentation:  * please search<a  * href="http://www.google.com/search?q=word+chinese+segment">google</a>  *  * @author Che, Dong  */
+comment|/**  * CJKTokenizer was modified from StopTokenizer which does a decent job for  * most European languages. It performs other token methods for double-byte  * Characters: the token will return at each two characters with overlap match.<br>  * Example: "java C1C2C3C4" will be segment to: "java" "C1C2" "C2C3" "C3C4" it  * also need filter filter zero length token ""<br>  * for Digit: digit, '+', '#' will token as letter<br>  * for more info on Asia language(Chinese Japanese Korean) text segmentation:  * please search<a  * href="http://www.google.com/search?q=word+chinese+segment">google</a>  *  */
 end_comment
 
 begin_class

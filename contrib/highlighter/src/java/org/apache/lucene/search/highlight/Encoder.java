@@ -19,7 +19,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * Encodes original text. The Encoder works with the Formatter to generate the output.  *  * @author Nicko Cadell  */
+comment|/**  * Encodes original text. The Encoder works with the Formatter to generate the output.  *  */
 end_comment
 
 begin_interface

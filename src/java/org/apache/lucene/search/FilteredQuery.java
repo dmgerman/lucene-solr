@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A query that applies a filter to the results of another query.  *  *<p>Note: the bits are retrieved from the filter each time this  * query is used in a search - use a CachingWrapperFilter to avoid  * regenerating the bits every time.  *  *<p>Created: Apr 20, 2004 8:58:29 AM  *  * @author  Tim Jones  * @since   1.4  * @version $Id$  * @see     CachingWrapperFilter  */
+comment|/**  * A query that applies a filter to the results of another query.  *  *<p>Note: the bits are retrieved from the filter each time this  * query is used in a search - use a CachingWrapperFilter to avoid  * regenerating the bits every time.  *  *<p>Created: Apr 20, 2004 8:58:29 AM  *  * @since   1.4  * @version $Id$  * @see     CachingWrapperFilter  */
 end_comment
 
 begin_class

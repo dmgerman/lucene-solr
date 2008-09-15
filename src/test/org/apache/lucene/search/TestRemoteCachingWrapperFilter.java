@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests that the index is cached on the searcher side of things.  * NOTE: This is copied from TestRemoteSearchable since it already had a remote index set up.  * @author Matt Ericson  */
+comment|/**  * Tests that the index is cached on the searcher side of things.  * NOTE: This is copied from TestRemoteSearchable since it already had a remote index set up.  */
 end_comment
 
 begin_class

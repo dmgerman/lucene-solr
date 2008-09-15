@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for LuceneDictionary.  * It first creates a simple index and then a couple of instances of LuceneDictionary  * on different fields and checks if all the right text comes back.  *  * @author Christian Mallwitz  */
+comment|/**  * Test case for LuceneDictionary.  * It first creates a simple index and then a couple of instances of LuceneDictionary  * on different fields and checks if all the right text comes back.  *  */
 end_comment
 
 begin_class

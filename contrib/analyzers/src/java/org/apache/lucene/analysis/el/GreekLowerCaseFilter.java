@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case, analyzing given ("greek") charset.  *  * @author  Panagiotis Astithas, past@ebs.gr  */
+comment|/**  * Normalizes token text to lower case, analyzing given ("greek") charset.  *  */
 end_comment
 
 begin_class

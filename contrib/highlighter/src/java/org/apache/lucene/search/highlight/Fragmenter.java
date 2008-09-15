@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the policy for breaking text into multiple fragments for consideration  * by the {@link Highlighter} class. A sophisticated implementation may do this on the basis  * of detecting end of sentences in the text.   * @author mark@searcharea.co.uk  */
+comment|/**  * Implements the policy for breaking text into multiple fragments for consideration  * by the {@link Highlighter} class. A sophisticated implementation may do this on the basis  * of detecting end of sentences in the text.  */
 end_comment
 
 begin_interface

@@ -19,7 +19,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * GreekCharsets class contains encodings schemes (charsets) and toLowerCase() method implementation  * for greek characters in Unicode, ISO-8859-7 and Microsoft Windows CP1253.  * Each encoding scheme contains lowercase (positions 0-35) and uppercase (position 36-68) characters,  * including accented ones. One should be able to add other encoding schemes (see RFC 1947) by adding  * the definition of a new charset as well as the required logic in the toLowerCase() method.  *  * @author  Panagiotis Astithas, past@ebs.gr  */
+comment|/**  * GreekCharsets class contains encodings schemes (charsets) and toLowerCase() method implementation  * for greek characters in Unicode, ISO-8859-7 and Microsoft Windows CP1253.  * Each encoding scheme contains lowercase (positions 0-35) and uppercase (position 36-68) characters,  * including accented ones. One should be able to add other encoding schemes (see RFC 1947) by adding  * the definition of a new charset as well as the required logic in the toLowerCase() method.  *  */
 end_comment
 
 begin_class

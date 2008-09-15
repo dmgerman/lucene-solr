@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * Uses<code>FieldCache.DEFAULT</code> for maintaining internal term lookup tables.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  * @see Searcher#search(Query,Filter,int,Sort)  * @see FieldCache  */
+comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * Uses<code>FieldCache.DEFAULT</code> for maintaining internal term lookup tables.  *  *<p>Created: Dec 8, 2003 12:56:03 PM  *  * @since   lucene 1.4  * @version $Id$  * @see Searcher#search(Query,Filter,int,Sort)  * @see FieldCache  */
 end_comment
 
 begin_class

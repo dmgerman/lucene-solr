@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for the Greek language. Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *  * @author  Panagiotis Astithas, past@ebs.gr  */
+comment|/**  * Analyzer for the Greek language. Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *  */
 end_comment
 
 begin_class

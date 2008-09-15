@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link PrefixFilter} class.  *  * @author Yura Smolsky  * @author yonik  */
+comment|/**  * Tests {@link PrefixFilter} class.  *  */
 end_comment
 
 begin_class

@@ -184,7 +184,7 @@ name|SCORE_COMP_THRESH
 init|=
 literal|0.0000f
 decl_stmt|;
-comment|/**      * Similarity to eliminate tf, idf and lengthNorm effects to      * isolate test case.      *      *<p>      * same as TestRankingSimilarity in TestRanking.zip from      * http://issues.apache.org/jira/browse/LUCENE-323      *</p>      * @author Williams      */
+comment|/**      * Similarity to eliminate tf, idf and lengthNorm effects to      * isolate test case.      *      *<p>      * same as TestRankingSimilarity in TestRanking.zip from      * http://issues.apache.org/jira/browse/LUCENE-323      *</p>      */
 DECL|class|TestSimilarity
 specifier|private
 specifier|static

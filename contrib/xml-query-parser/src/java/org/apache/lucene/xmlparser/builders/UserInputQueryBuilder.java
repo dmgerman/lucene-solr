@@ -129,7 +129,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * UserInputQueryBuilder uses 1 of 2 strategies for thread-safe parsing:  * 1) Synchronizing access to "parse" calls on a previously supplied QueryParser  * or..  * 2) creating a new QueryParser object for each parse request  * @author maharwood  */
+comment|/**  * UserInputQueryBuilder uses 1 of 2 strategies for thread-safe parsing:  * 1) Synchronizing access to "parse" calls on a previously supplied QueryParser  * or..  * 2) creating a new QueryParser object for each parse request  */
 end_comment
 
 begin_class

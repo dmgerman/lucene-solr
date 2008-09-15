@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Allows multiple {@link Filter}s to be chained.  * Logical operations such as<b>NOT</b> and<b>XOR</b>  * are applied between filters. One operation can be used  * for all filters, or a specific operation can be declared  * for each filter.  *</p>  *<p>  * Order in which filters are called depends on  * the position of the filter in the chain. It's probably  * more efficient to place the most restrictive filters  * /least computationally-intensive filters first.  *</p>  *  * @author<a href="mailto:kelvint@apache.org">Kelvin Tan</a>  */
+comment|/**  *<p>  * Allows multiple {@link Filter}s to be chained.  * Logical operations such as<b>NOT</b> and<b>XOR</b>  * are applied between filters. One operation can be used  * for all filters, or a specific operation can be declared  * for each filter.  *</p>  *<p>  * Order in which filters are called depends on  * the position of the filter in the chain. It's probably  * more efficient to place the most restrictive filters  * /least computationally-intensive filters first.  *</p>  *  */
 end_comment
 
 begin_class

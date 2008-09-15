@@ -158,10 +158,6 @@ name|DatabaseException
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author Andi Vajda  */
-end_comment
-
 begin_class
 DECL|class|File
 specifier|public

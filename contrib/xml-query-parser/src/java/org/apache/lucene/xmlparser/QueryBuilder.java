@@ -43,7 +43,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Implemented by objects that produce Lucene Query objects from XML streams. Implementations are  * expected to be thread-safe so that they can be used to simultaneously parse multiple XML documents.  * @author maharwood  */
+comment|/**  * Implemented by objects that produce Lucene Query objects from XML streams. Implementations are  * expected to be thread-safe so that they can be used to simultaneously parse multiple XML documents.  */
 end_comment
 
 begin_interface

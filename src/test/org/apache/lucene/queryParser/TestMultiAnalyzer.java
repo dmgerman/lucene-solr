@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test QueryParser's ability to deal with Analyzers that return more  * than one token per position or that return tokens with a position  * increment&gt; 1.  *   * @author Daniel Naber  */
+comment|/**  * Test QueryParser's ability to deal with Analyzers that return more  * than one token per position or that return tokens with a position  * increment&gt; 1.  *  */
 end_comment
 
 begin_class

@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Czech language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  * @author    Lukas Zapletal [lzap@root.cz]  */
+comment|/**  * Analyzer for Czech language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  */
 end_comment
 
 begin_class

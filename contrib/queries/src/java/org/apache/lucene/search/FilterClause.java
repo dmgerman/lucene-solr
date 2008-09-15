@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Filter that wrapped with an indication of how that filter  * is used when composed with another filter.  * (Follows the boolean logic in BooleanClause for composition   * of queries.)  * @author BPDThebault  */
+comment|/**  * A Filter that wrapped with an indication of how that filter  * is used when composed with another filter.  * (Follows the boolean logic in BooleanClause for composition   * of queries.)  */
 end_comment
 
 begin_class

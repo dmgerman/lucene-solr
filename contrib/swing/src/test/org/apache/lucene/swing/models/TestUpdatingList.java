@@ -28,10 +28,6 @@ name|TestCase
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author Jonathan Simon - jonathan_s_simon@yahoo.com  */
-end_comment
-
 begin_class
 DECL|class|TestUpdatingList
 specifier|public

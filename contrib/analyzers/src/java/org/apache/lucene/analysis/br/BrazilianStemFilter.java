@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on GermanStemFilter  *  * @author Jo&atilde;o Kramer  */
+comment|/**  * Based on GermanStemFilter  *  */
 end_comment
 
 begin_class

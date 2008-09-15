@@ -219,7 +219,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * This class illustrates how form input (such as from a web page or Swing gui) can be  * turned into Lucene queries using a choice of XSL templates for different styles of queries.   * @author maharwood  */
+comment|/**  * This class illustrates how form input (such as from a web page or Swing gui) can be  * turned into Lucene queries using a choice of XSL templates for different styles of queries.  */
 end_comment
 
 begin_class

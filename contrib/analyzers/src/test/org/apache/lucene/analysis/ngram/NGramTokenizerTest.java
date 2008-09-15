@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link NGramTokenizer} for correctness.  * @author Otis Gospodnetic  */
+comment|/**  * Tests {@link NGramTokenizer} for correctness.  */
 end_comment
 
 begin_class

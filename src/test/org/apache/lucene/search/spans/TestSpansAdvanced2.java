@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*******************************************************************************  * Some expanded tests to make sure my patch doesn't break other SpanTermQuery  * functionality.  *  * @author Reece Wilton  */
+comment|/*******************************************************************************  * Some expanded tests to make sure my patch doesn't break other SpanTermQuery  * functionality.  *  */
 end_comment
 
 begin_class

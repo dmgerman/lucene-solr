@@ -19,7 +19,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * This class holds a data point measuring speed of processing.  *  * @author Andrzej Bialecki&lt;ab@getopt.org&gt;  */
+comment|/**  * This class holds a data point measuring speed of processing.  *  */
 end_comment
 
 begin_class

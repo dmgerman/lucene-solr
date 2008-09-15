@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This tests the patch for issue #LUCENE-715 (IndexWriter does not  * release its write lock when trying to open an index which does not yet  * exist).  *  * @author mbogosian  * @version $Id$  */
+comment|/**  * This tests the patch for issue #LUCENE-715 (IndexWriter does not  * release its write lock when trying to open an index which does not yet  * exist).  *  * @version $Id$  */
 end_comment
 
 begin_class

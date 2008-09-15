@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link FuzzyQuery}.  *  * @author Daniel Naber  */
+comment|/**  * Tests {@link FuzzyQuery}.  *  */
 end_comment
 
 begin_class

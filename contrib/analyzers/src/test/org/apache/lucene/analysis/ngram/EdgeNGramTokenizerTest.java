@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link EdgeNGramTokenizer} for correctness.  * @author Otis Gospodnetic  */
+comment|/**  * Tests {@link EdgeNGramTokenizer} for correctness.  */
 end_comment
 
 begin_class

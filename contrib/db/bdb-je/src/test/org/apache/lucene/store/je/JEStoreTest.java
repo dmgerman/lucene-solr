@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link JEDirectory}.  *   * Adapted from Andi Vajda's org.apache.lucene.db.DbStoreTest.  *   * @author Aaron Donovan  */
+comment|/**  * Tests {@link JEDirectory}.  *   * Adapted from Andi Vajda's org.apache.lucene.db.DbStoreTest.  *  */
 end_comment
 
 begin_class

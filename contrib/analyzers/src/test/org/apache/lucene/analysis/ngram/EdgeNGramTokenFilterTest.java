@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link EdgeNGramTokenFilter} for correctness.  * @author Otis Gospodnetic  */
+comment|/**  * Tests {@link EdgeNGramTokenFilter} for correctness.  */
 end_comment
 
 begin_class

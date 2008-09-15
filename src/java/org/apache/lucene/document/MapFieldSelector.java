@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A FieldSelector based on a Map of field names to FieldSelectorResults  *  * @author Chuck Williams  */
+comment|/**  * A FieldSelector based on a Map of field names to FieldSelectorResults  *  */
 end_comment
 
 begin_class

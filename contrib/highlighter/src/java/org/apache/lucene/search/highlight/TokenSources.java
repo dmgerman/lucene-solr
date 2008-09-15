@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Hides implementation issues associated with obtaining a TokenStream for use with  * the higlighter - can obtain from TermFreqVectors with offsets and (optionally) positions or  * from Analyzer class reparsing the stored content.   * @author maharwood  */
+comment|/**  * Hides implementation issues associated with obtaining a TokenStream for use with  * the higlighter - can obtain from TermFreqVectors with offsets and (optionally) positions or  * from Analyzer class reparsing the stored content.  */
 end_comment
 
 begin_class

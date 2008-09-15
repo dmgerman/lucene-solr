@@ -275,7 +275,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for sorting code.  *  *<p>Created: Feb 17, 2004 4:55:10 PM  *  * @author  Tim Jones (Nacimiento Software)  * @since   lucene 1.4  * @version $Id$  */
+comment|/**  * Unit tests for sorting code.  *  *<p>Created: Feb 17, 2004 4:55:10 PM  *  * @since   lucene 1.4  * @version $Id$  */
 end_comment
 
 begin_class

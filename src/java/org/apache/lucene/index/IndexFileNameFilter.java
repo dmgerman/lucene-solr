@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filename filter that accept filenames and extensions only created by Lucene.  *   * @author Daniel Naber / Bernhard Messer  * @version $rcs = ' $Id: Exp $ ' ;  */
+comment|/**  * Filename filter that accept filenames and extensions only created by Lucene.  *  * @version $rcs = ' $Id: Exp $ ' ;  */
 end_comment
 
 begin_class

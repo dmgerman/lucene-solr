@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A unit test helper class to help with RemoteCachingWrapperFilter testing and  * assert that it is working correctly.  * @author Matt Ericson  */
+comment|/**  * A unit test helper class to help with RemoteCachingWrapperFilter testing and  * assert that it is working correctly.  */
 end_comment
 
 begin_class

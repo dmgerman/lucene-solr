@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Thai language. It uses java.text.BreakIterator to break words.  * @author Samphan Raruenrom<samphan@osdev.co.th> for To-Be-One Technology Co., Ltd.  * @version 0.2  */
+comment|/**  * Analyzer for Thai language. It uses java.text.BreakIterator to break words.  * @version 0.2  */
 end_comment
 
 begin_class

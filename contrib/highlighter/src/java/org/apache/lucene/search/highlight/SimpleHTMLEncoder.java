@@ -19,7 +19,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * Simple {@link Encoder} implementation to escape text for HTML output  * @author Nicko Cadell  *  */
+comment|/**  * Simple {@link Encoder} implementation to escape text for HTML output  *  */
 end_comment
 
 begin_class

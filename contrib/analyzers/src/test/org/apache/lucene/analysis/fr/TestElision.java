@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Mathieu Lecarme<mlecarme@openwide.fr>  *   */
+comment|/**  *   */
 end_comment
 
 begin_class

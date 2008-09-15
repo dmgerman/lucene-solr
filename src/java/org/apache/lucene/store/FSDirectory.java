@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  * Locking implementation is by default the {@link SimpleFSLockFactory}, but  * can be changed either by passing in a {@link LockFactory} instance to  *<code>getDirectory</code>, or specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code> Java system  * property, or by calling {@link #setLockFactory} after creating  * the Directory.   *<p>Directories are cached, so that, for a given canonical  * path, the same FSDirectory instance will always be  * returned by<code>getDirectory</code>.  This permits  * synchronization on directories.</p>  *  * @see Directory  * @author Doug Cutting  */
+comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  * Locking implementation is by default the {@link SimpleFSLockFactory}, but  * can be changed either by passing in a {@link LockFactory} instance to  *<code>getDirectory</code>, or specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code> Java system  * property, or by calling {@link #setLockFactory} after creating  * the Directory.   *<p>Directories are cached, so that, for a given canonical  * path, the same FSDirectory instance will always be  * returned by<code>getDirectory</code>.  This permits  * synchronization on directories.</p>  *  * @see Directory  */
 end_comment
 
 begin_class

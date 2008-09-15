@@ -74,10 +74,6 @@ name|Element
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author maharwood  */
-end_comment
-
 begin_interface
 DECL|interface|SpanQueryBuilder
 specifier|public

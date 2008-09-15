@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests basic search capabilities.  *  *<p>Uses a collection of 1000 documents, each the english rendition of their  * document number.  For example, the document numbered 333 has text "three  * hundred thirty three".  *  *<p>Tests are each a single query, and its hits are checked to ensure that  * all and only the correct documents are returned, thus providing end-to-end  * testing of the indexing and search code.  *  * @author Doug Cutting  */
+comment|/**  * Tests basic search capabilities.  *  *<p>Uses a collection of 1000 documents, each the english rendition of their  * document number.  For example, the document numbered 333 has text "three  * hundred thirty three".  *  *<p>Tests are each a single query, and its hits are checked to ensure that  * all and only the correct documents are returned, thus providing end-to-end  * testing of the indexing and search code.  *  */
 end_comment
 
 begin_class

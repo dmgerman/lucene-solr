@@ -295,7 +295,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A DbDirectory is a Berkeley DB 4.3 based implementation of   * {@link org.apache.lucene.store.Directory Directory}. It uses two  * {@link com.sleepycat.db.internal.Db Db} database handles, one for storing file  * records and another for storing file data blocks.  *  * @author Andi Vajda  */
+comment|/**  * A DbDirectory is a Berkeley DB 4.3 based implementation of   * {@link org.apache.lucene.store.Directory Directory}. It uses two  * {@link com.sleepycat.db.internal.Db Db} database handles, one for storing file  * records and another for storing file data blocks.  *  */
 end_comment
 
 begin_class

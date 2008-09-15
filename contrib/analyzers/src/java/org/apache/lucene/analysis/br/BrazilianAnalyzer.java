@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  * @author    Jo&atilde;o Kramer  */
+comment|/**  * Analyzer for Brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  */
 end_comment
 
 begin_class

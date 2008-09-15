@@ -175,7 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Test cases for index task  *  *@author     Erik Hatcher  */
+comment|/**  *  Test cases for index task  *  */
 end_comment
 
 begin_class

@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class holds series of TimeData related to a single test run. TimeData  * values may contribute to different measurements, so this class provides also  * some useful methods to separate them.  *  * @author Andrzej Bialecki&lt;ab@getopt.org&gt;  */
+comment|/**  * This class holds series of TimeData related to a single test run. TimeData  * values may contribute to different measurements, so this class provides also  * some useful methods to separate them.  *  */
 end_comment
 
 begin_class

@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for sorting code.  *  * @author  Martin Seitz (T-Systems)  */
+comment|/**  * Unit test for sorting code.  *  */
 end_comment
 
 begin_class

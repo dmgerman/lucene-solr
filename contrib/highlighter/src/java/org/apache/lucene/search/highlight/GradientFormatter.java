@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Formats text with different color intensity depending on the score of the  * term.  *   * @author maharwood  */
+comment|/**  * Formats text with different color intensity depending on the score of the  * term.  *  */
 end_comment
 
 begin_class

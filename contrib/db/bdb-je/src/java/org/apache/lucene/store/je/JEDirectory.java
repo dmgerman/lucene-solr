@@ -237,7 +237,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Port of Andi Vajda's DbDirectory to to Java Edition of Berkeley Database  *   * A JEDirectory is a Berkeley DB JE based implementation of  * {@link org.apache.lucene.store.Directory Directory}. It uses two  * {@link com.sleepycat.je.Database Db} database handles, one for storing file  * records and another for storing file data blocks.  *   * @author Aaron Donovan  */
+comment|/**  * Port of Andi Vajda's DbDirectory to to Java Edition of Berkeley Database  *   * A JEDirectory is a Berkeley DB JE based implementation of  * {@link org.apache.lucene.store.Directory Directory}. It uses two  * {@link com.sleepycat.je.Database Db} database handles, one for storing file  * records and another for storing file data blocks.  *  */
 end_comment
 
 begin_class

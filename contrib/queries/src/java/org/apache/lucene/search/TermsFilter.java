@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Constructs a filter for docs matching any of the terms added to this class.   * Unlike a RangeFilter this can be used for filtering on multiple terms that are not necessarily in   * a sequence. An example might be a collection of primary keys from a database query result or perhaps   * a choice of "category" labels picked by the end user. As a filter, this is much faster than the   * equivalent query (a BooleanQuery with many "should" TermQueries)  *   * @author maharwood  */
+comment|/**  * Constructs a filter for docs matching any of the terms added to this class.   * Unlike a RangeFilter this can be used for filtering on multiple terms that are not necessarily in   * a sequence. An example might be a collection of primary keys from a database query result or perhaps   * a choice of "category" labels picked by the end user. As a filter, this is much faster than the   * equivalent query (a BooleanQuery with many "should" TermQueries)  *  */
 end_comment
 
 begin_class

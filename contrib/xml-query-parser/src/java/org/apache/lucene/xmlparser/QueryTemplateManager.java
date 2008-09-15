@@ -275,7 +275,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Provides utilities for turning query form input (such as from a web page or Swing gui) into   * Lucene XML queries by using XSL templates.  This approach offers a convenient way of externalizing   * and changing how user input is turned into Lucene queries.   * Database applications often adopt similar practices by externalizing SQL in template files that can  * be easily changed/optimized by a DBA.    * The static methods can be used on their own or by creating an instance of this class you can store and   * re-use compiled stylesheets for fast use (e.g. in a server environment)   * @author Mark Harwood  */
+comment|/**  * Provides utilities for turning query form input (such as from a web page or Swing gui) into   * Lucene XML queries by using XSL templates.  This approach offers a convenient way of externalizing   * and changing how user input is turned into Lucene queries.   * Database applications often adopt similar practices by externalizing SQL in template files that can  * be easily changed/optimized by a DBA.    * The static methods can be used on their own or by creating an instance of this class you can store and   * re-use compiled stylesheets for fast use (e.g. in a server environment)  */
 end_comment
 
 begin_class

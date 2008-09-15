@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for PlainTextDictionary  *  * @author Daniel Naber  */
+comment|/**  * Test case for PlainTextDictionary  *  */
 end_comment
 
 begin_class

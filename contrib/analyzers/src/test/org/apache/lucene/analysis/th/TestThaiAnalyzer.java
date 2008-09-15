@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for ThaiAnalyzer, modified from TestFrenchAnalyzer  *  * @author    Samphan Raruenrom<samphan@osdev.co.th>  * @version   0.1  */
+comment|/**  * Test case for ThaiAnalyzer, modified from TestFrenchAnalyzer  *  * @version   0.1  */
 end_comment
 
 begin_class

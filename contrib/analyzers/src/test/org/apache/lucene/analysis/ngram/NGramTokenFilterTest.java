@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link NGramTokenFilter} for correctness.  * @author Otis Gospodnetic  */
+comment|/**  * Tests {@link NGramTokenFilter} for correctness.  */
 end_comment
 
 begin_class
