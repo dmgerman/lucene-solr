@@ -13260,6 +13260,20 @@ init|(
 name|this
 init|)
 block|{
+comment|// sizeInBytes> 0 means this is an autoCommit at
+comment|// the end of a merge.  If at this point stopMerges
+comment|// is true (which means a rollback() or
+comment|// rollbackTransaction() is waiting for us to
+comment|// finish), we skip the commit to avoid deadlock
+if|if
+condition|(
+name|sizeInBytes
+operator|>
+literal|0
+operator|&&
+name|stopMerges
+condition|)
+return|return;
 comment|// Wait for any running addIndexes to complete
 comment|// first, then block any from running until we've
 comment|// copied the segmentInfos we intend to sync:
