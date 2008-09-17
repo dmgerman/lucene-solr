@@ -1318,6 +1318,17 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"10000"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// will get same reader if no index change
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
 argument_list|)
@@ -1549,6 +1560,17 @@ literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 comment|// make it visible
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"10001"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// will get same reader if no index change
 name|assertU
 argument_list|(
 name|commit
