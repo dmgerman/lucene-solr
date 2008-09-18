@@ -96,11 +96,9 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
 import|;
@@ -108,13 +106,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|LoggerFactory
 import|;
 end_import
 
@@ -278,16 +274,13 @@ specifier|static
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SolrIndexSearcher
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|method|init
@@ -303,12 +296,8 @@ name|SolrCore
 operator|.
 name|log
 operator|.
-name|log
+name|info
 argument_list|(
-name|Level
-operator|.
-name|INFO
-argument_list|,
 literal|"Unused request handler arguments:"
 operator|+
 name|args

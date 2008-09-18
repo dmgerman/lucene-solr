@@ -42,13 +42,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -81,16 +89,13 @@ specifier|static
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SolrCache
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * The initialization routine.  Instance specific arguments are passed in    * the<code>args</code> map.    *<p>    * The persistence object will exist across different lifetimes of similar caches.    * For example, all filter caches will share the same persistence object, sometimes    * at the same time (it must be threadsafe).  If null is passed, then the cache    * implementation should create and return a new persistence object.  If not null,    * the passed in object should be returned again.    *<p>    * Since it will exist across the lifetime of many caches, care should be taken to    * not reference any particular cache instance and prevent it from being    * garbage collected (no using inner classes unless they are static).    *<p>    * The persistence object is designed to be used as a way for statistics    * to accumulate across all instances of the same type of cache, however the    * object may be of any type desired by the cache implementation.    *<p>    * The {@link CacheRegenerator} is what the cache uses during auto-warming to    * renenerate an item in the new cache from an entry in the old cache.    *    */

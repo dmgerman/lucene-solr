@@ -378,13 +378,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -414,16 +422,13 @@ specifier|static
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|IndexSchema
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|solrConfig
@@ -1512,7 +1517,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"schema has no name!"
 argument_list|)
@@ -1787,7 +1792,7 @@ name|Exception
 block|{
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 literal|"fieldtype defined: "
 operator|+
@@ -1948,7 +1953,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 literal|"reading field def "
 operator|+
@@ -2165,7 +2170,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"field defined: "
 operator|+
@@ -2184,7 +2189,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 name|name
 operator|+
@@ -2214,7 +2219,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 name|name
 operator|+
@@ -2350,7 +2355,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"dynamic field defined: "
 operator|+
@@ -2394,7 +2399,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 literal|"Dynamic Field Ordering:"
 operator|+
@@ -2470,7 +2475,7 @@ block|}
 expr_stmt|;
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"using default similarity"
 argument_list|)
@@ -2566,7 +2571,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"using similarity factory"
 operator|+
@@ -2607,7 +2612,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"no default search field specified in schema."
 argument_list|)
@@ -2720,7 +2725,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"using default query parser operator (OR)"
 argument_list|)
@@ -2775,7 +2780,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"no uniqueKey specified in schema."
 argument_list|)
@@ -2991,7 +2996,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"Field "
 operator|+
@@ -3106,7 +3111,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"copyField source='"
 operator|+
@@ -3412,7 +3417,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 literal|"Dynamic Copy Field:"
 operator|+

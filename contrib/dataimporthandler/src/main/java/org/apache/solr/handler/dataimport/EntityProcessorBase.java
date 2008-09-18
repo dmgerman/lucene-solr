@@ -42,25 +42,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Logger
+name|LoggerFactory
 import|;
 end_import
 
@@ -76,23 +72,20 @@ name|EntityProcessorBase
 extends|extends
 name|EntityProcessor
 block|{
-DECL|field|LOG
+DECL|field|log
 specifier|private
 specifier|static
 specifier|final
 name|Logger
-name|LOG
+name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|EntityProcessorBase
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|entityName
@@ -425,14 +418,10 @@ name|trans
 operator|+
 literal|"does not implement Transformer interface or does not have a transformRow(Map m)method"
 decl_stmt|;
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
@@ -471,14 +460,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Unable to load Transformer: "
 operator|+
 name|aTransArr
@@ -610,14 +595,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|WARNING
-argument_list|,
+name|warn
+argument_list|(
 literal|"method invocation failed on transformer : "
 operator|+
 name|trans
@@ -873,14 +854,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Transformer must return Map<String, Object> or a List<Map<String, Object>>"
 argument_list|)
 expr_stmt|;
@@ -962,14 +939,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Transformer must return Map<String, Object> or a List<Map<String, Object>>"
 argument_list|)
 expr_stmt|;
@@ -992,14 +965,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|WARNING
-argument_list|,
+name|warn
+argument_list|(
 literal|"transformer threw error"
 argument_list|,
 name|e
@@ -1151,14 +1120,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"getNext() failed for query '"
 operator|+
 name|query

@@ -638,13 +638,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -686,16 +694,13 @@ specifier|static
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SolrCore
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|name
@@ -866,7 +871,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"BooleanQuery.maxClauseCount= "
 operator|+
@@ -1489,7 +1494,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 name|logid
 operator|+
@@ -1519,7 +1524,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 name|logid
 operator|+
@@ -2959,7 +2964,7 @@ block|{
 comment|//throw new RuntimeException("Too many closes on " + this);
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 literal|"Too many close {count:"
 operator|+
@@ -3150,7 +3155,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 literal|"REFCOUNT ERROR: unreferenced "
 operator|+
@@ -4001,7 +4006,7 @@ block|{
 comment|// should never happen... just a sanity check
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 name|logid
 operator|+
@@ -4038,7 +4043,7 @@ literal|", try again later."
 decl_stmt|;
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 name|logid
 operator|+
@@ -4795,7 +4800,7 @@ block|{
 comment|// sanity check... should never happen
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 name|logid
 operator|+
@@ -4904,7 +4909,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 literal|"Error closing searcher:"
 operator|+
@@ -5105,7 +5110,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 name|logid
 operator|+
@@ -5362,7 +5367,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 name|logid
 operator|+
@@ -6469,7 +6474,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"solrconfig.xml uses deprecated<admin/gettableFiles>, Please "
 operator|+
@@ -6649,7 +6654,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"adding ShowFileRequestHandler with hidden files: "
 operator|+

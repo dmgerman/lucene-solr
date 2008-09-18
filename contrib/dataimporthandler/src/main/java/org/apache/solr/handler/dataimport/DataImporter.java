@@ -194,25 +194,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Logger
+name|LoggerFactory
 import|;
 end_import
 
@@ -250,16 +246,13 @@ specifier|final
 name|Logger
 name|LOG
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|DataImporter
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|status
@@ -1950,12 +1943,8 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|log
+name|error
 argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
 literal|"Full Import failed"
 argument_list|,
 name|e
@@ -2106,12 +2095,8 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|log
+name|error
 argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
 literal|"Delta Import Failed"
 argument_list|,
 name|e

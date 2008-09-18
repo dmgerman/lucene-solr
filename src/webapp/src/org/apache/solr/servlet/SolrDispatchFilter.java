@@ -58,11 +58,9 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
 import|;
@@ -70,13 +68,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|LoggerFactory
 import|;
 end_import
 
@@ -271,16 +267,13 @@ specifier|final
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SolrDispatchFilter
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|cores
@@ -427,12 +420,8 @@ block|{
 comment|// catch this so our filter still works
 name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
 literal|"Could not start SOLR. Check solr/home property"
 argument_list|,
 name|t
@@ -1462,7 +1451,7 @@ block|}
 block|}
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"no handler or core retrieved for "
 operator|+
@@ -1686,7 +1675,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"invalid return code: "
 operator|+

@@ -40,25 +40,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Logger
+name|LoggerFactory
 import|;
 end_import
 
@@ -216,7 +212,7 @@ parameter_list|()
 block|{
 name|log
 operator|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
@@ -232,7 +228,7 @@ comment|// tell'em: currently, we only cache the last used XSLT transform, and b
 comment|// once cacheLifetimeSeconds expires
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"The TransformerProvider's simplistic XSLT caching mechanism is not appropriate "
 operator|+
@@ -288,17 +284,13 @@ if|if
 condition|(
 name|log
 operator|.
-name|isLoggable
-argument_list|(
-name|Level
-operator|.
-name|FINE
-argument_list|)
+name|isDebugEnabled
+argument_list|()
 condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"Using cached Templates:"
 operator|+
@@ -347,7 +339,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|throwing
+name|error
 argument_list|(
 name|getClass
 argument_list|()
@@ -422,17 +414,13 @@ if|if
 condition|(
 name|log
 operator|.
-name|isLoggable
-argument_list|(
-name|Level
-operator|.
-name|FINE
-argument_list|)
+name|isDebugEnabled
+argument_list|()
 condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"compiling XSLT templates:"
 operator|+
@@ -475,7 +463,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|throwing
+name|error
 argument_list|(
 name|getClass
 argument_list|()

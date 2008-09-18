@@ -354,13 +354,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -382,16 +390,13 @@ specifier|static
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|AnalysisRequestHandler
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|inputFactory
@@ -454,7 +459,7 @@ comment|// Other implementations will likely throw this exception since "reuse-i
 comment|// isimplementation specific.
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"Unable to set the 'reuse-instance' property for the input factory: "
 operator|+
@@ -663,7 +668,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 literal|"Tokenizing doc..."
 argument_list|)
@@ -1176,7 +1181,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"unexpected XML tag doc/"
 operator|+

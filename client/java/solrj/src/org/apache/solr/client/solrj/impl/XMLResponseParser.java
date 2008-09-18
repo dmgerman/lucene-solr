@@ -72,13 +72,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -256,16 +264,13 @@ specifier|static
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|XMLResponseParser
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// reuse the factory among all parser instances so things like string caches
@@ -315,7 +320,7 @@ comment|// Other implementations will likely throw this exception since "reuse-i
 comment|// isimplementation specific.
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"Unable to set the 'reuse-instance' property for the input factory: "
 operator|+

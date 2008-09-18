@@ -24,20 +24,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|update
@@ -146,25 +132,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Logger
+name|LoggerFactory
 import|;
 end_import
 
@@ -179,23 +161,20 @@ specifier|abstract
 class|class
 name|SolrWriter
 block|{
-DECL|field|LOG
+DECL|field|log
 specifier|private
 specifier|static
 specifier|final
 name|Logger
-name|LOG
+name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SolrWriter
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|IMPORTER_PROPERTIES
@@ -304,14 +283,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Exception while adding: "
 operator|+
 name|d
@@ -329,14 +304,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|WARNING
-argument_list|,
+name|warn
+argument_list|(
 literal|"Error creating document : "
 operator|+
 name|d
@@ -363,7 +334,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|LOG
+name|log
 operator|.
 name|info
 argument_list|(
@@ -414,14 +385,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Exception while deleteing: "
 operator|+
 name|id
@@ -591,7 +558,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|LOG
+name|log
 operator|.
 name|info
 argument_list|(
@@ -711,7 +678,7 @@ argument_list|(
 name|propInput
 argument_list|)
 expr_stmt|;
-name|LOG
+name|log
 operator|.
 name|info
 argument_list|(
@@ -729,14 +696,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|WARNING
-argument_list|,
+name|warn
+argument_list|(
 literal|"Unable to read: "
 operator|+
 name|SolrWriter
@@ -788,7 +751,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|LOG
+name|log
 operator|.
 name|info
 argument_list|(
@@ -836,14 +799,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Exception while deleting by query: "
 operator|+
 name|query
@@ -887,14 +846,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Exception while solr commit."
 argument_list|,
 name|e

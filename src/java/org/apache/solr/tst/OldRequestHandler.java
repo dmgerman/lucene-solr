@@ -58,18 +58,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|IOException
@@ -237,12 +225,8 @@ name|SolrCore
 operator|.
 name|log
 operator|.
-name|log
+name|info
 argument_list|(
-name|Level
-operator|.
-name|INFO
-argument_list|,
 literal|"Unused request handler arguments:"
 operator|+
 name|args

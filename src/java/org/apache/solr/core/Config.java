@@ -176,13 +176,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -203,16 +211,13 @@ specifier|final
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|Config
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|xpathFactory
@@ -739,7 +744,7 @@ else|else
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 name|name
 operator|+
@@ -755,7 +760,7 @@ block|}
 block|}
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 name|name
 operator|+
@@ -910,7 +915,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 name|name
 operator|+

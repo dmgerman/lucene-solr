@@ -122,25 +122,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Level
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|logging
-operator|.
-name|Logger
+name|LoggerFactory
 import|;
 end_import
 
@@ -513,16 +509,13 @@ specifier|final
 name|Logger
 name|LOG
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SpellCheckComponent
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|DEFAULT_ONLY_MORE_POPULAR
@@ -1690,7 +1683,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"Collation:"
 operator|+
@@ -2123,7 +2116,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"No queryConverter defined, using default converter"
 argument_list|)
@@ -2336,14 +2329,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Exception in reloading spell check index for spellchecker: "
 operator|+
 name|checker
@@ -2389,14 +2378,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
 name|log
-argument_list|(
-name|Level
 operator|.
-name|SEVERE
-argument_list|,
+name|error
+argument_list|(
 literal|"Exception in building spell check index for spellchecker: "
 operator|+
 name|checker
@@ -2461,7 +2446,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"$Revision:$"
+literal|"$Revision$"
 return|;
 block|}
 annotation|@
@@ -2473,7 +2458,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id:$"
+literal|"$Id$"
 return|;
 block|}
 annotation|@
@@ -2485,7 +2470,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL:$"
+literal|"$URL$"
 return|;
 block|}
 block|}

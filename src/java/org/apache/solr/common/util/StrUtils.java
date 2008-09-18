@@ -265,7 +265,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/***     if (SolrCore.log.isLoggable(Level.FINEST)) {       SolrCore.log.finest("splitCommand=" + lst);     }     ***/
+comment|/***     if (SolrCore.log.isLoggable(Level.FINEST)) {       SolrCore.log.trace("splitCommand=" + lst);     }     ***/
 return|return
 name|lst
 return|;

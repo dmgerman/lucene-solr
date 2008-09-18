@@ -1004,7 +1004,7 @@ name|SolrCore
 operator|.
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 literal|"Error opening external value source file: "
 operator|+
@@ -1302,7 +1302,7 @@ name|SolrCore
 operator|.
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 literal|"Error loading external value source + fileName + "
 operator|+
@@ -1643,7 +1643,7 @@ name|SolrCore
 operator|.
 name|log
 operator|.
-name|severe
+name|error
 argument_list|(
 literal|"Error loading external value source: "
 operator|+

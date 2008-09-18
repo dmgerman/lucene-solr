@@ -128,13 +128,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
-operator|.
-name|logging
+name|slf4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -385,16 +393,13 @@ specifier|final
 name|Logger
 name|log
 init|=
-name|Logger
+name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
 name|SolrResourceLoader
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|project
@@ -1346,7 +1351,7 @@ name|newName
 decl_stmt|;
 name|log
 operator|.
-name|finest
+name|trace
 argument_list|(
 literal|"Trying class name "
 operator|+
@@ -1721,7 +1726,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|warning
+name|warn
 argument_list|(
 literal|"Odd RuntimeException while testing for JNDI: "
 operator|+

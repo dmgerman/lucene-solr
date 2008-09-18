@@ -100,18 +100,6 @@ name|ArrayList
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
-import|;
-end_import
-
 begin_comment
 comment|/**  */
 end_comment
@@ -393,12 +381,8 @@ name|doLog
 init|=
 name|log
 operator|.
-name|isLoggable
-argument_list|(
-name|Level
-operator|.
-name|FINE
-argument_list|)
+name|isDebugEnabled
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -407,7 +391,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"About to exec "
 operator|+
@@ -476,7 +460,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|fine
+name|debug
 argument_list|(
 literal|"Executable "
 operator|+
