@@ -953,10 +953,10 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|setHighlightRequireFieldMatch
+DECL|method|getHighlightRequireFieldMatch
 specifier|public
 name|boolean
-name|setHighlightRequireFieldMatch
+name|getHighlightRequireFieldMatch
 parameter_list|()
 block|{
 return|return
