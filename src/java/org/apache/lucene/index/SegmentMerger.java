@@ -3296,7 +3296,7 @@ argument_list|)
 expr_stmt|;
 comment|// write frequency in doc
 block|}
-comment|/** See {@link DocumentWriter#writePostings(Posting[], String) for           *  documentation about the encoding of positions and payloads          */
+comment|/** See {@link DocumentWriter#writePostings(Posting[], String)} for           *  documentation about the encoding of positions and payloads          */
 name|int
 name|lastPosition
 init|=
