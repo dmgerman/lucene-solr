@@ -319,7 +319,7 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
-comment|/**    * Query should be rewritten for wild/fuzzy support.    *     * @param query    * @return    * @throws IOException    */
+comment|/**    * Query should be rewritten for wild/fuzzy support.    *     * @param query    * @return payloads Collection    * @throws IOException    */
 DECL|method|getPayloadsForQuery
 specifier|public
 name|Collection

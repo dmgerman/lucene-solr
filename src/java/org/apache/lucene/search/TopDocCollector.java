@@ -96,7 +96,7 @@ operator|=
 name|hq
 expr_stmt|;
 block|}
-comment|/** Constructor to collect the top-scoring documents by using the given PQ.    * @hq the PQ to use by this instance.    */
+comment|/** Constructor to collect the top-scoring documents by using the given PQ.    * @param hq the PQ to use by this instance.    */
 DECL|method|TopDocCollector
 specifier|protected
 name|TopDocCollector
