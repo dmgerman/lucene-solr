@@ -567,6 +567,8 @@ name|runData
 operator|.
 name|getAnalyzer
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|CreateIndexTask
