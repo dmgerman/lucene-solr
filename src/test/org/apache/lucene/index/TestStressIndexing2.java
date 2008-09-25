@@ -220,9 +220,6 @@ name|a
 parameter_list|,
 name|boolean
 name|create
-parameter_list|,
-name|MaxFieldLength
-name|mfl
 parameter_list|)
 throws|throws
 name|IOException
@@ -236,8 +233,6 @@ argument_list|,
 name|a
 argument_list|,
 name|create
-argument_list|,
-name|mfl
 argument_list|)
 expr_stmt|;
 block|}
@@ -602,12 +597,6 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|w

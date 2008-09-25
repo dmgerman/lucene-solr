@@ -492,8 +492,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()

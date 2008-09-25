@@ -414,8 +414,6 @@ name|IndexWriter
 argument_list|(
 name|dir1
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -461,8 +459,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir2
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -927,8 +923,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer

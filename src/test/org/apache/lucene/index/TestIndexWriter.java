@@ -748,12 +748,6 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1537,12 +1531,6 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 expr_stmt|;
 name|IOException
@@ -2619,12 +2607,6 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|MergeScheduler
@@ -5655,8 +5637,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -5952,8 +5932,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -6110,8 +6088,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -6361,8 +6337,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -6570,8 +6544,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -6663,8 +6635,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -13145,8 +13115,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -13417,8 +13385,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -13542,12 +13508,6 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("TEST: pass=" + pass + " ac=" + autoCommit + " cms=" + (pass>= 2));
@@ -13920,12 +13880,6 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 expr_stmt|;
 block|}
@@ -14774,7 +14728,7 @@ name|ioe
 parameter_list|)
 block|{     }
 block|}
-comment|// LUCENE-1130: make sure immeidate disk full on creating
+comment|// LUCENE-1130: make sure immediate disk full on creating
 comment|// an IndexWriter (hit during DW.ThreadState.init()), with
 comment|// multiple threads, is OK:
 DECL|method|testImmediateDiskFullWithThreads
@@ -14820,15 +14774,11 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
+literal|true
+argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|ConcurrentMergeScheduler
@@ -15197,15 +15147,11 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
+literal|true
+argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -16592,8 +16538,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -16938,15 +16882,11 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
+literal|true
+argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|failure
@@ -17114,12 +17054,6 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -17333,12 +17267,6 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 expr_stmt|;
 name|writer
@@ -17460,12 +17388,6 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -17701,8 +17623,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
@@ -17859,8 +17779,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|StandardAnalyzer
@@ -18177,8 +18095,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
@@ -18377,8 +18293,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
@@ -18494,8 +18408,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
@@ -18708,8 +18620,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|StandardAnalyzer
@@ -18814,8 +18724,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
@@ -19028,8 +18936,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|StandardAnalyzer
@@ -19191,9 +19097,6 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|boolean
-name|autoCommit
-parameter_list|,
 name|Analyzer
 name|a
 parameter_list|,
@@ -19209,8 +19112,6 @@ block|{
 name|super
 argument_list|(
 name|dir
-argument_list|,
-name|autoCommit
 argument_list|,
 name|a
 argument_list|,
@@ -19277,8 +19178,6 @@ operator|new
 name|MockIndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -19402,8 +19301,6 @@ operator|new
 name|MockIndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -19587,9 +19484,6 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|boolean
-name|autoCommit
-parameter_list|,
 name|Analyzer
 name|a
 parameter_list|,
@@ -19605,8 +19499,6 @@ block|{
 name|super
 argument_list|(
 name|dir
-argument_list|,
-name|autoCommit
 argument_list|,
 name|a
 argument_list|,
@@ -19684,8 +19576,6 @@ operator|new
 name|MockIndexWriter2
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -19838,9 +19728,6 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|boolean
-name|autoCommit
-parameter_list|,
 name|Analyzer
 name|a
 parameter_list|,
@@ -19858,8 +19745,6 @@ block|{
 name|super
 argument_list|(
 name|dir
-argument_list|,
-name|autoCommit
 argument_list|,
 name|a
 argument_list|,
@@ -19908,8 +19793,6 @@ operator|new
 name|MockIndexWriter3
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -20254,8 +20137,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -20477,8 +20358,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -22114,8 +21993,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -22378,8 +22255,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -22681,8 +22556,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -22831,8 +22704,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -22996,8 +22867,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -23159,8 +23028,6 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -23215,8 +23082,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir2
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -24396,9 +24261,6 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|boolean
-name|autoCommit
-parameter_list|,
 name|Analyzer
 name|a
 parameter_list|,
@@ -24414,8 +24276,6 @@ block|{
 name|super
 argument_list|(
 name|dir
-argument_list|,
-name|autoCommit
 argument_list|,
 name|a
 argument_list|,
@@ -24483,8 +24343,6 @@ operator|new
 name|MockIndexWriter4
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -24566,8 +24424,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
@@ -25119,8 +24975,6 @@ name|IndexWriter
 argument_list|(
 name|startDir
 argument_list|,
-literal|false
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
@@ -25200,8 +25054,6 @@ operator|new
 name|IndexWriter
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer

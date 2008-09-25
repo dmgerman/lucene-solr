@@ -475,6 +475,18 @@ operator|||
 name|docStoreSegment
 operator|!=
 literal|null
+operator|:
+literal|"dso="
+operator|+
+name|docStoreOffset
+operator|+
+literal|" dss="
+operator|+
+name|docStoreSegment
+operator|+
+literal|" docCount="
+operator|+
+name|docCount
 assert|;
 block|}
 comment|/**    * Copy everything from src SegmentInfo into our instance.    */
