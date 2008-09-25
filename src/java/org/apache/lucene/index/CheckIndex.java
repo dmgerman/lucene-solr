@@ -142,8 +142,26 @@ name|ArrayList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Fieldable
+import|;
+end_import
+
 begin_comment
-comment|/**  * Basic tool to check the health of an index and write a  * new segments file that removes reference to problematic  * segments.  There are many more checks that this tool  * could do but does not yet, eg: reconstructing a segments  * file by looking for all loadable segments (if no segments  * file is found), removing specifically specified segments,  * listing files that exist but are not referenced, etc.  */
+comment|// for javadoc
+end_comment
+
+begin_comment
+comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  *<p><b>WARNING</b>: this tool and API is new and  * experimental and is subject to suddenly change in the  * next release.  Please make a complete backup of your  * index before using this to fix your index!  */
 end_comment
 
 begin_class
@@ -152,6 +170,7 @@ specifier|public
 class|class
 name|CheckIndex
 block|{
+comment|/** Default PrintStream for all CheckIndex instances.    *  @deprecated Use {@link #setInfoStream} per instance,    *  instead. */
 DECL|field|out
 specifier|public
 specifier|static
@@ -160,6 +179,275 @@ name|out
 init|=
 literal|null
 decl_stmt|;
+DECL|field|infoStream
+specifier|private
+name|PrintStream
+name|infoStream
+decl_stmt|;
+DECL|field|dir
+specifier|private
+name|Directory
+name|dir
+decl_stmt|;
+comment|/**    * Returned from {@link #checkIndex()} detailing the health and status of the index.    *    *<p><b>WARNING</b>: this API is new and experimental and is    * subject to suddenly change in the next release.    **/
+DECL|class|Status
+specifier|public
+specifier|static
+class|class
+name|Status
+block|{
+comment|/** True if no problems were found with the index. */
+DECL|field|clean
+specifier|public
+name|boolean
+name|clean
+decl_stmt|;
+comment|/** True if we were unable to locate and load the segments_N file. */
+DECL|field|missingSegments
+specifier|public
+name|boolean
+name|missingSegments
+decl_stmt|;
+comment|/** True if we were unable to open the segments_N file. */
+DECL|field|cantOpenSegments
+specifier|public
+name|boolean
+name|cantOpenSegments
+decl_stmt|;
+comment|/** True if we were unable to read the version number from segments_N file. */
+DECL|field|missingSegmentVersion
+specifier|public
+name|boolean
+name|missingSegmentVersion
+decl_stmt|;
+comment|/** Name of latest segments_N file in the index. */
+DECL|field|segmentsFileName
+specifier|public
+name|String
+name|segmentsFileName
+decl_stmt|;
+comment|/** Number of segments in the index. */
+DECL|field|numSegments
+specifier|public
+name|int
+name|numSegments
+decl_stmt|;
+comment|/** String description of the version of the index. */
+DECL|field|segmentFormat
+specifier|public
+name|String
+name|segmentFormat
+decl_stmt|;
+comment|/** Empty unless you passed specific segments list to check as optional 3rd argument.      *  @see CheckIndex#checkIndex(List) */
+DECL|field|segmentsChecked
+specifier|public
+name|List
+comment|/*<String>*/
+name|segmentsChecked
+init|=
+operator|new
+name|ArrayList
+argument_list|()
+decl_stmt|;
+comment|/** True if the index was created with a newer version of Lucene than the CheckIndex tool. */
+DECL|field|toolOutOfDate
+specifier|public
+name|boolean
+name|toolOutOfDate
+decl_stmt|;
+comment|/** List of {@link SegmentInfoStatus} instances, detailing status of each segment. */
+DECL|field|segmentInfos
+specifier|public
+name|List
+comment|/*<SegmentInfoStatus*/
+name|segmentInfos
+init|=
+operator|new
+name|ArrayList
+argument_list|()
+decl_stmt|;
+comment|/** Directory index is in. */
+DECL|field|dir
+specifier|public
+name|Directory
+name|dir
+decl_stmt|;
+comment|/** SegmentInfos instance containing only segments that      *  had no problems (this is used with the {@link      *  CheckIndex#fix} method to repair the index. */
+DECL|field|newSegments
+name|SegmentInfos
+name|newSegments
+decl_stmt|;
+comment|/** How many documents will be lost to bad segments. */
+DECL|field|totLoseDocCount
+specifier|public
+name|int
+name|totLoseDocCount
+decl_stmt|;
+comment|/** How many bad segments were found. */
+DECL|field|numBadSegments
+specifier|public
+name|int
+name|numBadSegments
+decl_stmt|;
+comment|/** True if we checked only specific segments ({@link      * #checkIndex(List)}) was called with non-null      * argument). */
+DECL|field|partial
+specifier|public
+name|boolean
+name|partial
+decl_stmt|;
+comment|/** Holds the status of each segment in the index.      *  See {@link #segmentInfos}.      *      *<p><b>WARNING</b>: this API is new and experimental and is      * subject to suddenly change in the next release.      */
+DECL|class|SegmentInfoStatus
+specifier|public
+specifier|static
+class|class
+name|SegmentInfoStatus
+block|{
+comment|/** Name of the segment. */
+DECL|field|name
+specifier|public
+name|String
+name|name
+decl_stmt|;
+comment|/** Document count (does not take deletions into account). */
+DECL|field|docCount
+specifier|public
+name|int
+name|docCount
+decl_stmt|;
+comment|/** True if segment is compound file format. */
+DECL|field|compound
+specifier|public
+name|boolean
+name|compound
+decl_stmt|;
+comment|/** Number of files referenced by this segment. */
+DECL|field|numFiles
+specifier|public
+name|int
+name|numFiles
+decl_stmt|;
+comment|/** Net size (MB) of the files referenced by this        *  segment. */
+DECL|field|sizeMB
+specifier|public
+name|double
+name|sizeMB
+decl_stmt|;
+comment|/** Doc store offset, if this segment shares the doc        *  store files (stored fields and term vectors) with        *  other segments.  This is -1 if it does not share. */
+DECL|field|docStoreOffset
+specifier|public
+name|int
+name|docStoreOffset
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/** String of the shared doc store segment, or null if        *  this segment does not share the doc store files. */
+DECL|field|docStoreSegment
+specifier|public
+name|String
+name|docStoreSegment
+decl_stmt|;
+comment|/** True if the shared doc store files are compound file        *  format. */
+DECL|field|docStoreCompoundFile
+specifier|public
+name|boolean
+name|docStoreCompoundFile
+decl_stmt|;
+comment|/** True if this segment has pending deletions. */
+DECL|field|hasDeletions
+specifier|public
+name|boolean
+name|hasDeletions
+decl_stmt|;
+comment|/** Name of the current deletions file name. */
+DECL|field|deletionsFileName
+specifier|public
+name|String
+name|deletionsFileName
+decl_stmt|;
+comment|/** Number of deleted documents. */
+DECL|field|numDeleted
+specifier|public
+name|int
+name|numDeleted
+decl_stmt|;
+comment|/** True if we were able to open a SegmentReader on this        *  segment. */
+DECL|field|openReaderPassed
+specifier|public
+name|boolean
+name|openReaderPassed
+decl_stmt|;
+comment|/** Number of fields in this segment. */
+DECL|field|numFields
+name|int
+name|numFields
+decl_stmt|;
+comment|/** True if at least one of the fields in this segment        *  does not omitTf.        *  @see Fieldable#setOmitTf */
+DECL|field|hasProx
+specifier|public
+name|boolean
+name|hasProx
+decl_stmt|;
+block|}
+block|}
+comment|/** Create a new CheckIndex on the directory. */
+DECL|method|CheckIndex
+specifier|public
+name|CheckIndex
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|)
+block|{
+name|this
+operator|.
+name|dir
+operator|=
+name|dir
+expr_stmt|;
+name|infoStream
+operator|=
+name|out
+expr_stmt|;
+block|}
+comment|/** Set infoStream where messages should go.  If null, no    *  messages are printed */
+DECL|method|setInfoStream
+specifier|public
+name|void
+name|setInfoStream
+parameter_list|(
+name|PrintStream
+name|out
+parameter_list|)
+block|{
+name|infoStream
+operator|=
+name|out
+expr_stmt|;
+block|}
+DECL|method|msg
+specifier|private
+name|void
+name|msg
+parameter_list|(
+name|String
+name|msg
+parameter_list|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
+operator|.
+name|println
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+block|}
 DECL|class|MySegmentTermDocs
 specifier|private
 specifier|static
@@ -221,11 +509,11 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns true if index is clean, else false.*/
+comment|/** Returns true if index is clean, else false.     *  @deprecated Please instantiate a CheckIndex and then use {@link #checkIndex()} instead */
 DECL|method|check
 specifier|public
 specifier|static
-name|CheckIndexStatus
+name|boolean
 name|check
 parameter_list|(
 name|Directory
@@ -248,11 +536,11 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns true if index is clean, else false.*/
+comment|/** Returns true if index is clean, else false.    *  @deprecated Please instantiate a CheckIndex and then use {@link #checkIndex(List)} instead */
 DECL|method|check
 specifier|public
 specifier|static
-name|CheckIndexStatus
+name|boolean
 name|check
 parameter_list|(
 name|Directory
@@ -261,6 +549,75 @@ parameter_list|,
 name|boolean
 name|doFix
 parameter_list|,
+name|List
+name|onlySegments
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|CheckIndex
+name|checker
+init|=
+operator|new
+name|CheckIndex
+argument_list|(
+name|dir
+argument_list|)
+decl_stmt|;
+name|Status
+name|status
+init|=
+name|checker
+operator|.
+name|checkIndex
+argument_list|(
+name|onlySegments
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|doFix
+operator|&&
+operator|!
+name|status
+operator|.
+name|clean
+condition|)
+name|checker
+operator|.
+name|fixIndex
+argument_list|(
+name|status
+argument_list|)
+expr_stmt|;
+return|return
+name|status
+operator|.
+name|clean
+return|;
+block|}
+comment|/** Returns a {@link Status} instance detailing    *  the state of the index.    *    *<p>As this method checks every byte in the index, on a large    *  index it can take quite a long time to run.    *    *<p><b>WARNING</b>: make sure    *  you only call this when the index is not opened by any    *  writer. */
+DECL|method|checkIndex
+specifier|public
+name|Status
+name|checkIndex
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|checkIndex
+argument_list|(
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/** Returns a {@link Status} instance detailing    *  the state of the index.    *     *  @param onlySegments list of specific segment names to check    *    *<p>As this method checks every byte in the specified    *  segments, on a large index it can take quite a long    *  time to run.    *    *<p><b>WARNING</b>: make sure    *  you only call this when the index is not opened by any    *  writer. */
+DECL|method|checkIndex
+specifier|public
+name|Status
+name|checkIndex
+parameter_list|(
 name|List
 name|onlySegments
 parameter_list|)
@@ -282,11 +639,11 @@ operator|new
 name|SegmentInfos
 argument_list|()
 decl_stmt|;
-name|CheckIndexStatus
+name|Status
 name|result
 init|=
 operator|new
-name|CheckIndexStatus
+name|Status
 argument_list|()
 decl_stmt|;
 name|result
@@ -322,11 +679,17 @@ name|missingSegments
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|t
 operator|.
 name|printStackTrace
 argument_list|(
-name|out
+name|infoStream
 argument_list|)
 expr_stmt|;
 return|return
@@ -379,11 +742,17 @@ argument_list|(
 literal|"ERROR: could not open segments file in directory"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|t
 operator|.
 name|printStackTrace
 argument_list|(
-name|out
+name|infoStream
 argument_list|)
 expr_stmt|;
 name|result
@@ -422,11 +791,17 @@ argument_list|(
 literal|"ERROR: could not read segment file version in directory"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|t
 operator|.
 name|printStackTrace
 argument_list|(
-name|out
+name|infoStream
 argument_list|)
 expr_stmt|;
 name|result
@@ -626,7 +1001,19 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|out
+name|result
+operator|.
+name|partial
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -649,7 +1036,13 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|out
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -759,13 +1152,13 @@ name|name
 argument_list|)
 condition|)
 continue|continue;
-name|CheckIndexStatus
+name|Status
 operator|.
 name|SegmentInfoStatus
 name|segInfoStat
 init|=
 operator|new
-name|CheckIndexStatus
+name|Status
 operator|.
 name|SegmentInfoStatus
 argument_list|()
@@ -1056,7 +1449,13 @@ operator|=
 name|delFileName
 expr_stmt|;
 block|}
-name|out
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -1195,7 +1594,13 @@ literal|"OK"
 argument_list|)
 expr_stmt|;
 block|}
-name|out
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -1308,7 +1713,13 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
-name|out
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -1669,7 +2080,13 @@ operator|+
 literal|" tokens]"
 argument_list|)
 expr_stmt|;
-name|out
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -1788,7 +2205,13 @@ operator|+
 literal|" fields per doc]"
 argument_list|)
 expr_stmt|;
-name|out
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|infoStream
 operator|.
 name|print
 argument_list|(
@@ -1898,18 +2321,9 @@ expr_stmt|;
 name|String
 name|comment
 decl_stmt|;
-if|if
-condition|(
-name|doFix
-condition|)
 name|comment
 operator|=
-literal|"will remove reference to this segment (-fix is specified)"
-expr_stmt|;
-else|else
-name|comment
-operator|=
-literal|"would remove reference to this segment (-fix was not specified)"
+literal|"fixIndex() would remove reference to this segment"
 expr_stmt|;
 name|msg
 argument_list|(
@@ -1920,11 +2334,17 @@ operator|+
 literal|"; full exception:"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|t
 operator|.
 name|printStackTrace
 argument_list|(
-name|out
+name|infoStream
 argument_list|)
 expr_stmt|;
 name|msg
@@ -2016,19 +2436,31 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Repairs the index using previously returned result from    *  {@link #check}.<b>WARNING</b>: this writes a new    *  segments file into the index, effectively removing    *  all documents in broken segments from the index.  BE    *  CAREFUL. */
-DECL|method|fix
-specifier|static
+comment|/** Repairs the index using previously returned result    *  from {@link #checkIndex}.  Note that this does not    *  remove any of the unreferenced files after it's done;    *  you must separately open an {@link IndexWriter}, which    *  deletes unreferenced files when it's created.    *    *<p><b>WARNING</b>: this writes a    *  new segments file into the index, effectively removing    *  all documents in broken segments from the index.    *  BE CAREFUL.    *    *<p><b>WARNING</b>: Make sure you only call this when the    *  index is not opened  by any writer. */
+DECL|method|fixIndex
 specifier|public
 name|void
-name|fix
+name|fixIndex
 parameter_list|(
-name|CheckIndexStatus
+name|Status
 name|result
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|result
+operator|.
+name|partial
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"can only fix an index that was fully checked (this status checked a subset of segments)"
+argument_list|)
+throw|;
 name|result
 operator|.
 name|newSegments
@@ -2042,6 +2474,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|field|assertsOn
+specifier|private
 specifier|static
 name|boolean
 name|assertsOn
@@ -2061,32 +2494,22 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|msg
+DECL|method|assertsOn
 specifier|private
 specifier|static
-name|void
-name|msg
-parameter_list|(
-name|String
-name|msg
-parameter_list|)
+name|boolean
+name|assertsOn
+parameter_list|()
 block|{
-if|if
-condition|(
-name|out
-operator|!=
-literal|null
-condition|)
-block|{
-name|out
-operator|.
-name|println
-argument_list|(
-name|msg
-argument_list|)
-expr_stmt|;
+assert|assert
+name|testAsserts
+argument_list|()
+assert|;
+return|return
+name|assertsOn
+return|;
 block|}
-block|}
+comment|/** Command-line interface to check and fix an index.<p>     Run it like this:<pre>     java -ea:org.apache.lucene... org.apache.lucene.index.CheckIndex pathToIndex [-fix] [-segment X] [-segment Y]</pre><ul><li><code>-fix</code>: actually write a new segments_N file, removing any problematic segments<li><code>-segment X</code>: only check the specified     segment(s).  This can be specified multiple times,     to check more than one segment, eg<code>-segment _2     -segment _a</code>.  You can't use this with the -fix     option.</ul><p><b>WARNING</b>:<code>-fix</code> should only be used on an emergency basis as it will cause                        documents (perhaps many) to be permanently removed from the index.  Always make                        a backup copy of your index before running this!  Do not run this tool on an index                        that is actively being written to.  You have been warned!<p>                Run without -fix, this tool will open the index, report version information                        and report any exceptions it hits and what action it would take if -fix were                        specified.  With -fix, this tool will remove any segments that have issues and                        write a new segments_N file.  This means all documents contained in the affected                        segments will be removed.<p>                        This tool exits with exit code 1 if the index cannot be opened or has any                        corruption, else 0.    */
 DECL|method|main
 specifier|public
 specifier|static
@@ -2098,7 +2521,7 @@ index|[]
 name|args
 parameter_list|)
 throws|throws
-name|Throwable
+name|IOException
 block|{
 name|boolean
 name|doFix
@@ -2177,7 +2600,11 @@ operator|-
 literal|1
 condition|)
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"ERROR: missing name for -segment option"
 argument_list|)
@@ -2216,7 +2643,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"ERROR: unexpected extra argument '"
 operator|+
@@ -2255,12 +2686,20 @@ operator|==
 literal|null
 condition|)
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"\nERROR: index path not specified"
 argument_list|)
 expr_stmt|;
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"\nUsage: java org.apache.lucene.index.CheckIndex pathToIndex [-fix] [-segment X] [-segment Y]\n"
 operator|+
@@ -2298,7 +2737,7 @@ literal|"segments will be removed.\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"This tool exits with exit code 1 if the index cannot be opened or has has any\n"
+literal|"This tool exits with exit code 1 if the index cannot be opened or has any\n"
 operator|+
 literal|"corruption, else 0.\n"
 argument_list|)
@@ -2311,6 +2750,21 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|assertsOn
+argument_list|()
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nNOTE: testing will be more thorough if you run java with '-ea:org.apache.lucene...', so assertions are enabled"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|onlySegments
@@ -2330,7 +2784,11 @@ condition|(
 name|doFix
 condition|)
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"ERROR: cannot specify both -fix and -segment"
 argument_list|)
@@ -2343,21 +2801,11 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-assert|assert
-name|testAsserts
-argument_list|()
-assert|;
-if|if
-condition|(
-operator|!
-name|assertsOn
-condition|)
-name|msg
-argument_list|(
-literal|"\nNOTE: testing will be more thorough if you run java with '-ea:org.apache.lucene', so assertions are enabled"
-argument_list|)
-expr_stmt|;
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"\nOpening index @ "
 operator|+
@@ -2389,7 +2837,11 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"ERROR: could not open directory \""
 operator|+
@@ -2402,6 +2854,8 @@ name|t
 operator|.
 name|printStackTrace
 argument_list|(
+name|System
+operator|.
 name|out
 argument_list|)
 expr_stmt|;
@@ -2413,15 +2867,31 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-name|CheckIndexStatus
-name|result
+name|CheckIndex
+name|checker
 init|=
-name|check
+operator|new
+name|CheckIndex
 argument_list|(
 name|dir
-argument_list|,
-name|doFix
-argument_list|,
+argument_list|)
+decl_stmt|;
+name|checker
+operator|.
+name|setInfoStream
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+name|Status
+name|result
+init|=
+name|checker
+operator|.
+name|checkIndex
+argument_list|(
 name|onlySegments
 argument_list|)
 decl_stmt|;
@@ -2439,7 +2909,11 @@ operator|!
 name|doFix
 condition|)
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"WARNING: would write new segments file, and "
 operator|+
@@ -2453,7 +2927,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"WARNING: "
 operator|+
@@ -2464,7 +2942,11 @@ operator|+
 literal|" documents will be lost\n"
 argument_list|)
 expr_stmt|;
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"NOTE: will write new segments file in 5 seconds; this will remove "
 operator|+
@@ -2519,39 +3001,54 @@ operator|--
 expr_stmt|;
 continue|continue;
 block|}
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"  "
 operator|+
 operator|(
 literal|5
 operator|-
-name|i
+name|s
 operator|)
 operator|+
 literal|"..."
 argument_list|)
 expr_stmt|;
 block|}
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"Writing..."
 argument_list|)
 expr_stmt|;
-name|CheckIndex
+name|checker
 operator|.
-name|fix
+name|fixIndex
 argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
-block|}
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"OK"
 argument_list|)
 expr_stmt|;
-name|msg
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"Wrote new segments file \""
 operator|+
@@ -2566,7 +3063,12 @@ literal|"\""
 argument_list|)
 expr_stmt|;
 block|}
-name|msg
+block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|""
 argument_list|)
