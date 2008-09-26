@@ -80,7 +80,7 @@ name|getSize
 parameter_list|()
 function_decl|;
 comment|// size if we know it, otherwise null
-comment|/**    * Get an open stream.  You are responsible for closing it.  Consider using     * something like:    *<pre>    *   InputStream stream = stream.getStream();    *   try {    *     // use the stream...    *   }    *   finally {    *     IOUtils.closeQuietly(reader);    *   }    *</pre>    *      * Only the first call to<code>getStream()</code> or<code>getReader()</code>    * is guaranteed to work.  The runtime behavior for additional calls is undefined.    */
+comment|/**    * Get an open stream.  You are responsible for closing it.  Consider using     * something like:    *<pre>    *   InputStream stream = stream.getStream();    *   try {    *     // use the stream...    *   }    *   finally {    *     IOUtils.closeQuietly(stream);    *   }    *</pre>    *      * Only the first call to<code>getStream()</code> or<code>getReader()</code>    * is guaranteed to work.  The runtime behavior for additional calls is undefined.    */
 DECL|method|getStream
 name|InputStream
 name|getStream
