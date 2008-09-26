@@ -798,7 +798,7 @@ argument_list|)
 expr_stmt|;
 comment|/* * * Add on Phrases for the Query * * */
 comment|/* build up phrase boosting queries */
-comment|/* if the userQuery already has some quotes, stip them out.        * we've already done the phrases they asked for in the main        * part of the query, this is to boost docs that may not have        * matched those phrases but do match looser phrases.        */
+comment|/* if the userQuery already has some quotes, strip them out.        * we've already done the phrases they asked for in the main        * part of the query, this is to boost docs that may not have        * matched those phrases but do match looser phrases.        */
 name|String
 name|userPhraseQuery
 init|=
