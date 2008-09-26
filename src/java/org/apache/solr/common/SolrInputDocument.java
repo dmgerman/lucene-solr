@@ -491,7 +491,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"SolrInputDocumnt["
+literal|"SolrInputDocument["
 operator|+
 name|_fields
 operator|+
