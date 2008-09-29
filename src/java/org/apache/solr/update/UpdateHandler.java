@@ -787,6 +787,11 @@ name|getSolrConfig
 argument_list|()
 operator|.
 name|mainIndexConfig
+argument_list|,
+name|core
+operator|.
+name|getDeletionPolicy
+argument_list|()
 argument_list|)
 return|;
 block|}
