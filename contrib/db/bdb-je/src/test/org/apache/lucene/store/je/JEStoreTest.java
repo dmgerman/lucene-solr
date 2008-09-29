@@ -562,10 +562,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|tesBytes
+DECL|method|testBytes
 specifier|public
 name|void
-name|tesBytes
+name|testBytes
 parameter_list|()
 throws|throws
 name|Exception
@@ -2575,10 +2575,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|tesArrays
+DECL|method|testArrays
 specifier|public
 name|void
-name|tesArrays
+name|testArrays
 parameter_list|()
 throws|throws
 name|Exception
