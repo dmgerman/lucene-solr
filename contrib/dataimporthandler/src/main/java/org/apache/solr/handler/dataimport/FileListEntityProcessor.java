@@ -253,7 +253,11 @@ name|DataImportHandlerException
 operator|.
 name|SEVERE
 argument_list|,
-literal|"'baseDir' should point to a directory"
+literal|"'baseDir' value: "
+operator|+
+name|baseDir
+operator|+
+literal|" is not a directory"
 argument_list|)
 throw|;
 name|String
