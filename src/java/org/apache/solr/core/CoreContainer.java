@@ -1461,7 +1461,7 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Registers a SolrCore descriptor in the registry.    * @return a previous core having the same name if it existed and returnPrev==true    */
+comment|/**    * Registers a SolrCore descriptor in the registry using the specified name.    *    * If returnPrev==false, the old core, if different, is closed.    *    * @return a previous core having the same name if it existed and returnPrev==true    */
 DECL|method|register
 specifier|public
 name|SolrCore
@@ -1607,6 +1607,33 @@ return|return
 name|old
 return|;
 block|}
+block|}
+comment|/**    * Registers a SolrCore descriptor in the registry using the core's name.    * If returnPrev==false, the old core, if different, is closed.    * @return a previous core having the same name if it existed and returnPrev==true    */
+DECL|method|register
+specifier|public
+name|SolrCore
+name|register
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|boolean
+name|returnPrev
+parameter_list|)
+block|{
+return|return
+name|register
+argument_list|(
+name|core
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|core
+argument_list|,
+name|returnPrev
+argument_list|)
+return|;
 block|}
 comment|/**    * Creates a new core based on a descriptor but does not register it.    *    * @param dcore a core descriptor    * @return the newly created core    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
 DECL|method|create
