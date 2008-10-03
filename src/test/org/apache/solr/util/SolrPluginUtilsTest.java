@@ -819,7 +819,12 @@ operator|.
 name|getSchema
 argument_list|()
 operator|.
-name|getDefaultSearchFieldName
+name|getSolrQueryParser
+argument_list|(
+literal|null
+argument_list|)
+operator|.
+name|getField
 argument_list|()
 argument_list|,
 operator|(

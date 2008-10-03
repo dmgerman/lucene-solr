@@ -3313,7 +3313,12 @@ literal|"defaultSearchField"
 argument_list|,
 name|schema
 operator|.
-name|getDefaultSearchFieldName
+name|getSolrQueryParser
+argument_list|(
+literal|null
+argument_list|)
+operator|.
+name|getField
 argument_list|()
 argument_list|)
 expr_stmt|;

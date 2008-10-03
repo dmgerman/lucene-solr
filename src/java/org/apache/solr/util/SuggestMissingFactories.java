@@ -757,6 +757,9 @@ index|[
 name|i
 index|]
 operator|.
+name|toURI
+argument_list|()
+operator|.
 name|toURL
 argument_list|()
 expr_stmt|;

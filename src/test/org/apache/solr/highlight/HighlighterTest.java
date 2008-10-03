@@ -167,9 +167,9 @@ block|{
 name|SolrHighlighter
 name|highlighter
 init|=
-name|SolrCore
+name|h
 operator|.
-name|getSolrCore
+name|getCore
 argument_list|()
 operator|.
 name|getHighlighter

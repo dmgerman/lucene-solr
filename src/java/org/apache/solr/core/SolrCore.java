@@ -352,7 +352,7 @@ name|solr
 operator|.
 name|update
 operator|.
-name|DirectUpdateHandler
+name|DirectUpdateHandler2
 import|;
 end_import
 
@@ -2465,7 +2465,7 @@ name|get
 argument_list|(
 literal|"updateHandler/@class"
 argument_list|,
-name|DirectUpdateHandler
+name|DirectUpdateHandler2
 operator|.
 name|class
 operator|.
@@ -5250,8 +5250,15 @@ literal|"Null Request Handler '"
 operator|+
 name|req
 operator|.
-name|getQueryType
+name|getParams
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|CommonParams
+operator|.
+name|QT
+argument_list|)
 operator|+
 literal|"' :"
 operator|+
@@ -5272,8 +5279,15 @@ literal|"Null Request Handler '"
 operator|+
 name|req
 operator|.
-name|getQueryType
+name|getParams
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|CommonParams
+operator|.
+name|QT
+argument_list|)
 operator|+
 literal|"'"
 argument_list|,
@@ -6138,9 +6152,14 @@ name|getQueryResponseWriter
 argument_list|(
 name|request
 operator|.
-name|getParam
+name|getParams
+argument_list|()
+operator|.
+name|get
 argument_list|(
-literal|"wt"
+name|CommonParams
+operator|.
+name|WT
 argument_list|)
 argument_list|)
 return|;
