@@ -1322,10 +1322,6 @@ parameter_list|,
 name|String
 name|systemId
 parameter_list|)
-throws|throws
-name|SAXException
-throws|,
-name|IOException
 block|{
 return|return
 name|HyphenationDTDGenerator
