@@ -313,7 +313,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Copy contents of a directory src to a directory dest.    * If a file in src already exists in dest then the    * one in dest will be blindly overwritten.    *    * @param src source directory    * @param dest destination directory    * @param closeDirSrc if<code>true</code>, call {@link #close()} method on source directory    * @throws IOException    */
+comment|/**    * Copy contents of a directory src to a directory dest.    * If a file in src already exists in dest then the    * one in dest will be blindly overwritten.    *    *<p><b>NOTE:</b> the source directory cannot change    * while this method is running.  Otherwise the results    * are undefined and you could easily hit a    * FileNotFoundException.    *    * @param src source directory    * @param dest destination directory    * @param closeDirSrc if<code>true</code>, call {@link #close()} method on source directory    * @throws IOException    */
 DECL|method|copy
 specifier|public
 specifier|static
