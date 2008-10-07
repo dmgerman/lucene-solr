@@ -6684,6 +6684,19 @@ name|getConfigDir
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|configdir
+operator|.
+name|exists
+argument_list|()
+operator|&&
+name|configdir
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+block|{
 for|for
 control|(
 name|String
@@ -6705,6 +6718,7 @@ name|toUpperCase
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// except the "gettable" list
 name|StringTokenizer
