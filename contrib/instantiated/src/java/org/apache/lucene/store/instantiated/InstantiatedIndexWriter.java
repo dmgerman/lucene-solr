@@ -323,7 +323,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class, similar to {@link org.apache.lucene.index.IndexWriter}, has no locking mechanism.  *<p>  * {@link org.apache.lucene.store.instantiated.InstantiatedIndexReader} is navigating  * the same instances in memory as this writer is updating so searchers actice while  * you are committing are bound to throw exceptions.  *<p>  * Consider using InstantiatedIndex as if it was immutable.  *  * @see org.apache.lucene.index.IndexWriter   */
+comment|/**  * This class, similar to {@link org.apache.lucene.index.IndexWriter}, has no locking mechanism.  *<p>  * {@link org.apache.lucene.store.instantiated.InstantiatedIndexReader} is navigating  * the same instances in memory as this writer is updating so searchers active while  * you are committing are bound to throw exceptions.  *<p>  * Consider using InstantiatedIndex as if it was immutable.  *  * @see org.apache.lucene.index.IndexWriter   */
 end_comment
 
 begin_class
@@ -566,7 +566,7 @@ return|return
 name|mergeFactor
 return|;
 block|}
-comment|/**    * If non-null, information about merges and a message when    * maxFieldLength is reached will be printed to this.    */
+comment|/**    * If non-null, information about merges and a message when    * maxFieldLength is reached could be printed to this -- currently    * not yet implemented.    */
 DECL|method|setInfoStream
 specifier|public
 name|void
