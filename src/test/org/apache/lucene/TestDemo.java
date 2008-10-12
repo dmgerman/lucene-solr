@@ -223,7 +223,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  */
+comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  * Please try to keep src/java/overview.html up-to-date when making changes  * to this class.  */
 end_comment
 
 begin_class
@@ -259,10 +259,8 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead (note that the
-comment|// parameter true will overwrite the index in that directory
-comment|// if one exists):
-comment|//Directory directory = FSDirectory.getDirectory("/tmp/testindex", true);
+comment|// To store an index on disk, use this instead:
+comment|//Directory directory = FSDirectory.getDirectory("/tmp/testindex");
 name|IndexWriter
 name|iwriter
 init|=
