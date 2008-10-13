@@ -774,7 +774,7 @@ name|name
 argument_list|,
 name|core
 operator|.
-name|getIndexDir
+name|getNewIndexDir
 argument_list|()
 argument_list|,
 name|removeAllExisting
