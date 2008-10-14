@@ -147,6 +147,14 @@ specifier|public
 name|boolean
 name|overwriteCommitted
 decl_stmt|;
+DECL|field|commitWithin
+specifier|public
+name|int
+name|commitWithin
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/** Reset state to reuse this object with a different document in the same request */
 DECL|method|clear
 specifier|public
