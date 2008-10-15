@@ -90,6 +90,20 @@ name|DeleteUpdateCommand
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|RollbackUpdateCommand
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is a good place for subclassed update handlers to process the document before it is   * indexed.  You may wish to add/remove fields or check if the requested user is allowed to   * update the given document...  *   * Perhaps you continue adding an error message (without indexing the document)...  * perhaps you throw an error and halt indexing (remove anything already indexed??)  *   * By default, this just passes the request to the next processor in the chain.  *   * @since solr 1.3  */
 end_comment
@@ -207,6 +221,32 @@ condition|)
 name|next
 operator|.
 name|processCommit
+argument_list|(
+name|cmd
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @since Solr 1.4    */
+DECL|method|processRollback
+specifier|public
+name|void
+name|processRollback
+parameter_list|(
+name|RollbackUpdateCommand
+name|cmd
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|next
+operator|!=
+literal|null
+condition|)
+name|next
+operator|.
+name|processRollback
 argument_list|(
 name|cmd
 argument_list|)

@@ -927,7 +927,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"operation not supported"
+literal|"operation not supported: "
 operator|+
 name|cmd
 argument_list|)
@@ -1177,6 +1177,32 @@ expr_stmt|;
 block|}
 block|}
 return|return;
+block|}
+comment|/**    * @since Solr 1.4    */
+DECL|method|rollback
+specifier|public
+name|void
+name|rollback
+parameter_list|(
+name|RollbackUpdateCommand
+name|cmd
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"DirectUpdateHandler doesn't support rollback. Use DirectUpdateHandler2 instead."
+argument_list|)
+throw|;
 block|}
 comment|///////////////////////////////////////////////////////////////////
 comment|/////////////////// helper method for each add type ///////////////

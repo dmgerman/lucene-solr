@@ -64,7 +64,7 @@ name|COMMIT
 init|=
 literal|"commit"
 decl_stmt|;
-comment|/** Commit everything after the command completes */
+comment|/** Optimize the index and commit everything after the command completes */
 DECL|field|OPTIMIZE
 specifier|public
 specifier|static
@@ -72,6 +72,15 @@ name|String
 name|OPTIMIZE
 init|=
 literal|"optimize"
+decl_stmt|;
+comment|/** Rollback update commands */
+DECL|field|ROLLBACK
+specifier|public
+specifier|static
+name|String
+name|ROLLBACK
+init|=
+literal|"rollback"
 decl_stmt|;
 comment|/** Select the update processor to use.  A RequestHandler may or may not respect this parameter */
 DECL|field|UPDATE_PROCESSOR
