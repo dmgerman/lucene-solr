@@ -301,7 +301,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DirectSolrConnection provides an interface to solr that is similar to   * the the HTTP interface, but does not require an HTTP connection.  *   * This class is designed to be as simple as possible and allow for more flexibility  * in how you interface to solr.  *   * @version $Id$  * @since solr 1.2  */
+comment|/**  * DirectSolrConnection provides an interface to Solr that is similar to  * the the HTTP interface, but does not require an HTTP connection.  *   * This class is designed to be as simple as possible and allow for more flexibility  * in how you interface to Solr.  *   * @version $Id$  * @since solr 1.2  */
 end_comment
 
 begin_class
