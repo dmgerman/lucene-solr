@@ -805,7 +805,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Ensures a directory name allways ends with a '/'. */
+comment|/** Ensures a directory name always ends with a '/'. */
 DECL|method|normalizeDir
 specifier|public
 specifier|static
