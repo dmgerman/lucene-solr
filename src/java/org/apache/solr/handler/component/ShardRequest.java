@@ -155,6 +155,15 @@ name|PURPOSE_GET_DEBUG
 init|=
 literal|0x100
 decl_stmt|;
+DECL|field|PURPOSE_GET_STATS
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|PURPOSE_GET_STATS
+init|=
+literal|0x200
+decl_stmt|;
 DECL|field|purpose
 specifier|public
 name|int

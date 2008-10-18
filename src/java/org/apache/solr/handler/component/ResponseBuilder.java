@@ -184,16 +184,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -205,16 +195,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -247,6 +227,11 @@ DECL|field|doFacets
 specifier|public
 name|boolean
 name|doFacets
+decl_stmt|;
+DECL|field|doStats
+specifier|public
+name|boolean
+name|doStats
 decl_stmt|;
 DECL|field|needDocList
 specifier|private
@@ -603,6 +588,10 @@ decl_stmt|;
 DECL|field|_facetInfo
 name|FacetInfo
 name|_facetInfo
+decl_stmt|;
+DECL|field|_statsInfo
+name|StatsInfo
+name|_statsInfo
 decl_stmt|;
 comment|/**    * Utility function to add debugging info.  This will make sure a valid     * debugInfo exists before adding to it.    */
 DECL|method|addDebugInfo

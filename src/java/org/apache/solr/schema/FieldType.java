@@ -369,6 +369,23 @@ operator|!=
 literal|0
 return|;
 block|}
+comment|/** Returns true if fields can have multiple values */
+DECL|method|isMultiValued
+specifier|public
+name|boolean
+name|isMultiValued
+parameter_list|()
+block|{
+return|return
+operator|(
+name|properties
+operator|&
+name|MULTIVALUED
+operator|)
+operator|!=
+literal|0
+return|;
+block|}
 comment|/** subclasses should initialize themselves with the args provided    * and remove valid arguments.  leftover arguments will cause an exception.    * Common boolean properties have already been handled.    *    */
 DECL|method|init
 specifier|protected

@@ -513,6 +513,15 @@ name|names
 operator|.
 name|add
 argument_list|(
+name|StatsComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|)
+expr_stmt|;
+name|names
+operator|.
+name|add
+argument_list|(
 name|DebugComponent
 operator|.
 name|COMPONENT_NAME
