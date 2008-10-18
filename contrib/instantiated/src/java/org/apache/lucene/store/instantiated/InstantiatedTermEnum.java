@@ -248,6 +248,25 @@ block|{
 comment|// this method is not known to be used by anything
 comment|// in lucene for many years now, so there is
 comment|// very to gain by optimizing this method more,
+if|if
+condition|(
+name|reader
+operator|.
+name|getIndex
+argument_list|()
+operator|.
+name|getOrderedTerms
+argument_list|()
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|InstantiatedTerm
 name|term
 init|=
