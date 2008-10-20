@@ -2859,6 +2859,30 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/** Replaces all segments in this instance, but keeps    *  generation, version, counter so that future commits    *  remain write once.    */
+DECL|method|replace
+name|void
+name|replace
+parameter_list|(
+name|SegmentInfos
+name|other
+parameter_list|)
+block|{
+name|clear
+argument_list|()
+expr_stmt|;
+name|addAll
+argument_list|(
+name|other
+argument_list|)
+expr_stmt|;
+name|lastGeneration
+operator|=
+name|other
+operator|.
+name|lastGeneration
+expr_stmt|;
+block|}
 block|}
 end_class
 

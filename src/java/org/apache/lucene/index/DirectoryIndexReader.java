@@ -1062,6 +1062,11 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|deleter
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|writeLock

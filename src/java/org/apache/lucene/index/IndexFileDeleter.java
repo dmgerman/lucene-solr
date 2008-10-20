@@ -272,7 +272,7 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initialize the deleter: find all previous commits in    * the Directory, incref the files they reference, call    * the policy to let it delete commits.  The incoming    * segmentInfos must have been loaded from a commit point    * and not yet modified.  This will remove any files not    * referenced by any of the commits.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Initialize the deleter: find all previous commits in    * the Directory, incref the files they reference, call    * the policy to let it delete commits.  This will remove    * any files not referenced by any of the commits.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexFileDeleter
 specifier|public
 name|IndexFileDeleter
@@ -787,16 +787,8 @@ argument_list|(
 name|commits
 argument_list|)
 expr_stmt|;
-comment|// It's OK for the onInit to remove the current commit
-comment|// point; we just have to checkpoint our in-memory
-comment|// SegmentInfos to protect those files that it uses:
-if|if
-condition|(
-name|currentCommitPoint
-operator|.
-name|deleted
-condition|)
-block|{
+comment|// Always protect the incoming segmentInfos since
+comment|// sometime it may not be the most recent commit
 name|checkpoint
 argument_list|(
 name|segmentInfos
@@ -804,7 +796,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 name|deleteCommits
 argument_list|()
 expr_stmt|;
@@ -1238,6 +1229,55 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// DecRef old files from the last checkpoint, if any:
+name|int
+name|size
+init|=
+name|lastFiles
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|size
+operator|>
+literal|0
+condition|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|size
+condition|;
+name|i
+operator|++
+control|)
+name|decRef
+argument_list|(
+operator|(
+name|List
+operator|)
+name|lastFiles
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|lastFiles
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 name|deletePendingFiles
 argument_list|()
 expr_stmt|;
