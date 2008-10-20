@@ -8664,7 +8664,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**<p>Expert: prepare for commit.  This does the first    *  phase of 2-phase commit.  You can only call this when    *  autoCommit is false.  This method does all steps    *  necessary to commit changes since this writer was    *  opened: flushes pending added and deleted docs, syncs    *  the index files, writes most of next segments_N file.    *  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    * You can also just call {@link #commit()} directly    * without prepareCommit first in which case that method    * will internally call prepareCommit.    */
+comment|/** Expert: prepare for commit.    * @see #prepareCommit(String) */
 DECL|method|prepareCommit
 specifier|public
 specifier|final
@@ -8681,6 +8681,29 @@ argument_list|()
 expr_stmt|;
 name|prepareCommit
 argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**<p>Expert: prepare for commit, specifying    *  commitUserData String.  This does the first phase of    *  2-phase commit.  You can only call this when    *  autoCommit is false.  This method does all steps    *  necessary to commit changes since this writer was    *  opened: flushes pending added and deleted docs, syncs    *  the index files, writes most of next segments_N file.    *  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *     *  You can also just call {@link #commit(String)} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *  @param commitUserData Opaque String that's recorded    *  into the segments file in the index, and retrievable    *  by {@link IndexReader#getCommitUserData}.  Note that    *  when IndexWriter commits itself, for example if open    *  with autoCommit=true, or, during {@link #close}, the    *  commitUserData is unchanged (just carried over from    *  the prior commit).  If this is null then the previous    *  commitUserData is kept.  Also, the commitUserData will    *  only "stick" if there are actually changes in the    *  index to commit.  Therefore it's best to use this    *  feature only when autoCommit is false.    */
+DECL|method|prepareCommit
+specifier|public
+specifier|final
+name|void
+name|prepareCommit
+parameter_list|(
+name|String
+name|commitUserData
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|prepareCommit
+argument_list|(
+name|commitUserData
+argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
@@ -8691,6 +8714,9 @@ specifier|final
 name|void
 name|prepareCommit
 parameter_list|(
+name|String
+name|commitUserData
+parameter_list|,
 name|boolean
 name|internal
 parameter_list|)
@@ -8757,6 +8783,8 @@ expr_stmt|;
 name|startCommit
 argument_list|(
 literal|0
+argument_list|,
+name|commitUserData
 argument_list|)
 expr_stmt|;
 block|}
@@ -8774,6 +8802,8 @@ block|{
 name|startCommit
 argument_list|(
 name|sizeInBytes
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|finishCommit
@@ -8821,12 +8851,34 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    *<p>Commits all pending updates (added& deleted    * documents) to the index, and syncs all referenced index    * files, such that a reader will see the changes and the    * index updates will survive an OS or machine crash or    * power loss.  Note that this does not wait for any    * running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    * @see #prepareCommit    */
+comment|/** Commits all changes to the index.    *  @see #commit(String) */
 DECL|method|commit
 specifier|public
 specifier|final
 name|void
 name|commit
 parameter_list|()
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|commit
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Commits all changes to the index, specifying a    *  commitUserData String.  This just calls {@link    *  #prepareCommit(String)} (if you didn't already call    *  it) and then {@link #finishCommit}. */
+DECL|method|commit
+specifier|public
+specifier|final
+name|void
+name|commit
+parameter_list|(
+name|String
+name|commitUserData
+parameter_list|)
 throws|throws
 name|CorruptIndexException
 throws|,
@@ -8862,6 +8914,8 @@ argument_list|)
 expr_stmt|;
 name|prepareCommit
 argument_list|(
+name|commitUserData
+argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -8937,6 +8991,16 @@ operator|.
 name|updateGeneration
 argument_list|(
 name|pendingCommit
+argument_list|)
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|setUserData
+argument_list|(
+name|pendingCommit
+operator|.
+name|getUserData
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|setRollbackSegmentInfos
@@ -13436,6 +13500,9 @@ name|startCommit
 parameter_list|(
 name|long
 name|sizeInBytes
+parameter_list|,
+name|String
+name|commitUserData
 parameter_list|)
 throws|throws
 name|IOException
@@ -13579,6 +13646,19 @@ name|segmentInfos
 operator|.
 name|clone
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|commitUserData
+operator|!=
+literal|null
+condition|)
+name|toSync
+operator|.
+name|setUserData
+argument_list|(
+name|commitUserData
+argument_list|)
 expr_stmt|;
 name|deleter
 operator|.

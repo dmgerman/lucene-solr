@@ -1144,11 +1144,50 @@ name|directory
 argument_list|)
 return|;
 block|}
+comment|/**    * Reads commitUserData, previously passed to {@link    * IndexWriter#commit(String)}, from current index    * segments file.  This will return null if {@link    * IndexWriter#commit(String)} has never been called for    * this index.    *     * @param directory where the index resides.    * @return commit userData.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @see #getCommitUserData()    */
+DECL|method|getCommitUserData
+specifier|public
+specifier|static
+name|String
+name|getCommitUserData
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|SegmentInfos
+operator|.
+name|readCurrentUserData
+argument_list|(
+name|directory
+argument_list|)
+return|;
+block|}
 comment|/**    * Version number when this IndexReader was opened. Not implemented in the IndexReader base class.    * @throws UnsupportedOperationException unless overridden in subclass    */
 DECL|method|getVersion
 specifier|public
 name|long
 name|getVersion
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This reader does not support this method."
+argument_list|)
+throw|;
+block|}
+comment|/**    * Retrieve the String userData optionally passed to    * IndexWriter#commit.  This will return null if {@link    * IndexWriter#commit(String)} has never been called for    * this index.    *    * @see #getCommitUserData(Directory)    */
+DECL|method|getCommitUserData
+specifier|public
+name|String
+name|getCommitUserData
 parameter_list|()
 block|{
 throw|throw
