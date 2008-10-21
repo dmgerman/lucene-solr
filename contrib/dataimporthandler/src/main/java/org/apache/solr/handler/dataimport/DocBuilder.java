@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrInputDocument
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -1288,9 +1302,7 @@ parameter_list|(
 name|VariableResolverImpl
 name|vr
 parameter_list|,
-name|SolrWriter
-operator|.
-name|SolrDoc
+name|SolrInputDocument
 name|doc
 parameter_list|,
 name|Map
@@ -1552,9 +1564,8 @@ argument_list|)
 expr_stmt|;
 name|doc
 operator|=
-name|writer
-operator|.
-name|getSolrDocInstance
+operator|new
+name|SolrInputDocument
 argument_list|()
 expr_stmt|;
 name|DataConfig
@@ -1992,9 +2003,7 @@ specifier|private
 name|void
 name|setDocumentBoost
 parameter_list|(
-name|SolrWriter
-operator|.
-name|SolrDoc
+name|SolrInputDocument
 name|doc
 parameter_list|,
 name|Map
@@ -2079,9 +2088,7 @@ operator|.
 name|Entity
 name|entity
 parameter_list|,
-name|SolrWriter
-operator|.
-name|SolrDoc
+name|SolrInputDocument
 name|doc
 parameter_list|,
 name|Map
@@ -2251,9 +2258,7 @@ name|Object
 argument_list|>
 name|lowerCaseMap
 parameter_list|,
-name|SolrWriter
-operator|.
-name|SolrDoc
+name|SolrInputDocument
 name|doc
 parameter_list|)
 block|{
