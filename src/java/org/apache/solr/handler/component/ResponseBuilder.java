@@ -419,6 +419,7 @@ name|int
 name|stage
 decl_stmt|;
 comment|// What stage is this current request at?
+comment|//The address of the Shard
 DECL|field|shards
 specifier|public
 name|String
