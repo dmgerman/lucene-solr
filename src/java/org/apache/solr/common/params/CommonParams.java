@@ -228,6 +228,16 @@ name|HEADER_ECHO_PARAMS
 init|=
 literal|"echoParams"
 decl_stmt|;
+comment|/** include header in the response */
+DECL|field|OMIT_HEADER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|OMIT_HEADER
+init|=
+literal|"omitHeader"
+decl_stmt|;
 comment|/** valid values for:<code>echoParams</code> */
 DECL|enum|EchoParamStyle
 specifier|public
