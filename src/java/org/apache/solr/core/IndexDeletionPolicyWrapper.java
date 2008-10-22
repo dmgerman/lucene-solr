@@ -594,6 +594,21 @@ name|isDeleted
 argument_list|()
 return|;
 block|}
+DECL|method|getTimestamp
+specifier|public
+name|long
+name|getTimestamp
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|delegate
+operator|.
+name|getTimestamp
+argument_list|()
+return|;
+block|}
 block|}
 comment|/**    * @param version the version of the commit point    * @return a commit point corresponding to the given version    */
 DECL|method|getCommitPoint
