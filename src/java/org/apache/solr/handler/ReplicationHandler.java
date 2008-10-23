@@ -5284,6 +5284,9 @@ name|reserveCommitDuration
 argument_list|)
 expr_stmt|;
 block|}
+name|packetsWritten
+operator|++
+expr_stmt|;
 block|}
 block|}
 else|else
