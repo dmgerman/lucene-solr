@@ -414,6 +414,8 @@ argument_list|(
 literal|"request"
 argument_list|,
 name|requestParameters
+operator|.
+name|requestParams
 argument_list|)
 expr_stmt|;
 name|indexerNamespace
