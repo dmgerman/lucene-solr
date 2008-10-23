@@ -1375,6 +1375,8 @@ argument_list|,
 name|tmpIndexDir
 argument_list|,
 name|client
+argument_list|,
+name|latestVersion
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -1433,6 +1435,8 @@ argument_list|(
 name|client
 argument_list|,
 name|confFilesToDownload
+argument_list|,
+name|latestVersion
 argument_list|)
 expr_stmt|;
 if|if
@@ -2313,6 +2317,9 @@ name|Object
 argument_list|>
 argument_list|>
 name|confFilesToDownload
+parameter_list|,
+name|long
+name|latestVersion
 parameter_list|)
 throws|throws
 name|Exception
@@ -2437,6 +2444,8 @@ argument_list|,
 name|client
 argument_list|,
 literal|true
+argument_list|,
+name|latestVersion
 argument_list|)
 expr_stmt|;
 name|currentFile
@@ -2484,6 +2493,9 @@ name|snapDir
 parameter_list|,
 name|HttpClient
 name|client
+parameter_list|,
+name|long
+name|latestVersion
 parameter_list|)
 throws|throws
 name|Exception
@@ -2556,6 +2568,8 @@ argument_list|,
 name|client
 argument_list|,
 literal|false
+argument_list|,
+name|latestVersion
 argument_list|)
 expr_stmt|;
 name|currentFile
@@ -4069,6 +4083,11 @@ name|aborted
 init|=
 literal|false
 decl_stmt|;
+DECL|field|indexVersion
+specifier|private
+name|Long
+name|indexVersion
+decl_stmt|;
 DECL|method|FileFetcher
 name|FileFetcher
 parameter_list|(
@@ -4091,6 +4110,9 @@ name|client
 parameter_list|,
 name|boolean
 name|isConf
+parameter_list|,
+name|long
+name|latestVersion
 parameter_list|)
 throws|throws
 name|FileNotFoundException
@@ -4146,6 +4168,10 @@ operator|.
 name|saveAs
 operator|=
 name|saveAs
+expr_stmt|;
+name|indexVersion
+operator|=
+name|latestVersion
 expr_stmt|;
 name|this
 operator|.
@@ -4901,6 +4927,18 @@ argument_list|(
 name|COMMAND
 argument_list|,
 name|CMD_GET_FILE
+argument_list|)
+expr_stmt|;
+name|post
+operator|.
+name|addParameter
+argument_list|(
+name|CMD_INDEX_VERSION
+argument_list|,
+name|indexVersion
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
