@@ -630,6 +630,7 @@ literal|false
 argument_list|)
 decl_stmt|;
 comment|//boolean cacheIdf = params.getBool(TermVectorParams.IDF, false);
+comment|//short cut to all values.
 name|boolean
 name|all
 init|=
@@ -809,6 +810,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+comment|//the TVMapper is a TermVectorMapper which can be used to optimize loading of Term Vectors
 name|TVMapper
 name|mapper
 init|=
@@ -849,6 +851,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+comment|//Only load the id field
 name|SetBasedFieldSelector
 name|fieldSelector
 init|=
