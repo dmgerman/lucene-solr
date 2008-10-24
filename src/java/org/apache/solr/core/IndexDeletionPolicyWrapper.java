@@ -100,11 +100,13 @@ name|IndexDeletionPolicy
 block|{
 DECL|field|deletionPolicy
 specifier|private
+specifier|final
 name|IndexDeletionPolicy
 name|deletionPolicy
 decl_stmt|;
 DECL|field|solrVersionVsCommits
 specifier|private
+specifier|volatile
 name|Map
 argument_list|<
 name|Long
@@ -124,6 +126,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|reserves
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|Long
@@ -143,6 +146,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|latestCommit
 specifier|private
+specifier|volatile
 name|IndexCommit
 name|latestCommit
 decl_stmt|;
@@ -195,20 +199,56 @@ name|long
 name|reserveTime
 parameter_list|)
 block|{
-name|reserves
-operator|.
-name|put
-argument_list|(
-name|indexVersion
-argument_list|,
+name|long
+name|timeToSet
+init|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
 name|reserveTime
+decl_stmt|;
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
+name|Long
+name|previousTime
+init|=
+name|reserves
+operator|.
+name|put
+argument_list|(
+name|indexVersion
+argument_list|,
+name|timeToSet
 argument_list|)
+decl_stmt|;
+comment|// this is the common success case: the older time didn't exist, or
+comment|// came before the new time.
+if|if
+condition|(
+name|previousTime
+operator|==
+literal|null
+operator|||
+name|previousTime
+operator|<=
+name|timeToSet
+condition|)
+break|break;
+comment|// At this point, we overwrote a longer reservation, so we want to restore the older one.
+comment|// the problem is that an even longer reservation may come in concurrently
+comment|// and we don't want to overwrite that one too.  We simply keep retrying in a loop
+comment|// with the maximum time value we have seen.
+name|timeToSet
+operator|=
+name|previousTime
 expr_stmt|;
+block|}
 block|}
 DECL|method|cleanReserves
 specifier|private

@@ -521,6 +521,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|indexCommitPoint
 specifier|private
+specifier|volatile
 name|IndexCommit
 name|indexCommitPoint
 decl_stmt|;
@@ -591,9 +592,15 @@ name|CMD_INDEX_VERSION
 argument_list|)
 condition|)
 block|{
+name|IndexCommit
+name|commitPoint
+init|=
+name|indexCommitPoint
+decl_stmt|;
+comment|// make a copy so it won't change
 if|if
 condition|(
-name|indexCommitPoint
+name|commitPoint
 operator|!=
 literal|null
 condition|)
@@ -604,7 +611,7 @@ name|add
 argument_list|(
 name|CMD_INDEX_VERSION
 argument_list|,
-name|indexCommitPoint
+name|commitPoint
 operator|.
 name|getVersion
 argument_list|()
@@ -616,7 +623,7 @@ name|add
 argument_list|(
 name|GENERATION
 argument_list|,
-name|indexCommitPoint
+name|commitPoint
 operator|.
 name|getGeneration
 argument_list|()
@@ -1285,17 +1292,13 @@ condition|)
 return|return;
 if|if
 condition|(
+operator|!
 name|snapPullLock
 operator|.
-name|isLocked
+name|tryLock
 argument_list|()
 condition|)
 return|return;
-name|snapPullLock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
 try|try
 block|{
 name|snapPuller
@@ -1336,14 +1339,6 @@ name|boolean
 name|isReplicating
 parameter_list|()
 block|{
-name|boolean
-name|b
-init|=
-name|snapPullLock
-operator|.
-name|isLocked
-argument_list|()
-decl_stmt|;
 return|return
 name|snapPullLock
 operator|.
@@ -2876,11 +2871,17 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+name|IndexCommit
+name|commit
+init|=
+name|indexCommitPoint
+decl_stmt|;
+comment|// make a copy so it won't change
 if|if
 condition|(
 name|isMaster
 operator|&&
-name|indexCommitPoint
+name|commit
 operator|!=
 literal|null
 condition|)
@@ -2893,7 +2894,7 @@ literal|"replicatable"
 operator|+
 name|CMD_INDEX_VERSION
 argument_list|,
-name|indexCommitPoint
+name|commit
 operator|.
 name|getVersion
 argument_list|()
@@ -2907,7 +2908,7 @@ literal|"replicatable"
 operator|+
 name|GENERATION
 argument_list|,
-name|indexCommitPoint
+name|commit
 operator|.
 name|getGeneration
 argument_list|()
