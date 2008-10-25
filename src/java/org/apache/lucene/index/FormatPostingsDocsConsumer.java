@@ -20,98 +20,46 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|IOException
 import|;
 end_import
 
+begin_comment
+comment|/**  * NOTE: this API is experimental and will likely change  */
+end_comment
+
 begin_class
-DECL|class|InvertedDocConsumer
+DECL|class|FormatPostingsDocsConsumer
 specifier|abstract
 class|class
-name|InvertedDocConsumer
+name|FormatPostingsDocsConsumer
 block|{
-comment|/** Add a new thread */
-DECL|method|addThread
+comment|/** Adds a new doc in this term.  If this returns null    *  then we just skip consuming positions/payloads. */
+DECL|method|addDoc
 specifier|abstract
-name|InvertedDocConsumerPerThread
-name|addThread
+name|FormatPostingsPositionsConsumer
+name|addDoc
 parameter_list|(
-name|DocInverterPerThread
-name|docInverterPerThread
-parameter_list|)
-function_decl|;
-comment|/** Abort (called after hitting AbortException) */
-DECL|method|abort
-specifier|abstract
-name|void
-name|abort
-parameter_list|()
-function_decl|;
-comment|/** Flush a new segment */
-DECL|method|flush
-specifier|abstract
-name|void
-name|flush
-parameter_list|(
-name|Map
-name|threadsAndFields
+name|int
+name|docID
 parameter_list|,
-name|SegmentWriteState
-name|state
+name|int
+name|termDocFreq
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Close doc stores */
-DECL|method|closeDocStore
+comment|/** Called when we are done adding docs to this term */
+DECL|method|finish
 specifier|abstract
 name|void
-name|closeDocStore
-parameter_list|(
-name|SegmentWriteState
-name|state
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Attempt to free RAM, returning true if any RAM was    *  freed */
-DECL|method|freeRAM
-specifier|abstract
-name|boolean
-name|freeRAM
+name|finish
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
-DECL|field|fieldInfos
-name|FieldInfos
-name|fieldInfos
-decl_stmt|;
-DECL|method|setFieldInfos
-name|void
-name|setFieldInfos
-parameter_list|(
-name|FieldInfos
-name|fieldInfos
-parameter_list|)
-block|{
-name|this
-operator|.
-name|fieldInfos
-operator|=
-name|fieldInfos
-expr_stmt|;
-block|}
 block|}
 end_class
 

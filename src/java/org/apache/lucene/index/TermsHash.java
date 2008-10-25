@@ -344,9 +344,7 @@ parameter_list|(
 name|Map
 name|threadsAndFields
 parameter_list|,
-name|DocumentsWriter
-operator|.
-name|FlushState
+name|SegmentWriteState
 name|state
 parameter_list|)
 block|{
@@ -435,9 +433,7 @@ specifier|synchronized
 name|void
 name|closeDocStore
 parameter_list|(
-name|DocumentsWriter
-operator|.
-name|FlushState
+name|SegmentWriteState
 name|state
 parameter_list|)
 throws|throws
@@ -473,9 +469,7 @@ name|Map
 name|threadsAndFields
 parameter_list|,
 specifier|final
-name|DocumentsWriter
-operator|.
-name|FlushState
+name|SegmentWriteState
 name|state
 parameter_list|)
 throws|throws

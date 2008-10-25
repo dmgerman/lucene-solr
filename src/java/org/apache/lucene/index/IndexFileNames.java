@@ -502,6 +502,26 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|segmentFileName
+specifier|static
+name|String
+name|segmentFileName
+parameter_list|(
+name|String
+name|segmentName
+parameter_list|,
+name|String
+name|ext
+parameter_list|)
+block|{
+return|return
+name|segmentName
+operator|+
+literal|"."
+operator|+
+name|ext
+return|;
+block|}
 block|}
 end_class
 

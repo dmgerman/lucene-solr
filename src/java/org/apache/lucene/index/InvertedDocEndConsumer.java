@@ -59,9 +59,7 @@ parameter_list|(
 name|Map
 name|threadsAndFields
 parameter_list|,
-name|DocumentsWriter
-operator|.
-name|FlushState
+name|SegmentWriteState
 name|state
 parameter_list|)
 throws|throws
@@ -72,9 +70,7 @@ specifier|abstract
 name|void
 name|closeDocStore
 parameter_list|(
-name|DocumentsWriter
-operator|.
-name|FlushState
+name|SegmentWriteState
 name|state
 parameter_list|)
 throws|throws

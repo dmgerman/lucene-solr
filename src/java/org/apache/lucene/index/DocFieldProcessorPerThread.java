@@ -355,9 +355,7 @@ DECL|method|trimFields
 name|void
 name|trimFields
 parameter_list|(
-name|DocumentsWriter
-operator|.
-name|FlushState
+name|SegmentWriteState
 name|state
 parameter_list|)
 block|{
