@@ -1267,7 +1267,7 @@ literal|"This reader does not support this method."
 argument_list|)
 throw|;
 block|}
-comment|/**    *  Return an array of term frequency vectors for the specified document.    *  The array contains a vector for each vectorized field in the document.    *  Each vector contains terms and frequencies for all terms in a given vectorized field.    *  If no such fields existed, the method returns null. The term vectors that are    * returned my either be of type TermFreqVector or of type TermPositionsVector if    * positions or offsets have been stored.    *     * @param docNumber document for which term frequency vectors are returned    * @return array of term frequency vectors. May be null if no term vectors have been    *  stored for the specified document.    * @throws IOException if index cannot be accessed    * @see org.apache.lucene.document.Field.TermVector    */
+comment|/**    * Return an array of term frequency vectors for the specified document.    * The array contains a vector for each vectorized field in the document.    * Each vector contains terms and frequencies for all terms in a given vectorized field.    * If no such fields existed, the method returns null. The term vectors that are    * returned may either be of type {@link TermFreqVector}    * or of type {@link TermPositionVector} if    * positions or offsets have been stored.    *     * @param docNumber document for which term frequency vectors are returned    * @return array of term frequency vectors. May be null if no term vectors have been    *  stored for the specified document.    * @throws IOException if index cannot be accessed    * @see org.apache.lucene.document.Field.TermVector    */
 DECL|method|getTermFreqVectors
 specifier|abstract
 specifier|public
@@ -1281,7 +1281,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    *  Return a term frequency vector for the specified document and field. The    *  returned vector contains terms and frequencies for the terms in    *  the specified field of this document, if the field had the storeTermVector    *  flag set. If termvectors had been stored with positions or offsets, a     *  TermPositionsVector is returned.    *     * @param docNumber document for which the term frequency vector is returned    * @param field field for which the term frequency vector is returned.    * @return term frequency vector May be null if field does not exist in the specified    * document or term vector was not stored.    * @throws IOException if index cannot be accessed    * @see org.apache.lucene.document.Field.TermVector    */
+comment|/**    * Return a term frequency vector for the specified document and field. The    * returned vector contains terms and frequencies for the terms in    * the specified field of this document, if the field had the storeTermVector    * flag set. If termvectors had been stored with positions or offsets, a     * {@link TermPositionVector} is returned.    *     * @param docNumber document for which the term frequency vector is returned    * @param field field for which the term frequency vector is returned.    * @return term frequency vector May be null if field does not exist in the specified    * document or term vector was not stored.    * @throws IOException if index cannot be accessed    * @see org.apache.lucene.document.Field.TermVector    */
 DECL|method|getTermFreqVector
 specifier|abstract
 specifier|public
