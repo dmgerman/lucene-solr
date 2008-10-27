@@ -453,6 +453,12 @@ specifier|private
 name|float
 name|version
 decl_stmt|;
+DECL|field|loader
+specifier|private
+specifier|final
+name|SolrResourceLoader
+name|loader
+decl_stmt|;
 comment|/**    * Constructs a schema using the specified file name using the normal    * Config path directory searching rules.    *    * @see Config#openResource    * @deprecated Use {@link #IndexSchema(SolrConfig, String, InputStream)} instead.    */
 annotation|@
 name|Deprecated
@@ -514,14 +520,13 @@ name|resourceName
 operator|=
 name|name
 expr_stmt|;
-name|SolrResourceLoader
 name|loader
-init|=
+operator|=
 name|solrConfig
 operator|.
 name|getResourceLoader
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|InputStream
 name|lis
 init|=
@@ -578,6 +583,7 @@ name|loader
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @deprecated -- get access to SolrConfig some other way...    */
 DECL|method|getSolrConfig
 specifier|public
 name|SolrConfig
@@ -586,6 +592,17 @@ parameter_list|()
 block|{
 return|return
 name|solrConfig
+return|;
+block|}
+comment|/**    * @since solr 1.4    */
+DECL|method|getResourceLoader
+specifier|public
+name|SolrResourceLoader
+name|getResourceLoader
+parameter_list|()
+block|{
+return|return
+name|loader
 return|;
 block|}
 comment|/** Gets the name of the resource used to instantiate this schema. */
@@ -629,10 +646,7 @@ name|getInputStream
 parameter_list|()
 block|{
 return|return
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 operator|.
 name|openResource
 argument_list|(
@@ -1460,10 +1474,7 @@ init|=
 operator|new
 name|Config
 argument_list|(
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 argument_list|,
 literal|"schema"
 argument_list|,
@@ -1563,7 +1574,7 @@ name|AbstractPluginLoader
 argument_list|<
 name|FieldType
 argument_list|>
-name|loader
+name|fieldLoader
 init|=
 operator|new
 name|AbstractPluginLoader
@@ -1836,14 +1847,11 @@ operator|.
 name|NODESET
 argument_list|)
 decl_stmt|;
-name|loader
+name|fieldLoader
 operator|.
 name|load
 argument_list|(
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 argument_list|,
 name|nodes
 argument_list|)
@@ -2487,10 +2495,7 @@ specifier|final
 name|Object
 name|obj
 init|=
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 operator|.
 name|newInstance
 argument_list|(
@@ -3561,10 +3566,7 @@ return|return
 operator|(
 name|Analyzer
 operator|)
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 operator|.
 name|newInstance
 argument_list|(
@@ -3713,10 +3715,7 @@ name|tokenizerLoader
 operator|.
 name|load
 argument_list|(
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 argument_list|,
 operator|(
 name|NodeList
@@ -3867,10 +3866,7 @@ name|filterLoader
 operator|.
 name|load
 argument_list|(
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+name|loader
 argument_list|,
 operator|(
 name|NodeList

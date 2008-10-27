@@ -297,9 +297,6 @@ name|MergePolicy
 operator|)
 name|schema
 operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
 name|getResourceLoader
 argument_list|()
 operator|.
@@ -369,9 +366,6 @@ operator|(
 name|MergeScheduler
 operator|)
 name|schema
-operator|.
-name|getSolrConfig
-argument_list|()
 operator|.
 name|getResourceLoader
 argument_list|()
