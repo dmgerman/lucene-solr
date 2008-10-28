@@ -2222,6 +2222,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
 name|importLock
 operator|.
 name|tryLock
