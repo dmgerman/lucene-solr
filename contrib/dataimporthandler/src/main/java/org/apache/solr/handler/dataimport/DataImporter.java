@@ -2228,11 +2228,6 @@ name|tryLock
 argument_list|()
 condition|)
 return|return;
-name|importLock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
 try|try
 block|{
 name|String
