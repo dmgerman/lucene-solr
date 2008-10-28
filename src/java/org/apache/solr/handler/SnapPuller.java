@@ -1092,7 +1092,7 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This command downloads all the necessary files from master to install a    * snapshot. Only changed files are downloaded.    *    * @param core the SolrCore    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
+comment|/**    * This command downloads all the necessary files from master to install a    * snapshot. Only changed files are downloaded. it also downloads the    * conf files (if they are modified)    *    * @param core the SolrCore    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1128,6 +1128,8 @@ operator|new
 name|HttpClient
 argument_list|()
 expr_stmt|;
+comment|// The closing is done in a different thread. So use multiThreaded conn manager
+comment|// else it prints out a warning
 name|client
 operator|.
 name|setHttpConnectionManager
@@ -1137,6 +1139,7 @@ name|MultiThreadedHttpConnectionManager
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//get the current 'replicateable' index version in the master
 name|NamedList
 name|response
 init|=
@@ -1178,6 +1181,7 @@ operator|==
 literal|0L
 condition|)
 block|{
+comment|//there is nothing to be replicated
 return|return
 literal|false
 return|;
@@ -1249,6 +1253,7 @@ operator|==
 name|latestGeneration
 condition|)
 block|{
+comment|//master and slave are alsready in sync just return
 name|LOG
 operator|.
 name|info
@@ -1299,6 +1304,7 @@ argument_list|(
 literal|"Starting replication process"
 argument_list|)
 expr_stmt|;
+comment|// get the list of files first
 name|fetchFileList
 argument_list|(
 name|latestVersion
@@ -1318,6 +1324,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// use a synchronized list because the list is read by other threads (to show details)
 name|filesDownloaded
 operator|=
 name|Collections
@@ -1337,6 +1344,8 @@ argument_list|>
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// if the generateion of master is older than that of the slave , it means they are not compatible to be copied
+comment|// then a new index direcory to be created and all the files need to be copied
 name|boolean
 name|isSnapNeeded
 init|=
@@ -2205,6 +2214,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**All the files are copied to a temp dir first    */
 DECL|method|createTempindexDir
 specifier|private
 name|File
@@ -2495,6 +2505,7 @@ name|tmpconfDir
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** download the index files. if snap needed download all the files .    * @param snapNeeded is it a fresh index copy    * @param snapDir the directory to which files need to be downloadeed to    * @param client the httpclient instance    * @param latestVersion the version number    */
 DECL|method|downloadIndexFiles
 specifier|private
 name|void
@@ -2627,6 +2638,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**All the files which are common between master and slave must have    * same timestamp and size else we assume they are not compatible (stale)    */
 DECL|method|isIndexStale
 specifier|private
 name|boolean
@@ -2702,6 +2714,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**Copy a file by the File#renameTo() method. if it fails , it is considered    * a failure    * todo may be we should try a simple copy if it fails    */
 DECL|method|copyAFile
 specifier|private
 name|boolean
@@ -2819,6 +2832,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**Copy all index files from the temp index dir to the actual index    */
 DECL|method|copyIndexFiles
 specifier|private
 name|boolean
@@ -2875,6 +2889,9 @@ argument_list|(
 name|NAME
 argument_list|)
 decl_stmt|;
+comment|// the segments file must be copied last
+comment|// or else if there is a failure in between the
+comment|// index will be corrupted
 if|if
 condition|(
 name|fname
@@ -2918,6 +2935,7 @@ name|fname
 argument_list|)
 expr_stmt|;
 block|}
+comment|//copy the segments file last
 if|if
 condition|(
 name|segmentsFile
@@ -2947,6 +2965,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**The conf files are copied to the tmp dir to the config dir    * A backup of the old file is maintained    */
 DECL|method|copyTmpConfFiles2Conf
 specifier|private
 name|void
@@ -3144,6 +3163,7 @@ name|d
 argument_list|)
 return|;
 block|}
+comment|/**if the index is stale by any chance. use the new feature of solr to load index    * from a different dir in the data dir.    */
 DECL|method|modifyIndexProps
 specifier|private
 name|void
@@ -3300,6 +3320,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**The local conf files are compared with the conf files in the master. If they are    * same (by checksum) do not copy    */
 DECL|method|getModifiedConfFiles
 specifier|private
 name|Collection
@@ -3513,6 +3534,7 @@ name|values
 argument_list|()
 return|;
 block|}
+comment|/**delete the directree recursively    */
 DECL|method|delTree
 specifier|static
 name|boolean
@@ -3614,6 +3636,7 @@ name|delete
 argument_list|()
 return|;
 block|}
+comment|/**periodic polling is disabled    */
 DECL|method|disablePoll
 name|void
 name|disablePoll
@@ -3636,7 +3659,7 @@ name|pollDisabled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Enable polling    */
+comment|/**    * Enable periodic polling    */
 DECL|method|enablePoll
 name|void
 name|enablePoll
@@ -3659,7 +3682,7 @@ name|pollDisabled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Stops the ongoing pull    */
+comment|/** Stops the ongoing pull    */
 DECL|method|abortPull
 name|void
 name|abortPull
@@ -3679,6 +3702,7 @@ return|return
 name|replicationStartTime
 return|;
 block|}
+comment|/**used by details page for display.    */
 DECL|method|getConfFilesToDownload
 name|List
 argument_list|<
@@ -3706,6 +3730,7 @@ name|tmp
 init|=
 name|confFilesToDownload
 decl_stmt|;
+comment|//create a new instance. or else iterator may fail
 return|return
 name|tmp
 operator|==
@@ -4011,6 +4036,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**The class acts as a client for ReplicationHandler.FileStream.    * It understands the protoolc well    *    */
 DECL|class|FileFetcher
 specifier|private
 class|class
@@ -4225,6 +4251,7 @@ name|Adler32
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**The main method which downloads file      * @throws Exception      */
 DECL|method|fetchFile
 name|void
 name|fetchFile
@@ -4251,6 +4278,7 @@ name|result
 decl_stmt|;
 try|try
 block|{
+comment|//fetch packets one by one in a single request
 name|result
 operator|=
 name|fetchPackets
@@ -4269,6 +4297,8 @@ operator|==
 name|NO_CONTENT
 condition|)
 block|{
+comment|// if the file is downloaded properly set the
+comment|//  timestamp same as that in the server
 if|if
 condition|(
 name|file
@@ -4285,6 +4315,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//if there is an error continue. But continue from the point where it got broken
 block|}
 finally|finally
 block|{
@@ -4412,6 +4443,7 @@ argument_list|(
 name|intbytes
 argument_list|)
 expr_stmt|;
+comment|//read the size of the packet
 name|int
 name|packetSize
 init|=
@@ -4463,6 +4495,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//read the checksum
 name|fis
 operator|.
 name|readFully
@@ -4478,6 +4511,7 @@ name|longbytes
 argument_list|)
 expr_stmt|;
 block|}
+comment|//then read the packet of bytes
 name|fis
 operator|.
 name|readFully
@@ -4489,6 +4523,7 @@ argument_list|,
 name|packetSize
 argument_list|)
 expr_stmt|;
+comment|//compare the checksum as sent from the master
 if|if
 condition|(
 name|includeChecksum
@@ -4534,11 +4569,13 @@ operator|+
 name|currentFile
 argument_list|)
 expr_stmt|;
+comment|//if checksum is wrong it is a problem  return for retry
 return|return
 literal|1
 return|;
 block|}
 block|}
+comment|//if everything is fine, write down the packet to the file
 name|fileChannel
 operator|.
 name|write
@@ -4568,6 +4605,7 @@ condition|)
 return|return
 literal|0
 return|;
+comment|//errorcount is always set to zero after a successful packet
 name|errorCount
 operator|=
 literal|0
@@ -4599,9 +4637,11 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//for any failure , increment the error count
 name|errorCount
 operator|++
 expr_stmt|;
+comment|//if it fails for the same pacaket for   MAX_RETRIES fail and come out
 if|if
 condition|(
 name|errorCount
@@ -4632,7 +4672,7 @@ name|ERR
 return|;
 block|}
 block|}
-comment|/**      * The webcontainer flushes the data only after it fills the buffer size.      * So, all data has to be read as readFully() other wise it fails. So read      * everything as bytes and then extract int out of it      *      * @param b      * @return      */
+comment|/**      * The webcontainer flushes the data only after it fills the buffer size.      * So, all data has to be read as readFully() other wise it fails. So read      * everything as bytes and then extract int out of it      */
 DECL|method|readInt
 specifier|private
 name|int
@@ -4695,7 +4735,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/**      * Same as above but to read long      *      * @param b      * @return      */
+comment|/**      * Same as above but to read long      */
 DECL|method|readLong
 specifier|private
 name|long
@@ -4835,6 +4875,7 @@ operator|)
 operator|)
 return|;
 block|}
+comment|/**cleanup everything      */
 DECL|method|cleanup
 specifier|private
 name|void
@@ -4843,6 +4884,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+comment|//close the file
 name|fileChannel
 operator|.
 name|close
@@ -4864,6 +4906,8 @@ operator|!=
 name|size
 condition|)
 block|{
+comment|//if the download is notcomplete then
+comment|//delete the file being downloaded
 try|try
 block|{
 name|file
@@ -4891,6 +4935,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//if the failure is due to a user abort it is returned nomally else an exception is thrown
 if|if
 condition|(
 operator|!
@@ -4921,6 +4966,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**Open a new stream using HttpClient      */
 DECL|method|getStream
 name|FastInputStream
 name|getStream
@@ -4936,6 +4982,7 @@ argument_list|(
 name|masterUrl
 argument_list|)
 expr_stmt|;
+comment|//the method is command=filecontent
 name|post
 operator|.
 name|addParameter
@@ -4945,6 +4992,7 @@ argument_list|,
 name|CMD_GET_FILE
 argument_list|)
 expr_stmt|;
+comment|//add the version to download. This is used to reserve the download
 name|post
 operator|.
 name|addParameter
@@ -4962,6 +5010,7 @@ condition|(
 name|isConf
 condition|)
 block|{
+comment|//set cf instead of file for config file
 name|post
 operator|.
 name|addParameter
@@ -4984,6 +5033,7 @@ name|fileName
 argument_list|)
 expr_stmt|;
 block|}
+comment|//use checksum
 if|if
 condition|(
 name|this
@@ -4999,6 +5049,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
+comment|//wt=filestream this is a custom protocol
 name|post
 operator|.
 name|addParameter
@@ -5008,6 +5059,8 @@ argument_list|,
 name|FILE_STREAM
 argument_list|)
 expr_stmt|;
+comment|//This happen if there is a failure there is a retry. the offset=<sizedownloaded> ensures that
+comment|// the server starts from the offset
 if|if
 condition|(
 name|bytesDownloaded
@@ -5042,6 +5095,7 @@ operator|.
 name|getResponseBodyAsStream
 argument_list|()
 decl_stmt|;
+comment|//wrap it using FastInputStream
 return|return
 operator|new
 name|FastInputStream
