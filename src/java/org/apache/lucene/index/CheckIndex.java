@@ -932,6 +932,19 @@ elseif|else
 if|if
 condition|(
 name|format
+operator|==
+name|SegmentInfos
+operator|.
+name|FORMAT_USER_DATA
+condition|)
+name|sFormat
+operator|=
+literal|"FORMAT_USER_DATA [Lucene 2.9]"
+expr_stmt|;
+elseif|else
+if|if
+condition|(
+name|format
 operator|<
 name|SegmentInfos
 operator|.
