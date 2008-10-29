@@ -4101,7 +4101,7 @@ name|int
 name|maxWarmingSearchers
 decl_stmt|;
 comment|// max number of on-deck searchers allowed
-comment|/**   * Return a registered {@link RefCounted}&lt;{@link SolrIndexSearcher}&gt; with   * the reference count incremented.  It<b>must</b> be decremented when no longer needed.   * This method should not be called from SolrCoreAware.inform() since it can result   * in a deadlock if useColdSearcher==false.    */
+comment|/**   * Return a registered {@link RefCounted}&lt;{@link SolrIndexSearcher}&gt; with   * the reference count incremented.  It<b>must</b> be decremented when no longer needed.   * This method should not be called from SolrCoreAware.inform() since it can result   * in a deadlock if useColdSearcher==false.   * If handling a normal request, the searcher should be obtained from    * {@link org.apache.solr.request.SolrQueryRequest#getSearcher()} instead.   */
 DECL|method|getSearcher
 specifier|public
 name|RefCounted
