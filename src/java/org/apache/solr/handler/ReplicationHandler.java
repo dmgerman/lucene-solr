@@ -164,6 +164,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|IndexDeletionPolicyWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|SolrCore
 import|;
 end_import
@@ -179,20 +193,6 @@ operator|.
 name|core
 operator|.
 name|SolrEventListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|IndexDeletionPolicyWrapper
 import|;
 end_import
 
@@ -582,8 +582,8 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//This command does not give the current index version of the master
-comment|// It gives the current replicateable index version
+comment|// This command does not give the current index version of the master
+comment|// It gives the current 'replicateable' index version
 if|if
 condition|(
 name|command
@@ -634,7 +634,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// This happens when replicateAfter does not have startup and no commit/optimize
+comment|// This happens when replication is not configured to happen after startup and no commit/optimize
 comment|// has happened yet.
 name|rsp
 operator|.
@@ -983,7 +983,7 @@ return|return
 name|l
 return|;
 block|}
-comment|/**Gets the checksum of a file    */
+comment|/**    * Gets the checksum of a file    */
 DECL|method|getFileChecksum
 specifier|private
 name|void
@@ -1400,7 +1400,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**This method adds an Object of FileStream to the resposnse .    * The FileStream implements a custom protocol which is also understoop by the SnapPuller    */
+comment|/**    * This method adds an Object of FileStream to the resposnse .    * The FileStream implements a custom protocol which is understood by SnapPuller.FileFetcher    *    * @see org.apache.solr.handler.SnapPuller.FileFetcher    */
 DECL|method|getFileStream
 specifier|private
 name|void
@@ -1715,7 +1715,7 @@ name|confFiles
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** for configuration files checksum of the file also is included    * because ,unlike index ,files they may have same content but different timestamps    * The local conf files information is cached so that everytime it does not have to    * read the file content. The cache is refreshed only if the lastmodified of the file changes    */
+comment|/**    * For configuration files, checksum of the file is included    * because, unlike index files, they may have same content but different timestamps.    *<p/>    * The local conf files information is cached so that everytime it does not have to    * compute the checksum. The cache is refreshed only if the lastModified of the file changes    */
 DECL|method|getConfFileCache
 name|List
 argument_list|<
@@ -2195,7 +2195,7 @@ return|return
 name|size
 return|;
 block|}
-comment|/**Collects the details such as name, size ,lasmodified of a file    */
+comment|/**    * Collects the details such as name, size ,lastModified of a file    */
 DECL|method|getFileInfo
 specifier|private
 name|Map
@@ -2274,7 +2274,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|""
+literal|"ReplicationHandler provides replication of index and configuration files from Master to Slaves"
 return|;
 block|}
 DECL|method|getSourceId
@@ -2284,7 +2284,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|""
+literal|"$Id$"
 return|;
 block|}
 DECL|method|getSource
@@ -2294,7 +2294,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|""
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getVersion
@@ -2304,7 +2304,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"$Id$"
+literal|"$Revision$"
 return|;
 block|}
 DECL|method|readableSize
@@ -2755,6 +2755,7 @@ return|return
 name|list
 return|;
 block|}
+comment|/**    * Used for showing statistics and progress information.    */
 DECL|method|getReplicationDetails
 name|void
 name|getReplicationDetails
@@ -4520,7 +4521,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|/**register a closehook    */
+comment|/**    * register a closehook    */
 DECL|method|registerCloseHook
 specifier|private
 name|void
@@ -4561,7 +4562,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**A responsewriter is registered automatically for wt=filestream    */
+comment|/**    * A ResponseWriter is registered automatically for wt=filestream    * This response writer is used to transfer index files in a block-by-block manner within    * the same HTTP response.    */
 DECL|method|registerFileStreamResponseWriter
 specifier|private
 name|void
@@ -4671,7 +4672,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**Register a listener for postcommit/optimize    * @param snapshoot do a snapshoot    * @param getCommit get a commitpoint also    * @return an instance of the eventlistener    */
+comment|/**    * Register a listener for postcommit/optimize    *    * @param snapshoot do a snapshoot    * @param getCommit get a commitpoint also    * @return an instance of the eventlistener    */
 DECL|method|getEventListener
 specifier|private
 name|SolrEventListener
@@ -4701,6 +4702,7 @@ parameter_list|)
 block|{
 comment|/*no op*/
 block|}
+comment|/**        * This refreshes the latest replicateable index commit and optionally can create Snapshots as well        */
 specifier|public
 name|void
 name|postCommit
@@ -5344,6 +5346,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Used to write a marker for EOF      */
 DECL|method|writeNothing
 specifier|private
 name|void

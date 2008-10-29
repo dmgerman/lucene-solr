@@ -763,7 +763,7 @@ literal|"ms"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Gets the latest commit version and generation from the master    *    * @param client    * @return    * @throws IOException    */
+comment|/**    * Gets the latest commit version and generation from the master    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -947,7 +947,7 @@ parameter_list|)
 block|{       }
 block|}
 block|}
-comment|/**    * Fetches the list of files in a given snapshot    *    * @param version    * @param client    * @return    * @throws IOException    */
+comment|/**    * Fetches the list of files in a given index commit point    */
 DECL|method|fetchFileList
 name|void
 name|fetchFileList
@@ -1092,7 +1092,7 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This command downloads all the necessary files from master to install a    * snapshot. Only changed files are downloaded. it also downloads the    * conf files (if they are modified)    *    * @param core the SolrCore    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
+comment|/**    * This command downloads all the necessary files from master to install a    * index commit point. Only changed files are downloaded. It also downloads the    * conf files (if they are modified).    *    * @param core the SolrCore    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1671,6 +1671,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Helper method to record the last replication's details so that we can show them on the    * statistics page across restarts.    */
 DECL|method|logReplicationTimeAndConfFiles
 specifier|private
 name|void
@@ -2214,7 +2215,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**All the files are copied to a temp dir first    */
+comment|/**    * All the files are copied to a temp dir first    */
 DECL|method|createTempindexDir
 specifier|private
 name|File
@@ -2505,14 +2506,14 @@ name|tmpconfDir
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** download the index files. if snap needed download all the files .    * @param snapNeeded is it a fresh index copy    * @param snapDir the directory to which files need to be downloadeed to    * @param client the httpclient instance    * @param latestVersion the version number    */
+comment|/**    * Download the index files. If a new index is needed, download all the files.    *    * @param downloadCompleteIndex    is it a fresh index copy    * @param snapDir       the directory to which files need to be downloadeed to    * @param client        the httpclient instance    * @param latestVersion the version number    */
 DECL|method|downloadIndexFiles
 specifier|private
 name|void
 name|downloadIndexFiles
 parameter_list|(
 name|boolean
-name|snapNeeded
+name|downloadCompleteIndex
 parameter_list|,
 name|File
 name|snapDir
@@ -2569,7 +2570,7 @@ operator|.
 name|exists
 argument_list|()
 operator|||
-name|snapNeeded
+name|downloadCompleteIndex
 condition|)
 block|{
 name|fileFetcher
@@ -2638,7 +2639,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**All the files which are common between master and slave must have    * same timestamp and size else we assume they are not compatible (stale)    */
+comment|/**    * All the files which are common between master and slave must have    * same timestamp and size else we assume they are not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
 DECL|method|isIndexStale
 specifier|private
 name|boolean
@@ -2714,7 +2715,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**Copy a file by the File#renameTo() method. if it fails , it is considered    * a failure    * todo may be we should try a simple copy if it fails    */
+comment|/**    * Copy a file by the File#renameTo() method. If it fails, it is considered    * a failure    *    * Todo may be we should try a simple copy if it fails    */
 DECL|method|copyAFile
 specifier|private
 name|boolean
@@ -2832,7 +2833,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**Copy all index files from the temp index dir to the actual index    */
+comment|/**    * Copy all index files from the temp index dir to the actual index.    * The segments_N file is copied last.    */
 DECL|method|copyIndexFiles
 specifier|private
 name|boolean
@@ -2965,7 +2966,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**The conf files are copied to the tmp dir to the config dir    * A backup of the old file is maintained    */
+comment|/**    * The conf files are copied to the tmp dir to the conf dir.    * A backup of the old file is maintained    */
 DECL|method|copyTmpConfFiles2Conf
 specifier|private
 name|void
@@ -3163,7 +3164,7 @@ name|d
 argument_list|)
 return|;
 block|}
-comment|/**if the index is stale by any chance. use the new feature of solr to load index    * from a different dir in the data dir.    */
+comment|/**    * If the index is stale by any chance, load index from a different dir in the data dir.    */
 DECL|method|modifyIndexProps
 specifier|private
 name|void
@@ -3320,7 +3321,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**The local conf files are compared with the conf files in the master. If they are    * same (by checksum) do not copy    */
+comment|/**    * The local conf files are compared with the conf files in the master. If they are    * same (by checksum) do not copy.    *    * @return a list of configuration files which have changed on the master and need to be downloaded.    */
 DECL|method|getModifiedConfFiles
 specifier|private
 name|Collection
@@ -3534,7 +3535,7 @@ name|values
 argument_list|()
 return|;
 block|}
-comment|/**delete the directree recursively    */
+comment|/**    * Delete the directory tree recursively    */
 DECL|method|delTree
 specifier|static
 name|boolean
@@ -3636,7 +3637,7 @@ name|delete
 argument_list|()
 return|;
 block|}
-comment|/**periodic polling is disabled    */
+comment|/**    * Disable periodic polling    */
 DECL|method|disablePoll
 name|void
 name|disablePoll
@@ -3682,7 +3683,7 @@ name|pollDisabled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stops the ongoing pull    */
+comment|/**    * Stops the ongoing pull    */
 DECL|method|abortPull
 name|void
 name|abortPull
@@ -3702,7 +3703,6 @@ return|return
 name|replicationStartTime
 return|;
 block|}
-comment|/**used by details page for display.    */
 DECL|method|getConfFilesToDownload
 name|List
 argument_list|<
@@ -4036,7 +4036,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**The class acts as a client for ReplicationHandler.FileStream.    * It understands the protoolc well    *    */
+comment|/**    * The class acts as a client for ReplicationHandler.FileStream.    * It understands the protocol of wt=filestream    * @see org.apache.solr.handler.ReplicationHandler.FileStream    */
 DECL|class|FileFetcher
 specifier|private
 class|class
@@ -4251,7 +4251,7 @@ name|Adler32
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**The main method which downloads file      * @throws Exception      */
+comment|/**      * The main method which downloads file      */
 DECL|method|fetchFile
 name|void
 name|fetchFile
@@ -4319,7 +4319,7 @@ comment|//if there is an error continue. But continue from the point where it go
 block|}
 finally|finally
 block|{
-comment|//closing Inputstream and HTTP connection takes a long time,
+comment|// closing Inputstream and HTTP connection takes a long time,
 comment|// so replication status shows as 'replicating' even though it is aborted.
 operator|new
 name|Thread
@@ -4569,7 +4569,7 @@ operator|+
 name|currentFile
 argument_list|)
 expr_stmt|;
-comment|//if checksum is wrong it is a problem  return for retry
+comment|//if checksum is wrong it is a problem return for retry
 return|return
 literal|1
 return|;
@@ -4672,7 +4672,7 @@ name|ERR
 return|;
 block|}
 block|}
-comment|/**      * The webcontainer flushes the data only after it fills the buffer size.      * So, all data has to be read as readFully() other wise it fails. So read      * everything as bytes and then extract int out of it      */
+comment|/**      * The webcontainer flushes the data only after it fills the buffer size.      * So, all data has to be read as readFully() other wise it fails. So read      * everything as bytes and then extract an integer out of it      */
 DECL|method|readInt
 specifier|private
 name|int
@@ -4735,7 +4735,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/**      * Same as above but to read long      */
+comment|/**      * Same as above but to read longs from a byte array      */
 DECL|method|readLong
 specifier|private
 name|long
@@ -4875,7 +4875,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/**cleanup everything      */
+comment|/**      * cleanup everything      */
 DECL|method|cleanup
 specifier|private
 name|void
@@ -4906,7 +4906,7 @@ operator|!=
 name|size
 condition|)
 block|{
-comment|//if the download is notcomplete then
+comment|//if the download is not complete then
 comment|//delete the file being downloaded
 try|try
 block|{
@@ -4966,7 +4966,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**Open a new stream using HttpClient      */
+comment|/**      * Open a new stream using HttpClient      */
 DECL|method|getStream
 name|FastInputStream
 name|getStream
@@ -5059,7 +5059,7 @@ argument_list|,
 name|FILE_STREAM
 argument_list|)
 expr_stmt|;
-comment|//This happen if there is a failure there is a retry. the offset=<sizedownloaded> ensures that
+comment|// This happen if there is a failure there is a retry. the offset=<sizedownloaded> ensures that
 comment|// the server starts from the offset
 if|if
 condition|(
