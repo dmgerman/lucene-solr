@@ -1045,6 +1045,15 @@ name|Serializable
 argument_list|>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|cache
+operator|==
+literal|null
+condition|)
+return|return
+name|lst
+return|;
 name|ConcurrentLRUCache
 operator|.
 name|Stats
