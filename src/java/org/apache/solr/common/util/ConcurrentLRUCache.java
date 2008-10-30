@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A LRU cache implementation based upon ConcurrentHashMap and other techniques to reduce  * contention and synchronization overhead to utilize multiple CPU cores more effectively.  *  * Note that the implementation does not follow a true LRU (least-recently-used) eviction  * strategy. Instead it strives to remove least recently used items but when the initial  * cleanup does not remove enough items to reach the 'acceptableWaterMark' limit, it can  * remove more items forcefully regardless of access order.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A LRU cache implementation based upon ConcurrentHashMap and other techniques to reduce  * contention and synchronization overhead to utilize multiple CPU cores more effectively.  *<p/>  * Note that the implementation does not follow a true LRU (least-recently-used) eviction  * strategy. Instead it strives to remove least recently used items but when the initial  * cleanup does not remove enough items to reach the 'acceptableWaterMark' limit, it can  * remove more items forcefully regardless of access order.  *  * @version $Id$  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -586,8 +586,9 @@ operator|.
 name|value
 return|;
 block|}
+comment|/**    * Removes items from the cache to bring the size down    * to an acceptable value ('acceptableWaterMark').    *<p/>    * It is done in two stages. In the first stage, least recently used items are evicted.    * If, after the first stage, the cache size is still greater than 'acceptableSize'    * config parameter, the second stage takes over.    *<p/>    * The second stage is more intensive and tries to bring down the cache size    * to the 'minSize' config parameter.    */
 DECL|method|markAndSweep
-specifier|private
+specifier|public
 name|void
 name|markAndSweep
 parameter_list|()
