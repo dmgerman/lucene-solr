@@ -110,7 +110,8 @@ name|ConcurrentLRUCache
 block|{
 DECL|field|map
 specifier|private
-name|Map
+specifier|final
+name|ConcurrentHashMap
 argument_list|<
 name|Object
 argument_list|,
@@ -129,6 +130,7 @@ name|lowerWaterMark
 decl_stmt|;
 DECL|field|stop
 specifier|private
+specifier|volatile
 name|boolean
 name|stop
 init|=
@@ -145,6 +147,14 @@ name|ReentrantLock
 argument_list|(
 literal|true
 argument_list|)
+decl_stmt|;
+DECL|field|isCleaning
+specifier|private
+specifier|volatile
+name|boolean
+name|isCleaning
+init|=
+literal|false
 decl_stmt|;
 DECL|field|newThreadForCleanup
 specifier|private
@@ -491,6 +501,13 @@ argument_list|,
 name|e
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|oldCacheEntry
+operator|!=
+literal|null
+condition|)
+block|{
 name|stats
 operator|.
 name|size
@@ -498,6 +515,7 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|islive
@@ -521,6 +539,13 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+comment|// Check if we need to clear out old entries from the cache.
+comment|// isCleaning variable is checked instead of markAndSweepLock.isLocked()
+comment|// for performance because every put invokation will check until
+comment|// the size is back to an acceptable level.
+comment|//
+comment|// There is a race between the check and the call to markAndSweep, but
+comment|// it's unimportant because markAndSweep actually aquires the lock or returns if it can't.
 if|if
 condition|(
 name|stats
@@ -531,20 +556,14 @@ name|get
 argument_list|()
 operator|>
 name|upperWaterMark
+operator|&&
+operator|!
+name|isCleaning
 condition|)
 block|{
 if|if
 condition|(
 name|newThreadForCleanup
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|markAndSweepLock
-operator|.
-name|isLocked
-argument_list|()
 condition|)
 block|{
 operator|new
@@ -565,7 +584,6 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -604,6 +622,10 @@ condition|)
 return|return;
 try|try
 block|{
+name|isCleaning
+operator|=
+literal|true
+expr_stmt|;
 name|int
 name|size
 init|=
@@ -848,6 +870,10 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|isCleaning
+operator|=
+literal|false
+expr_stmt|;
 name|markAndSweepLock
 operator|.
 name|unlock
@@ -1277,23 +1303,6 @@ name|stop
 operator|=
 literal|true
 expr_stmt|;
-if|if
-condition|(
-name|map
-operator|!=
-literal|null
-condition|)
-block|{
-name|map
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|map
-operator|=
-literal|null
-expr_stmt|;
-block|}
 block|}
 DECL|method|getStats
 specifier|public
