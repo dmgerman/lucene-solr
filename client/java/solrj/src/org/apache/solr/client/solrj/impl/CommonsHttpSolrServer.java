@@ -865,7 +865,7 @@ argument_list|)
 expr_stmt|;
 comment|// 20
 block|}
-comment|// by default use the XML one
+comment|// by default use the binary response parser
 name|_parser
 operator|=
 name|parser
