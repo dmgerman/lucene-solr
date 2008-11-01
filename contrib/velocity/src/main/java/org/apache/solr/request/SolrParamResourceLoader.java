@@ -148,6 +148,9 @@ name|SolrQueryRequest
 name|request
 parameter_list|)
 block|{
+name|super
+argument_list|()
+expr_stmt|;
 comment|// TODO: Consider using content streams, but need a template name associated with each stream
 comment|// for now, a custom param convention of template.<name>=<template body> is a nice example
 comment|// of per-request overrides of templates
