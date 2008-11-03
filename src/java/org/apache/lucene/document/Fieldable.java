@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInvertState
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -62,7 +76,7 @@ name|Fieldable
 extends|extends
 name|Serializable
 block|{
-comment|/** Sets the boost factor hits on this field.  This value will be    * multiplied into the score of all hits on this this field of this    * document.    *    *<p>The boost is multiplied by {@link org.apache.lucene.document.Document#getBoost()} of the document    * containing this field.  If a document has multiple fields with the same    * name, all such values are multiplied together.  This product is then    * multipled by the value {@link org.apache.lucene.search.Similarity#lengthNorm(String,int)}, and    * rounded by {@link org.apache.lucene.search.Similarity#encodeNorm(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *    * @see org.apache.lucene.document.Document#setBoost(float)    * @see org.apache.lucene.search.Similarity#lengthNorm(String, int)    * @see org.apache.lucene.search.Similarity#encodeNorm(float)    */
+comment|/** Sets the boost factor hits on this field.  This value will be    * multiplied into the score of all hits on this this field of this    * document.    *    *<p>The boost is multiplied by {@link org.apache.lucene.document.Document#getBoost()} of the document    * containing this field.  If a document has multiple fields with the same    * name, all such values are multiplied together.  This product is then    * used to compute the norm factor for the field.  By    * default, in the {@link    * org.apache.lucene.search.Similarity#computeNorm(String,    * FieldInvertState)} method, the boost value is multipled    * by the {@link    * org.apache.lucene.search.Similarity#lengthNorm(String,    * int)} and then rounded by {@link org.apache.lucene.search.Similarity#encodeNorm(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *    * @see org.apache.lucene.document.Document#setBoost(float)    * @see org.apache.lucene.search.Similarity#computeNorm(String, FieldInvertState)    * @see org.apache.lucene.search.Similarity#encodeNorm(float)    */
 DECL|method|setBoost
 name|void
 name|setBoost
