@@ -393,13 +393,14 @@ name|str
 argument_list|)
 expr_stmt|;
 block|}
+comment|// acceptable limit should be somehwere between minLimit and limit
 name|acceptableLimit
 operator|=
 name|Math
 operator|.
 name|max
 argument_list|(
-name|limit
+name|minLimit
 argument_list|,
 name|acceptableLimit
 argument_list|)
