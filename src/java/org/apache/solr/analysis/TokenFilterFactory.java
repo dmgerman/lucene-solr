@@ -50,7 +50,7 @@ specifier|public
 interface|interface
 name|TokenFilterFactory
 block|{
-comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a the factory in the    * schema.xml    */
+comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring the factory in the    * schema.xml    */
 DECL|method|init
 specifier|public
 name|void
