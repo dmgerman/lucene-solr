@@ -1970,7 +1970,7 @@ operator|.
 name|WT
 argument_list|)
 expr_stmt|;
-comment|// use default (or should we explicitly set it?)
+comment|// use default (currently javabin)
 name|params
 operator|.
 name|remove
@@ -2013,16 +2013,8 @@ operator|.
 name|POST
 argument_list|)
 expr_stmt|;
-name|req
-operator|.
-name|setResponseParser
-argument_list|(
-operator|new
-name|BinaryResponseParser
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// this sets the wt param
+comment|// no need to set the response parser as binary is the default
+comment|// req.setResponseParser(new BinaryResponseParser());
 comment|// srsp.rsp = server.request(req);
 comment|// srsp.rsp = server.query(sreq.params);
 name|ssr
