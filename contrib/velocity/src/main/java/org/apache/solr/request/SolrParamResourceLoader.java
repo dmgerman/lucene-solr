@@ -84,7 +84,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
+name|ByteArrayInputStream
 import|;
 end_import
 
@@ -94,7 +94,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|StringBufferInputStream
+name|InputStream
 import|;
 end_import
 
@@ -118,6 +118,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_class
 DECL|class|SolrParamResourceLoader
 specifier|public
@@ -128,7 +138,7 @@ name|ResourceLoader
 block|{
 DECL|field|templates
 specifier|private
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -138,6 +148,11 @@ name|templates
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|method|SolrParamResourceLoader
@@ -271,9 +286,12 @@ condition|?
 literal|null
 else|:
 operator|new
-name|StringBufferInputStream
+name|ByteArrayInputStream
 argument_list|(
-name|template
+name|s
+operator|.
+name|getBytes
+argument_list|()
 argument_list|)
 return|;
 block|}
