@@ -219,7 +219,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|null
+operator|new
+name|MockDataSource
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,

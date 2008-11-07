@@ -76,16 +76,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -367,10 +357,6 @@ argument_list|,
 name|parentDataSource
 argument_list|,
 name|currProcess
-argument_list|,
-name|Collections
-operator|.
-name|EMPTY_MAP
 argument_list|,
 operator|new
 name|HashMap
