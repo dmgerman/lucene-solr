@@ -354,14 +354,8 @@ name|reinit
 argument_list|(
 name|stringValue
 argument_list|,
-name|fieldState
-operator|.
-name|offset
+literal|0
 argument_list|,
-name|fieldState
-operator|.
-name|offset
-operator|+
 name|valueLength
 argument_list|)
 decl_stmt|;
