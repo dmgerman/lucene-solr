@@ -1066,7 +1066,7 @@ block|}
 else|else
 block|{
 return|return
-literal|""
+literal|null
 return|;
 block|}
 block|}
