@@ -457,7 +457,9 @@ operator|.
 name|getConfig
 argument_list|()
 operator|.
-name|evaluators
+name|functions
+argument_list|,
+name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
