@@ -206,6 +206,11 @@ specifier|private
 name|DocumentsWriter
 name|docWriter
 decl_stmt|;
+DECL|field|startingCommitDeleted
+specifier|final
+name|boolean
+name|startingCommitDeleted
+decl_stmt|;
 comment|/** Change to true to see details of reference counts when    *  infoStream != null */
 DECL|field|VERBOSE_REF_COUNTS
 specifier|public
@@ -795,6 +800,13 @@ name|segmentInfos
 argument_list|,
 literal|false
 argument_list|)
+expr_stmt|;
+name|startingCommitDeleted
+operator|=
+name|currentCommitPoint
+operator|.
+name|isDeleted
+argument_list|()
 expr_stmt|;
 name|deleteCommits
 argument_list|()

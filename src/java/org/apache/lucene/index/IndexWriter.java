@@ -2560,6 +2560,19 @@ argument_list|,
 name|docWriter
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|deleter
+operator|.
+name|startingCommitDeleted
+condition|)
+comment|// Deletion policy deleted the "head" commit point.
+comment|// We have to mark ourself as changed so that if we
+comment|// are closed w/o any further changes we write a new
+comment|// segments_N file.
+name|changeCount
+operator|++
+expr_stmt|;
 name|pushMaxBufferedDocs
 argument_list|()
 expr_stmt|;
