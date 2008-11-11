@@ -4606,7 +4606,7 @@ block|,
 literal|0
 block|}
 decl_stmt|;
-comment|/** Returns number of trailing zeros in the 64 bit long value. */
+comment|/** Returns number of trailing zeros in a 64 bit long value. */
 DECL|method|ntz
 specifier|public
 specifier|static
@@ -4818,6 +4818,100 @@ operator|+
 literal|56
 return|;
 block|}
+block|}
+comment|/** Returns number of trailing zeros in a 32 bit int value. */
+DECL|method|ntz
+specifier|public
+specifier|static
+name|int
+name|ntz
+parameter_list|(
+name|int
+name|val
+parameter_list|)
+block|{
+comment|// This implementation does a single binary search at the top level only.
+comment|// In addition, the case of a non-zero first byte is checked for first
+comment|// because it is the most common in dense bit arrays.
+name|int
+name|lowByte
+init|=
+name|val
+operator|&
+literal|0xff
+decl_stmt|;
+if|if
+condition|(
+name|lowByte
+operator|!=
+literal|0
+condition|)
+return|return
+name|ntzTable
+index|[
+name|lowByte
+index|]
+return|;
+name|lowByte
+operator|=
+operator|(
+name|val
+operator|>>>
+literal|8
+operator|)
+operator|&
+literal|0xff
+expr_stmt|;
+if|if
+condition|(
+name|lowByte
+operator|!=
+literal|0
+condition|)
+return|return
+name|ntzTable
+index|[
+name|lowByte
+index|]
+operator|+
+literal|8
+return|;
+name|lowByte
+operator|=
+operator|(
+name|val
+operator|>>>
+literal|16
+operator|)
+operator|&
+literal|0xff
+expr_stmt|;
+if|if
+condition|(
+name|lowByte
+operator|!=
+literal|0
+condition|)
+return|return
+name|ntzTable
+index|[
+name|lowByte
+index|]
+operator|+
+literal|16
+return|;
+comment|// no need to mask off low byte for the last byte.
+comment|// no need to check for zero on the last byte either.
+return|return
+name|ntzTable
+index|[
+name|val
+operator|>>>
+literal|24
+index|]
+operator|+
+literal|24
+return|;
 block|}
 comment|/** returns 0 based index of first set bit    * (only works for x!=0)    *<br/> This is an alternate implementation of ntz()    */
 DECL|method|ntz2
