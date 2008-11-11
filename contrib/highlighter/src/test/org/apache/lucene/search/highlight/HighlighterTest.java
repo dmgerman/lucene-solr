@@ -322,20 +322,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -423,6 +409,20 @@ operator|.
 name|search
 operator|.
 name|BooleanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|ConstantScoreRangeQuery
 import|;
 end_import
 
@@ -2870,37 +2870,20 @@ name|numHighlights
 operator|=
 literal|0
 expr_stmt|;
-name|String
-name|queryString
-init|=
-name|FIELD_NAME
-operator|+
-literal|":[kannedy TO kznnedy]"
-decl_stmt|;
-comment|// Need to explicitly set the QueryParser property to use RangeQuery
-comment|// rather
-comment|// than RangeFilters
-name|QueryParser
-name|parser
-init|=
+name|query
+operator|=
 operator|new
-name|QueryParser
+name|ConstantScoreRangeQuery
 argument_list|(
 name|FIELD_NAME
 argument_list|,
-operator|new
-name|StandardAnalyzer
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// parser.setUseOldRangeQuery(true);
-name|query
-operator|=
-name|parser
-operator|.
-name|parse
-argument_list|(
-name|queryString
+literal|"kannedy"
+argument_list|,
+literal|"kznnedy"
+argument_list|,
+literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -6307,6 +6290,13 @@ name|StandardAnalyzer
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|parser
+operator|.
+name|setConstantScoreRewrite
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 name|parser
@@ -8281,6 +8271,13 @@ name|StandardAnalyzer
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|parser
+operator|.
+name|setConstantScoreRewrite
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 name|parser

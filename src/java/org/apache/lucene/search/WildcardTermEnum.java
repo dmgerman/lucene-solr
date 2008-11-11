@@ -100,7 +100,7 @@ name|endEnum
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Creates a new<code>WildcardTermEnum</code>.  Passing in a    * {@link org.apache.lucene.index.Term Term} that does not contain a    *<code>WILDCARD_CHAR</code> will cause an exception to be thrown.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.    */
+comment|/**    * Creates a new<code>WildcardTermEnum</code>.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.    */
 DECL|method|WildcardTermEnum
 specifier|public
 name|WildcardTermEnum
@@ -193,6 +193,14 @@ name|cidx
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|idx
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
 name|pre
 operator|=
 name|searchTerm
@@ -207,6 +215,14 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|pre
+operator|=
+literal|""
+expr_stmt|;
+block|}
 name|preLen
 operator|=
 name|pre

@@ -288,6 +288,23 @@ name|prefixLength
 argument_list|)
 return|;
 block|}
+DECL|method|setConstantScoreRewrite
+specifier|public
+name|void
+name|setConstantScoreRewrite
+parameter_list|(
+name|boolean
+name|constantScoreRewrite
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"FuzzyQuery cannot rewrite to a constant score query"
+argument_list|)
+throw|;
+block|}
 DECL|method|rewrite
 specifier|public
 name|Query
