@@ -70,16 +70,16 @@ operator|+
 literal|"offsets"
 decl_stmt|;
 comment|/**   * Return IDF information.  May be expensive   * */
-DECL|field|IDF
+DECL|field|DF
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|IDF
+name|DF
 init|=
 name|TV_PREFIX
 operator|+
-literal|"idf"
+literal|"df"
 decl_stmt|;
 comment|/**    * Return TF-IDF calculation, i.e. (tf / idf).  May be expensive.    */
 DECL|field|TF_IDF
@@ -91,7 +91,7 @@ name|TF_IDF
 init|=
 name|TV_PREFIX
 operator|+
-literal|"tf-idf"
+literal|"tf_idf"
 decl_stmt|;
 comment|/**    * Return all the options: TF, positions, offsets, idf    */
 DECL|field|ALL

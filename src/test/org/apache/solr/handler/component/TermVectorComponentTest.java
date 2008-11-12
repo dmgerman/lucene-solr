@@ -683,7 +683,7 @@ name|titl
 operator|.
 name|get
 argument_list|(
-literal|"freq"
+literal|"tf"
 argument_list|)
 operator|+
 literal|" does not equal: "
@@ -698,7 +698,7 @@ name|titl
 operator|.
 name|get
 argument_list|(
-literal|"freq"
+literal|"tf"
 argument_list|)
 operator|)
 operator|==
@@ -827,7 +827,7 @@ name|add
 argument_list|(
 name|TermVectorParams
 operator|.
-name|IDF
+name|DF
 argument_list|,
 literal|"true"
 argument_list|)
@@ -1373,7 +1373,7 @@ name|add
 argument_list|(
 name|TermVectorParams
 operator|.
-name|IDF
+name|DF
 argument_list|,
 literal|"true"
 argument_list|)

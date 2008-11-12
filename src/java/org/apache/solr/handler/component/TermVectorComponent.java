@@ -302,20 +302,6 @@ name|solr
 operator|.
 name|util
 operator|.
-name|RefCounted
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
 name|plugin
 operator|.
 name|SolrCoreAware
@@ -409,16 +395,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -602,7 +578,7 @@ literal|false
 argument_list|)
 decl_stmt|;
 name|boolean
-name|idf
+name|docFreq
 init|=
 name|params
 operator|.
@@ -610,7 +586,7 @@ name|getBool
 argument_list|(
 name|TermVectorParams
 operator|.
-name|IDF
+name|DF
 argument_list|,
 literal|false
 argument_list|)
@@ -664,7 +640,7 @@ name|offsets
 operator|=
 literal|true
 expr_stmt|;
-name|idf
+name|docFreq
 operator|=
 literal|true
 expr_stmt|;
@@ -811,7 +787,7 @@ name|positions
 argument_list|,
 name|offsets
 argument_list|,
-name|idf
+name|docFreq
 argument_list|,
 name|tfIdf
 argument_list|)
@@ -1372,7 +1348,7 @@ decl_stmt|;
 DECL|field|termFreq
 DECL|field|positions
 DECL|field|offsets
-DECL|field|idf
+DECL|field|docFreq
 DECL|field|tfIdf
 specifier|private
 name|boolean
@@ -1382,7 +1358,7 @@ name|positions
 decl_stmt|,
 name|offsets
 decl_stmt|,
-name|idf
+name|docFreq
 decl_stmt|,
 name|tfIdf
 decl_stmt|;
@@ -1430,7 +1406,7 @@ name|boolean
 name|offsets
 parameter_list|,
 name|boolean
-name|idf
+name|docFreq
 parameter_list|,
 name|boolean
 name|tfIdf
@@ -1492,9 +1468,9 @@ name|offsets
 expr_stmt|;
 name|this
 operator|.
-name|idf
+name|docFreq
 operator|=
-name|idf
+name|docFreq
 expr_stmt|;
 name|this
 operator|.
@@ -1561,7 +1537,7 @@ name|termInfo
 operator|.
 name|add
 argument_list|(
-literal|"freq"
+literal|"tf"
 argument_list|,
 name|frequency
 argument_list|)
@@ -1697,7 +1673,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|idf
+name|docFreq
 operator|==
 literal|true
 condition|)
@@ -1706,9 +1682,9 @@ name|termInfo
 operator|.
 name|add
 argument_list|(
-literal|"idf"
+literal|"df"
 argument_list|,
-name|getIdf
+name|getDocFreq
 argument_list|(
 name|term
 argument_list|)
@@ -1732,7 +1708,7 @@ operator|)
 name|frequency
 operator|)
 operator|/
-name|getIdf
+name|getDocFreq
 argument_list|(
 name|term
 argument_list|)
@@ -1749,10 +1725,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|getIdf
+DECL|method|getDocFreq
 specifier|private
 name|int
-name|getIdf
+name|getDocFreq
 parameter_list|(
 name|String
 name|term
@@ -1848,7 +1824,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|idf
+name|docFreq
 operator|==
 literal|true
 operator|&&
