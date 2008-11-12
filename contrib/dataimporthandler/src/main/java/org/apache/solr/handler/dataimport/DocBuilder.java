@@ -2149,6 +2149,13 @@ condition|(
 name|field
 operator|==
 literal|null
+operator|&&
+name|dataImporter
+operator|.
+name|getSchema
+argument_list|()
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// This can be a dynamic field or a field which does not have an entry in data-config ( an implicit field)
@@ -2223,6 +2230,10 @@ else|else
 block|{
 if|if
 condition|(
+name|field
+operator|!=
+literal|null
+operator|&&
 name|field
 operator|.
 name|toWrite

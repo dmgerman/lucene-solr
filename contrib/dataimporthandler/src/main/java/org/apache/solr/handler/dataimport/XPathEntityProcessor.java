@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p/> An implementation of EntityProcessor which uses a streaming xpath parser to extract values out of XML documents.  * It is typically used in conjunction with HttpDataSource or FileDataSource.</p><p/><p/> Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @version $Id$  * @see XPathRecordReader  * @since solr 1.3  */
+comment|/**  *<p> An implementation of EntityProcessor which uses a streaming xpath parser to extract values out of XML documents.  * It is typically used in conjunction with HttpDataSource or FileDataSource.</p><p/><p> Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @version $Id$  * @see XPathRecordReader  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -705,22 +705,35 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|List
-argument_list|<
 name|String
-argument_list|>
-name|l
+name|url
 init|=
-name|TemplateString
-operator|.
-name|getVariables
-argument_list|(
 name|context
 operator|.
 name|getEntityAttribute
 argument_list|(
 name|URL
 argument_list|)
+decl_stmt|;
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|l
+init|=
+name|url
+operator|==
+literal|null
+condition|?
+name|Collections
+operator|.
+name|EMPTY_LIST
+else|:
+name|TemplateString
+operator|.
+name|getVariables
+argument_list|(
+name|url
 argument_list|)
 decl_stmt|;
 for|for

@@ -260,6 +260,15 @@ name|VariableResolver
 name|resolver
 parameter_list|)
 block|{
+if|if
+condition|(
+name|string
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 name|TemplateString
 name|ts
 init|=
