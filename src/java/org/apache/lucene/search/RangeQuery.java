@@ -515,6 +515,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//TODO: when the deprecated 'Term' constructors are removed we can remove these null checks
 return|return
 operator|new
 name|RangeTermEnum
@@ -527,10 +528,22 @@ name|getField
 argument_list|()
 argument_list|,
 name|lowerTerm
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|lowerTerm
 operator|.
 name|text
 argument_list|()
 argument_list|,
+name|upperTerm
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|upperTerm
 operator|.
 name|text
