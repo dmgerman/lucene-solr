@@ -236,10 +236,22 @@ name|next
 argument_list|()
 expr_stmt|;
 comment|// read the START document...
+comment|//null for the processor is all right here
+name|XMLLoader
+name|loader
+init|=
+operator|new
+name|XMLLoader
+argument_list|(
+literal|null
+argument_list|,
+name|inputFactory
+argument_list|)
+decl_stmt|;
 name|SolrInputDocument
 name|doc
 init|=
-name|handler
+name|loader
 operator|.
 name|readDoc
 argument_list|(
