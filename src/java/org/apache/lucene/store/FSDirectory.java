@@ -380,7 +380,7 @@ name|buffer
 init|=
 literal|null
 decl_stmt|;
-comment|/** Returns the directory instance for the named location.    * @param path the path to the directory.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param path the path to the directory.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -406,7 +406,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -435,7 +435,7 @@ name|lockFactory
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    * @param file the path to the directory.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param file the path to the directory.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -457,7 +457,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -475,62 +475,11 @@ name|IOException
 block|{
 name|file
 operator|=
-operator|new
-name|File
+name|createCanonicalDir
 argument_list|(
 name|file
-operator|.
-name|getCanonicalPath
-argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|file
-operator|.
-name|exists
-argument_list|()
-operator|&&
-operator|!
-name|file
-operator|.
-name|isDirectory
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-name|file
-operator|+
-literal|" not a directory"
-argument_list|)
-throw|;
-if|if
-condition|(
-operator|!
-name|file
-operator|.
-name|exists
-argument_list|()
-condition|)
-if|if
-condition|(
-operator|!
-name|file
-operator|.
-name|mkdirs
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Cannot create directory: "
-operator|+
-name|file
-argument_list|)
-throw|;
 name|FSDirectory
 name|dir
 decl_stmt|;
@@ -837,6 +786,81 @@ name|WRITE_LOCK_NAME
 argument_list|)
 expr_stmt|;
 block|}
+comment|// returns the canonical version of the directory, creating it if it doesn't exist.
+DECL|method|createCanonicalDir
+specifier|private
+specifier|static
+name|File
+name|createCanonicalDir
+parameter_list|(
+name|File
+name|file
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|file
+operator|=
+operator|new
+name|File
+argument_list|(
+name|file
+operator|.
+name|getCanonicalPath
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|file
+operator|.
+name|exists
+argument_list|()
+operator|&&
+operator|!
+name|file
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+name|file
+operator|+
+literal|" not a directory"
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+name|file
+operator|.
+name|exists
+argument_list|()
+condition|)
+if|if
+condition|(
+operator|!
+name|file
+operator|.
+name|mkdirs
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot create directory: "
+operator|+
+name|file
+argument_list|)
+throw|;
+return|return
+name|file
+return|;
+block|}
 DECL|field|directory
 specifier|private
 name|File
@@ -856,6 +880,39 @@ parameter_list|()
 block|{}
 empty_stmt|;
 comment|// permit subclassing
+comment|/** Create a new FSDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    *    * Use {@link #getDirectory(String)} if singletons per path are needed.    */
+DECL|method|FSDirectory
+specifier|public
+name|FSDirectory
+parameter_list|(
+name|File
+name|path
+parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|path
+operator|=
+name|createCanonicalDir
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+name|init
+argument_list|(
+name|path
+argument_list|,
+name|lockFactory
+argument_list|)
+expr_stmt|;
+name|refCount
+operator|=
+literal|1
+expr_stmt|;
+block|}
 DECL|method|init
 specifier|private
 name|void

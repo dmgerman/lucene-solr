@@ -70,6 +70,36 @@ name|NIOFSDirectory
 extends|extends
 name|FSDirectory
 block|{
+comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
+DECL|method|NIOFSDirectory
+specifier|public
+name|NIOFSDirectory
+parameter_list|(
+name|File
+name|path
+parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|super
+argument_list|(
+name|path
+argument_list|,
+name|lockFactory
+argument_list|)
+expr_stmt|;
+block|}
+comment|// back compatibility so FSDirectory can instantiate via reflection
+DECL|method|NIOFSDirectory
+specifier|protected
+name|NIOFSDirectory
+parameter_list|()
+throws|throws
+name|IOException
+block|{   }
 comment|// Inherit javadoc
 DECL|method|openInput
 specifier|public
