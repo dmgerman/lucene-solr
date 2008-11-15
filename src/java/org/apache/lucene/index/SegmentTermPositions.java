@@ -596,7 +596,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Payload cannot be loaded more than once for the same term position."
+literal|"Either no payload exists at this term position or an attempt was made to load it more than once."
 argument_list|)
 throw|;
 block|}
