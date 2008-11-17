@@ -234,6 +234,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -280,6 +300,22 @@ name|BinaryResponseWriter
 implements|implements
 name|BinaryQueryResponseWriter
 block|{
+DECL|field|LOG
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|BinaryResponseWriter
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|method|write
 specifier|public
 name|void
@@ -943,6 +979,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+try|try
+block|{
 name|val
 operator|=
 name|useFieldObjects
@@ -961,6 +999,29 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// There is a chance of the underlying field not really matching the
+comment|// actual field type . So ,it can throw exception
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Error reading a field from document : "
+operator|+
+name|solrDoc
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+comment|//if it happens log it and continue
+continue|continue;
+block|}
 block|}
 name|solrDoc
 operator|.
