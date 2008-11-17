@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * DocBuilder is responsible for creating Solr documents out of the given  * configuration. It also maintains statistics information. It depends on the  * EntityProcessor implementations to fetch data.  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p> DocBuilder is responsible for creating Solr documents out of the given configuration. It also maintains  * statistics information. It depends on the EntityProcessor implementations to fetch data.</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -1921,6 +1921,45 @@ throw|throw
 name|e
 throw|;
 block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|verboseDebug
+condition|)
+block|{
+name|writer
+operator|.
+name|log
+argument_list|(
+name|SolrWriter
+operator|.
+name|ENTITY_EXCEPTION
+argument_list|,
+name|entity
+operator|.
+name|name
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+throw|throw
+operator|new
+name|DataImportHandlerException
+argument_list|(
+name|DataImportHandlerException
+operator|.
+name|SEVERE
+argument_list|,
+name|t
+argument_list|)
+throw|;
+block|}
 finally|finally
 block|{
 if|if
@@ -2507,7 +2546,7 @@ operator|=
 name|entityProcessor
 return|;
 block|}
-comment|/**    *<p>    * Collects unique keys of all Solr documents for whom one or more source    * tables have been changed since the last indexed time.    *</p>    *<p>    * Note: In our definition, unique key of Solr document is the primary key of    * the top level entity (unless skipped using docRoot=false) in the Solr    * document in data-config.xml    *</p>    *    * @return an iterator to the list of keys for which Solr documents should be    *         updated.    */
+comment|/**    *<p> Collects unique keys of all Solr documents for whom one or more source tables have been changed since the last    * indexed time.</p><p> Note: In our definition, unique key of Solr document is the primary key of the top level    * entity (unless skipped using docRoot=false) in the Solr document in data-config.xml</p>    *    * @return an iterator to the list of keys for which Solr documents should be updated.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

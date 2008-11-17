@@ -1958,8 +1958,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
 name|LOG
@@ -1968,7 +1968,7 @@ name|error
 argument_list|(
 literal|"Full Import failed"
 argument_list|,
-name|e
+name|t
 argument_list|)
 expr_stmt|;
 block|}
@@ -2097,8 +2097,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
 name|LOG
@@ -2107,7 +2107,7 @@ name|error
 argument_list|(
 literal|"Delta Import Failed"
 argument_list|,
-name|e
+name|t
 argument_list|)
 expr_stmt|;
 block|}
