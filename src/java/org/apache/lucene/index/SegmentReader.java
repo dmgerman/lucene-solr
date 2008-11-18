@@ -3174,13 +3174,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// maybe close directory
+block|}
+comment|// In DirectoryIndexReader.reopen, our directory
+comment|// instance was made private to us (cloned), so we
+comment|// always call super.doClose to possibly close the
+comment|// directory:
 name|super
 operator|.
 name|doClose
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 DECL|method|hasDeletions
 specifier|static

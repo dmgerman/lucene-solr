@@ -118,6 +118,20 @@ name|LockObtainFailedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|FSDirectory
+import|;
+end_import
+
 begin_comment
 comment|/**  * IndexReader implementation that has access to a Directory.   * Instances that have a SegmentInfos object (i. e. segmentInfos != null)  * "own" the directory, which means that they try to acquire a write lock  * whenever index modifications are performed.  */
 end_comment
@@ -678,10 +692,12 @@ return|return
 name|this
 return|;
 block|}
-return|return
-operator|(
-name|DirectoryIndexReader
-operator|)
+specifier|final
+name|SegmentInfos
+operator|.
+name|FindSegmentsFile
+name|finder
+init|=
 operator|new
 name|SegmentInfos
 operator|.
@@ -760,9 +776,100 @@ name|newReader
 return|;
 block|}
 block|}
+decl_stmt|;
+name|DirectoryIndexReader
+name|reader
+init|=
+literal|null
+decl_stmt|;
+comment|// While trying to reopen, we temporarily mark our
+comment|// closeDirectory as false.  This way any exceptions hit
+comment|// partway while opening the reader, which is expected
+comment|// eg if writer is committing, won't close our
+comment|// directory.  We restore this value below:
+specifier|final
+name|boolean
+name|myCloseDirectory
+init|=
+name|closeDirectory
+decl_stmt|;
+name|closeDirectory
+operator|=
+literal|false
+expr_stmt|;
+try|try
+block|{
+name|reader
+operator|=
+operator|(
+name|DirectoryIndexReader
+operator|)
+name|finder
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|myCloseDirectory
+condition|)
+block|{
+assert|assert
+name|directory
+operator|instanceof
+name|FSDirectory
+assert|;
+comment|// Restore my closeDirectory
+name|closeDirectory
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+operator|&&
+name|reader
+operator|!=
+name|this
+condition|)
+block|{
+comment|// Success, and a new reader was actually opened
+name|reader
+operator|.
+name|closeDirectory
+operator|=
+literal|true
+expr_stmt|;
+comment|// Clone the directory
+name|reader
+operator|.
+name|directory
+operator|=
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+operator|(
+operator|(
+name|FSDirectory
+operator|)
+name|directory
+operator|)
+operator|.
+name|getFile
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+name|reader
 return|;
 block|}
 comment|/**    * Re-opens the index using the passed-in SegmentInfos     */
