@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A TokenFilter is a TokenStream whose input is another token stream.<p>   This is an abstract class.   NOTE: subclasses must override {@link #next(Token)}.  It's   also OK to instead override {@link #next()} but that   method is now deprecated in favor of {@link #next(Token)}.   */
+comment|/** A TokenFilter is a TokenStream whose input is another token stream.<p>   This is an abstract class.   NOTE: subclasses must override    {@link #incrementToken()} if the new TokenStream API is used   and {@link #next(Token)} or {@link #next()} if the old   TokenStream API is used.  *<p><font color="#FF0000">  * WARNING: The status of the new TokenStream, AttributeSource and Attributes is experimental.   * The APIs introduced in these classes with Lucene 2.9 might change in the future.   * We will make our best efforts to keep the APIs backwards-compatible.</font><p>   See {@link TokenStream}   */
 end_comment
 
 begin_class
@@ -54,6 +54,11 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|input
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|input
@@ -94,6 +99,37 @@ name|input
 operator|.
 name|reset
 argument_list|()
+expr_stmt|;
+block|}
+DECL|method|useNewAPI
+specifier|public
+name|boolean
+name|useNewAPI
+parameter_list|()
+block|{
+return|return
+name|input
+operator|.
+name|useNewAPI
+argument_list|()
+return|;
+block|}
+comment|/**    * Sets whether or not to use the new TokenStream API. Settings this    * will apply to this Filter and all TokenStream/Filters upstream.    */
+DECL|method|setUseNewAPI
+specifier|public
+name|void
+name|setUseNewAPI
+parameter_list|(
+name|boolean
+name|use
+parameter_list|)
+block|{
+name|input
+operator|.
+name|setUseNewAPI
+argument_list|(
+name|use
+argument_list|)
 expr_stmt|;
 block|}
 block|}

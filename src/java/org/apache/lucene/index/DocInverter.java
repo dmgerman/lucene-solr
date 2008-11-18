@@ -20,9 +20,19 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
-name|Map
+name|Collection
 import|;
 end_import
 
@@ -52,7 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
+name|Iterator
 import|;
 end_import
 
@@ -62,17 +72,21 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Map
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
 import|;
 end_import
 

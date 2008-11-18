@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -27,30 +37,6 @@ operator|.
 name|document
 operator|.
 name|Fieldable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -79,15 +65,22 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|// Called before a field instance is being processed
+DECL|method|start
+specifier|abstract
+name|void
+name|start
+parameter_list|(
+name|Fieldable
+name|field
+parameter_list|)
+function_decl|;
 comment|// Called once per inverted token
 DECL|method|add
 specifier|abstract
 name|void
 name|add
-parameter_list|(
-name|Token
-name|token
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;

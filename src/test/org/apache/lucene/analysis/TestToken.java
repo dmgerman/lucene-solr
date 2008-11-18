@@ -30,6 +30,10 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_comment
+comment|/** @deprecated */
+end_comment
+
 begin_class
 DECL|class|TestToken
 specifier|public

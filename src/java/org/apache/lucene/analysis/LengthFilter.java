@@ -26,6 +26,22 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermAttribute
+import|;
+end_import
+
 begin_comment
 comment|/**  * Removes words that are too long and too short from the stream.  *  *  * @version $Id$  */
 end_comment
@@ -48,6 +64,11 @@ DECL|field|max
 specifier|final
 name|int
 name|max
+decl_stmt|;
+DECL|field|termAtt
+specifier|private
+name|TermAttribute
+name|termAtt
 decl_stmt|;
 comment|/**    * Build a filter that removes words that are too long or too    * short from the text.    */
 DECL|method|LengthFilter
@@ -81,8 +102,69 @@ name|max
 operator|=
 name|max
 expr_stmt|;
+name|termAtt
+operator|=
+operator|(
+name|TermAttribute
+operator|)
+name|addAttribute
+argument_list|(
+name|TermAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Returns the next input Token whose term() is the right len    */
+DECL|method|incrementToken
+specifier|public
+specifier|final
+name|boolean
+name|incrementToken
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// return the first non-stop word found
+while|while
+condition|(
+name|input
+operator|.
+name|incrementToken
+argument_list|()
+condition|)
+block|{
+name|int
+name|len
+init|=
+name|termAtt
+operator|.
+name|termLength
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|len
+operator|>=
+name|min
+operator|&&
+name|len
+operator|<=
+name|max
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+comment|// note: else we ignore it but should we index each part of it?
+block|}
+comment|// reached EOS -- return null
+return|return
+literal|false
+return|;
+block|}
+comment|/**    * Returns the next input Token whose term() is the right len    * @deprecated    */
 DECL|method|next
 specifier|public
 specifier|final

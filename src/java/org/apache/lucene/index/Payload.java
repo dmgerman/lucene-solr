@@ -36,20 +36,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -69,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  A Payload is metadata that can be stored together with each occurrence   *  of a term. This metadata is stored inline in the posting list of the  *  specific term.    *<p>  *  To store payloads in the index a {@link TokenStream} has to be used that  *  produces {@link Token}s containing payload data.  *<p>  *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}  *  to retrieve the payloads from the index.<br>  *  */
+comment|/**  *  A Payload is metadata that can be stored together with each occurrence   *  of a term. This metadata is stored inline in the posting list of the  *  specific term.    *<p>  *  To store payloads in the index a {@link TokenStream} has to be used that  *  produces payload data.  *<p>  *  Use {@link TermPositions#getPayloadLength()} and {@link TermPositions#getPayload(byte[], int)}  *  to retrieve the payloads from the index.<br>  *  */
 end_comment
 
 begin_class
