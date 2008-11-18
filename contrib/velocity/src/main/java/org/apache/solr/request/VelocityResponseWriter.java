@@ -233,12 +233,12 @@ operator|.
 name|getParams
 argument_list|()
 operator|.
-name|getBool
+name|get
 argument_list|(
 literal|"v.json"
-argument_list|,
-literal|false
 argument_list|)
+operator|!=
+literal|null
 condition|)
 block|{
 name|StringWriter
