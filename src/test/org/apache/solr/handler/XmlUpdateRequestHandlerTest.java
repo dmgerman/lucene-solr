@@ -48,16 +48,6 @@ end_import
 
 begin_import
 import|import
-name|javanet
-operator|.
-name|staxutils
-operator|.
-name|BaseXMLInputFactory
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -77,16 +67,6 @@ operator|.
 name|stream
 operator|.
 name|XMLStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
 import|;
 end_import
 
@@ -117,7 +97,7 @@ specifier|private
 name|XMLInputFactory
 name|inputFactory
 init|=
-name|BaseXMLInputFactory
+name|XMLInputFactory
 operator|.
 name|newInstance
 argument_list|()

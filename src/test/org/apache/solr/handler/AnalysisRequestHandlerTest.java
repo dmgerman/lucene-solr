@@ -18,30 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|javanet
-operator|.
-name|staxutils
-operator|.
-name|BaseXMLInputFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -104,16 +80,6 @@ name|StringReader
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_class
 DECL|class|AnalysisRequestHandlerTest
 specifier|public
@@ -127,7 +93,7 @@ specifier|private
 name|XMLInputFactory
 name|inputFactory
 init|=
-name|BaseXMLInputFactory
+name|XMLInputFactory
 operator|.
 name|newInstance
 argument_list|()
