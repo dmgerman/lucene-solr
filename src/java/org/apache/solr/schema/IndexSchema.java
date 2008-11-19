@@ -3146,11 +3146,36 @@ expr_stmt|;
 name|SchemaField
 name|d
 init|=
-name|getField
+name|getFieldOrNull
 argument_list|(
 name|dest
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|d
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"copyField destination :'"
+operator|+
+name|dest
+operator|+
+literal|"' does not exist"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|sourceIsPattern
