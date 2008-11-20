@@ -1723,6 +1723,21 @@ name|long
 name|commitMaxTime
 parameter_list|)
 block|{
+name|_scheduleCommitWithin
+argument_list|(
+name|commitMaxTime
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|_scheduleCommitWithin
+specifier|private
+name|void
+name|_scheduleCommitWithin
+parameter_list|(
+name|long
+name|commitMaxTime
+parameter_list|)
+block|{
 comment|// Check if there is a commit already scheduled for longer then this time
 if|if
 condition|(
@@ -1813,7 +1828,7 @@ name|docsUpperBound
 operator|)
 condition|)
 block|{
-name|scheduleCommitWithin
+name|_scheduleCommitWithin
 argument_list|(
 name|DOC_COMMIT_DELAY_MS
 argument_list|)
@@ -1840,7 +1855,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|scheduleCommitWithin
+name|_scheduleCommitWithin
 argument_list|(
 name|ctime
 argument_list|)
