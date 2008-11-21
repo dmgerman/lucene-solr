@@ -195,6 +195,21 @@ name|wasCalled
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// make sure no exception if cache is holding the wrong bitset
+name|cacher
+operator|.
+name|bits
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+name|cacher
+operator|.
+name|getDocIdSet
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
 comment|// second time, nested filter should not be called
 name|filter
 operator|.
