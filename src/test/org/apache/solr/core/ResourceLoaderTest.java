@@ -311,12 +311,7 @@ operator|new
 name|Object
 index|[]
 block|{
-operator|new
-name|NGramTokenFilter
-argument_list|(
-literal|null
-argument_list|)
-block|,
+comment|// new NGramTokenFilter( null ),
 literal|"hello"
 block|,
 operator|new
