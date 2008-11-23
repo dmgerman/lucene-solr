@@ -587,7 +587,7 @@ literal|false
 argument_list|,
 literal|false
 argument_list|,
-literal|0
+literal|null
 argument_list|)
 decl_stmt|;
 name|boolean

@@ -393,7 +393,7 @@ name|str
 argument_list|)
 expr_stmt|;
 block|}
-comment|// acceptable limit should be somehwere between minLimit and limit
+comment|// acceptable limit should be somewhere between minLimit and limit
 name|acceptableLimit
 operator|=
 name|Math
@@ -461,6 +461,34 @@ argument_list|(
 name|str
 argument_list|)
 expr_stmt|;
+name|str
+operator|=
+operator|(
+name|String
+operator|)
+name|args
+operator|.
+name|get
+argument_list|(
+literal|"cleanupThread"
+argument_list|)
+expr_stmt|;
+name|boolean
+name|newThread
+init|=
+name|str
+operator|==
+literal|null
+condition|?
+literal|false
+else|:
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|str
+argument_list|)
+decl_stmt|;
 name|description
 operator|=
 literal|"Concurrent LRU Cache(maxSize="
@@ -478,6 +506,10 @@ operator|+
 literal|", acceptableSize="
 operator|+
 name|acceptableLimit
+operator|+
+literal|" ,cleanupThread ="
+operator|+
+name|newThread
 expr_stmt|;
 if|if
 condition|(
@@ -514,12 +546,11 @@ name|acceptableLimit
 argument_list|,
 name|initialSize
 argument_list|,
-literal|false
+name|newThread
 argument_list|,
 literal|false
 argument_list|,
-operator|-
-literal|1
+literal|null
 argument_list|)
 expr_stmt|;
 name|cache
@@ -921,7 +952,13 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-block|{   }
+block|{
+name|cache
+operator|.
+name|destroy
+argument_list|()
+expr_stmt|;
+block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
 DECL|method|getName
 specifier|public
