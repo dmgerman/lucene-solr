@@ -52,6 +52,38 @@ name|FACET
 init|=
 literal|"facet"
 decl_stmt|;
+comment|/** What method should be used to do the faceting */
+DECL|field|FACET_METHOD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_METHOD
+init|=
+name|FACET
+operator|+
+literal|".method"
+decl_stmt|;
+comment|/** Value for FACET_METHOD param to indicate that Solr should enumerate over terms    * in a field to calculate the facet counts.    */
+DECL|field|FACET_METHOD_enum
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_METHOD_enum
+init|=
+literal|"enum"
+decl_stmt|;
+comment|/** Value for FACET_METHOD param to indicate that Solr should enumerate over documents    * and count up terms by consulting an uninverted representation of the field values    * (such as the FieldCache used for sorting).    */
+DECL|field|FACET_METHOD_fc
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_METHOD_fc
+init|=
+literal|"fc"
+decl_stmt|;
 comment|/**    * Any lucene formated queries the user would like to use for    * Facet Constraint Counts (multi-value)    */
 DECL|field|FACET_QUERY
 specifier|public
