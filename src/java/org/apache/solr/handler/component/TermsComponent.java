@@ -454,15 +454,10 @@ name|add
 argument_list|(
 name|theText
 argument_list|,
-name|String
-operator|.
-name|valueOf
-argument_list|(
 name|termEnum
 operator|.
 name|docFreq
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
