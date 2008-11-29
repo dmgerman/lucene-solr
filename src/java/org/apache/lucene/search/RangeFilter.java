@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Filter that restricts search results to a range of values in a given  * field.  *   *<p>  * This code borrows heavily from {@link RangeQuery}, but is implemented as a Filter  *   *</p>  */
+comment|/**  * A Filter that restricts search results to a range of values in a given  * field.  *   *<p>  * This code borrows heavily from {@link RangeQuery}, but is implemented as a Filter  *   *</p>  *   * If you construct a large number of range filters with different ranges but on the   * same field, {@link FieldCacheRangeFilter} may have significantly better performance.   */
 end_comment
 
 begin_class
