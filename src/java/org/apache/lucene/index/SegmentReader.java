@@ -2914,6 +2914,10 @@ operator|+
 name|pendingDeleteCount
 argument_list|)
 expr_stmt|;
+name|pendingDeleteCount
+operator|=
+literal|0
+expr_stmt|;
 block|}
 if|if
 condition|(
