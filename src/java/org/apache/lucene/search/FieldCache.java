@@ -118,7 +118,7 @@ name|low
 operator|+
 name|high
 operator|)
-operator|>>
+operator|>>>
 literal|1
 decl_stmt|;
 name|int

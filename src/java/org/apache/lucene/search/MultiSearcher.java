@@ -791,7 +791,7 @@ name|lo
 operator|+
 name|hi
 operator|)
-operator|>>
+operator|>>>
 literal|1
 decl_stmt|;
 name|int
