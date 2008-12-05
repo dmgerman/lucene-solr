@@ -1181,6 +1181,10 @@ name|query
 operator|=
 literal|null
 expr_stmt|;
+name|rowIterator
+operator|=
+literal|null
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -1205,6 +1209,10 @@ name|e
 argument_list|)
 expr_stmt|;
 name|query
+operator|=
+literal|null
+expr_stmt|;
+name|rowIterator
 operator|=
 literal|null
 expr_stmt|;
