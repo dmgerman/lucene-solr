@@ -1835,26 +1835,9 @@ name|files
 init|=
 name|dir
 operator|.
-name|list
+name|listAll
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|files
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"cannot read directory "
-operator|+
-name|dir
-operator|+
-literal|": list() returned null"
-argument_list|)
-throw|;
 name|Collection
 name|commits
 init|=

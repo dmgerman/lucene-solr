@@ -1291,7 +1291,7 @@ operator|.
 name|getDirectory
 argument_list|()
 operator|.
-name|list
+name|listAll
 argument_list|()
 decl_stmt|;
 name|int
@@ -1342,75 +1342,7 @@ name|segmentCfsCount
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|printSegmentDocCounts
-specifier|private
-name|void
-name|printSegmentDocCounts
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
-block|{
-name|int
-name|segmentCount
-init|=
-name|writer
-operator|.
-name|getSegmentCount
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|""
-operator|+
-name|segmentCount
-operator|+
-literal|" segments total"
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|segmentCount
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  segment "
-operator|+
-name|i
-operator|+
-literal|" has "
-operator|+
-name|writer
-operator|.
-name|getDocCount
-argument_list|(
-name|i
-argument_list|)
-operator|+
-literal|" docs"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|/*   private void printSegmentDocCounts(IndexWriter writer) {     int segmentCount = writer.getSegmentCount();     System.out.println("" + segmentCount + " segments total");     for (int i = 0; i< segmentCount; i++) {       System.out.println("  segment " + i + " has " + writer.getDocCount(i)           + " docs");     }   }   */
 block|}
 end_class
 

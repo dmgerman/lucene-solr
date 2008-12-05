@@ -26,6 +26,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexFileNameFilter
+import|;
+end_import
+
 begin_comment
 comment|/** A Directory is a flat list of files.  Files may be written once, when they  * are created.  Once a file is created it may only be opened for read, or  * deleted.  Random access is permitted both when reading and writing.  *  *<p> Java's i/o APIs not used directly, but rather all i/o is  * through this API.  This permits things such as:<ul>  *<li> implementation of RAM-based indices;  *<li> implementation indices stored in a database, via JDBC;  *<li> implementation of an index as a single file;  *</ul>  *  * Directory locking is implemented by an instance of {@link  * LockFactory}, and can be changed for each Directory  * instance using {@link #setLockFactory}.  *  */
 end_comment
@@ -50,7 +64,7 @@ specifier|protected
 name|LockFactory
 name|lockFactory
 decl_stmt|;
-comment|/** Returns an array of strings, one for each file in the    * directory.  This method may return null (for example for    * {@link FSDirectory} if the underlying directory doesn't    * exist in the filesystem or there are permissions    * problems).*/
+comment|/** @deprecated For some Directory implementations ({@link    *  FSDirectory}, and its subclasses), this method    *  silently filters its results to include only index    *  files.  Please use {@link #listAll} instead, which    *  does no filtering. */
 DECL|method|list
 specifier|public
 specifier|abstract
@@ -61,6 +75,21 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns an array of strings, one for each file in the    *  directory.  Unlike {@link #list} this method does no    *  filtering of the contents in a directory, and it will    *  never return null (throws IOException instead).    *    *  Currently this method simply fallsback to {@link    *  #list} for Directory impls outside of Lucene's core&    *  contrib, but in 3.0 that method will be removed and    *  this method will become abstract. */
+DECL|method|listAll
+specifier|public
+name|String
+index|[]
+name|listAll
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|list
+argument_list|()
+return|;
+block|}
 comment|/** Returns true iff a file with the given name exists. */
 DECL|method|fileExists
 specifier|public
@@ -313,7 +342,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Copy contents of a directory src to a directory dest.    * If a file in src already exists in dest then the    * one in dest will be blindly overwritten.    *    *<p><b>NOTE:</b> the source directory cannot change    * while this method is running.  Otherwise the results    * are undefined and you could easily hit a    * FileNotFoundException.    *    * @param src source directory    * @param dest destination directory    * @param closeDirSrc if<code>true</code>, call {@link #close()} method on source directory    * @throws IOException    */
+comment|/**    * Copy contents of a directory src to a directory dest.    * If a file in src already exists in dest then the    * one in dest will be blindly overwritten.    *    *<p><b>NOTE:</b> the source directory cannot change    * while this method is running.  Otherwise the results    * are undefined and you could easily hit a    * FileNotFoundException.    *    *<p><b>NOTE:</b> this method only copies files that look    * like index files (ie, have extensions matching the    * known extensions of index files).    *    * @param src source directory    * @param dest destination directory    * @param closeDirSrc if<code>true</code>, call {@link #close()} method on source directory    * @throws IOException    */
 DECL|method|copy
 specifier|public
 specifier|static
@@ -339,26 +368,17 @@ name|files
 init|=
 name|src
 operator|.
-name|list
+name|listAll
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|files
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"cannot read directory "
-operator|+
-name|src
-operator|+
-literal|": list() returned null"
-argument_list|)
-throw|;
+name|IndexFileNameFilter
+name|filter
+init|=
+name|IndexFileNameFilter
+operator|.
+name|getFilter
+argument_list|()
+decl_stmt|;
 name|byte
 index|[]
 name|buf
@@ -388,6 +408,22 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|filter
+operator|.
+name|accept
+argument_list|(
+literal|null
+argument_list|,
+name|files
+index|[
+name|i
+index|]
+argument_list|)
+condition|)
+continue|continue;
 name|IndexOutput
 name|os
 init|=

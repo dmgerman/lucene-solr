@@ -5875,7 +5875,7 @@ try|try
 block|{
 name|dir1
 operator|.
-name|list
+name|listAll
 argument_list|()
 expr_stmt|;
 name|fail

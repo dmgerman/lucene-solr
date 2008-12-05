@@ -340,7 +340,7 @@ name|files
 init|=
 name|dir
 operator|.
-name|list
+name|listAll
 argument_list|()
 decl_stmt|;
 comment|/*     for(int j=0;j<files.length;j++) {       System.out.println(j + ": " + files[j]);     }     */
@@ -608,7 +608,7 @@ name|filesPre
 init|=
 name|dir
 operator|.
-name|list
+name|listAll
 argument_list|()
 decl_stmt|;
 comment|// Open& close a writer: it should delete the above 4
@@ -644,7 +644,7 @@ name|files2
 init|=
 name|dir
 operator|.
-name|list
+name|listAll
 argument_list|()
 decl_stmt|;
 name|dir

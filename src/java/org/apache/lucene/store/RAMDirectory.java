@@ -235,7 +235,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns an array of strings, one for each file in the directory. */
 DECL|method|list
 specifier|public
 specifier|synchronized
@@ -243,6 +242,20 @@ specifier|final
 name|String
 index|[]
 name|list
+parameter_list|()
+block|{
+return|return
+name|listAll
+argument_list|()
+return|;
+block|}
+DECL|method|listAll
+specifier|public
+specifier|synchronized
+specifier|final
+name|String
+index|[]
+name|listAll
 parameter_list|()
 block|{
 name|ensureOpen
