@@ -135,6 +135,23 @@ specifier|private
 name|IndexWriter
 name|writer
 decl_stmt|;
+DECL|method|verbose
+specifier|protected
+name|boolean
+name|verbose
+parameter_list|()
+block|{
+return|return
+name|writer
+operator|!=
+literal|null
+operator|&&
+name|writer
+operator|.
+name|verbose
+argument_list|()
+return|;
+block|}
 DECL|method|message
 specifier|private
 name|void
@@ -146,9 +163,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|writer
-operator|!=
-literal|null
+name|verbose
+argument_list|()
 condition|)
 name|writer
 operator|.
@@ -864,6 +880,11 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"findMergesToExpungeDeletes: "
@@ -920,6 +941,11 @@ name|hasDeletions
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  segment "
@@ -954,6 +980,11 @@ condition|)
 block|{
 comment|// We've seen mergeFactor segments in a row with
 comment|// deletions, so force a merge now:
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  add merge "
@@ -1009,6 +1040,11 @@ block|{
 comment|// End of a sequence of segments with deletions, so,
 comment|// merge those past segments even if it's fewer than
 comment|// mergeFactor segments
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  add merge "
@@ -1061,6 +1097,11 @@ operator|-
 literal|1
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  add merge "
@@ -1133,6 +1174,11 @@ name|writer
 operator|=
 name|writer
 expr_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"findMerges: "
@@ -1420,6 +1466,11 @@ name|upto
 operator|--
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  level "
@@ -1527,6 +1578,11 @@ operator|new
 name|MergeSpecification
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"    "
@@ -1561,7 +1617,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"    "

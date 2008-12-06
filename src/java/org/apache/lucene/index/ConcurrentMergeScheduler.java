@@ -290,6 +290,23 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|verbose
+specifier|private
+name|boolean
+name|verbose
+parameter_list|()
+block|{
+return|return
+name|writer
+operator|!=
+literal|null
+operator|&&
+name|writer
+operator|.
+name|verbose
+argument_list|()
+return|;
+block|}
 DECL|method|message
 specifier|private
 name|void
@@ -301,9 +318,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|writer
-operator|!=
-literal|null
+name|verbose
+argument_list|()
 condition|)
 name|writer
 operator|.
@@ -386,6 +402,11 @@ operator|>
 literal|0
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"now wait for threads; currently "
@@ -407,6 +428,12 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -442,6 +469,7 @@ argument_list|)
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|wait
@@ -552,6 +580,12 @@ comment|// involving segments already pending to be merged) to
 comment|// the queue.  If we are way behind on merging, many of
 comment|// these newly proposed merges will likely already be
 comment|// registered.
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
 name|message
 argument_list|(
 literal|"now merge"
@@ -567,6 +601,7 @@ name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Iterate, pulling from the IndexWriter's queue of
 comment|// pending merges, until it's empty:
 while|while
@@ -594,6 +629,11 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  no more merges pending; now return"
@@ -623,6 +663,11 @@ operator|>=
 name|maxThreadCount
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"    too many merge threads running; stalling..."
@@ -650,6 +695,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  consider merge "
@@ -688,6 +738,11 @@ argument_list|(
 name|merger
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"    launch new thread ["
@@ -924,6 +979,11 @@ name|startMerge
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  merge thread: start"
@@ -967,6 +1027,11 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  merge thread: do another merge "
@@ -983,6 +1048,11 @@ block|}
 else|else
 break|break;
 block|}
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
 name|message
 argument_list|(
 literal|"  merge thread: done"

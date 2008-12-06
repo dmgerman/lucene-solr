@@ -1378,6 +1378,12 @@ name|String
 name|message
 parameter_list|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|writer
 operator|.
 name|message
@@ -1529,6 +1535,12 @@ name|IOException
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
 name|message
 argument_list|(
 literal|"docWriter: now abort"
