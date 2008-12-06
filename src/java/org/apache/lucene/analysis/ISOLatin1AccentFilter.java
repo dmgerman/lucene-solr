@@ -33,7 +33,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A filter that replaces accented characters in the ISO Latin 1 character set   * (ISO-8859-1) by their unaccented equivalent. The case will not be altered.  *<p>  * For instance, '&agrave;' will be replaced by 'a'.  *<p>  */
+comment|/**  * A filter that replaces accented characters in the ISO Latin 1 character set   * (ISO-8859-1) by their unaccented equivalent. The case will not be altered.  *<p>  * For instance, '&agrave;' will be replaced by 'a'.  *<p>  *   * @deprecated in favor of {@link ASCIIFoldingFilter} which covers a superset   * of Latin 1. This class will be removed in Lucene 3.0.  */
 end_comment
 
 begin_class
