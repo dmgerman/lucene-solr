@@ -36,25 +36,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.
 name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrConfig
 import|;
 end_import
 

@@ -42,7 +42,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.
@@ -56,11 +56,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.
-name|BitSetIterator
+name|OpenBitSetIterator
 import|;
 end_import
 
@@ -175,11 +175,11 @@ name|cardinality
 argument_list|()
 index|]
 decl_stmt|;
-name|BitSetIterator
+name|OpenBitSetIterator
 name|iter
 init|=
 operator|new
-name|BitSetIterator
+name|OpenBitSetIterator
 argument_list|(
 name|bs
 argument_list|)
@@ -208,7 +208,7 @@ index|]
 operator|=
 name|iter
 operator|.
-name|next
+name|nextDoc
 argument_list|()
 expr_stmt|;
 block|}

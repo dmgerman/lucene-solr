@@ -234,7 +234,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.

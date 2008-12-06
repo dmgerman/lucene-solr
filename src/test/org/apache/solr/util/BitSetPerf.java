@@ -36,6 +36,34 @@ name|BitSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OpenBitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OpenBitSetIterator
+import|;
+end_import
+
 begin_comment
 comment|/** Performance tester for OpenBitSet.  * Use -Xbatch for more predictable results, and run tests such that the duration  * is at least 10 seconds for better accuracy.  Close browsers on your system (javascript  * or flash may be running and cause more erratic results).  *  * @version $Id$  */
 end_comment
@@ -1049,11 +1077,11 @@ name|i
 index|]
 decl_stmt|;
 specifier|final
-name|BitSetIterator
+name|OpenBitSetIterator
 name|iterator
 init|=
 operator|new
-name|BitSetIterator
+name|OpenBitSetIterator
 argument_list|(
 name|set
 argument_list|)
@@ -1065,7 +1093,7 @@ name|next
 init|=
 name|iterator
 operator|.
-name|next
+name|nextDoc
 argument_list|()
 init|;
 name|next
@@ -1076,7 +1104,7 @@ name|next
 operator|=
 name|iterator
 operator|.
-name|next
+name|nextDoc
 argument_list|()
 control|)
 block|{
