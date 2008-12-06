@@ -133,6 +133,30 @@ name|TERMS_PREFIX
 operator|+
 literal|"prefix"
 decl_stmt|;
+comment|/**    * Optional.  The minimum value of docFreq to be returned.  1 by default    */
+DECL|field|TERMS_MINCOUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_MINCOUNT
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"mincount"
+decl_stmt|;
+comment|/**    * Optional.  The maximum value of docFreq to be returned.  -1 by default means no boundary    */
+DECL|field|TERMS_MAXCOUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_MAXCOUNT
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"maxcount"
+decl_stmt|;
 block|}
 end_interface
 
