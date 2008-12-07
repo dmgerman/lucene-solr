@@ -7214,6 +7214,35 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|String
+name|facetSort
+init|=
+name|solrConfig
+operator|.
+name|get
+argument_list|(
+literal|"//bool[@name='facet.sort']"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|facetSort
+operator|!=
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"solrconfig.xml uses deprecated<bool name='facet.sort'>. Please "
+operator|+
+literal|"update your config to use<string name='facet.sort'>."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|getCoreDescriptor
 specifier|public

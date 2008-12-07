@@ -168,7 +168,7 @@ name|FACET
 operator|+
 literal|".missing"
 decl_stmt|;
-comment|/**    * Boolean option: true causes facets to be sorted    * by the count, false results in natural index order.    */
+comment|/**    * String option: "count" causes facets to be sorted    * by the count, "lex" results in lexicographical order.    */
 DECL|field|FACET_SORT
 specifier|public
 specifier|static
@@ -179,6 +179,42 @@ init|=
 name|FACET
 operator|+
 literal|".sort"
+decl_stmt|;
+DECL|field|FACET_SORT_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_SORT_COUNT
+init|=
+literal|"count"
+decl_stmt|;
+DECL|field|FACET_SORT_COUNT_LEGACY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_SORT_COUNT_LEGACY
+init|=
+literal|"true"
+decl_stmt|;
+DECL|field|FACET_SORT_LEX
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_SORT_LEX
+init|=
+literal|"lex"
+decl_stmt|;
+DECL|field|FACET_SORT_LEX_LEGACY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_SORT_LEX_LEGACY
+init|=
+literal|"false"
 decl_stmt|;
 comment|/**    * Only return constraints of a facet field with the given prefix.    */
 DECL|field|FACET_PREFIX

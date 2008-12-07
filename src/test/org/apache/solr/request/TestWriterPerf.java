@@ -1055,7 +1055,7 @@ literal|"100"
 argument_list|,
 literal|"facet.sort"
 argument_list|,
-literal|"true"
+literal|"count"
 argument_list|,
 literal|"hl"
 argument_list|,
