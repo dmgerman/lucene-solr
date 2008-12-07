@@ -90,7 +90,7 @@ init|=
 literal|null
 decl_stmt|;
 DECL|method|ArabicStemFilter
-specifier|protected
+specifier|public
 name|ArabicStemFilter
 parameter_list|(
 name|TokenStream
