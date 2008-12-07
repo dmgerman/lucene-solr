@@ -631,9 +631,7 @@ name|FacetParams
 operator|.
 name|FACET
 argument_list|,
-name|FacetParams
-operator|.
-name|FACET_SORT_COUNT_LEGACY
+literal|"true"
 argument_list|)
 expr_stmt|;
 name|refine
@@ -872,12 +870,23 @@ if|if
 condition|(
 name|dff
 operator|.
+name|sort
+operator|.
+name|equals
+argument_list|(
+name|FacetParams
+operator|.
+name|FACET_SORT_COUNT
+argument_list|)
+operator|&&
+name|dff
+operator|.
 name|limit
 operator|>
 literal|0
 condition|)
 block|{
-comment|// set the initial limit higher in increase accuracy
+comment|// set the initial limit higher to increase accuracy
 name|dff
 operator|.
 name|initialLimit
@@ -954,9 +963,7 @@ name|FacetParams
 operator|.
 name|FACET
 argument_list|,
-name|FacetParams
-operator|.
-name|FACET_SORT_LEX_LEGACY
+literal|"false"
 argument_list|)
 expr_stmt|;
 comment|// we could optionally remove faceting params
