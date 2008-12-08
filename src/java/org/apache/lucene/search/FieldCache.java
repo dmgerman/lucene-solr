@@ -219,11 +219,19 @@ name|lookup
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Marker interface as super-interface to all parsers. It    * is used to specify a custom parser to {@link    * SortField#SortField(String, FieldCache.Parser)}.    */
+DECL|interface|Parser
+specifier|public
+interface|interface
+name|Parser
+block|{   }
 comment|/** Interface to parse bytes from document fields.    * @see FieldCache#getBytes(IndexReader, String, FieldCache.ByteParser)    */
 DECL|interface|ByteParser
 specifier|public
 interface|interface
 name|ByteParser
+extends|extends
+name|Parser
 block|{
 comment|/** Return a single Byte representation of this field's value. */
 DECL|method|parseByte
@@ -241,6 +249,8 @@ DECL|interface|ShortParser
 specifier|public
 interface|interface
 name|ShortParser
+extends|extends
+name|Parser
 block|{
 comment|/** Return a short representation of this field's value. */
 DECL|method|parseShort
@@ -258,6 +268,8 @@ DECL|interface|IntParser
 specifier|public
 interface|interface
 name|IntParser
+extends|extends
+name|Parser
 block|{
 comment|/** Return an integer representation of this field's value. */
 DECL|method|parseInt
@@ -275,6 +287,8 @@ DECL|interface|FloatParser
 specifier|public
 interface|interface
 name|FloatParser
+extends|extends
+name|Parser
 block|{
 comment|/** Return an float representation of this field's value. */
 DECL|method|parseFloat

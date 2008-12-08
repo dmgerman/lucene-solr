@@ -56,6 +56,8 @@ DECL|interface|LongParser
 specifier|public
 interface|interface
 name|LongParser
+extends|extends
+name|Parser
 block|{
 comment|/**      * Return an long representation of this field's value.      */
 DECL|method|parseLong
@@ -72,6 +74,8 @@ DECL|interface|DoubleParser
 specifier|public
 interface|interface
 name|DoubleParser
+extends|extends
+name|Parser
 block|{
 comment|/**      * Return an long representation of this field's value.      */
 DECL|method|parseDouble
