@@ -186,7 +186,19 @@ index|[]
 parameter_list|)
 throws|throws
 name|IOException
-block|{   }
+block|{
+name|write
+argument_list|(
+name|b
+argument_list|,
+literal|0
+argument_list|,
+name|b
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|write
 specifier|public
 name|void
