@@ -56,7 +56,7 @@ name|BaseTokenFilterFactory
 block|{
 DECL|method|create
 specifier|public
-name|TokenStream
+name|ArabicStemFilter
 name|create
 parameter_list|(
 name|TokenStream
