@@ -572,7 +572,13 @@ name|boost
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|v
+operator|!=
+literal|null
+condition|)
 block|{
 name|XML
 operator|.
