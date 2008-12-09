@@ -450,6 +450,20 @@ return|return
 name|m
 return|;
 block|}
+comment|/**    * Manipulating this map may have undefined results.    */
+DECL|method|getChildren
+specifier|public
+name|SimpleOrderedMap
+argument_list|<
+name|RTimer
+argument_list|>
+name|getChildren
+parameter_list|()
+block|{
+return|return
+name|children
+return|;
+block|}
 comment|/*************** Testing *******/
 DECL|method|main
 specifier|public
