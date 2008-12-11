@@ -1891,6 +1891,11 @@ argument_list|,
 name|t
 argument_list|)
 expr_stmt|;
+name|docBuilder
+operator|.
+name|rollback
+argument_list|()
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -2029,6 +2034,11 @@ literal|"Delta Import Failed"
 argument_list|,
 name|t
 argument_list|)
+expr_stmt|;
+name|docBuilder
+operator|.
+name|rollback
+argument_list|()
 expr_stmt|;
 block|}
 finally|finally
