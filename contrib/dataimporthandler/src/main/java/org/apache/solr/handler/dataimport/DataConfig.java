@@ -942,6 +942,25 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|column
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|DataImportHandlerException
+argument_list|(
+name|DataImportHandlerException
+operator|.
+name|SEVERE
+argument_list|,
+literal|"Field must have a column attribute"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|boost
