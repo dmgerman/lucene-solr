@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.handler
+DECL|package|org.apache.solr.handler.extraction
 package|package
 name|org
 operator|.
@@ -9,11 +9,13 @@ operator|.
 name|solr
 operator|.
 name|handler
+operator|.
+name|extraction
 package|;
 end_package
 
 begin_comment
-comment|/**  * The various parameters to use when extracting content.  *  **/
+comment|/**  * The various Solr Parameters names to use when extracting content.  *  **/
 end_comment
 
 begin_interface
@@ -67,7 +69,7 @@ name|EXTRACTING_PREFIX
 operator|+
 literal|"literal."
 decl_stmt|;
-comment|/**    * Restrict the extracted parts of a document to be indexed    *  by passing in an XPath expression.  All content that satisfies the XPath expr.    * will be passed to the {@link org.apache.solr.handler.SolrContentHandler}.    *<p/>    * See Tika's docs for what the extracted document looks like.    *<p/>    * @see #DEFAULT_FIELDNAME    * @see #CAPTURE_FIELDS    */
+comment|/**    * Restrict the extracted parts of a document to be indexed    *  by passing in an XPath expression.  All content that satisfies the XPath expr.    * will be passed to the {@link SolrContentHandler}.    *<p/>    * See Tika's docs for what the extracted document looks like.    *<p/>    * @see #DEFAULT_FIELDNAME    * @see #CAPTURE_FIELDS    */
 DECL|field|XPATH_EXPRESSION
 specifier|public
 specifier|static
@@ -127,7 +129,7 @@ name|EXTRACTING_PREFIX
 operator|+
 literal|"def.fl"
 decl_stmt|;
-comment|/**    * Capture the specified fields (and everything included below it that isn't capture by some other capture field) separately from the default.  This is different    * then the case of passing in an XPath expression.    *<p/>    * The Capture field is based on the localName returned to the {@link org.apache.solr.handler.SolrContentHandler}    * by Tika, not to be confused by the mapped field.  The field name can then    * be mapped into the index schema.    *<p/>    * For instance, a Tika document may look like:    *<pre>    *&lt;html&gt;    *    ...    *&lt;body&gt;    *&lt;p&gt;some text here.&lt;div&gt;more text&lt;/div&gt;&lt;/p&gt;    *      Some more text    *&lt;/body&gt;    *</pre>    * By passing in the p tag, you could capture all P tags separately from the rest of the text.    * Thus, in the example, the capture of the P tag would be: "some text here.  more text"    *    * @see #DEFAULT_FIELDNAME    */
+comment|/**    * Capture the specified fields (and everything included below it that isn't capture by some other capture field) separately from the default.  This is different    * then the case of passing in an XPath expression.    *<p/>    * The Capture field is based on the localName returned to the {@link SolrContentHandler}    * by Tika, not to be confused by the mapped field.  The field name can then    * be mapped into the index schema.    *<p/>    * For instance, a Tika document may look like:    *<pre>    *&lt;html&gt;    *    ...    *&lt;body&gt;    *&lt;p&gt;some text here.&lt;div&gt;more text&lt;/div&gt;&lt;/p&gt;    *      Some more text    *&lt;/body&gt;    *</pre>    * By passing in the p tag, you could capture all P tags separately from the rest of the text.    * Thus, in the example, the capture of the P tag would be: "some text here.  more text"    *    * @see #DEFAULT_FIELDNAME    */
 DECL|field|CAPTURE_FIELDS
 specifier|public
 specifier|static

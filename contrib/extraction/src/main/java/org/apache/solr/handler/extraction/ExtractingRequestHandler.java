@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.handler
+DECL|package|org.apache.solr.handler.extraction
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|solr
 operator|.
 name|handler
+operator|.
+name|extraction
 package|;
 end_package
 
@@ -135,6 +137,34 @@ operator|.
 name|plugin
 operator|.
 name|SolrCoreAware
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|ContentStreamHandlerBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|ContentStreamLoader
 import|;
 end_import
 

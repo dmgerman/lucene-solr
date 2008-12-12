@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.handler
+DECL|package|org.apache.solr.handler.extraction
 package|package
 name|org
 operator|.
@@ -9,11 +9,13 @@ operator|.
 name|solr
 operator|.
 name|handler
+operator|.
+name|extraction
 package|;
 end_package
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Constants used internally by the {@link ExtractingRequestHandler}.  *  **/
 end_comment
 
 begin_interface
