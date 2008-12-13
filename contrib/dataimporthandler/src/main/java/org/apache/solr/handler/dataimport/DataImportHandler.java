@@ -400,16 +400,6 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-DECL|field|initArgs
-specifier|private
-name|NamedList
-name|initArgs
-decl_stmt|;
 DECL|field|dataSources
 specifier|private
 name|Map
@@ -466,10 +456,6 @@ name|init
 argument_list|(
 name|args
 argument_list|)
-expr_stmt|;
-name|initArgs
-operator|=
-name|args
 expr_stmt|;
 block|}
 annotation|@
