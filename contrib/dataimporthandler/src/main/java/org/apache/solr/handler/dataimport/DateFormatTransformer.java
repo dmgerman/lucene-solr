@@ -294,6 +294,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|o
+operator|!=
+literal|null
+condition|)
+block|{
 name|aRow
 operator|.
 name|put
@@ -311,6 +318,7 @@ name|fmt
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
