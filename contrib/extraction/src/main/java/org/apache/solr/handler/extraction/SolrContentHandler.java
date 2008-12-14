@@ -349,7 +349,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The class responsible for handling Tika events and translating them into {@link org.apache.solr.common.SolrInputDocument}s.  *<B>This class is not thread-safe.</B>  *<p/>  *  * User's may wish to override this class to provide their own functionality.  *  * @see org.apache.solr.handler.extraction.SolrContentHandlerFactory  * @see org.apache.solr.handler.extraction.ExtractingRequestHandler  * @see org.apache.solr.handler.extraction.ExtractingDocumentLoader  *  */
+comment|/**  * The class responsible for handling Tika events and translating them into {@link org.apache.solr.common.SolrInputDocument}s.  *<B>This class is not thread-safe.</B>  *<p/>  *<p/>  * User's may wish to override this class to provide their own functionality.  *  * @see org.apache.solr.handler.extraction.SolrContentHandlerFactory  * @see org.apache.solr.handler.extraction.ExtractingRequestHandler  * @see org.apache.solr.handler.extraction.ExtractingDocumentLoader  */
 end_comment
 
 begin_class
@@ -1023,15 +1023,50 @@ literal|null
 condition|)
 block|{
 name|String
-name|value
+index|[]
+name|values
 init|=
 name|params
 operator|.
-name|get
+name|getParams
 argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|schFld
+operator|.
+name|multiValued
+argument_list|()
+operator|==
+literal|false
+operator|&&
+name|values
+operator|.
+name|length
+operator|>
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"The Field "
+operator|+
+name|fieldName
+operator|+
+literal|" is not multivalued"
+argument_list|)
+throw|;
+block|}
 name|boost
 operator|=
 name|getBoost
@@ -1039,6 +1074,23 @@ argument_list|(
 name|fieldName
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|values
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
 comment|//no need to transform here, b/c we can assume the user sent it in correctly
 name|document
 operator|.
@@ -1046,11 +1098,15 @@ name|addField
 argument_list|(
 name|fieldName
 argument_list|,
-name|value
+name|values
+index|[
+name|i
+index|]
 argument_list|,
 name|boost
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
