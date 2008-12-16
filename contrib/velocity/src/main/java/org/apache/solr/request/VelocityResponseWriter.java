@@ -427,7 +427,6 @@ name|MathTool
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: check for v.layout, render to string, then render v.layout's template setting $content in the context
 name|String
 name|layout_template
 init|=
