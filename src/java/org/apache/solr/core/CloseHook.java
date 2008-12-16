@@ -26,6 +26,7 @@ specifier|public
 interface|interface
 name|CloseHook
 block|{
+comment|/**     * Method called when the given SolrCore object is closing / shutting down.     *<br />     *<b>Important:</b> Keep the method implementation as short as possible. If it were to use any heavy i/o , network connections -     *   it might be a better idea to launch in a separate Thread so as to not to block the process of      *   shutting down a given SolrCore instance.        *        *      * @param core SolrCore object that is shutting down / closing     */
 DECL|method|close
 name|void
 name|close

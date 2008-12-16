@@ -3635,7 +3635,7 @@ block|}
 block|}
 DECL|field|closeHooks
 specifier|private
-name|List
+name|Collection
 argument_list|<
 name|CloseHook
 argument_list|>
