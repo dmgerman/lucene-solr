@@ -580,7 +580,7 @@ literal|"Optimize"
 block|,
 literal|"CloseIndex"
 block|,
-literal|"OpenReader"
+literal|"OpenReader(true)"
 block|,
 literal|"{ CountingHighlighterTest(size[1],highlight[1],mergeContiguous[true],maxFrags[1],fields[body]) } : 200"
 block|,
@@ -772,7 +772,7 @@ literal|"Optimize"
 block|,
 literal|"CloseIndex"
 block|,
-literal|"OpenReader"
+literal|"OpenReader(false)"
 block|,
 literal|"{ CountingHighlighterTest(size[1],highlight[1],mergeContiguous[true],maxFrags[1],fields[body]) } : 200"
 block|,
