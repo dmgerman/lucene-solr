@@ -389,7 +389,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p/> Provides functionality equivalent to the snappull script as well as a  * timer for scheduling pulls from the master.  *</p>  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  *<p/> Provides functionality equivalent to the snappull script as well as a timer for scheduling pulls from the  * master.</p>  *  * @version $Id$  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -1129,7 +1129,7 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This command downloads all the necessary files from master to install a    * index commit point. Only changed files are downloaded. It also downloads the    * conf files (if they are modified).    *    * @param core the SolrCore    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
+comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param core the SolrCore    *    * @return true on success, false if slave is already in sync    *    * @throws IOException if an exception occurs    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1668,7 +1668,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Helper method to record the last replication's details so that we can show them on the    * statistics page across restarts.    */
+comment|/**    * Helper method to record the last replication's details so that we can show them on the statistics page across    * restarts.    */
 DECL|method|logReplicationTimeAndConfFiles
 specifier|private
 name|void
@@ -2442,6 +2442,37 @@ range|:
 name|confFilesToDownload
 control|)
 block|{
+name|String
+name|saveAs
+init|=
+call|(
+name|String
+call|)
+argument_list|(
+name|file
+operator|.
+name|get
+argument_list|(
+name|ALIAS
+argument_list|)
+operator|==
+literal|null
+condition|?
+name|file
+operator|.
+name|get
+argument_list|(
+name|NAME
+argument_list|)
+else|:
+name|file
+operator|.
+name|get
+argument_list|(
+name|ALIAS
+argument_list|)
+argument_list|)
+decl_stmt|;
 name|fileFetcher
 operator|=
 operator|new
@@ -2451,15 +2482,7 @@ name|tmpconfDir
 argument_list|,
 name|file
 argument_list|,
-operator|(
-name|String
-operator|)
-name|file
-operator|.
-name|get
-argument_list|(
-name|NAME
-argument_list|)
+name|saveAs
 argument_list|,
 literal|true
 argument_list|,
@@ -2626,7 +2649,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * All the files which are common between master and slave must have    * same timestamp and size else we assume they are not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
+comment|/**    * All the files which are common between master and slave must have same timestamp and size else we assume they are    * not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
 DECL|method|isIndexStale
 specifier|private
 name|boolean
@@ -2702,7 +2725,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Copy a file by the File#renameTo() method. If it fails, it is considered    * a failure    *<p/>    * Todo may be we should try a simple copy if it fails    */
+comment|/**    * Copy a file by the File#renameTo() method. If it fails, it is considered a failure    *<p/>    * Todo may be we should try a simple copy if it fails    */
 DECL|method|copyAFile
 specifier|private
 name|boolean
@@ -2820,7 +2843,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Copy all index files from the temp index dir to the actual index.    * The segments_N file is copied last.    */
+comment|/**    * Copy all index files from the temp index dir to the actual index. The segments_N file is copied last.    */
 DECL|method|copyIndexFiles
 specifier|private
 name|boolean
@@ -2953,7 +2976,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * The conf files are copied to the tmp dir to the conf dir.    * A backup of the old file is maintained    */
+comment|/**    * The conf files are copied to the tmp dir to the conf dir. A backup of the old file is maintained    */
 DECL|method|copyTmpConfFiles2Conf
 specifier|private
 name|void
@@ -3308,7 +3331,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * The local conf files are compared with the conf files in the master. If they are    * same (by checksum) do not copy.    *    * @return a list of configuration files which have changed on the master and need to be downloaded.    */
+DECL|field|confFileInfoCache
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|FileInfo
+argument_list|>
+name|confFileInfoCache
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|FileInfo
+argument_list|>
+argument_list|()
+decl_stmt|;
+comment|/**    * The local conf files are compared with the conf files in the master. If they are same (by checksum) do not copy.    *    * @param confFilesToDownload The list of files obtained from master    *    * @return a list of configuration files which have changed on the master and need to be downloaded.    */
 DECL|method|getModifiedConfFiles
 specifier|private
 name|Collection
@@ -3350,6 +3393,7 @@ name|Collections
 operator|.
 name|EMPTY_LIST
 return|;
+comment|//build a map with alias/name as the key
 name|Map
 argument_list|<
 name|String
@@ -3377,6 +3421,13 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|NamedList
+name|names
+init|=
+operator|new
+name|NamedList
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Map
@@ -3390,24 +3441,58 @@ range|:
 name|confFilesToDownload
 control|)
 block|{
-name|nameVsFile
-operator|.
-name|put
-argument_list|(
-operator|(
+comment|//if alias is present that is the name the file may have in the slave
 name|String
-operator|)
+name|name
+init|=
+call|(
+name|String
+call|)
+argument_list|(
+name|map
+operator|.
+name|get
+argument_list|(
+name|ALIAS
+argument_list|)
+operator|==
+literal|null
+condition|?
 name|map
 operator|.
 name|get
 argument_list|(
 name|NAME
 argument_list|)
+else|:
+name|map
+operator|.
+name|get
+argument_list|(
+name|ALIAS
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|nameVsFile
+operator|.
+name|put
+argument_list|(
+name|name
 argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
+name|names
+operator|.
+name|add
+argument_list|(
+name|name
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
+comment|//get the details of the local conf files with the same alias/name
 name|List
 argument_list|<
 name|Map
@@ -3421,14 +3506,14 @@ name|localFilesInfo
 init|=
 name|replicationHandler
 operator|.
-name|getConfFileCache
+name|getConfFileInfoFromCache
 argument_list|(
-name|nameVsFile
-operator|.
-name|keySet
-argument_list|()
+name|names
+argument_list|,
+name|confFileInfoCache
 argument_list|)
 decl_stmt|;
+comment|//compare their size/checksum to see if
 for|for
 control|(
 name|Map
@@ -3477,6 +3562,7 @@ operator|==
 literal|null
 condition|)
 continue|continue;
+comment|// the file is not even present locally (so must be downloaded)
 if|if
 condition|(
 name|m
@@ -3504,6 +3590,7 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+comment|//checksums are same so the file need not be downloaded
 block|}
 block|}
 return|return
@@ -4023,7 +4110,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * The class acts as a client for ReplicationHandler.FileStream.    * It understands the protocol of wt=filestream    *    * @see org.apache.solr.handler.ReplicationHandler.FileStream    */
+comment|/**    * The class acts as a client for ReplicationHandler.FileStream. It understands the protocol of wt=filestream    *    * @see org.apache.solr.handler.ReplicationHandler.FileStream    */
 DECL|class|FileFetcher
 specifier|private
 class|class
@@ -4609,7 +4696,7 @@ name|ERR
 return|;
 block|}
 block|}
-comment|/**      * The webcontainer flushes the data only after it fills the buffer size.      * So, all data has to be read as readFully() other wise it fails. So read      * everything as bytes and then extract an integer out of it      */
+comment|/**      * The webcontainer flushes the data only after it fills the buffer size. So, all data has to be read as readFully()      * other wise it fails. So read everything as bytes and then extract an integer out of it      */
 DECL|method|readInt
 specifier|private
 name|int
@@ -4849,7 +4936,7 @@ parameter_list|(
 name|Exception
 name|e
 parameter_list|)
-block|{}
+block|{       }
 if|if
 condition|(
 name|bytesDownloaded
