@@ -522,9 +522,6 @@ name|put
 argument_list|(
 name|handlerName
 argument_list|,
-operator|(
-name|SolrInfoMBean
-operator|)
 name|handler
 argument_list|)
 expr_stmt|;
