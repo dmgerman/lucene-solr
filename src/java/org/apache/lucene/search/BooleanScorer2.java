@@ -57,6 +57,10 @@ import|;
 end_import
 
 begin_comment
+comment|/* See the description in BooleanScorer.java, comparing  * BooleanScorer& BooleanScorer2 */
+end_comment
+
+begin_comment
 comment|/** An alternative to BooleanScorer that also allows a minimum number  * of optional scorers that should match.  *<br>Implements skipTo(), and has no limitations on the numbers of added scorers.  *<br>Uses ConjunctionScorer, DisjunctionScorer, ReqOptScorer and ReqExclScorer.  */
 end_comment
 
