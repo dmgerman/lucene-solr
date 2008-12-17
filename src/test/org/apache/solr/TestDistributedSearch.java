@@ -3759,6 +3759,64 @@ argument_list|,
 name|t1
 argument_list|)
 expr_stmt|;
+comment|// test filter tagging, facet exclusion, and naming (multi-select facet support)
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!key=myquick}quick"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!key=myall ex=a}all"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=mykey ex=a}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=other ex=b}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=again ex=a,b}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.field"
+argument_list|,
+name|t1
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=a}id:[1 TO 7]"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=b}id:[3 TO 9]"
+argument_list|)
+expr_stmt|;
 comment|// test field that is valid in schema but missing in all shards
 name|query
 argument_list|(

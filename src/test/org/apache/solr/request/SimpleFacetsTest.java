@@ -314,6 +314,68 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"check multi-select facets with naming"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[42 TO 47]"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!ex=1}trait_s:Obnoxious"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!ex=2 key=foo}id:[42 TO 45]"
+comment|// tag=2 same as 1
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!ex=3,4 key=bar}id:[43 TO 47]"
+comment|// tag=3,4 don't exist
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!ex=3,1}trait_s"
+comment|// 3,1 same as 1
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=1,2}id:47"
+comment|// tagged as 1 and 2
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|,
+literal|"//lst[@name='facet_counts']/lst[@name='facet_queries']"
+argument_list|,
+literal|"//lst[@name='facet_queries']/int[@name='{!ex=1}trait_s:Obnoxious'][.='2']"
+argument_list|,
+literal|"//lst[@name='facet_queries']/int[@name='foo'][.='4']"
+argument_list|,
+literal|"//lst[@name='facet_queries']/int[@name='bar'][.='1']"
+argument_list|,
+literal|"//lst[@name='facet_counts']/lst[@name='facet_fields']"
+argument_list|,
+literal|"//lst[@name='facet_fields']/lst[@name='trait_s']"
+argument_list|,
+literal|"*[count(//lst[@name='trait_s']/int)=4]"
+argument_list|,
+literal|"//lst[@name='trait_s']/int[@name='Tool'][.='2']"
+argument_list|,
+literal|"//lst[@name='trait_s']/int[@name='Obnoxious'][.='2']"
+argument_list|,
+literal|"//lst[@name='trait_s']/int[@name='Pig'][.='1']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"check counts for applied facet queries using filtering (fq)"
 argument_list|,
 name|req
