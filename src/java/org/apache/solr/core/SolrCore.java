@@ -3424,7 +3424,20 @@ name|count
 operator|>
 literal|0
 condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Attempted close on {} did not succeed because the new reference count {} is> 0. "
+argument_list|,
+name|this
+argument_list|,
+name|count
+argument_list|)
+expr_stmt|;
 return|return;
+block|}
 if|if
 condition|(
 name|count
@@ -3432,20 +3445,15 @@ operator|<
 literal|0
 condition|)
 block|{
-comment|//throw new RuntimeException("Too many closes on " + this);
 name|log
 operator|.
 name|error
 argument_list|(
-literal|"Too many close {count:"
-operator|+
+literal|"Too many close [count:{}] on {}. Please report this exception to solr-user@lucene.apache.org"
+argument_list|,
 name|count
-operator|+
-literal|"} on "
-operator|+
+argument_list|,
 name|this
-operator|+
-literal|". Please report this exception to solr-user@lucene.apache.org"
 argument_list|)
 expr_stmt|;
 return|return;
