@@ -532,7 +532,7 @@ if|if
 condition|(
 name|other
 operator|instanceof
-name|OpenBitSet
+name|BitDocSet
 condition|)
 block|{
 name|newbits
