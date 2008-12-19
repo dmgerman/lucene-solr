@@ -152,6 +152,12 @@ block|{
 try|try
 block|{
 return|return
+operator|(
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+operator|)
 operator|new
 name|NamedListCodec
 argument_list|()

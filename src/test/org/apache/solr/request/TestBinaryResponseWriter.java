@@ -282,6 +282,9 @@ expr_stmt|;
 name|NamedList
 name|res
 init|=
+operator|(
+name|NamedList
+operator|)
 operator|new
 name|NamedListCodec
 argument_list|()

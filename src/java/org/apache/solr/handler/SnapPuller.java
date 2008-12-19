@@ -991,6 +991,9 @@ argument_list|)
 throw|;
 block|}
 return|return
+operator|(
+name|NamedList
+operator|)
 operator|new
 name|NamedListCodec
 argument_list|()
