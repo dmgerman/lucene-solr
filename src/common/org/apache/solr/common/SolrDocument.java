@@ -1187,8 +1187,6 @@ block|}
 comment|//---------------------------------------------------
 comment|// MAP interface
 comment|//---------------------------------------------------
-annotation|@
-name|Override
 DECL|method|containsKey
 specifier|public
 name|boolean
@@ -1207,8 +1205,6 @@ name|key
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|containsValue
 specifier|public
 name|boolean
@@ -1227,8 +1223,6 @@ name|value
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|entrySet
 specifier|public
 name|Set
@@ -1250,8 +1244,6 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|get
 specifier|public
 name|Object
@@ -1270,8 +1262,6 @@ name|key
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|isEmpty
 specifier|public
 name|boolean
@@ -1285,8 +1275,6 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|keySet
 specifier|public
 name|Set
@@ -1303,8 +1291,6 @@ name|keySet
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|put
 specifier|public
 name|Object
@@ -1328,8 +1314,6 @@ name|value
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|putAll
 specifier|public
 name|void
@@ -1356,8 +1340,6 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|remove
 specifier|public
 name|Object
@@ -1376,8 +1358,6 @@ name|key
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -1391,8 +1371,6 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|values
 specifier|public
 name|Collection
