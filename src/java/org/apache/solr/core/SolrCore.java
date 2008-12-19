@@ -3424,20 +3424,8 @@ name|count
 operator|>
 literal|0
 condition|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Attempted close on {} did not succeed because the new reference count {} is> 0. "
-argument_list|,
-name|this
-argument_list|,
-name|count
-argument_list|)
-expr_stmt|;
 return|return;
-block|}
+comment|// close is called often, and only actually closes if nothing is using it.
 if|if
 condition|(
 name|count
