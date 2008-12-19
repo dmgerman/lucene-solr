@@ -366,7 +366,7 @@ name|SolrRequestHandler
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Trim the trailing '/' if its there.    *     * we want:    *  /update/csv    *  /update/csv/    * to map to the same handler     *     */
+comment|/**    * Trim the trailing '/' if its there, and convert null to empty string.    *     * we want:    *  /update/csv   and    *  /update/csv/    * to map to the same handler     *     */
 DECL|method|normalize
 specifier|private
 specifier|static
@@ -388,10 +388,6 @@ literal|""
 return|;
 if|if
 condition|(
-name|p
-operator|!=
-literal|null
-operator|&&
 name|p
 operator|.
 name|endsWith
@@ -475,15 +471,6 @@ name|SolrRequestHandler
 name|handler
 parameter_list|)
 block|{
-if|if
-condition|(
-name|handlerName
-operator|==
-literal|null
-condition|)
-return|return
-literal|null
-return|;
 name|String
 name|norm
 init|=
@@ -522,17 +509,13 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|handlerName
+literal|0
 operator|!=
-literal|null
+name|norm
+operator|.
+name|length
+argument_list|()
 operator|&&
-name|handlerName
-operator|!=
-literal|""
-condition|)
-block|{
-if|if
-condition|(
 name|handler
 operator|instanceof
 name|SolrInfoMBean
@@ -550,7 +533,6 @@ argument_list|,
 name|handler
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|old
