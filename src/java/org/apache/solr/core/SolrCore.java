@@ -1321,7 +1321,7 @@ operator|.
 name|logid
 return|;
 block|}
-comment|/**    * @return the Info Registry map which contains SolrInfoMBean objects keyed by name    * @since solr 1.3    */
+comment|/**    * Returns a Map of name vs SolrInfoMBean objects. The returned map is an instance of    * a ConcurrentHashMap and therefore no synchronization is needed for putting, removing    * or iterating over it.    *    * @return the Info Registry map which contains SolrInfoMBean objects keyed by name    * @since solr 1.3    */
 DECL|method|getInfoRegistry
 specifier|public
 name|Map

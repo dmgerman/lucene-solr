@@ -312,11 +312,6 @@ operator|.
 name|getInfoRegistry
 argument_list|()
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|reg
-init|)
-block|{
 for|for
 control|(
 name|Map
@@ -587,7 +582,6 @@ name|getStatistics
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
