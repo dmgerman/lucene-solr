@@ -1456,10 +1456,23 @@ specifier|protected
 name|void
 name|finalize
 parameter_list|()
+throws|throws
+name|Throwable
+block|{
+try|try
 block|{
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Registers a SolrCore descriptor in the registry using the specified name.    *    * If returnPrev==false, the old core, if different, is closed.    *    * @return a previous core having the same name if it existed and returnPrev==true    */
 DECL|method|register
