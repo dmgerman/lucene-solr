@@ -78,6 +78,24 @@ name|client
 operator|.
 name|solrj
 operator|.
+name|response
+operator|.
+name|SolrResponseBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
 name|embedded
 operator|.
 name|EmbeddedSolrServer
@@ -319,6 +337,15 @@ argument_list|,
 name|request
 argument_list|)
 expr_stmt|;
+comment|// Turn the SolrQueryResponse into a SolrResponse.
+comment|// QueryResponse has lots of conveniences suitable for a view
+comment|// Problem is, which SolrResponse class to use?
+comment|// One patch to SOLR-620 solved this by passing in a class name as
+comment|// as a parameter and using reflection and Solr's class loader to
+comment|// create a new instance.  But for now the implementation simply
+comment|// uses QueryResponse, and if it chokes in a known way, fall back
+comment|// to bare bones SolrResponseBase.
+comment|// TODO: Can this writer know what the handler class is?  With echoHandler=true it can get its string name at least
 name|SolrResponse
 name|rsp
 init|=
@@ -326,10 +353,12 @@ operator|new
 name|QueryResponse
 argument_list|()
 decl_stmt|;
-name|rsp
-operator|.
-name|setResponse
-argument_list|(
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+name|parsedResponse
+init|=
 operator|new
 name|EmbeddedSolrServer
 argument_list|(
@@ -345,18 +374,17 @@ name|request
 argument_list|,
 name|response
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|put
-argument_list|(
-literal|"response"
-argument_list|,
+decl_stmt|;
+try|try
+block|{
 name|rsp
+operator|.
+name|setResponse
+argument_list|(
+name|parsedResponse
 argument_list|)
 expr_stmt|;
-comment|// Velocity context tools - TODO: make these pluggable
+comment|// page only injected if QueryResponse works
 name|context
 operator|.
 name|put
@@ -372,6 +400,40 @@ name|response
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// page tool only makes sense for a SearchHandler request... *sigh*
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|e
+parameter_list|)
+block|{
+comment|// known edge case where QueryResponse's extraction assumes "response" is a SolrDocumentList
+comment|// (AnalysisRequestHandler emits a "response")
+name|rsp
+operator|=
+operator|new
+name|SolrResponseBase
+argument_list|()
+expr_stmt|;
+name|rsp
+operator|.
+name|setResponse
+argument_list|(
+name|parsedResponse
+argument_list|)
+expr_stmt|;
+block|}
+name|context
+operator|.
+name|put
+argument_list|(
+literal|"response"
+argument_list|,
+name|rsp
+argument_list|)
+expr_stmt|;
+comment|// Velocity context tools - TODO: make these pluggable
 name|context
 operator|.
 name|put
