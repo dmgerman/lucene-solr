@@ -81,7 +81,7 @@ name|DirectoryFactory
 implements|implements
 name|NamedListInitializedPlugin
 block|{
-comment|/**    * Opens a Lucene directory    *     * @return    * @throws IOException    */
+comment|/**    * Opens a Lucene directory    *     * @throws IOException    */
 DECL|method|open
 specifier|public
 specifier|abstract
