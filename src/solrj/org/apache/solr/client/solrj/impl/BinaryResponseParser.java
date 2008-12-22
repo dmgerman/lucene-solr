@@ -78,7 +78,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|NamedListCodec
+name|JavaBinCodec
 import|;
 end_import
 
@@ -159,7 +159,7 @@ name|Object
 argument_list|>
 operator|)
 operator|new
-name|NamedListCodec
+name|JavaBinCodec
 argument_list|()
 operator|.
 name|unmarshal

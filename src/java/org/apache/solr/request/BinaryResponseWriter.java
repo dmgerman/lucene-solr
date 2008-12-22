@@ -102,7 +102,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|NamedListCodec
+name|JavaBinCodec
 import|;
 end_import
 
@@ -337,11 +337,11 @@ argument_list|(
 literal|"responseHeader"
 argument_list|)
 expr_stmt|;
-name|NamedListCodec
+name|JavaBinCodec
 name|codec
 init|=
 operator|new
-name|NamedListCodec
+name|JavaBinCodec
 argument_list|(
 name|resolver
 argument_list|)
@@ -417,7 +417,7 @@ specifier|static
 class|class
 name|Resolver
 implements|implements
-name|NamedListCodec
+name|JavaBinCodec
 operator|.
 name|ObjectResolver
 block|{
@@ -560,7 +560,7 @@ parameter_list|(
 name|Object
 name|o
 parameter_list|,
-name|NamedListCodec
+name|JavaBinCodec
 name|codec
 parameter_list|)
 throws|throws
@@ -645,7 +645,7 @@ parameter_list|(
 name|DocList
 name|ids
 parameter_list|,
-name|NamedListCodec
+name|JavaBinCodec
 name|codec
 parameter_list|)
 throws|throws
@@ -655,7 +655,7 @@ name|codec
 operator|.
 name|writeTag
 argument_list|(
-name|NamedListCodec
+name|JavaBinCodec
 operator|.
 name|SOLRDOCLST
 argument_list|)
@@ -744,7 +744,7 @@ name|codec
 operator|.
 name|writeTag
 argument_list|(
-name|NamedListCodec
+name|JavaBinCodec
 operator|.
 name|ARR
 argument_list|,
@@ -1060,7 +1060,7 @@ name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
 operator|new
-name|NamedListCodec
+name|JavaBinCodec
 argument_list|(
 name|resolver
 argument_list|)
@@ -1095,7 +1095,7 @@ name|Object
 argument_list|>
 operator|)
 operator|new
-name|NamedListCodec
+name|JavaBinCodec
 argument_list|(
 name|resolver
 argument_list|)
@@ -1276,7 +1276,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-comment|// We do not add UUIDField because UUID object is not a supported type in NamedListCodec
+comment|// We do not add UUIDField because UUID object is not a supported type in JavaBinCodec
 comment|// and if we write UUIDField.toObject, we wouldn't know how to handle it in the client side
 block|}
 block|}
