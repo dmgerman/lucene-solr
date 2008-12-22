@@ -59,6 +59,7 @@ implements|implements
 name|FilenameFilter
 block|{
 DECL|field|singleton
+specifier|private
 specifier|static
 name|IndexFileNameFilter
 name|singleton
@@ -77,8 +78,9 @@ specifier|private
 name|HashSet
 name|extensionsInCFS
 decl_stmt|;
+comment|// Prevent instantiation.
 DECL|method|IndexFileNameFilter
-specifier|public
+specifier|private
 name|IndexFileNameFilter
 parameter_list|()
 block|{
