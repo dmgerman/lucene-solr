@@ -42,6 +42,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1386,6 +1396,32 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|fixedTime
+condition|)
+block|{
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" "
+operator|+
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+operator|.
+name|format
+argument_list|(
+name|runTimeSec
+argument_list|)
+operator|+
+literal|"s"
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
 name|repetitions
 operator|>
 literal|1
@@ -1401,6 +1437,7 @@ name|repetitions
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
 if|if
 condition|(
 name|repetitions
