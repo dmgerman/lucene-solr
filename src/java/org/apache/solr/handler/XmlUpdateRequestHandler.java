@@ -493,7 +493,7 @@ name|inputFactory
 argument_list|)
 return|;
 block|}
-comment|/**    * A Convenience method for getting back a simple XML string indicating    * success or failure from an XML formated Update (from the Reader)    *    * @since solr 1.2    * @deprecated Use    *             {@link XMLLoader#processUpdate(UpdateRequestProcessor, XMLStreamReader)}    *             instead.    */
+comment|/**    * A Convenience method for getting back a simple XML string indicating    * success or failure from an XML formated Update (from the Reader)    *    * @since solr 1.2    * @deprecated Use {@link XMLLoader#load(SolrQueryRequest,SolrQueryResponse,ContentStream)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|doLegacyUpdate
