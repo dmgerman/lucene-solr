@@ -493,7 +493,7 @@ name|inputFactory
 argument_list|)
 return|;
 block|}
-comment|/**    * A Convenience method for getting back a simple XML string indicating    * success or failure from an XML formated Update (from the Reader)    *    * @since solr 1.2    * @deprecated Use {@link XMLLoader#load(SolrQueryRequest,SolrQueryResponse,ContentStream)} instead.    */
+comment|/**    * A Convenience method for getting back a simple XML string indicating    * success or failure from an XML formated Update (from the Reader)    *    * @since solr 1.2    * @deprecated Direct updates fro ma Reader, as well as the response     *             format produced by this method, have been deprecated     *             and will be removed in future versions.  Any code using    *             this method should be changed to use {@link #handleRequest}     *             method with a ContentStream.     */
 annotation|@
 name|Deprecated
 DECL|method|doLegacyUpdate
