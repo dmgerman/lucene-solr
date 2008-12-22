@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An UpdateRequestProcessorFactory that constructs a chain of UpdateRequestProcessor.  *   * This is the default implementation and can be configured via solrconfig.xml with:  *   *&lt;updateRequestProcessors name="key" default="true"&gt;  *&lt;processor class="PathToClass1" /&gt;  *&lt;processor class="PathToClass2" /&gt;  *&lt;processor class="solr.LogUpdateProcessorFactory"&gt;  *&lt;int name="maxNumToLog"&gt;100&lt;/int&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.RunUpdateProcessorFactory" /&gt;  *&lt;/updateRequestProcessors&gt;  *   * @since solr 1.3  */
+comment|/**  * Manages a chain of UpdateRequestProcessorFactories.  *<p>  * Chain can be configured via solrconfig.xml:  *</p>  *<pre>  *&lt;updateRequestProcessors name="key" default="true"&gt;  *&lt;processor class="PathToClass1" /&gt;  *&lt;processor class="PathToClass2" /&gt;  *&lt;processor class="solr.LogUpdateProcessorFactory"&gt;  *&lt;int name="maxNumToLog"&gt;100&lt;/int&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.RunUpdateProcessorFactory" /&gt;  *&lt;/updateRequestProcessors&gt;  *</pre>  *  * @see UpdateRequestProcessorFactory  * @since solr 1.3  */
 end_comment
 
 begin_class
