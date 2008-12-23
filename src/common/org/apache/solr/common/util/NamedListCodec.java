@@ -31,7 +31,31 @@ class|class
 name|NamedListCodec
 extends|extends
 name|JavaBinCodec
-block|{ }
+block|{
+DECL|method|NamedListCodec
+specifier|public
+name|NamedListCodec
+parameter_list|()
+block|{
+name|super
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|NamedListCodec
+specifier|public
+name|NamedListCodec
+parameter_list|(
+name|ObjectResolver
+name|resolver
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|resolver
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 end_class
 
 end_unit
