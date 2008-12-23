@@ -1648,6 +1648,7 @@ return|return
 name|_spellResponse
 return|;
 block|}
+comment|/**    * See also: {@link #getLimitingFacets()}    */
 DECL|method|getFacetFields
 specifier|public
 name|List
@@ -1765,6 +1766,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**    * @return a list of FacetFields where the count is less then    * then #getResults() {@link SolrDocumentList#getNumFound()}    *     * If you want all results exactly as returned by solr, use:    * {@link #getFacetFields()}    */
 DECL|method|getLimitingFacets
 specifier|public
 name|List
