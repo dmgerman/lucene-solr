@@ -214,7 +214,7 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"<a href=\".\"><img border=\"0\" align=\"right\" height=\"61\" width=\"142\" src=\"solr-head.gif\" alt=\"Solr\"></a>"
+literal|"<a href=\".\"><img border=\"0\" align=\"right\" height=\"78\" width=\"142\" src=\"solr_small.png\" alt=\"Solr\"></a>"
 argument_list|)
 expr_stmt|;
 name|out
