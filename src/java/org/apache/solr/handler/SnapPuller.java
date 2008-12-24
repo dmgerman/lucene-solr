@@ -102,7 +102,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|NamedList
+name|JavaBinCodec
 import|;
 end_import
 
@@ -118,7 +118,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|JavaBinCodec
+name|NamedList
 import|;
 end_import
 
@@ -795,7 +795,9 @@ expr_stmt|;
 name|replicationHandler
 operator|.
 name|doSnapPull
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
