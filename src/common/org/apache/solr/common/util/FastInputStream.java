@@ -481,6 +481,12 @@ name|r
 return|;
 block|}
 return|return
+name|r
+operator|>
+literal|0
+condition|?
+name|r
+else|:
 operator|-
 literal|1
 return|;
