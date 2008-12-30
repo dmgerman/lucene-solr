@@ -1686,16 +1686,24 @@ decl_stmt|;
 try|try
 block|{
 comment|//get all the files in the commit
+comment|//use a set to workaround possible Lucene bug which returns same file name multiple times
 name|Collection
 argument_list|<
 name|String
 argument_list|>
 name|files
 init|=
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
+argument_list|(
 name|commit
 operator|.
 name|getFileNames
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
