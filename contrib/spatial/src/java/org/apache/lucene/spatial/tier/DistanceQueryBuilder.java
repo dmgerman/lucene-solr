@@ -89,10 +89,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|DistanceQuery
+DECL|class|DistanceQueryBuilder
 specifier|public
 class|class
-name|DistanceQuery
+name|DistanceQueryBuilder
 block|{
 DECL|field|serialVersionUID
 specifier|private
@@ -139,9 +139,9 @@ name|Filter
 name|cartesianFilter
 decl_stmt|;
 comment|/**    * Create a distance query using    * a boundary box wrapper around a more precise    * DistanceFilter.    *     * @see SerialChainFilter    * @param lat    * @param lng    * @param miles    */
-DECL|method|DistanceQuery
+DECL|method|DistanceQueryBuilder
 specifier|public
-name|DistanceQuery
+name|DistanceQueryBuilder
 parameter_list|(
 name|double
 name|lat
@@ -180,11 +180,11 @@ name|miles
 operator|=
 name|miles
 expr_stmt|;
-name|CartesianPolyFilter
+name|CartesianPolyFilterBuilder
 name|cpf
 init|=
 operator|new
-name|CartesianPolyFilter
+name|CartesianPolyFilterBuilder
 argument_list|()
 decl_stmt|;
 name|cartesianFilter

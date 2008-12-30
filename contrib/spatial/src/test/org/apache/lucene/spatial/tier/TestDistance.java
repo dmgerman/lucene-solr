@@ -214,7 +214,7 @@ name|spatial
 operator|.
 name|tier
 operator|.
-name|DistanceQuery
+name|DistanceQueryBuilder
 import|;
 end_import
 

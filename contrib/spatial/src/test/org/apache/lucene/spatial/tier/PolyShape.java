@@ -65,11 +65,11 @@ index|[]
 name|args
 parameter_list|)
 block|{
-name|CartesianPolyFilter
+name|CartesianPolyFilterBuilder
 name|cpf
 init|=
 operator|new
-name|CartesianPolyFilter
+name|CartesianPolyFilterBuilder
 argument_list|()
 decl_stmt|;
 name|cpf

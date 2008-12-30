@@ -244,7 +244,7 @@ name|spatial
 operator|.
 name|tier
 operator|.
-name|DistanceQuery
+name|DistanceQueryBuilder
 import|;
 end_import
 
@@ -1075,11 +1075,11 @@ literal|6.0
 decl_stmt|;
 comment|// create a distance query
 specifier|final
-name|DistanceQuery
+name|DistanceQueryBuilder
 name|dq
 init|=
 operator|new
-name|DistanceQuery
+name|DistanceQueryBuilder
 argument_list|(
 name|lat
 argument_list|,
