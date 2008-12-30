@@ -973,8 +973,6 @@ argument_list|(
 name|requestParams
 argument_list|,
 literal|null
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -1100,8 +1098,6 @@ argument_list|(
 name|requestParams
 argument_list|,
 name|sw
-argument_list|,
-name|variables
 argument_list|)
 expr_stmt|;
 name|rsp
@@ -1170,8 +1166,6 @@ argument_list|(
 name|requestParams
 argument_list|,
 name|sw
-argument_list|,
-name|variables
 argument_list|)
 expr_stmt|;
 block|}

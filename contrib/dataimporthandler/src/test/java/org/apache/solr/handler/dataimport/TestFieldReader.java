@@ -211,15 +211,6 @@ argument_list|(
 name|rp
 argument_list|,
 name|sw
-argument_list|,
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|Assert

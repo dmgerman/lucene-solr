@@ -300,12 +300,7 @@ literal|"atrimlisting"
 argument_list|,
 name|dc
 operator|.
-name|documents
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
+name|document
 operator|.
 name|entities
 operator|.
