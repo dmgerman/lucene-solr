@@ -596,6 +596,10 @@ argument_list|(
 name|base
 argument_list|,
 name|project
+argument_list|,
+name|CartesianTierPlotter
+operator|.
+name|DEFALT_FIELD_PREFIX
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1090,6 +1094,10 @@ argument_list|,
 name|latField
 argument_list|,
 name|lngField
+argument_list|,
+name|CartesianTierPlotter
+operator|.
+name|DEFALT_FIELD_PREFIX
 argument_list|,
 literal|true
 argument_list|)
