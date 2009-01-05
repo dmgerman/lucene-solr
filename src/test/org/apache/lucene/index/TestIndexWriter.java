@@ -6490,7 +6490,17 @@ comment|// will exceed this 100X:
 comment|// System.out.println("start " + startDiskUsage + "; mid " + midDiskUsage + ";end " + endDiskUsage);
 name|assertTrue
 argument_list|(
-literal|"writer used to much space while adding documents when autoCommit=false"
+literal|"writer used too much space while adding documents when autoCommit=false: mid="
+operator|+
+name|midDiskUsage
+operator|+
+literal|" start="
+operator|+
+name|startDiskUsage
+operator|+
+literal|" end="
+operator|+
+name|endDiskUsage
 argument_list|,
 name|midDiskUsage
 operator|<
@@ -6501,7 +6511,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"writer used to much space after close when autoCommit=false endDiskUsage="
+literal|"writer used too much space after close when autoCommit=false endDiskUsage="
 operator|+
 name|endDiskUsage
 operator|+
