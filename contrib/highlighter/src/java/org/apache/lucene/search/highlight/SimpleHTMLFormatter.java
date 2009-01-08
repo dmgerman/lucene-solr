@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Simple {@link Formatter} implementation to highlight terms with a pre and post tag  *  */
+comment|/**  * Simple {@link Formatter} implementation to highlight terms with a pre and  * post tag.  */
 end_comment
 
 begin_class
@@ -30,11 +30,31 @@ name|SimpleHTMLFormatter
 implements|implements
 name|Formatter
 block|{
+DECL|field|DEFAULT_PRE_TAG
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_PRE_TAG
+init|=
+literal|"<B>"
+decl_stmt|;
+DECL|field|DEFAULT_POST_TAG
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_POST_TAG
+init|=
+literal|"</B>"
+decl_stmt|;
 DECL|field|preTag
+specifier|private
 name|String
 name|preTag
 decl_stmt|;
 DECL|field|postTag
+specifier|private
 name|String
 name|postTag
 decl_stmt|;
@@ -62,23 +82,18 @@ operator|=
 name|postTag
 expr_stmt|;
 block|}
-comment|/** 	 * Default constructor uses HTML:&lt;B&gt; tags to markup terms 	 *  	 **/
+comment|/** Default constructor uses HTML:&lt;B&gt; tags to markup terms. */
 DECL|method|SimpleHTMLFormatter
 specifier|public
 name|SimpleHTMLFormatter
 parameter_list|()
 block|{
 name|this
-operator|.
-name|preTag
-operator|=
-literal|"<B>"
-expr_stmt|;
-name|this
-operator|.
-name|postTag
-operator|=
-literal|"</B>"
+argument_list|(
+name|DEFAULT_PRE_TAG
+argument_list|,
+name|DEFAULT_POST_TAG
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.highlight.Formatter#highlightTerm(java.lang.String, org.apache.lucene.search.highlight.TokenGroup) 	 */
@@ -94,25 +109,44 @@ name|TokenGroup
 name|tokenGroup
 parameter_list|)
 block|{
-name|StringBuffer
-name|returnBuffer
-decl_stmt|;
 if|if
 condition|(
 name|tokenGroup
 operator|.
 name|getTotalScore
 argument_list|()
-operator|>
+operator|<=
 literal|0
 condition|)
 block|{
+return|return
+name|originalText
+return|;
+block|}
+comment|// Allocate StringBuffer with the right number of characters from the
+comment|// beginning, to avoid char[] allocations in the middle of appends.
+name|StringBuffer
 name|returnBuffer
-operator|=
+init|=
 operator|new
 name|StringBuffer
+argument_list|(
+name|preTag
+operator|.
+name|length
 argument_list|()
-expr_stmt|;
+operator|+
+name|originalText
+operator|.
+name|length
+argument_list|()
+operator|+
+name|postTag
+operator|.
+name|length
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|returnBuffer
 operator|.
 name|append
@@ -139,10 +173,6 @@ name|returnBuffer
 operator|.
 name|toString
 argument_list|()
-return|;
-block|}
-return|return
-name|originalText
 return|;
 block|}
 block|}
