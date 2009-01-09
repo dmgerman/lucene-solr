@@ -932,20 +932,6 @@ name|Exception
 name|ex
 parameter_list|)
 block|{}
-if|if
-condition|(
-operator|!
-name|queue
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|run
-argument_list|()
-expr_stmt|;
-comment|// run again, just in case
-block|}
 comment|// remove it from the list of running things...
 synchronized|synchronized
 init|(
