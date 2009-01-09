@@ -44,16 +44,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
 import|;
 end_import
@@ -183,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A ShingleMatrixFilter constructs shingles (token n-grams) from a token stream.  * In other words, it creates combinations of tokens as a single token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * might be tokenized into shingles "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>Using a shingle filter at index and query time can in some instances  * be used to replace phrase queries, especially them with 0 slop.  *  *<p>Without a spacer character  * it can be used to handle composition and decomposion of words  * such as searching for "multi dimensional" instead of "multidimensional".  * It is a rather common human problem at query time  * in several languages, notebly the northern Germanic branch.  *  *<p>Shingles are amongst many things also known to solve problems  * in spell checking, language detection and document clustering.    *  *<p>This filter is backed by a three dimensional column oriented matrix  * used to create permutations of the second dimension, the rows,  * and leaves the third, the z-axis, for for multi token synonyms.  *  *<p>In order to use this filter you need to define a way of positioning  * the input stream tokens in the matrix. This is done using a  * {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.TokenSettingsCodec}.  * There are three simple implementations for demonstrational purposes,  * see {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.OneDimensionalNonWeightedTokenSettingsCodec},  * {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.TwoDimensionalNonWeightedSynonymTokenSettingsCodec}  * and {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.SimpleThreeDimensionalTokenSettingsCodec}.  *  *<p>Consider this token matrix:  *<pre>  *  Token[column][row][z-axis]{  *    {{hello}, {greetings, and, salutations}},  *    {{world}, {earth}, {tellus}}  *  };  *</pre>  *  * It would produce the following 2-3 gram sized shingles:  *  *<pre>  * "hello_world"  * "greetings_and"  * "greetings_and_salutations"  * "and_salutations"  * "and_salutations_world"  * "salutations_world"  * "hello_earth"  * "and_salutations_earth"  * "salutations_earth"  * "hello_tellus"  * "and_salutations_tellus"  * "salutations_tellus"  *</pre>  *   *<p>This implementation can be rather heap demanding  * if (maximum shingle size - minimum shingle size) is a great number and the stream contains many columns,  * or if each column contains a great number of rows.  *  *<p>The problem is that in order avoid producing duplicates  * the filter needs to keep track of any shingle already produced and returned to the consumer.  *  * There is a bit of resource management to handle this  * but it would of course be much better if the filter was written  * so it never created the same shingle more than once in the first place.  *  *<p>The filter also has basic support for calculating weights for the shingles  * based on the weights of the tokens from the input stream, output shingle size, et c.  * See {@link #calculateShingleWeight(org.apache.lucene.analysis.Token, java.util.List, int, java.util.List, java.util.List)}.  */
+comment|/**  *<p>A ShingleMatrixFilter constructs shingles (token n-grams) from a token stream.  * In other words, it creates combinations of tokens as a single token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * might be tokenized into shingles "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>Using a shingle filter at index and query time can in some instances  * be used to replace phrase queries, especially them with 0 slop.  *  *<p>Without a spacer character  * it can be used to handle composition and decomposion of words  * such as searching for "multi dimensional" instead of "multidimensional".  * It is a rather common human problem at query time  * in several languages, notebly the northern Germanic branch.  *  *<p>Shingles are amongst many things also known to solve problems  * in spell checking, language detection and document clustering.  *  *<p>This filter is backed by a three dimensional column oriented matrix  * used to create permutations of the second dimension, the rows,  * and leaves the third, the z-axis, for for multi token synonyms.  *  *<p>In order to use this filter you need to define a way of positioning  * the input stream tokens in the matrix. This is done using a  * {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.TokenSettingsCodec}.  * There are three simple implementations for demonstrational purposes,  * see {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.OneDimensionalNonWeightedTokenSettingsCodec},  * {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.TwoDimensionalNonWeightedSynonymTokenSettingsCodec}  * and {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.SimpleThreeDimensionalTokenSettingsCodec}.  *  *<p>Consider this token matrix:  *<pre>  *  Token[column][row][z-axis]{  *    {{hello}, {greetings, and, salutations}},  *    {{world}, {earth}, {tellus}}  *  };  *</pre>  *  * It would produce the following 2-3 gram sized shingles:  *  *<pre>  * "hello_world"  * "greetings_and"  * "greetings_and_salutations"  * "and_salutations"  * "and_salutations_world"  * "salutations_world"  * "hello_earth"  * "and_salutations_earth"  * "salutations_earth"  * "hello_tellus"  * "and_salutations_tellus"  * "salutations_tellus"  *</pre>  *  *<p>This implementation can be rather heap demanding  * if (maximum shingle size - minimum shingle size) is a great number and the stream contains many columns,  * or if each column contains a great number of rows.  *  *<p>The problem is that in order avoid producing duplicates  * the filter needs to keep track of any shingle already produced and returned to the consumer.  *  * There is a bit of resource management to handle this  * but it would of course be much better if the filter was written  * so it never created the same shingle more than once in the first place.  *  *<p>The filter also has basic support for calculating weights for the shingles  * based on the weights of the tokens from the input stream, output shingle size, et c.  * See {@link #calculateShingleWeight(org.apache.lucene.analysis.Token, java.util.List, int, java.util.List, java.util.List)}.  */
 end_comment
 
 begin_class
@@ -743,6 +733,57 @@ block|{
 comment|// this loop looks ugly
 block|}
 block|}
+comment|// this loop exists in order to avoid recursive calls to the next method
+comment|// as the complexity of a large matrix
+comment|// then would require a multi gigabyte sized stack.
+name|Token
+name|token
+decl_stmt|;
+do|do
+block|{
+name|token
+operator|=
+name|produceNextToken
+argument_list|(
+name|reusableToken
+argument_list|)
+expr_stmt|;
+block|}
+do|while
+condition|(
+name|token
+operator|==
+name|request_next_token
+condition|)
+do|;
+return|return
+name|token
+return|;
+block|}
+DECL|field|request_next_token
+specifier|private
+specifier|static
+specifier|final
+name|Token
+name|request_next_token
+init|=
+operator|new
+name|Token
+argument_list|()
+decl_stmt|;
+comment|/**    * This method exists in order to avoid reursive calls to the method    * as the complexity of a fairlt small matrix then easily would require    * a gigabyte sized stack per thread.    *    * @param reusableToken    * @return null if exhausted, instance request_next_token if one more call is required for an answer, or instance parameter resuableToken.    * @throws IOException    */
+DECL|method|produceNextToken
+specifier|private
+name|Token
+name|produceNextToken
+parameter_list|(
+specifier|final
+name|Token
+name|reusableToken
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 if|if
 condition|(
 name|currentPermuationTokens
@@ -916,10 +957,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|next
-argument_list|(
-name|reusableToken
-argument_list|)
+name|request_next_token
 return|;
 block|}
 comment|// shingle token factory
@@ -1056,10 +1094,7 @@ operator|-
 literal|1
 expr_stmt|;
 return|return
-name|next
-argument_list|(
-name|reusableToken
-argument_list|)
+name|request_next_token
 return|;
 block|}
 if|if
@@ -1307,10 +1342,7 @@ name|nextTokensPermutation
 argument_list|()
 expr_stmt|;
 return|return
-name|next
-argument_list|(
-name|reusableToken
-argument_list|)
+name|request_next_token
 return|;
 block|}
 block|}
@@ -1346,10 +1378,7 @@ name|nextTokensPermutation
 argument_list|()
 expr_stmt|;
 return|return
-name|next
-argument_list|(
-name|reusableToken
-argument_list|)
+name|request_next_token
 return|;
 block|}
 comment|/**    * get next permutation of row combinations,    * creates list of all tokens in the row and    * an index from each such token to what row they exist in.    * finally resets the current (next) shingle size and offset.    */
@@ -1601,7 +1630,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Evaluates the new shingle token weight.    *    * for (shingle part token in shingle)    * weight +=  shingle part token weight * (1 / sqrt(all shingle part token weights summed))    *    * This algorithm gives a slightly greater score for longer shingles    * and is rather penalising to great shingle token part weights.      *    * @param shingleToken token returned to consumer    * @param shingle tokens the tokens used to produce the shingle token.    * @param currentPermutationStartOffset start offset in parameter currentPermutationRows and currentPermutationTokens.    * @param currentPermutationRows an index to what matrix row a token in parameter currentPermutationTokens exist.    * @param currentPermuationTokens all tokens in the current row permutation of the matrix. A sub list (parameter offset, parameter shingle.size) equals parameter shingle.    * @return weight to be set for parameter shingleToken    */
+comment|/**    * Evaluates the new shingle token weight.    *    * for (shingle part token in shingle)    * weight +=  shingle part token weight * (1 / sqrt(all shingle part token weights summed))    *    * This algorithm gives a slightly greater score for longer shingles    * and is rather penalising to great shingle token part weights.    *    * @param shingleToken token returned to consumer    * @param shingle tokens the tokens used to produce the shingle token.    * @param currentPermutationStartOffset start offset in parameter currentPermutationRows and currentPermutationTokens.    * @param currentPermutationRows an index to what matrix row a token in parameter currentPermutationTokens exist.    * @param currentPermuationTokens all tokens in the current row permutation of the matrix. A sub list (parameter offset, parameter shingle.size) equals parameter shingle.    * @return weight to be set for parameter shingleToken    */
 DECL|method|calculateShingleWeight
 specifier|public
 name|float
