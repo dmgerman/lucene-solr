@@ -1487,10 +1487,8 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-specifier|final
-name|int
-name|count
-init|=
+name|lastNumberOfTerms
+operator|=
 name|splitRange
 argument_list|(
 name|reader
@@ -1521,16 +1519,8 @@ argument_list|(
 name|max
 argument_list|)
 argument_list|)
-decl_stmt|;
-name|lastNumberOfTerms
-operator|=
-operator|new
-name|Integer
-argument_list|(
-name|count
-argument_list|)
 expr_stmt|;
-comment|//System.out.println("Found "+count+" distinct terms in filtered range for field '"+field+"'.");
+comment|//System.out.println("Found "+lastNumberOfTerms+" distinct terms in filtered range for field '"+field+"'.");
 block|}
 finally|finally
 block|{
@@ -1545,7 +1535,6 @@ name|bits
 return|;
 block|}
 comment|/**    * EXPERT: Return the number of terms visited during the last execution of {@link #getDocIdSet}.    * This may be used for performance comparisons of different trie variants and their effectiveness.    * This method is not thread safe, be sure to only call it when no query is running!    * @throws IllegalStateException if {@link #getDocIdSet} was not yet executed.    */
-comment|//@Override
 DECL|method|getLastNumberOfTerms
 specifier|public
 name|int
@@ -1555,8 +1544,8 @@ block|{
 if|if
 condition|(
 name|lastNumberOfTerms
-operator|==
-literal|null
+operator|<
+literal|0
 condition|)
 throw|throw
 operator|new
@@ -1565,9 +1554,6 @@ argument_list|()
 throw|;
 return|return
 name|lastNumberOfTerms
-operator|.
-name|intValue
-argument_list|()
 return|;
 block|}
 comment|// members
@@ -1599,10 +1585,11 @@ name|maxUnconverted
 decl_stmt|;
 DECL|field|lastNumberOfTerms
 specifier|private
-name|Integer
+name|int
 name|lastNumberOfTerms
 init|=
-literal|null
+operator|-
+literal|1
 decl_stmt|;
 block|}
 end_class
