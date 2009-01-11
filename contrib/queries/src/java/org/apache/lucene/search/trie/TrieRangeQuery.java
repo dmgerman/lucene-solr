@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of a Lucene {@link Query} that implements a trie-based range query.  * This query depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  *<p>This class wraps a {@link TrieRangeFilter} using a {@link ConstantScoreQuery}.  * @see TrieRangeFilter  * @author Uwe Schindler (panFMP developer)  */
+comment|/**  * Implementation of a Lucene {@link Query} that implements a trie-based range query.  * This query depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  *<p>This class wraps a {@link TrieRangeFilter} using a {@link ConstantScoreQuery}.  * @see TrieRangeFilter  */
 end_comment
 
 begin_class
@@ -107,7 +107,7 @@ name|TrieRangeQuery
 extends|extends
 name|Query
 block|{
-comment|/** 	 * Universal constructor (expert use only): Uses already trie-converted min/max values. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Universal constructor (expert use only): Uses already trie-converted min/max values.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -138,7 +138,7 @@ name|max
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Universal constructor (expert use only): Uses already trie-converted min/max values. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Universal constructor (expert use only): Uses already trie-converted min/max values.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -175,7 +175,7 @@ name|variant
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in numeric form (double). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -206,7 +206,7 @@ name|max
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in numeric form (double). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -243,7 +243,7 @@ name|variant
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in date/time form. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -274,7 +274,7 @@ name|max
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in date/time form. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -311,7 +311,7 @@ name|variant
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in integer form (long). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -342,7 +342,7 @@ name|max
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in integer form (long). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -485,7 +485,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Rewrites the query to native Lucene {@link Query}'s. This implementation uses a {@link ConstantScoreQuery} with 	 * a {@link TrieRangeFilter} as implementation of the trie algorithm. 	 */
+comment|/**    * Rewrites the query to native Lucene {@link Query}'s. This implementation uses a {@link ConstantScoreQuery} with    * a {@link TrieRangeFilter} as implementation of the trie algorithm.    */
 comment|//@Override
 DECL|method|rewrite
 specifier|public
@@ -526,7 +526,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns the underlying filter. 	 */
+comment|/**    * Returns the underlying filter.    */
 DECL|method|getFilter
 specifier|public
 name|TrieRangeFilter

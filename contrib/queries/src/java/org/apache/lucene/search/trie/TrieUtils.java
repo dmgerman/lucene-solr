@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a helper class to construct the trie-based index entries for numerical values.  *<p>For more information on how the algorithm works, see the package description {@link org.apache.lucene.search.trie}.  * The format of how the numerical values are stored in index is documented here:  *<p>All numerical values are first converted to special<code>unsigned long</code>s by applying some bit-wise transformations. This means:<ul>  *<li>{@link Date}s are casted to UNIX timestamps (milliseconds since 1970-01-01, this is how Java represents date/time  * internally): {@link Date#getTime()}. The resulting<code>signed long</code> is transformed to the unsigned form like so:</li>  *<li><code>signed long</code>s are shifted, so that {@link Long#MIN_VALUE} is mapped to<code>0x0000000000000000</code>,  * {@link Long#MAX_VALUE} is mapped to<code>0xffffffffffffffff</code>.</li>  *<li><code>double</code>s are converted by getting their IEEE 754 floating-point "double format" bit layout and then some bits  * are swapped, to be able to compare the result as<code>unsigned long</code>s.</li>  *</ul>  *<p>For each variant (you can choose between {@link #VARIANT_8BIT}, {@link #VARIANT_4BIT}, and {@link #VARIANT_2BIT}),  * the bitmap of this<code>unsigned long</code> is divided into parts of a number of bits (starting with the most-significant bits)  * and each part converted to characters between {@link #TRIE_CODED_SYMBOL_MIN} and {@link #TRIE_CODED_SYMBOL_MAX}.  * The resulting {@link String} is comparable like the corresponding<code>unsigned long</code>.  *<p>To store the different precisions of the long values (from one character [only the most significant one] to the full encoded length),  * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision == 0x20+precision</code>),  * in an extra "helper" field with a suffixed field name (i.e. fieldname "numeric" =&gt; lower precision's name "numeric#trie").  * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name.  * By this it is possible to get the correct enumeration of terms in correct precision  * of the term list by just jumping to the correct fieldname and/or prefix. The full precision value may also be  * stored in the document. Having the full precision value as term in a separate field with the original name,  * sorting of query results agains such fields is possible using the original field name.  */
+comment|/**  * This is a helper class to construct the trie-based index entries for numerical values.  *<p>For more information on how the algorithm works, see the package description {@link org.apache.lucene.search.trie}.  * The format of how the numerical values are stored in index is documented here:  *<p>All numerical values are first converted to special<code>unsigned long</code>s by applying some bit-wise transformations. This means:<ul>  *<li>{@link Date}s are casted to UNIX timestamps (milliseconds since 1970-01-01, this is how Java represents date/time  * internally): {@link Date#getTime()}. The resulting<code>signed long</code> is transformed to the unsigned form like so:</li>  *<li><code>signed long</code>s are shifted, so that {@link Long#MIN_VALUE} is mapped to<code>0x0000000000000000</code>,  * {@link Long#MAX_VALUE} is mapped to<code>0xffffffffffffffff</code>.</li>  *<li><code>double</code>s are converted by getting their IEEE 754 floating-point "double format" bit layout and then some bits  * are swapped, to be able to compare the result as<code>unsigned long</code>s.</li>  *</ul>  *<p>For each variant (you can choose between {@link #VARIANT_8BIT}, {@link #VARIANT_4BIT}, and {@link #VARIANT_2BIT}),  * the bitmap of this<code>unsigned long</code> is divided into parts of a number of bits (starting with the most-significant bits)  * and each part converted to characters between {@link #TRIE_CODED_SYMBOL_MIN} and {@link #TRIE_CODED_SYMBOL_MAX}.  * The resulting {@link String} is comparable like the corresponding<code>unsigned long</code>.  *<p>To store the different precisions of the long values (from one character [only the most significant one] to the full encoded length),  * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision == 0x20+precision</code>),  * in an extra "helper" field with a suffixed field name (i.e. fieldname "numeric" =&gt; lower precision's name "numeric#trie").  * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name.  * By this it is possible to get the correct enumeration of terms in correct precision  * of the term list by just jumping to the correct fieldname and/or prefix. The full precision value may also be  * stored in the document. Having the full precision value as term in a separate field with the original name,  * sorting of query results against such fields is possible using the original field name.  */
 end_comment
 
 begin_class
@@ -173,7 +173,7 @@ name|char
 operator|)
 literal|0x100
 decl_stmt|;
-comment|/** 	 * A parser instance for filling a {@link ExtendedFieldCache}, that parses trie encoded fields as longs, 	 * auto detecting the trie encoding variant using the String length. 	 */
+comment|/**    * A parser instance for filling a {@link ExtendedFieldCache}, that parses trie encoded fields as longs,    * auto detecting the trie encoding variant using the String length.    */
 DECL|field|FIELD_CACHE_LONG_PARSER_AUTO
 specifier|public
 specifier|static
@@ -207,7 +207,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** 	 * A parser instance for filling a {@link ExtendedFieldCache}, that parses trie encoded fields as doubles, 	 * auto detecting the trie encoding variant using the String length. 	 */
+comment|/**    * A parser instance for filling a {@link ExtendedFieldCache}, that parses trie encoded fields as doubles,    * auto detecting the trie encoding variant using the String length.    */
 DECL|field|FIELD_CACHE_DOUBLE_PARSER_AUTO
 specifier|public
 specifier|static
@@ -251,7 +251,7 @@ name|TrieUtils
 operator|.
 name|VARIANT_8BIT
 decl_stmt|;
-comment|/** 	 * Sets the default variant used for generating trie values and ranges. 	 * It is used by the constructors of {@link TrieRangeQuery} and {@link TrieRangeFilter} without<code>TrieUtils</code> parameter 	 * and can be used to get a default value through your whole application. 	 */
+comment|/**    * Sets the default variant used for generating trie values and ranges.    * It is used by the constructors of {@link TrieRangeQuery} and {@link TrieRangeFilter} without<code>TrieUtils</code> parameter    * and can be used to get a default value through your whole application.    */
 DECL|method|setDefaultTrieVariant
 specifier|public
 specifier|synchronized
@@ -270,7 +270,7 @@ operator|=
 name|variant
 expr_stmt|;
 block|}
-comment|/** 	 * Gets the default variant used for generating trie values and ranges. 	 * It is used by the constructors of {@link TrieRangeQuery} and {@link TrieRangeFilter} without<code>TrieUtils</code> parameter 	 * and can be used to get a default value through your whole application. 	 *<p>The default, if not set by {@link #setDefaultTrieVariant}, is {@link #VARIANT_8BIT}. 	 */
+comment|/**    * Gets the default variant used for generating trie values and ranges.    * It is used by the constructors of {@link TrieRangeQuery} and {@link TrieRangeFilter} without<code>TrieUtils</code> parameter    * and can be used to get a default value through your whole application.    *<p>The default, if not set by {@link #setDefaultTrieVariant}, is {@link #VARIANT_8BIT}.    */
 DECL|method|getDefaultTrieVariant
 specifier|public
 specifier|synchronized
@@ -284,7 +284,7 @@ return|return
 name|defaultTrieVariant
 return|;
 block|}
-comment|/** 	 * Detects and returns the variant of a trie encoded string using the length. 	 * @throws NumberFormatException if the length is not 8, 16, or 32 chars. 	 */
+comment|/**    * Detects and returns the variant of a trie encoded string using the length.    * @throws NumberFormatException if the length is not 8, 16, or 32 chars.    */
 DECL|method|autoDetectVariant
 specifier|public
 specifier|static
@@ -358,7 +358,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Converts a encoded<code>String</code> value back to a<code>long</code>, 	 * auto detecting the trie encoding variant using the String length. 	 */
+comment|/**    * Converts a encoded<code>String</code> value back to a<code>long</code>,    * auto detecting the trie encoding variant using the String length.    */
 DECL|method|trieCodedToLongAuto
 specifier|public
 specifier|static
@@ -383,7 +383,7 @@ name|s
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Converts a encoded<code>String</code> value back to a<code>double</code>, 	 * auto detecting the trie encoding variant using the String length. 	 */
+comment|/**    * Converts a encoded<code>String</code> value back to a<code>double</code>,    * auto detecting the trie encoding variant using the String length.    */
 DECL|method|trieCodedToDoubleAuto
 specifier|public
 specifier|static
@@ -408,7 +408,7 @@ name|s
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Converts a encoded<code>String</code> value back to a<code>Date</code>, 	 * auto detecting the trie encoding variant using the String length. 	 */
+comment|/**    * Converts a encoded<code>String</code> value back to a<code>Date</code>,    * auto detecting the trie encoding variant using the String length.    */
 DECL|method|trieCodedToDateAuto
 specifier|public
 specifier|static
@@ -433,7 +433,7 @@ name|s
 argument_list|)
 return|;
 block|}
-comment|/** 	 * A factory method, that generates a {@link SortField} instance for sorting trie encoded values, 	 * automatically detecting the trie encoding variant using the String length. 	 */
+comment|/**    * A factory method, that generates a {@link SortField} instance for sorting trie encoded values,    * automatically detecting the trie encoding variant using the String length.    */
 DECL|method|getSortFieldAuto
 specifier|public
 specifier|static
@@ -456,7 +456,7 @@ name|FIELD_CACHE_LONG_PARSER_AUTO
 argument_list|)
 return|;
 block|}
-comment|/** 	 * A factory method, that generates a {@link SortField} instance for sorting trie encoded values, 	 * automatically detecting the trie encoding variant using the String length. 	 */
+comment|/**    * A factory method, that generates a {@link SortField} instance for sorting trie encoded values,    * automatically detecting the trie encoding variant using the String length.    */
 DECL|method|getSortFieldAuto
 specifier|public
 specifier|static
@@ -1376,7 +1376,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Stores a double value in trie-form in document for indexing. 	 *<p>To store the different precisions of the long values (from one byte [only the most significant one] to the full eight bytes), 	 * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision</code>), 	 * in an extra "helper" field with a name of<code>fieldname+{@link #LOWER_PRECISION_FIELD_NAME_SUFFIX}</code> 	 * (i.e. fieldname "numeric" => lower precision's name "numeric#trie"). 	 * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name. 	 * If the field should not be searchable, set<code>index</code> to<code>false</code>. It is then only stored (for convenience). 	 * Fields added to a document using this method can be queried by {@link TrieRangeQuery}.  	 */
+comment|/**    * Stores a double value in trie-form in document for indexing.    *<p>To store the different precisions of the long values (from one byte [only the most significant one] to the full eight bytes),    * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision</code>),    * in an extra "helper" field with a name of<code>fieldname+{@link #LOWER_PRECISION_FIELD_NAME_SUFFIX}</code>    * (i.e. fieldname "numeric" => lower precision's name "numeric#trie").    * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name.    * If the field should not be searchable, set<code>index</code> to<code>false</code>. It is then only stored (for convenience).    * Fields added to a document using this method can be queried by {@link TrieRangeQuery}.     */
 DECL|method|addDoubleTrieCodedDocumentField
 specifier|public
 name|void
@@ -1422,7 +1422,7 @@ name|store
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Stores a Date value in trie-form in document for indexing. 	 *<p>To store the different precisions of the long values (from one byte [only the most significant one] to the full eight bytes), 	 * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision</code>), 	 * in an extra "helper" field with a name of<code>fieldname+{@link #LOWER_PRECISION_FIELD_NAME_SUFFIX}</code> 	 * (i.e. fieldname "numeric" => lower precision's name "numeric#trie"). 	 * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name. 	 * If the field should not be searchable, set<code>index</code> to<code>false</code>. It is then only stored (for convenience). 	 * Fields added to a document using this method can be queried by {@link TrieRangeQuery}.  	 */
+comment|/**    * Stores a Date value in trie-form in document for indexing.    *<p>To store the different precisions of the long values (from one byte [only the most significant one] to the full eight bytes),    * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision</code>),    * in an extra "helper" field with a name of<code>fieldname+{@link #LOWER_PRECISION_FIELD_NAME_SUFFIX}</code>    * (i.e. fieldname "numeric" => lower precision's name "numeric#trie").    * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name.    * If the field should not be searchable, set<code>index</code> to<code>false</code>. It is then only stored (for convenience).    * Fields added to a document using this method can be queried by {@link TrieRangeQuery}.     */
 DECL|method|addDateTrieCodedDocumentField
 specifier|public
 name|void
@@ -1468,7 +1468,7 @@ name|store
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Stores a long value in trie-form in document for indexing. 	 *<p>To store the different precisions of the long values (from one byte [only the most significant one] to the full eight bytes), 	 * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision</code>), 	 * in an extra "helper" field with a name of<code>fieldname+{@link #LOWER_PRECISION_FIELD_NAME_SUFFIX}</code> 	 * (i.e. fieldname "numeric" => lower precision's name "numeric#trie"). 	 * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name. 	 * If the field should not be searchable, set<code>index</code> to<code>false</code>. It is then only stored (for convenience). 	 * Fields added to a document using this method can be queried by {@link TrieRangeQuery}.  	 */
+comment|/**    * Stores a long value in trie-form in document for indexing.    *<p>To store the different precisions of the long values (from one byte [only the most significant one] to the full eight bytes),    * each lower precision is prefixed by the length ({@link #TRIE_CODED_PADDING_START}<code>+precision</code>),    * in an extra "helper" field with a name of<code>fieldname+{@link #LOWER_PRECISION_FIELD_NAME_SUFFIX}</code>    * (i.e. fieldname "numeric" => lower precision's name "numeric#trie").    * The full long is not prefixed at all and indexed and stored according to the given flags in the original field name.    * If the field should not be searchable, set<code>index</code> to<code>false</code>. It is then only stored (for convenience).    * Fields added to a document using this method can be queried by {@link TrieRangeQuery}.     */
 DECL|method|addLongTrieCodedDocumentField
 specifier|public
 name|void

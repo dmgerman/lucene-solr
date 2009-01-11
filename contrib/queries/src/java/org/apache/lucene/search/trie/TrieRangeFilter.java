@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of a Lucene {@link Filter} that implements trie-based range filtering.  * This filter depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  * For more information, how the algorithm works, see the package description {@link org.apache.lucene.search.trie}.  * @author Uwe Schindler (panFMP developer)  */
+comment|/**  * Implementation of a Lucene {@link Filter} that implements trie-based range filtering.  * This filter depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  * For more information, how the algorithm works, see the package description {@link org.apache.lucene.search.trie}.  */
 end_comment
 
 begin_class
@@ -149,7 +149,7 @@ name|TrieRangeFilter
 extends|extends
 name|Filter
 block|{
-comment|/** 	 * Universal constructor (expert use only): Uses already trie-converted min/max values. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Universal constructor (expert use only): Uses already trie-converted min/max values.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -248,7 +248,7 @@ name|intern
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Universal constructor (expert use only): Uses already trie-converted min/max values. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie package returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Universal constructor (expert use only): Uses already trie-converted min/max values.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie package returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -281,7 +281,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in numeric form (double). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -359,7 +359,7 @@ operator|=
 name|max
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in numeric form (double). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -392,7 +392,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in date/time form. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -464,7 +464,7 @@ operator|=
 name|max
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in date/time form. 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -497,7 +497,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in integer form (long). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -575,7 +575,7 @@ operator|=
 name|max
 expr_stmt|;
 block|}
-comment|/** 	 * Generates a trie query using the supplied field with range bounds in integer form (long). 	 * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open. 	 *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}. 	 */
+comment|/**    * Generates a trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeFilter
 specifier|public
 name|TrieRangeFilter
@@ -1450,7 +1450,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/** 	 * Returns a DocIdSet that provides the documents which should be permitted or prohibited in search results. 	 */
+comment|/**    * Returns a DocIdSet that provides the documents which should be permitted or prohibited in search results.    */
 comment|//@Override
 DECL|method|getDocIdSet
 specifier|public
@@ -1544,7 +1544,7 @@ return|return
 name|bits
 return|;
 block|}
-comment|/** 	 * EXPERT: Return the number of terms visited during the last execution of {@link #getDocIdSet}. 	 * This may be used for performance comparisons of different trie variants and their effectiveness. 	 * This method is not thread safe, be sure to only call it when no query is running! 	 * @throws IllegalStateException if {@link #getDocIdSet} was not yet executed. 	 */
+comment|/**    * EXPERT: Return the number of terms visited during the last execution of {@link #getDocIdSet}.    * This may be used for performance comparisons of different trie variants and their effectiveness.    * This method is not thread safe, be sure to only call it when no query is running!    * @throws IllegalStateException if {@link #getDocIdSet} was not yet executed.    */
 comment|//@Override
 DECL|method|getLastNumberOfTerms
 specifier|public
