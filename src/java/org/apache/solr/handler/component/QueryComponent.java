@@ -809,6 +809,33 @@ operator|.
 name|getParams
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|rb
+operator|.
+name|getQueryCommand
+argument_list|()
+operator|.
+name|getOffset
+argument_list|()
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"'start' parameter cannot be negative"
+argument_list|)
+throw|;
+block|}
 comment|// -1 as flag if not set.
 name|long
 name|timeAllowed
