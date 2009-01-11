@@ -30,30 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -80,22 +56,8 @@ name|ToStringUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
 begin_comment
-comment|/**  * Implementation of a Lucene {@link Query} that implements a trie-based range query.  * This query depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  *<p>This class wraps a {@link TrieRangeFilter} using a {@link ConstantScoreQuery}.  * @see TrieRangeFilter  */
+comment|/**  * A Lucene {@link Query} that implements a trie-based range query.  * This query depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  *<p>This class wraps a {@link TrieRangeFilter}.  * @see TrieRangeFilter  */
 end_comment
 
 begin_class
@@ -105,7 +67,7 @@ specifier|final
 class|class
 name|TrieRangeQuery
 extends|extends
-name|Query
+name|ConstantScoreQuery
 block|{
 comment|/**    * Universal constructor (expert use only): Uses already trie-converted min/max values.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
@@ -125,8 +87,8 @@ name|String
 name|max
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -135,6 +97,7 @@ argument_list|,
 name|min
 argument_list|,
 name|max
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -160,8 +123,8 @@ name|TrieUtils
 name|variant
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -173,9 +136,10 @@ name|max
 argument_list|,
 name|variant
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
+comment|/**    * A trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -193,8 +157,8 @@ name|Double
 name|max
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -204,9 +168,10 @@ name|min
 argument_list|,
 name|max
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
+comment|/**    * A trie query using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -228,8 +193,8 @@ name|TrieUtils
 name|variant
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -241,9 +206,10 @@ name|max
 argument_list|,
 name|variant
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
+comment|/**    * A trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -261,8 +227,8 @@ name|Date
 name|max
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -272,9 +238,10 @@ name|min
 argument_list|,
 name|max
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
+comment|/**    * A trie query using the supplied field with range bounds in date/time form.    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -296,8 +263,8 @@ name|TrieUtils
 name|variant
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -309,9 +276,10 @@ name|max
 argument_list|,
 name|variant
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
+comment|/**    * A trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    *<p>This constructor uses the trie variant returned by {@link TrieUtils#getDefaultTrieVariant()}.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -329,8 +297,8 @@ name|Long
 name|max
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -340,9 +308,10 @@ name|min
 argument_list|,
 name|max
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
+comment|/**    * A trie query using the supplied field with range bounds in integer form (long).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    */
 DECL|method|TrieRangeQuery
 specifier|public
 name|TrieRangeQuery
@@ -364,8 +333,8 @@ name|TrieUtils
 name|variant
 parameter_list|)
 block|{
-name|filter
-operator|=
+name|super
+argument_list|(
 operator|new
 name|TrieRangeFilter
 argument_list|(
@@ -377,7 +346,27 @@ name|max
 argument_list|,
 name|variant
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * EXPERT: Return the number of terms visited during the last execution of the query.    * This may be used for performance comparisons of different trie variants and their effectiveness.    * This method is not thread safe, be sure to only call it when no query is running!    * @throws IllegalStateException if query was not yet executed.    */
+DECL|method|getLastNumberOfTerms
+specifier|public
+name|int
+name|getLastNumberOfTerms
+parameter_list|()
+block|{
+return|return
+operator|(
+operator|(
+name|TrieRangeFilter
+operator|)
+name|filter
+operator|)
+operator|.
+name|getLastNumberOfTerms
+argument_list|()
+return|;
 block|}
 comment|//@Override
 DECL|method|toString
@@ -390,8 +379,14 @@ name|String
 name|field
 parameter_list|)
 block|{
+comment|// return a more convenient representation of this query than ConstantScoreQuery does:
 return|return
+operator|(
+operator|(
+name|TrieRangeFilter
+operator|)
 name|filter
+operator|)
 operator|.
 name|toString
 argument_list|(
@@ -421,43 +416,23 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
+operator|(
 name|o
 operator|instanceof
 name|TrieRangeQuery
-condition|)
-block|{
-name|TrieRangeQuery
-name|q
-init|=
-operator|(
-name|TrieRangeQuery
 operator|)
-name|o
-decl_stmt|;
+condition|)
 return|return
-operator|(
-name|filter
+literal|false
+return|;
+return|return
+name|super
 operator|.
 name|equals
 argument_list|(
-name|q
-operator|.
-name|filter
+name|o
 argument_list|)
-operator|&&
-name|getBoost
-argument_list|()
-operator|==
-name|q
-operator|.
-name|getBoost
-argument_list|()
-operator|)
-return|;
-block|}
-else|else
-return|return
-literal|false
 return|;
 block|}
 comment|//@Override
@@ -468,82 +443,16 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
+comment|// make hashCode a little bit different:
 return|return
-name|filter
+name|super
 operator|.
 name|hashCode
 argument_list|()
 operator|^
 literal|0x1756fa55
-operator|+
-name|Float
-operator|.
-name|floatToIntBits
-argument_list|(
-name|getBoost
-argument_list|()
-argument_list|)
 return|;
 block|}
-comment|/**    * Rewrites the query to native Lucene {@link Query}'s. This implementation uses a {@link ConstantScoreQuery} with    * a {@link TrieRangeFilter} as implementation of the trie algorithm.    */
-comment|//@Override
-DECL|method|rewrite
-specifier|public
-name|Query
-name|rewrite
-parameter_list|(
-specifier|final
-name|IndexReader
-name|reader
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-specifier|final
-name|ConstantScoreQuery
-name|q
-init|=
-operator|new
-name|ConstantScoreQuery
-argument_list|(
-name|filter
-argument_list|)
-decl_stmt|;
-name|q
-operator|.
-name|setBoost
-argument_list|(
-name|getBoost
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-name|q
-operator|.
-name|rewrite
-argument_list|(
-name|reader
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the underlying filter.    */
-DECL|method|getFilter
-specifier|public
-name|TrieRangeFilter
-name|getFilter
-parameter_list|()
-block|{
-return|return
-name|filter
-return|;
-block|}
-comment|// members
-DECL|field|filter
-specifier|private
-specifier|final
-name|TrieRangeFilter
-name|filter
-decl_stmt|;
 block|}
 end_class
 
