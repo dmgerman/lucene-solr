@@ -108,7 +108,7 @@ name|XSL
 init|=
 literal|"xsl"
 decl_stmt|;
-comment|/** stylesheet to apply to XML results */
+comment|/** version parameter to check request-response compatibility */
 DECL|field|VERSION
 specifier|public
 specifier|static
