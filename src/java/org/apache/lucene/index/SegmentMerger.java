@@ -1838,7 +1838,12 @@ if|if
 condition|(
 literal|4
 operator|+
+operator|(
+operator|(
+name|long
+operator|)
 name|docCount
+operator|)
 operator|*
 literal|8
 operator|!=
@@ -2258,7 +2263,12 @@ if|if
 condition|(
 literal|4
 operator|+
+operator|(
+operator|(
+name|long
+operator|)
 name|mergedDocs
+operator|)
 operator|*
 literal|16
 operator|!=
