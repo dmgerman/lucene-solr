@@ -144,7 +144,119 @@ name|commons
 operator|.
 name|httpclient
 operator|.
-name|*
+name|Header
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|HttpClient
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|HttpConnectionManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|HttpException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|HttpMethod
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|HttpMethodBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|HttpStatus
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|MultiThreadedHttpConnectionManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|httpclient
+operator|.
+name|NoHttpResponseException
 import|;
 end_import
 
@@ -515,6 +627,7 @@ specifier|protected
 name|ModifiableSolrParams
 name|_invariantParams
 decl_stmt|;
+comment|/**    * Default response parser is BinaryResponseParser     * @see org.apache.solr.client.solrj.impl.BinaryResponseParser    */
 DECL|field|_parser
 specifier|protected
 name|ResponseParser
@@ -547,7 +660,7 @@ name|_maxRetries
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * If set to false, add the query parameters as URL-encoded parameters to the    * POST request in a single part. If set to true, create a new part of a    * multi-part request for each parameter.    *     * The reason for adding all parameters as parts of a multi-part request is    * that this allows us to specify the charset -- standards for single-part    * requests specify that non-ASCII characters should be URL-encoded, but don't    * specify the charset of the characters to be URL-encoded (cf.    * http://www.w3.org/TR/html401/interact/forms.html#form-content-type).    * Therefore you have to rely on your servlet container doing the right thing    * with single-part requests.    */
+comment|/**    * Default value:<b> false</b>     *<p>    * If set to false, add the query parameters as URL-encoded parameters to the    * POST request in a single part. If set to true, create a new part of a    * multi-part request for each parameter.    *     * The reason for adding all parameters as parts of a multi-part request is    * that this allows us to specify the charset -- standards for single-part    * requests specify that non-ASCII characters should be URL-encoded, but don't    * specify the charset of the characters to be URL-encoded (cf.    * http://www.w3.org/TR/html401/interact/forms.html#form-content-type).    * Therefore you have to rely on your servlet container doing the right thing    * with single-part requests.    */
 DECL|field|useMultiPartPost
 specifier|private
 name|boolean
@@ -865,7 +978,6 @@ argument_list|)
 expr_stmt|;
 comment|// 20
 block|}
-comment|// by default use the binary response parser
 name|_parser
 operator|=
 name|parser
@@ -2068,7 +2180,7 @@ return|return
 name|_parser
 return|;
 block|}
-comment|/**    * Note: Setting this value is not thread-safe.    * @param processor The {@link org.apache.solr.client.solrj.ResponseParser}    */
+comment|/**    * Note: This setter method is<b>not thread-safe</b>.    * @param processor Default Response Parser chosen to parse the response if the parser were not specified as part of the request.    * @see  org.apache.solr.client.solrj.SolrRequest#getResponseParser()    */
 DECL|method|setParser
 specifier|public
 name|void
@@ -2245,7 +2357,7 @@ operator|=
 name|allowCompression
 expr_stmt|;
 block|}
-comment|/**    *  set maximum number of retries to attempt in the event of    *  transient errors.  Default: 0 (no) retries. No more than 1    *  recommended.    */
+comment|/**    * set maximum number of retries to attempt in the event of    * transient errors.  Default: 0 (no) retries. No more than 1    * recommended.    */
 DECL|method|setMaxRetries
 specifier|public
 name|void
