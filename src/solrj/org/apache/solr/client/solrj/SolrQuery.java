@@ -173,7 +173,7 @@ name|q
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** add a field for facet computation    *     * @param fields the field name from the IndexSchema    * @return this    */
+comment|/** Add field(s) for facet computation.    *     * @param fields Array of field names from the IndexSchema    * @return this    */
 DECL|method|addFacetField
 specifier|public
 name|SolrQuery
@@ -238,7 +238,7 @@ name|FACET_FIELD
 argument_list|)
 return|;
 block|}
-comment|/** remove a facet field    *     */
+comment|/** remove a facet field    *     * @param name Name of the facet field to be removed.    *     * @return true, if the item was removed.<br />    *           false, if the facet field was null or did not exist.    */
 DECL|method|removeFacetField
 specifier|public
 name|boolean
@@ -299,7 +299,7 @@ return|return
 name|b
 return|;
 block|}
-comment|/** enable/disable faceting.      *     * @param b flag to indicate faceting should be enabled.  if b==false removes all other faceting parameters    * @return this    */
+comment|/** enable/disable faceting.      *     * @param b flag to indicate faceting should be enabled.<br /> if b==false, removes all other faceting parameters    * @return Current reference (<i>this</i>)    */
 DECL|method|setFacet
 specifier|public
 name|SolrQuery
@@ -595,7 +595,7 @@ return|return
 name|b
 return|;
 block|}
-comment|/** se the facet limit    *     * @param lim number facet items to return    */
+comment|/** set the facet limit    *     * @param lim number facet items to return    */
 DECL|method|setFacetLimit
 specifier|public
 name|SolrQuery
@@ -685,6 +685,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**    * Sets facet missing boolean flag     *     * @param v flag to indicate the field of  {@link FacetParams#FACET_MISSING} .    * @return    */
 DECL|method|setFacetMissing
 specifier|public
 name|SolrQuery
@@ -709,7 +710,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @deprecated use {@link #setFacetMissing(String)}    */
+comment|/**    * @deprecated use {@link #setFacetMissing(Boolean)}    */
 DECL|method|setMissing
 specifier|public
 name|SolrQuery
@@ -731,7 +732,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** get facet sort    *     * @return facet sort or default of FacetParams.FACET_SORT_COUNT    */
+comment|/** get facet sort    *     * @return facet sort or default of {@link FacetParams#FACET_SORT_COUNT}    */
 DECL|method|getFacetSortString
 specifier|public
 name|String
@@ -753,7 +754,7 @@ name|FACET_SORT_COUNT
 argument_list|)
 return|;
 block|}
-comment|/** get facet sort    *     * @return facet sort or default of true    * @deprecated Use {@link #getFacetSortString()} instead, true corresponds to    * FacetParams.FACET_SORT_COUNT and false to FacetParams.FACET_SORT_LEX.    */
+comment|/** get facet sort    *     * @return facet sort or default of true.<br />    * true corresponds to    * {@link FacetParams#FACET_SORT_COUNT} and<br />false to {@link FacetParams#FACET_SORT_LEX}    *     * @deprecated Use {@link #getFacetSortString()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getFacetSort
@@ -809,7 +810,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** set facet sort    *     * @param sort sort facets    * @return this    * @deprecated Use {@link #setFacetSort(String)} instead, true corresponds to    * FacetParams.FACET_SORT_COUNT and false to FacetParams.FACET_SORT_LEX.    */
+comment|/** set facet sort    *     * @param sort sort facets    * @return this    * @deprecated Use {@link #setFacetSort(String)} instead, true corresponds to    * {@link FacetParams#FACET_SORT_COUNT} and false to {@link FacetParams#FACET_SORT_LEX}.    */
 annotation|@
 name|Deprecated
 DECL|method|setFacetSort
@@ -882,7 +883,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** remove a field for highlighting    *     * @param f field name to not highlight    * @return true if removed, false otherwise    */
+comment|/** remove a field for highlighting    *     * @param f field name to not highlight    * @return<i>true</i>, if removed,<br /><i>false</i>, otherwise    */
 DECL|method|removeHighlightField
 specifier|public
 name|boolean
@@ -932,7 +933,7 @@ return|return
 name|b
 return|;
 block|}
-comment|/** get list of hl fields    *     * @return highlight fields or null if not set/empty    */
+comment|/** get list of highlighted fields    *     * @return Array of highlight fields or null if not set/empty    */
 DECL|method|getHighlightFields
 specifier|public
 name|String
@@ -2041,10 +2042,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// use addSortField( sort, order
-comment|//  public void setSort(String ... sort) {
-comment|//    this.set(CommonParams.SORT, sort);
-comment|//  }
 DECL|method|setStart
 specifier|public
 name|SolrQuery
@@ -2106,6 +2103,7 @@ name|START
 argument_list|)
 return|;
 block|}
+comment|/**    * Query type used to determine the request handler.     * @see org.apache.solr.client.solrj.request.QueryRequest#getPath()    *     * @param qt Query Type that corresponds to the query request handler on the server.    * @return this    */
 DECL|method|setQueryType
 specifier|public
 name|SolrQuery
@@ -2147,6 +2145,7 @@ name|QT
 argument_list|)
 return|;
 block|}
+comment|/**    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, String ...)    * @param name    * @param values    *      * @return    */
 DECL|method|setParam
 specifier|public
 name|SolrQuery
@@ -2173,6 +2172,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, boolean)    * @param name    * @param value    * @return    */
 DECL|method|setParam
 specifier|public
 name|SolrQuery
@@ -2198,7 +2198,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** get a deep copy of this object * */
+comment|/** get a deep copy of this object **/
 DECL|method|getCopy
 specifier|public
 name|SolrQuery
