@@ -609,7 +609,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the int value of the field param,   or the value for param, or def if neither is set. */
+comment|/**    * @return The int value of the field param, or the value for param     * or<code>null</code> if neither is set.     **/
 DECL|method|getFieldInt
 specifier|public
 name|Integer
