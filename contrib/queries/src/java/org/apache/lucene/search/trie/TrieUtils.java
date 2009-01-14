@@ -1229,7 +1229,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|NOT_ANALYZED
+name|NOT_ANALYZED_NO_NORMS
 else|:
 name|Field
 operator|.
@@ -1345,7 +1345,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|NOT_ANALYZED
+name|NOT_ANALYZED_NO_NORMS
 argument_list|)
 expr_stmt|;
 name|f
