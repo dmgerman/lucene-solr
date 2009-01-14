@@ -278,10 +278,10 @@ name|INCREMENT_THRESHOLD
 init|=
 literal|50
 decl_stmt|;
-DECL|field|fragOffsetAccum
+DECL|field|fragOffset
 specifier|protected
 name|int
-name|fragOffsetAccum
+name|fragOffset
 init|=
 literal|0
 decl_stmt|;
@@ -314,7 +314,7 @@ name|String
 name|originalText
 parameter_list|)
 block|{
-name|fragOffsetAccum
+name|fragOffset
 operator|=
 literal|0
 expr_stmt|;
@@ -337,7 +337,7 @@ operator|.
 name|endOffset
 argument_list|()
 operator|>=
-name|fragOffsetAccum
+name|fragOffset
 operator|+
 name|getFragmentSize
 argument_list|()
@@ -354,14 +354,12 @@ condition|(
 name|isNewFrag
 condition|)
 block|{
-name|fragOffsetAccum
-operator|+=
+name|fragOffset
+operator|=
 name|token
 operator|.
 name|endOffset
 argument_list|()
-operator|-
-name|fragOffsetAccum
 expr_stmt|;
 block|}
 return|return
