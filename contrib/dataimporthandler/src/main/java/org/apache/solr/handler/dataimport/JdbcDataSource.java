@@ -1465,7 +1465,9 @@ literal|null
 condition|)
 name|type
 operator|=
-literal|12
+name|Types
+operator|.
+name|VARCHAR
 expr_stmt|;
 switch|switch
 condition|(
