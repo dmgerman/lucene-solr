@@ -461,6 +461,9 @@ parameter_list|)
 block|{
 comment|//Hmmm, not quite right
 throw|throw
+operator|(
+name|IOException
+operator|)
 operator|new
 name|IOException
 argument_list|(
@@ -468,6 +471,11 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
+operator|.
+name|initCause
+argument_list|(
+name|e
 argument_list|)
 throw|;
 block|}
