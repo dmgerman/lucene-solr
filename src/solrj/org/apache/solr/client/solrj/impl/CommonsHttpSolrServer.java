@@ -586,6 +586,26 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -598,6 +618,7 @@ name|CommonsHttpSolrServer
 extends|extends
 name|SolrServer
 block|{
+comment|/**    * User-Agent String as identified by the HTTP request by the {@link    * org.apache.commons.httpclient.HttpClient HttpClient} to the Solr    * server from the client.    */
 DECL|field|AGENT
 specifier|public
 specifier|static
@@ -616,18 +637,34 @@ argument_list|()
 operator|+
 literal|"] 1.0"
 decl_stmt|;
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|CommonsHttpSolrServer
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|/**    * The URL of the Solr server.    */
 DECL|field|_baseURL
 specifier|protected
 name|String
 name|_baseURL
 decl_stmt|;
+comment|/**    * Default value: null / empty.<p/>    * Parameters that are added to every request regardless.  This may be a place to add     * something like an authentication token.    */
 DECL|field|_invariantParams
 specifier|protected
 name|ModifiableSolrParams
 name|_invariantParams
 decl_stmt|;
-comment|/**    * Default response parser is BinaryResponseParser     * @see org.apache.solr.client.solrj.impl.BinaryResponseParser    */
+comment|/**    * Default response parser is BinaryResponseParser<p/>    * This parser represents the default Response Parser chosen to    * parse the response if the parser were not specified as part of    * the request.    * @see org.apache.solr.client.solrj.impl.BinaryResponseParser    */
 DECL|field|_parser
 specifier|protected
 name|ResponseParser
@@ -639,6 +676,7 @@ specifier|final
 name|HttpClient
 name|_httpClient
 decl_stmt|;
+comment|/**    * This defaults to false under the    * assumption that if you are following a redirect to get to a Solr    * installation, something is misconfigured somewhere.    */
 DECL|field|_followRedirects
 specifier|private
 name|boolean
@@ -646,6 +684,7 @@ name|_followRedirects
 init|=
 literal|false
 decl_stmt|;
+comment|/**    * If compression is enabled, both gzip and deflate compression will    * be accepted in the HTTP response.    */
 DECL|field|_allowCompression
 specifier|private
 name|boolean
@@ -653,6 +692,7 @@ name|_allowCompression
 init|=
 literal|false
 decl_stmt|;
+comment|/**    * Maximum number of retries to attempt in the event of transient    * errors.  Default: 0 (no) retries. No more than 1 recommended.    */
 DECL|field|_maxRetries
 specifier|private
 name|int
@@ -687,7 +727,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Talk to the Solr server via the given HttpClient.  The connection manager    * for the client should be a MultiThreadedHttpConnectionManager if this    * client is being reused across SolrServer instances, or of multiple threads    * will use this SolrServer.    */
+comment|/**    * Talk to the Solr server via the given HttpClient.  The connection manager    * for the client should be a MultiThreadedHttpConnectionManager if this    * client is being reused across SolrServer instances, or of multiple threads    * will use this SolrServer.    */
 DECL|method|CommonsHttpSolrServer
 specifier|public
 name|CommonsHttpSolrServer
@@ -785,7 +825,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param baseURL The URL of the Solr server.  For     * example, "<code>http://localhost:8983/solr/</code>"    * if you are using the standard distribution Solr webapp     * on your local machine.    */
+comment|/**    * @param baseURL The URL of the Solr server.  For example,    * "<code>http://localhost:8983/solr/</code>" if you are using the    * standard distribution Solr webapp on your local machine.    */
 DECL|method|CommonsHttpSolrServer
 specifier|public
 name|CommonsHttpSolrServer
@@ -833,6 +873,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    *     * @see #useMultiPartPost    */
 DECL|method|CommonsHttpSolrServer
 specifier|public
 name|CommonsHttpSolrServer
@@ -861,6 +902,7 @@ name|useMultiPartPost
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @see {@link #useMultiPartPost}, {@link #_parser}    */
 DECL|method|CommonsHttpSolrServer
 specifier|public
 name|CommonsHttpSolrServer
@@ -2133,7 +2175,7 @@ block|}
 block|}
 comment|//-------------------------------------------------------------------
 comment|//-------------------------------------------------------------------
-comment|/**    * Parameters are added to every request regardless.  This may be a place to add     * something like an authentication token.    */
+comment|/**    * Retrieve the default list of parameters are added to every request regardless.    *     * @see #_invariantParams    */
 DECL|method|getInvariantParams
 specifier|public
 name|ModifiableSolrParams
@@ -2218,7 +2260,7 @@ name|getHttpConnectionManager
 argument_list|()
 return|;
 block|}
-comment|/** set connectionTimeout on the underlying HttpConnectionManager */
+comment|/** set connectionTimeout on the underlying HttpConnectionManager    * @param timeout Timeout in milliseconds     **/
 DECL|method|setConnectionTimeout
 specifier|public
 name|void
@@ -2240,7 +2282,9 @@ name|timeout
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** set connectionManagerTimeout on the HttpClient.**/
+comment|/** set connectionManagerTimeout on the HttpClient.    * @param timeout Timeout in milliseconds    * @deprecated Use {@link #setConnectionManagerTimeout(long)} **/
+annotation|@
+name|Deprecated
 DECL|method|setConnectionManagerTimeout
 specifier|public
 name|void
@@ -2261,7 +2305,28 @@ name|timeout
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** set soTimeout (read timeout) on the underlying HttpConnectionManager.  This is desirable for queries, but probably not for indexing. */
+comment|/**    * Sets soTimeout (read timeout) on the underlying    * HttpConnectionManager.  This is desirable for queries, but    * probably not for indexing.    *     * @param timeout Timeout in milliseconds    */
+DECL|method|setConnectionManagerTimeout
+specifier|public
+name|void
+name|setConnectionManagerTimeout
+parameter_list|(
+name|long
+name|timeout
+parameter_list|)
+block|{
+name|_httpClient
+operator|.
+name|getParams
+argument_list|()
+operator|.
+name|setConnectionManagerTimeout
+argument_list|(
+name|timeout
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Sets soTimeout (read timeout) on the underlying    * HttpConnectionManager.  This is desirable for queries, but    * probably not for indexing.    * @param timeout Timeout in milliseconds      **/
 DECL|method|setSoTimeout
 specifier|public
 name|void
@@ -2327,7 +2392,7 @@ name|connections
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * set followRedirects.  This defaults to false under the    * assumption that if you are following a redirect to get to a Solr    * installation, something is misconfigured somewhere.    */
+comment|/**    * set followRedirects.      * @see #_followRedirects    */
 DECL|method|setFollowRedirects
 specifier|public
 name|void
@@ -2342,7 +2407,7 @@ operator|=
 name|followRedirects
 expr_stmt|;
 block|}
-comment|/**    * set allowCompression.  If compression is enabled, both gzip and    * deflate compression will be accepted in the HTTP response.    */
+comment|/**    * set allowCompression.      * @see #_allowCompression    */
 DECL|method|setAllowCompression
 specifier|public
 name|void
@@ -2357,7 +2422,7 @@ operator|=
 name|allowCompression
 expr_stmt|;
 block|}
-comment|/**    * set maximum number of retries to attempt in the event of    * transient errors.  Default: 0 (no) retries. No more than 1    * recommended.    */
+comment|/**    * set maximum number of retries to attempt in the event of    * transient errors.    * @param maxRetries No more than 1 recommended    * @see #_maxRetries    */
 DECL|method|setMaxRetries
 specifier|public
 name|void
@@ -2367,6 +2432,25 @@ name|int
 name|maxRetries
 parameter_list|)
 block|{
+if|if
+condition|(
+name|maxRetries
+operator|>
+literal|1
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"CommonsHttpSolrServer: maximum Retries "
+operator|+
+name|maxRetries
+operator|+
+literal|"> 1. Maximum recommended retries is 1."
+argument_list|)
+expr_stmt|;
+block|}
 name|_maxRetries
 operator|=
 name|maxRetries
