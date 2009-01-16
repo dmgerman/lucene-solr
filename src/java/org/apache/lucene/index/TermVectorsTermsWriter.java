@@ -454,9 +454,14 @@ if|if
 condition|(
 literal|4
 operator|+
+operator|(
+operator|(
+name|long
+operator|)
 name|state
 operator|.
 name|numDocsInStore
+operator|)
 operator|*
 literal|16
 operator|!=
