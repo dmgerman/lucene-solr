@@ -2219,6 +2219,19 @@ condition|)
 block|{
 return|return;
 block|}
+comment|// A runtime parameter can alter the config value for forceElevation
+name|boolean
+name|force
+init|=
+name|params
+operator|.
+name|getBool
+argument_list|(
+name|FORCE_ELEVATION
+argument_list|,
+name|forceElevation
+argument_list|)
+decl_stmt|;
 name|Query
 name|query
 init|=
@@ -2502,7 +2515,7 @@ decl_stmt|;
 comment|// Perhaps force it to always sort by score
 if|if
 condition|(
-name|forceElevation
+name|force
 operator|&&
 name|current
 index|[
