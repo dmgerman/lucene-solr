@@ -53,6 +53,7 @@ name|Directory
 block|{
 DECL|field|isOpen
 specifier|volatile
+specifier|protected
 name|boolean
 name|isOpen
 init|=
