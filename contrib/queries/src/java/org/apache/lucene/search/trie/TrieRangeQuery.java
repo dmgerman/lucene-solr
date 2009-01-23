@@ -349,7 +349,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * EXPERT: Return the number of terms visited during the last execution of the query.    * This may be used for performance comparisons of different trie variants and their effectiveness.    * This method is not thread safe, be sure to only call it when no query is running!    * @throws IllegalStateException if query was not yet executed.    */
+comment|/**    * EXPERT: Return the number of terms visited during the last execution of the query.    * This may be used for performance comparisons of different trie variants and their effectiveness.    * When using this method be sure to query an one-segment index (optimized one) to get correct results.    * This method is not thread safe, be sure to only call it when no query is running!    * @throws IllegalStateException if query was not yet executed.    */
 DECL|method|getLastNumberOfTerms
 specifier|public
 name|int
