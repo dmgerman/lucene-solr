@@ -295,7 +295,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Add the given values to any existing name    */
+comment|/**    * Add the given values to any existing name    * @param name Key    * @param val Array of value(s) added to the name. NOTE: If val is null     *     or a member of val is null, then a corresponding null reference     *     will be included when a get method is called on the key later.    *  @return this    */
 DECL|method|add
 specifier|public
 name|ModifiableSolrParams
