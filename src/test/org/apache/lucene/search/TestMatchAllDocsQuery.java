@@ -174,6 +174,14 @@ operator|.
 name|LIMITED
 argument_list|)
 decl_stmt|;
+name|iw
+operator|.
+name|setMaxBufferedDocs
+argument_list|(
+literal|2
+argument_list|)
+expr_stmt|;
+comment|// force multi-segment
 name|addDoc
 argument_list|(
 literal|"one"

@@ -1704,7 +1704,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an enumeration of all the documents which contain    *<code>term</code>. For each document, the document number, the frequency of    * the term in that document is also provided, for use in search scoring.    * Thus, this method implements the mapping:    *<p><ul>    * Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup>    *</ul>    *<p>The enumeration is ordered by document number.  Each document number    * is greater than all that precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an enumeration of all the documents which contain    *<code>term</code>. For each document, the document number, the frequency of    * the term in that document is also provided, for use in    * search scoring.  If term is null, then all non-deleted    * docs are returned with freq=1.    * Thus, this method implements the mapping:    *<p><ul>    * Term&nbsp;&nbsp; =&gt;&nbsp;&nbsp;&lt;docNum, freq&gt;<sup>*</sup>    *</ul>    *<p>The enumeration is ordered by document number.  Each document number    * is greater than all that precede it in the enumeration.    * @throws IOException if there is a low-level IO error    */
 DECL|method|termDocs
 specifier|public
 name|TermDocs
