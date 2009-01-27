@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link HitCollector} implementation that collects the top-scoring  * documents, returning them as a {@link TopDocs}.  This is used by {@link  * IndexSearcher} to implement {@link TopDocs}-based search.  *  *<p>This may be extended, overriding the collect method to, e.g.,  * conditionally invoke<code>super()</code> in order to filter which  * documents are collected.  **/
+comment|/** A {@link HitCollector} implementation that collects the top-scoring  * documents, returning them as a {@link TopDocs}.  This is used by {@link  * IndexSearcher} to implement {@link TopDocs}-based search.  *  *<p>This may be extended, overriding the collect method to, e.g.,  * conditionally invoke<code>super()</code> in order to filter which  * documents are collected.  *  * @deprecated Please use {@link TopScoreDocCollector}  * instead, which has better performance.  **/
 end_comment
 
 begin_class

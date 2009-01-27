@@ -12,12 +12,36 @@ name|search
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
-comment|/**  *<p>The TimeLimitedCollector is used to timeout search requests that  * take longer than the maximum allowed search time limit.  After this  * time is exceeded, the search thread is stopped by throwing a  * TimeExceeded Exception.</p>  */
+comment|/**  *<p>The TimeLimitedCollector is used to timeout search requests that  * take longer than the maximum allowed search time limit.  After this  * time is exceeded, the search thread is stopped by throwing a  * TimeExceeded Exception.</p>  *   */
 end_comment
 
 begin_class
@@ -26,7 +50,7 @@ specifier|public
 class|class
 name|TimeLimitedCollector
 extends|extends
-name|HitCollector
+name|MultiReaderHitCollector
 block|{
 comment|/**     * Default timer resolution.    * @see #setResolution(long)     */
 DECL|field|DEFAULT_RESOLUTION
@@ -324,7 +348,7 @@ decl_stmt|;
 DECL|field|hc
 specifier|private
 specifier|final
-name|HitCollector
+name|MultiReaderHitCollector
 name|hc
 decl_stmt|;
 comment|/**    * Create a TimeLimitedCollector wrapper over another HitCollector with a specified timeout.    * @param hc the wrapped HitCollector    * @param timeAllowed max time allowed for collecting hits after which {@link TimeExceededException} is thrown    */
@@ -341,12 +365,38 @@ name|long
 name|timeAllowed
 parameter_list|)
 block|{
+if|if
+condition|(
+name|hc
+operator|instanceof
+name|MultiReaderHitCollector
+condition|)
+block|{
 name|this
 operator|.
 name|hc
 operator|=
+operator|(
+name|MultiReaderHitCollector
+operator|)
 name|hc
 expr_stmt|;
+block|}
+else|else
+block|{
+name|this
+operator|.
+name|hc
+operator|=
+operator|new
+name|IndexSearcher
+operator|.
+name|MultiReaderCollectorWrapper
+argument_list|(
+name|hc
+argument_list|)
+expr_stmt|;
+block|}
 name|t0
 operator|=
 name|TIMER_THREAD
@@ -499,6 +549,30 @@ operator|.
 name|greedy
 operator|=
 name|greedy
+expr_stmt|;
+block|}
+DECL|method|setNextReader
+specifier|public
+name|void
+name|setNextReader
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|int
+name|base
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|hc
+operator|.
+name|setNextReader
+argument_list|(
+name|reader
+argument_list|,
+name|base
+argument_list|)
 expr_stmt|;
 block|}
 block|}

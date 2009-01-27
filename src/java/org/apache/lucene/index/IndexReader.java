@@ -2602,6 +2602,18 @@ name|dir
 argument_list|)
 return|;
 block|}
+comment|/** Returns the sequential sub readers that this reader is    *  logically composed of.  IndexSearcher uses this API to    *  drive searching by one sub reader at a time.  If this    *  reader is not composed of sequential child readers, it    *  should return null.  If this method returns an empty    *  array, that means this reader is a null reader (for    *  example a MultiReader that has no sub readers).*/
+DECL|method|getSequentialSubReaders
+specifier|public
+name|IndexReader
+index|[]
+name|getSequentialSubReaders
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

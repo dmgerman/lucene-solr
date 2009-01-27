@@ -1081,6 +1081,20 @@ name|isOptimized
 argument_list|()
 return|;
 block|}
+DECL|method|getSequentialSubReaders
+specifier|public
+name|IndexReader
+index|[]
+name|getSequentialSubReaders
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

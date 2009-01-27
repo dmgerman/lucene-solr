@@ -2524,11 +2524,11 @@ return|return
 name|fieldSet
 return|;
 block|}
-comment|// for testing
-DECL|method|getSubReaders
-name|SegmentReader
+DECL|method|getSequentialSubReaders
+specifier|public
+name|IndexReader
 index|[]
-name|getSubReaders
+name|getSequentialSubReaders
 parameter_list|()
 block|{
 return|return

@@ -50,20 +50,6 @@ name|IndexReader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|OpenBitSet
-import|;
-end_import
-
 begin_comment
 comment|/**   * Constrains search results to only match those which also match a provided  * query.    *  *<p> This could be used, for example, with a {@link RangeQuery} on a suitably  * formatted date field to implement date filtering.  One could re-use a single  * QueryFilter that matches, e.g., only documents modified within the last  * week.  The QueryFilter and RangeQuery would only need to be reconstructed  * once per day.  *  * @version $Id:$  */
 end_comment
@@ -133,9 +119,16 @@ argument_list|(
 name|query
 argument_list|,
 operator|new
-name|HitCollector
+name|MultiReaderHitCollector
 argument_list|()
 block|{
+specifier|private
+name|int
+name|base
+init|=
+operator|-
+literal|1
+decl_stmt|;
 specifier|public
 specifier|final
 name|void
@@ -153,9 +146,27 @@ operator|.
 name|set
 argument_list|(
 name|doc
+operator|+
+name|base
 argument_list|)
 expr_stmt|;
 comment|// set bit for hit
+block|}
+specifier|public
+name|void
+name|setNextReader
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|int
+name|docBase
+parameter_list|)
+block|{
+name|base
+operator|=
+name|docBase
+expr_stmt|;
 block|}
 block|}
 argument_list|)
