@@ -95,7 +95,7 @@ specifier|final
 class|class
 name|TrieUtils
 block|{
-comment|/** Instance of TrieUtils using a trie factor of 8 bit. */
+comment|/** Instance of TrieUtils using a trie factor of 8 bit.    * This is the<b>recommended<b> one (rather fast and storage optimized) */
 DECL|field|VARIANT_8BIT
 specifier|public
 specifier|static
@@ -123,7 +123,7 @@ argument_list|(
 literal|4
 argument_list|)
 decl_stmt|;
-comment|/** Instance of TrieUtils using a trie factor of 2 bit. */
+comment|/** Instance of TrieUtils using a trie factor of 2 bit.    * This may be good for some indexes, but it needs much storage space    * and is not much faster than 8 bit in most cases. */
 DECL|field|VARIANT_2BIT
 specifier|public
 specifier|static
@@ -241,49 +241,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-DECL|field|defaultTrieVariant
-specifier|private
-specifier|static
-name|TrieUtils
-name|defaultTrieVariant
-init|=
-name|TrieUtils
-operator|.
-name|VARIANT_8BIT
-decl_stmt|;
-comment|/**    * Sets the default variant used for generating trie values and ranges.    * It is used by the constructors of {@link TrieRangeQuery} and {@link TrieRangeFilter} without<code>TrieUtils</code> parameter    * and can be used to get a default value through your whole application.    */
-DECL|method|setDefaultTrieVariant
-specifier|public
-specifier|synchronized
-specifier|static
-specifier|final
-name|void
-name|setDefaultTrieVariant
-parameter_list|(
-specifier|final
-name|TrieUtils
-name|variant
-parameter_list|)
-block|{
-name|defaultTrieVariant
-operator|=
-name|variant
-expr_stmt|;
-block|}
-comment|/**    * Gets the default variant used for generating trie values and ranges.    * It is used by the constructors of {@link TrieRangeQuery} and {@link TrieRangeFilter} without<code>TrieUtils</code> parameter    * and can be used to get a default value through your whole application.    *<p>The default, if not set by {@link #setDefaultTrieVariant}, is {@link #VARIANT_8BIT}.    */
-DECL|method|getDefaultTrieVariant
-specifier|public
-specifier|synchronized
-specifier|static
-specifier|final
-name|TrieUtils
-name|getDefaultTrieVariant
-parameter_list|()
-block|{
-return|return
-name|defaultTrieVariant
-return|;
-block|}
 comment|/**    * Detects and returns the variant of a trie encoded string using the length.    * @throws NumberFormatException if the length is not 8, 16, or 32 chars.    */
 DECL|method|autoDetectVariant
 specifier|public
