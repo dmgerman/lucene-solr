@@ -82,8 +82,8 @@ name|FIND_DELTA
 init|=
 literal|3
 decl_stmt|;
+comment|/**    * An object stored in entity scope is valid only for the current entity for the current document only.    */
 DECL|field|SCOPE_ENTITY
-DECL|field|SCOPE_GLOBAL
 specifier|public
 specifier|static
 specifier|final
@@ -91,15 +91,36 @@ name|String
 name|SCOPE_ENTITY
 init|=
 literal|"entity"
-decl_stmt|,
+decl_stmt|;
+comment|/**    * An object stored in global scope is available for the current import only but across entities and documents.    */
+DECL|field|SCOPE_GLOBAL
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|SCOPE_GLOBAL
 init|=
 literal|"global"
-decl_stmt|,
+decl_stmt|;
+comment|/**    * An object stored in document scope is available for the current document only but across entities.    */
 DECL|field|SCOPE_DOC
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|SCOPE_DOC
 init|=
 literal|"document"
+decl_stmt|;
+comment|/**    * An object stored in 'solrcore' scope is available across imports, entities and documents throughout the life of    * a solr core. A solr core unload or reload will destroy this data.     */
+DECL|field|SCOPE_SOLR_CORE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SCOPE_SOLR_CORE
+init|=
+literal|"solrcore"
 decl_stmt|;
 comment|/**    * Get the value of any attribute put into this entity    *    * @param name name of the attribute eg: 'name'    * @return value of named attribute in entity    */
 DECL|method|getEntityAttribute
