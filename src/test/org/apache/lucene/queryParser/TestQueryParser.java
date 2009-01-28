@@ -1468,6 +1468,35 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|testCJK
+specifier|public
+name|void
+name|testCJK
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Test Ideographic Space - As wide as a CJK character cell (fullwidth)
+comment|// used google to translate the word "term" to japanese -> ç¨èª
+name|assertQueryEquals
+argument_list|(
+literal|"term\u3000term\u3000term"
+argument_list|,
+literal|null
+argument_list|,
+literal|"term\u0020term\u0020term"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"ç¨èª\u3000ç¨èª\u3000ç¨èª"
+argument_list|,
+literal|null
+argument_list|,
+literal|"ç¨èª\u0020ç¨èª\u0020ç¨èª"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testSimple
 specifier|public
 name|void
