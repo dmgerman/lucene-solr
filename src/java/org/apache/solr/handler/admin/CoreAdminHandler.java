@@ -547,6 +547,13 @@ argument_list|(
 name|opts
 argument_list|)
 expr_stmt|;
+name|dcore
+operator|.
+name|setCoreProperties
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|SolrCore
 name|core
 init|=

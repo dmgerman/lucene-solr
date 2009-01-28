@@ -1128,18 +1128,6 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|p
-operator|.
-name|setCoreProperties
-argument_list|(
-name|readProperties
-argument_list|(
-name|cfg
-argument_list|,
-name|node
-argument_list|)
-argument_list|)
-expr_stmt|;
 comment|// deal with optional settings
 name|String
 name|opt
@@ -1198,6 +1186,18 @@ name|opt
 argument_list|)
 expr_stmt|;
 block|}
+name|p
+operator|.
+name|setCoreProperties
+argument_list|(
+name|readProperties
+argument_list|(
+name|cfg
+argument_list|,
+name|node
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|SolrCore
 name|core
 init|=
