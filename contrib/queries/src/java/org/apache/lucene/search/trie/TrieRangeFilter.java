@@ -136,20 +136,6 @@ name|OpenBitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SortedVIntList
-import|;
-end_import
-
 begin_comment
 comment|/**  * Implementation of a Lucene {@link Filter} that implements trie-based range filtering.  * This filter depends on a specific structure of terms in the index that can only be created  * by {@link TrieUtils} methods.  * For more information, how the algorithm works, see the package description {@link org.apache.lucene.search.trie}.  */
 end_comment
@@ -1472,6 +1458,8 @@ operator|=
 literal|0
 expr_stmt|;
 return|return
+name|DocIdSet
+operator|.
 name|EMPTY_DOCIDSET
 return|;
 block|}
@@ -1613,23 +1601,6 @@ name|lastNumberOfTerms
 init|=
 operator|-
 literal|1
-decl_stmt|;
-DECL|field|EMPTY_DOCIDSET
-specifier|private
-specifier|static
-specifier|final
-name|DocIdSet
-name|EMPTY_DOCIDSET
-init|=
-operator|new
-name|SortedVIntList
-argument_list|(
-operator|new
-name|int
-index|[
-literal|0
-index|]
-argument_list|)
 decl_stmt|;
 block|}
 end_class

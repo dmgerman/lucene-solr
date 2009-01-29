@@ -26,8 +26,22 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SortedVIntList
+import|;
+end_import
+
 begin_comment
-comment|/**  * A DocIdSet contains a set of doc ids. Implementing classes must provide  * a {@link DocIdSetIterator} to access the set.   */
+comment|/**  * A DocIdSet contains a set of doc ids. Implementing classes must  * only implement {@link #iterator} to provide access to the set.   */
 end_comment
 
 begin_class
@@ -37,6 +51,25 @@ specifier|abstract
 class|class
 name|DocIdSet
 block|{
+comment|/** An empty {@code DocIdSet} instance for easy use (this is currently    * implemented using a {@link SortedVIntList}). */
+DECL|field|EMPTY_DOCIDSET
+specifier|public
+specifier|static
+specifier|final
+name|DocIdSet
+name|EMPTY_DOCIDSET
+init|=
+operator|new
+name|SortedVIntList
+argument_list|(
+operator|new
+name|int
+index|[
+literal|0
+index|]
+argument_list|)
+decl_stmt|;
+comment|/** Provides a {@link DocIdSetIterator} to access the set. */
 DECL|method|iterator
 specifier|public
 specifier|abstract
