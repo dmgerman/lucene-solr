@@ -289,6 +289,38 @@ name|max
 argument_list|)
 operator|)
 expr_stmt|;
+comment|// check encoded values
+if|if
+condition|(
+name|this
+operator|.
+name|min
+operator|.
+name|length
+argument_list|()
+operator|!=
+name|trieVariant
+operator|.
+name|TRIE_CODED_LENGTH
+operator|||
+name|this
+operator|.
+name|max
+operator|.
+name|length
+argument_list|()
+operator|!=
+name|trieVariant
+operator|.
+name|TRIE_CODED_LENGTH
+condition|)
+throw|throw
+operator|new
+name|NumberFormatException
+argument_list|(
+literal|"Invalid trie encoded numerical value representation (incompatible length)."
+argument_list|)
+throw|;
 block|}
 comment|/**    * Generates a trie filter using the supplied field with range bounds in numeric form (double).    * You can set<code>min</code> or<code>max</code> (but not both) to<code>null</code> to leave one bound open.    * With<code>minInclusive</code> and<code>maxInclusive</code> can be choosen, if the corresponding    * bound should be included or excluded from the range.    */
 DECL|method|TrieRangeFilter
