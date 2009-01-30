@@ -95,7 +95,7 @@ specifier|final
 class|class
 name|TrieUtils
 block|{
-comment|/** Instance of TrieUtils using a trie factor of 8 bit.    * This is the<b>recommended<b> one (rather fast and storage optimized) */
+comment|/** Instance of TrieUtils using a trie factor of 8 bit.    * This is the<b>recommended</b> one (rather fast and storage optimized) */
 DECL|field|VARIANT_8BIT
 specifier|public
 specifier|static
