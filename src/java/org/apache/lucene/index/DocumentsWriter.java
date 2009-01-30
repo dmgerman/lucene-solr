@@ -3585,15 +3585,24 @@ name|success
 condition|)
 name|reader
 operator|.
-name|doCommit
+name|commit
 argument_list|()
 expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|// Force reader to not have changes; if we hit
+comment|// an exception during commit, we don't want
+comment|// close to retry the commit:
 name|reader
 operator|.
-name|doClose
+name|hasChanges
+operator|=
+literal|false
+expr_stmt|;
+name|reader
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 block|}

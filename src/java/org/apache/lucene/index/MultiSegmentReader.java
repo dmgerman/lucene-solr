@@ -138,6 +138,8 @@ class|class
 name|MultiSegmentReader
 extends|extends
 name|DirectoryIndexReader
+implements|implements
+name|Cloneable
 block|{
 DECL|field|subReaders
 specifier|protected
@@ -352,6 +354,9 @@ name|oldNormsCache
 parameter_list|,
 name|boolean
 name|readOnly
+parameter_list|,
+name|boolean
+name|doClone
 parameter_list|)
 throws|throws
 name|IOException
@@ -603,8 +608,73 @@ name|info
 argument_list|(
 name|i
 argument_list|)
+argument_list|,
+name|doClone
+argument_list|,
+name|readOnly
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|newReader
+operator|==
+name|newReaders
+index|[
+name|i
+index|]
+operator|&&
+name|newReaders
+index|[
+name|i
+index|]
+operator|.
+name|hasSegmentInfos
+argument_list|()
+condition|)
+block|{
+comment|// Special case when a single-segment reader was
+comment|// reopened to a multi-segment reader -- we must
+comment|// get a private clone, to clear its
+comment|// SegmentInfos, so it does not attempt to
+comment|// obtain the write lock
+name|newReader
+operator|=
+operator|(
+name|SegmentReader
+operator|)
+name|newReaders
+index|[
+name|i
+index|]
+operator|.
+name|clone
+argument_list|(
+name|readOnly
+argument_list|)
+expr_stmt|;
+name|newReader
+operator|.
+name|init
+argument_list|(
+name|directory
+argument_list|,
+literal|null
+argument_list|,
+literal|false
+argument_list|,
+name|readOnly
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Make sure reopenSegment did not carry over a
+comment|// segmentInfos instance
+assert|assert
+operator|!
+name|newReader
+operator|.
+name|hasSegmentInfos
+argument_list|()
+assert|;
 block|}
 if|if
 condition|(
@@ -1087,6 +1157,12 @@ name|doReopen
 parameter_list|(
 name|SegmentInfos
 name|infos
+parameter_list|,
+name|boolean
+name|doClone
+parameter_list|,
+name|boolean
+name|openReadOnly
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -1110,7 +1186,7 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-name|readOnly
+name|openReadOnly
 argument_list|,
 name|infos
 argument_list|,
@@ -1128,7 +1204,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|readOnly
+name|openReadOnly
 condition|)
 block|{
 return|return
@@ -1146,6 +1222,8 @@ argument_list|,
 name|starts
 argument_list|,
 name|normsCache
+argument_list|,
+name|doClone
 argument_list|)
 return|;
 block|}
@@ -1168,6 +1246,8 @@ argument_list|,
 name|normsCache
 argument_list|,
 literal|false
+argument_list|,
+name|doClone
 argument_list|)
 return|;
 block|}

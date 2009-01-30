@@ -233,7 +233,12 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"SingleInstanceLock: "
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|lockName
 return|;

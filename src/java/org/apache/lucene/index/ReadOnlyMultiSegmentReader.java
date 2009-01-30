@@ -106,6 +106,9 @@ name|oldStarts
 parameter_list|,
 name|Map
 name|oldNormsCache
+parameter_list|,
+name|boolean
+name|doClone
 parameter_list|)
 throws|throws
 name|IOException
@@ -125,6 +128,8 @@ argument_list|,
 name|oldNormsCache
 argument_list|,
 literal|true
+argument_list|,
+name|doClone
 argument_list|)
 expr_stmt|;
 block|}
