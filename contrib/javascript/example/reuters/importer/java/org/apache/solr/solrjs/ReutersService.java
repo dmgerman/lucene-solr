@@ -1487,11 +1487,11 @@ name|io
 operator|.
 name|IOException
 block|{
-name|StringBuffer
+name|StringBuilder
 name|fileData
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|1000
 argument_list|)

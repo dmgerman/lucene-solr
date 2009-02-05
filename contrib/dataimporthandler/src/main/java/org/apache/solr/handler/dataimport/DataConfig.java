@@ -762,11 +762,11 @@ argument_list|,
 literal|"JavaScript"
 argument_list|)
 expr_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buffer
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|String
@@ -1428,7 +1428,7 @@ parameter_list|(
 name|Node
 name|elem
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{

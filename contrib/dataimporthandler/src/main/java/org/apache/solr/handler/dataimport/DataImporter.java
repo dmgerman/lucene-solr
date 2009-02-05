@@ -790,11 +790,11 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"There are errors in the Schema\n"
 argument_list|)

@@ -1106,11 +1106,11 @@ name|SAXException
 throws|,
 name|IOException
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buf
@@ -1568,7 +1568,34 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A helper that adds an xml&lt;doc&gt; containing all of the    * fields and values specified (odds are fields, evens are values)    * to a StringBuffer.    */
+comment|/**    * A helper that adds an xml&lt;doc&gt; containing all of the    * fields and values specified (odds are fields, evens are values)    * to a StringBuilder    */
+DECL|method|appendSimpleDoc
+specifier|public
+name|void
+name|appendSimpleDoc
+parameter_list|(
+name|StringBuilder
+name|buf
+parameter_list|,
+name|String
+modifier|...
+name|fieldsAndValues
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+name|makeSimpleDoc
+argument_list|(
+name|fieldsAndValues
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * A helper that adds an xml&lt;doc&gt; containing all of the    * fields and values specified (odds are fields, evens are values)    * to a StringBuffer.    * @deprecated see {@link #appendSimpleDoc(StringBuilder, String...)}    */
 DECL|method|appendSimpleDoc
 specifier|public
 name|void

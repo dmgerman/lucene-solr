@@ -551,11 +551,11 @@ operator|-
 literal|1
 index|]
 return|;
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

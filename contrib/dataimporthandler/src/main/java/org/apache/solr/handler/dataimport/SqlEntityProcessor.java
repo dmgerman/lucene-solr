@@ -575,11 +575,11 @@ name|deltaImportQuery
 argument_list|)
 return|;
 block|}
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|queryString
 argument_list|)
