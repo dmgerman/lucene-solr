@@ -323,6 +323,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|rnd
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|byte
 index|[]
 name|testData
@@ -596,6 +601,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|rnd
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|Directory
 name|ram
 init|=
@@ -1098,6 +1108,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|rnd
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 comment|// first perform the test using a RAMDirectory
 name|Directory
 name|dir
@@ -2126,17 +2141,11 @@ expr_stmt|;
 block|}
 DECL|field|rnd
 specifier|private
-specifier|static
 name|Random
 name|rnd
-init|=
-operator|new
-name|Random
-argument_list|()
 decl_stmt|;
 DECL|method|generateRandomData
 specifier|private
-specifier|static
 name|void
 name|generateRandomData
 parameter_list|(
@@ -2155,7 +2164,6 @@ expr_stmt|;
 block|}
 DECL|method|generateRandomData
 specifier|private
-specifier|static
 name|byte
 index|[]
 name|generateRandomData
@@ -2943,6 +2951,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|rnd
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 specifier|final
 name|int
 name|numThreads
@@ -3293,7 +3306,6 @@ expr_stmt|;
 block|}
 DECL|class|PoolingPayloadTokenStream
 specifier|private
-specifier|static
 class|class
 name|PoolingPayloadTokenStream
 extends|extends

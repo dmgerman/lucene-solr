@@ -18,20 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -374,11 +360,8 @@ block|{
 name|Random
 name|rand
 init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
+name|newRandom
+argument_list|()
 decl_stmt|;
 comment|// up iterations for more exhaustive test after changing something
 for|for

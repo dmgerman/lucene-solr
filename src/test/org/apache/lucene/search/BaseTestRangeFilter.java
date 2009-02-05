@@ -137,16 +137,10 @@ init|=
 literal|true
 decl_stmt|;
 DECL|field|rand
+specifier|protected
 name|Random
 name|rand
-init|=
-operator|new
-name|Random
-argument_list|(
-literal|101
-argument_list|)
 decl_stmt|;
-comment|// use a set seed to test is deterministic
 comment|/**       * Collation interacts badly with hyphens -- collation produces different      * ordering than Unicode code-point ordering -- so two indexes are created:      * one which can't have negative random integers, for testing collated       * ranges, and the other which can have negative random integers, for all      * other tests.       */
 DECL|class|TestIndex
 class|class
@@ -386,6 +380,11 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+name|rand
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|build
 argument_list|(
 name|signedIndex
@@ -402,6 +401,11 @@ specifier|public
 name|BaseTestRangeFilter
 parameter_list|()
 block|{
+name|rand
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|build
 argument_list|(
 name|signedIndex

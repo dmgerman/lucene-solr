@@ -1869,7 +1869,6 @@ return|;
 block|}
 DECL|method|getRandomNumberString
 specifier|public
-specifier|static
 name|String
 name|getRandomNumberString
 parameter_list|(
@@ -1927,7 +1926,6 @@ return|;
 block|}
 DECL|method|getRandomCharString
 specifier|public
-specifier|static
 name|String
 name|getRandomCharString
 parameter_list|(
@@ -1948,7 +1946,6 @@ return|;
 block|}
 DECL|method|getRandomCharString
 specifier|public
-specifier|static
 name|String
 name|getRandomCharString
 parameter_list|(
@@ -2012,17 +2009,11 @@ argument_list|()
 return|;
 block|}
 DECL|field|r
-specifier|static
 name|Random
 name|r
-init|=
-operator|new
-name|Random
-argument_list|()
 decl_stmt|;
 DECL|method|getRandomNumber
 specifier|public
-specifier|static
 name|int
 name|getRandomNumber
 parameter_list|(
@@ -2644,6 +2635,11 @@ name|IOException
 throws|,
 name|ParseException
 block|{
+name|r
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|ScoreDoc
 index|[]
 name|result

@@ -188,15 +188,8 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|r
-specifier|static
 name|Random
 name|r
-init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
 decl_stmt|;
 DECL|class|MockIndexWriter
 specifier|public
@@ -274,6 +267,11 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+name|r
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|Directory
 name|dir1
 init|=
@@ -333,6 +331,11 @@ throws|throws
 name|Throwable
 block|{
 comment|// test lots of smaller different params together
+name|r
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int

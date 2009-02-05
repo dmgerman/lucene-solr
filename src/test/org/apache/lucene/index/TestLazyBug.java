@@ -110,18 +110,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Array
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test demonstrating EOF bug on the last field of the last doc   * if other docs have allready been accessed.  */
 end_comment
@@ -134,14 +122,6 @@ name|TestLazyBug
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|BASE_SEED
-specifier|public
-specifier|static
-name|int
-name|BASE_SEED
-init|=
-literal|13
-decl_stmt|;
 DECL|field|NUM_DOCS
 specifier|public
 specifier|static
@@ -259,7 +239,6 @@ block|}
 decl_stmt|;
 DECL|method|makeIndex
 specifier|private
-specifier|static
 name|Directory
 name|makeIndex
 parameter_list|()
@@ -278,13 +257,8 @@ block|{
 name|Random
 name|r
 init|=
-operator|new
-name|Random
-argument_list|(
-name|BASE_SEED
-operator|+
-literal|42
-argument_list|)
+name|newRandom
+argument_list|()
 decl_stmt|;
 name|Analyzer
 name|analyzer
@@ -439,7 +413,6 @@ return|;
 block|}
 DECL|method|doTest
 specifier|public
-specifier|static
 name|void
 name|doTest
 parameter_list|(
@@ -498,16 +471,13 @@ argument_list|,
 name|SELECTOR
 argument_list|)
 decl_stmt|;
-name|String
-name|trash
-init|=
 name|d
 operator|.
 name|get
 argument_list|(
 name|MAGIC_FIELD
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|List
 name|fields
 init|=

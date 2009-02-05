@@ -290,11 +290,8 @@ specifier|final
 name|Random
 name|random
 init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
+name|newRandom
+argument_list|()
 decl_stmt|;
 specifier|final
 name|RepeatingTokenStream

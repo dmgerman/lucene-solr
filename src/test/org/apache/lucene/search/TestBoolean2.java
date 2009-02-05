@@ -814,11 +814,8 @@ block|{
 name|Random
 name|rnd
 init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
+name|newRandom
+argument_list|()
 decl_stmt|;
 name|String
 index|[]
@@ -883,7 +880,10 @@ argument_list|(
 operator|new
 name|Random
 argument_list|(
-name|i
+name|rnd
+operator|.
+name|nextLong
+argument_list|()
 argument_list|)
 argument_list|,
 name|level

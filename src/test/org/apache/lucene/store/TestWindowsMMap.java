@@ -132,20 +132,6 @@ name|IndexSearcher
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|FSDirectory
-import|;
-end_import
-
 begin_class
 DECL|class|TestWindowsMMap
 specifier|public
@@ -183,8 +169,7 @@ argument_list|()
 expr_stmt|;
 name|random
 operator|=
-operator|new
-name|Random
+name|newRandom
 argument_list|()
 expr_stmt|;
 name|System

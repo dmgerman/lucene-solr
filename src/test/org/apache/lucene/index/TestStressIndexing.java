@@ -141,14 +141,8 @@ argument_list|()
 decl_stmt|;
 DECL|field|RANDOM
 specifier|private
-specifier|static
-specifier|final
 name|Random
 name|RANDOM
-init|=
-operator|new
-name|Random
-argument_list|()
 decl_stmt|;
 DECL|class|TimedThread
 specifier|private
@@ -335,7 +329,6 @@ block|}
 block|}
 DECL|class|IndexerThread
 specifier|private
-specifier|static
 class|class
 name|IndexerThread
 extends|extends
@@ -845,6 +838,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|RANDOM
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 comment|// RAMDir
 name|Directory
 name|directory

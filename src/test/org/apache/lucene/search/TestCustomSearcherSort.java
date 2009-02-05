@@ -102,16 +102,6 @@ name|junit
 operator|.
 name|framework
 operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
 name|TestSuite
 import|;
 end_import
@@ -254,6 +244,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit test for sorting code.  *  */
 end_comment
@@ -264,7 +268,7 @@ specifier|public
 class|class
 name|TestCustomSearcherSort
 extends|extends
-name|TestCase
+name|LuceneTestCase
 implements|implements
 name|Serializable
 block|{
@@ -385,7 +389,10 @@ name|random
 init|=
 operator|new
 name|RandomGen
+argument_list|(
+name|newRandom
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -553,6 +560,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|index
 operator|=
 name|getIndex
@@ -877,18 +889,6 @@ literal|"Sort by custom criteria: "
 argument_list|)
 expr_stmt|;
 comment|// check for duplicates
-name|String
-name|lf
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"line.separator"
-argument_list|,
-literal|"\n"
-argument_list|)
-decl_stmt|;
 comment|// besides the sorting both sets of hits must be identical
 for|for
 control|(
@@ -1444,18 +1444,25 @@ specifier|private
 class|class
 name|RandomGen
 block|{
+DECL|method|RandomGen
+name|RandomGen
+parameter_list|(
+name|Random
+name|random
+parameter_list|)
+block|{
+name|this
+operator|.
+name|random
+operator|=
+name|random
+expr_stmt|;
+block|}
 DECL|field|random
 specifier|private
 name|Random
 name|random
-init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
 decl_stmt|;
-comment|// to generate some arbitrary contents
 DECL|field|base
 specifier|private
 name|Calendar

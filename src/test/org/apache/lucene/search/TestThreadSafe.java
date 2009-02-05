@@ -169,10 +169,6 @@ block|{
 DECL|field|r
 name|Random
 name|r
-init|=
-operator|new
-name|Random
-argument_list|()
 decl_stmt|;
 DECL|field|dir1
 name|Directory
@@ -222,9 +218,6 @@ name|iter
 parameter_list|,
 name|Random
 name|rand
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 block|{
 name|this
@@ -760,9 +753,12 @@ name|iter
 argument_list|,
 operator|new
 name|Random
+argument_list|(
+name|r
+operator|.
+name|nextLong
 argument_list|()
-argument_list|,
-literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|tarr
@@ -822,6 +818,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|r
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|dir1
 operator|=
 operator|new

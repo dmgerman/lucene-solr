@@ -1218,6 +1218,21 @@ name|boolean
 name|anyUnhandledExceptions
 parameter_list|()
 block|{
+if|if
+condition|(
+name|allInstances
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"setTestMode() was not called; often this is because your test case's setUp method fails to call super.setUp in LuceneTestCase"
+argument_list|)
+throw|;
+block|}
 synchronized|synchronized
 init|(
 name|allInstances

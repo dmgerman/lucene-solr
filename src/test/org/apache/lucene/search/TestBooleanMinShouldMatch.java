@@ -2531,11 +2531,8 @@ specifier|final
 name|Random
 name|rnd
 init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
+name|newRandom
+argument_list|()
 decl_stmt|;
 name|String
 name|field
@@ -2693,6 +2690,15 @@ argument_list|(
 name|maxLev
 argument_list|)
 decl_stmt|;
+specifier|final
+name|long
+name|seed
+init|=
+name|rnd
+operator|.
+name|nextLong
+argument_list|()
+decl_stmt|;
 name|BooleanQuery
 name|q1
 init|=
@@ -2703,7 +2709,7 @@ argument_list|(
 operator|new
 name|Random
 argument_list|(
-name|i
+name|seed
 argument_list|)
 argument_list|,
 name|lev
@@ -2715,7 +2721,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-comment|// BooleanQuery q2 = TestBoolean2.randBoolQuery(new Random(i), lev, field, vals, minNrCB);
+comment|// BooleanQuery q2 = TestBoolean2.randBoolQuery(new Random(seed), lev, field, vals, minNrCB);
 name|BooleanQuery
 name|q2
 init|=
@@ -2726,7 +2732,7 @@ argument_list|(
 operator|new
 name|Random
 argument_list|(
-name|i
+name|seed
 argument_list|)
 argument_list|,
 name|lev

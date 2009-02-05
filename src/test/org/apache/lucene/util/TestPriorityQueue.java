@@ -119,6 +119,9 @@ block|{
 name|testPQ
 argument_list|(
 literal|10000
+argument_list|,
+name|newRandom
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -130,6 +133,9 @@ name|testPQ
 parameter_list|(
 name|int
 name|count
+parameter_list|,
+name|Random
+name|gen
 parameter_list|)
 block|{
 name|PriorityQueue
@@ -140,13 +146,6 @@ name|IntegerQueue
 argument_list|(
 name|count
 argument_list|)
-decl_stmt|;
-name|Random
-name|gen
-init|=
-operator|new
-name|Random
-argument_list|()
 decl_stmt|;
 name|int
 name|sum

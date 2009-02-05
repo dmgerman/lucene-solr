@@ -172,13 +172,8 @@ comment|// deterministic, but do not commit with a seed (to
 comment|// better test):
 DECL|field|r
 specifier|private
-specifier|final
 name|Random
 name|r
-init|=
-operator|new
-name|Random
-argument_list|()
 decl_stmt|;
 DECL|field|dir
 DECL|field|dir2
@@ -342,14 +337,6 @@ block|{
 comment|// NOTE: put seed in here to make failures
 comment|// deterministic, but do not commit with a seed (to
 comment|// better test):
-specifier|final
-name|Random
-name|r
-init|=
-operator|new
-name|Random
-argument_list|()
-decl_stmt|;
 name|dir
 operator|=
 operator|new
@@ -1236,6 +1223,11 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+name|r
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 comment|// reverse& not
 comment|// all types
 comment|// restrictive& non restrictive searches (on contents)
