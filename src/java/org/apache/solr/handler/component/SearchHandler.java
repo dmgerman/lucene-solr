@@ -424,6 +424,44 @@ name|INIT_LAST_COMPONENTS
 init|=
 literal|"last-components"
 decl_stmt|;
+comment|// socket timeout measured in ms, closes a socket if read
+comment|// takes longer than x ms to complete. throws
+comment|// java.net.SocketTimeoutException: Read timed out exception
+DECL|field|INIT_SO_TIMEOUT
+specifier|static
+specifier|final
+name|String
+name|INIT_SO_TIMEOUT
+init|=
+literal|"shard-socket-timeout"
+decl_stmt|;
+comment|// connection timeout measures in ms, closes a socket if connection
+comment|// cannot be established within x ms. with a
+comment|// java.net.SocketTimeoutException: Connection timed out
+DECL|field|INIT_CONNECTION_TIMEOUT
+specifier|static
+specifier|final
+name|String
+name|INIT_CONNECTION_TIMEOUT
+init|=
+literal|"shard-connection-timeout"
+decl_stmt|;
+DECL|field|soTimeout
+specifier|static
+name|int
+name|soTimeout
+init|=
+literal|0
+decl_stmt|;
+comment|//current default values
+DECL|field|connectionTimeout
+specifier|static
+name|int
+name|connectionTimeout
+init|=
+literal|0
+decl_stmt|;
+comment|//current default values
 DECL|field|log
 specifier|protected
 specifier|static
@@ -807,6 +845,74 @@ argument_list|(
 literal|"Adding  debug component:"
 operator|+
 name|dbgCmp
+argument_list|)
+expr_stmt|;
+block|}
+name|Object
+name|co
+init|=
+name|initArgs
+operator|.
+name|get
+argument_list|(
+name|INIT_CONNECTION_TIMEOUT
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|co
+operator|!=
+literal|null
+condition|)
+block|{
+name|connectionTimeout
+operator|=
+operator|(
+name|Integer
+operator|)
+name|co
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Setting shard-connection-timeout to: "
+operator|+
+name|connectionTimeout
+argument_list|)
+expr_stmt|;
+block|}
+name|Object
+name|so
+init|=
+name|initArgs
+operator|.
+name|get
+argument_list|(
+name|INIT_SO_TIMEOUT
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|so
+operator|!=
+literal|null
+condition|)
+block|{
+name|soTimeout
+operator|=
+operator|(
+name|Integer
+operator|)
+name|so
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Setting shard-socket-timeout to: "
+operator|+
+name|soTimeout
 argument_list|)
 expr_stmt|;
 block|}
@@ -1753,6 +1859,30 @@ operator|.
 name|setMaxTotalConnections
 argument_list|(
 literal|10000
+argument_list|)
+expr_stmt|;
+name|mgr
+operator|.
+name|getParams
+argument_list|()
+operator|.
+name|setConnectionTimeout
+argument_list|(
+name|SearchHandler
+operator|.
+name|connectionTimeout
+argument_list|)
+expr_stmt|;
+name|mgr
+operator|.
+name|getParams
+argument_list|()
+operator|.
+name|setSoTimeout
+argument_list|(
+name|SearchHandler
+operator|.
+name|soTimeout
 argument_list|)
 expr_stmt|;
 comment|// mgr.getParams().setStaleCheckingEnabled(false);
