@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|HTMLStripTransformer
+operator|.
+name|TRUE
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -126,7 +144,7 @@ block|{
 if|if
 condition|(
 operator|!
-literal|"true"
+name|TRUE
 operator|.
 name|equals
 argument_list|(
