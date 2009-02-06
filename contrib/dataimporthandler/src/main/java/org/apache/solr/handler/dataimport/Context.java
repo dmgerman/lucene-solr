@@ -112,7 +112,7 @@ name|SCOPE_DOC
 init|=
 literal|"document"
 decl_stmt|;
-comment|/**    * An object stored in 'solrcore' scope is available across imports, entities and documents throughout the life of    * a solr core. A solr core unload or reload will destroy this data.     */
+comment|/**    * An object stored in 'solrcore' scope is available across imports, entities and documents throughout the life of    * a solr core. A solr core unload or reload will destroy this data.    */
 DECL|field|SCOPE_SOLR_CORE
 specifier|public
 specifier|static
@@ -165,7 +165,7 @@ name|DataSource
 name|getDataSource
 parameter_list|()
 function_decl|;
-comment|/**    * Gets a new DataSource instance with a name. Ensure that you close() this after use    * because this is created just for this method call.    *      * @param name Name of the dataSource as defined in the dataSource tag    * @return a new DataSource instance    * @see org.apache.solr.handler.dataimport.DataSource    */
+comment|/**    * Gets a new DataSource instance with a name. Ensure that you close() this after use    * because this is created just for this method call.    *    * @param name Name of the dataSource as defined in the dataSource tag    * @return a new DataSource instance    * @see org.apache.solr.handler.dataimport.DataSource    */
 DECL|method|getDataSource
 specifier|public
 specifier|abstract
@@ -258,6 +258,19 @@ specifier|public
 specifier|abstract
 name|SolrCore
 name|getSolrCore
+parameter_list|()
+function_decl|;
+comment|/**    * Makes available some basic running statistics such as "docCount",    * "deletedDocCount", "rowCount", "queryCount" and "skipDocCount"    *    * @return a Map containing running statistics of the current import    */
+DECL|method|getStats
+specifier|public
+specifier|abstract
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|getStats
 parameter_list|()
 function_decl|;
 block|}
