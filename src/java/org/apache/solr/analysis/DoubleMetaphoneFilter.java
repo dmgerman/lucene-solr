@@ -223,6 +223,13 @@ condition|(
 name|t
 operator|!=
 literal|null
+operator|&&
+name|t
+operator|.
+name|termLength
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 if|if
