@@ -58,6 +58,16 @@ name|NAME
 init|=
 literal|"name"
 decl_stmt|;
+comment|/** If you rename something, what is the new name **/
+DECL|field|DATA_DIR
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|DATA_DIR
+init|=
+literal|"dataDir"
+decl_stmt|;
 comment|/** Name of the other core in actions involving 2 cores **/
 DECL|field|OTHER
 specifier|public

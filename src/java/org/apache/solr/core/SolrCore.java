@@ -2509,12 +2509,10 @@ name|get
 argument_list|(
 literal|"dataDir"
 argument_list|,
-name|loader
+name|cd
 operator|.
-name|getInstanceDir
+name|getDataDir
 argument_list|()
-operator|+
-literal|"data/"
 argument_list|)
 expr_stmt|;
 name|dataDir
