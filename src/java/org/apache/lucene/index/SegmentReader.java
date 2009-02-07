@@ -3446,6 +3446,12 @@ argument_list|(
 name|curField
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|norm
+operator|!=
+literal|null
+condition|)
 name|clone
 operator|.
 name|norms
