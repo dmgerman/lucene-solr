@@ -275,6 +275,10 @@ literal|"ext.def.fl"
 argument_list|,
 literal|"extractedContent"
 argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"one"
+argument_list|,
 literal|"ext.map.Last-Modified"
 argument_list|,
 literal|"extractedDate"
@@ -334,6 +338,10 @@ literal|"ext.map.language"
 argument_list|,
 literal|"extractedLanguage"
 argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"two"
+argument_list|,
 literal|"ext.def.fl"
 argument_list|,
 literal|"extractedContent"
@@ -392,6 +400,10 @@ argument_list|,
 literal|"ext.map.Author"
 argument_list|,
 literal|"extractedAuthor"
+argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"three"
 argument_list|,
 literal|"ext.def.fl"
 argument_list|,
@@ -491,6 +503,10 @@ literal|"ext.def.fl"
 argument_list|,
 literal|"extractedContent"
 argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"one"
+argument_list|,
 literal|"ext.literal.extractionLiteralMV"
 argument_list|,
 literal|"one"
@@ -580,6 +596,10 @@ literal|"ext.def.fl"
 argument_list|,
 literal|"extractedContent"
 argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"two"
+argument_list|,
 literal|"ext.literal.extractionLiteral"
 argument_list|,
 literal|"one"
@@ -636,6 +656,10 @@ argument_list|,
 literal|"ext.def.fl"
 argument_list|,
 literal|"extractedContent"
+argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"three"
 argument_list|,
 literal|"ext.literal.extractionLiteral"
 argument_list|,
@@ -720,6 +744,10 @@ argument_list|,
 literal|"ext.map.Author"
 argument_list|,
 literal|"extractedAuthor"
+argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"one"
 argument_list|,
 literal|"ext.map.language"
 argument_list|,
@@ -820,6 +848,10 @@ argument_list|,
 literal|"ext.map.Author"
 argument_list|,
 literal|"extractedAuthor"
+argument_list|,
+literal|"ext.literal.id"
+argument_list|,
+literal|"one"
 argument_list|,
 literal|"ext.map.language"
 argument_list|,
