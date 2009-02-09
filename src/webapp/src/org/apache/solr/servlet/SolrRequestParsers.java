@@ -691,8 +691,8 @@ argument_list|,
 name|streams
 argument_list|)
 decl_stmt|;
-comment|// Handlers and loggin will want to know the path. If it contains a ':'
-comment|// the handler could use it for RESTfull URLs
+comment|// Handlers and login will want to know the path. If it contains a ':'
+comment|// the handler could use it for RESTful URLs
 name|sreq
 operator|.
 name|getContext
