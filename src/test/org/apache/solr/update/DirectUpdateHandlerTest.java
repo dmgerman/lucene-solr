@@ -942,13 +942,6 @@ argument_list|(
 name|rbkCmd
 argument_list|)
 expr_stmt|;
-name|updater
-operator|.
-name|commit
-argument_list|(
-name|cmtCmd
-argument_list|)
-expr_stmt|;
 comment|// search - "B" should not be found.
 name|Map
 argument_list|<
@@ -1011,6 +1004,35 @@ argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
 literal|"//result/doc[1]/int[@name='id'][.='A']"
+argument_list|)
+expr_stmt|;
+comment|// Add a doc after the rollback to make sure we can continue to add/delete documents
+comment|// after a rollback as normal
+name|addSimpleDoc
+argument_list|(
+literal|"ZZZ"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"\"ZZZ\" must be found."
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:ZZZ"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|,
+literal|"//result/doc[1]/int[@name='id'][.='ZZZ']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1172,13 +1194,6 @@ argument_list|(
 name|rbkCmd
 argument_list|)
 expr_stmt|;
-name|updater
-operator|.
-name|commit
-argument_list|(
-name|cmtCmd
-argument_list|)
-expr_stmt|;
 comment|// search - "B" should be found.
 name|assertQ
 argument_list|(
@@ -1191,6 +1206,35 @@ argument_list|,
 literal|"//result/doc[1]/int[@name='id'][.='A']"
 argument_list|,
 literal|"//result/doc[2]/int[@name='id'][.='B']"
+argument_list|)
+expr_stmt|;
+comment|// Add a doc after the rollback to make sure we can continue to add/delete documents
+comment|// after a rollback as normal
+name|addSimpleDoc
+argument_list|(
+literal|"ZZZ"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"\"ZZZ\" must be found."
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:ZZZ"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|,
+literal|"//result/doc[1]/int[@name='id'][.='ZZZ']"
 argument_list|)
 expr_stmt|;
 block|}

@@ -659,6 +659,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 name|numDocsPending
 operator|.
 name|set
@@ -677,6 +679,14 @@ operator|.
 name|rollback
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|writer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 DECL|method|addDoc
 specifier|public
