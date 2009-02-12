@@ -2118,6 +2118,11 @@ operator|.
 name|forceOpenWriter
 argument_list|()
 expr_stmt|;
+name|replicationHandler
+operator|.
+name|refreshCommitpoint
+argument_list|()
+expr_stmt|;
 block|}
 else|else
 block|{
