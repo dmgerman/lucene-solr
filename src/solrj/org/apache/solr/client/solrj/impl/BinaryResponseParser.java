@@ -191,6 +191,16 @@ argument_list|)
 throw|;
 block|}
 block|}
+DECL|method|getVersion
+specifier|public
+name|String
+name|getVersion
+parameter_list|()
+block|{
+return|return
+literal|"1"
+return|;
+block|}
 DECL|method|processResponse
 specifier|public
 name|NamedList
