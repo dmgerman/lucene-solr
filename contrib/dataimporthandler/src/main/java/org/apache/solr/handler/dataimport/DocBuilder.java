@@ -1746,6 +1746,12 @@ argument_list|,
 name|this
 argument_list|)
 decl_stmt|;
+name|vr
+operator|.
+name|context
+operator|=
+name|ctx
+expr_stmt|;
 name|entityProcessor
 operator|.
 name|init
