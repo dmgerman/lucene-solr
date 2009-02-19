@@ -29,18 +29,18 @@ specifier|abstract
 class|class
 name|Evaluator
 block|{
-comment|/**    * Return a String after processing an expression and a VariableResolver    *    * @see org.apache.solr.handler.dataimport.VariableResolver    * @param resolver the VariableResolver instance to be used for evaluation    * @param expression string to be evaluated    * @return the value of the given expression evaluated using the resolver    */
+comment|/**    * Return a String after processing an expression and a VariableResolver    *    * @see org.apache.solr.handler.dataimport.VariableResolver    * @param expression string to be evaluated    * @param context instance    * @return the value of the given expression evaluated using the resolver    */
 DECL|method|evaluate
 specifier|public
 specifier|abstract
 name|String
 name|evaluate
 parameter_list|(
-name|VariableResolver
-name|resolver
-parameter_list|,
 name|String
 name|expression
+parameter_list|,
+name|Context
+name|context
 parameter_list|)
 function_decl|;
 block|}
