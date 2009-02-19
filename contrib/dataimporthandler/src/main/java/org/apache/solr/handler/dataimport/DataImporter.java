@@ -2614,7 +2614,7 @@ literal|0
 decl_stmt|;
 DECL|field|rows
 specifier|public
-name|int
+name|long
 name|rows
 init|=
 name|Integer
