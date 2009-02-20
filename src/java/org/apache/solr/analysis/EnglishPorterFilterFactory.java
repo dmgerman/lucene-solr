@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  *  * @deprecated Use SnowballPortFilterFactory with language="English" instead  */
+comment|/**  * @version $Id$  *  * @deprecated Use SnowballPorterFilterFactory with language="English" instead  */
 end_comment
 
 begin_class
