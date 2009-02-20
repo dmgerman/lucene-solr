@@ -570,6 +570,11 @@ name|getUseCompoundFile
 argument_list|()
 condition|)
 block|{
+comment|// We should never see a totally new segment during cloning
+assert|assert
+operator|!
+name|doClone
+assert|;
 comment|// this is a new reader; in case we hit an exception we can close it safely
 name|newReader
 operator|=
