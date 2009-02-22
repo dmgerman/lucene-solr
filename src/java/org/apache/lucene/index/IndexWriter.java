@@ -745,12 +745,25 @@ name|Thread
 name|writeThread
 decl_stmt|;
 comment|// non-null if any thread holds write lock
+DECL|field|upgradeCount
+specifier|private
+name|int
+name|upgradeCount
+decl_stmt|;
 DECL|method|acquireWrite
 specifier|synchronized
 name|void
 name|acquireWrite
 parameter_list|()
 block|{
+assert|assert
+name|writeThread
+operator|!=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+assert|;
 while|while
 condition|(
 name|writeThread
@@ -830,6 +843,52 @@ name|readCount
 operator|++
 expr_stmt|;
 block|}
+comment|// Allows one readLock to upgrade to a writeLock even if
+comment|// there are other readLocks as long as all other
+comment|// readLocks are also blocked in this method:
+DECL|method|upgradeReadToWrite
+specifier|synchronized
+name|void
+name|upgradeReadToWrite
+parameter_list|()
+block|{
+assert|assert
+name|readCount
+operator|>
+literal|0
+assert|;
+name|upgradeCount
+operator|++
+expr_stmt|;
+while|while
+condition|(
+name|readCount
+operator|>
+name|upgradeCount
+operator|||
+name|writeThread
+operator|!=
+literal|null
+condition|)
+block|{
+name|doWait
+argument_list|()
+expr_stmt|;
+block|}
+name|writeThread
+operator|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+expr_stmt|;
+name|readCount
+operator|--
+expr_stmt|;
+name|upgradeCount
+operator|--
+expr_stmt|;
+block|}
 DECL|method|releaseRead
 specifier|synchronized
 name|void
@@ -844,12 +903,6 @@ name|readCount
 operator|>=
 literal|0
 assert|;
-if|if
-condition|(
-literal|0
-operator|==
-name|readCount
-condition|)
 name|notifyAll
 argument_list|()
 expr_stmt|;
@@ -6238,7 +6291,7 @@ name|void
 name|startTransaction
 parameter_list|(
 name|boolean
-name|haveWriteLock
+name|haveReadLock
 parameter_list|)
 throws|throws
 name|IOException
@@ -6324,20 +6377,27 @@ condition|(
 operator|!
 name|success
 operator|&&
-name|haveWriteLock
+name|haveReadLock
 condition|)
-name|releaseWrite
+name|releaseRead
 argument_list|()
 expr_stmt|;
 block|}
 if|if
 condition|(
-operator|!
-name|haveWriteLock
+name|haveReadLock
 condition|)
+block|{
+name|upgradeReadToWrite
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
 name|acquireWrite
 argument_list|()
 expr_stmt|;
+block|}
 name|success
 operator|=
 literal|false
@@ -8097,22 +8157,18 @@ operator|.
 name|pauseAllThreads
 argument_list|()
 expr_stmt|;
-comment|// We must pre-acquire the write lock here (and not in
-comment|// startTransaction below) so that no other addIndexes
-comment|// is allowed to start up after we have flushed&
-comment|// optimized but before we then start our transaction.
-comment|// This is because the merging below requires that only
-comment|// one segment is present in the index:
-name|acquireWrite
+comment|// We must pre-acquire a read lock here (and upgrade to
+comment|// write lock in startTransaction below) so that no
+comment|// other addIndexes is allowed to start up after we have
+comment|// flushed& optimized but before we then start our
+comment|// transaction.  This is because the merging below
+comment|// requires that only one segment is present in the
+comment|// index:
+name|acquireRead
 argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
 name|SegmentInfo
 name|info
 init|=
@@ -8127,6 +8183,11 @@ name|SegmentMerger
 name|merger
 init|=
 literal|null
+decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
 decl_stmt|;
 try|try
 block|{
@@ -8150,19 +8211,20 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// Take care to release the write lock if we hit an
+comment|// Take care to release the read lock if we hit an
 comment|// exception before starting the transaction
 if|if
 condition|(
 operator|!
 name|success
 condition|)
-name|releaseWrite
+name|releaseRead
 argument_list|()
 expr_stmt|;
 block|}
-comment|// true means we already have write lock; if this call
-comment|// hits an exception it will release the write lock:
+comment|// true means we already have a read lock; if this
+comment|// call hits an exception it will release the write
+comment|// lock:
 name|startTransaction
 argument_list|(
 literal|true
