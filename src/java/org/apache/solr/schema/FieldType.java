@@ -481,7 +481,7 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
-comment|// default to STORED and INDEXED, and MULTIVALUED depending on schema version
+comment|// default to STORED, INDEXED, OMIT_TF and MULTIVALUED depending on schema version
 name|properties
 operator|=
 operator|(
@@ -502,6 +502,19 @@ condition|)
 name|properties
 operator||=
 name|MULTIVALUED
+expr_stmt|;
+if|if
+condition|(
+name|schema
+operator|.
+name|getVersion
+argument_list|()
+operator|>
+literal|1.1f
+condition|)
+name|properties
+operator||=
+name|OMIT_TF
 expr_stmt|;
 name|this
 operator|.
@@ -999,6 +1012,16 @@ argument_list|(
 name|field
 operator|.
 name|omitNorms
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|f
+operator|.
+name|setOmitTf
+argument_list|(
+name|field
+operator|.
+name|omitTf
 argument_list|()
 argument_list|)
 expr_stmt|;

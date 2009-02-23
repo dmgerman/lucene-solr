@@ -92,6 +92,14 @@ argument_list|,
 literal|"Omit Norms"
 argument_list|)
 block|,
+DECL|enum constant|OMIT_TF
+name|OMIT_TF
+argument_list|(
+literal|'F'
+argument_list|,
+literal|"Omit Tf"
+argument_list|)
+block|,
 DECL|enum constant|LAZY
 name|LAZY
 argument_list|(
