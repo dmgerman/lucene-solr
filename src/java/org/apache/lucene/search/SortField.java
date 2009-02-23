@@ -1235,7 +1235,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Returns true if<code>o</code> is equal to this.  If a    *  {@link SortComparatorSource} or {@link    *  FieldCache.Parser} was provided, it must properly    *  implement equals (unless a singleton is always used). */
+comment|/** Returns true if<code>o</code> is equal to this.  If a    *  {@link SortComparatorSource} (deprecated) or {@link    *  FieldCache.Parser} was provided, it must properly    *  implement equals (unless a singleton is always used). */
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1379,7 +1379,7 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/** Returns true if<code>o</code> is equal to this.  If a    *  {@link SortComparatorSource} or {@link    *  FieldCache.Parser} was provided, it must properly    *  implement hashCode (unless a singleton is always    *  used). */
+comment|/** Returns true if<code>o</code> is equal to this.  If a    *  {@link SortComparatorSource} (deprecated) or {@link    *  FieldCache.Parser} was provided, it must properly    *  implement hashCode (unless a singleton is always    *  used). */
 DECL|method|hashCode
 specifier|public
 name|int

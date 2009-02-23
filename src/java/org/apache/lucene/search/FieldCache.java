@@ -498,7 +498,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Checks the internal cache for an appropriate entry, and if none    * is found reads the terms out of<code>field</code> and calls the given SortComparator    * to get the sort values.  A hit in the cache will happen if<code>reader</code>,    *<code>field</code>, and<code>comparator</code> are the same (using<code>equals()</code>)    * as a previous call to this method.    * @param reader  Used to get field values.    * @param field   Which field contains the values.    * @param comparator Used to convert terms into something to sort by.    * @return Array of sort objects, one for each document.    * @throws IOException  If any error occurs.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none    * is found reads the terms out of<code>field</code> and calls the given SortComparator    * to get the sort values.  A hit in the cache will happen if<code>reader</code>,    *<code>field</code>, and<code>comparator</code> are the same (using<code>equals()</code>)    * as a previous call to this method.    * @param reader  Used to get field values.    * @param field   Which field contains the values.    * @param comparator Used to convert terms into something to sort by.    * @return Array of sort objects, one for each document.    * @throws IOException  If any error occurs.    * @deprecated Please implement {@link    * FieldComparatorSource} directly, instead.    */
 DECL|method|getCustom
 specifier|public
 name|Comparable
