@@ -6713,7 +6713,7 @@ name|rollback
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Close the<code>IndexWriter</code> without committing    * any of the changes that have occurred since it was    * opened. This removes any temporary files that had been    * created, after which the state of the index will be the    * same as it was when this writer was first opened.  This    * can only be called when this IndexWriter was opened    * with<code>autoCommit=false</code>.  This also clears a    * previous call to {@link #prepareCommit}.    * @throws IllegalStateException if this is called when    *  the writer was opened with<code>autoCommit=true</code>.    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Close the<code>IndexWriter</code> without committing    * any changes that have occurred since the last commit    * (or since it was opened, if commit hasn't been called).    * This removes any temporary files that had been    * created, after which the state of the index will be the    * same as it was when this writer was first opened.  This    * can only be called when this IndexWriter was opened    * with<code>autoCommit=false</code>.  This also clears a    * previous call to {@link #prepareCommit}.    * @throws IllegalStateException if this is called when    *  the writer was opened with<code>autoCommit=true</code>.    * @throws IOException if there is a low-level IO error    */
 DECL|method|rollback
 specifier|public
 name|void
