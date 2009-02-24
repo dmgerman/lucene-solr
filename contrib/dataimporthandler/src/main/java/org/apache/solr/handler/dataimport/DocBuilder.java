@@ -4352,7 +4352,13 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|delQuery
+operator|!=
+literal|null
+condition|)
 block|{
 name|writer
 operator|.
