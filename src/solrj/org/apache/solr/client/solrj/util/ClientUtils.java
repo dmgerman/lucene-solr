@@ -842,6 +842,10 @@ name|c
 operator|==
 literal|'&'
 operator|||
+name|c
+operator|==
+literal|';'
+operator|||
 name|Character
 operator|.
 name|isWhitespace
