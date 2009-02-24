@@ -8816,46 +8816,6 @@ name|finishCommit
 argument_list|()
 expr_stmt|;
 block|}
-DECL|field|committing
-specifier|private
-name|boolean
-name|committing
-decl_stmt|;
-DECL|method|waitForCommit
-specifier|synchronized
-specifier|private
-name|void
-name|waitForCommit
-parameter_list|()
-block|{
-comment|// Only allow a single thread to do the commit, at a time:
-while|while
-condition|(
-name|committing
-condition|)
-name|doWait
-argument_list|()
-expr_stmt|;
-name|committing
-operator|=
-literal|true
-expr_stmt|;
-block|}
-DECL|method|doneCommit
-specifier|synchronized
-specifier|private
-name|void
-name|doneCommit
-parameter_list|()
-block|{
-name|committing
-operator|=
-literal|false
-expr_stmt|;
-name|notifyAll
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**    *<p>Commits all pending updates (added& deleted    * documents) to the index, and syncs all referenced index    * files, such that a reader will see the changes and the    * index updates will survive an OS or machine crash or    * power loss.  Note that this does not wait for any    * running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit    * @see #commit(String)    */
 DECL|method|commit
 specifier|public
@@ -8892,12 +8852,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-comment|// Only let one thread do the prepare/finish at a time
-name|waitForCommit
-argument_list|()
-expr_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|infoStream
@@ -8952,13 +8906,6 @@ expr_stmt|;
 name|finishCommit
 argument_list|()
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|doneCommit
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 DECL|method|finishCommit
 specifier|private
@@ -9172,7 +9119,6 @@ assert|;
 name|flushCount
 operator|++
 expr_stmt|;
-comment|// Make sure no threads are actively adding a document
 name|flushDeletes
 operator||=
 name|docWriter
@@ -9188,6 +9134,7 @@ name|flushDeletes
 operator||=
 name|autoCommit
 expr_stmt|;
+comment|// Make sure no threads are actively adding a document.
 comment|// Returns true if docWriter is currently aborting, in
 comment|// which case we skip flushing this segment
 if|if
@@ -13808,29 +13755,16 @@ comment|// If someone saved a newer version of segments file
 comment|// since I first started syncing my version, I can
 comment|// safely skip saving myself since I've been
 comment|// superseded:
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 if|if
 condition|(
 name|myChangeCount
-operator|>
+operator|<=
 name|lastCommitChangeCount
-operator|&&
-operator|(
-name|pendingCommit
-operator|==
-literal|null
-operator|||
-name|myChangeCount
-operator|>
-name|pendingCommitChangeCount
-operator|)
-condition|)
-block|{
-comment|// Wait now for any current pending commit to complete:
-while|while
-condition|(
-name|pendingCommit
-operator|!=
-literal|null
 condition|)
 block|{
 if|if
@@ -13839,15 +13773,24 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
-literal|"wait for existing pendingCommit to finish..."
+literal|"sync superseded by newer infos"
 argument_list|)
 expr_stmt|;
-name|doWait
-argument_list|()
-expr_stmt|;
 block|}
+break|break;
+block|}
+elseif|else
+if|if
+condition|(
+name|pendingCommit
+operator|==
+literal|null
+condition|)
+block|{
+comment|// My turn to commit
 if|if
 condition|(
 name|segmentInfos
@@ -13940,19 +13883,16 @@ literal|"hit exception committing segments file"
 argument_list|)
 expr_stmt|;
 block|}
+break|break;
 block|}
-elseif|else
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"sync superseded by newer infos"
-argument_list|)
+else|else
+block|{
+comment|// Must wait for other commit to complete
+name|doWait
+argument_list|()
 expr_stmt|;
+block|}
+block|}
 block|}
 if|if
 condition|(
