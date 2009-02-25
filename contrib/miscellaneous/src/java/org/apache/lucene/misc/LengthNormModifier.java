@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Given a directory, a Similarity, and a list of fields, updates the  * fieldNorms in place for every document using the Similarity.lengthNorm.  *  *<p>  * NOTE: This only works if you do<b>not</b> use field/document boosts in your  * index.  *</p>  *  * @version $Id$  */
+comment|/**  * Given a directory, a Similarity, and a list of fields, updates the  * fieldNorms in place for every document using the Similarity.lengthNorm.  *  *<p>  * NOTE: This only works if you do<b>not</b> use field/document boosts in your  * index.  *</p>  *  * @version $Id$  * @deprecated Use {@link org.apache.lucene.index.FieldNormModifier}  */
 end_comment
 
 begin_class

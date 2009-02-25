@@ -88,7 +88,7 @@ specifier|public
 class|class
 name|FieldNormModifier
 block|{
-comment|/**    * Command Line Execution method.    *    *<pre>    * Usage: FieldNormModifier /path/index<package.SimilarityClassName | -n> field1 field2 ...    *</pre>    */
+comment|/**    * Command Line Execution method.    *    *<pre>    * Usage: FieldNormModifier /path/index&lt;package.SimilarityClassName | -n&gt; field1 field2 ...    *</pre>    */
 DECL|method|main
 specifier|public
 specifier|static
