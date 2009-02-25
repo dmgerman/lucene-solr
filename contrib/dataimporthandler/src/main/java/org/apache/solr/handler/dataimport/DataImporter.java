@@ -2021,13 +2021,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|requestParams
-operator|.
-name|commit
-condition|)
-block|{
 name|setIndexStartTime
 argument_list|(
 operator|new
@@ -2035,7 +2028,6 @@ name|Date
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|docBuilder
 operator|=
 operator|new
