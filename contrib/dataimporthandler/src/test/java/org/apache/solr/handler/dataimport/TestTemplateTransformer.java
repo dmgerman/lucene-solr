@@ -160,6 +160,27 @@ literal|"${e.lastName}, ${e.firstName} ${e.middleName}"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// test reuse of template output in another template
+name|fields
+operator|.
+name|add
+argument_list|(
+name|AbstractDataImportHandlerTest
+operator|.
+name|createMap
+argument_list|(
+literal|"column"
+argument_list|,
+literal|"mrname"
+argument_list|,
+name|TemplateTransformer
+operator|.
+name|TEMPLATE
+argument_list|,
+literal|"Mr ${e.name}"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Map
 name|row
 init|=
@@ -187,6 +208,15 @@ operator|new
 name|VariableResolverImpl
 argument_list|()
 decl_stmt|;
+name|resolver
+operator|.
+name|addNamespace
+argument_list|(
+literal|"e"
+argument_list|,
+name|row
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -246,6 +276,20 @@ operator|.
 name|get
 argument_list|(
 literal|"name"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|"Mr Mangar, Shalin Shekhar"
+argument_list|,
+name|row
+operator|.
+name|get
+argument_list|(
+literal|"mrname"
 argument_list|)
 argument_list|)
 expr_stmt|;

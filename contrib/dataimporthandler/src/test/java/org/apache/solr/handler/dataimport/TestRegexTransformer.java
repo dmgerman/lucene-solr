@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Test for RegexTransformer  *</p>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p> Test for RegexTransformer</p>  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -119,6 +119,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|//<field column="col1" sourceColName="a" splitBy="," />
 name|fields
 operator|.
 name|add
@@ -174,18 +175,13 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|String
-name|s
-init|=
-literal|"a,bb,cc,d"
-decl_stmt|;
 name|src
 operator|.
 name|put
 argument_list|(
 literal|"a"
 argument_list|,
-name|s
+literal|"a,bb,cc,d"
 argument_list|)
 expr_stmt|;
 name|Map
@@ -273,6 +269,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|//<field column="name" sourceColName="a" regexp="'" replaceWith="''" />
 name|Map
 argument_list|<
 name|String
@@ -403,34 +400,66 @@ name|void
 name|mileage
 parameter_list|()
 block|{
-name|Context
-name|context
+name|List
+argument_list|<
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+argument_list|>
+name|fields
 init|=
-name|AbstractDataImportHandlerTest
-operator|.
-name|getContext
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|,
-literal|null
-argument_list|,
-literal|0
-argument_list|,
 name|getFields
 argument_list|()
+decl_stmt|;
+comment|// add another regex which reuses result from previous regex again!
+comment|//<field column="hltCityMPG" sourceColName="rowdata" regexp="(${e.city_mileage})" />
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|fld
+init|=
+name|getField
+argument_list|(
+literal|"hltCityMPG"
+argument_list|,
+literal|"string"
+argument_list|,
+literal|".*(${e.city_mileage})"
+argument_list|,
+literal|"rowdata"
 argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|fld
+operator|.
+name|put
+argument_list|(
+literal|"replaceWith"
+argument_list|,
+literal|"*** $1 ***"
+argument_list|)
+expr_stmt|;
+name|fields
+operator|.
+name|add
+argument_list|(
+name|fld
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|String
 argument_list|,
 name|Object
 argument_list|>
-name|src
+name|row
 init|=
 operator|new
 name|HashMap
@@ -446,7 +475,7 @@ name|s
 init|=
 literal|"Fuel Economy Range: 26 mpg Hwy, 19 mpg City"
 decl_stmt|;
-name|src
+name|row
 operator|.
 name|put
 argument_list|(
@@ -455,6 +484,59 @@ argument_list|,
 name|s
 argument_list|)
 expr_stmt|;
+name|VariableResolverImpl
+name|resolver
+init|=
+operator|new
+name|VariableResolverImpl
+argument_list|()
+decl_stmt|;
+name|resolver
+operator|.
+name|addNamespace
+argument_list|(
+literal|"e"
+argument_list|,
+name|row
+argument_list|)
+expr_stmt|;
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|eAttrs
+init|=
+name|AbstractDataImportHandlerTest
+operator|.
+name|createMap
+argument_list|(
+literal|"name"
+argument_list|,
+literal|"e"
+argument_list|)
+decl_stmt|;
+name|Context
+name|context
+init|=
+name|AbstractDataImportHandlerTest
+operator|.
+name|getContext
+argument_list|(
+literal|null
+argument_list|,
+name|resolver
+argument_list|,
+literal|null
+argument_list|,
+literal|0
+argument_list|,
+name|fields
+argument_list|,
+name|eAttrs
+argument_list|)
+decl_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -469,7 +551,7 @@ argument_list|()
 operator|.
 name|transformRow
 argument_list|(
-name|src
+name|row
 argument_list|,
 name|context
 argument_list|)
@@ -478,7 +560,7 @@ name|Assert
 operator|.
 name|assertEquals
 argument_list|(
-literal|3
+literal|4
 argument_list|,
 name|result
 operator|.
@@ -528,6 +610,20 @@ literal|"city_mileage"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|"*** 19 *** mpg City"
+argument_list|,
+name|result
+operator|.
+name|get
+argument_list|(
+literal|"hltCityMPG"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getFields
 specifier|public
@@ -567,6 +663,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|//<field column="city_mileage" sourceColName="rowdata" regexp=
+comment|//    "Fuel Economy Range:\\s*?\\d*?\\s*?mpg Hwy,\\s*?(\\d*?)\\s*?mpg City"
 name|fields
 operator|.
 name|add
@@ -585,6 +683,8 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//<field column="highway_mileage" sourceColName="rowdata" regexp=
+comment|//    "Fuel Economy Range:\\s*?(\\d*?)\\s*?mpg Hwy,\\s*?\\d*?\\s*?mpg City"
 name|fields
 operator|.
 name|add
@@ -603,6 +703,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//<field column="seating_capacity" sourceColName="rowdata" regexp="Seating capacity:(.*)"
 name|fields
 operator|.
 name|add
@@ -621,6 +722,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//<field column="warranty" sourceColName="rowdata" regexp="Warranty:(.*)" />
 name|fields
 operator|.
 name|add
@@ -639,6 +741,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//<field column="rowdata" sourceColName="rowdata" />
 name|fields
 operator|.
 name|add
