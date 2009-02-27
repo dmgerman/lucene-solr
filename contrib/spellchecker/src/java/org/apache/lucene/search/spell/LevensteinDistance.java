@@ -312,7 +312,7 @@ index|]
 operator|/
 name|Math
 operator|.
-name|min
+name|max
 argument_list|(
 name|other
 operator|.
