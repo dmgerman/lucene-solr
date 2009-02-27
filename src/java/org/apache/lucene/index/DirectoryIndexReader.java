@@ -1288,12 +1288,29 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
 DECL|method|doCommit
 specifier|protected
 name|void
 name|doCommit
 parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|doCommit
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
+DECL|method|doCommit
+specifier|protected
+name|void
+name|doCommit
+parameter_list|(
+name|String
+name|commitUserData
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -1309,6 +1326,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|segmentInfos
+operator|.
+name|setUserData
+argument_list|(
+name|commitUserData
+argument_list|)
+expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
 comment|// KeepOnlyLastCommitDeleter:
 name|IndexFileDeleter
