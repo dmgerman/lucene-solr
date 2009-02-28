@@ -124,6 +124,17 @@ argument_list|,
 literal|"2.0"
 argument_list|)
 expr_stmt|;
+name|lrf
+operator|.
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
+argument_list|)
+expr_stmt|;
 comment|// compact the index, keep things from getting out of hand
 name|assertU
 argument_list|(
@@ -983,6 +994,15 @@ argument_list|,
 literal|"2.0"
 argument_list|)
 expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
+argument_list|)
+expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -1031,6 +1051,15 @@ argument_list|(
 literal|"version"
 argument_list|,
 literal|"2.0"
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
 argument_list|)
 expr_stmt|;
 name|req
@@ -4163,6 +4192,15 @@ argument_list|,
 literal|"score "
 argument_list|)
 expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
+argument_list|)
+expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -4218,6 +4256,15 @@ argument_list|(
 literal|"fl"
 argument_list|,
 literal|"score "
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
 argument_list|)
 expr_stmt|;
 name|req
@@ -4277,6 +4324,15 @@ argument_list|,
 literal|"score "
 argument_list|)
 expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
+argument_list|)
+expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -4332,6 +4388,15 @@ argument_list|(
 literal|"fl"
 argument_list|,
 literal|"score"
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"lucenePlusSort"
 argument_list|)
 expr_stmt|;
 name|req

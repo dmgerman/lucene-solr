@@ -78,7 +78,9 @@ specifier|static
 name|String
 name|DEFAULT_QTYPE
 init|=
-literal|"lucene"
+name|LuceneQParserPlugin
+operator|.
+name|NAME
 decl_stmt|;
 comment|/** internal use - name to class mappings of builtin parsers */
 DECL|field|standardPlugins
@@ -90,7 +92,9 @@ index|[]
 name|standardPlugins
 init|=
 block|{
-name|DEFAULT_QTYPE
+name|LuceneQParserPlugin
+operator|.
+name|NAME
 block|,
 name|LuceneQParserPlugin
 operator|.

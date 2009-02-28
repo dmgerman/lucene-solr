@@ -507,9 +507,9 @@ name|defType
 operator|==
 literal|null
 condition|?
-name|OldLuceneQParserPlugin
+name|QParserPlugin
 operator|.
-name|NAME
+name|DEFAULT_QTYPE
 else|:
 name|defType
 expr_stmt|;
