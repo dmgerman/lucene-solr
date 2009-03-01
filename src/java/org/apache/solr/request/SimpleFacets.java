@@ -1213,9 +1213,13 @@ name|limit
 operator|>
 literal|0
 condition|?
-literal|"count"
+name|FacetParams
+operator|.
+name|FACET_SORT_COUNT
 else|:
-literal|"lex"
+name|FacetParams
+operator|.
+name|FACET_SORT_INDEX
 argument_list|)
 decl_stmt|;
 name|String

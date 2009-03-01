@@ -168,7 +168,7 @@ name|FACET
 operator|+
 literal|".missing"
 decl_stmt|;
-comment|/**    * String option: "count" causes facets to be sorted    * by the count, "lex" results in lexicographical order.    */
+comment|/**    * String option: "count" causes facets to be sorted    * by the count, "index" results in index order.    */
 DECL|field|FACET_SORT
 specifier|public
 specifier|static
@@ -198,21 +198,21 @@ name|FACET_SORT_COUNT_LEGACY
 init|=
 literal|"true"
 decl_stmt|;
-DECL|field|FACET_SORT_LEX
+DECL|field|FACET_SORT_INDEX
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|FACET_SORT_LEX
+name|FACET_SORT_INDEX
 init|=
-literal|"lex"
+literal|"index"
 decl_stmt|;
-DECL|field|FACET_SORT_LEX_LEGACY
+DECL|field|FACET_SORT_INDEX_LEGACY
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|FACET_SORT_LEX_LEGACY
+name|FACET_SORT_INDEX_LEGACY
 init|=
 literal|"false"
 decl_stmt|;

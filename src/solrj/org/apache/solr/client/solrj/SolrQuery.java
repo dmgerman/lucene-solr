@@ -743,7 +743,7 @@ name|FACET_SORT_COUNT
 argument_list|)
 return|;
 block|}
-comment|/** get facet sort    *     * @return facet sort or default of true.<br />    * true corresponds to    * {@link FacetParams#FACET_SORT_COUNT} and<br />false to {@link FacetParams#FACET_SORT_LEX}    *     * @deprecated Use {@link #getFacetSortString()} instead.    */
+comment|/** get facet sort    *     * @return facet sort or default of true.<br />    * true corresponds to    * {@link FacetParams#FACET_SORT_COUNT} and<br />false to {@link FacetParams#FACET_SORT_INDEX}    *     * @deprecated Use {@link #getFacetSortString()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|getFacetSort
@@ -799,7 +799,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** set facet sort    *     * @param sort sort facets    * @return this    * @deprecated Use {@link #setFacetSort(String)} instead, true corresponds to    * {@link FacetParams#FACET_SORT_COUNT} and false to {@link FacetParams#FACET_SORT_LEX}.    */
+comment|/** set facet sort    *     * @param sort sort facets    * @return this    * @deprecated Use {@link #setFacetSort(String)} instead, true corresponds to    * {@link FacetParams#FACET_SORT_COUNT} and false to {@link FacetParams#FACET_SORT_INDEX}.    */
 annotation|@
 name|Deprecated
 DECL|method|setFacetSort
@@ -829,7 +829,7 @@ name|FACET_SORT_COUNT
 else|:
 name|FacetParams
 operator|.
-name|FACET_SORT_LEX
+name|FACET_SORT_INDEX
 argument_list|)
 expr_stmt|;
 return|return

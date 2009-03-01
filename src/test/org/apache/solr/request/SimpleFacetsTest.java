@@ -1829,7 +1829,7 @@ literal|"6"
 argument_list|,
 literal|"facet.sort"
 argument_list|,
-literal|"lex"
+literal|"index"
 argument_list|)
 argument_list|,
 literal|"*[count(//lst[@name='facet_fields']/lst/int)=6]"
@@ -1897,7 +1897,7 @@ literal|"2"
 argument_list|,
 literal|"facet.sort"
 argument_list|,
-literal|"lex"
+literal|"index"
 argument_list|)
 argument_list|,
 literal|"*[count(//lst[@name='facet_fields']/lst/int)=2]"
@@ -1949,7 +1949,7 @@ literal|"2"
 argument_list|,
 literal|"facet.sort"
 argument_list|,
-literal|"lex"
+literal|"index"
 argument_list|)
 argument_list|,
 literal|"*[count(//lst[@name='facet_fields']/lst/int)=1]"
@@ -2331,7 +2331,7 @@ literal|"100"
 argument_list|,
 literal|"facet.sort"
 argument_list|,
-literal|"lex"
+literal|"index"
 argument_list|,
 literal|"facet.prefix"
 argument_list|,
@@ -2391,7 +2391,7 @@ literal|"100"
 argument_list|,
 literal|"facet.sort"
 argument_list|,
-literal|"lex"
+literal|"index"
 argument_list|,
 literal|"facet.prefix"
 argument_list|,
