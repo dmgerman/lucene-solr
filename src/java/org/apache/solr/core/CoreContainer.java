@@ -699,7 +699,7 @@ name|cores
 argument_list|,
 literal|""
 argument_list|,
-literal|"."
+name|instanceDir
 argument_list|)
 decl_stmt|;
 name|SolrCore
