@@ -86,12 +86,11 @@ DECL|field|context
 name|ContextImpl
 name|context
 decl_stmt|;
-DECL|field|TEMPLATE_STRING
+DECL|field|templateString
 specifier|private
-specifier|static
 specifier|final
 name|TemplateString
-name|TEMPLATE_STRING
+name|templateString
 init|=
 operator|new
 name|TemplateString
@@ -367,7 +366,7 @@ name|template
 parameter_list|)
 block|{
 return|return
-name|TEMPLATE_STRING
+name|templateString
 operator|.
 name|replaceTokens
 argument_list|(
