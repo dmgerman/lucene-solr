@@ -551,7 +551,7 @@ literal|", acceptableSize="
 operator|+
 name|acceptableLimit
 operator|+
-literal|", cleanupThread ="
+literal|", cleanupThread="
 operator|+
 name|newThread
 expr_stmt|;
