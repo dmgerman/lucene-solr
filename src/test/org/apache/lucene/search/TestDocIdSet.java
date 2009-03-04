@@ -70,6 +70,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestDocIdSet
 specifier|public
@@ -378,9 +392,9 @@ name|println
 argument_list|(
 literal|"answer: "
 operator|+
-name|Arrays
+name|_TestUtil
 operator|.
-name|toString
+name|arrayToString
 argument_list|(
 name|answer
 argument_list|)
@@ -394,9 +408,9 @@ name|println
 argument_list|(
 literal|"gotten: "
 operator|+
-name|Arrays
+name|_TestUtil
 operator|.
-name|toString
+name|arrayToString
 argument_list|(
 name|docs
 argument_list|)
