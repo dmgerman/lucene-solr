@@ -12006,11 +12006,15 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
-assert|assert
+comment|// It's possible we are called twice, eg if there was an
+comment|// exception inside mergeInit
+if|if
+condition|(
 name|merge
 operator|.
 name|registerDone
-assert|;
+condition|)
+block|{
 specifier|final
 name|SegmentInfos
 name|sourceSegments
@@ -12069,6 +12073,7 @@ name|registerDone
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 comment|/** Does the actual (time-consuming) work of the merge,    *  but without holding synchronized lock on IndexWriter    *  instance */
 DECL|method|mergeMiddle
