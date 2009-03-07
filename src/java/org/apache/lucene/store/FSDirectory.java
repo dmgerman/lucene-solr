@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  * Locking implementation is by default the {@link SimpleFSLockFactory}, but  * can be changed either by passing in a {@link LockFactory} instance to  *<code>getDirectory</code>, or specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code> Java system  * property, or by calling {@link #setLockFactory} after creating  * the Directory.   *<p>Directories are cached, so that, for a given canonical  * path, the same FSDirectory instance will always be  * returned by<code>getDirectory</code>.</p>  *  * @see Directory  */
+comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  * Locking implementation is by default the {@link SimpleFSLockFactory}, but  * can be changed either by passing in a {@link LockFactory} instance to  *<code>getDirectory</code>, or specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code> Java system  * property, or by calling {@link #setLockFactory} after creating  * the Directory.  *  * @see Directory  */
 end_comment
 
 begin_class
@@ -896,7 +896,7 @@ parameter_list|()
 block|{}
 empty_stmt|;
 comment|// permit subclassing
-comment|/** Create a new FSDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    *    * Use {@link #getDirectory(String)} if singletons per path are needed.    */
+comment|/** Create a new FSDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
 DECL|method|FSDirectory
 specifier|public
 name|FSDirectory
