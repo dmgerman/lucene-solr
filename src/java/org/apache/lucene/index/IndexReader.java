@@ -360,8 +360,9 @@ specifier|volatile
 name|int
 name|refCount
 decl_stmt|;
-comment|// for testing
+comment|/** Expert: returns the current refCount for this reader */
 DECL|method|getRefCount
+specifier|public
 specifier|synchronized
 name|int
 name|getRefCount
