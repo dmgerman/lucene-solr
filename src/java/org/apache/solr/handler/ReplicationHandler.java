@@ -987,7 +987,7 @@ name|nl
 operator|.
 name|add
 argument_list|(
-name|CMD_INDEX_VERSION
+literal|"indexVersion"
 argument_list|,
 name|c
 operator|.
