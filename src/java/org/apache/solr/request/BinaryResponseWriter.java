@@ -1276,6 +1276,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|KNOWN_TYPES
+operator|.
+name|add
+argument_list|(
+name|TrieField
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|// We do not add UUIDField because UUID object is not a supported type in JavaBinCodec
 comment|// and if we write UUIDField.toObject, we wouldn't know how to handle it in the client side
 block|}
