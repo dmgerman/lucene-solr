@@ -273,6 +273,22 @@ argument_list|>
 name|getStats
 parameter_list|()
 function_decl|;
+comment|/**    * Returns the text specified in the script tag in the data-config.xml     */
+DECL|method|getScript
+specifier|public
+specifier|abstract
+name|String
+name|getScript
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the language of the script as specified in the script tag in data-config.xml    */
+DECL|method|getScriptLanguage
+specifier|public
+specifier|abstract
+name|String
+name|getScriptLanguage
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

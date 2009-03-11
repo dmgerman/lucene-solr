@@ -772,10 +772,10 @@ specifier|public
 name|String
 name|language
 decl_stmt|;
-DECL|field|script
+DECL|field|text
 specifier|public
 name|String
-name|script
+name|text
 decl_stmt|;
 DECL|method|Script
 specifier|public
@@ -828,7 +828,7 @@ literal|null
 condition|)
 name|this
 operator|.
-name|script
+name|text
 operator|=
 name|script
 operator|.
