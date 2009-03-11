@@ -3569,7 +3569,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Closes the index with or without waiting for currently    * running merges to finish.  This is only meaningful when    * using a MergeScheduler that runs merges in background    * threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @param waitForMerges if true, this call will block    * until all merges complete; else, it will ask all    * running merges to abort, wait until those merges have    * finished (which should be at most a few seconds), and    * then return.    */
+comment|/**    * Closes the index with or without waiting for currently    * running merges to finish.  This is only meaningful when    * using a MergeScheduler that runs merges in background    * threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: it is dangerous to always call    * close(false), especially when IndexWriter is not open    * for very long, because this can result in "merge    * starvation" whereby long merges will never have a    * chance to finish.  This will cause too many segments in    * your index over time.</p>    *    * @param waitForMerges if true, this call will block    * until all merges complete; else, it will ask all    * running merges to abort, wait until those merges have    * finished (which should be at most a few seconds), and    * then return.    */
 DECL|method|close
 specifier|public
 name|void
