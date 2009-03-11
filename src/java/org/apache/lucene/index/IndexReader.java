@@ -897,6 +897,30 @@ literal|"This reader does not support reopen()."
 argument_list|)
 throw|;
 block|}
+comment|/** Expert: reopen this reader on a specific commit point.    *  This always returns a readOnly reader.  If the    *  specified commit point matches what this reader is    *  already on, and this reader is already readOnly, then    *  this same instance is returned; if it is not already    *  readOnly, a readOnly clone is returned. */
+DECL|method|reopen
+specifier|public
+specifier|synchronized
+name|IndexReader
+name|reopen
+parameter_list|(
+specifier|final
+name|IndexCommit
+name|commit
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This reader does not support reopen(IndexCommit)."
+argument_list|)
+throw|;
+block|}
 comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    *<p>    * On cloning a reader with pending changes (deletions,    * norms), the original reader transfers its write lock to    * the cloned reader.  This means only the cloned reader    * may make further changes to the index, and commit the    * changes to the index on close, but the old reader still    * reflects all changes made up until it was cloned.    *<p>    * Like {@link #reopen()}, it's safe to make changes to    * either the original or the cloned reader: all shared    * mutable state obeys "copy on write" semantics to ensure    * the changes are not seen by other readers.    *<p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|clone
 specifier|public
