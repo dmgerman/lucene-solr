@@ -1714,7 +1714,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing range searches on this field type    *    * @param field the name of the field    * @param part1 the lower boundary of the range    * @param part2 the upper boundary of the range    * @param inclusive whether the range is inclusive or not    * @return a Query instance to perform range search according to given parameters    */
+comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param field        the name of the field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not    *    * @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
 DECL|method|getRangeQuery
 specifier|public
 name|Query
@@ -1730,7 +1730,10 @@ name|String
 name|part2
 parameter_list|,
 name|boolean
-name|inclusive
+name|minInclusive
+parameter_list|,
+name|boolean
+name|maxInclusive
 parameter_list|)
 block|{
 name|RangeQuery
@@ -1741,12 +1744,9 @@ name|RangeQuery
 argument_list|(
 name|field
 argument_list|,
-literal|"*"
-operator|.
-name|equals
-argument_list|(
 name|part1
-argument_list|)
+operator|==
+literal|null
 condition|?
 literal|null
 else|:
@@ -1755,12 +1755,9 @@ argument_list|(
 name|part1
 argument_list|)
 argument_list|,
-literal|"*"
-operator|.
-name|equals
-argument_list|(
 name|part2
-argument_list|)
+operator|==
+literal|null
 condition|?
 literal|null
 else|:
@@ -1769,9 +1766,9 @@ argument_list|(
 name|part2
 argument_list|)
 argument_list|,
-name|inclusive
+name|minInclusive
 argument_list|,
-name|inclusive
+name|maxInclusive
 argument_list|)
 decl_stmt|;
 name|rangeQuery
