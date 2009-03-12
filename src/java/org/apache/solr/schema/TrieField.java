@@ -192,6 +192,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|QParser
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -722,6 +736,9 @@ specifier|public
 name|Query
 name|getRangeQuery
 parameter_list|(
+name|QParser
+name|parser
+parameter_list|,
 name|String
 name|field
 parameter_list|,
