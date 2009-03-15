@@ -1212,7 +1212,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"Range filter must match only 5 documents"
+literal|"Range filter must match only 6 documents"
 argument_list|,
 name|req
 argument_list|,
