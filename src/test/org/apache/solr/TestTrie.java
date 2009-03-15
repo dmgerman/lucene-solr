@@ -90,6 +90,16 @@ name|Locale
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TimeZone
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests for TrieField functionality  *  * @version $Id$  * @since solr 1.4  */
 end_comment
@@ -1062,6 +1072,18 @@ argument_list|(
 literal|"yyyy-MM-dd'T'HH:mm:ss'Z'"
 argument_list|)
 decl_stmt|;
+name|format
+operator|.
+name|setTimeZone
+argument_list|(
+name|TimeZone
+operator|.
+name|getTimeZone
+argument_list|(
+literal|"UTC"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 name|delQ
@@ -1101,21 +1123,9 @@ operator|++
 control|)
 block|{
 comment|// index 10 days starting with today
-name|assertU
-argument_list|(
-name|adoc
-argument_list|(
-literal|"id"
-argument_list|,
 name|String
-operator|.
-name|valueOf
-argument_list|(
-name|i
-argument_list|)
-argument_list|,
-literal|"tdate"
-argument_list|,
+name|d
+init|=
 name|format
 operator|.
 name|format
@@ -1142,6 +1152,23 @@ operator|+
 literal|"DAYS"
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|i
+argument_list|)
+argument_list|,
+literal|"tdate"
+argument_list|,
+name|d
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1189,7 +1216,7 @@ literal|"Range filter must match only 5 documents"
 argument_list|,
 name|req
 argument_list|,
-literal|"//*[@numFound='5']"
+literal|"//*[@numFound='6']"
 argument_list|)
 expr_stmt|;
 comment|// Test Term Queries
