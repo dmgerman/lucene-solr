@@ -97,18 +97,7 @@ DECL|field|scorerDocQueue
 specifier|private
 name|ScorerDocQueue
 name|scorerDocQueue
-init|=
-literal|null
 decl_stmt|;
-DECL|field|queueSize
-specifier|private
-name|int
-name|queueSize
-init|=
-operator|-
-literal|1
-decl_stmt|;
-comment|// used to avoid size() method calls on scorerDocQueue
 comment|/** The document number of the current match. */
 DECL|field|currentDoc
 specifier|private
@@ -147,6 +136,8 @@ parameter_list|,
 name|int
 name|minimumNrMatchers
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 argument_list|(
@@ -202,6 +193,9 @@ name|subScorers
 operator|=
 name|subScorers
 expr_stmt|;
+name|initScorerDocQueue
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** Construct a<code>DisjunctionScorer</code>, using one as the minimum number    * of matching subscorers.    */
 DECL|method|DisjunctionSumScorer
@@ -211,6 +205,8 @@ parameter_list|(
 name|List
 name|subScorers
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 argument_list|(
@@ -245,10 +241,6 @@ argument_list|(
 name|nrScorers
 argument_list|)
 expr_stmt|;
-name|queueSize
-operator|=
-literal|0
-expr_stmt|;
 while|while
 condition|(
 name|si
@@ -277,20 +269,13 @@ argument_list|()
 condition|)
 block|{
 comment|// doc() method will be used in scorerDocQueue.
-if|if
-condition|(
 name|scorerDocQueue
 operator|.
 name|insert
 argument_list|(
 name|se
 argument_list|)
-condition|)
-block|{
-name|queueSize
-operator|++
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -378,17 +363,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|scorerDocQueue
-operator|==
-literal|null
-condition|)
-block|{
-name|initScorerDocQueue
-argument_list|()
-expr_stmt|;
-block|}
 return|return
 operator|(
 name|scorerDocQueue
@@ -447,8 +421,10 @@ condition|)
 block|{
 if|if
 condition|(
-operator|--
-name|queueSize
+name|scorerDocQueue
+operator|.
+name|size
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -500,7 +476,10 @@ block|}
 elseif|else
 if|if
 condition|(
-name|queueSize
+name|scorerDocQueue
+operator|.
+name|size
+argument_list|()
 operator|<
 name|minimumNrMatchers
 condition|)
@@ -565,17 +544,9 @@ block|{
 if|if
 condition|(
 name|scorerDocQueue
-operator|==
-literal|null
-condition|)
-block|{
-name|initScorerDocQueue
+operator|.
+name|size
 argument_list|()
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|queueSize
 operator|<
 name|minimumNrMatchers
 condition|)
@@ -626,8 +597,10 @@ condition|)
 block|{
 if|if
 condition|(
-operator|--
-name|queueSize
+name|scorerDocQueue
+operator|.
+name|size
+argument_list|()
 operator|<
 name|minimumNrMatchers
 condition|)
