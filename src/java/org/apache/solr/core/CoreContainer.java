@@ -715,7 +715,7 @@ name|cores
 argument_list|,
 literal|""
 argument_list|,
-name|instanceDir
+literal|"."
 argument_list|)
 decl_stmt|;
 name|SolrCore
