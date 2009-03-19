@@ -212,6 +212,15 @@ operator|.
 name|getDeleteQuery
 argument_list|()
 argument_list|)
+operator|&&
+operator|(
+name|updateRequest
+operator|.
+name|getDocIterator
+argument_list|()
+operator|==
+literal|null
+operator|)
 condition|)
 block|{
 return|return

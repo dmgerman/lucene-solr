@@ -243,6 +243,13 @@ operator|.
 name|getDeleteQuery
 argument_list|()
 argument_list|)
+operator|&&
+name|updateRequest
+operator|.
+name|getDocIterator
+argument_list|()
+operator|==
+literal|null
 return|;
 block|}
 DECL|method|getPath
