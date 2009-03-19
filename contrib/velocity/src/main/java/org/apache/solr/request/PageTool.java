@@ -45,6 +45,8 @@ DECL|field|results_per_page
 specifier|private
 name|int
 name|results_per_page
+init|=
+literal|10
 decl_stmt|;
 DECL|field|results_found
 specifier|private
@@ -91,6 +93,7 @@ name|rows
 operator|!=
 literal|null
 condition|)
+block|{
 name|results_per_page
 operator|=
 operator|new
@@ -99,6 +102,7 @@ argument_list|(
 name|rows
 argument_list|)
 expr_stmt|;
+block|}
 name|DocSlice
 name|doc_slice
 init|=
