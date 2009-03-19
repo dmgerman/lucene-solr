@@ -289,6 +289,28 @@ name|String
 name|getScriptLanguage
 parameter_list|()
 function_decl|;
+comment|/**delete a document by id    * @param id    */
+DECL|method|deleteDoc
+specifier|public
+specifier|abstract
+name|void
+name|deleteDoc
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+function_decl|;
+comment|/**delete documents by query    * @param query    */
+DECL|method|deleteDocByQuery
+specifier|public
+specifier|abstract
+name|void
+name|deleteDocByQuery
+parameter_list|(
+name|String
+name|query
+parameter_list|)
+function_decl|;
 block|}
 end_class
 

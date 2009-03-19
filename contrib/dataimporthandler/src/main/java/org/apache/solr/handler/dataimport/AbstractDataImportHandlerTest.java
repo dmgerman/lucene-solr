@@ -849,6 +849,24 @@ else|:
 name|scriptlang
 return|;
 block|}
+DECL|method|deleteDoc
+specifier|public
+name|void
+name|deleteDoc
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+block|{      }
+DECL|method|deleteDocByQuery
+specifier|public
+name|void
+name|deleteDocByQuery
+parameter_list|(
+name|String
+name|query
+parameter_list|)
+block|{      }
 block|}
 block|}
 end_class
