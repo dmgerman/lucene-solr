@@ -57,18 +57,18 @@ operator|=
 name|in
 expr_stmt|;
 block|}
-comment|/**    *    * Subclass may want to override to correct the current position.    *    * @param pos current position    * @return corrected position    */
-DECL|method|correctPosition
+comment|/**    *    * Subclass may want to override to correct the current offset.    *    * @param currentOff current offset    * @return corrected offset    */
+DECL|method|correct
 specifier|protected
 name|int
-name|correctPosition
+name|correct
 parameter_list|(
 name|int
-name|pos
+name|currentOff
 parameter_list|)
 block|{
 return|return
-name|pos
+name|currentOff
 return|;
 block|}
 annotation|@
@@ -88,7 +88,7 @@ name|input
 operator|.
 name|correctOffset
 argument_list|(
-name|correctPosition
+name|correct
 argument_list|(
 name|currentOff
 argument_list|)

@@ -252,7 +252,7 @@ condition|;
 name|i
 operator|++
 control|)
-name|addPosCorrectMap
+name|addOffCorrectMap
 argument_list|(
 name|nextCharCounter
 operator|+
@@ -270,7 +270,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|addPosCorrectMap
+name|addOffCorrectMap
 argument_list|(
 name|nextCharCounter
 operator|-
