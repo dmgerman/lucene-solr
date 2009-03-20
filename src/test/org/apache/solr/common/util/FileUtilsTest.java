@@ -64,6 +64,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|String
+name|cwd
+init|=
+operator|new
+name|File
+argument_list|(
+literal|"."
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
+decl_stmt|;
 name|assertEquals
 argument_list|(
 operator|new
@@ -91,6 +103,8 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+name|cwd
+operator|+
 literal|"/conf/data"
 argument_list|)
 argument_list|,
@@ -101,6 +115,8 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+name|cwd
+operator|+
 literal|"/conf"
 argument_list|)
 argument_list|,
@@ -113,6 +129,8 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+name|cwd
+operator|+
 literal|"/data"
 argument_list|)
 argument_list|,
@@ -126,6 +144,8 @@ argument_list|(
 literal|"conf"
 argument_list|)
 argument_list|,
+name|cwd
+operator|+
 literal|"/data"
 argument_list|)
 argument_list|)
