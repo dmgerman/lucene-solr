@@ -791,7 +791,7 @@ name|boolean
 name|storePayloads
 parameter_list|,
 name|boolean
-name|omitTf
+name|omitTermFreqAndPositions
 parameter_list|)
 throws|throws
 name|IOException
@@ -847,7 +847,7 @@ argument_list|)
 argument_list|,
 name|storePayloads
 argument_list|,
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 block|}
@@ -1208,7 +1208,7 @@ name|storePayloads
 argument_list|,
 name|fi
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 block|}
@@ -2385,9 +2385,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|field|omitTF
+DECL|field|omitTermFreqAndPositions
 name|boolean
-name|omitTF
+name|omitTermFreqAndPositions
 decl_stmt|;
 DECL|method|mergeTermInfos
 specifier|private
@@ -2727,11 +2727,11 @@ argument_list|(
 name|fieldInfo
 argument_list|)
 expr_stmt|;
-name|omitTF
+name|omitTermFreqAndPositions
 operator|=
 name|fieldInfo
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 expr_stmt|;
 block|}
 name|int
@@ -3013,7 +3013,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|omitTF
+name|omitTermFreqAndPositions
 condition|)
 block|{
 for|for

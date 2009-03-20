@@ -892,7 +892,7 @@ name|consumer
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns true if any of the fields in the current    *  buffered docs have omitTf==false */
+comment|/** Returns true if any of the fields in the current    *  buffered docs have omitTermFreqAndPositions==false */
 DECL|method|hasProx
 name|boolean
 name|hasProx

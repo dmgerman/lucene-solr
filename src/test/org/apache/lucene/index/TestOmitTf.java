@@ -361,11 +361,11 @@ return|;
 block|}
 block|}
 comment|// Tests whether the DocumentWriter correctly enable the
-comment|// omitTf bit in the FieldInfo
-DECL|method|testOmitTf
+comment|// omitTermFreqAndPositions bit in the FieldInfo
+DECL|method|testOmitTermFreqAndPositions
 specifier|public
 name|void
-name|testOmitTf
+name|testOmitTermFreqAndPositions
 parameter_list|()
 throws|throws
 name|Exception
@@ -467,7 +467,7 @@ argument_list|)
 decl_stmt|;
 name|f2
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)
@@ -502,7 +502,7 @@ expr_stmt|;
 comment|// Reverese
 name|f1
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)
@@ -516,7 +516,7 @@ argument_list|)
 expr_stmt|;
 name|f2
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|false
 argument_list|)
@@ -578,7 +578,7 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OmitTf field bit should be set."
+literal|"OmitTermFreqAndPositions field bit should be set."
 argument_list|,
 name|fi
 operator|.
@@ -587,12 +587,12 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OmitTf field bit should be set."
+literal|"OmitTermFreqAndPositions field bit should be set."
 argument_list|,
 name|fi
 operator|.
@@ -601,7 +601,7 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 name|reader
@@ -616,7 +616,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Tests whether merging of docs that have different
-comment|// omitTf for the same field works
+comment|// omitTermFreqAndPositions for the same field works
 DECL|method|testMixedMerge
 specifier|public
 name|void
@@ -736,7 +736,7 @@ argument_list|)
 decl_stmt|;
 name|f2
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)
@@ -780,7 +780,7 @@ expr_stmt|;
 comment|// Reverese
 name|f1
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)
@@ -794,7 +794,7 @@ argument_list|)
 expr_stmt|;
 name|f2
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|false
 argument_list|)
@@ -870,7 +870,7 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OmitTf field bit should be set."
+literal|"OmitTermFreqAndPositions field bit should be set."
 argument_list|,
 name|fi
 operator|.
@@ -879,12 +879,12 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OmitTf field bit should be set."
+literal|"OmitTermFreqAndPositions field bit should be set."
 argument_list|,
 name|fi
 operator|.
@@ -893,7 +893,7 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 name|reader
@@ -907,8 +907,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Make sure first adding docs that do not omitTf for
-comment|// field X, then adding docs that do omitTf for that same
+comment|// Make sure first adding docs that do not omitTermFreqAndPositions for
+comment|// field X, then adding docs that do omitTermFreqAndPositions for that same
 comment|// field,
 DECL|method|testMixedRAM
 specifier|public
@@ -1057,7 +1057,7 @@ argument_list|)
 expr_stmt|;
 name|f2
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)
@@ -1126,7 +1126,7 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OmitTf field bit should not be set."
+literal|"OmitTermFreqAndPositions field bit should not be set."
 argument_list|,
 operator|!
 name|fi
@@ -1136,12 +1136,12 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OmitTf field bit should be set."
+literal|"OmitTermFreqAndPositions field bit should be set."
 argument_list|,
 name|fi
 operator|.
@@ -1150,7 +1150,7 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 expr_stmt|;
 name|reader
@@ -1310,7 +1310,7 @@ argument_list|)
 decl_stmt|;
 name|f1
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)
@@ -1541,7 +1541,7 @@ argument_list|)
 decl_stmt|;
 name|noTf
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)

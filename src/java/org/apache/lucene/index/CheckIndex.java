@@ -382,7 +382,7 @@ DECL|field|numFields
 name|int
 name|numFields
 decl_stmt|;
-comment|/** True if at least one of the fields in this segment        *  does not omitTf.        *  @see Fieldable#setOmitTf */
+comment|/** True if at least one of the fields in this segment        *  does not omitTermFreqAndPositions.        *  @see Fieldable#setOmitTermFreqAndPositions */
 DECL|field|hasProx
 specifier|public
 name|boolean

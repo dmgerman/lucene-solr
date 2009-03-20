@@ -1365,7 +1365,7 @@ argument_list|)
 decl_stmt|;
 name|f
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 literal|true
 argument_list|)

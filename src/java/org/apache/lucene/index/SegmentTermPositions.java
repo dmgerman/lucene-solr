@@ -204,7 +204,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 condition|)
 comment|// This field does not store term freq, positions, payloads
 return|return
@@ -416,7 +416,7 @@ name|IOException
 block|{
 assert|assert
 operator|!
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 assert|;
 for|for
 control|(

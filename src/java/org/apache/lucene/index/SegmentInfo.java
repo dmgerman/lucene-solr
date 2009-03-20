@@ -258,7 +258,7 @@ specifier|private
 name|boolean
 name|hasProx
 decl_stmt|;
-comment|// True if this segment has any fields with omitTf==false
+comment|// True if this segment has any fields with omitTermFreqAndPositions==false
 DECL|method|SegmentInfo
 specifier|public
 name|SegmentInfo

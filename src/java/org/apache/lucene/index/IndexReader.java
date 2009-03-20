@@ -232,6 +232,20 @@ literal|"STORES_PAYLOADS"
 argument_list|)
 decl_stmt|;
 comment|/** All fields that omit tf */
+DECL|field|OMIT_TERM_FREQ_AND_POSITIONS
+specifier|public
+specifier|static
+specifier|final
+name|FieldOption
+name|OMIT_TERM_FREQ_AND_POSITIONS
+init|=
+operator|new
+name|FieldOption
+argument_list|(
+literal|"OMIT_TERM_FREQ_AND_POSITIONS"
+argument_list|)
+decl_stmt|;
+comment|/** @deprecated Renamed to {@link #OMIT_TERM_FREQ_AND_POSITIONS} */
 DECL|field|OMIT_TF
 specifier|public
 specifier|static
@@ -239,11 +253,7 @@ specifier|final
 name|FieldOption
 name|OMIT_TF
 init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"OMIT_TF"
-argument_list|)
+name|OMIT_TERM_FREQ_AND_POSITIONS
 decl_stmt|;
 comment|/** All fields which are not indexed */
 DECL|field|UNINDEXED

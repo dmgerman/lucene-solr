@@ -849,7 +849,7 @@ index|]
 decl_stmt|;
 specifier|final
 name|boolean
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 init|=
 name|fields
 index|[
@@ -858,7 +858,7 @@ index|]
 operator|.
 name|fieldInfo
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 decl_stmt|;
 while|while
 condition|(
@@ -1099,10 +1099,10 @@ comment|// format.
 if|if
 condition|(
 operator|!
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 condition|)
 block|{
-comment|// omitTf == false so we do write positions&
+comment|// omitTermFreqAndPositions == false so we do write positions&
 comment|// payload
 name|int
 name|position

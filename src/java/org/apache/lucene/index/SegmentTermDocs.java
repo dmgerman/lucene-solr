@@ -136,10 +136,10 @@ specifier|protected
 name|boolean
 name|currentFieldStoresPayloads
 decl_stmt|;
-DECL|field|currentFieldOmitTf
+DECL|field|currentFieldOmitTermFreqAndPositions
 specifier|protected
 name|boolean
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 decl_stmt|;
 DECL|method|SegmentTermDocs
 specifier|protected
@@ -362,7 +362,7 @@ operator|.
 name|field
 argument_list|)
 decl_stmt|;
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 operator|=
 operator|(
 name|fi
@@ -372,7 +372,7 @@ operator|)
 condition|?
 name|fi
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 else|:
 literal|false
 expr_stmt|;
@@ -535,7 +535,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 condition|)
 block|{
 name|doc
@@ -637,7 +637,7 @@ name|length
 decl_stmt|;
 if|if
 condition|(
-name|currentFieldOmitTf
+name|currentFieldOmitTermFreqAndPositions
 condition|)
 block|{
 return|return

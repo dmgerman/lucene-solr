@@ -52,11 +52,10 @@ name|boolean
 name|omitNorms
 decl_stmt|;
 comment|// omit norms associated with indexed fields
-DECL|field|omitTf
+DECL|field|omitTermFreqAndPositions
 name|boolean
-name|omitTf
+name|omitTermFreqAndPositions
 decl_stmt|;
-comment|// omit tf
 DECL|field|storePayloads
 name|boolean
 name|storePayloads
@@ -90,7 +89,7 @@ name|boolean
 name|storePayloads
 parameter_list|,
 name|boolean
-name|omitTf
+name|omitTermFreqAndPositions
 parameter_list|)
 block|{
 name|name
@@ -137,9 +136,9 @@ name|storePayloads
 expr_stmt|;
 name|this
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 operator|=
-name|omitTf
+name|omitTermFreqAndPositions
 expr_stmt|;
 block|}
 DECL|method|clone
@@ -168,7 +167,7 @@ name|omitNorms
 argument_list|,
 name|storePayloads
 argument_list|,
-name|omitTf
+name|omitTermFreqAndPositions
 argument_list|)
 return|;
 block|}
@@ -195,7 +194,7 @@ name|boolean
 name|storePayloads
 parameter_list|,
 name|boolean
-name|omitTf
+name|omitTermFreqAndPositions
 parameter_list|)
 block|{
 if|if
@@ -287,18 +286,18 @@ if|if
 condition|(
 name|this
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 operator|!=
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 block|{
 name|this
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 operator|=
 literal|true
 expr_stmt|;
-comment|// if one require omitTf at least once, it remains off for life
+comment|// if one require omitTermFreqAndPositions at least once, it remains off for life
 block|}
 if|if
 condition|(

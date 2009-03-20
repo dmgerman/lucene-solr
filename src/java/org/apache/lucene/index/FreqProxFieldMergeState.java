@@ -247,7 +247,7 @@ name|field
 operator|.
 name|fieldInfo
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 name|field
 operator|.
@@ -314,7 +314,7 @@ condition|(
 operator|!
 name|field
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 name|termFreq
 operator|=
@@ -352,7 +352,7 @@ if|if
 condition|(
 name|field
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 name|docID
 operator|+=

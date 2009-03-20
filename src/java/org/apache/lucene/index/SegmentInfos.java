@@ -259,7 +259,7 @@ init|=
 operator|-
 literal|6
 decl_stmt|;
-comment|/** This format adds the boolean hasProx to record if any    *  fields in the segment store prox information (ie, have    *  omitTf==false) */
+comment|/** This format adds the boolean hasProx to record if any    *  fields in the segment store prox information (ie, have    *  omitTermFreqAndPositions==false) */
 DECL|field|FORMAT_HAS_PROX
 specifier|public
 specifier|static

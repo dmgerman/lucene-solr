@@ -105,9 +105,9 @@ specifier|final
 name|FieldInvertState
 name|fieldState
 decl_stmt|;
-DECL|field|omitTf
+DECL|field|omitTermFreqAndPositions
 name|boolean
-name|omitTf
+name|omitTermFreqAndPositions
 decl_stmt|;
 DECL|field|payloadAttribute
 name|PayloadAttribute
@@ -157,11 +157,11 @@ name|termsHashPerField
 operator|.
 name|fieldState
 expr_stmt|;
-name|omitTf
+name|omitTermFreqAndPositions
 operator|=
 name|fieldInfo
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 expr_stmt|;
 block|}
 DECL|method|getStreamCount
@@ -173,7 +173,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 return|return
 literal|1
@@ -238,11 +238,11 @@ parameter_list|()
 block|{
 comment|// Record, up front, whether our in-RAM format will be
 comment|// with or without term freqs:
-name|omitTf
+name|omitTermFreqAndPositions
 operator|=
 name|fieldInfo
 operator|.
-name|omitTf
+name|omitTermFreqAndPositions
 expr_stmt|;
 name|payloadAttribute
 operator|=
@@ -504,7 +504,7 @@ name|docID
 expr_stmt|;
 if|if
 condition|(
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 block|{
 name|p
@@ -575,7 +575,7 @@ operator|)
 name|p0
 decl_stmt|;
 assert|assert
-name|omitTf
+name|omitTermFreqAndPositions
 operator|||
 name|p
 operator|.
@@ -585,7 +585,7 @@ literal|0
 assert|;
 if|if
 condition|(
-name|omitTf
+name|omitTermFreqAndPositions
 condition|)
 block|{
 if|if
