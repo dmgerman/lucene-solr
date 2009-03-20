@@ -125,7 +125,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Store the original field value in the index in a compressed form. This is      * useful for long documents and for binary valued fields.      */
+comment|/** Store the original field value in the index in a compressed form. This is      * useful for long documents and for binary valued fields.      * @deprecated Please use {@link CompressionTools} instead      */
 DECL|field|COMPRESS
 specifier|public
 specifier|static
