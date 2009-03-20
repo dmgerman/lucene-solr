@@ -1947,6 +1947,13 @@ name|names
 operator|.
 name|size
 argument_list|()
+operator|&&
+name|i
+operator|<
+name|values
+operator|.
+name|size
+argument_list|()
 condition|;
 name|i
 operator|++
