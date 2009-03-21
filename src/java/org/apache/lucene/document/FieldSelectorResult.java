@@ -103,7 +103,7 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
-comment|/**      * Behaves much like {@link #LOAD} but does not uncompress any compressed data.  This is used for internal purposes.      * {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+comment|/**      * Behaves much like {@link #LOAD} but does not uncompress any compressed data.  This is used for internal purposes.      * {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by      * the Reader.      * @deprecated This is an internal option only, and is      *    no longer needed now that {@link CompressionTools}      *    is used for field compression.      */
 DECL|field|LOAD_FOR_MERGE
 specifier|public
 specifier|transient
