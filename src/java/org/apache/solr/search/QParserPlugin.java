@@ -163,6 +163,14 @@ block|,
 name|NestedQParserPlugin
 operator|.
 name|class
+block|,
+name|FunctionRangeQParserPlugin
+operator|.
+name|NAME
+block|,
+name|FunctionRangeQParserPlugin
+operator|.
+name|class
 block|,   }
 decl_stmt|;
 comment|/** return a {@link QParser} */
