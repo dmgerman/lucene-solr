@@ -1373,7 +1373,7 @@ specifier|public
 specifier|static
 class|class
 name|StartEventListener
-extends|extends
+implements|implements
 name|EventListener
 block|{
 DECL|field|executed
@@ -1404,7 +1404,7 @@ specifier|public
 specifier|static
 class|class
 name|EndEventListener
-extends|extends
+implements|implements
 name|EventListener
 block|{
 DECL|field|executed

@@ -22,11 +22,10 @@ begin_comment
 comment|/**  * Event listener for DataImportHandler  *  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.4  */
 end_comment
 
-begin_class
-DECL|class|EventListener
+begin_interface
+DECL|interface|EventListener
 specifier|public
-specifier|abstract
-class|class
+interface|interface
 name|EventListener
 block|{
 comment|/**    * Event callback    *    * @param ctx the Context in which this event was called    */
@@ -41,7 +40,7 @@ name|ctx
 parameter_list|)
 function_decl|;
 block|}
-end_class
+end_interface
 
 end_unit
 
