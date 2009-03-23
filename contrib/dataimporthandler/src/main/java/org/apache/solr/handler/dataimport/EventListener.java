@@ -31,7 +31,6 @@ block|{
 comment|/**    * Event callback    *    * @param ctx the Context in which this event was called    */
 DECL|method|onEvent
 specifier|public
-specifier|abstract
 name|void
 name|onEvent
 parameter_list|(
