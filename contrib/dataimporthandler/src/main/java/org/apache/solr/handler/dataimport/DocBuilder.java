@@ -520,6 +520,17 @@ name|addNamespace
 argument_list|(
 name|DataConfig
 operator|.
+name|IMPORTER_NS_SHORT
+argument_list|,
+name|indexerNamespace
+argument_list|)
+expr_stmt|;
+name|resolver
+operator|.
+name|addNamespace
+argument_list|(
+name|DataConfig
+operator|.
 name|IMPORTER_NS
 argument_list|,
 name|indexerNamespace

@@ -1747,6 +1747,9 @@ name|PROCESSOR
 init|=
 literal|"processor"
 decl_stmt|;
+comment|/**    * @deprecated use IMPORTER_NS_SHORT instead    */
+annotation|@
+name|Deprecated
 DECL|field|IMPORTER_NS
 specifier|public
 specifier|static
@@ -1755,6 +1758,15 @@ name|String
 name|IMPORTER_NS
 init|=
 literal|"dataimporter"
+decl_stmt|;
+DECL|field|IMPORTER_NS_SHORT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|IMPORTER_NS_SHORT
+init|=
+literal|"dih"
 decl_stmt|;
 DECL|field|ROOT_ENTITY
 specifier|public
