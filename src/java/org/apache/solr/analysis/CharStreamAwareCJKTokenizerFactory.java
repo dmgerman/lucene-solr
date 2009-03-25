@@ -26,20 +26,6 @@ name|Reader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * @version $Id$  * @since Solr 1.4  *  */
 end_comment
@@ -65,17 +51,9 @@ return|return
 operator|new
 name|CharStreamAwareCJKTokenizer
 argument_list|(
-name|input
-operator|instanceof
-name|CharStream
-condition|?
-operator|(
-name|CharStream
-operator|)
-name|input
-else|:
-operator|new
 name|CharReader
+operator|.
+name|get
 argument_list|(
 name|input
 argument_list|)

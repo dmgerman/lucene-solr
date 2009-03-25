@@ -58,8 +58,9 @@ init|=
 operator|new
 name|CharFilter1
 argument_list|(
-operator|new
 name|CharReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|StringReader
@@ -98,8 +99,9 @@ init|=
 operator|new
 name|CharFilter2
 argument_list|(
-operator|new
 name|CharReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|StringReader
@@ -141,8 +143,9 @@ argument_list|(
 operator|new
 name|CharFilter1
 argument_list|(
-operator|new
 name|CharReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|StringReader
@@ -185,8 +188,9 @@ argument_list|(
 operator|new
 name|CharFilter1
 argument_list|(
-operator|new
 name|CharReader
+operator|.
+name|get
 argument_list|(
 operator|new
 name|StringReader

@@ -216,8 +216,9 @@ block|{
 name|CharStream
 name|cs
 init|=
-operator|new
 name|CharReader
+operator|.
+name|get
 argument_list|(
 name|reader
 argument_list|)
