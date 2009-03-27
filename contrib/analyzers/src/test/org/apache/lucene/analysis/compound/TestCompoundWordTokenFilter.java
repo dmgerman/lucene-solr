@@ -292,9 +292,11 @@ literal|"http://surfnet.dl.sourceforge.net/sourceforge/offo/offo-hyphenation.zip
 block|,
 literal|"http://superb-west.dl.sourceforge.net/sourceforge/offo/offo-hyphenation.zip"
 block|,
-literal|"http://superb-east.dl.sourceforge.net/sourceforge/offo/offo-hyphenation.zip"
+literal|"http://voxel.dl.sourceforge.net/sourceforge/offo/offo-hyphenation.zip"
 block|}
 decl_stmt|;
+comment|// too slow:
+comment|//"http://superb-east.dl.sourceforge.net/sourceforge/offo/offo-hyphenation.zip"};
 DECL|field|patternsFileContent
 specifier|private
 name|byte
@@ -1417,6 +1419,13 @@ name|void
 name|getHyphenationPatternFileContents
 parameter_list|()
 block|{
+if|if
+condition|(
+name|patternsFileContent
+operator|==
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|List
@@ -1539,6 +1548,7 @@ name|e
 parameter_list|)
 block|{
 comment|// we swallow all exceptions - the user might have no internet connection
+block|}
 block|}
 block|}
 DECL|method|getHyphenationReader
