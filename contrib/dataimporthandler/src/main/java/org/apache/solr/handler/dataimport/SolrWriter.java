@@ -985,6 +985,8 @@ name|baos
 operator|.
 name|toByteArray
 argument_list|()
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 return|;
 block|}
