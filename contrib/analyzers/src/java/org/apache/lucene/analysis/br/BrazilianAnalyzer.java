@@ -649,6 +649,14 @@ decl_stmt|;
 name|result
 operator|=
 operator|new
+name|LowerCaseFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+operator|new
 name|StandardFilter
 argument_list|(
 name|result
@@ -672,15 +680,6 @@ argument_list|(
 name|result
 argument_list|,
 name|excltable
-argument_list|)
-expr_stmt|;
-comment|// Convert to lowercase after stemming!
-name|result
-operator|=
-operator|new
-name|LowerCaseFilter
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 return|return
