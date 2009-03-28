@@ -10894,8 +10894,6 @@ init|(
 name|this
 init|)
 block|{
-try|try
-block|{
 name|mergeFinish
 argument_list|(
 name|merge
@@ -10978,17 +10976,6 @@ operator|.
 name|optimize
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|runningMerges
-operator|.
-name|remove
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -11279,13 +11266,6 @@ name|success
 condition|)
 block|{
 name|mergeFinish
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
-name|runningMerges
-operator|.
-name|remove
 argument_list|(
 name|merge
 argument_list|)
@@ -12074,6 +12054,13 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+name|runningMerges
+operator|.
+name|remove
+argument_list|(
+name|merge
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Does the actual (time-consuming) work of the merge,    *  but without holding synchronized lock on IndexWriter    *  instance */
 DECL|method|mergeMiddle
@@ -13222,7 +13209,23 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-continue|continue;
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
@@ -13352,6 +13355,8 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
 name|Thread
 operator|.
 name|currentThread
@@ -13360,6 +13365,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
@@ -13371,14 +13383,14 @@ name|void
 name|doWait
 parameter_list|()
 block|{
-try|try
-block|{
 comment|// NOTE: the callers of this method should in theory
 comment|// be able to do simply wait(), but, as a defense
 comment|// against thread timing hazards where notifyAll()
 comment|// falls to be called, we wait for at most 1 second
 comment|// and then return so caller can check if wait
 comment|// conditions are satisified:
+try|try
+block|{
 name|wait
 argument_list|(
 literal|1000
@@ -13391,6 +13403,8 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
 name|Thread
 operator|.
 name|currentThread
@@ -13399,6 +13413,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 comment|/** Walk through all files referenced by the current    *  segmentInfos and ask the Directory to sync each file,    *  if it wasn't already.  If that succeeds, then we    *  prepare a new segments_N file but do not fully commit    *  it. */
@@ -13584,6 +13605,55 @@ name|myChangeCount
 operator|=
 name|changeCount
 expr_stmt|;
+name|Iterator
+name|it
+init|=
+name|toSync
+operator|.
+name|files
+argument_list|(
+name|directory
+argument_list|,
+literal|false
+argument_list|)
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|String
+name|fileName
+init|=
+operator|(
+name|String
+operator|)
+name|it
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+assert|assert
+name|directory
+operator|.
+name|fileExists
+argument_list|(
+name|fileName
+argument_list|)
+operator|:
+literal|"file "
+operator|+
+name|fileName
+operator|+
+literal|" does not exist"
+assert|;
+block|}
 block|}
 finally|finally
 block|{

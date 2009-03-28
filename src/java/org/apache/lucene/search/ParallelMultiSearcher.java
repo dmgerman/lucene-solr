@@ -284,8 +284,23 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-empty_stmt|;
-comment|// TODO: what should we do with this???
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 name|IOException
 name|ioe
@@ -557,8 +572,23 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-empty_stmt|;
-comment|// TODO: what should we do with this???
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 name|IOException
 name|ioe

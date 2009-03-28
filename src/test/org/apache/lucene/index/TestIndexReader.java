@@ -4769,7 +4769,7 @@ name|void
 name|testLastModified
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|assertFalse
 argument_list|(
@@ -4962,13 +4962,6 @@ argument_list|()
 expr_stmt|;
 comment|// modify index and check version has been
 comment|// incremented:
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-try|try
-block|{
 name|Thread
 operator|.
 name|sleep
@@ -4976,24 +4969,6 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-break|break;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 name|writer
 operator|=
 operator|new

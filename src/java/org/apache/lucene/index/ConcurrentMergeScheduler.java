@@ -479,9 +479,27 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
-block|{       }
+block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 DECL|method|mergeThreadCount
@@ -650,11 +668,22 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
+specifier|final
+name|MergeThread
+name|merger
+decl_stmt|;
 while|while
 condition|(
 name|mergeThreadCount
@@ -685,6 +714,8 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
 name|Thread
 operator|.
 name|currentThread
@@ -693,6 +724,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 if|if
@@ -720,17 +758,15 @@ name|maxThreadCount
 assert|;
 comment|// OK to spawn a new merge thread to handle this
 comment|// merge:
-specifier|final
-name|MergeThread
 name|merger
-init|=
+operator|=
 name|getMergeThread
 argument_list|(
 name|writer
 argument_list|,
 name|merge
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|mergeThreads
 operator|.
 name|add
@@ -760,6 +796,28 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|writer
+operator|.
+name|mergeFinish
+argument_list|(
+name|merge
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}

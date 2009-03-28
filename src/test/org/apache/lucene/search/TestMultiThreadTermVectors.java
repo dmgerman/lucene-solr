@@ -305,6 +305,8 @@ specifier|public
 name|void
 name|test
 parameter_list|()
+throws|throws
+name|Exception
 block|{
 name|IndexReader
 name|reader
@@ -404,6 +406,8 @@ parameter_list|,
 name|int
 name|threadCount
 parameter_list|)
+throws|throws
+name|Exception
 block|{
 name|MultiThreadTermVectorsReader
 index|[]
@@ -465,8 +469,6 @@ operator|>
 literal|0
 condition|)
 block|{
-try|try
-block|{
 comment|//System.out.println("Threads alive");
 name|Thread
 operator|.
@@ -517,13 +519,6 @@ name|threadsAlive
 operator|--
 expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{}
 block|}
 name|long
 name|totalTime

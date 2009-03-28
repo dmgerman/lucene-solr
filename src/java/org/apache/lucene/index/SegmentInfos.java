@@ -2087,10 +2087,26 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
 block|{
-comment|// will retry
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 block|}

@@ -299,7 +299,7 @@ name|void
 name|testSnapshotDeletionPolicy
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|File
 name|dir
@@ -369,7 +369,7 @@ name|void
 name|testReuseAcrossWriters
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|Directory
 name|dir
@@ -630,7 +630,7 @@ name|Directory
 name|dir
 parameter_list|)
 throws|throws
-name|IOException
+name|Exception
 block|{
 comment|// Run for ~7 seconds
 specifier|final
@@ -813,6 +813,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
@@ -842,8 +849,6 @@ argument_list|,
 name|dp
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|Thread
 operator|.
 name|sleep
@@ -851,22 +856,6 @@ argument_list|(
 literal|20
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!
@@ -877,29 +866,11 @@ argument_list|()
 condition|)
 break|break;
 block|}
-try|try
-block|{
 name|t
 operator|.
 name|join
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 comment|// Add one more document to force writer to commit a
 comment|// final segment, so deletion policy has a chance to
 comment|// delete again:
@@ -978,7 +949,7 @@ name|SnapshotDeletionPolicy
 name|dp
 parameter_list|)
 throws|throws
-name|IOException
+name|Exception
 block|{
 comment|// To backup an index we first take a snapshot:
 try|try
@@ -1021,7 +992,7 @@ name|IndexCommit
 name|cp
 parameter_list|)
 throws|throws
-name|IOException
+name|Exception
 block|{
 comment|// While we hold the snapshot, and nomatter how long
 comment|// we take to do the backup, the IndexWriter will
@@ -1100,7 +1071,7 @@ name|String
 name|name
 parameter_list|)
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|IndexInput
 name|input
@@ -1185,8 +1156,6 @@ comment|// to force a backup to take a somewhat long time, to
 comment|// make sure we are exercising the fact that the
 comment|// IndexWriter should not delete this file even when I
 comment|// take my time reading it.
-try|try
-block|{
 name|Thread
 operator|.
 name|sleep
@@ -1194,22 +1163,6 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 finally|finally
 block|{

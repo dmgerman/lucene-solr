@@ -1784,9 +1784,11 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
 block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
 name|Thread
 operator|.
 name|currentThread
@@ -1795,6 +1797,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 return|return
@@ -3155,9 +3164,11 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
 block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
 name|Thread
 operator|.
 name|currentThread
@@ -3166,6 +3177,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 if|if
@@ -4326,9 +4344,11 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
 block|{
+comment|// In 3.0 we will change this to throw
+comment|// InterruptedException instead
 name|Thread
 operator|.
 name|currentThread
@@ -4337,6 +4357,13 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
 block|}
 block|}
 do|while
