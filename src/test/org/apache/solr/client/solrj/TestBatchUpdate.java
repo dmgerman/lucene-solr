@@ -297,7 +297,7 @@ literal|0
 expr_stmt|;
 name|commonsHttpSolrServer
 operator|.
-name|addAndCommit
+name|add
 argument_list|(
 operator|new
 name|Iterator
@@ -370,9 +370,12 @@ block|{
 comment|//do nothing
 block|}
 block|}
-argument_list|,
-literal|null
 argument_list|)
+expr_stmt|;
+name|commonsHttpSolrServer
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 name|SolrQuery
 name|query
