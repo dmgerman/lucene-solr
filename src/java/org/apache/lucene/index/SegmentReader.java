@@ -5791,6 +5791,20 @@ name|rollbackDirty
 expr_stmt|;
 block|}
 block|}
+comment|// This is necessary so that cloned SegmentReaders (which
+comment|// share the underlying postings data) will map to the
+comment|// same entry in the FieldCache.  See LUCENE-1579.
+DECL|method|getFieldCacheKey
+specifier|public
+specifier|final
+name|Object
+name|getFieldCacheKey
+parameter_list|()
+block|{
+return|return
+name|freqStream
+return|;
+block|}
 block|}
 end_class
 

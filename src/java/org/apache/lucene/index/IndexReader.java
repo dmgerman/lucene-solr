@@ -2775,6 +2775,17 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** Expert        *  @deprecated */
+DECL|method|getFieldCacheKey
+specifier|public
+name|Object
+name|getFieldCacheKey
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 
