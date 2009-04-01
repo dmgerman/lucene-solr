@@ -180,7 +180,9 @@ operator|=
 name|input
 operator|.
 name|next
-argument_list|()
+argument_list|(
+name|token
+argument_list|)
 control|)
 block|{
 if|if
