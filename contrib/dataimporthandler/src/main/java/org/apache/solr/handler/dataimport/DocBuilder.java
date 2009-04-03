@@ -1277,13 +1277,6 @@ operator|.
 name|rollback
 argument_list|()
 expr_stmt|;
-name|writer
-operator|.
-name|commit
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|statusMessages
 operator|.
 name|put
