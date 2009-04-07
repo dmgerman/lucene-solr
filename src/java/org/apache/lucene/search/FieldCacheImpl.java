@@ -1002,6 +1002,12 @@ argument_list|()
 condition|)
 do|;
 block|}
+catch|catch
+parameter_list|(
+name|StopFillCacheException
+name|stop
+parameter_list|)
+block|{       }
 finally|finally
 block|{
 name|termDocs
@@ -1245,6 +1251,12 @@ argument_list|()
 condition|)
 do|;
 block|}
+catch|catch
+parameter_list|(
+name|StopFillCacheException
+name|stop
+parameter_list|)
+block|{       }
 finally|finally
 block|{
 name|termDocs
@@ -1488,6 +1500,12 @@ argument_list|()
 condition|)
 do|;
 block|}
+catch|catch
+parameter_list|(
+name|StopFillCacheException
+name|stop
+parameter_list|)
+block|{       }
 finally|finally
 block|{
 name|termDocs
@@ -1731,6 +1749,12 @@ argument_list|()
 condition|)
 do|;
 block|}
+catch|catch
+parameter_list|(
+name|StopFillCacheException
+name|stop
+parameter_list|)
+block|{       }
 finally|finally
 block|{
 name|termDocs

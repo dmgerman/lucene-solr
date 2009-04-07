@@ -225,6 +225,15 @@ specifier|public
 interface|interface
 name|Parser
 block|{   }
+comment|/**    * Expert: when thrown from a custom Parser, this stops    * processing terms and returns the current FieldCache    * array.    *     *<p><b>NOTE</b>: This API is experimental and likely to    * change in incompatible ways, or be removed entirely, in    * the next release.    */
+DECL|class|StopFillCacheException
+specifier|public
+specifier|static
+class|class
+name|StopFillCacheException
+extends|extends
+name|RuntimeException
+block|{   }
 comment|/** Interface to parse bytes from document fields.    * @see FieldCache#getBytes(IndexReader, String, FieldCache.ByteParser)    */
 DECL|interface|ByteParser
 specifier|public
