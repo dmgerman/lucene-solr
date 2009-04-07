@@ -1692,6 +1692,7 @@ name|starts
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated */
 DECL|method|doCommit
 specifier|protected
 name|void

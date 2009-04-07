@@ -1425,6 +1425,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** @deprecated */
 DECL|method|doCommit
 specifier|protected
 name|void
