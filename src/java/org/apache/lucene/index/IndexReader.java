@@ -2786,6 +2786,23 @@ return|return
 name|this
 return|;
 block|}
+comment|/** Returns the number of unique terms (across all fields)    *  in this reader.    *    *  This method returns long, even though internally    *  Lucene cannot handle more than 2^31 unique terms, for    *  a possible future when this limitation is removed.    *    *  @throws UnsupportedOperationException if this count    *  cannot be easily determined (eg Multi*Readers).    *  Instead, you should call {@link    *  #getSequentialSubReaders} and ask each sub reader for    *  its unique term count. */
+DECL|method|getUniqueTermCount
+specifier|public
+name|long
+name|getUniqueTermCount
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this reader does not implement getUniqueTermCount()"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

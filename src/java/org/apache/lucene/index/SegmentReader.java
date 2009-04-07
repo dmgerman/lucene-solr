@@ -5805,6 +5805,19 @@ return|return
 name|freqStream
 return|;
 block|}
+DECL|method|getUniqueTermCount
+specifier|public
+name|long
+name|getUniqueTermCount
+parameter_list|()
+block|{
+return|return
+name|tis
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
