@@ -77,7 +77,9 @@ return|return
 name|shift
 return|;
 block|}
+comment|/**    * Sets the shift value.    */
 DECL|method|setShift
+specifier|public
 name|void
 name|setShift
 parameter_list|(
