@@ -1022,15 +1022,14 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|flush
+name|commit
 argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|commit
+name|close
 argument_list|()
 expr_stmt|;
-comment|//writer.close();
 block|}
 DECL|method|testRange
 specifier|public
@@ -1218,11 +1217,11 @@ comment|// Create a distance sort
 comment|// As the radius filter has performed the distance calculations
 comment|// already, pass in the filter to reuse the results.
 comment|//
-name|DistanceSortSource
+name|DistanceFieldComparatorSource
 name|dsort
 init|=
 operator|new
-name|DistanceSortSource
+name|DistanceFieldComparatorSource
 argument_list|(
 name|dq
 operator|.
@@ -1241,6 +1240,8 @@ argument_list|(
 literal|"foo"
 argument_list|,
 name|dsort
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1259,9 +1260,10 @@ name|dq
 operator|.
 name|getFilter
 argument_list|()
+argument_list|,
+name|sort
 argument_list|)
 decl_stmt|;
-comment|//,sort);
 name|int
 name|results
 init|=
@@ -1366,6 +1368,11 @@ argument_list|,
 name|results
 argument_list|)
 expr_stmt|;
+name|double
+name|lastDistance
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1494,28 +1501,12 @@ literal|"Name: "
 operator|+
 name|name
 operator|+
-literal|", Distance (res, ortho, harvesine):"
+literal|", Distance "
 operator|+
 name|distance
-operator|+
-literal|" |"
-operator|+
-name|geo_distance
-operator|+
-literal|"|"
-operator|+
-name|llm
-operator|+
-literal|" | score "
-operator|+
-name|hits
-operator|.
-name|score
-argument_list|(
-name|i
-argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//(res, ortho, harvesine):"+ distance +" |"+ geo_distance +"|"+ llm +" | score "+ hits.score(i));
 name|assertTrue
 argument_list|(
 name|Math
@@ -1540,6 +1531,17 @@ operator|<
 name|miles
 operator|)
 argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|geo_distance
+operator|>
+name|lastDistance
+argument_list|)
+expr_stmt|;
+name|lastDistance
+operator|=
+name|geo_distance
 expr_stmt|;
 block|}
 block|}
