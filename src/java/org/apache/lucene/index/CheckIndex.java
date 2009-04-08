@@ -68,6 +68,24 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|AbstractField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Document
 import|;
 end_import
@@ -141,24 +159,6 @@ operator|.
 name|ArrayList
 import|;
 end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Fieldable
-import|;
-end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
 
 begin_comment
 comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  *<p><b>WARNING</b>: this tool and API is new and  * experimental and is subject to suddenly change in the  * next release.  Please make a complete backup of your  * index before using this to fix your index!  */
@@ -382,7 +382,7 @@ DECL|field|numFields
 name|int
 name|numFields
 decl_stmt|;
-comment|/** True if at least one of the fields in this segment        *  does not omitTermFreqAndPositions.        *  @see Fieldable#setOmitTermFreqAndPositions */
+comment|/** True if at least one of the fields in this segment        *  does not omitTermFreqAndPositions.        *  @see AbstractField#setOmitTermFreqAndPositions */
 DECL|field|hasProx
 specifier|public
 name|boolean

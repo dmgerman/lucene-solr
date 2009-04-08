@@ -44,40 +44,6 @@ name|FieldInvertState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|PhraseQuery
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|spans
-operator|.
-name|SpanQuery
-import|;
-end_import
-
 begin_comment
 comment|// for javadocs
 end_comment
@@ -227,7 +193,7 @@ name|boolean
 name|omitNorms
 parameter_list|)
 function_decl|;
-comment|/** @deprecated Renamed to {@link #setOmitTermFreqAndPositions} */
+comment|/** @deprecated Renamed to {@link AbstractField#setOmitTermFreqAndPositions} */
 DECL|method|setOmitTf
 name|void
 name|setOmitTf
@@ -236,25 +202,10 @@ name|boolean
 name|omitTf
 parameter_list|)
 function_decl|;
-comment|/** @deprecated Renamed to {@link #getOmitTermFreqAndPositions} */
+comment|/** @deprecated Renamed to {@link AbstractField#getOmitTermFreqAndPositions} */
 DECL|method|getOmitTf
 name|boolean
 name|getOmitTf
-parameter_list|()
-function_decl|;
-comment|/** Expert:    *    * If set, omit term freq, positions and payloads from postings for this field.    *<p><b>NOTE</b>: this is a dangerous option to enable.    * While it reduces storage space required in the index,    * it also means any query requiring positional    * infromation, such as {@link PhraseQuery} or {@link    * SpanQuery} subclasses will silently fail to find    * results.    */
-DECL|method|setOmitTermFreqAndPositions
-name|void
-name|setOmitTermFreqAndPositions
-parameter_list|(
-name|boolean
-name|omitTermFreqAndPositions
-parameter_list|)
-function_decl|;
-comment|/** True if tf is omitted for this indexed field */
-DECL|method|getOmitTermFreqAndPositions
-name|boolean
-name|getOmitTermFreqAndPositions
 parameter_list|()
 function_decl|;
 comment|/**    * Indicates whether a Field is Lazy or not.  The semantics of Lazy loading are such that if a Field is lazily loaded, retrieving    * it's values via {@link #stringValue()} or {@link #binaryValue()} is only valid as long as the {@link org.apache.lucene.index.IndexReader} that    * retrieved the {@link Document} is still open.    *      * @return true if this field can be loaded lazily    */

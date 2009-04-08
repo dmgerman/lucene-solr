@@ -16,6 +16,44 @@ begin_comment
 comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|PhraseQuery
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanQuery
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
 begin_comment
 comment|/**  *  *  **/
 end_comment
@@ -871,6 +909,7 @@ return|return
 name|omitNorms
 return|;
 block|}
+comment|/** @deprecated Renamed to {@link #getOmitTermFreqAndPositions} */
 DECL|method|getOmitTf
 specifier|public
 name|boolean
@@ -881,6 +920,7 @@ return|return
 name|omitTermFreqAndPositions
 return|;
 block|}
+comment|/** @see #setOmitTermFreqAndPositions */
 DECL|method|getOmitTermFreqAndPositions
 specifier|public
 name|boolean
@@ -908,6 +948,7 @@ operator|=
 name|omitNorms
 expr_stmt|;
 block|}
+comment|/** @deprecated Renamed to {@link #setOmitTermFreqAndPositions} */
 DECL|method|setOmitTf
 specifier|public
 name|void
@@ -924,6 +965,7 @@ operator|=
 name|omitTermFreqAndPositions
 expr_stmt|;
 block|}
+comment|/** Expert:    *    * If set, omit term freq, positions and payloads from    * postings for this field.    *    *<p><b>NOTE</b>: While this option reduces storage space    * required in the index, it also means any query    * requiring positional information, such as {@link    * PhraseQuery} or {@link SpanQuery} subclasses will    * silently fail to find results.    */
 DECL|method|setOmitTermFreqAndPositions
 specifier|public
 name|void
