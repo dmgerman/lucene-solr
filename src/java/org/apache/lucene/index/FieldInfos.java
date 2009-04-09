@@ -398,6 +398,13 @@ name|field
 operator|.
 name|getOmitNorms
 argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+name|field
+operator|.
+name|getOmitTf
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
