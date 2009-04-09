@@ -122,13 +122,20 @@ name|ShiftAttribute
 operator|)
 name|stream
 operator|.
-name|addAttribute
+name|getAttribute
 argument_list|(
 name|ShiftAttribute
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Has shift attribute"
+argument_list|,
+name|shiftAtt
+argument_list|)
+expr_stmt|;
 specifier|final
 name|TermAttribute
 name|termAtt
@@ -138,13 +145,20 @@ name|TermAttribute
 operator|)
 name|stream
 operator|.
-name|addAttribute
+name|getAttribute
 argument_list|(
 name|TermAttribute
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Has term attribute"
+argument_list|,
+name|termAtt
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
