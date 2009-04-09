@@ -50,6 +50,12 @@ name|first
 init|=
 literal|true
 decl_stmt|;
+DECL|field|name
+specifier|private
+specifier|final
+name|String
+name|name
+decl_stmt|;
 DECL|field|singleByte
 name|byte
 index|[]
@@ -71,6 +77,9 @@ name|dir
 parameter_list|,
 name|RAMFile
 name|f
+parameter_list|,
+name|String
+name|name
 parameter_list|)
 block|{
 name|super
@@ -83,6 +92,12 @@ operator|.
 name|dir
 operator|=
 name|dir
+expr_stmt|;
+name|this
+operator|.
+name|name
+operator|=
+name|name
 expr_stmt|;
 block|}
 DECL|method|close
@@ -219,7 +234,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"MockRAMDirectory was crashed"
+literal|"MockRAMDirectory was crashed; cannot write to "
+operator|+
+name|name
 argument_list|)
 throw|;
 comment|// Enforce disk full:
@@ -324,7 +341,9 @@ operator|.
 name|getRecomputedActualSizeInBytes
 argument_list|()
 operator|+
-literal|" bytes"
+literal|" bytes when writing "
+operator|+
+name|name
 argument_list|)
 throw|;
 block|}

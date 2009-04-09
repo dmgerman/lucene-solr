@@ -138,6 +138,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|FSDirectory
 import|;
 end_import
@@ -206,6 +220,10 @@ DECL|field|rollbackSegmentInfos
 specifier|private
 name|SegmentInfos
 name|rollbackSegmentInfos
+decl_stmt|;
+DECL|field|writer
+name|IndexWriter
+name|writer
 decl_stmt|;
 DECL|field|readOnly
 specifier|protected
@@ -849,6 +867,12 @@ operator|=
 name|deletionPolicy
 expr_stmt|;
 block|}
+name|newReader
+operator|.
+name|writer
+operator|=
+name|writer
+expr_stmt|;
 comment|// If we're cloning a non-readOnly reader, move the
 comment|// writeLock (if there is one) to the new reader:
 if|if
@@ -861,6 +885,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// In near real-time search, reader is always readonly
+assert|assert
+name|writer
+operator|==
+literal|null
+assert|;
 name|newReader
 operator|.
 name|writeLock
@@ -912,6 +942,76 @@ literal|null
 operator|||
 name|openReadOnly
 assert|;
+comment|// If we were obtained by writer.getReader(), re-ask the
+comment|// writer to get a new reader.
+if|if
+condition|(
+name|writer
+operator|!=
+literal|null
+condition|)
+block|{
+assert|assert
+name|readOnly
+assert|;
+if|if
+condition|(
+operator|!
+name|openReadOnly
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"a reader obtained from IndexWriter.getReader() can only be reopened with openReadOnly=true (got false)"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|commit
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"a reader obtained from IndexWriter.getReader() cannot currently accept a commit"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+operator|!
+name|writer
+operator|.
+name|isOpen
+argument_list|(
+literal|true
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"cannot reopen: the IndexWriter this reader was obtained from is now closed"
+argument_list|)
+throw|;
+block|}
+comment|// TODO: right now we *always* make a new reader; in
+comment|// the future we could have write make some effort to
+comment|// detect that no changes have occurred
+return|return
+name|writer
+operator|.
+name|getReader
+argument_list|()
+return|;
+block|}
 if|if
 condition|(
 name|commit

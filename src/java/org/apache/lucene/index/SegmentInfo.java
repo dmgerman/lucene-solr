@@ -259,6 +259,38 @@ name|boolean
 name|hasProx
 decl_stmt|;
 comment|// True if this segment has any fields with omitTermFreqAndPositions==false
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"si: "
+operator|+
+name|dir
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|name
+operator|+
+literal|" docCount: "
+operator|+
+name|docCount
+operator|+
+literal|" delCount: "
+operator|+
+name|delCount
+operator|+
+literal|" delFileName: "
+operator|+
+name|getDelFileName
+argument_list|()
+return|;
+block|}
 DECL|method|SegmentInfo
 specifier|public
 name|SegmentInfo
@@ -1985,6 +2017,33 @@ name|offset
 expr_stmt|;
 name|clearFiles
 argument_list|()
+expr_stmt|;
+block|}
+DECL|method|setDocStore
+name|void
+name|setDocStore
+parameter_list|(
+name|int
+name|offset
+parameter_list|,
+name|String
+name|segment
+parameter_list|,
+name|boolean
+name|isCompoundFile
+parameter_list|)
+block|{
+name|docStoreOffset
+operator|=
+name|offset
+expr_stmt|;
+name|docStoreSegment
+operator|=
+name|segment
+expr_stmt|;
+name|docStoreIsCompoundFile
+operator|=
+name|isCompoundFile
 expr_stmt|;
 block|}
 comment|/**    * Save this segment's info.    */

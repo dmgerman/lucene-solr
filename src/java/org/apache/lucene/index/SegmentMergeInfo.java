@@ -48,6 +48,10 @@ DECL|field|reader
 name|IndexReader
 name|reader
 decl_stmt|;
+DECL|field|delCount
+name|int
+name|delCount
+decl_stmt|;
 DECL|field|postings
 specifier|private
 name|TermPositions
@@ -110,6 +114,10 @@ operator|==
 literal|null
 condition|)
 block|{
+name|delCount
+operator|=
+literal|0
+expr_stmt|;
 comment|// build array which maps document numbers around deletions
 if|if
 condition|(
@@ -164,6 +172,10 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
+name|delCount
+operator|++
+expr_stmt|;
 name|docMap
 index|[
 name|i
@@ -172,6 +184,7 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
 name|docMap
 index|[

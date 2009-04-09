@@ -252,6 +252,14 @@ name|clone
 argument_list|()
 return|;
 block|}
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|Exception
+block|{   }
 comment|/**    * Run the task, record statistics.    * @return number of work items done by this task.    */
 DECL|method|runAndMaybeStats
 specifier|public

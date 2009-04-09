@@ -6817,6 +6817,11 @@ operator|.
 name|optimize
 argument_list|()
 expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 operator|!

@@ -1306,6 +1306,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+block|{
 name|sequence
 operator|.
 name|runAndMaybeStats
@@ -1313,6 +1315,15 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|sequence
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Expert: for test purposes, return all tasks participating in this algorithm.    * @return all tasks participating in this algorithm.    */
 DECL|method|extractTasks

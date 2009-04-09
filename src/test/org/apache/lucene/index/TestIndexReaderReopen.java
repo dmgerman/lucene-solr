@@ -5052,7 +5052,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|createDocument
-specifier|private
+specifier|public
 specifier|static
 name|Document
 name|createDocument
