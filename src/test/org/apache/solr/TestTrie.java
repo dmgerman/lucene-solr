@@ -325,6 +325,64 @@ argument_list|,
 literal|"//*[@numFound='20']"
 argument_list|)
 expr_stmt|;
+comment|// Sorting
+name|assertQ
+argument_list|(
+literal|"Sort descending does not work correctly on tint fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tint desc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='20']"
+argument_list|,
+literal|"//int[@name='tint'][.='9']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Sort ascending does not work correctly on tint fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tint asc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='20']"
+argument_list|,
+literal|"//int[@name='tint'][.='-10']"
+argument_list|)
+expr_stmt|;
+comment|// Function queries
+name|assertQ
+argument_list|(
+literal|"Function queries does not work correctly on tint fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_val_:\"sum(tint,1)\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='20']"
+argument_list|,
+literal|"//int[@name='tint'][.='9']"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testTrieTermQuery
 specifier|public
@@ -657,6 +715,64 @@ argument_list|,
 literal|"//*[@numFound='10']"
 argument_list|)
 expr_stmt|;
+comment|// Sorting
+name|assertQ
+argument_list|(
+literal|"Sort descending does not work correctly on tfloat fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tfloat desc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//float[@name='tfloat'][.='2519.9102']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Sort ascending does not work correctly on tfloat fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tfloat asc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//float[@name='tfloat'][.='0.0']"
+argument_list|)
+expr_stmt|;
+comment|// Function queries
+name|assertQ
+argument_list|(
+literal|"Function queries does not work correctly on tfloat fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_val_:\"sum(tfloat,1.0)\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//float[@name='tfloat'][.='2519.9102']"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testTrieLongRangeSearch
 specifier|public
@@ -786,6 +902,64 @@ literal|"tlong:[* TO *]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
+argument_list|)
+expr_stmt|;
+comment|// Sorting
+name|assertQ
+argument_list|(
+literal|"Sort descending does not work correctly on tlong fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tlong desc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//long[@name='tlong'][.='2147483656']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Sort ascending does not work correctly on tlong fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tlong asc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//long[@name='tlong'][.='2147483647']"
+argument_list|)
+expr_stmt|;
+comment|// Function queries
+name|assertQ
+argument_list|(
+literal|"Function queries does not work correctly on tlong fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_val_:\"sum(tlong,1.0)\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//long[@name='tlong'][.='2147483656']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -918,6 +1092,64 @@ literal|"tdouble:[* TO *]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
+argument_list|)
+expr_stmt|;
+comment|// Sorting
+name|assertQ
+argument_list|(
+literal|"Sort descending does not work correctly on tdouble fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tdouble desc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//double[@name='tdouble'][.='5.0036369184800005E9']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Sort ascending does not work correctly on tdouble fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tdouble asc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//double[@name='tdouble'][.='5.00363689751E9']"
+argument_list|)
+expr_stmt|;
+comment|// Function queries
+name|assertQ
+argument_list|(
+literal|"Function queries does not work correctly on tdouble fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_val_:\"sum(tdouble,1.0)\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|,
+literal|"//double[@name='tdouble'][.='5.0036369184800005E9']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1270,6 +1502,64 @@ literal|"tdate:1995-12-31T23\\:59\\:59.999Z"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// Sorting
+name|assertQ
+argument_list|(
+literal|"Sort descending does not work correctly on tdate fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tdate desc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='11']"
+argument_list|,
+literal|"//date[@name='tdate'][.='2009-04-21T00:00:00Z']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"Sort ascending does not work correctly on tdate fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"tdate asc"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='11']"
+argument_list|,
+literal|"//date[@name='tdate'][.='2009-04-12T00:00:00Z']"
+argument_list|)
+expr_stmt|;
+comment|// Function queries
+name|assertQ
+argument_list|(
+literal|"Function queries does not work correctly on tdate fields"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"_val_:\"sum(tdate,1.0)\""
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='11']"
+argument_list|,
+literal|"//date[@name='tdate'][.='2009-04-21T00:00:00Z']"
 argument_list|)
 expr_stmt|;
 block|}

@@ -97,11 +97,11 @@ name|OMIT_NORMS
 init|=
 literal|0x00000020
 decl_stmt|;
-DECL|field|OMIT_TF
+DECL|field|OMIT_TF_POSITIONS
 specifier|final
 specifier|static
 name|int
-name|OMIT_TF
+name|OMIT_TF_POSITIONS
 init|=
 literal|0x00000040
 decl_stmt|;
@@ -181,7 +181,7 @@ literal|"compressed"
 block|,
 literal|"omitNorms"
 block|,
-literal|"omitTf"
+literal|"omitTermFreqAndPositions"
 block|,
 literal|"termVectors"
 block|,

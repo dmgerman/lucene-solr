@@ -391,7 +391,7 @@ return|return
 operator|(
 name|properties
 operator|&
-name|OMIT_TF
+name|OMIT_TF_POSITIONS
 operator|)
 operator|!=
 literal|0
@@ -777,7 +777,7 @@ name|INDEXED
 operator||
 name|OMIT_NORMS
 operator||
-name|OMIT_TF
+name|OMIT_TF_POSITIONS
 operator||
 name|STORE_TERMVECTORS
 operator||

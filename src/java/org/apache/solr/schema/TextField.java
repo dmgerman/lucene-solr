@@ -137,7 +137,7 @@ condition|)
 name|properties
 operator|&=
 operator|~
-name|OMIT_TF
+name|OMIT_TF_POSITIONS
 expr_stmt|;
 name|super
 operator|.
