@@ -459,9 +459,9 @@ argument_list|()
 operator|.
 name|getMethod
 argument_list|(
-literal|"setMaxCodeLength"
+literal|"setMaxCodeLen"
 argument_list|,
-name|Integer
+name|int
 operator|.
 name|class
 argument_list|)
@@ -507,6 +507,8 @@ operator|+
 name|clazz
 argument_list|,
 name|e
+argument_list|,
+literal|false
 argument_list|)
 throw|;
 block|}
