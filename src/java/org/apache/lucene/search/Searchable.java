@@ -58,6 +58,10 @@ name|IndexReader
 import|;
 end_import
 
+begin_comment
+comment|// for javadoc
+end_comment
+
 begin_import
 import|import
 name|org
@@ -116,7 +120,7 @@ name|rmi
 operator|.
 name|Remote
 block|{
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, Collector)} instead.    */
 DECL|method|search
 name|void
 name|search
@@ -129,6 +133,23 @@ name|filter
 parameter_list|,
 name|HitCollector
 name|results
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link Searcher#search(Query)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     * @param weight    *          to match documents    * @param filter    *          if non-null, used to permit documents to be collected.    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
+DECL|method|search
+name|void
+name|search
+parameter_list|(
+name|Weight
+name|weight
+parameter_list|,
+name|Filter
+name|filter
+parameter_list|,
+name|Collector
+name|collector
 parameter_list|)
 throws|throws
 name|IOException
@@ -244,7 +265,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    * @throws BooleanQuery.TooManyClauses    */
+comment|// TODO: change the javadoc in 3.0 to remove the last NOTE section.
+comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    *     *<b>NOTE:</b> currently, this method tracks document scores and sets them in    * the returned {@link FieldDoc}, however in 3.0 it will move to not track    * document scores. If document scores tracking is still needed, you can use    * {@link #search(Weight, Filter, Collector)} and pass in a    * {@link TopFieldCollector} instance.    *     * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|TopFieldDocs
 name|search

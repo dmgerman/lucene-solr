@@ -292,9 +292,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 return|return
@@ -316,9 +313,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -433,7 +427,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Sorts by ascending docID */
 DECL|class|DocComparator
 specifier|public
@@ -509,9 +502,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 comment|// No overflow risk because docIDs are non-negative
@@ -535,9 +525,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|docIDs
@@ -628,7 +615,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Parses field's values as double (using {@link    *  ExtendedFieldCache#getDoubles} and sorts by ascending value */
 DECL|class|DoubleComparator
 specifier|public
@@ -775,9 +761,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 specifier|final
@@ -830,9 +813,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -947,7 +927,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Parses field's values as float (using {@link    *  FieldCache#getFloats} and sorts by ascending value */
 DECL|class|FloatComparator
 specifier|public
@@ -1096,9 +1075,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 comment|// TODO: are there sneaky non-branch ways to compute
@@ -1153,9 +1129,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -1270,7 +1243,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Parses field's values as int (using {@link    *  FieldCache#getInts} and sorts by ascending value */
 DECL|class|IntComparator
 specifier|public
@@ -1422,9 +1394,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 comment|// TODO: there are sneaky non-branch ways to compute
@@ -1481,9 +1450,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -1598,7 +1564,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Parses field's values as long (using {@link    *  ExtendedFieldCache#getLongs} and sorts by ascending value */
 DECL|class|LongComparator
 specifier|public
@@ -1747,9 +1712,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 comment|// TODO: there are sneaky non-branch ways to compute
@@ -1804,9 +1766,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -1921,7 +1880,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Sorts by descending relevance.  NOTE: if you are    *  sorting only by descending relevance and then    *  secondarily by ascending docID, peformance is faster    *  using {@link TopScoreDocCollector} directly (which {@link    *  IndexSearcher#search} uses when no {@link Sort} is    *  specified). */
 DECL|class|RelevanceComparator
 specifier|public
@@ -1943,6 +1901,11 @@ DECL|field|bottom
 specifier|private
 name|float
 name|bottom
+decl_stmt|;
+DECL|field|scorer
+specifier|private
+name|Scorer
+name|scorer
 decl_stmt|;
 DECL|method|RelevanceComparator
 name|RelevanceComparator
@@ -1990,36 +1953,24 @@ index|[
 name|slot2
 index|]
 decl_stmt|;
-if|if
-condition|(
+return|return
 name|score1
 operator|>
 name|score2
-condition|)
-block|{
-return|return
+condition|?
 operator|-
 literal|1
-return|;
-block|}
-elseif|else
-if|if
-condition|(
+else|:
+operator|(
 name|score1
 operator|<
 name|score2
-condition|)
-block|{
-return|return
+condition|?
 literal|1
-return|;
-block|}
-else|else
-block|{
-return|return
+else|:
 literal|0
+operator|)
 return|;
-block|}
 block|}
 DECL|method|compareBottom
 specifier|public
@@ -2028,41 +1979,36 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|float
 name|score
-parameter_list|)
-block|{
-if|if
-condition|(
+init|=
+name|scorer
+operator|.
+name|score
+argument_list|()
+decl_stmt|;
+return|return
 name|bottom
 operator|>
 name|score
-condition|)
-block|{
-return|return
+condition|?
 operator|-
 literal|1
-return|;
-block|}
-elseif|else
-if|if
-condition|(
+else|:
+operator|(
 name|bottom
 operator|<
 name|score
-condition|)
-block|{
-return|return
+condition|?
 literal|1
-return|;
-block|}
-else|else
-block|{
-return|return
+else|:
 literal|0
+operator|)
 return|;
-block|}
 block|}
 DECL|method|copy
 specifier|public
@@ -2074,17 +2020,19 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|scores
 index|[
 name|slot
 index|]
 operator|=
+name|scorer
+operator|.
 name|score
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|setNextReader
@@ -2122,6 +2070,28 @@ name|bottom
 index|]
 expr_stmt|;
 block|}
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{
+comment|// wrap with a ScoreCachingWrappingScorer so that successive calls to
+comment|// score() will not incur score computation over and over again.
+name|this
+operator|.
+name|scorer
+operator|=
+operator|new
+name|ScoreCachingWrappingScorer
+argument_list|(
+name|scorer
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|sortType
 specifier|public
 name|int
@@ -2155,7 +2125,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Parses field's values as short (using {@link    *  FieldCache#getShorts} and sorts by ascending value */
 DECL|class|ShortComparator
 specifier|public
@@ -2265,9 +2234,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 return|return
@@ -2289,9 +2255,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -2406,7 +2369,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Sorts by a field's value using the Collator for a    *  given Locale.*/
 DECL|class|StringComparatorLocale
 specifier|public
@@ -2566,9 +2528,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 specifier|final
@@ -2636,9 +2595,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -2732,7 +2688,6 @@ index|]
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// NOTE: there were a number of other interesting String
 comment|// comparators explored, but this one seemed to perform
 comment|// best all around.  See LUCENE-1483 for details.
@@ -3001,9 +2956,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 assert|assert
@@ -3252,9 +3204,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 specifier|final
@@ -3488,7 +3437,6 @@ name|field
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|/** Sorts by field's natural String sort order.  All    *  comparisons are done using String.compareTo, which is    *  slow for medium to large result sets but possibly    *  very fast for very small results sets. */
 DECL|class|StringValComparator
 specifier|public
@@ -3628,9 +3576,6 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 specifier|final
@@ -3696,9 +3641,6 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 block|{
 name|values
@@ -3792,7 +3734,6 @@ index|]
 return|;
 block|}
 block|}
-empty_stmt|;
 DECL|method|binarySearch
 specifier|final
 specifier|protected
@@ -3825,7 +3766,6 @@ literal|1
 argument_list|)
 return|;
 block|}
-empty_stmt|;
 DECL|method|binarySearch
 specifier|final
 specifier|protected
@@ -3940,7 +3880,6 @@ literal|1
 operator|)
 return|;
 block|}
-empty_stmt|;
 comment|/**    * Compare hit at slot1 with hit at slot2.  Return     *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any N< 0 if slot2's value is sorted after    * slot1, any N> 0 if the slot2's value is sorted before    * slot1 and 0 if they are equal    */
 DECL|method|compare
 specifier|public
@@ -3967,7 +3906,7 @@ name|int
 name|slot
 parameter_list|)
 function_decl|;
-comment|/**    * Compare the bottom of the queue with doc.  This will    * only invoked after setBottom has been called.      *     * @param doc that was hit    * @param score of the hit    * @return any N< 0 if the doc's value is sorted after    * the bottom entry (not competitive), any N> 0 if the    * doc's value is sorted before the bottom entry and 0 if    * they are equal.    */
+comment|/**    * Compare the bottom of the queue with doc.  This will    * only invoked after setBottom has been called.      *     * @param doc that was hit    * @return any N< 0 if the doc's value is sorted after    * the bottom entry (not competitive), any N> 0 if the    * doc's value is sorted before the bottom entry and 0 if    * they are equal.    */
 DECL|method|compareBottom
 specifier|public
 specifier|abstract
@@ -3976,12 +3915,11 @@ name|compareBottom
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
-comment|/**    * Copy hit (doc,score) to hit slot.    *     * @param slot which slot to copy the hit to    * @param doc docID relative to current reader    * @param score hit score    */
+comment|/**    * Copy hit (doc,score) to hit slot.    *     * @param slot which slot to copy the hit to    * @param doc docID relative to current reader    */
 DECL|method|copy
 specifier|public
 specifier|abstract
@@ -3993,10 +3931,9 @@ name|slot
 parameter_list|,
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Set a new Reader. All doc correspond to the current Reader.    *     * @param reader current reader    * @param docBase docBase of this reader     * @throws IOException    * @throws IOException    */
 DECL|method|setNextReader
@@ -4017,6 +3954,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Sets the Scorer to use in case a document's score is needed. */
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{
+comment|// Empty implementation since most comparators don't need the score. This
+comment|// can be overridden by those that need it.
+block|}
 comment|/**    * @return SortField.TYPE    */
 DECL|method|sortType
 specifier|public

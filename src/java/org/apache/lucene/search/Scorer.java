@@ -73,7 +73,7 @@ operator|.
 name|similarity
 return|;
 block|}
-comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    *<br>When this method is used the {@link #explain(int)} method should not be used.    * @deprecated use {@link #score(Collector)} instead.    */
 DECL|method|score
 specifier|public
 name|void
@@ -85,26 +85,52 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|score
+argument_list|(
+operator|new
+name|HitCollectorWrapper
+argument_list|(
+name|hc
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+DECL|method|score
+specifier|public
+name|void
+name|score
+parameter_list|(
+name|Collector
+name|collector
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|collector
+operator|.
+name|setScorer
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|next
 argument_list|()
 condition|)
 block|{
-name|hc
+name|collector
 operator|.
 name|collect
 argument_list|(
 name|doc
 argument_list|()
-argument_list|,
-name|score
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
+comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    * @deprecated use {@link #score(Collector, int)} instead.    */
 DECL|method|score
 specifier|protected
 name|boolean
@@ -119,6 +145,41 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
+name|score
+argument_list|(
+operator|new
+name|HitCollectorWrapper
+argument_list|(
+name|hc
+argument_list|)
+argument_list|,
+name|max
+argument_list|)
+return|;
+block|}
+comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param collector The collector to which all matching documents are passed.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
+DECL|method|score
+specifier|protected
+name|boolean
+name|score
+parameter_list|(
+name|Collector
+name|collector
+parameter_list|,
+name|int
+name|max
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|collector
+operator|.
+name|setScorer
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|doc
@@ -127,14 +188,11 @@ operator|<
 name|max
 condition|)
 block|{
-name|hc
+name|collector
 operator|.
 name|collect
 argument_list|(
 name|doc
-argument_list|()
-argument_list|,
-name|score
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -152,7 +210,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} or {@link #skipTo(int)}    * is called the first time.    */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} or {@link #skipTo(int)}    * is called the first time, or when called from within    * {@link Collector#collect}.    */
 DECL|method|score
 specifier|public
 specifier|abstract

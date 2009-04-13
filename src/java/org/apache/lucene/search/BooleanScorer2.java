@@ -1152,7 +1152,7 @@ operator|)
 argument_list|)
 return|;
 block|}
-comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    *<br>When this method is used the {@link #explain(int)} method should not be used.    * @deprecated use {@link #score(Collector)} instead.    */
 DECL|method|score
 specifier|public
 name|void
@@ -1160,6 +1160,28 @@ name|score
 parameter_list|(
 name|HitCollector
 name|hc
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|score
+argument_list|(
+operator|new
+name|HitCollectorWrapper
+argument_list|(
+name|hc
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed through.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+DECL|method|score
+specifier|public
+name|void
+name|score
+parameter_list|(
+name|Collector
+name|collector
 parameter_list|)
 throws|throws
 name|IOException
@@ -1271,7 +1293,7 @@ name|bs
 operator|.
 name|score
 argument_list|(
-name|hc
+name|collector
 argument_list|)
 expr_stmt|;
 block|}
@@ -1288,6 +1310,13 @@ name|initCountingSumScorer
 argument_list|()
 expr_stmt|;
 block|}
+name|collector
+operator|.
+name|setScorer
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|countingSumScorer
@@ -1296,7 +1325,7 @@ name|next
 argument_list|()
 condition|)
 block|{
-name|hc
+name|collector
 operator|.
 name|collect
 argument_list|(
@@ -1304,15 +1333,12 @@ name|countingSumScorer
 operator|.
 name|doc
 argument_list|()
-argument_list|,
-name|score
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Expert: Collects matching documents in a range.    *<br>Note that {@link #next()} must be called once before this method is    * called for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
+comment|/** Expert: Collects matching documents in a range.    *<br>Note that {@link #next()} must be called once before this method is    * called for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    * @deprecated use {@link #score(Collector, int)} instead.    */
 DECL|method|score
 specifier|protected
 name|boolean
@@ -1320,6 +1346,34 @@ name|score
 parameter_list|(
 name|HitCollector
 name|hc
+parameter_list|,
+name|int
+name|max
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|score
+argument_list|(
+operator|new
+name|HitCollectorWrapper
+argument_list|(
+name|hc
+argument_list|)
+argument_list|,
+name|max
+argument_list|)
+return|;
+block|}
+comment|/** Expert: Collects matching documents in a range.    *<br>Note that {@link #next()} must be called once before this method is    * called for the first time.    * @param collector The collector to which all matching documents are passed through.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
+DECL|method|score
+specifier|protected
+name|boolean
+name|score
+parameter_list|(
+name|Collector
+name|collector
 parameter_list|,
 name|int
 name|max
@@ -1336,6 +1390,13 @@ operator|.
 name|doc
 argument_list|()
 decl_stmt|;
+name|collector
+operator|.
+name|setScorer
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|docNr
@@ -1343,14 +1404,11 @@ operator|<
 name|max
 condition|)
 block|{
-name|hc
+name|collector
 operator|.
 name|collect
 argument_list|(
 name|docNr
-argument_list|,
-name|score
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if

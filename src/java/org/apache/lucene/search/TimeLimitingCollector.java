@@ -13,20 +13,44 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License. */
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
 begin_comment
-comment|/**  *<p>  * The TimeLimitedCollector is used to timeout search requests that take longer  * than the maximum allowed search time limit. After this time is exceeded, the  * search thread is stopped by throwing a TimeExceeded Exception.  *</p>  *   * @deprecated this class will be removed in 3.0. Use  *             {@link TimeLimitingCollector} instead, which extends the new  *             {@link Collector}.  */
+comment|/**  * The {@link TimeLimitingCollector} is used to timeout search requests that  * take longer than the maximum allowed search time limit. After this time is  * exceeded, the search thread is stopped by throwing a  * {@link TimeExceededException}.  */
 end_comment
 
 begin_class
-DECL|class|TimeLimitedCollector
+DECL|class|TimeLimitingCollector
 specifier|public
 class|class
-name|TimeLimitedCollector
+name|TimeLimitingCollector
 extends|extends
-name|HitCollector
+name|Collector
 block|{
 comment|/**     * Default timer resolution.    * @see #setResolution(long)     */
 DECL|field|DEFAULT_RESOLUTION
@@ -64,6 +88,7 @@ decl_stmt|;
 DECL|class|TimerThread
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|TimerThread
 extends|extends
@@ -168,7 +193,7 @@ name|time
 return|;
 block|}
 block|}
-comment|/**    * Thrown when elapsed search time exceeds allowed search time.     */
+comment|/** Thrown when elapsed search time exceeds allowed search time. */
 DECL|class|TimeExceededException
 specifier|public
 specifier|static
@@ -238,7 +263,7 @@ operator|=
 name|lastDocCollected
 expr_stmt|;
 block|}
-comment|/**      * Returns allowed time (milliseconds).      */
+comment|/** Returns allowed time (milliseconds). */
 DECL|method|getTimeAllowed
 specifier|public
 name|long
@@ -249,7 +274,7 @@ return|return
 name|timeAllowed
 return|;
 block|}
-comment|/**      * Returns elapsed time (milliseconds).      */
+comment|/** Returns elapsed time (milliseconds). */
 DECL|method|getTimeElapsed
 specifier|public
 name|long
@@ -260,7 +285,7 @@ return|return
 name|timeElapsed
 return|;
 block|}
-comment|/**      * Returns last doc that was collected when the search time exceeded.        */
+comment|/** Returns last doc that was collected when the search time exceeded. */
 DECL|method|getLastDocCollected
 specifier|public
 name|int
@@ -306,20 +331,20 @@ specifier|final
 name|long
 name|timeout
 decl_stmt|;
-DECL|field|hc
+DECL|field|collector
 specifier|private
 specifier|final
-name|HitCollector
-name|hc
+name|Collector
+name|collector
 decl_stmt|;
-comment|/**    * Create a TimeLimitedCollector wrapper over another HitCollector with a specified timeout.    * @param hc the wrapped HitCollector    * @param timeAllowed max time allowed for collecting hits after which {@link TimeExceededException} is thrown    */
-DECL|method|TimeLimitedCollector
+comment|/**    * Create a TimeLimitedCollector wrapper over another {@link Collector} with a specified timeout.    * @param collector the wrapped {@link Collector}    * @param timeAllowed max time allowed for collecting hits after which {@link TimeExceededException} is thrown    */
+DECL|method|TimeLimitingCollector
 specifier|public
-name|TimeLimitedCollector
+name|TimeLimitingCollector
 parameter_list|(
 specifier|final
-name|HitCollector
-name|hc
+name|Collector
+name|collector
 parameter_list|,
 specifier|final
 name|long
@@ -328,9 +353,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|hc
+name|collector
 operator|=
-name|hc
+name|collector
 expr_stmt|;
 name|t0
 operator|=
@@ -346,80 +371,6 @@ operator|=
 name|t0
 operator|+
 name|timeAllowed
-expr_stmt|;
-block|}
-comment|/**    * Calls collect() on the decorated HitCollector.    *     * @throws TimeExceededException if the time allowed has been exceeded.    */
-DECL|method|collect
-specifier|public
-name|void
-name|collect
-parameter_list|(
-specifier|final
-name|int
-name|doc
-parameter_list|,
-specifier|final
-name|float
-name|score
-parameter_list|)
-block|{
-name|long
-name|time
-init|=
-name|TIMER_THREAD
-operator|.
-name|getMilliseconds
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|timeout
-operator|<
-name|time
-condition|)
-block|{
-if|if
-condition|(
-name|greedy
-condition|)
-block|{
-comment|//System.out.println(this+"  greedy: before failing, collecting doc: "+doc+"  "+(time-t0));
-name|hc
-operator|.
-name|collect
-argument_list|(
-name|doc
-argument_list|,
-name|score
-argument_list|)
-expr_stmt|;
-block|}
-comment|//System.out.println(this+"  failing on:  "+doc+"  "+(time-t0));
-throw|throw
-operator|new
-name|TimeExceededException
-argument_list|(
-name|timeout
-operator|-
-name|t0
-argument_list|,
-name|time
-operator|-
-name|t0
-argument_list|,
-name|doc
-argument_list|)
-throw|;
-block|}
-comment|//System.out.println(this+"  collecting: "+doc+"  "+(time-t0));
-name|hc
-operator|.
-name|collect
-argument_list|(
-name|doc
-argument_list|,
-name|score
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Return the timer resolution.    * @see #setResolution(long)    */
@@ -484,6 +435,117 @@ operator|.
 name|greedy
 operator|=
 name|greedy
+expr_stmt|;
+block|}
+comment|/**    * Calls {@link Collector#collect(int)} on the decorated {@link Collector}    * unless the allowed time has passed, in which case it throws an exception.    *     * @throws TimeExceededException    *           if the time allowed has exceeded.    */
+DECL|method|collect
+specifier|public
+name|void
+name|collect
+parameter_list|(
+specifier|final
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|long
+name|time
+init|=
+name|TIMER_THREAD
+operator|.
+name|getMilliseconds
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|timeout
+operator|<
+name|time
+condition|)
+block|{
+if|if
+condition|(
+name|greedy
+condition|)
+block|{
+comment|//System.out.println(this+"  greedy: before failing, collecting doc: "+doc+"  "+(time-t0));
+name|collector
+operator|.
+name|collect
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+comment|//System.out.println(this+"  failing on:  "+doc+"  "+(time-t0));
+throw|throw
+operator|new
+name|TimeExceededException
+argument_list|(
+name|timeout
+operator|-
+name|t0
+argument_list|,
+name|time
+operator|-
+name|t0
+argument_list|,
+name|doc
+argument_list|)
+throw|;
+block|}
+comment|//System.out.println(this+"  collecting: "+doc+"  "+(time-t0));
+name|collector
+operator|.
+name|collect
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|setNextReader
+specifier|public
+name|void
+name|setNextReader
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|int
+name|base
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|collector
+operator|.
+name|setNextReader
+argument_list|(
+name|reader
+argument_list|,
+name|base
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|collector
+operator|.
+name|setScorer
+argument_list|(
+name|scorer
+argument_list|)
 expr_stmt|;
 block|}
 block|}

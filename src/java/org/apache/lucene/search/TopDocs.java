@@ -51,7 +51,7 @@ specifier|private
 name|float
 name|maxScore
 decl_stmt|;
-comment|/** Expert: Returns the maximum score value encountered. */
+comment|/**    * Expert: Returns the maximum score value encountered. Note that in case    * scores are not tracked, this returns {@link Float#NaN}.    */
 DECL|method|getMaxScore
 specifier|public
 name|float
@@ -77,6 +77,30 @@ operator|.
 name|maxScore
 operator|=
 name|maxScore
+expr_stmt|;
+block|}
+comment|/** Expert: Constructs a TopDocs with a default maxScore=Float.NaN. */
+DECL|method|TopDocs
+name|TopDocs
+parameter_list|(
+name|int
+name|totalHits
+parameter_list|,
+name|ScoreDoc
+index|[]
+name|scoreDocs
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|totalHits
+argument_list|,
+name|scoreDocs
+argument_list|,
+name|Float
+operator|.
+name|NaN
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Expert: Constructs a TopDocs.*/

@@ -194,7 +194,7 @@ name|sort
 argument_list|)
 return|;
 block|}
-comment|/** Search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *     *<b>NOTE:</b> currently, this method tracks document scores and sets them in    * the returned {@link FieldDoc}, however in 3.0 it will move to not track    * document scores. If document scores tracking is still needed, you can use    * {@link #search(Weight, Filter, Collector)} and pass in a    * {@link TopFieldCollector} instance.    *    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|public
 name|TopFieldDocs
@@ -231,7 +231,7 @@ name|sort
 argument_list|)
 return|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *<p>Note: The<code>score</code> passed to this method is a raw score.    * In other words, the score will not necessarily be a float whose value is    * between 0 and 1.    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *<p>Note: The<code>score</code> passed to this method is a raw score.    * In other words, the score will not necessarily be a float whose value is    * between 0 and 1.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Query, Collector)} instead.    */
 DECL|method|search
 specifier|public
 name|void
@@ -259,7 +259,35 @@ name|results
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query)}) is usually more efficient, as it skips   * non-high-scoring hits.   *<p>Note: The<code>score</code> passed to this method is a raw score.   * In other words, the score will not necessarily be a float whose value is   * between 0 and 1.   * @throws BooleanQuery.TooManyClauses   */
+DECL|method|search
+specifier|public
+name|void
+name|search
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|Collector
+name|results
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|search
+argument_list|(
+name|query
+argument_list|,
+operator|(
+name|Filter
+operator|)
+literal|null
+argument_list|,
+name|results
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Query, Filter, Collector)} instead.    */
 DECL|method|search
 specifier|public
 name|void
@@ -272,6 +300,37 @@ name|Filter
 name|filter
 parameter_list|,
 name|HitCollector
+name|results
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|search
+argument_list|(
+name|createWeight
+argument_list|(
+name|query
+argument_list|)
+argument_list|,
+name|filter
+argument_list|,
+name|results
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Lower-level search API.    *    *<p>{@link Collector#collect(int)} is called for every matching    * document.    *<br>Collector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+DECL|method|search
+specifier|public
+name|void
+name|search
+parameter_list|(
+name|Query
+name|query
+parameter_list|,
+name|Filter
+name|filter
+parameter_list|,
+name|Collector
 name|results
 parameter_list|)
 throws|throws
@@ -499,6 +558,7 @@ name|result
 return|;
 block|}
 comment|/* The following abstract methods were added as a workaround for GCJ bug #15411.    * http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15411    */
+comment|/**    * @deprecated use {@link #search(Weight, Filter, Collector)} instead.    */
 DECL|method|search
 specifier|abstract
 specifier|public
@@ -512,6 +572,24 @@ name|Filter
 name|filter
 parameter_list|,
 name|HitCollector
+name|results
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+DECL|method|search
+specifier|abstract
+specifier|public
+name|void
+name|search
+parameter_list|(
+name|Weight
+name|weight
+parameter_list|,
+name|Filter
+name|filter
+parameter_list|,
+name|Collector
 name|results
 parameter_list|)
 throws|throws

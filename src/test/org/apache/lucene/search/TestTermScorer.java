@@ -414,15 +414,6 @@ name|FIELD
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"ts is null and it shouldn't be"
-argument_list|,
-name|ts
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
 comment|//we have 2 documents with the term all in them, one document for all the other values
 specifier|final
 name|List
@@ -438,27 +429,60 @@ operator|.
 name|score
 argument_list|(
 operator|new
-name|MultiReaderHitCollector
+name|Collector
 argument_list|()
 block|{
 specifier|private
 name|int
 name|base
 init|=
-operator|-
-literal|1
+literal|0
 decl_stmt|;
+specifier|private
+name|Scorer
+name|scorer
+decl_stmt|;
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+operator|.
+name|scorer
+operator|=
+name|scorer
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|collect
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|float
 name|score
-parameter_list|)
-block|{
+init|=
+name|scorer
+operator|.
+name|score
+argument_list|()
+decl_stmt|;
+name|doc
+operator|=
+name|doc
+operator|+
+name|base
+expr_stmt|;
 name|docs
 operator|.
 name|add
@@ -467,8 +491,6 @@ operator|new
 name|TestHit
 argument_list|(
 name|doc
-operator|+
-name|base
 argument_list|,
 name|score
 argument_list|)
@@ -493,13 +515,7 @@ literal|"Doc: "
 operator|+
 name|doc
 operator|+
-literal|" does not equal: "
-operator|+
-literal|0
-operator|+
-literal|" or doc does not equaal: "
-operator|+
-literal|5
+literal|" does not equal 0 or doc does not equal 5"
 argument_list|,
 name|doc
 operator|==
@@ -686,15 +702,6 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"ts is null and it shouldn't be"
-argument_list|,
-name|ts
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
 literal|"next did not return a doc"
 argument_list|,
 name|ts
@@ -822,15 +829,6 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"ts is null and it shouldn't be"
-argument_list|,
-name|ts
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
 literal|"Didn't skip"
 argument_list|,
 name|ts
@@ -923,15 +921,6 @@ name|FIELD
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"ts is null and it shouldn't be"
-argument_list|,
-name|ts
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
 name|Explanation
 name|explanation
 init|=
@@ -1050,15 +1039,6 @@ name|norms
 argument_list|(
 name|FIELD
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"ts is null and it shouldn't be"
-argument_list|,
-name|ts
-operator|!=
-literal|null
 argument_list|)
 expr_stmt|;
 name|explanation

@@ -46,20 +46,6 @@ name|Locale
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
 begin_comment
 comment|/**  * Stores information about how to sort documents by terms in an individual  * field.  Fields must be indexed in order to sort by them.  *  *<p>Created: Feb 11, 2004 1:25:29 PM  *  * @since   lucene 1.4  * @version $Id$  * @see Sort  */
 end_comment
@@ -1469,17 +1455,12 @@ return|return
 name|hash
 return|;
 block|}
-comment|/** Returns the {@link FieldComparator} to use for sorting.    * @param subReaders array of {@link IndexReader} search    *   will step through    * @param numHits number of top hits the queue will store    * @param sortPos position of this SortField within {@link    *   Sort}.  The comparator is primary if sortPos==0,    *   secondary if sortPos==1, etc.  Some comparators can    *   optimize themselves when they are the primary sort.    * @param reversed True if the SortField is reversed    * @return {@link FieldComparator} to use when sorting    */
+comment|/** Returns the {@link FieldComparator} to use for sorting.    * @param numHits number of top hits the queue will store    * @param sortPos position of this SortField within {@link    *   Sort}.  The comparator is primary if sortPos==0,    *   secondary if sortPos==1, etc.  Some comparators can    *   optimize themselves when they are the primary sort.    * @param reversed True if the SortField is reversed    * @return {@link FieldComparator} to use when sorting    */
 DECL|method|getComparator
 specifier|protected
 name|FieldComparator
 name|getComparator
 parameter_list|(
-specifier|final
-name|IndexReader
-index|[]
-name|subReaders
-parameter_list|,
 specifier|final
 name|int
 name|numHits
@@ -1680,8 +1661,6 @@ operator|.
 name|newComparator
 argument_list|(
 name|field
-argument_list|,
-name|subReaders
 argument_list|,
 name|numHits
 argument_list|,

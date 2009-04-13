@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
 begin_comment
 comment|/**  * Provides a {@link FieldComparator} for custom field sorting.  *  *<b>NOTE:</b> This API is experimental and might change in  * incompatible ways in the next release.  *  */
 end_comment
@@ -60,10 +46,6 @@ name|newComparator
 parameter_list|(
 name|String
 name|fieldname
-parameter_list|,
-name|IndexReader
-index|[]
-name|subReaders
 parameter_list|,
 name|int
 name|numHits

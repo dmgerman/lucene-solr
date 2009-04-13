@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Lower-level search API.  *<br>HitCollectors are primarily meant to be used to implement queries,  * sorting and filtering.  See {@link  * MultiReaderHitCollector} for a lower level and  * higher performance (on a multi-segment index) API.  * @see Searcher#search(Query,HitCollector)  * @version $Id$  */
+comment|/**  * Lower-level search API.<br>  * HitCollectors are primarily meant to be used to implement queries, sorting  * and filtering. See {@link Collector} for a lower level and higher performance  * (on a multi-segment index) API.  *   * @see Searcher#search(Query,HitCollector)  * @version $Id$  * @deprecated Please use {@link Collector} instead.  */
 end_comment
 
 begin_class

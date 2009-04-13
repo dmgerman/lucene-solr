@@ -72,6 +72,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -93,16 +103,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
 import|;
 end_import
 
@@ -194,7 +194,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Fieldable
+name|FieldSelector
 import|;
 end_import
 
@@ -208,7 +208,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FieldSelector
+name|Fieldable
 import|;
 end_import
 
@@ -252,6 +252,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|Collector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -266,7 +280,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|MultiReaderHitCollector
+name|Query
 import|;
 end_import
 
@@ -294,7 +308,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TermQuery
+name|Scorer
 import|;
 end_import
 
@@ -308,7 +322,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|TermQuery
 import|;
 end_import
 
@@ -10383,7 +10397,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|MultiReaderHitCollector
+name|Collector
 argument_list|()
 block|{
 name|int
@@ -10452,9 +10466,14 @@ name|collect
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
+parameter_list|)
+block|{}
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
 parameter_list|)
 block|{}
 block|}
@@ -10492,7 +10511,7 @@ argument_list|(
 name|q
 argument_list|,
 operator|new
-name|MultiReaderHitCollector
+name|Collector
 argument_list|()
 block|{
 name|int
@@ -10561,9 +10580,14 @@ name|collect
 parameter_list|(
 name|int
 name|doc
-parameter_list|,
-name|float
-name|score
+parameter_list|)
+block|{}
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
 parameter_list|)
 block|{}
 block|}
