@@ -45,6 +45,7 @@ decl_stmt|;
 DECL|field|SEVERE
 DECL|field|WARN
 DECL|field|SKIP
+DECL|field|SKIP_ROW
 specifier|public
 specifier|static
 specifier|final
@@ -60,6 +61,10 @@ decl_stmt|,
 name|SKIP
 init|=
 literal|300
+decl_stmt|,
+name|SKIP_ROW
+init|=
+literal|301
 decl_stmt|;
 DECL|method|DataImportHandlerException
 specifier|public
