@@ -1339,6 +1339,11 @@ operator|.
 name|US
 argument_list|)
 decl_stmt|;
+name|String
+name|largestDate
+init|=
+literal|""
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1403,6 +1408,16 @@ argument_list|,
 name|d
 argument_list|)
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|i
+operator|==
+literal|9
+condition|)
+name|largestDate
+operator|=
+name|d
 expr_stmt|;
 block|}
 name|assertU
@@ -1522,7 +1537,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='11']"
 argument_list|,
-literal|"//date[@name='tdate'][.='2009-04-21T00:00:00Z']"
+literal|"//date[@name='tdate'][.='"
+operator|+
+name|largestDate
+operator|+
+literal|"']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1542,7 +1561,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='11']"
 argument_list|,
-literal|"//date[@name='tdate'][.='2009-04-12T00:00:00Z']"
+literal|"//date[@name='tdate'][.='1995-12-31T23:59:59.999Z']"
 argument_list|)
 expr_stmt|;
 comment|// Function queries
@@ -1559,7 +1578,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='11']"
 argument_list|,
-literal|"//date[@name='tdate'][.='2009-04-21T00:00:00Z']"
+literal|"//date[@name='tdate'][.='"
+operator|+
+name|largestDate
+operator|+
+literal|"']"
 argument_list|)
 expr_stmt|;
 block|}
