@@ -829,6 +829,13 @@ name|boolean
 name|omitTermFreqAndPositions
 parameter_list|)
 block|{
+name|name
+operator|=
+name|name
+operator|.
+name|intern
+argument_list|()
+expr_stmt|;
 name|FieldInfo
 name|fi
 init|=
