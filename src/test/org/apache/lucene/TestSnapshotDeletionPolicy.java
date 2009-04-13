@@ -319,6 +319,14 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+comment|// Sometimes past test leaves the dir
+name|_TestUtil
+operator|.
+name|rmDir
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|Directory
 name|fsDir
 init|=
