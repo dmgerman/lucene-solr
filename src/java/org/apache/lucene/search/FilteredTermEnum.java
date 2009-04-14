@@ -67,15 +67,17 @@ name|FilteredTermEnum
 extends|extends
 name|TermEnum
 block|{
+comment|/** the current term */
 DECL|field|currentTerm
-specifier|private
+specifier|protected
 name|Term
 name|currentTerm
 init|=
 literal|null
 decl_stmt|;
+comment|/** the delegate enum - to set this member use {@link #setEnum} */
 DECL|field|actualEnum
-specifier|private
+specifier|protected
 name|TermEnum
 name|actualEnum
 init|=
@@ -113,6 +115,7 @@ name|boolean
 name|endEnum
 parameter_list|()
 function_decl|;
+comment|/**      * use this method to set the actual TermEnum (e.g. in ctor),      * it will be automatically positioned on the first matching term.      */
 DECL|method|setEnum
 specifier|protected
 name|void
@@ -168,7 +171,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|actualEnum
+name|currentTerm
 operator|==
 literal|null
 condition|)
@@ -176,6 +179,11 @@ return|return
 operator|-
 literal|1
 return|;
+assert|assert
+name|actualEnum
+operator|!=
+literal|null
+assert|;
 return|return
 name|actualEnum
 operator|.
@@ -287,6 +295,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|actualEnum
+operator|!=
+literal|null
+condition|)
 name|actualEnum
 operator|.
 name|close
