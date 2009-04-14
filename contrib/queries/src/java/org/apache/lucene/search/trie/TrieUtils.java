@@ -1365,6 +1365,13 @@ name|long
 name|maxBound
 parameter_list|)
 block|{
+if|if
+condition|(
+name|minBound
+operator|>
+name|maxBound
+condition|)
+return|return;
 for|for
 control|(
 name|int
