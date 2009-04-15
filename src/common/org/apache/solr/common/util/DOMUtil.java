@@ -852,9 +852,9 @@ condition|)
 block|{
 name|val
 operator|=
-name|Boolean
+name|StrUtils
 operator|.
-name|valueOf
+name|parseBool
 argument_list|(
 name|getText
 argument_list|(
