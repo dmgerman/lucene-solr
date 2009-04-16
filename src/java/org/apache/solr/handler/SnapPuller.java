@@ -667,7 +667,7 @@ name|connTimeout
 operator|==
 literal|null
 condition|?
-literal|5000
+literal|20000
 else|:
 name|Integer
 operator|.
@@ -677,7 +677,7 @@ name|connTimeout
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//5 secs
+comment|//20 secs
 name|mgr
 operator|.
 name|getParams
@@ -689,7 +689,7 @@ name|readTimeout
 operator|==
 literal|null
 condition|?
-literal|10000
+literal|5000
 else|:
 name|Integer
 operator|.
@@ -699,7 +699,7 @@ name|readTimeout
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//10 secs
+comment|//5 secs
 name|HttpClient
 name|httpClient
 init|=
