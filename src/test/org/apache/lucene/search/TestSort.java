@@ -9311,6 +9311,14 @@ block|}
 comment|// System.out.println ("matching \""+buff+"\" against pattern \""+pattern+"\"");
 name|assertTrue
 argument_list|(
+literal|"found:"
+operator|+
+name|buff
+operator|+
+literal|" expected:"
+operator|+
+name|pattern
+argument_list|,
 name|Pattern
 operator|.
 name|compile
