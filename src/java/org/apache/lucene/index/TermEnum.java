@@ -74,7 +74,7 @@ throws|throws
 name|IOException
 function_decl|;
 comment|// Term Vector support
-comment|/** Skips terms to the first beyond the current whose value is    * greater or equal to<i>target</i>.<p>Returns true iff there is such    * an entry.<p>Behaves as if written:<pre>    *   public boolean skipTo(Term target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> term());    *     return true;    *   }    *</pre>    * Some implementations are considerably more efficient than that.    */
+comment|/** Skips terms to the first beyond the current whose value is    * greater or equal to<i>target</i>.<p>Returns true iff there is such    * an entry.<p>Behaves as if written:<pre>    *   public boolean skipTo(Term target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> term());    *     return true;    *   }    *</pre>    * Some implementations *could* be considerably more efficient than a linear scan.    * Check the implementation to be sure.    */
 DECL|method|skipTo
 specifier|public
 name|boolean
