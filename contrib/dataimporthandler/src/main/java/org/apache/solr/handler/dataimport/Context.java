@@ -69,18 +69,18 @@ DECL|field|FIND_DELTA
 specifier|public
 specifier|static
 specifier|final
-name|int
+name|String
 name|FULL_DUMP
 init|=
-literal|1
+literal|"FULL_DUMP"
 decl_stmt|,
 name|DELTA_DUMP
 init|=
-literal|2
+literal|"DELTA_DUMP"
 decl_stmt|,
 name|FIND_DELTA
 init|=
-literal|3
+literal|"FIND_DELTA"
 decl_stmt|;
 comment|/**    * An object stored in entity scope is valid only for the current entity for the current document only.    */
 DECL|field|SCOPE_ENTITY
@@ -244,11 +244,11 @@ name|boolean
 name|isRootEntity
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the current process FULL_DUMP =1, DELTA_DUMP=2, FIND_DELTA=3    *    * @return the code of the current running process    */
+comment|/**    * Returns the current process FULL_DUMP, DELTA_DUMP, FIND_DELTA    *    * @return the type of the current running process    */
 DECL|method|currentProcess
 specifier|public
 specifier|abstract
-name|int
+name|String
 name|currentProcess
 parameter_list|()
 function_decl|;

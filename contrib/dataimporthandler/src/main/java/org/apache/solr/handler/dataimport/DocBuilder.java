@@ -570,11 +570,8 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-name|int
+name|String
 name|currentProcess
-init|=
-operator|-
-literal|1
 decl_stmt|;
 if|if
 condition|(

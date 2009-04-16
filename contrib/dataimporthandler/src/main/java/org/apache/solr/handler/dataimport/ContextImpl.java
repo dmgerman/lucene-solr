@@ -108,7 +108,7 @@ name|ds
 decl_stmt|;
 DECL|field|currProcess
 specifier|private
-name|int
+name|String
 name|currProcess
 decl_stmt|;
 DECL|field|requestParams
@@ -161,7 +161,7 @@ parameter_list|,
 name|DataSource
 name|ds
 parameter_list|,
-name|int
+name|String
 name|currProcess
 parameter_list|,
 name|Map
@@ -425,7 +425,7 @@ return|;
 block|}
 DECL|method|currentProcess
 specifier|public
-name|int
+name|String
 name|currentProcess
 parameter_list|()
 block|{

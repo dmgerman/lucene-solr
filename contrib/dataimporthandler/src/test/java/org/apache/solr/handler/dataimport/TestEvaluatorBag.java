@@ -476,7 +476,9 @@ name|resolver
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|Collections
 operator|.
@@ -590,7 +592,9 @@ name|resolver
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|Collections
 operator|.
@@ -722,7 +726,9 @@ name|resolver
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|Collections
 operator|.

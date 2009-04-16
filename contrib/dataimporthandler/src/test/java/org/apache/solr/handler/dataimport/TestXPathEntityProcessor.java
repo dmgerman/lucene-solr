@@ -284,7 +284,9 @@ argument_list|(
 name|cdData
 argument_list|)
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|fields
 argument_list|,
@@ -508,7 +510,9 @@ argument_list|(
 name|testXml
 argument_list|)
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|fields
 argument_list|,
@@ -724,7 +728,9 @@ argument_list|(
 name|cdData
 argument_list|)
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|fields
 argument_list|,
@@ -979,7 +985,9 @@ argument_list|(
 name|cdData
 argument_list|)
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 literal|null
 argument_list|,

@@ -244,7 +244,9 @@ literal|null
 argument_list|,
 name|dataSource
 argument_list|,
-literal|0
+name|Context
+operator|.
+name|FULL_DUMP
 argument_list|,
 name|flds
 argument_list|,
