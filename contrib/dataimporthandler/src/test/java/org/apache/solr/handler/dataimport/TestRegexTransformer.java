@@ -66,6 +66,24 @@ name|handler
 operator|.
 name|dataimport
 operator|.
+name|RegexTransformer
+operator|.
+name|REPLACE_WITH
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
 name|DataImporter
 operator|.
 name|COLUMN
@@ -643,7 +661,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|//<field column="name" sourceColName="a" regexp="'" replaceWith="''" />
+comment|//<field column="name" regexp="'" replaceWith="''" />
 name|Map
 argument_list|<
 name|String
@@ -669,7 +687,7 @@ name|fld
 operator|.
 name|put
 argument_list|(
-literal|"replaceWith"
+name|REPLACE_WITH
 argument_list|,
 literal|"''"
 argument_list|)
@@ -776,6 +794,7 @@ name|void
 name|mileage
 parameter_list|()
 block|{
+comment|// init a whole pile of fields
 name|List
 argument_list|<
 name|Map
@@ -817,9 +836,108 @@ name|fld
 operator|.
 name|put
 argument_list|(
-literal|"replaceWith"
+name|REPLACE_WITH
 argument_list|,
 literal|"*** $1 ***"
+argument_list|)
+expr_stmt|;
+name|fields
+operator|.
+name|add
+argument_list|(
+name|fld
+argument_list|)
+expr_stmt|;
+comment|//  **ATTEMPTS** a match WITHOUT a replaceWith
+comment|//<field column="t1" sourceColName="rowdata" regexp="duff" />
+name|fld
+operator|=
+name|getField
+argument_list|(
+literal|"t1"
+argument_list|,
+literal|"string"
+argument_list|,
+literal|"duff"
+argument_list|,
+literal|"rowdata"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|fields
+operator|.
+name|add
+argument_list|(
+name|fld
+argument_list|)
+expr_stmt|;
+comment|//  **ATTEMPTS** a match WITH a replaceWith
+comment|//<field column="t2" sourceColName="rowdata" regexp="duff" replaceWith="60"/>
+name|fld
+operator|=
+name|getField
+argument_list|(
+literal|"t2"
+argument_list|,
+literal|"string"
+argument_list|,
+literal|"duff"
+argument_list|,
+literal|"rowdata"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|fld
+operator|.
+name|put
+argument_list|(
+name|REPLACE_WITH
+argument_list|,
+literal|"60"
+argument_list|)
+expr_stmt|;
+name|fields
+operator|.
+name|add
+argument_list|(
+name|fld
+argument_list|)
+expr_stmt|;
+comment|//  regex WITH both replaceWith and groupName (groupName ignored!)
+comment|//<field column="t3" sourceColName="rowdata" regexp="(Range)" />
+name|fld
+operator|=
+name|getField
+argument_list|(
+literal|"t3"
+argument_list|,
+literal|"string"
+argument_list|,
+literal|"(Range)"
+argument_list|,
+literal|"rowdata"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|fld
+operator|.
+name|put
+argument_list|(
+name|REPLACE_WITH
+argument_list|,
+literal|"range"
+argument_list|)
+expr_stmt|;
+name|fld
+operator|.
+name|put
+argument_list|(
+name|GROUP_NAMES
+argument_list|,
+literal|"t4,t5"
 argument_list|)
 expr_stmt|;
 name|fields
@@ -938,7 +1056,7 @@ name|Assert
 operator|.
 name|assertEquals
 argument_list|(
-literal|4
+literal|5
 argument_list|,
 name|result
 operator|.
@@ -999,6 +1117,20 @@ operator|.
 name|get
 argument_list|(
 literal|"hltCityMPG"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|"Fuel Economy range: 26 mpg Hwy, 19 mpg City"
+argument_list|,
+name|result
+operator|.
+name|get
+argument_list|(
+literal|"t3"
 argument_list|)
 argument_list|)
 expr_stmt|;
