@@ -11551,6 +11551,30 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"handleMergeException: merge="
+operator|+
+name|merge
+operator|.
+name|segString
+argument_list|(
+name|directory
+argument_list|)
+operator|+
+literal|" exc="
+operator|+
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Set the exception on the merge, so if
 comment|// optimize() is waiting on us it sees the root
 comment|// cause exception:
