@@ -269,7 +269,7 @@ operator|.
 name|getVariableResolver
 argument_list|()
 operator|.
-name|resolve
+name|replaceTokens
 argument_list|(
 name|bsz
 argument_list|)
