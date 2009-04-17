@@ -811,6 +811,14 @@ decl_stmt|;
 name|Exception
 name|ex
 decl_stmt|;
+name|int
+name|startSize
+init|=
+name|aliveServers
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -941,10 +949,7 @@ if|if
 condition|(
 name|attempts
 operator|>=
-name|aliveServers
-operator|.
-name|size
-argument_list|()
+name|startSize
 condition|)
 throw|throw
 operator|new
