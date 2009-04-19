@@ -508,7 +508,7 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|(
-literal|5
+literal|6
 argument_list|)
 decl_stmt|;
 name|names
