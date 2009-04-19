@@ -26521,11 +26521,17 @@ name|finish
 operator|=
 literal|true
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|t
+init|)
+block|{
 name|t
 operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+block|}
 name|t
 operator|.
 name|join
