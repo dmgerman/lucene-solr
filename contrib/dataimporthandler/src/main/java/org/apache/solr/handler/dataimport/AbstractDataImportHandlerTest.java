@@ -618,7 +618,10 @@ argument_list|)
 else|:
 name|delegate
 operator|.
-name|getResolvedEntityAttribute
+name|getVariableResolver
+argument_list|()
+operator|.
+name|replaceTokens
 argument_list|(
 name|entityAttrs
 operator|.
