@@ -752,7 +752,7 @@ try|try
 block|{
 name|processor
 operator|.
-name|destroy
+name|close
 argument_list|()
 expr_stmt|;
 block|}

@@ -102,7 +102,7 @@ argument_list|>
 name|nextModifiedParentRowKey
 parameter_list|()
 function_decl|;
-comment|/**    * Invoked when the Entity processor is detroyed. towards the end of injestion. Called only once    */
+comment|/**    * Invoked for each parent-row after the last row for this entity is processed. If this is the root-most    * entity, it will be called only once in the import, at the very end.    *     */
 DECL|method|destroy
 specifier|public
 specifier|abstract
@@ -110,6 +110,15 @@ name|void
 name|destroy
 parameter_list|()
 function_decl|;
+comment|/**    * Invoked when the Entity processor is detroyed. towards the end of import.    */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{
+comment|//no-op
+block|}
 block|}
 end_class
 

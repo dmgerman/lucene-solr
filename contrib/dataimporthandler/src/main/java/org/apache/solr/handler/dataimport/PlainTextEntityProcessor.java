@@ -434,12 +434,7 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
-name|super
-operator|.
-name|applyTransformer
-argument_list|(
 name|row
-argument_list|)
 return|;
 block|}
 DECL|field|PLAIN_TEXT

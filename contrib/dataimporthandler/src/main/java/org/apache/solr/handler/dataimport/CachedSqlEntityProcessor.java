@@ -109,16 +109,6 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|rowcache
-operator|!=
-literal|null
-condition|)
-return|return
-name|getFromRowCache
-argument_list|()
-return|;
-if|if
-condition|(
 name|dataSourceRowCache
 operator|!=
 literal|null

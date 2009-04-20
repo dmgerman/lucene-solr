@@ -133,6 +133,17 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**    * Get the value of any attribute put into this entity after resolving all variables found in the attribute value    * @param name name of the attribute    * @return value of the named attribute after resolving all variables    */
+DECL|method|getResolvedEntityAttribute
+specifier|public
+specifier|abstract
+name|String
+name|getResolvedEntityAttribute
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
 comment|/**    * Returns all the fields put into an entity. each item (which is a map ) in    * the list corresponds to one field. each if the map contains the attribute    * names and values in a field    *    * @return all fields in an entity    */
 DECL|method|getAllEntityFields
 specifier|public
