@@ -1849,7 +1849,6 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// currently only called with SolrCore.class lock held
 DECL|method|initIndex
 name|void
 name|initIndex
@@ -1877,7 +1876,16 @@ argument_list|()
 decl_stmt|;
 name|boolean
 name|firstTime
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|SolrCore
+operator|.
+name|class
+init|)
+block|{
+name|firstTime
+operator|=
 name|dirs
 operator|.
 name|add
@@ -1887,7 +1895,8 @@ operator|.
 name|getCanonicalPath
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|boolean
 name|removeLocks
 init|=
@@ -2462,24 +2471,10 @@ name|CoreDescriptor
 name|cd
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|SolrCore
-operator|.
-name|class
-init|)
-block|{
 name|coreDescriptor
 operator|=
 name|cd
 expr_stmt|;
-comment|// this is for backward compatibility (and also the reason
-comment|// the sync block is needed)
-name|instance
-operator|=
-name|this
-expr_stmt|;
-comment|// set singleton
 name|this
 operator|.
 name|setName
@@ -2835,6 +2830,11 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|instance
+operator|=
+name|this
+expr_stmt|;
+comment|// set singleton for backwards compatibility
 block|}
 catch|catch
 parameter_list|(
@@ -2865,8 +2865,6 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|// end synchronized
 name|infoRegistry
 operator|.
 name|put
