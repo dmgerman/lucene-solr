@@ -1142,7 +1142,7 @@ name|analyzer
 operator|=
 name|ft
 operator|.
-name|getAnalyzer
+name|getQueryAnalyzer
 argument_list|()
 expr_stmt|;
 block|}
