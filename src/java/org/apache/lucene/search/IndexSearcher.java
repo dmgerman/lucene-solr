@@ -932,7 +932,7 @@ block|{
 name|int
 name|autotype
 init|=
-name|FieldValueHitQueue
+name|SortField
 operator|.
 name|detectFieldType
 argument_list|(
