@@ -15572,6 +15572,17 @@ operator|=
 name|warmer
 expr_stmt|;
 block|}
+comment|/** Returns the current merged segment warmer.  See {@link    *  IndexReaderWarmer}. */
+DECL|method|getMergedSegmentWarmer
+specifier|public
+name|IndexReaderWarmer
+name|getMergedSegmentWarmer
+parameter_list|()
+block|{
+return|return
+name|mergedSegmentWarmer
+return|;
+block|}
 comment|// Used only by assert for testing.  Current points:
 comment|//   startDoFlush
 comment|//   startCommitMerge
