@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Query that sets document score as a programmatic function of several (sub) scores.  *<ol>  *<li>the score of its subQuery (any query)</li>  *<li>(optional) the score of its ValueSourceQuery (or queries).  *        For most simple/convenient use cases this query is likely to be a   *        {@link org.apache.lucene.search.function.FieldScoreQuery FieldScoreQuery}</li>  *</ol>  * Subclasses can modify the computation by overriding {@link #customScore(int, float, float)}.  *   *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  */
+comment|/**  * Query that sets document score as a programmatic function of several (sub) scores:  *<ol>  *<li>the score of its subQuery (any query)</li>  *<li>(optional) the score of its ValueSourceQuery (or queries).  *        For most simple/convenient use cases this query is likely to be a   *        {@link org.apache.lucene.search.function.FieldScoreQuery FieldScoreQuery}</li>  *</ol>  * Subclasses can modify the computation by overriding {@link #customScore(int, float, float)}.  *   *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  */
 end_comment
 
 begin_class
@@ -788,7 +788,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute a custom score by the subQuery score and a number of     * ValueSourceQuery scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) costomScore()}     * method, which is simpler.     *<p>    * The default computation herein is:    *<pre>    *     ModifiedScore = valSrcScore * subQueryScore[0] * subQueryScore[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores score of that doc by the ValueSourceQuery.    * @return custom score.    */
+comment|/**    * Compute a custom score by the subQuery score and a number of     * ValueSourceQuery scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) customScore()}     * method, which is simpler.     *<p>    * The default computation herein is a multiplication of given scores:    *<pre>    *     ModifiedScore = valSrcScore * valSrcScores[0] * valSrcScores[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores scores of that doc by the ValueSourceQuery.    * @return custom score.    */
 DECL|method|customScore
 specifier|public
 name|float
@@ -882,7 +882,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**    * Compute a custom score by the subQuery score and the ValueSourceQuery score.    *<p>     * Subclasses can override this method to modify the custom score.    *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override this costomScore() method, which is simpler.     *<p>    * The default computation herein is:    *<pre>    *     ModifiedScore = valSrcScore * subQueryScore    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScore score of that doc by the ValueSourceQuery.    * @return custom score.    */
+comment|/**    * Compute a custom score by the subQuery score and the ValueSourceQuery score.    *<p>     * Subclasses can override this method to modify the custom score.    *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override this customScore() method, which is simpler.     *<p>    * The default computation herein is a multiplication of the two scores:    *<pre>    *     ModifiedScore = subQueryScore * valSrcScore    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScore score of that doc by the ValueSourceQuery.    * @return custom score.    */
 DECL|method|customScore
 specifier|public
 name|float
