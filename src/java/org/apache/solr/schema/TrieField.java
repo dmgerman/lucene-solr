@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|Query
 import|;
 end_import
 
@@ -68,21 +68,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|trie
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ConstantScoreQuery
+name|IntTrieRangeQuery
 import|;
 end_import
 
@@ -98,23 +86,7 @@ name|search
 operator|.
 name|trie
 operator|.
-name|IntTrieRangeFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|trie
-operator|.
-name|LongTrieRangeFilter
+name|LongTrieRangeQuery
 import|;
 end_import
 
@@ -241,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides field types to support for Lucene's Trie Range Queries. See {@linkplain org.apache.lucene.search.trie  * package description} for more details. It supports integer, float, long, double and date types.  *<p/>  * For each number being added to this field, multiple terms are generated as per the algorithm described in the above  * link. The possible number of terms increases dramatically with higher precision steps (factor 2^precisionStep). For  * the fast range search to work, trie fields must be indexed.  *<p/>  * Trie fields are<b>not</b> sortable in numerical order. Also, they cannot be used in function queries. If one needs  * sorting as well as fast range search, one should create a copy field specifically for sorting. Same workaround is  * suggested for using trie fields in function queries as well.  *<p/>  * Note that if you use a precisionStep of 32 for int/float and 64 for long/double, then multiple terms will not be  * generated, range search will be no faster than any other number field, but sorting will be possible.  *  * @version $Id$  * @see org.apache.lucene.search.trie.TrieUtils  * @since solr 1.4  */
+comment|/**  * Provides field types to support for Lucene's Trie Range Queries. See {@linkplain org.apache.lucene.search.trie  * package description} for more details. It supports integer, float, long, double and date types.  *<p/>  * For each number being added to this field, multiple terms are generated as per the algorithm described in the above  * link. The possible number of terms increases dramatically with higher precision steps (factor 2^precisionStep). For  * the fast range search to work, trie fields must be indexed.  *<p/>  * Trie fields are sortable in numerical order and can be used in function queries.  *<p/>  * Note that if you use a precisionStep of 32 for int/float and 64 for long/double, then multiple terms will not be  * generated, range search will be no faster than any other number field, but sorting will be possible.  *  * @version $Id$  * @see org.apache.lucene.search.trie.TrieUtils  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -906,7 +878,7 @@ case|:
 name|query
 operator|=
 operator|new
-name|IntTrieRangeFilter
+name|IntTrieRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -942,9 +914,6 @@ name|minInclusive
 argument_list|,
 name|maxInclusive
 argument_list|)
-operator|.
-name|asQuery
-argument_list|()
 expr_stmt|;
 break|break;
 case|case
@@ -953,7 +922,7 @@ case|:
 name|query
 operator|=
 operator|new
-name|IntTrieRangeFilter
+name|IntTrieRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -999,9 +968,6 @@ name|minInclusive
 argument_list|,
 name|maxInclusive
 argument_list|)
-operator|.
-name|asQuery
-argument_list|()
 expr_stmt|;
 break|break;
 case|case
@@ -1010,7 +976,7 @@ case|:
 name|query
 operator|=
 operator|new
-name|LongTrieRangeFilter
+name|LongTrieRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1046,9 +1012,6 @@ name|minInclusive
 argument_list|,
 name|maxInclusive
 argument_list|)
-operator|.
-name|asQuery
-argument_list|()
 expr_stmt|;
 break|break;
 case|case
@@ -1057,7 +1020,7 @@ case|:
 name|query
 operator|=
 operator|new
-name|LongTrieRangeFilter
+name|LongTrieRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1103,9 +1066,6 @@ name|minInclusive
 argument_list|,
 name|maxInclusive
 argument_list|)
-operator|.
-name|asQuery
-argument_list|()
 expr_stmt|;
 break|break;
 case|case
@@ -1114,7 +1074,7 @@ case|:
 name|query
 operator|=
 operator|new
-name|LongTrieRangeFilter
+name|LongTrieRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1160,9 +1120,6 @@ name|minInclusive
 argument_list|,
 name|maxInclusive
 argument_list|)
-operator|.
-name|asQuery
-argument_list|()
 expr_stmt|;
 break|break;
 default|default:
