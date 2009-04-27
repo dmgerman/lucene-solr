@@ -1602,7 +1602,7 @@ argument_list|(
 name|fi
 argument_list|)
 decl_stmt|;
-name|Fieldable
+name|AbstractField
 name|f
 decl_stmt|;
 if|if
@@ -1673,7 +1673,7 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 name|fi
 operator|.
@@ -1758,7 +1758,7 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 name|fi
 operator|.
@@ -2025,7 +2025,7 @@ argument_list|(
 name|fi
 argument_list|)
 decl_stmt|;
-name|Fieldable
+name|AbstractField
 name|f
 decl_stmt|;
 if|if
@@ -2106,7 +2106,7 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 name|fi
 operator|.
@@ -2152,7 +2152,7 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setOmitTf
+name|setOmitTermFreqAndPositions
 argument_list|(
 name|fi
 operator|.
