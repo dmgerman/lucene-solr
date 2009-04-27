@@ -310,6 +310,12 @@ name|i1
 init|=
 literal|"a_i"
 decl_stmt|;
+DECL|field|tlong
+name|String
+name|tlong
+init|=
+literal|"tlong"
+decl_stmt|;
 DECL|field|oddField
 name|String
 name|oddField
@@ -2959,6 +2965,10 @@ name|i1
 argument_list|,
 literal|100
 argument_list|,
+name|tlong
+argument_list|,
+literal|100
+argument_list|,
 name|t1
 argument_list|,
 literal|"now is the time for all good men"
@@ -2986,6 +2996,10 @@ name|i1
 argument_list|,
 literal|50
 argument_list|,
+name|tlong
+argument_list|,
+literal|50
+argument_list|,
 name|t1
 argument_list|,
 literal|"to come to the aid of their country."
@@ -2998,6 +3012,10 @@ argument_list|,
 literal|3
 argument_list|,
 name|i1
+argument_list|,
+literal|2
+argument_list|,
+name|tlong
 argument_list|,
 literal|2
 argument_list|,
@@ -3017,6 +3035,10 @@ argument_list|,
 operator|-
 literal|100
 argument_list|,
+name|tlong
+argument_list|,
+literal|101
+argument_list|,
 name|t1
 argument_list|,
 literal|"the quick fox jumped over the lazy dog"
@@ -3029,6 +3051,10 @@ argument_list|,
 literal|5
 argument_list|,
 name|i1
+argument_list|,
+literal|500
+argument_list|,
+name|tlong
 argument_list|,
 literal|500
 argument_list|,
@@ -3048,6 +3074,10 @@ argument_list|,
 operator|-
 literal|600
 argument_list|,
+name|tlong
+argument_list|,
+literal|600
+argument_list|,
 name|t1
 argument_list|,
 literal|"humpty dumpy sat on a wall"
@@ -3060,6 +3090,10 @@ argument_list|,
 literal|7
 argument_list|,
 name|i1
+argument_list|,
+literal|123
+argument_list|,
+name|tlong
 argument_list|,
 literal|123
 argument_list|,
@@ -3078,6 +3112,10 @@ name|i1
 argument_list|,
 literal|876
 argument_list|,
+name|tlong
+argument_list|,
+literal|876
+argument_list|,
 name|t1
 argument_list|,
 literal|"all the kings horses and all the kings men"
@@ -3093,6 +3131,10 @@ name|i1
 argument_list|,
 literal|7
 argument_list|,
+name|tlong
+argument_list|,
+literal|7
+argument_list|,
 name|t1
 argument_list|,
 literal|"couldn't put humpty together again"
@@ -3105,6 +3147,10 @@ argument_list|,
 literal|10
 argument_list|,
 name|i1
+argument_list|,
+literal|4321
+argument_list|,
+name|tlong
 argument_list|,
 literal|4321
 argument_list|,
@@ -3124,6 +3170,10 @@ argument_list|,
 operator|-
 literal|987
 argument_list|,
+name|tlong
+argument_list|,
+literal|987
+argument_list|,
 name|t1
 argument_list|,
 literal|"An eye for eye only ends up making the whole world blind."
@@ -3139,6 +3189,10 @@ name|i1
 argument_list|,
 literal|379
 argument_list|,
+name|tlong
+argument_list|,
+literal|379
+argument_list|,
 name|t1
 argument_list|,
 literal|"Great works are performed, not by strength, but by perseverance."
@@ -3151,6 +3205,10 @@ argument_list|,
 literal|13
 argument_list|,
 name|i1
+argument_list|,
+literal|232
+argument_list|,
+name|tlong
 argument_list|,
 literal|232
 argument_list|,
@@ -3322,6 +3380,19 @@ argument_list|,
 literal|"fl"
 argument_list|,
 literal|"*,score"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|tlong
+operator|+
+literal|" desc"
 argument_list|)
 expr_stmt|;
 name|handle
