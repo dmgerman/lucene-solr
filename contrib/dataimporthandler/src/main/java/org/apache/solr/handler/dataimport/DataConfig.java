@@ -402,7 +402,7 @@ name|parentEntity
 decl_stmt|;
 DECL|field|processor
 specifier|public
-name|EntityProcessor
+name|EntityProcessorWrapper
 name|processor
 decl_stmt|;
 annotation|@
