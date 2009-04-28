@@ -1005,11 +1005,24 @@ block|}
 comment|// TODO: right now we *always* make a new reader; in
 comment|// the future we could have write make some effort to
 comment|// detect that no changes have occurred
-return|return
+name|IndexReader
+name|reader
+init|=
 name|writer
 operator|.
 name|getReader
 argument_list|()
+decl_stmt|;
+name|reader
+operator|.
+name|setDisableFakeNorms
+argument_list|(
+name|getDisableFakeNorms
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|reader
 return|;
 block|}
 if|if
@@ -1308,6 +1321,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|reader
+operator|.
+name|setDisableFakeNorms
+argument_list|(
+name|getDisableFakeNorms
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{

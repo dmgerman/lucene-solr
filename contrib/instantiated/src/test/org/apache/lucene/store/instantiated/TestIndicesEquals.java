@@ -1818,6 +1818,15 @@ operator|)
 name|field
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|aprioriReader
+operator|.
+name|getDisableFakeNorms
+argument_list|()
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 name|aprioriNorms
@@ -2073,6 +2082,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 for|for

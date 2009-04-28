@@ -531,6 +531,12 @@ name|weightValue
 decl_stmt|;
 comment|// cache miss
 return|return
+name|norms
+operator|==
+literal|null
+condition|?
+name|raw
+else|:
 name|raw
 operator|*
 name|SIM_NORM_DECODER

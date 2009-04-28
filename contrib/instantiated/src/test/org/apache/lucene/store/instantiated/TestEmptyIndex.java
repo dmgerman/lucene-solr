@@ -384,6 +384,15 @@ argument_list|(
 literal|"foo"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|r
+operator|.
+name|getDisableFakeNorms
+argument_list|()
+condition|)
+block|{
 name|assertNotNull
 argument_list|(
 name|norms
@@ -447,6 +456,7 @@ argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|testTermEnum

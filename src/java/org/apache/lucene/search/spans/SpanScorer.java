@@ -408,6 +408,12 @@ name|value
 decl_stmt|;
 comment|// raw score
 return|return
+name|norms
+operator|==
+literal|null
+condition|?
+name|raw
+else|:
 name|raw
 operator|*
 name|Similarity
