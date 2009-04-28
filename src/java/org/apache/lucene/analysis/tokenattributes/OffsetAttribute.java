@@ -79,21 +79,30 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/** Set the starting offset.     @see #startOffset() */
-DECL|method|setStartOffset
+comment|/** Set the starting and ending offset.     @see #startOffset() and #endOffset()*/
+DECL|method|setOffset
 specifier|public
 name|void
-name|setStartOffset
+name|setOffset
 parameter_list|(
 name|int
-name|offset
+name|startOffset
+parameter_list|,
+name|int
+name|endOffset
 parameter_list|)
 block|{
 name|this
 operator|.
 name|startOffset
 operator|=
-name|offset
+name|startOffset
+expr_stmt|;
+name|this
+operator|.
+name|endOffset
+operator|=
+name|endOffset
 expr_stmt|;
 block|}
 comment|/** Returns this Token's ending offset, one greater than the position of the   last character corresponding to this token in the source text. The length   of the token in the source text is (endOffset - startOffset). */
@@ -106,23 +115,6 @@ block|{
 return|return
 name|endOffset
 return|;
-block|}
-comment|/** Set the ending offset.     @see #endOffset() */
-DECL|method|setEndOffset
-specifier|public
-name|void
-name|setEndOffset
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-block|{
-name|this
-operator|.
-name|endOffset
-operator|=
-name|offset
-expr_stmt|;
 block|}
 DECL|method|clear
 specifier|public
@@ -250,15 +242,10 @@ name|target
 decl_stmt|;
 name|t
 operator|.
-name|setStartOffset
+name|setOffset
 argument_list|(
 name|startOffset
-argument_list|)
-expr_stmt|;
-name|t
-operator|.
-name|setEndOffset
-argument_list|(
+argument_list|,
 name|endOffset
 argument_list|)
 expr_stmt|;

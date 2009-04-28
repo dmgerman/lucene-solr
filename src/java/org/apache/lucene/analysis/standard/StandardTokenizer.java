@@ -534,15 +534,10 @@ argument_list|()
 decl_stmt|;
 name|offsetAtt
 operator|.
-name|setStartOffset
+name|setOffset
 argument_list|(
 name|start
-argument_list|)
-expr_stmt|;
-name|offsetAtt
-operator|.
-name|setEndOffset
-argument_list|(
+argument_list|,
 name|start
 operator|+
 name|termAtt
