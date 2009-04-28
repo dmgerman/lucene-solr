@@ -680,6 +680,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"SolrIndexWriter is using LEGACY_DIR_FACTORY which means deprecated code is likely in use and SolrIndexWriter is ignoring any custom DirectoryFactory."
+argument_list|)
+expr_stmt|;
 return|return
 name|getDirectory
 argument_list|(
@@ -917,6 +924,9 @@ parameter_list|,
 name|String
 name|path
 parameter_list|,
+name|DirectoryFactory
+name|dirFactory
+parameter_list|,
 name|boolean
 name|create
 parameter_list|,
@@ -937,6 +947,8 @@ argument_list|(
 name|getDirectory
 argument_list|(
 name|path
+argument_list|,
+name|dirFactory
 argument_list|,
 name|config
 argument_list|)
