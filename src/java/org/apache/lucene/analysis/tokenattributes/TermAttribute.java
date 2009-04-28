@@ -501,9 +501,6 @@ name|int
 name|termLength
 parameter_list|()
 block|{
-name|initTermBuffer
-argument_list|()
-expr_stmt|;
 return|return
 name|termLength
 return|;
