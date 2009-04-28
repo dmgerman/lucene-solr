@@ -1201,7 +1201,7 @@ decl_stmt|;
 name|boolean
 name|isCorrectlySpelled
 init|=
-literal|true
+literal|false
 decl_stmt|;
 name|Map
 argument_list|<
@@ -1235,6 +1235,22 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
+expr_stmt|;
+block|}
+comment|// will be flipped to false if any of the suggestions are not in the index and hasFreqInfo is true
+if|if
+condition|(
+name|suggestions
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|isCorrectlySpelled
+operator|=
+literal|true
 expr_stmt|;
 block|}
 for|for
