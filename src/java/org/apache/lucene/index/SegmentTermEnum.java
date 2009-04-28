@@ -327,6 +327,28 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+assert|assert
+name|indexInterval
+operator|>
+literal|0
+operator|:
+literal|"indexInterval="
+operator|+
+name|indexInterval
+operator|+
+literal|" is negative; must be> 0"
+assert|;
+assert|assert
+name|skipInterval
+operator|>
+literal|0
+operator|:
+literal|"skipInterval="
+operator|+
+name|skipInterval
+operator|+
+literal|" is negative; must be> 0"
+assert|;
 block|}
 if|if
 condition|(
