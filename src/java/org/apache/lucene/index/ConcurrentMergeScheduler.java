@@ -97,15 +97,6 @@ name|maxThreadCount
 init|=
 literal|3
 decl_stmt|;
-DECL|field|exceptions
-specifier|private
-name|List
-name|exceptions
-init|=
-operator|new
-name|ArrayList
-argument_list|()
-decl_stmt|;
 DECL|field|dir
 specifier|protected
 name|Directory
@@ -1136,21 +1127,6 @@ name|MergeAbortedException
 operator|)
 condition|)
 block|{
-synchronized|synchronized
-init|(
-name|ConcurrentMergeScheduler
-operator|.
-name|this
-init|)
-block|{
-name|exceptions
-operator|.
-name|add
-argument_list|(
-name|exc
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!
@@ -1251,6 +1227,12 @@ parameter_list|)
 block|{
 try|try
 block|{
+comment|// When an exception is hit during merge, IndexWriter
+comment|// removes any partial files and then allows another
+comment|// merge to run.  If whatever caused the error is not
+comment|// transient then the exception will keep happening,
+comment|// so, we sleep here to avoid saturating CPU in such
+comment|// cases:
 name|Thread
 operator|.
 name|sleep
