@@ -898,6 +898,10 @@ name|multiValued
 init|=
 literal|false
 decl_stmt|;
+DECL|field|dynamicName
+name|boolean
+name|dynamicName
+decl_stmt|;
 DECL|field|allAttributes
 specifier|public
 name|Map
