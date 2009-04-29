@@ -2020,6 +2020,9 @@ argument_list|,
 name|getIndexDir
 argument_list|()
 argument_list|,
+name|getDirectoryFactory
+argument_list|()
+argument_list|,
 literal|true
 argument_list|,
 name|schema
