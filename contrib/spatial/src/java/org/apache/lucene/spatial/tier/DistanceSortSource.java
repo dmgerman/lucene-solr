@@ -261,6 +261,9 @@ block|{
 comment|//      if (this.distances == null) {
 comment|//          distances = distanceFilter.getDistances();
 comment|//      }
+comment|//System.out.println("comparing : "+ aDoc.doc+ " - "+ bDoc.doc);
+try|try
+block|{
 name|double
 name|a
 init|=
@@ -304,6 +307,33 @@ return|return
 operator|-
 literal|1
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|" Failed with sort with "
+operator|+
+name|aDoc
+operator|.
+name|doc
+operator|+
+literal|" - "
+operator|+
+name|bDoc
+operator|.
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|0
 return|;

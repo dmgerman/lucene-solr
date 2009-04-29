@@ -231,6 +231,16 @@ name|precise
 init|=
 literal|null
 decl_stmt|;
+DECL|field|offset
+name|int
+name|offset
+init|=
+literal|0
+decl_stmt|;
+DECL|field|nextOffset
+name|int
+name|nextOffset
+decl_stmt|;
 comment|/**    * Provide a distance filter based from a center point with a radius    * in miles    * @param lat    * @param lng    * @param miles    * @param latField    * @param lngField    */
 DECL|method|GeoHashDistanceFilter
 specifier|public
@@ -587,6 +597,19 @@ name|size
 argument_list|)
 decl_stmt|;
 comment|/* store calculated distances for reuse by other components */
+name|offset
+operator|+=
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|distances
+operator|==
+literal|null
+condition|)
 name|distances
 operator|=
 operator|new
@@ -819,6 +842,10 @@ expr_stmt|;
 name|cdistance
 operator|=
 literal|null
+expr_stmt|;
+name|nextOffset
+operator|+=
+name|offset
 expr_stmt|;
 return|return
 name|result

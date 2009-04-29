@@ -329,6 +329,7 @@ condition|)
 block|{
 try|try
 block|{
+comment|//System.out.println(chain[i] );
 name|bits
 operator|=
 call|(
@@ -400,6 +401,7 @@ index|]
 else|:
 name|DEFAULT
 decl_stmt|;
+comment|//System.out.println(chain[i] + ": "+  action);
 switch|switch
 condition|(
 name|action
@@ -571,6 +573,8 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+comment|//    System.out.println("++++++====================");
+comment|//    new Exception().printStackTrace();
 return|return
 operator|new
 name|DocIdBitSet

@@ -538,21 +538,9 @@ name|chain
 argument_list|)
 return|;
 block|}
-DECL|method|getQuery
-specifier|public
-name|Query
-name|getQuery
-parameter_list|()
-block|{
-return|return
-operator|new
-name|ConstantScoreQuery
-argument_list|(
-name|getFilter
-argument_list|()
-argument_list|)
-return|;
-block|}
+comment|//  public Query getQuery() {
+comment|//      return new ConstantScoreQuery(getFilter());
+comment|//  }
 DECL|method|getQuery
 specifier|public
 name|Query
