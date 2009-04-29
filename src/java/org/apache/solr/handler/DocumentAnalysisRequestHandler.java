@@ -1474,7 +1474,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analys"
+literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analyze"
 argument_list|)
 throw|;
 block|}
@@ -1508,7 +1508,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analys"
+literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analyze"
 argument_list|)
 throw|;
 block|}
@@ -1538,7 +1538,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analys"
+literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analyze"
 argument_list|)
 throw|;
 block|}
