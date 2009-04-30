@@ -595,7 +595,7 @@ name|elapsed
 init|=
 name|CountingSearchTestTask
 operator|.
-name|lastMillis
+name|prevLastMillis
 operator|-
 name|CountingSearchTestTask
 operator|.
@@ -610,8 +610,8 @@ operator|+
 literal|" msec"
 argument_list|,
 name|elapsed
-operator|<
-literal|2000
+operator|<=
+literal|1500
 argument_list|)
 expr_stmt|;
 block|}
