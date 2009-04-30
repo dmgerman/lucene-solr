@@ -245,7 +245,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO!  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * TODO!  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -2509,15 +2509,15 @@ return|return
 literal|null
 return|;
 block|}
-block|}
-end_class
-
-begin_class
+comment|/**    *<b>This API is experimental and subject to change</b>    */
 DECL|class|FacetInfo
+specifier|public
+specifier|static
 class|class
 name|FacetInfo
 block|{
 DECL|field|queryFacets
+specifier|public
 name|LinkedHashMap
 argument_list|<
 name|String
@@ -2527,6 +2527,7 @@ argument_list|>
 name|queryFacets
 decl_stmt|;
 DECL|field|facets
+specifier|public
 name|LinkedHashMap
 argument_list|<
 name|String
@@ -2676,10 +2677,10 @@ block|}
 block|}
 block|}
 block|}
-end_class
-
-begin_class
+comment|/**    *<b>This API is experimental and subject to change</b>    */
 DECL|class|FacetBase
+specifier|public
+specifier|static
 class|class
 name|FacetBase
 block|{
@@ -2842,6 +2843,7 @@ block|}
 block|}
 comment|/** returns the key in the response that this facet will be under */
 DECL|method|getKey
+specifier|public
 name|String
 name|getKey
 parameter_list|()
@@ -2851,6 +2853,7 @@ name|key
 return|;
 block|}
 DECL|method|getType
+specifier|public
 name|String
 name|getType
 parameter_list|()
@@ -2860,16 +2863,17 @@ name|facetType
 return|;
 block|}
 block|}
-end_class
-
-begin_class
+comment|/**    *<b>This API is experimental and subject to change</b>    */
 DECL|class|QueryFacet
+specifier|public
+specifier|static
 class|class
 name|QueryFacet
 extends|extends
 name|FacetBase
 block|{
 DECL|field|count
+specifier|public
 name|long
 name|count
 decl_stmt|;
@@ -2897,49 +2901,58 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_class
+comment|/**    *<b>This API is experimental and subject to change</b>    */
 DECL|class|FieldFacet
+specifier|public
+specifier|static
 class|class
 name|FieldFacet
 extends|extends
 name|FacetBase
 block|{
 DECL|field|field
+specifier|public
 name|String
 name|field
 decl_stmt|;
 comment|// the field to facet on... "myfield" for {!key=foo}myfield
 DECL|field|ftype
+specifier|public
 name|FieldType
 name|ftype
 decl_stmt|;
 DECL|field|offset
+specifier|public
 name|int
 name|offset
 decl_stmt|;
 DECL|field|limit
+specifier|public
 name|int
 name|limit
 decl_stmt|;
 DECL|field|minCount
+specifier|public
 name|int
 name|minCount
 decl_stmt|;
 DECL|field|sort
+specifier|public
 name|String
 name|sort
 decl_stmt|;
 DECL|field|missing
+specifier|public
 name|boolean
 name|missing
 decl_stmt|;
 DECL|field|prefix
+specifier|public
 name|String
 name|prefix
 decl_stmt|;
 DECL|field|missingCount
+specifier|public
 name|long
 name|missingCount
 decl_stmt|;
@@ -3221,16 +3234,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_class
+comment|/**    *<b>This API is experimental and subject to change</b>    */
 DECL|class|DistribFieldFacet
+specifier|public
+specifier|static
 class|class
 name|DistribFieldFacet
 extends|extends
 name|FieldFacet
 block|{
 DECL|field|_toRefine
+specifier|public
 name|List
 argument_list|<
 name|String
@@ -3242,22 +3256,26 @@ comment|// a List<String> of refinements needed, one for each shard.
 comment|// SchemaField sf;    // currently unneeded
 comment|// the max possible count for a term appearing on no list
 DECL|field|missingMaxPossible
+specifier|public
 name|long
 name|missingMaxPossible
 decl_stmt|;
 comment|// the max possible count for a missing term for each shard (indexed by shardNum)
 DECL|field|missingMax
+specifier|public
 name|long
 index|[]
 name|missingMax
 decl_stmt|;
 DECL|field|counted
+specifier|public
 name|OpenBitSet
 index|[]
 name|counted
 decl_stmt|;
 comment|// a bitset for each shard, keeping track of which terms seen
 DECL|field|counts
+specifier|public
 name|HashMap
 argument_list|<
 name|String
@@ -3278,19 +3296,23 @@ literal|128
 argument_list|)
 decl_stmt|;
 DECL|field|termNum
+specifier|public
 name|int
 name|termNum
 decl_stmt|;
 DECL|field|initialLimit
+specifier|public
 name|int
 name|initialLimit
 decl_stmt|;
 comment|// how many terms requested in first phase
 DECL|field|needRefinements
+specifier|public
 name|boolean
 name|needRefinements
 decl_stmt|;
 DECL|field|countSorted
+specifier|public
 name|ShardFacetCount
 index|[]
 name|countSorted
@@ -3572,6 +3594,7 @@ name|terms
 expr_stmt|;
 block|}
 DECL|method|getLexSorted
+specifier|public
 name|ShardFacetCount
 index|[]
 name|getLexSorted
@@ -3647,6 +3670,7 @@ name|arr
 return|;
 block|}
 DECL|method|getCountSorted
+specifier|public
 name|ShardFacetCount
 index|[]
 name|getCountSorted
@@ -3772,27 +3796,31 @@ comment|// TODO: could store the last term in the shard to tell if this term
 comment|// comes before or after it.  If it comes before, we could subtract 1
 block|}
 block|}
-end_class
-
-begin_class
+comment|/**    *<b>This API is experimental and subject to change</b>    */
 DECL|class|ShardFacetCount
+specifier|public
+specifier|static
 class|class
 name|ShardFacetCount
 block|{
 DECL|field|name
+specifier|public
 name|String
 name|name
 decl_stmt|;
 DECL|field|indexed
+specifier|public
 name|String
 name|indexed
 decl_stmt|;
 comment|// the indexed form of the name... used for comparisons.
 DECL|field|count
+specifier|public
 name|long
 name|count
 decl_stmt|;
 DECL|field|termNum
+specifier|public
 name|int
 name|termNum
 decl_stmt|;
@@ -3818,6 +3846,7 @@ name|count
 operator|+
 literal|"}"
 return|;
+block|}
 block|}
 block|}
 end_class

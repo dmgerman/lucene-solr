@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is experimental and will be changing in the future.  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * This class is experimental and will be changing in the future.  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -581,20 +581,23 @@ comment|// Maps uniqueKeyValue to ShardDoc, which may be used to
 comment|// determine order of the doc or uniqueKey in the final
 comment|// returned sequence.
 comment|// Only valid after STAGE_EXECUTE_QUERY has completed.
+DECL|field|_facetInfo
+specifier|public
+name|FacetComponent
+operator|.
+name|FacetInfo
+name|_facetInfo
+decl_stmt|;
 comment|/* private... components that don't own these shouldn't use them */
 DECL|field|_responseDocs
 name|SolrDocumentList
 name|_responseDocs
 decl_stmt|;
-DECL|field|_facetInfo
-name|FacetInfo
-name|_facetInfo
-decl_stmt|;
 DECL|field|_statsInfo
 name|StatsInfo
 name|_statsInfo
 decl_stmt|;
-comment|/**    * Utility function to add debugging info.  This will make sure a valid     * debugInfo exists before adding to it.    */
+comment|/**    * Utility function to add debugging info.  This will make sure a valid    * debugInfo exists before adding to it.    */
 DECL|method|addDebugInfo
 specifier|public
 name|void
