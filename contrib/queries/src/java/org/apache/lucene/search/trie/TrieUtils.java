@@ -1223,7 +1223,7 @@ name|reverse
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Splits a long range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link LongRangeBuilder#addRange(String,String)}    * method.    *<p>This method is used by {@link LongTrieRangeFilter}.    */
+comment|/**    * Expert: Splits a long range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link LongRangeBuilder#addRange(String,String)}    * method.    *<p>This method is used by {@link LongTrieRangeQuery}.    */
 DECL|method|splitLongRange
 specifier|public
 specifier|static
@@ -1278,7 +1278,7 @@ name|maxBound
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: Splits an int range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link IntRangeBuilder#addRange(String,String)}    * method.    *<p>This method is used by {@link IntTrieRangeFilter}.    */
+comment|/**    * Expert: Splits an int range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link IntRangeBuilder#addRange(String,String)}    * method.    *<p>This method is used by {@link IntTrieRangeQuery}.    */
 DECL|method|splitIntRange
 specifier|public
 specifier|static
