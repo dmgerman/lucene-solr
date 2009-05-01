@@ -3305,6 +3305,9 @@ comment|// Try to read first.  This is to allow create
 comment|// against an index that's currently open for
 comment|// searching.  In this case we write the next
 comment|// segments_N file with no segments:
+name|boolean
+name|doCommit
+decl_stmt|;
 try|try
 block|{
 name|segmentInfos
@@ -3319,6 +3322,10 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|doCommit
+operator|=
+literal|false
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3327,7 +3334,21 @@ name|e
 parameter_list|)
 block|{
 comment|// Likely this means it's a fresh directory
+name|doCommit
+operator|=
+literal|true
+expr_stmt|;
 block|}
+if|if
+condition|(
+name|autoCommit
+operator|||
+name|doCommit
+condition|)
+block|{
+comment|// Always commit if autoCommit=true, else only
+comment|// commit if there is no segments file in this dir
+comment|// already.
 name|segmentInfos
 operator|.
 name|commit
@@ -3335,6 +3356,29 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
+name|synced
+operator|.
+name|addAll
+argument_list|(
+name|segmentInfos
+operator|.
+name|files
+argument_list|(
+name|directory
+argument_list|,
+literal|true
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Record that we have a change (zero out all
+comment|// segments) pending:
+name|changeCount
+operator|++
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
