@@ -1210,7 +1210,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|BolleanScorerCollector
+name|BooleanScorerCollector
 argument_list|(
 name|mask
 argument_list|,
@@ -1219,12 +1219,12 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|BolleanScorerCollector
+DECL|class|BooleanScorerCollector
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|BolleanScorerCollector
+name|BooleanScorerCollector
 extends|extends
 name|Collector
 block|{
@@ -1243,9 +1243,9 @@ specifier|private
 name|Scorer
 name|scorer
 decl_stmt|;
-DECL|method|BolleanScorerCollector
+DECL|method|BooleanScorerCollector
 specifier|public
-name|BolleanScorerCollector
+name|BooleanScorerCollector
 parameter_list|(
 name|int
 name|mask
