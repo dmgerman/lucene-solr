@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * RequestHandler that provides much the same functionality as analysis.jsp.  Provides the ability to specify multiple  * field types and field names in the same request. Expected parameters:  *<table border="1">  *<tr>  *<th align="left">Name</th>  *<th align="left">Type</th>  *<th align="left">required</th>  *<th align="left">Description</th>  *<th align="left">Multi-valued</th>  *</tr>  *<tr>  *<td>analysis.fieldname</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the type of this field name.</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified fields</td>  *</tr>  *<tr>  *<td>analysis.fieldtype</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the specified type</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified field types</td>  *</tr>  *<tr>  *<td>analysis.fieldvalue</td>  *<td>string</td>  *<td>yes</td>  *<td>The text that will be analyzed. The analysis will mimic the index-time analysis.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>{@code analysis.query} OR {@code q}</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text that will be analyzed. The analysis will mimic the query-time analysis. Note that the  * {@code analysis.query} parameter as precedes the {@code q} parameters.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>analysis.showmatch</td>  *<td>boolean</td>  *<td>no</td>  *<td>When set to {@code true} and when query analysis is performed, the produced tokens of the field value  * analysis will be marked as "matched" for every token that is produces by the query analysis</td>  *<td>No</td>  *</tr>  *</table>  *  * @version $Id$  * @since solr 1.4   */
+comment|/**  * RequestHandler that provides much the same functionality as analysis.jsp.  Provides the ability to specify multiple  * field types and field names in the same request. Expected parameters:  *<table border="1">  *<tr>  *<th align="left">Name</th>  *<th align="left">Type</th>  *<th align="left">required</th>  *<th align="left">Description</th>  *<th align="left">Multi-valued</th>  *</tr>  *<tr>  *<td>analysis.fieldname</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the type of this field name.</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified fields</td>  *</tr>  *<tr>  *<td>analysis.fieldtype</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text will be analyzed based on the specified type</td>  *<td>Yes, this parameter may hold a comma-separated list of values and the analysis will be performed for each of the specified field types</td>  *</tr>  *<tr>  *<td>analysis.fieldvalue</td>  *<td>string</td>  *<td>yes</td>  *<td>The text that will be analyzed. The analysis will mimic the index-time analysis.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>{@code analysis.query} OR {@code q}</td>  *<td>string</td>  *<td>no</td>  *<td>When present, the text that will be analyzed. The analysis will mimic the query-time analysis. Note that the  * {@code analysis.query} parameter as precedes the {@code q} parameters.</td>  *<td>No</td>  *</tr>  *<tr>  *<td>analysis.showmatch</td>  *<td>boolean</td>  *<td>no</td>  *<td>When set to {@code true} and when query analysis is performed, the produced tokens of the field value  * analysis will be marked as "matched" for every token that is produces by the query analysis</td>  *<td>No</td>  *</tr>  *</table>  *<p>Note that if neither analysis.fieldname and analysis.fieldtype is specified, then the default search field's  * analyzer is used.</p>  *  * @version $Id$  * @since solr 1.4   */
 end_comment
 
 begin_class
@@ -240,9 +240,6 @@ init|=
 name|resolveAnalysisRequest
 argument_list|(
 name|req
-operator|.
-name|getParams
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|IndexSchema
@@ -314,21 +311,34 @@ literal|"$URL$"
 return|;
 block|}
 comment|// ================================================= Helper methods ================================================
-comment|/**    * Resolves the AnalysisRequest based on the parameters in the given SolrParams.    *    * @param solrParams SolrParams taken from request    *    * @return AnalysisRequest containing all the information about what needs to be analyzed, and using what    *         fields/types    */
+comment|/**    * Resolves the AnalysisRequest based on the parameters in the given SolrParams.    *    * @param req the request    *    * @return AnalysisRequest containing all the information about what needs to be analyzed, and using what    *         fields/types    */
 DECL|method|resolveAnalysisRequest
 name|FieldAnalysisRequest
 name|resolveAnalysisRequest
 parameter_list|(
-name|SolrParams
-name|solrParams
+name|SolrQueryRequest
+name|req
 parameter_list|)
 block|{
+name|SolrParams
+name|solrParams
+init|=
+name|req
+operator|.
+name|getParams
+argument_list|()
+decl_stmt|;
 name|FieldAnalysisRequest
 name|analysisRequest
 init|=
 operator|new
 name|FieldAnalysisRequest
 argument_list|()
+decl_stmt|;
+name|boolean
+name|useDefaultSearchField
+init|=
+literal|true
 decl_stmt|;
 if|if
 condition|(
@@ -368,6 +378,10 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|useDefaultSearchField
+operator|=
+literal|false
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -405,6 +419,34 @@ argument_list|(
 literal|","
 argument_list|)
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|useDefaultSearchField
+operator|=
+literal|false
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|useDefaultSearchField
+condition|)
+block|{
+name|analysisRequest
+operator|.
+name|addFieldName
+argument_list|(
+name|req
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getSolrQueryParser
+argument_list|(
+literal|null
+argument_list|)
+operator|.
+name|getField
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -507,6 +549,16 @@ name|NamedList
 argument_list|>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|request
+operator|.
+name|getFieldTypes
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|String
@@ -548,6 +600,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|NamedList
 argument_list|<
 name|NamedList
@@ -561,6 +614,16 @@ name|NamedList
 argument_list|>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|request
+operator|.
+name|getFieldNames
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|String
@@ -598,6 +661,7 @@ name|fieldName
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|analysisResults
 operator|.
