@@ -2767,6 +2767,16 @@ literal|null
 operator|&&
 name|schema
 operator|.
+name|isDynamicField
+argument_list|(
+name|sfield
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|&&
+name|schema
+operator|.
 name|getDynamicPattern
 argument_list|(
 name|sfield
