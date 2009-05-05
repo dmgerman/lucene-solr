@@ -2271,6 +2271,8 @@ argument_list|>
 name|getStatusMessages
 parameter_list|()
 block|{
+comment|//this map object is a Collections.synchronizedMap(new LinkedHashMap()). if we
+comment|// synchronize on the object it must be safe to iterate through the map
 name|Map
 name|statusMessages
 init|=
@@ -2306,6 +2308,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+synchronized|synchronized
+init|(
+name|statusMessages
+init|)
+block|{
 for|for
 control|(
 name|Object
@@ -2329,6 +2336,7 @@ name|Entry
 operator|)
 name|o
 decl_stmt|;
+comment|//the toString is taken because some of the Objects create the data lazily when toString() is called
 name|result
 operator|.
 name|put
@@ -2350,6 +2358,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return

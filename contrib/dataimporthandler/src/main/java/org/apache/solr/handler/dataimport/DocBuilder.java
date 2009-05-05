@@ -190,9 +190,14 @@ specifier|private
 name|Map
 name|statusMessages
 init|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
 operator|new
 name|LinkedHashMap
 argument_list|()
+argument_list|)
 decl_stmt|;
 DECL|field|importStatistics
 specifier|public
