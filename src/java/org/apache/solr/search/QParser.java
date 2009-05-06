@@ -223,7 +223,9 @@ name|localParams
 operator|.
 name|get
 argument_list|(
-literal|"tag"
+name|CommonParams
+operator|.
+name|TAG
 argument_list|)
 decl_stmt|;
 if|if
