@@ -752,38 +752,113 @@ name|ch
 index|]
 return|;
 block|}
-elseif|else
-if|if
+switch|switch
 condition|(
 name|Character
 operator|.
-name|isLowerCase
+name|getType
 argument_list|(
 name|ch
 argument_list|)
 condition|)
 block|{
-return|return
-name|LOWER
-return|;
-block|}
-elseif|else
-if|if
-condition|(
+case|case
 name|Character
 operator|.
-name|isLetter
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-block|{
+name|UPPERCASE_LETTER
+case|:
 return|return
 name|UPPER
 return|;
-block|}
-else|else
-block|{
+case|case
+name|Character
+operator|.
+name|LOWERCASE_LETTER
+case|:
+return|return
+name|LOWER
+return|;
+case|case
+name|Character
+operator|.
+name|TITLECASE_LETTER
+case|:
+case|case
+name|Character
+operator|.
+name|MODIFIER_LETTER
+case|:
+case|case
+name|Character
+operator|.
+name|OTHER_LETTER
+case|:
+case|case
+name|Character
+operator|.
+name|NON_SPACING_MARK
+case|:
+case|case
+name|Character
+operator|.
+name|ENCLOSING_MARK
+case|:
+comment|// depends what it encloses?
+case|case
+name|Character
+operator|.
+name|COMBINING_SPACING_MARK
+case|:
+return|return
+name|ALPHA
+return|;
+case|case
+name|Character
+operator|.
+name|DECIMAL_DIGIT_NUMBER
+case|:
+case|case
+name|Character
+operator|.
+name|LETTER_NUMBER
+case|:
+case|case
+name|Character
+operator|.
+name|OTHER_NUMBER
+case|:
+return|return
+name|DIGIT
+return|;
+comment|// case Character.SPACE_SEPARATOR:
+comment|// case Character.LINE_SEPARATOR:
+comment|// case Character.PARAGRAPH_SEPARATOR:
+comment|// case Character.CONTROL:
+comment|// case Character.FORMAT:
+comment|// case Character.PRIVATE_USE:
+case|case
+name|Character
+operator|.
+name|SURROGATE
+case|:
+comment|// prevent splitting
+return|return
+name|ALPHA
+operator||
+name|DIGIT
+return|;
+comment|// case Character.DASH_PUNCTUATION:
+comment|// case Character.START_PUNCTUATION:
+comment|// case Character.END_PUNCTUATION:
+comment|// case Character.CONNECTOR_PUNCTUATION:
+comment|// case Character.OTHER_PUNCTUATION:
+comment|// case Character.MATH_SYMBOL:
+comment|// case Character.CURRENCY_SYMBOL:
+comment|// case Character.MODIFIER_SYMBOL:
+comment|// case Character.OTHER_SYMBOL:
+comment|// case Character.INITIAL_QUOTE_PUNCTUATION:
+comment|// case Character.FINAL_QUOTE_PUNCTUATION:
+default|default:
 return|return
 name|SUBWORD_DELIM
 return|;
@@ -1178,11 +1253,16 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|type
-operator|!=
+operator|&
 name|lastType
+operator|)
+operator|==
+literal|0
 condition|)
 block|{
+comment|// no overlap in character type
 comment|// check and remove "'s" from the end of a token.
 comment|// the pattern to check for is
 comment|//   ALPHA "'" ("s"|"S") (SUBWORD_DELIM | END)
@@ -1373,13 +1453,13 @@ operator|&&
 operator|(
 name|type
 operator|&
-name|LOWER
+name|ALPHA
 operator|)
 operator|!=
 literal|0
 condition|)
 block|{
-comment|// UPPER->LOWER: Don't split
+comment|// UPPER->letter: Don't split
 block|}
 elseif|else
 if|if
