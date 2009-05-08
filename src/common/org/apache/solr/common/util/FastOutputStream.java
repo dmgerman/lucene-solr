@@ -335,7 +335,9 @@ argument_list|)
 expr_stmt|;
 name|written
 operator|+=
-name|pos
+name|buf
+operator|.
+name|length
 expr_stmt|;
 name|pos
 operator|=
@@ -363,6 +365,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|pos
+operator|>
+literal|0
+condition|)
+block|{
 name|out
 operator|.
 name|write
@@ -383,6 +392,7 @@ name|pos
 operator|=
 literal|0
 expr_stmt|;
+block|}
 comment|// don't buffer, just write to sink
 name|out
 operator|.
