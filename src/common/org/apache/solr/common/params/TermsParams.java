@@ -111,16 +111,16 @@ operator|+
 literal|"lower.incl"
 decl_stmt|;
 comment|/**    * Optional.  The number of results to return.  If not specified, looks for {@link org.apache.solr.common.params.CommonParams#ROWS}.  If that's not specified, uses 10.    */
-DECL|field|TERMS_ROWS
+DECL|field|TERMS_LIMIT
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|TERMS_ROWS
+name|TERMS_LIMIT
 init|=
 name|TERMS_PREFIX
 operator|+
-literal|"rows"
+literal|"limit"
 decl_stmt|;
 DECL|field|TERMS_PREFIX_STR
 specifier|public
@@ -156,6 +156,18 @@ init|=
 name|TERMS_PREFIX
 operator|+
 literal|"maxcount"
+decl_stmt|;
+comment|/**    * Optional.  If true, return the raw characters of the indexed term, regardless of if it is readable.    * For instance, the index form of numeric numbers is not human readable.  The default is false.    */
+DECL|field|TERMS_RAW
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_RAW
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"raw"
 decl_stmt|;
 block|}
 end_interface
