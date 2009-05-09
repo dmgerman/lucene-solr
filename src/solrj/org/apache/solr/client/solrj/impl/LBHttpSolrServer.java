@@ -1129,7 +1129,7 @@ name|interval
 init|=
 name|CHECK_INTERVAL
 decl_stmt|;
-comment|/**    * LBHttpSolrServer keeps pinging the dead servers at fixed interval to find if it is alive. Use this to set that    * interval    *    * @param interval time in seconds    */
+comment|/**    * LBHttpSolrServer keeps pinging the dead servers at fixed interval to find if it is alive. Use this to set that    * interval    *    * @param interval time in milliseconds    */
 DECL|method|setAliveCheckInterval
 specifier|public
 name|void
