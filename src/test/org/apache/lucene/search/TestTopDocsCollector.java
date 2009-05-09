@@ -185,6 +185,8 @@ operator|new
 name|HitQueue
 argument_list|(
 name|size
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -301,9 +303,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+operator|++
+name|totalHits
+expr_stmt|;
 name|pq
 operator|.
-name|insert
+name|insertWithOverflow
 argument_list|(
 operator|new
 name|ScoreDoc

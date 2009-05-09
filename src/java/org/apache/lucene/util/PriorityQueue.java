@@ -57,6 +57,17 @@ name|Object
 name|b
 parameter_list|)
 function_decl|;
+comment|/**    * This method can be overridden by extending classes to return a sentinel    * object which will be used by {@link #initialize(int)} to fill the queue, so    * that the code which uses that queue can always assume it's full and only    * change the top without attempting to insert any new object.<br>    *     * Those sentinel values should always compare worse than any non-sentinel    * value (i.e., {@link #lessThan(Object, Object)} should always favor the    * non-sentinel values).<br>    *     * By default, this method returns false, which means the queue will not be    * filled with sentinel values. Otherwise, the value returned will be used to    * pre-populate the queue. Adds sentinel values to the queue.<br>    *     * If this method is extended to return a non-null value, then the following    * usage pattern is recommended:    *     *<pre>    * // extends getSentinelObject() to return a non-null value.    * PriorityQueue pq = new MyQueue(numHits);    * // save the 'top' element, which is guaranteed to not be null.    * MyObject pqTop = (MyObject) pq.top();    *&lt;...&gt;    * // now in order to add a new element, which is 'better' than top (after     * // you've verified it is better), it is as simple as:    * pqTop.change().    * pqTop = pq.updateTop();    *</pre>    *     *<b>NOTE:</b> if this method returns a non-null value, it will be called by    * {@link #initialize(int)} {@link #size()} times, relying on a new object to    * be returned and will not check if it's null again. Therefore you should    * ensure any call to this method creates a new instance and behaves    * consistently, e.g., it cannot return null if it previously returned    * non-null.    *     * @return the sentinel object to use to pre-populate the queue, or null if    *         sentinel objects are not supported.    */
+DECL|method|getSentinelObject
+specifier|protected
+name|Object
+name|getSentinelObject
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|/** Subclass constructors must call this. */
 DECL|method|initialize
 specifier|protected
@@ -107,8 +118,60 @@ name|maxSize
 operator|=
 name|maxSize
 expr_stmt|;
+comment|// If sentinel objects are supported, populate the queue with them
+name|Object
+name|sentinel
+init|=
+name|getSentinelObject
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|sentinel
+operator|!=
+literal|null
+condition|)
+block|{
+name|heap
+index|[
+literal|1
+index|]
+operator|=
+name|sentinel
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|2
+init|;
+name|i
+operator|<
+name|heap
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|heap
+index|[
+name|i
+index|]
+operator|=
+name|getSentinelObject
+argument_list|()
+expr_stmt|;
 block|}
-comment|/**    * Adds an Object to a PriorityQueue in log(size) time.    * If one tries to add more objects than maxSize from initialize    * a RuntimeException (ArrayIndexOutOfBound) is thrown.    */
+name|size
+operator|=
+name|maxSize
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize a RuntimeException    * (ArrayIndexOutOfBound) is thrown.    *     * @deprecated use {@link #add(Object)} which returns the new top object,    *             saving an additional call to {@link #top()}.    */
 DECL|method|put
 specifier|public
 specifier|final
@@ -133,7 +196,38 @@ name|upHeap
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Adds element to the PriorityQueue in log(size) time if either    * the PriorityQueue is not full, or not lessThan(element, top()).    * @param element    * @return true if element is added, false otherwise.    */
+comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize an    * {@link ArrayIndexOutOfBoundsException} is thrown.    *     * @return the new 'top' element in the queue.    */
+DECL|method|add
+specifier|public
+specifier|final
+name|Object
+name|add
+parameter_list|(
+name|Object
+name|element
+parameter_list|)
+block|{
+name|size
+operator|++
+expr_stmt|;
+name|heap
+index|[
+name|size
+index|]
+operator|=
+name|element
+expr_stmt|;
+name|upHeap
+argument_list|()
+expr_stmt|;
+return|return
+name|heap
+index|[
+literal|1
+index|]
+return|;
+block|}
+comment|/**    * Adds element to the PriorityQueue in log(size) time if either the    * PriorityQueue is not full, or not lessThan(element, top()).    *     * @param element    * @return true if element is added, false otherwise.    * @deprecated use {@link #insertWithOverflow(Object)} instead, which    *             encourages objects reuse.    */
 DECL|method|insert
 specifier|public
 name|boolean
@@ -303,7 +397,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Should be called when the Object at top changes values.  Still log(n)    * worst case, but it's at least twice as fast to<pre>    *  { pq.top().change(); pq.adjustTop(); }    *</pre> instead of<pre>    *  { o = pq.pop(); o.change(); pq.push(o); }    *</pre>    */
+comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *     *<pre>    * pq.top().change();    * pq.adjustTop();    *</pre>    *     * instead of    *     *<pre>    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *     * @deprecated use {@link #updateTop()} which returns the new top element and    *             saves an additional call to {@link #top()}.    */
 DECL|method|adjustTop
 specifier|public
 specifier|final
@@ -314,6 +408,24 @@ block|{
 name|downHeap
 argument_list|()
 expr_stmt|;
+block|}
+comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *     *<pre>    * pq.top().change();    * pq.updateTop();    *</pre>    *     * instead of    *     *<pre>    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *     * @return the new 'top' element.    */
+DECL|method|updateTop
+specifier|public
+specifier|final
+name|Object
+name|updateTop
+parameter_list|()
+block|{
+name|downHeap
+argument_list|()
+expr_stmt|;
+return|return
+name|heap
+index|[
+literal|1
+index|]
+return|;
 block|}
 comment|/** Returns the number of elements currently stored in the PriorityQueue. */
 DECL|method|size
@@ -349,6 +461,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|heap
 index|[
 name|i
@@ -356,6 +469,7 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|size
 operator|=
 literal|0

@@ -190,11 +190,23 @@ name|TopDocs
 name|topDocs
 parameter_list|()
 block|{
+comment|// In case pq was populated with sentinel values, there might be less
+comment|// results than pq.size(). Therefore return all results until either
+comment|// pq.size() or totalHits.
 return|return
 name|topDocs
 argument_list|(
 literal|0
 argument_list|,
+name|totalHits
+operator|<
+name|pq
+operator|.
+name|size
+argument_list|()
+condition|?
+name|totalHits
+else|:
 name|pq
 operator|.
 name|size
@@ -213,11 +225,23 @@ name|int
 name|start
 parameter_list|)
 block|{
+comment|// In case pq was populated with sentinel values, there might be less
+comment|// results than pq.size(). Therefore return all results until either
+comment|// pq.size() or totalHits.
 return|return
 name|topDocs
 argument_list|(
 name|start
 argument_list|,
+name|totalHits
+operator|<
+name|pq
+operator|.
+name|size
+argument_list|()
+condition|?
+name|totalHits
+else|:
 name|pq
 operator|.
 name|size
@@ -228,6 +252,7 @@ block|}
 comment|/**    * Returns the documents in the rage [start .. start+howMany) that were    * collected by this collector. Note that if start>= pq.size(), an empty    * TopDocs is returned, and if pq.size() - start&lt; howMany, then only the    * available documents in [start .. pq.size()) are returned.<br>    * This method is useful to call in case pagination of search results is    * allowed by the search application, as well as it attempts to optimize the    * memory used by allocating only as much as requested by howMany.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different range, you should call {@link #topDocs()} and work with the    * returned {@link TopDocs} object, which will contain all the results this    * search execution collected.    */
 DECL|method|topDocs
 specifier|public
+specifier|final
 name|TopDocs
 name|topDocs
 parameter_list|(
@@ -238,9 +263,21 @@ name|int
 name|howMany
 parameter_list|)
 block|{
+comment|// In case pq was populated with sentinel values, there might be less
+comment|// results than pq.size(). Therefore return all results until either
+comment|// pq.size() or totalHits.
 name|int
-name|pqsize
+name|size
 init|=
+name|totalHits
+operator|<
+name|pq
+operator|.
+name|size
+argument_list|()
+condition|?
+name|totalHits
+else|:
 name|pq
 operator|.
 name|size
@@ -256,7 +293,7 @@ literal|0
 operator|||
 name|start
 operator|>=
-name|pqsize
+name|size
 operator|||
 name|howMany
 operator|<=
@@ -279,7 +316,7 @@ name|Math
 operator|.
 name|min
 argument_list|(
-name|pqsize
+name|size
 operator|-
 name|start
 argument_list|,
@@ -306,7 +343,10 @@ control|(
 name|int
 name|i
 init|=
-name|pqsize
+name|pq
+operator|.
+name|size
+argument_list|()
 operator|-
 name|start
 operator|-

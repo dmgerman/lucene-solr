@@ -687,6 +687,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO (3.0): instantiate either BS or BS2, according to
+comment|// allowDocsOutOfOrder (basically, try to inline BS2.score(Collector)'s
+comment|// logic.
 name|BooleanScorer2
 name|result
 init|=
