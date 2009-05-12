@@ -321,7 +321,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"QueryWrapperFilter("
+literal|"SpanQueryFilter("
 operator|+
 name|query
 operator|+
