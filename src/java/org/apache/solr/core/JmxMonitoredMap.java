@@ -1195,7 +1195,7 @@ operator|&&
 name|attribute
 operator|!=
 literal|null
-operator|&
+operator|&&
 name|attribute
 operator|.
 name|length
