@@ -101,14 +101,14 @@ name|readAheadLimit
 init|=
 name|DEFAULT_READ_AHEAD
 decl_stmt|;
-DECL|field|readAheadLimitMinus1
+DECL|field|safeReadAheadLimit
 specifier|private
 name|int
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 init|=
 name|readAheadLimit
 operator|-
-literal|1
+literal|3
 decl_stmt|;
 DECL|field|numWhitespace
 specifier|private
@@ -345,11 +345,11 @@ name|readAheadLimit
 operator|=
 name|readAheadLimit
 expr_stmt|;
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 operator|=
 name|readAheadLimit
 operator|-
-literal|1
+literal|3
 expr_stmt|;
 block|}
 DECL|method|getReadAheadLimit
@@ -1074,7 +1074,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|;
 name|i
 operator|++
@@ -1202,7 +1202,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 operator|||
 name|peek
 argument_list|()
@@ -1237,7 +1237,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|ch
@@ -1352,7 +1352,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 operator|-
 literal|3
 condition|)
@@ -1549,7 +1549,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|ch
@@ -1661,7 +1661,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|ch
@@ -1754,7 +1754,7 @@ operator|-
 name|lastMark
 operator|)
 operator|>=
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 return|return
@@ -1836,7 +1836,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|int
@@ -2024,7 +2024,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|int
@@ -2266,7 +2266,7 @@ name|numRead
 operator|-
 name|lastMark
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 operator|)
 condition|)
 block|{
@@ -2306,9 +2306,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
-operator|-
-literal|1
+name|safeReadAheadLimit
 operator|)
 condition|)
 block|{
@@ -2373,7 +2371,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|ch
@@ -2429,7 +2427,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|ch
@@ -2636,7 +2634,7 @@ operator|-
 name|lastMark
 operator|)
 operator|<
-name|readAheadLimitMinus1
+name|safeReadAheadLimit
 condition|)
 block|{
 name|int
