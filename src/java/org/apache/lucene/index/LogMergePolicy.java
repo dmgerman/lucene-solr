@@ -63,7 +63,7 @@ name|LogMergePolicy
 extends|extends
 name|MergePolicy
 block|{
-comment|/** Defines the allowed range of log(size) for each    *  level.  A level is computed by taking the max segment    *  log size, minuse LEVEL_LOG_SPAN, and finding all    *  segments falling within that range. */
+comment|/** Defines the allowed range of log(size) for each    *  level.  A level is computed by taking the max segment    *  log size, minus LEVEL_LOG_SPAN, and finding all    *  segments falling within that range. */
 DECL|field|LEVEL_LOG_SPAN
 specifier|public
 specifier|static
