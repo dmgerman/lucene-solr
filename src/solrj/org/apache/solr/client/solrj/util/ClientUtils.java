@@ -721,7 +721,7 @@ name|DateUtil
 operator|.
 name|UTC
 decl_stmt|;
-comment|/**    * See: http://lucene.apache.org/java/docs/queryparsersyntax.html#Escaping Special Characters    */
+comment|/**    * See: http://lucene.apache.org/java/docs/queryparsersyntax.html#Escaping%20Special%20Characters    */
 DECL|method|escapeQueryChars
 specifier|public
 specifier|static
