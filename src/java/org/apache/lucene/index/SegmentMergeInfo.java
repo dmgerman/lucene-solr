@@ -40,6 +40,11 @@ DECL|field|base
 name|int
 name|base
 decl_stmt|;
+DECL|field|ord
+name|int
+name|ord
+decl_stmt|;
+comment|// the position of the segment in a MultiReader
 DECL|field|termEnum
 name|TermEnum
 name|termEnum
