@@ -11632,6 +11632,11 @@ operator|.
 name|info
 argument_list|)
 expr_stmt|;
+comment|// Must note the change to segmentInfos so any commits
+comment|// in-flight don't lose it:
+name|changeCount
+operator|++
+expr_stmt|;
 comment|// If the merged segments had pending changes, clear
 comment|// them so that they don't bother writing them to
 comment|// disk, updating SegmentInfo, etc.:
@@ -13759,9 +13764,21 @@ block|}
 comment|// Must checkpoint before decrefing so any newly
 comment|// referenced files in the new merge.info are incref'd
 comment|// first:
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|deleter
+operator|.
 name|checkpoint
-argument_list|()
+argument_list|(
+name|segmentInfos
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
+block|}
 name|decrefMergeSegments
 argument_list|(
 name|merge
