@@ -158,6 +158,17 @@ name|HIGHLIGHT
 operator|+
 literal|".usePhraseHighlighter"
 decl_stmt|;
+DECL|field|HIGHLIGHT_MULTI_TERM
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|HIGHLIGHT_MULTI_TERM
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".highlightMultiTerm"
+decl_stmt|;
 DECL|field|MERGE_CONTIGUOUS_FRAGMENTS
 specifier|public
 specifier|static
