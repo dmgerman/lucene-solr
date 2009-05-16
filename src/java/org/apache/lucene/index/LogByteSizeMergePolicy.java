@@ -110,10 +110,10 @@ throws|throws
 name|IOException
 block|{
 return|return
+name|sizeBytes
+argument_list|(
 name|info
-operator|.
-name|sizeInBytes
-argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/**<p>Determines the largest segment (measured by total    *  byte size of the segment's files, in MB) that may be    *  merged with other segments.  Small values (e.g., less    *  than 50 MB) are best for interactive indexing, as this    *  limits the length of pauses while indexing to a few    *  seconds.  Larger values are best for batched indexing    *  and speedier searches.</p>    *    *<p>Note that {@link #setMaxMergeDocs} is also    *  used to check whether a segment is too large for    *  merging (it's either or).</p>*/
