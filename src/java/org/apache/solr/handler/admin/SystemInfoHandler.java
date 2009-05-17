@@ -224,35 +224,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|Config
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
 name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrResourceLoader
 import|;
 end_import
 
@@ -267,20 +239,6 @@ operator|.
 name|handler
 operator|.
 name|RequestHandlerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|RequestHandlerUtils
 import|;
 end_import
 
@@ -326,6 +284,26 @@ name|IndexSchema
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * This handler returns system info  *   * NOTE: the response format is still likely to change.  It should be designed so  * that it works nicely with an XSLT transformation.  Until we have a nice  * XSLT front end for /admin, the format is still open to change.  *   * @version $Id$  * @since solr 1.2  */
 end_comment
@@ -338,6 +316,21 @@ name|SystemInfoHandler
 extends|extends
 name|RequestHandlerBase
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|SystemInfoHandler
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|handleRequestBody
@@ -960,11 +953,7 @@ name|Exception
 name|ex
 parameter_list|)
 block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|// ignore - log.warn("Error executing command", ex);
 return|return
 literal|"(error executing: "
 operator|+
@@ -1295,10 +1284,14 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
+name|log
 operator|.
-name|printStackTrace
-argument_list|()
+name|warn
+argument_list|(
+literal|"Error getting JMX properties"
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 name|jvm
