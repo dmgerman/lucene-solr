@@ -192,6 +192,7 @@ name|openFiles
 decl_stmt|;
 DECL|method|init
 specifier|private
+specifier|synchronized
 name|void
 name|init
 parameter_list|()
@@ -363,16 +364,12 @@ block|}
 comment|/** Simulates a crash of OS or machine by overwriting    *  unsycned files. */
 DECL|method|crash
 specifier|public
+specifier|synchronized
 name|void
 name|crash
 parameter_list|()
 throws|throws
 name|IOException
-block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
 block|{
 name|crashed
 operator|=
@@ -384,7 +381,6 @@ operator|new
 name|HashMap
 argument_list|()
 expr_stmt|;
-block|}
 name|Iterator
 name|it
 init|=
@@ -797,11 +793,6 @@ operator|!
 name|forced
 condition|)
 block|{
-synchronized|synchronized
-init|(
-name|openFiles
-init|)
-block|{
 if|if
 condition|(
 name|noDeleteOpenFile
@@ -827,7 +818,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-block|}
 name|super
 operator|.
 name|deleteFile
@@ -838,6 +828,7 @@ expr_stmt|;
 block|}
 DECL|method|createOutput
 specifier|public
+specifier|synchronized
 name|IndexOutput
 name|createOutput
 parameter_list|(
@@ -861,11 +852,6 @@ throw|;
 name|init
 argument_list|()
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|openFiles
-init|)
-block|{
 if|if
 condition|(
 name|preventDoubleWrite
@@ -918,7 +904,6 @@ operator|+
 literal|"\" is still open: cannot overwrite"
 argument_list|)
 throw|;
-block|}
 name|RAMFile
 name|file
 init|=
@@ -928,11 +913,6 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 if|if
 condition|(
 name|crashed
@@ -1029,7 +1009,6 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 return|return
 operator|new
 name|MockRAMOutputStream
@@ -1044,6 +1023,7 @@ return|;
 block|}
 DECL|method|openInput
 specifier|public
+specifier|synchronized
 name|IndexInput
 name|openInput
 parameter_list|(
@@ -1055,14 +1035,7 @@ name|IOException
 block|{
 name|RAMFile
 name|file
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|file
-operator|=
+init|=
 operator|(
 name|RAMFile
 operator|)
@@ -1072,8 +1045,7 @@ name|get
 argument_list|(
 name|name
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 if|if
 condition|(
 name|file
@@ -1088,11 +1060,6 @@ name|name
 argument_list|)
 throw|;
 else|else
-block|{
-synchronized|synchronized
-init|(
-name|openFiles
-init|)
 block|{
 if|if
 condition|(
@@ -1155,7 +1122,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 return|return
@@ -1273,6 +1239,7 @@ return|;
 block|}
 DECL|method|close
 specifier|public
+specifier|synchronized
 name|void
 name|close
 parameter_list|()
@@ -1291,11 +1258,6 @@ name|HashMap
 argument_list|()
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|openFiles
-init|)
-block|{
 if|if
 condition|(
 name|noDeleteOpenFile
@@ -1319,7 +1281,6 @@ operator|+
 name|openFiles
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 comment|/**    * Objects that represent fail-able conditions. Objects of a derived    * class are created and registered with the mock directory. After    * register, each object will be invoked once for each first write    * of a file, giving the object a chance to throw an IOException.    */
