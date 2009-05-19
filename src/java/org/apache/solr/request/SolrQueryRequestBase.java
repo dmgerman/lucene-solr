@@ -701,6 +701,16 @@ name|SolrIndexSearcher
 name|getSearcher
 parameter_list|()
 block|{
+if|if
+condition|(
+name|core
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+comment|//a request for a core admin will no have a core
 comment|// should this reach out and get a searcher from the core singleton, or
 comment|// should the core populate one in a factory method to create requests?
 comment|// or there could be a setSearcher() method that Solr calls
@@ -744,7 +754,14 @@ name|IndexSchema
 name|getSchema
 parameter_list|()
 block|{
+comment|//a request for a core admin will no have a core
 return|return
+name|core
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|core
 operator|.
 name|getSchema
