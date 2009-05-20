@@ -68,8 +68,26 @@ name|ToStringUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|QueryParser
+import|;
+end_import
+
 begin_comment
-comment|/**  * A {@link Query} that matches documents containing a subset of terms provided  * by a {@link FilteredTermEnum} enumeration.  *<P>  *<code>MultiTermQuery</code> is not designed to be used by itself.<BR>  * The reason being that it is not intialized with a {@link FilteredTermEnum}  * enumeration. A {@link FilteredTermEnum} enumeration needs to be provided.  *<P>  * For example, {@link WildcardQuery} and {@link FuzzyQuery} extend  *<code>MultiTermQuery</code> to provide {@link WildcardTermEnum} and  * {@link FuzzyTermEnum}, respectively.  *   * The pattern Term may be null. A query that uses a null pattern Term should  * override equals and hashcode.  */
+comment|// for javadoc
+end_comment
+
+begin_comment
+comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getEnum} to provide a {@link  * FilteredTermEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setConstantScoreRewrite} is  * false, you may encounter a {@link  * BooleanQuery.TooManyClauses} exception during searching,  * which happens when the number of terms to be searched  * exceeds {@link BooleanQuery#getMaxClauseCount()}.  * Setting {@link #setConstantScoreRewrite} to false  * prevents this.  *  * Note that {@link QueryParser} by default produces  * MultiTermQueries with {@link #setConstantScoreRewrite}  * true.  */
 end_comment
 
 begin_class
@@ -423,6 +441,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * @see #setConstantScoreRewrite    */
 DECL|method|getConstantScoreRewrite
 specifier|public
 name|boolean
@@ -433,6 +452,7 @@ return|return
 name|constantScoreRewrite
 return|;
 block|}
+comment|/**    * This method determines what method is used during searching:    *<ul>    *    *<li> When constantScoreRewrite is<code>false</code>    *   (the default), the query is rewritten to {@link    *   BooleanQuery} with one clause for each term in the    *   range.  If the the number of terms in the range    *   exceeds {@link BooleanQuery#getMaxClauseCount()}, a    *   {@link BooleanQuery.TooManyClauses} exception will be    *   thrown during searching.  This mode may also give    *   worse performance when the number of terms is large,    *   and/or the number of matching documents is large.    *    *<li> When constantScoreRewrite is<code>true</code>,    *   the query is first rewritten to a filter.  Matching    *   documents will identical scores, equal to this    *   query's boost.    *</ul>    */
 DECL|method|setConstantScoreRewrite
 specifier|public
 name|void
