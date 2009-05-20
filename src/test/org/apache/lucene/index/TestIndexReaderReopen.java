@@ -6286,7 +6286,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// Get delete bitVector
+comment|// Create an index with a bunch of docs (1 segment)
 name|modifyIndex
 argument_list|(
 literal|0
@@ -6294,6 +6294,15 @@ argument_list|,
 name|dir
 argument_list|)
 expr_stmt|;
+comment|// Get delete bitVector on 1st segment
+name|modifyIndex
+argument_list|(
+literal|5
+argument_list|,
+name|dir
+argument_list|)
+expr_stmt|;
+comment|// Add a doc (2 segments)
 name|IndexReader
 name|r1
 init|=
@@ -6304,7 +6313,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-comment|// Add doc:
+comment|// MSR
 name|modifyIndex
 argument_list|(
 literal|5
@@ -6312,6 +6321,7 @@ argument_list|,
 name|dir
 argument_list|)
 expr_stmt|;
+comment|// Add another doc (3 segments)
 name|IndexReader
 name|r2
 init|=
@@ -6320,6 +6330,7 @@ operator|.
 name|reopen
 argument_list|()
 decl_stmt|;
+comment|// MSR
 name|assertTrue
 argument_list|(
 name|r1
@@ -6327,15 +6338,6 @@ operator|!=
 name|r2
 argument_list|)
 expr_stmt|;
-name|IndexReader
-index|[]
-name|rs2
-init|=
-name|r2
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-decl_stmt|;
 name|SegmentReader
 name|sr1
 init|=
@@ -6343,18 +6345,29 @@ operator|(
 name|SegmentReader
 operator|)
 name|r1
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+index|[
+literal|0
+index|]
 decl_stmt|;
+comment|// Get SRs for the first segment from original
 name|SegmentReader
 name|sr2
 init|=
 operator|(
 name|SegmentReader
 operator|)
-name|rs2
+name|r2
+operator|.
+name|getSequentialSubReaders
+argument_list|()
 index|[
 literal|0
 index|]
 decl_stmt|;
+comment|// and reopened IRs
 comment|// At this point they share the same BitVector
 name|assertTrue
 argument_list|(

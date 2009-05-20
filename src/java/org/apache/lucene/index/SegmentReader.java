@@ -3094,6 +3094,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// if we're cloning we need to run through the reopenSegment logic
+comment|// also if both old and new readers aren't readonly, we clone to avoid sharing modifications
 if|if
 condition|(
 name|normsUpToDate
@@ -3104,7 +3105,7 @@ operator|!
 name|doClone
 operator|&&
 name|openReadOnly
-operator|==
+operator|&&
 name|readOnly
 condition|)
 block|{
