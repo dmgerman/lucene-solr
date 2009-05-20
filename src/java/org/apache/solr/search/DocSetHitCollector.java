@@ -108,16 +108,6 @@ name|DocSetHitCollector
 extends|extends
 name|HitCollector
 block|{
-DECL|field|HASHSET_INVERSE_LOAD_FACTOR
-specifier|final
-name|float
-name|HASHSET_INVERSE_LOAD_FACTOR
-decl_stmt|;
-DECL|field|HASHDOCSET_MAXSIZE
-specifier|final
-name|int
-name|HASHDOCSET_MAXSIZE
-decl_stmt|;
 DECL|field|pos
 name|int
 name|pos
@@ -133,6 +123,11 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
+DECL|field|smallSetSize
+specifier|final
+name|int
+name|smallSetSize
+decl_stmt|;
 comment|// in case there aren't that many hits, we may not want a very sparse
 comment|// bit array.  Optimistically collect the first few docs in an array
 comment|// in case there are only a few.
@@ -142,15 +137,11 @@ name|int
 index|[]
 name|scratch
 decl_stmt|;
-comment|// todo - could pass in bitset and an operation also...
 DECL|method|DocSetHitCollector
 name|DocSetHitCollector
 parameter_list|(
-name|float
-name|inverseLoadFactor
-parameter_list|,
 name|int
-name|maxSize
+name|smallSetSize
 parameter_list|,
 name|int
 name|maxDoc
@@ -158,24 +149,24 @@ parameter_list|)
 block|{
 name|this
 operator|.
+name|smallSetSize
+operator|=
+name|smallSetSize
+expr_stmt|;
+name|this
+operator|.
 name|maxDoc
 operator|=
 name|maxDoc
 expr_stmt|;
-name|HASHSET_INVERSE_LOAD_FACTOR
-operator|=
-name|inverseLoadFactor
-expr_stmt|;
-name|HASHDOCSET_MAXSIZE
-operator|=
-name|maxSize
-expr_stmt|;
+name|this
+operator|.
 name|scratch
 operator|=
 operator|new
 name|int
 index|[
-name|HASHDOCSET_MAXSIZE
+name|smallSetSize
 index|]
 expr_stmt|;
 block|}
@@ -193,7 +184,7 @@ parameter_list|)
 block|{
 comment|// optimistically collect the first docs in an array
 comment|// in case the total number will be small enough to represent
-comment|// as a HashDocSet() instead...
+comment|// as a small set like SortedIntDocSet instead...
 comment|// Storing in this array will be quicker to convert
 comment|// than scanning through a potentially huge bit vector.
 comment|// FUTURE: when search methods all start returning docs in order, maybe
@@ -260,17 +251,14 @@ operator|.
 name|length
 condition|)
 block|{
+comment|// assumes docs were collected in sorted order!
 return|return
 operator|new
-name|HashDocSet
+name|SortedIntDocSet
 argument_list|(
 name|scratch
 argument_list|,
-literal|0
-argument_list|,
 name|pos
-argument_list|,
-name|HASHSET_INVERSE_LOAD_FACTOR
 argument_list|)
 return|;
 block|}
@@ -324,16 +312,6 @@ name|DocSetCollector
 extends|extends
 name|Collector
 block|{
-DECL|field|HASHSET_INVERSE_LOAD_FACTOR
-specifier|final
-name|float
-name|HASHSET_INVERSE_LOAD_FACTOR
-decl_stmt|;
-DECL|field|HASHDOCSET_MAXSIZE
-specifier|final
-name|int
-name|HASHDOCSET_MAXSIZE
-decl_stmt|;
 DECL|field|pos
 name|int
 name|pos
@@ -349,11 +327,14 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
+DECL|field|smallSetSize
+specifier|final
+name|int
+name|smallSetSize
+decl_stmt|;
 DECL|field|base
 name|int
 name|base
-init|=
-literal|0
 decl_stmt|;
 comment|// in case there aren't that many hits, we may not want a very sparse
 comment|// bit array.  Optimistically collect the first few docs in an array
@@ -364,15 +345,11 @@ name|int
 index|[]
 name|scratch
 decl_stmt|;
-comment|// todo - could pass in bitset and an operation also...
 DECL|method|DocSetCollector
 name|DocSetCollector
 parameter_list|(
-name|float
-name|inverseLoadFactor
-parameter_list|,
 name|int
-name|maxSize
+name|smallSetSize
 parameter_list|,
 name|int
 name|maxDoc
@@ -380,24 +357,24 @@ parameter_list|)
 block|{
 name|this
 operator|.
+name|smallSetSize
+operator|=
+name|smallSetSize
+expr_stmt|;
+name|this
+operator|.
 name|maxDoc
 operator|=
 name|maxDoc
 expr_stmt|;
-name|HASHSET_INVERSE_LOAD_FACTOR
-operator|=
-name|inverseLoadFactor
-expr_stmt|;
-name|HASHDOCSET_MAXSIZE
-operator|=
-name|maxSize
-expr_stmt|;
+name|this
+operator|.
 name|scratch
 operator|=
 operator|new
 name|int
 index|[
-name|HASHDOCSET_MAXSIZE
+name|smallSetSize
 index|]
 expr_stmt|;
 block|}
@@ -416,7 +393,7 @@ name|base
 expr_stmt|;
 comment|// optimistically collect the first docs in an array
 comment|// in case the total number will be small enough to represent
-comment|// as a HashDocSet() instead...
+comment|// as a small set like SortedIntDocSet instead...
 comment|// Storing in this array will be quicker to convert
 comment|// than scanning through a potentially huge bit vector.
 comment|// FUTURE: when search methods all start returning docs in order, maybe
@@ -483,17 +460,14 @@ operator|.
 name|length
 condition|)
 block|{
+comment|// assumes docs were collected in sorted order!
 return|return
 operator|new
-name|HashDocSet
+name|SortedIntDocSet
 argument_list|(
 name|scratch
 argument_list|,
-literal|0
-argument_list|,
 name|pos
-argument_list|,
-name|HASHSET_INVERSE_LOAD_FACTOR
 argument_list|)
 return|;
 block|}

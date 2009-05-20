@@ -415,14 +415,16 @@ name|DocSet
 name|other
 parameter_list|)
 block|{
-comment|// intersection is overloaded in HashDocSet to be more
-comment|// efficient, so if "other" is a HashDocSet, dispatch off
-comment|// of it instead.
+comment|// intersection is overloaded in the smaller DocSets to be more
+comment|// efficient, so dispatch off of it instead.
 if|if
 condition|(
+operator|!
+operator|(
 name|other
 operator|instanceof
-name|HashDocSet
+name|BitDocSet
+operator|)
 condition|)
 block|{
 return|return
@@ -521,14 +523,16 @@ name|DocSet
 name|other
 parameter_list|)
 block|{
-comment|// intersectionSize is overloaded in HashDocSet to be more
-comment|// efficient, so if "other" is a HashDocSet, dispatch off
-comment|// of it instead.
+comment|// intersection is overloaded in the smaller DocSets to be more
+comment|// efficient, so dispatch off of it instead.
 if|if
 condition|(
+operator|!
+operator|(
 name|other
 operator|instanceof
-name|HashDocSet
+name|BitDocSet
+operator|)
 condition|)
 block|{
 return|return
