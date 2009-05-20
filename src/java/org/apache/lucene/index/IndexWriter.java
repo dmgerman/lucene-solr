@@ -4715,6 +4715,10 @@ argument_list|(
 name|waitForMerges
 argument_list|)
 expr_stmt|;
+name|stopMerges
+operator|=
+literal|true
+expr_stmt|;
 name|mergeScheduler
 operator|.
 name|close
