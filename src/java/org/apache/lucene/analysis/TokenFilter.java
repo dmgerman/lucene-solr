@@ -42,6 +42,7 @@ block|{
 comment|/** The source of tokens for this filter. */
 DECL|field|input
 specifier|protected
+specifier|final
 name|TokenStream
 name|input
 decl_stmt|;
