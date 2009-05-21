@@ -247,24 +247,7 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"<form action='"
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|write
-argument_list|(
-name|request
-operator|.
-name|getRequestURI
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|write
-argument_list|(
-literal|"' method='POST'>\n"
+literal|"<form method='POST'>\n"
 argument_list|)
 expr_stmt|;
 name|out
