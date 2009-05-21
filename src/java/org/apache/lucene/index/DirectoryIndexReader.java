@@ -1436,9 +1436,9 @@ name|Directory
 name|directory
 parameter_list|()
 block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
+comment|// Don't ensureOpen here -- in certain cases, when a
+comment|// cloned/reopened reader needs to commit, it may call
+comment|// this method on the closed original reader
 return|return
 name|directory
 return|;
