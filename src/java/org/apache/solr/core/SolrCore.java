@@ -1709,10 +1709,11 @@ name|getIndexDir
 argument_list|()
 argument_list|)
 argument_list|,
+name|readOnly
+argument_list|,
 literal|false
 argument_list|)
 return|;
-comment|//return new SolrIndexSearcher(this, schema, "main", IndexReader.open(FSDirectory.getDirectory(getIndexDir()), readOnly), true, false);
 block|}
 DECL|method|initDirectoryFactory
 specifier|private
