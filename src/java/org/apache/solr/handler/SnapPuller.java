@@ -4335,6 +4335,7 @@ return|;
 block|}
 DECL|class|ReplicationHandlerException
 specifier|private
+specifier|static
 class|class
 name|ReplicationHandlerException
 extends|extends

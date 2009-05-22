@@ -1303,6 +1303,7 @@ return|;
 block|}
 DECL|class|TVMapper
 specifier|private
+specifier|static
 class|class
 name|TVMapper
 extends|extends

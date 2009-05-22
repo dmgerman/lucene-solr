@@ -2118,6 +2118,7 @@ comment|/* ********************** Document retrieval *************************/
 comment|/* Future optimizations (yonik)    *    * If no cache is present:    *   - use NO_LOAD instead of LAZY_LOAD    *   - use LOAD_AND_BREAK if a single field is begin retrieved    */
 comment|/**    * FieldSelector which loads the specified fields, and load all other    * field lazily.    */
 DECL|class|SetNonLazyFieldSelector
+specifier|static
 class|class
 name|SetNonLazyFieldSelector
 implements|implements
