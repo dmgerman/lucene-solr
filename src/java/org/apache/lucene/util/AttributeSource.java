@@ -144,6 +144,21 @@ name|AttributeSource
 name|input
 parameter_list|)
 block|{
+if|if
+condition|(
+name|input
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"input AttributeSource must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|attributes
