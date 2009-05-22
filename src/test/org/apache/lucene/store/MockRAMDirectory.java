@@ -965,6 +965,8 @@ name|equals
 argument_list|(
 literal|"segments.gen"
 argument_list|)
+operator|&&
+name|preventDoubleWrite
 condition|)
 throw|throw
 operator|new
