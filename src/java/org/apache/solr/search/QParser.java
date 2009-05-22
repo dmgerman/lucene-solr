@@ -146,6 +146,10 @@ name|*
 import|;
 end_import
 
+begin_comment
+comment|/**  *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>  *   * @version $Id$  */
+end_comment
+
 begin_class
 DECL|class|QParser
 specifier|public
@@ -154,26 +158,32 @@ class|class
 name|QParser
 block|{
 DECL|field|qstr
+specifier|protected
 name|String
 name|qstr
 decl_stmt|;
 DECL|field|params
+specifier|protected
 name|SolrParams
 name|params
 decl_stmt|;
 DECL|field|localParams
+specifier|protected
 name|SolrParams
 name|localParams
 decl_stmt|;
 DECL|field|req
+specifier|protected
 name|SolrQueryRequest
 name|req
 decl_stmt|;
 DECL|field|recurseCount
+specifier|protected
 name|int
 name|recurseCount
 decl_stmt|;
 DECL|field|query
+specifier|protected
 name|Query
 name|query
 decl_stmt|;

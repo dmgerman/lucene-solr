@@ -2574,8 +2574,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// simple class to help with parsing a string
+comment|/**    * Simple class to help with parsing a string    *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>    */
 DECL|class|StrParser
+specifier|public
 specifier|static
 class|class
 name|StrParser
@@ -2593,6 +2594,7 @@ name|int
 name|end
 decl_stmt|;
 DECL|method|StrParser
+specifier|public
 name|StrParser
 parameter_list|(
 name|String
@@ -2613,6 +2615,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|StrParser
+specifier|public
 name|StrParser
 parameter_list|(
 name|String
