@@ -38,20 +38,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
-operator|.
-name|QueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|BooleanClause
@@ -493,17 +479,6 @@ operator|.
 name|QS
 argument_list|,
 literal|0
-argument_list|)
-decl_stmt|;
-comment|/* a generic parser for parsing regular lucene queries */
-name|QueryParser
-name|p
-init|=
-name|schema
-operator|.
-name|getSolrQueryParser
-argument_list|(
-literal|null
 argument_list|)
 decl_stmt|;
 comment|/* a parser for dealing with user input, which will convert      * things to DisjunctionMaxQueries      */
