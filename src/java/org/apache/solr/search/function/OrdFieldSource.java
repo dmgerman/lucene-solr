@@ -306,6 +306,13 @@ name|field
 operator|.
 name|equals
 argument_list|(
+operator|(
+operator|(
+name|OrdFieldSource
+operator|)
+name|o
+operator|)
+operator|.
 name|field
 argument_list|)
 return|;
