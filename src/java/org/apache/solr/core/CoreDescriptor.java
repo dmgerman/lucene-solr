@@ -45,8 +45,6 @@ DECL|class|CoreDescriptor
 specifier|public
 class|class
 name|CoreDescriptor
-implements|implements
-name|Cloneable
 block|{
 DECL|field|name
 specifier|protected
