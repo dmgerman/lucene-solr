@@ -4393,6 +4393,8 @@ operator|!=
 literal|0
 condition|)
 block|{
+comment|// this currently conflates returning the docset for the base query vs
+comment|// the base query and all filters.
 name|DocSet
 name|qDocSet
 init|=
@@ -4406,6 +4408,10 @@ decl_stmt|;
 comment|// cache the docSet matching the query w/o filtering
 if|if
 condition|(
+name|qDocSet
+operator|!=
+literal|null
+operator|&&
 name|filterCache
 operator|!=
 literal|null
@@ -4612,6 +4618,21 @@ name|getQuery
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
+name|Filter
+name|luceneFilter
+init|=
+name|filter
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|filter
+operator|.
+name|getTopFilter
+argument_list|()
+decl_stmt|;
 comment|// handle zero case...
 if|if
 condition|(
@@ -4620,12 +4641,6 @@ operator|<=
 literal|0
 condition|)
 block|{
-specifier|final
-name|DocSet
-name|filt
-init|=
-name|filter
-decl_stmt|;
 specifier|final
 name|float
 index|[]
@@ -4669,21 +4684,6 @@ name|float
 name|score
 parameter_list|)
 block|{
-if|if
-condition|(
-name|filt
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|filt
-operator|.
-name|exists
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-return|return;
 name|numHits
 index|[
 literal|0
@@ -4734,6 +4734,8 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+name|luceneFilter
 argument_list|,
 name|hc
 argument_list|)
@@ -4827,12 +4829,6 @@ comment|// can't use TopDocs if there is a sort since it
 comment|// will do automatic score normalization.
 comment|// NOTE: this changed late in Lucene 1.9
 specifier|final
-name|DocSet
-name|filt
-init|=
-name|filter
-decl_stmt|;
-specifier|final
 name|int
 index|[]
 name|numHits
@@ -4885,21 +4881,6 @@ name|float
 name|score
 parameter_list|)
 block|{
-if|if
-condition|(
-name|filt
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|filt
-operator|.
-name|exists
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-return|return;
 name|numHits
 index|[
 literal|0
@@ -4977,6 +4958,8 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+name|luceneFilter
 argument_list|,
 name|hc
 argument_list|)
@@ -5132,12 +5115,6 @@ comment|// No Sort specified (sort by score descending)
 comment|// This case could be done with TopDocs, but would currently require
 comment|// getting a BitSet filter from a DocSet which may be inefficient.
 specifier|final
-name|DocSet
-name|filt
-init|=
-name|filter
-decl_stmt|;
-specifier|final
 name|ScorePriorityQueue
 name|hq
 init|=
@@ -5180,21 +5157,6 @@ name|float
 name|score
 parameter_list|)
 block|{
-if|if
-condition|(
-name|filt
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|filt
-operator|.
-name|exists
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-return|return;
 comment|// TODO: if docs are always delivered in order, we could use "score>minScore"
 comment|// instead of "score>=minScore" and avoid tiebreaking scores
 comment|// in the priority queue.
@@ -5300,6 +5262,8 @@ operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+name|luceneFilter
 argument_list|,
 name|hc
 argument_list|)
@@ -5511,6 +5475,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|///////////////////// NEW
 name|int
 name|len
 init|=
@@ -5588,7 +5553,7 @@ name|scores
 decl_stmt|;
 specifier|final
 name|DocSetHitCollector
-name|setHC
+name|collector
 init|=
 operator|new
 name|DocSetHitCollector
@@ -5601,32 +5566,6 @@ argument_list|,
 name|maxDoc
 argument_list|()
 argument_list|)
-decl_stmt|;
-specifier|final
-name|HitCollector
-name|collector
-init|=
-operator|(
-name|cmd
-operator|.
-name|getTimeAllowed
-argument_list|()
-operator|>
-literal|0
-operator|)
-condition|?
-operator|new
-name|TimeLimitedCollector
-argument_list|(
-name|setHC
-argument_list|,
-name|cmd
-operator|.
-name|getTimeAllowed
-argument_list|()
-argument_list|)
-else|:
-name|setHC
 decl_stmt|;
 name|Query
 name|query
@@ -5641,15 +5580,30 @@ name|getQuery
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// TODO: perhaps unify getDocListAndSetNC and getDocListNC without imposing a significant performance hit
-comment|// Comment: gathering the set before the filter is applied allows one to cache
-comment|// the resulting DocSet under the query.  The drawback is that it requires an
-comment|// extra intersection with the filter at the end.  This will be a net win
-comment|// for expensive queries.
-comment|// Q: what if the final intersection results in a small set from two large
-comment|// sets... it won't be a HashDocSet or other small set.  One way around
-comment|// this would be to collect the resulting set as we go (the filter is
-comment|// checked anyway).
+specifier|final
+name|long
+name|timeAllowed
+init|=
+name|cmd
+operator|.
+name|getTimeAllowed
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Filter
+name|luceneFilter
+init|=
+name|filter
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|filter
+operator|.
+name|getTopFilter
+argument_list|()
+decl_stmt|;
 comment|// handle zero case...
 if|if
 condition|(
@@ -5689,14 +5643,9 @@ index|[
 literal|1
 index|]
 decl_stmt|;
-try|try
-block|{
-name|super
-operator|.
-name|search
-argument_list|(
-name|query
-argument_list|,
+name|HitCollector
+name|hc
+init|=
 operator|new
 name|HitCollector
 argument_list|()
@@ -5721,21 +5670,6 @@ argument_list|,
 name|score
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|filt
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|filt
-operator|.
-name|exists
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-return|return;
 name|numHits
 index|[
 literal|0
@@ -5760,6 +5694,36 @@ name|score
 expr_stmt|;
 block|}
 block|}
+decl_stmt|;
+if|if
+condition|(
+name|timeAllowed
+operator|>
+literal|0
+condition|)
+block|{
+name|hc
+operator|=
+operator|new
+name|TimeLimitedCollector
+argument_list|(
+name|hc
+argument_list|,
+name|timeAllowed
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|super
+operator|.
+name|search
+argument_list|(
+name|query
+argument_list|,
+name|luceneFilter
+argument_list|,
+name|hc
 argument_list|)
 expr_stmt|;
 block|}
@@ -5851,12 +5815,6 @@ comment|// can't use TopDocs if there is a sort since it
 comment|// will do automatic score normalization.
 comment|// NOTE: this changed late in Lucene 1.9
 specifier|final
-name|DocSet
-name|filt
-init|=
-name|filter
-decl_stmt|;
-specifier|final
 name|int
 index|[]
 name|numHits
@@ -5887,14 +5845,9 @@ argument_list|,
 name|len
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|super
-operator|.
-name|search
-argument_list|(
-name|query
-argument_list|,
+name|HitCollector
+name|hc
+init|=
 operator|new
 name|HitCollector
 argument_list|()
@@ -5923,21 +5876,6 @@ argument_list|,
 name|score
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|filt
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|filt
-operator|.
-name|exists
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-return|return;
 name|numHits
 index|[
 literal|0
@@ -5989,6 +5927,36 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+decl_stmt|;
+if|if
+condition|(
+name|timeAllowed
+operator|>
+literal|0
+condition|)
+block|{
+name|hc
+operator|=
+operator|new
+name|TimeLimitedCollector
+argument_list|(
+name|hc
+argument_list|,
+name|timeAllowed
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|super
+operator|.
+name|search
+argument_list|(
+name|query
+argument_list|,
+name|luceneFilter
+argument_list|,
+name|hc
 argument_list|)
 expr_stmt|;
 block|}
@@ -6142,12 +6110,6 @@ comment|// No Sort specified (sort by score descending)
 comment|// This case could be done with TopDocs, but would currently require
 comment|// getting a BitSet filter from a DocSet which may be inefficient.
 specifier|final
-name|DocSet
-name|filt
-init|=
-name|filter
-decl_stmt|;
-specifier|final
 name|ScorePriorityQueue
 name|hq
 init|=
@@ -6168,14 +6130,9 @@ index|[
 literal|1
 index|]
 decl_stmt|;
-try|try
-block|{
-name|super
-operator|.
-name|search
-argument_list|(
-name|query
-argument_list|,
+name|HitCollector
+name|hc
+init|=
 operator|new
 name|HitCollector
 argument_list|()
@@ -6204,21 +6161,6 @@ argument_list|,
 name|score
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|filt
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|filt
-operator|.
-name|exists
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-return|return;
 comment|// if docs are always delivered in order, we could use "score>minScore"
 comment|// but might BooleanScorer14 might still be used and deliver docs out-of-order?
 name|int
@@ -6296,6 +6238,36 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+decl_stmt|;
+if|if
+condition|(
+name|timeAllowed
+operator|>
+literal|0
+condition|)
+block|{
+name|hc
+operator|=
+operator|new
+name|TimeLimitedCollector
+argument_list|(
+name|hc
+argument_list|,
+name|timeAllowed
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|super
+operator|.
+name|search
+argument_list|(
+name|query
+argument_list|,
+name|luceneFilter
+argument_list|,
+name|hc
 argument_list|)
 expr_stmt|;
 block|}
@@ -6487,34 +6459,31 @@ name|maxScore
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|DocSet
-name|qDocSet
-init|=
-name|setHC
-operator|.
-name|getDocSet
-argument_list|()
-decl_stmt|;
+comment|// TODO: if we collect results before the filter, we just need to intersect with
+comment|// that filter to generate the DocSet for qr.setDocSet()
 name|qr
 operator|.
 name|setDocSet
 argument_list|(
+name|collector
+operator|.
+name|getDocSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// TODO: currently we don't generate the DocSet for the base query.
+comment|// But the QueryDocSet == CompleteDocSet if filter==null.
+return|return
 name|filter
 operator|==
 literal|null
 condition|?
-name|qDocSet
-else|:
-name|qDocSet
+name|qr
 operator|.
-name|intersection
-argument_list|(
-name|filter
-argument_list|)
-argument_list|)
-expr_stmt|;
-return|return
-name|qDocSet
+name|getDocSet
+argument_list|()
+else|:
+literal|null
 return|;
 block|}
 comment|/**    * Returns documents matching both<code>query</code> and<code>filter</code>    * and sorted by<code>sort</code>.    * FUTURE: The returned DocList may be retrieved from a cache.    *    * @param query    * @param filter   may be null    * @param lsort    criteria by which to sort (if null, query relevance is used)    * @param offset   offset into the list of documents to return    * @param len      maximum number of documents to return    * @return DocList meeting the specified criteria, should<b>not</b> be modified by the caller.    * @throws IOException    */
@@ -8041,11 +8010,6 @@ name|timeAllowed
 init|=
 operator|-
 literal|1
-decl_stmt|;
-DECL|field|needDocSet
-specifier|private
-name|boolean
-name|needDocSet
 decl_stmt|;
 DECL|method|getQuery
 specifier|public
