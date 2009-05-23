@@ -1347,10 +1347,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** test range query performance */
-DECL|method|testFilteringPerformance
+DECL|method|XtestFilteringPerformance
 specifier|public
 name|void
-name|testFilteringPerformance
+name|XtestFilteringPerformance
 parameter_list|()
 throws|throws
 name|Exception
