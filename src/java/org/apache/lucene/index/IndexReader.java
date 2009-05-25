@@ -122,6 +122,16 @@ name|Collection
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link #open(String)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><b>NOTE</b>: as of 2.4, it's possible to open a read-only  IndexReader using one of the static open methods that  accepts the boolean readOnly parameter.  Such a reader has  better concurrency as it's not necessary to synchronize on  the isDeleted method.  Currently the default for readOnly  is false, meaning if not specified you will get a  read/write IndexReader.  But in 3.0 this default will  change to true, meaning you must explicitly specify false  if you want to make changes with the resulting IndexReader.</p>   @version $Id$ */
 end_comment
@@ -1250,11 +1260,11 @@ name|directory
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads commitUserData, previously passed to {@link    * IndexWriter#commit(String)}, from current index    * segments file.  This will return null if {@link    * IndexWriter#commit(String)} has never been called for    * this index.    *     * @param directory where the index resides.    * @return commit userData.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @see #getCommitUserData()    */
+comment|/**    * Reads commitUserData, previously passed to {@link    * IndexWriter#commit(Map)}, from current index    * segments file.  This will return null if {@link    * IndexWriter#commit(Map)} has never been called for    * this index.    *     * @param directory where the index resides.    * @return commit userData.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @see #getCommitUserData()    */
 DECL|method|getCommitUserData
 specifier|public
 specifier|static
-name|String
+name|Map
 name|getCommitUserData
 parameter_list|(
 name|Directory
@@ -1289,10 +1299,10 @@ literal|"This reader does not support this method."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Retrieve the String userData optionally passed to    * IndexWriter#commit.  This will return null if {@link    * IndexWriter#commit(String)} has never been called for    * this index.    *    * @see #getCommitUserData(Directory)    */
+comment|/**    * Retrieve the String userData optionally passed to    * IndexWriter#commit.  This will return null if {@link    * IndexWriter#commit(Map)} has never been called for    * this index.    *    * @see #getCommitUserData(Directory)    */
 DECL|method|getCommitUserData
 specifier|public
-name|String
+name|Map
 name|getCommitUserData
 parameter_list|()
 block|{
@@ -2094,7 +2104,7 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @param commitUserData Opaque String that's recorded    *  into the segments file in the index, and retrievable    *  by {@link IndexReader#getCommitUserData}.    * @throws IOException    */
+comment|/**    * @param commitUserData Opaque Map (String -> String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  IndexReader#getCommitUserData}.    * @throws IOException    */
 DECL|method|flush
 specifier|public
 specifier|final
@@ -2102,7 +2112,7 @@ specifier|synchronized
 name|void
 name|flush
 parameter_list|(
-name|String
+name|Map
 name|commitUserData
 parameter_list|)
 throws|throws
@@ -2142,7 +2152,7 @@ specifier|synchronized
 name|void
 name|commit
 parameter_list|(
-name|String
+name|Map
 name|commitUserData
 parameter_list|)
 throws|throws
@@ -2164,7 +2174,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** Implements commit.    *  @deprecated Please implement {@link #doCommit(String)    *  instead}. */
+comment|/** Implements commit.    *  @deprecated Please implement {@link #doCommit(Map)    *  instead}. */
 DECL|method|doCommit
 specifier|protected
 specifier|abstract
@@ -2179,7 +2189,7 @@ DECL|method|doCommit
 name|void
 name|doCommit
 parameter_list|(
-name|String
+name|Map
 name|commitUserData
 parameter_list|)
 throws|throws

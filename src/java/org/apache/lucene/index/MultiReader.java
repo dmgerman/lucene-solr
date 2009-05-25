@@ -1818,7 +1818,7 @@ specifier|protected
 name|void
 name|doCommit
 parameter_list|(
-name|String
+name|Map
 name|commitUserData
 parameter_list|)
 throws|throws

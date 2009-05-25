@@ -50,6 +50,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|io
 operator|.
 name|IOException
@@ -397,7 +407,7 @@ return|;
 block|}
 DECL|method|getUserData
 specifier|public
-name|String
+name|Map
 name|getUserData
 parameter_list|()
 throws|throws

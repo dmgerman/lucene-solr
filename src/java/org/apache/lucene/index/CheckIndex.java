@@ -160,6 +160,16 @@ name|ArrayList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  *<p><b>WARNING</b>: this tool and API is new and  * experimental and is subject to suddenly change in the  * next release.  Please make a complete backup of your  * index before using this to fix your index!  */
 end_comment
@@ -295,6 +305,12 @@ specifier|public
 name|boolean
 name|partial
 decl_stmt|;
+comment|/** Holds the userData of the last commit in the index */
+DECL|field|userData
+specifier|public
+name|Map
+name|userData
+decl_stmt|;
 comment|/** Holds the status of each segment in the index.      *  See {@link #segmentInfos}.      *      *<p><b>WARNING</b>: this API is new and experimental and is      * subject to suddenly change in the next release.      */
 DECL|class|SegmentInfoStatus
 specifier|public
@@ -387,6 +403,12 @@ DECL|field|hasProx
 specifier|public
 name|boolean
 name|hasProx
+decl_stmt|;
+comment|/** Map<String, String> that includes certain        *  debugging details that IndexWriter records into        *  each segment it creates */
+DECL|field|diagnostics
+specifier|public
+name|Map
+name|diagnostics
 decl_stmt|;
 block|}
 block|}
@@ -945,6 +967,19 @@ elseif|else
 if|if
 condition|(
 name|format
+operator|==
+name|SegmentInfos
+operator|.
+name|FORMAT_DIAGNOSTICS
+condition|)
+name|sFormat
+operator|=
+literal|"FORMAT_DIAGNOSTICS [Lucene 2.9]"
+expr_stmt|;
+elseif|else
+if|if
+condition|(
+name|format
 operator|<
 name|SegmentInfos
 operator|.
@@ -974,21 +1009,6 @@ literal|" [Lucene 1.3 or prior]"
 expr_stmt|;
 block|}
 block|}
-name|msg
-argument_list|(
-literal|"Segments file="
-operator|+
-name|segmentsFileName
-operator|+
-literal|" numSegments="
-operator|+
-name|numSegments
-operator|+
-literal|" version="
-operator|+
-name|sFormat
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|segmentsFileName
@@ -1006,6 +1026,65 @@ operator|.
 name|segmentFormat
 operator|=
 name|sFormat
+expr_stmt|;
+name|result
+operator|.
+name|userData
+operator|=
+name|sis
+operator|.
+name|getUserData
+argument_list|()
+expr_stmt|;
+name|String
+name|userDataString
+decl_stmt|;
+if|if
+condition|(
+name|sis
+operator|.
+name|getUserData
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|userDataString
+operator|=
+literal|" userData="
+operator|+
+name|sis
+operator|.
+name|getUserData
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|userDataString
+operator|=
+literal|""
+expr_stmt|;
+block|}
+name|msg
+argument_list|(
+literal|"Segments file="
+operator|+
+name|segmentsFileName
+operator|+
+literal|" numSegments="
+operator|+
+name|numSegments
+operator|+
+literal|" version="
+operator|+
+name|sFormat
+operator|+
+name|userDataString
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -1341,6 +1420,38 @@ operator|*
 literal|1024.
 operator|)
 expr_stmt|;
+name|Map
+name|diagnostics
+init|=
+name|info
+operator|.
+name|getDiagnostics
+argument_list|()
+decl_stmt|;
+name|segInfoStat
+operator|.
+name|diagnostics
+operator|=
+name|diagnostics
+expr_stmt|;
+if|if
+condition|(
+name|diagnostics
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|msg
+argument_list|(
+literal|"    diagnostics = "
+operator|+
+name|diagnostics
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|docStoreOffset

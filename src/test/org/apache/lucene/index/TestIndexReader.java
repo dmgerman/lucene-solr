@@ -102,6 +102,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -491,11 +501,22 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
-name|String
-name|cmpCommitUserData
+name|Map
+name|commitUserData
 init|=
-literal|"foo fighters"
+operator|new
+name|HashMap
+argument_list|()
 decl_stmt|;
+name|commitUserData
+operator|.
+name|put
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|"fighters"
+argument_list|)
+expr_stmt|;
 comment|// set up writer
 name|IndexWriter
 name|writer
@@ -570,7 +591,7 @@ name|r
 operator|.
 name|flush
 argument_list|(
-name|cmpCommitUserData
+name|commitUserData
 argument_list|)
 expr_stmt|;
 name|r
@@ -617,7 +638,7 @@ operator|.
 name|getUserData
 argument_list|()
 argument_list|,
-name|cmpCommitUserData
+name|commitUserData
 argument_list|)
 expr_stmt|;
 name|assertEquals

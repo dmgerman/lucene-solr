@@ -30,6 +30,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|io
 operator|.
 name|IOException
@@ -254,10 +264,10 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Returns userData, previously passed to {@link    *  IndexWriter#commit(String)} for this commit.  */
+comment|/** Returns userData, previously passed to {@link    *  IndexWriter#commit(Map)} for this commit.  Map is    *  String -> String. */
 DECL|method|getUserData
 specifier|public
-name|String
+name|Map
 name|getUserData
 parameter_list|()
 throws|throws

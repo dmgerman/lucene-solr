@@ -88,6 +88,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1462,7 +1472,7 @@ return|;
 block|}
 DECL|method|getCommitUserData
 specifier|public
-name|String
+name|Map
 name|getCommitUserData
 parameter_list|()
 block|{
@@ -1567,7 +1577,7 @@ specifier|protected
 name|void
 name|doCommit
 parameter_list|(
-name|String
+name|Map
 name|commitUserData
 parameter_list|)
 throws|throws
@@ -2106,7 +2116,7 @@ name|isOptimized
 decl_stmt|;
 DECL|field|userData
 specifier|final
-name|String
+name|Map
 name|userData
 decl_stmt|;
 DECL|method|ReaderCommit
@@ -2264,7 +2274,7 @@ return|;
 block|}
 DECL|method|getUserData
 specifier|public
-name|String
+name|Map
 name|getUserData
 parameter_list|()
 block|{
