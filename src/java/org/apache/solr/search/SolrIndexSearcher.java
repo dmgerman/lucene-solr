@@ -312,26 +312,6 @@ begin_comment
 comment|/**  * SolrIndexSearcher adds schema awareness and caching functionality  * over the lucene IndexSearcher.  *  * @version $Id$  * @since solr 0.9  */
 end_comment
 
-begin_comment
-comment|// Since the internal reader in IndexSearcher is
-end_comment
-
-begin_comment
-comment|// package protected, I can't get to it by inheritance.
-end_comment
-
-begin_comment
-comment|// For now, I am using delgation and creating the
-end_comment
-
-begin_comment
-comment|// IndexReader to pass to the searcher myself.
-end_comment
-
-begin_comment
-comment|// NOTE: as of Lucene 1.9, this has changed!
-end_comment
-
 begin_class
 DECL|class|SolrIndexSearcher
 specifier|public
