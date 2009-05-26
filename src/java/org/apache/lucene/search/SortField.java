@@ -1499,7 +1499,7 @@ return|;
 block|}
 comment|/** Returns the {@link FieldComparator} to use for sorting.    * @param numHits number of top hits the queue will store    * @param sortPos position of this SortField within {@link    *   Sort}.  The comparator is primary if sortPos==0,    *   secondary if sortPos==1, etc.  Some comparators can    *   optimize themselves when they are the primary sort.    * @param reversed True if the SortField is reversed    * @return {@link FieldComparator} to use when sorting    */
 DECL|method|getComparator
-specifier|protected
+specifier|public
 name|FieldComparator
 name|getComparator
 parameter_list|(
