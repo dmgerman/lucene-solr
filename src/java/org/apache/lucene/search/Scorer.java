@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> either iterates over documents matching a  * query in increasing order of doc Id, or provides an explanation of  * the score for a query for a given document.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  * @see BooleanQuery#setAllowDocsOutOfOrder  */
+comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> either iterates over documents matching a  * query in increasing order of doc Id, or provides an explanation of  * the score for a query for a given document.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  *  *<p><b>NOTE</b>: The values Float.Nan,  * Float.NEGATIVE_INFINITY and Float.POSITIVE_INFINITY are  * not valid scores.  Certain collectors (eg {@link  * TopScoreDocCollector}) will not properly collect hits  * with these scores.  *  * @see BooleanQuery#setAllowDocsOutOfOrder  */
 end_comment
 
 begin_class
