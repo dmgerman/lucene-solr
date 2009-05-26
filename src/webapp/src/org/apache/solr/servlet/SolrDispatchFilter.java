@@ -62,6 +62,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|WeakHashMap
 import|;
 end_import
@@ -348,7 +358,7 @@ decl_stmt|;
 DECL|field|parsers
 specifier|protected
 specifier|final
-name|WeakHashMap
+name|Map
 argument_list|<
 name|SolrConfig
 argument_list|,
@@ -1091,7 +1101,7 @@ name|parsers
 operator|.
 name|get
 argument_list|(
-name|core
+name|config
 argument_list|)
 expr_stmt|;
 if|if
@@ -1113,10 +1123,7 @@ name|parsers
 operator|.
 name|put
 argument_list|(
-name|core
-operator|.
-name|getSolrConfig
-argument_list|()
+name|config
 argument_list|,
 name|parser
 argument_list|)
