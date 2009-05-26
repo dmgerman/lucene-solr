@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SortComparatorSource
+name|SortField
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SortField
+name|FieldComparatorSource
 import|;
 end_import
 
@@ -401,7 +401,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getFactory
+name|getComparatorSource
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -663,7 +663,7 @@ parameter_list|,
 name|Locale
 name|locale
 parameter_list|,
-name|SortComparatorSource
+name|FieldComparatorSource
 name|factory
 parameter_list|)
 block|{
