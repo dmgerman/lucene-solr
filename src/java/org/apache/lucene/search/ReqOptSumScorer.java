@@ -32,7 +32,6 @@ end_comment
 
 begin_class
 DECL|class|ReqOptSumScorer
-specifier|public
 class|class
 name|ReqOptSumScorer
 extends|extends
