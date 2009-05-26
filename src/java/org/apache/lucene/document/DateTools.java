@@ -291,21 +291,15 @@ argument_list|(
 name|GMT
 argument_list|)
 decl_stmt|;
-comment|//protected in JDK's prior to 1.4
-comment|//cal.setTimeInMillis(round(time, resolution));
 name|cal
 operator|.
-name|setTime
-argument_list|(
-operator|new
-name|Date
+name|setTimeInMillis
 argument_list|(
 name|round
 argument_list|(
 name|time
 argument_list|,
 name|resolution
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
