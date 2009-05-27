@@ -1367,6 +1367,7 @@ specifier|private
 name|Term
 name|currentTerm
 decl_stmt|;
+comment|/**      *      * @param fields      * @param reader      * @param termFreq      * @param positions true if the TVM should try to get position info from the Term Vector, assuming it is present      * @param offsets true if the TVM should try to get offset info from the Term Vector, assuming it is present      * @param docFreq      * @param tfIdf      */
 DECL|method|TVMapper
 specifier|public
 name|TVMapper
@@ -1884,6 +1885,40 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|isIgnoringPositions
+specifier|public
+name|boolean
+name|isIgnoringPositions
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|positions
+operator|==
+literal|false
+return|;
+comment|// if we are not interested in positions, then return true telling Lucene to skip loading them
+block|}
+annotation|@
+name|Override
+DECL|method|isIgnoringOffsets
+specifier|public
+name|boolean
+name|isIgnoringOffsets
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|offsets
+operator|==
+literal|false
+return|;
+comment|//  if we are not interested in offsets, then return true telling Lucene to skip loading them
 block|}
 block|}
 DECL|method|prepare
