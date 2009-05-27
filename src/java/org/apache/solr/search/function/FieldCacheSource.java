@@ -88,23 +88,6 @@ operator|=
 name|field
 expr_stmt|;
 block|}
-comment|/**    * If you are using longs or doubles, this needs to be a {@link org.apache.lucene.search.ExtendedFieldCache}.    *    * @param cache The {@link org.apache.lucene.search.FieldCache}    */
-DECL|method|setFieldCache
-specifier|public
-name|void
-name|setFieldCache
-parameter_list|(
-name|FieldCache
-name|cache
-parameter_list|)
-block|{
-name|this
-operator|.
-name|cache
-operator|=
-name|cache
-expr_stmt|;
-block|}
 DECL|method|getFieldCache
 specifier|public
 name|FieldCache
