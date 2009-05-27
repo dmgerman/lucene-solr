@@ -129,9 +129,9 @@ name|IOException
 block|{
 name|index
 operator|=
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
-name|EXT_DEFAULT
+name|DEFAULT
 operator|.
 name|getStringIndex
 argument_list|(
