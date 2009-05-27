@@ -163,7 +163,7 @@ name|int
 index|[]
 name|docStarts
 decl_stmt|;
-comment|/** Creates a searcher searching the index in the named directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Creates a searcher searching the index in the named directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #IndexSearcher(String, boolean)} instead    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
@@ -189,7 +189,38 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a searcher searching the index in the provided directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Creates a searcher searching the index in the named    *  directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the underlying IndexReader.    * @param path directory where IndexReader will be opened    * @param readOnly if true, the underlying IndexReader    * will be opened readOnly    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|IndexSearcher
+specifier|public
+name|IndexSearcher
+parameter_list|(
+name|String
+name|path
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|this
+argument_list|(
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|path
+argument_list|,
+name|readOnly
+argument_list|)
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Creates a searcher searching the index in the provided directory.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #IndexSearcher(Directory, boolean)} instead    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
@@ -209,6 +240,37 @@ operator|.
 name|open
 argument_list|(
 name|directory
+argument_list|)
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Creates a searcher searching the index in the named    *  directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the underlying IndexReader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path directory where IndexReader will be opened    * @param readOnly if true, the underlying IndexReader    * will be opened readOnly    */
+DECL|method|IndexSearcher
+specifier|public
+name|IndexSearcher
+parameter_list|(
+name|Directory
+name|path
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|this
+argument_list|(
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|path
+argument_list|,
+name|readOnly
 argument_list|)
 argument_list|,
 literal|true

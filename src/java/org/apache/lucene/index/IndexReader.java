@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link #open(String)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><b>NOTE</b>: as of 2.4, it's possible to open a read-only  IndexReader using one of the static open methods that  accepts the boolean readOnly parameter.  Such a reader has  better concurrency as it's not necessary to synchronize on  the isDeleted method.  Currently the default for readOnly  is false, meaning if not specified you will get a  read/write IndexReader.  But in 3.0 this default will  change to true, meaning you must explicitly specify false  if you want to make changes with the resulting IndexReader.</p>   @version $Id$ */
+comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link  #open(String, boolean)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><b>NOTE</b>: as of 2.4, it's possible to open a read-only  IndexReader using one of the static open methods that  accepts the boolean readOnly parameter.  Such a reader has  better concurrency as it's not necessary to synchronize on  the isDeleted method.  Currently the default for readOnly  is false, meaning if not specified you will get a  read/write IndexReader.  But in 3.0 this default will  change to true, meaning you must explicitly specify false  if you want to make changes with the resulting IndexReader.</p>   @version $Id$ */
 end_comment
 
 begin_class
@@ -145,15 +145,6 @@ name|IndexReader
 implements|implements
 name|Cloneable
 block|{
-comment|// NOTE: in 3.0 this will change to true
-DECL|field|READ_ONLY_DEFAULT
-specifier|final
-specifier|static
-name|boolean
-name|READ_ONLY_DEFAULT
-init|=
-literal|false
-decl_stmt|;
 comment|/**    * Constants describing field properties, for example used for    * {@link IndexReader#getFieldNames(FieldOption)}.    */
 DECL|class|FieldOption
 specifier|public
@@ -516,7 +507,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    path.<b>NOTE</b>: starting in 3.0 this will return a readOnly IndexReader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory */
+comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    *  path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(String, boolean)} instead    * @param path the path to the index directory */
 DECL|method|open
 specifier|public
 specifier|static
@@ -547,11 +538,49 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|READ_ONLY_DEFAULT
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    * path.<b>NOTE</b>: starting in 3.0 this will return a readOnly IndexReader.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an IndexReader reading the index in an    *  FSDirectory in the named path.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory    * @param readOnly true if this should be a readOnly    * reader */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+name|String
+name|path
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+name|path
+argument_list|)
+argument_list|,
+literal|true
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+name|readOnly
+argument_list|)
+return|;
+block|}
+comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    *  path.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(File, boolean)} instead    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -582,11 +611,49 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|READ_ONLY_DEFAULT
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Returns a read/write IndexReader reading the index in    * the given Directory.<b>NOTE</b>: starting in 3.0 this    * will return a readOnly IndexReader.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an IndexReader reading the index in an    *  FSDirectory in the named path.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory    * @param readOnly true if this should be a readOnly    * reader */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+name|File
+name|path
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|FSDirectory
+operator|.
+name|getDirectory
+argument_list|(
+name|path
+argument_list|)
+argument_list|,
+literal|true
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+name|readOnly
+argument_list|)
+return|;
+block|}
+comment|/** Returns a read/write IndexReader reading the index in    *  the given Directory.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(Directory, boolean)} instead    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -613,11 +680,11 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-name|READ_ONLY_DEFAULT
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Returns a read/write or read only IndexReader reading the index in the given Directory.    * @param directory the index directory    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns an IndexReader reading the index in the given    *  Directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param directory the index directory    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -651,7 +718,7 @@ name|readOnly
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns a read/write IndexReader reading the index in the given    * {@link IndexCommit}.<b>NOTE</b>: starting in 3.0 this    * will return a readOnly IndexReader.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns a read/write IndexReader reading the index in the given    * {@link IndexCommit}.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @deprecated Use {@link #open(IndexCommit, boolean)} instead    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -681,11 +748,48 @@ literal|null
 argument_list|,
 name|commit
 argument_list|,
-name|READ_ONLY_DEFAULT
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns a read/write IndexReader reading the index in the given    * Directory, with a custom {@link IndexDeletionPolicy}.    *<b>NOTE</b>: starting in 3.0 this will return a    * readOnly IndexReader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param commit the commit point to open    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|IndexCommit
+name|commit
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|commit
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|,
+name|commit
+argument_list|,
+name|readOnly
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns a read/write IndexReader reading the index in the given    *  Directory, with a custom {@link IndexDeletionPolicy}.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @deprecated Use {@link #open(Directory,    * IndexDeletionPolicy, boolean)} instead    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -715,11 +819,11 @@ name|deletionPolicy
 argument_list|,
 literal|null
 argument_list|,
-name|READ_ONLY_DEFAULT
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns a read/write or read only IndexReader reading the index in the given    * Directory, with a custom {@link IndexDeletionPolicy}.    *<b>NOTE</b>: starting in 3.0 this will return a    * readOnly IndexReader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, with a custom {@link    *  IndexDeletionPolicy}.  You should pass readOnly=true,    *  since it gives much better concurrent performance,    *  unless you intend to do write operations (delete    *  documents or change norms) with the reader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -756,7 +860,7 @@ name|readOnly
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns a read/write IndexReader reading the index in the given    * Directory, using a specific commit and with a custom    * {@link IndexDeletionPolicy}.<b>NOTE</b>: starting in    * 3.0 this will return a readOnly IndexReader.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns a read/write IndexReader reading the index in the given    * Directory, using a specific commit and with a custom    * {@link IndexDeletionPolicy}.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @deprecated Use {@link #open(IndexCommit,    * IndexDeletionPolicy, boolean)} instead    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -789,11 +893,11 @@ name|deletionPolicy
 argument_list|,
 name|commit
 argument_list|,
-name|READ_ONLY_DEFAULT
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns a read/write or read only IndexReader reading the index in the given    * Directory, using a specific commit and with a custom {@link IndexDeletionPolicy}.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, using a specific commit and with    *  a custom {@link IndexDeletionPolicy}.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
