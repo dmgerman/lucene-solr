@@ -1912,21 +1912,10 @@ name|n
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getCommitUserData
-specifier|public
-name|String
-name|getCommitUserData
-parameter_list|()
-block|{
-return|return
-name|in
-operator|.
-name|getCommitUserData
-argument_list|()
-return|;
-block|}
+comment|//  @Override
+comment|//  public String getCommitUserData() {
+comment|//    return in.getCommitUserData();
+comment|//  }
 annotation|@
 name|Override
 DECL|method|getIndexCommit
