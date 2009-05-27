@@ -94,9 +94,12 @@ specifier|static
 name|ExtendedFieldCache
 name|EXT_DEFAULT
 init|=
-operator|new
-name|ExtendedFieldCacheImpl
-argument_list|()
+operator|(
+name|ExtendedFieldCache
+operator|)
+name|FieldCache
+operator|.
+name|DEFAULT
 decl_stmt|;
 comment|/**    * Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as longs and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the longs.    * @return The values in the given field for each document.    * @throws java.io.IOException If any error occurs.    */
 DECL|method|getLongs

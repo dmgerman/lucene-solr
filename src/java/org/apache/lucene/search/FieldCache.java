@@ -318,7 +318,7 @@ name|FieldCache
 name|DEFAULT
 init|=
 operator|new
-name|FieldCacheImpl
+name|ExtendedFieldCacheImpl
 argument_list|()
 decl_stmt|;
 comment|/** Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as a single byte and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    * @param reader  Used to get field values.    * @param field   Which field contains the single byte values.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
