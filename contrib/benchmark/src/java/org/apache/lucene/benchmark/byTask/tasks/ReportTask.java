@@ -602,7 +602,7 @@ name|Format
 operator|.
 name|format
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 call|(
 name|float
