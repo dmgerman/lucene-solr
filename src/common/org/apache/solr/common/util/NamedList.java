@@ -86,7 +86,7 @@ name|ArrayList
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Creates a NamedList instance containing the "name,value" pairs contained in the    * Entry[].    *     *<p>    * Modifying the contents of the Entry[] after calling this constructor may change    * the NamedList (in future versions of Solr), but this is not garunteed and should    * not be relied upon.  To modify the NamedList, refer to {@link #add(String, Object)}    * or {@link #remove(String)}.    *</p>    *    * @param nameValuePairs the name value pairs    */
+comment|/**    * Creates a NamedList instance containing the "name,value" pairs contained in the    * Entry[].    *    *<p>    * Modifying the contents of the Entry[] after calling this constructor may change    * the NamedList (in future versions of Solr), but this is not garunteed and should    * not be relied upon.  To modify the NamedList, refer to {@link #add(String, Object)}    * or {@link #remove(String)}.    *</p>    *    * @param nameValuePairs the name value pairs    */
 DECL|method|NamedList
 specifier|public
 name|NamedList
@@ -129,7 +129,7 @@ operator|=
 name|nameValuePairs
 expr_stmt|;
 block|}
-comment|/**    * Method to serialize Map.Entry&lt;String, ?&gt; to a List in which the even    * indexed elements (0,2,4. ..etc) are Strings and odd elements (1,3,5,) are of    * the type "T".    *      * @param nameValuePairs    * @return Modified List as per the above description    * @deprecated This a temporary placeholder method until the guts of the class    * are actually replaced by List&lt;String, ?&gt;.    * @see https://issues.apache.org/jira/browse/SOLR-912    */
+comment|/**    * Method to serialize Map.Entry&lt;String, ?&gt; to a List in which the even    * indexed elements (0,2,4. ..etc) are Strings and odd elements (1,3,5,) are of    * the type "T".    *    * @param nameValuePairs    * @return Modified List as per the above description    * @deprecated This a temporary placeholder method until the guts of the class    * are actually replaced by List&lt;String, ?&gt;.    * @see https://issues.apache.org/jira/browse/SOLR-912    */
 annotation|@
 name|Deprecated
 DECL|method|nameValueMapToList
@@ -494,7 +494,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Gets the value for the first instance of the specified name    * found.    *     * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    */
+comment|/**    * Gets the value for the first instance of the specified name    * found.    *    * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    */
 DECL|method|get
 specifier|public
 name|T
@@ -513,7 +513,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *     * @return null if not found or if the value stored was null.    * @see #indexOf    */
+comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *    * @return null if not found or if the value stored was null.    * @see #indexOf    */
 DECL|method|get
 specifier|public
 name|T
@@ -785,7 +785,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    *     * Helper class implementing Map.Entry<String, T> to store the key-value    * relationship in NamedList (the keys of which are String-s)     *     * @param<T>    */
+comment|/**    *    * Helper class implementing Map.Entry<String, T> to store the key-value    * relationship in NamedList (the keys of which are String-s)     *    * @param<T>    */
 DECL|class|NamedListEntry
 specifier|public
 specifier|static
@@ -809,7 +809,7 @@ DECL|method|NamedListEntry
 specifier|public
 name|NamedListEntry
 parameter_list|()
-block|{             }
+block|{      }
 DECL|method|NamedListEntry
 specifier|public
 name|NamedListEntry
@@ -1252,6 +1252,65 @@ argument_list|)
 return|;
 return|return
 literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|nvPairs
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|equals
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|obj
+operator|instanceof
+name|NamedList
+operator|)
+condition|)
+return|return
+literal|false
+return|;
+name|NamedList
+name|nl
+init|=
+operator|(
+name|NamedList
+operator|)
+name|obj
+decl_stmt|;
+return|return
+name|this
+operator|.
+name|nvPairs
+operator|.
+name|equals
+argument_list|(
+name|nl
+operator|.
+name|nvPairs
+argument_list|)
 return|;
 block|}
 block|}
