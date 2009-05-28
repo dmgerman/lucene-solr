@@ -3116,15 +3116,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|query
-operator|=
-name|QueryUtils
-operator|.
-name|simplifyQuery
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
 name|DocSetCollector
 name|collector
 init|=
