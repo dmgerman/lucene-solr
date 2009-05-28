@@ -1021,6 +1021,31 @@ expr_stmt|;
 block|}
 block|}
 comment|/**************** old hit collector... new one is in base class   // final DeleteHitCollector deleter = new DeleteHitCollector();   class DeleteHitCollector extends HitCollector {     public int deleted=0;     public void collect(int doc, float score) {       try {         searcher.getReader().delete(doc);         deleted++;       } catch (IOException e) {         try { closeSearcher(); } catch (Exception ee) { SolrException.log(SolrCore.log,ee); }         SolrException.log(SolrCore.log,e);         throw new SolrException( SolrException.StatusCode.SERVER_ERROR,"Error deleting doc# "+doc,e);       }     }   }   ***************************/
+DECL|method|mergeIndexes
+specifier|public
+name|int
+name|mergeIndexes
+parameter_list|(
+name|MergeIndexesCommand
+name|cmd
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"DirectUpdateHandler doesn't support mergeIndexes. Use DirectUpdateHandler2 instead."
+argument_list|)
+throw|;
+block|}
 DECL|method|commit
 specifier|public
 name|void
