@@ -130,6 +130,20 @@ name|IndexFileNameFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|// Used only for WRITE_LOCK_NAME in deprecated create=true case:
 end_comment
@@ -149,7 +163,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Straightforward implementation of {@link Directory} as a directory of files.  * Locking implementation is by default the {@link SimpleFSLockFactory}, but  * can be changed either by passing in a {@link LockFactory} instance to  *<code>getDirectory</code>, or specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code> Java system  * property, or by calling {@link #setLockFactory} after creating  * the Directory.  *  * @see Directory  */
+comment|/**  *<a name="subclasses"/>  * Base class for Directory implementations that store index  * files in the file system.  There are currently three core  * subclasses:  *  *<ul>  *  *<li> {@link SimpleFSDirectory} is a straighforward  *       implementation using java.io.RandomAccessFile.  *       However, it has poor concurrent performance  *       (multiple threads will bottleneck) as it  *       synchronizes when multiple threads read from the  *       same file.  *  *<li> {@link NIOFSDirectory} uses java.nio's  *       FileChannel's positional io when reading to avoid  *       synchronization when reading from the same file.  *       Unfortunately, due to a Windows-only<a  *       href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">Sun  *       JRE bug</a> this is a poor choice for Windows, but  *       on all other platforms this is the preferred  *       choice.  *  *<li> {@link MMapDirectory} uses memory-mapped IO when  *       reading.  This is a good choice if you have plenty  *       of virtual memory relative to your index size, eg  *       if you are running on a 64 bit JRE, or you are  *       running on a 32 bit JRE but your index sizes are  *       small enough to fit into the virtual memory space.  *  *</ul>  *  * Unfortunately, because of system peculiarities, there is  * no single overall best implementation.  Therefore, we've  * added the {@link #open} method, to allow Lucene to choose  * the best FSDirectory implementation given your  * environment, and the known limitations of each  * implementation.  For users who have no reason to prefer a  * specific implementation, it's best to simply use {@link  * #open}.  For all others, you should instantiate the  * desired implementation directly.  *  *<p>The locking implementation is by default {@link  * SimpleFSLockFactory}, but can be changed either by  * passing in a custom {@link LockFactory} instance, or  * specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code>  * Java system property, or by calling {@link  * #setLockFactory} after creating the Directory.  *  * @see Directory  */
+end_comment
+
+begin_comment
+comment|// TODO: in 3.0 this will become an abstract base class
 end_comment
 
 begin_class
@@ -160,7 +178,7 @@ name|FSDirectory
 extends|extends
 name|Directory
 block|{
-comment|/** This cache of directories ensures that there is a unique Directory    * instance per path, so that synchronization on the Directory can be used to    * synchronize access between readers and writers.  We use    * refcounts to ensure when the last use of an FSDirectory    * instance for a given canonical path is closed, we remove the    * instance from the cache.  See LUCENE-776    * for some relevant discussion.    */
+comment|/** This cache of directories ensures that there is a unique Directory    * instance per path, so that synchronization on the Directory can be used to    * synchronize access between readers and writers.  We use    * refcounts to ensure when the last use of an FSDirectory    * instance for a given canonical path is closed, we remove the    * instance from the cache.  See LUCENE-776    * for some relevant discussion.    * @deprecated Not used by any non-deprecated methods anymore    */
 DECL|field|DIRECTORIES
 specifier|private
 specifier|static
@@ -237,6 +255,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/** The default class which implements filesystem-based directories. */
+comment|// deprecated
 DECL|field|IMPL
 specifier|private
 specifier|static
@@ -390,7 +409,7 @@ name|buffer
 init|=
 literal|null
 decl_stmt|;
-comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param path the path to the directory.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #open(File)}    *    * @param path the path to the directory.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -416,7 +435,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #open(File, LockFactory)}    *    * @param path the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -445,7 +464,7 @@ name|lockFactory
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param file the path to the directory.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #open(File)}    *    * @param file the path to the directory.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -467,7 +486,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #FSDirectory(File, LockFactory)}    *    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
+comment|/** Returns the directory instance for the named location.    *    * @deprecated Use {@link #open(File, LockFactory)}    *    * @param file the path to the directory.    * @param lockFactory instance of {@link LockFactory} providing the    *        locking implementation.    * @return the FSDirectory for the named file.  */
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -877,8 +896,60 @@ literal|true
 expr_stmt|;
 block|}
 block|}
+DECL|method|initOutput
+specifier|final
+name|void
+name|initOutput
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|createDir
+argument_list|()
+expr_stmt|;
+name|File
+name|file
+init|=
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|file
+operator|.
+name|exists
+argument_list|()
+operator|&&
+operator|!
+name|file
+operator|.
+name|delete
+argument_list|()
+condition|)
+comment|// delete existing, if any
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot overwrite: "
+operator|+
+name|file
+argument_list|)
+throw|;
+block|}
 DECL|field|directory
-specifier|private
+specifier|protected
 name|File
 name|directory
 init|=
@@ -896,7 +967,7 @@ parameter_list|()
 block|{}
 empty_stmt|;
 comment|// permit subclassing
-comment|/** Create a new FSDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
+comment|/** Create a new FSDirectory for the named location.    * @deprecated Use {@link SimpleFSDirectory#SimpleFSDirectory}.    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
 DECL|method|FSDirectory
 specifier|public
 name|FSDirectory
@@ -928,6 +999,92 @@ name|refCount
 operator|=
 literal|1
 expr_stmt|;
+block|}
+comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *    *<p>Currently this returns {@link MMapDirectory} when    *  running in a 64 bit JRE, {@link NIOFSDirectory} on    *  non-Windows 32 bit JRE, and {@link SimpleFSDirectory}    *  on Windows 32 bit JRE.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead.    *    *<p>See<a href="#subclasses">above</a> */
+DECL|method|open
+specifier|public
+specifier|static
+name|FSDirectory
+name|open
+parameter_list|(
+name|File
+name|path
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|path
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/** Just like {@link #open(File)}, but allows you to    *  also specify a custom {@link LockFactory}. */
+DECL|method|open
+specifier|public
+specifier|static
+name|FSDirectory
+name|open
+parameter_list|(
+name|File
+name|path
+parameter_list|,
+name|LockFactory
+name|lockFactory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|Constants
+operator|.
+name|JRE_IS_64BIT
+condition|)
+block|{
+return|return
+operator|new
+name|MMapDirectory
+argument_list|(
+name|path
+argument_list|,
+name|lockFactory
+argument_list|)
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+return|return
+operator|new
+name|SimpleFSDirectory
+argument_list|(
+name|path
+argument_list|,
+name|lockFactory
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+operator|new
+name|NIOFSDirectory
+argument_list|(
+name|path
+argument_list|,
+name|lockFactory
+argument_list|)
+return|;
+block|}
 block|}
 DECL|method|init
 specifier|private
@@ -1855,7 +2012,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Creates a new, empty file in the directory with the given name.       Returns a stream writing this file. */
+comment|/** @deprecated In 3.0 this method will become abstract */
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -2104,7 +2261,7 @@ name|BUFFER_SIZE
 argument_list|)
 return|;
 block|}
-comment|// Inherit javadoc
+comment|/** @deprecated In 3.0 this method will become abstract */
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -2391,6 +2548,7 @@ operator|+
 name|directory
 return|;
 block|}
+comment|/** @deprecated Use SimpleFSDirectory.SimpleFSIndexInput instead */
 DECL|class|FSIndexInput
 specifier|protected
 specifier|static
@@ -2760,6 +2918,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** @deprecated Use SimpleFSDirectory.SimpleFSIndexOutput instead */
 DECL|class|FSIndexOutput
 specifier|protected
 specifier|static

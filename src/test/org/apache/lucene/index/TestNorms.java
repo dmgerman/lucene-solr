@@ -385,7 +385,7 @@ name|dir1
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir1
 argument_list|)
@@ -460,7 +460,7 @@ name|dir2
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir2
 argument_list|)
@@ -492,7 +492,7 @@ name|dir3
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir3
 argument_list|)

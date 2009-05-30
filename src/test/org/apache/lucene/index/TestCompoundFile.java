@@ -247,7 +247,7 @@ name|dir
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|file
 argument_list|)

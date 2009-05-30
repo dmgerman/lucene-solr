@@ -3638,7 +3638,7 @@ name|dir
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir
 argument_list|)
@@ -4597,7 +4597,7 @@ block|{
 return|return
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 operator|new
 name|File
@@ -7086,7 +7086,7 @@ name|dir
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|dirFile
 argument_list|)
@@ -9729,7 +9729,7 @@ name|dir
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir
 argument_list|)
@@ -10224,7 +10224,7 @@ name|dir
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 operator|new
 name|File
@@ -10233,8 +10233,6 @@ name|tempDir
 argument_list|,
 literal|"doesnotexist"
 argument_list|)
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 try|try

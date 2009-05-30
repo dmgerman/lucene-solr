@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** File-based {@link Directory} implementation that uses mmap for input.  *  *<p>To use this, invoke Java with the System property  * org.apache.lucene.FSDirectory.class set to  * org.apache.lucene.store.MMapDirectory.  This will cause {@link  * FSDirectory#getDirectory(File,boolean)} to return instances of this class.  */
+comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  SimpleFSDirectory.SimpleFSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual memory, eg by using a  * 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  */
 end_comment
 
 begin_class
@@ -94,7 +94,7 @@ name|MMapDirectory
 extends|extends
 name|FSDirectory
 block|{
-comment|/** Create a new MMapDirectory for the named location.    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
+comment|/** Create a new MMapDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
 DECL|method|MMapDirectory
 specifier|public
 name|MMapDirectory
@@ -116,7 +116,9 @@ name|lockFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|// back compatibility so FSDirectory can instantiate via reflection
+comment|// back compatibility so FSDirectory can instantiate via
+comment|// reflection
+comment|/* @deprecated */
 DECL|method|MMapDirectory
 specifier|protected
 name|MMapDirectory
@@ -312,6 +314,9 @@ throws|throws
 name|IOException
 block|{}
 block|}
+comment|// Because Java's ByteBuffer uses an int to address the
+comment|// values, it's necessary to access a file>
+comment|// Integer.MAX_VALUE in size using multiple byte buffers.
 DECL|class|MultiMMapIndexInput
 specifier|private
 specifier|static
@@ -936,6 +941,34 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
+name|openInput
+argument_list|(
+name|name
+argument_list|,
+name|BufferedIndexInput
+operator|.
+name|BUFFER_SIZE
+argument_list|)
+return|;
+block|}
+DECL|method|openInput
+specifier|public
+name|IndexInput
+name|openInput
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|int
+name|bufferSize
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|File
 name|f
 init|=
@@ -1001,24 +1034,35 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|openInput
+DECL|method|createOutput
 specifier|public
-name|IndexInput
-name|openInput
+name|IndexOutput
+name|createOutput
 parameter_list|(
 name|String
 name|name
-parameter_list|,
-name|int
-name|bufferSize
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
-name|openInput
+name|initOutput
 argument_list|(
 name|name
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|SimpleFSDirectory
+operator|.
+name|SimpleFSIndexOutput
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+name|name
+argument_list|)
 argument_list|)
 return|;
 block|}

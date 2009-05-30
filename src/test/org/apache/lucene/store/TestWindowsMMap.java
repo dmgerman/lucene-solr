@@ -172,15 +172,6 @@ operator|=
 name|newRandom
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"org.apache.lucene.FSDirectory.class"
-argument_list|,
-literal|"org.apache.lucene.store.MMapDirectory"
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|randomToken
 specifier|private
@@ -355,11 +346,16 @@ name|storeDirectory
 decl_stmt|;
 name|storeDirectory
 operator|=
-name|FSDirectory
-operator|.
-name|getDirectory
+operator|new
+name|MMapDirectory
+argument_list|(
+operator|new
+name|File
 argument_list|(
 name|storePathname
+argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 comment|// plan to add a set of useful stopwords, consider changing some of the

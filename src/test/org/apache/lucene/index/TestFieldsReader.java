@@ -1642,7 +1642,7 @@ name|tmpDir
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|file
 argument_list|)
@@ -2365,7 +2365,7 @@ name|fsDir
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|dir
 argument_list|)

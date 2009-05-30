@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * NIO version of FSDirectory.  Uses FileChannel.read(ByteBuffer dst, long position) method  * which allows multiple threads to read from the file without synchronizing.  FSDirectory  * synchronizes in the FSIndexInput.readInternal method which can cause pileups when there  * are many threads accessing the Directory concurrently.    *  * This class only uses FileChannel when reading; writing  * with an IndexOutput is inherited from FSDirectory.  *   * Note: NIOFSDirectory is not recommended on Windows because of a bug  * in how FileChannel.read is implemented in Sun's JRE.  * Inside of the implementation the position is apparently  * synchronized.  See here for details:   * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734   *   * @see FSDirectory  */
+comment|/**  * An {@link FSDirectory} implementation that uses  * java.nio's FileChannel's positional read, which allows  * multiple threads to read from the same file without  * synchronizing.  *  *<p>This class only uses FileChannel when reading; writing  * is achieved with {@link SimpleFSDirectory.SimpleFSIndexOutput}.  *   *<p><b>NOTE</b>: NIOFSDirectory is not recommended on Windows because of a bug  * in how FileChannel.read is implemented in Sun's JRE.  * Inside of the implementation the position is apparently  * synchronized.  See<a  * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">here</a>  * for details.  */
 end_comment
 
 begin_class
@@ -93,6 +93,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// back compatibility so FSDirectory can instantiate via reflection
+comment|/* @deprecated */
 DECL|method|NIOFSDirectory
 specifier|protected
 name|NIOFSDirectory
@@ -132,6 +133,38 @@ name|name
 argument_list|)
 argument_list|,
 name|bufferSize
+argument_list|)
+return|;
+block|}
+DECL|method|createOutput
+specifier|public
+name|IndexOutput
+name|createOutput
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|initOutput
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|SimpleFSDirectory
+operator|.
+name|SimpleFSIndexOutput
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|directory
+argument_list|,
+name|name
+argument_list|)
 argument_list|)
 return|;
 block|}

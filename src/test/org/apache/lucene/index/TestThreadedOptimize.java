@@ -968,9 +968,13 @@ name|directory
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
+argument_list|(
+operator|new
+name|File
 argument_list|(
 name|dirName
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|runTest

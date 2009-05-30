@@ -891,7 +891,7 @@ name|directory
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|dirPath
 argument_list|)
@@ -938,7 +938,7 @@ name|directory
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|dirPath
 argument_list|)
@@ -987,7 +987,7 @@ name|directory
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|dirPath
 argument_list|)

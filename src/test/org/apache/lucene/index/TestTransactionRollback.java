@@ -585,11 +585,6 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
-comment|//		dir=FSDirectory.getDirectory("/indexes/testDeletionPolicy");
-comment|//		String[] files = dir.list();
-comment|//		for (String string : files) {
-comment|//			dir.deleteFile(string);
-comment|//		}
 comment|//Build index, of records 1 to 100, committing after each batch of 10
 name|IndexDeletionPolicy
 name|sdp
