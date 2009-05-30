@@ -167,10 +167,10 @@ comment|/**  * tests for the TeeTokenFilter and SinkTokenizer  */
 end_comment
 
 begin_class
-DECL|class|TeeSinkTokenTest
+DECL|class|TestTeeTokenFilter
 specifier|public
 class|class
-name|TeeSinkTokenTest
+name|TestTeeTokenFilter
 extends|extends
 name|LuceneTestCase
 block|{
@@ -196,9 +196,9 @@ name|String
 index|[]
 name|tokens2
 decl_stmt|;
-DECL|method|TeeSinkTokenTest
+DECL|method|TestTeeTokenFilter
 specifier|public
-name|TeeSinkTokenTest
+name|TestTeeTokenFilter
 parameter_list|(
 name|String
 name|s
@@ -1400,10 +1400,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Not an explicit test, just useful to print out some info on performance    *    * @throws Exception    */
-DECL|method|testPerformance
+DECL|method|doTestPerformance
 specifier|public
 name|void
-name|testPerformance
+name|doTestPerformance
 parameter_list|()
 throws|throws
 name|Exception
