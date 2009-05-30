@@ -428,6 +428,11 @@ DECL|field|maxTermPrefix
 name|String
 name|maxTermPrefix
 decl_stmt|;
+comment|// deprecated
+DECL|field|allowMinus1Position
+name|boolean
+name|allowMinus1Position
+decl_stmt|;
 comment|// Only called by asserts
 DECL|method|testPoint
 specifier|public
@@ -1044,6 +1049,41 @@ name|similarity
 operator|=
 name|similarity
 expr_stmt|;
+block|}
+DECL|method|setAllowMinus1Position
+specifier|synchronized
+name|void
+name|setAllowMinus1Position
+parameter_list|()
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|threadStates
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+name|threadStates
+index|[
+name|i
+index|]
+operator|.
+name|docState
+operator|.
+name|allowMinus1Position
+operator|=
+literal|true
+expr_stmt|;
+empty_stmt|;
 block|}
 comment|/** Set how much RAM we can use before flushing. */
 DECL|method|setRAMBufferSizeMB

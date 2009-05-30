@@ -16034,6 +16034,39 @@ throw|throw
 name|oom
 throw|;
 block|}
+comment|// deprecated
+DECL|field|allowMinus1Position
+specifier|private
+name|boolean
+name|allowMinus1Position
+decl_stmt|;
+comment|/** Deprecated: emulates IndexWriter's buggy behavior when    *  first token(s) have positionIncrement==0 (ie, prior to    *  fixing LUCENE-1542) */
+DECL|method|setAllowMinus1Position
+specifier|public
+name|void
+name|setAllowMinus1Position
+parameter_list|()
+block|{
+name|allowMinus1Position
+operator|=
+literal|true
+expr_stmt|;
+name|docWriter
+operator|.
+name|setAllowMinus1Position
+argument_list|()
+expr_stmt|;
+block|}
+comment|// deprecated
+DECL|method|getAllowMinus1Position
+name|boolean
+name|getAllowMinus1Position
+parameter_list|()
+block|{
+return|return
+name|allowMinus1Position
+return|;
+block|}
 comment|// Used only by assert for testing.  Current points:
 comment|//   startDoFlush
 comment|//   startCommitMerge

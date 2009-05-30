@@ -22252,8 +22252,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-operator|-
-literal|1
+literal|0
 argument_list|,
 name|tps
 operator|.
