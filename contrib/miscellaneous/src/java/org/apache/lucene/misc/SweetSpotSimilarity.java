@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A similarity with a lengthNorm that provides for a "platuea" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * platuea of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  */
+comment|/**  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  */
 end_comment
 
 begin_class
@@ -299,39 +299,6 @@ operator|=
 name|steepness
 expr_stmt|;
 block|}
-comment|/**    * Sets the function variables used by lengthNorm for a    * specific named field.    *     * @deprecated Please call {@link #setLengthNormFactors(String,    * int, int, float, boolean)} instead.    *     * @param field field name    * @param min minimum value    * @param max maximum value    * @param steepness steepness of the curve    *    * @see #lengthNorm    */
-DECL|method|setLengthNormFactors
-specifier|public
-name|void
-name|setLengthNormFactors
-parameter_list|(
-name|String
-name|field
-parameter_list|,
-name|int
-name|min
-parameter_list|,
-name|int
-name|max
-parameter_list|,
-name|float
-name|steepness
-parameter_list|)
-block|{
-name|setLengthNormFactors
-argument_list|(
-name|field
-argument_list|,
-name|min
-argument_list|,
-name|max
-argument_list|,
-name|steepness
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Sets the function variables used by lengthNorm for a specific named field.    *     * @param field field name    * @param min minimum value    * @param max maximum value    * @param steepness steepness of the curve    * @param discountOverlaps if true,<code>numOverlapTokens</code> will be    * subtracted from<code>numTokens</code>; if false then    *<code>numOverlapTokens</code> will be assumed to be 0 (see    * {@link DefaultSimilarity#computeNorm(String, FieldInvertState)} for details).    *    * @see #lengthNorm    */
 DECL|method|setLengthNormFactors
 specifier|public
@@ -495,7 +462,7 @@ name|numTokens
 argument_list|)
 return|;
 block|}
-comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimiation is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
+comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
 DECL|method|lengthNorm
 specifier|public
 name|float
