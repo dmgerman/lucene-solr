@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**<p>This class implements a {@link MergePolicy} that tries  *  to merge segments into levels of exponentially  *  increasing size, where each level has< mergeFactor  *  segments in it.  Whenever a given levle has mergeFactor  *  segments or more in it, they will be merged.</p>  *  *<p>This class is abstract and requires a subclass to  * define the {@link #size} method which specifies how a  * segment's size is determined.  {@link LogDocMergePolicy}  * is one subclass that measures size by document count in  * the segment.  {@link LogByteSizeMergePolicy} is another  * subclass that measures size as the total byte size of the  * file(s) for the segment.</p>  */
+comment|/**<p>This class implements a {@link MergePolicy} that tries  *  to merge segments into levels of exponentially  *  increasing size, where each level has fewer segments than  *  the value of the merge factor. Whenever extra segments  *  (beyond the merge factor upper bound) are encountered,  *  all segments within the level are merged. You can get or  *  set the merge factor using {@link #getMergeFactor()} and  *  {@link #setMergeFactor(int)} respectively.</p>  *  *<p>This class is abstract and requires a subclass to  * define the {@link #size} method which specifies how a  * segment's size is determined.  {@link LogDocMergePolicy}  * is one subclass that measures size by document count in  * the segment.  {@link LogByteSizeMergePolicy} is another  * subclass that measures size as the total byte size of the  * file(s) for the segment.</p>  */
 end_comment
 
 begin_class

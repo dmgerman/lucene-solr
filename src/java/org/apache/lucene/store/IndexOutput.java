@@ -788,6 +788,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|numBytes
+operator|>=
+literal|0
+operator|:
+literal|"numBytes="
+operator|+
+name|numBytes
+assert|;
 name|long
 name|left
 init|=
