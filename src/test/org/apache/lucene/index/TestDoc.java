@@ -247,11 +247,9 @@ name|directory
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|directory

@@ -899,7 +899,7 @@ name|rd
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|indexDir
 argument_list|)

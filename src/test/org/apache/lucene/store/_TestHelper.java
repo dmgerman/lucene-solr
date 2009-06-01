@@ -36,9 +36,9 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
+name|SimpleFSDirectory
 operator|.
-name|FSIndexInput
+name|SimpleFSIndexInput
 import|;
 end_import
 
@@ -52,12 +52,12 @@ specifier|public
 class|class
 name|_TestHelper
 block|{
-comment|/** Returns true if the instance of the provided input stream is actually      *  an FSIndexInput.      */
-DECL|method|isFSIndexInput
+comment|/** Returns true if the instance of the provided input stream is actually      *  an SimpleFSIndexInput.      */
+DECL|method|isSimpleFSIndexInput
 specifier|public
 specifier|static
 name|boolean
-name|isFSIndexInput
+name|isSimpleFSIndexInput
 parameter_list|(
 name|IndexInput
 name|is
@@ -66,15 +66,15 @@ block|{
 return|return
 name|is
 operator|instanceof
-name|FSIndexInput
+name|SimpleFSIndexInput
 return|;
 block|}
-comment|/** Returns true if the provided input stream is an FSIndexInput and      *  is a clone, that is it does not own its underlying file descriptor.      */
-DECL|method|isFSIndexInputClone
+comment|/** Returns true if the provided input stream is an SimpleFSIndexInput and      *  is a clone, that is it does not own its underlying file descriptor.      */
+DECL|method|isSimpleFSIndexInputClone
 specifier|public
 specifier|static
 name|boolean
-name|isFSIndexInputClone
+name|isSimpleFSIndexInputClone
 parameter_list|(
 name|IndexInput
 name|is
@@ -82,7 +82,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|isFSIndexInput
+name|isSimpleFSIndexInput
 argument_list|(
 name|is
 argument_list|)
@@ -91,7 +91,7 @@ block|{
 return|return
 operator|(
 operator|(
-name|FSIndexInput
+name|SimpleFSIndexInput
 operator|)
 name|is
 operator|)
@@ -106,12 +106,12 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** Given an instance of FSDirectory.FSIndexInput, this method returns      *  true if the underlying file descriptor is valid, and false otherwise.      *  This can be used to determine if the OS file has been closed.      *  The descriptor becomes invalid when the non-clone instance of the      *  FSIndexInput that owns this descriptor is closed. However, the      *  descriptor may possibly become invalid in other ways as well.      */
-DECL|method|isFSIndexInputOpen
+comment|/** Given an instance of SimpleFSDirectory.SimpleFSIndexInput, this method returns      *  true if the underlying file descriptor is valid, and false otherwise.      *  This can be used to determine if the OS file has been closed.      *  The descriptor becomes invalid when the non-clone instance of the      *  SimpleFSIndexInput that owns this descriptor is closed. However, the      *  descriptor may possibly become invalid in other ways as well.      */
+DECL|method|isSimpleFSIndexInputOpen
 specifier|public
 specifier|static
 name|boolean
-name|isFSIndexInputOpen
+name|isSimpleFSIndexInputOpen
 parameter_list|(
 name|IndexInput
 name|is
@@ -121,17 +121,17 @@ name|IOException
 block|{
 if|if
 condition|(
-name|isFSIndexInput
+name|isSimpleFSIndexInput
 argument_list|(
 name|is
 argument_list|)
 condition|)
 block|{
-name|FSIndexInput
+name|SimpleFSIndexInput
 name|fis
 init|=
 operator|(
-name|FSIndexInput
+name|SimpleFSIndexInput
 operator|)
 name|is
 decl_stmt|;

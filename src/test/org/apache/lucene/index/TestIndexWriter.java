@@ -25761,12 +25761,11 @@ decl_stmt|;
 name|Directory
 name|dir
 init|=
-operator|new
 name|FSDirectory
+operator|.
+name|open
 argument_list|(
 name|indexDir
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 try|try

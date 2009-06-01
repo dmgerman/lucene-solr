@@ -92,16 +92,32 @@ name|lockFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|// back compatibility so FSDirectory can instantiate via reflection
-comment|/* @deprecated */
+comment|/** Create a new NIOFSDirectory for the named location and the default lock factory.    *    * @param path the path of the directory    * @throws IOException    */
 DECL|method|NIOFSDirectory
-specifier|protected
+specifier|public
 name|NIOFSDirectory
-parameter_list|()
+parameter_list|(
+name|File
+name|path
+parameter_list|)
 throws|throws
 name|IOException
-block|{   }
-comment|// Inherit javadoc
+block|{
+name|super
+argument_list|(
+name|path
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|// back compatibility so FSDirectory can instantiate via reflection
+comment|/** @deprecated */
+DECL|method|NIOFSDirectory
+name|NIOFSDirectory
+parameter_list|()
+block|{}
+comment|/** Creates an IndexInput for the file with the given name. */
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -136,6 +152,7 @@ name|bufferSize
 argument_list|)
 return|;
 block|}
+comment|/** Creates an IndexOutput for the file with the given name. */
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -174,9 +191,9 @@ specifier|static
 class|class
 name|NIOFSIndexInput
 extends|extends
-name|FSDirectory
+name|SimpleFSDirectory
 operator|.
-name|FSIndexInput
+name|SimpleFSIndexInput
 block|{
 DECL|field|byteBuf
 specifier|private

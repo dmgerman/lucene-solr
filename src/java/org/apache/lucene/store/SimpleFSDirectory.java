@@ -80,7 +80,32 @@ name|lockFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Inherit javadoc
+comment|/** Create a new SimpleFSDirectory for the named location and the default lock factory.    *    * @param path the path of the directory    * @throws IOException    */
+DECL|method|SimpleFSDirectory
+specifier|public
+name|SimpleFSDirectory
+parameter_list|(
+name|File
+name|path
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|super
+argument_list|(
+name|path
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|// back compatibility so FSDirectory can instantiate via reflection
+comment|/** @deprecated */
+DECL|method|SimpleFSDirectory
+name|SimpleFSDirectory
+parameter_list|()
+block|{}
+comment|/** Creates an IndexOutput for the file with the given name. */
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -92,15 +117,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ensureOpen
-argument_list|()
+name|initOutput
+argument_list|(
+name|name
+argument_list|)
 expr_stmt|;
-name|createDir
-argument_list|()
-expr_stmt|;
-name|File
-name|file
-init|=
+return|return
+operator|new
+name|SimpleFSIndexOutput
+argument_list|(
 operator|new
 name|File
 argument_list|(
@@ -108,39 +133,10 @@ name|directory
 argument_list|,
 name|name
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|file
-operator|.
-name|exists
-argument_list|()
-operator|&&
-operator|!
-name|file
-operator|.
-name|delete
-argument_list|()
-condition|)
-comment|// delete existing, if any
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Cannot overwrite: "
-operator|+
-name|file
-argument_list|)
-throw|;
-return|return
-operator|new
-name|SimpleFSIndexOutput
-argument_list|(
-name|file
 argument_list|)
 return|;
 block|}
-comment|// Inherit javadoc
+comment|/** Creates an IndexInput for the file with the given name. */
 DECL|method|openInput
 specifier|public
 name|IndexInput

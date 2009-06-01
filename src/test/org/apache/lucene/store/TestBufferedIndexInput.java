@@ -1405,11 +1405,12 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|=
-name|FSDirectory
-operator|.
-name|open
+operator|new
+name|SimpleFSDirectory
 argument_list|(
 name|path
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
