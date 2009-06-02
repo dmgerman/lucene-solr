@@ -120,7 +120,7 @@ name|DOC
 init|=
 literal|1
 decl_stmt|;
-comment|/** Guess type of sort based on field contents.  A regular expression is used    * to look at the first term indexed for the field and determine if it    * represents an integer number, a floating point number, or just arbitrary    * string characters. */
+comment|/** Guess type of sort based on field contents.  A regular expression is used    * to look at the first term indexed for the field and determine if it    * represents an integer number, a floating point number, or just arbitrary    * string characters.    * @deprecated Please specify the exact type, instead.*/
 DECL|field|AUTO
 specifier|public
 specifier|static
@@ -307,7 +307,7 @@ init|=
 literal|false
 decl_stmt|;
 comment|// remove in Lucene 3.0
-comment|/** Creates a sort by terms in the given field where the type of term value    * is determined dynamically ({@link #AUTO AUTO}).    * @param field Name of field to sort by, cannot be<code>null</code>.    */
+comment|/** Creates a sort by terms in the given field where the type of term value    * is determined dynamically ({@link #AUTO AUTO}).    * @param field Name of field to sort by, cannot be    *<code>null</code>.    * @deprecated Please specify the exact type instead.    */
 DECL|method|SortField
 specifier|public
 name|SortField
@@ -324,7 +324,7 @@ name|AUTO
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a sort, possibly in reverse, by terms in the given field where    * the type of term value is determined dynamically ({@link #AUTO AUTO}).    * @param field Name of field to sort by, cannot be<code>null</code>.    * @param reverse True if natural order should be reversed.    */
+comment|/** Creates a sort, possibly in reverse, by terms in the given field where    * the type of term value is determined dynamically ({@link #AUTO AUTO}).    * @param field Name of field to sort by, cannot be<code>null</code>.    * @param reverse True if natural order should be reversed.    * @deprecated Please specify the exact type instead.    */
 DECL|method|SortField
 specifier|public
 name|SortField
