@@ -915,9 +915,6 @@ argument_list|()
 return|;
 block|}
 comment|// Search each sub-reader
-comment|// TODO (3.0): by default we should create a TopFieldCollector which does
-comment|// not track document scores and maxScore. Currently the default is set to
-comment|// true, however it will change in 3.0.
 comment|// TODO: The following should be changed to first obtain a Scorer and then ask it
 comment|// if it's going to return in-order or out-of-order docs, and create TSDC
 comment|// accordingly.
@@ -934,9 +931,9 @@ name|nDocs
 argument_list|,
 name|fillFields
 argument_list|,
-literal|true
+name|fieldSortDoTrackScores
 argument_list|,
-literal|true
+name|fieldSortDoMaxScore
 argument_list|,
 literal|false
 argument_list|)
@@ -1312,6 +1309,38 @@ argument_list|,
 name|doc
 argument_list|)
 return|;
+block|}
+DECL|field|fieldSortDoTrackScores
+specifier|private
+name|boolean
+name|fieldSortDoTrackScores
+decl_stmt|;
+DECL|field|fieldSortDoMaxScore
+specifier|private
+name|boolean
+name|fieldSortDoMaxScore
+decl_stmt|;
+comment|/** @deprecated */
+DECL|method|setDefaultFieldSortScoring
+specifier|public
+name|void
+name|setDefaultFieldSortScoring
+parameter_list|(
+name|boolean
+name|doTrackScores
+parameter_list|,
+name|boolean
+name|doMaxScore
+parameter_list|)
+block|{
+name|fieldSortDoTrackScores
+operator|=
+name|doTrackScores
+expr_stmt|;
+name|fieldSortDoMaxScore
+operator|=
+name|doMaxScore
+expr_stmt|;
 block|}
 block|}
 end_class
