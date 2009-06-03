@@ -110,7 +110,6 @@ end_comment
 
 begin_class
 DECL|class|DebugLogger
-specifier|public
 class|class
 name|DebugLogger
 block|{
@@ -127,6 +126,8 @@ name|NamedList
 name|output
 decl_stmt|;
 DECL|field|writer
+specifier|private
+specifier|final
 name|SolrWriter
 name|writer
 decl_stmt|;
@@ -159,8 +160,15 @@ decl_stmt|;
 DECL|method|DebugLogger
 specifier|public
 name|DebugLogger
-parameter_list|()
+parameter_list|(
+name|SolrWriter
+name|solrWriter
+parameter_list|)
 block|{
+name|writer
+operator|=
+name|solrWriter
+expr_stmt|;
 name|output
 operator|=
 operator|new
@@ -232,19 +240,6 @@ name|peek
 argument_list|()
 operator|.
 name|lst
-expr_stmt|;
-block|}
-DECL|method|DebugLogger
-specifier|public
-name|DebugLogger
-parameter_list|(
-name|SolrWriter
-name|solrWriter
-parameter_list|)
-block|{
-name|writer
-operator|=
-name|solrWriter
 expr_stmt|;
 block|}
 DECL|method|peekStack
