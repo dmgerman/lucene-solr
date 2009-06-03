@@ -172,6 +172,8 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
@@ -280,6 +282,8 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
@@ -382,6 +386,8 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
@@ -614,6 +620,8 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
@@ -647,6 +655,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
@@ -863,6 +873,8 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
@@ -886,6 +898,8 @@ init|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|stpf0
 argument_list|,
 name|stopSet1

@@ -88,6 +88,24 @@ name|TermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|QueryParser
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
 begin_comment
 comment|/**  * Removes stop words from a token stream.  */
 end_comment
@@ -101,6 +119,7 @@ name|StopFilter
 extends|extends
 name|TokenFilter
 block|{
+comment|// deprecated
 DECL|field|ENABLE_POSITION_INCREMENTS_DEFAULT
 specifier|private
 specifier|static
@@ -132,7 +151,7 @@ specifier|private
 name|PositionIncrementAttribute
 name|posIncrAtt
 decl_stmt|;
-comment|/**    * Construct a token stream filtering the given input.    */
+comment|/**    * Construct a token stream filtering the given input.    * @deprecated Use {@link #StopFilter(boolean, TokenStream, String[])} instead    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -147,6 +166,8 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|ENABLE_POSITION_INCREMENTS_DEFAULT
+argument_list|,
 name|input
 argument_list|,
 name|stopWords
@@ -155,11 +176,70 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    */
+comment|/**    * Construct a token stream filtering the given input.    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param input input TokenStream    * @param stopWords array of stop words    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
 parameter_list|(
+name|boolean
+name|enablePositionIncrements
+parameter_list|,
+name|TokenStream
+name|input
+parameter_list|,
+name|String
+index|[]
+name|stopWords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|enablePositionIncrements
+argument_list|,
+name|input
+argument_list|,
+name|stopWords
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    * @deprecated Use {@link #StopFilter(boolean, TokenStream, String[], boolean)} instead    */
+DECL|method|StopFilter
+specifier|public
+name|StopFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|String
+index|[]
+name|stopWords
+parameter_list|,
+name|boolean
+name|ignoreCase
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|ENABLE_POSITION_INCREMENTS_DEFAULT
+argument_list|,
+name|in
+argument_list|,
+name|stopWords
+argument_list|,
+name|ignoreCase
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param in input TokenStream    * @param stopWords array of stop words    * @param ignoreCase true if case is ignored    */
+DECL|method|StopFilter
+specifier|public
+name|StopFilter
+parameter_list|(
+name|boolean
+name|enablePositionIncrements
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|,
@@ -190,15 +270,51 @@ argument_list|,
 name|ignoreCase
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|enablePositionIncrements
+operator|=
+name|enablePositionIncrements
+expr_stmt|;
 name|init
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Construct a token stream filtering the given input.    * If<code>stopWords</code> is an instance of {@link CharArraySet} (true if    *<code>makeStopSet()</code> was used to construct the set) it will be directly used    * and<code>ignoreCase</code> will be ignored since<code>CharArraySet</code>    * directly controls case sensitivity.    *<p/>    * If<code>stopWords</code> is not an instance of {@link CharArraySet},    * a new CharArraySet will be constructed and<code>ignoreCase</code> will be    * used to specify the case sensitivity of that set.    *    * @param input    * @param stopWords The set of Stop Words.    * @param ignoreCase -Ignore case when stopping.    */
+comment|/**    * Construct a token stream filtering the given input.    * If<code>stopWords</code> is an instance of {@link CharArraySet} (true if    *<code>makeStopSet()</code> was used to construct the set) it will be directly used    * and<code>ignoreCase</code> will be ignored since<code>CharArraySet</code>    * directly controls case sensitivity.    *<p/>    * If<code>stopWords</code> is not an instance of {@link CharArraySet},    * a new CharArraySet will be constructed and<code>ignoreCase</code> will be    * used to specify the case sensitivity of that set.    *    * @param input    * @param stopWords The set of Stop Words.    * @param ignoreCase -Ignore case when stopping.    * @deprecated Use {@link #StopFilter(boolean, TokenStream, Set, boolean)} instead    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
 parameter_list|(
+name|TokenStream
+name|input
+parameter_list|,
+name|Set
+name|stopWords
+parameter_list|,
+name|boolean
+name|ignoreCase
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|ENABLE_POSITION_INCREMENTS_DEFAULT
+argument_list|,
+name|input
+argument_list|,
+name|stopWords
+argument_list|,
+name|ignoreCase
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a token stream filtering the given input.    * If<code>stopWords</code> is an instance of {@link CharArraySet} (true if    *<code>makeStopSet()</code> was used to construct the set) it will be directly used    * and<code>ignoreCase</code> will be ignored since<code>CharArraySet</code>    * directly controls case sensitivity.    *<p/>    * If<code>stopWords</code> is not an instance of {@link CharArraySet},    * a new CharArraySet will be constructed and<code>ignoreCase</code> will be    * used to specify the case sensitivity of that set.    *    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param input Input TokenStream    * @param stopWords The set of Stop Words.    * @param ignoreCase -Ignore case when stopping.    */
+DECL|method|StopFilter
+specifier|public
+name|StopFilter
+parameter_list|(
+name|boolean
+name|enablePositionIncrements
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
@@ -258,11 +374,17 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|enablePositionIncrements
+operator|=
+name|enablePositionIncrements
+expr_stmt|;
 name|init
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    *    * @see #makeStopSet(java.lang.String[])    */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    *    * @see #makeStopSet(java.lang.String[])    * @deprecated Use {@link #StopFilter(boolean, TokenStream, Set)} instead    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -276,6 +398,35 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|ENABLE_POSITION_INCREMENTS_DEFAULT
+argument_list|,
+name|in
+argument_list|,
+name|stopWords
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    *    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param in Input stream    * @param stopWords The set of Stop Words.    * @see #makeStopSet(java.lang.String[])    */
+DECL|method|StopFilter
+specifier|public
+name|StopFilter
+parameter_list|(
+name|boolean
+name|enablePositionIncrements
+parameter_list|,
+name|TokenStream
+name|in
+parameter_list|,
+name|Set
+name|stopWords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|enablePositionIncrements
+argument_list|,
 name|in
 argument_list|,
 name|stopWords
@@ -632,7 +783,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * @see #setEnablePositionIncrementsDefault(boolean).     */
+comment|/**    * @see #setEnablePositionIncrementsDefault(boolean).     * @deprecated Please specify this when you create the StopFilter    */
 DECL|method|getEnablePositionIncrementsDefault
 specifier|public
 specifier|static
@@ -644,7 +795,7 @@ return|return
 name|ENABLE_POSITION_INCREMENTS_DEFAULT
 return|;
 block|}
-comment|/**    * Set the default position increments behavior of every StopFilter created from now on.    *<p>    * Note: behavior of a single StopFilter instance can be modified     * with {@link #setEnablePositionIncrements(boolean)}.    * This static method allows control over behavior of classes using StopFilters internally,     * for example {@link org.apache.lucene.analysis.standard.StandardAnalyzer StandardAnalyzer}.     *<p>    * Default : false.    * @see #setEnablePositionIncrements(boolean).    */
+comment|/**    * Set the default position increments behavior of every StopFilter created from now on.    *<p>    * Note: behavior of a single StopFilter instance can be modified     * with {@link #setEnablePositionIncrements(boolean)}.    * This static method allows control over behavior of classes using StopFilters internally,     * for example {@link org.apache.lucene.analysis.standard.StandardAnalyzer StandardAnalyzer}.     *<p>    * Default : false.    * @see #setEnablePositionIncrements(boolean).    * @deprecated Please specify this when you create the StopFilter    */
 DECL|method|setEnablePositionIncrementsDefault
 specifier|public
 specifier|static
@@ -671,7 +822,7 @@ return|return
 name|enablePositionIncrements
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to make<b>this</b> StopFilter enable position increments to result tokens.    *<p>    * When set, when a token is stopped (omitted), the position increment of     * the following token is incremented.      *<p>    * Default: see {@link #setEnablePositionIncrementsDefault(boolean)}.    */
+comment|/**    * If<code>true</code>, this StopFilter will preserve    * positions of the incoming tokens (ie, accumulate and    * set position increments of the removed stop tokens).    * Generally,<code>true</code> is best as it does not    * lose information (positions of the original tokens)    * during indexing.    *     *<p> When set, when a token is stopped    * (omitted), the position increment of the following    * token is incremented.    *    *<p><b>NOTE</b>: be sure to also    * set {@link QueryParser#setEnablePositionIncrements} if    * you use QueryParser to create queries.    */
 DECL|method|setEnablePositionIncrements
 specifier|public
 name|void
