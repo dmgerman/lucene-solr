@@ -187,7 +187,7 @@ name|closeDir
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>File</code> specifying the index directory    *    * @see #RAMDirectory(Directory)    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>File</code> specifying the index directory    *    * @see #RAMDirectory(Directory)    * @deprecated Use {@link #RAMDirectory(Directory)} instead    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
@@ -211,7 +211,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>String</code> specifying the full index directory path    *    * @see #RAMDirectory(Directory)    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from the {@link FSDirectory}.    *    * @param dir a<code>String</code> specifying the full index directory path    *    * @see #RAMDirectory(Directory)    * @deprecated Use {@link #RAMDirectory(Directory)} instead    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory

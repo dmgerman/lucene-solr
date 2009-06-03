@@ -507,7 +507,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    *  path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(String, boolean)} instead    * @param path the path to the index directory */
+comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    *  path.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(Directory, boolean)} instead    * @param path the path to the index directory */
 DECL|method|open
 specifier|public
 specifier|static
@@ -542,7 +542,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an    *  FSDirectory in the named path.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory    * @param readOnly true if this should be a readOnly    * reader */
+comment|/** Returns an IndexReader reading the index in an    *  FSDirectory in the named path.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory    * @param readOnly true if this should be a readOnly    * reader    * @deprecated Use {@link #open(Directory, boolean)} instead*/
 DECL|method|open
 specifier|public
 specifier|static
@@ -580,7 +580,7 @@ name|readOnly
 argument_list|)
 return|;
 block|}
-comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    *  path.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(File, boolean)} instead    */
+comment|/** Returns a read/write IndexReader reading the index in an FSDirectory in the named    *  path.    * @param path the path to the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #open(Directory, boolean)} instead    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -615,7 +615,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in an    *  FSDirectory in the named path.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory    * @param readOnly true if this should be a readOnly    * reader */
+comment|/** Returns an IndexReader reading the index in an    *  FSDirectory in the named path.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path the path to the index directory    * @param readOnly true if this should be a readOnly    * reader    * @deprecated Use {@link #open(Directory, boolean)}    * instead */
 DECL|method|open
 specifier|public
 specifier|static
@@ -1298,7 +1298,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Reads version number from segments files. The version number is    * initialized with a timestamp and then increased by one for each change of    * the index.    *     * @param directory where the index resides.    * @return version number.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @deprecated Use {@link #getCurrentVersion(Directory)} instead    */
 DECL|method|getCurrentVersion
 specifier|public
 specifier|static
@@ -2379,7 +2379,7 @@ name|isLocked
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    * @deprecated Please use {@link IndexWriter#isLocked(String)} instead    */
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    * @deprecated Please use {@link IndexWriter#isLocked(Directory)} instead    */
 DECL|method|isLocked
 specifier|public
 specifier|static
