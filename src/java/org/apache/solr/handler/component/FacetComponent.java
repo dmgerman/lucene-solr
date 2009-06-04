@@ -2173,8 +2173,9 @@ name|ShardFacetCount
 index|[]
 name|counts
 decl_stmt|;
-if|if
-condition|(
+name|boolean
+name|countSorted
+init|=
 name|dff
 operator|.
 name|sort
@@ -2185,6 +2186,10 @@ name|FacetParams
 operator|.
 name|FACET_SORT_COUNT
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|countSorted
 condition|)
 block|{
 name|counts
@@ -2307,7 +2312,16 @@ name|dff
 operator|.
 name|minCount
 condition|)
+block|{
+if|if
+condition|(
+name|countSorted
+condition|)
 break|break;
+comment|// if sorted by count, we can break out of loop early
+else|else
+continue|continue;
+block|}
 name|fieldCounts
 operator|.
 name|add
