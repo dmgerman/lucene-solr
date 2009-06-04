@@ -129,14 +129,14 @@ init|=
 literal|"file"
 decl_stmt|;
 comment|/** If you merge indexes, what are the index directories.    * The directories are separated by ",". */
-DECL|field|INDEX_DIRS
+DECL|field|INDEX_DIR
 specifier|public
 specifier|final
 specifier|static
 name|String
-name|INDEX_DIRS
+name|INDEX_DIR
 init|=
-literal|"indexDirs"
+literal|"indexDir"
 decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
