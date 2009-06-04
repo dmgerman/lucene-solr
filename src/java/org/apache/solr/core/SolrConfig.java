@@ -480,6 +480,15 @@ argument_list|,
 name|defaultIndexConfig
 argument_list|)
 expr_stmt|;
+name|reopenReaders
+operator|=
+name|getBool
+argument_list|(
+literal|"mainIndex/reopenReaders"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|booleanQueryMaxClauseCount
 operator|=
 name|getInt
@@ -928,6 +937,12 @@ specifier|public
 specifier|final
 name|boolean
 name|enableLazyFieldLoading
+decl_stmt|;
+DECL|field|reopenReaders
+specifier|public
+specifier|final
+name|boolean
+name|reopenReaders
 decl_stmt|;
 comment|// DocSet
 DECL|field|hashSetInverseLoadFactor

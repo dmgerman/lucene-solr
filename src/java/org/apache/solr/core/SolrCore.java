@@ -4605,6 +4605,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|solrConfig
+operator|.
+name|reopenReaders
+operator|&&
 operator|new
 name|File
 argument_list|(
