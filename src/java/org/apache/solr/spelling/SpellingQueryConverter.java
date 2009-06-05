@@ -139,7 +139,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"(?:(?!(\\w+:|\\d+)))\\w+"
+literal|"(?:(?!(\\p{L}+:|\\d+)))\\p{L}+"
 argument_list|)
 decl_stmt|;
 comment|/**    * Converts the original query string to a collection of Lucene Tokens.    * @param original the original query string    * @return a Collection of Lucene Tokens    */
