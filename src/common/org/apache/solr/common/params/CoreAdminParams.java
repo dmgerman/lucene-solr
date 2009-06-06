@@ -128,7 +128,7 @@ name|FILE
 init|=
 literal|"file"
 decl_stmt|;
-comment|/** If you merge indexes, what are the index directories.    * The directories are separated by ",". */
+comment|/** If you merge indexes, what are the index directories.    * The directories are specified by multiple indexDir parameters. */
 DECL|field|INDEX_DIR
 specifier|public
 specifier|final
