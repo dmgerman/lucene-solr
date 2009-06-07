@@ -578,16 +578,12 @@ argument_list|(
 name|ram
 argument_list|)
 expr_stmt|;
-comment|// only one segment in the index, so we can cast to SegmentReader
 name|SegmentReader
 name|reader
 init|=
-operator|(
 name|SegmentReader
-operator|)
-name|IndexReader
 operator|.
-name|open
+name|getOnlySegmentReader
 argument_list|(
 name|ram
 argument_list|)
@@ -870,16 +866,12 @@ argument_list|(
 name|ram
 argument_list|)
 expr_stmt|;
-comment|// only one segment in the index, so we can cast to SegmentReader
 name|SegmentReader
 name|reader
 init|=
-operator|(
 name|SegmentReader
-operator|)
-name|IndexReader
 operator|.
-name|open
+name|getOnlySegmentReader
 argument_list|(
 name|ram
 argument_list|)
@@ -1126,16 +1118,12 @@ argument_list|(
 name|ram
 argument_list|)
 expr_stmt|;
-comment|// only one segment in the index, so we can cast to SegmentReader
 name|SegmentReader
 name|reader
 init|=
-operator|(
 name|SegmentReader
-operator|)
-name|IndexReader
 operator|.
-name|open
+name|getOnlySegmentReader
 argument_list|(
 name|ram
 argument_list|)

@@ -421,16 +421,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// the index is a single segment, thus IndexReader.open() returns an instance of SegmentReader
 name|SegmentReader
 name|reader
 init|=
-operator|(
 name|SegmentReader
-operator|)
-name|IndexReader
 operator|.
-name|open
+name|getOnlySegmentReader
 argument_list|(
 name|directory
 argument_list|)

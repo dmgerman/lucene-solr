@@ -2128,12 +2128,9 @@ expr_stmt|;
 name|SegmentReader
 name|reader
 init|=
-operator|(
 name|SegmentReader
-operator|)
-name|IndexReader
 operator|.
-name|open
+name|getOnlySegmentReader
 argument_list|(
 name|dir
 argument_list|)

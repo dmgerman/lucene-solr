@@ -832,7 +832,7 @@ init|)
 block|{
 return|return
 operator|new
-name|ReadOnlyMultiSegmentReader
+name|ReadOnlyDirectoryReader
 argument_list|(
 name|this
 argument_list|,
@@ -1622,14 +1622,6 @@ name|readBufferSize
 argument_list|,
 name|doOpenStores
 argument_list|)
-expr_stmt|;
-name|sr
-operator|.
-name|writer
-operator|=
-name|IndexWriter
-operator|.
-name|this
 expr_stmt|;
 name|readerMap
 operator|.

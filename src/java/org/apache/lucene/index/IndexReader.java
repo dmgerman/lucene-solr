@@ -969,7 +969,7 @@ throws|,
 name|IOException
 block|{
 return|return
-name|DirectoryIndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2876,7 +2876,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|DirectoryIndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -2884,7 +2884,7 @@ name|dir
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of.  For example,    *  IndexSearcher uses this API to drive searching by one    *  sub reader at a time.  If this reader is not composed    *  of sequential child readers, it should return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    *<p>    *  NOTE: for a MultiSegmentReader, which is obtained by    *  {@link #open} when the index has more than one    *  segment, you should not use the sub-readers returned    *  by this method to make any changes (setNorm,    *  deleteDocument, etc.).  Doing so will likely lead to    *  index corruption.  Use the parent reader instead. */
+comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of.  For example,    *  IndexSearcher uses this API to drive searching by one    *  sub reader at a time.  If this reader is not composed    *  of sequential child readers, it should return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    *<p>    *  NOTE: You should not try using sub-readers returned by    *  this method to make any changes (setNorm, deleteDocument,    *  etc.). While this might succeed for one composite reader    *  (like MultiReader), it will most likely lead to index    *  corruption for other readers (like DirectoryReader obtained    *  through {@link #open}. Use the parent reader directly. */
 DECL|method|getSequentialSubReaders
 specifier|public
 name|IndexReader

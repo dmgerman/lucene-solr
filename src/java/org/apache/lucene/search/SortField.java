@@ -889,7 +889,7 @@ return|return
 name|comparatorSource
 return|;
 block|}
-comment|/**    * Use legacy IndexSearch implementation: search with a MultiSegmentReader rather    * than passing a single hit collector to multiple SegmentReaders.    *     * @param legacy true for legacy behavior    * @deprecated will be removed in Lucene 3.0.    */
+comment|/**    * Use legacy IndexSearch implementation: search with a DirectoryReader rather    * than passing a single hit collector to multiple SegmentReaders.    *     * @param legacy true for legacy behavior    * @deprecated will be removed in Lucene 3.0.    */
 DECL|method|setUseLegacySearch
 specifier|public
 name|void

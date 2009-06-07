@@ -344,9 +344,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|SegmentReader
 operator|.
-name|open
+name|getOnlySegmentReader
 argument_list|(
 name|dir
 argument_list|)

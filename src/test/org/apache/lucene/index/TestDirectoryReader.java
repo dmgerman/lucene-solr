@@ -113,10 +113,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestMultiSegmentReader
+DECL|class|TestDirectoryReader
 specifier|public
 class|class
-name|TestMultiSegmentReader
+name|TestDirectoryReader
 extends|extends
 name|LuceneTestCase
 block|{
@@ -152,9 +152,9 @@ specifier|protected
 name|SegmentInfos
 name|sis
 decl_stmt|;
-DECL|method|TestMultiSegmentReader
+DECL|method|TestDirectoryReader
 specifier|public
-name|TestMultiSegmentReader
+name|TestDirectoryReader
 parameter_list|(
 name|String
 name|s
@@ -267,7 +267,7 @@ name|assertTrue
 argument_list|(
 name|reader
 operator|instanceof
-name|MultiSegmentReader
+name|DirectoryReader
 argument_list|)
 expr_stmt|;
 name|assertTrue
