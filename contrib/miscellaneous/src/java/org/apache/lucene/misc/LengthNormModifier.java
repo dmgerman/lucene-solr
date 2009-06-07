@@ -272,11 +272,9 @@ name|d
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|index
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|LengthNormModifier

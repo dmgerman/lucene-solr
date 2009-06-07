@@ -2308,17 +2308,14 @@ name|reader
 init|=
 literal|null
 decl_stmt|;
-comment|// While trying to reopen, we temporarily mark our
-comment|// closeDirectory as false.  This way any exceptions hit
-comment|// partway while opening the reader, which is expected
-comment|// eg if writer is committing, won't close our
-comment|// directory.  We restore this value below:
+comment|/* TODO: Remove this in 3.0 - the directory is then      * no longer owned by the IndexReader and must not be      * closed.      * While trying to reopen, we temporarily mark our      * closeDirectory as false.  This way any exceptions hit      * partway while opening the reader, which is expected      * eg if writer is committing, won't close our      * directory.  We restore this value below:      */
 specifier|final
 name|boolean
 name|myCloseDirectory
 init|=
 name|closeDirectory
 decl_stmt|;
+comment|// @deprectated
 name|closeDirectory
 operator|=
 literal|false

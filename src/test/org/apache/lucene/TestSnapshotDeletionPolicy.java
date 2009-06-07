@@ -332,7 +332,7 @@ name|fsDir
 init|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|dir
 argument_list|)

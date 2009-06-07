@@ -327,7 +327,7 @@ extends|extends
 name|TestCase
 block|{
 comment|//  public void test2() throws Exception {
-comment|//    FSDirectory fsdir = FSDirectory.getDirectory("/tmp/fatcorpus");
+comment|//    FSDirectory fsdir = FSDirectory.open(new File("/tmp/fatcorpus"));
 comment|//    IndexReader ir = IndexReader.open(fsdir);
 comment|//    InstantiatedIndex ii = new InstantiatedIndex(ir);
 comment|//    ir.close();

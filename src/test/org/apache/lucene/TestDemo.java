@@ -260,7 +260,7 @@ name|RAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// To store an index on disk, use this instead:
-comment|//Directory directory = FSDirectory.getDirectory("/tmp/testindex");
+comment|//Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 name|IndexWriter
 name|iwriter
 init|=
