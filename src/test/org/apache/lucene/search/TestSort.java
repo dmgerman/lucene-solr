@@ -322,6 +322,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit tests for sorting code.  *  *<p>Created: Feb 17, 2004 4:55:10 PM  *  * @since   lucene 1.4  * @version $Id$  */
 end_comment
@@ -9914,11 +9928,26 @@ name|Naming
 operator|.
 name|lookup
 argument_list|(
-literal|"//localhost/SortedSearchable"
+literal|"//localhost:"
+operator|+
+name|port
+operator|+
+literal|"/SortedSearchable"
 argument_list|)
 return|;
 block|}
 end_function
+
+begin_decl_stmt
+DECL|field|port
+specifier|private
+name|int
+name|port
+init|=
+operator|-
+literal|1
+decl_stmt|;
+end_decl_stmt
 
 begin_function
 DECL|method|startServer
@@ -9930,6 +9959,13 @@ throws|throws
 name|Exception
 block|{
 comment|// construct an index
+name|port
+operator|=
+name|_TestUtil
+operator|.
+name|getRandomSocketPort
+argument_list|()
+expr_stmt|;
 name|Searcher
 name|local
 init|=
@@ -9942,7 +9978,7 @@ name|LocateRegistry
 operator|.
 name|createRegistry
 argument_list|(
-literal|1099
+name|port
 argument_list|)
 expr_stmt|;
 name|RemoteSearchable
@@ -9958,7 +9994,11 @@ name|Naming
 operator|.
 name|rebind
 argument_list|(
-literal|"//localhost/SortedSearchable"
+literal|"//localhost:"
+operator|+
+name|port
+operator|+
+literal|"/SortedSearchable"
 argument_list|,
 name|impl
 argument_list|)
