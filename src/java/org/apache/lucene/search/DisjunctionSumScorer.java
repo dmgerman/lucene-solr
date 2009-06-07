@@ -264,8 +264,10 @@ if|if
 condition|(
 name|se
 operator|.
-name|next
+name|nextDoc
 argument_list|()
+operator|!=
+name|NO_MORE_DOCS
 condition|)
 block|{
 comment|// doc() method will be used in scorerDocQueue.
@@ -322,8 +324,10 @@ argument_list|)
 expr_stmt|;
 while|while
 condition|(
-name|next
+name|nextDoc
 argument_list|()
+operator|!=
+name|NO_MORE_DOCS
 condition|)
 block|{
 name|collector
@@ -360,6 +364,9 @@ name|hc
 argument_list|)
 argument_list|,
 name|max
+argument_list|,
+name|docID
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -374,10 +381,14 @@ name|collector
 parameter_list|,
 name|int
 name|max
+parameter_list|,
+name|int
+name|firstDocID
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// firstDocID is ignored since nextDoc() sets 'currentDoc'
 name|collector
 operator|.
 name|setScorer
@@ -401,9 +412,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|next
+name|nextDoc
 argument_list|()
+operator|==
+name|NO_MORE_DOCS
 condition|)
 block|{
 return|return
@@ -415,6 +427,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/** @deprecated use {@link #nextDoc()} instead. */
 DECL|method|next
 specifier|public
 name|boolean
@@ -424,20 +437,44 @@ throws|throws
 name|IOException
 block|{
 return|return
-operator|(
+name|nextDoc
+argument_list|()
+operator|!=
+name|NO_MORE_DOCS
+return|;
+block|}
+DECL|method|nextDoc
+specifier|public
+name|int
+name|nextDoc
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
 name|scorerDocQueue
 operator|.
 name|size
 argument_list|()
-operator|>=
+operator|<
 name|minimumNrMatchers
-operator|)
-operator|&&
+operator|||
+operator|!
 name|advanceAfterCurrent
 argument_list|()
+condition|)
+block|{
+name|currentDoc
+operator|=
+name|NO_MORE_DOCS
+expr_stmt|;
+block|}
+return|return
+name|currentDoc
 return|;
 block|}
-comment|/** Advance all subscorers after the current document determined by the    * top of the<code>scorerDocQueue</code>.    * Repeat until at least the minimum number of subscorers match on the same    * document and all subscorers are after that document or are exhausted.    *<br>On entry the<code>scorerDocQueue</code> has at least<code>minimumNrMatchers</code>    * available. At least the scorer with the minimum document number will be advanced.    * @return true iff there is a match.    *<br>In case there is a match,</code>currentDoc</code>,</code>currentSumScore</code>,    * and</code>nrMatchers</code> describe the match.    *    * @todo Investigate whether it is possible to use skipTo() when    * the minimum number of matchers is bigger than one, ie. try and use the    * character of ConjunctionScorer for the minimum number of matchers.    * Also delay calling score() on the sub scorers until the minimum number of    * matchers is reached.    *<br>For this, a Scorer array with minimumNrMatchers elements might    * hold Scorers at currentDoc that are temporarily popped from scorerQueue.    */
+comment|/** Advance all subscorers after the current document determined by the    * top of the<code>scorerDocQueue</code>.    * Repeat until at least the minimum number of subscorers match on the same    * document and all subscorers are after that document or are exhausted.    *<br>On entry the<code>scorerDocQueue</code> has at least<code>minimumNrMatchers</code>    * available. At least the scorer with the minimum document number will be advanced.    * @return true iff there is a match.    *<br>In case there is a match,</code>currentDoc</code>,</code>currentSumScore</code>,    * and</code>nrMatchers</code> describe the match.    *    * TODO: Investigate whether it is possible to use skipTo() when    * the minimum number of matchers is bigger than one, ie. try and use the    * character of ConjunctionScorer for the minimum number of matchers.    * Also delay calling score() on the sub scorers until the minimum number of    * matchers is reached.    *<br>For this, a Scorer array with minimumNrMatchers elements might    * hold Scorers at currentDoc that are temporarily popped from scorerQueue.    */
 DECL|method|advanceAfterCurrent
 specifier|protected
 name|boolean
@@ -568,10 +605,21 @@ return|return
 name|currentScore
 return|;
 block|}
+comment|/** @deprecated use {@link #docID()} instead. */
 DECL|method|doc
 specifier|public
 name|int
 name|doc
+parameter_list|()
+block|{
+return|return
+name|currentDoc
+return|;
+block|}
+DECL|method|docID
+specifier|public
+name|int
+name|docID
 parameter_list|()
 block|{
 return|return
@@ -589,11 +637,32 @@ return|return
 name|nrMatchers
 return|;
 block|}
-comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.    *<br>When this method is used the {@link #explain(int)} method should not be used.    *<br>The implementation uses the skipTo() method on the subscorers.    * @param target The target document number.    * @return true iff there is such a match.    */
+comment|/**    * Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * When this method is used the {@link #explain(int)} method should not be    * used.<br>    * The implementation uses the skipTo() method on the subscorers.    *     * @param target    *          The target document number.    * @return true iff there is such a match.    * @deprecated use {@link #advance(int)} instead.    */
 DECL|method|skipTo
 specifier|public
 name|boolean
 name|skipTo
+parameter_list|(
+name|int
+name|target
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|advance
+argument_list|(
+name|target
+argument_list|)
+operator|!=
+name|NO_MORE_DOCS
+return|;
+block|}
+comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * When this method is used the {@link #explain(int)} method should not be    * used.<br>    * The implementation uses the skipTo() method on the subscorers.    *     * @param target    *          The target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
+DECL|method|advance
+specifier|public
+name|int
+name|advance
 parameter_list|(
 name|int
 name|target
@@ -612,7 +681,9 @@ name|minimumNrMatchers
 condition|)
 block|{
 return|return
-literal|false
+name|currentDoc
+operator|=
+name|NO_MORE_DOCS
 return|;
 block|}
 if|if
@@ -623,7 +694,7 @@ name|currentDoc
 condition|)
 block|{
 return|return
-literal|true
+name|currentDoc
 return|;
 block|}
 do|do
@@ -641,6 +712,14 @@ block|{
 return|return
 name|advanceAfterCurrent
 argument_list|()
+condition|?
+name|currentDoc
+else|:
+operator|(
+name|currentDoc
+operator|=
+name|NO_MORE_DOCS
+operator|)
 return|;
 block|}
 elseif|else
@@ -666,7 +745,9 @@ name|minimumNrMatchers
 condition|)
 block|{
 return|return
-literal|false
+name|currentDoc
+operator|=
+name|NO_MORE_DOCS
 return|;
 block|}
 block|}

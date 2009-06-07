@@ -90,6 +90,9 @@ DECL|field|doc
 specifier|private
 name|int
 name|doc
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|docs
 specifier|private
@@ -263,9 +266,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|next
-argument_list|()
-expr_stmt|;
 name|score
 argument_list|(
 name|c
@@ -273,6 +273,9 @@ argument_list|,
 name|Integer
 operator|.
 name|MAX_VALUE
+argument_list|,
+name|nextDoc
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -301,9 +304,12 @@ name|c
 argument_list|)
 argument_list|,
 name|end
+argument_list|,
+name|doc
 argument_list|)
 return|;
 block|}
+comment|// firstDocID is ignored since nextDoc() sets 'doc'
 DECL|method|score
 specifier|protected
 name|boolean
@@ -314,6 +320,9 @@ name|c
 parameter_list|,
 name|int
 name|end
+parameter_list|,
+name|int
+name|firstDocID
 parameter_list|)
 throws|throws
 name|IOException
@@ -405,7 +414,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Returns the current document number matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
+comment|/** @deprecated use {@link #docID()} instead. */
 DECL|method|doc
 specifier|public
 name|int
@@ -416,11 +425,37 @@ return|return
 name|doc
 return|;
 block|}
-comment|/** Advances to the next document matching the query.    *<br>The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    * @return true iff there is another document matching the query.    */
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+return|return
+name|doc
+return|;
+block|}
+comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return true iff there is another document matching the query.    * @deprecated use {@link #nextDoc()} instead.    */
 DECL|method|next
 specifier|public
 name|boolean
 name|next
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|nextDoc
+argument_list|()
+operator|!=
+name|NO_MORE_DOCS
+return|;
+block|}
+comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return the document matching the query or -1 if there are no more documents.    */
+DECL|method|nextDoc
+specifier|public
+name|int
+name|nextDoc
 parameter_list|()
 throws|throws
 name|IOException
@@ -467,15 +502,10 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// close stream
+return|return
 name|doc
 operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
-expr_stmt|;
-comment|// set to sentinel value
-return|return
-literal|false
+name|NO_MORE_DOCS
 return|;
 block|}
 block|}
@@ -487,7 +517,7 @@ name|pointer
 index|]
 expr_stmt|;
 return|return
-literal|true
+name|doc
 return|;
 block|}
 DECL|method|score
@@ -496,6 +526,12 @@ name|float
 name|score
 parameter_list|()
 block|{
+assert|assert
+name|doc
+operator|!=
+operator|-
+literal|1
+assert|;
 name|int
 name|f
 init|=
@@ -551,11 +587,32 @@ index|]
 return|;
 comment|// normalize for field
 block|}
-comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.     *<br>The implementation uses {@link TermDocs#skipTo(int)}.    * @param target The target document number.    * @return true iff there is such a match.    */
+comment|/**    * Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses {@link TermDocs#skipTo(int)}.    *     * @param target    *          The target document number.    * @return true iff there is such a match.    * @deprecated use {@link #advance(int)} instead.    */
 DECL|method|skipTo
 specifier|public
 name|boolean
 name|skipTo
+parameter_list|(
+name|int
+name|target
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|advance
+argument_list|(
+name|target
+argument_list|)
+operator|!=
+name|NO_MORE_DOCS
+return|;
+block|}
+comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses {@link TermDocs#skipTo(int)}.    *     * @param target    *          The target document number.    * @return the matching document or -1 if none exist.    */
+DECL|method|advance
+specifier|public
+name|int
+name|advance
 parameter_list|(
 name|int
 name|target
@@ -587,15 +644,13 @@ operator|>=
 name|target
 condition|)
 block|{
+return|return
 name|doc
 operator|=
 name|docs
 index|[
 name|pointer
 index|]
-expr_stmt|;
-return|return
-literal|true
 return|;
 block|}
 block|}
@@ -650,13 +705,11 @@ else|else
 block|{
 name|doc
 operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
+name|NO_MORE_DOCS
 expr_stmt|;
 block|}
 return|return
-name|result
+name|doc
 return|;
 block|}
 comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    */

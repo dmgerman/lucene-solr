@@ -342,6 +342,14 @@ specifier|final
 name|TermDocs
 name|termDocs
 decl_stmt|;
+DECL|field|doc
+specifier|private
+name|int
+name|doc
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|// constructor
 DECL|method|ValueSourceScorer
 specifier|private
@@ -399,7 +407,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Scorer#next() */
+comment|/** @deprecated use {@link #nextDoc()} instead. */
 DECL|method|next
 specifier|public
 name|boolean
@@ -415,7 +423,31 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Scorer#doc()      */
+DECL|method|nextDoc
+specifier|public
+name|int
+name|nextDoc
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|doc
+operator|=
+name|termDocs
+operator|.
+name|next
+argument_list|()
+condition|?
+name|termDocs
+operator|.
+name|doc
+argument_list|()
+else|:
+name|NO_MORE_DOCS
+return|;
+block|}
+comment|/** @deprecated use {@link #docID()} instead. */
 DECL|method|doc
 specifier|public
 name|int
@@ -427,6 +459,16 @@ name|termDocs
 operator|.
 name|doc
 argument_list|()
+return|;
+block|}
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+return|return
+name|doc
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.Scorer#score() */
@@ -452,7 +494,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Scorer#skipTo(int) */
+comment|/** @deprecated use {@link #advance(int)} instead. */
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -471,6 +513,35 @@ name|skipTo
 argument_list|(
 name|target
 argument_list|)
+return|;
+block|}
+DECL|method|advance
+specifier|public
+name|int
+name|advance
+parameter_list|(
+name|int
+name|target
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|doc
+operator|=
+name|termDocs
+operator|.
+name|skipTo
+argument_list|(
+name|target
+argument_list|)
+condition|?
+name|termDocs
+operator|.
+name|doc
+argument_list|()
+else|:
+name|NO_MORE_DOCS
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.Scorer#explain(int) */

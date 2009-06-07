@@ -47,6 +47,14 @@ specifier|private
 name|DocIdSetIterator
 name|exclDisi
 decl_stmt|;
+DECL|field|doc
+specifier|private
+name|int
+name|doc
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/** Construct a<code>ReqExclScorer</code>.    * @param reqScorer The scorer that must match, except where    * @param exclDisi indicates exclusion.    */
 DECL|method|ReqExclScorer
 specifier|public
@@ -78,13 +86,7 @@ operator|=
 name|exclDisi
 expr_stmt|;
 block|}
-DECL|field|firstTime
-specifier|private
-name|boolean
-name|firstTime
-init|=
-literal|true
-decl_stmt|;
+comment|/** @deprecated use {@link #nextDoc()} instead. */
 DECL|method|next
 specifier|public
 name|boolean
@@ -93,31 +95,21 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|firstTime
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|exclDisi
-operator|.
-name|next
+return|return
+name|nextDoc
 argument_list|()
-condition|)
+operator|!=
+name|NO_MORE_DOCS
+return|;
+block|}
+DECL|method|nextDoc
+specifier|public
+name|int
+name|nextDoc
+parameter_list|()
+throws|throws
+name|IOException
 block|{
-name|exclDisi
-operator|=
-literal|null
-expr_stmt|;
-comment|// exhausted at start
-block|}
-name|firstTime
-operator|=
-literal|false
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|reqScorer
@@ -126,16 +118,21 @@ literal|null
 condition|)
 block|{
 return|return
-literal|false
+name|doc
 return|;
 block|}
-if|if
-condition|(
-operator|!
+name|doc
+operator|=
 name|reqScorer
 operator|.
-name|next
+name|nextDoc
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+name|NO_MORE_DOCS
 condition|)
 block|{
 name|reqScorer
@@ -144,7 +141,7 @@ literal|null
 expr_stmt|;
 comment|// exhausted, nothing left
 return|return
-literal|false
+name|doc
 return|;
 block|}
 if|if
@@ -155,19 +152,20 @@ literal|null
 condition|)
 block|{
 return|return
-literal|true
+name|doc
 return|;
-comment|// reqScorer.next() already returned true
 block|}
 return|return
+name|doc
+operator|=
 name|toNonExcluded
 argument_list|()
 return|;
 block|}
-comment|/** Advance to non excluded doc.    *<br>On entry:    *<ul>    *<li>reqScorer != null,    *<li>exclDisi != null,    *<li>reqScorer was advanced once via next() or skipTo()    *      and reqScorer.doc() may still be excluded.    *</ul>    * Advances reqScorer a non excluded required doc, if any.    * @return true iff there is a non excluded required doc.    */
+comment|/** Advance to non excluded doc.    *<br>On entry:    *<ul>    *<li>reqScorer != null,    *<li>exclScorer != null,    *<li>reqScorer was advanced once via next() or skipTo()    *      and reqScorer.doc() may still be excluded.    *</ul>    * Advances reqScorer a non excluded required doc, if any.    * @return true iff there is a non excluded required doc.    */
 DECL|method|toNonExcluded
 specifier|private
-name|boolean
+name|int
 name|toNonExcluded
 parameter_list|()
 throws|throws
@@ -178,20 +176,20 @@ name|exclDoc
 init|=
 name|exclDisi
 operator|.
-name|doc
+name|docID
 argument_list|()
 decl_stmt|;
-do|do
-block|{
 name|int
 name|reqDoc
 init|=
 name|reqScorer
 operator|.
-name|doc
+name|docID
 argument_list|()
 decl_stmt|;
 comment|// may be excluded
+do|do
+block|{
 if|if
 condition|(
 name|reqDoc
@@ -200,7 +198,7 @@ name|exclDoc
 condition|)
 block|{
 return|return
-literal|true
+name|reqDoc
 return|;
 comment|// reqScorer advanced to before exclScorer, ie. not excluded
 block|}
@@ -212,15 +210,20 @@ operator|>
 name|exclDoc
 condition|)
 block|{
-if|if
-condition|(
-operator|!
+name|exclDoc
+operator|=
 name|exclDisi
 operator|.
-name|skipTo
+name|advance
 argument_list|(
 name|reqDoc
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|exclDoc
+operator|==
+name|NO_MORE_DOCS
 condition|)
 block|{
 name|exclDisi
@@ -229,16 +232,9 @@ literal|null
 expr_stmt|;
 comment|// exhausted, no more exclusions
 return|return
-literal|true
+name|reqDoc
 return|;
 block|}
-name|exclDoc
-operator|=
-name|exclDisi
-operator|.
-name|doc
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|exclDoc
@@ -247,7 +243,7 @@ name|reqDoc
 condition|)
 block|{
 return|return
-literal|true
+name|reqDoc
 return|;
 comment|// not excluded
 block|}
@@ -255,10 +251,16 @@ block|}
 block|}
 do|while
 condition|(
+operator|(
+name|reqDoc
+operator|=
 name|reqScorer
 operator|.
-name|next
+name|nextDoc
 argument_list|()
+operator|)
+operator|!=
+name|NO_MORE_DOCS
 condition|)
 do|;
 name|reqScorer
@@ -267,9 +269,10 @@ literal|null
 expr_stmt|;
 comment|// exhausted, nothing left
 return|return
-literal|false
+name|NO_MORE_DOCS
 return|;
 block|}
+comment|/** @deprecated use {@link #docID()} instead. */
 DECL|method|doc
 specifier|public
 name|int
@@ -283,6 +286,16 @@ name|doc
 argument_list|()
 return|;
 comment|// reqScorer may be null when next() or skipTo() already return false
+block|}
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+return|return
+name|doc
+return|;
 block|}
 comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    * @return The score of the required scorer.    */
 DECL|method|score
@@ -301,7 +314,7 @@ argument_list|()
 return|;
 comment|// reqScorer may be null when next() or skipTo() already return false
 block|}
-comment|/** Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.    *<br>When this method is used the {@link #explain(int)} method should not be used.    * @param target The target document number.    * @return true iff there is such a match.    */
+comment|/** @deprecated use {@link #advance(int)} instead. */
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -313,33 +326,26 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|firstTime
-condition|)
-block|{
-name|firstTime
-operator|=
-literal|false
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|exclDisi
-operator|.
-name|skipTo
+return|return
+name|advance
 argument_list|(
 name|target
 argument_list|)
-condition|)
+operator|!=
+name|NO_MORE_DOCS
+return|;
+block|}
+DECL|method|advance
+specifier|public
+name|int
+name|advance
+parameter_list|(
+name|int
+name|target
+parameter_list|)
+throws|throws
+name|IOException
 block|{
-name|exclDisi
-operator|=
-literal|null
-expr_stmt|;
-comment|// exhausted
-block|}
-block|}
 if|if
 condition|(
 name|reqScorer
@@ -348,7 +354,9 @@ literal|null
 condition|)
 block|{
 return|return
-literal|false
+name|doc
+operator|=
+name|NO_MORE_DOCS
 return|;
 block|}
 if|if
@@ -359,9 +367,11 @@ literal|null
 condition|)
 block|{
 return|return
+name|doc
+operator|=
 name|reqScorer
 operator|.
-name|skipTo
+name|advance
 argument_list|(
 name|target
 argument_list|)
@@ -369,13 +379,14 @@ return|;
 block|}
 if|if
 condition|(
-operator|!
 name|reqScorer
 operator|.
-name|skipTo
+name|advance
 argument_list|(
 name|target
 argument_list|)
+operator|==
+name|NO_MORE_DOCS
 condition|)
 block|{
 name|reqScorer
@@ -383,10 +394,14 @@ operator|=
 literal|null
 expr_stmt|;
 return|return
-literal|false
+name|doc
+operator|=
+name|NO_MORE_DOCS
 return|;
 block|}
 return|return
+name|doc
+operator|=
 name|toNonExcluded
 argument_list|()
 return|;
@@ -413,19 +428,12 @@ if|if
 condition|(
 name|exclDisi
 operator|.
-name|skipTo
+name|advance
 argument_list|(
 name|doc
 argument_list|)
-operator|&&
-operator|(
-name|exclDisi
-operator|.
-name|doc
-argument_list|()
 operator|==
 name|doc
-operator|)
 condition|)
 block|{
 name|res

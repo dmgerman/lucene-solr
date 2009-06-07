@@ -90,6 +90,9 @@ name|collector
 parameter_list|,
 name|int
 name|max
+parameter_list|,
+name|int
+name|firstDocID
 parameter_list|)
 throws|throws
 name|IOException
@@ -102,6 +105,8 @@ argument_list|(
 name|collector
 argument_list|,
 name|max
+argument_list|,
+name|firstDocID
 argument_list|)
 return|;
 block|}
@@ -151,7 +156,7 @@ name|doc
 init|=
 name|scorer
 operator|.
-name|doc
+name|docID
 argument_list|()
 decl_stmt|;
 if|if
@@ -177,6 +182,7 @@ return|return
 name|curScore
 return|;
 block|}
+comment|/** @deprecated use {@link #docID()} instead. */
 DECL|method|doc
 specifier|public
 name|int
@@ -190,6 +196,20 @@ name|doc
 argument_list|()
 return|;
 block|}
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+return|return
+name|scorer
+operator|.
+name|docID
+argument_list|()
+return|;
+block|}
+comment|/** @deprecated use {@link #nextDoc()} instead. */
 DECL|method|next
 specifier|public
 name|boolean
@@ -202,6 +222,21 @@ return|return
 name|scorer
 operator|.
 name|next
+argument_list|()
+return|;
+block|}
+DECL|method|nextDoc
+specifier|public
+name|int
+name|nextDoc
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|scorer
+operator|.
+name|nextDoc
 argument_list|()
 return|;
 block|}
@@ -224,6 +259,7 @@ name|collector
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @deprecated use {@link #advance(int)} instead. */
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -239,6 +275,26 @@ return|return
 name|scorer
 operator|.
 name|skipTo
+argument_list|(
+name|target
+argument_list|)
+return|;
+block|}
+DECL|method|advance
+specifier|public
+name|int
+name|advance
+parameter_list|(
+name|int
+name|target
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|scorer
+operator|.
+name|advance
 argument_list|(
 name|target
 argument_list|)

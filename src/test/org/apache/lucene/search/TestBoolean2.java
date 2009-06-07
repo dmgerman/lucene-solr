@@ -18,43 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
+name|Random
 import|;
 end_import
 
@@ -108,9 +76,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|index
 operator|.
-name|QueryParser
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
 import|;
 end_import
 
@@ -136,19 +118,37 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|queryParser
 operator|.
-name|LuceneTestCase
+name|QueryParser
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
 operator|.
 name|util
 operator|.
-name|Random
+name|LuceneTestCase
 import|;
 end_import
 
@@ -844,6 +844,11 @@ name|tot
 init|=
 literal|0
 decl_stmt|;
+name|BooleanQuery
+name|q1
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 comment|// increase number of iterations for more complete testing
@@ -872,9 +877,8 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
-name|BooleanQuery
 name|q1
-init|=
+operator|=
 name|randBoolQuery
 argument_list|(
 operator|new
@@ -894,7 +898,7 @@ name|vals
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// Can't sort by relevance since floating point numbers may not quite
 comment|// match up.
 name|Sort
@@ -983,6 +987,28 @@ name|hits2
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// For easier debugging
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"failed query: "
+operator|+
+name|q1
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
 finally|finally
 block|{

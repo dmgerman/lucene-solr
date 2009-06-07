@@ -675,7 +675,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** @return Returns BooleanScorer2 that uses and provides skipTo(),      *          and scores documents in document number order.      */
+comment|/**      * @return Returns BooleanScorer2 that uses and provides advance(), and      *         scores documents in document number order.      */
 DECL|method|scorer
 specifier|public
 name|Scorer
