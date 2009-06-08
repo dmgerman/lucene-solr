@@ -5905,7 +5905,7 @@ name|dir1
 init|=
 name|FSDirectory
 operator|.
-name|open
+name|getDirectory
 argument_list|(
 name|indexDir
 argument_list|,
@@ -6070,7 +6070,7 @@ name|dir1
 init|=
 name|FSDirectory
 operator|.
-name|open
+name|getDirectory
 argument_list|(
 name|indexDir2
 argument_list|)
