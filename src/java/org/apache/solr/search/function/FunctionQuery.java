@@ -483,27 +483,22 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-comment|// current Lucene sorting priority queues can't handle NaN (score!=score is true for NaN) and -Infinity
-if|if
-condition|(
+comment|// Current Lucene priority queues can't handle NaN and -Infinity, so
+comment|// map to -Float.MAX_VALUE. This conditional handles both -infinity
+comment|// and NaN since comparisons with NaN are always false.
+return|return
 name|score
-operator|!=
-name|score
-operator|||
-name|score
-operator|==
+operator|>
 name|Float
 operator|.
 name|NEGATIVE_INFINITY
-condition|)
-return|return
+condition|?
+name|score
+else|:
 operator|-
 name|Float
 operator|.
 name|MAX_VALUE
-return|;
-return|return
-name|score
 return|;
 block|}
 DECL|method|skipTo
