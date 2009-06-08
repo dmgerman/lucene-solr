@@ -562,7 +562,8 @@ name|info
 range|:
 name|config
 operator|.
-name|reqHandlerInfo
+name|getReqHandlerInfo
+argument_list|()
 control|)
 block|{
 try|try
