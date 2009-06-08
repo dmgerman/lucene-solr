@@ -331,7 +331,7 @@ decl_stmt|;
 name|DocIterator
 name|i2
 init|=
-name|this
+name|other
 operator|.
 name|iterator
 argument_list|()
