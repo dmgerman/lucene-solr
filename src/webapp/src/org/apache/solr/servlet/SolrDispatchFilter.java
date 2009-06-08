@@ -1367,7 +1367,7 @@ operator|new
 name|SolrQueryResponse
 argument_list|()
 decl_stmt|;
-comment|/* even for HEAD requests, we need to execute the handler to                  * ensure we don't get an error (and to make sure the correct                  * QueryResponseWriter is selectedand we get the correct                  * Content-Type)                  */
+comment|/* even for HEAD requests, we need to execute the handler to                  * ensure we don't get an error (and to make sure the correct                  * QueryResponseWriter is selected and we get the correct                  * Content-Type)                  */
 name|this
 operator|.
 name|execute
