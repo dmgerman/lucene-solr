@@ -1619,7 +1619,7 @@ argument_list|(
 literal|2000
 argument_list|)
 expr_stmt|;
-comment|// wait 1/2 seconds...
+comment|// wait 2 seconds...
 name|rsp
 operator|=
 name|server
