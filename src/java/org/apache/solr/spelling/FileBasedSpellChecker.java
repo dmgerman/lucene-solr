@@ -456,11 +456,6 @@ name|SolrResourceLoader
 name|loader
 parameter_list|)
 block|{
-name|IndexSearcher
-name|searcher
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 comment|// Get the field's analyzer
@@ -691,31 +686,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-try|try
-block|{
-if|if
-condition|(
-name|searcher
-operator|!=
-literal|null
-condition|)
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// Ignore
-block|}
 block|}
 block|}
 DECL|method|getCharacterEncoding
