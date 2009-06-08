@@ -584,7 +584,7 @@ name|doc
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// current Lucene sorting priority queues can't handle NaN and -Infinity
+comment|// current Lucene sorting priority queues can't handle NaN (score!=score is true for NaN) and -Infinity
 if|if
 condition|(
 name|score
