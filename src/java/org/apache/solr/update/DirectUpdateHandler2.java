@@ -2050,14 +2050,12 @@ operator|.
 name|getSolrConfig
 argument_list|()
 operator|.
-name|getInt
-argument_list|(
-literal|"updateHandler/autoCommit/maxDocs"
-argument_list|,
-operator|-
-literal|1
-argument_list|)
+name|getUpdateHandlerInfo
+argument_list|()
+operator|.
+name|autoCommmitMaxDocs
 expr_stmt|;
+comment|//getInt("updateHandler/autoCommit/maxDocs", -1);
 name|timeUpperBound
 operator|=
 name|core
@@ -2065,14 +2063,12 @@ operator|.
 name|getSolrConfig
 argument_list|()
 operator|.
-name|getInt
-argument_list|(
-literal|"updateHandler/autoCommit/maxTime"
-argument_list|,
-operator|-
-literal|1
-argument_list|)
+name|getUpdateHandlerInfo
+argument_list|()
+operator|.
+name|autoCommmitMaxTime
 expr_stmt|;
+comment|//getInt("updateHandler/autoCommit/maxTime", -1);
 name|SolrCore
 operator|.
 name|log
