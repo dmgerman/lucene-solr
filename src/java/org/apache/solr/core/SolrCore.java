@@ -2919,15 +2919,6 @@ operator|.
 name|getUpdateProcessorChainInfo
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|infos
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
