@@ -64,6 +64,7 @@ name|FilteredTermEnum
 block|{
 DECL|field|prefix
 specifier|private
+specifier|final
 name|Term
 name|prefix
 decl_stmt|;
@@ -134,6 +135,16 @@ parameter_list|()
 block|{
 return|return
 name|endEnum
+return|;
+block|}
+DECL|method|getPrefixTerm
+specifier|protected
+name|Term
+name|getPrefixTerm
+parameter_list|()
+block|{
+return|return
+name|prefix
 return|;
 block|}
 DECL|method|termCompare
