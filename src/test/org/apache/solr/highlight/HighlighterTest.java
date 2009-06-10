@@ -285,15 +285,6 @@ operator|.
 name|getHighlighter
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"highlighter"
-argument_list|)
-expr_stmt|;
 comment|// Make sure we loaded the one formatter
 name|SolrFormatter
 name|fmt1
