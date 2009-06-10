@@ -216,6 +216,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestLockFactory
 specifier|public
@@ -1628,6 +1642,16 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|File
+name|indexDir
+init|=
+name|_TestUtil
+operator|.
+name|getTempDir
+argument_list|(
+name|indexDirName
+argument_list|)
+decl_stmt|;
 name|FSDirectory
 name|fs1
 init|=
@@ -1635,11 +1659,7 @@ name|FSDirectory
 operator|.
 name|open
 argument_list|(
-operator|new
-name|File
-argument_list|(
-name|indexDirName
-argument_list|)
+name|indexDir
 argument_list|,
 name|lockFactory
 argument_list|)
@@ -1750,9 +1770,11 @@ name|hitException
 argument_list|)
 expr_stmt|;
 comment|// Cleanup
+name|_TestUtil
+operator|.
 name|rmDir
 argument_list|(
-name|indexDirName
+name|indexDir
 argument_list|)
 expr_stmt|;
 block|}

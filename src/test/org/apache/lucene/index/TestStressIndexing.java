@@ -866,24 +866,13 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// FSDir
-name|String
-name|tempDir
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.io.tmpdir"
-argument_list|)
-decl_stmt|;
 name|File
 name|dirPath
 init|=
-operator|new
-name|File
+name|_TestUtil
+operator|.
+name|getTempDir
 argument_list|(
-name|tempDir
-argument_list|,
 literal|"lucene.test.stress"
 argument_list|)
 decl_stmt|;
