@@ -78,7 +78,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|Config
+name|SolrConfig
 import|;
 end_import
 
@@ -171,7 +171,7 @@ specifier|public
 name|void
 name|initalize
 parameter_list|(
-name|Config
+name|SolrConfig
 name|config
 parameter_list|)
 block|{
