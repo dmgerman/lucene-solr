@@ -259,7 +259,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|fine
 argument_list|(
 literal|"Area size "
 operator|+
@@ -345,7 +345,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|fine
 argument_list|(
 literal|"BoundaryBox Time Taken: "
 operator|+
