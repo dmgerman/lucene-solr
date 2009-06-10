@@ -68,9 +68,6 @@ name|sis
 parameter_list|,
 name|IndexDeletionPolicy
 name|deletionPolicy
-parameter_list|,
-name|boolean
-name|closeDirectory
 parameter_list|)
 throws|throws
 name|IOException
@@ -82,8 +79,6 @@ argument_list|,
 name|sis
 argument_list|,
 name|deletionPolicy
-argument_list|,
-name|closeDirectory
 argument_list|,
 literal|true
 argument_list|)
@@ -97,9 +92,6 @@ name|directory
 parameter_list|,
 name|SegmentInfos
 name|infos
-parameter_list|,
-name|boolean
-name|closeDirectory
 parameter_list|,
 name|SegmentReader
 index|[]
@@ -123,8 +115,6 @@ argument_list|(
 name|directory
 argument_list|,
 name|infos
-argument_list|,
-name|closeDirectory
 argument_list|,
 name|oldReaders
 argument_list|,
