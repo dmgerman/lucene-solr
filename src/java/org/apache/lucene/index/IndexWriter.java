@@ -9103,8 +9103,10 @@ operator|+
 name|i
 argument_list|)
 argument_list|,
-name|info
-operator|.
+name|mergePolicy
+operator|instanceof
+name|LogMergePolicy
+operator|&&
 name|getUseCompoundFile
 argument_list|()
 argument_list|)
