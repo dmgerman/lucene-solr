@@ -110,6 +110,21 @@ name|void
 name|destroy
 parameter_list|()
 function_decl|;
+comment|/**    * Invoked after the transformers are invoked. EntityProcessors can add, remove or modify values    * added by Transformers in this method.    *    * @param r The transformed row    */
+DECL|method|postTransform
+specifier|public
+name|void
+name|postTransform
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|r
+parameter_list|)
+block|{   }
 comment|/**    * Invoked when the Entity processor is detroyed. towards the end of import.    */
 DECL|method|close
 specifier|public
