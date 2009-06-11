@@ -11903,6 +11903,11 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+name|mergeSuccess
+argument_list|(
+name|merge
+argument_list|)
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -12030,6 +12035,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Hook that's called when the specified merge is complete. */
+DECL|method|mergeSuccess
+name|void
+name|mergeSuccess
+parameter_list|(
+name|MergePolicy
+operator|.
+name|OneMerge
+name|merge
+parameter_list|)
+block|{   }
 comment|/** Checks whether this merge involves any segments    *  already participating in a merge.  If not, this merge    *  is "registered", meaning we record that its segments    *  are now participating in a merge, and true is    *  returned.  Else (the merge conflicts) false is    *  returned. */
 DECL|method|registerMerge
 specifier|final
