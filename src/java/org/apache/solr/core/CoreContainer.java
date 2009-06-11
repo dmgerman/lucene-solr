@@ -1929,6 +1929,12 @@ operator|.
 name|getInstanceDir
 argument_list|()
 operator|+
+literal|"conf"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
 name|dcore
 operator|.
 name|getSchemaName
@@ -1987,6 +1993,17 @@ operator|==
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"creating new schema object for core: "
+operator|+
+name|dcore
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
 name|schema
 operator|=
 operator|new
@@ -2009,6 +2026,20 @@ argument_list|(
 name|key
 argument_list|,
 name|schema
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"re-using schema object for core: "
+operator|+
+name|dcore
+operator|.
+name|name
 argument_list|)
 expr_stmt|;
 block|}
