@@ -26,6 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides a {@link FieldComparator} for custom field sorting.  *  *<b>NOTE:</b> This API is experimental and might change in  * incompatible ways in the next release.  *  */
 end_comment
@@ -36,6 +46,8 @@ specifier|public
 specifier|abstract
 class|class
 name|FieldComparatorSource
+implements|implements
+name|Serializable
 block|{
 comment|/**    * Creates a comparator for the field in the given index.    *     * @param fieldname    *          Name of the field to create comparator for.    * @return FieldComparator.    * @throws IOException    *           If an error occurs reading the index.    */
 DECL|method|newComparator
