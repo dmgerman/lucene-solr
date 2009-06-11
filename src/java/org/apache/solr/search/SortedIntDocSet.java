@@ -115,6 +115,7 @@ name|int
 index|[]
 name|docs
 decl_stmt|;
+comment|/**    * @param docs  Sorted list of ids    */
 DECL|method|SortedIntDocSet
 specifier|public
 name|SortedIntDocSet
@@ -131,6 +132,7 @@ operator|=
 name|docs
 expr_stmt|;
 block|}
+comment|/**    * @param docs Sorted list of ids    * @param len  Number of ids in the list    */
 DECL|method|SortedIntDocSet
 specifier|public
 name|SortedIntDocSet
