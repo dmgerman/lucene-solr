@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Stores and iterate on sorted integers in compressed form in RAM.<br>  * The code for compressing the differences between ascending integers was  * borrowed from {@link org.apache.lucene.store.IndexInput} and  * {@link org.apache.lucene.store.IndexOutput}.  *<p>  *<b>NOTE:</b> this class assumes the stored integers are doc Ids (hence why it  * extends {@link DocIdSet}). Therefore its {@link #iterator()} assumes {@value  * DocIdSetIterator#NO_MORE_DOCS} can be used as sentinel. If you intent to use  * this value, then make sure it's not used during search flow.  */
+comment|/**  * Stores and iterate on sorted integers in compressed form in RAM.<br>  * The code for compressing the differences between ascending integers was  * borrowed from {@link org.apache.lucene.store.IndexInput} and  * {@link org.apache.lucene.store.IndexOutput}.  *<p>  *<b>NOTE:</b> this class assumes the stored integers are doc Ids (hence why it  * extends {@link DocIdSet}). Therefore its {@link #iterator()} assumes {@link  * DocIdSetIterator#NO_MORE_DOCS} can be used as sentinel. If you intent to use  * this value, then make sure it's not used during search flow.  */
 end_comment
 
 begin_class
