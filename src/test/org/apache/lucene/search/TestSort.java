@@ -9941,6 +9941,7 @@ end_function
 begin_decl_stmt
 DECL|field|port
 specifier|private
+specifier|static
 name|int
 name|port
 init|=
