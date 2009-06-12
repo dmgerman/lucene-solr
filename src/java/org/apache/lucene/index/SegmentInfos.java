@@ -106,16 +106,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FileNotFoundException
 import|;
 end_import
@@ -1791,6 +1781,7 @@ class|class
 name|FindSegmentsFile
 block|{
 DECL|field|directory
+specifier|final
 name|Directory
 name|directory
 decl_stmt|;
@@ -1988,13 +1979,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-if|if
-condition|(
-name|directory
-operator|!=
-literal|null
-condition|)
-block|{
 for|for
 control|(
 name|int
@@ -2175,7 +2159,6 @@ argument_list|(
 name|ie
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 name|message
