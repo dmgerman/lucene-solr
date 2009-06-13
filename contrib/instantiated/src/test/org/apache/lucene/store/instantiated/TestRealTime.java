@@ -126,6 +126,10 @@ name|Term
 import|;
 end_import
 
+begin_comment
+comment|/**  * Assert that the content of an index   * is instantly available  * for all open searchers  * also after a commit.  */
+end_comment
+
 begin_class
 DECL|class|TestRealTime
 specifier|public
