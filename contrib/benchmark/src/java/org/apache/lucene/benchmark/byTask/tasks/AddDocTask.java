@@ -243,7 +243,7 @@ literal|1
 return|;
 block|}
 DECL|method|log
-specifier|private
+specifier|protected
 name|void
 name|log
 parameter_list|(

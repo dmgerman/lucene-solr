@@ -158,7 +158,7 @@ specifier|final
 name|boolean
 name|DEFAULT_AUTO_COMMIT
 init|=
-literal|true
+literal|false
 decl_stmt|;
 DECL|method|OpenIndexTask
 specifier|public
