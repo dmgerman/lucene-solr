@@ -87,7 +87,7 @@ specifier|protected
 name|SpanFilter
 name|filter
 decl_stmt|;
-comment|/**    * A transient Filter cache.  To cache Filters even when using {@link org.apache.lucene.search.RemoteSearchable} use    * {@link org.apache.lucene.search.RemoteCachingWrapperFilter} instead.    */
+comment|/**    * A transient Filter cache.    */
 DECL|field|cache
 specifier|protected
 specifier|transient

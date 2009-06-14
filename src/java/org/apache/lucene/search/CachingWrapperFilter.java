@@ -101,7 +101,7 @@ specifier|protected
 name|Filter
 name|filter
 decl_stmt|;
-comment|/**    * A transient Filter cache.  To cache Filters even when using {@link RemoteSearchable} use    * {@link RemoteCachingWrapperFilter} instead.    */
+comment|/**    * A transient Filter cache.    */
 DECL|field|cache
 specifier|protected
 specifier|transient

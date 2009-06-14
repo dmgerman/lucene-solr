@@ -136,7 +136,7 @@ name|RemoteSearchable
 extends|extends
 name|UnicastRemoteObject
 implements|implements
-name|Searchable
+name|RMIRemoteSearchable
 block|{
 DECL|field|local
 specifier|private
