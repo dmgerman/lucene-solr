@@ -1403,6 +1403,7 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 comment|/** The class which implements SegmentReader. */
+comment|// @deprecated (LUCENE-1677)
 DECL|field|IMPL
 specifier|private
 specifier|static
@@ -1501,6 +1502,7 @@ throw|;
 block|}
 block|}
 block|}
+comment|// @deprecated (LUCENE-1677)
 DECL|field|READONLY_IMPL
 specifier|private
 specifier|static

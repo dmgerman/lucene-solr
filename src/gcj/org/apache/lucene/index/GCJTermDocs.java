@@ -26,6 +26,10 @@ name|IOException
 import|;
 end_import
 
+begin_comment
+comment|// @deprecated This will be removed in 3.0.
+end_comment
+
 begin_class
 DECL|class|GCJTermDocs
 class|class
