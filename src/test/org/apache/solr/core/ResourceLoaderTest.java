@@ -156,6 +156,16 @@ name|SolrCoreAware
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
 begin_class
 DECL|class|ResourceLoaderTest
 specifier|public
@@ -234,7 +244,11 @@ name|instDir
 operator|.
 name|equals
 argument_list|(
-literal|"solr/"
+literal|"solr"
+operator|+
+name|File
+operator|.
+name|separator
 argument_list|)
 operator|==
 literal|true
