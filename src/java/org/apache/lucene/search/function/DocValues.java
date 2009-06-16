@@ -193,16 +193,28 @@ DECL|field|minVal
 specifier|private
 name|float
 name|minVal
+init|=
+name|Float
+operator|.
+name|NaN
 decl_stmt|;
 DECL|field|maxVal
 specifier|private
 name|float
 name|maxVal
+init|=
+name|Float
+operator|.
+name|NaN
 decl_stmt|;
 DECL|field|avgVal
 specifier|private
 name|float
 name|avgVal
+init|=
+name|Float
+operator|.
+name|NaN
 decl_stmt|;
 DECL|field|computed
 specifier|private
@@ -225,16 +237,6 @@ condition|)
 block|{
 return|return;
 block|}
-name|minVal
-operator|=
-name|Float
-operator|.
-name|MAX_VALUE
-expr_stmt|;
-name|maxVal
-operator|=
-literal|0
-expr_stmt|;
 name|float
 name|sum
 init|=
@@ -277,6 +279,15 @@ name|val
 expr_stmt|;
 name|minVal
 operator|=
+name|Float
+operator|.
+name|isNaN
+argument_list|(
+name|minVal
+argument_list|)
+condition|?
+name|val
+else|:
 name|Math
 operator|.
 name|min
@@ -288,6 +299,15 @@ argument_list|)
 expr_stmt|;
 name|maxVal
 operator|=
+name|Float
+operator|.
+name|isNaN
+argument_list|(
+name|maxVal
+argument_list|)
+condition|?
+name|val
+else|:
 name|Math
 operator|.
 name|max
@@ -297,9 +317,20 @@ argument_list|,
 name|val
 argument_list|)
 expr_stmt|;
+operator|++
+name|n
+expr_stmt|;
 block|}
 name|avgVal
 operator|=
+name|n
+operator|==
+literal|0
+condition|?
+name|Float
+operator|.
+name|NaN
+else|:
 name|sum
 operator|/
 name|n
@@ -309,7 +340,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**    * Optional op.    * Returns the minimum of all values.    */
+comment|/**    * Returns the minimum of all values or<code>Float.NaN</code> if this    * DocValues instance does not contain any value.    *<p>    * This operation is optional    *</p>    *     * @return the minimum of all values or<code>Float.NaN</code> if this    *         DocValues instance does not contain any value.    */
 DECL|method|getMinValue
 specifier|public
 name|float
@@ -323,7 +354,7 @@ return|return
 name|minVal
 return|;
 block|}
-comment|/**    * Optional op.    * Returns the maximum of all values.     */
+comment|/**    * Returns the maximum of all values or<code>Float.NaN</code> if this    * DocValues instance does not contain any value.    *<p>    * This operation is optional    *</p>    *     * @return the maximum of all values or<code>Float.NaN</code> if this    *         DocValues instance does not contain any value.    */
 DECL|method|getMaxValue
 specifier|public
 name|float
@@ -337,7 +368,7 @@ return|return
 name|maxVal
 return|;
 block|}
-comment|/**    * Returns the average of all values.     */
+comment|/**    * Returns the average of all values or<code>Float.NaN</code> if this    * DocValues instance does not contain any value. *    *<p>    * This operation is optional    *</p>    *     * @return the average of all values or<code>Float.NaN</code> if this    *         DocValues instance does not contain any value    */
 DECL|method|getAverageValue
 specifier|public
 name|float
