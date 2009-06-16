@@ -1232,21 +1232,6 @@ argument_list|,
 name|defaultFields
 argument_list|)
 decl_stmt|;
-name|Document
-index|[]
-name|readDocs
-init|=
-operator|new
-name|Document
-index|[
-name|docs
-operator|.
-name|size
-argument_list|()
-index|]
-decl_stmt|;
-block|{
-comment|// pre-fetch documents using the Searcher's doc cache
 name|Set
 argument_list|<
 name|String
@@ -1260,6 +1245,8 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+block|{
+comment|// pre-fetch documents using the Searcher's doc cache
 for|for
 control|(
 name|String
@@ -1301,17 +1288,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|searcher
-operator|.
-name|readDocs
-argument_list|(
-name|readDocs
-argument_list|,
-name|docs
-argument_list|,
-name|fset
-argument_list|)
-expr_stmt|;
 block|}
 comment|// Highlight each document
 name|DocIterator
@@ -1351,10 +1327,14 @@ decl_stmt|;
 name|Document
 name|doc
 init|=
-name|readDocs
-index|[
-name|i
-index|]
+name|searcher
+operator|.
+name|doc
+argument_list|(
+name|docId
+argument_list|,
+name|fset
+argument_list|)
 decl_stmt|;
 name|NamedList
 name|docSummaries
@@ -2055,6 +2035,9 @@ argument_list|()
 operator|>
 name|alternateFieldLen
 condition|?
+operator|new
+name|String
+argument_list|(
 name|altText
 operator|.
 name|substring
@@ -2064,6 +2047,7 @@ argument_list|,
 name|alternateFieldLen
 operator|-
 name|len
+argument_list|)
 argument_list|)
 else|:
 name|altText
