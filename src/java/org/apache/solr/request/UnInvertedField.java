@@ -1091,8 +1091,8 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// resize, but conserve memory by not doubling
-comment|// resize at end??? we waste a maximum of 16K (average of 8K)
+comment|// resize by doubling - for very large number of unique terms, expanding
+comment|// by 4K and resultant GC will dominate uninvert times.  Resize at end if material
 name|int
 index|[]
 name|newMaxTermCounts
@@ -1103,8 +1103,8 @@ index|[
 name|maxTermCounts
 operator|.
 name|length
-operator|+
-literal|4096
+operator|*
+literal|2
 index|]
 decl_stmt|;
 name|System
@@ -1666,6 +1666,51 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// free space if outrageously wasteful (tradeoff memory/cpu)
+if|if
+condition|(
+operator|(
+name|maxTermCounts
+operator|.
+name|length
+operator|-
+name|numTermsInField
+operator|)
+operator|>
+literal|1024
+condition|)
+block|{
+comment|// too much waste!
+name|int
+index|[]
+name|newMaxTermCounts
+init|=
+operator|new
+name|int
+index|[
+name|numTermsInField
+index|]
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|maxTermCounts
+argument_list|,
+literal|0
+argument_list|,
+name|newMaxTermCounts
+argument_list|,
+literal|0
+argument_list|,
+name|numTermsInField
+argument_list|)
+expr_stmt|;
+name|maxTermCounts
+operator|=
+name|newMaxTermCounts
+expr_stmt|;
+block|}
 name|long
 name|midPoint
 init|=
