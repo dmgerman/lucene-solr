@@ -270,7 +270,7 @@ name|occur
 argument_list|)
 return|;
 block|}
-comment|/** Returns true iff<code>o</code> is equal to this. */
+comment|/** Returns true if<code>o</code> is equal to this. */
 DECL|method|equals
 specifier|public
 name|boolean
@@ -282,6 +282,10 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|o
+operator|==
+literal|null
+operator|||
 operator|!
 operator|(
 name|o
