@@ -70,6 +70,49 @@ extends|extends
 name|Tokenizer
 block|{
 comment|//~ Static fields/initializers ---------------------------------------------
+comment|/** Word token type */
+DECL|field|WORD_TYPE
+specifier|static
+specifier|final
+name|int
+name|WORD_TYPE
+init|=
+literal|0
+decl_stmt|;
+comment|/** Single byte token type */
+DECL|field|SINGLE_TOKEN_TYPE
+specifier|static
+specifier|final
+name|int
+name|SINGLE_TOKEN_TYPE
+init|=
+literal|1
+decl_stmt|;
+comment|/** Double byte token type */
+DECL|field|DOUBLE_TOKEN_TYPE
+specifier|static
+specifier|final
+name|int
+name|DOUBLE_TOKEN_TYPE
+init|=
+literal|2
+decl_stmt|;
+comment|/** Names for token types */
+DECL|field|TOKEN_TYPE_NAMES
+specifier|static
+specifier|final
+name|String
+index|[]
+name|TOKEN_TYPE_NAMES
+init|=
+block|{
+literal|"word"
+block|,
+literal|"single"
+block|,
+literal|"double"
+block|}
+decl_stmt|;
 comment|/** Max word length */
 DECL|field|MAX_WORD_LEN
 specifier|private
@@ -146,10 +189,10 @@ decl_stmt|;
 comment|/** word type: single=>ASCII  double=>non-ASCII word=>default */
 DECL|field|tokenType
 specifier|private
-name|String
+name|int
 name|tokenType
 init|=
-literal|"word"
+name|WORD_TYPE
 decl_stmt|;
 comment|/**      * tag: previous character is a cached double-byte character  "C1C2C3C4"      * ----(set the C1 isTokened) C1C2 "C2C3C4" ----(set the C2 isTokened)      * C1C2 C2C3 "C3C4" ----(set the C3 isTokened) "C1C2 C2C3 C3C4"      */
 DECL|field|preIsTokened
@@ -199,6 +242,12 @@ name|reusableToken
 operator|!=
 literal|null
 assert|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+comment|// loop until we find a non-empty token
 name|int
 name|length
 init|=
@@ -215,6 +264,7 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|// loop until we've found a full token
 comment|/** current character */
 name|char
 name|c
@@ -367,7 +417,7 @@ operator|<=
 literal|65374
 condition|)
 block|{
-comment|/** convert certain HALFWIDTH_AND_FULLWIDTH_FORMS to BASIC_LATIN */
+comment|// convert certain HALFWIDTH_AND_FULLWIDTH_FORMS to BASIC_LATIN
 name|i
 operator|=
 name|i
@@ -436,7 +486,7 @@ if|if
 condition|(
 name|tokenType
 operator|==
-literal|"double"
+name|DOUBLE_TOKEN_TYPE
 condition|)
 block|{
 comment|// "javaC1C2C3C4linux"<br>
@@ -447,10 +497,6 @@ operator|--
 expr_stmt|;
 name|bufferIndex
 operator|--
-expr_stmt|;
-name|tokenType
-operator|=
-literal|"single"
 expr_stmt|;
 if|if
 condition|(
@@ -491,7 +537,7 @@ argument_list|)
 expr_stmt|;
 name|tokenType
 operator|=
-literal|"single"
+name|SINGLE_TOKEN_TYPE
 expr_stmt|;
 comment|// break the procedure if buffer overflowed!
 if|if
@@ -570,7 +616,7 @@ name|c
 expr_stmt|;
 name|tokenType
 operator|=
-literal|"double"
+name|DOUBLE_TOKEN_TYPE
 expr_stmt|;
 block|}
 else|else
@@ -579,7 +625,7 @@ if|if
 condition|(
 name|tokenType
 operator|==
-literal|"single"
+name|SINGLE_TOKEN_TYPE
 condition|)
 block|{
 name|offset
@@ -603,7 +649,7 @@ name|c
 expr_stmt|;
 name|tokenType
 operator|=
-literal|"double"
+name|DOUBLE_TOKEN_TYPE
 expr_stmt|;
 if|if
 condition|(
@@ -659,6 +705,13 @@ block|}
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 return|return
 name|reusableToken
 operator|.
@@ -676,9 +729,29 @@ name|start
 operator|+
 name|length
 argument_list|,
+name|TOKEN_TYPE_NAMES
+index|[
 name|tokenType
+index|]
 argument_list|)
 return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|dataLen
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|// Cycle back and try for the next token (don't
+comment|// return an empty string)
+block|}
 block|}
 block|}
 end_class
