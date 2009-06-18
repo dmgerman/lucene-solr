@@ -122,7 +122,7 @@ init|=
 operator|new
 name|StringTokenizer
 argument_list|(
-name|SimpleDocMaker
+name|SingleDocSource
 operator|.
 name|DOC_TEXT
 argument_list|)
@@ -276,7 +276,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,
@@ -364,7 +364,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,

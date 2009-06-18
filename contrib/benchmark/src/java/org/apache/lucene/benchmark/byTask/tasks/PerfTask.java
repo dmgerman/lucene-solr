@@ -22,6 +22,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -86,12 +96,30 @@ name|byTask
 operator|.
 name|utils
 operator|.
+name|Config
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|benchmark
+operator|.
+name|byTask
+operator|.
+name|utils
+operator|.
 name|Format
 import|;
 end_import
 
 begin_comment
-comment|/**  * A (abstract)  task to be tested for performance.  *<br>  * Every performance task extends this class, and provides its own doLogic() method,   * which performss the actual task.  *<br>  * Tasks performing some work that should be measured for the task, can overide setup() and/or tearDown() and   * placed that work there.   *<br>  * Relevant properties:<code>task.max.depth.log</code>.  */
+comment|/**  * An abstract task to be tested for performance.<br>  * Every performance task extends this class, and provides its own  * {@link #doLogic()} method, which performss the actual task.<br>  * Tasks performing some work that should be measured for the task, can overide  * {@link #setup()} and/or {@link #tearDown()} and place that work there.<br>  * Relevant properties:<code>task.max.depth.log</code>.  */
 end_comment
 
 begin_class
@@ -103,6 +131,15 @@ name|PerfTask
 implements|implements
 name|Cloneable
 block|{
+DECL|field|DEFAULT_LOG_STEP
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_LOG_STEP
+init|=
+literal|1000
+decl_stmt|;
 DECL|field|runData
 specifier|private
 name|PerfRunData
@@ -118,6 +155,18 @@ DECL|field|depth
 specifier|private
 name|int
 name|depth
+init|=
+literal|0
+decl_stmt|;
+DECL|field|logStep
+specifier|protected
+name|int
+name|logStep
+decl_stmt|;
+DECL|field|logStepCount
+specifier|private
+name|int
+name|logStepCount
 init|=
 literal|0
 decl_stmt|;
@@ -156,7 +205,7 @@ argument_list|(
 literal|"line.separator"
 argument_list|)
 decl_stmt|;
-comment|/**    * Should not be used externally    */
+comment|/** Should not be used externally */
 DECL|method|PerfTask
 specifier|private
 name|PerfTask
@@ -200,6 +249,69 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * @deprecated will be removed in 3.0. checks if there are any obsolete    *             settings, like doc.add.log.step and doc.delete.log.step and    *             alerts the user.    */
+DECL|method|checkObsoleteSettings
+specifier|private
+name|void
+name|checkObsoleteSettings
+parameter_list|(
+name|Config
+name|config
+parameter_list|)
+block|{
+if|if
+condition|(
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"doc.add.log.step"
+argument_list|,
+literal|null
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"doc.add.log.step is not supported anymore. "
+operator|+
+literal|"Use log.step and refer to CHANGES to read on the recent API changes "
+operator|+
+literal|"done to Benchmark's DocMaker and Task-based logging."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"doc.delete.log.step"
+argument_list|,
+literal|null
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"doc.delete.log.step is not supported anymore. "
+operator|+
+literal|"Use delete.log.step and refer to CHANGES to read on the recent API changes "
+operator|+
+literal|"done to Benchmark's DocMaker and Task-based logging."
+argument_list|)
+throw|;
+block|}
+block|}
 DECL|method|PerfTask
 specifier|public
 name|PerfTask
@@ -217,14 +329,19 @@ name|runData
 operator|=
 name|runData
 expr_stmt|;
-name|this
-operator|.
-name|maxDepthLogStart
-operator|=
+name|Config
+name|config
+init|=
 name|runData
 operator|.
 name|getConfig
 argument_list|()
+decl_stmt|;
+name|this
+operator|.
+name|maxDepthLogStart
+operator|=
+name|config
 operator|.
 name|get
 argument_list|(
@@ -233,8 +350,39 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|logStep
+operator|=
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"log.step"
+argument_list|,
+name|DEFAULT_LOG_STEP
+argument_list|)
+expr_stmt|;
+comment|// To avoid the check 'if (logStep> 0)' in tearDown(). This effectively
+comment|// turns logging off.
+if|if
+condition|(
+name|logStep
+operator|<=
+literal|0
+condition|)
+block|{
+name|logStep
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
 block|}
-comment|/* (non-Javadoc)    * @see java.lang.Object#clone()    */
+name|checkObsoleteSettings
+argument_list|(
+name|config
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|clone
 specifier|protected
 name|Object
@@ -611,6 +759,23 @@ return|return
 name|maxDepthLogStart
 return|;
 block|}
+DECL|method|getLogMessage
+specifier|protected
+name|String
+name|getLogMessage
+parameter_list|(
+name|int
+name|recsCount
+parameter_list|)
+block|{
+return|return
+literal|"processed "
+operator|+
+name|recsCount
+operator|+
+literal|" records"
+return|;
+block|}
 comment|/**    * Tasks that should never log at start can overide this.      * @return true if this task should never log when it start.    */
 DECL|method|shouldNeverLogAtStart
 specifier|protected
@@ -650,7 +815,82 @@ name|tearDown
 parameter_list|()
 throws|throws
 name|Exception
-block|{   }
+block|{
+if|if
+condition|(
+operator|++
+name|logStepCount
+operator|%
+name|logStep
+operator|==
+literal|0
+condition|)
+block|{
+name|double
+name|time
+init|=
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|runData
+operator|.
+name|getStartTimeMillis
+argument_list|()
+operator|)
+operator|/
+literal|1000.0
+decl_stmt|;
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getInstance
+argument_list|()
+decl_stmt|;
+name|nf
+operator|.
+name|setMaximumFractionDigits
+argument_list|(
+literal|2
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|nf
+operator|.
+name|format
+argument_list|(
+name|time
+argument_list|)
+operator|+
+literal|" sec --> "
+operator|+
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|getLogMessage
+argument_list|(
+name|logStepCount
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Sub classes that supports parameters must overide this method to return true.    * @return true iff this task supports command line params.    */
 DECL|method|supportsParams
 specifier|public

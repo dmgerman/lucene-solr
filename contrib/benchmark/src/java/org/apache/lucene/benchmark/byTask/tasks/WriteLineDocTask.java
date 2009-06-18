@@ -116,24 +116,6 @@ name|byTask
 operator|.
 name|feeds
 operator|.
-name|BasicDocMaker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|feeds
-operator|.
 name|DocMaker
 import|;
 end_import
@@ -185,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A task which writes documents, one line per document. Each line is in the  * following format: title&lt;TAB&gt; date&lt;TAB&gt; body. The output of this  * taske can be consumed by  * {@link org.apache.lucene.benchmark.byTask.feeds.LineDocMaker} and is intended  * to save the IO overhead of opening a file per doument to be indexed.<br>  *   * Supports the following parameters:  *<ul>  *<li>line.file.out - the name of the file to write the output to. That  * parameter is mandatory.<b>NOTE:</b> the file is re-created.  *<li>bzip.compression - whether the output should be bzip-compressed. This is  * recommended when the output file is expected to be large. (optional, default:  * false).  *<li>doc.writeline.log.step - controls how many records to process before  * logging the status of the task.<b>NOTE:</b> to disable logging, set this  * value to 0 or negative. (optional, default:1000).  *</ul>  */
+comment|/**  * A task which writes documents, one line per document. Each line is in the  * following format: title&lt;TAB&gt; date&lt;TAB&gt; body. The output of this  * taske can be consumed by  * {@link org.apache.lucene.benchmark.byTask.feeds.LineDocMaker} and is intended  * to save the IO overhead of opening a file per doument to be indexed.<br>  *   * Supports the following parameters:  *<ul>  *<li>line.file.out - the name of the file to write the output to. That  * parameter is mandatory.<b>NOTE:</b> the file is re-created.  *<li>bzip.compression - whether the output should be bzip-compressed. This is  * recommended when the output file is expected to be large. (optional, default:  * false).  *</ul>  */
 end_comment
 
 begin_class
@@ -196,16 +178,6 @@ name|WriteLineDocTask
 extends|extends
 name|PerfTask
 block|{
-comment|/**    * Default value for property<code>doc.add.log.step<code> - indicating how often     * an "added N docs" message should be logged.      */
-DECL|field|DEFAULT_WRITELINE_DOC_LOG_STEP
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_WRITELINE_DOC_LOG_STEP
-init|=
-literal|1000
-decl_stmt|;
 DECL|field|SEP
 specifier|public
 specifier|final
@@ -215,24 +187,10 @@ name|SEP
 init|=
 literal|'\t'
 decl_stmt|;
-DECL|field|logStep
-specifier|private
-name|int
-name|logStep
-init|=
-operator|-
-literal|1
-decl_stmt|;
 DECL|field|docSize
 specifier|private
 name|int
 name|docSize
-init|=
-literal|0
-decl_stmt|;
-DECL|field|count
-name|int
-name|count
 init|=
 literal|0
 decl_stmt|;
@@ -417,53 +375,23 @@ operator|.
 name|getDocMaker
 argument_list|()
 expr_stmt|;
-name|logStep
-operator|=
-name|config
-operator|.
-name|get
-argument_list|(
-literal|"doc.writeline.log.step"
-argument_list|,
-name|DEFAULT_WRITELINE_DOC_LOG_STEP
-argument_list|)
-expr_stmt|;
-comment|// To avoid the check 'if (logStep> 0)' in log(). This effectively turns
-comment|// logging off.
-if|if
-condition|(
-name|logStep
-operator|<=
-literal|0
-condition|)
-block|{
-name|logStep
-operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
-expr_stmt|;
 block|}
-block|}
-DECL|method|tearDown
-specifier|public
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
+DECL|method|getLogMessage
+specifier|protected
+name|String
+name|getLogMessage
+parameter_list|(
+name|int
+name|recsCount
+parameter_list|)
 block|{
-name|log
-argument_list|(
-operator|++
-name|count
-argument_list|)
-expr_stmt|;
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
+return|return
+literal|"Wrote "
+operator|+
+name|recsCount
+operator|+
+literal|" line docs"
+return|;
 block|}
 DECL|method|doLogic
 specifier|public
@@ -499,7 +427,7 @@ name|doc
 operator|.
 name|getField
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)
@@ -538,7 +466,7 @@ name|doc
 operator|.
 name|getField
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|TITLE_FIELD
 argument_list|)
@@ -570,7 +498,7 @@ name|doc
 operator|.
 name|getField
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|DATE_FIELD
 argument_list|)
@@ -662,53 +590,6 @@ return|return
 literal|1
 return|;
 block|}
-DECL|method|log
-specifier|private
-name|void
-name|log
-parameter_list|(
-name|int
-name|count
-parameter_list|)
-block|{
-comment|// logStep is initialized in the ctor to a positive value. If the config
-comment|// file indicates no logging, or contains an invalid value, logStep is init
-comment|// to Integer.MAX_VALUE, so that logging will not occur (at least for the
-comment|// first Integer.MAX_VALUE records).
-if|if
-condition|(
-name|count
-operator|%
-name|logStep
-operator|==
-literal|0
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--> "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" processed (write line) "
-operator|+
-name|count
-operator|+
-literal|" docs"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 DECL|method|close
 specifier|public
 name|void
@@ -767,7 +648,6 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#supportsParams()    */
 DECL|method|supportsParams
 specifier|public
 name|boolean

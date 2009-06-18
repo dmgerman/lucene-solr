@@ -88,7 +88,7 @@ name|byTask
 operator|.
 name|feeds
 operator|.
-name|ReutersDocMaker
+name|ReutersContentSource
 import|;
 end_import
 
@@ -1130,20 +1130,20 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"doc.maker="
+literal|"content.source="
 operator|+
-name|ReutersDocMaker
+name|ReutersContentSource
 operator|.
 name|class
 operator|.
 name|getName
 argument_list|()
 block|,
-literal|"doc.add.log.step=2500"
+literal|"content.source.log.step=2500"
 block|,
 literal|"doc.term.vector=false"
 block|,
-literal|"doc.maker.forever=false"
+literal|"content.source.forever=false"
 block|,
 literal|"directory=FSDirectory"
 block|,

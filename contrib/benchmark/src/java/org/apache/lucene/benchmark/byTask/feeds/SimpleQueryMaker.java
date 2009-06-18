@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A QueryMaker that makes queries for a collection created   * using {@link org.apache.lucene.benchmark.byTask.feeds.SimpleDocMaker}.  */
+comment|/**  * A QueryMaker that makes queries for a collection created   * using {@link org.apache.lucene.benchmark.byTask.feeds.SingleDocSource}.  */
 end_comment
 
 begin_class
@@ -184,7 +184,7 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,
@@ -207,7 +207,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|ID_FIELD
 argument_list|,
@@ -231,7 +231,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,

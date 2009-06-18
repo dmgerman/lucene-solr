@@ -388,7 +388,7 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|,
@@ -597,7 +597,7 @@ name|asList
 argument_list|(
 name|getPrebuiltQueries
 argument_list|(
-name|BasicDocMaker
+name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)

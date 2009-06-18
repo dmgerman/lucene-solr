@@ -311,6 +311,15 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|getRunData
+argument_list|()
+operator|.
+name|getDocMaker
+argument_list|()
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|initTasksArray
 specifier|private
@@ -488,7 +497,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"doc.maker.forever"
+literal|"content.source.forever"
 argument_list|,
 literal|true
 argument_list|)
@@ -498,7 +507,7 @@ throw|throw
 operator|new
 name|Exception
 argument_list|(
-literal|"REPEAT_EXHAUST requires setting doc.maker.forever=false"
+literal|"REPEAT_EXHAUST requires setting content.source.forever=false"
 argument_list|)
 throw|;
 block|}
