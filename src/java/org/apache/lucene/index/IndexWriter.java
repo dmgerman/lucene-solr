@@ -13670,7 +13670,14 @@ name|i
 index|]
 operator|.
 name|openDocStores
-argument_list|()
+argument_list|(
+name|merge
+operator|.
+name|readers
+index|[
+name|i
+index|]
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Clear DSS
