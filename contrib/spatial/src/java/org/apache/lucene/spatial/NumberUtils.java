@@ -16,8 +16,62 @@ name|spatial
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|NumericTokenStream
+import|;
+end_import
+
 begin_comment
-comment|/**  * TODO -- when solr moves NumberUtils to lucene, this should be redundant  *   * This is a copy of solr's number utils with only the functions we use...  *   * @deprecated will be replaced with lucene version of solr copy...  */
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|NumericRangeQuery
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_comment
+comment|/**  * TODO -- when solr moves NumberUtils to lucene, this should be redundant  *   * This is a copy of solr's number utils with only the functions we use...  *   * @deprecated TODO: This helper class will be removed soonly.  * For new indexes use {@link NumericUtils} instead, which provides a sortable  * binary representation (prefix encoded) of numeric values.  * To index and efficiently query numeric values use {@link NumericTokenStream}  * and {@link NumericRangeQuery}.  */
 end_comment
 
 begin_class

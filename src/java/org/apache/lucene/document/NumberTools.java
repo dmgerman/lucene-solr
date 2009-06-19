@@ -16,8 +16,66 @@ begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|NumericTokenStream
+import|;
+end_import
+
 begin_comment
-comment|/**  * Provides support for converting longs to Strings, and back again. The strings  * are structured so that lexicographic sorting order is preserved.  *   *<p>  * That is, if l1 is less than l2 for any two longs l1 and l2, then  * NumberTools.longToString(l1) is lexicographically less than  * NumberTools.longToString(l2). (Similarly for "greater than" and "equals".)  *   *<p>  * This class handles<b>all</b> long values (unlike  * {@link org.apache.lucene.document.DateField}).  *   *   */
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|NumericRangeQuery
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_comment
+comment|// do not remove this class in 3.0, it may be needed to decode old indexes!
+end_comment
+
+begin_comment
+comment|/**  * Provides support for converting longs to Strings, and back again. The strings  * are structured so that lexicographic sorting order is preserved.  *   *<p>  * That is, if l1 is less than l2 for any two longs l1 and l2, then  * NumberTools.longToString(l1) is lexicographically less than  * NumberTools.longToString(l2). (Similarly for "greater than" and "equals".)  *   *<p>  * This class handles<b>all</b> long values (unlike  * {@link org.apache.lucene.document.DateField}).  *   * @deprecated For new indexes use {@link NumericUtils} instead, which  * provides a sortable binary representation (prefix encoded) of numeric  * values.  * To index and efficiently query numeric values use {@link NumericTokenStream}  * and {@link NumericRangeQuery}.  * This class is included for use with existing  * indices and will be removed in a future release.  */
 end_comment
 
 begin_class
