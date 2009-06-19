@@ -261,6 +261,13 @@ argument_list|()
 decl_stmt|;
 name|fs
 operator|.
+name|setProject
+argument_list|(
+name|project
+argument_list|)
+expr_stmt|;
+name|fs
+operator|.
 name|setDir
 argument_list|(
 operator|new
