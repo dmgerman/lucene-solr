@@ -568,7 +568,7 @@ name|instanceDir
 operator|=
 name|SolrResourceLoader
 operator|.
-name|locateInstanceDir
+name|locateSolrHome
 argument_list|()
 expr_stmt|;
 block|}
@@ -2146,13 +2146,13 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Determines the instanceDir from the environment.    * Tries JNDI (java:comp/env/solr/home) then system property (solr.solr.home);    * if both fail, defaults to solr/    * @return the instance directory name    */
-comment|/**    * Finds the instanceDir based on looking up the value in one of three places:    *<ol>    *<li>JNDI: via java:comp/env/solr/home</li>    *<li>The system property solr.solr.home</li>    *<li>Look in the current working directory for a solr/ directory</li>     *</ol>    *    * The return value is normalized.  Normalization essentially means it ends in a trailing slash.    * @return A normalized instanceDir    *    * @see #normalizeDir(String)     */
-DECL|method|locateInstanceDir
+comment|/**    * Determines the solrhome from the environment.    * Tries JNDI (java:comp/env/solr/home) then system property (solr.solr.home);    * if both fail, defaults to solr/    * @return the instance directory name    */
+comment|/**    * Finds the solrhome based on looking up the value in one of three places:    *<ol>    *<li>JNDI: via java:comp/env/solr/home</li>    *<li>The system property solr.solr.home</li>    *<li>Look in the current working directory for a solr/ directory</li>     *</ol>    *    * The return value is normalized.  Normalization essentially means it ends in a trailing slash.    * @return A normalized solrhome    * @see #normalizeDir(String)    */
+DECL|method|locateSolrHome
 specifier|public
 specifier|static
 name|String
-name|locateInstanceDir
+name|locateSolrHome
 parameter_list|()
 block|{
 name|String
@@ -2330,6 +2330,20 @@ name|normalizeDir
 argument_list|(
 name|home
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Deprecated
+DECL|method|locateInstanceDir
+specifier|public
+specifier|static
+name|String
+name|locateInstanceDir
+parameter_list|()
+block|{
+return|return
+name|locateSolrHome
+argument_list|()
 return|;
 block|}
 DECL|method|getInstanceDir
