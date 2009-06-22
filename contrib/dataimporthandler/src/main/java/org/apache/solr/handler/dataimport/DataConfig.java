@@ -81,6 +81,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|DataImportHandlerException
+operator|.
+name|SEVERE
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -471,6 +489,48 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|name
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|DataImportHandlerException
+argument_list|(
+name|SEVERE
+argument_list|,
+literal|"Entity must have name '"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|name
+operator|.
+name|indexOf
+argument_list|(
+literal|"."
+argument_list|)
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|DataImportHandlerException
+argument_list|(
+name|SEVERE
+argument_list|,
+literal|"Entity name must not have period (.): '"
+operator|+
+name|name
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|RESERVED_WORDS
 operator|.
 name|contains
@@ -483,8 +543,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"Entity name : '"
@@ -1016,8 +1074,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"Field must have a column attribute"
@@ -1109,8 +1165,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"DataImportHandler "
@@ -1230,8 +1284,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"<function> must have a 'name' and 'class' attributes"
@@ -1748,24 +1800,6 @@ name|NAME
 init|=
 literal|"name"
 decl_stmt|;
-DECL|field|SCRIPT_LANG
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|SCRIPT_LANG
-init|=
-literal|"scriptlanguage"
-decl_stmt|;
-DECL|field|SCRIPT_NAME
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|SCRIPT_NAME
-init|=
-literal|"scriptname"
-decl_stmt|;
 DECL|field|PROCESSOR
 specifier|public
 specifier|static
@@ -1891,6 +1925,15 @@ operator|.
 name|add
 argument_list|(
 literal|"session"
+argument_list|)
+expr_stmt|;
+name|RESERVED_WORDS
+operator|.
+name|add
+argument_list|(
+name|SolrWriter
+operator|.
+name|LAST_INDEX_KEY
 argument_list|)
 expr_stmt|;
 block|}
