@@ -256,7 +256,7 @@ name|UN_TOKENIZED
 init|=
 name|NOT_ANALYZED
 decl_stmt|;
-comment|/** Expert: Index the field's value without an Analyzer,      * and also disable the storing of norms.  Note that you      * can also separately enable/disable norms by calling      * {@link #setOmitNorms}.  No norms means that      * index-time field and document boosting and field      * length normalization are disabled.  The benefit is      * less memory usage as norms take up one byte of RAM      * per indexed field for every document in the index,      * during searching.  Note that once you index a given      * field<i>with</i> norms enabled, disabling norms will      * have no effect.  In other words, for this to have the      * above described effect on a field, all instances of      * that field must be indexed with NOT_ANALYZED_NO_NORMS      * from the beginning. */
+comment|/** Expert: Index the field's value without an Analyzer,      * and also disable the storing of norms.  Note that you      * can also separately enable/disable norms by calling      * {@link Field#setOmitNorms}.  No norms means that      * index-time field and document boosting and field      * length normalization are disabled.  The benefit is      * less memory usage as norms take up one byte of RAM      * per indexed field for every document in the index,      * during searching.  Note that once you index a given      * field<i>with</i> norms enabled, disabling norms will      * have no effect.  In other words, for this to have the      * above described effect on a field, all instances of      * that field must be indexed with NOT_ANALYZED_NO_NORMS      * from the beginning. */
 DECL|field|NOT_ANALYZED_NO_NORMS
 specifier|public
 specifier|static
@@ -392,7 +392,7 @@ literal|"WITH_POSITIONS_OFFSETS"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/** The value of the field as a String, or null.  If null, the Reader value,    * binary value, or TokenStream value is used.  Exactly one of stringValue(),     * readerValue(), getBinaryValue(), and tokenStreamValue() must be set. */
+comment|/** The value of the field as a String, or null.  If null, the Reader value or    * binary value is used.  Exactly one of stringValue(),    * readerValue(), and getBinaryValue() must be set. */
 DECL|method|stringValue
 specifier|public
 name|String
@@ -412,7 +412,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/** The value of the field as a Reader, or null.  If null, the String value,    * binary value, or TokenStream value is used.  Exactly one of stringValue(),     * readerValue(), getBinaryValue(), and tokenStreamValue() must be set. */
+comment|/** The value of the field as a Reader, or null.  If null, the String value or    * binary value is used.  Exactly one of stringValue(),    * readerValue(), and getBinaryValue() must be set. */
 DECL|method|readerValue
 specifier|public
 name|Reader
@@ -432,7 +432,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/** The value of the field in Binary, or null.  If null, the Reader value,    * String value, or TokenStream value is used. Exactly one of stringValue(),     * readerValue(), getBinaryValue(), and tokenStreamValue() must be set.    * @deprecated This method must allocate a new byte[] if    * the {@link AbstractField#getBinaryOffset()} is non-zero    * or {@link AbstractField#getBinaryLength()} is not the    * full length of the byte[]. Please use {@link    * AbstractField#getBinaryValue()} instead, which simply    * returns the byte[].    */
+comment|/** The value of the field in Binary, or null.  If null, the Reader value,    * or String value is used. Exactly one of stringValue(),    * readerValue(), and getBinaryValue() must be set.    * @deprecated This method must allocate a new byte[] if    * the {@link AbstractField#getBinaryOffset()} is non-zero    * or {@link AbstractField#getBinaryLength()} is not the    * full length of the byte[]. Please use {@link    * AbstractField#getBinaryValue()} instead, which simply    * returns the byte[].    */
 DECL|method|binaryValue
 specifier|public
 name|byte
@@ -505,7 +505,7 @@ return|return
 name|ret
 return|;
 block|}
-comment|/** The value of the field as a TokesStream, or null.  If null, the Reader value,    * String value, or binary value is used. Exactly one of stringValue(),     * readerValue(), getBinaryValue(), and tokenStreamValue() must be set. */
+comment|/** The TokesStream for this field to be used when indexing, or null.  If null, the Reader value    * or String value is analyzed to produce the indexed tokens. */
 DECL|method|tokenStreamValue
 specifier|public
 name|TokenStream
@@ -513,19 +513,10 @@ name|tokenStreamValue
 parameter_list|()
 block|{
 return|return
-name|fieldsData
-operator|instanceof
-name|TokenStream
-condition|?
-operator|(
-name|TokenStream
-operator|)
-name|fieldsData
-else|:
-literal|null
+name|tokenStream
 return|;
 block|}
-comment|/**<p>Expert: change the value of this field.  This can    *  be used during indexing to re-use a single Field    *  instance to improve indexing speed by avoiding GC cost    *  of new'ing and reclaiming Field instances.  Typically    *  a single {@link Document} instance is re-used as    *  well.  This helps most on small documents.</p>    *     *<p>Note that you should only use this method after the    *  Field has been consumed (ie, the {@link Document}    *  containing this Field has been added to the index).    *  Also, each Field instance should only be used once    *  within a single {@link Document} instance.  See<a    *  href="http://wiki.apache.org/lucene-java/ImproveIndexingSpeed">ImproveIndexingSpeed</a>    *  for details.</p> */
+comment|/**<p>Expert: change the value of this field.  This can    *  be used during indexing to re-use a single Field    *  instance to improve indexing speed by avoiding GC cost    *  of new'ing and reclaiming Field instances.  Typically    *  a single {@link Document} instance is re-used as    *  well.  This helps most on small documents.</p>    *     *<p>Each Field instance should only be used once    *  within a single {@link Document} instance.  See<a    *  href="http://wiki.apache.org/lucene-java/ImproveIndexingSpeed">ImproveIndexingSpeed</a>    *  for details.</p> */
 DECL|method|setValue
 specifier|public
 name|void
@@ -678,7 +669,7 @@ operator|=
 name|offset
 expr_stmt|;
 block|}
-comment|/** Expert: change the value of this field.  See<a href="#setValue(java.lang.String)">setValue(String)</a>. */
+comment|/** Expert: change the value of this field.  See<a href="#setValue(java.lang.String)">setValue(String)</a>.    * @deprecated use {@link #setTokenStream} */
 DECL|method|setValue
 specifier|public
 name|void
@@ -716,7 +707,40 @@ throw|;
 block|}
 name|fieldsData
 operator|=
+literal|null
+expr_stmt|;
+name|tokenStream
+operator|=
 name|value
+expr_stmt|;
+block|}
+comment|/** Expert: sets the token stream to be used for indexing and causes isIndexed() and isTokenized() to return true.    *  May be combined with stored values from stringValue() or binaryValue() */
+DECL|method|setTokenStream
+specifier|public
+name|void
+name|setTokenStream
+parameter_list|(
+name|TokenStream
+name|tokenStream
+parameter_list|)
+block|{
+name|this
+operator|.
+name|isIndexed
+operator|=
+literal|true
+expr_stmt|;
+name|this
+operator|.
+name|isTokenized
+operator|=
+literal|true
+expr_stmt|;
+name|this
+operator|.
+name|tokenStream
+operator|=
+name|tokenStream
 expr_stmt|;
 block|}
 comment|/**    * Create a field by specifying its name, value and how it will    * be saved in the index. Term vectors will not be stored in the index.    *     * @param name The name of the field    * @param value The string to process    * @param store Whether<code>value</code> should be stored in the index    * @param index Whether the field should be indexed, and if so, if it should    *  be tokenized before indexing     * @throws NullPointerException if name or value is<code>null</code>    * @throws IllegalArgumentException if the field is neither stored nor indexed     */
@@ -1368,6 +1392,12 @@ comment|// field names are interned
 name|this
 operator|.
 name|fieldsData
+operator|=
+literal|null
+expr_stmt|;
+name|this
+operator|.
+name|tokenStream
 operator|=
 name|tokenStream
 expr_stmt|;

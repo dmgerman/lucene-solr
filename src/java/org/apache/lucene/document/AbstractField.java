@@ -50,6 +50,20 @@ name|SpanQuery
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
 begin_comment
 comment|// for javadocs
 end_comment
@@ -158,7 +172,7 @@ name|boost
 init|=
 literal|1.0f
 decl_stmt|;
-comment|// the one and only data object for all different kind of field values
+comment|// the data object for all different kind of field values
 DECL|field|fieldsData
 specifier|protected
 name|Object
@@ -166,7 +180,13 @@ name|fieldsData
 init|=
 literal|null
 decl_stmt|;
-comment|//length/offset for all primitive types
+comment|// pre-analyzed tokenStream for indexed fields
+DECL|field|tokenStream
+specifier|protected
+name|TokenStream
+name|tokenStream
+decl_stmt|;
+comment|// length/offset for all primitive types
 DECL|field|binaryLength
 specifier|protected
 name|int
