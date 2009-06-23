@@ -236,7 +236,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a new {@link TopScoreDocCollector} given the number of hits to    * collect and whether documents are scored in order by the input    * {@link Scorer} to {@link #setScorer(Scorer)}.    */
+comment|/**    * Creates a new {@link TopScoreDocCollector} given the number of hits to    * collect and whether documents are scored in order by the input    * {@link Scorer} to {@link #setScorer(Scorer)}.    *    *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length    *<code>numHits</code>, and fill the array with sentinel    * objects.    */
 DECL|method|create
 specifier|public
 specifier|static

@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** A PriorityQueue maintains a partial ordering of its elements such that the   least element can always be found in constant time.  Put()'s and pop()'s   require log(size) time. */
+comment|/** A PriorityQueue maintains a partial ordering of its elements such that the  * least element can always be found in constant time.  Put()'s and pop()'s  * require log(size) time.  *  *<p><b>NOTE</b>: This class pre-allocates a full array of  * length<code>maxSize+1</code>, in {@link #initialize}.   *  */
 end_comment
 
 begin_class
