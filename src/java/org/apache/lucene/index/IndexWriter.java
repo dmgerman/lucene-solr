@@ -5204,45 +5204,6 @@ return|return
 name|useCompoundDocStore
 return|;
 block|}
-comment|/** Release the write lock, if needed. */
-DECL|method|finalize
-specifier|protected
-name|void
-name|finalize
-parameter_list|()
-throws|throws
-name|Throwable
-block|{
-try|try
-block|{
-if|if
-condition|(
-name|writeLock
-operator|!=
-literal|null
-condition|)
-block|{
-name|writeLock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-comment|// release write lock
-name|writeLock
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|super
-operator|.
-name|finalize
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 comment|/** Returns the Directory used by this index. */
 DECL|method|getDirectory
 specifier|public
