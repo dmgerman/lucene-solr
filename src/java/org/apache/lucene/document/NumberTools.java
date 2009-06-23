@@ -24,9 +24,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|document
 operator|.
-name|NumericTokenStream
+name|NumericField
 import|;
 end_import
 
@@ -75,7 +75,7 @@ comment|// do not remove this class in 3.0, it may be needed to decode old index
 end_comment
 
 begin_comment
-comment|/**  * Provides support for converting longs to Strings, and back again. The strings  * are structured so that lexicographic sorting order is preserved.  *   *<p>  * That is, if l1 is less than l2 for any two longs l1 and l2, then  * NumberTools.longToString(l1) is lexicographically less than  * NumberTools.longToString(l2). (Similarly for "greater than" and "equals".)  *   *<p>  * This class handles<b>all</b> long values (unlike  * {@link org.apache.lucene.document.DateField}).  *   * @deprecated For new indexes use {@link NumericUtils} instead, which  * provides a sortable binary representation (prefix encoded) of numeric  * values.  * To index and efficiently query numeric values use {@link NumericTokenStream}  * and {@link NumericRangeQuery}.  * This class is included for use with existing  * indices and will be removed in a future release.  */
+comment|/**  * Provides support for converting longs to Strings, and back again. The strings  * are structured so that lexicographic sorting order is preserved.  *   *<p>  * That is, if l1 is less than l2 for any two longs l1 and l2, then  * NumberTools.longToString(l1) is lexicographically less than  * NumberTools.longToString(l2). (Similarly for "greater than" and "equals".)  *   *<p>  * This class handles<b>all</b> long values (unlike  * {@link org.apache.lucene.document.DateField}).  *   * @deprecated For new indexes use {@link NumericUtils} instead, which  * provides a sortable binary representation (prefix encoded) of numeric  * values.  * To index and efficiently query numeric values use {@link NumericField}  * and {@link NumericRangeQuery}.  * This class is included for use with existing  * indices and will be removed in a future release.  */
 end_comment
 
 begin_class

@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * This interface is obsolete, use {@link FieldCache} instead.  * @deprecated Will be removed in Lucene 3.0  **/
 end_comment
 
 begin_interface
@@ -52,42 +52,7 @@ name|ExtendedFieldCache
 extends|extends
 name|FieldCache
 block|{
-DECL|interface|LongParser
-specifier|public
-interface|interface
-name|LongParser
-extends|extends
-name|Parser
-block|{
-comment|/**      * Return an long representation of this field's value.      */
-DECL|method|parseLong
-specifier|public
-name|long
-name|parseLong
-parameter_list|(
-name|String
-name|string
-parameter_list|)
-function_decl|;
-block|}
-DECL|interface|DoubleParser
-specifier|public
-interface|interface
-name|DoubleParser
-extends|extends
-name|Parser
-block|{
-comment|/**      * Return an long representation of this field's value.      */
-DECL|method|parseDouble
-specifier|public
-name|double
-name|parseDouble
-parameter_list|(
-name|String
-name|string
-parameter_list|)
-function_decl|;
-block|}
+comment|/** @deprecated Use {@link FieldCache#DEFAULT}; this will be removed in Lucene 3.0 */
 DECL|field|EXT_DEFAULT
 specifier|public
 specifier|static
@@ -101,7 +66,27 @@ name|FieldCache
 operator|.
 name|DEFAULT
 decl_stmt|;
-comment|/**    * Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as longs and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the longs.    * @return The values in the given field for each document.    * @throws java.io.IOException If any error occurs.    */
+comment|/** @deprecated Use {@link FieldCache.LongParser}, this will be removed in Lucene 3.0 */
+DECL|interface|LongParser
+specifier|public
+interface|interface
+name|LongParser
+extends|extends
+name|FieldCache
+operator|.
+name|LongParser
+block|{   }
+comment|/** @deprecated Use {@link FieldCache.DoubleParser}, this will be removed in Lucene 3.0 */
+DECL|interface|DoubleParser
+specifier|public
+interface|interface
+name|DoubleParser
+extends|extends
+name|FieldCache
+operator|.
+name|DoubleParser
+block|{   }
+comment|/** @deprecated Will be removed in 3.0, this is for binary compatibility only */
 DECL|method|getLongs
 specifier|public
 name|long
@@ -113,46 +98,16 @@ name|reader
 parameter_list|,
 name|String
 name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as longs and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the longs.    * @param parser Computes integer for string values.    * @return The values in the given field for each document.    * @throws IOException If any error occurs.    */
-DECL|method|getLongs
-specifier|public
-name|long
-index|[]
-name|getLongs
-parameter_list|(
-name|IndexReader
-name|reader
 parameter_list|,
-name|String
-name|field
-parameter_list|,
+name|ExtendedFieldCache
+operator|.
 name|LongParser
 name|parser
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Checks the internal cache for an appropriate entry, and if none is    * found, reads the terms in<code>field</code> as integers and returns an array    * of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the doubles.    * @return The values in the given field for each document.    * @throws IOException If any error occurs.    */
-DECL|method|getDoubles
-specifier|public
-name|double
-index|[]
-name|getDoubles
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Checks the internal cache for an appropriate entry, and if none is found,    * reads the terms in<code>field</code> as doubles and returns an array of    * size<code>reader.maxDoc()</code> of the value each document has in the    * given field.    *    * @param reader Used to get field values.    * @param field  Which field contains the doubles.    * @param parser Computes integer for string values.    * @return The values in the given field for each document.    * @throws IOException If any error occurs.    */
+comment|/** @deprecated Will be removed in 3.0, this is for binary compatibility only */
 DECL|method|getDoubles
 specifier|public
 name|double
@@ -165,6 +120,8 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
+name|ExtendedFieldCache
+operator|.
 name|DoubleParser
 name|parser
 parameter_list|)

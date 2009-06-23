@@ -3111,7 +3111,7 @@ argument_list|(
 literal|"parser"
 argument_list|,
 operator|new
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
 name|LongParser
 argument_list|()
@@ -3188,7 +3188,7 @@ argument_list|(
 literal|"parser"
 argument_list|,
 operator|new
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
 name|DoubleParser
 argument_list|()

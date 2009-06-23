@@ -34,8 +34,26 @@ begin_comment
 comment|// for javadocs
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|NumericField
+import|;
+end_import
+
 begin_comment
-comment|/**  * Implementation of a {@link Filter} that implements<em>trie-based</em> range filtering  * for numeric values. For more information about the algorithm look into the docs of  * {@link NumericRangeQuery}.  *  *<p>This filter depends on a specific structure of terms in the index that can only be created  * by indexing using {@link NumericTokenStream}.  *  *<p><b>Please note:</b> This class has no constructor, you can create filters depending on the data type  * by using the static factories {@linkplain #newLongRange NumericRangeFilter.newLongRange()},  * {@linkplain #newIntRange NumericRangeFilter.newIntRange()}, {@linkplain #newDoubleRange NumericRangeFilter.newDoubleRange()},  * and {@linkplain #newFloatRange NumericRangeFilter.newFloatRange()}, e.g.:  *<pre>  * Filter f = NumericRangeFilter.newFloatRange(field,<a href="NumericRangeQuery.html#precisionStepDesc">precisionStep</a>,  *                                             new Float(0.3f), new Float(0.10f),  *                                             true, true);  *</pre>  * @since 2.9  **/
+comment|// for javadocs
+end_comment
+
+begin_comment
+comment|/**  * Implementation of a {@link Filter} that implements<em>trie-based</em> range filtering  * for numeric values. For more information about the algorithm look into the docs of  * {@link NumericRangeQuery}.  *  *<p>This filter depends on a specific structure of terms in the index that can only be created  * by indexing using {@link NumericField} (expert: {@link NumericTokenStream}).  *  *<p><b>Please note:</b> This class has no constructor, you can create filters depending on the data type  * by using the static factories {@linkplain #newLongRange NumericRangeFilter.newLongRange()},  * {@linkplain #newIntRange NumericRangeFilter.newIntRange()}, {@linkplain #newDoubleRange NumericRangeFilter.newDoubleRange()},  * and {@linkplain #newFloatRange NumericRangeFilter.newFloatRange()}, e.g.:  *<pre>  * Filter f = NumericRangeFilter.newFloatRange(field,<a href="NumericRangeQuery.html#precisionStepDesc">precisionStep</a>,  *                                             new Float(0.3f), new Float(0.10f),  *                                             true, true);  *</pre>  *  *<p><font color="red"><b>NOTE:</b> This API is experimental and  * might change in incompatible ways in the next release.</font>  *  * @since 2.9  **/
 end_comment
 
 begin_class

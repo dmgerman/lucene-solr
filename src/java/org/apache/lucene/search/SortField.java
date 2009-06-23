@@ -54,6 +54,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|NumericField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|IndexReader
@@ -120,7 +138,7 @@ name|DOC
 init|=
 literal|1
 decl_stmt|;
-comment|/** Guess type of sort based on field contents.  A regular expression is used    * to look at the first term indexed for the field and determine if it    * represents an integer number, a floating point number, or just arbitrary    * string characters.    * @deprecated Please specify the exact type, instead.*/
+comment|/** Guess type of sort based on field contents.  A regular expression is used    * to look at the first term indexed for the field and determine if it    * represents an integer number, a floating point number, or just arbitrary    * string characters.    * @deprecated Please specify the exact type, instead.    *  Especially, guessing does<b>not</b> work with the new    *  {@link NumericField} type.    */
 DECL|field|AUTO
 specifier|public
 specifier|static
@@ -399,7 +417,7 @@ operator|=
 name|reverse
 expr_stmt|;
 block|}
-comment|/** Creates a sort by terms in the given field, parsed    * to numeric values using a custom {@link FieldCache.Parser}.    * @param field  Name of field to sort by.  Must not be null.    * @param parser Instance of a {@link FieldCache.Parser},    *  which must subclass one of the existing numeric    *  parsers from {@link FieldCache} or {@link    *  ExtendedFieldCache}. Sort type is inferred by testing    *  which numeric parser the parser subclasses.    * @throws IllegalArgumentException if the parser fails to    *  subclass an existing numeric parser, or field is null    */
+comment|/** Creates a sort by terms in the given field, parsed    * to numeric values using a custom {@link FieldCache.Parser}.    * @param field  Name of field to sort by.  Must not be null.    * @param parser Instance of a {@link FieldCache.Parser},    *  which must subclass one of the existing numeric    *  parsers from {@link FieldCache}. Sort type is inferred    *  by testing which numeric parser the parser subclasses.    * @throws IllegalArgumentException if the parser fails to    *  subclass an existing numeric parser, or field is null    */
 DECL|method|SortField
 specifier|public
 name|SortField
@@ -423,7 +441,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a sort, possibly in reverse, by terms in the given field, parsed    * to numeric values using a custom {@link FieldCache.Parser}.    * @param field  Name of field to sort by.  Must not be null.    * @param parser Instance of a {@link FieldCache.Parser},    *  which must subclass one of the existing numeric    *  parsers from {@link FieldCache} or {@link    *  ExtendedFieldCache}. Sort type is inferred by testing    *  which numeric parser the parser subclasses.    * @param reverse True if natural order should be reversed.    * @throws IllegalArgumentException if the parser fails to    *  subclass an existing numeric parser, or field is null    */
+comment|/** Creates a sort, possibly in reverse, by terms in the given field, parsed    * to numeric values using a custom {@link FieldCache.Parser}.    * @param field  Name of field to sort by.  Must not be null.    * @param parser Instance of a {@link FieldCache.Parser},    *  which must subclass one of the existing numeric    *  parsers from {@link FieldCache}. Sort type is inferred    *  by testing which numeric parser the parser subclasses.    * @param reverse True if natural order should be reversed.    * @throws IllegalArgumentException if the parser fails to    *  subclass an existing numeric parser, or field is null    */
 DECL|method|SortField
 specifier|public
 name|SortField
@@ -508,7 +526,7 @@ if|if
 condition|(
 name|parser
 operator|instanceof
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
 name|LongParser
 condition|)
@@ -524,7 +542,7 @@ if|if
 condition|(
 name|parser
 operator|instanceof
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
 name|DoubleParser
 condition|)
@@ -540,7 +558,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Parser instance does not subclass existing numeric parser from FieldCache or ExtendedFieldCache (got "
+literal|"Parser instance does not subclass existing numeric parser from FieldCache (got "
 operator|+
 name|parser
 operator|+
@@ -1797,7 +1815,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Attempts to detect the given field type for an IndexReader. */
+comment|/**    * Attempts to detect the given field type for an IndexReader.    * @deprecated    */
 DECL|method|detectFieldType
 specifier|static
 name|int
@@ -1889,8 +1907,6 @@ operator|.
 name|trim
 argument_list|()
 decl_stmt|;
-comment|/**          * Java 1.4 level code:           if (pIntegers.matcher(termtext).matches())          return IntegerSortedHitQueue.comparator (reader, enumerator, field);           else if (pFloats.matcher(termtext).matches())          return FloatSortedHitQueue.comparator (reader, enumerator, field);          */
-comment|// Java 1.3 level code:
 try|try
 block|{
 name|Integer
