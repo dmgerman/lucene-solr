@@ -72,6 +72,30 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Matcher
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -167,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A task which writes documents, one line per document. Each line is in the  * following format: title&lt;TAB&gt; date&lt;TAB&gt; body. The output of this  * taske can be consumed by  * {@link org.apache.lucene.benchmark.byTask.feeds.LineDocMaker} and is intended  * to save the IO overhead of opening a file per doument to be indexed.<br>  *   * Supports the following parameters:  *<ul>  *<li>line.file.out - the name of the file to write the output to. That  * parameter is mandatory.<b>NOTE:</b> the file is re-created.  *<li>bzip.compression - whether the output should be bzip-compressed. This is  * recommended when the output file is expected to be large. (optional, default:  * false).  *</ul>  */
+comment|/**  * A task which writes documents, one line per document. Each line is in the  * following format: title&lt;TAB&gt; date&lt;TAB&gt; body. The output of this  * taske can be consumed by  * {@link org.apache.lucene.benchmark.byTask.feeds.LineDocMaker} and is intended  * to save the IO overhead of opening a file per doument to be indexed.<br>  * Supports the following parameters:  *<ul>  *<li>line.file.out - the name of the file to write the output to. That  * parameter is mandatory.<b>NOTE:</b> the file is re-created.  *<li>bzip.compression - whether the output should be bzip-compressed. This is  * recommended when the output file is expected to be large. (optional, default:  * false).  *</ul>  *<b>NOTE:</b> this class is not thread-safe and if used by multiple threads the  * output is unspecified (as all will write to the same ouput file in a  * non-synchronized way).  */
 end_comment
 
 begin_class
@@ -186,6 +210,25 @@ name|char
 name|SEP
 init|=
 literal|'\t'
+decl_stmt|;
+DECL|field|NORMALIZER
+specifier|private
+specifier|static
+specifier|final
+name|Matcher
+name|NORMALIZER
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"[\t\r\n]+"
+argument_list|)
+operator|.
+name|matcher
+argument_list|(
+literal|""
+argument_list|)
 decl_stmt|;
 DECL|field|docSize
 specifier|private
@@ -439,16 +482,19 @@ name|f
 operator|!=
 literal|null
 condition|?
+name|NORMALIZER
+operator|.
+name|reset
+argument_list|(
 name|f
 operator|.
 name|stringValue
 argument_list|()
+argument_list|)
 operator|.
-name|replace
+name|replaceAll
 argument_list|(
-literal|'\t'
-argument_list|,
-literal|' '
+literal|" "
 argument_list|)
 else|:
 literal|null
@@ -478,16 +524,19 @@ name|f
 operator|!=
 literal|null
 condition|?
+name|NORMALIZER
+operator|.
+name|reset
+argument_list|(
 name|f
 operator|.
 name|stringValue
 argument_list|()
+argument_list|)
 operator|.
-name|replace
+name|replaceAll
 argument_list|(
-literal|'\t'
-argument_list|,
-literal|' '
+literal|" "
 argument_list|)
 else|:
 literal|""
@@ -510,16 +559,19 @@ name|f
 operator|!=
 literal|null
 condition|?
+name|NORMALIZER
+operator|.
+name|reset
+argument_list|(
 name|f
 operator|.
 name|stringValue
 argument_list|()
+argument_list|)
 operator|.
-name|replace
+name|replaceAll
 argument_list|(
-literal|'\t'
-argument_list|,
-literal|' '
+literal|" "
 argument_list|)
 else|:
 literal|""
