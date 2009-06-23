@@ -510,27 +510,6 @@ operator|==
 literal|0
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|deleteReader
-operator|.
-name|document
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expcected exception
-block|}
 block|}
 DECL|method|testGetFieldNameVariations
 specifier|public

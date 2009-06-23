@@ -3826,7 +3826,6 @@ return|return
 name|fieldInfos
 return|;
 block|}
-comment|/**    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|document
 specifier|public
 name|Document
@@ -3846,20 +3845,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|isDeleted
-argument_list|(
-name|n
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"attempt to access a deleted document"
-argument_list|)
-throw|;
 return|return
 name|getFieldsReader
 argument_list|()
