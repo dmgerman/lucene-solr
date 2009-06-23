@@ -212,9 +212,10 @@ name|Reader
 name|in
 parameter_list|)
 block|{
-name|input
-operator|=
+name|super
+argument_list|(
 name|in
+argument_list|)
 expr_stmt|;
 block|}
 comment|//~ Methods ----------------------------------------------------------------
@@ -723,11 +724,21 @@ literal|0
 argument_list|,
 name|length
 argument_list|,
+name|input
+operator|.
+name|correctOffset
+argument_list|(
 name|start
+argument_list|)
 argument_list|,
+name|input
+operator|.
+name|correctOffset
+argument_list|(
 name|start
 operator|+
 name|length
+argument_list|)
 argument_list|,
 name|TOKEN_TYPE_NAMES
 index|[
