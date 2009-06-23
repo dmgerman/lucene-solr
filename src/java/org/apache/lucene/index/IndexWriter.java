@@ -8224,11 +8224,25 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Ensure any running addIndexes finishes.  It's fine
-comment|// if a new one attempts to start because from our
+comment|// waitForMerges() will ensure any running addIndexes finishes.
+comment|// It's fine if a new one attempts to start because from our
 comment|// caller above the call will see that we are in the
 comment|// process of closing, and will throw an
 comment|// AlreadyClosedException.
+name|waitForMerges
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Wait for any currently outstanding merges to finish.    *    *<p>It is guaranteed that any merges started prior to calling this method     *    will have completed once this method completes.</p>    */
+DECL|method|waitForMerges
+specifier|public
+specifier|synchronized
+name|void
+name|waitForMerges
+parameter_list|()
+block|{
+comment|// Ensure any running addIndexes finishes.
 name|acquireRead
 argument_list|()
 expr_stmt|;
@@ -8251,9 +8265,12 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|doWait
 argument_list|()
 expr_stmt|;
+block|}
+comment|// sanity check
 assert|assert
 literal|0
 operator|==
@@ -8262,7 +8279,6 @@ operator|.
 name|size
 argument_list|()
 assert|;
-block|}
 block|}
 comment|/*    * Called whenever the SegmentInfos has been updated and    * the index files referenced exist (correctly) in the    * index directory.    */
 DECL|method|checkpoint
