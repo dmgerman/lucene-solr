@@ -51,7 +51,7 @@ block|{
 DECL|method|ExactPhraseScorer
 name|ExactPhraseScorer
 parameter_list|(
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|TermPositions
@@ -168,9 +168,6 @@ name|nextPosition
 argument_list|()
 condition|)
 return|return
-operator|(
-name|float
-operator|)
 name|freq
 return|;
 block|}
@@ -203,9 +200,6 @@ argument_list|()
 condition|)
 do|;
 return|return
-operator|(
-name|float
-operator|)
 name|freq
 return|;
 block|}

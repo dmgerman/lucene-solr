@@ -295,6 +295,16 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 comment|// An internal class which is used in score(Collector, int) for setting the
 comment|// current score. This is required since Collector exposes a setScorer method

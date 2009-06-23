@@ -386,6 +386,16 @@ name|scorer
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 DECL|field|scores
 specifier|private

@@ -174,10 +174,10 @@ name|term
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createWeight
-specifier|protected
-name|Weight
-name|createWeight
+DECL|method|createQueryWeight
+specifier|public
+name|QueryWeight
+name|createQueryWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -201,8 +201,6 @@ class|class
 name|BoostingTermWeight
 extends|extends
 name|SpanWeight
-implements|implements
-name|Weight
 block|{
 DECL|method|BoostingTermWeight
 specifier|public
@@ -232,6 +230,12 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|boolean
+name|topScorer
 parameter_list|)
 throws|throws
 name|IOException
@@ -307,7 +311,7 @@ parameter_list|(
 name|TermSpans
 name|spans
 parameter_list|,
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|Similarity

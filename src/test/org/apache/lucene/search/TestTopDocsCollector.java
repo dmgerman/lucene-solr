@@ -358,6 +358,16 @@ name|IOException
 block|{
 comment|// Don't do anything. Assign scores in random
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 comment|// Scores array to be used by MyTopDocsCollector. If it is changed, MAX_SCORE
 comment|// must also change.

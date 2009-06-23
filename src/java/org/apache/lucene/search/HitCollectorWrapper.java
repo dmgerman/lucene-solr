@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper for ({@link HitCollector}) implementations, which  * simply re-bases the incoming docID before calling {@link  * HitCollector#collect}.  * @deprecated this class will be removed when {@link HitCollector} is removed.  */
+comment|/**  * Wrapper for ({@link HitCollector}) implementations, which  * simply re-bases the incoming docID before calling {@link  * HitCollector#collect}.  * @deprecated this class will be removed when {@link  * HitCollector} is removed.  Please migrate custom  * HitCollectors to the new {@link Collector} class.  */
 end_comment
 
 begin_class
@@ -146,6 +146,16 @@ name|scorer
 operator|=
 name|scorer
 expr_stmt|;
+block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
 block|}
 block|}
 end_class

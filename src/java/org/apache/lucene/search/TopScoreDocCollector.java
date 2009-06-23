@@ -137,6 +137,16 @@ name|updateTop
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|// Assumes docs are scored out of order.
 DECL|class|OutOfOrderTopScoreDocCollector
@@ -234,6 +244,16 @@ operator|.
 name|updateTop
 argument_list|()
 expr_stmt|;
+block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 comment|/**    * Creates a new {@link TopScoreDocCollector} given the number of hits to    * collect and whether documents are scored in order by the input    * {@link Scorer} to {@link #setScorer(Scorer)}.    *    *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length    *<code>numHits</code>, and fill the array with sentinel    * objects.    */

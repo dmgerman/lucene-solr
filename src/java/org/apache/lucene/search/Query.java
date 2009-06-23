@@ -148,11 +148,30 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/** Expert: Constructs an appropriate Weight implementation for this query.    *    *<p>Only implemented by primitive queries, which re-write to themselves.    */
+comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    * @deprecated use {@link #createQueryWeight(Searcher)} instead.    */
 DECL|method|createWeight
 specifier|protected
 name|Weight
 name|createWeight
+parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|createQueryWeight
+argument_list|(
+name|searcher
+argument_list|)
+return|;
+block|}
+comment|/**    * Expert: Constructs an appropriate {@link QueryWeight} implementation for    * this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    */
+DECL|method|createQueryWeight
+specifier|public
+name|QueryWeight
+name|createQueryWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -166,11 +185,30 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Expert: Constructs and initializes a Weight for a top-level query. */
+comment|/**    * Expert: Constructs and initializes a Weight for a top-level query.    *     * @deprecated use {@link #queryWeight(Searcher)} instead.    */
 DECL|method|weight
 specifier|public
 name|Weight
 name|weight
+parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|queryWeight
+argument_list|(
+name|searcher
+argument_list|)
+return|;
+block|}
+comment|/**    * Expert: Constructs and initializes a {@link QueryWeight} for a top-level    * query.    */
+DECL|method|queryWeight
+specifier|public
+name|QueryWeight
+name|queryWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -188,12 +226,12 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-name|Weight
+name|QueryWeight
 name|weight
 init|=
 name|query
 operator|.
-name|createWeight
+name|createQueryWeight
 argument_list|(
 name|searcher
 argument_list|)
@@ -673,9 +711,6 @@ block|{
 try|try
 block|{
 return|return
-operator|(
-name|Query
-operator|)
 name|super
 operator|.
 name|clone

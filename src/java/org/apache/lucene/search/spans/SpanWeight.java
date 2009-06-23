@@ -109,8 +109,8 @@ DECL|class|SpanWeight
 specifier|public
 class|class
 name|SpanWeight
-implements|implements
-name|Weight
+extends|extends
+name|QueryWeight
 block|{
 DECL|field|similarity
 specifier|protected
@@ -289,6 +289,12 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|boolean
+name|topScorer
 parameter_list|)
 throws|throws
 name|IOException
@@ -612,6 +618,10 @@ init|=
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 operator|.
 name|explain

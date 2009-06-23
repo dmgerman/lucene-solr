@@ -104,6 +104,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|QueryWeight
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Scorer
 import|;
 end_import
@@ -133,20 +147,6 @@ operator|.
 name|search
 operator|.
 name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Weight
 import|;
 end_import
 
@@ -1120,19 +1120,19 @@ DECL|class|CustomWeight
 specifier|private
 class|class
 name|CustomWeight
-implements|implements
-name|Weight
+extends|extends
+name|QueryWeight
 block|{
 DECL|field|similarity
 name|Similarity
 name|similarity
 decl_stmt|;
 DECL|field|subQueryWeight
-name|Weight
+name|QueryWeight
 name|subQueryWeight
 decl_stmt|;
 DECL|field|valSrcWeights
-name|Weight
+name|QueryWeight
 index|[]
 name|valSrcWeights
 decl_stmt|;
@@ -1165,18 +1165,7 @@ name|subQueryWeight
 operator|=
 name|subQuery
 operator|.
-name|weight
-argument_list|(
-name|searcher
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|subQueryWeight
-operator|=
-name|subQuery
-operator|.
-name|weight
+name|queryWeight
 argument_list|(
 name|searcher
 argument_list|)
@@ -1186,7 +1175,7 @@ operator|.
 name|valSrcWeights
 operator|=
 operator|new
-name|Weight
+name|QueryWeight
 index|[
 name|valSrcQueries
 operator|.
@@ -1222,7 +1211,7 @@ index|[
 name|i
 index|]
 operator|.
-name|createWeight
+name|createQueryWeight
 argument_list|(
 name|searcher
 argument_list|)
@@ -1408,7 +1397,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Weight#scorer(org.apache.lucene.index.IndexReader) */
 DECL|method|scorer
 specifier|public
 name|Scorer
@@ -1416,10 +1404,21 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|boolean
+name|topScorer
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Pass true for "scoresDocsInOrder", because we
+comment|// require in-order scoring, even if caller does not,
+comment|// since we call advance on the valSrcScorers.  Pass
+comment|// false for "topScorer" because we will not invoke
+comment|// score(Collector) on these scorers:
 name|Scorer
 name|subQueryScorer
 init|=
@@ -1428,6 +1427,10 @@ operator|.
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|Scorer
@@ -1472,6 +1475,10 @@ operator|.
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1491,7 +1498,6 @@ name|valSrcScorers
 argument_list|)
 return|;
 block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Weight#explain(org.apache.lucene.index.IndexReader, int) */
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -1510,12 +1516,26 @@ return|return
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 operator|.
 name|explain
 argument_list|(
 name|doc
 argument_list|)
+return|;
+block|}
+DECL|method|scoresDocsOutOfOrder
+specifier|public
+name|boolean
+name|scoresDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 block|}
@@ -2031,11 +2051,10 @@ name|res
 return|;
 block|}
 block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Query#createWeight(org.apache.lucene.search.Searcher) */
-DECL|method|createWeight
-specifier|protected
-name|Weight
-name|createWeight
+DECL|method|createQueryWeight
+specifier|public
+name|QueryWeight
+name|createQueryWeight
 parameter_list|(
 name|Searcher
 name|searcher

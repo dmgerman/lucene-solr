@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|*
+name|TermPositions
 import|;
 end_import
 
@@ -54,7 +54,7 @@ name|Scorer
 block|{
 DECL|field|weight
 specifier|private
-name|Weight
+name|QueryWeight
 name|weight
 decl_stmt|;
 DECL|field|norms
@@ -104,7 +104,7 @@ comment|//prhase frequency in current doc as computed by phraseFreq().
 DECL|method|PhraseScorer
 name|PhraseScorer
 parameter_list|(
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|TermPositions

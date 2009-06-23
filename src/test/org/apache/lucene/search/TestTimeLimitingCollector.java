@@ -1611,6 +1611,16 @@ operator|=
 name|base
 expr_stmt|;
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 block|}
 end_class

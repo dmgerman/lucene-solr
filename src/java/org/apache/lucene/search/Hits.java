@@ -42,7 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|Iterator
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Vector
 import|;
 end_import
 
@@ -97,7 +97,7 @@ name|Hits
 block|{
 DECL|field|weight
 specifier|private
-name|Weight
+name|QueryWeight
 name|weight
 decl_stmt|;
 DECL|field|searcher
@@ -209,7 +209,7 @@ name|weight
 operator|=
 name|q
 operator|.
-name|weight
+name|queryWeight
 argument_list|(
 name|s
 argument_list|)
@@ -262,7 +262,7 @@ name|weight
 operator|=
 name|q
 operator|.
-name|weight
+name|queryWeight
 argument_list|(
 name|s
 argument_list|)

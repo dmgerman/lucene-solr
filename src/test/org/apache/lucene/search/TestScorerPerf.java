@@ -733,6 +733,16 @@ operator|=
 name|base
 expr_stmt|;
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 DECL|class|MatchingHitCollector
 specifier|public

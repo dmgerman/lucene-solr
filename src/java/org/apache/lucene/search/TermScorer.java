@@ -67,7 +67,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|weight
 specifier|private
-name|Weight
+name|QueryWeight
 name|weight
 decl_stmt|;
 DECL|field|termDocs
@@ -153,11 +153,45 @@ index|[
 name|SCORE_CACHE_SIZE
 index|]
 decl_stmt|;
-comment|/** Construct a<code>TermScorer</code>.    * @param weight The weight of the<code>Term</code> in the query.    * @param td An iterator over the documents matching the<code>Term</code>.    * @param similarity The</code>Similarity</code> implementation to be used for score computations.    * @param norms The field norms of the document fields for the<code>Term</code>.    */
+comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param similarity    *          The</code>Similarity</code> implementation to be used for score    *          computations.    * @param norms    *          The field norms of the document fields for the<code>Term</code>.    *     * @deprecated use delete in 3.0, kept around for TestTermScorer in tag which    *             creates TermScorer directly, and cannot pass in a QueryWeight    *             object.    */
 DECL|method|TermScorer
 name|TermScorer
 parameter_list|(
 name|Weight
+name|weight
+parameter_list|,
+name|TermDocs
+name|td
+parameter_list|,
+name|Similarity
+name|similarity
+parameter_list|,
+name|byte
+index|[]
+name|norms
+parameter_list|)
+block|{
+name|this
+argument_list|(
+operator|new
+name|QueryWeightWrapper
+argument_list|(
+name|weight
+argument_list|)
+argument_list|,
+name|td
+argument_list|,
+name|similarity
+argument_list|,
+name|norms
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param similarity    *          The</code>Similarity</code> implementation to be used for score    *          computations.    * @param norms    *          The field norms of the document fields for the<code>Term</code>.    */
+DECL|method|TermScorer
+name|TermScorer
+parameter_list|(
+name|QueryWeight
 name|weight
 parameter_list|,
 name|TermDocs

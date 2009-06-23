@@ -526,6 +526,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 comment|/*    * Implements a TopFieldCollector over one SortField criteria, while tracking    * document scores but no maxScore.    */
 DECL|class|OneComparatorScoringNoMaxScoreCollector
@@ -951,6 +961,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 comment|/*    * Implements a TopFieldCollector over one SortField criteria, with tracking    * document scores and maxScore.    */
@@ -1386,6 +1406,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 comment|/*    * Implements a TopFieldCollector over multiple SortField criteria, without    * tracking document scores and maxScore.    */
@@ -2130,6 +2160,16 @@ block|}
 block|}
 block|}
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 comment|/*    * Implements a TopFieldCollector over multiple SortField criteria, with    * tracking document scores and maxScore.    */
 DECL|class|MultiComparatorScoringMaxScoreCollector
@@ -2829,6 +2869,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 comment|/*    * Implements a TopFieldCollector over multiple SortField criteria, with    * tracking document scores and maxScore.    */
@@ -3546,6 +3596,16 @@ name|scorer
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 DECL|field|EMPTY_SCOREDOCS
 specifier|private
@@ -4136,6 +4196,16 @@ argument_list|()
 argument_list|,
 name|maxScore
 argument_list|)
+return|;
+block|}
+DECL|method|acceptsDocsOutOfOrder
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 block|}

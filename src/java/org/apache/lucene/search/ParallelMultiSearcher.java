@@ -92,7 +92,7 @@ name|int
 index|[]
 name|starts
 decl_stmt|;
-comment|/** Creates a searcher which searches<i>searchables</i>. */
+comment|/** Creates a searchable which searches<i>searchables</i>. */
 DECL|method|ParallelMultiSearcher
 specifier|public
 name|ParallelMultiSearcher
@@ -150,7 +150,7 @@ specifier|public
 name|TopDocs
 name|search
 parameter_list|(
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|Filter
@@ -207,7 +207,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// search each searcher
+comment|// search each searchable
 comment|// Assume not too many searchables and cost of creating a thread is by far inferior to a search
 name|msta
 index|[
@@ -425,7 +425,7 @@ specifier|public
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|Filter
@@ -486,7 +486,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// search each searcher
+comment|// search each searchable
 comment|// Assume not too many searchables and cost of creating a thread is by far inferior to a search
 name|msta
 index|[
@@ -709,46 +709,13 @@ name|maxScore
 argument_list|)
 return|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every matching    * document.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, a bitset used to eliminate some documents    * @param results to receive hits    *     * @todo parallelize this one too    * @deprecated use {@link #search(Weight, Filter, Collector)} instead.    */
-DECL|method|search
-specifier|public
-name|void
-name|search
-parameter_list|(
-name|Weight
-name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-specifier|final
-name|HitCollector
-name|results
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|search
-argument_list|(
-name|weight
-argument_list|,
-name|filter
-argument_list|,
-operator|new
-name|HitCollectorWrapper
-argument_list|(
-name|results
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query)}) is usually more efficient, as it skips   * non-high-scoring hits.   *   * @param weight to match documents   * @param filter if non-null, a bitset used to eliminate some documents   * @param collector to receive hits   *    * @todo parallelize this one too   */
 DECL|method|search
 specifier|public
 name|void
 name|search
 parameter_list|(
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|Filter
@@ -856,6 +823,18 @@ name|docBase
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+name|collector
+operator|.
+name|acceptsDocsOutOfOrder
+argument_list|()
+return|;
+block|}
 block|}
 decl_stmt|;
 name|searchables
@@ -916,7 +895,7 @@ name|searchable
 decl_stmt|;
 DECL|field|weight
 specifier|private
-name|Weight
+name|QueryWeight
 name|weight
 decl_stmt|;
 DECL|field|filter
@@ -967,7 +946,7 @@ parameter_list|(
 name|Searchable
 name|searchable
 parameter_list|,
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|Filter
@@ -1045,7 +1024,7 @@ parameter_list|(
 name|Searchable
 name|searchable
 parameter_list|,
-name|Weight
+name|QueryWeight
 name|weight
 parameter_list|,
 name|Filter
@@ -1207,7 +1186,7 @@ name|docs
 decl_stmt|;
 comment|// If one of the Sort fields is FIELD_DOC, need to fix its values, so that
 comment|// it will break ties by doc Id properly. Otherwise, it will compare to
-comment|// 'relative' doc Ids, that belong to two different searchers.
+comment|// 'relative' doc Ids, that belong to two different searchables.
 for|for
 control|(
 name|int

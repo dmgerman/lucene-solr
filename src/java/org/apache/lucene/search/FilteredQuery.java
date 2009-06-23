@@ -110,10 +110,10 @@ name|filter
 expr_stmt|;
 block|}
 comment|/**    * Returns a Weight that applies the filter to the enclosed query's Weight.    * This is accomplished by overriding the Scorer returned by the Weight.    */
-DECL|method|createWeight
-specifier|protected
-name|Weight
-name|createWeight
+DECL|method|createQueryWeight
+specifier|public
+name|QueryWeight
+name|createQueryWeight
 parameter_list|(
 specifier|final
 name|Searcher
@@ -123,12 +123,12 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|Weight
+name|QueryWeight
 name|weight
 init|=
 name|query
 operator|.
-name|createWeight
+name|createQueryWeight
 argument_list|(
 name|searcher
 argument_list|)
@@ -146,7 +146,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|Weight
+name|QueryWeight
 argument_list|()
 block|{
 specifier|private
@@ -372,6 +372,12 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|indexReader
+parameter_list|,
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|boolean
+name|topScorer
 parameter_list|)
 throws|throws
 name|IOException
@@ -385,6 +391,10 @@ operator|.
 name|scorer
 argument_list|(
 name|indexReader
+argument_list|,
+name|scoreDocsInOrder
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 specifier|final

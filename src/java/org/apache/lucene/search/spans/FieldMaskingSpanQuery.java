@@ -86,6 +86,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|QueryWeight
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Searcher
 import|;
 end_import
@@ -101,20 +115,6 @@ operator|.
 name|search
 operator|.
 name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Weight
 import|;
 end_import
 
@@ -240,6 +240,7 @@ name|reader
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated use {@link #extractTerms(Set)} instead. */
 DECL|method|getTerms
 specifier|public
 name|Collection
@@ -270,10 +271,10 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createWeight
-specifier|protected
-name|Weight
-name|createWeight
+DECL|method|createQueryWeight
+specifier|public
+name|QueryWeight
+name|createQueryWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -284,7 +285,7 @@ block|{
 return|return
 name|maskedQuery
 operator|.
-name|createWeight
+name|createQueryWeight
 argument_list|(
 name|searcher
 argument_list|)

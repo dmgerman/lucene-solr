@@ -678,7 +678,7 @@ operator|new
 name|MultiSearcher
 argument_list|(
 operator|new
-name|Searchable
+name|Searcher
 index|[]
 block|{
 operator|new
