@@ -93,9 +93,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 comment|/**    * @return a DocIdSet that provides the documents which should be    * permitted or prohibited in search results.    * @see DocIdBitSet    */
 DECL|method|getDocIdSet
