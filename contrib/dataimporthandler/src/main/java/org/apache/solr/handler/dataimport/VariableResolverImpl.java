@@ -83,7 +83,7 @@ argument_list|()
 decl_stmt|;
 comment|/**    * Used for creating Evaluators    */
 DECL|field|context
-name|ContextImpl
+name|Context
 name|context
 decl_stmt|;
 DECL|field|templateString
