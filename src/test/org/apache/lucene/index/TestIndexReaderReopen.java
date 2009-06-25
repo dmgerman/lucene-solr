@@ -358,6 +358,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BitVector
+import|;
+end_import
+
 begin_class
 DECL|class|TestIndexReaderReopen
 specifier|public
@@ -6567,6 +6581,14 @@ operator|.
 name|deletedDocs
 argument_list|)
 expr_stmt|;
+specifier|final
+name|BitVector
+name|delDocs
+init|=
+name|sr1
+operator|.
+name|deletedDocs
+decl_stmt|;
 name|r1
 operator|.
 name|close
@@ -6581,9 +6603,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|sr1
-operator|.
-name|deletedDocs
+name|delDocs
 operator|==
 name|sr2
 operator|.
