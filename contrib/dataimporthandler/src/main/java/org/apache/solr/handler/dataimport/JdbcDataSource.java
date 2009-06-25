@@ -33,6 +33,42 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|DataImportHandlerException
+operator|.
+name|wrapAndThrow
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|DataImportHandlerException
+operator|.
+name|SEVERE
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -603,8 +639,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"JDBC URL or JNDI name has to be specified"
@@ -901,8 +935,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"the jndi name : '"
@@ -1546,8 +1578,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"Unable to execute query: "
@@ -1972,6 +2002,13 @@ argument_list|)
 expr_stmt|;
 name|close
 argument_list|()
+expr_stmt|;
+name|wrapAndThrow
+argument_list|(
+name|SEVERE
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 return|return
 literal|false
