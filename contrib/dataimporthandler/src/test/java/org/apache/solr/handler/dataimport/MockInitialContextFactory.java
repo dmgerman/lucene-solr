@@ -201,8 +201,6 @@ name|Object
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
 specifier|public
 name|Object
 name|answer
