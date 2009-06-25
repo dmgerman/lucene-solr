@@ -160,14 +160,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
-name|createQueryWeight
-argument_list|(
-name|searcher
-argument_list|)
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
-comment|/**    * Expert: Constructs an appropriate {@link QueryWeight} implementation for    * this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    */
+comment|/**    * Expert: Constructs an appropriate {@link QueryWeight} implementation for    * this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *<p>    *<b>NOTE:</b> in 3.0 this method will throw    * {@link UnsupportedOperationException}. It is implemented now by calling    * {@link #createWeight(Searcher)} for backwards compatibility, for    * {@link Query} implementations that did not override it yet (but did    * override {@link #createWeight(Searcher)}).    */
+comment|// TODO (3.0): change to throw UnsupportedOperationException.
 DECL|method|createQueryWeight
 specifier|public
 name|QueryWeight
@@ -179,11 +179,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-throw|throw
+return|return
 operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+name|QueryWeightWrapper
+argument_list|(
+name|weight
+argument_list|(
+name|searcher
+argument_list|)
+argument_list|)
+return|;
 block|}
 comment|/**    * Expert: Constructs and initializes a Weight for a top-level query.    *     * @deprecated use {@link #queryWeight(Searcher)} instead.    */
 DECL|method|weight
