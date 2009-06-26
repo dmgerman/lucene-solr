@@ -188,9 +188,7 @@ name|BODY_FIELD
 argument_list|,
 name|storeVal
 argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|bodyIndexVal
 argument_list|,
 name|termVecVal
 argument_list|)
@@ -223,9 +221,7 @@ name|TITLE_FIELD
 argument_list|,
 name|storeVal
 argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|indexVal
 argument_list|,
 name|termVecVal
 argument_list|)
@@ -258,9 +254,7 @@ name|DATE_FIELD
 argument_list|,
 name|storeVal
 argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|indexVal
 argument_list|,
 name|termVecVal
 argument_list|)
