@@ -798,6 +798,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|dataDir
+operator|=
+name|get
+argument_list|(
+literal|"dataDir"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|userCacheConfigs
 operator|=
 name|CacheConfig
@@ -1837,6 +1846,11 @@ specifier|public
 specifier|final
 name|boolean
 name|useColdSearcher
+decl_stmt|;
+DECL|field|dataDir
+specifier|protected
+name|String
+name|dataDir
 decl_stmt|;
 comment|//JMX configuration
 DECL|field|jmxConfig
@@ -3136,6 +3150,16 @@ parameter_list|()
 block|{
 return|return
 name|highlightingFragmenterInfo
+return|;
+block|}
+DECL|method|getDataDir
+specifier|public
+name|String
+name|getDataDir
+parameter_list|()
+block|{
+return|return
+name|dataDir
 return|;
 block|}
 block|}
