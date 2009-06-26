@@ -1432,23 +1432,16 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|super
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
+comment|// super.close();
+comment|// can't use super.close() since it just calls reader.close() and that may only be called once
+comment|// per reader (even if incRef() was previously called).
 if|if
 condition|(
 name|closeReader
 condition|)
 name|reader
 operator|.
-name|close
+name|decRef
 argument_list|()
 expr_stmt|;
 for|for
@@ -1464,7 +1457,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/** Direct access to the IndexReader used by this searcher */
@@ -3107,6 +3099,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|query
+operator|=
+name|QueryUtils
+operator|.
+name|simplifyQuery
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
 name|DocSetCollector
 name|collector
 init|=
