@@ -581,6 +581,18 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|// some users may have '/' in the handler name. replace with '_'
+name|myName
+operator|=
+name|myName
+operator|.
+name|replaceAll
+argument_list|(
+literal|"/"
+argument_list|,
+literal|"_"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 name|String
