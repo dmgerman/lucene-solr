@@ -915,6 +915,13 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|scorer
+operator|!=
+literal|null
+condition|)
+block|{
 name|scorer
 operator|.
 name|score
@@ -922,6 +929,7 @@ argument_list|(
 name|hcw
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1068,6 +1076,13 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|scorer
+operator|!=
+literal|null
+condition|)
+block|{
 name|scorer
 operator|.
 name|score
@@ -1075,6 +1090,7 @@ argument_list|(
 name|collector
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
