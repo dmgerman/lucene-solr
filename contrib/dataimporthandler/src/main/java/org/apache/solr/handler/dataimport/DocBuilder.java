@@ -1691,6 +1691,7 @@ operator|==
 literal|1
 condition|)
 block|{
+comment|//iterating through the map just to get the first and only item
 for|for
 control|(
 name|Map
@@ -1739,14 +1740,7 @@ name|writer
 operator|.
 name|deleteDoc
 argument_list|(
-name|map
-operator|.
-name|get
-argument_list|(
-name|root
-operator|.
-name|pk
-argument_list|)
+name|key
 argument_list|)
 expr_stmt|;
 name|importStatistics
