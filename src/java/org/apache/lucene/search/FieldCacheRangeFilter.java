@@ -156,23 +156,6 @@ name|boolean
 name|includeUpper
 parameter_list|)
 block|{
-if|if
-condition|(
-name|lowerVal
-operator|==
-literal|null
-operator|&&
-name|upperVal
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"At least one value must be non-null"
-argument_list|)
-throw|;
 name|this
 operator|.
 name|field

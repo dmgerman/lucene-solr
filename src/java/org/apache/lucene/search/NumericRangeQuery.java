@@ -185,23 +185,6 @@ operator|)
 assert|;
 if|if
 condition|(
-name|min
-operator|==
-literal|null
-operator|&&
-name|max
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"At least one value must be non-null"
-argument_list|)
-throw|;
-if|if
-condition|(
 name|precisionStep
 argument_list|<
 literal|1
