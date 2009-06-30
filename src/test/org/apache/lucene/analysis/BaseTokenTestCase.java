@@ -101,11 +101,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StringBuilder
+name|StringBuffer
 name|out
 init|=
 operator|new
-name|StringBuilder
+name|StringBuffer
 argument_list|()
 decl_stmt|;
 name|Token
