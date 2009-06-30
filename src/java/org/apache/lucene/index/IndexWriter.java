@@ -8034,6 +8034,13 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
+name|docWriter
+operator|.
+name|setFlushedDocCount
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 comment|// Remove all segments
 name|segmentInfos
 operator|.
