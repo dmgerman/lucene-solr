@@ -1053,7 +1053,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"All six should make it"
+literal|"All four should make it"
 argument_list|,
 name|req
 argument_list|,
@@ -1082,7 +1082,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"All six should make it"
+literal|"All four should make it"
 argument_list|,
 name|req
 argument_list|,
