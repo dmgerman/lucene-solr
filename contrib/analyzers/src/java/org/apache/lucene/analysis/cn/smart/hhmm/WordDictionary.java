@@ -178,6 +178,10 @@ name|Utility
 import|;
 end_import
 
+begin_comment
+comment|/**  * SmartChineseAnalyzer Word Dictionary  *  */
+end_comment
+
 begin_class
 DECL|class|WordDictionary
 specifier|public
@@ -197,7 +201,7 @@ specifier|static
 name|WordDictionary
 name|singleInstance
 decl_stmt|;
-comment|/**    * ä¸ä¸ªè¾å¤§çç´ æ°ï¼ä¿è¯hashæ¥æ¾è½å¤éåææä½ç½®    */
+comment|/**    * Large prime number for hash function    */
 DECL|field|PRIME_INDEX_LENGTH
 specifier|public
 specifier|static
@@ -237,6 +241,7 @@ index|[]
 name|wordItem_frequencyTable
 decl_stmt|;
 comment|// static Logger log = Logger.getLogger(WordDictionary.class);
+comment|/**    * Get the singleton dictionary instance.    * @return singleton    */
 DECL|method|getInstance
 specifier|public
 specifier|synchronized
@@ -306,7 +311,7 @@ return|return
 name|singleInstance
 return|;
 block|}
-comment|/**    * ä»å¤é¨æä»¶å¤¹dctFileRootå è½½è¯å¸åºæä»¶ï¼é¦åæµè¯æ¯å¦æcoredict.memæä»¶ï¼ å¦ææåç´æ¥ä½ä¸ºåºååå¯¹è±¡å è½½ï¼    * å¦ææ²¡æåå è½½è¯å¸åºæºæä»¶coredict.dct    *     * @param dctFileName è¯å¸åºæä»¶çè·¯å¾    */
+comment|/**    * Attempt to load dictionary from provided directory, first trying coredict.mem, failing back on coredict.dct    *     * @param dctFileRoot path to dictionary directory    */
 DECL|method|load
 specifier|public
 name|void
@@ -458,7 +463,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * ä»jaråé¨å è½½è¯å¸åºæä»¶ï¼è¦æ±ä¿è¯WordDictionaryç±»å½åè·¯å¾ä¸­æcoredict.memæä»¶ï¼ä»¥å°å¶ä½ä¸ºåºååå¯¹è±¡å è½½    *     * @param dctFileName è¯å¸åºæä»¶çè·¯å¾    * @throws ClassNotFoundException    * @throws IOException    */
+comment|/**    * Load coredict.mem internally from the jar file.    *     * @throws ClassNotFoundException    * @throws IOException    */
 DECL|method|load
 specifier|public
 name|void
@@ -696,7 +701,7 @@ block|{
 comment|// log.warn(e.getMessage());
 block|}
 block|}
-comment|/**    * å°è¯åºæä»¶å è½½å°WordDictionaryçç¸å³æ°æ®ç»æä¸­ï¼åªæ¯å è½½ï¼æ²¡æè¿è¡åå¹¶åä¿®æ¹æä½    *     * @param dctFilePath    * @return    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
+comment|/**    * Load the datafile into this WordDictionary    *     * @param dctFilePath path to word dictionary (coredict.mem)    * @return number of words read    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
 DECL|method|loadMainDataFromFile
 specifier|private
 name|int
@@ -758,7 +763,7 @@ argument_list|,
 literal|"r"
 argument_list|)
 decl_stmt|;
-comment|// å­å¸æä»¶ä¸­ç¬¬ä¸ä¸ªæ±å­åºç°çä½ç½®æ¯0ï¼æåä¸ä¸ªæ¯6768
+comment|// GB2312 characters 0 - 6768
 for|for
 control|(
 name|i
@@ -784,8 +789,7 @@ argument_list|(
 name|intBuffer
 argument_list|)
 expr_stmt|;
-comment|// åè¯åºæä»¶å¨cä¸å¼åï¼æä»¥åå¥çæä»¶ä¸ºlittle
-comment|// endianç¼ç ï¼èjavaä¸ºbig endianï¼å¿é¡»è½¬æ¢è¿æ¥
+comment|// the dictionary was developed for C, and byte order must be converted to work with Java
 name|cnt
 operator|=
 name|ByteBuffer
@@ -1341,7 +1345,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * æ¬ç¨åºä¸åè¯æ§æ æ³¨ï¼å æ­¤å°ç¸åè¯ä¸åè¯æ§çé¢çåå¹¶å°åä¸ä¸ªè¯ä¸ï¼ä»¥åå°å­å¨ç©ºé´ï¼å å¿«æç´¢éåº¦    */
+comment|/*    * since we aren't doing POS-tagging, merge the frequencies for entries of the same word (with different POS)    */
 DECL|method|mergeSameWords
 specifier|private
 name|void
@@ -1817,7 +1821,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * è®¡ç®å­ç¬¦cå¨åå¸è¡¨ä¸­åºè¯¥å¨çä½ç½®ï¼ç¶åå°å°ååè¡¨ä¸­è¯¥ä½ç½®çå¼åå§å    *     * @param c    * @param j    * @return    */
+comment|/*    * è®¡ç®å­ç¬¦cå¨åå¸è¡¨ä¸­åºè¯¥å¨çä½ç½®ï¼ç¶åå°å°ååè¡¨ä¸­è¯¥ä½ç½®çå¼åå§å    *     */
 DECL|method|setTableIndex
 specifier|private
 name|boolean
@@ -2014,7 +2018,6 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * @param c    * @return    */
 DECL|method|getWordItemTableIndex
 specifier|private
 name|short
@@ -2352,7 +2355,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * charArrayè¿ä¸ªåè¯å¯¹åºçè¯ç»å¨ä¸å¨WordDictionaryä¸­åºç°    *     * @param charArray    * @return trueè¡¨ç¤ºå­å¨ï¼falseè¡¨ç¤ºä¸å­å¨    */
+comment|/**    * Returns true if the input word appears in the dictionary    *     * @param charArray input word    * @return true if the word exists    */
 DECL|method|isExist
 specifier|public
 name|boolean
@@ -2373,7 +2376,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * @see{getPrefixMatch(char[] charArray, int knownStart)}    * @param charArray    * @return    */
+comment|/**    * Find the first word in the dictionary that starts with the supplied prefix    *     * @see #getPrefixMatch(char[], int)    * @param charArray input prefix    * @return index of word, or -1 if not found    */
 DECL|method|getPrefixMatch
 specifier|public
 name|int
@@ -2393,7 +2396,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * ä»è¯å¸ä¸­æ¥æ¾ä»¥charArrayå¯¹åºçåè¯ä¸ºåç¼(prefix)çåè¯çä½ç½®, å¹¶è¿åç¬¬ä¸ä¸ªæ»¡è¶³æ¡ä»¶çä½ç½®ãä¸ºäºåå°æç´¢ä»£ä»·,    * å¯ä»¥æ ¹æ®å·²æç¥è¯è®¾ç½®èµ·å§æç´¢ä½ç½®, å¦æä¸ç¥éèµ·å§ä½ç½®ï¼é»è®¤æ¯0    *     * @see{getPrefixMatch(char[] charArray)}    * @param charArray åç¼åè¯    * @param knownStart å·²ç¥çèµ·å§ä½ç½®    * @return æ»¡è¶³åç¼æ¡ä»¶çç¬¬ä¸ä¸ªåè¯çä½ç½®    */
+comment|/**    * Find the nth word in the dictionary that starts with the supplied prefix    *     * @see #getPrefixMatch(char[])    * @param charArray input prefix    * @param knownStart relative position in the dictionary to start    * @return index of word, or -1 if not found    */
 DECL|method|getPrefixMatch
 specifier|public
 name|int
@@ -2573,7 +2576,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * è·åidArrayå¯¹åºçè¯çè¯é¢ï¼è¥posä¸º-1åè·åææè¯æ§çè¯é¢    *     * @param charArray è¾å¥çåè¯å¯¹åºçcharArray    * @param pos è¯æ§ï¼-1è¡¨ç¤ºè¦æ±æ±åºææçè¯æ§çè¯é¢    * @return idArrayå¯¹åºçè¯é¢    */
+comment|/**    * Get the frequency of a word from the dictionary    *     * @param charArray input word    * @return word frequency, or zero if the word is not found    */
 DECL|method|getFrequency
 specifier|public
 name|int
@@ -2638,7 +2641,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * å¤æ­charArrayå¯¹åºçå­ç¬¦ä¸²æ¯å¦è·è¯å¸ä¸­charArray[0]å¯¹åºçwordIndexçcharArrayç¸ç­,    * ä¹å°±æ¯è¯´charArrayçä½ç½®æ¥æ¾ç»ææ¯ä¸æ¯å°±æ¯wordIndex    *     * @param charArray è¾å¥çcharArrayè¯ç»ï¼ç¬¬ä¸ä¸ªæ°è¡¨ç¤ºè¯å¸ä¸­çç´¢å¼å·    * @param itemIndex ä½ç½®ç¼å·    * @return æ¯å¦ç¸ç­    */
+comment|/**    * Return true if the dictionary entry at itemIndex for table charArray[0] is charArray    *     * @param charArray input word    * @param itemIndex item index for table charArray[0]    * @return true if the entry exists    */
 DECL|method|isEqual
 specifier|public
 name|boolean

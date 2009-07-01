@@ -160,6 +160,10 @@ name|AnalyzerProfile
 import|;
 end_import
 
+begin_comment
+comment|/**  * SmartChineseAnalyzer Bigram dictionary.  */
+end_comment
+
 begin_class
 DECL|class|BigramDictionary
 specifier|public
@@ -197,7 +201,7 @@ name|PRIME_BIGRAM_LENGTH
 init|=
 literal|402137
 decl_stmt|;
-comment|/**    * bigramTable æ¥å­å¨è¯ä¸è¯ä¹é´çè·³è½¬é¢çï¼ bigramHashTable å frequencyTable    * å°±æ¯ç¨æ¥å­å¨è¿äºé¢ççæ°æ®ç»æã ä¸ºäºæé«æ¥è¯¢éåº¦åèçåå­ï¼ éç¨ hash å¼æ¥ä»£æ¿å³èè¯ä½ä¸ºæ¥è¯¢ä¾æ®ï¼ å³èè¯å°±æ¯    * (formWord+'@'+toWord) ï¼ å©ç¨ FNV1 hash ç®æ³æ¥è®¡ç®å³èè¯çhashå¼ ï¼å¹¶ä¿å­å¨ bigramHashTable    * ä¸­ï¼å©ç¨ hash å¼æ¥ä»£æ¿å³èè¯æå¯è½ä¼äº§çå¾å°æ¦ççå²çªï¼ ä½æ¯ long ç±»å    * (64bit)çhashå¼ææå°å°æ­¤æ¦çéå°æä½ãbigramHashTable[i]ä¸frequencyTable[i]ä¸ä¸å¯¹åº    */
+comment|/*    * The word associations are stored as FNV1 hashcodes, which have a small probability of collision, but save memory.      */
 DECL|field|bigramHashTable
 specifier|private
 name|long
@@ -567,7 +571,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// å®éä¸å°0ä½ä¸ºåå§å¼æä¸ç¹é®é¢ï¼å ä¸ºæä¸ªå­ç¬¦ä¸²å¯è½hashå¼ä¸º0ï¼ä½æ¯æ¦çéå¸¸å°ï¼å æ­¤å½±åä¸å¤§
+comment|// it is possible for a value to hash to 0, but the probability is extremely low
 name|bigramHashTable
 index|[
 name|i
@@ -613,7 +617,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * å°è¯åºæä»¶å è½½å°WordDictionaryçç¸å³æ°æ®ç»æä¸­ï¼åªæ¯å è½½ï¼æ²¡æè¿è¡åå¹¶åä¿®æ¹æä½    *     * @param dctFilePath    * @return    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
+comment|/**    * Load the datafile into this BigramDictionary    *     * @param dctFilePath path to the Bigramdictionary (bigramdict.mem)    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
 DECL|method|loadFromFile
 specifier|public
 name|void
@@ -675,7 +679,7 @@ argument_list|,
 literal|"r"
 argument_list|)
 decl_stmt|;
-comment|// å­å¸æä»¶ä¸­ç¬¬ä¸ä¸ªæ±å­åºç°çä½ç½®æ¯0ï¼æåä¸ä¸ªæ¯6768
+comment|// GB2312 characters 0 - 6768
 for|for
 control|(
 name|i
@@ -709,8 +713,7 @@ argument_list|(
 name|intBuffer
 argument_list|)
 expr_stmt|;
-comment|// åè¯åºæä»¶å¨cä¸å¼åï¼æä»¥åå¥çæä»¶ä¸ºlittle
-comment|// endianç¼ç ï¼èjavaä¸ºbig endianï¼å¿é¡»è½¬æ¢è¿æ¥
+comment|// the dictionary was developed for C, and byte order must be converted to work with Java
 name|cnt
 operator|=
 name|ByteBuffer
@@ -1100,7 +1103,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * @param c    * @return    */
+comment|/*    * lookup the index into the frequency array.    */
 DECL|method|getBigramItemIndex
 specifier|private
 name|int

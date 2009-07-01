@@ -100,6 +100,10 @@ name|Utility
 import|;
 end_import
 
+begin_comment
+comment|/**  * Graph representing possible token pairs (bigrams) at each start offset in the sentence.  *<p>  * For each start offset, a list of possible token pairs is stored.  *</p>  */
+end_comment
+
 begin_class
 DECL|class|BiSegGraph
 specifier|public
@@ -152,7 +156,7 @@ name|segGraph
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * çæä¸¤ä¸¤è¯ä¹é´çäºåå¾è¡¨ï¼å°ç»æä¿å­å¨ä¸ä¸ªMultiTokenPairMapä¸­    *     * @param segGraph ææçTokenåè¡¨    * @param smooth å¹³æ»ç³»æ°    * @param biDict äºåè¯å¸    * @return    *     * @see MultiTokenPairMap    */
+comment|/*    * Generate a BiSegGraph based upon a SegGraph    */
 DECL|method|generateBiSegGraph
 specifier|private
 name|void
@@ -200,7 +204,7 @@ name|char
 index|[]
 name|idBuffer
 decl_stmt|;
-comment|// ä¸ºsegGraphä¸­çæ¯ä¸ªåç´ èµä»¥ä¸ä¸ªä¸æ 
+comment|// get the list of tokens ordered and indexed
 name|segTokenList
 operator|=
 name|segGraph
@@ -539,7 +543,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|/**    * æ¥çSegTokenPairçç»æä½ç½®ä¸ºto(SegTokenPair.toä¸ºto)æ¯å¦å­å¨SegTokenPairï¼    * å¦ææ²¡æåè¯´ætoå¤æ²¡æSegTokenPairæèè¿æ²¡ææ·»å     *     * @param to SegTokenPair.to    * @return    */
+comment|/**    * Returns true if their is a list of token pairs at this offset (index of the second token)    *     * @param to index of the second token in the token pair    * @return true if a token pair exists    */
 DECL|method|isToExist
 specifier|public
 name|boolean
@@ -564,7 +568,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * ååºSegTokenPair.toä¸ºtoçææSegTokenPairï¼å¦ææ²¡æåè¿ånull    *     * @param to    * @return ææç¸åSegTokenPair.toçSegTokenPairçåºå    */
+comment|/**    * Return a {@link List} of all token pairs at this offset (index of the second token)    *     * @param to index of the second token in the token pair    * @return {@link List} of token pairs.    */
 DECL|method|getToList
 specifier|public
 name|List
@@ -590,7 +594,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * åBiSegGraphä¸­å¢å ä¸ä¸ªSegTokenPairï¼è¿äºSegTokenPairæç§ç¸åSegTokenPair.    * toæ¾å¨åä¸ä¸ªArrayListä¸­    *     * @param tokenPair    */
+comment|/**    * Add a {@link SegTokenPair}    *     * @param tokenPair {@link SegTokenPair}    */
 DECL|method|addSegTokenPair
 specifier|public
 name|void
@@ -672,7 +676,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @return TokenPairçåæ°ï¼ä¹å°±æ¯Mapä¸­ä¸ååå·çTokenPairç§æ°ã    */
+comment|/**    * Get the number of {@link SegTokenPair} entries in the table.    * @return number of {@link SegTokenPair} entries    */
 DECL|method|getToCount
 specifier|public
 name|int
@@ -686,7 +690,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * ç¨veterbiç®æ³è®¡ç®ä»èµ·ç¹å°ç»ç¹çæç­è·¯å¾    *     * @return    */
+comment|/**    * Find the shortest path with the Viterbi algorithm.    * @return {@link List}    */
 DECL|method|getShortPath
 specifier|public
 name|List
@@ -875,7 +879,7 @@ name|newNode
 argument_list|)
 expr_stmt|;
 block|}
-comment|// æ¥ä¸æ¥ä»nodePathsä¸­è®¡ç®ä»èµ·ç¹å°ç»ç¹ççå®è·¯å¾
+comment|// Calculate PathNodes
 name|int
 name|preNode
 decl_stmt|,

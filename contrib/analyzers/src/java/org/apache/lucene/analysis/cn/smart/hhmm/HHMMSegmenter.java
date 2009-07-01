@@ -86,6 +86,10 @@ name|WordType
 import|;
 end_import
 
+begin_comment
+comment|/**  * Finds the optimal segmentation of a sentence into Chinese words  */
+end_comment
+
 begin_class
 DECL|class|HHMMSegmenter
 specifier|public
@@ -103,7 +107,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
-comment|/**    * å¯»æ¾sentenceä¸­ææå¯è½çTokenï¼æååæ·»å ä¸¤ä¸ªç¹æ®Tokenï¼"å§##å§",    * "æ«##æ«"ï¼"å§##å§"Tokençèµ·å§ä½ç½®æ¯-1,"æ«##æ«"Tokençèµ·å§ä½ç½®æ¯å¥å­çé¿åº¦    *     * @param sentence è¾å¥çå¥å­ï¼ä¸åå«"å§##å§","æ«##æ«"ç­    * @param coreDict æ ¸å¿å­å¸    * @return ææå¯è½çToken    * @see MultiTokenMap    */
+comment|/**    * Create the {@link SegGraph} for a sentence.    *     * @param sentence input sentence, without start and end markers    * @return {@link SegGraph} corresponding to the input sentence.    */
 DECL|method|createSegGraph
 specifier|private
 name|SegGraph
@@ -909,7 +913,7 @@ return|return
 name|segGraph
 return|;
 block|}
-comment|/**    * ä¸ºsentenceä¸­çæ¯ä¸ªå­ç¬¦ç¡®å®å¯ä¸çå­ç¬¦ç±»å    *     * @see Utility.charType(char)    * @param sentence è¾å¥çå®æå¥å­    * @return è¿åçå­ç¬¦ç±»åæ°ç»ï¼å¦æè¾å¥ä¸ºnullï¼è¿åä¹æ¯null    */
+comment|/**    * Get the character types for every character in a sentence.    *     * @see Utility.charType(char)    * @param sentence input sentence    * @return array of character types corresponding to character positions in the sentence    */
 DECL|method|getCharTypes
 specifier|private
 specifier|static
@@ -939,7 +943,7 @@ index|[
 name|length
 index|]
 decl_stmt|;
-comment|// çæå¯¹åºåä¸ªæ±å­çå­ç¬¦ç±»åæ°ç»
+comment|// the type of each character by position
 for|for
 control|(
 name|int
@@ -977,6 +981,7 @@ return|return
 name|charTypeArray
 return|;
 block|}
+comment|/**    * Return a list of {@link PathNode} representing the best segmentation of a sentence    * @param sentence input sentence    * @return best segmentation as a {@link List}    */
 DECL|method|process
 specifier|public
 name|List

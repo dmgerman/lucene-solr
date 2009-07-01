@@ -20,12 +20,17 @@ name|smart
 package|;
 end_package
 
+begin_comment
+comment|/**  * Internal SmartChineseAnalyzer character type constants.  */
+end_comment
+
 begin_class
 DECL|class|CharType
 specifier|public
 class|class
 name|CharType
 block|{
+comment|/**    * Punctuation Characters    */
 DECL|field|DELIMITER
 specifier|public
 specifier|final
@@ -35,6 +40,7 @@ name|DELIMITER
 init|=
 literal|0
 decl_stmt|;
+comment|/**    * Letters    */
 DECL|field|LETTER
 specifier|public
 specifier|final
@@ -44,6 +50,7 @@ name|LETTER
 init|=
 literal|1
 decl_stmt|;
+comment|/**    * Numeric Digits    */
 DECL|field|DIGIT
 specifier|public
 specifier|final
@@ -53,6 +60,7 @@ name|DIGIT
 init|=
 literal|2
 decl_stmt|;
+comment|/**    * Han Ideographs    */
 DECL|field|HANZI
 specifier|public
 specifier|final
@@ -62,6 +70,7 @@ name|HANZI
 init|=
 literal|3
 decl_stmt|;
+comment|/**    * Characters that act as a space    */
 DECL|field|SPACE_LIKE
 specifier|public
 specifier|final
@@ -71,7 +80,7 @@ name|SPACE_LIKE
 init|=
 literal|4
 decl_stmt|;
-comment|// (å¨è§åè§)æ ç¹ç¬¦å·ï¼åè§ï¼å­æ¯ï¼æ°å­ï¼ï¼æ±å­ï¼ç©ºæ ¼ï¼"\t\r\n"ç­ç©ºæ ¼ææ¢è¡å­ç¬¦
+comment|/**    * Full-Width letters    */
 DECL|field|FULLWIDTH_LETTER
 specifier|public
 specifier|final
@@ -81,6 +90,7 @@ name|FULLWIDTH_LETTER
 init|=
 literal|5
 decl_stmt|;
+comment|/**    * Full-Width alphanumeric characters    */
 DECL|field|FULLWIDTH_DIGIT
 specifier|public
 specifier|final
@@ -90,7 +100,7 @@ name|FULLWIDTH_DIGIT
 init|=
 literal|6
 decl_stmt|;
-comment|// å¨è§å­ç¬¦ï¼å­æ¯ï¼æ°å­
+comment|/**    * Other (not fitting any of the other categories)    */
 DECL|field|OTHER
 specifier|public
 specifier|final

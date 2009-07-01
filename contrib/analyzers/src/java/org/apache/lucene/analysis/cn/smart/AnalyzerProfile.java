@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * å¨é»è®¤æåµä¸ï¼SmartChineseAnalyzeråç½®æè¯å¸åºãé»è®¤åæ­¢è¯åºï¼å·²ç»ç»è¿å°è£ï¼ç¨æ·å¯ä»¥ç´æ¥ä½¿ç¨ã  *   * ç¹æ®æåµä¸ï¼ç¨æ·éè¦ä½¿ç¨æå®çè¯å¸åºååæ­¢è¯åºï¼æ­¤æ¶éè¦å é¤org.apache.lucene.analysis.cn.smart. hhmmä¸ç  * coredict.mem å bigramdict.memï¼ ç¶åä½¿ç¨AnalyzerProfileæ¥æå®è¯å¸åºç®å½ã  *   * AnalyzerProfile ç¨æ¥å¯»æ¾å­æ¾åè¯è¯åºæ°æ® ååç¨è¯æ°æ®çç®å½ï¼ è¯¥ç®å½ä¸åºè¯¥æ bigramdict.dct, coredict.dct,  * stopwords_utf8.txt, æ¥æ¾è¿ç¨ä¾æ¬¡å¦ä¸ï¼  *   *<ol>  *<li>è¯»åç³»ç»è¿è¡æ¶åæ°ï¼-Danalysis.data.dir=/path/to/analysis-dataï¼å¦ææ²¡æï¼ç»§ç»­ä¸ä¸æ¡</li>  *<li>æ§è¡å½ä»¤çå½åç®å½ä¸­æ¯å¦å­å¨analysis-dataç®å½</li>  *<li>æ§è¡å½ä»¤çlib/ç®å½ä¸­æ¯å¦å­å¨analysis-dataç®å½</li>  *<li>æ§è¡å½ä»¤çå½åç®å½ä¸­æ¯å¦å­å¨analysis.propertiesæä»¶</li>  *<li>æ§è¡å½ä»¤çlib/ç®å½ä¸­æ¯å¦å­å¨analysis.propertiesæä»¶</li>  *</ol>  *   * å¶ä¸­analysis.propertiesæä»¶analysis.data.dirææanalysis-dataç®å½æå¨ä½ç½®.  * analysis.propertiesæä»¶çåå®¹ç¤ºä¾ï¼  *   *<pre>  * analysis.data.dir=D:/path/to/analysis-data/  *</pre>  *   * å½æ¾ä¸å°analysis-dataç®å½æ¶ï¼ANALYSIS_DATA_DIRè®¾ç½®ä¸º""ï¼å æ­¤å¨ä½¿ç¨åï¼å¿é¡»å¨ç¨åºéæ¾å¼æå®dataç®å½ï¼ä¾å¦ï¼  *   *<pre>  * AnalyzerProfile.ANALYSIS_DATA_DIR =&quot;/path/to/analysis-data&quot;;  *</pre>  *   */
+comment|/**  * Configure analysis data for SmartChineseAnalyzer  *<p>  * SmartChineseAnalyzer has a built-in dictionary and stopword list out-of-box.  *</p>  *<p>  * In special circumstances a user may wish to configure SmartChineseAnalyzer with a custom data directory location.  *</p>  * AnalyzerProfile is used to determine the location of the data directory containing bigramdict.dct and coredict.dct.  * The following order is used to determine the location of the data directory:  *   *<ol>  *<li>System propertyï¼ -Danalysis.data.dir=/path/to/analysis-data</li>  *<li>Relative path: analysis-data</li>  *<li>Relative path: lib/analysis-data</li>  *<li>Property file: analysis.data.dir property from relative path analysis.properties</li>  *<li>Property file: analysis.data.dir property from relative path lib/analysis.properties</li>  *</ol>  *   * Example property fileï¼  *   *<pre>  * analysis.data.dir=D:/path/to/analysis-data/  *</pre>  *   *   */
 end_comment
 
 begin_class
@@ -70,6 +70,7 @@ specifier|public
 class|class
 name|AnalyzerProfile
 block|{
+comment|/**    * Global indicating the configured analysis data directory    */
 DECL|field|ANALYSIS_DATA_DIR
 specifier|public
 specifier|static
@@ -101,7 +102,7 @@ name|propName
 init|=
 literal|"analysis.properties"
 decl_stmt|;
-comment|// è¯»åç³»ç»è®¾ç½®ï¼å¨è¿è¡æ¶å å¥åæ°ï¼-Danalysis.data.dir=/path/to/analysis-data
+comment|// Try the system propertyï¼-Danalysis.data.dir=/path/to/analysis-data
 name|ANALYSIS_DATA_DIR
 operator|=
 name|System
@@ -253,14 +254,14 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// æç¤ºç¨æ·æªæ¾å°è¯å¸æä»¶å¤¹
+comment|// Dictionary directory cannot be found.
 name|System
 operator|.
 name|err
 operator|.
 name|println
 argument_list|(
-literal|"WARNING: Can not found lexical dictionary directory!"
+literal|"WARNING: Can not find lexical dictionary directory!"
 argument_list|)
 expr_stmt|;
 name|System

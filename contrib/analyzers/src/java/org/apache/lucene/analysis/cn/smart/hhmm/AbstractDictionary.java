@@ -32,6 +32,10 @@ name|UnsupportedEncodingException
 import|;
 end_import
 
+begin_comment
+comment|/**  *<p>  * SmartChineseAnalyzer abstract dictionary implementation.  *</p>  *<p>  * Contains methods for dealing with GB2312 encoding.  *</p>  */
+end_comment
+
 begin_class
 DECL|class|AbstractDictionary
 specifier|public
@@ -39,7 +43,7 @@ specifier|abstract
 class|class
 name|AbstractDictionary
 block|{
-comment|/**    * ç¬¬ä¸ä¸ªæ±å­ä¸ºâåâï¼ä»åé¢æ15ä¸ªåºï¼å±15*94ä¸ªå­ç¬¦    */
+comment|/**    * First Chinese Character in GB2312 (15 * 94)    * Characters in GB2312 are arranged in a grid of 94 * 94, 0-14 are unassigned or punctuation.    */
 DECL|field|GB2312_FIRST_CHAR
 specifier|public
 specifier|static
@@ -49,7 +53,7 @@ name|GB2312_FIRST_CHAR
 init|=
 literal|1410
 decl_stmt|;
-comment|/**    * GB2312å­ç¬¦éä¸­01~87çå­ç¬¦éæå¯è½ææï¼å±8178ä¸ª    */
+comment|/**    * Last Chinese Character in GB2312 (87 * 94).     * Characters in GB2312 are arranged in a grid of 94 * 94, 88-94 are unassigned.    */
 DECL|field|GB2312_CHAR_NUM
 specifier|public
 specifier|static
@@ -61,7 +65,7 @@ literal|87
 operator|*
 literal|94
 decl_stmt|;
-comment|/**    * è¯åºæä»¶ä¸­æ¶å½äº6768ä¸ªæ±å­çè¯é¢ç»è®¡    */
+comment|/**    * Dictionary data contains 6768 Chinese characters with frequency statistics.    */
 DECL|field|CHAR_NUM_IN_FILE
 specifier|public
 specifier|static
@@ -81,24 +85,22 @@ comment|// B0E0 ç­ æ¬ æ³ è¬ é¢ æ¿ ç æ® æ �
 comment|// B0F0 æ¢ æ¦ è ç» æ£ ç£ è é å è°¤ è è å è¤ å¥
 comment|// =====================================================
 comment|//
-comment|// GB2312 å­ç¬¦éçåºä½åå¸è¡¨ï¼
-comment|// åºå· å­æ° å­ç¬¦ç±»å«
-comment|// 01 94 ä¸è¬ç¬¦å·
-comment|// 02 72 é¡ºåºå·ç 
-comment|// 03 94 æä¸å­æ¯
-comment|// 04 83 æ¥æåå
+comment|// GB2312 character setï¼
+comment|// 01 94 Symbols
+comment|// 02 72 Numbers
+comment|// 03 94 Latin
+comment|// 04 83 Kana
 comment|// 05 86 Katakana
-comment|// 06 48 å¸èå­æ¯
-comment|// 07 66 ä¿æå­æ¯
-comment|// 08 63 æ±è¯­æ¼é³ç¬¦å·
-comment|// 09 76 å¾å½¢ç¬¦å·
-comment|// 10-15 å¤ç¨åº
-comment|// 16-55 3755 ä¸çº§æ±å­ï¼ä»¥æ¼é³ä¸ºåº
-comment|// 56-87 3008 äºçº§æ±å­ï¼ä»¥ç¬åä¸ºåº
-comment|// 88-94 å¤ç¨åº
+comment|// 06 48 Greek
+comment|// 07 66 Cyrillic
+comment|// 08 63 Phonetic Symbols
+comment|// 09 76 Drawing Symbols
+comment|// 10-15 Unassigned
+comment|// 16-55 3755 Plane 1, in pinyin order
+comment|// 56-87 3008 Plane 2, in radical/stroke order
+comment|// 88-94 Unassigned
 comment|// ======================================================
-comment|/**    * GB2312 å±æ¶å½æ 7445 ä¸ªå­ç¬¦ï¼å¶ä¸­ç®åæ±å­ 6763 ä¸ªï¼å­æ¯åç¬¦å· 682 ä¸ªã    *     * GB2312 å°ææ¶å½çå­ç¬¦åä¸º 94 ä¸ªåºï¼ç¼å·ä¸º 01 åºè³ 94 åºï¼æ¯ä¸ªåºæ¶å½ 94 ä¸ªå­ç¬¦ï¼ç¼å·ä¸º 01 ä½è³ 94    * ä½ï¼01ä¸ºèµ·å§ä¸0xA1ï¼94ä½å¤äº0xFEãGB2312 çæ¯ä¸ä¸ªå­ç¬¦é½ç±ä¸å¶å¯ä¸å¯¹åºçåºå·åä½å·æç¡®å®ãä¾å¦ï¼æ±å­âåâï¼ç¼å·ä¸º 16 åº 01    * ä½ã    */
-comment|/**    * @param ccid    * @return    */
+comment|/**    *<p>    * Transcode from GB2312 ID to Unicode    *</p>    *<p>    * GB2312 is divided into a 94 * 94 grid, containing 7445 characters consisting of 6763 Chinese characters and 682 symbols.    * Some regions are unassigned (reserved).    *</p>    *     * @param ccid GB2312 id    * @return unicode String    */
 DECL|method|getCCByGB2312Id
 specifier|public
 name|String
@@ -199,7 +201,7 @@ literal|""
 return|;
 block|}
 block|}
-comment|/**    * æ ¹æ®è¾å¥çUnicodeå­ç¬¦ï¼è·åå®çGB2312ç¼ç æèasciiç¼ç ï¼    *     * @param ch è¾å¥çGB2312ä¸­æå­ç¬¦æèASCIIå­ç¬¦(128ä¸ª)    * @return chå¨GB2312ä¸­çä½ç½®ï¼-1è¡¨ç¤ºè¯¥å­ç¬¦ä¸è®¤è¯    */
+comment|/**    * Transcode from Unicode to GB2312    *     * @param ch input character in Unicode, or character in Basic Latin range.    * @return position in GB2312    */
 DECL|method|getGB2312Id
 specifier|public
 name|short
@@ -236,7 +238,7 @@ operator|!=
 literal|2
 condition|)
 block|{
-comment|// æ­£å¸¸æåµä¸bufferåºè¯¥æ¯ä¸¤ä¸ªå­èï¼å¦åè¯´æchä¸å±äºGB2312ç¼ç ï¼æè¿å'?'ï¼æ­¤æ¶è¯´æä¸è®¤è¯è¯¥å­ç¬¦
+comment|// Should be a two-byte character
 return|return
 operator|-
 literal|1
@@ -308,7 +310,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * æ¹è¿ç32ä½FNV hashç®æ³ï¼ç¨ä½æ¬ç¨åºä¸­çç¬¬ä¸hashå½æ°.ç¬¬ä¸åç¬¬äºhashå½æ°ç¨æ¥èåè®¡ç®hashè¡¨ï¼ ä½¿å¶åååå¸ï¼    * å¹¶è½é¿åå hashè¡¨è¿å¯èå¯¼è´çé¿æ¶é´è®¡ç®çé®é¢    *     * @param c å¾hashçUnicodeå­ç¬¦    * @return cçåå¸å¼    * @see Utility.hash2()    */
+comment|/**    * 32-bit FNV Hash Function    *     * @param c input character    * @return hashcode    */
 DECL|method|hash1
 specifier|public
 name|long
@@ -391,7 +393,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/**    * @see Utility.hash1(char[])    * @param carray    * @return    */
+comment|/**    * 32-bit FNV Hash Function    *     * @param carray character array    * @return hashcode    */
 DECL|method|hash1
 specifier|public
 name|long
@@ -476,7 +478,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/**    * djb2åå¸ç®æ³ï¼ç¨ä½æ¬ç¨åºä¸­çç¬¬äºhashå½æ°    *     * djb2 hash algorithmï¼this algorithm (k=33) was first reported by dan    * bernstein many years ago in comp.lang.c. another version of this algorithm    * (now favored by bernstein) uses xor: hash(i) = hash(i - 1) * 33 ^ str[i];    * the magic of number 33 (why it works better than many other constants,    * prime or not) has never been adequately explained.    *     * @param c    * @return    */
+comment|/**    * djb2 hash algorithmï¼this algorithm (k=33) was first reported by dan    * bernstein many years ago in comp.lang.c. another version of this algorithm    * (now favored by bernstein) uses xor: hash(i) = hash(i - 1) * 33 ^ str[i];    * the magic of number 33 (why it works better than many other constants,    * prime or not) has never been adequately explained.    *     * @param c character    * @return hashcode    */
 DECL|method|hash2
 specifier|public
 name|int
@@ -528,7 +530,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/**    * @see Utility.hash2(char[])    * @param carray    * @return    */
+comment|/**    * djb2 hash algorithmï¼this algorithm (k=33) was first reported by dan    * bernstein many years ago in comp.lang.c. another version of this algorithm    * (now favored by bernstein) uses xor: hash(i) = hash(i - 1) * 33 ^ str[i];    * the magic of number 33 (why it works better than many other constants,    * prime or not) has never been adequately explained.    *     * @param carray character array    * @return hashcode    */
 DECL|method|hash2
 specifier|public
 name|int

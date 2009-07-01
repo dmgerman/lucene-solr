@@ -198,8 +198,30 @@ name|WordTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|cn
+operator|.
+name|smart
+operator|.
+name|AnalyzerProfile
+import|;
+end_import
+
 begin_comment
-comment|/**  *   * SmartChineseAnalyzer æ¯ä¸ä¸ªæºè½ä¸­æåè¯æ¨¡åï¼ è½å¤å©ç¨æ¦çå¯¹æ±è¯­å¥å­è¿è¡æä¼ååï¼  * å¹¶ååµè±ætokenizerï¼è½ææå¤çä¸­è±ææ··åçææ¬åå®¹ã  *   * å®çåçåºäºèªç¶è¯­è¨å¤çé¢åçéé©¬å°ç§å¤«æ¨¡å(HMM)ï¼ å©ç¨å¤§éè¯­æåºçè®­ç»æ¥ç»è®¡æ±è¯­è¯æ±çè¯é¢åè·³è½¬æ¦çï¼  * ä»èæ ¹æ®è¿äºç»è®¡ç»æå¯¹æ´ä¸ªæ±è¯­å¥å­è®¡ç®æä¼¼ç¶(likelihood)çååã  *   * å ä¸ºæºè½åè¯éè¦è¯å¸æ¥ä¿å­è¯æ±çç»è®¡å¼ï¼SmartChineseAnalyzerçè¿è¡éè¦æå®è¯å¸ä½ç½®ï¼å¦ä½æå®è¯å¸ä½ç½®è¯·åè  * org.apache.lucene.analysis.cn.smart.AnalyzerProfile  *   * SmartChineseAnalyzerçç®æ³åè¯­æåºè¯å¸æ¥èªäºictclas1.0é¡¹ç®(http://www.ictclas.org)ï¼  * å¶ä¸­è¯å¸å·²è·åwww.ictclas.orgçapache license v2(APLv2)çææãå¨éµå¾ªAPLv2çæ¡ä»¶ä¸ï¼æ¬¢è¿ç¨æ·ä½¿ç¨ã  * å¨æ­¤æè°¢www.ictclas.orgä»¥åictclasåè¯è½¯ä»¶çå·¥ä½äººåçæ ç§å¥ç®ï¼  *   * @see org.apache.lucene.analysis.cn.smart.AnalyzerProfile  *   */
+comment|// for javadoc
+end_comment
+
+begin_comment
+comment|/**  *<p>  * SmartChineseAnalyzer is an analyzer for Chinese or mixed Chinese-English text.  * The analyzer uses probabilistic knowledge to find the optimal word segmentation for Simplified Chinese text.  * The text is first broken into sentences, then each sentence is segmented into words.  *</p>  *<p>  * Segmentation is based upon the<a href="http://en.wikipedia.org/wiki/Hidden_Markov_Model">Hidden Markov Model</a>.   * A large training corpus was used to calculate Chinese word frequency probability.  *</p>  *<p>  * This analyzer requires a dictionary to provide statistical data.   * To specify the location of the dictionary data, refer to {@link AnalyzerProfile}  *</p>  *<p>  * The included dictionary data is from<a href="http://www.ictclas.org">ICTCLAS1.0</a>.  * Thanks to ICTCLAS for their hard work, and for contributing the data under the Apache 2 License!  *</p>  */
 end_comment
 
 begin_class
@@ -222,6 +244,7 @@ specifier|private
 name|WordSegmenter
 name|wordSegment
 decl_stmt|;
+comment|/**    * Create a new SmartChineseAnalyzer, using the default stopword list.    */
 DECL|method|SmartChineseAnalyzer
 specifier|public
 name|SmartChineseAnalyzer
@@ -233,7 +256,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * SmartChineseAnalyzeråé¨å¸¦æé»è®¤åæ­¢è¯åºï¼ä¸»è¦æ¯æ ç¹ç¬¦å·ãå¦æä¸å¸æç»æä¸­åºç°æ ç¹ç¬¦å·ï¼    * å¯ä»¥å°useDefaultStopWordsè®¾ä¸ºtrueï¼ useDefaultStopWordsä¸ºfalseæ¶ä¸ä½¿ç¨ä»»ä½åæ­¢è¯    *     * @param useDefaultStopWords    */
+comment|/**    *<p>    * Create a new SmartChineseAnalyzer, optionally using the default stopword list.    *</p>    *<p>    * The included default stopword list is simply a list of punctuation.    * If you do not use this list, punctuation will not be removed from the text!    *</p>    *     * @param useDefaultStopWords true to use the default stopword list.    */
 DECL|method|SmartChineseAnalyzer
 specifier|public
 name|SmartChineseAnalyzer
@@ -270,7 +293,7 @@ name|WordSegmenter
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * ä½¿ç¨èªå®ä¹çèä¸ä½¿ç¨åç½®çåæ­¢è¯åºï¼åæ­¢è¯å¯ä»¥ä½¿ç¨SmartChineseAnalyzer.loadStopWords(InputStream)å è½½    *     * @param stopWords    * @see SmartChineseAnalyzer.loadStopWords(InputStream)    */
+comment|/**    *<p>    * Create a new SmartChineseAnalyzer, using the provided {@link Set} of stopwords.    *</p>    *<p>    * Note: the set should include punctuation, unless you want to index punctuation!    *</p>    * @param stopWords {@link Set} of stopwords to use.    * @see SmartChineseAnalyzer#loadStopWords(InputStream)    */
 DECL|method|SmartChineseAnalyzer
 specifier|public
 name|SmartChineseAnalyzer
@@ -324,8 +347,8 @@ name|wordSegment
 argument_list|)
 expr_stmt|;
 comment|// result = new LowerCaseFilter(result);
-comment|// ä¸åéè¦LowerCaseFilterï¼å ä¸ºSegTokenFilterå·²ç»å°ææè±æå­ç¬¦è½¬æ¢æå°å
-comment|// stemå¤ªä¸¥æ ¼äº, This is not bug, this feature:)
+comment|// LowerCaseFilter is not needed, as SegTokenFilter lowercases Basic Latin text.
+comment|// The porter stemming is too strict, this is not a bug, this is a feature:)
 name|result
 operator|=
 operator|new
@@ -358,7 +381,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * ä»åç¨è¯æä»¶ä¸­å è½½åç¨è¯ï¼ åç¨è¯æä»¶æ¯æ®éUTF-8ç¼ç çææ¬æä»¶ï¼ æ¯ä¸è¡æ¯ä¸ä¸ªåç¨è¯ï¼æ³¨éå©ç¨â//âï¼ åç¨è¯ä¸­åæ¬ä¸­ææ ç¹ç¬¦å·ï¼ ä¸­æç©ºæ ¼ï¼    * ä»¥åä½¿ç¨çå¤ªé«èå¯¹ç´¢å¼æä¹ä¸å¤§çè¯ã    *     * @param input åç¨è¯æä»¶    * @return åç¨è¯ç»æçHashSet    */
+comment|/**    * Utility function to return a {@link Set} of stopwords from a UTF-8 encoded {@link InputStream}.    * The comment "//" can be used in the stopword list.    *     * @param input {@link InputStream} of UTF-8 encoded stopwords    * @return {@link Set} of stopwords.    */
 DECL|method|loadStopWords
 specifier|public
 specifier|static
@@ -369,6 +392,7 @@ name|InputStream
 name|input
 parameter_list|)
 block|{
+comment|/*      * Note: WordListLoader is not used here because this method allows for inline "//" comments.      * WordListLoader will only filter out these comments if they are on a separate line.      */
 name|String
 name|line
 decl_stmt|;

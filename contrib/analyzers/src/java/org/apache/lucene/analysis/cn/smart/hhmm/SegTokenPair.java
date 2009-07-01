@@ -22,6 +22,10 @@ name|hhmm
 package|;
 end_package
 
+begin_comment
+comment|/**  * A pair of tokens in {@link SegGraph}  */
+end_comment
+
 begin_class
 DECL|class|SegTokenPair
 specifier|public
@@ -34,12 +38,13 @@ name|char
 index|[]
 name|charArray
 decl_stmt|;
-comment|/**    * fromåtoæ¯Tokenå¯¹çindexå·ï¼è¡¨ç¤ºæ¬TokenPairçä¸¤ä¸ªTokenå¨segGraghä¸­çä½ç½®ã    */
+comment|/**    * index of the first token in {@link SegGraph}    */
 DECL|field|from
 specifier|public
 name|int
 name|from
 decl_stmt|;
+comment|/**    * index of the second token in {@link SegGraph}    */
 DECL|field|to
 specifier|public
 name|int

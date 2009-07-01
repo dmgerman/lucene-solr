@@ -22,6 +22,10 @@ name|hhmm
 package|;
 end_package
 
+begin_comment
+comment|/**  * SmartChineseAnalyzer internal node representation  *<p>  * Used by {@link BiSegGraph} to maximize the segmentation with the Viterbi algorithm.  *</p>  */
+end_comment
+
 begin_class
 DECL|class|PathNode
 specifier|public

@@ -72,16 +72,21 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Graph representing possible tokens at each start offset in the sentence.  *<p>  * For each start offset, a list of possible tokens is stored.  *</p>  */
+end_comment
+
 begin_class
 DECL|class|SegGraph
 specifier|public
 class|class
 name|SegGraph
 block|{
-comment|/**    * ç¨ä¸ä¸ªArrayListè®°å½startOffsetç¸åçTokenï¼è¿ä¸ªstartOffsetå°±æ¯Tokençkey    */
+comment|/**    * Map of start offsets to ArrayList of tokens at that position    */
 DECL|field|tokenListTable
 specifier|private
 name|Map
+comment|/*<Integer, ArrayList<SegToken>> */
 name|tokenListTable
 init|=
 operator|new
@@ -96,7 +101,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * æ¥çstartOffsetä¸ºsçTokenæ¯å¦å­å¨ï¼å¦ææ²¡æåè¯´æså¤æ²¡æTokenæèè¿æ²¡ææ·»å     *     * @param s startOffset    * @return    */
+comment|/**    * Returns true if a mapping for the specified start offset exists    *     * @param s startOffset    * @return true if there are tokens for the startOffset    */
 DECL|method|isStartExist
 specifier|public
 name|boolean
@@ -121,7 +126,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * ååºstartOffsetä¸ºsçææTokensï¼å¦ææ²¡æåè¿ånull    *     * @param s    * @return ææç¸åstartOffsetçTokençåºå    */
+comment|/**    * Get the list of tokens at the specified start offset    *     * @param s startOffset    * @return List of tokens at the specified start offset.    */
 DECL|method|getStartList
 specifier|public
 name|List
@@ -147,6 +152,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Get the highest start offset in the map    *     * @return maximum start offset, or -1 if the map is empty.    */
 DECL|method|getMaxStart
 specifier|public
 name|int
@@ -157,7 +163,7 @@ return|return
 name|maxStart
 return|;
 block|}
-comment|/**    * ä¸ºSegGraphä¸­çææTokensçæä¸ä¸ªç»ä¸çindexï¼indexä»0å¼å§ï¼    * æç§startOffsetéå¢çé¡ºåºæåºï¼ç¸åstartOffsetçTokensæç§æ¾ç½®ååé¡ºåºæåº    */
+comment|/**    * Set the {@link SegToken#index} for each token, based upon its order by startOffset.     * @return a {@link List} of these ordered tokens.    */
 DECL|method|makeIndex
 specifier|public
 name|List
@@ -284,7 +290,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * åMapä¸­å¢å ä¸ä¸ªTokenï¼è¿äºTokenæç§ç¸åstartOffsetæ¾å¨åä¸ä¸ªåè¡¨ä¸­ï¼    *     * @param token    */
+comment|/**    * Add a {@link SegToken} to the mapping, creating a new mapping at the token's startOffset if one does not exist.     * @param token {@link SegToken}    */
 DECL|method|addToken
 specifier|public
 name|void
@@ -386,7 +392,7 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|/**    * è·åSegGraphä¸­ä¸åèµ·å§ï¼Startï¼ä½ç½®Tokenç±»çä¸ªæ°ï¼æ¯ä¸ªå¼å§ä½ç½®å¯è½æå¤ä¸ªTokenï¼å æ­¤ä½ç½®æ°ä¸Tokenæ°å¹¶ä¸ä¸è´    *     * @return    */
+comment|/**    * Get the number of startOffsets.    *    * @return number of startOffsets in the mapping    */
 DECL|method|getStartCount
 specifier|public
 name|int
@@ -400,7 +406,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * å°Mapä¸­å­å¨çææTokenæç§èµ·å§ä½ç½®ä»å°å°å¤§çæ¹å¼ç»æä¸ä¸ªåè¡¨    *     * @return    */
+comment|/**    * Return a {@link List} of all tokens in the map, ordered by startOffset.    *     * @return {@link List} of all tokens in the map.    */
 DECL|method|toTokenList
 specifier|public
 name|List

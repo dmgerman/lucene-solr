@@ -22,6 +22,10 @@ name|hhmm
 package|;
 end_package
 
+begin_comment
+comment|/**  * SmartChineseAnalyzer internal token  */
+end_comment
+
 begin_class
 DECL|class|SegToken
 specifier|public
@@ -169,7 +173,6 @@ comment|// public String toString() {
 comment|// return String.valueOf(charArray) + "/s(" + startOffset + ")e("
 comment|// + endOffset + ")/w(" + weight + ")t(" + wordType + ")";
 comment|// }
-comment|/**    * å¤æ­ä¸¤ä¸ªTokenç¸ç­çåè¦æ¡ä»¶æ¯ä»ä»¬çèµ·å§ä½ç½®ç¸ç­ï¼å ä¸ºè¿æ ·ä»ä»¬çåå¥ä¸­çåå®¹ä¸æ ·ï¼    * èposä¸weighté½å¯ä»¥ä»è¯å¸ä¸­æ¥å°å¤ä¸ªï¼å¯ä»¥ç¨ä¸å¯¹å¤çæ¹æ³è¡¨ç¤ºï¼å æ­¤åªéè¦ä¸ä¸ªToken    *     * @param t    * @return    */
 comment|// public boolean equals(RawToken t) {
 comment|// return this.startOffset == t.startOffset
 comment|//&& this.endOffset == t.endOffset;

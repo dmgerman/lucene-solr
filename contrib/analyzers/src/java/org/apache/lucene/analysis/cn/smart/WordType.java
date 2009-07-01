@@ -20,12 +20,17 @@ name|smart
 package|;
 end_package
 
+begin_comment
+comment|/**  * Internal SmartChineseAnalyzer token type constants  */
+end_comment
+
 begin_class
 DECL|class|WordType
 specifier|public
 class|class
 name|WordType
 block|{
+comment|/**    * Start of a Sentence    */
 DECL|field|SENTENCE_BEGIN
 specifier|public
 specifier|final
@@ -35,6 +40,7 @@ name|SENTENCE_BEGIN
 init|=
 literal|0
 decl_stmt|;
+comment|/**    * End of a Sentence    */
 DECL|field|SENTENCE_END
 specifier|public
 specifier|final
@@ -44,7 +50,7 @@ name|SENTENCE_END
 init|=
 literal|1
 decl_stmt|;
-comment|// å¥å­çå¼å¤´åç»æ
+comment|/**    * Chinese Word     */
 DECL|field|CHINESE_WORD
 specifier|public
 specifier|final
@@ -54,7 +60,7 @@ name|CHINESE_WORD
 init|=
 literal|2
 decl_stmt|;
-comment|// ä¸­æè¯
+comment|/**    * ASCII String    */
 DECL|field|STRING
 specifier|public
 specifier|final
@@ -64,6 +70,7 @@ name|STRING
 init|=
 literal|3
 decl_stmt|;
+comment|/**    * ASCII Alphanumeric     */
 DECL|field|NUMBER
 specifier|public
 specifier|final
@@ -73,7 +80,7 @@ name|NUMBER
 init|=
 literal|4
 decl_stmt|;
-comment|// asciiå­ç¬¦ä¸²åæ°å­
+comment|/**    * Punctuation Symbol    */
 DECL|field|DELIMITER
 specifier|public
 specifier|final
@@ -83,7 +90,7 @@ name|DELIMITER
 init|=
 literal|5
 decl_stmt|;
-comment|// æææ ç¹ç¬¦å·
+comment|/**    * Full-Width String    */
 DECL|field|FULLWIDTH_STRING
 specifier|public
 specifier|final
@@ -93,6 +100,7 @@ name|FULLWIDTH_STRING
 init|=
 literal|6
 decl_stmt|;
+comment|/**    * Full-Width Alphanumeric    */
 DECL|field|FULLWIDTH_NUMBER
 specifier|public
 specifier|final
@@ -102,7 +110,6 @@ name|FULLWIDTH_NUMBER
 init|=
 literal|7
 decl_stmt|;
-comment|// å«æå¨è§å­ç¬¦çå­ç¬¦ä¸²ï¼å«å¨è§æ°å­çæ°å­
 block|}
 end_class
 

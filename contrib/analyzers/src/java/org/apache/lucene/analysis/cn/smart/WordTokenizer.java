@@ -92,6 +92,10 @@ name|Tokenizer
 import|;
 end_import
 
+begin_comment
+comment|/**  * A {@link Tokenizer} that breaks sentences into words.  */
+end_comment
+
 begin_class
 DECL|class|WordTokenizer
 specifier|public
@@ -100,7 +104,6 @@ name|WordTokenizer
 extends|extends
 name|Tokenizer
 block|{
-comment|/**    * åè¯ä¸»ç¨åºï¼WordTokenizeråå§åæ¶å è½½ã    */
 DECL|field|wordSegmenter
 specifier|private
 name|WordSegmenter
@@ -130,7 +133,7 @@ operator|new
 name|Token
 argument_list|()
 decl_stmt|;
-comment|/**    * è®¾è®¡ä¸æ¯SentenceTokenizerçä¸ä¸å¤çå±ãå°SentenceTokenizerçå¥å­è¯»åºï¼    * å©ç¨HHMMSegmentä¸»ç¨åºå°å¥å­åè¯ï¼ç¶åå°åè¯ç»æè¿åã    *     * @param in å¥å­çToken    * @param smooth å¹³æ»å½æ°    * @param dataPath è£è½½æ ¸å¿å­å¸ä¸äºåå­å¸çç®å½    * @see init()    */
+comment|/**    * Construct a new WordTokenizer.    *     * @param in {@link TokenStream} of sentences    * @param wordSegmenter {@link WordSegmenter} to break sentences into words     */
 DECL|method|WordTokenizer
 specifier|public
 name|WordTokenizer
@@ -207,7 +210,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * å½å½åçå¥å­åè¯å¹¶ç´¢å¼å®æ¯æ¶ï¼éè¦è¯»åä¸ä¸ä¸ªå¥å­Tokenï¼ æ¬å½æ°è´è´£è°ç¨ä¸ä¸å±çSentenceTokenizerå»å è½½ä¸ä¸ä¸ªå¥å­ï¼ å¹¶å°å¶åè¯ï¼    * å°åè¯ç»æä¿å­æTokenæ¾å¨tokenBufferä¸­    *     * @return è¯»åå¹¶å¤çä¸ä¸ä¸ªå¥å­æåä¸å¦ï¼å¦ææ²¡ææåï¼è¯´ææä»¶å¤çå®æ¯ï¼åé¢æ²¡æTokenäº    * @throws IOException    */
+comment|/**    * Process the next input sentence, placing tokens into tokenBuffer    *     * @return true if more tokens were placed into tokenBuffer.    * @throws IOException    */
 DECL|method|processNextSentence
 specifier|private
 name|boolean
@@ -241,8 +244,6 @@ operator|.
 name|segmentSentence
 argument_list|(
 name|sentenceToken
-argument_list|,
-literal|1
 argument_list|)
 expr_stmt|;
 name|tokenIter

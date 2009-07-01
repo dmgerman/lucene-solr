@@ -114,6 +114,10 @@ name|SegTokenFilter
 import|;
 end_import
 
+begin_comment
+comment|/**  * Segment a sentence of Chinese text into words.  */
+end_comment
+
 begin_class
 DECL|class|WordSegmenter
 specifier|public
@@ -138,7 +142,7 @@ operator|new
 name|SegTokenFilter
 argument_list|()
 decl_stmt|;
-comment|/**    * è°ç¨HHMMSegmentç¨åºå°å½åçsentence Tokenåè¯ï¼è¿ååè¯ç»æï¼ä¿å­å¨Token Listä¸­    *     * @param sentenceToken å¥å­çToken    * @param shortPathCount HHMMç®æ³åè¯æéè¦çä¼ååçæç­è·¯å¾ä¸ªæ°ãä¸è¬è¶å¤§åè¯ç»æè¶ç²¾ç¡®ï¼ä½æ¯è®¡ç®ä»£ä»·ä¹è¾é«ã    * @return åè¯ç»æçToken List    */
+comment|/**    * Segment a sentence into words with {@link HHMMSegmenter}    *     * @param sentenceToken sentence {@link Token}    * @return {@link List} of {@link SegToken}    */
 DECL|method|segmentSentence
 specifier|public
 name|List
@@ -146,9 +150,6 @@ name|segmentSentence
 parameter_list|(
 name|Token
 name|sentenceToken
-parameter_list|,
-name|int
-name|shortPathCount
 parameter_list|)
 block|{
 name|String
@@ -176,7 +177,7 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-comment|// iä»1å°rawTokens.length-2ï¼ä¹å°±æ¯è¯´å°âå§##å§âï¼âæ«##æ«âä¸¤ä¸ªRawTokenå»æ
+comment|// tokens from sentence, excluding WordType.SENTENCE_BEGIN and WordType.SENTENCE_END
 for|for
 control|(
 name|int
@@ -229,7 +230,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *     * å°RawTokenç±»åè½¬æ¢æç´¢å¼éè¦çTokenç±»åï¼ å ä¸ºç´¢å¼éè¦RawTokenå¨åå¥ä¸­çåå®¹ï¼ å æ­¤è½¬æ¢æ¶éè¦æå®åå¥å­ã    *     * @param rt    * @param sentence è½¬æ¢éè¦çå¥å­åå®¹    * @param sentenceStartOffset sentenceå¨æç« ä¸­çåå§ä½ç½®    * @param type tokenç±»åï¼é»è®¤åºè¯¥æ¯word    * @return    */
+comment|/**    * Convert a {@link SegToken} to a Lucene {@link Token}    *     * @param st input {@link SegToken}    * @param sentence associated Sentence    * @param sentenceStartOffset offset into sentence    * @param type token type, default is word    * @return Lucene {@link Token}    */
 DECL|method|convertSegToken
 specifier|public
 name|Token

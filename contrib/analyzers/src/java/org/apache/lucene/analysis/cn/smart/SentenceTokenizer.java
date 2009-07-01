@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * åå«ä¸ä¸ªå®æ´å¥å­çTokenï¼ä»æä»¶ä¸­è¯»åºï¼æ¯ä¸ä¸æ­¥åè¯çå¯¹è±¡  *   */
+comment|/**  * Tokenizes input into sentences.  */
 end_comment
 
 begin_class
@@ -90,7 +90,7 @@ name|SentenceTokenizer
 extends|extends
 name|Tokenizer
 block|{
-comment|/**    * ç¨æ¥åæ­å¥å­çæ ç¹ç¬¦å· ãï¼ï¼ï¼ï¼,!?;    */
+comment|/**    * End of sentence punctuation: ãï¼ï¼ï¼ï¼,!?;    */
 DECL|field|PUNCTION
 specifier|public
 specifier|final
@@ -234,7 +234,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// æ¾å°äºå¥å­æ«å°¾
+comment|// End of a sentence
 name|buffer
 operator|.
 name|append
@@ -320,8 +320,7 @@ name|char
 operator|)
 name|ci
 expr_stmt|;
-comment|// å¦æç¢°ä¸äºä¸¤ä¸ªè¿ç»­çskipå­ç¬¦ï¼ä¾å¦ä¸¤ä¸ªåè½¦ï¼ä¸¤ä¸ªç©ºæ ¼æèï¼
-comment|// ä¸ä¸ªåè½¦ï¼ä¸ä¸ªç©ºæ ¼ç­ç­ï¼å°å¶è§ä¸ºå¥å­ç»æï¼ä»¥åå¥å­å¤ªé¿èåå­ä¸è¶³
+comment|// Two spaces, such as CR, LF
 if|if
 condition|(
 name|Utility
