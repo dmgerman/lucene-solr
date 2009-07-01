@@ -1664,7 +1664,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Registers a SolrCore descriptor in the registry using the specified name.    *    * If returnPrev==false, the old core, if different, is closed.    *    * @return a previous core having the same name if it existed and returnPrev==true    */
+comment|/**    * Registers a SolrCore descriptor in the registry using the specified name.    * If returnPrev==false, the old core, if different, is closed. if true, it is returned w/o closing the core    *    * @return a previous core having the same name if it existed    */
 DECL|method|register
 specifier|public
 name|SolrCore
