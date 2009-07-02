@@ -436,8 +436,8 @@ operator|.
 name|getResults
 argument_list|()
 decl_stmt|;
-name|NamedList
-name|nl
+name|Object
+name|clusters
 init|=
 name|engine
 operator|.
@@ -452,7 +452,9 @@ name|results
 operator|.
 name|docList
 argument_list|,
-name|params
+name|rb
+operator|.
+name|req
 argument_list|)
 decl_stmt|;
 name|rb
@@ -463,7 +465,7 @@ name|add
 argument_list|(
 literal|"clusters"
 argument_list|,
-name|nl
+name|clusters
 argument_list|)
 expr_stmt|;
 block|}
