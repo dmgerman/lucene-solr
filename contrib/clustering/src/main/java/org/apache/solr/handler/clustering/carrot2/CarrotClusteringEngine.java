@@ -335,7 +335,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Search results clustering engine based on Carrot2 clustering algorithms.  *  * Output from this class is subject to change.  *   * @link http://project.carrot2.org  */
+comment|/**  * Search results clustering engine based on Carrot2 clustering algorithms.  *<p/>  * Output from this class is subject to change.  *  * @link http://project.carrot2.org  */
 end_comment
 
 begin_class
@@ -367,7 +367,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** Carrot2 controller that manages instances of clustering algorithms */
+comment|/**    * Carrot2 controller that manages instances of clustering algorithms    */
 DECL|field|controller
 specifier|private
 name|CachingController
@@ -714,7 +714,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Prepares Carrot2 documents for clustering. 	 */
+comment|/**    * Prepares Carrot2 documents for clustering.    */
 DECL|method|getDocuments
 specifier|private
 name|List
@@ -1489,7 +1489,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Extracts parameters that can possibly match some attributes of Carrot2 algorithms. 	 */
+comment|/**    * Extracts parameters that can possibly match some attributes of Carrot2 algorithms.    */
 DECL|method|extractCarrotAttributes
 specifier|private
 name|void
