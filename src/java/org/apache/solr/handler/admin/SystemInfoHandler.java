@@ -388,6 +388,13 @@ name|getSystemInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|rsp
+operator|.
+name|setHttpCaching
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Get system info    */
 DECL|method|getCoreInfo

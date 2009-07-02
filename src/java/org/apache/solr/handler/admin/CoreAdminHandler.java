@@ -779,6 +779,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|rsp
+operator|.
+name|setHttpCaching
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|handleMergeAction
 specifier|protected

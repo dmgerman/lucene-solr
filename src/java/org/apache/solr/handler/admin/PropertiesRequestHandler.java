@@ -206,6 +206,13 @@ argument_list|,
 name|props
 argument_list|)
 expr_stmt|;
+name|rsp
+operator|.
+name|setHttpCaching
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
 annotation|@

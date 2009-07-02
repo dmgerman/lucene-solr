@@ -952,6 +952,13 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
+name|rsp
+operator|.
+name|setHttpCaching
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * This is a utility function that lets you get the contents of an admin file    *     * It is only used so that we can get rid of "/admin/get-file.jsp" and include    * "admin-extra.html" in "/admin/index.html" using jsp scriptlets    *     * @deprecated This functionality is implemented in    *             {@link #handleRequestBody(SolrQueryRequest, SolrQueryResponse)}.    */
 annotation|@
