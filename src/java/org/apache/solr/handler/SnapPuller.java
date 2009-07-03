@@ -1065,7 +1065,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception in pulling snapshot"
+literal|"Exception in fetching index"
 argument_list|,
 name|e
 argument_list|)
@@ -1475,7 +1475,7 @@ literal|"Master at: "
 operator|+
 name|masterUrl
 operator|+
-literal|" is not available. Snappull failed. Exception: "
+literal|" is not available. Index fetch failed. Exception: "
 operator|+
 name|e
 operator|.
@@ -1653,7 +1653,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Number of files in latest snapshot in master: "
+literal|"Number of files in latest index in master: "
 operator|+
 name|filesToDownload
 operator|.
@@ -1854,13 +1854,6 @@ block|{
 name|terminateAndWaitFsyncService
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Conf files are not downloaded or are in sync"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|isSnapNeeded
@@ -1955,7 +1948,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Snappull failed : "
+literal|"Index fetch failed : "
 argument_list|,
 name|e
 argument_list|)
