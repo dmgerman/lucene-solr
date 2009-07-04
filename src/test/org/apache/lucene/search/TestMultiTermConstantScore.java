@@ -509,11 +509,11 @@ name|boolean
 name|ih
 parameter_list|)
 block|{
-name|RangeQuery
+name|TermRangeQuery
 name|query
 init|=
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|f
 argument_list|,
@@ -563,11 +563,11 @@ name|Collator
 name|c
 parameter_list|)
 block|{
-name|RangeQuery
+name|TermRangeQuery
 name|query
 init|=
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|f
 argument_list|,
@@ -1480,29 +1480,21 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-comment|// first do a regular RangeQuery which uses term expansion so
+comment|// first do a regular TermRangeQuery which uses term expansion so
 comment|// docs with more terms in range get higher scores
 name|Query
 name|rq
 init|=
 operator|new
-name|RangeQuery
-argument_list|(
-operator|new
-name|Term
+name|TermRangeQuery
 argument_list|(
 literal|"data"
 argument_list|,
 literal|"1"
-argument_list|)
-argument_list|,
-operator|new
-name|Term
-argument_list|(
-literal|"data"
 argument_list|,
 literal|"4"
-argument_list|)
+argument_list|,
+name|T
 argument_list|,
 name|T
 argument_list|)

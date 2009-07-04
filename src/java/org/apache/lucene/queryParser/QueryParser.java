@@ -388,7 +388,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -761,7 +761,6 @@ name|ParseException
 name|tme
 parameter_list|)
 block|{
-comment|// rethrow to include the original query:
 comment|// rethrow to include the original query:
 name|ParseException
 name|e
@@ -3184,7 +3183,7 @@ name|prefixLength
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a new RangeQuery instance    * @param field Field    * @param part1 min    * @param part2 max    * @param inclusive true if range is inclusive    * @return new RangeQuery instance    */
+comment|/**    * Builds a new TermRangeQuery instance    * @param field Field    * @param part1 min    * @param part2 max    * @param inclusive true if range is inclusive    * @return new TermRangeQuery instance    */
 DECL|method|newRangeQuery
 specifier|protected
 name|Query
@@ -3203,55 +3202,26 @@ name|boolean
 name|inclusive
 parameter_list|)
 block|{
-name|RangeQuery
+specifier|final
+name|TermRangeQuery
 name|query
+init|=
+operator|new
+name|TermRangeQuery
+argument_list|(
+name|field
+argument_list|,
+name|part1
+argument_list|,
+name|part2
+argument_list|,
+name|inclusive
+argument_list|,
+name|inclusive
+argument_list|,
+name|rangeCollator
+argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|constantScoreRewrite
-condition|)
-block|{
-comment|// TODO: remove in Lucene 3.0
-name|query
-operator|=
-operator|new
-name|ConstantScoreRangeQuery
-argument_list|(
-name|field
-argument_list|,
-name|part1
-argument_list|,
-name|part2
-argument_list|,
-name|inclusive
-argument_list|,
-name|inclusive
-argument_list|,
-name|rangeCollator
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|query
-operator|=
-operator|new
-name|RangeQuery
-argument_list|(
-name|field
-argument_list|,
-name|part1
-argument_list|,
-name|part2
-argument_list|,
-name|inclusive
-argument_list|,
-name|inclusive
-argument_list|,
-name|rangeCollator
-argument_list|)
-expr_stmt|;
-block|}
 name|query
 operator|.
 name|setConstantScoreRewrite

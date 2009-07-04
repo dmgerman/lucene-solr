@@ -69,10 +69,10 @@ comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match
 end_comment
 
 begin_class
-DECL|class|RangeTermEnum
+DECL|class|TermRangeTermEnum
 specifier|public
 class|class
-name|RangeTermEnum
+name|TermRangeTermEnum
 extends|extends
 name|FilteredTermEnum
 block|{
@@ -116,9 +116,9 @@ name|boolean
 name|includeUpper
 decl_stmt|;
 comment|/**    * Enumerates all terms greater/equal than<code>lowerTerm</code>    * but less/equal than<code>upperTerm</code>.     *     * If an endpoint is null, it is said to be "open". Either or both     * endpoints may be open.  Open endpoints may not be exclusive     * (you can't select all but the first or last term without     * explicitly specifying the term to exclude.)    *     * @param reader    * @param collator    *          The collator to use to collate index Terms, to determine their    *          membership in the range bounded by<code>lowerTerm</code> and    *<code>upperTerm</code>.    * @param field    *          An interned field that holds both lower and upper terms.    * @param lowerTermText    *          The term text at the lower end of the range    * @param upperTermText    *          The term text at the upper end of the range    * @param includeLower    *          If true, the<code>lowerTerm</code> is included in the range.    * @param includeUpper    *          If true, the<code>upperTerm</code> is included in the range.    *     * @throws IOException    */
-DECL|method|RangeTermEnum
+DECL|method|TermRangeTermEnum
 specifier|public
-name|RangeTermEnum
+name|TermRangeTermEnum
 parameter_list|(
 name|IndexReader
 name|reader
@@ -179,6 +179,9 @@ operator|.
 name|field
 operator|=
 name|field
+operator|.
+name|intern
+argument_list|()
 expr_stmt|;
 comment|// do a little bit of normalization...
 comment|// open ended range queries should always be inclusive.

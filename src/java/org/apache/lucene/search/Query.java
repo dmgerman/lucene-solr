@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link RangeQuery}<li> {@link org.apache.lucene.search.spans.SpanQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser QueryParser}</ul> */
+comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link TermRangeQuery}<li> {@link NumericRangeQuery}<li> {@link org.apache.lucene.search.spans.SpanQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser QueryParser}</ul> */
 end_comment
 
 begin_class
@@ -289,7 +289,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Expert: called when re-writing queries under MultiSearcher.    *    * Create a single query suitable for use by all subsearchers (in 1-1    * correspondence with queries). This is an optimization of the OR of    * all queries. We handle the common optimization cases of equal    * queries and overlapping clauses of boolean OR queries (as generated    * by MultiTermQuery.rewrite() and RangeQuery.rewrite()).    * Be careful overriding this method as queries[0] determines which    * method will be called and is not necessarily of the same type as    * the other queries.   */
+comment|/** Expert: called when re-writing queries under MultiSearcher.    *    * Create a single query suitable for use by all subsearchers (in 1-1    * correspondence with queries). This is an optimization of the OR of    * all queries. We handle the common optimization cases of equal    * queries and overlapping clauses of boolean OR queries (as generated    * by MultiTermQuery.rewrite()).    * Be careful overriding this method as queries[0] determines which    * method will be called and is not necessarily of the same type as    * the other queries.   */
 DECL|method|combine
 specifier|public
 name|Query

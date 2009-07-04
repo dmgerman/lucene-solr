@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for {@link MultiTermQuery}, that exposes its  * functionality as a {@link Filter}.  *<P>  *<code>MultiTermQueryWrapperFilter</code> is not designed to  * be used by itself. Normally you subclass it to provide a Filter  * counterpart for a {@link MultiTermQuery} subclass.  *<P>  * For example, {@link RangeFilter} and {@link PrefixFilter} extend  *<code>MultiTermQueryWrapperFilter</code>.  * This class also provides the functionality behind  * {@link MultiTermQuery#getFilter}, this is why it is not abstract.  */
+comment|/**  * A wrapper for {@link MultiTermQuery}, that exposes its  * functionality as a {@link Filter}.  *<P>  *<code>MultiTermQueryWrapperFilter</code> is not designed to  * be used by itself. Normally you subclass it to provide a Filter  * counterpart for a {@link MultiTermQuery} subclass.  *<P>  * For example, {@link TermRangeFilter} and {@link PrefixFilter} extend  *<code>MultiTermQueryWrapperFilter</code>.  * This class also provides the functionality behind  * {@link MultiTermQuery#getFilter}, this is why it is not abstract.  */
 end_comment
 
 begin_class

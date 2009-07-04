@@ -452,7 +452,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -2866,7 +2866,7 @@ name|assertTrue
 argument_list|(
 operator|(
 operator|(
-name|RangeQuery
+name|TermRangeQuery
 operator|)
 name|getQuery
 argument_list|(
@@ -2904,7 +2904,7 @@ name|assertFalse
 argument_list|(
 operator|(
 operator|(
-name|RangeQuery
+name|TermRangeQuery
 operator|)
 name|qp
 operator|.
@@ -3194,7 +3194,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-comment|// Test RangeQuery
+comment|// Test TermRangeQuery
 name|qp
 operator|.
 name|setConstantScoreRewrite

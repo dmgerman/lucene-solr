@@ -1798,11 +1798,11 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|RangeQuery
+name|TermRangeQuery
 name|cq
 init|=
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1858,7 +1858,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Returned count for NumericRangeQuery and RangeQuery must be equal"
+literal|"Returned count for NumericRangeQuery and TermRangeQuery must be equal"
 argument_list|,
 name|cTopDocs
 operator|.
@@ -1914,7 +1914,7 @@ expr_stmt|;
 name|cq
 operator|=
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1968,7 +1968,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Returned count for NumericRangeQuery and RangeQuery must be equal"
+literal|"Returned count for NumericRangeQuery and TermRangeQuery must be equal"
 argument_list|,
 name|cTopDocs
 operator|.
@@ -2024,7 +2024,7 @@ expr_stmt|;
 name|cq
 operator|=
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -2078,7 +2078,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Returned count for NumericRangeQuery and RangeQuery must be equal"
+literal|"Returned count for NumericRangeQuery and TermRangeQuery must be equal"
 argument_list|,
 name|cTopDocs
 operator|.
@@ -2134,7 +2134,7 @@ expr_stmt|;
 name|cq
 operator|=
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -2188,7 +2188,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Returned count for NumericRangeQuery and RangeQuery must be equal"
+literal|"Returned count for NumericRangeQuery and TermRangeQuery must be equal"
 argument_list|,
 name|cTopDocs
 operator|.

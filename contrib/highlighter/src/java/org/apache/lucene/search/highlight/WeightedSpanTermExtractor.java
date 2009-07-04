@@ -386,7 +386,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -1033,14 +1033,14 @@ if|if
 condition|(
 name|mtq
 operator|instanceof
-name|RangeQuery
+name|TermRangeQuery
 condition|)
 block|{
 name|field
 operator|=
 operator|(
 operator|(
-name|RangeQuery
+name|TermRangeQuery
 operator|)
 name|mtq
 operator|)
@@ -2477,14 +2477,14 @@ if|if
 condition|(
 name|query
 operator|instanceof
-name|RangeQuery
+name|TermRangeQuery
 condition|)
 block|{
-name|RangeQuery
+name|TermRangeQuery
 name|q
 init|=
 operator|(
-name|RangeQuery
+name|TermRangeQuery
 operator|)
 name|query
 decl_stmt|;
@@ -2500,7 +2500,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|q
 operator|.
@@ -2509,12 +2509,12 @@ argument_list|()
 argument_list|,
 name|q
 operator|.
-name|getLowerTermText
+name|getLowerTerm
 argument_list|()
 argument_list|,
 name|q
 operator|.
-name|getUpperTermText
+name|getUpperTerm
 argument_list|()
 argument_list|,
 name|q

@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeFilter
+name|TermRangeFilter
 import|;
 end_import
 
@@ -204,7 +204,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -638,7 +638,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-comment|// Test RangeQuery
+comment|// Test TermRangeQuery
 name|aqp
 operator|.
 name|setUseOldRangeQuery
@@ -858,7 +858,7 @@ argument_list|)
 decl_stmt|;
 comment|// Unicode order would include U+0633 in [ U+062F - U+0698 ], but Farsi
 comment|// orders the U+0698 character before the U+0633 character, so the single
-comment|// index Term below should NOT be returned by a RangeFilter with a Farsi
+comment|// index Term below should NOT be returned by a TermRangeFilter with a Farsi
 comment|// Collator (or an Arabic one for the case when Farsi searcher not
 comment|// supported).
 name|ScoreDoc
@@ -872,7 +872,7 @@ argument_list|(
 name|query
 argument_list|,
 operator|new
-name|RangeFilter
+name|TermRangeFilter
 argument_list|(
 literal|"content"
 argument_list|,
@@ -910,7 +910,7 @@ argument_list|(
 name|query
 argument_list|,
 operator|new
-name|RangeFilter
+name|TermRangeFilter
 argument_list|(
 literal|"content"
 argument_list|,
@@ -1003,7 +1003,7 @@ argument_list|()
 decl_stmt|;
 comment|// Unicode order would include U+0633 in [ U+062F - U+0698 ], but Farsi
 comment|// orders the U+0698 character before the U+0633 character, so the single
-comment|// index Term below should NOT be returned by a RangeQuery with a Farsi
+comment|// index Term below should NOT be returned by a TermRangeQuery with a Farsi
 comment|// Collator (or an Arabic one for the case when Farsi is not supported).
 name|doc
 operator|.
@@ -1055,23 +1055,15 @@ name|Query
 name|query
 init|=
 operator|new
-name|RangeQuery
-argument_list|(
-operator|new
-name|Term
+name|TermRangeQuery
 argument_list|(
 literal|"content"
 argument_list|,
 name|firstBeg
-argument_list|)
-argument_list|,
-operator|new
-name|Term
-argument_list|(
-literal|"content"
 argument_list|,
 name|firstEnd
-argument_list|)
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1107,23 +1099,15 @@ expr_stmt|;
 name|query
 operator|=
 operator|new
-name|RangeQuery
-argument_list|(
-operator|new
-name|Term
+name|TermRangeQuery
 argument_list|(
 literal|"content"
 argument_list|,
 name|secondBeg
-argument_list|)
-argument_list|,
-operator|new
-name|Term
-argument_list|(
-literal|"content"
 argument_list|,
 name|secondEnd
-argument_list|)
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)

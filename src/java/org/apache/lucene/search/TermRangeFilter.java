@@ -31,17 +31,17 @@ comment|/**  * A Filter that restricts search results to a range of values in a 
 end_comment
 
 begin_class
-DECL|class|RangeFilter
+DECL|class|TermRangeFilter
 specifier|public
 class|class
-name|RangeFilter
+name|TermRangeFilter
 extends|extends
 name|MultiTermQueryWrapperFilter
 block|{
-comment|/**      * @param fieldName The field this range applies to      * @param lowerTerm The lower bound on this range      * @param upperTerm The upper bound on this range      * @param includeLower Does this range include the lower bound?      * @param includeUpper Does this range include the upper bound?      * @throws IllegalArgumentException if both terms are null or if      *  lowerTerm is null and includeLower is true (similar for upperTerm      *  and includeUpper)      */
-DECL|method|RangeFilter
+comment|/**    * @param fieldName The field this range applies to    * @param lowerTerm The lower bound on this range    * @param upperTerm The upper bound on this range    * @param includeLower Does this range include the lower bound?    * @param includeUpper Does this range include the upper bound?    * @throws IllegalArgumentException if both terms are null or if    *  lowerTerm is null and includeLower is true (similar for upperTerm    *  and includeUpper)    */
+DECL|method|TermRangeFilter
 specifier|public
-name|RangeFilter
+name|TermRangeFilter
 parameter_list|(
 name|String
 name|fieldName
@@ -62,7 +62,7 @@ block|{
 name|super
 argument_list|(
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|fieldName
 argument_list|,
@@ -77,10 +77,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *<strong>WARNING:</strong> Using this constructor and supplying a non-null      * value in the<code>collator</code> parameter will cause every single       * index Term in the Field referenced by lowerTerm and/or upperTerm to be      * examined.  Depending on the number of index Terms in this Field, the       * operation could be very slow.      *      * @param lowerTerm The lower bound on this range      * @param upperTerm The upper bound on this range      * @param includeLower Does this range include the lower bound?      * @param includeUpper Does this range include the upper bound?      * @param collator The collator to use when determining range inclusion; set      *  to null to use Unicode code point ordering instead of collation.      * @throws IllegalArgumentException if both terms are null or if      *  lowerTerm is null and includeLower is true (similar for upperTerm      *  and includeUpper)      */
-DECL|method|RangeFilter
+comment|/**    *<strong>WARNING:</strong> Using this constructor and supplying a non-null    * value in the<code>collator</code> parameter will cause every single     * index Term in the Field referenced by lowerTerm and/or upperTerm to be    * examined.  Depending on the number of index Terms in this Field, the     * operation could be very slow.    *    * @param lowerTerm The lower bound on this range    * @param upperTerm The upper bound on this range    * @param includeLower Does this range include the lower bound?    * @param includeUpper Does this range include the upper bound?    * @param collator The collator to use when determining range inclusion; set    *  to null to use Unicode code point ordering instead of collation.    * @throws IllegalArgumentException if both terms are null or if    *  lowerTerm is null and includeLower is true (similar for upperTerm    *  and includeUpper)    */
+DECL|method|TermRangeFilter
 specifier|public
-name|RangeFilter
+name|TermRangeFilter
 parameter_list|(
 name|String
 name|fieldName
@@ -104,7 +104,7 @@ block|{
 name|super
 argument_list|(
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|fieldName
 argument_list|,
@@ -121,11 +121,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a filter for field<code>fieldName</code> matching      * less than or equal to<code>upperTerm</code>.      */
+comment|/**    * Constructs a filter for field<code>fieldName</code> matching    * less than or equal to<code>upperTerm</code>.    */
 DECL|method|Less
 specifier|public
 specifier|static
-name|RangeFilter
+name|TermRangeFilter
 name|Less
 parameter_list|(
 name|String
@@ -137,7 +137,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|RangeFilter
+name|TermRangeFilter
 argument_list|(
 name|fieldName
 argument_list|,
@@ -151,11 +151,11 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Constructs a filter for field<code>fieldName</code> matching      * greater than or equal to<code>lowerTerm</code>.      */
+comment|/**    * Constructs a filter for field<code>fieldName</code> matching    * greater than or equal to<code>lowerTerm</code>.    */
 DECL|method|More
 specifier|public
 specifier|static
-name|RangeFilter
+name|TermRangeFilter
 name|More
 parameter_list|(
 name|String
@@ -167,7 +167,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|RangeFilter
+name|TermRangeFilter
 argument_list|(
 name|fieldName
 argument_list|,
