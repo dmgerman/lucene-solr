@@ -858,7 +858,9 @@ name|clone
 argument_list|()
 expr_stmt|;
 block|}
-return|return
+name|SpanNearQuery
+name|spanNearQuery
+init|=
 operator|new
 name|SpanNearQuery
 argument_list|(
@@ -868,6 +870,17 @@ name|slop
 argument_list|,
 name|inOrder
 argument_list|)
+decl_stmt|;
+name|spanNearQuery
+operator|.
+name|setBoost
+argument_list|(
+name|getBoost
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|spanNearQuery
 return|;
 block|}
 comment|/** Returns true iff<code>o</code> is equal to this. */

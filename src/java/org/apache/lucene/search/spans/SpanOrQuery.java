@@ -470,6 +470,14 @@ argument_list|(
 name|newClauses
 argument_list|)
 decl_stmt|;
+name|soq
+operator|.
+name|setBoost
+argument_list|(
+name|getBoost
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|soq
 return|;
