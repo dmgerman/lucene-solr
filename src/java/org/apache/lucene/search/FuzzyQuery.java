@@ -852,7 +852,10 @@ decl_stmt|;
 name|int
 name|result
 init|=
-literal|1
+name|super
+operator|.
+name|hashCode
+argument_list|()
 decl_stmt|;
 name|result
 operator|=
@@ -920,9 +923,13 @@ literal|true
 return|;
 if|if
 condition|(
+operator|!
+name|super
+operator|.
+name|equals
+argument_list|(
 name|obj
-operator|==
-literal|null
+argument_list|)
 condition|)
 return|return
 literal|false
