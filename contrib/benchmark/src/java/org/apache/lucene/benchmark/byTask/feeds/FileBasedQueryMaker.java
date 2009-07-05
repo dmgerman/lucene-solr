@@ -276,6 +276,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|BufferedReader
 name|buffered
 init|=
@@ -391,6 +393,15 @@ expr_stmt|;
 block|}
 name|lineNum
 operator|++
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}
