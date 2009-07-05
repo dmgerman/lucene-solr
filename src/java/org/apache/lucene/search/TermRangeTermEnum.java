@@ -115,16 +115,13 @@ specifier|private
 name|boolean
 name|includeUpper
 decl_stmt|;
-comment|/**    * Enumerates all terms greater/equal than<code>lowerTerm</code>    * but less/equal than<code>upperTerm</code>.     *     * If an endpoint is null, it is said to be "open". Either or both     * endpoints may be open.  Open endpoints may not be exclusive     * (you can't select all but the first or last term without     * explicitly specifying the term to exclude.)    *     * @param reader    * @param collator    *          The collator to use to collate index Terms, to determine their    *          membership in the range bounded by<code>lowerTerm</code> and    *<code>upperTerm</code>.    * @param field    *          An interned field that holds both lower and upper terms.    * @param lowerTermText    *          The term text at the lower end of the range    * @param upperTermText    *          The term text at the upper end of the range    * @param includeLower    *          If true, the<code>lowerTerm</code> is included in the range.    * @param includeUpper    *          If true, the<code>upperTerm</code> is included in the range.    *     * @throws IOException    */
+comment|/**    * Enumerates all terms greater/equal than<code>lowerTerm</code>    * but less/equal than<code>upperTerm</code>.     *     * If an endpoint is null, it is said to be "open". Either or both     * endpoints may be open.  Open endpoints may not be exclusive     * (you can't select all but the first or last term without     * explicitly specifying the term to exclude.)    *     * @param reader    * @param field    *          An interned field that holds both lower and upper terms.    * @param lowerTermText    *          The term text at the lower end of the range    * @param upperTermText    *          The term text at the upper end of the range    * @param includeLower    *          If true, the<code>lowerTerm</code> is included in the range.    * @param includeUpper    *          If true, the<code>upperTerm</code> is included in the range.    * @param collator    *          The collator to use to collate index Terms, to determine their    *          membership in the range bounded by<code>lowerTerm</code> and    *<code>upperTerm</code>.    *     * @throws IOException    */
 DECL|method|TermRangeTermEnum
 specifier|public
 name|TermRangeTermEnum
 parameter_list|(
 name|IndexReader
 name|reader
-parameter_list|,
-name|Collator
-name|collator
 parameter_list|,
 name|String
 name|field
@@ -140,6 +137,9 @@ name|includeLower
 parameter_list|,
 name|boolean
 name|includeUpper
+parameter_list|,
+name|Collator
+name|collator
 parameter_list|)
 throws|throws
 name|IOException
