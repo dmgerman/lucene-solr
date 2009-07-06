@@ -1118,9 +1118,8 @@ name|put
 argument_list|(
 literal|"page"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|PAGE
 argument_list|)
@@ -1132,9 +1131,8 @@ name|put
 argument_list|(
 literal|"text"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|BODY
 argument_list|)
@@ -1146,9 +1144,8 @@ name|put
 argument_list|(
 literal|"timestamp"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|DATE
 argument_list|)
@@ -1160,9 +1157,8 @@ name|put
 argument_list|(
 literal|"title"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|TITLE
 argument_list|)
@@ -1174,9 +1170,8 @@ name|put
 argument_list|(
 literal|"id"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|ID
 argument_list|)

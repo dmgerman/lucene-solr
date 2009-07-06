@@ -208,9 +208,8 @@ name|put
 argument_list|(
 literal|".bz2"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|BZIP
 argument_list|)
@@ -222,9 +221,8 @@ name|put
 argument_list|(
 literal|".bzip"
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|BZIP
 argument_list|)
