@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an exclusive range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is in constant score mode per default.  * See {@link MultiTermQuery#setConstantScoreRewrite} for the tradeoffs between  * enabling and disabling constantScoreRewrite mode.  */
+comment|/**  * A Query that matches documents within an exclusive range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is in constant score mode per default.  * See {@link MultiTermQuery#setConstantScoreRewrite} for the tradeoffs between  * enabling and disabling constantScoreRewrite mode.  * @since 2.9  */
 end_comment
 
 begin_class
@@ -217,10 +217,11 @@ name|collator
 operator|=
 name|collator
 expr_stmt|;
-name|setConstantScoreRewrite
-argument_list|(
+name|this
+operator|.
+name|constantScoreRewrite
+operator|=
 literal|true
-argument_list|)
 expr_stmt|;
 block|}
 comment|/** Returns the field name for this query */
