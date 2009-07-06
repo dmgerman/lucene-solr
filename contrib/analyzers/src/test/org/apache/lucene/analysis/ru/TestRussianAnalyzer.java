@@ -219,11 +219,11 @@ name|File
 argument_list|(
 name|dataDir
 argument_list|,
-literal|"/org/apache/lucene/analysis/ru/testUnicode.txt"
+literal|"/org/apache/lucene/analysis/ru/testUTF8.txt"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|"Unicode"
+literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|sampleUnicode
@@ -239,11 +239,11 @@ name|File
 argument_list|(
 name|dataDir
 argument_list|,
-literal|"/org/apache/lucene/analysis/ru/resUnicode.htm"
+literal|"/org/apache/lucene/analysis/ru/resUTF8.htm"
 argument_list|)
 argument_list|)
 argument_list|,
-literal|"Unicode"
+literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|TokenStream
