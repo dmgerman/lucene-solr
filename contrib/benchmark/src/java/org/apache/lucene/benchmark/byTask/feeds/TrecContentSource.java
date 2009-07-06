@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a {@link ContentSource} over the TREC collection.  *<p>  * Supports the following configuration parameters (on top of  * {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory where the TREC files reside.  * Can be set to a relative path if "work.dir" is also specified  * (<b>default=trec</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the TREC documents content (<b>default=DemoHTMLParser</b>).  *</ul>  */
+comment|/**  * Implements a {@link ContentSource} over the TREC collection.  *<p>  * Supports the following configuration parameters (on top of  * {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory where the TREC files reside.  * Can be set to a relative path if "work.dir" is also specified  * (<b>default=trec</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the TREC documents content (<b>default=DemoHTMLParser</b>).  *<li><b>content.source.encoding</b> - if not specified, ISO-8859-1 is used.  *</ul>  */
 end_comment
 
 begin_class
@@ -200,7 +200,7 @@ name|TrecContentSource
 extends|extends
 name|ContentSource
 block|{
-comment|// TODO (3.0): change StringBuffer to StringBuffer
+comment|// TODO (3.0): change StringBuffer to StringBuilder
 DECL|class|DateFormatInfo
 specifier|private
 specifier|static
@@ -868,9 +868,7 @@ argument_list|(
 name|f
 argument_list|)
 argument_list|,
-literal|1
-operator|<<
-literal|16
+name|BUFFER_SIZE
 argument_list|)
 decl_stmt|;
 name|reader
@@ -882,11 +880,11 @@ operator|new
 name|InputStreamReader
 argument_list|(
 name|zis
+argument_list|,
+name|encoding
 argument_list|)
 argument_list|,
-literal|1
-operator|<<
-literal|16
+name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1636,6 +1634,18 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|encoding
+operator|==
+literal|null
+condition|)
+block|{
+name|encoding
+operator|=
+literal|"ISO-8859-1"
+expr_stmt|;
 block|}
 block|}
 block|}

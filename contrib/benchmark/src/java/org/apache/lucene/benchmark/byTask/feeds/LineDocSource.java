@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ContentSource} reading one line at a time as a  * {@link org.apache.lucene.document.Document} from a single file. This saves IO  * cost (over DirContentSource) of recursing through a directory and opening a  * new file for every document.<br>  * The expected format of each line is (arguments are separated by&lt;TAB&gt;):  *<i>title, date, body</i>. If a line is read in a different format, a  * {@link RuntimeException} will be thrown. In general, you should use this  * content source for files that were created with {@link WriteLineDocTask}.<br>  *<br>  * Config properties:  *<ul>  *<li>docs.file=&lt;path to the file&gt;  *</ul>  */
+comment|/**  * A {@link ContentSource} reading one line at a time as a  * {@link org.apache.lucene.document.Document} from a single file. This saves IO  * cost (over DirContentSource) of recursing through a directory and opening a  * new file for every document.<br>  * The expected format of each line is (arguments are separated by&lt;TAB&gt;):  *<i>title, date, body</i>. If a line is read in a different format, a  * {@link RuntimeException} will be thrown. In general, you should use this  * content source for files that were created with {@link WriteLineDocTask}.<br>  *<br>  * Config properties:  *<ul>  *<li>docs.file=&lt;path to the file&gt;  *<li>content.source.encoding - default to UTF-8.  *</ul>  */
 end_comment
 
 begin_class
@@ -179,7 +179,7 @@ name|InputStreamReader
 argument_list|(
 name|is
 argument_list|,
-literal|"UTF-8"
+name|encoding
 argument_list|)
 argument_list|,
 name|BUFFER_SIZE
@@ -482,6 +482,18 @@ operator|.
 name|getAbsoluteFile
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|encoding
+operator|==
+literal|null
+condition|)
+block|{
+name|encoding
+operator|=
+literal|"UTF-8"
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

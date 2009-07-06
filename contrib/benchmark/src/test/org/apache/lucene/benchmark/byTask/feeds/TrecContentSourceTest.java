@@ -161,7 +161,6 @@ name|forever
 expr_stmt|;
 block|}
 DECL|method|openNextFile
-specifier|protected
 name|void
 name|openNextFile
 parameter_list|()
