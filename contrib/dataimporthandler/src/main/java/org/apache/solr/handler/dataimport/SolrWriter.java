@@ -518,9 +518,7 @@ name|separator
 expr_stmt|;
 name|filePath
 operator|+=
-name|SolrWriter
-operator|.
-name|IMPORTER_PROPERTIES
+name|persistFilename
 expr_stmt|;
 name|propOutput
 operator|=
@@ -545,9 +543,7 @@ name|info
 argument_list|(
 literal|"Wrote last indexed time to "
 operator|+
-name|SolrWriter
-operator|.
-name|IMPORTER_PROPERTIES
+name|persistFilename
 argument_list|)
 expr_stmt|;
 block|}
