@@ -1723,6 +1723,11 @@ name|successfulInstall
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|deleteTmpIdxDir
+init|=
+literal|true
+decl_stmt|;
 try|try
 block|{
 name|File
@@ -1859,6 +1864,8 @@ condition|(
 name|isSnapNeeded
 condition|)
 block|{
+name|successfulInstall
+operator|=
 name|modifyIndexProps
 argument_list|(
 name|tmpIndexDir
@@ -1866,6 +1873,10 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|deleteTmpIdxDir
+operator|=
+literal|false
 expr_stmt|;
 block|}
 else|else
@@ -1933,11 +1944,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|delTree
-argument_list|(
-name|tmpIndexDir
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|SolrException
@@ -1956,6 +1962,10 @@ throw|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|deleteTmpIdxDir
+condition|)
 name|delTree
 argument_list|(
 name|tmpIndexDir
@@ -3469,7 +3479,7 @@ block|}
 comment|/**    * If the index is stale by any chance, load index from a different dir in the data dir.    */
 DECL|method|modifyIndexProps
 specifier|private
-name|void
+name|boolean
 name|modifyIndexProps
 parameter_list|(
 name|String
@@ -3626,6 +3636,9 @@ name|os
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+literal|true
+return|;
 block|}
 DECL|field|confFileInfoCache
 specifier|private
