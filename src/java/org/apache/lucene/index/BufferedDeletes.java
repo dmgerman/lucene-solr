@@ -105,6 +105,10 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
+DECL|field|bytesUsed
+name|long
+name|bytesUsed
+decl_stmt|;
 comment|// Number of documents a delete term applies to.
 DECL|class|Num
 specifier|final
@@ -170,6 +174,29 @@ name|num
 expr_stmt|;
 block|}
 block|}
+DECL|method|size
+name|int
+name|size
+parameter_list|()
+block|{
+comment|// We use numTerms not terms.size() intentionally, so
+comment|// that deletes by the same term multiple times "count",
+comment|// ie if you ask to flush every 1000 deletes then even
+comment|// dup'd terms are counted towards that 1000
+return|return
+name|numTerms
+operator|+
+name|queries
+operator|.
+name|size
+argument_list|()
+operator|+
+name|docIDs
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 DECL|method|update
 name|void
 name|update
@@ -183,6 +210,12 @@ operator|+=
 name|in
 operator|.
 name|numTerms
+expr_stmt|;
+name|bytesUsed
+operator|+=
+name|in
+operator|.
+name|bytesUsed
 expr_stmt|;
 name|terms
 operator|.
@@ -213,28 +246,6 @@ argument_list|)
 expr_stmt|;
 name|in
 operator|.
-name|terms
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|in
-operator|.
-name|numTerms
-operator|=
-literal|0
-expr_stmt|;
-name|in
-operator|.
-name|queries
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|in
-operator|.
-name|docIDs
-operator|.
 name|clear
 argument_list|()
 expr_stmt|;
@@ -262,6 +273,23 @@ expr_stmt|;
 name|numTerms
 operator|=
 literal|0
+expr_stmt|;
+name|bytesUsed
+operator|=
+literal|0
+expr_stmt|;
+block|}
+DECL|method|addBytesUsed
+name|void
+name|addBytesUsed
+parameter_list|(
+name|long
+name|b
+parameter_list|)
+block|{
+name|bytesUsed
+operator|+=
+name|b
 expr_stmt|;
 block|}
 DECL|method|any
