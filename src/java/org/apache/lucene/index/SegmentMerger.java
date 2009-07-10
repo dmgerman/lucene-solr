@@ -1021,7 +1021,7 @@ name|segmentFieldInfos
 init|=
 name|segmentReader
 operator|.
-name|getFieldInfos
+name|fieldInfos
 argument_list|()
 decl_stmt|;
 name|int
@@ -1152,6 +1152,8 @@ name|FieldInfos
 operator|)
 name|sr
 operator|.
+name|core
+operator|.
 name|fieldInfos
 operator|.
 name|clone
@@ -1216,7 +1218,7 @@ name|readerFieldInfos
 init|=
 name|segmentReader
 operator|.
-name|getFieldInfos
+name|fieldInfos
 argument_list|()
 decl_stmt|;
 name|int
@@ -2256,7 +2258,8 @@ name|vectorsReader
 init|=
 name|matchingSegmentReader
 operator|.
-name|termVectorsReaderOrig
+name|getTermVectorsReaderOrig
+argument_list|()
 decl_stmt|;
 comment|// If the TV* files are an older format then they cannot read raw docs:
 if|if

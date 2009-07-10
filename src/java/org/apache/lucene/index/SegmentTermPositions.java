@@ -510,6 +510,8 @@ name|IndexInput
 operator|)
 name|parent
 operator|.
+name|core
+operator|.
 name|proxStream
 operator|.
 name|clone

@@ -741,6 +741,8 @@ name|i
 operator|<
 name|reader
 operator|.
+name|core
+operator|.
 name|fieldInfos
 operator|.
 name|size
@@ -754,6 +756,8 @@ name|FieldInfo
 name|fi
 init|=
 name|reader
+operator|.
+name|core
 operator|.
 name|fieldInfos
 operator|.
