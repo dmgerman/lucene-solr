@@ -274,7 +274,7 @@ literal|"on"
 argument_list|,
 literal|"clean"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|,
 literal|"commit"
 argument_list|,
