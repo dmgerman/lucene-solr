@@ -68,6 +68,9 @@ name|sis
 parameter_list|,
 name|IndexDeletionPolicy
 name|deletionPolicy
+parameter_list|,
+name|int
+name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
 name|IOException
@@ -81,6 +84,8 @@ argument_list|,
 name|deletionPolicy
 argument_list|,
 literal|true
+argument_list|,
+name|termInfosIndexDivisor
 argument_list|)
 expr_stmt|;
 block|}
@@ -106,6 +111,9 @@ name|oldNormsCache
 parameter_list|,
 name|boolean
 name|doClone
+parameter_list|,
+name|int
+name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
 name|IOException
@@ -125,6 +133,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|doClone
+argument_list|,
+name|termInfosIndexDivisor
 argument_list|)
 expr_stmt|;
 block|}
@@ -136,6 +146,9 @@ name|writer
 parameter_list|,
 name|SegmentInfos
 name|infos
+parameter_list|,
+name|int
+name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
 name|IOException
@@ -145,6 +158,8 @@ argument_list|(
 name|writer
 argument_list|,
 name|infos
+argument_list|,
+name|termInfosIndexDivisor
 argument_list|)
 expr_stmt|;
 block|}

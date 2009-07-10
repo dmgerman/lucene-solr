@@ -370,6 +370,13 @@ specifier|private
 name|int
 name|refCount
 decl_stmt|;
+DECL|field|DEFAULT_TERMS_INDEX_DIVISOR
+specifier|static
+name|int
+name|DEFAULT_TERMS_INDEX_DIVISOR
+init|=
+literal|1
+decl_stmt|;
 DECL|field|disableFakeNorms
 specifier|private
 name|boolean
@@ -577,6 +584,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|readOnly
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 expr_stmt|;
 block|}
@@ -673,6 +682,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|readOnly
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 expr_stmt|;
 block|}
@@ -724,6 +735,8 @@ argument_list|,
 literal|null
 argument_list|,
 literal|false
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
@@ -756,6 +769,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|readOnly
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
@@ -788,6 +803,8 @@ argument_list|,
 name|commit
 argument_list|,
 literal|false
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
@@ -823,6 +840,8 @@ argument_list|,
 name|commit
 argument_list|,
 name|readOnly
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
@@ -855,6 +874,8 @@ argument_list|,
 literal|null
 argument_list|,
 literal|false
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
@@ -890,6 +911,48 @@ argument_list|,
 literal|null
 argument_list|,
 name|readOnly
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, with a custom {@link    *  IndexDeletionPolicy}.  You should pass readOnly=true,    *  since it gives much better concurrent performance,    *  unless you intend to do write operations (delete    *  documents or change norms) with the reader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @param termInfosIndexDivisor Subsambles which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriter#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|Directory
+name|directory
+parameter_list|,
+name|IndexDeletionPolicy
+name|deletionPolicy
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|,
+name|int
+name|termInfosIndexDivisor
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|directory
+argument_list|,
+name|deletionPolicy
+argument_list|,
+literal|null
+argument_list|,
+name|readOnly
+argument_list|,
+name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
@@ -925,6 +988,8 @@ argument_list|,
 name|commit
 argument_list|,
 literal|false
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
@@ -963,6 +1028,51 @@ argument_list|,
 name|commit
 argument_list|,
 name|readOnly
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|)
+return|;
+block|}
+comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, using a specific commit and with    *  a custom {@link IndexDeletionPolicy}.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @param termInfosIndexDivisor Subsambles which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriter#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|IndexCommit
+name|commit
+parameter_list|,
+name|IndexDeletionPolicy
+name|deletionPolicy
+parameter_list|,
+name|boolean
+name|readOnly
+parameter_list|,
+name|int
+name|termInfosIndexDivisor
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|commit
+operator|.
+name|getDirectory
+argument_list|()
+argument_list|,
+name|deletionPolicy
+argument_list|,
+name|commit
+argument_list|,
+name|readOnly
+argument_list|,
+name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
@@ -987,6 +1097,9 @@ parameter_list|,
 specifier|final
 name|boolean
 name|readOnly
+parameter_list|,
+name|int
+name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -1005,6 +1118,8 @@ argument_list|,
 name|commit
 argument_list|,
 name|readOnly
+argument_list|,
+name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
@@ -1425,7 +1540,7 @@ literal|"This reader does not support this method."
 argument_list|)
 throw|;
 block|}
-comment|/**<p>For IndexReader implementations that use    * TermInfosReader to read terms, this sets the    * indexDivisor to subsample the number of indexed terms    * loaded into memory.  This has the same effect as {@link    * IndexWriter#setTermIndexInterval} except that setting    * must be done at indexing time while this setting can be    * set per reader.  When set to N, then one in every    * N*termIndexInterval terms in the index is loaded into    * memory.  By setting this to a value> 1 you can reduce    * memory usage, at the expense of higher latency when    * loading a TermInfo.  The default value is 1.</p>    *    *<b>NOTE:</b> you must call this before the term    * index is loaded.  If the index is already loaded,     * an IllegalStateException is thrown.    * @throws IllegalStateException if the term index has already been loaded into memory    */
+comment|/**<p>For IndexReader implementations that use    * TermInfosReader to read terms, this sets the    * indexDivisor to subsample the number of indexed terms    * loaded into memory.  This has the same effect as {@link    * IndexWriter#setTermIndexInterval} except that setting    * must be done at indexing time while this setting can be    * set per reader.  When set to N, then one in every    * N*termIndexInterval terms in the index is loaded into    * memory.  By setting this to a value> 1 you can reduce    * memory usage, at the expense of higher latency when    * loading a TermInfo.  The default value is 1.</p>    *    *<b>NOTE:</b> you must call this before the term    * index is loaded.  If the index is already loaded,     * an IllegalStateException is thrown.    * @throws IllegalStateException if the term index has already been loaded into memory    * @deprecated Please use {@link IndexReader#open(Directory, IndexDeletionPolicy, boolean, int)} to specify the required TermInfos index divisor instead.    */
 DECL|method|setTermInfosIndexDivisor
 specifier|public
 name|void
@@ -1441,11 +1556,11 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"This reader does not support this method."
+literal|"Please pass termInfosIndexDivisor up-front when opening IndexReader"
 argument_list|)
 throw|;
 block|}
-comment|/**<p>For IndexReader implementations that use    *  TermInfosReader to read terms, this returns the    *  current indexDivisor.    *  @see #setTermInfosIndexDivisor */
+comment|/**<p>For IndexReader implementations that use    *  TermInfosReader to read terms, this returns the    *  current indexDivisor.    *  @see #setTermInfosIndexDivisor    * @deprecated Please use {@link IndexReader#open(Directory, IndexDeletionPolicy, boolean, int)} to specify the required TermInfos index divisor instead.    */
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int
@@ -1456,7 +1571,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"This reader does not support this method."
+literal|"Please pass termInfosIndexDivisor up-front when opening IndexReader"
 argument_list|)
 throw|;
 block|}
