@@ -361,6 +361,12 @@ name|preserveOriginal
 init|=
 literal|0
 decl_stmt|;
+DECL|field|stemEnglishPossessive
+name|int
+name|stemEnglishPossessive
+init|=
+literal|0
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|init
@@ -456,6 +462,15 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|stemEnglishPossessive
+operator|=
+name|getInt
+argument_list|(
+literal|"stemEnglishPossessive"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|create
 specifier|public
@@ -487,6 +502,8 @@ argument_list|,
 name|preserveOriginal
 argument_list|,
 name|splitOnNumerics
+argument_list|,
+name|stemEnglishPossessive
 argument_list|,
 name|protectedWords
 argument_list|)

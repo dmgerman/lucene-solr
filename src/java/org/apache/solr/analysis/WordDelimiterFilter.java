@@ -330,13 +330,19 @@ specifier|final
 name|int
 name|splitOnNumerics
 decl_stmt|;
+comment|/**    * If 1, causes trailing "'s" to be removed for each subword. (Defaults to 1)    *<p/>    * "O'Neil's" => "O", "Neil"    */
+DECL|field|stemEnglishPossessive
+specifier|final
+name|int
+name|stemEnglishPossessive
+decl_stmt|;
 comment|/**    * If not null is the set of tokens to protect from being delimited    *    */
 DECL|field|protWords
 specifier|final
 name|CharArraySet
 name|protWords
 decl_stmt|;
-comment|/**    *    * @param in Token stream to be filtered.    * @param charTypeTable    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param preserveOriginal If 1, includes original words in subwords: "500-42" => "500" "42" "500-42"    * @param splitOnNumerics 1, causes "j2se" to be three tokens; "j" "2" "se"    * @param protWords If not null is the set of tokens to protect from being delimited    */
+comment|/**    *    * @param in Token stream to be filtered.    * @param charTypeTable    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param preserveOriginal If 1, includes original words in subwords: "500-42" => "500" "42" "500-42"    * @param splitOnNumerics 1, causes "j2se" to be three tokens; "j" "2" "se"    * @param stemEnglishPossessive If 1, causes trailing "'s" to be removed for each subword: "O'Neil's" => "O", "Neil"    * @param protWords If not null is the set of tokens to protect from being delimited    */
 DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
@@ -371,6 +377,9 @@ name|preserveOriginal
 parameter_list|,
 name|int
 name|splitOnNumerics
+parameter_list|,
+name|int
+name|stemEnglishPossessive
 parameter_list|,
 name|CharArraySet
 name|protWords
@@ -437,12 +446,88 @@ name|splitOnNumerics
 expr_stmt|;
 name|this
 operator|.
+name|stemEnglishPossessive
+operator|=
+name|stemEnglishPossessive
+expr_stmt|;
+name|this
+operator|.
 name|protWords
 operator|=
 name|protWords
 expr_stmt|;
 block|}
-comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, byte[], int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
+comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, byte[], int, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
+annotation|@
+name|Deprecated
+DECL|method|WordDelimiterFilter
+specifier|public
+name|WordDelimiterFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|byte
+index|[]
+name|charTypeTable
+parameter_list|,
+name|int
+name|generateWordParts
+parameter_list|,
+name|int
+name|generateNumberParts
+parameter_list|,
+name|int
+name|catenateWords
+parameter_list|,
+name|int
+name|catenateNumbers
+parameter_list|,
+name|int
+name|catenateAll
+parameter_list|,
+name|int
+name|splitOnCaseChange
+parameter_list|,
+name|int
+name|preserveOriginal
+parameter_list|,
+name|int
+name|splitOnNumerics
+parameter_list|,
+name|CharArraySet
+name|protWords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+name|charTypeTable
+argument_list|,
+name|generateWordParts
+argument_list|,
+name|generateNumberParts
+argument_list|,
+name|catenateWords
+argument_list|,
+name|catenateNumbers
+argument_list|,
+name|catenateAll
+argument_list|,
+name|splitOnCaseChange
+argument_list|,
+name|preserveOriginal
+argument_list|,
+literal|1
+argument_list|,
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, byte[], int, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|WordDelimiterFilter
@@ -504,7 +589,76 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param in Token stream to be filtered.    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot", "Power-Shot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param preserveOriginal If 1, includes original words in subwords: "500-42" => "500" "42" "500-42"    * @param splitOnNumerics 1, causes "j2se" to be three tokens; "j" "2" "se"    * @param protWords If not null is the set of tokens to protect from being delimited    */
+comment|/**    * @param in Token stream to be filtered.    * @param generateWordParts If 1, causes parts of words to be generated: "PowerShot", "Power-Shot" => "Power" "Shot"    * @param generateNumberParts If 1, causes number subwords to be generated: "500-42" => "500" "42"    * @param catenateWords  1, causes maximum runs of word parts to be catenated: "wi-fi" => "wifi"    * @param catenateNumbers If 1, causes maximum runs of number parts to be catenated: "500-42" => "50042"    * @param catenateAll If 1, causes all subword parts to be catenated: "wi-fi-4000" => "wifi4000"    * @param splitOnCaseChange 1, causes "PowerShot" to be two tokens; ("Power-Shot" remains two parts regards)    * @param preserveOriginal If 1, includes original words in subwords: "500-42" => "500" "42" "500-42"    * @param splitOnNumerics 1, causes "j2se" to be three tokens; "j" "2" "se"    * @param stemEnglishPossessive If 1, causes trailing "'s" to be removed for each subword: "O'Neil's" => "O", "Neil"    * @param protWords If not null is the set of tokens to protect from being delimited    */
+DECL|method|WordDelimiterFilter
+specifier|public
+name|WordDelimiterFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|int
+name|generateWordParts
+parameter_list|,
+name|int
+name|generateNumberParts
+parameter_list|,
+name|int
+name|catenateWords
+parameter_list|,
+name|int
+name|catenateNumbers
+parameter_list|,
+name|int
+name|catenateAll
+parameter_list|,
+name|int
+name|splitOnCaseChange
+parameter_list|,
+name|int
+name|preserveOriginal
+parameter_list|,
+name|int
+name|splitOnNumerics
+parameter_list|,
+name|int
+name|stemEnglishPossessive
+parameter_list|,
+name|CharArraySet
+name|protWords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+name|defaultWordDelimTable
+argument_list|,
+name|generateWordParts
+argument_list|,
+name|generateNumberParts
+argument_list|,
+name|catenateWords
+argument_list|,
+name|catenateNumbers
+argument_list|,
+name|catenateAll
+argument_list|,
+name|splitOnCaseChange
+argument_list|,
+name|preserveOriginal
+argument_list|,
+name|splitOnNumerics
+argument_list|,
+name|stemEnglishPossessive
+argument_list|,
+name|protWords
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
+annotation|@
+name|Deprecated
 DECL|method|WordDelimiterFilter
 specifier|public
 name|WordDelimiterFilter
@@ -562,11 +716,13 @@ name|preserveOriginal
 argument_list|,
 name|splitOnNumerics
 argument_list|,
+literal|1
+argument_list|,
 name|protWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**   * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
+comment|/**   * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|WordDelimiterFilter
@@ -620,7 +776,7 @@ name|preserveOriginal
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
+comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|WordDelimiterFilter
@@ -676,7 +832,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
+comment|/**    * Compatibility constructor    *     * @deprecated Use    *             {@link #WordDelimiterFilter(TokenStream, int, int, int, int, int, int, int, int, int, CharArraySet)}    *             instead.    */
 annotation|@
 name|Deprecated
 DECL|method|WordDelimiterFilter
@@ -1268,6 +1424,11 @@ comment|// the pattern to check for is
 comment|//   ALPHA "'" ("s"|"S") (SUBWORD_DELIM | END)
 if|if
 condition|(
+name|stemEnglishPossessive
+operator|!=
+literal|0
+operator|&&
+operator|(
 operator|(
 name|lastType
 operator|&
@@ -1275,6 +1436,7 @@ name|ALPHA
 operator|)
 operator|!=
 literal|0
+operator|)
 condition|)
 block|{
 if|if
