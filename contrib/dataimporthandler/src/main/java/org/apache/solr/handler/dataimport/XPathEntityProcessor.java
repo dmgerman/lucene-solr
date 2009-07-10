@@ -1436,6 +1436,24 @@ name|onError
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Skipping url : "
+operator|+
+name|s
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 name|wrapAndThrow
 argument_list|(
 name|DataImportHandlerException
