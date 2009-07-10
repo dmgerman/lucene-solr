@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This can be useful for users who has a DB field containing xml and wish to use a nested XPathEntityProcessor  *<p/>  * The datasouce may be configured as follows  *<p/>  *<datasource name="f1" type="FieldReaderDataSource" />  *<p/>  * The enity which uses this datasource must keep the url value as the varaible name url="field-name"  *<p/>  * The fieldname must be resolvable from VariableResolver  *<p/>  * This may be used with any EntityProcessor which uses a DataSource<Reader> eg:XPathEntityProcessor  *<p/>  * Supports String, BLOB, CLOB data types and there is an extra field (in the entity) 'encoding' for BLOB types  *  * @version $Id$  * @since 1.4  */
+comment|/**  * This can be useful for users who have a DB field containing xml and wish to use a nested XPathEntityProcessor  *<p/>  * The datasouce may be configured as follows  *<p/>  *<datasource name="f1" type="FieldReaderDataSource" />  *<p/>  * The enity which uses this datasource must keep the url value as the varaible name url="field-name"  *<p/>  * The fieldname must be resolvable from VariableResolver  *<p/>  * This may be used with any EntityProcessor which uses a DataSource<Reader> eg:XPathEntityProcessor  *<p/>  * Supports String, BLOB, CLOB data types and there is an extra field (in the entity) 'encoding' for BLOB types  *  * @version $Id$  * @since 1.4  */
 end_comment
 
 begin_class
