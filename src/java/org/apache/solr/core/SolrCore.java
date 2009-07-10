@@ -3504,10 +3504,16 @@ name|handlerName
 argument_list|)
 return|;
 block|}
-DECL|method|getRequestHandler
+comment|/**    * Returns an unmodifieable Map containing the registered handlers of the specified type.    */
+DECL|method|getRequestHandlers
 specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
 name|SolrRequestHandler
-name|getRequestHandler
+argument_list|>
+name|getRequestHandlers
 parameter_list|(
 name|Class
 name|clazz
@@ -3516,7 +3522,7 @@ block|{
 return|return
 name|reqHandlers
 operator|.
-name|get
+name|getAll
 argument_list|(
 name|clazz
 argument_list|)
