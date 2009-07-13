@@ -280,6 +280,14 @@ name|EXPLAIN
 init|=
 literal|9
 decl_stmt|;
+DECL|field|ANALYZER
+specifier|final
+specifier|static
+name|int
+name|ANALYZER
+init|=
+literal|10
+decl_stmt|;
 DECL|field|historyFile
 name|String
 name|historyFile
@@ -433,6 +441,17 @@ argument_list|,
 name|EXPLAIN
 argument_list|,
 literal|"Explanation that describes how the document scored against query. Example: explain foo"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|addCommand
+argument_list|(
+literal|"analyzer"
+argument_list|,
+name|ANALYZER
+argument_list|,
+literal|"Specifies the Analyzer class to be used. Example: analyzer org.apache.lucene.analysis.SimpleAnalyzer"
 argument_list|,
 literal|1
 argument_list|)
@@ -1047,6 +1066,20 @@ argument_list|,
 literal|false
 argument_list|,
 name|cr
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|ANALYZER
+case|:
+name|luceneMethods
+operator|.
+name|analyzer
+argument_list|(
+name|words
+index|[
+literal|1
+index|]
 argument_list|)
 expr_stmt|;
 break|break;
