@@ -193,7 +193,7 @@ operator|=
 name|replaceInvalidAcronym
 expr_stmt|;
 block|}
-comment|/** An array containing some common English words that are usually not   useful for searching. */
+comment|/** An array containing some common English words that are usually not   useful for searching.    @deprecated Use {@link #STOP_WORDS_SET} instead */
 DECL|field|STOP_WORDS
 specifier|public
 specifier|static
@@ -206,7 +206,20 @@ name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS
 decl_stmt|;
-comment|/** Builds an analyzer with the default stop words ({@link    * #STOP_WORDS}).    * @deprecated Use {@link #StandardAnalyzer(Version)},    * instead. */
+comment|/** An unmodifiable set containing some common English words that are usually not   useful for searching. */
+DECL|field|STOP_WORDS_SET
+specifier|public
+specifier|static
+specifier|final
+name|Set
+comment|/*<String>*/
+name|STOP_WORDS_SET
+init|=
+name|StopAnalyzer
+operator|.
+name|ENGLISH_STOP_WORDS_SET
+decl_stmt|;
+comment|/** Builds an analyzer with the default stop words ({@link    * #STOP_WORDS_SET}).    * @deprecated Use {@link #StandardAnalyzer(Version)} instead. */
 DECL|method|StandardAnalyzer
 specifier|public
 name|StandardAnalyzer
@@ -218,7 +231,7 @@ name|Version
 operator|.
 name|LUCENE_24
 argument_list|,
-name|STOP_WORDS
+name|STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 block|}
@@ -235,7 +248,7 @@ name|this
 argument_list|(
 name|matchVersion
 argument_list|,
-name|STOP_WORDS
+name|STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 block|}
@@ -280,7 +293,7 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the given stop words.    * @deprecated Use {@link #StandardAnalyzer(Version,    * String[])} instead */
+comment|/** Builds an analyzer with the given stop words.    * @deprecated Use {@link #StandardAnalyzer(Version, Set)} instead */
 DECL|method|StandardAnalyzer
 specifier|public
 name|StandardAnalyzer
@@ -296,47 +309,12 @@ name|Version
 operator|.
 name|LUCENE_24
 argument_list|,
-name|stopWords
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Builds an analyzer with the given stop words.    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopWords Array of stop words */
-DECL|method|StandardAnalyzer
-specifier|public
-name|StandardAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
-name|String
-index|[]
-name|stopWords
-parameter_list|)
-block|{
-if|if
-condition|(
-name|stopWords
-operator|==
-literal|null
-condition|)
-block|{
-name|stopWords
-operator|=
-name|STOP_WORDS
-expr_stmt|;
-block|}
-name|stopSet
-operator|=
 name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
 name|stopWords
 argument_list|)
-expr_stmt|;
-name|init
-argument_list|(
-name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
@@ -455,7 +433,7 @@ name|Version
 operator|.
 name|LUCENE_24
 argument_list|,
-name|STOP_WORDS
+name|STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 name|this
@@ -463,6 +441,10 @@ operator|.
 name|replaceInvalidAcronym
 operator|=
 name|replaceInvalidAcronym
+expr_stmt|;
+name|useDefaultStopPositionIncrements
+operator|=
+literal|true
 expr_stmt|;
 block|}
 comment|/**    *  @param stopwords The stopwords to use    * @param replaceInvalidAcronym Set to true if this analyzer should replace mischaracterized acronyms in the StandardTokenizer    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    *    * @deprecated Remove in 3.X and make true the only valid value    */
@@ -546,7 +528,12 @@ name|Version
 operator|.
 name|LUCENE_24
 argument_list|,
+name|StopFilter
+operator|.
+name|makeStopSet
+argument_list|(
 name|stopwords
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|this

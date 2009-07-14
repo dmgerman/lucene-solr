@@ -926,14 +926,9 @@ comment|//    Set stopWords = null;
 name|Set
 name|stopWords
 init|=
-name|StopFilter
-operator|.
-name|makeStopSet
-argument_list|(
 name|StopAnalyzer
 operator|.
-name|ENGLISH_STOP_WORDS
-argument_list|)
+name|ENGLISH_STOP_WORDS_SET
 decl_stmt|;
 name|Analyzer
 index|[]

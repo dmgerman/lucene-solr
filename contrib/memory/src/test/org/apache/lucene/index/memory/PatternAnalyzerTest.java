@@ -881,14 +881,9 @@ literal|0
 condition|)
 name|stopWords
 operator|=
-name|StopFilter
-operator|.
-name|makeStopSet
-argument_list|(
 name|StopAnalyzer
 operator|.
-name|ENGLISH_STOP_WORDS
-argument_list|)
+name|ENGLISH_STOP_WORDS_SET
 expr_stmt|;
 for|for
 control|(

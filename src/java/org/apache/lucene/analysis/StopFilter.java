@@ -176,7 +176,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a token stream filtering the given input.    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param input input TokenStream    * @param stopWords array of stop words    */
+comment|/**    * Construct a token stream filtering the given input.    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param input input TokenStream    * @param stopWords array of stop words    * @deprecated Use {@link #StopFilter(boolean, TokenStream, Set)} instead.    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -232,7 +232,7 @@ name|ignoreCase
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param in input TokenStream    * @param stopWords array of stop words    * @param ignoreCase true if case is ignored    */
+comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the array of words.    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param in input TokenStream    * @param stopWords array of stop words    * @param ignoreCase true if case is ignored    * @deprecated Use {@link #StopFilter(boolean, TokenStream, Set, boolean)} instead.    */
 DECL|method|StopFilter
 specifier|public
 name|StopFilter

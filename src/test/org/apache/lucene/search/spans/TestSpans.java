@@ -310,6 +310,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
 begin_class
 DECL|class|TestSpans
 specifier|public
@@ -3061,10 +3071,10 @@ operator|new
 name|StandardAnalyzer
 argument_list|(
 operator|new
-name|String
-index|[
+name|HashSet
+argument_list|(
 literal|0
-index|]
+argument_list|)
 argument_list|)
 argument_list|,
 name|IndexWriter

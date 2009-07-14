@@ -230,8 +230,22 @@ specifier|static
 specifier|final
 name|Set
 name|EXTENDED_ENGLISH_STOP_WORDS
-init|=
-name|makeStopSet
+decl_stmt|;
+static|static
+block|{
+name|EXTENDED_ENGLISH_STOP_WORDS
+operator|=
+operator|new
+name|HashSet
+argument_list|()
+expr_stmt|;
+name|EXTENDED_ENGLISH_STOP_WORDS
+operator|.
+name|addAll
+argument_list|(
+name|Arrays
+operator|.
+name|asList
 argument_list|(
 operator|new
 name|String
@@ -786,7 +800,9 @@ block|,
 literal|"yourselves"
 block|}
 argument_list|)
-decl_stmt|;
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * A lower-casing word analyzer with English stop words (can be shared    * freely across threads without harm); global per class loader.    */
 DECL|field|DEFAULT_ANALYZER
 specifier|public
@@ -802,12 +818,9 @@ name|NON_WORD_PATTERN
 argument_list|,
 literal|true
 argument_list|,
-name|makeStopSet
-argument_list|(
 name|StopAnalyzer
 operator|.
-name|ENGLISH_STOP_WORDS
-argument_list|)
+name|ENGLISH_STOP_WORDS_SET
 argument_list|)
 decl_stmt|;
 comment|/**    * A lower-casing word analyzer with<b>extended</b> English stop words    * (can be shared freely across threads without harm); global per class    * loader. The stop words are borrowed from    * http://thomas.loc.gov/home/stopwords.html, see    * http://thomas.loc.gov/home/all.about.inquery.html    */
@@ -1040,6 +1053,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|stream
 argument_list|,
 name|stopWords
@@ -1584,8 +1599,7 @@ specifier|static
 name|Set
 name|makeStopSet
 parameter_list|(
-name|String
-index|[]
+name|Set
 name|stopWords
 parameter_list|)
 block|{
@@ -1597,7 +1611,8 @@ name|HashSet
 argument_list|(
 name|stopWords
 operator|.
-name|length
+name|size
+argument_list|()
 operator|*
 literal|2
 argument_list|,
@@ -1608,12 +1623,7 @@ name|stops
 operator|.
 name|addAll
 argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
 name|stopWords
-argument_list|)
 argument_list|)
 expr_stmt|;
 return|return

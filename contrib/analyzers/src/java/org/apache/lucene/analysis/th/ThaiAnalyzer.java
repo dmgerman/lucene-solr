@@ -174,7 +174,7 @@ name|ts
 argument_list|,
 name|StopAnalyzer
 operator|.
-name|ENGLISH_STOP_WORDS
+name|ENGLISH_STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 return|return
