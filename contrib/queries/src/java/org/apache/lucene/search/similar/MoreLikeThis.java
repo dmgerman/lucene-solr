@@ -612,6 +612,42 @@ specifier|final
 name|IndexReader
 name|ir
 decl_stmt|;
+comment|/**      * Boost factor to use when boosting the terms      */
+DECL|field|boostFactor
+specifier|private
+name|float
+name|boostFactor
+init|=
+literal|1
+decl_stmt|;
+comment|/**      * Returns the boost factor used when boosting terms      * @return the boost factor used when boosting terms      */
+DECL|method|getBoostFactor
+specifier|public
+name|float
+name|getBoostFactor
+parameter_list|()
+block|{
+return|return
+name|boostFactor
+return|;
+block|}
+comment|/**      * Sets the boost factor to use when boosting terms      * @param boostFactor      */
+DECL|method|setBoostFactor
+specifier|public
+name|void
+name|setBoostFactor
+parameter_list|(
+name|float
+name|boostFactor
+parameter_list|)
+block|{
+name|this
+operator|.
+name|boostFactor
+operator|=
+name|boostFactor
+expr_stmt|;
+block|}
 comment|/**      * Constructor requiring an IndexReader.      */
 DECL|method|MoreLikeThis
 specifier|public
@@ -1301,6 +1337,8 @@ name|tq
 operator|.
 name|setBoost
 argument_list|(
+name|boostFactor
+operator|*
 name|myScore
 operator|/
 name|bestScore
