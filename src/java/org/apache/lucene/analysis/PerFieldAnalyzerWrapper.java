@@ -97,6 +97,13 @@ name|defaultAnalyzer
 operator|=
 name|defaultAnalyzer
 expr_stmt|;
+name|setOverridesTokenStreamMethod
+argument_list|(
+name|PerFieldAnalyzerWrapper
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Defines an analyzer to use for the specified field.    *    * @param fieldName field name requiring a non-default analyzer    * @param analyzer non-default analyzer to use for field    */
 DECL|method|addAnalyzer
@@ -183,6 +190,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|overridesTokenStreamMethod
+condition|)
+block|{
+comment|// LUCENE-1678: force fallback to tokenStream() if we
+comment|// have been subclassed and that subclass overrides
+comment|// tokenStream but not reusableTokenStream
+return|return
+name|tokenStream
+argument_list|(
+name|fieldName
+argument_list|,
+name|reader
+argument_list|)
+return|;
+block|}
 name|Analyzer
 name|analyzer
 init|=

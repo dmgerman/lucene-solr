@@ -48,6 +48,19 @@ name|KeywordAnalyzer
 extends|extends
 name|Analyzer
 block|{
+DECL|method|KeywordAnalyzer
+specifier|public
+name|KeywordAnalyzer
+parameter_list|()
+block|{
+name|setOverridesTokenStreamMethod
+argument_list|(
+name|KeywordAnalyzer
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -84,6 +97,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|overridesTokenStreamMethod
+condition|)
+block|{
+comment|// LUCENE-1678: force fallback to tokenStream() if we
+comment|// have been subclassed and that subclass overrides
+comment|// tokenStream but not reusableTokenStream
+return|return
+name|tokenStream
+argument_list|(
+name|fieldName
+argument_list|,
+name|reader
+argument_list|)
+return|;
+block|}
 name|Tokenizer
 name|tokenizer
 init|=

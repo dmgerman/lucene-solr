@@ -103,11 +103,6 @@ specifier|private
 name|Set
 name|stopSet
 decl_stmt|;
-DECL|field|matchVersion
-specifier|private
-name|Version
-name|matchVersion
-decl_stmt|;
 comment|/**    * Specifies whether deprecated acronyms should be replaced with HOST type.    * This is false by default to support backward compatibility.    *     * @deprecated this should be removed in the next release (3.0).    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    */
 DECL|field|replaceInvalidAcronym
 specifier|private
@@ -601,11 +596,12 @@ name|Version
 name|matchVersion
 parameter_list|)
 block|{
-name|this
+name|setOverridesTokenStreamMethod
+argument_list|(
+name|StandardAnalyzer
 operator|.
-name|matchVersion
-operator|=
-name|matchVersion
+name|class
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -789,6 +785,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|overridesTokenStreamMethod
+condition|)
+block|{
+comment|// LUCENE-1678: force fallback to tokenStream() if we
+comment|// have been subclassed and that subclass overrides
+comment|// tokenStream but not reusableTokenStream
+return|return
+name|tokenStream
+argument_list|(
+name|fieldName
+argument_list|,
+name|reader
+argument_list|)
+return|;
+block|}
 name|SavedStreams
 name|streams
 init|=
