@@ -127,7 +127,7 @@ name|runData
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * SortFields: field:type,field:type[,noscore][,nomaxscore]    *    * If noscore is present, then we turn off score tracking    * in {@link org.apache.lucene.search.TopFieldCollector}.    * If nomaxscore is present, then we turn off maxScore tracking    * in {@link org.apache.lucene.search.TopFieldCollector}.    *     * name,byline:int,subject:auto    *     */
+comment|/**    * SortFields: field:type,field:type[,noscore][,nomaxscore]    *    * If noscore is present, then we turn off score tracking    * in {@link org.apache.lucene.search.TopFieldCollector}.    * If nomaxscore is present, then we turn off maxScore tracking    * in {@link org.apache.lucene.search.TopFieldCollector}.    *     * name:string,page:int,subject:string    *     */
 DECL|method|setParams
 specifier|public
 name|void
@@ -307,14 +307,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|typeString
-operator|=
-literal|"auto"
-expr_stmt|;
-name|fieldName
-operator|=
-name|field
-expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"You must specify the sort type ie page:int,subject:string"
+argument_list|)
+throw|;
 block|}
 name|int
 name|type
