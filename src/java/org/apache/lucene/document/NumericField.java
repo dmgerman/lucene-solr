@@ -62,6 +62,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|NumericRangeQuery
@@ -127,7 +141,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**  * This class provides a {@link Field} for indexing numeric values  * that can be used by {@link NumericRangeQuery}/{@link NumericRangeFilter}.  * For more information, how to use this class and its configuration properties  * (<a href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>)  * read the docs of {@link NumericRangeQuery}.  *  *<p>A numeric value is indexed as multiple string encoded terms, each reduced  * by zeroing bits from the right. Each value is also prefixed (in the first char) by the  *<code>shift</code> value (number of bits removed) used during encoding.  * The number of bits removed from the right for each trie entry is called  *<code>precisionStep</code> in this API.  *  *<p>The usage pattern is:  *<pre>  *  document.add(  *   new NumericField(name, precisionStep, Field.Store.XXX, true).set<em>???</em>Value(value)  *  );  *</pre>  *<p>For optimal performance, re-use the NumericField and {@link Document} instance  * for more than one document:  *<pre>  *<em>// init</em>  *  NumericField field = new NumericField(name, precisionStep, Field.Store.XXX, true);  *  Document document = new Document();  *  document.add(field);  *<em>// use this code to index many documents:</em>  *  field.set<em>???</em>Value(value1)  *  writer.addDocument(document);  *  field.set<em>???</em>Value(value2)  *  writer.addDocument(document);  *  ...  *</pre>  *  *<p>More advanced users can instead use {@link NumericTokenStream} directly, when  * indexing numbers. This class is a wrapper around this token stream type for easier,  * more intuitive usage.  *  *<p><b>Please note:</b> This class is only used during indexing. You can also create  * numeric stored fields with it, but when retrieving the stored field value  * from a {@link Document} instance after search, you will get a conventional  * {@link Fieldable} instance where the numeric values are returned as {@link String}s  * (according to<code>toString(value)</code> of the used data type).  *  *<p>Values indexed by this field can be loaded into the {@link FieldCache}  * and can be sorted (use {@link SortField}{@code .TYPE} to specify the correct  * type; {@link SortField#AUTO} does not work with this type of field)  *  *<p><font color="red"><b>NOTE:</b> This API is experimental and  * might change in incompatible ways in the next release.</font>  *  * @since 2.9  */
+comment|/**  * This class provides a {@link Field} for indexing numeric values  * that can be used by {@link NumericRangeQuery}/{@link NumericRangeFilter}.  * For more information, how to use this class and its configuration properties  * (<a href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>)  * read the docs of {@link NumericRangeQuery}.  *  *<p>A numeric value is indexed as multiple string encoded terms, each reduced  * by zeroing bits from the right. Each value is also prefixed (in the first char) by the  *<code>shift</code> value (number of bits removed) used during encoding.  * The number of bits removed from the right for each trie entry is called  *<code>precisionStep</code> in this API.  *  *<p>The usage pattern is:  *<pre>  *  document.add(  *   new NumericField(name, precisionStep, Field.Store.XXX, true).set<em>???</em>Value(value)  *  );  *</pre>  *<p>For optimal performance, re-use the NumericField and {@link Document} instance  * for more than one document:  *<pre>  *<em>// init</em>  *  NumericField field = new NumericField(name, precisionStep, Field.Store.XXX, true);  *  Document document = new Document();  *  document.add(field);  *<em>// use this code to index many documents:</em>  *  field.set<em>???</em>Value(value1)  *  writer.addDocument(document);  *  field.set<em>???</em>Value(value2)  *  writer.addDocument(document);  *  ...  *</pre>  *  *<p>More advanced users can instead use {@link NumericTokenStream} directly, when  * indexing numbers. This class is a wrapper around this token stream type for easier,  * more intuitive usage.  *  *<p><b>Please note:</b> This class is only used during indexing. You can also create  * numeric stored fields with it, but when retrieving the stored field value  * from a {@link Document} instance after search, you will get a conventional  * {@link Fieldable} instance where the numeric values are returned as {@link String}s  * (according to<code>toString(value)</code> of the used data type).  *  *<p>Values indexed by this field can be loaded into the {@link FieldCache}  * and can be sorted (use {@link SortField}{@code .TYPE} to specify the correct  * type; {@link SortField#AUTO} does not work with this type of field).  * Values solely used for sorting can be indexed using a<code>precisionStep</code>  * of {@link Integer#MAX_VALUE} (at least&ge;64), because this step only produces  * one value token with highest precision.  *  *<p><font color="red"><b>NOTE:</b> This API is experimental and  * might change in incompatible ways in the next release.</font>  *  * @since 2.9  */
 end_comment
 
 begin_class
@@ -145,7 +159,65 @@ specifier|final
 name|NumericTokenStream
 name|tokenStream
 decl_stmt|;
-comment|/**    * Creates a field for numeric values. The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * This constrcutor creates an indexed, but not stored field.    * @param name the field name    * @param precisionStep the used<a href="../search/NumericRangeQuery.html#precisionStepDesc">precision step</a>    */
+comment|/**    * Creates a field for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (4). The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * This constrcutor creates an indexed, but not stored field.    * @param name the field name    */
+DECL|method|NumericField
+specifier|public
+name|NumericField
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|name
+argument_list|,
+name|NumericUtils
+operator|.
+name|PRECISION_STEP_DEFAULT
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a field for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (4). The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * @param name the field name    * @param store if the field should be stored in plain text form    *  (according to<code>toString(value)</code> of the used data type)    * @param index if the field should be indexed using {@link NumericTokenStream}    */
+DECL|method|NumericField
+specifier|public
+name|NumericField
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|Field
+operator|.
+name|Store
+name|store
+parameter_list|,
+name|boolean
+name|index
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|name
+argument_list|,
+name|NumericUtils
+operator|.
+name|PRECISION_STEP_DEFAULT
+argument_list|,
+name|store
+argument_list|,
+name|index
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a field for numeric values with the specified    *<code>precisionStep</code>. The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * This constrcutor creates an indexed, but not stored field.    * @param name the field name    * @param precisionStep the used<a href="../search/NumericRangeQuery.html#precisionStepDesc">precision step</a>    */
 DECL|method|NumericField
 specifier|public
 name|NumericField
@@ -173,7 +245,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a field for numeric values. The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * @param name the field name    * @param precisionStep the used<a href="../search/NumericRangeQuery.html#precisionStepDesc">precision step</a>    * @param store if the field should be stored in plain text form    *  (according to<code>toString(value)</code> of the used data type)    * @param index if the field should be indexed using {@link NumericTokenStream}    */
+comment|/**    * Creates a field for numeric values with the specified    *<code>precisionStep</code>. The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * @param name the field name    * @param precisionStep the used<a href="../search/NumericRangeQuery.html#precisionStepDesc">precision step</a>    * @param store if the field should be stored in plain text form    *  (according to<code>toString(value)</code> of the used data type)    * @param index if the field should be indexed using {@link NumericTokenStream}    */
 DECL|method|NumericField
 specifier|public
 name|NumericField

@@ -42,6 +42,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|NumericField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|NumericRangeQuery
@@ -87,7 +105,17 @@ name|NumericUtils
 parameter_list|()
 block|{}
 comment|// no instance!
-comment|/**    * Longs are stored at lower precision by shifting off lower bits. The shift count is    * stored as<code>SHIFT_START_LONG+shift</code> in the first character    */
+comment|/**    * The default precision step used by {@link NumericField}, {@link NumericTokenStream},    * {@link NumericRangeQuery}, and {@link NumericRangeFilter} as default    */
+DECL|field|PRECISION_STEP_DEFAULT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|PRECISION_STEP_DEFAULT
+init|=
+literal|4
+decl_stmt|;
+comment|/**    * Expert: Longs are stored at lower precision by shifting off lower bits. The shift count is    * stored as<code>SHIFT_START_LONG+shift</code> in the first character    */
 DECL|field|SHIFT_START_LONG
 specifier|public
 specifier|static
@@ -101,12 +129,12 @@ operator|)
 literal|0x20
 decl_stmt|;
 comment|/**    * Expert: The maximum term length (used for<code>char[]</code> buffer size)    * for encoding<code>long</code> values.    * @see #longToPrefixCoded(long,int,char[])    */
-DECL|field|LONG_BUF_SIZE
+DECL|field|BUF_SIZE_LONG
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|LONG_BUF_SIZE
+name|BUF_SIZE_LONG
 init|=
 literal|63
 operator|/
@@ -114,7 +142,7 @@ literal|7
 operator|+
 literal|2
 decl_stmt|;
-comment|/**    * Integers are stored at lower precision by shifting off lower bits. The shift count is    * stored as<code>SHIFT_START_INT+shift</code> in the first character    */
+comment|/**    * Expert: Integers are stored at lower precision by shifting off lower bits. The shift count is    * stored as<code>SHIFT_START_INT+shift</code> in the first character    */
 DECL|field|SHIFT_START_INT
 specifier|public
 specifier|static
@@ -128,12 +156,12 @@ operator|)
 literal|0x60
 decl_stmt|;
 comment|/**    * Expert: The maximum term length (used for<code>char[]</code> buffer size)    * for encoding<code>int</code> values.    * @see #intToPrefixCoded(int,int,char[])    */
-DECL|field|INT_BUF_SIZE
+DECL|field|BUF_SIZE_INT
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|INT_BUF_SIZE
+name|BUF_SIZE_INT
 init|=
 literal|31
 operator|/
@@ -141,7 +169,7 @@ literal|7
 operator|+
 literal|2
 decl_stmt|;
-comment|/**    * Expert: Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param buffer that will contain the encoded chars, must be at least of {@link #LONG_BUF_SIZE}    * length    * @return number of chars written to buffer    */
+comment|/**    * Expert: Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param buffer that will contain the encoded chars, must be at least of {@link #BUF_SIZE_LONG}    * length    * @return number of chars written to buffer    */
 DECL|method|longToPrefixCoded
 specifier|public
 specifier|static
@@ -281,7 +309,7 @@ init|=
 operator|new
 name|char
 index|[
-name|LONG_BUF_SIZE
+name|BUF_SIZE_LONG
 index|]
 decl_stmt|;
 specifier|final
@@ -330,7 +358,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param buffer that will contain the encoded chars, must be at least of {@link #INT_BUF_SIZE}    * length    * @return number of chars written to buffer    */
+comment|/**    * Expert: Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param buffer that will contain the encoded chars, must be at least of {@link #BUF_SIZE_INT}    * length    * @return number of chars written to buffer    */
 DECL|method|intToPrefixCoded
 specifier|public
 specifier|static
@@ -470,7 +498,7 @@ init|=
 operator|new
 name|char
 index|[
-name|INT_BUF_SIZE
+name|BUF_SIZE_INT
 index|]
 decl_stmt|;
 specifier|final
@@ -939,23 +967,6 @@ name|long
 name|maxBound
 parameter_list|)
 block|{
-if|if
-condition|(
-name|precisionStep
-argument_list|<
-literal|1
-operator|||
-name|precisionStep
-argument_list|>
-literal|64
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"precisionStep may only be 1..64"
-argument_list|)
-throw|;
 name|splitRange
 argument_list|(
 name|builder
@@ -994,23 +1005,6 @@ name|int
 name|maxBound
 parameter_list|)
 block|{
-if|if
-condition|(
-name|precisionStep
-argument_list|<
-literal|1
-operator|||
-name|precisionStep
-argument_list|>
-literal|32
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"precisionStep may only be 1..32"
-argument_list|)
-throw|;
 name|splitRange
 argument_list|(
 name|builder
@@ -1057,6 +1051,19 @@ name|long
 name|maxBound
 parameter_list|)
 block|{
+if|if
+condition|(
+name|precisionStep
+operator|<
+literal|1
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"precisionStep must be>=1"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|minBound

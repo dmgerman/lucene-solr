@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream} for indexing numeric values  * that can be used by {@link NumericRangeQuery}/{@link NumericRangeFilter}.  * For more information, how to use this class and its configuration properties  * (<a href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>)  * read the docs of {@link NumericRangeQuery}.  *  *<p><b>For easy usage during indexing, there is a {@link NumericField}, that uses the optimal  * indexing settings (no norms, no term freqs). {@link NumericField} is a wrapper around this  * expert token stream.</b>  *  *<p>This stream is not intended to be used in analyzers, its more for iterating the  * different precisions during indexing a specific numeric value.  * A numeric value is indexed as multiple string encoded terms, each reduced  * by zeroing bits from the right. Each value is also prefixed (in the first char) by the  *<code>shift</code> value (number of bits removed) used during encoding.  * The number of bits removed from the right for each trie entry is called  *<code>precisionStep</code> in this API.  *  *<p>The usage pattern is (it is recommened to switch off norms and term frequencies  * for numeric fields; it does not make sense to have them):  *<pre>  *  Field field = new Field(name, new NumericTokenStream(precisionStep).set<em>???</em>Value(value));  *  field.setOmitNorms(true);  *  field.setOmitTermFreqAndPositions(true);  *  document.add(field);  *</pre>  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *<pre>  *<em>// init</em>  *  NumericTokenStream stream = new NumericTokenStream(precisionStep);  *  Field field = new Field(name, stream);  *  field.setOmitNorms(true);  *  field.setOmitTermFreqAndPositions(true);  *  Document document = new Document();  *  document.add(field);  *<em>// use this code to index many documents:</em>  *  stream.set<em>???</em>Value(value1)  *  writer.addDocument(document);  *  stream.set<em>???</em>Value(value2)  *  writer.addDocument(document);  *  ...  *</pre>  *  *<p><em>Please note:</em> Token streams are read, when the document is added to index.  * If you index more than one numeric field, use a separate instance for each.  *  *<p>Values indexed by this stream can be loaded into the {@link FieldCache}  * and can be sorted (use {@link SortField}{@code .TYPE} to specify the correct  * type; {@link SortField#AUTO} does not work with this type of field)  *  *<p><font color="red"><b>NOTE:</b> This API is experimental and  * might change in incompatible ways in the next release.</font>  *  * @since 2.9  */
+comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream} for indexing numeric values  * that can be used by {@link NumericRangeQuery}/{@link NumericRangeFilter}.  * For more information, how to use this class and its configuration properties  * (<a href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>)  * read the docs of {@link NumericRangeQuery}.  *  *<p><b>For easy usage during indexing, there is a {@link NumericField}, that uses the optimal  * indexing settings (no norms, no term freqs). {@link NumericField} is a wrapper around this  * expert token stream.</b>  *  *<p>This stream is not intended to be used in analyzers, its more for iterating the  * different precisions during indexing a specific numeric value.  * A numeric value is indexed as multiple string encoded terms, each reduced  * by zeroing bits from the right. Each value is also prefixed (in the first char) by the  *<code>shift</code> value (number of bits removed) used during encoding.  * The number of bits removed from the right for each trie entry is called  *<code>precisionStep</code> in this API.  *  *<p>The usage pattern is (it is recommened to switch off norms and term frequencies  * for numeric fields; it does not make sense to have them):  *<pre>  *  Field field = new Field(name, new NumericTokenStream(precisionStep).set<em>???</em>Value(value));  *  field.setOmitNorms(true);  *  field.setOmitTermFreqAndPositions(true);  *  document.add(field);  *</pre>  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *<pre>  *<em>// init</em>  *  NumericTokenStream stream = new NumericTokenStream(precisionStep);  *  Field field = new Field(name, stream);  *  field.setOmitNorms(true);  *  field.setOmitTermFreqAndPositions(true);  *  Document document = new Document();  *  document.add(field);  *<em>// use this code to index many documents:</em>  *  stream.set<em>???</em>Value(value1)  *  writer.addDocument(document);  *  stream.set<em>???</em>Value(value2)  *  writer.addDocument(document);  *  ...  *</pre>  *  *<p><em>Please note:</em> Token streams are read, when the document is added to index.  * If you index more than one numeric field, use a separate instance for each.  *  *<p>Values indexed by this stream can be loaded into the {@link FieldCache}  * and can be sorted (use {@link SortField}{@code .TYPE} to specify the correct  * type; {@link SortField#AUTO} does not work with this type of field).  * Values solely used for sorting can be indexed using a<code>precisionStep</code>  * of {@link Integer#MAX_VALUE} (at least&ge;64), because this step only produces  * one value token with highest precision.  *  *<p><font color="red"><b>NOTE:</b> This API is experimental and  * might change in incompatible ways in the next release.</font>  *  * @since 2.9  */
 end_comment
 
 begin_class
@@ -181,47 +181,41 @@ name|NumericTokenStream
 extends|extends
 name|TokenStream
 block|{
-comment|/** The full precision 64 bit token gets this token type assigned. */
-DECL|field|TOKEN_TYPE_FULL_PREC_64
+comment|/** The full precision token gets this token type assigned. */
+DECL|field|TOKEN_TYPE_FULL_PREC
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|TOKEN_TYPE_FULL_PREC_64
+name|TOKEN_TYPE_FULL_PREC
 init|=
-literal|"fullPrecNumeric64"
+literal|"fullPrecNumeric"
 decl_stmt|;
-comment|/** The lower precision 64 bit tokens gets this token type assigned. */
-DECL|field|TOKEN_TYPE_LOWER_PREC_64
+comment|/** The lower precision tokens gets this token type assigned. */
+DECL|field|TOKEN_TYPE_LOWER_PREC
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|TOKEN_TYPE_LOWER_PREC_64
+name|TOKEN_TYPE_LOWER_PREC
 init|=
-literal|"lowerPrecNumeric64"
+literal|"lowerPrecNumeric"
 decl_stmt|;
-comment|/** The full precision 32 bit token gets this token type assigned. */
-DECL|field|TOKEN_TYPE_FULL_PREC_32
+comment|/**    * Creates a token stream for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (4). The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
+DECL|method|NumericTokenStream
 specifier|public
-specifier|static
-specifier|final
-name|String
-name|TOKEN_TYPE_FULL_PREC_32
-init|=
-literal|"fullPrecNumeric32"
-decl_stmt|;
-comment|/** The lower precision 32 bit tokens gets this token type assigned. */
-DECL|field|TOKEN_TYPE_LOWER_PREC_32
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|TOKEN_TYPE_LOWER_PREC_32
-init|=
-literal|"lowerPrecNumeric32"
-decl_stmt|;
-comment|/**    * Creates a token stream for numeric values. The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
+name|NumericTokenStream
+parameter_list|()
+block|{
+name|this
+argument_list|(
+name|NumericUtils
+operator|.
+name|PRECISION_STEP_DEFAULT
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a token stream for numeric values with the specified    *<code>precisionStep</code>. The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
 DECL|method|NumericTokenStream
 specifier|public
 name|NumericTokenStream
@@ -237,6 +231,19 @@ name|precisionStep
 operator|=
 name|precisionStep
 expr_stmt|;
+if|if
+condition|(
+name|precisionStep
+operator|<
+literal|1
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"precisionStep must be>=1"
+argument_list|)
+throw|;
 name|termAtt
 operator|=
 operator|(
@@ -426,25 +433,6 @@ argument_list|(
 literal|"call set???Value() before usage"
 argument_list|)
 throw|;
-if|if
-condition|(
-name|precisionStep
-argument_list|<
-literal|1
-operator|||
-name|precisionStep
-argument_list|>
-name|valSize
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"precisionStep may only be 1.."
-operator|+
-name|valSize
-argument_list|)
-throw|;
 name|shift
 operator|=
 literal|0
@@ -500,7 +488,7 @@ name|resizeTermBuffer
 argument_list|(
 name|NumericUtils
 operator|.
-name|LONG_BUF_SIZE
+name|BUF_SIZE_LONG
 argument_list|)
 expr_stmt|;
 name|termAtt
@@ -519,21 +507,6 @@ name|buffer
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|typeAtt
-operator|.
-name|setType
-argument_list|(
-operator|(
-name|shift
-operator|==
-literal|0
-operator|)
-condition|?
-name|TOKEN_TYPE_FULL_PREC_64
-else|:
-name|TOKEN_TYPE_LOWER_PREC_64
-argument_list|)
-expr_stmt|;
 break|break;
 case|case
 literal|32
@@ -546,7 +519,7 @@ name|resizeTermBuffer
 argument_list|(
 name|NumericUtils
 operator|.
-name|INT_BUF_SIZE
+name|BUF_SIZE_INT
 argument_list|)
 expr_stmt|;
 name|termAtt
@@ -568,21 +541,6 @@ name|buffer
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|typeAtt
-operator|.
-name|setType
-argument_list|(
-operator|(
-name|shift
-operator|==
-literal|0
-operator|)
-condition|?
-name|TOKEN_TYPE_FULL_PREC_32
-else|:
-name|TOKEN_TYPE_LOWER_PREC_32
-argument_list|)
-expr_stmt|;
 break|break;
 default|default:
 comment|// should not happen
@@ -594,6 +552,21 @@ literal|"valSize must be 32 or 64"
 argument_list|)
 throw|;
 block|}
+name|typeAtt
+operator|.
+name|setType
+argument_list|(
+operator|(
+name|shift
+operator|==
+literal|0
+operator|)
+condition|?
+name|TOKEN_TYPE_FULL_PREC
+else|:
+name|TOKEN_TYPE_LOWER_PREC
+argument_list|)
+expr_stmt|;
 name|posIncrAtt
 operator|.
 name|setPositionIncrement
@@ -682,7 +655,7 @@ name|resizeTermBuffer
 argument_list|(
 name|NumericUtils
 operator|.
-name|LONG_BUF_SIZE
+name|BUF_SIZE_LONG
 argument_list|)
 expr_stmt|;
 name|reusableToken
@@ -701,21 +674,6 @@ name|buffer
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|reusableToken
-operator|.
-name|setType
-argument_list|(
-operator|(
-name|shift
-operator|==
-literal|0
-operator|)
-condition|?
-name|TOKEN_TYPE_FULL_PREC_64
-else|:
-name|TOKEN_TYPE_LOWER_PREC_64
-argument_list|)
-expr_stmt|;
 break|break;
 case|case
 literal|32
@@ -728,7 +686,7 @@ name|resizeTermBuffer
 argument_list|(
 name|NumericUtils
 operator|.
-name|INT_BUF_SIZE
+name|BUF_SIZE_INT
 argument_list|)
 expr_stmt|;
 name|reusableToken
@@ -750,21 +708,6 @@ name|buffer
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|reusableToken
-operator|.
-name|setType
-argument_list|(
-operator|(
-name|shift
-operator|==
-literal|0
-operator|)
-condition|?
-name|TOKEN_TYPE_FULL_PREC_32
-else|:
-name|TOKEN_TYPE_LOWER_PREC_32
-argument_list|)
-expr_stmt|;
 break|break;
 default|default:
 comment|// should not happen
@@ -776,6 +719,21 @@ literal|"valSize must be 32 or 64"
 argument_list|)
 throw|;
 block|}
+name|reusableToken
+operator|.
+name|setType
+argument_list|(
+operator|(
+name|shift
+operator|==
+literal|0
+operator|)
+condition|?
+name|TOKEN_TYPE_FULL_PREC
+else|:
+name|TOKEN_TYPE_LOWER_PREC
+argument_list|)
+expr_stmt|;
 name|reusableToken
 operator|.
 name|setPositionIncrement
