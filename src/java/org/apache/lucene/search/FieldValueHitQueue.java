@@ -34,20 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|PriorityQueue
@@ -131,6 +117,10 @@ operator|+
 literal|" docID:"
 operator|+
 name|docID
+operator|+
+literal|" score="
+operator|+
+name|score
 return|;
 block|}
 block|}
@@ -462,9 +452,11 @@ specifier|protected
 name|boolean
 name|lessThan
 parameter_list|(
+specifier|final
 name|Object
 name|a
 parameter_list|,
+specifier|final
 name|Object
 name|b
 parameter_list|)
