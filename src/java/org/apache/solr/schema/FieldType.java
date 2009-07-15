@@ -138,7 +138,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -1714,7 +1714,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    *@param field        the name of the field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not *      @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
+comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the name of the field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not *    @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
 DECL|method|getRangeQuery
 specifier|public
 name|Query
@@ -1739,11 +1739,10 @@ name|boolean
 name|maxInclusive
 parameter_list|)
 block|{
-name|RangeQuery
-name|rangeQuery
-init|=
+comment|// constant score mode is now enabled per default
+return|return
 operator|new
-name|RangeQuery
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1773,16 +1772,6 @@ name|minInclusive
 argument_list|,
 name|maxInclusive
 argument_list|)
-decl_stmt|;
-name|rangeQuery
-operator|.
-name|setConstantScoreRewrite
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-return|return
-name|rangeQuery
 return|;
 block|}
 block|}

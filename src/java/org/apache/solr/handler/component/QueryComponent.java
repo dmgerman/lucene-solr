@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
 name|DoubleParser
 import|;
@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
 name|LongParser
 import|;
@@ -151,20 +151,6 @@ operator|.
 name|FieldCache
 operator|.
 name|Parser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
 import|;
 end_import
 
@@ -411,16 +397,6 @@ operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
 import|;
 end_import
 
@@ -3766,9 +3742,9 @@ name|parser
 operator|==
 literal|null
 condition|?
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
-name|EXT_DEFAULT
+name|DEFAULT
 operator|.
 name|getLongs
 argument_list|(
@@ -3777,9 +3753,9 @@ argument_list|,
 name|field
 argument_list|)
 else|:
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
-name|EXT_DEFAULT
+name|DEFAULT
 operator|.
 name|getLongs
 argument_list|(
@@ -4096,9 +4072,9 @@ name|parser
 operator|==
 literal|null
 condition|?
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
-name|EXT_DEFAULT
+name|DEFAULT
 operator|.
 name|getDoubles
 argument_list|(
@@ -4107,9 +4083,9 @@ argument_list|,
 name|field
 argument_list|)
 else|:
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
-name|EXT_DEFAULT
+name|DEFAULT
 operator|.
 name|getDoubles
 argument_list|(

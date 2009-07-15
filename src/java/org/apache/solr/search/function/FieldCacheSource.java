@@ -32,20 +32,6 @@ name|FieldCache
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ExtendedFieldCache
-import|;
-end_import
-
 begin_comment
 comment|/**  * A base class for ValueSource implementations that retrieve values for  * a single field from the {@link org.apache.lucene.search.FieldCache}.  *  * @version $Id$  */
 end_comment
@@ -69,9 +55,9 @@ specifier|protected
 name|FieldCache
 name|cache
 init|=
-name|ExtendedFieldCache
+name|FieldCache
 operator|.
-name|EXT_DEFAULT
+name|DEFAULT
 decl_stmt|;
 DECL|method|FieldCacheSource
 specifier|public

@@ -4671,6 +4671,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{           }
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 expr_stmt|;
 block|}
@@ -4756,6 +4765,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{           }
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 expr_stmt|;
 block|}
@@ -5439,6 +5457,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{            }
+specifier|public
+name|boolean
+name|acceptsDocsOutOfOrder
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 argument_list|)
 expr_stmt|;

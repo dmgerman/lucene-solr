@@ -1679,7 +1679,7 @@ operator|.
 name|getDocSet
 argument_list|(
 operator|new
-name|ConstantScoreRangeQuery
+name|TermRangeQuery
 argument_list|(
 name|fieldName
 argument_list|,
@@ -3763,7 +3763,7 @@ return|return
 name|resOuter
 return|;
 block|}
-comment|/**    * Macro for getting the numDocs of a ConstantScoreRangeQuery over docs    * @see SolrIndexSearcher#numDocs    * @see ConstantScoreRangeQuery    */
+comment|/**    * Macro for getting the numDocs of a TermRangeQuery over docs    * @see SolrIndexSearcher#numDocs    * @see TermRangeQuery    */
 DECL|method|rangeCount
 specifier|protected
 name|int
@@ -3793,7 +3793,7 @@ operator|.
 name|numDocs
 argument_list|(
 operator|new
-name|ConstantScoreRangeQuery
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
