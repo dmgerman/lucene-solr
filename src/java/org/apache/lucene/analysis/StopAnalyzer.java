@@ -425,7 +425,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer which removes words in the provided array.    * @param stopWords Array of stop words    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements}     * @deprecated Use {@link #StopAnalyzer(Set, boolean) instead*/
+comment|/** Builds an analyzer which removes words in the provided array.    * @param stopWords Array of stop words    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements}     * @deprecated Use {@link #StopAnalyzer(Set, boolean)} instead*/
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
