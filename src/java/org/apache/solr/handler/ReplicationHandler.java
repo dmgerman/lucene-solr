@@ -942,7 +942,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|doSnapPull
+name|doFetch
 argument_list|(
 name|paramsCopy
 argument_list|)
@@ -1637,9 +1637,9 @@ specifier|volatile
 name|SnapPuller
 name|tempSnapPuller
 decl_stmt|;
-DECL|method|doSnapPull
+DECL|method|doFetch
 name|void
-name|doSnapPull
+name|doFetch
 parameter_list|(
 name|SolrParams
 name|solrParams
