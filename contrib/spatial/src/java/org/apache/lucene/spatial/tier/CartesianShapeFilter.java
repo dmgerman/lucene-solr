@@ -124,9 +124,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
+name|util
 operator|.
-name|NumberUtils
+name|NumericUtils
 import|;
 end_import
 
@@ -304,9 +304,9 @@ name|Term
 argument_list|(
 name|fieldName
 argument_list|,
-name|NumberUtils
+name|NumericUtils
 operator|.
-name|double2sortableStr
+name|doubleToPrefixCoded
 argument_list|(
 name|boxId
 argument_list|)

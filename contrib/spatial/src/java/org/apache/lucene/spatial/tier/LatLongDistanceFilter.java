@@ -130,9 +130,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
+name|util
 operator|.
-name|NumberUtils
+name|NumericUtils
 import|;
 end_import
 
@@ -380,7 +380,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|String
+name|double
 index|[]
 name|latIndex
 init|=
@@ -388,14 +388,14 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
-name|getStrings
+name|getDoubles
 argument_list|(
 name|reader
 argument_list|,
 name|latField
 argument_list|)
 decl_stmt|;
-name|String
+name|double
 index|[]
 name|lngIndex
 init|=
@@ -403,7 +403,7 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
-name|getStrings
+name|getDoubles
 argument_list|(
 name|reader
 argument_list|,
@@ -469,41 +469,21 @@ operator|.
 name|doc
 argument_list|()
 decl_stmt|;
-name|String
-name|sx
+name|double
+name|x
 init|=
 name|latIndex
 index|[
 name|doc
 index|]
 decl_stmt|;
-name|String
-name|sy
+name|double
+name|y
 init|=
 name|lngIndex
 index|[
 name|doc
 index|]
-decl_stmt|;
-name|double
-name|x
-init|=
-name|NumberUtils
-operator|.
-name|SortableStr2double
-argument_list|(
-name|sx
-argument_list|)
-decl_stmt|;
-name|double
-name|y
-init|=
-name|NumberUtils
-operator|.
-name|SortableStr2double
-argument_list|(
-name|sy
-argument_list|)
 decl_stmt|;
 comment|// round off lat / longs if necessary
 comment|//      x = DistanceHandler.getPrecision(x, precise);
@@ -762,7 +742,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|String
+name|double
 index|[]
 name|latIndex
 init|=
@@ -770,14 +750,14 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
-name|getStrings
+name|getDoubles
 argument_list|(
 name|reader
 argument_list|,
 name|latField
 argument_list|)
 decl_stmt|;
-name|String
+name|double
 index|[]
 name|lngIndex
 init|=
@@ -785,7 +765,7 @@ name|FieldCache
 operator|.
 name|DEFAULT
 operator|.
-name|getStrings
+name|getDoubles
 argument_list|(
 name|reader
 argument_list|,
@@ -841,39 +821,19 @@ decl_stmt|;
 comment|// if we have a completed
 comment|// filter chain, lat / lngs can be retrived from
 comment|// memory rather than document base.
-name|String
-name|sx
-init|=
+name|x
+operator|=
 name|latIndex
 index|[
 name|i
 index|]
-decl_stmt|;
-name|String
-name|sy
-init|=
+expr_stmt|;
+name|y
+operator|=
 name|lngIndex
 index|[
 name|i
 index|]
-decl_stmt|;
-name|x
-operator|=
-name|NumberUtils
-operator|.
-name|SortableStr2double
-argument_list|(
-name|sx
-argument_list|)
-expr_stmt|;
-name|y
-operator|=
-name|NumberUtils
-operator|.
-name|SortableStr2double
-argument_list|(
-name|sy
-argument_list|)
 expr_stmt|;
 comment|// round off lat / longs if necessary
 comment|//      x = DistanceHandler.getPrecision(x, precise);
