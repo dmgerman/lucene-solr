@@ -167,6 +167,9 @@ name|name
 argument_list|)
 argument_list|,
 name|bufferSize
+argument_list|,
+name|getReadChunkSize
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -268,6 +271,14 @@ DECL|field|isClone
 name|boolean
 name|isClone
 decl_stmt|;
+comment|//  LUCENE-1566 - maximum read length on a 32bit JVM to prevent incorrect OOM
+DECL|field|chunkSize
+specifier|protected
+specifier|final
+name|int
+name|chunkSize
+decl_stmt|;
+comment|/** @deprecated Please use ctor taking chunkSize */
 DECL|method|SimpleFSIndexInput
 specifier|public
 name|SimpleFSIndexInput
@@ -285,6 +296,36 @@ argument_list|,
 name|BufferedIndexInput
 operator|.
 name|BUFFER_SIZE
+argument_list|,
+name|SimpleFSDirectory
+operator|.
+name|DEFAULT_READ_CHUNK_SIZE
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** @deprecated Please use ctor taking chunkSize */
+DECL|method|SimpleFSIndexInput
+specifier|public
+name|SimpleFSIndexInput
+parameter_list|(
+name|File
+name|path
+parameter_list|,
+name|int
+name|bufferSize
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|path
+argument_list|,
+name|bufferSize
+argument_list|,
+name|SimpleFSDirectory
+operator|.
+name|DEFAULT_READ_CHUNK_SIZE
 argument_list|)
 expr_stmt|;
 block|}
@@ -297,6 +338,9 @@ name|path
 parameter_list|,
 name|int
 name|bufferSize
+parameter_list|,
+name|int
+name|chunkSize
 parameter_list|)
 throws|throws
 name|IOException
@@ -315,6 +359,12 @@ name|path
 argument_list|,
 literal|"r"
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|chunkSize
+operator|=
+name|chunkSize
 expr_stmt|;
 block|}
 comment|/** IndexInput methods */
@@ -375,8 +425,39 @@ name|total
 init|=
 literal|0
 decl_stmt|;
+try|try
+block|{
 do|do
 block|{
+specifier|final
+name|int
+name|readLength
+decl_stmt|;
+if|if
+condition|(
+name|total
+operator|+
+name|chunkSize
+operator|>
+name|len
+condition|)
+block|{
+name|readLength
+operator|=
+name|len
+operator|-
+name|total
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// LUCENE-1566 - work around JVM Bug by breaking very large reads into chunks
+name|readLength
+operator|=
+name|chunkSize
+expr_stmt|;
+block|}
+specifier|final
 name|int
 name|i
 init|=
@@ -390,9 +471,7 @@ name|offset
 operator|+
 name|total
 argument_list|,
-name|len
-operator|-
-name|total
+name|readLength
 argument_list|)
 decl_stmt|;
 if|if
@@ -402,6 +481,7 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -409,6 +489,7 @@ argument_list|(
 literal|"read past EOF"
 argument_list|)
 throw|;
+block|}
 name|file
 operator|.
 name|position
@@ -427,6 +508,44 @@ operator|<
 name|len
 condition|)
 do|;
+block|}
+catch|catch
+parameter_list|(
+name|OutOfMemoryError
+name|e
+parameter_list|)
+block|{
+comment|// propagate OOM up and add a hint for 32bit VM Users hitting the bug
+comment|// with a large chunk size in the fast path.
+specifier|final
+name|OutOfMemoryError
+name|outOfMemoryError
+init|=
+operator|new
+name|OutOfMemoryError
+argument_list|(
+literal|"OutOfMemoryError likely caused by the Sun VM Bug described in "
+operator|+
+literal|"https://issues.apache.org/jira/browse/LUCENE-1566; try calling FSDirectory.setReadChunkSize "
+operator|+
+literal|"with a a value smaller than the current chunks size ("
+operator|+
+name|chunkSize
+operator|+
+literal|")"
+argument_list|)
+decl_stmt|;
+name|outOfMemoryError
+operator|.
+name|initCause
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|outOfMemoryError
+throw|;
+block|}
 block|}
 block|}
 DECL|method|close

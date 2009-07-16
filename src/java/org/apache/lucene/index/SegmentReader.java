@@ -5905,7 +5905,6 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/*   // nocommit   final TermInfosReader getTermInfosReader() {     return terms.getTermsReader();   }   */
 comment|/**    * Lotsa tests did hacks like:<br/>    * SegmentReader reader = (SegmentReader) IndexReader.open(dir);<br/>    * They broke. This method serves as a hack to keep hacks working    */
 DECL|method|getOnlySegmentReader
 specifier|static
