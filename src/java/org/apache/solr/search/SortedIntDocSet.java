@@ -2815,6 +2815,9 @@ name|startIdx
 decl_stmt|;
 name|int
 name|adjustedDoc
+init|=
+operator|-
+literal|1
 decl_stmt|;
 specifier|public
 name|int
