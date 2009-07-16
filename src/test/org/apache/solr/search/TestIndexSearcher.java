@@ -231,8 +231,26 @@ name|getReader
 argument_list|()
 decl_stmt|;
 comment|// make sure the readers share the first segment
-comment|// TODO: doesn't currently work going from segment -> multi
-comment|// assertEquals(r1.getLeafReaders()[0], r2.getLeafReaders()[0]);
+comment|// Didn't work w/ older versions of lucene2.9 going from segment -> multi
+name|assertEquals
+argument_list|(
+name|r1
+operator|.
+name|getLeafReaders
+argument_list|()
+index|[
+literal|0
+index|]
+argument_list|,
+name|r2
+operator|.
+name|getLeafReaders
+argument_list|()
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 name|adoc
