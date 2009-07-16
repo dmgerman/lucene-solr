@@ -400,6 +400,96 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|docID
+specifier|public
+name|int
+name|docID
+parameter_list|()
+block|{
+return|return
+name|doc
+return|;
+block|}
+annotation|@
+name|Override
+comment|// instead of matching all docs, we could also embed a query.
+comment|// the score could either ignore the subscore, or boost it.
+comment|// Containment:  floatline(foo:myTerm, "myFloatField", 1.0, 0.0f)
+comment|// Boost:        foo:myTerm^floatline("myFloatField",1.0,0.0f)
+DECL|method|nextDoc
+specifier|public
+name|int
+name|nextDoc
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
+operator|++
+name|doc
+expr_stmt|;
+if|if
+condition|(
+name|doc
+operator|>=
+name|maxDoc
+condition|)
+block|{
+return|return
+name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
+block|}
+if|if
+condition|(
+name|hasDeletions
+operator|&&
+name|reader
+operator|.
+name|isDeleted
+argument_list|(
+name|doc
+argument_list|)
+condition|)
+continue|continue;
+return|return
+name|doc
+return|;
+block|}
+block|}
+annotation|@
+name|Override
+DECL|method|advance
+specifier|public
+name|int
+name|advance
+parameter_list|(
+name|int
+name|target
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// this will work even if target==NO_MORE_DOCS
+name|doc
+operator|=
+name|target
+operator|-
+literal|1
+expr_stmt|;
+return|return
+name|nextDoc
+argument_list|()
+return|;
+block|}
 comment|// instead of matching all docs, we could also embed a query.
 comment|// the score could either ignore the subscore, or boost it.
 comment|// Containment:  floatline(foo:myTerm, "myFloatField", 1.0, 0.0f)
