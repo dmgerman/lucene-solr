@@ -96,7 +96,7 @@ name|FIELD_SCORE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts by the terms in<code>field</code> then by index order (document    * number). The type of value in<code>field</code> is determined    * automatically.    *     * @see SortField#AUTO    */
+comment|/**    * Sorts by the terms in<code>field</code> then by index order (document    * number). The type of value in<code>field</code> is determined    * automatically.    *     * @see SortField#AUTO    * @deprecated Please specify the type explicitly by    * first creating a {@link SortField} and then use {@link    * #Sort(SortField)}    */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -113,7 +113,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts possibly in reverse by the terms in<code>field</code> then by    * index order (document number). The type of value in<code>field</code> is    * determined automatically.    *     * @see SortField#AUTO    */
+comment|/**    * Sorts possibly in reverse by the terms in<code>field</code> then by    * index order (document number). The type of value in<code>field</code> is    * determined automatically.    *     * @see SortField#AUTO    * @deprecated Please specify the type explicitly by    * first creating a {@link SortField} and then use {@link    * #Sort(SortField)}    */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -133,7 +133,7 @@ name|reverse
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts in succession by the terms in each field. The type of value in    *<code>field</code> is determined automatically.    *     * @see SortField#AUTO    */
+comment|/**    * Sorts in succession by the terms in each field. The type of value in    *<code>field</code> is determined automatically.    *     * @see SortField#AUTO    * @deprecated Please specify the type explicitly by    * first creating {@link SortField}s and then use {@link    * #Sort(SortField[])}    */
 DECL|method|Sort
 specifier|public
 name|Sort
@@ -180,7 +180,7 @@ name|fields
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the sort to the terms in<code>field</code> then by index order    * (document number).    */
+comment|/**    * Sets the sort to the terms in<code>field</code> then by index order    * (document number).    * @deprecated Please specify the type explicitly by    * first creating a {@link SortField} and then use {@link    * #setSort(SortField)}    */
 DECL|method|setSort
 specifier|public
 specifier|final
@@ -199,7 +199,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the sort to the terms in<code>field</code> possibly in reverse,    * then by index order (document number).    */
+comment|/**    * Sets the sort to the terms in<code>field</code> possibly in reverse,    * then by index order (document number).    * @deprecated Please specify the type explicitly by    * first creating a {@link SortField} and then use {@link    * #setSort(SortField)}    */
 DECL|method|setSort
 specifier|public
 name|void
@@ -232,7 +232,7 @@ argument_list|)
 block|}
 expr_stmt|;
 block|}
-comment|/** Sets the sort to the terms in each field in succession. */
+comment|/** Sets the sort to the terms in each field in succession.    * @deprecated Please specify the type explicitly by    * first creating {@link SortField}s and then use {@link    * #setSort(SortField[])} */
 DECL|method|setSort
 specifier|public
 name|void
