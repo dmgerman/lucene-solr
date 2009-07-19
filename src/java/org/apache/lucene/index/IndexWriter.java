@@ -1017,6 +1017,7 @@ block|}
 block|}
 comment|// used only by asserts
 DECL|method|infoIsLive
+specifier|public
 specifier|synchronized
 name|boolean
 name|infoIsLive
@@ -1056,6 +1057,7 @@ literal|true
 return|;
 block|}
 DECL|method|mapToLive
+specifier|public
 specifier|synchronized
 name|SegmentInfo
 name|mapToLive
@@ -1099,7 +1101,9 @@ return|return
 name|info
 return|;
 block|}
+comment|/**      * Release the segment reader (i.e. decRef it and close if there      * are no more references.      * @param sr      * @throws IOException      */
 DECL|method|release
+specifier|public
 specifier|synchronized
 name|void
 name|release
@@ -1118,7 +1122,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Release the segment reader (i.e. decRef it and close if there      * are no more references.      * @param sr      * @throws IOException      */
 DECL|method|release
+specifier|public
 specifier|synchronized
 name|void
 name|release
@@ -1263,7 +1269,6 @@ block|}
 block|}
 comment|/** Remove all our references to readers, and commits      *  any pending changes. */
 DECL|method|close
-specifier|public
 specifier|synchronized
 name|void
 name|close
@@ -1388,8 +1393,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Commit all segment reader in the pool.      * @throws IOException      */
 DECL|method|commit
-specifier|public
 specifier|synchronized
 name|void
 name|commit
@@ -1500,9 +1505,7 @@ block|}
 block|}
 block|}
 block|}
-comment|// Returns a ref to a clone.  NOTE: this clone is not
-comment|// enrolled in the pool, so you should simply close()
-comment|// it when you're done (ie, do not call release()).
+comment|/**      * Returns a ref to a clone.  NOTE: this clone is not      * enrolled in the pool, so you should simply close()      * it when you're done (ie, do not call release()).      */
 DECL|method|getReadOnlyClone
 specifier|public
 specifier|synchronized
@@ -1560,7 +1563,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// Returns a ref
+comment|/**      * Obtain a SegmentReader from the readerPool.  The reader      * must be returned by calling {@link #release(SegmentReader)}      * @see #release(SegmentReader)      * @param info      * @param doOpenStores      * @return       * @throws IOException      */
 DECL|method|get
 specifier|public
 specifier|synchronized
@@ -1593,6 +1596,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
+comment|/**      * Obtain a SegmentReader from the readerPool.  The reader      * must be returned by calling {@link #release(SegmentReader)}      *       * @see #release(SegmentReader)      * @param info      * @param doOpenStores      * @param readBufferSize      * @param termsIndexDivisor      * @return      * @throws IOException      */
 DECL|method|get
 specifier|public
 specifier|synchronized
@@ -1768,6 +1772,73 @@ block|}
 return|return
 name|sr
 return|;
+block|}
+block|}
+comment|/**    * Obtain the number of deleted docs for a pooled reader.    * If the reader isn't being pooled, the segmentInfo's     * delCount is returned.    */
+DECL|method|numDeletedDocs
+specifier|public
+name|int
+name|numDeletedDocs
+parameter_list|(
+name|SegmentInfo
+name|info
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|SegmentReader
+name|reader
+init|=
+name|readerPool
+operator|.
+name|getIfExists
+argument_list|(
+name|info
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|reader
+operator|.
+name|numDeletedDocs
+argument_list|()
+return|;
+block|}
+else|else
+block|{
+return|return
+name|info
+operator|.
+name|getDelCount
+argument_list|()
+return|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+block|{
+name|readerPool
+operator|.
+name|release
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|acquireWrite

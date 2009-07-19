@@ -246,8 +246,13 @@ begin_comment
 comment|/** @version $Id */
 end_comment
 
+begin_comment
+comment|/**  *<p><b>NOTE:</b> This API is new and still experimental  * (subject to change suddenly in the next release)</p>  */
+end_comment
+
 begin_class
 DECL|class|SegmentReader
+specifier|public
 class|class
 name|SegmentReader
 extends|extends
@@ -2863,7 +2868,7 @@ operator|==
 literal|0
 assert|;
 block|}
-comment|/**    * Clones the norm bytes.  May be overridden by subclasses.  New and experimental.    * @param bv Byte array to clone    * @return New BitVector    */
+comment|/**    * Clones the norm bytes.  May be overridden by subclasses.  New and experimental.    * @param bytes Byte array to clone    * @return New BitVector    */
 DECL|method|cloneNormBytes
 specifier|protected
 name|byte

@@ -132,8 +132,13 @@ name|Collections
 import|;
 end_import
 
+begin_comment
+comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *   * *<p><b>NOTE:</b> This API is new and still experimental  * (subject to change suddenly in the next release)</p>  */
+end_comment
+
 begin_class
 DECL|class|SegmentInfo
+specifier|public
 specifier|final
 class|class
 name|SegmentInfo
@@ -697,6 +702,7 @@ expr_stmt|;
 block|}
 comment|// returns Map<String, String>
 DECL|method|getDiagnostics
+specifier|public
 name|Map
 name|getDiagnostics
 parameter_list|()
@@ -1123,6 +1129,7 @@ block|}
 block|}
 comment|/** Returns total size in bytes of all of files used by    *  this segment. */
 DECL|method|sizeInBytes
+specifier|public
 name|long
 name|sizeInBytes
 parameter_list|()
@@ -1218,6 +1225,7 @@ name|sizeInBytes
 return|;
 block|}
 DECL|method|hasDeletions
+specifier|public
 name|boolean
 name|hasDeletions
 parameter_list|()
@@ -1424,6 +1432,7 @@ name|si
 return|;
 block|}
 DECL|method|getDelFileName
+specifier|public
 name|String
 name|getDelFileName
 parameter_list|()
@@ -1464,6 +1473,7 @@ block|}
 block|}
 comment|/**    * Returns true if this field for this segment has saved a separate norms file (_<segment>_N.sX).    *    * @param fieldNumber the field index to check    */
 DECL|method|hasSeparateNorms
+specifier|public
 name|boolean
 name|hasSeparateNorms
 parameter_list|(
@@ -1544,6 +1554,7 @@ block|}
 block|}
 comment|/**    * Returns true if any fields in this segment have separate norms.    */
 DECL|method|hasSeparateNorms
+specifier|public
 name|boolean
 name|hasSeparateNorms
 parameter_list|()
@@ -1797,6 +1808,7 @@ expr_stmt|;
 block|}
 comment|/**    * Get the file name for the norms file for this field.    *    * @param number field index    */
 DECL|method|getNormFileName
+specifier|public
 name|String
 name|getNormFileName
 parameter_list|(
@@ -1945,6 +1957,7 @@ expr_stmt|;
 block|}
 comment|/**    * Returns true if this segment is stored as a compound    * file; else, false.    */
 DECL|method|getUseCompoundFile
+specifier|public
 name|boolean
 name|getUseCompoundFile
 parameter_list|()
@@ -1993,6 +2006,7 @@ return|;
 block|}
 block|}
 DECL|method|getDelCount
+specifier|public
 name|int
 name|getDelCount
 parameter_list|()
@@ -2070,6 +2084,7 @@ name|docCount
 assert|;
 block|}
 DECL|method|getDocStoreOffset
+specifier|public
 name|int
 name|getDocStoreOffset
 parameter_list|()
@@ -2079,6 +2094,7 @@ name|docStoreOffset
 return|;
 block|}
 DECL|method|getDocStoreIsCompoundFile
+specifier|public
 name|boolean
 name|getDocStoreIsCompoundFile
 parameter_list|()
@@ -2104,6 +2120,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|getDocStoreSegment
+specifier|public
 name|String
 name|getDocStoreSegment
 parameter_list|()
@@ -2354,6 +2371,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|getHasProx
+specifier|public
 name|boolean
 name|getHasProx
 parameter_list|()
