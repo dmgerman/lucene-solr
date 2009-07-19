@@ -416,6 +416,7 @@ name|tokenImage
 init|=
 name|TOKEN_TYPES
 decl_stmt|;
+comment|/**    * Only output tokens    */
 DECL|field|TOKENS_ONLY
 specifier|public
 specifier|static
@@ -425,6 +426,7 @@ name|TOKENS_ONLY
 init|=
 literal|0
 decl_stmt|;
+comment|/**    * Only output untokenized tokens, which are tokens that would normally be split into several tokens    */
 DECL|field|UNTOKENIZED_ONLY
 specifier|public
 specifier|static
@@ -434,6 +436,7 @@ name|UNTOKENIZED_ONLY
 init|=
 literal|1
 decl_stmt|;
+comment|/**    * Output the both the untokenized token and the splits    */
 DECL|field|BOTH
 specifier|public
 specifier|static
@@ -524,6 +527,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Createa a new instance of the {@link org.apache.lucene.wikipedia.analysis.WikipediaTokenizer}.  Attaches the    *<conde>input</code> to a the newly created JFlex scanner.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    * @param untokenizedTypes    */
 DECL|method|WikipediaTokenizer
 specifier|public
 name|WikipediaTokenizer
