@@ -2968,6 +2968,7 @@ argument_list|(
 literal|"optimize"
 argument_list|)
 condition|)
+block|{
 name|optimize
 operator|=
 name|Boolean
@@ -2985,6 +2986,15 @@ literal|"optimize"
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|optimize
+condition|)
+name|commit
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|Object
 name|o
 init|=

@@ -1122,7 +1122,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|commit
+name|finish
 argument_list|(
 name|lastIndexTimeProps
 argument_list|)
@@ -1132,7 +1132,7 @@ block|}
 else|else
 block|{
 comment|// Finished operation normally, commit now
-name|commit
+name|finish
 argument_list|(
 name|lastIndexTimeProps
 argument_list|)
@@ -1199,10 +1199,10 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|commit
+DECL|method|finish
 specifier|private
 name|void
-name|commit
+name|finish
 parameter_list|(
 name|Properties
 name|lastIndexTimeProps
@@ -1212,7 +1212,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Full Import completed successfully"
+literal|"Import completed successfully"
 argument_list|)
 expr_stmt|;
 name|statusMessages
@@ -1236,6 +1236,13 @@ operator|+
 literal|" documents."
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|requestParameters
+operator|.
+name|commit
+condition|)
+block|{
 name|writer
 operator|.
 name|commit
@@ -1261,12 +1268,7 @@ argument_list|(
 literal|"Optimized"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|requestParameters
-operator|.
-name|commit
-condition|)
+block|}
 name|writer
 operator|.
 name|persist
