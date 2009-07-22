@@ -827,30 +827,7 @@ operator|--
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|" pri doc="
-operator|+
-name|vals
-index|[
-name|i
-operator|+
-literal|1
-index|]
-operator|+
-literal|" pri="
-operator|+
-operator|(
-literal|1
-operator|+
-name|max
-operator|)
-argument_list|)
-expr_stmt|;
+comment|// System.out.println(" pri doc=" + vals[i+1] + " pri=" + (1+max));
 block|}
 return|return
 name|q
