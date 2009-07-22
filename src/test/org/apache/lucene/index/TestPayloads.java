@@ -3347,6 +3347,10 @@ condition|)
 return|return
 literal|false
 return|;
+name|first
+operator|=
+literal|false
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer
