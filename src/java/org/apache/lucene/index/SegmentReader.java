@@ -6014,6 +6014,18 @@ literal|" is not a SegmentReader or a single-segment DirectoryReader"
 argument_list|)
 throw|;
 block|}
+DECL|method|getTermInfosIndexDivisor
+specifier|public
+name|int
+name|getTermInfosIndexDivisor
+parameter_list|()
+block|{
+return|return
+name|core
+operator|.
+name|termsIndexDivisor
+return|;
+block|}
 block|}
 end_class
 

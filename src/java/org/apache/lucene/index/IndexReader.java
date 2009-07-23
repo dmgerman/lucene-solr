@@ -1560,7 +1560,7 @@ literal|"Please pass termInfosIndexDivisor up-front when opening IndexReader"
 argument_list|)
 throw|;
 block|}
-comment|/**<p>For IndexReader implementations that use    *  TermInfosReader to read terms, this returns the    *  current indexDivisor.    *  @see #setTermInfosIndexDivisor    * @deprecated Please use {@link IndexReader#open(Directory, IndexDeletionPolicy, boolean, int)} to specify the required TermInfos index divisor instead.    */
+comment|/**<p>For IndexReader implementations that use    *  TermInfosReader to read terms, this returns the    *  current indexDivisor as specified when the reader was    *  opened.    */
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int
@@ -1571,7 +1571,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"Please pass termInfosIndexDivisor up-front when opening IndexReader"
+literal|"This reader does not support this method."
 argument_list|)
 throw|;
 block|}
