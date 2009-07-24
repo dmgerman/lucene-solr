@@ -24,6 +24,102 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|OffsetAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|FlagsAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|PayloadAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|PositionIncrementAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TypeAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|Payload
@@ -62,8 +158,36 @@ name|ArrayUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Attribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeImpl
+import|;
+end_import
+
 begin_comment
-comment|/**    This class is now deprecated and a new TokenStream API was introduced with Lucene 2.9.   See Javadocs in {@link TokenStream} for further details.<p>    A Token is an occurrence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is a string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><p><font color="#FF0000">   WARNING: The status of the<b>Payloads</b> feature is experimental.    The APIs introduced here might change in the future and will not be    supported anymore in such a case.</font><br><br><p><b>NOTE:</b> As of 2.3, Token stores the term text   internally as a malleable char[] termBuffer instead of   String termText.  The indexing code and core tokenizers   have been changed to re-use a single Token instance, changing   its buffer and other fields in-place as the Token is   processed.  This provides substantially better indexing   performance as it saves the GC cost of new'ing a Token and   String for every term.  The APIs that accept String   termText are still available but a warning about the   associated performance cost has been added (below).  The   {@link #termText()} method has been deprecated.</p><p>Tokenizers and filters should try to re-use a Token   instance when possible for best performance, by   implementing the {@link TokenStream#next(Token)} API.   Failing that, to create a new Token you should first use   one of the constructors that starts with null text.  To load   the token from a char[] use {@link #setTermBuffer(char[], int, int)}.   To load from a String use {@link #setTermBuffer(String)} or {@link #setTermBuffer(String, int, int)}.   Alternatively you can get the Token's termBuffer by calling either {@link #termBuffer()},   if you know that your text is shorter than the capacity of the termBuffer   or {@link #resizeTermBuffer(int)}, if there is any possibility   that you may need to grow the buffer. Fill in the characters of your term into this   buffer, with {@link String#getChars(int, int, char[], int)} if loading from a string,   or with {@link System#arraycopy(Object, int, Object, int, int)}, and finally call {@link #setTermLength(int)} to   set the length of the term text.  See<a target="_top"   href="https://issues.apache.org/jira/browse/LUCENE-969">LUCENE-969</a>   for details.</p><p>Typical reuse patterns:<ul><li> Copying text from a string (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(string, startOffset, endOffset[, type]);</pre></li><li> Copying some text from a string (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(string, 0, string.length(), startOffset, endOffset[, type]);</pre></li></li><li> Copying text from char[] buffer (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(buffer, 0, buffer.length, startOffset, endOffset[, type]);</pre></li><li> Copying some text from a char[] buffer (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(buffer, start, end - start, startOffset, endOffset[, type]);</pre></li><li> Copying from one one Token to another (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(source.termBuffer(), 0, source.termLength(), source.startOffset(), source.endOffset()[, source.type()]);</pre></li></ul>   A few things to note:<ul><li>clear() initializes most of the fields to default values, but not startOffset, endOffset and type.</li><li>Because<code>TokenStreams</code> can be chained, one cannot assume that the<code>Token's</code> current type is correct.</li><li>The startOffset and endOffset represent the start and offset in the source text. So be careful in adjusting them.</li><li>When caching a reusable token, clone it. When injecting a cached token into a stream that can be reset, clone it again.</li></ul></p>    @see org.apache.lucene.index.Payload   @deprecated A new TokenStream API was introduced with Lucene 2.9.               See javadocs in {@link TokenStream} for further details. */
+comment|/**    A Token is an occurrence of a term from the text of a field.  It consists of   a term's text, the start and end offset of the term in the text of the field,   and a type string.<p>   The start and end offsets permit applications to re-associate a token with   its source text, e.g., to display highlighted query terms in a document   browser, or to show matching text fragments in a KWIC (KeyWord In Context)   display, etc.<p>   The type is a string, assigned by a lexical analyzer   (a.k.a. tokenizer), naming the lexical or syntactic class that the token   belongs to.  For example an end of sentence marker token might be implemented   with type "eos".  The default token type is "word".<p>   A Token can optionally have metadata (a.k.a. Payload) in the form of a variable   length byte array. Use {@link TermPositions#getPayloadLength()} and    {@link TermPositions#getPayload(byte[], int)} to retrieve the payloads from the index.<br><br><p><b>NOTE:</b> As of 2.9, Token implements all {@link Attribute} interfaces   that are part of core Lucene and can be found in the {@code tokenattributes} subpackage.   Even though it is not necessary to use Token anymore, with the new TokenStream API it can   be used as convenience class that implements all {@link Attribute}s, which is especially useful   to easily switch from the old to the new TokenStream API.<br><br><p><b>NOTE:</b> As of 2.3, Token stores the term text   internally as a malleable char[] termBuffer instead of   String termText.  The indexing code and core tokenizers   have been changed to re-use a single Token instance, changing   its buffer and other fields in-place as the Token is   processed.  This provides substantially better indexing   performance as it saves the GC cost of new'ing a Token and   String for every term.  The APIs that accept String   termText are still available but a warning about the   associated performance cost has been added (below).  The   {@link #termText()} method has been deprecated.</p><p>Tokenizers and filters should try to re-use a Token   instance when possible for best performance, by   implementing the {@link TokenStream#next(Token)} API.   Failing that, to create a new Token you should first use   one of the constructors that starts with null text.  To load   the token from a char[] use {@link #setTermBuffer(char[], int, int)}.   To load from a String use {@link #setTermBuffer(String)} or {@link #setTermBuffer(String, int, int)}.   Alternatively you can get the Token's termBuffer by calling either {@link #termBuffer()},   if you know that your text is shorter than the capacity of the termBuffer   or {@link #resizeTermBuffer(int)}, if there is any possibility   that you may need to grow the buffer. Fill in the characters of your term into this   buffer, with {@link String#getChars(int, int, char[], int)} if loading from a string,   or with {@link System#arraycopy(Object, int, Object, int, int)}, and finally call {@link #setTermLength(int)} to   set the length of the term text.  See<a target="_top"   href="https://issues.apache.org/jira/browse/LUCENE-969">LUCENE-969</a>   for details.</p><p>Typical reuse patterns:<ul><li> Copying text from a string (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(string, startOffset, endOffset[, type]);</pre></li><li> Copying some text from a string (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(string, 0, string.length(), startOffset, endOffset[, type]);</pre></li></li><li> Copying text from char[] buffer (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(buffer, 0, buffer.length, startOffset, endOffset[, type]);</pre></li><li> Copying some text from a char[] buffer (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(buffer, start, end - start, startOffset, endOffset[, type]);</pre></li><li> Copying from one one Token to another (type is reset to #DEFAULT_TYPE if not specified):<br/><pre>     return reusableToken.reinit(source.termBuffer(), 0, source.termLength(), source.startOffset(), source.endOffset()[, source.type()]);</pre></li></ul>   A few things to note:<ul><li>clear() initializes most of the fields to default values, but not startOffset, endOffset and type.</li><li>Because<code>TokenStreams</code> can be chained, one cannot assume that the<code>Token's</code> current type is correct.</li><li>The startOffset and endOffset represent the start and offset in the source text. So be careful in adjusting them.</li><li>When caching a reusable token, clone it. When injecting a cached token into a stream that can be reset, clone it again.</li></ul></p>    @see org.apache.lucene.index.Payload */
 end_comment
 
 begin_class
@@ -71,8 +195,22 @@ DECL|class|Token
 specifier|public
 class|class
 name|Token
+extends|extends
+name|AttributeImpl
 implements|implements
 name|Cloneable
+implements|,
+name|TermAttribute
+implements|,
+name|TypeAttribute
+implements|,
+name|PositionIncrementAttribute
+implements|,
+name|FlagsAttribute
+implements|,
+name|OffsetAttribute
+implements|,
+name|PayloadAttribute
 block|{
 DECL|field|DEFAULT_TYPE
 specifier|public
@@ -97,28 +235,28 @@ specifier|private
 name|String
 name|termText
 decl_stmt|;
-comment|/**    * Characters for the term text.    * @deprecated This will be made private. Instead, use:    * {@link termBuffer()},     * {@link #setTermBuffer(char[], int, int)},    * {@link #setTermBuffer(String)}, or    * {@link #setTermBuffer(String, int, int)}    */
+comment|/**    * Characters for the term text.    * @deprecated This will be made private. Instead, use:    * {@link #termBuffer()},     * {@link #setTermBuffer(char[], int, int)},    * {@link #setTermBuffer(String)}, or    * {@link #setTermBuffer(String, int, int)}    */
 DECL|field|termBuffer
 name|char
 index|[]
 name|termBuffer
 decl_stmt|;
-comment|/**    * Length of term text in the buffer.    * @deprecated This will be made private. Instead, use:    * {@link termLength()}, or @{link setTermLength(int)}.    */
+comment|/**    * Length of term text in the buffer.    * @deprecated This will be made private. Instead, use:    * {@link #termLength()}, or @{link setTermLength(int)}.    */
 DECL|field|termLength
 name|int
 name|termLength
 decl_stmt|;
-comment|/**    * Start in source text.    * @deprecated This will be made private. Instead, use:    * {@link startOffset()}, or @{link setStartOffset(int)}.    */
+comment|/**    * Start in source text.    * @deprecated This will be made private. Instead, use:    * {@link #startOffset()}, or @{link setStartOffset(int)}.    */
 DECL|field|startOffset
 name|int
 name|startOffset
 decl_stmt|;
-comment|/**    * End in source text.    * @deprecated This will be made private. Instead, use:    * {@link endOffset()}, or @{link setEndOffset(int)}.    */
+comment|/**    * End in source text.    * @deprecated This will be made private. Instead, use:    * {@link #endOffset()}, or @{link setEndOffset(int)}.    */
 DECL|field|endOffset
 name|int
 name|endOffset
 decl_stmt|;
-comment|/**    * The lexical type of the token.    * @deprecated This will be made private. Instead, use:    * {@link type()}, or @{link setType(String)}.    */
+comment|/**    * The lexical type of the token.    * @deprecated This will be made private. Instead, use:    * {@link #type()}, or @{link setType(String)}.    */
 DECL|field|type
 name|String
 name|type
@@ -130,12 +268,12 @@ specifier|private
 name|int
 name|flags
 decl_stmt|;
-comment|/**    * @deprecated This will be made private. Instead, use:    * {@link getPayload()}, or @{link setPayload(Payload)}.    */
+comment|/**    * @deprecated This will be made private. Instead, use:    * {@link #getPayload()}, or @{link setPayload(Payload)}.    */
 DECL|field|payload
 name|Payload
 name|payload
 decl_stmt|;
-comment|/**    * @deprecated This will be made private. Instead, use:    * {@link getPositionIncrement()}, or @{link setPositionIncrement(String)}.    */
+comment|/**    * @deprecated This will be made private. Instead, use:    * {@link #getPositionIncrement()}, or @{link setPositionIncrement(String)}.    */
 DECL|field|positionIncrement
 name|int
 name|positionIncrement
@@ -1141,6 +1279,32 @@ operator|=
 name|offset
 expr_stmt|;
 block|}
+comment|/** Set the starting and ending offset.   @see #startOffset() and #endOffset()*/
+DECL|method|setOffset
+specifier|public
+name|void
+name|setOffset
+parameter_list|(
+name|int
+name|startOffset
+parameter_list|,
+name|int
+name|endOffset
+parameter_list|)
+block|{
+name|this
+operator|.
+name|startOffset
+operator|=
+name|startOffset
+expr_stmt|;
+name|this
+operator|.
+name|endOffset
+operator|=
+name|endOffset
+expr_stmt|;
+block|}
 comment|/** Returns this Token's lexical type.  Defaults to "word". */
 DECL|method|type
 specifier|public
@@ -1390,8 +1554,6 @@ name|Object
 name|clone
 parameter_list|()
 block|{
-try|try
-block|{
 name|Token
 name|t
 init|=
@@ -1449,22 +1611,6 @@ block|}
 return|return
 name|t
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|CloneNotSupportedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-comment|// shouldn't happen
-block|}
 block|}
 comment|/** Makes a clone, but replaces the term buffer&    * start/end offset in the process.  This is more    * efficient than doing a full clone (and then calling    * setTermBuffer) because it saves a wasted copy of the old    * termBuffer. */
 DECL|method|clone
@@ -2317,6 +2463,31 @@ operator|=
 name|prototype
 operator|.
 name|payload
+expr_stmt|;
+block|}
+DECL|method|copyTo
+specifier|public
+name|void
+name|copyTo
+parameter_list|(
+name|AttributeImpl
+name|target
+parameter_list|)
+block|{
+name|Token
+name|to
+init|=
+operator|(
+name|Token
+operator|)
+name|target
+decl_stmt|;
+name|to
+operator|.
+name|reinit
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 block|}

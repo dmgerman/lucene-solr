@@ -113,13 +113,6 @@ operator|.
 name|setTestMode
 argument_list|()
 expr_stmt|;
-name|TokenStream
-operator|.
-name|setUseNewAPIDefault
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|tearDown
 specifier|protected
