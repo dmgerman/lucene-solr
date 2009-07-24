@@ -985,6 +985,13 @@ name|stored
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|log
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
 name|log
 operator|.
 name|trace
@@ -1293,7 +1300,7 @@ argument_list|)
 return|;
 comment|// by default use the string
 block|}
-comment|/** :TODO: document this method */
+comment|/** Given an indexed term, return the human readable representation */
 DECL|method|indexedToReadable
 specifier|public
 name|String
@@ -1307,7 +1314,7 @@ return|return
 name|indexedForm
 return|;
 block|}
-comment|/** :TODO: document this method */
+comment|/** Given the stored field, return the human readable representation */
 DECL|method|storedToReadable
 specifier|public
 name|String
@@ -1324,7 +1331,7 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/** :TODO: document this method */
+comment|/** Given the stored field, return the indexed form */
 DECL|method|storedToIndexed
 specifier|public
 name|String
