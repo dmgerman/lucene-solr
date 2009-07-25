@@ -76,6 +76,20 @@ name|AlreadyClosedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Fieldable
+import|;
+end_import
+
 begin_comment
 comment|/** An Analyzer builds TokenStreams, which analyze text.  It thus represents a  *  policy for extracting index terms from text.  *<p>  *  Typical implementations first build a Tokenizer, which breaks the stream of  *  characters from the Reader into raw Tokens.  One or more TokenFilters may  *  then be applied to the output of the Tokenizer.  */
 end_comment
@@ -336,6 +350,31 @@ name|String
 name|fieldName
 parameter_list|)
 block|{
+return|return
+literal|0
+return|;
+block|}
+comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1 for    * tokenized fields and, as if the fields were joined    * with an extra space character, and 0 for un-tokenized    * fields.  This method is only called if the field    * produced at least one token for indexing.    *    * @param Fieldable the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
+DECL|method|getOffsetGap
+specifier|public
+name|int
+name|getOffsetGap
+parameter_list|(
+name|Fieldable
+name|field
+parameter_list|)
+block|{
+if|if
+condition|(
+name|field
+operator|.
+name|isTokenized
+argument_list|()
+condition|)
+return|return
+literal|1
+return|;
+else|else
 return|return
 literal|0
 return|;

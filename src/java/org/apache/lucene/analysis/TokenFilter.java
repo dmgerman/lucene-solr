@@ -67,6 +67,21 @@ operator|=
 name|input
 expr_stmt|;
 block|}
+comment|/** Performs end-of-stream operations, if any, and calls then<code>end()</code> on the    * input TokenStream.<p/>     *<b>NOTE:</b> Be sure to call<code>super.end()</code> first when overriding this method.*/
+DECL|method|end
+specifier|public
+name|void
+name|end
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|input
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** Close the input TokenStream. */
 DECL|method|close
 specifier|public

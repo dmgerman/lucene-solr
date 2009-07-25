@@ -266,6 +266,11 @@ operator|-
 literal|1
 condition|)
 block|{
+name|dataLen
+operator|=
+literal|0
+expr_stmt|;
+comment|// so next offset += dataLen won't decrement offset
 if|if
 condition|(
 name|length
@@ -400,6 +405,34 @@ expr_stmt|;
 return|return
 literal|true
 return|;
+block|}
+DECL|method|end
+specifier|public
+specifier|final
+name|void
+name|end
+parameter_list|()
+block|{
+comment|// set final offset
+name|int
+name|finalOffset
+init|=
+name|input
+operator|.
+name|correctOffset
+argument_list|(
+name|offset
+argument_list|)
+decl_stmt|;
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|finalOffset
+argument_list|,
+name|finalOffset
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
 DECL|method|next

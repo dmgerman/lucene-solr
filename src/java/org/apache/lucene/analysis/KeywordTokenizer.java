@@ -94,6 +94,11 @@ specifier|private
 name|boolean
 name|done
 decl_stmt|;
+DECL|field|finalOffset
+specifier|private
+name|int
+name|finalOffset
+decl_stmt|;
 DECL|field|termAtt
 specifier|private
 name|TermAttribute
@@ -270,6 +275,15 @@ argument_list|(
 name|upto
 argument_list|)
 expr_stmt|;
+name|finalOffset
+operator|=
+name|input
+operator|.
+name|correctOffset
+argument_list|(
+name|upto
+argument_list|)
+expr_stmt|;
 name|offsetAtt
 operator|.
 name|setOffset
@@ -281,12 +295,7 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|,
-name|input
-operator|.
-name|correctOffset
-argument_list|(
-name|upto
-argument_list|)
+name|finalOffset
 argument_list|)
 expr_stmt|;
 return|return
@@ -296,6 +305,24 @@ block|}
 return|return
 literal|false
 return|;
+block|}
+DECL|method|end
+specifier|public
+specifier|final
+name|void
+name|end
+parameter_list|()
+block|{
+comment|// set final offset
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|finalOffset
+argument_list|,
+name|finalOffset
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
 DECL|method|next

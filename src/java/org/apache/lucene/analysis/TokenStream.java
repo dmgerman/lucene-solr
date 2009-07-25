@@ -833,6 +833,17 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**    * This method is called by the consumer after the last token has been consumed,     * i.e. after {@link #incrementToken()} returned<code>false</code> (using the new TokenStream API)    * or after {@link #next(Token)} or {@link #next()} returned<code>null</code> (old TokenStream API).    *<p/>    * This method can be used to perform any end-of-stream operations, such as setting the final    * offset of a stream. The final offset of a stream might differ from the offset of the last token    * e.g. in case one or more whitespaces followed after the last token, but a {@link WhitespaceTokenizer}    * was used.    *     * @throws IOException    */
+DECL|method|end
+specifier|public
+name|void
+name|end
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// do nothing by default
+block|}
 comment|/** Returns the next token in the stream, or null at EOS.    *  When possible, the input Token should be used as the    *  returned Token (this gives fastest tokenization    *  performance), but this is not required and a new Token    *  may be returned. Callers may re-use a single Token    *  instance for successive calls to this method.    *<p>    *  This implicitly defines a "contract" between     *  consumers (callers of this method) and     *  producers (implementations of this method     *  that are the source for tokens):    *<ul>    *<li>A consumer must fully consume the previously     *       returned Token before calling this method again.</li>    *<li>A producer must call {@link Token#clear()}    *       before setting the fields in it& returning it</li>    *</ul>    *  Also, the producer must make no assumptions about a    *  Token after it has been returned: the caller may    *  arbitrarily change it.  If the producer needs to hold    *  onto the token for subsequent calls, it must clone()    *  it before storing it.    *  Note that a {@link TokenFilter} is considered a consumer.    *  @param reusableToken a Token that may or may not be used to    *  return; this parameter should never be null (the callee    *  is not required to check for null before using it, but it is a    *  good idea to assert that it is not null.)    *  @return next token in the stream or null if end-of-stream was hit    *  @deprecated The new {@link #incrementToken()} and {@link AttributeSource}    *  APIs should be used instead.    */
 DECL|method|next
 specifier|public
