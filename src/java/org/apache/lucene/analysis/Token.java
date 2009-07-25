@@ -365,7 +365,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/** Constructs a Token with the given term text, and start    *& end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset    *  @param end end offset    *  @deprecated    */
+comment|/** Constructs a Token with the given term text, and start    *& end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset    *  @param end end offset    *  @deprecated Use {@link #Token(char[], int, int, int, int)} instead.    */
 DECL|method|Token
 specifier|public
 name|Token
@@ -393,7 +393,7 @@ operator|=
 name|end
 expr_stmt|;
 block|}
-comment|/** Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    *  @param text term text    *  @param start start offset    *  @param end end offset    *  @param typ token type    *  @deprecated    */
+comment|/** Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    *  @param text term text    *  @param start start offset    *  @param end end offset    *  @param typ token type    *  @deprecated Use {@link #Token(char[], int, int, int, int)} and {@link #setType(String)} instead.    */
 DECL|method|Token
 specifier|public
 name|Token
@@ -428,7 +428,7 @@ operator|=
 name|typ
 expr_stmt|;
 block|}
-comment|/**    *  Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    * @param text    * @param start    * @param end    * @param flags token type bits    * @deprecated    */
+comment|/**    *  Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    * @param text    * @param start    * @param end    * @param flags token type bits    * @deprecated Use {@link #Token(char[], int, int, int, int)} and {@link #setFlags(int)} instead.    */
 DECL|method|Token
 specifier|public
 name|Token

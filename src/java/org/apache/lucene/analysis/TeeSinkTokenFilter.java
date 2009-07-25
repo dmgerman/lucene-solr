@@ -412,13 +412,14 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * TODO: Missing Docs    */
+comment|/**    * A filter that decides which {@link AttributeSource} states to store in the sink.    */
 DECL|interface|SinkFilter
 specifier|public
 specifier|static
 interface|interface
 name|SinkFilter
 block|{
+comment|/**      * Returns true, iff the current state of the passed-in {@link AttributeSource} shall be stored      * in the sink.       */
 DECL|method|accept
 name|boolean
 name|accept

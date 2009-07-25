@@ -107,7 +107,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/**  * An AttributeSource contains a list of different {@link AttributeImpl}s,  * and methods to add and get them. There can only be a single instance  * of an attribute in the same AttributeSource instance. This is ensured  * by passing in the actual type of the Attribute (Class&lt;Attribute&gt;) to   * the {@link #addAttribute(Class)}, which then checks if an instance of  * that type is already present. If yes, it returns the instance, otherwise  * it creates a new instance and returns it.  *   *<p><font color="#FF0000">  * WARNING: The status of the new TokenStream, AttributeSource and Attributes is experimental.   * The APIs introduced in these classes with Lucene 2.9 might change in the future.   * We will make our best efforts to keep the APIs backwards-compatible.</font>  */
+comment|/**  * An AttributeSource contains a list of different {@link AttributeImpl}s,  * and methods to add and get them. There can only be a single instance  * of an attribute in the same AttributeSource instance. This is ensured  * by passing in the actual type of the Attribute (Class&lt;Attribute&gt;) to   * the {@link #addAttribute(Class)}, which then checks if an instance of  * that type is already present. If yes, it returns the instance, otherwise  * it creates a new instance and returns it.  */
 end_comment
 
 begin_class

@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A TokenFilter is a TokenStream whose input is another token stream.<p>   This is an abstract class.   NOTE: subclasses must override    {@link #incrementToken()} if the new TokenStream API is used   and {@link #next(Token)} or {@link #next()} if the old   TokenStream API is used.  *<p><font color="#FF0000">  * WARNING: The status of the new TokenStream, AttributeSource and Attributes is experimental.   * The APIs introduced in these classes with Lucene 2.9 might change in the future.   * We will make our best efforts to keep the APIs backwards-compatible.</font><p>   See {@link TokenStream}   */
+comment|/** A TokenFilter is a TokenStream whose input is another token stream.<p>   This is an abstract class.   NOTE: subclasses must override    {@link #incrementToken()} if the new TokenStream API is used   and {@link #next(Token)} or {@link #next()} if the old   TokenStream API is used.<p>   See {@link TokenStream}   */
 end_comment
 
 begin_class

@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class.<p>   NOTE: To use the old API subclasses must override {@link #next(Token)}.   It's also OK to instead override {@link #next()} but that   method is slower compared to {@link #next(Token)}.<p>   NOTE: subclasses overriding {@link #next(Token)} must     call {@link Token#clear()}.  *<p><font color="#FF0000">  * WARNING: The status of the new TokenStream, AttributeSource and Attributes is experimental.   * The APIs introduced in these classes with Lucene 2.9 might change in the future.   * We will make our best efforts to keep the APIs backwards-compatible.</font>  */
+comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class.<p>   NOTE: To use the old API subclasses must override {@link #next(Token)}.   It's also OK to instead override {@link #next()} but that   method is slower compared to {@link #next(Token)}.<p>   NOTE: subclasses overriding {@link #next(Token)} must     call {@link Token#clear()}.  */
 end_comment
 
 begin_class
