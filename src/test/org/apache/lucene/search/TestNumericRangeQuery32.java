@@ -725,7 +725,7 @@ literal|0
 case|:
 name|type
 operator|=
-literal|" (constant score)"
+literal|" (constant score filter rewrite)"
 expr_stmt|;
 name|q
 operator|.
@@ -766,7 +766,7 @@ literal|1
 case|:
 name|type
 operator|=
-literal|" (boolean query)"
+literal|" (constant score boolean rewrite)"
 expr_stmt|;
 name|q
 operator|.
@@ -774,7 +774,7 @@ name|setRewriteMethod
 argument_list|(
 name|MultiTermQuery
 operator|.
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
 argument_list|)
 expr_stmt|;
 name|topDocs
@@ -1853,15 +1853,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|cq
-operator|.
-name|setRewriteMethod
-argument_list|(
-name|MultiTermQuery
-operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
-argument_list|)
-expr_stmt|;
 name|TopDocs
 name|tTopDocs
 init|=
@@ -1967,15 +1958,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|cq
-operator|.
-name|setRewriteMethod
-argument_list|(
-name|MultiTermQuery
-operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
-argument_list|)
-expr_stmt|;
 name|tTopDocs
 operator|=
 name|searcher
@@ -2079,15 +2061,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|cq
-operator|.
-name|setRewriteMethod
-argument_list|(
-name|MultiTermQuery
-operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
-argument_list|)
-expr_stmt|;
 name|tTopDocs
 operator|=
 name|searcher
@@ -2189,15 +2162,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|cq
-operator|.
-name|setRewriteMethod
-argument_list|(
-name|MultiTermQuery
-operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 expr_stmt|;
 name|tTopDocs

@@ -1045,9 +1045,19 @@ literal|"Please create a private instance"
 argument_list|)
 throw|;
 block|}
+comment|// Make sure we are still a singleton even after deserializing
+specifier|protected
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+return|;
+block|}
 block|}
 decl_stmt|;
-comment|/** Constructs a query for terms matching<code>term</code>. */
+comment|/**    * Constructs a query for terms matching<code>term</code>.    * @deprecated check sub class for possible term access - the Term does not    * make sense for all MultiTermQuerys and will be removed.    */
 DECL|method|MultiTermQuery
 specifier|public
 name|MultiTermQuery
