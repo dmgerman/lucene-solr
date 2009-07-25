@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an exclusive range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link Term#compareTo(Term)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is in  * {@linkplain MultiTermQuery#setConstantScoreRewrite(boolean) boolean query rewrite mode}.  * If you want to change this, use the new {@link TermRangeQuery} instead.  *  * @deprecated Use {@link TermRangeQuery} for term ranges or  * {@link NumericRangeQuery} for numeric ranges instead.  * This class will be removed in Lucene 3.0.  */
+comment|/**  * A Query that matches documents within an exclusive range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link Term#compareTo(Term)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query uses {@linkplain  * MultiTermQuery#SCORING_BOOLEAN_QUERY_REWRITE}.  If you  * want to change this, use the new {@link TermRangeQuery}  * instead.  *  * @deprecated Use {@link TermRangeQuery} for term ranges or  * {@link NumericRangeQuery} for numeric ranges instead.  * This class will be removed in Lucene 3.0.  */
 end_comment
 
 begin_class
@@ -227,9 +227,11 @@ argument_list|)
 expr_stmt|;
 name|delegate
 operator|.
-name|setConstantScoreRewrite
+name|setRewriteMethod
 argument_list|(
-literal|false
+name|TermRangeQuery
+operator|.
+name|SCORING_BOOLEAN_QUERY_REWRITE
 argument_list|)
 expr_stmt|;
 block|}

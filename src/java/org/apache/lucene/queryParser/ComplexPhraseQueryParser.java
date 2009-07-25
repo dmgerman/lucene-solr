@@ -164,6 +164,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MultiTermQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|TermRangeQuery
 import|;
 end_import
@@ -357,15 +371,17 @@ condition|(
 name|isPass2ResolvingPhrases
 condition|)
 block|{
-name|boolean
-name|oldConstantScoreRewriteSetting
+name|MultiTermQuery
+operator|.
+name|RewriteMethod
+name|oldMethod
 init|=
-name|getConstantScoreRewrite
+name|getMultiTermRewriteMethod
 argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|// Temporarily set constantScoreRewrite to false so that Parser will
+comment|// Temporarily force BooleanQuery rewrite so that Parser will
 comment|// generate visible
 comment|// collection of terms which we can convert into SpanQueries.
 comment|// ConstantScoreRewrite mode produces an
@@ -374,9 +390,11 @@ comment|// terms in the same way a BooleanQuery can.
 comment|// QueryParser is not guaranteed threadsafe anyway so this temporary
 comment|// state change should not
 comment|// present an issue
-name|setConstantScoreRewrite
+name|setMultiTermRewriteMethod
 argument_list|(
-literal|false
+name|MultiTermQuery
+operator|.
+name|SCORING_BOOLEAN_QUERY_REWRITE
 argument_list|)
 expr_stmt|;
 return|return
@@ -390,9 +408,9 @@ return|;
 block|}
 finally|finally
 block|{
-name|setConstantScoreRewrite
+name|setMultiTermRewriteMethod
 argument_list|(
-name|oldConstantScoreRewriteSetting
+name|oldMethod
 argument_list|)
 expr_stmt|;
 block|}
@@ -704,12 +722,13 @@ argument_list|)
 decl_stmt|;
 name|rangeQuery
 operator|.
-name|setConstantScoreRewrite
+name|setRewriteMethod
 argument_list|(
-literal|false
+name|MultiTermQuery
+operator|.
+name|SCORING_BOOLEAN_QUERY_REWRITE
 argument_list|)
 expr_stmt|;
-empty_stmt|;
 return|return
 name|rangeQuery
 return|;

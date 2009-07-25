@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range query that returns a constant score equal to its boost for  * all documents in the exclusive range of terms.  *  *<p>It does not have an upper bound on the number of clauses covered in the range.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is in  * {@linkplain MultiTermQuery#setConstantScoreRewrite(boolean) constant score rewrite mode}.  * If you want to change this, use the new {@link TermRangeQuery} instead.  *  * @deprecated Use {@link TermRangeQuery} for term ranges or  * {@link NumericRangeQuery} for numeric ranges instead.  * This class will be removed in Lucene 3.0.  * @version $Id$  */
+comment|/**  * A range query that returns a constant score equal to its boost for  * all documents in the exclusive range of terms.  *  *<p>It does not have an upper bound on the number of clauses covered in the range.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is hardwired to {@link MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}.  * If you want to change this, use {@link TermRangeQuery} instead.  *  * @deprecated Use {@link TermRangeQuery} for term ranges or  * {@link NumericRangeQuery} for numeric ranges instead.  * This class will be removed in Lucene 3.0.  * @version $Id$  */
 end_comment
 
 begin_class
@@ -71,11 +71,9 @@ argument_list|,
 name|includeUpper
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|constantScoreRewrite
+name|rewriteMethod
 operator|=
-literal|true
+name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
 expr_stmt|;
 block|}
 DECL|method|ConstantScoreRangeQuery
@@ -116,11 +114,9 @@ argument_list|,
 name|collator
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|constantScoreRewrite
+name|rewriteMethod
 operator|=
-literal|true
+name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
 expr_stmt|;
 block|}
 DECL|method|getLowerVal
@@ -146,25 +142,20 @@ argument_list|()
 return|;
 block|}
 comment|/** Changes of mode are not supported by this class (fixed to constant score rewrite mode) */
-DECL|method|setConstantScoreRewrite
+DECL|method|setRewriteMethod
 specifier|public
 name|void
-name|setConstantScoreRewrite
+name|setRewriteMethod
 parameter_list|(
-name|boolean
-name|constantScoreRewrite
+name|RewriteMethod
+name|method
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|constantScoreRewrite
-condition|)
 throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"Use TermRangeQuery instead to enable boolean query rewrite."
+literal|"Use TermRangeQuery instead to change the rewrite method."
 argument_list|)
 throw|;
 block|}

@@ -46,20 +46,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -79,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query that matches documents within an exclusive range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is in constant score mode per default.  * See {@link MultiTermQuery#setConstantScoreRewrite} for the tradeoffs between  * enabling and disabling constantScoreRewrite mode.  * @since 2.9  */
+comment|/**  * A Query that matches documents within an exclusive range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method.  * @since 2.9  */
 end_comment
 
 begin_class
@@ -217,11 +203,9 @@ name|collator
 operator|=
 name|collator
 expr_stmt|;
-name|this
-operator|.
-name|constantScoreRewrite
+name|rewriteMethod
 operator|=
-literal|true
+name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
 expr_stmt|;
 block|}
 comment|/** Returns the field name for this query */

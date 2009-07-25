@@ -241,6 +241,10 @@ name|prefixLength
 operator|=
 name|prefixLength
 expr_stmt|;
+name|rewriteMethod
+operator|=
+name|SCORING_BOOLEAN_QUERY_REWRITE
+expr_stmt|;
 block|}
 comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, minimumSimilarity, 0)}.    */
 DECL|method|FuzzyQuery
@@ -344,20 +348,20 @@ return|return
 name|term
 return|;
 block|}
-DECL|method|setConstantScoreRewrite
+DECL|method|setRewriteMethod
 specifier|public
 name|void
-name|setConstantScoreRewrite
+name|setRewriteMethod
 parameter_list|(
-name|boolean
-name|constantScoreRewrite
+name|RewriteMethod
+name|method
 parameter_list|)
 block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"FuzzyQuery cannot rewrite to a constant score query"
+literal|"FuzzyQuery cannot change rewrite method"
 argument_list|)
 throw|;
 block|}
