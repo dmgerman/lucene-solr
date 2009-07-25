@@ -963,10 +963,10 @@ name|mtq
 operator|.
 name|getRewriteMethod
 argument_list|()
-operator|==
+operator|!=
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_FILTER_REWRITE
+name|SCORING_BOOLEAN_QUERY_REWRITE
 condition|)
 block|{
 name|mtq
