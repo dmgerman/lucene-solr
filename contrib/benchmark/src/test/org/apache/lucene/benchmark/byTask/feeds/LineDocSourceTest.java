@@ -305,14 +305,14 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests the functionality of {@link LineDocMaker}. */
+comment|/** Tests the functionality of {@link LineDocSource}. */
 end_comment
 
 begin_class
-DECL|class|LineDocMakerTest
+DECL|class|LineDocSourceTest
 specifier|public
 class|class
-name|LineDocMakerTest
+name|LineDocSourceTest
 extends|extends
 name|BenchmarkTestCase
 block|{
@@ -550,7 +550,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-comment|// LineDocMaker specific settings.
+comment|// LineDocSource specific settings.
 name|props
 operator|.
 name|setProperty
@@ -597,9 +597,9 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"doc.maker"
+literal|"content.source"
 argument_list|,
-name|LineDocMaker
+name|LineDocSource
 operator|.
 name|class
 operator|.
@@ -749,7 +749,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* Tests LineDocMaker with a bzip2 input stream. */
+comment|/* Tests LineDocSource with a bzip2 input stream. */
 DECL|method|testBZip2
 specifier|public
 name|void

@@ -1119,7 +1119,7 @@ name|Exception
 block|{
 comment|// WriteLineDocTask replaced only \t characters w/ a space, since that's its
 comment|// separator char. However, it didn't replace newline characters, which
-comment|// resulted in errors in LineDocMaker.
+comment|// resulted in errors in LineDocSource.
 name|File
 name|file
 init|=
