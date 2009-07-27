@@ -60,14 +60,8 @@ name|DocIdSet
 name|EMPTY_DOCIDSET
 init|=
 operator|new
-name|SortedVIntList
-argument_list|(
-operator|new
-name|int
-index|[
-literal|0
-index|]
-argument_list|)
+name|DocIdSet
+argument_list|()
 block|{
 specifier|private
 specifier|final
