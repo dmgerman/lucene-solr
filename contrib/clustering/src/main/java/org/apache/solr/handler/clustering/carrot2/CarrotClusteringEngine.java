@@ -1277,7 +1277,7 @@ name|CarrotParams
 operator|.
 name|OUTPUT_SUB_CLUSTERS
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 argument_list|,
 name|solrParams
@@ -1387,9 +1387,16 @@ name|Document
 argument_list|>
 name|docs
 init|=
+name|outputSubClusters
+condition|?
 name|outCluster
 operator|.
 name|getDocuments
+argument_list|()
+else|:
+name|outCluster
+operator|.
+name|getAllDocuments
 argument_list|()
 decl_stmt|;
 name|List
