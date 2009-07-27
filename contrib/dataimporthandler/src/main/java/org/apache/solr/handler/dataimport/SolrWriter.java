@@ -401,7 +401,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"deleted from document to Solr: "
+literal|"Deleting document: "
 operator|+
 name|id
 argument_list|)
