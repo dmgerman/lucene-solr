@@ -405,7 +405,7 @@ literal|"map.a"
 argument_list|,
 literal|"t_href"
 argument_list|,
-literal|"map.content_language"
+literal|"map.content_type"
 argument_list|,
 literal|"abcxyz"
 argument_list|,
@@ -419,16 +419,7 @@ expr_stmt|;
 comment|// test that purposely causes a failure to print out the doc for test debugging
 comment|// assertQ(req("q","id:simple2","indent","true"), "//*[@numFound='0']");
 comment|// test both lowernames and unknown field mapping
-name|assertQ
-argument_list|(
-name|req
-argument_list|(
-literal|"+id:simple2 +t_content_type:[* TO *]"
-argument_list|)
-argument_list|,
-literal|"//*[@numFound='1']"
-argument_list|)
-expr_stmt|;
+comment|//assertQ(req("+id:simple2 +t_content_type:[* TO *]"), "//*[@numFound='1']");
 name|assertQ
 argument_list|(
 name|req
@@ -474,10 +465,6 @@ literal|"map.a"
 argument_list|,
 literal|"t_href"
 argument_list|,
-literal|"map.content_language"
-argument_list|,
-literal|"abcxyz"
-argument_list|,
 literal|"commit"
 argument_list|,
 literal|"true"
@@ -507,6 +494,17 @@ argument_list|,
 literal|"//doc[1]/str[.='simple3']"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"+id:simple3 +t_content_type:[* TO *]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|//test lowercase and then uprefix
 comment|// test capture
 name|loadLocal
 argument_list|(
