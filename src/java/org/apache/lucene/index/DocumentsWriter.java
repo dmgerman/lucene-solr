@@ -4037,6 +4037,13 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|scorer
+operator|!=
+literal|null
+condition|)
+block|{
 while|while
 condition|(
 literal|true
@@ -4075,6 +4082,7 @@ name|any
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 block|}
 name|searcher

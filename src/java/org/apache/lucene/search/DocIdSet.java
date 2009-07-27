@@ -69,7 +69,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
-comment|/** Provides a {@link DocIdSetIterator} to access the set. */
+comment|/** Provides a {@link DocIdSetIterator} to access the set.    * This may (but is not required to) return null if there    * are no docs that match. */
 DECL|method|iterator
 specifier|public
 specifier|abstract

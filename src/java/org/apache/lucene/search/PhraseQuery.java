@@ -1008,8 +1008,8 @@ operator|+
 literal|"), product of:"
 argument_list|)
 expr_stmt|;
-name|Explanation
-name|tfExpl
+name|Scorer
+name|scorer
 init|=
 name|scorer
 argument_list|(
@@ -1019,6 +1019,28 @@ literal|true
 argument_list|,
 literal|false
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|scorer
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|Explanation
+argument_list|(
+literal|0.0f
+argument_list|,
+literal|"no matching docs"
+argument_list|)
+return|;
+block|}
+name|Explanation
+name|tfExpl
+init|=
+name|scorer
 operator|.
 name|explain
 argument_list|(

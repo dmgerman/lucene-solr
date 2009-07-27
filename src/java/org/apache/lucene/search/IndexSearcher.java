@@ -1216,8 +1216,8 @@ operator|.
 name|NO_MORE_DOCS
 assert|;
 comment|// CHECKME: use ConjunctionScorer here?
-name|DocIdSetIterator
-name|filterIter
+name|DocIdSet
+name|filterDocIdSet
 init|=
 name|filter
 operator|.
@@ -1225,10 +1225,35 @@ name|getDocIdSet
 argument_list|(
 name|reader
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|filterDocIdSet
+operator|==
+literal|null
+condition|)
+block|{
+comment|// this means the filter does not accept any documents.
+return|return;
+block|}
+name|DocIdSetIterator
+name|filterIter
+init|=
+name|filterDocIdSet
 operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|filterIter
+operator|==
+literal|null
+condition|)
+block|{
+comment|// this means the filter does not accept any documents.
+return|return;
+block|}
 name|int
 name|filterDoc
 init|=

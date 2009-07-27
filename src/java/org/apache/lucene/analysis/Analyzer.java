@@ -354,7 +354,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1 for    * tokenized fields and, as if the fields were joined    * with an extra space character, and 0 for un-tokenized    * fields.  This method is only called if the field    * produced at least one token for indexing.    *    * @param Fieldable the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
+comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1 for    * tokenized fields and, as if the fields were joined    * with an extra space character, and 0 for un-tokenized    * fields.  This method is only called if the field    * produced at least one token for indexing.    *    * @param field the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
 DECL|method|getOffsetGap
 specifier|public
 name|int

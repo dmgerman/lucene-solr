@@ -99,7 +99,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * @return a DocIdSet that provides the documents which should be    * permitted or prohibited in search results.    * @see DocIdBitSet    */
+comment|/**    * @return a DocIdSet that provides the documents which should be permitted or    *         prohibited in search results.<b>NOTE:</b> null can be returned if    *         no documents will be accepted by this Filter.    *     * @see DocIdBitSet    */
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
