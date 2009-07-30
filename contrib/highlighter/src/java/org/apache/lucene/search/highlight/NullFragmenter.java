@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|TokenStream
 import|;
 end_import
 
@@ -51,16 +51,16 @@ name|start
 parameter_list|(
 name|String
 name|s
+parameter_list|,
+name|TokenStream
+name|tokenStream
 parameter_list|)
 block|{   }
 DECL|method|isNewFragment
 specifier|public
 name|boolean
 name|isNewFragment
-parameter_list|(
-name|Token
-name|token
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 literal|false

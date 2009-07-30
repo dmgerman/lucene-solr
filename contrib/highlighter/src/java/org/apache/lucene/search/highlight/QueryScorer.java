@@ -48,7 +48,23 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermAttribute
 import|;
 end_import
 
@@ -81,11 +97,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Scorer} implementation which scores text fragments by the number of unique query terms found.  * This class uses the {@link QueryTermExtractor} class to process determine the query terms and   * their boosts to be used.  */
+comment|/**  * {@link Scorer} implementation which scores text fragments by the number of  * unique query terms found. This class uses the {@link QueryTermExtractor}  * class to process determine the query terms and their boosts to be used.  */
 end_comment
 
 begin_comment
-comment|//TODO: provide option to boost score of fragments near beginning of document
+comment|// TODO: provide option to boost score of fragments near beginning of document
 end_comment
 
 begin_comment
@@ -127,7 +143,12 @@ specifier|private
 name|HashMap
 name|termsToFind
 decl_stmt|;
-comment|/** 	 *  	 * @param query a Lucene query (ideally rewritten using query.rewrite  	 * before being passed to this class and the searcher) 	 */
+DECL|field|termAtt
+specifier|private
+name|TermAttribute
+name|termAtt
+decl_stmt|;
+comment|/**    *     * @param query a Lucene query (ideally rewritten using query.rewrite before    *        being passed to this class and the searcher)    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -147,7 +168,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  	 * @param query a Lucene query (ideally rewritten using query.rewrite  	 * before being passed to this class and the searcher) 	 * @param fieldName the Field name which is used to match Query terms 	 */
+comment|/**    *     * @param query a Lucene query (ideally rewritten using query.rewrite before    *        being passed to this class and the searcher)    * @param fieldName the Field name which is used to match Query terms    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -174,7 +195,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  	 * @param query a Lucene query (ideally rewritten using query.rewrite  	 * before being passed to this class and the searcher) 	 * @param reader used to compute IDF which can be used to a) score selected fragments better  	 * b) use graded highlights eg set font color intensity 	 * @param fieldName the field on which Inverse Document Frequency (IDF) calculations are based 	 */
+comment|/**    *     * @param query a Lucene query (ideally rewritten using query.rewrite before    *        being passed to this class and the searcher)    * @param reader used to compute IDF which can be used to a) score selected    *        fragments better b) use graded highlights eg set font color    *        intensity    * @param fieldName the field on which Inverse Document Frequency (IDF)    *        calculations are based    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -276,7 +297,8 @@ name|weight
 operator|)
 condition|)
 block|{
-comment|//if a term is defined more than once, always use the highest scoring weight
+comment|// if a term is defined more than once, always use the highest scoring
+comment|// weight
 name|termsToFind
 operator|.
 name|put
@@ -314,7 +336,32 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.highlight.FragmentScorer#startFragment(org.apache.lucene.search.highlight.TextFragment) 	 */
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#init(org.apache.lucene.analysis.TokenStream)    */
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|TokenStream
+name|tokenStream
+parameter_list|)
+block|{
+name|termAtt
+operator|=
+operator|(
+name|TermAttribute
+operator|)
+name|tokenStream
+operator|.
+name|getAttribute
+argument_list|(
+name|TermAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
+comment|/*    * (non-Javadoc)    *     * @see    * org.apache.lucene.search.highlight.FragmentScorer#startFragment(org.apache    * .lucene.search.highlight.TextFragment)    */
 DECL|method|startFragment
 specifier|public
 name|void
@@ -339,20 +386,17 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.highlight.FragmentScorer#scoreToken(org.apache.lucene.analysis.Token) 	 */
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#getTokenScore()    */
 DECL|method|getTokenScore
 specifier|public
 name|float
 name|getTokenScore
-parameter_list|(
-name|Token
-name|token
-parameter_list|)
+parameter_list|()
 block|{
 name|String
 name|termText
 init|=
-name|token
+name|termAtt
 operator|.
 name|term
 argument_list|()
@@ -377,12 +421,12 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//not a query term - return
+comment|// not a query term - return
 return|return
 literal|0
 return|;
 block|}
-comment|//found a query term - is it unique in this doc?
+comment|// found a query term - is it unique in this doc?
 if|if
 condition|(
 operator|!
@@ -416,7 +460,7 @@ name|getWeight
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.highlight.FragmentScorer#endFragment(org.apache.lucene.search.highlight.TextFragment) 	 */
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#getFragmentScore()    */
 DECL|method|getFragmentScore
 specifier|public
 name|float
@@ -427,16 +471,16 @@ return|return
 name|totalScore
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.highlight.FragmentScorer#allFragmentsProcessed() 	 */
+comment|/*    * (non-Javadoc)    *     * @see    * org.apache.lucene.search.highlight.FragmentScorer#allFragmentsProcessed()    */
 DECL|method|allFragmentsProcessed
 specifier|public
 name|void
 name|allFragmentsProcessed
 parameter_list|()
 block|{
-comment|//this class has no special operations to perform at end of processing
+comment|// this class has no special operations to perform at end of processing
 block|}
-comment|/** 	 *  	 * @return The highest weighted term (useful for passing to GradientFormatter to set 	 * top end of coloring scale.   	 */
+comment|/**    *     * @return The highest weighted term (useful for passing to GradientFormatter    *         to set top end of coloring scale.    */
 DECL|method|getMaxTermWeight
 specifier|public
 name|float

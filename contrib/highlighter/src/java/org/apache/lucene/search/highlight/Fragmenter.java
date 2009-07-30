@@ -28,12 +28,12 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|TokenStream
 import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the policy for breaking text into multiple fragments for consideration  * by the {@link Highlighter} class. A sophisticated implementation may do this on the basis  * of detecting end of sentences in the text.  */
+comment|/**  * Implements the policy for breaking text into multiple fragments for  * consideration by the {@link Highlighter} class. A sophisticated  * implementation may do this on the basis of detecting end of sentences in the  * text.  */
 end_comment
 
 begin_interface
@@ -42,7 +42,7 @@ specifier|public
 interface|interface
 name|Fragmenter
 block|{
-comment|/** 	 * Initializes the Fragmenter 	 * @param originalText 	 */
+comment|/**    * Initializes the Fragmenter. You can grab references to the Attributes you are    * interested in from tokenStream and then access the values in isNewFragment.    *     * @param originalText    * @param tokenStream    */
 DECL|method|start
 specifier|public
 name|void
@@ -50,17 +50,17 @@ name|start
 parameter_list|(
 name|String
 name|originalText
+parameter_list|,
+name|TokenStream
+name|tokenStream
 parameter_list|)
 function_decl|;
-comment|/** 	 * Test to see if this token from the stream should be held in a new TextFragment 	 * @param nextToken 	 */
+comment|/**    * Test to see if this token from the stream should be held in a new    * TextFragment. Every time this is called, the TokenStream    * passed to start(String, TokenStream) will have been incremented.    *     */
 DECL|method|isNewFragment
 specifier|public
 name|boolean
 name|isNewFragment
-parameter_list|(
-name|Token
-name|nextToken
-parameter_list|)
+parameter_list|()
 function_decl|;
 block|}
 end_interface

@@ -32,8 +32,54 @@ name|Token
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|OffsetAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermAttribute
+import|;
+end_import
+
 begin_comment
-comment|/**  * One, or several overlapping tokens, along with the score(s) and the  * scope of the original text  */
+comment|/**  * One, or several overlapping tokens, along with the score(s) and the scope of  * the original text  */
 end_comment
 
 begin_class
@@ -102,13 +148,57 @@ name|matchStartOffset
 decl_stmt|,
 name|matchEndOffset
 decl_stmt|;
+DECL|field|offsetAtt
+specifier|private
+name|OffsetAttribute
+name|offsetAtt
+decl_stmt|;
+DECL|field|termAtt
+specifier|private
+name|TermAttribute
+name|termAtt
+decl_stmt|;
+DECL|method|TokenGroup
+specifier|public
+name|TokenGroup
+parameter_list|(
+name|TokenStream
+name|tokenStream
+parameter_list|)
+block|{
+name|offsetAtt
+operator|=
+operator|(
+name|OffsetAttribute
+operator|)
+name|tokenStream
+operator|.
+name|getAttribute
+argument_list|(
+name|OffsetAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|termAtt
+operator|=
+operator|(
+name|TermAttribute
+operator|)
+name|tokenStream
+operator|.
+name|getAttribute
+argument_list|(
+name|TermAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|addToken
 name|void
 name|addToken
 parameter_list|(
-name|Token
-name|token
-parameter_list|,
 name|float
 name|score
 parameter_list|)
@@ -120,6 +210,22 @@ operator|<
 name|MAX_NUM_TOKENS_PER_GROUP
 condition|)
 block|{
+name|int
+name|termStartOffset
+init|=
+name|offsetAtt
+operator|.
+name|startOffset
+argument_list|()
+decl_stmt|;
+name|int
+name|termEndOffset
+init|=
+name|offsetAtt
+operator|.
+name|endOffset
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|numTokens
@@ -131,19 +237,13 @@ name|startOffset
 operator|=
 name|matchStartOffset
 operator|=
-name|token
-operator|.
-name|startOffset
-argument_list|()
+name|termStartOffset
 expr_stmt|;
 name|endOffset
 operator|=
 name|matchEndOffset
 operator|=
-name|token
-operator|.
-name|endOffset
-argument_list|()
+name|termEndOffset
 expr_stmt|;
 name|tot
 operator|+=
@@ -160,10 +260,7 @@ name|min
 argument_list|(
 name|startOffset
 argument_list|,
-name|token
-operator|.
-name|startOffset
-argument_list|()
+name|termStartOffset
 argument_list|)
 expr_stmt|;
 name|endOffset
@@ -174,10 +271,7 @@ name|max
 argument_list|(
 name|endOffset
 argument_list|,
-name|token
-operator|.
-name|endOffset
-argument_list|()
+name|termEndOffset
 argument_list|)
 expr_stmt|;
 if|if
@@ -196,14 +290,14 @@ condition|)
 block|{
 name|matchStartOffset
 operator|=
-name|token
+name|offsetAtt
 operator|.
 name|startOffset
 argument_list|()
 expr_stmt|;
 name|matchEndOffset
 operator|=
-name|token
+name|offsetAtt
 operator|.
 name|endOffset
 argument_list|()
@@ -219,10 +313,7 @@ name|min
 argument_list|(
 name|matchStartOffset
 argument_list|,
-name|token
-operator|.
-name|startOffset
-argument_list|()
+name|termStartOffset
 argument_list|)
 expr_stmt|;
 name|matchEndOffset
@@ -233,10 +324,7 @@ name|max
 argument_list|(
 name|matchEndOffset
 argument_list|,
-name|token
-operator|.
-name|endOffset
-argument_list|()
+name|termEndOffset
 argument_list|)
 expr_stmt|;
 block|}
@@ -246,18 +334,33 @@ name|score
 expr_stmt|;
 block|}
 block|}
+name|Token
+name|token
+init|=
+operator|new
+name|Token
+argument_list|(
+name|termStartOffset
+argument_list|,
+name|termEndOffset
+argument_list|)
+decl_stmt|;
+name|token
+operator|.
+name|setTermBuffer
+argument_list|(
+name|termAtt
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|tokens
 index|[
 name|numTokens
 index|]
 operator|=
-operator|(
-name|Token
-operator|)
 name|token
-operator|.
-name|clone
-argument_list|()
 expr_stmt|;
 name|scores
 index|[
@@ -274,13 +377,10 @@ block|}
 DECL|method|isDistinct
 name|boolean
 name|isDistinct
-parameter_list|(
-name|Token
-name|token
-parameter_list|)
+parameter_list|()
 block|{
 return|return
-name|token
+name|offsetAtt
 operator|.
 name|startOffset
 argument_list|()
@@ -302,7 +402,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/** 	 *  	 * @param index a value between 0 and numTokens -1 	 * @return the "n"th token 	 */
+comment|/*    * @param index a value between 0 and numTokens -1   * @return the "n"th token   */
 DECL|method|getToken
 specifier|public
 name|Token
@@ -319,7 +419,7 @@ name|index
 index|]
 return|;
 block|}
-comment|/** 	 *  	 * @param index a value between 0 and numTokens -1 	 * @return the "n"th score 	 */
+comment|/**    *     * @param index a value between 0 and numTokens -1    * @return the "n"th score    */
 DECL|method|getScore
 specifier|public
 name|float
@@ -336,7 +436,7 @@ name|index
 index|]
 return|;
 block|}
-comment|/** 	 * @return the end position in the original text 	 */
+comment|/**    * @return the end position in the original text    */
 DECL|method|getEndOffset
 specifier|public
 name|int
@@ -347,7 +447,7 @@ return|return
 name|endOffset
 return|;
 block|}
-comment|/** 	 * @return the number of tokens in this group 	 */
+comment|/**    * @return the number of tokens in this group    */
 DECL|method|getNumTokens
 specifier|public
 name|int
@@ -358,7 +458,7 @@ return|return
 name|numTokens
 return|;
 block|}
-comment|/** 	 * @return the start position in the original text 	 */
+comment|/**    * @return the start position in the original text    */
 DECL|method|getStartOffset
 specifier|public
 name|int
@@ -369,7 +469,7 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/** 	 * @return all tokens' scores summed up 	 */
+comment|/**    * @return all tokens' scores summed up    */
 DECL|method|getTotalScore
 specifier|public
 name|float
