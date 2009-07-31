@@ -323,18 +323,7 @@ argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
-name|assertQ
-argument_list|(
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"{!field f=v_ti}5"
-argument_list|)
-argument_list|,
-literal|"//result[@numFound='1']"
-argument_list|)
-expr_stmt|;
+comment|/** future test     assertQ(             req("q","{!field f=v_ti}5")             ,"//result[@numFound='1']"             );      **/
 name|assertQ
 argument_list|(
 literal|"test multi term field query on text type"
