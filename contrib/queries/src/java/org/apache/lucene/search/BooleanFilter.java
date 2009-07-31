@@ -566,22 +566,10 @@ name|maxDoc
 argument_list|()
 argument_list|)
 return|;
-if|if
-condition|(
-name|emptyDocIdSet
-operator|==
-literal|null
-condition|)
-name|emptyDocIdSet
-operator|=
-operator|new
-name|OpenBitSetDISI
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
 return|return
-name|emptyDocIdSet
+name|DocIdSet
+operator|.
+name|EMPTY_DOCIDSET
 return|;
 block|}
 comment|// TODO: in 3.0, instead of removing this deprecated
@@ -628,14 +616,6 @@ operator|)
 name|result
 return|;
 block|}
-DECL|field|emptyDocIdSet
-specifier|private
-specifier|static
-name|DocIdSet
-name|emptyDocIdSet
-init|=
-literal|null
-decl_stmt|;
 comment|/**   * Adds a new FilterClause to the Boolean Filter container   * @param filterClause A FilterClause object containing a Filter and an Occur parameter   */
 DECL|method|add
 specifier|public
