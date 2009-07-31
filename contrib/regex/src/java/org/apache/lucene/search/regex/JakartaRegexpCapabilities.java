@@ -59,6 +59,63 @@ specifier|private
 name|RE
 name|regexp
 decl_stmt|;
+comment|// Define the flags that are possible. Redefine them here
+comment|// to avoid exposign the RE class to the caller.
+DECL|field|flags
+specifier|private
+name|int
+name|flags
+init|=
+name|RE
+operator|.
+name|MATCH_NORMAL
+decl_stmt|;
+comment|/**    * Flag to specify normal, case-sensitive matching behaviour. This is the default.    */
+DECL|field|FLAG_MATCH_NORMAL
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_MATCH_NORMAL
+init|=
+name|RE
+operator|.
+name|MATCH_NORMAL
+decl_stmt|;
+comment|/**    * Flag to specify that matching should be case-independent (folded)    */
+DECL|field|FLAG_MATCH_CASEINDEPENDENT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_MATCH_CASEINDEPENDENT
+init|=
+name|RE
+operator|.
+name|MATCH_CASEINDEPENDENT
+decl_stmt|;
+comment|/**    * Contructs a RegexCapabilities with the default MATCH_NORMAL match style.    */
+DECL|method|JakartaRegexpCapabilities
+specifier|public
+name|JakartaRegexpCapabilities
+parameter_list|()
+block|{}
+comment|/**    * Constructs a RegexCapabilities with the provided match flags.    * Multiple flags should be ORed together.    *     * @param flags The matching style    */
+DECL|method|JakartaRegexpCapabilities
+specifier|public
+name|JakartaRegexpCapabilities
+parameter_list|(
+name|int
+name|flags
+parameter_list|)
+block|{
+name|this
+operator|.
+name|flags
+operator|=
+name|flags
+expr_stmt|;
+block|}
 DECL|method|compile
 specifier|public
 name|void
@@ -74,6 +131,10 @@ operator|new
 name|RE
 argument_list|(
 name|pattern
+argument_list|,
+name|this
+operator|.
+name|flags
 argument_list|)
 expr_stmt|;
 block|}
