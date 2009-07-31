@@ -215,7 +215,7 @@ argument_list|(
 name|string
 argument_list|)
 operator|.
-name|lookingAt
+name|matches
 argument_list|()
 return|;
 block|}
