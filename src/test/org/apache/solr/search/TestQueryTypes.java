@@ -206,6 +206,20 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"8"
+argument_list|,
+literal|"v_ti"
+argument_list|,
+literal|"5"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
 name|optimize
 argument_list|()
 argument_list|)
@@ -304,6 +318,18 @@ argument_list|(
 literal|"q"
 argument_list|,
 literal|"{!field f=v_f}1.5"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!field f=v_ti}5"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"

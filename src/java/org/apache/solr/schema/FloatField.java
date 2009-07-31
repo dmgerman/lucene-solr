@@ -255,18 +255,80 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|String
+name|s
+init|=
+name|f
+operator|.
+name|stringValue
+argument_list|()
+decl_stmt|;
+comment|// these values may be from a legacy lucene index, which may
+comment|// not be properly formatted in some output formats, or may
+comment|// incorrectly have a zero length.
+if|if
+condition|(
+name|s
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// zero length value means someone mistakenly indexed the value
+comment|// instead of simply leaving it out.  Write a null value instead of a numeric.
+name|writer
+operator|.
+name|writeNull
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+try|try
+block|{
+name|float
+name|fval
+init|=
+name|Float
+operator|.
+name|parseFloat
+argument_list|(
+name|s
+argument_list|)
+decl_stmt|;
 name|writer
 operator|.
 name|writeFloat
 argument_list|(
 name|name
 argument_list|,
-name|f
-operator|.
-name|stringValue
-argument_list|()
+name|fval
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+comment|// can't parse - write out the contents as a string so nothing is lost and
+comment|// clients don't get a parse error.
+name|writer
+operator|.
+name|writeStr
+argument_list|(
+name|name
+argument_list|,
+name|s
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
