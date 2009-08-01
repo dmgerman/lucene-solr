@@ -662,34 +662,51 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Determine what set of merge operations are now    * necessary on the index.  The IndexWriter calls this    * whenever there is a change to the segments.  This call    * is always synchronized on the IndexWriter instance so    * only one thread at a time will call this method.    *    * @param segmentInfos the total set of segments in the index    * @param writer IndexWriter instance    */
+DECL|field|writer
+specifier|final
+specifier|protected
+name|IndexWriter
+name|writer
+decl_stmt|;
+DECL|method|MergePolicy
+specifier|public
+name|MergePolicy
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|)
+block|{
+name|this
+operator|.
+name|writer
+operator|=
+name|writer
+expr_stmt|;
+block|}
+comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    */
 DECL|method|findMerges
+specifier|public
 specifier|abstract
 name|MergeSpecification
 name|findMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
-parameter_list|,
-name|IndexWriter
-name|writer
 parameter_list|)
 throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
 function_decl|;
-comment|/**    * Determine what set of merge operations is necessary in    * order to optimize the index.  The IndexWriter calls    * this when its optimize() method is called.  This call    * is always synchronized on the IndexWriter instance so    * only one thread at a time will call this method.    *    * @param segmentInfos the total set of segments in the index    * @param writer IndexWriter instance    * @param maxSegmentCount requested maximum number of    *   segments in the index (currently this is always 1)    * @param segmentsToOptimize contains the specific    *   SegmentInfo instances that must be merged away.  This    *   may be a subset of all SegmentInfos.    */
+comment|/**    * Determine what set of merge operations is necessary in order to optimize    * the index. {@link IndexWriter} calls this when its    * {@link IndexWriter#optimize()} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToOptimize    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all SegmentInfos.    */
 DECL|method|findMergesForOptimize
+specifier|public
 specifier|abstract
 name|MergeSpecification
 name|findMergesForOptimize
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
-parameter_list|,
-name|IndexWriter
-name|writer
 parameter_list|,
 name|int
 name|maxSegmentCount
@@ -702,32 +719,24 @@ name|CorruptIndexException
 throws|,
 name|IOException
 function_decl|;
-comment|/**    * Determine what set of merge operations is necessary in    * order to expunge all deletes from the index.    * @param segmentInfos the total set of segments in the index    * @param writer IndexWriter instance    */
+comment|/**    * Determine what set of merge operations is necessary in order to expunge all    * deletes from the index.    *     * @param segmentInfos    *          the total set of segments in the index    */
 DECL|method|findMergesToExpungeDeletes
+specifier|public
+specifier|abstract
 name|MergeSpecification
 name|findMergesToExpungeDeletes
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
-parameter_list|,
-name|IndexWriter
-name|writer
 parameter_list|)
 throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 comment|/**    * Release all resources for the policy.    */
 DECL|method|close
+specifier|public
 specifier|abstract
 name|void
 name|close
@@ -735,6 +744,7 @@ parameter_list|()
 function_decl|;
 comment|/**    * Returns true if a newly flushed (not from merge)    * segment should use the compound file format.    */
 DECL|method|useCompoundFile
+specifier|public
 specifier|abstract
 name|boolean
 name|useCompoundFile
@@ -748,6 +758,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns true if the doc store files should use the    * compound file format.    */
 DECL|method|useCompoundDocStore
+specifier|public
 specifier|abstract
 name|boolean
 name|useCompoundDocStore

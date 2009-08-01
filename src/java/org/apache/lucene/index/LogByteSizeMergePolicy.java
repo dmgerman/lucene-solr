@@ -56,9 +56,6 @@ specifier|final
 name|double
 name|DEFAULT_MAX_MERGE_MB
 init|=
-operator|(
-name|double
-operator|)
 name|Long
 operator|.
 name|MAX_VALUE
@@ -66,10 +63,15 @@ decl_stmt|;
 DECL|method|LogByteSizeMergePolicy
 specifier|public
 name|LogByteSizeMergePolicy
-parameter_list|()
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 expr_stmt|;
 name|minMergeSize
 operator|=

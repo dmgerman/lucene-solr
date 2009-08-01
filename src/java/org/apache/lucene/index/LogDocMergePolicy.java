@@ -51,10 +51,15 @@ decl_stmt|;
 DECL|method|LogDocMergePolicy
 specifier|public
 name|LogDocMergePolicy
-parameter_list|()
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 expr_stmt|;
 name|minMergeSize
 operator|=

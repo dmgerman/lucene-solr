@@ -3569,7 +3569,9 @@ name|ldmp
 init|=
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 decl_stmt|;
 name|ldmp
 operator|.
@@ -3811,7 +3813,9 @@ name|ldmp
 init|=
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 decl_stmt|;
 name|ldmp
 operator|.
@@ -16942,7 +16946,9 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Document
@@ -17155,7 +17161,9 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Directory
@@ -17276,7 +17284,9 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Document
@@ -17520,7 +17530,9 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Document
@@ -17677,7 +17689,9 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|()
+argument_list|(
+name|writer
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for

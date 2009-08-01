@@ -676,7 +676,9 @@ name|mergePolicy
 init|=
 operator|new
 name|LogByteSizeMergePolicy
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 decl_stmt|;
 DECL|field|mergeScheduler
 specifier|private
@@ -6825,8 +6827,6 @@ operator|.
 name|findMergesToExpungeDeletes
 argument_list|(
 name|segmentInfos
-argument_list|,
-name|this
 argument_list|)
 expr_stmt|;
 if|if
@@ -7201,8 +7201,6 @@ name|findMergesForOptimize
 argument_list|(
 name|segmentInfos
 argument_list|,
-name|this
-argument_list|,
 name|maxNumSegmentsOptimize
 argument_list|,
 name|segmentsToOptimize
@@ -7286,8 +7284,6 @@ operator|.
 name|findMerges
 argument_list|(
 name|segmentInfos
-argument_list|,
-name|this
 argument_list|)
 expr_stmt|;
 if|if
