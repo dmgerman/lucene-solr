@@ -32,7 +32,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|tokenattributes
+operator|.
+name|TermAttribute
 import|;
 end_import
 
@@ -1579,7 +1581,7 @@ specifier|final
 name|void
 name|getText
 parameter_list|(
-name|Token
+name|TermAttribute
 name|t
 parameter_list|)
 block|{

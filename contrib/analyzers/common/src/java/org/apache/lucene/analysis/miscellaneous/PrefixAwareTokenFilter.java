@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Joins two token streams and leaves the last token of the first stream available  * to be used when updating the token values in the second stream based on that token.  *  * The default implementation adds last prefix token end offset to the suffix token start and end offsets.  */
+comment|/**  * Joins two token streams and leaves the last token of the first stream available  * to be used when updating the token values in the second stream based on that token.  *  * The default implementation adds last prefix token end offset to the suffix token start and end offsets.  * @deprecated  */
 end_comment
 
 begin_class
