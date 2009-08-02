@@ -857,6 +857,32 @@ comment|// Cycle back and try for the next token (don't
 comment|// return an empty string)
 block|}
 block|}
+DECL|method|end
+specifier|public
+specifier|final
+name|void
+name|end
+parameter_list|()
+block|{
+comment|// set final offset
+specifier|final
+name|int
+name|finalOffset
+init|=
+name|offset
+decl_stmt|;
+name|this
+operator|.
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|finalOffset
+argument_list|,
+name|finalOffset
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
