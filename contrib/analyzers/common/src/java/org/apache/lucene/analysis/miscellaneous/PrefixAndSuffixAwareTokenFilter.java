@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Links two PrefixAwareTokenFilter  * @deprecated  */
+comment|/**  * Links two PrefixAwareTokenFilter  *<p/>  *<b>NOTE:</b> This filter might not behave correctly if used with custom Attributes, i.e. Attributes other than  * the ones located in org.apache.lucene.analysis.tokenattributes.   */
 end_comment
 
 begin_class
@@ -87,6 +87,11 @@ name|TokenStream
 name|suffix
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|suffix
+argument_list|)
+expr_stmt|;
 name|prefix
 operator|=
 operator|new
@@ -254,8 +259,26 @@ return|return
 name|suffixToken
 return|;
 block|}
+DECL|method|incrementToken
+specifier|public
+specifier|final
+name|boolean
+name|incrementToken
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|suffix
+operator|.
+name|incrementToken
+argument_list|()
+return|;
+block|}
+comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
 DECL|method|next
 specifier|public
+specifier|final
 name|Token
 name|next
 parameter_list|(
@@ -264,20 +287,40 @@ name|Token
 name|reusableToken
 parameter_list|)
 throws|throws
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 block|{
-assert|assert
-name|reusableToken
-operator|!=
-literal|null
-assert|;
 return|return
-name|suffix
+name|super
 operator|.
 name|next
 argument_list|(
 name|reusableToken
 argument_list|)
+return|;
+block|}
+comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
+DECL|method|next
+specifier|public
+specifier|final
+name|Token
+name|next
+parameter_list|()
+throws|throws
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+block|{
+return|return
+name|super
+operator|.
+name|next
+argument_list|()
 return|;
 block|}
 DECL|method|reset
