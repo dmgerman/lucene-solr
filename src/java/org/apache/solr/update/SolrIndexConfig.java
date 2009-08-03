@@ -412,7 +412,7 @@ name|getDouble
 argument_list|(
 name|prefix
 operator|+
-literal|"ramBufferSizeMB"
+literal|"/ramBufferSizeMB"
 argument_list|,
 name|def
 operator|.
