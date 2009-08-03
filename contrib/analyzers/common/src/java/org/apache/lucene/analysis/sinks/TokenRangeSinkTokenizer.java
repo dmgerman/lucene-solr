@@ -38,6 +38,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|TeeSinkTokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|Token
 import|;
 end_import
@@ -57,7 +71,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Counts the tokens as they go by and saves to the internal list those between the range of lower and upper, exclusive of upper  *  **/
+comment|/**  * Counts the tokens as they go by and saves to the internal list those between the range of lower and upper, exclusive of upper  * @deprecated Use {@link TokenRangeSinkFilter} and {@link TeeSinkTokenFilter} instead.  **/
 end_comment
 
 begin_class

@@ -70,16 +70,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -489,14 +479,17 @@ block|}
 block|}
 block|}
 comment|/**    * A filter that decides which {@link AttributeSource} states to store in the sink.    */
-DECL|interface|SinkFilter
+DECL|class|SinkFilter
 specifier|public
 specifier|static
-interface|interface
+specifier|abstract
+class|class
 name|SinkFilter
 block|{
 comment|/**      * Returns true, iff the current state of the passed-in {@link AttributeSource} shall be stored      * in the sink.       */
 DECL|method|accept
+specifier|public
+specifier|abstract
 name|boolean
 name|accept
 parameter_list|(
@@ -504,6 +497,17 @@ name|AttributeSource
 name|source
 parameter_list|)
 function_decl|;
+comment|/**      * Called by {@link SinkTokenStream#reset()}. This method does nothing by default      * and can optionally be overridden.      */
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// nothing to do; can be overridden
+block|}
 block|}
 DECL|class|SinkTokenStream
 specifier|public
