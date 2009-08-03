@@ -706,9 +706,16 @@ literal|"query failed XPath: "
 operator|+
 name|results
 operator|+
-literal|" xml response was: "
+literal|"\n xml response was: "
 operator|+
 name|response
+operator|+
+literal|"\n request was: "
+operator|+
+name|req
+operator|.
+name|getParamString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

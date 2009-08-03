@@ -1246,7 +1246,7 @@ operator|.
 name|NO
 return|;
 block|}
-comment|/**    * Convert an external value (from XML update command or from query string)    * into the internal format.    * @see #toExternal    */
+comment|/**    * Convert an external value (from XML update command or from query string)    * into the internal format for both storing and indexing (which can be modified by any analyzers).    * @see #toExternal    */
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1349,6 +1349,23 @@ name|f
 operator|.
 name|stringValue
 argument_list|()
+return|;
+block|}
+comment|/** Given the readable value, return the term value that will match it. */
+DECL|method|readableToIndexed
+specifier|public
+name|String
+name|readableToIndexed
+parameter_list|(
+name|String
+name|val
+parameter_list|)
+block|{
+return|return
+name|toInternal
+argument_list|(
+name|val
+argument_list|)
 return|;
 block|}
 comment|/*********   // default analyzer for non-text fields.   // Only reads 80 bytes, but that should be plenty for a single value.   public Analyzer getAnalyzer() {     if (analyzer != null) return analyzer;      // the default analyzer...     return new Analyzer() {       public TokenStream tokenStream(String fieldName, Reader reader) {         return new Tokenizer(reader) {           final char[] cbuf = new char[80];           public Token next() throws IOException {             int n = input.read(cbuf,0,80);             if (n<=0) return null;             String s = toInternal(new String(cbuf,0,n));             return new Token(s,0,n);           };         };       }     };   }   **********/
@@ -1721,7 +1738,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the name of the field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not *    @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
+comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not *    @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
 DECL|method|getRangeQuery
 specifier|public
 name|Query
@@ -1730,7 +1747,7 @@ parameter_list|(
 name|QParser
 name|parser
 parameter_list|,
-name|String
+name|SchemaField
 name|field
 parameter_list|,
 name|String
@@ -1752,6 +1769,9 @@ operator|new
 name|TermRangeQuery
 argument_list|(
 name|field
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|part1
 operator|==
