@@ -435,7 +435,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Token Manager. */
+comment|/** Token Manager.   *  * @deprecated use the equivalent class defined in the new<tt>queryparser</tt> project,   * 				currently located in contrib: org.apache.lucene.queryParser.original.parser.TextParserTokenManager  */
 end_comment
 
 begin_class

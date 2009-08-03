@@ -48,16 +48,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Vector
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -141,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A QueryParser which constructs queries to search multiple fields.  *  *  * @version $Revision$  */
+comment|/**  * A QueryParser which constructs queries to search multiple fields.  *  * @deprecated use the equivalent class defined in the new<tt>queryparser</tt> project,   * 				currently located in contrib: org.apache.lucene.queryParser.original.OriginalQueryParserHelper  *  * @version $Revision$  */
 end_comment
 
 begin_class
