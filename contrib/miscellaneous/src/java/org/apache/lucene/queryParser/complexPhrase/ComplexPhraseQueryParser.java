@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.queryParser
+DECL|package|org.apache.lucene.queryParser.complexPhrase
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|queryParser
+operator|.
+name|complexPhrase
 package|;
 end_package
 
@@ -106,6 +108,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queryParser
+operator|.
+name|ParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|QueryParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|BooleanClause
@@ -136,6 +166,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MultiTermQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Query
 import|;
 end_import
@@ -151,20 +195,6 @@ operator|.
 name|search
 operator|.
 name|TermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|MultiTermQuery
 import|;
 end_import
 
@@ -263,7 +293,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * QueryParser which permits complex phrase query syntax e.g. "(john jon  * jonathan~) peters*"  *   * Performs potentially multiple passes over Query text to parse any nested  * logic in PhraseQueries. - First pass takes any PhraseQuery content between  * quotes and stores for subsequent pass. All other query content is parsed as  * normal - Second pass parses any stored PhraseQuery content, checking all  * embedded clauses are referring to the same field and therefore can be  * rewritten as Span queries. All PhraseQuery clauses are expressed as  * ComplexPhraseQuery objects  *   * This could arguably be done in one pass using a new QueryParser but here I am  * working within the constraints of the existing parser as a base class. This  * currently simply feeds all phrase content through an analyzer to select  * phrase terms - any "special" syntax such as * ~ * etc are not given special  * status  *  * @deprecated use new the flexible query parser instead  */
+comment|/**  * QueryParser which permits complex phrase query syntax e.g. "(john jon  * jonathan~) peters*"  *   * Performs potentially multiple passes over Query text to parse any nested  * logic in PhraseQueries. - First pass takes any PhraseQuery content between  * quotes and stores for subsequent pass. All other query content is parsed as  * normal - Second pass parses any stored PhraseQuery content, checking all  * embedded clauses are referring to the same field and therefore can be  * rewritten as Span queries. All PhraseQuery clauses are expressed as  * ComplexPhraseQuery objects  *   * This could arguably be done in one pass using a new QueryParser but here I am  * working within the constraints of the existing parser as a base class. This  * currently simply feeds all phrase content through an analyzer to select  * phrase terms - any "special" syntax such as * ~ * etc are not given special  * status  *   *   */
 end_comment
 
 begin_class
