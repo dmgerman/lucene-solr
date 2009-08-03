@@ -517,6 +517,15 @@ return|return
 name|deltaImportQuery
 return|;
 block|}
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"'deltaImportQuery' attribute is not specified for entity : "
+operator|+
+name|entityName
+argument_list|)
+expr_stmt|;
 return|return
 name|getDeltaImportQuery
 argument_list|(
