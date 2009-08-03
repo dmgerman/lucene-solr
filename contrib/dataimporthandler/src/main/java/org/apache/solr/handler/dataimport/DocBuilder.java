@@ -2173,17 +2173,6 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|isRoot
-condition|)
-name|vr
-operator|.
-name|removeNamespace
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
 name|entity
 operator|.
 name|entities
