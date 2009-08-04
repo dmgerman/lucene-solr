@@ -994,7 +994,7 @@ literal|null
 condition|?
 name|nullVal
 else|:
-literal|null
+name|v
 return|;
 block|}
 DECL|method|getValues
