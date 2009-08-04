@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -42,15 +52,17 @@ specifier|public
 interface|interface
 name|Scorer
 block|{
-comment|/**    * Called to init the Scorer with a TokenStream. You can grab references to    * the attributes you are interested in here and access them from    * getTokenScore().    *     * @param tokenStream    */
+comment|/**    * Called to init the Scorer with a TokenStream. You can grab references to    * the attributes you are interested in here and access them from    * getTokenScore().    *     * @param tokenStream    * @throws IOException     */
 DECL|method|init
 specifier|public
-name|void
+name|TokenStream
 name|init
 parameter_list|(
 name|TokenStream
 name|tokenStream
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * called when a new fragment is started for consideration    *     * @param newFragment    */
 DECL|method|startFragment

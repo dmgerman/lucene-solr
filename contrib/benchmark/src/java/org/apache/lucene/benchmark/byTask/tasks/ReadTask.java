@@ -296,7 +296,7 @@ name|search
 operator|.
 name|highlight
 operator|.
-name|QueryScorer
+name|QueryTermScorer
 import|;
 end_import
 
@@ -1122,7 +1122,7 @@ name|SimpleHTMLFormatter
 argument_list|()
 argument_list|,
 operator|new
-name|QueryScorer
+name|QueryTermScorer
 argument_list|(
 name|q
 argument_list|)

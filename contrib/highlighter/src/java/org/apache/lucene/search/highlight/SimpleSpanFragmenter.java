@@ -129,10 +129,10 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-DECL|field|spanScorer
+DECL|field|queryScorer
 specifier|private
-name|SpanScorer
-name|spanScorer
+name|QueryScorer
+name|queryScorer
 decl_stmt|;
 DECL|field|waitForPos
 specifier|private
@@ -162,30 +162,30 @@ specifier|private
 name|OffsetAttribute
 name|offsetAtt
 decl_stmt|;
-comment|/**    * @param spanscorer SpanScorer that was used to score hits    */
+comment|/**    * @param queryScorer QueryScorer that was used to score hits    */
 DECL|method|SimpleSpanFragmenter
 specifier|public
 name|SimpleSpanFragmenter
 parameter_list|(
-name|SpanScorer
-name|spanscorer
+name|QueryScorer
+name|queryScorer
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|spanscorer
+name|queryScorer
 argument_list|,
 name|DEFAULT_FRAGMENT_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param spanscorer SpanScorer that was used to score hits    * @param fragmentSize size in bytes of each fragment    */
+comment|/**    * @param queryScorer QueryScorer that was used to score hits    * @param fragmentSize size in bytes of each fragment    */
 DECL|method|SimpleSpanFragmenter
 specifier|public
 name|SimpleSpanFragmenter
 parameter_list|(
-name|SpanScorer
-name|spanscorer
+name|QueryScorer
+name|queryScorer
 parameter_list|,
 name|int
 name|fragmentSize
@@ -199,9 +199,9 @@ name|fragmentSize
 expr_stmt|;
 name|this
 operator|.
-name|spanScorer
+name|queryScorer
 operator|=
-name|spanscorer
+name|queryScorer
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Fragmenter#isNewFragment()    */
@@ -247,7 +247,7 @@ block|}
 name|WeightedSpanTerm
 name|wSpanTerm
 init|=
-name|spanScorer
+name|queryScorer
 operator|.
 name|getWeightedSpanTerm
 argument_list|(
