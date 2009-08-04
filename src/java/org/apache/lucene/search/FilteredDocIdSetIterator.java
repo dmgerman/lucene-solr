@@ -93,6 +93,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** @deprecated use {@link #docID()} instead. */
 DECL|method|doc

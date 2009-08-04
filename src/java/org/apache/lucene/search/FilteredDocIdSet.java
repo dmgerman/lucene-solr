@@ -69,6 +69,8 @@ parameter_list|(
 name|int
 name|docid
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Implementation of the contract to build a DocIdSetIterator.    * @see DocIdSetIterator    * @see FilteredDocIdSetIterator    */
 comment|// @Override
@@ -97,6 +99,8 @@ parameter_list|(
 name|int
 name|docid
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|FilteredDocIdSet

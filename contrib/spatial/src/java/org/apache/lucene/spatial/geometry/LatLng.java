@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Abstract base lat-lng class which can manipulate fixed point or floating  * point based coordinates. Instances are immutable.  *   * @see FixedLatLngTest  * @see FloatLatLng  *   */
+comment|/**  * Abstract base lat-lng class which can manipulate fixed point or floating  * point based coordinates. Instances are immutable.  *   * @see FloatLatLng  *   */
 end_comment
 
 begin_class
@@ -142,7 +142,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/**    * Convert the lat/lng into the cartesian coordinate plane such that all    * world coordinates are represented in the first quadrant.    * The x dimension corresponds to latitude and y corresponds to longitude.    * The translation starts with the normalized latlng and adds 180 to the latitude and     * 90 to the longitude (subject to fixed point scaling).    *     * @return    */
+comment|/**    * Convert the lat/lng into the cartesian coordinate plane such that all    * world coordinates are represented in the first quadrant.    * The x dimension corresponds to latitude and y corresponds to longitude.    * The translation starts with the normalized latlng and adds 180 to the latitude and     * 90 to the longitude (subject to fixed point scaling).    */
 DECL|method|toCartesian
 specifier|public
 name|CartesianPoint
@@ -193,7 +193,7 @@ name|SCALE_FACTOR_INT
 argument_list|)
 return|;
 block|}
-comment|/**    * The inverse of toCartesian().  Always returns a FixedLatLng.    * @param pt    * @return    */
+comment|/**    * The inverse of toCartesian().  Always returns a FixedLatLng.    * @param pt    */
 DECL|method|fromCartesian
 specifier|public
 specifier|static
@@ -498,7 +498,7 @@ operator|+
 literal|"]"
 return|;
 block|}
-comment|/**    * Calculate the midpoint between this point an another.  Respects fixed vs floating point    * @param other    * @return    */
+comment|/**    * Calculate the midpoint between this point an another.  Respects fixed vs floating point    * @param other    */
 DECL|method|calculateMidpoint
 specifier|public
 specifier|abstract

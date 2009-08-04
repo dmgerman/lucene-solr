@@ -102,7 +102,7 @@ operator|+
 literal|")"
 return|;
 block|}
-comment|/**    * Return a new point translated in the x and y dimensions    * @param i    * @param translation    * @return    */
+comment|/**    * Return a new point translated in the x and y dimensions    */
 DECL|method|translate
 specifier|public
 name|CartesianPoint

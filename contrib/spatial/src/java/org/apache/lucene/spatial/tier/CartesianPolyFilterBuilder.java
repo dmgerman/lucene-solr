@@ -146,6 +146,19 @@ specifier|public
 class|class
 name|CartesianPolyFilterBuilder
 block|{
+comment|// Finer granularity than 1 mile isn't accurate with
+comment|// standard java math.  Also, there's already a 2nd
+comment|// precise filter, if needed, in DistanceQueryBuilder,
+comment|// that will make the filtering exact.
+DECL|field|MILES_FLOOR
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MILES_FLOOR
+init|=
+literal|1.0
+decl_stmt|;
 DECL|field|projector
 specifier|private
 name|IProjector
@@ -203,10 +216,22 @@ parameter_list|,
 name|double
 name|longitude
 parameter_list|,
-name|int
+name|double
 name|miles
 parameter_list|)
 block|{
+if|if
+condition|(
+name|miles
+operator|<
+name|MILES_FLOOR
+condition|)
+block|{
+name|miles
+operator|=
+name|MILES_FLOOR
+expr_stmt|;
+block|}
 name|Rectangle
 name|box
 init|=
@@ -607,7 +632,7 @@ parameter_list|,
 name|double
 name|longitude
 parameter_list|,
-name|int
+name|double
 name|miles
 parameter_list|)
 block|{

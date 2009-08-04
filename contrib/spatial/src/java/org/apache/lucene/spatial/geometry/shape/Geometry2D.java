@@ -40,7 +40,7 @@ name|Vector2D
 name|v
 parameter_list|)
 function_decl|;
-comment|/**    * Does the shape contain the given point    * @param p    * @return    */
+comment|/**    * Does the shape contain the given point    * @param p    */
 DECL|method|contains
 specifier|public
 name|boolean
@@ -50,21 +50,21 @@ name|Point2D
 name|p
 parameter_list|)
 function_decl|;
-comment|/**    * Return the area    * @return    */
+comment|/**    * Return the area    */
 DECL|method|area
 specifier|public
 name|double
 name|area
 parameter_list|()
 function_decl|;
-comment|/**    * Return the centroid    * @return    */
+comment|/**    * Return the centroid    */
 DECL|method|centroid
 specifier|public
 name|Point2D
 name|centroid
 parameter_list|()
 function_decl|;
-comment|/**    * Returns information about how this shape intersects the given rectangle    * @param r    * @return    */
+comment|/**    * Returns information about how this shape intersects the given rectangle    * @param r    */
 DECL|method|intersect
 specifier|public
 name|IntersectCase

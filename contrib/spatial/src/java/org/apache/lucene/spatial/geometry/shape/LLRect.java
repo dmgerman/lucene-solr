@@ -119,7 +119,7 @@ operator|.
 name|ur
 expr_stmt|;
 block|}
-comment|/**    * Return the area in units of lat-lng squared.  This is a contrived unit    * that only has value when comparing to something else.    * @return    */
+comment|/**    * Return the area in units of lat-lng squared.  This is a contrived unit    * that only has value when comparing to something else.    */
 DECL|method|area
 specifier|public
 name|double
@@ -278,7 +278,7 @@ name|ur
 argument_list|)
 return|;
 block|}
-comment|/**    * Approximates a box centered at the given point with the given width and height in miles.    * @param center    * @param widthMi    * @param heightMi    * @return    */
+comment|/**    * Approximates a box centered at the given point with the given width and height in miles.    * @param center    * @param widthMi    * @param heightMi    */
 DECL|method|createBox
 specifier|public
 specifier|static
@@ -391,7 +391,7 @@ name|ur
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a rectangle shape for the bounding box    * @return    */
+comment|/**    * Returns a rectangle shape for the bounding box    */
 DECL|method|toRectangle
 specifier|public
 name|Rectangle

@@ -103,7 +103,7 @@ operator|*
 name|d
 return|;
 block|}
-comment|/**    * Constructor given bounding rectangle and a rotation.    *     * @param    * @param    */
+comment|/**    * Constructor given bounding rectangle and a rotation.    */
 DECL|method|Ellipse
 specifier|public
 name|Ellipse
