@@ -52,7 +52,7 @@ specifier|public
 interface|interface
 name|Scorer
 block|{
-comment|/**    * Called to init the Scorer with a TokenStream. You can grab references to    * the attributes you are interested in here and access them from    * getTokenScore().    *     * @param tokenStream    * @throws IOException     */
+comment|/**    * Called to init the Scorer with a TokenStream. You can grab references to    * the attributes you are interested in here and access them from    * getTokenScore().    *     * @param tokenStream    * @return either a TokenStream that the Highlighter should continue using (eg    *         if you read the tokenSream in this method) or null to continue    *         using the same TokenStream that was passed in.    * @throws IOException    */
 DECL|method|init
 specifier|public
 name|TokenStream
