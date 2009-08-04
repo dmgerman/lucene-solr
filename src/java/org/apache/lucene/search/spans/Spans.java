@@ -28,6 +28,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
 begin_comment
 comment|/** Expert: an enumeration of span matches.  Used to implement span searching.  * Each span represents a range of term positions within a document.  Matches  * are enumerated in order, by increasing document number, within that by  * increasing start position and finally by increasing end position. */
 end_comment
@@ -73,6 +83,24 @@ comment|/** Returns the end position of the current match.  Initially invalid. *
 DECL|method|end
 name|int
 name|end
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the payload data for the current span.    * This is invalid until {@link #next()} is called for    * the first time.    * This method must not be called more than once after each call    * of {@link #next()}. However, most payloads are loaded lazily,    * so if the payload data for the current position is not needed,    * this method may not be called at all for performance reasons. An ordered    * SpanQuery does not lazy load, so if you have payloads in your index and    * you do not want ordered SpanNearQuerys to collect payloads, you can    * disable collection with a constructor option.<br>    *<br>     * Note that the return type is a collection, thus the ordering should not be relied upon.     *<br/>    *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.    * The APIs introduced here might change in the future and will not be    * supported anymore in such a case.</font>    *    * @return a List of byte arrays containing the data of this payload, otherwise null if isPayloadAvailable is false    * @throws java.io.IOException     */
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|getPayload
+name|Collection
+comment|/*<byte[]>*/
+name|getPayload
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Checks if a payload can be loaded at this position.    *<p/>    * Payloads can only be loaded once per call to    * {@link #next()}.    *<p/>    *<p><font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.    * The APIs introduced here might change in the future and will not be    * supported anymore in such a case.</font>    *    * @return true if there is a payload available at this position that can be loaded    */
+comment|// TODO: Remove warning after API has been finalized
+DECL|method|isPayloadAvailable
+specifier|public
+name|boolean
+name|isPayloadAvailable
 parameter_list|()
 function_decl|;
 block|}

@@ -396,22 +396,6 @@ name|search
 operator|.
 name|spans
 operator|.
-name|PayloadSpans
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|spans
-operator|.
 name|SpanNearQuery
 import|;
 end_import
@@ -2114,12 +2098,12 @@ init|=
 literal|false
 decl_stmt|;
 comment|//System.out.println("\ngetPayloadSpans test");
-name|PayloadSpans
+name|Spans
 name|pspans
 init|=
 name|snq
 operator|.
-name|getPayloadSpans
+name|getSpans
 argument_list|(
 name|is
 operator|.

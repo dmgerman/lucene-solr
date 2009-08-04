@@ -88,16 +88,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|LinkedList
 import|;
 end_import
@@ -141,7 +131,7 @@ DECL|class|NearSpansOrdered
 class|class
 name|NearSpansOrdered
 implements|implements
-name|PayloadSpans
+name|Spans
 block|{
 DECL|field|allowedSlop
 specifier|private
@@ -167,7 +157,7 @@ comment|/** The spans in the same order as the SpanNearQuery */
 DECL|field|subSpans
 specifier|private
 specifier|final
-name|PayloadSpans
+name|Spans
 index|[]
 name|subSpans
 decl_stmt|;
@@ -212,7 +202,7 @@ decl_stmt|;
 DECL|field|subSpansByDoc
 specifier|private
 specifier|final
-name|PayloadSpans
+name|Spans
 index|[]
 name|subSpansByDoc
 decl_stmt|;
@@ -359,7 +349,7 @@ decl_stmt|;
 name|subSpans
 operator|=
 operator|new
-name|PayloadSpans
+name|Spans
 index|[
 name|clauses
 operator|.
@@ -375,7 +365,7 @@ expr_stmt|;
 name|subSpansByDoc
 operator|=
 operator|new
-name|PayloadSpans
+name|Spans
 index|[
 name|clauses
 operator|.
@@ -409,7 +399,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getPayloadSpans
+name|getSpans
 argument_list|(
 name|reader
 argument_list|)
@@ -1251,7 +1241,7 @@ name|i
 operator|--
 control|)
 block|{
-name|PayloadSpans
+name|Spans
 name|prevSpans
 init|=
 name|subSpans

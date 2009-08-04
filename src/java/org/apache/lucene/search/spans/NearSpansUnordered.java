@@ -111,7 +111,7 @@ DECL|class|NearSpansUnordered
 class|class
 name|NearSpansUnordered
 implements|implements
-name|PayloadSpans
+name|Spans
 block|{
 DECL|field|query
 specifier|private
@@ -276,11 +276,11 @@ specifier|private
 class|class
 name|SpansCell
 implements|implements
-name|PayloadSpans
+name|Spans
 block|{
 DECL|field|spans
 specifier|private
-name|PayloadSpans
+name|Spans
 name|spans
 decl_stmt|;
 DECL|field|next
@@ -305,7 +305,7 @@ DECL|method|SpansCell
 specifier|public
 name|SpansCell
 parameter_list|(
-name|PayloadSpans
+name|Spans
 name|spans
 parameter_list|,
 name|int
@@ -623,7 +623,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getPayloadSpans
+name|getSpans
 argument_list|(
 name|reader
 argument_list|)

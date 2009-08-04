@@ -86,7 +86,7 @@ specifier|public
 class|class
 name|TermSpans
 implements|implements
-name|PayloadSpans
+name|Spans
 block|{
 DECL|field|positions
 specifier|protected
