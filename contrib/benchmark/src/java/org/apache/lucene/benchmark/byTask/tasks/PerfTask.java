@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract task to be tested for performance.<br>  * Every performance task extends this class, and provides its own  * {@link #doLogic()} method, which performss the actual task.<br>  * Tasks performing some work that should be measured for the task, can overide  * {@link #setup()} and/or {@link #tearDown()} and place that work there.<br>  * Relevant properties:<code>task.max.depth.log</code>.  */
+comment|/**  * An abstract task to be tested for performance.<br>  * Every performance task extends this class, and provides its own  * {@link #doLogic()} method, which performss the actual task.<br>  * Tasks performing some work that should be measured for the task, can overide  * {@link #setup()} and/or {@link #tearDown()} and place that work there.<br>  * Relevant properties:<code>task.max.depth.log</code>.<br>  * Also supports the following logging attributes:  *<ul>  *<li>log.step - specifies how often to log messages about the current running  * task. Default is 1000 {@link #doLogic()} invocations. Set to -1 to disable  * logging.  *<li>log.step.[class Task Name] - specifies the same as 'log.step', only for a  * particular task name. For example, log.step.AddDoc will be applied only for  * {@link AddDocTask}, but not for {@link DeleteDocTask}. It's a way to control  * per task logging settings. If you want to ommit logging for any other task,  * include log.step=-1. The syntax is "log.step." together with the Task's  * 'short' name (i.e., without the 'Task' part).  *</ul>  */
 end_comment
 
 begin_class
@@ -132,7 +132,6 @@ implements|implements
 name|Cloneable
 block|{
 DECL|field|DEFAULT_LOG_STEP
-specifier|private
 specifier|static
 specifier|final
 name|int
@@ -279,9 +278,9 @@ name|RuntimeException
 argument_list|(
 literal|"doc.add.log.step is not supported anymore. "
 operator|+
-literal|"Use log.step and refer to CHANGES to read on the recent API changes "
+literal|"Use log.step.AddDoc and refer to CHANGES to read on the recent "
 operator|+
-literal|"done to Benchmark's DocMaker and Task-based logging."
+literal|"API changes done to Benchmark's DocMaker and Task-based logging."
 argument_list|)
 throw|;
 block|}
@@ -305,9 +304,9 @@ name|RuntimeException
 argument_list|(
 literal|"doc.delete.log.step is not supported anymore. "
 operator|+
-literal|"Use delete.log.step and refer to CHANGES to read on the recent API changes "
+literal|"Use log.step.DeleteDoc and refer to CHANGES to read on the recent "
 operator|+
-literal|"done to Benchmark's DocMaker and Task-based logging."
+literal|"API changes done to Benchmark's DocMaker and Task-based logging."
 argument_list|)
 throw|;
 block|}
@@ -350,13 +349,104 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|String
+name|logStepAtt
+init|=
+literal|"log.step"
+decl_stmt|;
+comment|// TODO (1.5): call getClass().getSimpleName() instead.
+name|String
+name|taskName
+init|=
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+name|int
+name|idx
+init|=
+name|taskName
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|'.'
+argument_list|)
+decl_stmt|;
+comment|// To support test internal classes. when we move to getSimpleName, this can be removed.
+name|int
+name|idx2
+init|=
+name|taskName
+operator|.
+name|indexOf
+argument_list|(
+literal|'$'
+argument_list|,
+name|idx
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|idx2
+operator|!=
+operator|-
+literal|1
+condition|)
+name|idx
+operator|=
+name|idx2
+expr_stmt|;
+name|String
+name|taskLogStepAtt
+init|=
+literal|"log.step."
+operator|+
+name|taskName
+operator|.
+name|substring
+argument_list|(
+name|idx
+operator|+
+literal|1
+argument_list|,
+name|taskName
+operator|.
+name|length
+argument_list|()
+operator|-
+literal|4
+comment|/* w/o the 'Task' part */
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|config
+operator|.
+name|get
+argument_list|(
+name|taskLogStepAtt
+argument_list|,
+literal|null
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|logStepAtt
+operator|=
+name|taskLogStepAtt
+expr_stmt|;
+block|}
+comment|// It's important to read this from Config, to support vals-by-round.
 name|logStep
 operator|=
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"log.step"
+name|logStepAtt
 argument_list|,
 name|DEFAULT_LOG_STEP
 argument_list|)

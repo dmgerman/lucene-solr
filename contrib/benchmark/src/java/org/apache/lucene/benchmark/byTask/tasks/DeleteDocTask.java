@@ -16,6 +16,10 @@ name|tasks
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -33,11 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
-begin_comment
-comment|/**  * Delete a document by docid.  *<br>Other side effects: none.  *<br>Relevant properties:<code>doc.delete.step, delete.log.step</code>.  *<br>If no docid param is supplied, deletes doc with<code>id = last-deleted-doc + doc.delete.step</code>.   *<br>Takes optional param: document id.   */
+comment|/**  * Delete a document by docid. If no docid param is supplied, deletes doc with  *<code>id = last-deleted-doc + doc.delete.step</code>.  */
 end_comment
 
 begin_class
@@ -71,36 +71,6 @@ argument_list|(
 name|runData
 argument_list|)
 expr_stmt|;
-comment|// Override log.step, which is read by PerfTask
-name|int
-name|deleteLogStep
-init|=
-name|runData
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"delete.log.step"
-argument_list|,
-operator|-
-literal|1
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|deleteLogStep
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-name|logStep
-operator|=
-name|deleteLogStep
-expr_stmt|;
-block|}
 block|}
 DECL|field|deleteStep
 specifier|private
