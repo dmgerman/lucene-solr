@@ -734,7 +734,7 @@ operator|.
 name|getAnalyzer
 argument_list|()
 decl_stmt|;
-name|Highlighter
+name|BenchmarkHighlighter
 name|highlighter
 init|=
 literal|null
@@ -753,7 +753,7 @@ condition|)
 block|{
 name|highlighter
 operator|=
-name|getHighlighter
+name|getBenchmarkHighlighter
 argument_list|(
 name|q
 argument_list|)
@@ -764,12 +764,6 @@ name|maxNumFragments
 argument_list|()
 expr_stmt|;
 block|}
-name|boolean
-name|merge
-init|=
-name|isMergeContiguousFragments
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -881,12 +875,11 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
-name|TokenStream
-name|ts
-init|=
-name|TokenSources
+name|res
+operator|+=
+name|highlighter
 operator|.
-name|getAnyTokenStream
+name|doHighlight
 argument_list|(
 name|ir
 argument_list|,
@@ -897,21 +890,8 @@ argument_list|,
 name|document
 argument_list|,
 name|analyzer
-argument_list|)
-decl_stmt|;
-name|res
-operator|+=
-name|doHighlight
-argument_list|(
-name|ts
 argument_list|,
 name|text
-argument_list|,
-name|highlighter
-argument_list|,
-name|merge
-argument_list|,
-name|maxFrags
 argument_list|)
 expr_stmt|;
 block|}
@@ -1104,6 +1084,7 @@ return|return
 literal|0
 return|;
 block|}
+comment|/**    * @deprecated Use {@link #getBenchmarkHighlighter(Query)}    */
 DECL|method|getHighlighter
 specifier|protected
 name|Highlighter
@@ -1129,6 +1110,19 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|method|getBenchmarkHighlighter
+specifier|protected
+name|BenchmarkHighlighter
+name|getBenchmarkHighlighter
+parameter_list|(
+name|Query
+name|q
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|/**    *    * @return the maxiumum number of highlighter fragments    */
 DECL|method|maxNumFragments
 specifier|public
@@ -1140,7 +1134,7 @@ return|return
 literal|10
 return|;
 block|}
-comment|/**    *    * @return true if the highlighter should merge contiguous fragments    */
+comment|/**    *    * @return true if the highlighter should merge contiguous fragments    * @deprecated    */
 DECL|method|isMergeContiguousFragments
 specifier|public
 name|boolean
@@ -1151,6 +1145,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * @deprecated    */
 DECL|method|doHighlight
 specifier|protected
 name|int
