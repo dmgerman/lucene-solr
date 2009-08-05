@@ -296,70 +296,6 @@ name|search
 operator|.
 name|highlight
 operator|.
-name|QueryTermScorer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|highlight
-operator|.
-name|SimpleHTMLFormatter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|highlight
-operator|.
-name|TextFragment
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|highlight
-operator|.
-name|TokenSources
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|highlight
-operator|.
 name|InvalidTokenOffsetsException
 import|;
 end_import
@@ -739,11 +675,6 @@ name|highlighter
 init|=
 literal|null
 decl_stmt|;
-name|int
-name|maxFrags
-init|=
-literal|1
-decl_stmt|;
 if|if
 condition|(
 name|numHighlight
@@ -757,11 +688,6 @@ name|getBenchmarkHighlighter
 argument_list|(
 name|q
 argument_list|)
-expr_stmt|;
-name|maxFrags
-operator|=
-name|maxNumFragments
-argument_list|()
 expr_stmt|;
 block|}
 for|for
@@ -1086,7 +1012,7 @@ return|;
 block|}
 comment|/**    * @deprecated Use {@link #getBenchmarkHighlighter(Query)}    */
 DECL|method|getHighlighter
-specifier|protected
+specifier|final
 name|Highlighter
 name|getHighlighter
 parameter_list|(
@@ -1094,22 +1020,12 @@ name|Query
 name|q
 parameter_list|)
 block|{
+comment|// not called
 return|return
-operator|new
-name|Highlighter
-argument_list|(
-operator|new
-name|SimpleHTMLFormatter
-argument_list|()
-argument_list|,
-operator|new
-name|QueryTermScorer
-argument_list|(
-name|q
-argument_list|)
-argument_list|)
+literal|null
 return|;
 block|}
+comment|/**    * Return an appropriate highlighter to be used with    * highlighting tasks    */
 DECL|method|getBenchmarkHighlighter
 specifier|protected
 name|BenchmarkHighlighter
@@ -1123,31 +1039,37 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    *    * @return the maxiumum number of highlighter fragments    */
+comment|/**    * @return the maxiumum number of highlighter fragments    * @deprecated Please define getBenchmarkHighlighter instead    */
 DECL|method|maxNumFragments
-specifier|public
+specifier|final
 name|int
 name|maxNumFragments
 parameter_list|()
 block|{
+comment|// not called -- we switched this method to final to
+comment|// force any external subclasses to cutover to
+comment|// getBenchmarkHighlighter instead
 return|return
 literal|10
 return|;
 block|}
-comment|/**    *    * @return true if the highlighter should merge contiguous fragments    * @deprecated    */
+comment|/**    *    * @return true if the highlighter should merge contiguous fragments    * @deprecated Please define getBenchmarkHighlighter instead    */
 DECL|method|isMergeContiguousFragments
-specifier|public
+specifier|final
 name|boolean
 name|isMergeContiguousFragments
 parameter_list|()
 block|{
+comment|// not called -- we switched this method to final to
+comment|// force any external subclasses to cutover to
+comment|// getBenchmarkHighlighter instead
 return|return
 literal|false
 return|;
 block|}
-comment|/**    * @deprecated    */
+comment|/**    * @deprecated Please define getBenchmarkHighlighter instead    */
 DECL|method|doHighlight
-specifier|protected
+specifier|final
 name|int
 name|doHighlight
 parameter_list|(
@@ -1171,32 +1093,10 @@ name|IOException
 throws|,
 name|InvalidTokenOffsetsException
 block|{
-name|TextFragment
-index|[]
-name|frag
-init|=
-name|highlighter
-operator|.
-name|getBestTextFragments
-argument_list|(
-name|ts
-argument_list|,
-name|text
-argument_list|,
-name|mergeContiguous
-argument_list|,
-name|maxFragments
-argument_list|)
-decl_stmt|;
+comment|// not called -- we switched this method to final to
+comment|// force any external subclasses to cutover to
+comment|// getBenchmarkHighlighter instead
 return|return
-name|frag
-operator|!=
-literal|null
-condition|?
-name|frag
-operator|.
-name|length
-else|:
 literal|0
 return|;
 block|}

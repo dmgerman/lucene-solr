@@ -439,16 +439,6 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|maxNumFragments
-specifier|public
-name|int
-name|maxNumFragments
-parameter_list|()
-block|{
-return|return
-name|maxFrags
-return|;
-block|}
 DECL|method|getFieldsToHighlight
 specifier|protected
 name|Collection
