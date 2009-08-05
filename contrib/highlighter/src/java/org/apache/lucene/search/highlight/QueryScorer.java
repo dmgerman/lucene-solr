@@ -138,6 +138,20 @@ name|Query
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link Scorer} implementation which scores text fragments by the number of  * unique query terms found. This class converts appropriate Querys to  * SpanQuerys and attempts to score only those terms that participated in  * generating the 'hit' on the document.  */
 end_comment
@@ -316,10 +330,12 @@ name|this
 operator|.
 name|defaultField
 operator|=
-name|defaultField
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|defaultField
+argument_list|)
 expr_stmt|;
 name|init
 argument_list|(
@@ -352,10 +368,12 @@ name|this
 operator|.
 name|defaultField
 operator|=
-name|defaultField
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|defaultField
+argument_list|)
 expr_stmt|;
 name|init
 argument_list|(

@@ -27,6 +27,41 @@ specifier|abstract
 class|class
 name|StringHelper
 block|{
+comment|/**    * Expert:    * The StringInterner implementation used by Lucene.    * This shouldn't be changed to an incompatible implementation after other Lucene APIs have been used.    */
+DECL|field|interner
+specifier|public
+specifier|static
+name|StringInterner
+name|interner
+init|=
+operator|new
+name|SimpleStringInterner
+argument_list|(
+literal|1024
+argument_list|,
+literal|8
+argument_list|)
+decl_stmt|;
+comment|/** Return the same string object for all equal strings */
+DECL|method|intern
+specifier|public
+specifier|static
+name|String
+name|intern
+parameter_list|(
+name|String
+name|s
+parameter_list|)
+block|{
+return|return
+name|interner
+operator|.
+name|intern
+argument_list|(
+name|s
+argument_list|)
+return|;
+block|}
 comment|/**    * Compares two byte[] arrays, element by element, and returns the    * number of elements common to both arrays.    *    * @param bytes1 The first byte[] to compare    * @param bytes2 The second byte[] to compare    * @return The number of common elements.    */
 DECL|method|bytesDifference
 specifier|public

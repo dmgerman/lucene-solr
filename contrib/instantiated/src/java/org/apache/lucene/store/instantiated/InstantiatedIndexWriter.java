@@ -322,6 +322,20 @@ name|Similarity
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class, similar to {@link org.apache.lucene.index.IndexWriter}, has no locking mechanism.  *<p>  * {@link org.apache.lucene.store.instantiated.InstantiatedIndexReader} is navigating  * the same instances in memory as this writer is updating so searchers active while  * you are committing are bound to throw exceptions.  *<p>  * Consider using InstantiatedIndex as if it was immutable.  *  * @see org.apache.lucene.index.IndexWriter   */
 end_comment
@@ -2569,13 +2583,15 @@ name|fieldSetting
 operator|.
 name|fieldName
 operator|=
+name|StringHelper
+operator|.
+name|intern
+argument_list|(
 name|field
 operator|.
 name|name
 argument_list|()
-operator|.
-name|intern
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|fieldSettingsByFieldName
 operator|.

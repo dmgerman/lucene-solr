@@ -132,6 +132,20 @@ name|Query
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility class used to extract the terms used in a query, plus any weights.  * This class will not find terms for MultiTermQuery, TermRangeQuery and PrefixQuery classes  * so the caller must pass a rewritten query (see Query.rewrite) to obtain a list of   * expanded terms.   *   */
 end_comment
@@ -346,10 +360,12 @@ condition|)
 block|{
 name|fieldName
 operator|=
-name|fieldName
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 expr_stmt|;
 block|}
 name|getTerms

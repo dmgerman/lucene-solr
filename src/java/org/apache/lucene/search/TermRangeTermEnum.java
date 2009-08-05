@@ -64,6 +64,20 @@ name|Term
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified range parameters.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  * @since 2.9  */
 end_comment
@@ -178,10 +192,12 @@ name|this
 operator|.
 name|field
 operator|=
-name|field
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 expr_stmt|;
 comment|// do a little bit of normalization...
 comment|// open ended range queries should always be inclusive.

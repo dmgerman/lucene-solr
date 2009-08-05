@@ -106,6 +106,20 @@ name|TermEnum
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Stores information about how to sort documents by terms in an individual  * field.  Fields must be indexed in order to sort by them.  *  *<p>Created: Feb 11, 2004 1:25:29 PM  *  * @since   lucene 1.4  * @version $Id$  * @see Sort  */
 end_comment
@@ -822,10 +836,12 @@ name|this
 operator|.
 name|field
 operator|=
-name|field
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1829,10 +1845,12 @@ block|{
 name|String
 name|field
 init|=
-name|fieldKey
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|fieldKey
+argument_list|)
 decl_stmt|;
 name|TermEnum
 name|enumerator

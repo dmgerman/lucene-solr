@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -940,10 +954,12 @@ condition|)
 comment|// field names are optionally interned
 name|name
 operator|=
-name|name
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|name
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -1266,10 +1282,12 @@ name|this
 operator|.
 name|name
 operator|=
-name|name
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|name
+argument_list|)
 expr_stmt|;
 comment|// field names are interned
 name|this
@@ -1383,10 +1401,12 @@ name|this
 operator|.
 name|name
 operator|=
-name|name
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|name
+argument_list|)
 expr_stmt|;
 comment|// field names are interned
 name|this
@@ -1521,11 +1541,14 @@ name|this
 operator|.
 name|name
 operator|=
-name|name
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|name
+argument_list|)
 expr_stmt|;
+comment|// field names are interned
 name|fieldsData
 operator|=
 name|value

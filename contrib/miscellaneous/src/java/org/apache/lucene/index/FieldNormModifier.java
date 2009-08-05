@@ -88,6 +88,20 @@ name|FSDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Given a directory and a list of fields, updates the fieldNorms in place for every document.  *   * If Similarity class is specified, uses its lengthNorm method to set norms.  * If -n command line argument is used, removed field norms, as if   * {@link org.apache.lucene.document.Field.Index}.NO_NORMS was used.  *  *<p>  * NOTE: This will overwrite any length normalization or field/document boosts.  *</p>  *  */
 end_comment
@@ -370,10 +384,12 @@ block|{
 name|String
 name|fieldName
 init|=
-name|field
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 name|int
 index|[]

@@ -94,6 +94,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|TermQuery
@@ -1518,10 +1532,12 @@ decl_stmt|;
 comment|// create mapping from id2 space to id2 based on idField
 name|idField
 operator|=
-name|idField
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|idField
+argument_list|)
 expr_stmt|;
 name|TermEnum
 name|termEnum

@@ -456,6 +456,20 @@ name|Spans
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class used to extract {@link WeightedSpanTerm}s from a {@link Query} based on whether Terms from the query are contained in a supplied TokenStream.  */
 end_comment
@@ -527,10 +541,12 @@ name|this
 operator|.
 name|defaultField
 operator|=
-name|defaultField
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|defaultField
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -2043,10 +2059,12 @@ name|this
 operator|.
 name|fieldName
 operator|=
-name|fieldName
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 expr_stmt|;
 block|}
 name|Map
