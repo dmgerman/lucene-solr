@@ -523,12 +523,6 @@ name|getIndexReader
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|testSpanTermQuery
 specifier|public
 name|void

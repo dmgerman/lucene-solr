@@ -69,37 +69,6 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* @override */
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
-block|}
-comment|/* @override */
-DECL|method|setUp
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// prepare a small index with just a few documents.
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|testGetMinValue
 specifier|public
 name|void
