@@ -442,6 +442,16 @@ name|AND
 argument_list|)
 return|;
 block|}
+DECL|method|getDistanceFilter
+specifier|public
+name|DistanceFilter
+name|getDistanceFilter
+parameter_list|()
+block|{
+return|return
+name|distanceFilter
+return|;
+block|}
 DECL|method|getQuery
 specifier|public
 name|Query
