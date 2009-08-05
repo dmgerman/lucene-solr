@@ -210,10 +210,6 @@ argument_list|(
 name|size
 argument_list|,
 literal|0
-argument_list|,
-name|field
-operator|.
-name|reverse
 argument_list|)
 expr_stmt|;
 name|oneReverseMul
@@ -434,10 +430,6 @@ argument_list|(
 name|size
 argument_list|,
 name|i
-argument_list|,
-name|field
-operator|.
-name|reverse
 argument_list|)
 expr_stmt|;
 block|}
