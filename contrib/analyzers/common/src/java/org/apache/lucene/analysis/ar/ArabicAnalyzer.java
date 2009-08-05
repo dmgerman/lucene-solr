@@ -122,6 +122,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|StopFilter
 import|;
 end_import
@@ -155,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Arabic.   *<p>  * This analyzer implements light-stemming as specified by:  *<i>  * Improving Stemming for Arabic Information Retrieval:   *      Light Stemming and Co-occurrence Analysis  *</i>      * http://ciir.cs.umass.edu/pubfiles/ir-249.pdf  *<p>  * The analysis package contains three primary components:  *<ul>  *<li>{@link ArabicNormalizationFilter}: Arabic orthographic normalization.  *<li>{@link ArabicStemFilter}: Arabic light stemming  *<li>Arabic stop words file: a set of default Arabic stop words.  *</ul>  *   */
+comment|/**  * Analyzer for Arabic.   *<p>  * This analyzer implements light-stemming as specified by:  *<i>  * Light Stemming for Arabic Information Retrieval  *</i>      * http://www.mtholyoke.edu/~lballest/Pubs/arab_stem05.pdf  *<p>  * The analysis package contains three primary components:  *<ul>  *<li>{@link ArabicNormalizationFilter}: Arabic orthographic normalization.  *<li>{@link ArabicStemFilter}: Arabic light stemming  *<li>Arabic stop words file: a set of default Arabic stop words.  *</ul>  *   */
 end_comment
 
 begin_class
@@ -330,7 +344,7 @@ name|STOPWORDS_COMMENT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return  A TokenStream build from a StandardTokenizer filtered with    * 			StandardFilter, StopFilter, ArabicNormalizationFilter and ArabicStemFilter.    */
+comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return  A TokenStream build from an ArabicTokenizer filtered with    * 			StopFilter, LowerCaseFilter, ArabicNormalizationFilter and ArabicStemFilter.    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -361,6 +375,14 @@ argument_list|(
 name|result
 argument_list|,
 name|stoptable
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+operator|new
+name|LowerCaseFilter
+argument_list|(
+name|result
 argument_list|)
 expr_stmt|;
 name|result

@@ -203,6 +203,17 @@ block|,
 operator|(
 literal|""
 operator|+
+name|LAM
+operator|+
+name|LAM
+operator|)
+operator|.
+name|toCharArray
+argument_list|()
+block|,
+operator|(
+literal|""
+operator|+
 name|WAW
 operator|)
 operator|.
