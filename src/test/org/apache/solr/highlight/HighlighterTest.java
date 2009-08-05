@@ -2876,6 +2876,10 @@ argument_list|,
 literal|"id"
 argument_list|,
 literal|"1"
+argument_list|,
+literal|"foo_t"
+argument_list|,
+literal|"hi"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2978,7 +2982,7 @@ name|put
 argument_list|(
 literal|"hl.alternateField"
 argument_list|,
-literal|"id"
+literal|"foo_t"
 argument_list|)
 expr_stmt|;
 name|sumLRF
@@ -3009,7 +3013,7 @@ argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='1' and count(*)=1]"
 argument_list|,
-literal|"//lst[@name='highlighting']/lst[@name='1']/arr[@name='t_text']/str[.='1']"
+literal|"//lst[@name='highlighting']/lst[@name='1']/arr[@name='t_text']/str[.='hi']"
 argument_list|)
 expr_stmt|;
 comment|// with an alternate + max length
