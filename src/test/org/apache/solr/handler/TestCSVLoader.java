@@ -121,7 +121,7 @@ name|getSchemaFile
 parameter_list|()
 block|{
 return|return
-literal|"schema.xml"
+literal|"schema12.xml"
 return|;
 block|}
 DECL|method|getSolrConfigFile
