@@ -2179,52 +2179,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">1.4142135</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">1.4142135</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">Infinity</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">-Infinity</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">NaN</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">NaN</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">2</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">-1</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">-987654321</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">-999999.99</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-999999.99</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">-1e20</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1e20</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_f\">0</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2246,7 +2246,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_f:Infinity"
+literal|"num_sf:Infinity"
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2258,7 +2258,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_f:\"-Infinity\""
+literal|"num_sf:\"-Infinity\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2270,7 +2270,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_f:\"NaN\""
+literal|"num_sf:\"NaN\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2282,7 +2282,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_f:\"-1e20\""
+literal|"num_sf:\"-1e20\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']"
@@ -2292,7 +2292,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_f asc;"
+literal|"id:44;num_sf asc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/float[.='-Infinity'] "
@@ -2304,7 +2304,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_f desc;"
+literal|"id:44;num_sf desc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/float[.='NaN'] "
@@ -2316,7 +2316,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_f:[-1 TO 2]"
+literal|"num_sf:[-1 TO 2]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
@@ -2326,7 +2326,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_f:[-Infinity TO Infinity]"
+literal|"num_sf:[-Infinity TO Infinity]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=9]"
@@ -2340,52 +2340,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">1.4142135</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1.4142135</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">Infinity</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">-Infinity</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">NaN</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">NaN</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">2</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">-1</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">1e-100</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1e-100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">-999999.99</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-999999.99</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">-1e100</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1e100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_d\">0</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2407,7 +2407,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:Infinity"
+literal|"num_sd:Infinity"
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2419,7 +2419,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:\"-Infinity\""
+literal|"num_sd:\"-Infinity\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2431,7 +2431,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:\"NaN\""
+literal|"num_sd:\"NaN\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2443,7 +2443,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:\"-1e100\""
+literal|"num_sd:\"-1e100\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']"
@@ -2453,7 +2453,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:\"1e-100\""
+literal|"num_sd:\"1e-100\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']"
@@ -2463,7 +2463,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_d asc;"
+literal|"id:44;num_sd asc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/double[.='-Infinity'] "
@@ -2475,7 +2475,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_d desc;"
+literal|"id:44;num_sd desc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/double[.='NaN'] "
@@ -2487,7 +2487,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:[-1 TO 2]"
+literal|"num_sd:[-1 TO 2]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=5]"
@@ -2497,7 +2497,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_d:[-Infinity TO Infinity]"
+literal|"num_sd:[-Infinity TO Infinity]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=9]"
@@ -2646,7 +2646,7 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1002</field><field name=\"a_i\">1</field><field name=\"b_i\">100</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1002</field><field name=\"a_i\">1</field><field name=\"b_si\">100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2661,7 +2661,7 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1005</field><field name=\"a_i\">1</field><field name=\"b_i\">50</field></doc></add>"
+literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1005</field><field name=\"a_i\">1</field><field name=\"b_si\">50</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2688,7 +2688,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id_i:[1000 TO 1010]; b_i asc"
+literal|"id_i:[1000 TO 1010]; b_si asc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2702,7 +2702,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id_i:[1000 TO 1010]; b_i desc"
+literal|"id_i:[1000 TO 1010]; b_si desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2716,7 +2716,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id_i:[1000 TO 1010]; a_i asc,b_i desc"
+literal|"id_i:[1000 TO 1010]; a_i asc,b_si desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2732,7 +2732,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id_i:[1000 TO 1010]; a_i asc,b_i asc"
+literal|"id_i:[1000 TO 1010]; a_i asc,b_si asc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "

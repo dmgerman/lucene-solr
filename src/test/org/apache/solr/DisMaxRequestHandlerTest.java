@@ -478,7 +478,7 @@ literal|"dismax"
 argument_list|,
 literal|"q.alt"
 argument_list|,
-literal|"id:blahbalh"
+literal|"id:9999"
 argument_list|,
 literal|"fq"
 argument_list|,
