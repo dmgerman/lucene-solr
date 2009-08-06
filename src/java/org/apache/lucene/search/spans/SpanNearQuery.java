@@ -150,7 +150,7 @@ name|boolean
 name|inOrder
 decl_stmt|;
 DECL|field|field
-specifier|private
+specifier|protected
 name|String
 name|field
 decl_stmt|;

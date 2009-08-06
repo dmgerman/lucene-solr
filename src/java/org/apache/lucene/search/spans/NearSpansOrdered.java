@@ -123,11 +123,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Spans that is formed from the ordered subspans of a SpanNearQuery  * where the subspans do not overlap and have a maximum slop between them.  *<p>  * The formed spans only contains minimum slop matches.<br>  * The matching slop is computed from the distance(s) between  * the non overlapping matching Spans.<br>  * Successive matches are always formed from the successive Spans  * of the SpanNearQuery.  *<p>  * The formed spans may contain overlaps when the slop is at least 1.  * For example, when querying using  *<pre>t1 t2 t3</pre>  * with slop at least 1, the fragment:  *<pre>t1 t2 t1 t3 t2 t3</pre>  * matches twice:  *<pre>t1 t2 .. t3</pre>  *<pre>      t1 .. t2 t3</pre>  */
+comment|/** A Spans that is formed from the ordered subspans of a SpanNearQuery  * where the subspans do not overlap and have a maximum slop between them.  *<p>  * The formed spans only contains minimum slop matches.<br>  * The matching slop is computed from the distance(s) between  * the non overlapping matching Spans.<br>  * Successive matches are always formed from the successive Spans  * of the SpanNearQuery.  *<p>  * The formed spans may contain overlaps when the slop is at least 1.  * For example, when querying using  *<pre>t1 t2 t3</pre>  * with slop at least 1, the fragment:  *<pre>t1 t2 t1 t3 t2 t3</pre>  * matches twice:  *<pre>t1 t2 .. t3</pre>  *<pre>      t1 .. t2 t3</pre>  *  *  * Expert:  * Only public for subclassing.  Most implementations should not need this class  */
 end_comment
 
 begin_class
 DECL|class|NearSpansOrdered
+specifier|public
 class|class
 name|NearSpansOrdered
 implements|implements
@@ -453,6 +454,17 @@ parameter_list|()
 block|{
 return|return
 name|matchEnd
+return|;
+block|}
+DECL|method|getSubSpans
+specifier|public
+name|Spans
+index|[]
+name|getSubSpans
+parameter_list|()
+block|{
+return|return
+name|subSpans
 return|;
 block|}
 comment|// TODO: Remove warning after API has been finalized

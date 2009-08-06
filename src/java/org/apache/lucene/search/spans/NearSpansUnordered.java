@@ -106,8 +106,13 @@ name|HashSet
 import|;
 end_import
 
+begin_comment
+comment|/**  * Expert:  * Only public for subclassing.  Most implementations should not need this class  */
+end_comment
+
 begin_class
 DECL|class|NearSpansUnordered
+specifier|public
 class|class
 name|NearSpansUnordered
 implements|implements
@@ -128,6 +133,12 @@ name|ArrayList
 argument_list|()
 decl_stmt|;
 comment|// spans in query order
+DECL|field|subSpans
+specifier|private
+name|Spans
+index|[]
+name|subSpans
+decl_stmt|;
 DECL|field|slop
 specifier|private
 name|int
@@ -595,6 +606,16 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|subSpans
+operator|=
+operator|new
+name|Spans
+index|[
+name|clauses
+operator|.
+name|length
+index|]
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -638,7 +659,27 @@ argument_list|(
 name|cell
 argument_list|)
 expr_stmt|;
+name|subSpans
+index|[
+name|i
+index|]
+operator|=
+name|cell
+operator|.
+name|spans
+expr_stmt|;
 block|}
+block|}
+DECL|method|getSubSpans
+specifier|public
+name|Spans
+index|[]
+name|getSubSpans
+parameter_list|()
+block|{
+return|return
+name|subSpans
+return|;
 block|}
 DECL|method|next
 specifier|public
