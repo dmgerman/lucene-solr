@@ -991,9 +991,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|termBuffer
-operator|.
-name|length
+name|termBufferLength
 operator|<
 name|factory
 operator|.
@@ -1089,9 +1087,7 @@ if|if
 condition|(
 name|lastWordStart
 operator|<
-name|termBuffer
-operator|.
-name|length
+name|termBufferLength
 condition|)
 block|{
 name|factory
@@ -1102,9 +1098,7 @@ name|termBuffer
 argument_list|,
 name|lastWordStart
 argument_list|,
-name|termBuffer
-operator|.
-name|length
+name|termBufferLength
 operator|-
 name|lastWordStart
 argument_list|,
