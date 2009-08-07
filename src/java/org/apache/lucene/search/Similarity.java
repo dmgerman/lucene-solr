@@ -122,6 +122,16 @@ operator|new
 name|DefaultSimilarity
 argument_list|()
 decl_stmt|;
+DECL|field|NO_DOC_ID_PROVIDED
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NO_DOC_ID_PROVIDED
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/** Set the default Similarity implementation used by indexing and search    * code.    *    * @see Searcher#setSimilarity(Similarity)    * @see org.apache.lucene.index.IndexWriter#setSimilarity(Similarity)    */
 DECL|method|setDefault
 specifier|public
@@ -473,12 +483,51 @@ name|int
 name|maxOverlap
 parameter_list|)
 function_decl|;
-comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param fieldName The fieldName of the term this payload belongs to    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor     */
+comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param fieldName The fieldName of the term this payload belongs to    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor    *    * @deprecated See {@link #scorePayload(int, String, byte[], int, int)}    */
 DECL|method|scorePayload
 specifier|public
 name|float
 name|scorePayload
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|byte
+index|[]
+name|payload
+parameter_list|,
+name|int
+name|offset
+parameter_list|,
+name|int
+name|length
+parameter_list|)
+block|{
+comment|//Do nothing
+return|return
+name|scorePayload
+argument_list|(
+name|NO_DOC_ID_PROVIDED
+argument_list|,
+name|fieldName
+argument_list|,
+name|payload
+argument_list|,
+name|offset
+argument_list|,
+name|length
+argument_list|)
+return|;
+block|}
+comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param docId The docId currently being scored.  If this value is {@link #NO_DOC_ID_PROVIDED}, then it should be assumed that the PayloadQuery implementation does not provide document information    * @param fieldName The fieldName of the term this payload belongs to    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor    *    */
+DECL|method|scorePayload
+specifier|public
+name|float
+name|scorePayload
+parameter_list|(
+name|int
+name|docId
+parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
