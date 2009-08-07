@@ -55,10 +55,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
+comment|/**  * @version $Id$  * @deprecated Use {@link HTMLStripCharFilterFactory} and {@link WhitespaceTokenizerFactory}  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|HTMLStripWhitespaceTokenizerFactory
 specifier|public
 class|class
