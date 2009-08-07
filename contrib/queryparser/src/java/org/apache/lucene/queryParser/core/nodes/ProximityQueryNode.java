@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ProximityQueryNode} represents a query where the terms should meet  * specific distance conditions. (a b c) WITHIN [SENTENCE|PARAGRAPH|NUMBER]  * [INORDER] ("a" "b" "c") WITHIN [SENTENCE|PARAGRAPH|NUMBER] [INORDER]  *   * TODO: Add this to the future original Lucene parser/processor/builder  */
+comment|/**  * A {@link ProximityQueryNode} represents a query where the terms should meet  * specific distance conditions. (a b c) WITHIN [SENTENCE|PARAGRAPH|NUMBER]  * [INORDER] ("a" "b" "c") WITHIN [SENTENCE|PARAGRAPH|NUMBER] [INORDER]  *   * TODO: Add this to the future standard Lucene parser/processor/builder  */
 end_comment
 
 begin_class
