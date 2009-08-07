@@ -94,6 +94,20 @@ name|Dictionary
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * HighFrequencyDictionary: terms taken from the given field  * of a Lucene index, which appear in a number of documents  * above a given threshold.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  * Threshold is a value in [0..1] representing the minimum  * number of documents (of the total) where a term should appear.  *   * Based on LuceneDictionary.  */
 end_comment
@@ -145,10 +159,12 @@ name|this
 operator|.
 name|field
 operator|=
-name|field
+name|StringHelper
 operator|.
 name|intern
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -403,6 +419,7 @@ operator|!=
 name|field
 condition|)
 block|{
+comment|// intern'd comparison
 name|actualTerm
 operator|=
 literal|null
