@@ -645,9 +645,11 @@ argument_list|)
 decl_stmt|;
 name|prefixQuery
 operator|.
-name|setConstantScoreRewrite
+name|setRewriteMethod
 argument_list|(
-literal|true
+name|MultiTermQuery
+operator|.
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 expr_stmt|;
 return|return
@@ -707,9 +709,11 @@ argument_list|)
 decl_stmt|;
 name|wildcardQuery
 operator|.
-name|setConstantScoreRewrite
+name|setRewriteMethod
 argument_list|(
-literal|true
+name|MultiTermQuery
+operator|.
+name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 expr_stmt|;
 return|return
