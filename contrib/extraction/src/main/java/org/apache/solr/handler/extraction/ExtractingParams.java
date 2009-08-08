@@ -88,6 +88,16 @@ name|EXTRACT_ONLY
 init|=
 literal|"extractOnly"
 decl_stmt|;
+comment|/**    * Content output format if extractOnly is true. Default is "xml", alternative is "text".    */
+DECL|field|EXTRACT_FORMAT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXTRACT_FORMAT
+init|=
+literal|"extractFormat"
+decl_stmt|;
 comment|/**    * Capture attributes separately according to the name of the element, instead of just adding them to the string buffer    */
 DECL|field|CAPTURE_ATTRIBUTES
 specifier|public
