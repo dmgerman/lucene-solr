@@ -588,6 +588,9 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
+name|TopValueSource
+argument_list|(
+operator|new
 name|ScaleFloatFunction
 argument_list|(
 name|source
@@ -595,6 +598,7 @@ argument_list|,
 name|min
 argument_list|,
 name|max
+argument_list|)
 argument_list|)
 return|;
 block|}
