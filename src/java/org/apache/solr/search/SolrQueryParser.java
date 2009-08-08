@@ -198,7 +198,7 @@ specifier|final
 name|String
 name|defaultField
 decl_stmt|;
-comment|/**    * Constructs a SolrQueryParser using the schema to understand the    * formats and datatypes of each field.  Only the defaultSearchField    * will be used from the IndexSchema (unless overridden),    *&lt;solrQueryParser&gt; will not be used.    *     * @param schema Used for default search field name if defaultField is null and field information is used for analysis    * @param defaultField default field used for unspecified search terms.  if null, the schema default field is used    * @see IndexSchema#getSolrQueryParser(String defaultField)    */
+comment|/**    * Constructs a SolrQueryParser using the schema to understand the    * formats and datatypes of each field.  Only the defaultSearchField    * will be used from the IndexSchema (unless overridden),    *&lt;solrQueryParser&gt; will not be used.    *     * @param schema Used for default search field name if defaultField is null and field information is used for analysis    * @param defaultField default field used for unspecified search terms.  if null, the schema default field is used    * @see IndexSchema#getDefaultSearchFieldName()    */
 DECL|method|SolrQueryParser
 specifier|public
 name|SolrQueryParser

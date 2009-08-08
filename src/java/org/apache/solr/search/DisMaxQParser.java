@@ -1212,10 +1212,7 @@ name|SolrPluginUtils
 operator|.
 name|DisjunctionMaxQueryParser
 argument_list|(
-name|req
-operator|.
-name|getSchema
-argument_list|()
+name|this
 argument_list|,
 name|IMPOSSIBLE_FIELD_NAME
 argument_list|)

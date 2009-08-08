@@ -902,7 +902,7 @@ name|queryParserDefaultOperator
 init|=
 literal|"OR"
 decl_stmt|;
-comment|/**    * A SolrQueryParser linked to this IndexSchema for field datatype    * information, and populated with default options from the    *&lt;solrQueryParser&gt; configuration for this IndexSchema.    *    * @param defaultField if non-null overrides the schema default    */
+comment|/**    * A SolrQueryParser linked to this IndexSchema for field datatype    * information, and populated with default options from the    *&lt;solrQueryParser&gt; configuration for this IndexSchema.    *    * @param defaultField if non-null overrides the schema default    * @deprecated    */
 DECL|method|getSolrQueryParser
 specifier|public
 name|SolrQueryParser
@@ -957,9 +957,7 @@ return|return
 name|qp
 return|;
 block|}
-comment|/**    * Name of the default search field specified in the schema file    * @deprecated use getSolrQueryParser().getField()    */
-annotation|@
-name|Deprecated
+comment|/**    * Name of the default search field specified in the schema file    */
 DECL|method|getDefaultSearchFieldName
 specifier|public
 name|String

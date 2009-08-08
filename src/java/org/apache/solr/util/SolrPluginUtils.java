@@ -2116,7 +2116,7 @@ return|return
 name|out
 return|;
 block|}
-comment|/**    * Given a string containing functions with optional boosts, returns    * an array of Queries representing those functions with the specified    * boosts.    *<p>    * NOTE: intra-function whitespace is not allowed.    *</p>    * @see #parseFieldBoosts    */
+comment|/**    * Given a string containing functions with optional boosts, returns    * an array of Queries representing those functions with the specified    * boosts.    *<p>    * NOTE: intra-function whitespace is not allowed.    *</p>    * @see #parseFieldBoosts    * @deprecated    */
 DECL|method|parseFuncs
 specifier|public
 specifier|static
@@ -2952,6 +2952,35 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
+DECL|method|DisjunctionMaxQueryParser
+specifier|public
+name|DisjunctionMaxQueryParser
+parameter_list|(
+name|QParser
+name|qp
+parameter_list|,
+name|String
+name|defaultField
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|qp
+argument_list|,
+name|defaultField
+argument_list|)
+expr_stmt|;
+comment|// don't trust that our parent class won't ever change it's default
+name|setDefaultOperator
+argument_list|(
+name|QueryParser
+operator|.
+name|Operator
+operator|.
+name|OR
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|DisjunctionMaxQueryParser
 specifier|public
 name|DisjunctionMaxQueryParser

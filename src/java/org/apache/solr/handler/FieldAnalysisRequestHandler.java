@@ -440,12 +440,7 @@ operator|.
 name|getSchema
 argument_list|()
 operator|.
-name|getSolrQueryParser
-argument_list|(
-literal|null
-argument_list|)
-operator|.
-name|getField
+name|getDefaultSearchFieldName
 argument_list|()
 argument_list|)
 expr_stmt|;

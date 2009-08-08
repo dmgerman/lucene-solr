@@ -391,12 +391,7 @@ operator|.
 name|getSchema
 argument_list|()
 operator|.
-name|getSolrQueryParser
-argument_list|(
-literal|null
-argument_list|)
-operator|.
-name|getField
+name|getDefaultSearchFieldName
 argument_list|()
 decl_stmt|;
 name|fields
