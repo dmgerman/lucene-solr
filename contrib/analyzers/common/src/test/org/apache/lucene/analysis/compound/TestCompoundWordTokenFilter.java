@@ -285,6 +285,7 @@ comment|// too slow:
 comment|//"http://superb-east.dl.sourceforge.net/sourceforge/offo/offo-hyphenation.zip"};
 DECL|field|patternsFileContent
 specifier|private
+specifier|static
 name|byte
 index|[]
 name|patternsFileContent
