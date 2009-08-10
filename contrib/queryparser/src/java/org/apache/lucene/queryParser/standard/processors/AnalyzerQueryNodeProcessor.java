@@ -1048,6 +1048,11 @@ name|i
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|termGroupCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 init|;
@@ -1158,7 +1163,7 @@ name|termNode
 operator|.
 name|setPositionIncrement
 argument_list|(
-name|i
+name|termGroupCount
 argument_list|)
 expr_stmt|;
 block|}
@@ -1170,6 +1175,11 @@ name|termNode
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Only increment once for each "group" of
+comment|// terms that were in the same position:
+name|termGroupCount
+operator|++
+expr_stmt|;
 name|multiTerms
 operator|.
 name|clear
@@ -1229,7 +1239,7 @@ name|termNode
 operator|.
 name|setPositionIncrement
 argument_list|(
-name|i
+name|termGroupCount
 argument_list|)
 expr_stmt|;
 block|}
