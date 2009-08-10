@@ -675,6 +675,68 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|Iterator
+name|it
+init|=
+name|src
+operator|.
+name|getAttributeImplsIterator
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Iterator should have 2 attributes left"
+argument_list|,
+name|it
+operator|.
+name|hasNext
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertSame
+argument_list|(
+literal|"First AttributeImpl from iterator should be termAtt"
+argument_list|,
+name|termAtt
+argument_list|,
+name|it
+operator|.
+name|next
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Iterator should have 1 attributes left"
+argument_list|,
+name|it
+operator|.
+name|hasNext
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertSame
+argument_list|(
+literal|"Second AttributeImpl from iterator should be typeAtt"
+argument_list|,
+name|typeAtt
+argument_list|,
+name|it
+operator|.
+name|next
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"Iterator should have 0 attributes left"
+argument_list|,
+name|it
+operator|.
+name|hasNext
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|src
 operator|=
 operator|new
@@ -715,15 +777,13 @@ name|Token
 argument_list|)
 expr_stmt|;
 comment|// get the Token attribute and check, that it is the only one
-specifier|final
-name|Iterator
 name|it
-init|=
+operator|=
 name|src
 operator|.
 name|getAttributeImplsIterator
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|Token
 name|tok
 init|=

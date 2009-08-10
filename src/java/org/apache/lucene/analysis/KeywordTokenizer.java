@@ -171,6 +171,13 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|termAtt
+operator|.
+name|resizeTermBuffer
+argument_list|(
+name|bufferSize
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|incrementToken
 specifier|public
@@ -196,11 +203,6 @@ name|upto
 init|=
 literal|0
 decl_stmt|;
-name|termAtt
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|char
 index|[]
 name|buffer
