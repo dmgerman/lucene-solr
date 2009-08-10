@@ -99,19 +99,9 @@ specifier|private
 name|boolean
 name|allowLeadingWildcard
 init|=
-literal|true
+literal|false
 decl_stmt|;
-DECL|method|AllowLeadingWildcardAttributeImpl
-specifier|public
-name|AllowLeadingWildcardAttributeImpl
-parameter_list|()
-block|{
-name|allowLeadingWildcard
-operator|=
-literal|true
-expr_stmt|;
-comment|// default in 2.4
-block|}
+comment|// default in 2.9
 DECL|method|setAllowLeadingWildcard
 specifier|public
 name|void
