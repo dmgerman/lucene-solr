@@ -407,18 +407,21 @@ return|return
 name|clauses
 return|;
 block|}
+comment|/**    * Expert: the Weight for BooleanQuery, used to    * normalize, score and explain these queries.    *    *<p>NOTE: this API and implementation is subject to    * change suddenly in the next release.</p>    */
 DECL|class|BooleanWeight
-specifier|private
+specifier|protected
 class|class
 name|BooleanWeight
 extends|extends
 name|QueryWeight
 block|{
+comment|/** The Similarity implementation. */
 DECL|field|similarity
 specifier|protected
 name|Similarity
 name|similarity
 decl_stmt|;
+comment|/** The Weights for our subqueries, in 1-1 correspondence with clauses */
 DECL|field|weights
 specifier|protected
 name|ArrayList

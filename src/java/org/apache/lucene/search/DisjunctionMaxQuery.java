@@ -202,22 +202,23 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/* The Weight for DisjunctionMaxQuery's, used to normalize, score and explain these queries */
+comment|/**    * Expert: the Weight for DisjunctionMaxQuery, used to    * normalize, score and explain these queries.    *    *<p>NOTE: this API and implementation is subject to    * change suddenly in the next release.</p>    */
 DECL|class|DisjunctionMaxWeight
-specifier|private
+specifier|protected
 class|class
 name|DisjunctionMaxWeight
 extends|extends
 name|QueryWeight
 block|{
+comment|/** The Similarity implementation. */
 DECL|field|similarity
-specifier|private
+specifier|protected
 name|Similarity
 name|similarity
 decl_stmt|;
-comment|// The similarity which we are associated.
+comment|/** The Weights for our subqueries, in 1-1 correspondence with disjuncts */
 DECL|field|weights
-specifier|private
+specifier|protected
 name|ArrayList
 name|weights
 init|=
@@ -225,7 +226,6 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-comment|// The Weight's for our subqueries, in 1-1 correspondence with disjuncts
 comment|/* Construct the Weight for this Query searched by searcher.  Recursively construct subquery weights. */
 DECL|method|DisjunctionMaxWeight
 specifier|public
