@@ -297,6 +297,13 @@ name|BoostQueryNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|addProcessor
+argument_list|(
+operator|new
+name|MultiTermRewriteDefaultProcessor
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

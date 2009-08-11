@@ -38,6 +38,20 @@ name|EscapeQuerySyntax
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|MultiTermQuery
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link WildcardQueryNode} represents wildcard query This does not apply to  * phrases. Examples: a*b*c Fl?w? m?ke*g  */
 end_comment
@@ -58,6 +72,13 @@ name|long
 name|serialVersionUID
 init|=
 literal|0L
+decl_stmt|;
+DECL|field|multiTermRewriteMethod
+specifier|private
+name|MultiTermQuery
+operator|.
+name|RewriteMethod
+name|multiTermRewriteMethod
 decl_stmt|;
 comment|/**    * @param field    *          - field name    * @param text    *          - value that contains one or more wild card characters (? or *)    * @param begin    *          - position in the query string    * @param end    *          - position in the query string    */
 DECL|method|WildcardQueryNode
@@ -176,6 +197,35 @@ comment|// nothing to do here
 return|return
 name|clone
 return|;
+block|}
+comment|/**    * @return the rewrite method    */
+DECL|method|getMultiTermRewriteMethod
+specifier|public
+name|MultiTermQuery
+operator|.
+name|RewriteMethod
+name|getMultiTermRewriteMethod
+parameter_list|()
+block|{
+return|return
+name|multiTermRewriteMethod
+return|;
+block|}
+DECL|method|setMultiTermRewriteMethod
+specifier|public
+name|void
+name|setMultiTermRewriteMethod
+parameter_list|(
+name|MultiTermQuery
+operator|.
+name|RewriteMethod
+name|method
+parameter_list|)
+block|{
+name|multiTermRewriteMethod
+operator|=
+name|method
+expr_stmt|;
 block|}
 block|}
 end_class
