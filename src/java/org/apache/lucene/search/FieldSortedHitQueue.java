@@ -817,7 +817,9 @@ parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|,
-name|Object
+name|FieldCacheImpl
+operator|.
+name|Entry
 name|entryKey
 parameter_list|)
 throws|throws

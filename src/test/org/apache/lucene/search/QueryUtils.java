@@ -683,6 +683,43 @@ name|k
 operator|++
 control|)
 block|{
+name|IndexReader
+index|[]
+name|readers
+init|=
+name|s
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|x
+init|=
+literal|0
+init|;
+name|x
+operator|<
+name|readers
+operator|.
+name|length
+condition|;
+name|x
+operator|++
+control|)
+block|{
+name|IndexReader
+name|reader
+init|=
+name|readers
+index|[
+name|x
+index|]
+decl_stmt|;
 specifier|final
 name|int
 name|order
@@ -693,7 +730,9 @@ index|[
 name|k
 index|]
 decl_stmt|;
-comment|//System.out.print("Order:");for (int i = 0; i< order.length; i++) System.out.print(order[i]==skip_op ? " skip()":" next()"); System.out.println();
+comment|// System.out.print("Order:");for (int i = 0; i< order.length; i++)
+comment|// System.out.print(order[i]==skip_op ? " skip()":" next()");
+comment|// System.out.println();
 specifier|final
 name|int
 name|opidx
@@ -722,10 +761,7 @@ name|w
 operator|.
 name|scorer
 argument_list|(
-name|s
-operator|.
-name|getIndexReader
-argument_list|()
+name|reader
 argument_list|,
 literal|true
 argument_list|,
@@ -842,7 +878,8 @@ operator|.
 name|length
 index|]
 decl_stmt|;
-comment|//System.out.println(op==skip_op ? "skip("+(sdoc[0]+1)+")":"next()");
+comment|// System.out.println(op==skip_op ?
+comment|// "skip("+(sdoc[0]+1)+")":"next()");
 name|boolean
 name|more
 init|=
@@ -1183,7 +1220,7 @@ operator|.
 name|length
 index|]
 decl_stmt|;
-comment|//System.out.println(op==skip_op ? "last: skip()":"last: next()");
+comment|// System.out.println(op==skip_op ? "last: skip()":"last: next()");
 name|boolean
 name|more
 init|=
@@ -1221,6 +1258,7 @@ argument_list|(
 name|more
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// check that first skip on just created scorers always goes to the right doc
@@ -1269,14 +1307,12 @@ name|Collector
 argument_list|()
 block|{
 specifier|private
-name|int
-name|base
-init|=
-literal|0
-decl_stmt|;
-specifier|private
 name|Scorer
 name|scorer
+decl_stmt|;
+specifier|private
+name|IndexReader
+name|reader
 decl_stmt|;
 specifier|public
 name|void
@@ -1306,12 +1342,6 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("doc="+doc);
-name|doc
-operator|=
-name|doc
-operator|+
-name|base
-expr_stmt|;
 name|float
 name|score
 init|=
@@ -1359,10 +1389,7 @@ name|w
 operator|.
 name|scorer
 argument_list|(
-name|s
-operator|.
-name|getIndexReader
-argument_list|()
+name|reader
 argument_list|,
 literal|true
 argument_list|,
@@ -1514,9 +1541,19 @@ name|int
 name|docBase
 parameter_list|)
 block|{
-name|base
+name|this
+operator|.
+name|reader
 operator|=
-name|docBase
+name|reader
+expr_stmt|;
+name|lastDoc
+index|[
+literal|0
+index|]
+operator|=
+operator|-
+literal|1
 expr_stmt|;
 block|}
 specifier|public
@@ -1531,6 +1568,43 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+name|IndexReader
+index|[]
+name|readers
+init|=
+name|s
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|readers
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|IndexReader
+name|reader
+init|=
+name|readers
+index|[
+name|i
+index|]
+decl_stmt|;
 name|Weight
 name|w
 init|=
@@ -1548,10 +1622,7 @@ name|w
 operator|.
 name|scorer
 argument_list|(
-name|s
-operator|.
-name|getIndexReader
-argument_list|()
+name|reader
 argument_list|,
 literal|true
 argument_list|,
@@ -1587,6 +1658,14 @@ decl_stmt|;
 if|if
 condition|(
 name|more
+operator|&&
+name|lastDoc
+index|[
+literal|0
+index|]
+operator|!=
+operator|-
+literal|1
 condition|)
 name|Assert
 operator|.
@@ -1620,6 +1699,7 @@ argument_list|,
 name|more
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
