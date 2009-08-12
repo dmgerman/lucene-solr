@@ -205,12 +205,12 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|QueryWeight
+name|Weight
 name|weight
 init|=
 name|query
 operator|.
-name|queryWeight
+name|createWeight
 argument_list|(
 operator|new
 name|IndexSearcher

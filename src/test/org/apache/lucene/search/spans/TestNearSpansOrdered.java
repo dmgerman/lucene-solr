@@ -154,7 +154,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWeight
+name|Weight
 import|;
 end_import
 
@@ -1098,12 +1098,12 @@ init|=
 name|makeQuery
 argument_list|()
 decl_stmt|;
-name|QueryWeight
+name|Weight
 name|w
 init|=
 name|q
 operator|.
-name|queryWeight
+name|weight
 argument_list|(
 name|searcher
 argument_list|)
@@ -1153,12 +1153,12 @@ init|=
 name|makeQuery
 argument_list|()
 decl_stmt|;
-name|QueryWeight
+name|Weight
 name|w
 init|=
 name|q
 operator|.
-name|queryWeight
+name|weight
 argument_list|(
 name|searcher
 argument_list|)

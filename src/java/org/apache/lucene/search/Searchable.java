@@ -92,7 +92,7 @@ specifier|public
 interface|interface
 name|Searchable
 block|{
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(QueryWeight, Filter, Collector)} instead.    */
+comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, Collector)} instead.    */
 DECL|method|search
 name|void
 name|search
@@ -109,29 +109,12 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link Searcher#search(Query)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     * @param weight    *          to match documents    * @param filter    *          if non-null, used to permit documents to be collected.    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    *     * @deprecated use {@link #search(QueryWeight, Filter, Collector)} instead.    */
-DECL|method|search
-name|void
-name|search
-parameter_list|(
-name|Weight
-name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|Collector
-name|collector
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link Searcher#search(Query)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     * @param weight    *          to match documents    * @param filter    *          if non-null, used to permit documents to be collected.    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|void
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -183,29 +166,12 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Called by {@link Hits}.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(QueryWeight, Filter, int)} instead.    */
+comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Called by {@link Hits}.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, int)} instead.    */
 DECL|method|search
 name|TopDocs
 name|search
 parameter_list|(
 name|Weight
-name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|int
-name|n
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Called by {@link Hits}.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    */
-DECL|method|search
-name|TopDocs
-name|search
-parameter_list|(
-name|QueryWeight
 name|weight
 parameter_list|,
 name|Filter
@@ -257,7 +223,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #explain(QueryWeight, int)} instead.    */
+comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #explain(Weight, int)} instead.    */
 DECL|method|explain
 name|Explanation
 name|explain
@@ -267,40 +233,6 @@ name|weight
 parameter_list|,
 name|int
 name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    */
-DECL|method|explain
-name|Explanation
-name|explain
-parameter_list|(
-name|QueryWeight
-name|weight
-parameter_list|,
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,Sort)} instead.    *     * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(QueryWeight, Filter, int, Sort)} instead.    */
-DECL|method|search
-name|TopFieldDocs
-name|search
-parameter_list|(
-name|Weight
-name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|int
-name|n
-parameter_list|,
-name|Sort
-name|sort
 parameter_list|)
 throws|throws
 name|IOException
@@ -310,7 +242,7 @@ DECL|method|search
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter

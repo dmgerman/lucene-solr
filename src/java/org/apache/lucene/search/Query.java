@@ -148,7 +148,7 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    * @deprecated use {@link #createQueryWeight(Searcher)} instead.    */
+comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    */
 DECL|method|createWeight
 specifier|protected
 name|Weight
@@ -166,54 +166,11 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Expert: Constructs an appropriate {@link QueryWeight} implementation for    * this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *<p>    *<b>NOTE:</b> in 3.0 this method will throw    * {@link UnsupportedOperationException}. It is implemented now by calling    * {@link #createWeight(Searcher)} for backwards compatibility, for    * {@link Query} implementations that did not override it yet (but did    * override {@link #createWeight(Searcher)}).    */
-comment|// TODO (3.0): change to throw UnsupportedOperationException.
-DECL|method|createQueryWeight
-specifier|public
-name|QueryWeight
-name|createQueryWeight
-parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-operator|new
-name|QueryWeightWrapper
-argument_list|(
-name|createWeight
-argument_list|(
-name|searcher
-argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Expert: Constructs and initializes a Weight for a top-level query.    *     * @deprecated use {@link #queryWeight(Searcher)} instead.    */
+comment|/**    * Expert: Constructs and initializes a Weight for a top-level query.    */
 DECL|method|weight
 specifier|public
 name|Weight
 name|weight
-parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|queryWeight
-argument_list|(
-name|searcher
-argument_list|)
-return|;
-block|}
-comment|/**    * Expert: Constructs and initializes a {@link QueryWeight} for a top-level    * query.    */
-DECL|method|queryWeight
-specifier|public
-name|QueryWeight
-name|queryWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -231,12 +188,12 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-name|QueryWeight
+name|Weight
 name|weight
 init|=
 name|query
 operator|.
-name|createQueryWeight
+name|createWeight
 argument_list|(
 name|searcher
 argument_list|)

@@ -110,7 +110,7 @@ specifier|public
 class|class
 name|SpanWeight
 extends|extends
-name|QueryWeight
+name|Weight
 block|{
 DECL|field|similarity
 specifier|protected
@@ -331,6 +331,9 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,

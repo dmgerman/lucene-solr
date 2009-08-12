@@ -51,7 +51,7 @@ block|{
 DECL|method|ExactPhraseScorer
 name|ExactPhraseScorer
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|TermPositions

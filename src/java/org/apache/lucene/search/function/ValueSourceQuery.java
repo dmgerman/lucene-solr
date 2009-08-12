@@ -155,11 +155,10 @@ block|{
 comment|// no terms involved here
 block|}
 DECL|class|ValueSourceWeight
-specifier|private
 class|class
 name|ValueSourceWeight
 extends|extends
-name|QueryWeight
+name|Weight
 block|{
 DECL|field|similarity
 name|Similarity
@@ -293,6 +292,9 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -303,13 +305,14 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|scorer
+operator|new
+name|ValueSourceScorer
 argument_list|(
+name|similarity
+argument_list|,
 name|reader
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|this
 argument_list|)
 operator|.
 name|explain
@@ -643,10 +646,10 @@ name|result
 return|;
 block|}
 block|}
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|public
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Searcher
 name|searcher

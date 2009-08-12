@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWeight
+name|Weight
 import|;
 end_import
 
@@ -251,10 +251,10 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|public
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -265,7 +265,7 @@ block|{
 return|return
 name|maskedQuery
 operator|.
-name|createQueryWeight
+name|createWeight
 argument_list|(
 name|searcher
 argument_list|)

@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWeight
+name|Weight
 import|;
 end_import
 
@@ -77,20 +77,6 @@ operator|.
 name|search
 operator|.
 name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Weight
 import|;
 end_import
 
@@ -427,7 +413,6 @@ name|JustCompileSpanScorer
 extends|extends
 name|SpanScorer
 block|{
-comment|/** @deprecated delete in 3.0 */
 DECL|method|JustCompileSpanScorer
 specifier|protected
 name|JustCompileSpanScorer
@@ -436,38 +421,6 @@ name|Spans
 name|spans
 parameter_list|,
 name|Weight
-name|weight
-parameter_list|,
-name|Similarity
-name|similarity
-parameter_list|,
-name|byte
-index|[]
-name|norms
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
-argument_list|(
-name|spans
-argument_list|,
-name|weight
-argument_list|,
-name|similarity
-argument_list|,
-name|norms
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|JustCompileSpanScorer
-specifier|protected
-name|JustCompileSpanScorer
-parameter_list|(
-name|Spans
-name|spans
-parameter_list|,
-name|QueryWeight
 name|weight
 parameter_list|,
 name|Similarity

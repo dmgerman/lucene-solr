@@ -163,7 +163,7 @@ parameter_list|,
 name|Similarity
 name|similarity
 parameter_list|,
-name|QueryWeight
+name|Weight
 name|w
 parameter_list|,
 name|byte
@@ -364,7 +364,7 @@ specifier|private
 class|class
 name|MatchAllDocsWeight
 extends|extends
-name|QueryWeight
+name|Weight
 block|{
 DECL|field|similarity
 specifier|private
@@ -523,6 +523,9 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -586,10 +589,10 @@ name|queryExpl
 return|;
 block|}
 block|}
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|public
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Searcher
 name|searcher

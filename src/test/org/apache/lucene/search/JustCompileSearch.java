@@ -151,10 +151,10 @@ name|JustCompileSearcher
 extends|extends
 name|Searcher
 block|{
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|protected
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Query
 name|query
@@ -427,7 +427,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|int
@@ -484,7 +484,7 @@ specifier|public
 name|void
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -509,7 +509,7 @@ specifier|public
 name|TopDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -534,7 +534,7 @@ specifier|public
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -1203,7 +1203,7 @@ block|{
 DECL|method|JustCompilePhraseScorer
 name|JustCompilePhraseScorer
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|TermPositions
@@ -1714,13 +1714,16 @@ specifier|final
 class|class
 name|JustCompileWeight
 extends|extends
-name|QueryWeight
+name|Weight
 block|{
 DECL|method|explain
 specifier|public
 name|Explanation
 name|explain
 parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,

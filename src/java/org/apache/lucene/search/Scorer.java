@@ -235,7 +235,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()}, {@link #skipTo(int)} and    * {@link #score(HitCollector)} methods should not be used.    * @param doc The document number for the explanation.    *    * @deprecated Please use {@link IndexSearcher#explain}    * or {@link QueryWeight#explain} instead.    */
+comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()}, {@link #skipTo(int)} and    * {@link #score(HitCollector)} methods should not be used.    * @param doc The document number for the explanation.    *    * @deprecated Please use {@link IndexSearcher#explain}    * or {@link Weight#explain} instead.    */
 DECL|method|explain
 specifier|public
 specifier|abstract

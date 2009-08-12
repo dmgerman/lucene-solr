@@ -413,7 +413,7 @@ specifier|protected
 class|class
 name|BooleanWeight
 extends|extends
-name|QueryWeight
+name|Weight
 block|{
 comment|/** The Similarity implementation. */
 DECL|field|similarity
@@ -421,7 +421,6 @@ specifier|protected
 name|Similarity
 name|similarity
 decl_stmt|;
-comment|/** The Weights for our subqueries, in 1-1 correspondence with clauses */
 DECL|field|weights
 specifier|protected
 name|ArrayList
@@ -497,7 +496,7 @@ operator|.
 name|getQuery
 argument_list|()
 operator|.
-name|createQueryWeight
+name|createWeight
 argument_list|(
 name|searcher
 argument_list|)
@@ -572,11 +571,11 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|QueryWeight
+name|Weight
 name|w
 init|=
 operator|(
-name|QueryWeight
+name|Weight
 operator|)
 name|weights
 operator|.
@@ -654,11 +653,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|QueryWeight
+name|Weight
 name|w
 init|=
 operator|(
-name|QueryWeight
+name|Weight
 operator|)
 name|iter
 operator|.
@@ -680,6 +679,9 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -763,11 +765,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|QueryWeight
+name|Weight
 name|w
 init|=
 operator|(
-name|QueryWeight
+name|Weight
 operator|)
 name|wIter
 operator|.
@@ -810,6 +812,8 @@ name|w
 operator|.
 name|explain
 argument_list|(
+name|searcher
+argument_list|,
 name|reader
 argument_list|,
 name|doc
@@ -1201,11 +1205,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|QueryWeight
+name|Weight
 name|w
 init|=
 operator|(
-name|QueryWeight
+name|Weight
 operator|)
 name|wIter
 operator|.
@@ -1486,7 +1490,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Whether hit docs may be collected out of docid order.    *     * @deprecated this will not be needed anymore, as    *             {@link QueryWeight#scoresDocsOutOfOrder()} is used.    */
+comment|/**    * Whether hit docs may be collected out of docid order.    *     * @deprecated this will not be needed anymore, as    *             {@link Weight#scoresDocsOutOfOrder()} is used.    */
 DECL|field|allowDocsOutOfOrder
 specifier|private
 specifier|static
@@ -1495,7 +1499,7 @@ name|allowDocsOutOfOrder
 init|=
 literal|true
 decl_stmt|;
-comment|/**    * Expert: Indicates whether hit docs may be collected out of docid order.    *     *<p>    * Background: although the contract of the Scorer class requires that    * documents be iterated in order of doc id, this was not true in early    * versions of Lucene. Many pieces of functionality in the current Lucene code    * base have undefined behavior if this contract is not upheld, but in some    * specific simple cases may be faster. (For example: disjunction queries with    * less than 32 prohibited clauses; This setting has no effect for other    * queries.)    *</p>    *     *<p>    * Specifics: By setting this option to true, docid N might be scored for a    * single segment before docid N-1. Across multiple segments, docs may be    * scored out of order regardless of this setting - it only applies to scoring    * a single segment.    *     * Being static, this setting is system wide.    *</p>    *     * @deprecated this is not needed anymore, as    *             {@link QueryWeight#scoresDocsOutOfOrder()} is used.    */
+comment|/**    * Expert: Indicates whether hit docs may be collected out of docid order.    *     *<p>    * Background: although the contract of the Scorer class requires that    * documents be iterated in order of doc id, this was not true in early    * versions of Lucene. Many pieces of functionality in the current Lucene code    * base have undefined behavior if this contract is not upheld, but in some    * specific simple cases may be faster. (For example: disjunction queries with    * less than 32 prohibited clauses; This setting has no effect for other    * queries.)    *</p>    *     *<p>    * Specifics: By setting this option to true, docid N might be scored for a    * single segment before docid N-1. Across multiple segments, docs may be    * scored out of order regardless of this setting - it only applies to scoring    * a single segment.    *     * Being static, this setting is system wide.    *</p>    *     * @deprecated this is not needed anymore, as    *             {@link Weight#scoresDocsOutOfOrder()} is used.    */
 DECL|method|setAllowDocsOutOfOrder
 specifier|public
 specifier|static
@@ -1511,7 +1515,7 @@ operator|=
 name|allow
 expr_stmt|;
 block|}
-comment|/**    * Whether hit docs may be collected out of docid order.    *     * @see #setAllowDocsOutOfOrder(boolean)    * @deprecated this is not needed anymore, as    *             {@link QueryWeight#scoresDocsOutOfOrder()} is used.    */
+comment|/**    * Whether hit docs may be collected out of docid order.    *     * @see #setAllowDocsOutOfOrder(boolean)    * @deprecated this is not needed anymore, as    *             {@link Weight#scoresDocsOutOfOrder()} is used.    */
 DECL|method|getAllowDocsOutOfOrder
 specifier|public
 specifier|static
@@ -1553,10 +1557,10 @@ name|getAllowDocsOutOfOrder
 argument_list|()
 return|;
 block|}
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|public
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Searcher
 name|searcher

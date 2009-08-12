@@ -88,6 +88,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -393,7 +407,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|int
@@ -411,7 +425,7 @@ specifier|public
 name|void
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -432,7 +446,7 @@ specifier|public
 name|TopDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -453,7 +467,7 @@ specifier|public
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -772,110 +786,15 @@ name|n
 parameter_list|)
 block|{
 comment|// find searcher for doc n:
-comment|// replace w/ call to Arrays.binarySearch in Java 1.2
-name|int
-name|lo
-init|=
-literal|0
-decl_stmt|;
-comment|// search starts array
-name|int
-name|hi
-init|=
-name|searchables
-operator|.
-name|length
-operator|-
-literal|1
-decl_stmt|;
-comment|// for first element less
-comment|// than n, return its index
-while|while
-condition|(
-name|hi
-operator|>=
-name|lo
-condition|)
-block|{
-name|int
-name|mid
-init|=
-operator|(
-name|lo
-operator|+
-name|hi
-operator|)
-operator|>>>
-literal|1
-decl_stmt|;
-name|int
-name|midValue
-init|=
-name|starts
-index|[
-name|mid
-index|]
-decl_stmt|;
-if|if
-condition|(
-name|n
-operator|<
-name|midValue
-condition|)
-name|hi
-operator|=
-name|mid
-operator|-
-literal|1
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|n
-operator|>
-name|midValue
-condition|)
-name|lo
-operator|=
-name|mid
-operator|+
-literal|1
-expr_stmt|;
-else|else
-block|{
-comment|// found a match
-while|while
-condition|(
-name|mid
-operator|+
-literal|1
-operator|<
-name|searchables
-operator|.
-name|length
-operator|&&
-name|starts
-index|[
-name|mid
-operator|+
-literal|1
-index|]
-operator|==
-name|midValue
-condition|)
-block|{
-name|mid
-operator|++
-expr_stmt|;
-comment|// scan to last match
-block|}
 return|return
-name|mid
-return|;
-block|}
-block|}
-return|return
-name|hi
+name|ReaderUtil
+operator|.
+name|subIndex
+argument_list|(
+name|n
+argument_list|,
+name|starts
+argument_list|)
 return|;
 block|}
 comment|/** Returns the document number of document<code>n</code> within its    * sub-index. */
@@ -917,7 +836,7 @@ specifier|public
 name|TopDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -1128,7 +1047,7 @@ specifier|public
 name|TopFieldDocs
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -1470,7 +1389,7 @@ specifier|public
 name|void
 name|search
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Filter
@@ -1681,7 +1600,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|int
@@ -1720,10 +1639,10 @@ return|;
 comment|// dispatch to searcher
 block|}
 comment|/**    * Create weight in multiple index scenario.    *     * Distributed query processing is done in the following steps:    * 1. rewrite query    * 2. extract necessary terms    * 3. collect dfs for these terms from the Searchables    * 4. create query weight using aggregate dfs.    * 5. distribute that weight to Searchables    * 6. merge results    *    * Steps 1-4 are done here, 5+6 in the search() methods    *    * @return rewritten queries    */
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|protected
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Query
 name|original
@@ -1917,7 +1836,7 @@ decl_stmt|;
 return|return
 name|rewrittenQuery
 operator|.
-name|queryWeight
+name|weight
 argument_list|(
 name|cacheSim
 argument_list|)

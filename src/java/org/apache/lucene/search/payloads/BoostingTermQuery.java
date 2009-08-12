@@ -16,6 +16,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -50,9 +60,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|TermPositions
+name|Scorer
 import|;
 end_import
 
@@ -66,7 +76,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|*
+name|Searcher
 import|;
 end_import
 
@@ -80,41 +90,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spans
-operator|.
-name|SpanScorer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|spans
-operator|.
-name|SpanTermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|spans
-operator|.
-name|SpanWeight
+name|Weight
 import|;
 end_import
 
@@ -131,16 +107,6 @@ operator|.
 name|spans
 operator|.
 name|TermSpans
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -201,10 +167,10 @@ name|includeSpanScore
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|public
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Searcher
 name|searcher

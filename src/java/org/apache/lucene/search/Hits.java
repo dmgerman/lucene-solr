@@ -97,7 +97,7 @@ name|Hits
 block|{
 DECL|field|weight
 specifier|private
-name|QueryWeight
+name|Weight
 name|weight
 decl_stmt|;
 DECL|field|searcher
@@ -209,7 +209,7 @@ name|weight
 operator|=
 name|q
 operator|.
-name|queryWeight
+name|weight
 argument_list|(
 name|s
 argument_list|)
@@ -262,7 +262,7 @@ name|weight
 operator|=
 name|q
 operator|.
-name|queryWeight
+name|weight
 argument_list|(
 name|s
 argument_list|)

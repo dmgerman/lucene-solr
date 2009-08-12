@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWeight
+name|Weight
 import|;
 end_import
 
@@ -295,10 +295,10 @@ operator|=
 name|includeSpanScore
 expr_stmt|;
 block|}
-DECL|method|createQueryWeight
+DECL|method|createWeight
 specifier|public
-name|QueryWeight
-name|createQueryWeight
+name|Weight
+name|createWeight
 parameter_list|(
 name|Searcher
 name|searcher
@@ -433,7 +433,7 @@ parameter_list|(
 name|TermSpans
 name|spans
 parameter_list|,
-name|QueryWeight
+name|Weight
 name|weight
 parameter_list|,
 name|Similarity
