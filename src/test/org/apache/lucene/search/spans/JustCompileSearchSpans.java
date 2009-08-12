@@ -104,7 +104,7 @@ specifier|static
 specifier|final
 class|class
 name|JustCompileSpans
-implements|implements
+extends|extends
 name|Spans
 block|{
 DECL|method|doc
@@ -294,7 +294,7 @@ specifier|static
 specifier|final
 class|class
 name|JustCompilePayloadSpans
-implements|implements
+extends|extends
 name|Spans
 block|{
 DECL|method|getPayload

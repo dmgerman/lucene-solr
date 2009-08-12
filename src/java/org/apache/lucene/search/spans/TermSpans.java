@@ -85,7 +85,7 @@ DECL|class|TermSpans
 specifier|public
 class|class
 name|TermSpans
-implements|implements
+extends|extends
 name|Spans
 block|{
 DECL|field|positions
