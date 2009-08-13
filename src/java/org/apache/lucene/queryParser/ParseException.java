@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * This exception is thrown when parse errors are encountered.  * You can explicitly create objects of this exception type by  * calling the method generateParseException in the generated  * parser.  *  * You can modify this class to customize your error reporting  * mechanisms so long as you retain the public fields.  *   * @deprecated use the equivalent class defined in the new<tt>queryparser</tt> project,   * 				currently located in contrib: org.apache.lucene.queryParser.original.parser.ParseException  */
+comment|/**  * This exception is thrown when parse errors are encountered.  * You can explicitly create objects of this exception type by  * calling the method generateParseException in the generated  * parser.  *  * You can modify this class to customize your error reporting  * mechanisms so long as you retain the public fields.  */
 end_comment
 
 begin_class

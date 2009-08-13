@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Describes the input token stream.  *   * @deprecated use the equivalent class defined in the new<tt>queryparser</tt> project,   * 				currently located in contrib: org.apache.lucene.queryParser.original.parser.Token  *   */
+comment|/**  * Describes the input token stream.  */
 end_comment
 
 begin_class

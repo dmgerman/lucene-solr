@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An efficient implementation of JavaCC's CharStream interface.<p>Note that  * this does not do line-number counting, but instead keeps track of the  * character position of the token in the input, as required by Lucene's {@link  * org.apache.lucene.analysis.Token} API.   *     * @deprecated this class will be removed in Lucene 3.0, when the {@link QueryParser} is removed  *   * */
+comment|/** An efficient implementation of JavaCC's CharStream interface.<p>Note that  * this does not do line-number counting, but instead keeps track of the  * character position of the token in the input, as required by Lucene's {@link  * org.apache.lucene.analysis.Token} API.   * */
 end_comment
 
 begin_class

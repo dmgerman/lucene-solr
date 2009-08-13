@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/** Token Manager Error.   *  * @deprecated use the equivalent class defined in the new<tt>queryparser</tt> project,   * 				currently located in contrib: org.apache.lucene.queryParser.original.parser.TokenMgrError  *  */
+comment|/** Token Manager Error. */
 end_comment
 
 begin_class
