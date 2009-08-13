@@ -377,30 +377,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|inject
-condition|)
-block|{
-name|output
-operator|.
-name|add
-argument_list|(
-operator|new
-name|Token
-argument_list|(
-name|s
-argument_list|,
-literal|0
-argument_list|,
-name|s
-operator|.
-name|length
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// phonetic token is added first in the current impl
 name|output
 operator|.
 name|add
@@ -427,7 +404,34 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// add the original if applicable
+if|if
+condition|(
+name|inject
+condition|)
+block|{
+name|output
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Token
+argument_list|(
+name|s
+argument_list|,
+literal|0
+argument_list|,
+name|s
+operator|.
+name|length
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
+block|}
+comment|// System.out.println("###stream="+stream);
+comment|// System.out.println("###output="+output);
 name|PhoneticFilter
 name|filter
 init|=
@@ -468,6 +472,7 @@ argument_list|(
 name|t
 argument_list|)
 decl_stmt|;
+comment|// System.out.println("##### got="+got);
 name|assertEquals
 argument_list|(
 operator|new
