@@ -149,23 +149,11 @@ return|;
 block|}
 else|else
 block|{
-name|Object
-name|v
-init|=
+return|return
 name|weakRef
 operator|.
 name|get
 argument_list|()
-decl_stmt|;
-comment|// This can never be null, because we hold a hard
-comment|// reference to the underlying object:
-assert|assert
-name|v
-operator|!=
-literal|null
-assert|;
-return|return
-name|v
 return|;
 block|}
 block|}
