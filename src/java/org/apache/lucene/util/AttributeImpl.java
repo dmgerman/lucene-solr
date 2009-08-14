@@ -65,7 +65,7 @@ name|Cloneable
 implements|,
 name|Serializable
 block|{
-comment|/**    * Clears the values in this Attribute and resets it to its     * default value.    */
+comment|/**    * Clears the values in this AttributeImpl and resets it to its     * default value. If this implementation implements more than one Attribute interface    * it clears all.    */
 DECL|method|clear
 specifier|public
 specifier|abstract

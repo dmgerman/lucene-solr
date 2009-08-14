@@ -323,6 +323,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 comment|/** how many character(s) has been stored in buffer */
 while|while
 condition|(

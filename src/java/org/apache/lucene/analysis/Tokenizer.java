@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class.<p>   NOTE: To use the old API subclasses must override {@link #next(Token)}.   It's also OK to instead override {@link #next()} but that   method is slower compared to {@link #next(Token)}.<p>   NOTE: subclasses overriding {@link #next(Token)} must     call {@link Token#clear()}.  */
+comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class.<p>   NOTE: subclasses must override    {@link #incrementToken()} if the new TokenStream API is used   and {@link #next(Token)} or {@link #next()} if the old   TokenStream API is used.<p>   NOTE: Subclasses overriding {@link #incrementToken()} must   call {@link AttributeSource#clearAttributes()} before   setting attributes.   Subclasses overriding {@link #next(Token)} must call   {@link Token#clear()} before setting Token attributes.   */
 end_comment
 
 begin_class
@@ -234,6 +234,7 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Expert: Reset the tokenizer to a new CharStream.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
 DECL|method|reset
 specifier|public
 name|void

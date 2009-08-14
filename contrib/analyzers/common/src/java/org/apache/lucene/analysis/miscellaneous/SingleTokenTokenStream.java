@@ -334,6 +334,9 @@ operator|.
 name|clone
 argument_list|()
 decl_stmt|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer

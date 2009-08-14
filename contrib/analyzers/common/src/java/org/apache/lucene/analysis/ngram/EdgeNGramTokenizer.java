@@ -480,6 +480,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 comment|// if we are just starting, read the whole input
 if|if
 condition|(

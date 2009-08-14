@@ -1782,6 +1782,9 @@ condition|)
 return|return
 literal|false
 return|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 literal|true
@@ -2064,6 +2067,9 @@ name|boolean
 name|incrementToken
 parameter_list|()
 block|{
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 comment|// cache loop instance vars (performance)
 name|String
 name|s
