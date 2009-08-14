@@ -344,7 +344,7 @@ name|boost
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Remove all fields and boosts from the document    */
+comment|/**    * Adds a field with the given name, value and boost.  If a field with the name already exists, then it is updated to    * the new value and boost.    *    * @param name Name of the field to add    * @param value Value of the field    * @param boost Boost value for the field    */
 DECL|method|addField
 specifier|public
 name|void
