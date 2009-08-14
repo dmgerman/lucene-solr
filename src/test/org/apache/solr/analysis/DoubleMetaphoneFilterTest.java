@@ -666,8 +666,10 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|assertNull
+name|assertEquals
 argument_list|(
+literal|"12345"
+argument_list|,
 name|filter
 operator|.
 name|next
@@ -676,6 +678,9 @@ operator|new
 name|Token
 argument_list|()
 argument_list|)
+operator|.
+name|term
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// should have something after the stream
