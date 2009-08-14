@@ -14,6 +14,20 @@ name|payloads
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
+import|;
+end_import
+
 begin_comment
 comment|/**  * Calculates the miniumum payload seen  *  **/
 end_comment
@@ -36,6 +50,12 @@ name|docId
 parameter_list|,
 name|String
 name|field
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|end
 parameter_list|,
 name|int
 name|numPayloadsSeen
