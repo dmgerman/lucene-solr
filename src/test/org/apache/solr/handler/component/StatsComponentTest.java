@@ -549,7 +549,7 @@ literal|"//long[@name='missing'][.='1']"
 argument_list|,
 literal|"//double[@name='sumOfSquares'][.='2100.0']"
 argument_list|,
-literal|"//double[@name='mean'][.='--23.333333333333332']"
+literal|"//double[@name='mean'][.='-23.333333333333332']"
 argument_list|,
 literal|"//double[@name='stddev'][.='15.275252316519467']"
 argument_list|)
