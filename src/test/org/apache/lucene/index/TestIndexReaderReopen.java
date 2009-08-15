@@ -3880,6 +3880,11 @@ operator|.
 name|deleteDocument
 argument_list|(
 name|i
+operator|%
+name|modifier
+operator|.
+name|maxDoc
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|modifier
