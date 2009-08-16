@@ -451,6 +451,17 @@ argument_list|,
 name|fieldName
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|values
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+return|return
+literal|null
+return|;
 name|StringBuilder
 name|buffer
 init|=
@@ -578,6 +589,7 @@ argument_list|(
 name|fieldName
 argument_list|)
 return|;
+comment|// according to Document class javadoc, this never returns null
 block|}
 DECL|method|makeFragment
 specifier|protected
