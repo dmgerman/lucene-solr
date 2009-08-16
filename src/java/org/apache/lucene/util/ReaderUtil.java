@@ -127,7 +127,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns sub IndexReader that contains the given document id.    *        * @param doc    * @param reader    * @return    */
+comment|/**    * Returns sub IndexReader that contains the given document id.    *        * @param doc id of document    * @param reader parent reader    * @return sub reader of parent which contains the specified doc id    */
 DECL|method|subReader
 specifier|public
 specifier|static
@@ -245,7 +245,7 @@ argument_list|)
 index|]
 return|;
 block|}
-comment|/**    * Returns sub-reader subIndex from reader.    *     * @param reader    * @param subIndex    * @return    */
+comment|/**    * Returns sub-reader subIndex from reader.    *     * @param reader parent reader    * @param subIndex index of desired sub reader    * @return the subreader at subINdex    */
 DECL|method|subReader
 specifier|public
 specifier|static

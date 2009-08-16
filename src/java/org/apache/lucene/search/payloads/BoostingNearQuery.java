@@ -732,7 +732,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * By default, uses the {@link PayloadFunction} to score the payloads, but can be overridden to do other things.      *      * @param payLoads The payloads      * @param start The start position of the span being scored      * @param end The end position of the span being scored      *      * @see {@link org.apache.lucene.search.spans.Spans}      */
+comment|/**      * By default, uses the {@link PayloadFunction} to score the payloads, but can be overridden to do other things.      *      * @param payLoads The payloads      * @param start The start position of the span being scored      * @param end The end position of the span being scored      *      * @see Spans      */
 DECL|method|processPayloads
 specifier|protected
 name|void

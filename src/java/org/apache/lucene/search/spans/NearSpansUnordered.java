@@ -1049,7 +1049,7 @@ argument_list|()
 return|;
 block|}
 comment|// TODO: Remove warning after API has been finalized
-comment|/**    * WARNING: The List is not necessarily in order of the the positions    * @return    * @throws IOException    */
+comment|/**    * WARNING: The List is not necessarily in order of the the positions    * @return Collection of<code>byte[]</code> payloads    * @throws IOException    */
 DECL|method|getPayload
 specifier|public
 name|Collection
