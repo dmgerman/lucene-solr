@@ -291,9 +291,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|clearAttributes
-argument_list|()
-expr_stmt|;
+comment|// clearAttributes();  // not currently necessary
 name|restoreState
 argument_list|(
 name|remainingTokens

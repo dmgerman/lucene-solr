@@ -865,6 +865,26 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|input
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|replacement
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 

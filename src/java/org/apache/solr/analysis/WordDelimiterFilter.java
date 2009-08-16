@@ -2589,6 +2589,31 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|input
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|queuePos
+operator|=
+literal|0
+expr_stmt|;
+name|queue
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|// questions:
 comment|// negative numbers?  -42 indexed as just 42?
 comment|// dollar sign?  $42

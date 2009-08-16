@@ -2016,9 +2016,9 @@ name|tokens
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
-literal|null
+literal|""
 argument_list|,
 operator|new
 name|StringReader
@@ -2027,6 +2027,11 @@ name|query
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|tokens
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|Token
 name|token
 init|=
