@@ -207,6 +207,7 @@ name|SolrEventListener
 block|{
 DECL|field|triggered
 specifier|public
+specifier|volatile
 name|boolean
 name|triggered
 init|=
@@ -747,11 +748,13 @@ name|updater
 operator|.
 name|tracker
 decl_stmt|;
+comment|// too low of a number can cause a slow host to commit before the test code checks that it
+comment|// isn't there... causing a failure at "shouldn't find any"
 name|tracker
 operator|.
 name|timeUpperBound
 operator|=
-literal|500
+literal|1000
 expr_stmt|;
 name|tracker
 operator|.
