@@ -501,6 +501,14 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
+name|streams
+operator|.
+name|filteredTokenStream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+comment|// reset WordTokenFilter's state
 block|}
 return|return
 name|streams

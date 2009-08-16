@@ -458,6 +458,24 @@ name|next
 argument_list|()
 return|;
 block|}
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|curTermBuffer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 
