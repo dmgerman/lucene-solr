@@ -254,7 +254,7 @@ DECL|class|BoostedWeight
 specifier|private
 class|class
 name|BoostedWeight
-implements|implements
+extends|extends
 name|Weight
 block|{
 DECL|field|searcher
@@ -373,6 +373,12 @@ name|scorer
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|boolean
+name|topScorer
 parameter_list|)
 throws|throws
 name|IOException
@@ -385,6 +391,10 @@ operator|.
 name|scorer
 argument_list|(
 name|reader
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return
@@ -397,6 +407,8 @@ name|getSimilarity
 argument_list|(
 name|searcher
 argument_list|)
+argument_list|,
+name|searcher
 argument_list|,
 name|reader
 argument_list|,
@@ -413,6 +425,9 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
+name|Searcher
+name|searcher
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -475,6 +490,8 @@ name|qWeight
 operator|.
 name|explain
 argument_list|(
+name|searcher
+argument_list|,
 name|reader
 argument_list|,
 name|doc
@@ -608,12 +625,21 @@ specifier|final
 name|IndexReader
 name|reader
 decl_stmt|;
+DECL|field|searcher
+specifier|private
+specifier|final
+name|Searcher
+name|searcher
+decl_stmt|;
 DECL|method|CustomScorer
 specifier|private
 name|CustomScorer
 parameter_list|(
 name|Similarity
 name|similarity
+parameter_list|,
+name|Searcher
+name|searcher
 parameter_list|,
 name|IndexReader
 name|reader
@@ -664,6 +690,13 @@ name|reader
 operator|=
 name|reader
 expr_stmt|;
+name|this
+operator|.
+name|searcher
+operator|=
+name|searcher
+expr_stmt|;
+comment|// for explain
 name|this
 operator|.
 name|vals
@@ -798,6 +831,8 @@ name|qWeight
 operator|.
 name|explain
 argument_list|(
+name|searcher
+argument_list|,
 name|reader
 argument_list|,
 name|doc
