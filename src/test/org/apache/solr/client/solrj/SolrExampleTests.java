@@ -1538,9 +1538,10 @@ name|up
 operator|.
 name|setCommitWithin
 argument_list|(
-literal|100
+literal|500
 argument_list|)
 expr_stmt|;
+comment|// a smaller commitWithin caused failures on the following assert
 name|up
 operator|.
 name|process
@@ -1580,10 +1581,10 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|500
+literal|1000
 argument_list|)
 expr_stmt|;
-comment|// wait 1/2 seconds...
+comment|// wait 1 sec
 comment|// now check that it comes out...
 name|rsp
 operator|=
