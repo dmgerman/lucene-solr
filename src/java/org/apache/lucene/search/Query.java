@@ -150,7 +150,7 @@ return|;
 block|}
 comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *     *<p>    * Only implemented by primitive queries, which re-write to themselves.    */
 DECL|method|createWeight
-specifier|protected
+specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
