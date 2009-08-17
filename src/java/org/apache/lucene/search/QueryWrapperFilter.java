@@ -210,7 +210,7 @@ name|weight
 init|=
 name|query
 operator|.
-name|createWeight
+name|weight
 argument_list|(
 operator|new
 name|IndexSearcher
