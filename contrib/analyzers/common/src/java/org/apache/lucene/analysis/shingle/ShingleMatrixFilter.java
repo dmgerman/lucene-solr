@@ -318,7 +318,7 @@ specifier|abstract
 class|class
 name|TokenSettingsCodec
 block|{
-comment|/**      * Retrieves information on how a {@link org.apache.lucene.analysis.Token} is to be inserted to a {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.Matrix}.      * @param token      * @return      * @throws IOException      */
+comment|/**      * Retrieves information on how a {@link org.apache.lucene.analysis.Token} is to be inserted to a {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter.Matrix}.      * @param token      * @return {@link ShingleMatrixFilter.TokenPositioner}      * @throws IOException      */
 DECL|method|getTokenPositioner
 specifier|public
 specifier|abstract
@@ -3720,7 +3720,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns a 32 bit float from the payload, or 1f it null.      *      * @param token      * @return      */
+comment|/**      * Returns a 32 bit float from the payload, or 1f it null.      *      * @param token      * @return 32 bit float      */
 DECL|method|getWeight
 specifier|public
 name|float

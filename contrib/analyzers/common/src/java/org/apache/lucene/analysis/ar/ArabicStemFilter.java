@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TokenFilter that applies {@link ArabicStemmer} to stem Arabic words..  *   */
+comment|/**  * A {@link TokenFilter} that applies {@link ArabicStemmer} to stem Arabic words..  *   */
 end_comment
 
 begin_class

@@ -2895,6 +2895,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// some other tests set this to null.
+comment|// set it here in case tests are run out of the usual order.
+name|ShingleMatrixFilter
+operator|.
+name|defaultSettingsCodec
+operator|=
+operator|new
+name|ShingleMatrixFilter
+operator|.
+name|SimpleThreeDimensionalTokenSettingsCodec
+argument_list|()
+expr_stmt|;
 name|Matrix
 name|matrix
 init|=

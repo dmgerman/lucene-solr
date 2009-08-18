@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A stemmer for Brazilian words.  */
+comment|/**  * A stemmer for Brazilian Portuguese words.  */
 end_comment
 
 begin_class

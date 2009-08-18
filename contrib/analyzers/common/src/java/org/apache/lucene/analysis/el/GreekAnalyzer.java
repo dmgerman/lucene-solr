@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for the Greek language. Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *  */
+comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  */
 end_comment
 
 begin_class
@@ -1082,7 +1082,7 @@ name|I
 block|}
 block|}
 decl_stmt|;
-comment|/**      * Contains the stopwords used with the StopFilter.      */
+comment|/**      * Contains the stopwords used with the {@link StopFilter}.      */
 DECL|field|stopSet
 specifier|private
 name|Set
@@ -1092,7 +1092,7 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
-comment|/**      * Charset for Greek letters.      * Represents encoding for 24 lowercase Greek letters.      * Predefined charsets can be taken from GreekCharSets class      */
+comment|/**      * Charset for Greek letters.      * Represents encoding for 24 lowercase Greek letters.      * Predefined charsets can be taken from {@link GreekCharsets} class      */
 DECL|field|charset
 specifier|private
 name|char
@@ -1321,7 +1321,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a TokenStream which tokenizes all the text in the provided Reader.      *      * @return  A TokenStream built from a StandardTokenizer filtered with      *                  GreekLowerCaseFilter and StopFilter      */
+comment|/**      * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *                  {@link GreekLowerCaseFilter} and {@link StopFilter}      */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -1382,7 +1382,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**      * Returns a (possibly reused) TokenStream which tokenizes all the text       * in the provided Reader.      *      * @return  A TokenStream built from a StandardTokenizer filtered with      *                  GreekLowerCaseFilter and StopFilter      */
+comment|/**      * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text       * in the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *                  {@link GreekLowerCaseFilter} and {@link StopFilter}      */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

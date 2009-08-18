@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on GermanStemFilter  *  */
+comment|/**  * A {@link TokenFilter} that applies {@link BrazilianStemmer}.  *  */
 end_comment
 
 begin_class
@@ -95,7 +95,7 @@ name|BrazilianStemFilter
 extends|extends
 name|TokenFilter
 block|{
-comment|/**    * The actual token in the input stream.    */
+comment|/**    * {@link BrazilianStemmer} in use by this filter.    */
 DECL|field|stemmer
 specifier|private
 name|BrazilianStemmer

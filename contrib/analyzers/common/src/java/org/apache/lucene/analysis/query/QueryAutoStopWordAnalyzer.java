@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * An analyzer used primarily at query time to wrap another analyzer and provide a layer of protection  * which prevents very common words from being passed into queries. For very large indexes the cost  * of reading TermDocs for a very common word can be  high. This analyzer was created after experience with  * a 38 million doc index which had a term in around 50% of docs and was causing TermQueries for   * this term to take 2 seconds.  *  * Use the various "addStopWords" methods in this class to automate the identification and addition of   * stop words found in an already existing index.  *   *   *    */
+comment|/**  * An {@link Analyzer} used primarily at query time to wrap another analyzer and provide a layer of protection  * which prevents very common words from being passed into queries.   *<p>  * For very large indexes the cost  * of reading TermDocs for a very common word can be  high. This analyzer was created after experience with  * a 38 million doc index which had a term in around 50% of docs and was causing TermQueries for   * this term to take 2 seconds.  *</p>  *<p>  * Use the various "addStopWords" methods in this class to automate the identification and addition of   * stop words found in an already existing index.  *</p>  */
 end_comment
 
 begin_class
@@ -181,7 +181,7 @@ name|defaultMaxDocFreqPercent
 init|=
 literal|0.4f
 decl_stmt|;
-comment|/**    * Initializes this analyzer with the Analyzer object that actual produces the tokens    *    * @param delegate The choice of analyzer that is used to produce the token stream which needs filtering    */
+comment|/**    * Initializes this analyzer with the Analyzer object that actually produces the tokens    *    * @param delegate The choice of {@link Analyzer} that is used to produce the token stream which needs filtering    */
 DECL|method|QueryAutoStopWordAnalyzer
 specifier|public
 name|QueryAutoStopWordAnalyzer
@@ -204,7 +204,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Automatically adds stop words for all fields with terms exceeding the defaultMaxDocFreqPercent    *    * @param reader The IndexReader class which will be consulted to identify potential stop words that    *               exceed the required document frequency    * @return The number of stop words identified.    * @throws IOException    */
+comment|/**    * Automatically adds stop words for all fields with terms exceeding the defaultMaxDocFreqPercent    *    * @param reader The {@link IndexReader} which will be consulted to identify potential stop words that    *               exceed the required document frequency    * @return The number of stop words identified.    * @throws IOException    */
 DECL|method|addStopWords
 specifier|public
 name|int
@@ -225,7 +225,7 @@ name|defaultMaxDocFreqPercent
 argument_list|)
 return|;
 block|}
-comment|/**    * Automatically adds stop words for all fields with terms exceeding the maxDocFreqPercent    *    * @param reader     The IndexReader class which will be consulted to identify potential stop words that    *                   exceed the required document frequency    * @param maxDocFreq The maximum number of index documents which can contain a term, after which    *                   the term is considered to be a stop word    * @return The number of stop words identified.    * @throws IOException    */
+comment|/**    * Automatically adds stop words for all fields with terms exceeding the maxDocFreqPercent    *    * @param reader     The {@link IndexReader} which will be consulted to identify potential stop words that    *                   exceed the required document frequency    * @param maxDocFreq The maximum number of index documents which can contain a term, after which    *                   the term is considered to be a stop word    * @return The number of stop words identified.    * @throws IOException    */
 DECL|method|addStopWords
 specifier|public
 name|int
@@ -303,7 +303,7 @@ return|return
 name|numStopWords
 return|;
 block|}
-comment|/**    * Automatically adds stop words for all fields with terms exceeding the maxDocFreqPercent    *    * @param reader        The IndexReader class which will be consulted to identify potential stop words that    *                      exceed the required document frequency    * @param maxPercentDocs The maximum percentage (between 0.0 and 1.0) of index documents which    *                      contain a term, after which the word is considered to be a stop word.    * @return The number of stop words identified.    * @throws IOException    */
+comment|/**    * Automatically adds stop words for all fields with terms exceeding the maxDocFreqPercent    *    * @param reader        The {@link IndexReader} which will be consulted to identify potential stop words that    *                      exceed the required document frequency    * @param maxPercentDocs The maximum percentage (between 0.0 and 1.0) of index documents which    *                      contain a term, after which the word is considered to be a stop word.    * @return The number of stop words identified.    * @throws IOException    */
 DECL|method|addStopWords
 specifier|public
 name|int
@@ -381,7 +381,7 @@ return|return
 name|numStopWords
 return|;
 block|}
-comment|/**    * Automatically adds stop words for the given field with terms exceeding the maxPercentDocs    *    * @param reader         The IndexReader class which will be consulted to identify potential stop words that    *                       exceed the required document frequency    * @param fieldName      The field for which stopwords will be added    * @param maxPercentDocs The maximum percentage (between 0.0 and 1.0) of index documents which    *                       contain a term, after which the word is considered to be a stop word.    * @return The number of stop words identified.    * @throws IOException    */
+comment|/**    * Automatically adds stop words for the given field with terms exceeding the maxPercentDocs    *    * @param reader         The {@link IndexReader} which will be consulted to identify potential stop words that    *                       exceed the required document frequency    * @param fieldName      The field for which stopwords will be added    * @param maxPercentDocs The maximum percentage (between 0.0 and 1.0) of index documents which    *                       contain a term, after which the word is considered to be a stop word.    * @return The number of stop words identified.    * @throws IOException    */
 DECL|method|addStopWords
 specifier|public
 name|int
@@ -420,7 +420,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Automatically adds stop words for the given field with terms exceeding the maxPercentDocs    *    * @param reader     The IndexReader class which will be consulted to identify potential stop words that    *                   exceed the required document frequency    * @param fieldName  The field for which stopwords will be added    * @param maxDocFreq The maximum number of index documents which    *                   can contain a term, after which the term is considered to be a stop word.    * @return The number of stop words identified.    * @throws IOException    */
+comment|/**    * Automatically adds stop words for the given field with terms exceeding the maxPercentDocs    *    * @param reader     The {@link IndexReader} which will be consulted to identify potential stop words that    *                   exceed the required document frequency    * @param fieldName  The field for which stopwords will be added    * @param maxDocFreq The maximum number of index documents which    *                   can contain a term, after which the term is considered to be a stop word.    * @return The number of stop words identified.    * @throws IOException    */
 DECL|method|addStopWords
 specifier|public
 name|int

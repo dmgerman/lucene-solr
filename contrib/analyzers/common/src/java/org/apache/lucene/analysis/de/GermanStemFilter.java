@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stems German words. It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a GermanStemmer).  *  *  * @version   $Id$  */
+comment|/**  * A {@link TokenFilter} that stems German words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a {@link GermanStemmer}).  *</p>  *  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -258,7 +258,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Set a alternative/custom GermanStemmer for this filter.      */
+comment|/**      * Set a alternative/custom {@link GermanStemmer} for this filter.      */
 DECL|method|setStemmer
 specifier|public
 name|void

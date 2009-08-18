@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for French language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  *  * @version $Id$  */
+comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -652,7 +652,7 @@ block|,
 literal|"Ã´"
 block|}
 decl_stmt|;
-comment|/**    * Contains the stopwords used with the StopFilter.    */
+comment|/**    * Contains the stopwords used with the {@link StopFilter}.    */
 DECL|field|stoptable
 specifier|private
 name|Set
@@ -802,7 +802,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return A TokenStream built from a StandardTokenizer filtered with    *         StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter    */
+comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided    * {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}     *         filtered with {@link StandardFilter}, {@link StopFilter},     *         {@link FrenchStemFilter} and {@link LowerCaseFilter}    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -907,7 +907,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**    * Returns a (possibly reused) TokenStream which tokenizes all the text     * in the provided Reader.    *    * @return A TokenStream built from a StandardTokenizer filtered with    *         StandardFilter, StopFilter, FrenchStemFilter and LowerCaseFilter    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}     *         filtered with {@link StandardFilter}, {@link StopFilter},     *         {@link FrenchStemFilter} and {@link LowerCaseFilter}    */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

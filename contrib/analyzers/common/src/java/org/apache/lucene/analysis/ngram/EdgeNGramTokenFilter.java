@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the given token into n-grams of given size(s).  *  * This filter create n-grams from the beginning edge or ending edge of a input token.  *   */
+comment|/**  * Tokenizes the given token into n-grams of given size(s).  *<p>  * This {@link TokenFilter} create n-grams from the beginning edge or ending edge of a input token.  *</p>  */
 end_comment
 
 begin_class
@@ -342,7 +342,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input TokenStream holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenFilter
 specifier|public
 name|EdgeNGramTokenFilter
@@ -457,7 +457,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input TokenStream holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenFilter
 specifier|public
 name|EdgeNGramTokenFilter

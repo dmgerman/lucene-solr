@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Utility methods for encoding payloads.  *  **/
 end_comment
 
 begin_class
@@ -215,7 +215,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Decode the payload that was encoded using {@link #encodeFloat(float)}.    * NOTE: the length of the array must be at least offset + 4 long.    * @param bytes The bytes to decode    * @param offset The offset into the array.    * @return The float that was encoded    *    * @see # encodeFloat (float)    */
+comment|/**    * Decode the payload that was encoded using {@link #encodeFloat(float)}.    * NOTE: the length of the array must be at least offset + 4 long.    * @param bytes The bytes to decode    * @param offset The offset into the array.    * @return The float that was encoded    *    * @see #encodeFloat(float)    */
 DECL|method|decodeFloat
 specifier|public
 specifier|static

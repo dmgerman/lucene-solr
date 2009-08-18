@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenFilter that use java.text.BreakIterator to break each   * Token that is Thai into separate Token(s) for each Thai word.  * @version 0.2  */
+comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  * @version 0.2  */
 end_comment
 
 begin_class

@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Arabic.   *<p>  * This analyzer implements light-stemming as specified by:  *<i>  * Light Stemming for Arabic Information Retrieval  *</i>      * http://www.mtholyoke.edu/~lballest/Pubs/arab_stem05.pdf  *<p>  * The analysis package contains three primary components:  *<ul>  *<li>{@link ArabicNormalizationFilter}: Arabic orthographic normalization.  *<li>{@link ArabicStemFilter}: Arabic light stemming  *<li>Arabic stop words file: a set of default Arabic stop words.  *</ul>  *   */
+comment|/**  * {@link Analyzer} for Arabic.   *<p>  * This analyzer implements light-stemming as specified by:  *<i>  * Light Stemming for Arabic Information Retrieval  *</i>      * http://www.mtholyoke.edu/~lballest/Pubs/arab_stem05.pdf  *<p>  * The analysis package contains three primary components:  *<ul>  *<li>{@link ArabicNormalizationFilter}: Arabic orthographic normalization.  *<li>{@link ArabicStemFilter}: Arabic light stemming  *<li>Arabic stop words file: a set of default Arabic stop words.  *</ul>  *   */
 end_comment
 
 begin_class
@@ -358,7 +358,7 @@ name|STOPWORDS_COMMENT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a TokenStream which tokenizes all the text in the provided Reader.    *    * @return  A TokenStream built from an ArabicTokenizer filtered with    * 			StopFilter, LowerCaseFilter, ArabicNormalizationFilter and ArabicStemFilter.    */
+comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    * 			{@link StopFilter}, {@link LowerCaseFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -434,7 +434,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**    * Returns a (possibly reused) TokenStream which tokenizes all the text     * in the provided Reader.    *    * @return  A TokenStream built from an ArabicTokenizer filtered with    *            StopFilter, LowerCaseFilter, ArabicNormalizationFilter and     *            ArabicStemFilter.    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text     * in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    *            {@link StopFilter}, {@link LowerCaseFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

@@ -92,6 +92,24 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|TokenFilter
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenStream
 import|;
 end_import
@@ -145,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TokenFilter that decomposes compound words found in many germanic languages  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff" It uses a hyphenation  * grammar and a word dictionary to achieve this.  */
+comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  *</p>  */
 end_comment
 
 begin_class
@@ -161,7 +179,7 @@ specifier|private
 name|HyphenationTree
 name|hyphenator
 decl_stmt|;
-comment|/**    *     * @param input the token stream to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against    * @param minWordSize only words longer than this get processed    * @param minSubwordSize only subwords longer than this get to the output    *        stream    * @param maxSubwordSize only subwords shorter than this get to the output    *        stream    * @param onlyLongestMatch Add only the longest matching subword to the stream    */
+comment|/**    *     * @param input the {@link TokenStream} to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against    * @param minWordSize only words longer than this get processed    * @param minSubwordSize only subwords longer than this get to the output    *        stream    * @param maxSubwordSize only subwords shorter than this get to the output    *        stream    * @param onlyLongestMatch Add only the longest matching subword to the stream    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -210,7 +228,7 @@ name|onlyLongestMatch
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param input the token stream to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against    */
+comment|/**    *     * @param input the {@link TokenStream} to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -247,7 +265,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param input the token stream to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.     */
+comment|/**    *     * @param input the {@link TokenStream} to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.     */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -280,7 +298,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param input the token stream to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.     * @param minWordSize only words longer than this get processed    * @param minSubwordSize only subwords longer than this get to the output    *        stream    * @param maxSubwordSize only subwords shorter than this get to the output    *        stream    * @param onlyLongestMatch Add only the longest matching subword to the stream    */
+comment|/**    *     * @param input the {@link TokenStream} to process    * @param hyphenator the hyphenation pattern tree to use for hyphenation    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.     * @param minWordSize only words longer than this get processed    * @param minSubwordSize only subwords longer than this get to the output    *        stream    * @param maxSubwordSize only subwords shorter than this get to the output    *        stream    * @param onlyLongestMatch Add only the longest matching subword to the stream    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter

@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters CJKTokenizer with StopFilter.  *  */
+comment|/**  * An {@link Analyzer} that tokenizes text with {@link CJKTokenizer} and  * filters with {@link StopFilter}  *  */
 end_comment
 
 begin_class
@@ -245,7 +245,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//~ Methods ----------------------------------------------------------------
-comment|/**    * get token stream from input    *    * @param fieldName lucene field name    * @param reader    input reader    * @return TokenStream    */
+comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @param fieldName lucene field name    * @param reader    input {@link Reader}    * @return A {@link TokenStream} built from {@link CJKTokenizer}, filtered with    *    {@link StopFilter}    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -288,7 +288,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**    * get (possibly reused) token stream from input    *    * @param fieldName lucene field name    * @param reader    input reader    * @return TokenStream    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text     * in the provided {@link Reader}.    *    * @param fieldName lucene field name    * @param reader    Input {@link Reader}    * @return A {@link TokenStream} built from {@link CJKTokenizer}, filtered with    *    {@link StopFilter}    */
 DECL|method|reusableTokenStream
 specifier|public
 specifier|final

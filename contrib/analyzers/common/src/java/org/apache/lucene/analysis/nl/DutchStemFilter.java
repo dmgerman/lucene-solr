@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stems Dutch words. It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a DutchStemmer).  *  */
+comment|/**  * A {@link TokenFilter} that stems Dutch words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a {@link DutchStemmer}).  *</p>  */
 end_comment
 
 begin_class
@@ -316,7 +316,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Set a alternative/custom DutchStemmer for this filter.    */
+comment|/**    * Set a alternative/custom {@link DutchStemmer} for this filter.    */
 DECL|method|setStemmer
 specifier|public
 name|void

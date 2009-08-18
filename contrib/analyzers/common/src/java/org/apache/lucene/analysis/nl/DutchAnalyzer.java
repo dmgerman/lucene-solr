@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Dutch language. Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  */
+comment|/**  * {@link Analyzer} for Dutch language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all), an external list of exclusions (word that will  * not be stemmed, but indexed) and an external list of word-stem pairs that overrule  * the algorithm (dictionary stemming).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  */
 end_comment
 
 begin_class
@@ -719,7 +719,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates a TokenStream which tokenizes all the text in the provided TextReader.    *    * @return A TokenStream built from a StandardTokenizer filtered with StandardFilter,    * StopFilter, DutchStemFilter    */
+comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the     * provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link StopFilter},     *   and {@link DutchStemFilter}    */
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -790,7 +790,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**    * Returns a (possibly reused) TokenStream which tokenizes all the text     * in the provided Reader.    *    * @return A TokenStream built from a StandardTokenizer filtered with    *         StandardFilter, StopFilter, DutchStemFilter    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link StopFilter},     *   and {@link DutchStemFilter}    */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

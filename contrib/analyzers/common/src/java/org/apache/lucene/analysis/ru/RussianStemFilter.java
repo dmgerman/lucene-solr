@@ -28,20 +28,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenFilter
 import|;
 end_import
@@ -87,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stems Russian words. The implementation was inspired by GermanStemFilter.  * The input should be filtered by RussianLowerCaseFilter before passing it to RussianStemFilter ,  * because RussianStemFilter only works  with lowercase part of any "russian" charset.  *  *  * @version   $Id$  */
+comment|/**  * A {@link TokenFilter} that stems Russian words.   *<p>  * The implementation was inspired by GermanStemFilter.  * The input should be filtered by {@link RussianLowerCaseFilter} before passing it to RussianStemFilter ,  * because RussianStemFilter only works with lowercase part of any "russian" charset.  *</p>  *  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -218,7 +204,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Set a alternative/custom RussianStemmer for this filter.      */
+comment|/**      * Set a alternative/custom {@link RussianStemmer} for this filter.      */
 DECL|method|setStemmer
 specifier|public
 name|void

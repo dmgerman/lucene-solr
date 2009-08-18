@@ -465,7 +465,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Read hyphenation patterns from an XML file.    *     * @param filename the filename    * @throws HyphenationException In case the parsing fails    */
+comment|/**    * Read hyphenation patterns from an XML file.    *     * @param f the filename    * @throws HyphenationException In case the parsing fails    */
 DECL|method|loadPatterns
 specifier|public
 name|void

@@ -56,24 +56,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ngram
-operator|.
-name|EdgeNGramTokenFilter
-operator|.
-name|Side
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|tokenattributes
 operator|.
 name|OffsetAttribute
@@ -117,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizes the input from an edge into n-grams of given size(s).  *  * This tokenizer create n-grams from the beginning edge or ending edge of a input token.  * MaxGram can't be larger than 1024 because of limitation.  *  */
+comment|/**  * Tokenizes the input from an edge into n-grams of given size(s).  *<p>  * This {@link Tokenizer} create n-grams from the beginning edge or ending edge of a input token.  * MaxGram can't be larger than 1024 because of limitation.  *</p>  */
 end_comment
 
 begin_class
@@ -320,7 +302,7 @@ specifier|private
 name|String
 name|inStr
 decl_stmt|;
-comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param input Reader holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param input {@link Reader} holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenizer
 specifier|public
 name|EdgeNGramTokenizer
@@ -435,7 +417,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param input Reader holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates EdgeNGramTokenizer that can generate n-grams in the sizes of the given range    *    * @param input {@link Reader} holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenizer
 specifier|public
 name|EdgeNGramTokenizer

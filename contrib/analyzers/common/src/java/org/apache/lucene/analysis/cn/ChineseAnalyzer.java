@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Title: ChineseAnalyzer  * Description:  *   Subclass of org.apache.lucene.analysis.Analyzer  *   build from a ChineseTokenizer, filtered with ChineseFilter.  * Copyright:   Copyright (c) 2001  * Company:  * @version 1.0  *  */
+comment|/**  * An {@link Analyzer} that tokenizes text with {@link ChineseTokenizer} and  * filters with {@link ChineseFilter}  *  */
 end_comment
 
 begin_class
@@ -97,7 +97,7 @@ specifier|public
 name|ChineseAnalyzer
 parameter_list|()
 block|{     }
-comment|/**     * Creates a TokenStream which tokenizes all the text in the provided Reader.     *     * @return  A TokenStream build from a ChineseTokenizer filtered with ChineseFilter.     */
+comment|/**     * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.     *     * @return  A {@link TokenStream} built from a {@link ChineseTokenizer}      *   filtered with {@link ChineseFilter}.     */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -147,7 +147,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**     * Returns a (possibly reused) TokenStream which tokenizes all the text in the     * provided Reader.     *      * @return A TokenStream build from a ChineseTokenizer filtered with     *         ChineseFilter.     */
+comment|/**     * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text in the     * provided {@link Reader}.     *      * @return A {@link TokenStream} built from a {@link ChineseTokenizer}      *   filtered with {@link ChineseFilter}.     */
 DECL|method|reusableTokenStream
 specifier|public
 specifier|final

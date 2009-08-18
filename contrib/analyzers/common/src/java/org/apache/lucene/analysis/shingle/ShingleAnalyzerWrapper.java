@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ShingleAnalyzerWrapper wraps a ShingleFilter around another analyzer. A  * shingle is another namefor a token based n-gram.  */
+comment|/**  * A ShingleAnalyzerWrapper wraps a {@link ShingleFilter} around another {@link Analyzer}.  *<p>  * A shingle is another name for a token based n-gram.  *</p>  */
 end_comment
 
 begin_class

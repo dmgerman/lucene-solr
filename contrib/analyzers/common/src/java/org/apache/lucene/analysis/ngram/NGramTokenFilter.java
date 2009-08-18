@@ -171,7 +171,7 @@ specifier|private
 name|OffsetAttribute
 name|offsetAtt
 decl_stmt|;
-comment|/**    * Creates NGramTokenFilter with given min and max n-grams.    * @param input TokenStream holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
+comment|/**    * Creates NGramTokenFilter with given min and max n-grams.    * @param input {@link TokenStream} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|NGramTokenFilter
 specifier|public
 name|NGramTokenFilter
@@ -262,7 +262,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates NGramTokenFilter with default min and max n-grams.    * @param input TokenStream holding the input to be tokenized    */
+comment|/**    * Creates NGramTokenFilter with default min and max n-grams.    * @param input {@link TokenStream} holding the input to be tokenized    */
 DECL|method|NGramTokenFilter
 specifier|public
 name|NGramTokenFilter

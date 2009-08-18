@@ -249,7 +249,7 @@ specifier|private
 name|int
 name|maxShingleSize
 decl_stmt|;
-comment|/**    * Constructs a ShingleFilter with the specified single size from the    * TokenStream<code>input</code>    *    * @param input input stream    * @param maxShingleSize maximum shingle size produced by the filter.    */
+comment|/**    * Constructs a ShingleFilter with the specified single size from the    * {@link TokenStream}<code>input</code>    *    * @param input input stream    * @param maxShingleSize maximum shingle size produced by the filter.    */
 DECL|method|ShingleFilter
 specifier|public
 name|ShingleFilter

@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Brazilian language. Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  *  */
+comment|/**  * {@link Analyzer} for Brazilian Portuguese language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (words that will  * not be stemmed, but indexed).  *</p>  */
 end_comment
 
 begin_class
@@ -207,7 +207,7 @@ name|BrazilianAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** 	 * List of typical Brazilian stopwords. 	 */
+comment|/** 	 * List of typical Brazilian Portuguese stopwords. 	 */
 DECL|field|BRAZILIAN_STOP_WORDS
 specifier|public
 specifier|final
@@ -474,7 +474,7 @@ block|,
 literal|"uns"
 block|}
 decl_stmt|;
-comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
+comment|/** 	 * Contains the stopwords used with the {@link StopFilter}. 	 */
 DECL|field|stoptable
 specifier|private
 name|Set
@@ -593,7 +593,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an exclusionlist from a Hashtable. 	 */
+comment|/** 	 * Builds an exclusionlist from a {@link Map}. 	 */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -637,7 +637,7 @@ name|exclusionlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream built from a StandardTokenizer filtered with 	 * 			LowerCaseFilter, StandardFilter, StopFilter, and  	 *          BrazilianStemFilter. 	 */
+comment|/** 	 * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}. 	 * 	 * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with 	 * 			{@link LowerCaseFilter}, {@link StandardFilter}, {@link StopFilter}, and  	 *          {@link BrazilianStemFilter}. 	 */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -715,7 +715,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**      * Returns a (possibly reused) TokenStream which tokenizes all the text       * in the provided Reader.      *      * @return  A TokenStream built from a StandardTokenizer filtered with      *          LowerCaseFilter, StandardFilter, StopFilter, and       *          BrazilianStemFilter.      */
+comment|/**      * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text       * in the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *          {@link LowerCaseFilter}, {@link StandardFilter}, {@link StopFilter}, and       *          {@link BrazilianStemFilter}.      */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

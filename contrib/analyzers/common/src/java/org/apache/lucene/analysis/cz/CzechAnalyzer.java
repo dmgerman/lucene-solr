@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Czech language. Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified, the  * exclusion list is empty by default.  *  */
+comment|/**  * {@link Analyzer} for Czech language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all).   * A default set of stopwords is used unless an alternative list is specified.  *</p>  */
 end_comment
 
 begin_class
@@ -532,7 +532,7 @@ block|,
 literal|"na\u010de\u017e"
 block|,     }
 decl_stmt|;
-comment|/** 	 * Contains the stopwords used with the StopFilter. 	 */
+comment|/** 	 * Contains the stopwords used with the {@link StopFilter}. 	 */
 DECL|field|stoptable
 specifier|private
 name|Set
@@ -720,7 +720,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Creates a TokenStream which tokenizes all the text in the provided Reader. 	 * 	 * @return  A TokenStream built from a StandardTokenizer filtered with 	 * 			StandardFilter, LowerCaseFilter, and StopFilter 	 */
+comment|/** 	 * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}. 	 * 	 * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with 	 * 			{@link StandardFilter}, {@link LowerCaseFilter}, and {@link StopFilter} 	 */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -788,7 +788,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**      * Returns a (possibly reused) TokenStream which tokenizes all the text in       * the provided Reader.      *      * @return  A TokenStream built from a StandardTokenizer filtered with      *          StandardFilter, LowerCaseFilter, and StopFilter      */
+comment|/**      * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text in       * the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *          {@link StandardFilter}, {@link LowerCaseFilter}, and {@link StopFilter}      */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

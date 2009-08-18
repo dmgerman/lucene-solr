@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * A stemmer for Dutch words. The algorithm is an implementation of  * the<a href="http://snowball.tartarus.org/algorithms/dutch/stemmer.html">dutch stemming</a>  * algorithm in Martin Porter's snowball project.  *  */
+comment|/**  * A stemmer for Dutch words.   *<p>  * The algorithm is an implementation of  * the<a href="http://snowball.tartarus.org/algorithms/dutch/stemmer.html">dutch stemming</a>  * algorithm in Martin Porter's snowball project.  *</p>  */
 end_comment
 
 begin_class

@@ -28,20 +28,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenFilter
 import|;
 end_import
@@ -117,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stemms french words. It supports a table of words that should  * not be stemmed at all. The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a FrenchStemmer).  *  */
+comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  */
 end_comment
 
 begin_class
@@ -289,7 +275,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** 	 * Set a alternative/custom FrenchStemmer for this filter. 	 */
+comment|/** 	 * Set a alternative/custom {@link FrenchStemmer} for this filter. 	 */
 DECL|method|setStemmer
 specifier|public
 name|void
