@@ -319,7 +319,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-comment|// should not throw exception with non primitive query
+comment|// should not throw exception with complex primitive query
 name|BooleanQuery
 name|booleanQuery
 init|=
@@ -391,8 +391,8 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-comment|// should not throw exception with Query that doesn't implement
-comment|// Query#createWeight
+comment|// should not throw exception with non primitive Query (doesn't implement
+comment|// Query#createWeight)
 name|qwf
 operator|=
 operator|new
