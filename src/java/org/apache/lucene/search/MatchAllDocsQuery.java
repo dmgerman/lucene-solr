@@ -635,7 +635,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"MatchAllDocsQuery"
+literal|"*:*"
 argument_list|)
 expr_stmt|;
 name|buffer
