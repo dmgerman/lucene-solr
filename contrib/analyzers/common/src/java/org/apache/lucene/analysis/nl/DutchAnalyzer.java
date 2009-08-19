@@ -611,6 +611,12 @@ argument_list|(
 name|exclusionlist
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 comment|/**    * Builds an exclusionlist from a Hashtable.    */
 DECL|method|setStemExclusionTable
@@ -626,6 +632,12 @@ name|excltable
 operator|=
 name|exclusionlist
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 comment|/**    * Builds an exclusionlist from the words contained in the given file.    */
 DECL|method|setStemExclusionTable
@@ -656,6 +668,12 @@ argument_list|(
 name|exclusionlist
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 catch|catch
 parameter_list|(
@@ -702,6 +720,12 @@ argument_list|(
 name|stemdictFile
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 catch|catch
 parameter_list|(
@@ -892,6 +916,8 @@ operator|.
 name|result
 argument_list|,
 name|excltable
+argument_list|,
+name|stemdict
 argument_list|)
 expr_stmt|;
 name|setPreviousTokenStream

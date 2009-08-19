@@ -621,6 +621,12 @@ name|String
 name|encoding
 parameter_list|)
 block|{
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stopfilter to be created
 if|if
 condition|(
 name|wordfile
@@ -714,9 +720,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// clear any previous table (if present)
+comment|// TODO: throw IOException
 name|stoptable
 operator|=
-literal|null
+operator|new
+name|HashSet
+argument_list|()
 expr_stmt|;
 block|}
 block|}

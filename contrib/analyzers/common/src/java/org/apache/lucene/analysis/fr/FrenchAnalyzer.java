@@ -753,6 +753,12 @@ argument_list|(
 name|exclusionlist
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 comment|/**    * Builds an exclusionlist from a Map.    */
 DECL|method|setStemExclusionTable
@@ -775,6 +781,12 @@ name|keySet
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 comment|/**    * Builds an exclusionlist from the words contained in the given file.    * @throws IOException    */
 DECL|method|setStemExclusionTable
@@ -801,6 +813,12 @@ name|exclusionlist
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// force a new stemmer to be created
 block|}
 comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided    * {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}     *         filtered with {@link StandardFilter}, {@link StopFilter},     *         {@link FrenchStemFilter} and {@link LowerCaseFilter}    */
 DECL|method|tokenStream
