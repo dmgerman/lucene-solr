@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adds to the score for a fragment based on its tokens  */
+comment|/**  * A Scorer is responsible for scoring a stream of tokens. These token scores  * can then be used to compute {@link TextFragment} scores.  */
 end_comment
 
 begin_interface
@@ -52,7 +52,7 @@ specifier|public
 interface|interface
 name|Scorer
 block|{
-comment|/**    * Called to init the Scorer with a TokenStream. You can grab references to    * the attributes you are interested in here and access them from    * getTokenScore().    *     * @param tokenStream    * @return either a TokenStream that the Highlighter should continue using (eg    *         if you read the tokenSream in this method) or null to continue    *         using the same TokenStream that was passed in.    * @throws IOException    */
+comment|/**    * Called to init the Scorer with a {@link TokenStream}. You can grab references to    * the attributes you are interested in here and access them from {@link #getTokenScore()}.    *     * @param tokenStream the {@link TokenStream} that will be scored.    * @return either a {@link TokenStream} that the Highlighter should continue using (eg    *         if you read the tokenSream in this method) or null to continue    *         using the same {@link TokenStream} that was passed in.    * @throws IOException    */
 DECL|method|init
 specifier|public
 name|TokenStream
@@ -64,7 +64,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * called when a new fragment is started for consideration    *     * @param newFragment    */
+comment|/**    * Called when a new fragment is started for consideration.    *     * @param newFragment the fragment that will be scored next    */
 DECL|method|startFragment
 specifier|public
 name|void
@@ -74,14 +74,14 @@ name|TextFragment
 name|newFragment
 parameter_list|)
 function_decl|;
-comment|/**    * Called for each token in the current fragment. The Highlighter will    * increment the TokenStream passed to init on every call.    *     * @return a score which is passed to the Highlighter class to influence the    *         mark-up of the text (this return value is NOT used to score the    *         fragment)    */
+comment|/**    * Called for each token in the current fragment. The {@link Highlighter} will    * increment the {@link TokenStream} passed to init on every call.    *     * @return a score which is passed to the {@link Highlighter} class to influence the    *         mark-up of the text (this return value is NOT used to score the    *         fragment)    */
 DECL|method|getTokenScore
 specifier|public
 name|float
 name|getTokenScore
 parameter_list|()
 function_decl|;
-comment|/**    * Called when the highlighter has no more tokens for the current fragment -    * the scorer returns the weighting it has derived for the most recent    * fragment, typically based on the tokens passed to getTokenScore().    *     */
+comment|/**    * Called when the {@link Highlighter} has no more tokens for the current fragment -    * the Scorer returns the weighting it has derived for the most recent    * fragment, typically based on the results of {@link #getTokenScore()}.    *     */
 DECL|method|getFragmentScore
 specifier|public
 name|float

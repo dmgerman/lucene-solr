@@ -42,7 +42,7 @@ specifier|public
 interface|interface
 name|Fragmenter
 block|{
-comment|/**    * Initializes the Fragmenter. You can grab references to the Attributes you are    * interested in from tokenStream and then access the values in isNewFragment.    *     * @param originalText    * @param tokenStream    */
+comment|/**    * Initializes the Fragmenter. You can grab references to the Attributes you are    * interested in from tokenStream and then access the values in {@link #isNewFragment()}.    *     * @param originalText the original source text    * @param tokenStream the {@link TokenStream} to be fragmented    */
 DECL|method|start
 specifier|public
 name|void

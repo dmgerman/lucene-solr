@@ -90,8 +90,24 @@ name|TermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|Spans
+import|;
+end_import
+
 begin_comment
-comment|/**  * {@link Fragmenter} implementation which breaks text up into same-size  * fragments but does not split up Spans. This is a simple sample class.  */
+comment|/**  * {@link Fragmenter} implementation which breaks text up into same-size  * fragments but does not split up {@link Spans}. This is a simple sample class.  */
 end_comment
 
 begin_class

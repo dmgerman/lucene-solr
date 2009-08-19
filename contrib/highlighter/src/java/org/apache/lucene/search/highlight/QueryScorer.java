@@ -132,9 +132,41 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|memory
+operator|.
+name|MemoryIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanQuery
 import|;
 end_import
 
@@ -153,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Scorer} implementation which scores text fragments by the number of  * unique query terms found. This class converts appropriate Querys to  * SpanQuerys and attempts to score only those terms that participated in  * generating the 'hit' on the document.  */
+comment|/**  * {@link Scorer} implementation which scores text fragments by the number of  * unique query terms found. This class converts appropriate {@link Query}s to  * {@link SpanQuery}s and attempts to score only those terms that participated in  * generating the 'hit' on the document.  */
 end_comment
 
 begin_class
@@ -234,7 +266,7 @@ specifier|private
 name|boolean
 name|skipInitExtractor
 decl_stmt|;
-comment|/**    * @param query Query to use for highlighting    *     * @throws IOException    */
+comment|/**    * @param query Query to use for highlighting    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -255,7 +287,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param query Query to use for highlighting    * @param field Field to highlight - pass null to ignore fields    * @throws IOException    */
+comment|/**    * @param query Query to use for highlighting    * @param field Field to highlight - pass null to ignore fields    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -279,7 +311,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param query Query to use for highlighting    * @param field Field to highlight - pass null to ignore fields    *     * @param reader    * @throws IOException    */
+comment|/**    * @param query Query to use for highlighting    * @param field Field to highlight - pass null to ignore fields    * @param reader {@link IndexReader} to use for quasi tf/idf scoring    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -306,7 +338,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * As above, but with ability to pass in an<tt>IndexReader</tt>    */
+comment|/**    * @param query to use for highlighting    * @param reader {@link IndexReader} to use for quasi tf/idf scoring    * @param field to highlight - pass null to ignore fields    * @param defaultField    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -323,8 +355,6 @@ parameter_list|,
 name|String
 name|defaultField
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -387,7 +417,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param weightedTerms    */
+comment|/**    * @param weightedTerms an array of pre-created {@link WeightedSpanTerm}s    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -520,7 +550,7 @@ return|return
 name|totalScore
 return|;
 block|}
-comment|/**    *    * @return The highest weighted term (useful for passing to    *         GradientFormatter to set top end of coloring scale.    */
+comment|/**    *    * @return The highest weighted term (useful for passing to    *         GradientFormatter to set top end of coloring scale).    */
 DECL|method|getMaxTermWeight
 specifier|public
 name|float
@@ -634,6 +664,7 @@ return|return
 name|score
 return|;
 block|}
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Scorer#init(org.apache.lucene.analysis.TokenStream)    */
 DECL|method|init
 specifier|public
 name|TokenStream
@@ -708,7 +739,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Retrieve the WeightedSpanTerm for the specified token. Useful for passing    * Span information to a Fragmenter.    *    * @param token    * @return WeightedSpanTerm for token    */
+comment|/**    * Retrieve the {@link WeightedSpanTerm} for the specified token. Useful for passing    * Span information to a {@link Fragmenter}.    *    * @param token to get {@link WeightedSpanTerm} for    * @return WeightedSpanTerm for token    */
 DECL|method|getWeightedSpanTerm
 specifier|public
 name|WeightedSpanTerm
@@ -730,7 +761,7 @@ name|token
 argument_list|)
 return|;
 block|}
-comment|/**    * @param query    * @param field    * @param tokenStream    * @param reader    * @throws IOException    */
+comment|/**    * @param query    * @param field    * @param tokenStream    * @param reader    */
 DECL|method|init
 specifier|private
 name|void
@@ -892,6 +923,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/**    * @return true if multi-term queries should be expanded    */
 DECL|method|isExpandMultiTermQuery
 specifier|public
 name|boolean
@@ -902,6 +934,7 @@ return|return
 name|expandMultiTermQuery
 return|;
 block|}
+comment|/**    * Controls whether or not multi-term queries are expanded    * against a {@link MemoryIndex} {@link IndexReader}.    *     * @param expandMultiTermQuery true if multi-term queries should be expanded    */
 DECL|method|setExpandMultiTermQuery
 specifier|public
 name|void
