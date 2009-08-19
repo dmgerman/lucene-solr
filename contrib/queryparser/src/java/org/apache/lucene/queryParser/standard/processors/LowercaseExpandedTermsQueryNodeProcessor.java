@@ -148,9 +148,9 @@ name|queryParser
 operator|.
 name|core
 operator|.
-name|nodes
+name|processors
 operator|.
-name|WildcardQueryNode
+name|QueryNodeProcessorImpl
 import|;
 end_import
 
@@ -166,9 +166,9 @@ name|queryParser
 operator|.
 name|core
 operator|.
-name|processors
+name|util
 operator|.
-name|QueryNodeProcessorImpl
+name|UnescapedCharSequence
 import|;
 end_import
 
@@ -187,6 +187,24 @@ operator|.
 name|config
 operator|.
 name|LowercaseExpandedTermsAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|standard
+operator|.
+name|nodes
+operator|.
+name|WildcardQueryNode
 import|;
 end_import
 
@@ -306,16 +324,15 @@ name|fieldNode
 operator|.
 name|setText
 argument_list|(
+name|UnescapedCharSequence
+operator|.
+name|toLowerCase
+argument_list|(
 name|fieldNode
 operator|.
 name|getText
 argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

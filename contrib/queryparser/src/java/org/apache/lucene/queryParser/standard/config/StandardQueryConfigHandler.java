@@ -163,7 +163,13 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-comment|//addAttribute(DateResolutionAttribute.class);
+name|addAttribute
+argument_list|(
+name|MultiTermRewriteMethodAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

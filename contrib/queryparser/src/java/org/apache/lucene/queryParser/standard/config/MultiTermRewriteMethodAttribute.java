@@ -112,6 +112,15 @@ name|MultiTermRewriteMethodAttribute
 extends|extends
 name|Attribute
 block|{
+DECL|field|TAG_ID
+specifier|public
+specifier|static
+specifier|final
+name|CharSequence
+name|TAG_ID
+init|=
+literal|"MultiTermRewriteMethodAttribute"
+decl_stmt|;
 DECL|method|setMultiTermRewriteMethod
 specifier|public
 name|void

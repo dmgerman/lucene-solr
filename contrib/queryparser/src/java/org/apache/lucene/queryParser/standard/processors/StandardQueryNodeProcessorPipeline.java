@@ -188,6 +188,13 @@ expr_stmt|;
 name|addProcessor
 argument_list|(
 operator|new
+name|WildcardQueryNodeProcessor
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|addProcessor
+argument_list|(
+operator|new
 name|MultiFieldQueryNodeProcessor
 argument_list|()
 argument_list|)
@@ -224,13 +231,6 @@ name|addProcessor
 argument_list|(
 operator|new
 name|AllowLeadingWildcardProcessor
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|addProcessor
-argument_list|(
-operator|new
-name|PrefixWildcardQueryNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -300,7 +300,7 @@ expr_stmt|;
 name|addProcessor
 argument_list|(
 operator|new
-name|MultiTermRewriteDefaultProcessor
+name|MultiTermRewriteMethodProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;

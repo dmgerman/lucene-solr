@@ -234,7 +234,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the text parser that will be used to parse the query string, it cannot    * be<code>null</code>.    *     * @param syntaxParser    *          the text parser that will be used to parse the query string    *     * @see #getTextParser()    * @see SyntaxParser    */
+comment|/**    * Sets the text parser that will be used to parse the query string, it cannot    * be<code>null</code>.    *     * @param syntaxParser    *          the text parser that will be used to parse the query string    *     * @see #getSyntaxParser()    * @see SyntaxParser    */
 DECL|method|setSyntaxParser
 specifier|public
 name|void
@@ -323,10 +323,10 @@ name|builder
 return|;
 block|}
 comment|/**    * Returns the text parser used to build a query node tree from a query    * string. The default text parser instance returned by this method is a    * {@link SyntaxParser}.    *     * @return the text parse used to build query node trees.    *     * @see SyntaxParser    * @see #setSyntaxParser(SyntaxParser)    */
-DECL|method|getTextParser
+DECL|method|getSyntaxParser
 specifier|public
 name|SyntaxParser
-name|getTextParser
+name|getSyntaxParser
 parameter_list|()
 block|{
 return|return
@@ -373,7 +373,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Parses a query string to an object, usually some query object.<br/>    *<br/>    * In this method the three phases are executed:<br/>    *<br/>    *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st - the query string is parsed using the    * text parser returned by {@link #getTextParser()}, the result is a query    * node tree<br/>    *<br/>    *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd - the query node tree is processed by the    * processor returned by {@link #getQueryNodeProcessor()}<br/>    *<br/>    *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3th - a object is built from the query node    * tree using the builder returned by {@link #getQueryBuilder()}    *     * @param query    *          the query string    * @param defaultField    *          the default field used by the text parser    *     * @return the object built from the query    *     * @throws QueryNodeException    *           if something wrong happens along the three phases    */
+comment|/**    * Parses a query string to an object, usually some query object.<br/>    *<br/>    * In this method the three phases are executed:<br/>    *<br/>    *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st - the query string is parsed using the    * text parser returned by {@link #getSyntaxParser()}, the result is a query    * node tree<br/>    *<br/>    *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd - the query node tree is processed by the    * processor returned by {@link #getQueryNodeProcessor()}<br/>    *<br/>    *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3th - a object is built from the query node    * tree using the builder returned by {@link #getQueryBuilder()}    *     * @param query    *          the query string    * @param defaultField    *          the default field used by the text parser    *     * @return the object built from the query    *     * @throws QueryNodeException    *           if something wrong happens along the three phases    */
 DECL|method|parse
 specifier|public
 name|Object
@@ -391,7 +391,7 @@ block|{
 name|QueryNode
 name|queryTree
 init|=
-name|getTextParser
+name|getSyntaxParser
 argument_list|()
 operator|.
 name|parse

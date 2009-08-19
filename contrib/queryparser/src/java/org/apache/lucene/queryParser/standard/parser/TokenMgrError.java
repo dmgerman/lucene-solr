@@ -485,7 +485,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - StandardChecksum=91ba9c9f5e0e552a815530d639ce15ed (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=9672a6de7ecf4f5789a473d7dd40f6fb (do not edit this line) */
 end_comment
 
 end_unit
