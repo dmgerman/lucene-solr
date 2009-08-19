@@ -2594,7 +2594,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// just like always, assume it's a Similarlity and get an ClassCastException - reasonable error handling
+comment|// just like always, assume it's a Similarlity and get a ClassCastException - reasonable error handling
 name|similarityFactory
 operator|=
 operator|new
