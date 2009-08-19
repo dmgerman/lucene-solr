@@ -45,6 +45,13 @@ name|waitSearcher
 init|=
 literal|true
 decl_stmt|;
+DECL|field|expungeDeletes
+specifier|public
+name|boolean
+name|expungeDeletes
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * During optimize, optimize down to<= this many segments.  Must be>= 1    *    * @see org.apache.lucene.index.IndexWriter#optimize(int)    */
 DECL|field|maxOptimizeSegments
 specifier|public
@@ -91,6 +98,10 @@ operator|+
 literal|",waitSearcher="
 operator|+
 name|waitSearcher
+operator|+
+literal|",expungeDeletes="
+operator|+
+name|expungeDeletes
 operator|+
 literal|')'
 return|;
