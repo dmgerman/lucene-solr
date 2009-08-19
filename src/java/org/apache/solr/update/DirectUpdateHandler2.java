@@ -1661,16 +1661,9 @@ name|maxOptimizeSegments
 argument_list|)
 expr_stmt|;
 block|}
-name|closeWriter
-argument_list|()
-expr_stmt|;
+elseif|else
 if|if
 condition|(
-operator|!
-name|cmd
-operator|.
-name|optimize
-operator|&&
 name|cmd
 operator|.
 name|expungeDeletes
