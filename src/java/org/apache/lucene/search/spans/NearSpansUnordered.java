@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert:  * Only public for subclassing.  Most implementations should not need this class  */
+comment|/**  * Similar to {@link NearSpansOrdered}, but for the unordered case.  *   * Expert:  * Only public for subclassing.  Most implementations should not need this class  */
 end_comment
 
 begin_class
