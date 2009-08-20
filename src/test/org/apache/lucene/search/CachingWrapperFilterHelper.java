@@ -285,6 +285,23 @@ name|o
 argument_list|)
 return|;
 block|}
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|filter
+operator|.
+name|hashCode
+argument_list|()
+operator|^
+literal|0x5525aacb
+return|;
+block|}
 block|}
 end_class
 

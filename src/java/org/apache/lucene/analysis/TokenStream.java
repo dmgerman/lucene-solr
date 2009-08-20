@@ -566,6 +566,21 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|hashCode
+argument_list|()
+operator|^
+literal|0x0a45ff31
+return|;
+block|}
 block|}
 comment|/**    * A TokenStream using the default attribute factory.    */
 DECL|method|TokenStream
