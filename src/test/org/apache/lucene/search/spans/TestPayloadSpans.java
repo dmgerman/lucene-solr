@@ -2912,15 +2912,6 @@ operator|new
 name|PayloadAnalyzer
 argument_list|()
 decl_stmt|;
-name|String
-index|[]
-name|docs
-init|=
-operator|new
-name|String
-index|[]
-block|{}
-decl_stmt|;
 name|IndexWriter
 name|writer
 init|=

@@ -3926,14 +3926,6 @@ throws|throws
 name|Throwable
 block|{
 specifier|final
-name|PhraseQuery
-name|q1
-init|=
-operator|new
-name|PhraseQuery
-argument_list|()
-decl_stmt|;
-specifier|final
 name|BooleanQuery
 name|q2
 init|=
