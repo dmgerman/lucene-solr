@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *<p>  * The TimeLimitedCollector is used to timeout search requests that take longer  * than the maximum allowed search time limit. After this time is exceeded, the  * search thread is stopped by throwing a TimeExceeded Exception.  *</p>  *   * @deprecated this class will be removed in 3.0. Use  *             {@link TimeLimitingCollector} instead, which extends the new  *             {@link Collector}.  */
+comment|/**  *<p>  * The TimeLimitedCollector is used to timeout search requests that take longer  * than the maximum allowed search time limit. After this time is exceeded, the  * search thread is stopped by throwing a TimeExceeded Exception.  *</p>  *   * @deprecated Use {@link TimeLimitingCollector} instead, which extends the new  *             {@link Collector}. This class will be removed in 3.0.  */
 end_comment
 
 begin_class
