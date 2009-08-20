@@ -253,7 +253,7 @@ name|getSolrConfigFile
 parameter_list|()
 block|{
 return|return
-literal|"solrconfig.xml"
+literal|"solrconfig-elevate.xml"
 return|;
 block|}
 DECL|method|testInterface
@@ -692,6 +692,17 @@ argument_list|(
 literal|"defType"
 argument_list|,
 literal|"dismax"
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+name|CommonParams
+operator|.
+name|QT
+argument_list|,
+literal|"/elevate"
 argument_list|)
 expr_stmt|;
 comment|//args.put( CommonParams.FL, "id,title,score" );

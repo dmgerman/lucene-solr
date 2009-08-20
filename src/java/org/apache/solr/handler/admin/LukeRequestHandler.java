@@ -3264,6 +3264,12 @@ name|add
 argument_list|(
 literal|"uniqueKeyField"
 argument_list|,
+literal|null
+operator|==
+name|uniqueField
+condition|?
+literal|null
+else|:
 name|uniqueField
 operator|.
 name|getName
