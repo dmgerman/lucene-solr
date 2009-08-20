@@ -73,7 +73,7 @@ specifier|protected
 name|String
 name|field
 decl_stmt|;
-comment|/**     * Contructor for a certain field.    * @param field field whose values order is used.      */
+comment|/**     * Constructor for a certain field.    * @param field field whose values order is used.      */
 DECL|method|OrdFieldSource
 specifier|public
 name|OrdFieldSource
