@@ -322,6 +322,8 @@ DECL|field|precisionStep
 specifier|protected
 name|int
 name|precisionStep
+init|=
+name|precisionStepArg
 decl_stmt|;
 comment|// normalized
 annotation|@
