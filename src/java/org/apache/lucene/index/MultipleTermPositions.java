@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Describe class<code>MultipleTermPositions</code> here.  *  * @version 1.0  */
+comment|/**  * Allows you to iterate over the {@link TermPositions} for multiple {@link Term}s as  * a single {@link TermPositions}.  *  */
 end_comment
 
 begin_class
