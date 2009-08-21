@@ -1129,10 +1129,6 @@ decl_stmt|;
 if|if
 condition|(
 name|enumerator
-operator|!=
-literal|null
-operator|&&
-name|enumerator
 operator|.
 name|term
 argument_list|()
