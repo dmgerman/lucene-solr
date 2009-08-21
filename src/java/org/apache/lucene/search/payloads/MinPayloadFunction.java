@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Calculates the miniumum payload seen  *  **/
+comment|/**  * Calculates the minimum payload seen  *  **/
 end_comment
 
 begin_class
