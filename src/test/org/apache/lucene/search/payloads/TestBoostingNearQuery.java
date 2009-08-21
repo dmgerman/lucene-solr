@@ -837,13 +837,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|QueryUtils
-operator|.
-name|check
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
 comment|// all 10 hits should have score = 3 because adjacent terms have payloads of 2,4
 comment|// and all the similarity factors are set to 1
 name|hits
