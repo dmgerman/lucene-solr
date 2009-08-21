@@ -165,10 +165,6 @@ operator|||
 name|node
 operator|instanceof
 name|ParametricRangeQueryNode
-operator|||
-name|node
-operator|instanceof
-name|ParametricRangeQueryNode
 condition|)
 block|{
 if|if
