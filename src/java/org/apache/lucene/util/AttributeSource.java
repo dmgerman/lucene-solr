@@ -134,7 +134,7 @@ specifier|abstract
 class|class
 name|AttributeFactory
 block|{
-comment|/**      * returns an {@link AttributeImpl} for the supplied {@link Attribute} interface class.      */
+comment|/**      * returns an {@link AttributeImpl} for the supplied {@link Attribute} interface class.      *<p>Signature for Java 1.5:<code>public AttributeImpl createAttributeInstance(Class%lt;? extends Attribute&gt; attClass)</code>      */
 DECL|method|createAttributeInstance
 specifier|public
 specifier|abstract
@@ -455,11 +455,10 @@ operator|.
 name|factory
 return|;
 block|}
-comment|/** Returns a new iterator that iterates the attribute classes    * in the same order they were added in.    */
+comment|/** Returns a new iterator that iterates the attribute classes    * in the same order they were added in.    *<p>Signature for Java 1.5:<code>public Iterator&lt;Class&lt;? extends Attribute&gt;&gt; getAttributeClassesIterator()</code>    */
 DECL|method|getAttributeClassesIterator
 specifier|public
 name|Iterator
-comment|/*<Class<? extends Attribute>>*/
 name|getAttributeClassesIterator
 parameter_list|()
 block|{
@@ -478,11 +477,10 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** Returns a new iterator that iterates all unique Attribute implementations.    * This iterator may contain less entries that {@link #getAttributeClassesIterator},    * if one instance implements more than one Attribute interface.    */
+comment|/** Returns a new iterator that iterates all unique Attribute implementations.    * This iterator may contain less entries that {@link #getAttributeClassesIterator},    * if one instance implements more than one Attribute interface.    *<p>Signature for Java 1.5:<code>public Iterator&lt;AttributeImpl&gt; getAttributeImplsIterator()</code>    */
 DECL|method|getAttributeImplsIterator
 specifier|public
 name|Iterator
-comment|/*<AttributeImpl>*/
 name|getAttributeImplsIterator
 parameter_list|()
 block|{
@@ -720,6 +718,12 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+name|curInterface
+operator|!=
+name|Attribute
+operator|.
+name|class
+operator|&&
 name|Attribute
 operator|.
 name|class
@@ -826,21 +830,22 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.    * This method first checks if an instance of that class is     * already in this AttributeSource and returns it. Otherwise a    * new instance is created, added to this AttributeSource and returned.     */
+comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.    * This method first checks if an instance of that class is     * already in this AttributeSource and returns it. Otherwise a    * new instance is created, added to this AttributeSource and returned.     *<p>Signature for Java 1.5:<code>public&lt;T extends Attribute&gt; T addAttribute(Class&lt;T&gt;)</code>    */
 DECL|method|addAttribute
 specifier|public
-name|AttributeImpl
+name|Attribute
 name|addAttribute
 parameter_list|(
 name|Class
 name|attClass
 parameter_list|)
 block|{
-name|AttributeImpl
+specifier|final
+name|Attribute
 name|att
 init|=
 operator|(
-name|AttributeImpl
+name|Attribute
 operator|)
 name|attributes
 operator|.
@@ -856,8 +861,10 @@ operator|==
 literal|null
 condition|)
 block|{
-name|att
-operator|=
+specifier|final
+name|AttributeImpl
+name|attImpl
+init|=
 name|this
 operator|.
 name|factory
@@ -866,16 +873,22 @@ name|createAttributeInstance
 argument_list|(
 name|attClass
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|addAttributeImpl
 argument_list|(
-name|att
+name|attImpl
 argument_list|)
 expr_stmt|;
+return|return
+name|attImpl
+return|;
 block|}
+else|else
+block|{
 return|return
 name|att
 return|;
+block|}
 block|}
 comment|/** Returns true, iff this AttributeSource has any attributes */
 DECL|method|hasAttributes
@@ -894,7 +907,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.     * Returns true, iff this AttributeSource contains the passed-in Attribute.    */
+comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.     * Returns true, iff this AttributeSource contains the passed-in Attribute.    *<p>Signature for Java 1.5:<code>public boolean hasAttribute(Class&lt;? extends Attribute&gt;)</code>    */
 DECL|method|hasAttribute
 specifier|public
 name|boolean
@@ -915,21 +928,22 @@ name|attClass
 argument_list|)
 return|;
 block|}
-comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.     * Returns the instance of the passed in Attribute contained in this AttributeSource    *     * @throws IllegalArgumentException if this AttributeSource does not contain the    *         Attribute    */
+comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.     * Returns the instance of the passed in Attribute contained in this AttributeSource    *<p>Signature for Java 1.5:<code>public&lt;T extends Attribute&gt; T getAttribute(Class&lt;T&gt;)</code>    *     * @throws IllegalArgumentException if this AttributeSource does not contain the    *         Attribute    */
 DECL|method|getAttribute
 specifier|public
-name|AttributeImpl
+name|Attribute
 name|getAttribute
 parameter_list|(
 name|Class
 name|attClass
 parameter_list|)
 block|{
-name|AttributeImpl
+specifier|final
+name|Attribute
 name|att
 init|=
 operator|(
-name|AttributeImpl
+name|Attribute
 operator|)
 name|this
 operator|.
@@ -954,6 +968,9 @@ argument_list|(
 literal|"This AttributeSource does not have the attribute '"
 operator|+
 name|attClass
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|"'."
 argument_list|)
