@@ -242,6 +242,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|QueryUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|ScoreDoc
 import|;
 end_import
@@ -821,6 +835,13 @@ argument_list|,
 literal|"twenty two"
 argument_list|,
 literal|true
+argument_list|)
+expr_stmt|;
+name|QueryUtils
+operator|.
+name|check
+argument_list|(
+name|query
 argument_list|)
 expr_stmt|;
 comment|// all 10 hits should have score = 3 because adjacent terms have payloads of 2,4
