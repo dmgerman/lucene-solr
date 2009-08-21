@@ -223,7 +223,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #explain(Weight, int)} instead.    */
+comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|explain
 name|Explanation
 name|explain
