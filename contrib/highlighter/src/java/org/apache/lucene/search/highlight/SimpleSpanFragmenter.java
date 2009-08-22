@@ -425,7 +425,7 @@ name|TermAttribute
 operator|)
 name|tokenStream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TermAttribute
 operator|.
@@ -439,7 +439,7 @@ name|PositionIncrementAttribute
 operator|)
 name|tokenStream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
 operator|.
@@ -453,7 +453,7 @@ name|OffsetAttribute
 operator|)
 name|tokenStream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|OffsetAttribute
 operator|.

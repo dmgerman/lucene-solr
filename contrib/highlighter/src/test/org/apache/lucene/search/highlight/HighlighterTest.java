@@ -164,16 +164,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -806,6 +796,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -836,7 +840,7 @@ specifier|public
 class|class
 name|HighlighterTest
 extends|extends
-name|TestCase
+name|BaseTokenStreamTestCase
 implements|implements
 name|Formatter
 block|{
@@ -9893,7 +9897,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*    * @see TestCase#setUp()    */
 DECL|method|setUp
 specifier|protected
 name|void
@@ -9902,6 +9905,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|ramDir
 operator|=
 operator|new
@@ -10034,7 +10042,6 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    * @see TestCase#tearDown()    */
 DECL|method|tearDown
 specifier|protected
 name|void
@@ -10324,7 +10331,7 @@ name|TermAttribute
 operator|)
 name|realStream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TermAttribute
 operator|.
@@ -10338,7 +10345,7 @@ name|PositionIncrementAttribute
 operator|)
 name|realStream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
 operator|.
@@ -10352,7 +10359,7 @@ name|OffsetAttribute
 operator|)
 name|realStream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|OffsetAttribute
 operator|.

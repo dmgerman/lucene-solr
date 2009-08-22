@@ -250,9 +250,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|analysis
 operator|.
-name|LuceneTestCase
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -266,7 +266,7 @@ specifier|public
 class|class
 name|TestMultiFieldQueryParser
 extends|extends
-name|LuceneTestCase
+name|BaseTokenStreamTestCase
 block|{
 comment|/** test stop words arsing for both the non static form, and for the     * corresponding static form (qtxt, fields[]). */
 DECL|method|tesStopwordsParsing

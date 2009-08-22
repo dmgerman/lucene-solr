@@ -928,7 +928,7 @@ name|attClass
 argument_list|)
 return|;
 block|}
-comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.     * Returns the instance of the passed in Attribute contained in this AttributeSource    *<p>Signature for Java 1.5:<code>public&lt;T extends Attribute&gt; T getAttribute(Class&lt;T&gt;)</code>    *     * @throws IllegalArgumentException if this AttributeSource does not contain the    *         Attribute    */
+comment|/**    * The caller must pass in a Class&lt;? extends Attribute&gt; value.     * Returns the instance of the passed in Attribute contained in this AttributeSource    *<p>Signature for Java 1.5:<code>public&lt;T extends Attribute&gt; T getAttribute(Class&lt;T&gt;)</code>    *     * @throws IllegalArgumentException if this AttributeSource does not contain the    *         Attribute. It is recommended to always use {@link #addAttribute} even in consumers    *         of TokenStreams, because you cannot know if a specific TokenStream really uses    *         a specific Attribute. {@link #addAttribute} will automatically make the attribute    *         available. If you want to only use the attribute, if it is available (to optimize    *         consuming), use {@link #hasAttribute}.    */
 DECL|method|getAttribute
 specifier|public
 name|Attribute

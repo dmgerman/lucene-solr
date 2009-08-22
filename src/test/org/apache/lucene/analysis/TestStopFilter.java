@@ -64,20 +64,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -122,7 +108,7 @@ specifier|public
 class|class
 name|TestStopFilter
 extends|extends
-name|LuceneTestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|field|VERBOSE
 specifier|private

@@ -131,7 +131,7 @@ name|OffsetAttribute
 operator|)
 name|stream
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|OffsetAttribute
 operator|.

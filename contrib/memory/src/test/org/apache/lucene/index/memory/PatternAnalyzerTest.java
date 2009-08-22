@@ -154,11 +154,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -261,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Verifies that Lucene PatternAnalyzer and normal Lucene Analyzers have the same behaviour, returning the same results for any given free text. Runs a set of texts against a tokenizers/analyzers Can also be used as a simple benchmark.<p> Example usage:<pre> cd lucene-cvs java org.apache.lucene.index.memory.PatternAnalyzerTest 1 1 patluc 1 2 2 *.txt *.xml docs/*.html src/java/org/apache/lucene/index/*.java xdocs/*.xml ../nux/samples/data/*.xml</pre>  with WhitespaceAnalyzer problems can be found; These are not bugs but questionable  Lucene features: CharTokenizer.MAX_WORD_LEN = 255. Thus the PatternAnalyzer produces correct output, whereas the WhitespaceAnalyzer  silently truncates text, and so the comparison results in assertEquals() don't match up.   */
+comment|/** Verifies that Lucene PatternAnalyzer and normal Lucene Analyzers have the same behaviour, returning the same results for any given free text. Runs a set of texts against a tokenizers/analyzers Can also be used as a simple benchmark.<p> Example usage:<pre> cd lucene-cvs java org.apache.lucene.index.memory.PatternAnalyzerTest 1 1 patluc 1 2 2 *.txt *.xml docs/*.html src/java/org/apache/lucene/index/*.java xdocs/*.xml ../nux/samples/data/*.xml</pre>  with WhitespaceAnalyzer problems can be found; These are not bugs but questionable  Lucene features: CharTokenizer.MAX_WORD_LEN = 255. Thus the PatternAnalyzer produces correct output, whereas the WhitespaceAnalyzer  silently truncates text, and so the comparison results in assertEquals() don't match up.   TODO: Convert to new TokenStream API! */
 end_comment
 
 begin_class
@@ -270,7 +274,7 @@ specifier|public
 class|class
 name|PatternAnalyzerTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|/** Runs the tests and/or benchmark */
 DECL|method|main

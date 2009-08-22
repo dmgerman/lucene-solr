@@ -34,20 +34,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -92,7 +78,7 @@ specifier|public
 class|class
 name|TestASCIIFoldingFilter
 extends|extends
-name|LuceneTestCase
+name|BaseTokenStreamTestCase
 block|{
 comment|// testLain1Accents() is a copy of TestLatin1AccentFilter.testU().
 DECL|method|testLatin1Accents

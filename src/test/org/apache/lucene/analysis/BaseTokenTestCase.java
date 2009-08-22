@@ -80,6 +80,10 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_comment
+comment|/* TODO: Convert to new TokenStream API. Token instances must be removed for that to work */
+end_comment
+
 begin_class
 DECL|class|BaseTokenTestCase
 specifier|public

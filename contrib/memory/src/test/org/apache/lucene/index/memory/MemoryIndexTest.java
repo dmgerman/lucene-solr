@@ -172,11 +172,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -430,7 +434,7 @@ specifier|public
 class|class
 name|MemoryIndexTest
 extends|extends
-name|TestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|field|analyzer
 specifier|private
@@ -492,11 +496,18 @@ name|String
 name|fileDir
 decl_stmt|;
 DECL|method|setUp
-specifier|public
+specifier|protected
 name|void
 name|setUp
 parameter_list|()
+throws|throws
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|fileDir
 operator|=
 name|System

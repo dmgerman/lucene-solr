@@ -74,6 +74,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|ConcurrentMergeScheduler
@@ -170,10 +184,22 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|ConcurrentMergeScheduler
 operator|.
 name|setTestMode
 argument_list|()
+expr_stmt|;
+name|TokenStream
+operator|.
+name|setOnlyUseNewAPI
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Forcible purges all cache entries from the FieldCache.    *<p>    * This method will be called by tearDown to clean up FieldCache.DEFAULT.    * If a (poorly written) test has some expectation that the FieldCache    * will persist across test methods (ie: a static IndexReader) this     * method can be overridden to do nothing.    *</p>    * @see FieldCache#purgeAllCaches()    */
@@ -264,6 +290,11 @@ name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**     * Asserts that FieldCacheSanityChecker does not detect any     * problems with FieldCache.DEFAULT.    *<p>    * If any problems are found, they are logged to System.err     * (allong with the msg) when the Assertion is thrown.    *</p>    *<p>    * This method is called by tearDown after every test method,     * however IndexReaders scoped inside test methods may be garbage     * collected prior to this method being called, causing errors to     * be overlooked. Tests are encouraged to keep their IndexReaders     * scoped at the class level, or to explicitly call this method     * directly in the same scope as the IndexReader.    *</p>    * @see FieldCacheSanityChecker    */
 DECL|method|assertSaneFieldCaches
