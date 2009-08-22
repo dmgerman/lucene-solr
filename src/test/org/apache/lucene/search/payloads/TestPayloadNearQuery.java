@@ -347,10 +347,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestBoostingNearQuery
+DECL|class|TestPayloadNearQuery
 specifier|public
 class|class
-name|TestBoostingNearQuery
+name|TestPayloadNearQuery
 extends|extends
 name|LuceneTestCase
 block|{
@@ -394,9 +394,9 @@ block|{
 literal|4
 block|}
 decl_stmt|;
-DECL|method|TestBoostingNearQuery
+DECL|method|TestPayloadNearQuery
 specifier|public
-name|TestBoostingNearQuery
+name|TestPayloadNearQuery
 parameter_list|(
 name|String
 name|s
@@ -581,7 +581,7 @@ block|}
 block|}
 DECL|method|newPhraseQuery
 specifier|private
-name|BoostingNearQuery
+name|PayloadNearQuery
 name|newPhraseQuery
 parameter_list|(
 name|String
@@ -643,7 +643,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|BoostingTermQuery
+name|PayloadTermQuery
 argument_list|(
 operator|new
 name|Term
@@ -655,12 +655,16 @@ index|[
 name|i
 index|]
 argument_list|)
+argument_list|,
+operator|new
+name|AveragePayloadFunction
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 return|return
 operator|new
-name|BoostingNearQuery
+name|PayloadNearQuery
 argument_list|(
 name|clauses
 argument_list|,
@@ -820,7 +824,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|BoostingNearQuery
+name|PayloadNearQuery
 name|query
 decl_stmt|;
 name|TopDocs
@@ -1053,7 +1057,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|BoostingNearQuery
+name|PayloadNearQuery
 name|query
 decl_stmt|;
 name|TopDocs
@@ -1142,7 +1146,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|BoostingNearQuery
+name|PayloadNearQuery
 name|query
 decl_stmt|;
 name|TopDocs
@@ -1206,7 +1210,7 @@ name|SpanQuery
 index|[]
 block|{
 operator|new
-name|BoostingNearQuery
+name|PayloadNearQuery
 argument_list|(
 operator|new
 name|SpanQuery
@@ -1223,7 +1227,7 @@ literal|true
 argument_list|)
 block|,
 operator|new
-name|BoostingNearQuery
+name|PayloadNearQuery
 argument_list|(
 operator|new
 name|SpanQuery
@@ -1243,7 +1247,7 @@ decl_stmt|;
 name|query
 operator|=
 operator|new
-name|BoostingNearQuery
+name|PayloadNearQuery
 argument_list|(
 name|clauses
 argument_list|,

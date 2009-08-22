@@ -259,18 +259,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to {@link org.apache.lucene.search.spans.SpanNearQuery} except  * that it factors in the value of the payloads located at each of the positions where the  * {@link org.apache.lucene.search.spans.TermSpans} occurs.  *<p/>  * In order to take advantage of this, you must override {@link org.apache.lucene.search.Similarity#scorePayload(String, byte[],int,int)}  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  *  * @see org.apache.lucene.search.Similarity#scorePayload(String, byte[], int, int)  */
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanNearQuery} except that it factors  * in the value of the payloads located at each of the positions where the  * {@link org.apache.lucene.search.spans.TermSpans} occurs.  *<p/>  * In order to take advantage of this, you must override  * {@link org.apache.lucene.search.Similarity#scorePayload(String, byte[],int,int)}  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  *   * @see org.apache.lucene.search.Similarity#scorePayload(String, byte[], int,  *      int)  */
 end_comment
 
 begin_class
-DECL|class|BoostingNearQuery
+DECL|class|PayloadNearQuery
 specifier|public
 class|class
-name|BoostingNearQuery
+name|PayloadNearQuery
 extends|extends
 name|SpanNearQuery
-implements|implements
-name|PayloadQuery
 block|{
 DECL|field|fieldName
 specifier|protected
@@ -282,9 +280,9 @@ specifier|protected
 name|PayloadFunction
 name|function
 decl_stmt|;
-DECL|method|BoostingNearQuery
+DECL|method|PayloadNearQuery
 specifier|public
-name|BoostingNearQuery
+name|PayloadNearQuery
 parameter_list|(
 name|SpanQuery
 index|[]
@@ -311,9 +309,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|BoostingNearQuery
+DECL|method|PayloadNearQuery
 specifier|public
-name|BoostingNearQuery
+name|PayloadNearQuery
 parameter_list|(
 name|SpanQuery
 index|[]
@@ -369,7 +367,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|BoostingSpanWeight
+name|PayloadNearSpanWeight
 argument_list|(
 name|this
 argument_list|,
@@ -443,11 +441,11 @@ name|clone
 argument_list|()
 expr_stmt|;
 block|}
-name|BoostingNearQuery
+name|PayloadNearQuery
 name|boostingNearQuery
 init|=
 operator|new
-name|BoostingNearQuery
+name|PayloadNearQuery
 argument_list|(
 name|newClauses
 argument_list|,
@@ -488,7 +486,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"boostingNear(["
+literal|"payloadNear(["
 argument_list|)
 expr_stmt|;
 name|Iterator
@@ -602,7 +600,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|//@Override
+comment|// @Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -669,7 +667,7 @@ return|return
 name|result
 return|;
 block|}
-comment|//@Override
+comment|// @Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -714,11 +712,11 @@ condition|)
 return|return
 literal|false
 return|;
-name|BoostingNearQuery
+name|PayloadNearQuery
 name|other
 init|=
 operator|(
-name|BoostingNearQuery
+name|PayloadNearQuery
 operator|)
 name|obj
 decl_stmt|;
@@ -796,16 +794,16 @@ return|return
 literal|true
 return|;
 block|}
-DECL|class|BoostingSpanWeight
+DECL|class|PayloadNearSpanWeight
 specifier|public
 class|class
-name|BoostingSpanWeight
+name|PayloadNearSpanWeight
 extends|extends
 name|SpanWeight
 block|{
-DECL|method|BoostingSpanWeight
+DECL|method|PayloadNearSpanWeight
 specifier|public
-name|BoostingSpanWeight
+name|PayloadNearSpanWeight
 parameter_list|(
 name|SpanQuery
 name|query
@@ -837,7 +835,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|BoostingSpanScorer
+name|PayloadNearSpanScorer
 argument_list|(
 name|query
 operator|.
@@ -881,7 +879,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|BoostingSpanScorer
+name|PayloadNearSpanScorer
 argument_list|(
 name|query
 operator|.
@@ -907,10 +905,10 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|BoostingSpanScorer
+DECL|class|PayloadNearSpanScorer
 specifier|public
 class|class
-name|BoostingSpanScorer
+name|PayloadNearSpanScorer
 extends|extends
 name|SpanScorer
 block|{
@@ -935,9 +933,9 @@ init|=
 name|getSimilarity
 argument_list|()
 decl_stmt|;
-DECL|method|BoostingSpanScorer
+DECL|method|PayloadNearSpanScorer
 specifier|protected
-name|BoostingSpanScorer
+name|PayloadNearSpanScorer
 parameter_list|(
 name|Spans
 name|spans
@@ -1158,7 +1156,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * By default, uses the {@link PayloadFunction} to score the payloads, but can be overridden to do other things.      *      * @param payLoads The payloads      * @param start The start position of the span being scored      * @param end The end position of the span being scored      *      * @see Spans      */
+comment|/**      * By default, uses the {@link PayloadFunction} to score the payloads, but      * can be overridden to do other things.      *       * @param payLoads The payloads      * @param start The start position of the span being scored      * @param end The end position of the span being scored      *       * @see Spans      */
 DECL|method|processPayloads
 specifier|protected
 name|void

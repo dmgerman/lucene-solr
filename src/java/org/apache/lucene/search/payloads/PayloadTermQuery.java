@@ -219,18 +219,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to {@link org.apache.lucene.search.spans.SpanTermQuery}   * except that it factors in the value of the payload located at each of the positions  *  where the {@link org.apache.lucene.index.Term} occurs.  *<p>  * In order to take advantage of this, you must override  * {@link org.apache.lucene.search.Similarity#scorePayload(String, byte[],int,int)}  * which returns 1 by default.  *<p>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  **/
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p>  * In order to take advantage of this, you must override  * {@link org.apache.lucene.search.Similarity#scorePayload(String, byte[],int,int)}  * which returns 1 by default.  *<p>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  **/
 end_comment
 
 begin_class
-DECL|class|BoostingFunctionTermQuery
+DECL|class|PayloadTermQuery
 specifier|public
 class|class
-name|BoostingFunctionTermQuery
+name|PayloadTermQuery
 extends|extends
 name|SpanTermQuery
-implements|implements
-name|PayloadQuery
 block|{
 DECL|field|function
 specifier|protected
@@ -242,9 +240,9 @@ specifier|private
 name|boolean
 name|includeSpanScore
 decl_stmt|;
-DECL|method|BoostingFunctionTermQuery
+DECL|method|PayloadTermQuery
 specifier|public
-name|BoostingFunctionTermQuery
+name|PayloadTermQuery
 parameter_list|(
 name|Term
 name|term
@@ -263,9 +261,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|BoostingFunctionTermQuery
+DECL|method|PayloadTermQuery
 specifier|public
-name|BoostingFunctionTermQuery
+name|PayloadTermQuery
 parameter_list|(
 name|Term
 name|term
@@ -308,7 +306,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|BoostingFunctionTermWeight
+name|PayloadTermWeight
 argument_list|(
 name|this
 argument_list|,
@@ -316,18 +314,18 @@ name|searcher
 argument_list|)
 return|;
 block|}
-DECL|class|BoostingFunctionTermWeight
+DECL|class|PayloadTermWeight
 specifier|protected
 class|class
-name|BoostingFunctionTermWeight
+name|PayloadTermWeight
 extends|extends
 name|SpanWeight
 block|{
-DECL|method|BoostingFunctionTermWeight
+DECL|method|PayloadTermWeight
 specifier|public
-name|BoostingFunctionTermWeight
+name|PayloadTermWeight
 parameter_list|(
-name|BoostingFunctionTermQuery
+name|PayloadTermQuery
 name|query
 parameter_list|,
 name|Searcher
@@ -363,7 +361,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|BoostingFunctionSpanScorer
+name|PayloadTermSpanScorer
 argument_list|(
 operator|(
 name|TermSpans
@@ -391,14 +389,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|class|BoostingFunctionSpanScorer
+DECL|class|PayloadTermSpanScorer
 specifier|protected
 class|class
-name|BoostingFunctionSpanScorer
+name|PayloadTermSpanScorer
 extends|extends
 name|SpanScorer
 block|{
-comment|//TODO: is this the best way to allocate this?
+comment|// TODO: is this the best way to allocate this?
 DECL|field|payload
 specifier|protected
 name|byte
@@ -426,9 +424,9 @@ specifier|protected
 name|int
 name|payloadsSeen
 decl_stmt|;
-DECL|method|BoostingFunctionSpanScorer
+DECL|method|PayloadTermSpanScorer
 specifier|public
-name|BoostingFunctionSpanScorer
+name|PayloadTermSpanScorer
 parameter_list|(
 name|TermSpans
 name|spans
@@ -554,7 +552,8 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|//this moves positions to the next match in this document
+comment|// this moves positions to the next match in this
+comment|// document
 block|}
 return|return
 name|more
@@ -661,10 +660,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//zero out the payload?
+comment|// zero out the payload?
 block|}
 block|}
-comment|/**        *        * @return {@link #getSpanScore()} * {@link #getPayloadScore()}        * @throws IOException        */
+comment|/**        *         * @return {@link #getSpanScore()} * {@link #getPayloadScore()}        * @throws IOException        */
 DECL|method|score
 specifier|public
 name|float
@@ -686,7 +685,7 @@ name|getPayloadScore
 argument_list|()
 return|;
 block|}
-comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overriden without good cause!        *        * @return the score for just the Span part w/o the payload        * @throws IOException        *        * @see #score()        */
+comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overriden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException        *         * @see #score()        */
 DECL|method|getSpanScore
 specifier|protected
 name|float
@@ -702,7 +701,7 @@ name|score
 argument_list|()
 return|;
 block|}
-comment|/**        * The score for the payload        * @return The score, as calculated by {@link PayloadFunction#docScore(int, String, int, float)}        */
+comment|/**        * The score for the payload        *         * @return The score, as calculated by        *         {@link PayloadFunction#docScore(int, String, int, float)}        */
 DECL|method|getPayloadScore
 specifier|protected
 name|float
@@ -763,7 +762,8 @@ argument_list|(
 name|nonPayloadExpl
 argument_list|)
 expr_stmt|;
-comment|//QUESTION: Is there a way to avoid this skipTo call?  We need to know whether to load the payload or not
+comment|// QUESTION: Is there a way to avoid this skipTo call? We need to know
+comment|// whether to load the payload or not
 name|Explanation
 name|payloadBoost
 init|=
@@ -791,7 +791,8 @@ argument_list|(
 name|payloadScore
 argument_list|)
 expr_stmt|;
-comment|//GSI: I suppose we could toString the payload, but I don't think that would be a good idea
+comment|// GSI: I suppose we could toString the payload, but I don't think that
+comment|// would be a good idea
 name|payloadBoost
 operator|.
 name|setDescription
@@ -948,11 +949,11 @@ condition|)
 return|return
 literal|false
 return|;
-name|BoostingFunctionTermQuery
+name|PayloadTermQuery
 name|other
 init|=
 operator|(
-name|BoostingFunctionTermQuery
+name|PayloadTermQuery
 operator|)
 name|obj
 decl_stmt|;
