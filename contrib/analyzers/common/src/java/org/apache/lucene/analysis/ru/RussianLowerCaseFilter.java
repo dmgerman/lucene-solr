@@ -85,6 +85,7 @@ name|RussianLowerCaseFilter
 extends|extends
 name|TokenFilter
 block|{
+comment|/**      * @deprecated Support for non-Unicode encodings will be removed in Lucene 3.0      */
 DECL|field|charset
 name|char
 index|[]
@@ -95,6 +96,7 @@ specifier|private
 name|TermAttribute
 name|termAtt
 decl_stmt|;
+comment|/**      * @deprecated Use {@link #RussianLowerCaseFilter(TokenStream)} instead.      */
 DECL|method|RussianLowerCaseFilter
 specifier|public
 name|RussianLowerCaseFilter
@@ -128,6 +130,24 @@ argument_list|(
 name|TermAttribute
 operator|.
 name|class
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|RussianLowerCaseFilter
+specifier|public
+name|RussianLowerCaseFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+name|RussianCharsets
+operator|.
+name|UnicodeRussian
 argument_list|)
 expr_stmt|;
 block|}

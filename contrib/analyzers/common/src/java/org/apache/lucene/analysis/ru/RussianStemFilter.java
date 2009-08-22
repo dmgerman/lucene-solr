@@ -98,6 +98,7 @@ specifier|private
 name|TermAttribute
 name|termAtt
 decl_stmt|;
+comment|/**      * @deprecated Use {@link #RussianStemFilter(TokenStream)} instead.      */
 DECL|method|RussianStemFilter
 specifier|public
 name|RussianStemFilter
@@ -133,6 +134,24 @@ argument_list|(
 name|TermAttribute
 operator|.
 name|class
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|RussianStemFilter
+specifier|public
+name|RussianStemFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+name|RussianCharsets
+operator|.
+name|UnicodeRussian
 argument_list|)
 expr_stmt|;
 block|}

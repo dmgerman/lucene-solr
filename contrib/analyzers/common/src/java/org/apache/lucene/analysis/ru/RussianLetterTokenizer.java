@@ -90,13 +90,14 @@ name|RussianLetterTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/** Construct a new LetterTokenizer. */
+comment|/**       * Charset this tokenizer uses.      * @deprecated Support for non-Unicode encodings will be removed in Lucene 3.0      */
 DECL|field|charset
 specifier|private
 name|char
 index|[]
 name|charset
 decl_stmt|;
+comment|/**      * @deprecated Use {@link #RussianLetterTokenizer(Reader)} instead.       */
 DECL|method|RussianLetterTokenizer
 specifier|public
 name|RussianLetterTokenizer
@@ -121,6 +122,24 @@ operator|=
 name|charset
 expr_stmt|;
 block|}
+DECL|method|RussianLetterTokenizer
+specifier|public
+name|RussianLetterTokenizer
+parameter_list|(
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+name|RussianCharsets
+operator|.
+name|UnicodeRussian
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Collects only characters which satisfy      * {@link Character#isLetter(char)}.      */
 DECL|method|isTokenChar
 specifier|protected
@@ -131,6 +150,7 @@ name|char
 name|c
 parameter_list|)
 block|{
+comment|/* in the next release, this can be implemented as isLetter(c) or [0-9] */
 if|if
 condition|(
 name|Character

@@ -216,11 +216,7 @@ name|ra
 init|=
 operator|new
 name|RussianAnalyzer
-argument_list|(
-name|RussianCharsets
-operator|.
-name|UnicodeRussian
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|inWords
 operator|=
@@ -281,10 +277,6 @@ operator|new
 name|RussianLetterTokenizer
 argument_list|(
 name|sampleUnicode
-argument_list|,
-name|RussianCharsets
-operator|.
-name|UnicodeRussian
 argument_list|)
 decl_stmt|;
 name|TermAttribute
