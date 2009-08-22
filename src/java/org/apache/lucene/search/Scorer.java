@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> either iterates over documents matching a  * query in increasing order of doc Id, or provides an explanation of  * the score for a query for a given document.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  *  *<p><b>NOTE</b>: The values Float.Nan,  * Float.NEGATIVE_INFINITY and Float.POSITIVE_INFINITY are  * not valid scores.  Certain collectors (eg {@link  * TopScoreDocCollector}) will not properly collect hits  * with these scores.  *  * @see BooleanQuery#setAllowDocsOutOfOrder  */
+comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> iterates over documents matching a  * query in increasing order of doc Id.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  *  *<p><b>NOTE</b>: The values Float.Nan,  * Float.NEGATIVE_INFINITY and Float.POSITIVE_INFINITY are  * not valid scores.  Certain collectors (eg {@link  * TopScoreDocCollector}) will not properly collect hits  * with these scores.  *  * @see BooleanQuery#setAllowDocsOutOfOrder  */
 end_comment
 
 begin_class
@@ -238,7 +238,6 @@ function_decl|;
 comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()}, {@link #skipTo(int)} and    * {@link #score(HitCollector)} methods should not be used.    * @param doc The document number for the explanation.    *    * @deprecated Please use {@link IndexSearcher#explain}    * or {@link Weight#explain} instead.    */
 DECL|method|explain
 specifier|public
-specifier|abstract
 name|Explanation
 name|explain
 parameter_list|(
@@ -247,7 +246,13 @@ name|doc
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 
