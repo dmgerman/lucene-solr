@@ -262,7 +262,7 @@ name|Object
 name|other
 parameter_list|)
 function_decl|;
-comment|/**    * Copies the values from this Attribute into the passed-in    * target attribute. The type of the target must match the type    * of this attribute.     */
+comment|/**    * Copies the values from this Attribute into the passed-in    * target attribute. The target implementation must support all the    * Attributes this implementation supports.    */
 DECL|method|copyTo
 specifier|public
 specifier|abstract
