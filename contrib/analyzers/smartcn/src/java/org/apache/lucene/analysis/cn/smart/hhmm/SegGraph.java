@@ -391,20 +391,6 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|/**    * Get the number of startOffsets.    *    * @return number of startOffsets in the mapping    */
-DECL|method|getStartCount
-specifier|public
-name|int
-name|getStartCount
-parameter_list|()
-block|{
-return|return
-name|tokenListTable
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
 comment|/**    * Return a {@link List} of all tokens in the map, ordered by startOffset.    *     * @return {@link List} of all tokens in the map.    */
 DECL|method|toTokenList
 specifier|public
