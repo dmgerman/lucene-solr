@@ -322,7 +322,7 @@ name|TermAttribute
 operator|)
 name|ts
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TermAttribute
 operator|.
@@ -337,7 +337,7 @@ name|OffsetAttribute
 operator|)
 name|ts
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|OffsetAttribute
 operator|.
@@ -352,7 +352,7 @@ name|TypeAttribute
 operator|)
 name|ts
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TypeAttribute
 operator|.
@@ -511,7 +511,7 @@ name|TermAttribute
 operator|)
 name|ts
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TermAttribute
 operator|.
@@ -526,7 +526,7 @@ name|OffsetAttribute
 operator|)
 name|ts
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|OffsetAttribute
 operator|.
@@ -541,7 +541,7 @@ name|TypeAttribute
 operator|)
 name|ts
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TypeAttribute
 operator|.
