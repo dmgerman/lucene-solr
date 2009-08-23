@@ -120,7 +120,7 @@ name|TypeAttribute
 operator|)
 name|source
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TypeAttribute
 operator|.
@@ -129,12 +129,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//check to see if this is a Category
-if|if
-condition|(
-name|typeAtt
-operator|!=
-literal|null
-operator|&&
+return|return
+operator|(
 name|typeToMatch
 operator|.
 name|equals
@@ -144,14 +140,7 @@ operator|.
 name|type
 argument_list|()
 argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
+operator|)
 return|;
 block|}
 block|}

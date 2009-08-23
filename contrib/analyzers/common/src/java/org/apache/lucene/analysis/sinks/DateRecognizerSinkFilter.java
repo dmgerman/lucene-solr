@@ -188,7 +188,7 @@ name|TermAttribute
 operator|)
 name|source
 operator|.
-name|getAttribute
+name|addAttribute
 argument_list|(
 name|TermAttribute
 operator|.
@@ -196,13 +196,6 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|termAtt
-operator|!=
-literal|null
-condition|)
-block|{
 try|try
 block|{
 name|Date
@@ -236,8 +229,7 @@ parameter_list|(
 name|ParseException
 name|e
 parameter_list|)
-block|{            }
-block|}
+block|{        }
 return|return
 literal|false
 return|;
