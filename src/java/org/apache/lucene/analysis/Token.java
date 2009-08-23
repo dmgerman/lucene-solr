@@ -2525,6 +2525,9 @@ block|}
 block|}
 else|else
 block|{
+name|initTermBuffer
+argument_list|()
+expr_stmt|;
 operator|(
 operator|(
 name|TermAttribute
