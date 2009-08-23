@@ -26,6 +26,36 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
 begin_comment
 comment|/** A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens. */
 end_comment
@@ -38,7 +68,7 @@ name|WhitespaceTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/** Construct a new WhitespaceTokenizer. */
+comment|/** Construct a new WhitespaceTokenizer using a given {@link AttributeSource}. */
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer
@@ -49,6 +79,46 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Construct a new WhitespaceTokenizer using a given {@link AttributeSource}. */
+DECL|method|WhitespaceTokenizer
+specifier|public
+name|WhitespaceTokenizer
+parameter_list|(
+name|AttributeSource
+name|source
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|source
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Construct a new WhitespaceTokenizer using a given {@link AttributeFactory}. */
+DECL|method|WhitespaceTokenizer
+specifier|public
+name|WhitespaceTokenizer
+parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|factory
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
