@@ -729,6 +729,9 @@ name|AttributeImpl
 name|target
 parameter_list|)
 block|{
+name|initTermBuffer
+argument_list|()
+expr_stmt|;
 name|TermAttribute
 name|t
 init|=
