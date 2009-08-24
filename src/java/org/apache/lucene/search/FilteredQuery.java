@@ -213,9 +213,6 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|,
 name|IndexReader
 name|ir
 parameter_list|,
@@ -232,8 +229,6 @@ name|weight
 operator|.
 name|explain
 argument_list|(
-name|searcher
-argument_list|,
 name|ir
 argument_list|,
 name|i

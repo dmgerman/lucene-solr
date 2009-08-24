@@ -679,9 +679,6 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -812,8 +809,6 @@ name|w
 operator|.
 name|explain
 argument_list|(
-name|searcher
-argument_list|,
 name|reader
 argument_list|,
 name|doc

@@ -1514,9 +1514,6 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -1531,8 +1528,6 @@ name|explain
 init|=
 name|doExplain
 argument_list|(
-name|searcher
-argument_list|,
 name|reader
 argument_list|,
 name|doc
@@ -1553,8 +1548,6 @@ argument_list|)
 else|:
 name|doExplain
 argument_list|(
-name|searcher
-argument_list|,
 name|reader
 argument_list|,
 name|doc
@@ -1566,9 +1559,6 @@ specifier|private
 name|Explanation
 name|doExplain
 parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -1634,8 +1624,6 @@ name|subQueryWeight
 operator|.
 name|explain
 argument_list|(
-name|searcher
-argument_list|,
 name|reader
 argument_list|,
 name|doc
@@ -2161,14 +2149,11 @@ name|subQueryWeight
 operator|.
 name|explain
 argument_list|(
-literal|null
-argument_list|,
 name|reader
 argument_list|,
 name|doc
 argument_list|)
 decl_stmt|;
-comment|// nocommit: needs resolution
 if|if
 condition|(
 operator|!

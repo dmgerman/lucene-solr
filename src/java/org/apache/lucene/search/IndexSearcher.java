@@ -1418,8 +1418,6 @@ name|weight
 operator|.
 name|explain
 argument_list|(
-name|this
-argument_list|,
 name|subReaders
 index|[
 name|n

@@ -292,9 +292,6 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
