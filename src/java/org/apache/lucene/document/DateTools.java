@@ -68,6 +68,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -137,6 +147,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyy"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|MONTH_FORMAT
@@ -150,6 +164,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMM"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|DAY_FORMAT
@@ -163,6 +181,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMMdd"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|HOUR_FORMAT
@@ -176,6 +198,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMMddHH"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|MINUTE_FORMAT
@@ -189,6 +215,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMMddHHmm"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|SECOND_FORMAT
@@ -202,6 +232,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMMddHHmmss"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|MILLISECOND_FORMAT
@@ -215,6 +249,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMMddHHmmssSSS"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 static|static
