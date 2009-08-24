@@ -169,6 +169,36 @@ name|TERMS_PREFIX
 operator|+
 literal|"raw"
 decl_stmt|;
+comment|/**    * Optional.  If sorting by frequency is enabled.  Defaults to sorting by count.    */
+DECL|field|TERMS_SORT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_SORT
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"sort"
+decl_stmt|;
+DECL|field|TERMS_SORT_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_SORT_COUNT
+init|=
+literal|"count"
+decl_stmt|;
+DECL|field|TERMS_SORT_INDEX
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_SORT_INDEX
+init|=
+literal|"index"
+decl_stmt|;
 block|}
 end_interface
 
