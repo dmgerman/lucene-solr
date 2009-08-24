@@ -104,7 +104,7 @@ function_decl|;
 comment|/** Creates a TokenStream of the specified input */
 DECL|method|create
 specifier|public
-name|TokenStream
+name|Tokenizer
 name|create
 parameter_list|(
 name|Reader
