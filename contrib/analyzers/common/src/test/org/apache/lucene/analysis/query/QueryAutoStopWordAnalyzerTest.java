@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -304,7 +308,7 @@ specifier|public
 class|class
 name|QueryAutoStopWordAnalyzerTest
 extends|extends
-name|TestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|field|variedFieldValues
 name|String
@@ -546,14 +550,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
 argument_list|()
 expr_stmt|;
 block|}

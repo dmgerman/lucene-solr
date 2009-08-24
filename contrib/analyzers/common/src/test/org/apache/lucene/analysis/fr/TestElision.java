@@ -80,11 +80,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -158,13 +162,15 @@ specifier|public
 class|class
 name|TestElision
 extends|extends
-name|TestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|method|testElision
 specifier|public
 name|void
 name|testElision
 parameter_list|()
+throws|throws
+name|Exception
 block|{
 name|String
 name|test
@@ -269,6 +275,8 @@ parameter_list|(
 name|TokenFilter
 name|filter
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|List
 name|tas
@@ -277,8 +285,6 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-try|try
-block|{
 name|TermAttribute
 name|termAtt
 init|=
@@ -311,19 +317,6 @@ operator|.
 name|term
 argument_list|()
 argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
 expr_stmt|;
 block|}
 return|return

@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -114,7 +118,7 @@ specifier|public
 class|class
 name|TokenOffsetPayloadTokenFilterTest
 extends|extends
-name|TestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|method|TokenOffsetPayloadTokenFilterTest
 specifier|public
@@ -130,18 +134,6 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setUp
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-block|{   }
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|test
 specifier|public
 name|void

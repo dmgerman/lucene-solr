@@ -98,6 +98,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|tokenattributes
 operator|.
 name|FlagsAttribute
@@ -178,7 +192,7 @@ specifier|public
 class|class
 name|WikipediaTokenizerTest
 extends|extends
-name|TestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|field|LINK_PHRASES
 specifier|protected
@@ -203,18 +217,6 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setUp
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-block|{   }
-DECL|method|tearDown
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{    }
 DECL|method|testHandwritten
 specifier|public
 name|void

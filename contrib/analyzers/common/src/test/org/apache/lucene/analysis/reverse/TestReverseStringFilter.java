@@ -80,9 +80,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|analysis
 operator|.
-name|LuceneTestCase
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -92,7 +92,7 @@ specifier|public
 class|class
 name|TestReverseStringFilter
 extends|extends
-name|LuceneTestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|method|testFilter
 specifier|public
