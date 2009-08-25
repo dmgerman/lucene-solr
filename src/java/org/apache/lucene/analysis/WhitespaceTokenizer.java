@@ -40,22 +40,6 @@ name|AttributeSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
-operator|.
-name|AttributeFactory
-import|;
-end_import
-
 begin_comment
 comment|/** A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens. */
 end_comment
@@ -103,7 +87,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new WhitespaceTokenizer using a given {@link AttributeSource.AttributeFactory}. */
+comment|/** Construct a new WhitespaceTokenizer using a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. */
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer

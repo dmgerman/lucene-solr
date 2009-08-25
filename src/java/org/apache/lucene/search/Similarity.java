@@ -544,7 +544,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Computes a score factor for a phrase.    *    *<p>The default implementation sums the {@link #idf(Term,Searcher)} factor    * for each term in the phrase.    *    * @param terms the terms in the phrase    * @param searcher the document collection being searched    * @return      * @deprecated see {@link #idfExplain(Collection, Searcher)}    */
+comment|/** Computes a score factor for a phrase.    *    *<p>The default implementation sums the {@link #idf(Term,Searcher)} factor    * for each term in the phrase.    *    * @param terms the terms in the phrase    * @param searcher the document collection being searched    * @return idf score factor    * @deprecated see {@link #idfExplain(Collection, Searcher)}    */
 DECL|method|idf
 specifier|public
 name|float

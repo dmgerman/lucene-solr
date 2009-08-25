@@ -1727,7 +1727,7 @@ name|void
 name|purgeAllCaches
 parameter_list|()
 function_decl|;
-comment|/**    * If non-null, FieldCacheImpl will warn whenever    * entries are created that are not sane according to    * {@link FieldCacheSanityChecker}.    */
+comment|/**    * If non-null, FieldCacheImpl will warn whenever    * entries are created that are not sane according to    * {@link org.apache.lucene.util.FieldCacheSanityChecker}.    */
 DECL|method|setInfoStream
 specifier|public
 name|void
@@ -1737,7 +1737,7 @@ name|PrintStream
 name|stream
 parameter_list|)
 function_decl|;
-comment|/** @see setInfoStream */
+comment|/** counterpart of {@link #setInfoStream(PrintStream)} */
 DECL|method|getInfoStream
 specifier|public
 name|PrintStream

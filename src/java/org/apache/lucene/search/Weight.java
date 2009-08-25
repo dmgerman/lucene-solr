@@ -63,7 +63,7 @@ name|Weight
 implements|implements
 name|Serializable
 block|{
-comment|/**    * An explanation of the score computation for the named document.    *     * Until 3.0, null may be passed in situations where the Searcher is not    * available, so impls must only use Searcher to generate optional     * explain info.    *     * @param searcher over the index or null    * @param reader sub-reader containing the give doc    * @param doc    * @return an Explanation for the score    * @throws IOException    */
+comment|/**    * An explanation of the score computation for the named document.    *     * @param reader sub-reader containing the give doc    * @param doc    * @return an Explanation for the score    * @throws IOException    */
 DECL|method|explain
 specifier|public
 specifier|abstract

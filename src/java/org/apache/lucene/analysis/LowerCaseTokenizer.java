@@ -40,22 +40,6 @@ name|AttributeSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
-operator|.
-name|AttributeFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  * LowerCaseTokenizer performs the function of LetterTokenizer  * and LowerCaseFilter together.  It divides text at non-letters and converts  * them to lower case.  While it is functionally equivalent to the combination  * of LetterTokenizer and LowerCaseFilter, there is a performance advantage  * to doing the two tasks at once, hence this (redundant) implementation.  *<P>  * Note: this does a decent job for most European languages, but does a terrible  * job for some Asian languages, where words are not separated by spaces.  */
 end_comment
@@ -104,7 +88,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new LowerCaseTokenizer using a given {@link AttributeSource.AttributeFactory}. */
+comment|/** Construct a new LowerCaseTokenizer using a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. */
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer

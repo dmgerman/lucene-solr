@@ -451,7 +451,7 @@ name|replaceInvalidAcronym
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new StandardTokenizer with a given {@link AttributeSource.AttributeFactory}     */
+comment|/**    * Creates a new StandardTokenizer with a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}     */
 DECL|method|StandardTokenizer
 specifier|public
 name|StandardTokenizer
