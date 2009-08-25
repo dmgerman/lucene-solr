@@ -956,9 +956,6 @@ throws|throws
 name|IOException
 block|{
 assert|assert
-operator|!
-name|onlyUseNewAPI
-operator|&&
 name|tokenWrapper
 operator|!=
 literal|null
@@ -1047,7 +1044,9 @@ literal|null
 assert|;
 if|if
 condition|(
-name|onlyUseNewAPI
+name|tokenWrapper
+operator|==
+literal|null
 condition|)
 throw|throw
 operator|new
@@ -1125,7 +1124,9 @@ name|IOException
 block|{
 if|if
 condition|(
-name|onlyUseNewAPI
+name|tokenWrapper
+operator|==
+literal|null
 condition|)
 throw|throw
 operator|new
