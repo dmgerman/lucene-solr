@@ -1364,7 +1364,7 @@ literal|"<dataConfig>\n"
 operator|+
 literal|"<document>\n"
 operator|+
-literal|"<entity name=\"x\" pk=\"id\" transformer=\"TemplateTransformer\""
+literal|"<entity name=\"x\" transformer=\"TemplateTransformer\""
 operator|+
 literal|"				query=\""
 operator|+
@@ -1386,7 +1386,7 @@ name|DELTA_QUERY
 operator|+
 literal|"\">\n"
 operator|+
-literal|"<field column=\"solr_id\" template=\"prefix-${x.id}\"/>\n"
+literal|"<field column=\"tmpid\" template=\"prefix-${x.id}\" name=\"solr_id\"/>\n"
 operator|+
 literal|"<entity name=\"y\" query=\"select * from y where y.A='${x.id}'\">\n"
 operator|+
