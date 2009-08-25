@@ -425,7 +425,7 @@ name|scorer
 argument_list|(
 name|indexReader
 argument_list|,
-name|scoreDocsInOrder
+literal|true
 argument_list|,
 literal|false
 argument_list|)
