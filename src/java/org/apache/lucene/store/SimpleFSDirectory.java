@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A straighforward implementation of {@link FSDirectory}  *  using java.io.RandomAccessFile.  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead. */
+comment|/** A straightforward implementation of {@link FSDirectory}  *  using java.io.RandomAccessFile.  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead. */
 end_comment
 
 begin_class
