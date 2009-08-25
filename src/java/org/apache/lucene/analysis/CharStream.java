@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CharStream adds<a href="#correctOffset(int)">correctOffset</a> functionality over Reader.  *  * @version $Id$  */
+comment|/**  * CharStream adds<a  * href="#correctOffset(int)">correctOffset</a>  * functionality over Reader.  All Tokenizers accept a  * CharStream as input, which enables arbitrary character  * based filtering before tokenization.  The {@link  * #correctOffset} method fixed offsets to account for  * removal or insertion of characters, so that the offsets  * reported in the tokens match the character offsets of the  * original Reader.  */
 end_comment
 
 begin_class
@@ -39,7 +39,7 @@ name|CharStream
 extends|extends
 name|Reader
 block|{
-comment|/**    * Called by CharFilter(s) and Tokenizer to correct token offset.    *    * @param currentOff current offset    * @return corrected token offset    */
+comment|/**    * Called by CharFilter(s) and Tokenizer to correct token offset.    *    * @param currentOff offset as seen in the output    * @return corrected offset based on the input    */
 DECL|method|correctOffset
 specifier|public
 specifier|abstract

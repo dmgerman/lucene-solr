@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link CharFilter} that applies the mappings contained in  * a {@link NormalizeCharMap} to the character stream.  *  * @version $Id$  */
+comment|/**  * Simplistic {@link CharFilter} that applies the mappings  * contained in a {@link NormalizeCharMap} to the character  * stream, and correcting the resulting changes to the  * offsets.  */
 end_comment
 
 begin_class

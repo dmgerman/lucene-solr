@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds a map of String input to String output, to be used  * with {@link MappingCharFilter}.  * @version $Id$  */
+comment|/**  * Holds a map of String input to String output, to be used  * with {@link MappingCharFilter}.  */
 end_comment
 
 begin_class
@@ -59,6 +59,7 @@ DECL|field|diff
 name|int
 name|diff
 decl_stmt|;
+comment|/** Records a replacement to be applied to the inputs    *  stream.  Whenever<code>singleMatch</code> occurs in    *  the input, it will be replaced with    *<code>replacement</code>.    *    * @param singleMatch input String to be replaced    * @param replacement output String    */
 DECL|method|add
 specifier|public
 name|void
