@@ -171,8 +171,11 @@ operator|.
 name|open
 argument_list|(
 name|directory
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
+comment|// we don't want read-only because we are about to delete
 name|Term
 name|term
 init|=
