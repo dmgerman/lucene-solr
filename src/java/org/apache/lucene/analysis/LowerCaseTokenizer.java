@@ -104,7 +104,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new LowerCaseTokenizer using a given {@link AttributeFactory}. */
+comment|/** Construct a new LowerCaseTokenizer using a given {@link AttributeSource.AttributeFactory}. */
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer

@@ -347,7 +347,7 @@ specifier|private
 name|AttributeFactory
 name|factory
 decl_stmt|;
-comment|/**    * An AttributeSource using the default attribute factory {@link AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY}.    */
+comment|/**    * An AttributeSource using the default attribute factory {@link AttributeSource.AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY}.    */
 DECL|method|AttributeSource
 specifier|public
 name|AttributeSource
