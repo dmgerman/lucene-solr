@@ -3391,10 +3391,13 @@ if|if
 condition|(
 name|s
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|" "
 argument_list|)
+operator|>
+operator|-
+literal|1
 condition|)
 block|{
 return|return
