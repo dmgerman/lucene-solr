@@ -96,7 +96,7 @@ name|IOException
 throws|,
 name|InterruptedException
 function_decl|;
-comment|/**    * Parse the inputText and return DocData.     * @param inputText the html text to parse.    * @see {@link #parse(String, Date, Reader, DateFormat)}    */
+comment|/**    * Parse the inputText and return DocData.     * @param inputText the html text to parse.    * @see #parse(DocData, String, Date, Reader, DateFormat)    */
 DECL|method|parse
 specifier|public
 name|DocData
