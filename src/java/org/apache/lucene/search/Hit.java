@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper used by {@link HitIterator} to provide a lazily loaded hit  * from {@link Hits}.  *  * @deprecated Hits will be removed in Lucene 3.0. Use {@link TopScoreDocCollector} and {@link TopDocs} instead.  */
+comment|/**  * Wrapper used by {@link HitIterator} to provide a lazily loaded hit  * from {@link Hits}.  *  * @deprecated Use {@link TopScoreDocCollector} and {@link TopDocs} instead. Hits will be removed in Lucene 3.0.  */
 end_comment
 
 begin_class

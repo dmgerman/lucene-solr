@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper for ({@link HitCollector}) implementations, which  * simply re-bases the incoming docID before calling {@link  * HitCollector#collect}.  * @deprecated this class will be removed when {@link  * HitCollector} is removed.  Please migrate custom  * HitCollectors to the new {@link Collector} class.  */
+comment|/**  * Wrapper for ({@link HitCollector}) implementations, which simply re-bases the  * incoming docID before calling {@link HitCollector#collect}.  *   * @deprecated Please migrate custom HitCollectors to the new {@link Collector}  *             class. This class will be removed when {@link HitCollector} is  *             removed.  */
 end_comment
 
 begin_class
