@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CharStream adds<a  * href="#correctOffset(int)">correctOffset</a>  * functionality over Reader.  All Tokenizers accept a  * CharStream as input, which enables arbitrary character  * based filtering before tokenization.  The {@link  * #correctOffset} method fixed offsets to account for  * removal or insertion of characters, so that the offsets  * reported in the tokens match the character offsets of the  * original Reader.  */
+comment|/**  * CharStream adds<a  * href="CharStream.html#correctOffset(int)">correctOffset</a>  * functionality over Reader.  All Tokenizers accept a  * CharStream as input, which enables arbitrary character  * based filtering before tokenization.  The {@link  * #correctOffset} method fixed offsets to account for  * removal or insertion of characters, so that the offsets  * reported in the tokens match the character offsets of the  * original Reader.  */
 end_comment
 
 begin_class
