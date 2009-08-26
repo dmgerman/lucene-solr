@@ -413,7 +413,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Creates and returns a token for the given synonym of the current input    * token; Override for custom (stateless or stateful) behavior, if desired.    *     * @param synonym     *            a synonym for the current token's term    * @param current    *            the current token from the underlying child stream    * @param reusableToken    *            the token to reuse    * @return a new token, or null to indicate that the given synonym should be    *         ignored    */
+comment|/**    * Creates and returns a token for the given synonym of the current input    * token; Override for custom (stateless or stateful) behavior, if desired.    *     * @param synonym     *            a synonym for the current token's term    * @param current    *            the current token from the underlying child stream    * @return a new token, or null to indicate that the given synonym should be    *         ignored    */
 DECL|method|createToken
 specifier|protected
 name|boolean
