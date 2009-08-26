@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * HTML Parsing Interfacew for test purposes  */
+comment|/**  * HTML Parsing Interface for test purposes  */
 end_comment
 
 begin_interface
@@ -96,7 +96,7 @@ name|IOException
 throws|,
 name|InterruptedException
 function_decl|;
-comment|/**    * Parse the inputText and return DocData.     * @param inputText the html text to parse.    * @see #parse(String, Date, Reader, DateFormat)    */
+comment|/**    * Parse the inputText and return DocData.     * @param inputText the html text to parse.    * @see {@link #parse(String, Date, Reader, DateFormat)}    */
 DECL|method|parse
 specifier|public
 name|DocData

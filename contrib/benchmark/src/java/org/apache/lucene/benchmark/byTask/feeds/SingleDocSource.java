@@ -31,7 +31,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Creates the same document each time {@link #getNextDocData()} is called.  */
+comment|/**  * Creates the same document each time {@link #getNextDocData(DocData)} is called.  */
 end_comment
 
 begin_class
