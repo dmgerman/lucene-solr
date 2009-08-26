@@ -1289,6 +1289,18 @@ operator|==
 literal|0
 condition|)
 continue|continue;
+name|int
+name|posInc
+init|=
+name|t
+operator|.
+name|getPositionIncrement
+argument_list|()
+decl_stmt|;
+name|origPosIncrement
+operator|+=
+name|posInc
+expr_stmt|;
 comment|//skip protected tokens
 if|if
 condition|(
@@ -1308,17 +1320,17 @@ name|len
 argument_list|)
 condition|)
 block|{
+name|t
+operator|.
+name|setPositionIncrement
+argument_list|(
+name|origPosIncrement
+argument_list|)
+expr_stmt|;
 return|return
 name|t
 return|;
 block|}
-name|origPosIncrement
-operator|+=
-name|t
-operator|.
-name|getPositionIncrement
-argument_list|()
-expr_stmt|;
 comment|// Avoid calling charType more than once for each char (basically
 comment|// avoid any backtracking).
 comment|// makes code slightly more difficult, but faster.
@@ -1728,6 +1740,13 @@ condition|)
 block|{
 comment|// the subword is the whole original token, so
 comment|// return it unchanged.
+name|t
+operator|.
+name|setPositionIncrement
+argument_list|(
+name|origPosIncrement
+argument_list|)
+expr_stmt|;
 return|return
 name|t
 return|;
@@ -1773,6 +1792,13 @@ name|startOffset
 argument_list|()
 operator|+
 name|start
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|setPositionIncrement
+argument_list|(
+name|origPosIncrement
 argument_list|)
 expr_stmt|;
 return|return
@@ -1871,6 +1897,17 @@ return|return
 name|t
 return|;
 block|}
+comment|// if this token had a "normal" gap of 1, remove it.
+if|if
+condition|(
+name|posInc
+operator|==
+literal|1
+condition|)
+name|origPosIncrement
+operator|-=
+literal|1
+expr_stmt|;
 continue|continue;
 block|}
 comment|// if number of tokens is 1, there are no catenations to be done.
