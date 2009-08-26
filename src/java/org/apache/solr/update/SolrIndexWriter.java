@@ -1142,6 +1142,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * use DocumentBuilder now...    * private final void addField(Document doc, String name, String val) {    * SchemaField ftype = schema.getField(name);    *<p/>    * // we don't check for a null val ourselves because a solr.FieldType    * // might actually want to map it to something.  If createField()    * // returns null, then we don't store the field.    *<p/>    * Field field = ftype.createField(val, boost);    * if (field != null) doc.add(field);    * }    *<p/>    *<p/>    * public void addRecord(String[] fieldNames, String[] fieldValues) throws IOException {    * Document doc = new Document();    * for (int i=0; i<fieldNames.length; i++) {    * String name = fieldNames[i];    * String val = fieldNames[i];    *<p/>    * // first null is end of list.  client can reuse arrays if they want    * // and just write a single null if there is unused space.    * if (name==null) break;    *<p/>    * addField(doc,name,val);    * }    * addDocument(doc);    * }    * ****    */
+DECL|field|isClosed
+specifier|private
+name|boolean
+name|isClosed
+init|=
+literal|false
+decl_stmt|;
 DECL|method|close
 specifier|public
 name|void
@@ -1159,6 +1166,8 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|super
 operator|.
 name|close
@@ -1178,6 +1187,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+finally|finally
+block|{
+name|isClosed
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|finalize
@@ -1190,11 +1207,23 @@ name|Throwable
 block|{
 try|try
 block|{
-name|super
+if|if
+condition|(
+operator|!
+name|isClosed
+condition|)
+block|{
+name|log
 operator|.
+name|error
+argument_list|(
+literal|"SolrIndexWriter was not closed prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!"
+argument_list|)
+expr_stmt|;
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{

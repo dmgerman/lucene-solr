@@ -2159,11 +2159,23 @@ name|Throwable
 block|{
 try|try
 block|{
-name|conn
+if|if
+condition|(
+operator|!
+name|isClosed
+condition|)
+block|{
+name|LOG
 operator|.
+name|error
+argument_list|(
+literal|"JdbcDataSource was not closed prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!"
+argument_list|)
+expr_stmt|;
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -2174,6 +2186,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|field|isClosed
+specifier|private
+name|boolean
+name|isClosed
+init|=
+literal|false
+decl_stmt|;
 DECL|method|close
 specifier|public
 name|void
@@ -2193,7 +2212,24 @@ parameter_list|(
 name|Exception
 name|e
 parameter_list|)
-block|{     }
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Ignoring Error when closing connection"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|isClosed
+operator|=
+literal|true
+expr_stmt|;
+block|}
 block|}
 DECL|field|CONN_TIME_OUT
 specifier|private
