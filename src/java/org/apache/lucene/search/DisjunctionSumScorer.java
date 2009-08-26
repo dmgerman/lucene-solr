@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#skipTo(int)} and uses skipTo() on the given Scorers.   * @todo Implement score(HitCollector, int).  */
+comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#skipTo(int)} and uses skipTo() on the given Scorers.   * TODO: Implement score(HitCollector, int).  */
 end_comment
 
 begin_class
