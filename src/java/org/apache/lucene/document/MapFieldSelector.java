@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A FieldSelector based on a Map of field names to FieldSelectorResults  *  */
+comment|/**  * A {@link FieldSelector} based on a Map of field names to {@link FieldSelectorResult}s  *  */
 end_comment
 
 begin_class
@@ -62,7 +62,7 @@ DECL|field|fieldSelections
 name|Map
 name|fieldSelections
 decl_stmt|;
-comment|/** Create a a MapFieldSelector      * @param fieldSelections maps from field names (String) to FieldSelectorResults      */
+comment|/** Create a a MapFieldSelector      * @param fieldSelections maps from field names (String) to {@link FieldSelectorResult}s      */
 DECL|method|MapFieldSelector
 specifier|public
 name|MapFieldSelector
