@@ -45,7 +45,7 @@ comment|// for javadoc
 end_comment
 
 begin_comment
-comment|/**  * SmartChineseAnalyzer utility constants and methods  */
+comment|/**  * SmartChineseAnalyzer utility constants and methods  *<p><font color="#FF0000">  * WARNING: The status of the analyzers/smartcn<b>analysis.cn</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *</p>  */
 end_comment
 
 begin_class
