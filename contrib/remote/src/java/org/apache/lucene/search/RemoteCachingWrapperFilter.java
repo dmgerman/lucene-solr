@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides caching of {@link Filter}s themselves on the remote end of an RMI connection.  * The cache is keyed on Filter's hashCode(), so if it sees the same filter twice  * it will reuse the original version.  *<p/>  * NOTE: This does NOT cache the Filter bits, but rather the Filter itself.  * Thus, this works hand-in-hand with {@link CachingWrapperFilter} to keep both  * file Filter cache and the Filter bits on the remote end, close to the searcher.  *<p/>  * Usage:  *<p/>  * To cache a result you must do something like   * RemoteCachingWrapperFilter f = new RemoteCachingWrapperFilter(new CachingWrapperFilter(myFilter));  *<p/>  *   * @version $Id:$  */
+comment|/**  * Provides caching of {@link org.apache.lucene.search.Filter}s themselves on the remote end of an RMI connection.  * The cache is keyed on Filter's hashCode(), so if it sees the same filter twice  * it will reuse the original version.  *<p/>  * NOTE: This does NOT cache the Filter bits, but rather the Filter itself.  * Thus, this works hand-in-hand with {@link org.apache.lucene.search.CachingWrapperFilter} to keep both  * file Filter cache and the Filter bits on the remote end, close to the searcher.  *<p/>  * Usage:  *<p/>  * To cache a result you must do something like   * RemoteCachingWrapperFilter f = new RemoteCachingWrapperFilter(new CachingWrapperFilter(myFilter));  *<p/>  *   * @version $Id:$  */
 end_comment
 
 begin_class
@@ -82,7 +82,7 @@ operator|=
 name|filter
 expr_stmt|;
 block|}
-comment|/**    * Uses the {@link FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the bitset    * @deprecated Use {@link #getDocIdSet(IndexReader)} instead.    */
+comment|/**    * Uses the {@link org.apache.lucene.search.FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the bitset    * @deprecated Use {@link #getDocIdSet(IndexReader)} instead.    */
 DECL|method|bits
 specifier|public
 name|BitSet
@@ -116,7 +116,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses the {@link FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the DocIdSet    */
+comment|/**    * Uses the {@link org.apache.lucene.search.FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the DocIdSet    */
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
