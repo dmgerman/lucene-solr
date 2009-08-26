@@ -974,7 +974,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @todo Allow user to specify what field(s) to display    */
+comment|/**    * TODO: Allow user to specify what field(s) to display    */
 DECL|method|printHit
 specifier|private
 name|void
@@ -1253,7 +1253,7 @@ name|query
 operator|)
 return|;
 block|}
-comment|/**    * @todo Allow user to specify analyzer    */
+comment|/**    * TODO: Allow user to specify analyzer    */
 DECL|method|initSearch
 specifier|private
 name|Hits

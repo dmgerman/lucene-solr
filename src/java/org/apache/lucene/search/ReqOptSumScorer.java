@@ -265,7 +265,7 @@ else|:
 name|reqScore
 return|;
 block|}
-comment|/** Explain the score of a document.    * @todo Also show the total score.    * See BooleanScorer.explain() on how to do this.    */
+comment|/** Explain the score of a document.    * TODO: Also show the total score.    * See BooleanScorer.explain() on how to do this.    */
 DECL|method|explain
 specifier|public
 name|Explanation

@@ -659,7 +659,7 @@ operator|=
 name|classname
 expr_stmt|;
 block|}
-comment|/**    * Sets the analyzer based on the builtin Lucene analyzer types.    *    * @todo Enforce analyzer and analyzerClassName to be mutually exclusive    */
+comment|/**    * Sets the analyzer based on the builtin Lucene analyzer types.    *    * TODO: Enforce analyzer and analyzerClassName to be mutually exclusive    */
 DECL|method|setAnalyzer
 specifier|public
 name|void
@@ -923,7 +923,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Index the fileset.    *    *@exception  IOException if Lucene I/O exception    *@todo refactor!!!!!    */
+comment|/**    * Index the fileset.    *    *@exception  IOException if Lucene I/O exception    *TODO: refactor!!!!!    */
 DECL|method|indexDocs
 specifier|private
 name|void

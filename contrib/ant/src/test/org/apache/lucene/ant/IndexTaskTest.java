@@ -383,7 +383,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  The teardown method for JUnit      * @todo remove indexDir?      */
+comment|/**      *  The teardown method for JUnit      * TODO: remove indexDir?      */
 DECL|method|tearDown
 specifier|public
 name|void

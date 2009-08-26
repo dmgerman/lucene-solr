@@ -1446,7 +1446,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      * @todo create a Set version of this ctor      * @deprecated Use {@link #RussianAnalyzer(Map)} instead.      */
+comment|/**      * Builds an analyzer with the given stop words.      * TODO: create a Set version of this ctor      * @deprecated Use {@link #RussianAnalyzer(Map)} instead.      */
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
@@ -1477,7 +1477,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      * @todo create a Set version of this ctor      */
+comment|/**      * Builds an analyzer with the given stop words.      * TODO: create a Set version of this ctor      */
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
