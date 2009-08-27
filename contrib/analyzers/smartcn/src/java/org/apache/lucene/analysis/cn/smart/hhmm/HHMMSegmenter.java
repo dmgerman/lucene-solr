@@ -937,7 +937,7 @@ return|return
 name|segGraph
 return|;
 block|}
-comment|/**    * Get the character types for every character in a sentence.    *     * @see Utility.charType(char)    * @param sentence input sentence    * @return array of character types corresponding to character positions in the sentence    */
+comment|/**    * Get the character types for every character in a sentence.    *     * @see Utility#charType(char)    * @param sentence input sentence    * @return array of character types corresponding to character positions in the sentence    */
 DECL|method|getCharTypes
 specifier|private
 specifier|static
