@@ -542,7 +542,7 @@ return|return
 name|term
 return|;
 block|}
-comment|/**    * replace with ignore case    *     * @param stringOrig    *          string to get replaced    * @param sequence1    *          the old character sequence in lowercase    * @param escapeChar    *          the new character to prefix sequence1 in return string.    * @return the new String    */
+comment|/**    * replace with ignore case    *     * @param string    *          string to get replaced    * @param sequence1    *          the old character sequence in lowercase    * @param escapeChar    *          the new character to prefix sequence1 in return string.    * @return the new String    */
 DECL|method|replaceIgnoreCase
 specifier|private
 specifier|static
@@ -914,7 +914,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * escape all tokens that are part of the parser syntax on a given string    *     * @param string    *          string to get replaced    * @param locale    *          locale to be used when performing string compares    * @return the new String    */
+comment|/**    * escape all tokens that are part of the parser syntax on a given string    *     * @param str    *          string to get replaced    * @param locale    *          locale to be used when performing string compares    * @return the new String    */
 DECL|method|escapeWhiteChar
 specifier|private
 specifier|static

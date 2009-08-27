@@ -1565,7 +1565,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Obtain a SegmentReader from the readerPool.  The reader      * must be returned by calling {@link #release(SegmentReader)}      * @see #release(SegmentReader)      * @param info      * @param doOpenStores      * @return       * @throws IOException      */
+comment|/**      * Obtain a SegmentReader from the readerPool.  The reader      * must be returned by calling {@link #release(SegmentReader)}      * @see #release(SegmentReader)      * @param info      * @param doOpenStores      * @throws IOException      */
 DECL|method|get
 specifier|public
 specifier|synchronized
@@ -1598,7 +1598,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/**      * Obtain a SegmentReader from the readerPool.  The reader      * must be returned by calling {@link #release(SegmentReader)}      *       * @see #release(SegmentReader)      * @param info      * @param doOpenStores      * @param readBufferSize      * @param termsIndexDivisor      * @return      * @throws IOException      */
+comment|/**      * Obtain a SegmentReader from the readerPool.  The reader      * must be returned by calling {@link #release(SegmentReader)}      *       * @see #release(SegmentReader)      * @param info      * @param doOpenStores      * @param readBufferSize      * @param termsIndexDivisor      * @throws IOException      */
 DECL|method|get
 specifier|public
 specifier|synchronized

@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** This is the base class for an in-memory posting list,  *  keyed by a Token.  {@link TermsHash} maintains a hash  *  table holding one instance of this per unique Token.  *  Consumers of TermsHash (@link TermsHashConsumer} must  *  subclass this class with its own concrete class.  *  {@link FreqProxTermsWriter.RawPostingList} is the  *  subclass used for the freq/prox postings, and {@link  *  TermVectorsTermsWriter.PostingList} is the subclass  *  used to hold TermVectors postings. */
+comment|/** This is the base class for an in-memory posting list,  *  keyed by a Token.  {@link TermsHash} maintains a hash  *  table holding one instance of this per unique Token.  *  Consumers of TermsHash ({@link TermsHashConsumer}) must  *  subclass this class with its own concrete class.  *  FreqProxTermsWriter.PostingList is a private inner class used   *  for the freq/prox postings, and   *  TermVectorsTermsWriter.PostingList is a private inner class  *  used to hold TermVectors postings. */
 end_comment
 
 begin_class

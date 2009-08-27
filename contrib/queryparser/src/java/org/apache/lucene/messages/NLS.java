@@ -495,7 +495,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * @param bundleName    * @param clazz    */
+comment|/**    * @param clazz    */
 DECL|method|load
 specifier|private
 specifier|static

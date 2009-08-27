@@ -761,7 +761,7 @@ name|token
 argument_list|)
 return|;
 block|}
-comment|/**    * @param query    * @param field    * @param tokenStream    * @param reader    */
+comment|/**    */
 DECL|method|init
 specifier|private
 name|void

@@ -339,7 +339,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    * @deprecated use {@link #score(Collector, int)} instead.    */
+comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    * @deprecated use {@link #score(Collector, int, int)} instead.    */
 DECL|method|score
 specifier|protected
 name|boolean

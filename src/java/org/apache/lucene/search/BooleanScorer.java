@@ -1252,7 +1252,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** @deprecated use {@link #score(Collector, int)} instead. */
+comment|/** @deprecated use {@link #score(Collector, int, int)} instead. */
 DECL|method|score
 specifier|protected
 name|boolean

@@ -531,7 +531,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @param node    * @return    */
+comment|/**    */
 DECL|method|applyModifier
 specifier|private
 name|QueryNode

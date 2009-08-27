@@ -292,7 +292,7 @@ specifier|public
 name|Directory
 name|dir
 decl_stmt|;
-comment|/** SegmentInfos instance containing only segments that      *  had no problems (this is used with the {@link      *  CheckIndex#fix} method to repair the index. */
+comment|/**       * SegmentInfos instance containing only segments that      * had no problems (this is used with the {@link CheckIndex#fixIndex}       * method to repair the index.       */
 DECL|field|newSegments
 name|SegmentInfos
 name|newSegments
