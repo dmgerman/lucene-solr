@@ -290,7 +290,15 @@ argument_list|(
 name|regexImpl
 argument_list|)
 expr_stmt|;
-comment|// RegexQuery (via MultiTermQuery).rewrite always returns a BooleanQuery
+name|orig
+operator|.
+name|setRewriteMethod
+argument_list|(
+name|RegexQuery
+operator|.
+name|SCORING_BOOLEAN_QUERY_REWRITE
+argument_list|)
+expr_stmt|;
 name|BooleanQuery
 name|bq
 init|=

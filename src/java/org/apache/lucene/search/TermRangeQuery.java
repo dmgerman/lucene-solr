@@ -203,10 +203,6 @@ name|collator
 operator|=
 name|collator
 expr_stmt|;
-name|rewriteMethod
-operator|=
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-expr_stmt|;
 block|}
 comment|/** Returns the field name for this query */
 DECL|method|getField

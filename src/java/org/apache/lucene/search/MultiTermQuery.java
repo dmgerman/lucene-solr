@@ -150,7 +150,7 @@ specifier|protected
 name|RewriteMethod
 name|rewriteMethod
 init|=
-name|SCORING_BOOLEAN_QUERY_REWRITE
+name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
 decl_stmt|;
 DECL|field|numberOfTerms
 specifier|transient

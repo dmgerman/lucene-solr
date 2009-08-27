@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents containing terms with a specified prefix. A PrefixQuery  * is built by QueryParser for input like<code>app*</code>.  *  *<p><b>NOTE</b>: Currently this query uses {@link  * MultiTermQuery#SCORING_BOOLEAN_QUERY_REWRITE}, which  * assigns not-very-useful scores to the resulting hits.  In  * 3.0 this default will change to {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}; you  * can use {@link MultiTermQuery#setRewriteMethod} to change  * it. */
+comment|/** A Query that matches documents containing terms with a specified prefix. A PrefixQuery  * is built by QueryParser for input like<code>app*</code>.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method. */
 end_comment
 
 begin_class
