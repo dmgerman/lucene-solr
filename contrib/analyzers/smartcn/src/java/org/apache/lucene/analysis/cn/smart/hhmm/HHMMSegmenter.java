@@ -86,6 +86,30 @@ name|WordType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|cn
+operator|.
+name|smart
+operator|.
+name|hhmm
+operator|.
+name|PathNode
+import|;
+end_import
+
+begin_comment
+comment|//javadoc @link
+end_comment
+
 begin_comment
 comment|/**  * Finds the optimal segmentation of a sentence into Chinese words  *<p><font color="#FF0000">  * WARNING: The status of the analyzers/smartcn<b>analysis.cn</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *</p>  */
 end_comment

@@ -64,6 +64,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|ru
+operator|.
+name|RussianStemmer
+import|;
+end_import
+
+begin_comment
+comment|//javadoc @link
+end_comment
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
