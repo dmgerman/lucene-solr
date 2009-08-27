@@ -157,7 +157,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * Constructor that allows for the modification of the flags that    * the java.util.regex.Pattern will use to compile the regular expression.    * This gives the user the ability to fine-tune how the regular expression     * to match the functionlity that they need.     * The {@link java.util.regex.Pattern Pattern} class supports specifying     * these fields via the regular expression text itself, but this gives the caller    * another option to modify the behavior. Useful in cases where the regular expression text    * cannot be modified, or if doing so is undesired.    *     * @flags The flags that are ORed together.    */
+comment|/**    * Constructor that allows for the modification of the flags that    * the java.util.regex.Pattern will use to compile the regular expression.    * This gives the user the ability to fine-tune how the regular expression     * to match the functionlity that they need.     * The {@link java.util.regex.Pattern Pattern} class supports specifying     * these fields via the regular expression text itself, but this gives the caller    * another option to modify the behavior. Useful in cases where the regular expression text    * cannot be modified, or if doing so is undesired.    *     * @param flags The flags that are ORed together.    */
 DECL|method|JavaUtilRegexCapabilities
 specifier|public
 name|JavaUtilRegexCapabilities
