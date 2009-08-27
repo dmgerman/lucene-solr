@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link StopFilter} and {@link SnowballFilter}.  *  * Available stemmers are listed in {@link net.sf.snowball.ext}.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link org.tartarus.snowball.ext.EnglishStemmer} is named "English".  */
+comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link StopFilter} and {@link SnowballFilter}.  *  * Available stemmers are listed in org.tartarus.snowball.ext.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link org.tartarus.snowball.ext.EnglishStemmer} is named "English".  */
 end_comment
 
 begin_class
