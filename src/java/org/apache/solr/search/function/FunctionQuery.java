@@ -206,6 +206,8 @@ return|return
 name|queryWeight
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|sumOfSquaredWeights
 specifier|public
 name|float
@@ -225,6 +227,8 @@ operator|*
 name|queryWeight
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|normalize
 specifier|public
 name|void
@@ -247,6 +251,8 @@ operator|.
 name|queryNorm
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|scorer
 specifier|public
 name|Scorer
@@ -279,14 +285,13 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|explain
 specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|Searcher
-name|searcher
-parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -778,7 +783,7 @@ return|;
 block|}
 block|}
 DECL|method|createWeight
-specifier|protected
+specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
