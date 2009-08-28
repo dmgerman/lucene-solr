@@ -517,6 +517,13 @@ specifier|private
 name|boolean
 name|cachedTokenStream
 decl_stmt|;
+DECL|field|wrapToCaching
+specifier|private
+name|boolean
+name|wrapToCaching
+init|=
+literal|true
+decl_stmt|;
 DECL|method|WeightedSpanTermExtractor
 specifier|public
 name|WeightedSpanTermExtractor
@@ -1882,6 +1889,8 @@ name|IOException
 block|{
 if|if
 condition|(
+name|wrapToCaching
+operator|&&
 operator|!
 name|cachedTokenStream
 operator|&&
@@ -2650,6 +2659,23 @@ block|{
 return|return
 name|tokenStream
 return|;
+block|}
+comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false.    *     * @param wrap    */
+DECL|method|setWrapIfNotCachingTokenFilter
+specifier|public
+name|void
+name|setWrapIfNotCachingTokenFilter
+parameter_list|(
+name|boolean
+name|wrap
+parameter_list|)
+block|{
+name|this
+operator|.
+name|wrapToCaching
+operator|=
+name|wrap
+expr_stmt|;
 block|}
 block|}
 end_class
