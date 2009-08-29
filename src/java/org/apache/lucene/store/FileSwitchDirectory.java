@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Files with the specified extensions are placed in the  * primary directory; others are placed in the secondary  * directory.  The provided Set must not change once passed  * to this class, and must allow multiple threads to call  * contains at once.  */
+comment|/**  * Expert: A Directory instance that switches files betweeen  * two other Directory instances.   *<p>Files with the specified extensions are placed in the  * primary directory; others are placed in the secondary  * directory.  The provided Set must not change once passed  * to this class, and must allow multiple threads to call  * contains at once.</p>  *  *<p><b>NOTE</b>: this API is new and experimental and is  * subject to suddenly change in the next release.  */
 end_comment
 
 begin_class
@@ -142,6 +142,7 @@ name|getLockFactory
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Return the primary directory */
 DECL|method|getPrimaryDir
 specifier|public
 name|Directory
@@ -152,6 +153,7 @@ return|return
 name|primaryDir
 return|;
 block|}
+comment|/** Return the secondary directory */
 DECL|method|getSecondaryDir
 specifier|public
 name|Directory
@@ -294,6 +296,7 @@ name|listAll
 argument_list|()
 return|;
 block|}
+comment|/** Utility method to return a file's extension. */
 DECL|method|getExtension
 specifier|public
 specifier|static

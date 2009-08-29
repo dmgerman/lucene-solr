@@ -65,7 +65,7 @@ specifier|protected
 name|LockFactory
 name|lockFactory
 decl_stmt|;
-comment|/** @deprecated For some Directory implementations ({@link    *  FSDirectory}, and its subclasses), this method    *  silently filters its results to include only index    *  files.  Please use {@link #listAll} instead, which    *  does no filtering. */
+comment|/** List the files in the directory.    *     *  @deprecated For some Directory implementations ({@link    *  FSDirectory}, and its subclasses), this method    *  silently filters its results to include only index    *  files.  Please use {@link #listAll} instead, which    *  does no filtering. */
 DECL|method|list
 specifier|public
 specifier|abstract
