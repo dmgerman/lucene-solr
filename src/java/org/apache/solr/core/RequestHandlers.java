@@ -647,15 +647,9 @@ else|else
 block|{
 name|requestHandler
 operator|=
-operator|(
-name|SolrRequestHandler
-operator|)
-name|config
+name|core
 operator|.
-name|getResourceLoader
-argument_list|()
-operator|.
-name|newInstance
+name|createRequestHandler
 argument_list|(
 name|info
 operator|.
