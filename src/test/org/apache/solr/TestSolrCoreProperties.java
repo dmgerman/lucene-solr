@@ -164,16 +164,6 @@ name|Properties
 import|;
 end_import
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
 begin_comment
 comment|/**  *<p> Test for Loading core properties from a properties file</p>  *  * @version $Id$  * @since solr 1.4  */
 end_comment
@@ -229,8 +219,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//    System.setProperty("foo.foo1", "f1");
-comment|//    System.setProperty("foo.foo2", "f2");
 name|setUpMe
 argument_list|()
 expr_stmt|;
@@ -369,7 +357,7 @@ DECL|field|confDir
 name|File
 name|confDir
 decl_stmt|;
-comment|/**      * if masterPort is null, this instance is a master -- otherwise this instance is a slave, and assumes the master is      * on localhost at the specified port.      */
+comment|/**    * if masterPort is null, this instance is a master -- otherwise this instance is a slave, and assumes the master is    * on localhost at the specified port.    */
 DECL|method|getHomeDir
 specifier|public
 name|String
