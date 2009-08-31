@@ -120,6 +120,7 @@ name|Collator
 name|collator
 decl_stmt|;
 DECL|method|CollationKeyAnalyzer
+specifier|public
 name|CollationKeyAnalyzer
 parameter_list|(
 name|Collator

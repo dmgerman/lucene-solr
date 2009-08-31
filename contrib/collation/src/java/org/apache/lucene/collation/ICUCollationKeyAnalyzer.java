@@ -124,6 +124,7 @@ name|Collator
 name|collator
 decl_stmt|;
 DECL|method|ICUCollationKeyAnalyzer
+specifier|public
 name|ICUCollationKeyAnalyzer
 parameter_list|(
 name|Collator
