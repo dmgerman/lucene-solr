@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.analysis.cn
+DECL|package|org.apache.lucene.analysis.cn.smart
 package|package
 name|org
 operator|.
@@ -15,6 +15,8 @@ operator|.
 name|analysis
 operator|.
 name|cn
+operator|.
+name|smart
 package|;
 end_package
 
