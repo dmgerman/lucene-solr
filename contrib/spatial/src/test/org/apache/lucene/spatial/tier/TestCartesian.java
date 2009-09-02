@@ -1851,11 +1851,11 @@ comment|// Create a distance sort
 comment|// As the radius filter has performed the distance calculations
 comment|// already, pass in the filter to reuse the results.
 comment|//
-name|DistanceSortSource
+name|DistanceFieldComparatorSource
 name|dsort
 init|=
 operator|new
-name|DistanceSortSource
+name|DistanceFieldComparatorSource
 argument_list|(
 name|dq
 operator|.
