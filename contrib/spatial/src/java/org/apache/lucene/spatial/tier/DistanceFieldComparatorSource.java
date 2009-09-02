@@ -84,20 +84,6 @@ name|FieldComparatorSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|SortField
-import|;
-end_import
-
 begin_class
 DECL|class|DistanceFieldComparatorSource
 specifier|public

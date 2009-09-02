@@ -119,16 +119,6 @@ name|serialVersionUID
 init|=
 literal|1L
 decl_stmt|;
-DECL|field|latFilter
-specifier|public
-name|BoundaryBoxFilter
-name|latFilter
-decl_stmt|;
-DECL|field|lngFilter
-specifier|public
-name|BoundaryBoxFilter
-name|lngFilter
-decl_stmt|;
 DECL|field|lat
 specifier|private
 specifier|final

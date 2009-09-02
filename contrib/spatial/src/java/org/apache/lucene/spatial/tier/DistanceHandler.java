@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provide a high level access point to distances  * Used by DistanceSortSource and DistanceQuery  *    * @author pjaol  *  */
+comment|/**  * Provide a high level access point to distances  * Used by DistanceSortSource and DistanceQuery  *    *  */
 end_comment
 
 begin_class
