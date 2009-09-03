@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An Analyzer that uses WhitespaceTokenizer. */
+comment|/** An Analyzer that uses {@link WhitespaceTokenizer}. */
 end_comment
 
 begin_class

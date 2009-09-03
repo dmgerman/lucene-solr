@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Filters LetterTokenizer with LowerCaseFilter and StopFilter. */
+comment|/** Filters {@link LetterTokenizer} with {@link LowerCaseFilter} and {@link StopFilter}. */
 end_comment
 
 begin_class
