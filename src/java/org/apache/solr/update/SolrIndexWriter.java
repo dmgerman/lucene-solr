@@ -912,7 +912,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *    */
+annotation|@
+name|Deprecated
 DECL|method|SolrIndexWriter
 specifier|public
 name|SolrIndexWriter

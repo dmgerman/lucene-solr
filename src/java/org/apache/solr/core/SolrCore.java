@@ -1889,6 +1889,8 @@ argument_list|,
 name|solrConfig
 operator|.
 name|mainIndexConfig
+argument_list|,
+name|solrDelPolicy
 argument_list|)
 decl_stmt|;
 name|writer
