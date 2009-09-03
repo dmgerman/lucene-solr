@@ -110,7 +110,7 @@ name|void
 name|destroy
 parameter_list|()
 function_decl|;
-comment|/**    * Invoked after the transformers are invoked. EntityProcessors can add, remove or modify values    * added by Transformers in this method.    *    * @param r The transformed row    */
+comment|/**    * Invoked after the transformers are invoked. EntityProcessors can add, remove or modify values    * added by Transformers in this method.    *    * @param r The transformed row    * @since solr 1.4    */
 DECL|method|postTransform
 specifier|public
 name|void
@@ -125,7 +125,7 @@ argument_list|>
 name|r
 parameter_list|)
 block|{   }
-comment|/**    * Invoked when the Entity processor is detroyed. towards the end of import.    */
+comment|/**    * Invoked when the Entity processor is detroyed. towards the end of import.    *    * @since solr 1.4    */
 DECL|method|close
 specifier|public
 name|void
