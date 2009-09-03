@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<a name="subclasses"/>  * Base class for Directory implementations that store index  * files in the file system.  There are currently three core  * subclasses:  *  *<ul>  *  *<li> {@link SimpleFSDirectory} is a straightforward  *       implementation using java.io.RandomAccessFile.  *       However, it has poor concurrent performance  *       (multiple threads will bottleneck) as it  *       synchronizes when multiple threads read from the  *       same file.  *  *<li> {@link NIOFSDirectory} uses java.nio's  *       FileChannel's positional io when reading to avoid  *       synchronization when reading from the same file.  *       Unfortunately, due to a Windows-only<a  *       href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">Sun  *       JRE bug</a> this is a poor choice for Windows, but  *       on all other platforms this is the preferred  *       choice.  *  *<li> {@link MMapDirectory} uses memory-mapped IO when  *       reading. This is a good choice if you have plenty  *       of virtual memory relative to your index size, eg  *       if you are running on a 64 bit JRE, or you are  *       running on a 32 bit JRE but your index sizes are  *       small enough to fit into the virtual memory space.  *       Java has currently the limitation of not being able to  *       unmap files from user code. The files are unmapped, when GC  *       releases the byte buffers. Due to  *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  *       this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  *       is unable to close the underlying OS file handle. Only when  *       GC finally collects the underlying objects, which could be  *       quite some time later, will the file handle be closed.  *       This will consume additional transient disk usage: on Windows,  *       attempts to delete or overwrite the files will result in an  *       exception; on other platforms, which typically have a&quot;delete on  *       last close&quot; semantics, while such operations will succeed, the bytes  *       are still consuming space on disk.  For many applications this  *       limitation is not a problem (e.g. if you have plenty of disk space,  *       and you don't rely on overwriting files on Windows) but it's still  *       an important limitation to be aware of. This class supplies a  *       (possibly dangerous) workaround mentioned in the bug report,  *       which may fail on non-Sun JVMs.  *</ul>  *  * Unfortunately, because of system peculiarities, there is  * no single overall best implementation.  Therefore, we've  * added the {@link #open} method, to allow Lucene to choose  * the best FSDirectory implementation given your  * environment, and the known limitations of each  * implementation.  For users who have no reason to prefer a  * specific implementation, it's best to simply use {@link  * #open}.  For all others, you should instantiate the  * desired implementation directly.  *  *<p>The locking implementation is by default {@link  * SimpleFSLockFactory}, but can be changed either by  * passing in a custom {@link LockFactory} instance, or  * specifying the LockFactory class by setting  *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code>  * Java system property, or by calling {@link  * #setLockFactory} after creating the Directory.  *  *<p><em>In 3.0 this class will become abstract.</em>  *  * @see Directory  */
+comment|/**  *<a name="subclasses"/>  * Base class for Directory implementations that store index  * files in the file system.  There are currently three core  * subclasses:  *  *<ul>  *  *<li> {@link SimpleFSDirectory} is a straightforward  *       implementation using java.io.RandomAccessFile.  *       However, it has poor concurrent performance  *       (multiple threads will bottleneck) as it  *       synchronizes when multiple threads read from the  *       same file.  *  *<li> {@link NIOFSDirectory} uses java.nio's  *       FileChannel's positional io when reading to avoid  *       synchronization when reading from the same file.  *       Unfortunately, due to a Windows-only<a  *       href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">Sun  *       JRE bug</a> this is a poor choice for Windows, but  *       on all other platforms this is the preferred  *       choice.  *  *<li> {@link MMapDirectory} uses memory-mapped IO when  *       reading. This is a good choice if you have plenty  *       of virtual memory relative to your index size, eg  *       if you are running on a 64 bit JRE, or you are  *       running on a 32 bit JRE but your index sizes are  *       small enough to fit into the virtual memory space.  *       Java has currently the limitation of not being able to  *       unmap files from user code. The files are unmapped, when GC  *       releases the byte buffers. Due to  *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  *       this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  *       is unable to close the underlying OS file handle. Only when  *       GC finally collects the underlying objects, which could be  *       quite some time later, will the file handle be closed.  *       This will consume additional transient disk usage: on Windows,  *       attempts to delete or overwrite the files will result in an  *       exception; on other platforms, which typically have a&quot;delete on  *       last close&quot; semantics, while such operations will succeed, the bytes  *       are still consuming space on disk.  For many applications this  *       limitation is not a problem (e.g. if you have plenty of disk space,  *       and you don't rely on overwriting files on Windows) but it's still  *       an important limitation to be aware of. This class supplies a  *       (possibly dangerous) workaround mentioned in the bug report,  *       which may fail on non-Sun JVMs.  *</ul>  *  * Unfortunately, because of system peculiarities, there is  * no single overall best implementation.  Therefore, we've  * added the {@link #open} method, to allow Lucene to choose  * the best FSDirectory implementation given your  * environment, and the known limitations of each  * implementation.  For users who have no reason to prefer a  * specific implementation, it's best to simply use {@link  * #open}.  For all others, you should instantiate the  * desired implementation directly.  *  *<p>The locking implementation is by default {@link  * NativeFSLockFactory}, but can be changed by  * passing in a custom {@link LockFactory} instance.  * The deprecated<code>getDirectory</code> methods default to use  * {@link SimpleFSLockFactory} for backwards compatibility.  * The system properties   *<code>org.apache.lucene.store.FSDirectoryLockFactoryClass</code>  * and<code>org.apache.lucene.FSDirectory.class</code>  * are deprecated and only used by the deprecated  *<code>getDirectory</code> methods. The system property  *<code>org.apache.lucene.lockDir</code> is ignored completely,  * If you really want to store locks  * elsewhere, you can create your own {@link  * SimpleFSLockFactory} (or {@link NativeFSLockFactory},  * etc.) passing in your preferred lock directory.  *  *<p><em>In 3.0 this class will become abstract.</em>  *  * @see Directory  */
 end_comment
 
 begin_comment
@@ -200,7 +200,7 @@ literal|false
 decl_stmt|;
 comment|// TODO: should this move up to the Directory base class?  Also: should we
 comment|// make a per-instance (in addition to the static "default") version?
-comment|/**    * Set whether Lucene's use of lock files is disabled. By default,     * lock files are enabled. They should only be disabled if the index    * is on a read-only medium like a CD-ROM.    */
+comment|/**    * Set whether Lucene's use of lock files is disabled. By default,     * lock files are enabled. They should only be disabled if the index    * is on a read-only medium like a CD-ROM.    * @deprecated Use a {@link #open(File, LockFactory)} or a constructor    * that takes a {@link LockFactory} and supply    * {@link NoLockFactory#getNoLockFactory}. This setting does not work    * with {@link #open(File)} only the deprecated<code>getDirectory</code>    * respect this setting.       */
 DECL|method|setDisableLocks
 specifier|public
 specifier|static
@@ -218,7 +218,7 @@ operator|=
 name|doDisableLocks
 expr_stmt|;
 block|}
-comment|/**    * Returns whether Lucene's use of lock files is disabled.    * @return true if locks are disabled, false if locks are enabled.    * @see #setDisableLocks   */
+comment|/**    * Returns whether Lucene's use of lock files is disabled.    * @return true if locks are disabled, false if locks are enabled.    * @see #setDisableLocks    * @deprecated Use a constructor that takes a {@link LockFactory} and    * supply {@link NoLockFactory#getNoLockFactory}.   */
 DECL|method|getDisableLocks
 specifier|public
 specifier|static
@@ -232,7 +232,7 @@ operator|.
 name|disableLocks
 return|;
 block|}
-comment|/**    * Directory specified by<code>org.apache.lucene.lockDir</code>    * or<code>java.io.tmpdir</code> system property.     * @deprecated As of 2.1,<code>LOCK_DIR</code> is unused    * because the write.lock is now stored by default in the    * index directory.  If you really want to store locks    * elsewhere you can create your own {@link    * SimpleFSLockFactory} (or {@link NativeFSLockFactory},    * etc.) passing in your preferred lock directory.  Then,    * pass this<code>LockFactory</code> instance to one of    * the<code>getDirectory</code> methods that take a    *<code>lockFactory</code> (for example, {@link #getDirectory(String, LockFactory)}).    */
+comment|/**    * Directory specified by<code>org.apache.lucene.lockDir</code>    * or<code>java.io.tmpdir</code> system property.     * @deprecated As of 2.1,<code>LOCK_DIR</code> is unused    * because the write.lock is now stored by default in the    * index directory.  If you really want to store locks    * elsewhere, you can create your own {@link    * SimpleFSLockFactory} (or {@link NativeFSLockFactory},    * etc.) passing in your preferred lock directory.  Then,    * pass this<code>LockFactory</code> instance to one of    * the<code>open</code> methods that take a    *<code>lockFactory</code> (for example, {@link #open(File, LockFactory)}).    */
 DECL|field|LOCK_DIR
 specifier|public
 specifier|static
@@ -968,7 +968,7 @@ parameter_list|()
 block|{}
 empty_stmt|;
 comment|// permit subclassing
-comment|/** Create a new FSDirectory for the named location (ctor for subclasses).    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default.    * @throws IOException    */
+comment|/** Create a new FSDirectory for the named location (ctor for subclasses).    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException    */
 DECL|method|FSDirectory
 specifier|protected
 name|FSDirectory
@@ -989,6 +989,21 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+comment|// new ctors use always NativeFSLockFactory as default:
+if|if
+condition|(
+name|lockFactory
+operator|==
+literal|null
+condition|)
+block|{
+name|lockFactory
+operator|=
+operator|new
+name|NativeFSLockFactory
+argument_list|()
+expr_stmt|;
+block|}
 name|init
 argument_list|(
 name|path
@@ -1001,7 +1016,7 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *    *<p>Currently this returns {@link NIOFSDirectory}    *  on non-Windows JREs and {@link SimpleFSDirectory}    *  on Windows.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. On 64 bit systems, it may also good to    * return {@link MMapDirectory}, but this is disabled    * because of officially missing unmap support in Java.    * For optimal performance you should consider using    * this implementation on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
+comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *    *<p>Currently this returns {@link NIOFSDirectory}    *  on non-Windows JREs and {@link SimpleFSDirectory}    *  on Windows.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. On 64 bit systems, it may also good to    * return {@link MMapDirectory}, but this is disabled    * because of officially missing unmap support in Java.    * For optimal performance you should consider using    * this implementation on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
 DECL|method|open
 specifier|public
 specifier|static
@@ -1117,11 +1132,6 @@ operator|+
 literal|"' exists but is not a directory"
 argument_list|)
 throw|;
-name|boolean
-name|doClearLockID
-init|=
-literal|false
-decl_stmt|;
 if|if
 condition|(
 name|lockFactory
@@ -1264,47 +1274,6 @@ literal|" instance to a LockFactory"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|lockFactory
-operator|instanceof
-name|NativeFSLockFactory
-condition|)
-block|{
-operator|(
-operator|(
-name|NativeFSLockFactory
-operator|)
-name|lockFactory
-operator|)
-operator|.
-name|setLockDir
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|lockFactory
-operator|instanceof
-name|SimpleFSLockFactory
-condition|)
-block|{
-operator|(
-operator|(
-name|SimpleFSLockFactory
-operator|)
-name|lockFactory
-operator|)
-operator|.
-name|setLockDir
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -1314,13 +1283,7 @@ name|lockFactory
 operator|=
 operator|new
 name|SimpleFSLockFactory
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
-name|doClearLockID
-operator|=
-literal|true
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1330,20 +1293,85 @@ argument_list|(
 name|lockFactory
 argument_list|)
 expr_stmt|;
+comment|// for filesystem based LockFactory, delete the lockPrefix, if the locks are placed
+comment|// in index dir. If no index dir is given, set ourselves
 if|if
 condition|(
-name|doClearLockID
+name|lockFactory
+operator|instanceof
+name|FSLockFactory
 condition|)
 block|{
-comment|// Clear the prefix because write.lock will be
-comment|// stored in our directory:
+specifier|final
+name|FSLockFactory
+name|lf
+init|=
+operator|(
+name|FSLockFactory
+operator|)
 name|lockFactory
+decl_stmt|;
+specifier|final
+name|File
+name|dir
+init|=
+name|lf
+operator|.
+name|getLockDir
+argument_list|()
+decl_stmt|;
+comment|// if the lock factory has no lockDir set, use the this directory as lockDir
+if|if
+condition|(
+name|dir
+operator|==
+literal|null
+condition|)
+block|{
+name|lf
+operator|.
+name|setLockDir
+argument_list|(
+name|this
+operator|.
+name|directory
+argument_list|)
+expr_stmt|;
+name|lf
 operator|.
 name|setLockPrefix
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|dir
+operator|.
+name|getCanonicalPath
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|this
+operator|.
+name|directory
+operator|.
+name|getCanonicalPath
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|lf
+operator|.
+name|setLockPrefix
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** Lists all files (not subdirectories) in the    *  directory.  This method never returns null (throws    *  {@link IOException} instead).    *    *  @throws NoSuchDirectoryException if the directory    *   does not exist, or does exist but is not a    *   directory.    *  @throws IOException if list() returns null */
