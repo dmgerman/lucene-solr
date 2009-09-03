@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provide a high level access point to distances  * Used by DistanceSortSource and DistanceQuery  *    *  */
+comment|/**  * Provide a high level access point to distances  * Used by DistanceSortSource and DistanceQuery  *    *<p><font color="red"><b>NOTE:</b> This API is still in  * flux and might change in incompatible ways in the next  * release.</font>  *  */
 end_comment
 
 begin_class

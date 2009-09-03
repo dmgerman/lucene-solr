@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Abstract base lat-lng class which can manipulate fixed point or floating  * point based coordinates. Instances are immutable.  *   * @see FloatLatLng  *   */
+comment|/**  * Abstract base lat-lng class which can manipulate fixed point or floating  * point based coordinates. Instances are immutable.  *   * @see FloatLatLng  *  *<p><font color="red"><b>NOTE:</b> This API is still in  * flux and might change in incompatible ways in the next  * release.</font>  */
 end_comment
 
 begin_class

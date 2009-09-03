@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Based on Sinusoidal Projections  * Project a latitude / longitude on a 2D cartisian map  *   */
+comment|/**  * Based on Sinusoidal Projections  * Project a latitude / longitude on a 2D cartisian map  *  *<p><font color="red"><b>NOTE:</b> This API is still in  * flux and might change in incompatible ways in the next  * release.</font>  */
 end_comment
 
 begin_class

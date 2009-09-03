@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Represents lat/lngs as fixed point numbers translated so that all  * world coordinates are in the first quadrant.  The same fixed point  * scale as is used for FixedLatLng is employed.  */
+comment|/**  * Represents lat/lngs as fixed point numbers translated so that all  * world coordinates are in the first quadrant.  The same fixed point  * scale as is used for FixedLatLng is employed.  *  *<p><font color="red"><b>NOTE:</b> This API is still in  * flux and might change in incompatible ways in the next  * release.</font>  */
 end_comment
 
 begin_class

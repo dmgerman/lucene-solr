@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on http://en.wikipedia.org/wiki/Geohash  */
+comment|/**  * Based on http://en.wikipedia.org/wiki/Geohash  *  *<p><font color="red"><b>NOTE:</b> This API is still in  * flux and might change in incompatible ways in the next  * release.</font>  */
 end_comment
 
 begin_class
