@@ -264,7 +264,7 @@ else|:
 literal|1
 argument_list|)
 decl_stmt|;
-comment|// assume atleast 1ms for any countable op
+comment|// assume at least 1ms for any countable op
 return|return
 name|rps
 return|;
@@ -294,7 +294,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a tab-seprated string containing this data.    * @param withMem if true, append also memory information    * @return The String    */
+comment|/**    * Return a tab-separated string containing this data.    * @param withMem if true, append also memory information    * @return The String    */
 DECL|method|toString
 specifier|public
 name|String

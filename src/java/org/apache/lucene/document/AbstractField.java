@@ -785,7 +785,7 @@ return|return
 name|storeTermVector
 return|;
 block|}
-comment|/**    * True iff terms are stored as term vector together with their offsets     * (start and end positon in source text).    */
+comment|/**    * True iff terms are stored as term vector together with their offsets     * (start and end position in source text).    */
 DECL|method|isStoreOffsetWithTermVector
 specifier|public
 name|boolean

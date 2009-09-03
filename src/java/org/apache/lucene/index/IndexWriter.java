@@ -786,7 +786,7 @@ specifier|volatile
 name|boolean
 name|poolReaders
 decl_stmt|;
-comment|/**    * Expert: returns a readonly reader containing all    * current updates.  Flush is called automatically.  This    * provides "near real-time" searching, in that changes    * made during an IndexWriter session can be made    * available for searching without closing the writer.    *    *<p>It's near real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * faster enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader suppports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you may    * want to call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    *<p><b>NOTE:</b> This API is experimental and might    * change in incompatible ways in the next release.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
+comment|/**    * Expert: returns a readonly reader containing all    * current updates.  Flush is called automatically.  This    * provides "near real-time" searching, in that changes    * made during an IndexWriter session can be made    * available for searching without closing the writer.    *    *<p>It's near real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * faster enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you may    * want to call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    *<p><b>NOTE:</b> This API is experimental and might    * change in incompatible ways in the next release.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
 DECL|method|getReader
 specifier|public
 name|IndexReader
@@ -804,7 +804,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Expert: like {@link #getReader}, except you can    *  specify which termInfosIndexDivisor should be used for    *  any newly opened readers.    * @param termInfosIndexDivisor Subsambles which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriter#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely. */
+comment|/** Expert: like {@link #getReader}, except you can    *  specify which termInfosIndexDivisor should be used for    *  any newly opened readers.    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriter#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely. */
 DECL|method|getReader
 specifier|public
 name|IndexReader
@@ -881,7 +881,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
-comment|/** Forcefully clear changes for the specifed segments,      *  and remove from the pool.   This is called on succesful merge. */
+comment|/** Forcefully clear changes for the specified segments,      *  and remove from the pool.   This is called on successful merge. */
 DECL|method|clear
 specifier|synchronized
 name|void
@@ -5590,7 +5590,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    * @see MaxFieldLength    */
+comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accommodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    * @see MaxFieldLength    */
 DECL|field|maxFieldLength
 specifier|private
 name|int
@@ -15384,7 +15384,7 @@ comment|// be able to do simply wait(), but, as a defense
 comment|// against thread timing hazards where notifyAll()
 comment|// falls to be called, we wait for at most 1 second
 comment|// and then return so caller can check if wait
-comment|// conditions are satisified:
+comment|// conditions are satisfied:
 try|try
 block|{
 name|wait

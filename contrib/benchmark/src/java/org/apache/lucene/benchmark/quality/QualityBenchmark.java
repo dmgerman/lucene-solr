@@ -183,7 +183,7 @@ name|maxResults
 init|=
 literal|1000
 decl_stmt|;
-comment|/**    * Create a QualityBenchmark.    * @param qqs quality queries to run.    * @param qqParser parser for turning QualityQueries into Lucene Queries.     * @param searcher index to be searched.    * @param docNameField name of field containg the document name.    *        This allows to extract the doc name for search results,    *        and is important for judging the results.      */
+comment|/**    * Create a QualityBenchmark.    * @param qqs quality queries to run.    * @param qqParser parser for turning QualityQueries into Lucene Queries.     * @param searcher index to be searched.    * @param docNameField name of field containing the document name.    *        This allows to extract the doc name for search results,    *        and is important for judging the results.      */
 DECL|method|QualityBenchmark
 specifier|public
 name|QualityBenchmark
@@ -464,7 +464,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|// extraction of first doc name we meassure also construction of doc name extractor, just in case.
+comment|// extraction of first doc name we measure also construction of doc name extractor, just in case.
 name|DocNameExtractor
 name|xt
 init|=

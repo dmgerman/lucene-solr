@@ -1039,7 +1039,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * @return the maxiumum number of highlighter fragments    * @deprecated Please define getBenchmarkHighlighter instead    */
+comment|/**    * @return the maximum number of highlighter fragments    * @deprecated Please define getBenchmarkHighlighter instead    */
 DECL|method|maxNumFragments
 specifier|final
 name|int

@@ -1218,7 +1218,7 @@ literal|0
 operator|:
 literal|"Fishy: no \"good\" queries!"
 assert|;
-comment|// take average: times go by all queries, other meassures go by "good" queries noly.
+comment|// take average: times go by all queries, other measures go by "good" queries only.
 name|avg
 operator|.
 name|searchTime

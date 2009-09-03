@@ -69,7 +69,7 @@ name|int
 name|_R2
 decl_stmt|;
 comment|//TODO convert to internal
-comment|/*    * Stemms the given term to an unique<tt>discriminator</tt>.    *    * @param term The term that should be stemmed.    * @return Discriminator for<tt>term</tt>    */
+comment|/*    * Stems the given term to an unique<tt>discriminator</tt>.    *    * @param term The term that should be stemmed.    * @return Discriminator for<tt>term</tt>    */
 DECL|method|stem
 specifier|public
 name|String

@@ -59,7 +59,7 @@ specifier|public
 name|BrazilianStemmer
 parameter_list|()
 block|{ 	}
-comment|/** 	 * Stemms the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
+comment|/** 	 * Stems the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
 DECL|method|stem
 specifier|protected
 name|String
@@ -301,7 +301,7 @@ literal|'u'
 operator|)
 return|;
 block|}
-comment|/** 	 * Gets R1    *    * R1 - is the region after the first non-vowel follwing a vowel,    *      or is the null region at the end of the word if there is    *      no such non-vowel.    *    * @return null or a string representing R1 	 */
+comment|/** 	 * Gets R1    *    * R1 - is the region after the first non-vowel following a vowel,    *      or is the null region at the end of the word if there is    *      no such non-vowel.    *    * @return null or a string representing R1 	 */
 DECL|method|getR1
 specifier|private
 name|String
@@ -439,7 +439,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Gets RV    *    * RV - IF the second letter is a consoant, RV is the region after    *      the next following vowel,    *    *      OR if the first two letters are vowels, RV is the region    *      after the next consoant,    *    *      AND otherwise (consoant-vowel case) RV is the region after    *      the third letter.    *    *      BUT RV is the end of the word if this positions cannot be    *      found.    *    * @return null or a string representing RV 	 */
+comment|/** 	 * Gets RV    *    * RV - IF the second letter is a consonant, RV is the region after    *      the next following vowel,    *    *      OR if the first two letters are vowels, RV is the region    *      after the next consonant,    *    *      AND otherwise (consonant-vowel case) RV is the region after    *      the third letter.    *    *      BUT RV is the end of the word if this positions cannot be    *      found.    *    * @return null or a string representing RV 	 */
 DECL|method|getRV
 specifier|private
 name|String
@@ -476,7 +476,7 @@ argument_list|()
 operator|-
 literal|1
 expr_stmt|;
-comment|// RV - IF the second letter is a consoant, RV is the region after
+comment|// RV - IF the second letter is a consonant, RV is the region after
 comment|//      the next following vowel,
 if|if
 condition|(
@@ -549,7 +549,7 @@ return|;
 block|}
 block|}
 comment|// RV - OR if the first two letters are vowels, RV is the region
-comment|//      after the next consoant,
+comment|//      after the next consonant,
 if|if
 condition|(
 operator|(
@@ -630,7 +630,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// RV - AND otherwise (consoant-vowel case) RV is the region after
+comment|// RV - AND otherwise (consonant-vowel case) RV is the region after
 comment|//      the third letter.
 if|if
 condition|(
@@ -1498,7 +1498,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Standart suffix removal.    * Search for the longest among the following suffixes, and perform    * the following actions:    *    * @return false if no ending was removed 	 */
+comment|/** 	 * Standard suffix removal.    * Search for the longest among the following suffixes, and perform    * the following actions:    *    * @return false if no ending was removed 	 */
 DECL|method|step1
 specifier|private
 name|boolean
@@ -1514,7 +1514,7 @@ condition|)
 return|return
 literal|false
 return|;
-comment|// suffix lenght = 7
+comment|// suffix length = 7
 if|if
 condition|(
 name|suffix
@@ -1547,7 +1547,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|// suffix lenght = 6
+comment|// suffix length = 6
 if|if
 condition|(
 name|CT
@@ -1801,7 +1801,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 5
+comment|// suffix length = 5
 if|if
 condition|(
 name|CT
@@ -2149,7 +2149,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 4
+comment|// suffix length = 4
 if|if
 condition|(
 name|CT
@@ -2592,7 +2592,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 3
+comment|// suffix length = 3
 if|if
 condition|(
 name|CT
@@ -3026,7 +3026,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 6
+comment|// suffix length = 6
 if|if
 condition|(
 name|RV
@@ -3337,7 +3337,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 5
+comment|// suffix length = 5
 if|if
 condition|(
 name|RV
@@ -3970,7 +3970,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 4
+comment|// suffix length = 4
 if|if
 condition|(
 name|RV
@@ -4925,7 +4925,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 3
+comment|// suffix length = 3
 if|if
 condition|(
 name|RV
@@ -5236,7 +5236,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|// suffix lenght = 2
+comment|// suffix length = 2
 if|if
 condition|(
 name|RV

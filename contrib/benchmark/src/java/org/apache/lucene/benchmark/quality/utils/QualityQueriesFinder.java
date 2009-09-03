@@ -153,7 +153,7 @@ specifier|private
 name|Directory
 name|dir
 decl_stmt|;
-comment|/**    * Constrctor over a directory containing the index.    * @param dir directory containing the index we search for the quality test.     */
+comment|/**    * Constructor over a directory containing the index.    * @param dir directory containing the index we search for the quality test.     */
 DECL|method|QualityQueriesFinder
 specifier|private
 name|QualityQueriesFinder

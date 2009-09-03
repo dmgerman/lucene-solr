@@ -88,7 +88,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * a constructor.    *     * @param preTags aray of pre-tags for markup terms.    * @param postTags array of post-tags for markup terms.    */
+comment|/**    * a constructor.    *     * @param preTags array of pre-tags for markup terms.    * @param postTags array of post-tags for markup terms.    */
 DECL|method|ScoreOrderFragmentsBuilder
 specifier|public
 name|ScoreOrderFragmentsBuilder

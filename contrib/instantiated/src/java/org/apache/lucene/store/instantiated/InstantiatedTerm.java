@@ -240,7 +240,7 @@ name|InstantiatedTermDocumentInformation
 index|[]
 name|associatedDocuments
 decl_stmt|;
-comment|/**    * Meta data per document in wich this term is occuring.    * Ordered by document number.    *    * @return Meta data per document in wich this term is occuring.    */
+comment|/**    * Meta data per document in which this term is occurring.    * Ordered by document number.    *    * @return Meta data per document in which this term is occurring.    */
 DECL|method|getAssociatedDocuments
 specifier|public
 name|InstantiatedTermDocumentInformation
@@ -252,7 +252,7 @@ return|return
 name|associatedDocuments
 return|;
 block|}
-comment|/**    * Meta data per document in wich this term is occuring.    * Ordered by document number.    *    * @param associatedDocuments meta data per document in wich this term is occuring, ordered by document number    */
+comment|/**    * Meta data per document in which this term is occurring.    * Ordered by document number.    *    * @param associatedDocuments meta data per document in which this term is occurring, ordered by document number    */
 DECL|method|setAssociatedDocuments
 name|void
 name|setAssociatedDocuments
@@ -566,7 +566,7 @@ decl_stmt|;
 comment|// A typical binarySearch algorithm uses pivot = (min + max) / 2.
 comment|// The pivot we use here tries to be smarter and to choose a pivot close to the expectable location of the key.
 comment|// This reduces dramatically the number of steps needed to get to the key.
-comment|// However, it does not work well with a logaritmic distribution of values, for instance.
+comment|// However, it does not work well with a logarithmic distribution of values, for instance.
 comment|// When the key is not found quickly the smart way, we switch to the standard pivot.
 if|if
 condition|(
@@ -716,7 +716,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Navigates to the view of this occurances of this term in a specific document.     *    * This method is only used by InstantiatedIndex(IndexReader) and    * should not be optimized for less CPU at the cost of more RAM.    *    * @param documentNumber the n:th document in the index    * @return view of this term from specified document    */
+comment|/**    * Navigates to the view of this occurrences of this term in a specific document.     *    * This method is only used by InstantiatedIndex(IndexReader) and    * should not be optimized for less CPU at the cost of more RAM.    *    * @param documentNumber the n:th document in the index    * @return view of this term from specified document    */
 DECL|method|getAssociatedDocument
 specifier|public
 name|InstantiatedTermDocumentInformation

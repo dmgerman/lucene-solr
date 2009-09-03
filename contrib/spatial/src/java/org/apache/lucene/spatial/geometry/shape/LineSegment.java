@@ -100,7 +100,7 @@ name|p2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Finds the distance of a specified point from the line segment and the    * closest point on the segement to the specified point.    *     * @param P    *            Test point.    * @param closestPt    *            (Return) Closest point on the segment to c.    *     * @return Returns the distance from P to the closest point on the segment.    */
+comment|/**    * Finds the distance of a specified point from the line segment and the    * closest point on the segment to the specified point.    *     * @param P    *            Test point.    * @param closestPt    *            (Return) Closest point on the segment to c.    *     * @return Returns the distance from P to the closest point on the segment.    */
 DECL|method|distance
 specifier|public
 name|double

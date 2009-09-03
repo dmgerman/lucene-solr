@@ -460,7 +460,7 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-comment|// no meaning if agregating tasks of different ruond.
+comment|// no meaning if aggregating tasks of different round.
 block|}
 block|}
 comment|/* (non-Javadoc)    * @see java.lang.Object#clone()    */

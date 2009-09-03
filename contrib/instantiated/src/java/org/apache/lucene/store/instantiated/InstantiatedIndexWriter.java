@@ -1655,7 +1655,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|// create association term document infomation
+comment|// create association term document information
 comment|//
 comment|// [Term]-- {0..*} | {0..* ordered} --(field)[Document]
 comment|//
@@ -1786,7 +1786,7 @@ argument_list|,
 name|payloads
 argument_list|)
 decl_stmt|;
-comment|// todo optimize, this should be chached and updated to array in batches rather than appending the array once for every position!
+comment|// todo optimize, this should be cached and updated to array in batches rather than appending the array once for every position!
 name|InstantiatedTermDocumentInformation
 index|[]
 name|associatedDocuments
@@ -2247,7 +2247,7 @@ range|:
 name|dirtyTerms
 control|)
 block|{
-comment|// todo optimize, i belive this is useless, that the natural order is document number?
+comment|// todo optimize, i believe this is useless, that the natural order is document number?
 name|Arrays
 operator|.
 name|sort

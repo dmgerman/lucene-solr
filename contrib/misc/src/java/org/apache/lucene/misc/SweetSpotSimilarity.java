@@ -264,7 +264,7 @@ operator|=
 name|xoffset
 expr_stmt|;
 block|}
-comment|/**    * Sets the default function variables used by lengthNorm when no field    * specifc variables have been set.    *    * @see #lengthNorm    */
+comment|/**    * Sets the default function variables used by lengthNorm when no field    * specific variables have been set.    *    * @see #lengthNorm    */
 DECL|method|setLengthNormFactors
 specifier|public
 name|void
@@ -687,7 +687,7 @@ name|tf_min
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a hyperbolic tangent function that allows for a hard max...    *    *<code>    * tf(x)=min+(max-min)/2*(((base**(x-xoffset)-base**-(x-xoffset))/(base**(x-xoffset)+base**-(x-xoffset)))+1)    *</code>    *    *<p>    * This code is provided as a convincience for subclasses that want    * to use a hyperbolic tf function.    *</p>    *    * @see #setHyperbolicTfFactors    */
+comment|/**    * Uses a hyperbolic tangent function that allows for a hard max...    *    *<code>    * tf(x)=min+(max-min)/2*(((base**(x-xoffset)-base**-(x-xoffset))/(base**(x-xoffset)+base**-(x-xoffset)))+1)    *</code>    *    *<p>    * This code is provided as a convenience for subclasses that want    * to use a hyperbolic tf function.    *</p>    *    * @see #setHyperbolicTfFactors    */
 DECL|method|hyperbolicTf
 specifier|public
 name|float

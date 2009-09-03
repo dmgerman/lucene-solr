@@ -490,7 +490,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Expert: adds all terms occuring in this query to the terms set. Only    * works if this query is in its {@link #rewrite rewritten} form.    *     * @throws UnsupportedOperationException if this query is not yet rewritten    */
+comment|/**    * Expert: adds all terms occurring in this query to the terms set. Only    * works if this query is in its {@link #rewrite rewritten} form.    *     * @throws UnsupportedOperationException if this query is not yet rewritten    */
 DECL|method|extractTerms
 specifier|public
 name|void

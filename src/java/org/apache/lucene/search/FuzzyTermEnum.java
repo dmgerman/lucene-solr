@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Subclass of FilteredTermEnum for enumerating all terms that are similiar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
+comment|/** Subclass of FilteredTermEnum for enumerating all terms that are similar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
 end_comment
 
 begin_class
@@ -77,7 +77,7 @@ name|TYPICAL_LONGEST_WORD_IN_INDEX
 init|=
 literal|19
 decl_stmt|;
-comment|/* Allows us save time required to create a new array    * everytime similarity is called.    */
+comment|/* Allows us save time required to create a new array    * every time similarity is called.    */
 DECL|field|d
 specifier|private
 name|int
@@ -570,7 +570,7 @@ name|TYPICAL_LONGEST_WORD_IN_INDEX
 index|]
 return|;
 block|}
-comment|/**    *<p>Similarity returns a number that is 1.0f or less (including negative numbers)    * based on how similar the Term is compared to a target term.  It returns    * exactly 0.0f when    *<pre>    *    editDistance&lt; maximumEditDistance</pre>    * Otherwise it returns:    *<pre>    *    1 - (editDistance / length)</pre>    * where length is the length of the shortest term (text or target) including a    * prefix that are identical and editDistance is the Levenshtein distance for    * the two words.</p>    *    *<p>Embedded within this algorithm is a fail-fast Levenshtein distance    * algorithm.  The fail-fast algorithm differs from the standard Levenshtein    * distance algorithm in that it is aborted if it is discovered that the    * mimimum distance between the words is greater than some threshold.    *    *<p>To calculate the maximum distance threshold we use the following formula:    *<pre>    *     (1 - minimumSimilarity) * length</pre>    * where length is the shortest term including any prefix that is not part of the    * similarity comparision.  This formula was derived by solving for what maximum value    * of distance returns false for the following statements:    *<pre>    *   similarity = 1 - ((float)distance / (float) (prefixLength + Math.min(textlen, targetlen)));    *   return (similarity> minimumSimilarity);</pre>    * where distance is the Levenshtein distance for the two words.    *</p>    *<p>Levenshtein distance (also known as edit distance) is a measure of similiarity    * between two strings where the distance is measured as the number of character    * deletions, insertions or substitutions required to transform one string to    * the other string.    * @param target the target word or phrase    * @return the similarity,  0.0 or less indicates that it matches less than the required    * threshold and 1.0 indicates that the text and target are identical    */
+comment|/**    *<p>Similarity returns a number that is 1.0f or less (including negative numbers)    * based on how similar the Term is compared to a target term.  It returns    * exactly 0.0f when    *<pre>    *    editDistance&lt; maximumEditDistance</pre>    * Otherwise it returns:    *<pre>    *    1 - (editDistance / length)</pre>    * where length is the length of the shortest term (text or target) including a    * prefix that are identical and editDistance is the Levenshtein distance for    * the two words.</p>    *    *<p>Embedded within this algorithm is a fail-fast Levenshtein distance    * algorithm.  The fail-fast algorithm differs from the standard Levenshtein    * distance algorithm in that it is aborted if it is discovered that the    * minimum distance between the words is greater than some threshold.    *    *<p>To calculate the maximum distance threshold we use the following formula:    *<pre>    *     (1 - minimumSimilarity) * length</pre>    * where length is the shortest term including any prefix that is not part of the    * similarity comparison.  This formula was derived by solving for what maximum value    * of distance returns false for the following statements:    *<pre>    *   similarity = 1 - ((float)distance / (float) (prefixLength + Math.min(textlen, targetlen)));    *   return (similarity> minimumSimilarity);</pre>    * where distance is the Levenshtein distance for the two words.    *</p>    *<p>Levenshtein distance (also known as edit distance) is a measure of similarity    * between two strings where the distance is measured as the number of character    * deletions, insertions or substitutions required to transform one string to    * the other string.    * @param target the target word or phrase    * @return the similarity,  0.0 or less indicates that it matches less than the required    * threshold and 1.0 indicates that the text and target are identical    */
 DECL|method|similarity
 specifier|private
 specifier|synchronized
@@ -694,7 +694,7 @@ comment|//just adding the characters of m to n or vice-versa results in
 comment|//too many edits
 comment|//for example "pre" length is 3 and "prefixes" length is 8.  We can see that
 comment|//given this optimal circumstance, the edit distance cannot be less than 5.
-comment|//which is 8-3 or more precisesly Math.abs(3-8).
+comment|//which is 8-3 or more precisely Math.abs(3-8).
 comment|//if our maximum edit distance is 4, then we can discard this word
 comment|//without looking at it.
 return|return

@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Perf run configuration properties.  *<p>  * Numeric peroperty containing ":", e.g. "10:100:5" is interpreted   * as array of numeric values. It is extracted once, on first use, and   * maintain a round number to return the appropriate value.  *<p>  * The config property "work.dir" tells where is the root of   * docs data dirs and indexes dirs. It is set to either of:<ul>  *<li>value supplied for it in the alg file;</li>  *<li>otherwise, value of System property "benchmark.work.dir";</li>  *<li>otherwise, "work".</li>  *</ul>  */
+comment|/**  * Perf run configuration properties.  *<p>  * Numeric property containing ":", e.g. "10:100:5" is interpreted   * as array of numeric values. It is extracted once, on first use, and   * maintain a round number to return the appropriate value.  *<p>  * The config property "work.dir" tells where is the root of   * docs data dirs and indexes dirs. It is set to either of:<ul>  *<li>value supplied for it in the alg file;</li>  *<li>otherwise, value of System property "benchmark.work.dir";</li>  *<li>otherwise, "work".</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -453,7 +453,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Create config without algorithm - usefull for a programmatic perf test.    * @param props - configuration properties.    * @throws IOException    */
+comment|/**    * Create config without algorithm - useful for a programmatic perf test.    * @param props - configuration properties.    * @throws IOException    */
 DECL|method|Config
 specifier|public
 name|Config
@@ -608,7 +608,7 @@ name|dflt
 argument_list|)
 return|;
 block|}
-comment|/**    * Set a property.    * Note: once a multiple values property is set, it can no longer be modified.    * @param name name of property.    * @param value either single or multiple propery value (multple values are separated by ":")    * @throws Exception     */
+comment|/**    * Set a property.    * Note: once a multiple values property is set, it can no longer be modified.    * @param name name of property.    * @param value either single or multiple property value (multiple values are separated by ":")    * @throws Exception     */
 DECL|method|set
 specifier|public
 name|void
@@ -959,7 +959,7 @@ name|length
 index|]
 return|;
 block|}
-comment|/**    * Return a boolean property.    * If the property contain ":", e.g. "true.true.false", it is interpreted     * as array of boleans. It is extracted once, on first call    * to get() it, and a by-round-value is returned.     * @param name name of property    * @param dflt default value    * @return a int property.    */
+comment|/**    * Return a boolean property.    * If the property contain ":", e.g. "true.true.false", it is interpreted     * as array of booleans. It is extracted once, on first call    * to get() it, and a by-round-value is returned.     * @param name name of property    * @param dflt default value    * @return a int property.    */
 DECL|method|get
 specifier|public
 name|boolean

@@ -319,7 +319,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * A scorer that (simply) matches all documents, and scores each document with     * the value of the value soure in effect. As an example, if the value source     * is a (cached) field source, then value of that field in that document will     * be used. (assuming field is indexed for this doc, with a single token.)       */
+comment|/**    * A scorer that (simply) matches all documents, and scores each document with     * the value of the value source in effect. As an example, if the value source     * is a (cached) field source, then value of that field in that document will     * be used. (assuming field is indexed for this doc, with a single token.)       */
 DECL|class|ValueSourceScorer
 specifier|private
 class|class

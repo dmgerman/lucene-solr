@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Provides access to stored term vector of   *  a document field.  The vector consists of the name of the field, an array of the terms tha occur in the field of the  * {@link org.apache.lucene.document.Document} and a parallel array of frequencies.  Thus, getTermFrequencies()[5] corresponds with the  * frequency of getTerms()[5], assuming there are at least 5 terms in the Document.  */
+comment|/** Provides access to stored term vector of   *  a document field.  The vector consists of the name of the field, an array of the terms that occur in the field of the  * {@link org.apache.lucene.document.Document} and a parallel array of frequencies.  Thus, getTermFrequencies()[5] corresponds with the  * frequency of getTerms()[5], assuming there are at least 5 terms in the Document.  */
 end_comment
 
 begin_interface

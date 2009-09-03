@@ -74,7 +74,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a Character instance representing the given char value    *     * @param c    *          a char value    * @return a Charater representation of the given char value.    */
+comment|/**    * Returns a Character instance representing the given char value    *     * @param c    *          a char value    * @return a Character representation of the given char value.    */
 DECL|method|valueOf
 specifier|public
 specifier|static

@@ -685,7 +685,7 @@ name|getPayloadScore
 argument_list|()
 return|;
 block|}
-comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overriden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException        *         * @see #score()        */
+comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overridden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException        *         * @see #score()        */
 DECL|method|getSpanScore
 specifier|protected
 name|float

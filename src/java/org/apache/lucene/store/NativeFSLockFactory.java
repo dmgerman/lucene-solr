@@ -671,7 +671,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|// On Windows, we can get intermittant "Access
+comment|// On Windows, we can get intermittent "Access
 comment|// Denied" here.  So, we treat this as failure to
 comment|// acquire the lock, but, store the reason in case
 comment|// there is in fact a real error case.
@@ -717,7 +717,7 @@ name|e
 parameter_list|)
 block|{
 comment|// At least on OS X, we will sometimes get an
-comment|// intermittant "Permission Denied" IOException,
+comment|// intermittent "Permission Denied" IOException,
 comment|// which seems to simply mean "you failed to get
 comment|// the lock".  But other IOExceptions could be
 comment|// "permanent" (eg, locking is not supported via

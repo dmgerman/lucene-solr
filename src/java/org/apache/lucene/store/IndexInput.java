@@ -715,7 +715,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Closes the stream to futher operations. */
+comment|/** Closes the stream to further operations. */
 DECL|method|close
 specifier|public
 specifier|abstract

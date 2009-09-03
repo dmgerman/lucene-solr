@@ -137,7 +137,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a string representation of a doc value, as reuired for Explanations.    */
+comment|/**    * Return a string representation of a doc value, as required for Explanations.    */
 DECL|method|toString
 specifier|public
 specifier|abstract

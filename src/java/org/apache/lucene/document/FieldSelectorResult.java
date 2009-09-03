@@ -43,7 +43,7 @@ name|FieldSelectorResult
 implements|implements
 name|Serializable
 block|{
-comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encounterd.      *  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.       */
+comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encountered.      *  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.       */
 DECL|field|LOAD
 specifier|public
 specifier|transient

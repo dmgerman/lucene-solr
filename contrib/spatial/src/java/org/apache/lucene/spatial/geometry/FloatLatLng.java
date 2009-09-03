@@ -71,7 +71,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Illegal lattitude value "
+literal|"Illegal latitude value "
 operator|+
 name|lat
 argument_list|)

@@ -884,7 +884,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Forms a Lucene index based on the 2 maps.      *      * @param indexDir the direcotry where the index should be created      * @param word2Nums      * @param num2Words      */
+comment|/**      * Forms a Lucene index based on the 2 maps.      *      * @param indexDir the directory where the index should be created      * @param word2Nums      * @param num2Words      */
 DECL|method|index
 specifier|private
 specifier|static

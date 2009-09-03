@@ -217,7 +217,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a CustomScoreQuery over input subQuery and a {@link ValueSourceQuery}.    * @param subQuery the sub query whose score is being customed. Must not be null.    * @param valSrcQuery a value source query whose scores are used in the custom score    * computation. For most simple/convineient use case this would be a     * {@link org.apache.lucene.search.function.FieldScoreQuery FieldScoreQuery}.    * This parameter is optional - it can be null.    */
+comment|/**    * Create a CustomScoreQuery over input subQuery and a {@link ValueSourceQuery}.    * @param subQuery the sub query whose score is being customized. Must not be null.    * @param valSrcQuery a value source query whose scores are used in the custom score    * computation. For most simple/convenient use case this would be a     * {@link org.apache.lucene.search.function.FieldScoreQuery FieldScoreQuery}.    * This parameter is optional - it can be null.    */
 DECL|method|CustomScoreQuery
 specifier|public
 name|CustomScoreQuery

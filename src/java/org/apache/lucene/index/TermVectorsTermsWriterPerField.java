@@ -457,7 +457,7 @@ name|doc
 operator|.
 name|tvf
 decl_stmt|;
-comment|// This is called once, after inverting all occurences
+comment|// This is called once, after inverting all occurrences
 comment|// of a given field in the doc.  At this point we flush
 comment|// our hash into the DocWriter.
 assert|assert

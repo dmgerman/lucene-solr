@@ -1697,7 +1697,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Finds the ending among the given class of endings, then checks if this ending was      * preceded by any of given predessors, and if so, removes it from stemming zone.      * Creation date: (17/03/2002 8:18:34 PM)      */
+comment|/**      * Finds the ending among the given class of endings, then checks if this ending was      * preceded by any of given predecessors, and if so, removes it from stemming zone.      * Creation date: (17/03/2002 8:18:34 PM)      */
 DECL|method|findAndRemoveEnding
 specifier|private
 name|boolean

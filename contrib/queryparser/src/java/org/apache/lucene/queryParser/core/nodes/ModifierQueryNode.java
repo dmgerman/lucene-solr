@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ModifierQueryNode} indicates the modifier value (+,-,?,NONE) for  * each term on the query string for example "+t1 -t2 t3" will have a tree of  *<BooleanQueryNode><ModifierQueryNode modifier="MOD_REQ"><t1/>  *</ModifierQueryNode><ModifierQueryNode modifier="MOD_NOT"><t2/>  *</ModifierQueryNode><t3/></BooleanQueryNode>  *   */
+comment|/**  * A {@link ModifierQueryNode} indicates the modifier value (+,-,?,NONE) for  * each term on the query string. For example "+t1 -t2 t3" will have a tree of:  *<blockquote>  *&lt;BooleanQueryNode&gt;&lt;ModifierQueryNode modifier="MOD_REQ"&gt;&lt;t1/&gt;  *&lt;/ModifierQueryNode&gt;&lt;ModifierQueryNode modifier="MOD_NOT"&gt;&lt;t2/&gt;  *&lt;/ModifierQueryNode&gt;&lt;t3/&gt;&lt;/BooleanQueryNode&gt;  *</blockquote>  */
 end_comment
 
 begin_class

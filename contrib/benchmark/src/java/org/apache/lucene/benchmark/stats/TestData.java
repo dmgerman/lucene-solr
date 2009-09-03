@@ -860,7 +860,7 @@ operator|.
 name|elapsed
 operator|)
 expr_stmt|;
-comment|// assume atleast 1ms for any countable op
+comment|// assume at least 1ms for any countable op
 name|dc
 operator|.
 name|recordCount
@@ -1082,7 +1082,7 @@ operator|.
 name|total
 operator|)
 expr_stmt|;
-comment|// assume atleast 1ms for any countable op
+comment|// assume at least 1ms for any countable op
 block|}
 name|it
 operator|=
@@ -1741,7 +1741,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|// padd number from left
+comment|// pad number from left
 comment|// numFracDigits must be 0 or 1.
 DECL|method|format
 specifier|static
@@ -1790,7 +1790,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// padd number from left
+comment|// pad number from left
 DECL|method|format
 specifier|static
 name|String
@@ -1827,7 +1827,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// padd string from right
+comment|// pad string from right
 DECL|method|format
 specifier|static
 name|String
@@ -2127,7 +2127,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**      * Similar to {@link #getAll(java.io.File[], org.apache.lucene.analysis.Analyzer[])} but only uses      * maxBufferedDocs of 10 and 100 and same for mergeFactor, thus reducing the number of permutations significantly.      * It also only uses compund file and optimize is always true.      *      * @param sources      * @param analyzers      * @return An Array of {@link TestData}      */
+comment|/**      * Similar to {@link #getAll(java.io.File[], org.apache.lucene.analysis.Analyzer[])} but only uses      * maxBufferedDocs of 10 and 100 and same for mergeFactor, thus reducing the number of permutations significantly.      * It also only uses compound file and optimize is always true.      *      * @param sources      * @param analyzers      * @return An Array of {@link TestData}      */
 DECL|method|getTestDataMinMaxMergeAndMaxBuffered
 specifier|public
 specifier|static

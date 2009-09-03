@@ -232,7 +232,7 @@ return|return
 name|tierVerticalPosDivider
 return|;
 block|}
-comment|/**    * TierBoxId is latitude box id + longitude box id    * where latitude box id, and longitude box id are transposded in to position    * coordinates.    *     * @param latitude    * @param longitude    */
+comment|/**    * TierBoxId is latitude box id + longitude box id    * where latitude box id, and longitude box id are transposed in to position    * coordinates.    *     * @param latitude    * @param longitude    */
 DECL|method|getTierBoxId
 specifier|public
 name|double

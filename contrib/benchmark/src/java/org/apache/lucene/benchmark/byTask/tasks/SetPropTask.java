@@ -37,7 +37,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Set a performance test configuration property.  * A property may have a single value, or a sequence of values, seprated by ":".   * If a sequence of values is specified, each time a new round starts,   * the next (cyclic) value is taken.    *<br>Other side effects: none.  *<br>Takes mandatory param: "name,value" pair.   * @see org.apache.lucene.benchmark.byTask.tasks.NewRoundTask  */
+comment|/**  * Set a performance test configuration property.  * A property may have a single value, or a sequence of values, separated by ":".   * If a sequence of values is specified, each time a new round starts,   * the next (cyclic) value is taken.    *<br>Other side effects: none.  *<br>Takes mandatory param: "name,value" pair.   * @see org.apache.lucene.benchmark.byTask.tasks.NewRoundTask  */
 end_comment
 
 begin_class

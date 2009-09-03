@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Expert: Scoring functionality for phrase queries.  *<br>A document is considered matching if it contains the phrase-query terms    * at "valid" positons. What "valid positions" are  * depends on the type of the phrase query: for an exact phrase query terms are required   * to appear in adjacent locations, while for a sloppy phrase query some distance between   * the terms is allowed. The abstract method {@link #phraseFreq()} of extending classes  * is invoked for each document containing all the phrase query terms, in order to   * compute the frequency of the phrase query in that document. A non zero frequency  * means a match.   */
+comment|/** Expert: Scoring functionality for phrase queries.  *<br>A document is considered matching if it contains the phrase-query terms    * at "valid" positions. What "valid positions" are  * depends on the type of the phrase query: for an exact phrase query terms are required   * to appear in adjacent locations, while for a sloppy phrase query some distance between   * the terms is allowed. The abstract method {@link #phraseFreq()} of extending classes  * is invoked for each document containing all the phrase query terms, in order to   * compute the frequency of the phrase query in that document. A non zero frequency  * means a match.   */
 end_comment
 
 begin_class
@@ -100,7 +100,7 @@ specifier|private
 name|float
 name|freq
 decl_stmt|;
-comment|//prhase frequency in current doc as computed by phraseFreq().
+comment|//phrase frequency in current doc as computed by phraseFreq().
 DECL|method|PhraseScorer
 name|PhraseScorer
 parameter_list|(

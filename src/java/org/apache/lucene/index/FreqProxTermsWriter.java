@@ -307,7 +307,7 @@ name|void
 name|abort
 parameter_list|()
 block|{}
-comment|// TODO: would be nice to factor out morme of this, eg the
+comment|// TODO: would be nice to factor out more of this, eg the
 comment|// FreqProxFieldMergeState, and code to visit all Fields
 comment|// under the same FieldInfo together, up into TermsHash*.
 comment|// Other writers would presumably share alot of this...

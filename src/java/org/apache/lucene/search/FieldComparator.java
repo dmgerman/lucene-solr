@@ -1715,7 +1715,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Sorts by descending relevance.  NOTE: if you are    *  sorting only by descending relevance and then    *  secondarily by ascending docID, peformance is faster    *  using {@link TopScoreDocCollector} directly (which {@link    *  IndexSearcher#search} uses when no {@link Sort} is    *  specified). */
+comment|/** Sorts by descending relevance.  NOTE: if you are    *  sorting only by descending relevance and then    *  secondarily by ascending docID, performance is faster    *  using {@link TopScoreDocCollector} directly (which {@link    *  IndexSearcher#search} uses when no {@link Sort} is    *  specified). */
 DECL|class|RelevanceComparator
 specifier|public
 specifier|static

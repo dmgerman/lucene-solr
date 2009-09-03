@@ -918,7 +918,7 @@ name|readers
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** This contructor is only used for {@link #reopen()} */
+comment|/** This constructor is only used for {@link #reopen()} */
 DECL|method|DirectoryReader
 name|DirectoryReader
 parameter_list|(

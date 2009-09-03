@@ -298,7 +298,7 @@ name|minNrShouldMatch
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * Gets the minimum number of the optional BooleanClauses    * which must be satisifed.    */
+comment|/**    * Gets the minimum number of the optional BooleanClauses    * which must be satisfied.    */
 DECL|method|getMinimumNumberShouldMatch
 specifier|public
 name|int

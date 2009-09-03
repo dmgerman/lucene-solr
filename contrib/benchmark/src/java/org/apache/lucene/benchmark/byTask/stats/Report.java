@@ -103,7 +103,7 @@ return|return
 name|outOf
 return|;
 block|}
-comment|/**    * Returns number of lines in the reoprt.    */
+comment|/**    * Returns number of lines in the report.    */
 DECL|method|getSize
 specifier|public
 name|int

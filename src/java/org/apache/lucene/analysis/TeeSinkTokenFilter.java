@@ -275,7 +275,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<code>TeeSinkTokenFilter</code> passes all tokens to the added sinks    * when itsself is consumed. To be sure, that all tokens from the input    * stream are passed to the sinks, you can call this methods.    * This instance is exhausted after this, but all sinks are instant available.    */
+comment|/**    *<code>TeeSinkTokenFilter</code> passes all tokens to the added sinks    * when itself is consumed. To be sure, that all tokens from the input    * stream are passed to the sinks, you can call this methods.    * This instance is exhausted after this, but all sinks are instant available.    */
 DECL|method|consumeAllTokens
 specifier|public
 name|void

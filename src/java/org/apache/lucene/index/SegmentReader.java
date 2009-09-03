@@ -374,7 +374,7 @@ block|{
 comment|// Counts how many other reader share the core objects
 comment|// (freqStream, proxStream, tis, etc.) of this reader;
 comment|// when coreRef drops to 0, these core objects may be
-comment|// closed.  A given insance of SegmentReader may be
+comment|// closed.  A given instance of SegmentReader may be
 comment|// closed, even those it shares core objects with other
 comment|// SegmentReaders:
 DECL|field|ref
@@ -3502,7 +3502,7 @@ operator|!
 name|success
 condition|)
 block|{
-comment|// An exception occured during reopen, we have to decRef the norms
+comment|// An exception occurred during reopen, we have to decRef the norms
 comment|// that we incRef'ed already and close singleNormsStream and FieldsReader
 name|clone
 operator|.

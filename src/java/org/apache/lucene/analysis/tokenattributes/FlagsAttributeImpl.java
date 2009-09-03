@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This attribute can be used to pass different flags down the tokenizer chain,  * e. g. from one TokenFilter to another one.   */
+comment|/**  * This attribute can be used to pass different flags down the tokenizer chain,  * eg from one TokenFilter to another one.   */
 end_comment
 
 begin_class

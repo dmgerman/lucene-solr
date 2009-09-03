@@ -53,7 +53,7 @@ comment|/**  * Copyright 2006 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * There is one instance of this class per indexed term in a document  * and it contains the meta data about each occurance of a term in a docment.  *  * It is the inner glue of the inverted index.  *  *<pre>  * [Term]-- {0..*} | {0..*} --(field)[Document]  *&lt;&lt;ordered>>  *                 |  *    [TermDocumentInformation]  *       +payloads  *       +termPositions  *       +termOffsets  *</pre>  *   */
+comment|/**  * There is one instance of this class per indexed term in a document  * and it contains the meta data about each occurrence of a term in a document.  *  * It is the inner glue of the inverted index.  *  *<pre>  * [Term]-- {0..*} | {0..*} --(field)[Document]  *&lt;&lt;ordered>>  *                 |  *    [TermDocumentInformation]  *       +payloads  *       +termPositions  *       +termOffsets  *</pre>  *   */
 end_comment
 
 begin_class

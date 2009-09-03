@@ -626,7 +626,7 @@ operator|=
 name|threshold
 expr_stmt|;
 block|}
-comment|/**    * Returns the current value of the threshold used for adding the Winkler bonus.    * The deafult value is 0.7.    * @return the current value of the threshold    */
+comment|/**    * Returns the current value of the threshold used for adding the Winkler bonus.    * The default value is 0.7.    * @return the current value of the threshold    */
 DECL|method|getThreshold
 specifier|public
 name|float

@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filter caching singleton.  It can be used   * to save filters locally for reuse.  * This class makes it possble to cache Filters even when using RMI, as it  * keeps the cache on the seaercher side of the RMI connection.  *   * Also could be used as a persistent storage for any filter as long as the  * filter provides a proper hashCode(), as that is used as the key in the cache.  *   * The cache is periodically cleaned up from a separate thread to ensure the  * cache doesn't exceed the maximum size.  */
+comment|/**  * Filter caching singleton.  It can be used   * to save filters locally for reuse.  * This class makes it possible to cache Filters even when using RMI, as it  * keeps the cache on the searcher side of the RMI connection.  *   * Also could be used as a persistent storage for any filter as long as the  * filter provides a proper hashCode(), as that is used as the key in the cache.  *   * The cache is periodically cleaned up from a separate thread to ensure the  * cache doesn't exceed the maximum size.  */
 end_comment
 
 begin_class
@@ -102,7 +102,7 @@ name|DEFAULT_CACHE_CLEAN_SIZE
 init|=
 literal|100
 decl_stmt|;
-comment|/** The default frequency of cache clenup */
+comment|/** The default frequency of cache cleanup */
 DECL|field|DEFAULT_CACHE_SLEEP_TIME
 specifier|protected
 specifier|static
@@ -203,7 +203,7 @@ argument_list|(
 name|filterCleaner
 argument_list|)
 decl_stmt|;
-comment|// setto be a Daemon so it doesn't have to be stopped
+comment|// set to be a Daemon so it doesn't have to be stopped
 name|fcThread
 operator|.
 name|setDaemon
@@ -234,7 +234,7 @@ operator|=
 name|cacheCleanSize
 expr_stmt|;
 block|}
-comment|/**    * Sets the cache cleaning frequency in milliseconds.    * @param cleanSleepTime cleaning frequency in millioseconds    */
+comment|/**    * Sets the cache cleaning frequency in milliseconds.    * @param cleanSleepTime cleaning frequency in milliseconds    */
 DECL|method|setCleanThreadSleepTime
 specifier|public
 name|void

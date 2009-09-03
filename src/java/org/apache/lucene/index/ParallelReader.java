@@ -230,7 +230,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add an IndexReader whose stored fields will not be returned.  This can   * accellerate search when stored fields are only needed from a subset of   * the IndexReaders.   *   * @throws IllegalArgumentException if not all indexes contain the same number   *     of documents   * @throws IllegalArgumentException if not all indexes have the same value   *     of {@link IndexReader#maxDoc()}   * @throws IOException if there is a low-level IO error   */
+comment|/** Add an IndexReader whose stored fields will not be returned.  This can   * accelerate search when stored fields are only needed from a subset of   * the IndexReaders.   *   * @throws IllegalArgumentException if not all indexes contain the same number   *     of documents   * @throws IllegalArgumentException if not all indexes have the same value   *     of {@link IndexReader#maxDoc()}   * @throws IOException if there is a low-level IO error   */
 DECL|method|add
 specifier|public
 name|void

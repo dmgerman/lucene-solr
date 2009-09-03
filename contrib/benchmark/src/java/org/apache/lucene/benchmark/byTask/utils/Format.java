@@ -233,7 +233,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Padd a number from right.    * @param numFracDigits number of digits in fraction part - must be 0 or 1 or 2.    * @param f number to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
+comment|/**    * Pad a number from right.    * @param numFracDigits number of digits in fraction part - must be 0 or 1 or 2.    * @param f number to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
 DECL|method|formatPaddRight
 specifier|public
 specifier|static
@@ -324,7 +324,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Padd a number from left.    * @param n number to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
+comment|/**    * Pad a number from left.    * @param n number to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
 DECL|method|format
 specifier|public
 specifier|static
@@ -362,7 +362,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Padd a string from right.    * @param s string to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
+comment|/**    * Pad a string from right.    * @param s string to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
 DECL|method|format
 specifier|public
 specifier|static
@@ -409,7 +409,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Padd a string from left.    * @param s string to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
+comment|/**    * Pad a string from left.    * @param s string to be formatted.    * @param col column name (used for deciding on length).    * @return formatted string.    */
 DECL|method|formatPaddLeft
 specifier|public
 specifier|static

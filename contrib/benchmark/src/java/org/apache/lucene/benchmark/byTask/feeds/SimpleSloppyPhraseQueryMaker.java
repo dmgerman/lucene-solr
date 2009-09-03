@@ -104,7 +104,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// exatract some 100 words from doc text to an array
+comment|// extract some 100 words from doc text to an array
 name|String
 name|words
 index|[]
@@ -310,7 +310,7 @@ argument_list|(
 name|q
 argument_list|)
 expr_stmt|;
-comment|// reveresed
+comment|// reversed
 name|remainedSlop
 operator|=
 name|slop

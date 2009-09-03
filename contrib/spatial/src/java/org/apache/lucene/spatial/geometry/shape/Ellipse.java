@@ -362,7 +362,7 @@ operator|new
 name|Point2D
 argument_list|()
 expr_stmt|;
-comment|// Solution is found by paramterizing the line segment and
+comment|// Solution is found by parameterizing the line segment and
 comment|// substituting those values into the ellipse equation.
 comment|// Results in a quadratic equation.
 name|double

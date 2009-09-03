@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenizedPhraseQueryNode} represents a node created by a code that  * tokenizes/lemmatizes/analizes.  */
+comment|/**  * A {@link TokenizedPhraseQueryNode} represents a node created by a code that  * tokenizes/lemmatizes/analyzes.  */
 end_comment
 
 begin_class

@@ -616,7 +616,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Load the datafile into this BigramDictionary    *     * @param dctFilePath path to the Bigramdictionary (bigramdict.mem)    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
+comment|/**    * Load the datafile into this BigramDictionary    *     * @param dctFilePath path to the Bigramdictionary (bigramdict.dct)    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
 DECL|method|loadFromFile
 specifier|public
 name|void

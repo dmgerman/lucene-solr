@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CharReader is a Reader wrapper. It reads chars from  * Reader and outputs {@link CharStream}, defining an  * identify fucntion {@link #correctOffset} method that  * simply returns the provided offset.  */
+comment|/**  * CharReader is a Reader wrapper. It reads chars from  * Reader and outputs {@link CharStream}, defining an  * identify function {@link #correctOffset} method that  * simply returns the provided offset.  */
 end_comment
 
 begin_class

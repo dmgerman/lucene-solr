@@ -263,7 +263,7 @@ name|MILES
 argument_list|)
 return|;
 block|}
-comment|/**    * Calculates the distance between two lat/lng's in miles or meters.    * Imported from mq java client.  Variable references changed to match.    *     * @param ll2    *            Second lat,lng position to calculate distance to.    * @param lUnits    *            Units to calculate distace, defaults to miles    *     * @return Returns the distance in meters or miles.    */
+comment|/**    * Calculates the distance between two lat/lng's in miles or meters.    * Imported from mq java client.  Variable references changed to match.    *     * @param ll2    *            Second lat,lng position to calculate distance to.    * @param lUnits    *            Units to calculate distance, defaults to miles    *     * @return Returns the distance in meters or miles.    */
 DECL|method|arcDistance
 specifier|public
 name|double
@@ -333,7 +333,7 @@ condition|)
 return|return
 literal|0.0
 return|;
-comment|// Get the m_dLongitude diffeernce. Don't need to worry about
+comment|// Get the m_dLongitude difference. Don't need to worry about
 comment|// crossing 180 since cos(x) = cos(-x)
 name|double
 name|dLon

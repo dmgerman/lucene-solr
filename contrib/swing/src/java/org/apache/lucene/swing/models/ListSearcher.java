@@ -447,7 +447,7 @@ name|Document
 argument_list|()
 decl_stmt|;
 comment|//add the row number of this row in the decorated list model
-comment|//this will allow us to retrive the results later
+comment|//this will allow us to retrieve the results later
 comment|//and map this list model's row to a row in the decorated
 comment|//list model
 name|document
@@ -704,7 +704,7 @@ expr_stmt|;
 comment|//iterate through the hits
 comment|//get the row number stored at the index
 comment|//that number is the row number of the decorated
-comment|//tabble model row that we are mapping to
+comment|//table model row that we are mapping to
 for|for
 control|(
 name|int

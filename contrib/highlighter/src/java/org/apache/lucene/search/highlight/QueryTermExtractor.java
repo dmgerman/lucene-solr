@@ -179,7 +179,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Extracts all terms texts of a given Query into an array of WeightedTerms 	 * 	 * @param query      Query to extract term texts from 	 * @param reader used to compute IDF which can be used to a) score selected fragments better  	 * b) use graded highlights eg chaning intensity of font color 	 * @param fieldName the field on which Inverse Document Frequency (IDF) calculations are based 	 * @return an array of the terms used in a query, plus their weights. 	 */
+comment|/** 	 * Extracts all terms texts of a given Query into an array of WeightedTerms 	 * 	 * @param query      Query to extract term texts from 	 * @param reader used to compute IDF which can be used to a) score selected fragments better  	 * b) use graded highlights eg changing intensity of font color 	 * @param fieldName the field on which Inverse Document Frequency (IDF) calculations are based 	 * @return an array of the terms used in a query, plus their weights. 	 */
 DECL|method|getIdfWeightedTerms
 specifier|public
 specifier|static

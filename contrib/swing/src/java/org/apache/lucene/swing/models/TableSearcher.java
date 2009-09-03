@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a TableModel that encapsulates Lucene  * search logic within a TableModel implementation.  * It is implemented as a TableModel decorator,  * similar to the TableSorter demo from Sun that decorates  * a TableModel and provides sorting functionality. The benefit  * of this architecture is that you can decorate any TableModel  * implementation with this searching table model -- making it  * easy to add searching functionaliy to existing JTables -- or  * making new search capable table lucene.  *  *<p>This decorator works by holding a reference to a decorated ot inner  * TableModel. All data is stored within that table model, not this  * table model. Rather, this table model simply manages links to  * data in the inner table model according to the search. All methods on  * TableSearcher forward to the inner table model with subtle filtering  * or alteration according to the search criteria.  *  *<p>Using the table model:  *  * Pass the TableModel you want to decorate in at the constructor. When  * the TableModel initializes, it displays all search results. Call  * the search method with any valid Lucene search String and the data  * will be filtered by the search string. Users can always clear the search  * at any time by searching with an empty string. Additionally, you can  * add a button calling the clearSearch() method.  *  */
+comment|/**  * This is a TableModel that encapsulates Lucene  * search logic within a TableModel implementation.  * It is implemented as a TableModel decorator,  * similar to the TableSorter demo from Sun that decorates  * a TableModel and provides sorting functionality. The benefit  * of this architecture is that you can decorate any TableModel  * implementation with this searching table model -- making it  * easy to add searching functionality to existing JTables -- or  * making new search capable table lucene.  *  *<p>This decorator works by holding a reference to a decorated ot inner  * TableModel. All data is stored within that table model, not this  * table model. Rather, this table model simply manages links to  * data in the inner table model according to the search. All methods on  * TableSearcher forward to the inner table model with subtle filtering  * or alteration according to the search criteria.  *  *<p>Using the table model:  *  * Pass the TableModel you want to decorate in at the constructor. When  * the TableModel initializes, it displays all search results. Call  * the search method with any valid Lucene search String and the data  * will be filtered by the search string. Users can always clear the search  * at any time by searching with an empty string. Additionally, you can  * add a button calling the clearSearch() method.  *  */
 end_comment
 
 begin_class
@@ -465,7 +465,7 @@ name|Document
 argument_list|()
 decl_stmt|;
 comment|//add the row number of this row in the decorated table model
-comment|//this will allow us to retrive the results later
+comment|//this will allow us to retrieve the results later
 comment|//and map this table model's row to a row in the decorated
 comment|//table model
 name|document
@@ -827,7 +827,7 @@ expr_stmt|;
 comment|//iterate through the hits
 comment|//get the row number stored at the index
 comment|//that number is the row number of the decorated
-comment|//tabble model row that we are mapping to
+comment|//table model row that we are mapping to
 for|for
 control|(
 name|int

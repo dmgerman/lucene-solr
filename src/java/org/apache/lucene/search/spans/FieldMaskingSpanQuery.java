@@ -199,7 +199,7 @@ name|maskedQuery
 return|;
 block|}
 comment|// :NOTE: getBoost and setBoost are not proxied to the maskedQuery
-comment|// ...this is done to be more consistent with thigns like SpanFirstQuery
+comment|// ...this is done to be more consistent with things like SpanFirstQuery
 DECL|method|getSpans
 specifier|public
 name|Spans

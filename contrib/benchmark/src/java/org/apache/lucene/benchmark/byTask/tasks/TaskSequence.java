@@ -1208,7 +1208,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// run threadsm with rate
+comment|// run threads with rate
 DECL|method|startlThreadsWithRate
 specifier|private
 name|void
@@ -1289,7 +1289,7 @@ name|nextStartTime
 operator|+=
 name|delayStep
 expr_stmt|;
-comment|// this aims at avarage rate of starting threads.
+comment|// this aims at average rate of starting threads.
 name|t
 index|[
 name|i
@@ -1735,7 +1735,7 @@ block|{
 return|return
 name|seqName
 return|;
-comment|// overide to include more info
+comment|// override to include more info
 block|}
 comment|/**    * @return Returns the tasks.    */
 DECL|method|getTasks

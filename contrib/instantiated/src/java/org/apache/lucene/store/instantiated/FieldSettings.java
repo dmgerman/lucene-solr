@@ -59,7 +59,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Essetially a Map<FieldName, {@link org.apache.lucene.store.instantiated.FieldSetting}>   */
+comment|/**  * Essentially a Map<FieldName, {@link org.apache.lucene.store.instantiated.FieldSetting}>   */
 end_comment
 
 begin_class

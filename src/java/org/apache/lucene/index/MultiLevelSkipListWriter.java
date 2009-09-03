@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This abstract class writes skip lists with multiple levels.  *   * Example for skipInterval = 3:  *                                                     c            (skip level 2)  *                 c                 c                 c            (skip level 1)   *     x     x     x     x     x     x     x     x     x     x      (skip level 0)  * d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d  (posting list)  *     3     6     9     12    15    18    21    24    27    30     (df)  *   * d - document  * x - skip data  * c - skip data with child pointer  *   * Skip level i contains every skipInterval-th entry from skip level i-1.  * Therefore the number of entries on level i is: floor(df / ((skipInterval ^ (i + 1))).  *   * Each skip entry on a level i>0 contains a pointer to the corresponding skip entry in list i-1.  * This guarantess a logarithmic amount of skips to find the target document.  *   * While this class takes care of writing the different skip levels,  * subclasses must define the actual format of the skip data.  *   */
+comment|/**  * This abstract class writes skip lists with multiple levels.  *   * Example for skipInterval = 3:  *                                                     c            (skip level 2)  *                 c                 c                 c            (skip level 1)   *     x     x     x     x     x     x     x     x     x     x      (skip level 0)  * d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d  (posting list)  *     3     6     9     12    15    18    21    24    27    30     (df)  *   * d - document  * x - skip data  * c - skip data with child pointer  *   * Skip level i contains every skipInterval-th entry from skip level i-1.  * Therefore the number of entries on level i is: floor(df / ((skipInterval ^ (i + 1))).  *   * Each skip entry on a level i>0 contains a pointer to the corresponding skip entry in list i-1.  * This guarantees a logarithmic amount of skips to find the target document.  *   * While this class takes care of writing the different skip levels,  * subclasses must define the actual format of the skip data.  *   */
 end_comment
 
 begin_class
@@ -236,7 +236,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Subclasses must implement the actual skip data encoding in this method.    *      * @param level the level skip data shall be writting for    * @param skipBuffer the skip buffer to write to    */
+comment|/**    * Subclasses must implement the actual skip data encoding in this method.    *      * @param level the level skip data shall be writing for    * @param skipBuffer the skip buffer to write to    */
 DECL|method|writeSkipData
 specifier|protected
 specifier|abstract

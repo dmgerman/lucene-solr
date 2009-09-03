@@ -248,7 +248,7 @@ operator|=
 name|logicArray
 expr_stmt|;
 block|}
-comment|/**      * Ctor.      * @param chain The chain of filters      * @param logic Logicial operation to apply to ALL filters      */
+comment|/**      * Ctor.      * @param chain The chain of filters      * @param logic Logical operation to apply to ALL filters      */
 DECL|method|ChainedFilter
 specifier|public
 name|ChainedFilter

@@ -170,7 +170,7 @@ operator|.
 name|MIN_VALUE
 condition|)
 block|{
-comment|// special case, because long is not symetric around zero
+comment|// special case, because long is not symmetric around zero
 return|return
 name|MIN_STRING_VALUE
 return|;

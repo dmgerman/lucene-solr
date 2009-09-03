@@ -249,7 +249,7 @@ argument_list|)
 index|]
 return|;
 block|}
-comment|/**    * Returns sub-reader subIndex from reader.    *     * @param reader parent reader    * @param subIndex index of desired sub reader    * @return the subreader at subINdex    */
+comment|/**    * Returns sub-reader subIndex from reader.    *     * @param reader parent reader    * @param subIndex index of desired sub reader    * @return the subreader at subIndex    */
 DECL|method|subReader
 specifier|public
 specifier|static

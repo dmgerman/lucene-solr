@@ -84,7 +84,7 @@ specifier|private
 name|boolean
 name|modified
 decl_stmt|;
-comment|/**      * Stemms the given term to a unique<tt>discriminator</tt>.      *      * @param term  java.langString The term that should be stemmed      * @return java.lang.String  Discriminator for<tt>term</tt>      */
+comment|/**      * Stems the given term to a unique<tt>discriminator</tt>.      *      * @param term  java.langString The term that should be stemmed      * @return java.lang.String  Discriminator for<tt>term</tt>      */
 DECL|method|stem
 specifier|protected
 name|String
@@ -286,7 +286,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * First step of the Porter Algorithmn<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
+comment|/** 	 * First step of the Porter Algorithm<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
 DECL|method|step1
 specifier|private
 name|void
@@ -794,7 +794,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 	 * Second step (A) of the Porter Algorithmn<br> 	 * Will be performed if nothing changed from the first step 	 * or changed were done in the amment, emment, ments or ment suffixes<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 * 	 * @return boolean - true if something changed in the StringBuffer 	 */
+comment|/** 	 * Second step (A) of the Porter Algorithm<br> 	 * Will be performed if nothing changed from the first step 	 * or changed were done in the amment, emment, ments or ment suffixes<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 * 	 * @return boolean - true if something changed in the StringBuffer 	 */
 DECL|method|step2a
 specifier|private
 name|boolean
@@ -892,7 +892,7 @@ name|RV
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Second step (B) of the Porter Algorithmn<br> 	 * Will be performed if step 2 A was performed unsuccessfully<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
+comment|/** 	 * Second step (B) of the Porter Algorithm<br> 	 * Will be performed if step 2 A was performed unsuccessfully<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
 DECL|method|step2b
 specifier|private
 name|void
@@ -1030,7 +1030,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Third step of the Porter Algorithmn<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
+comment|/** 	 * Third step of the Porter Algorithm<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
 DECL|method|step3
 specifier|private
 name|void
@@ -1115,7 +1115,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Fourth step of the Porter Algorithmn<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
+comment|/** 	 * Fourth step of the Porter Algorithm<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
 DECL|method|step4
 specifier|private
 name|void
@@ -1310,7 +1310,7 @@ literal|"gu"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Fifth step of the Porter Algorithmn<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
+comment|/** 	 * Fifth step of the Porter Algorithm<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
 DECL|method|step5
 specifier|private
 name|void
@@ -1385,7 +1385,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Sixth (and last!) step of the Porter Algorithmn<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
+comment|/** 	 * Sixth (and last!) step of the Porter Algorithm<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 */
 DECL|method|step6
 specifier|private
 name|void

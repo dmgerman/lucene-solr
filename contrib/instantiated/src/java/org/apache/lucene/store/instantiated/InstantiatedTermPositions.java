@@ -191,7 +191,7 @@ name|currentTermPositionIndex
 operator|++
 expr_stmt|;
 comment|// if you get an array out of index exception here,
-comment|// it might be due to currentDocumentInformation.getIndexFromTerm not beeing set!!
+comment|// it might be due to currentDocumentInformation.getIndexFromTerm not being set!!
 return|return
 name|currentDocumentInformation
 operator|.

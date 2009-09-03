@@ -142,7 +142,7 @@ literal|1024
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the largest segment (meaured by total byte    *  size of the segment's files, in MB) that may be merged    *  with other segments.    *  @see #setMaxMergeMB */
+comment|/** Returns the largest segment (measured by total byte    *  size of the segment's files, in MB) that may be merged    *  with other segments.    *  @see #setMaxMergeMB */
 DECL|method|getMaxMergeMB
 specifier|public
 name|double

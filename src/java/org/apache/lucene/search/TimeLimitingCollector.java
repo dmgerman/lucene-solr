@@ -100,7 +100,7 @@ comment|// * only single thread modifies this value
 comment|// * use of volatile keyword ensures that it does not reside in
 comment|//   a register, but in main memory (so that changes are visible to
 comment|//   other threads).
-comment|// * visibility of changes does not need to be instantanous, we can
+comment|// * visibility of changes does not need to be instantaneous, we can
 comment|//   afford losing a tick or two.
 comment|//
 comment|// See section 17 of the Java Language Specification for details.

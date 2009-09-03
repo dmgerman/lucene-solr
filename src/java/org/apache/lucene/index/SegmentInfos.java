@@ -292,7 +292,7 @@ init|=
 operator|-
 literal|8
 decl_stmt|;
-comment|/** This format adds optional per-segment String    *  dianostics storage, and switches userData to Map */
+comment|/** This format adds optional per-segment String    *  diagnostics storage, and switches userData to Map */
 DECL|field|FORMAT_DIAGNOSTICS
 specifier|public
 specifier|static
@@ -2574,7 +2574,7 @@ throws|,
 name|IOException
 function_decl|;
 block|}
-comment|/**    * Returns a new SegmentInfos containg the SegmentInfo    * instances in the specified range first (inclusive) to    * last (exclusive), so total number of segments returned    * is last-first.    */
+comment|/**    * Returns a new SegmentInfos containing the SegmentInfo    * instances in the specified range first (inclusive) to    * last (exclusive), so total number of segments returned    * is last-first.    */
 DECL|method|range
 specifier|public
 name|SegmentInfos

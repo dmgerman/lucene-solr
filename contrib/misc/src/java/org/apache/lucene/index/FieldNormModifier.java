@@ -348,7 +348,7 @@ specifier|private
 name|Similarity
 name|sim
 decl_stmt|;
-comment|/**    * Constructor for code that wishes to use this class programatically    * If Similarity is null, kill the field norms.    *    * @param d the Directory to modify    * @param s the Similiary to use (can be null)    */
+comment|/**    * Constructor for code that wishes to use this class programmatically    * If Similarity is null, kill the field norms.    *    * @param d the Directory to modify    * @param s the Similarity to use (can be null)    */
 DECL|method|FieldNormModifier
 specifier|public
 name|FieldNormModifier

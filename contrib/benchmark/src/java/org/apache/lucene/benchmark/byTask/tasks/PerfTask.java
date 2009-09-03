@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract task to be tested for performance.<br>  * Every performance task extends this class, and provides its own  * {@link #doLogic()} method, which performss the actual task.<br>  * Tasks performing some work that should be measured for the task, can overide  * {@link #setup()} and/or {@link #tearDown()} and place that work there.<br>  * Relevant properties:<code>task.max.depth.log</code>.<br>  * Also supports the following logging attributes:  *<ul>  *<li>log.step - specifies how often to log messages about the current running  * task. Default is 1000 {@link #doLogic()} invocations. Set to -1 to disable  * logging.  *<li>log.step.[class Task Name] - specifies the same as 'log.step', only for a  * particular task name. For example, log.step.AddDoc will be applied only for  * {@link AddDocTask}, but not for {@link DeleteDocTask}. It's a way to control  * per task logging settings. If you want to ommit logging for any other task,  * include log.step=-1. The syntax is "log.step." together with the Task's  * 'short' name (i.e., without the 'Task' part).  *</ul>  */
+comment|/**  * An abstract task to be tested for performance.<br>  * Every performance task extends this class, and provides its own  * {@link #doLogic()} method, which performs the actual task.<br>  * Tasks performing some work that should be measured for the task, can override  * {@link #setup()} and/or {@link #tearDown()} and place that work there.<br>  * Relevant properties:<code>task.max.depth.log</code>.<br>  * Also supports the following logging attributes:  *<ul>  *<li>log.step - specifies how often to log messages about the current running  * task. Default is 1000 {@link #doLogic()} invocations. Set to -1 to disable  * logging.  *<li>log.step.[class Task Name] - specifies the same as 'log.step', only for a  * particular task name. For example, log.step.AddDoc will be applied only for  * {@link AddDocTask}, but not for {@link DeleteDocTask}. It's a way to control  * per task logging settings. If you want to omit logging for any other task,  * include log.step=-1. The syntax is "log.step." together with the Task's  * 'short' name (i.e., without the 'Task' part).  *</ul>  */
 end_comment
 
 begin_class
@@ -481,8 +481,8 @@ parameter_list|()
 throws|throws
 name|CloneNotSupportedException
 block|{
-comment|// tasks having non primitive data structures should overide this.
-comment|// otherwise parallel running of a task sequence might not run crrectly.
+comment|// tasks having non primitive data structures should override this.
+comment|// otherwise parallel running of a task sequence might not run correctly.
 return|return
 name|super
 operator|.
@@ -629,7 +629,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Perform the task once (ignoring repetions specification)    * Return number of work items done by this task.    * For indexing that can be number of docs added.    * For warming that can be number of scanned items, etc.    * @return number of work items done by this task.    */
+comment|/**    * Perform the task once (ignoring repetitions specification)    * Return number of work items done by this task.    * For indexing that can be number of docs added.    * For warming that can be number of scanned items, etc.    * @return number of work items done by this task.    */
 DECL|method|doLogic
 specifier|public
 specifier|abstract
@@ -866,7 +866,7 @@ operator|+
 literal|" records"
 return|;
 block|}
-comment|/**    * Tasks that should never log at start can overide this.      * @return true if this task should never log when it start.    */
+comment|/**    * Tasks that should never log at start can override this.      * @return true if this task should never log when it start.    */
 DECL|method|shouldNeverLogAtStart
 specifier|protected
 name|boolean
@@ -877,7 +877,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Tasks that should not record statistics can overide this.      * @return true if this task should never record its statistics.    */
+comment|/**    * Tasks that should not record statistics can override this.      * @return true if this task should never record its statistics.    */
 DECL|method|shouldNotRecordStats
 specifier|protected
 name|boolean
@@ -981,7 +981,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Sub classes that supports parameters must overide this method to return true.    * @return true iff this task supports command line params.    */
+comment|/**    * Sub classes that supports parameters must override this method to return true.    * @return true iff this task supports command line params.    */
 DECL|method|supportsParams
 specifier|public
 name|boolean

@@ -594,7 +594,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Add fields that are indexed. Whether they have termvectors has to be specified.    *     * @param names The names of the fields    * @param storeTermVectors Whether the fields store term vectors or not    * @param storePositionWithTermVector treu if positions should be stored.    * @param storeOffsetWithTermVector true if offsets should be stored    */
+comment|/**    * Add fields that are indexed. Whether they have termvectors has to be specified.    *     * @param names The names of the fields    * @param storeTermVectors Whether the fields store term vectors or not    * @param storePositionWithTermVector true if positions should be stored.    * @param storeOffsetWithTermVector true if offsets should be stored    */
 DECL|method|addIndexed
 specifier|synchronized
 specifier|public

@@ -525,7 +525,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**     * Internal helper method used by check that iterates over     * valMismatchKeys and generates a Collection of Insanity     * instances accordingly.  The MapOfSets are used to populate     * the Insantiy objects.     * @see InsanityType#VALUEMISMATCH    */
+comment|/**     * Internal helper method used by check that iterates over     * valMismatchKeys and generates a Collection of Insanity     * instances accordingly.  The MapOfSets are used to populate     * the Insanity objects.     * @see InsanityType#VALUEMISMATCH    */
 DECL|method|checkValueMismatch
 specifier|private
 name|Collection
@@ -750,7 +750,7 @@ return|return
 name|insanity
 return|;
 block|}
-comment|/**     * Internal helper method used by check that iterates over     * the keys of readerFieldToValIds and generates a Collection     * of Insanity instances whenever two (or more) ReaderField instances are     * found that have an ancestery relationships.      *    * @see InsanityType#SUBREADER    */
+comment|/**     * Internal helper method used by check that iterates over     * the keys of readerFieldToValIds and generates a Collection     * of Insanity instances whenever two (or more) ReaderField instances are     * found that have an ancestry relationships.      *    * @see InsanityType#SUBREADER    */
 DECL|method|checkSubreaders
 specifier|private
 name|Collection
@@ -1491,7 +1491,7 @@ name|fieldName
 return|;
 block|}
 block|}
-comment|/**    * Simple container for a collection of related CacheEntry objects that     * in conjunction with eachother represent some "insane" usage of the     * FieldCache.    */
+comment|/**    * Simple container for a collection of related CacheEntry objects that     * in conjunction with each other represent some "insane" usage of the     * FieldCache.    */
 DECL|class|Insanity
 specifier|public
 specifier|final
@@ -1731,7 +1731,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * An Enumaration of the differnet types of "insane" behavior that     * may be detected in a FieldCache.    *    * @see InsanityType#SUBREADER    * @see InsanityType#VALUEMISMATCH    * @see InsanityType#EXPECTED    */
+comment|/**    * An Enumeration of the different types of "insane" behavior that     * may be detected in a FieldCache.    *    * @see InsanityType#SUBREADER    * @see InsanityType#VALUEMISMATCH    * @see InsanityType#EXPECTED    */
 DECL|class|InsanityType
 specifier|public
 specifier|final

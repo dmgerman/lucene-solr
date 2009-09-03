@@ -60,7 +60,7 @@ name|RE
 name|regexp
 decl_stmt|;
 comment|// Define the flags that are possible. Redefine them here
-comment|// to avoid exposign the RE class to the caller.
+comment|// to avoid exposing the RE class to the caller.
 DECL|field|flags
 specifier|private
 name|int
@@ -94,7 +94,7 @@ name|RE
 operator|.
 name|MATCH_CASEINDEPENDENT
 decl_stmt|;
-comment|/**    * Contructs a RegexCapabilities with the default MATCH_NORMAL match style.    */
+comment|/**    * Constructs a RegexCapabilities with the default MATCH_NORMAL match style.    */
 DECL|method|JakartaRegexpCapabilities
 specifier|public
 name|JakartaRegexpCapabilities

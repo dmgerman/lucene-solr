@@ -71,7 +71,7 @@ specifier|private
 name|int
 name|payloadLength
 decl_stmt|;
-comment|// indicates whether the payload of the currend position has
+comment|// indicates whether the payload of the current position has
 comment|// been read from the proxStream yet
 DECL|field|needToLoadPayload
 specifier|private
@@ -210,7 +210,7 @@ comment|// This field does not store term freq, positions, payloads
 return|return
 literal|0
 return|;
-comment|// perform lazy skips if neccessary
+comment|// perform lazy skips if necessary
 name|lazySkip
 argument_list|()
 expr_stmt|;
@@ -477,7 +477,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|// It is not always neccessary to move the prox pointer
+comment|// It is not always necessary to move the prox pointer
 comment|// to a new document after the freq pointer has been moved.
 comment|// Consider for example a phrase query with two terms:
 comment|// the freq pointer for term 1 has to move to document x

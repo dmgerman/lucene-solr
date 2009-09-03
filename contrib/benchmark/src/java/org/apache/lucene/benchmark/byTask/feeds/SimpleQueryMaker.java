@@ -144,7 +144,7 @@ name|AbstractQueryMaker
 implements|implements
 name|QueryMaker
 block|{
-comment|/**    * Prepare the queries for this test.    * Extending classes can overide this method for preparing different queries.     * @return prepared queries.    * @throws Exception if canot prepare the queries.    */
+comment|/**    * Prepare the queries for this test.    * Extending classes can override this method for preparing different queries.     * @return prepared queries.    * @throws Exception if cannot prepare the queries.    */
 DECL|method|prepareQueries
 specifier|protected
 name|Query

@@ -56,7 +56,7 @@ name|String
 name|description
 parameter_list|)
 block|{
-comment|// NOTE: use of "boolean" instead of "Boolean" in params is concious
+comment|// NOTE: use of "boolean" instead of "Boolean" in params is conscious
 comment|// choice to encourage clients to be specific.
 name|super
 argument_list|(

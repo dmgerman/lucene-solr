@@ -424,7 +424,7 @@ comment|// allocate new children list
 name|allocate
 argument_list|()
 expr_stmt|;
-comment|// add new childs and set parent
+comment|// add new children and set parent
 for|for
 control|(
 name|QueryNode

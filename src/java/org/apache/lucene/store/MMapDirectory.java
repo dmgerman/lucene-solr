@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  SimpleFSDirectory.SimpleFSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual address space, e.g. by  * using a 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  * On 32 bit platforms also consult {@link #setMaxChunkSize}  * if you have problems with mmap failing because of fragmented  * address space. If you get an OutOfMemoryException, it is recommened  * to reduce the chunk size, until it works.  *  *<p>Due to<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  * this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  * is unable to close the underlying OS file handle.  Only when GC  * finally collects the underlying objects, which could be quite  * some time later, will the file handle be closed.  *  *<p>This will consume additional transient disk usage: on Windows,  * attempts to delete or overwrite the files will result in an  * exception; on other platforms, which typically have a&quot;delete on  * last close&quot; semantics, while such operations will succeed, the bytes  * are still consuming space on disk.  For many applications this  * limitation is not a problem (e.g. if you have plenty of disk space,  * and you don't rely on overwriting files on Windows) but it's still  * an important limitation to be aware of.  *  *<p>This class supplies the workaround mentioned in the bug report  * (disabled by default, see {@link #setUseUnmap}), which may fail on  * non-Sun JVMs. It forcefully unmaps the buffer on close by using  * an undocumented internal cleanup functionality.  * {@link #UNMAP_SUPPORTED} is<code>true</code>, if the workaround  * can be enabled (with no guarantees).  */
+comment|/** File-based {@link Directory} implementation that uses  *  mmap for reading, and {@link  *  SimpleFSDirectory.SimpleFSIndexOutput} for writing.  *  *<p><b>NOTE</b>: memory mapping uses up a portion of the  * virtual memory address space in your process equal to the  * size of the file being mapped.  Before using this class,  * be sure your have plenty of virtual address space, e.g. by  * using a 64 bit JRE, or a 32 bit JRE with indexes that are  * guaranteed to fit within the address space.  * On 32 bit platforms also consult {@link #setMaxChunkSize}  * if you have problems with mmap failing because of fragmented  * address space. If you get an OutOfMemoryException, it is recommended  * to reduce the chunk size, until it works.  *  *<p>Due to<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038">  * this bug</a> in Sun's JRE, MMapDirectory's {@link IndexInput#close}  * is unable to close the underlying OS file handle.  Only when GC  * finally collects the underlying objects, which could be quite  * some time later, will the file handle be closed.  *  *<p>This will consume additional transient disk usage: on Windows,  * attempts to delete or overwrite the files will result in an  * exception; on other platforms, which typically have a&quot;delete on  * last close&quot; semantics, while such operations will succeed, the bytes  * are still consuming space on disk.  For many applications this  * limitation is not a problem (e.g. if you have plenty of disk space,  * and you don't rely on overwriting files on Windows) but it's still  * an important limitation to be aware of.  *  *<p>This class supplies the workaround mentioned in the bug report  * (disabled by default, see {@link #setUseUnmap}), which may fail on  * non-Sun JVMs. It forcefully unmaps the buffer on close by using  * an undocumented internal cleanup functionality.  * {@link #UNMAP_SUPPORTED} is<code>true</code>, if the workaround  * can be enabled (with no guarantees).  */
 end_comment
 
 begin_class
@@ -261,7 +261,7 @@ operator|*
 literal|1024
 operator|)
 decl_stmt|;
-comment|/**    *<code>true</code>, if this platform supports unmapping mmaped files.    */
+comment|/**    *<code>true</code>, if this platform supports unmapping mmapped files.    */
 DECL|field|UNMAP_SUPPORTED
 specifier|public
 specifier|static
@@ -318,7 +318,7 @@ operator|=
 name|v
 expr_stmt|;
 block|}
-comment|/**    * This method enables the workaround for unmapping the buffers    * from address space after closing {@link IndexInput}, that is    * mentioned in the bug report. This hack may fail on non-Sun JVMs.    * It forcefully unmaps the buffer on close by using    * an undocumented internal cleanup functionality.    *<p><b>NOTE:</b> Enabling this is completely unsupported    * by Java and may lead to JVM crashs if<code>IndexInput</code>    * is closed while another thread is still accessing it (SIGSEGV).    * @throws IllegalArgumentException if {@link #UNMAP_SUPPORTED}    * is<code>false</code> and the workaround cannot be enabled.    */
+comment|/**    * This method enables the workaround for unmapping the buffers    * from address space after closing {@link IndexInput}, that is    * mentioned in the bug report. This hack may fail on non-Sun JVMs.    * It forcefully unmaps the buffer on close by using    * an undocumented internal cleanup functionality.    *<p><b>NOTE:</b> Enabling this is completely unsupported    * by Java and may lead to JVM crashes if<code>IndexInput</code>    * is closed while another thread is still accessing it (SIGSEGV).    * @throws IllegalArgumentException if {@link #UNMAP_SUPPORTED}    * is<code>false</code> and the workaround cannot be enabled.    */
 DECL|method|setUseUnmap
 specifier|public
 name|void
@@ -499,7 +499,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Sets the maximum chunk size (default is {@link Integer#MAX_VALUE} for    * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.    * Especially on 32 bit platform, the address space can be very fragmented,    * so large index files cannot be mapped.    * Using a lower chunk size makes the directory implementation a little    * bit slower (as the correct chunk must be resolved on each seek)    * but the chance is higher that mmap does not fail. On 64 bit    * Java platforms, this parameter should always be {@link Integer#MAX_VALUE},    * as the adress space is big enough.    */
+comment|/**    * Sets the maximum chunk size (default is {@link Integer#MAX_VALUE} for    * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.    * Especially on 32 bit platform, the address space can be very fragmented,    * so large index files cannot be mapped.    * Using a lower chunk size makes the directory implementation a little    * bit slower (as the correct chunk must be resolved on each seek)    * but the chance is higher that mmap does not fail. On 64 bit    * Java platforms, this parameter should always be {@link Integer#MAX_VALUE},    * as the address space is big enough.    */
 DECL|method|setMaxChunkSize
 specifier|public
 name|void

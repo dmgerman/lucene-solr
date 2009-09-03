@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Open an index reader.  *<br>Other side effects: index redaer object in perfRunData is set.  *<br> Optional params readOnly,commitUserData eg. OpenReader(false,commit1)  */
+comment|/**  * Open an index reader.  *<br>Other side effects: index reader object in perfRunData is set.  *<br> Optional params readOnly,commitUserData eg. OpenReader(false,commit1)  */
 end_comment
 
 begin_class

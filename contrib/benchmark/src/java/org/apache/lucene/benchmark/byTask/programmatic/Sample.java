@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Sample performance test written programatically - no algorithm file is needed here.  */
+comment|/**  * Sample performance test written programmatically - no algorithm file is needed here.  */
 end_comment
 
 begin_class
@@ -228,7 +228,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-comment|// top level, not parralel
+comment|// top level, not parallel
 comment|// 2. task to create the index
 name|CreateIndexTask
 name|create

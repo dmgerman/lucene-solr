@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A Directory instance that switches files betweeen  * two other Directory instances.   *<p>Files with the specified extensions are placed in the  * primary directory; others are placed in the secondary  * directory.  The provided Set must not change once passed  * to this class, and must allow multiple threads to call  * contains at once.</p>  *  *<p><b>NOTE</b>: this API is new and experimental and is  * subject to suddenly change in the next release.  */
+comment|/**  * Expert: A Directory instance that switches files between  * two other Directory instances.   *<p>Files with the specified extensions are placed in the  * primary directory; others are placed in the secondary  * directory.  The provided Set must not change once passed  * to this class, and must allow multiple threads to call  * contains at once.</p>  *  *<p><b>NOTE</b>: this API is new and experimental and is  * subject to suddenly change in the next release.  */
 end_comment
 
 begin_class

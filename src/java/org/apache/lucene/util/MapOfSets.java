@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class for keeping Listss of Objects associated with keys.<b>WARNING: THIS CLASS IS NOT THREAD SAFE</b>  */
+comment|/**  * Helper class for keeping Lists of Objects associated with keys.<b>WARNING: THIS CLASS IS NOT THREAD SAFE</b>  */
 end_comment
 
 begin_class

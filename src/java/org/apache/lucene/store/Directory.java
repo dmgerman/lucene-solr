@@ -76,7 +76,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an array of strings, one for each file in the    *  directory.  Unlike {@link #list} this method does no    *  filtering of the contents in a directory, and it will    *  never return null (throws IOException instead).    *    *  Currently this method simply fallsback to {@link    *  #list} for Directory impls outside of Lucene's core&    *  contrib, but in 3.0 that method will be removed and    *  this method will become abstract. */
+comment|/** Returns an array of strings, one for each file in the    *  directory.  Unlike {@link #list} this method does no    *  filtering of the contents in a directory, and it will    *  never return null (throws IOException instead).    *    *  Currently this method simply falls back to {@link    *  #list} for Directory impls outside of Lucene's core&    *  contrib, but in 3.0 that method will be removed and    *  this method will become abstract. */
 DECL|method|listAll
 specifier|public
 name|String

@@ -139,7 +139,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Store the original field value in the index in a compressed form. This is      * useful for long documents and for binary valued fields.      * @deprecated Please use {@link CompressionTools} instead.      * For string fields that were previously indexed and stored using compression,      * the new way to achive this is: First add the field indexed-only (no store)      * and additionally using the same field name as a binary, stored field      * with {@link CompressionTools#compressString}.      */
+comment|/** Store the original field value in the index in a compressed form. This is      * useful for long documents and for binary valued fields.      * @deprecated Please use {@link CompressionTools} instead.      * For string fields that were previously indexed and stored using compression,      * the new way to achieve this is: First add the field indexed-only (no store)      * and additionally using the same field name as a binary, stored field      * with {@link CompressionTools#compressString}.      */
 DECL|field|COMPRESS
 specifier|public
 specifier|static
@@ -349,7 +349,7 @@ argument_list|(
 literal|"NO"
 argument_list|)
 decl_stmt|;
-comment|/** Store the term vectors of each document. A term vector is a list      * of the document's terms and their number of occurences in that document. */
+comment|/** Store the term vectors of each document. A term vector is a list      * of the document's terms and their number of occurrences in that document. */
 DECL|field|YES
 specifier|public
 specifier|static
