@@ -2660,10 +2660,10 @@ return|return
 name|newSearcherListenerInfo
 return|;
 block|}
-DECL|method|getDirectoryfactoryInfo
+DECL|method|getDirectoryFactoryInfo
 specifier|public
 name|PluginInfo
-name|getDirectoryfactoryInfo
+name|getDirectoryFactoryInfo
 parameter_list|()
 block|{
 return|return
