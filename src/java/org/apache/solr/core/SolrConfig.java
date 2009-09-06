@@ -1002,6 +1002,8 @@ argument_list|(
 literal|"highlighting/fragmenter"
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|highlightingFormatterInfo
@@ -1009,6 +1011,8 @@ operator|=
 name|loadPluginInfo
 argument_list|(
 literal|"highlighting/formatter"
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1070,6 +1074,8 @@ argument_list|(
 literal|"requestHandler"
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|respWriterInfo
@@ -1077,6 +1083,8 @@ operator|=
 name|loadPluginInfo
 argument_list|(
 literal|"queryResponseWriter"
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1088,6 +1096,8 @@ argument_list|(
 literal|"valueSourceParser"
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|queryParserInfo
@@ -1095,6 +1105,8 @@ operator|=
 name|loadPluginInfo
 argument_list|(
 literal|"queryParser"
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1106,6 +1118,8 @@ argument_list|(
 literal|"searchComponent"
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|queryConverterInfo
@@ -1113,6 +1127,8 @@ operator|=
 name|loadPluginInfo
 argument_list|(
 literal|"queryConverter"
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1145,6 +1161,8 @@ argument_list|(
 literal|"//listener[@event='firstSearcher']"
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|newSearcherListenerInfo
@@ -1154,6 +1172,8 @@ argument_list|(
 literal|"//listener[@event='newSearcher']"
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1385,6 +1405,8 @@ argument_list|,
 literal|"[solrconfig.xml] processor"
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -1505,6 +1527,8 @@ argument_list|(
 name|tag
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 return|return
@@ -1536,6 +1560,9 @@ name|tag
 parameter_list|,
 name|boolean
 name|requireName
+parameter_list|,
+name|boolean
+name|requireClass
 parameter_list|)
 block|{
 name|ArrayList
@@ -1602,6 +1629,8 @@ operator|+
 name|tag
 argument_list|,
 name|requireName
+argument_list|,
+name|requireClass
 argument_list|)
 decl_stmt|;
 if|if
@@ -1839,7 +1868,7 @@ argument_list|>
 name|newSearcherListenerInfo
 decl_stmt|;
 DECL|field|queryConverterInfo
-specifier|private
+specifier|protected
 name|List
 argument_list|<
 name|PluginInfo
