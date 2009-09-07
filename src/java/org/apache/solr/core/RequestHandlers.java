@@ -564,8 +564,15 @@ name|info
 range|:
 name|config
 operator|.
-name|getReqHandlerInfo
+name|getPluginInfos
+argument_list|(
+name|SolrRequestHandler
+operator|.
+name|class
+operator|.
+name|getName
 argument_list|()
+argument_list|)
 control|)
 block|{
 try|try
