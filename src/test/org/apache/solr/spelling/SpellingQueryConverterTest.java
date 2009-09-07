@@ -18,16 +18,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -71,21 +61,39 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertTrue
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|solr
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
 name|util
 operator|.
-name|AbstractSolrTestCase
+name|Collection
 import|;
 end_import
 
 begin_comment
-comment|/**  *  * @since solr 1.3  **/
+comment|/**  * Test for SpellingQueryConverter  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -93,29 +101,9 @@ DECL|class|SpellingQueryConverterTest
 specifier|public
 class|class
 name|SpellingQueryConverterTest
-extends|extends
-name|AbstractSolrTestCase
 block|{
-DECL|method|getSchemaFile
-specifier|public
-name|String
-name|getSchemaFile
-parameter_list|()
-block|{
-return|return
-literal|"schema.xml"
-return|;
-block|}
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
-literal|"solrconfig.xml"
-return|;
-block|}
+annotation|@
+name|Test
 DECL|method|test
 specifier|public
 name|void
