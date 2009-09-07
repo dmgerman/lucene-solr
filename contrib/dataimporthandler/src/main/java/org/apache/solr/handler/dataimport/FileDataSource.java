@@ -82,13 +82,15 @@ name|BASE_PATH
 init|=
 literal|"basePath"
 decl_stmt|;
+comment|/**    * The basePath for this data source    */
 DECL|field|basePath
-specifier|private
+specifier|protected
 name|String
 name|basePath
 decl_stmt|;
+comment|/**    * The encoding using which the given file should be read    */
 DECL|field|encoding
-specifier|private
+specifier|protected
 name|String
 name|encoding
 init|=
@@ -310,9 +312,10 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Open a {@link java.io.Reader} for the given file name    *    * @param file a {@link java.io.File} instance    * @return a Reader on the given file    * @throws FileNotFoundException if the File does not exist    * @throws UnsupportedEncodingException if the encoding is unsupported    * @since solr 1.4    */
 DECL|method|openStream
-specifier|private
-name|InputStreamReader
+specifier|protected
+name|Reader
 name|openStream
 parameter_list|(
 name|File
