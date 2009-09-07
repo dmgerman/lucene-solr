@@ -91,6 +91,42 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|DataImportHandlerException
+operator|.
+name|wrapAndThrow
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|DataImportHandlerException
+operator|.
+name|SEVERE
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -446,8 +482,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"Configuration not found"
@@ -982,8 +1016,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"the root node '<dataConfig>' is missing"
@@ -1032,8 +1064,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"Exception occurred while initializing context"
@@ -1680,8 +1710,6 @@ throw|throw
 operator|new
 name|DataImportHandlerException
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
 argument_list|,
 literal|"No dataSource :"
@@ -1753,21 +1781,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DataImportHandlerException
+name|wrapAndThrow
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
+argument_list|,
+name|e
 argument_list|,
 literal|"Invalid type for data source: "
 operator|+
 name|impl
-argument_list|,
-name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 try|try
@@ -1886,23 +1910,19 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DataImportHandlerException
+name|wrapAndThrow
 argument_list|(
-name|DataImportHandlerException
-operator|.
 name|SEVERE
+argument_list|,
+name|e
 argument_list|,
 literal|"Failed to initialize DataSource: "
 operator|+
 name|key
 operator|.
 name|dataSource
-argument_list|,
-name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 return|return
 name|dataSrc
