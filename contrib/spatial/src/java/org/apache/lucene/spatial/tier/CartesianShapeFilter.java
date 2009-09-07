@@ -46,6 +46,18 @@ name|util
 operator|.
 name|logging
 operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
 name|Logger
 import|;
 end_import
@@ -365,6 +377,18 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|log
+operator|.
+name|isLoggable
+argument_list|(
+name|Level
+operator|.
+name|FINE
+argument_list|)
+condition|)
+block|{
 name|log
 operator|.
 name|fine
@@ -387,6 +411,7 @@ operator|+
 literal|" candidates"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|bits
 return|;
