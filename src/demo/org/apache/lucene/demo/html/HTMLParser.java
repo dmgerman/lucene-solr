@@ -618,12 +618,14 @@ operator|!
 name|titleComplete
 operator|&&
 operator|!
+operator|(
 name|title
 operator|.
-name|equals
-argument_list|(
-literal|""
-argument_list|)
+name|length
+argument_list|()
+operator|==
+literal|0
+operator|)
 condition|)
 block|{
 comment|// finished title
