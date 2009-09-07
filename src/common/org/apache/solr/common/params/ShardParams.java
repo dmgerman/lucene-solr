@@ -38,6 +38,25 @@ name|SHARDS
 init|=
 literal|"shards"
 decl_stmt|;
+comment|/** per-shard start and rows */
+DECL|field|SHARDS_ROWS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARDS_ROWS
+init|=
+literal|"shards.rows"
+decl_stmt|;
+DECL|field|SHARDS_START
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARDS_START
+init|=
+literal|"shards.start"
+decl_stmt|;
 comment|/** IDs of the shard documents */
 DECL|field|IDS
 specifier|public

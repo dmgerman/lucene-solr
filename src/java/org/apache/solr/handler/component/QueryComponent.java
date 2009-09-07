@@ -835,6 +835,68 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|String
+name|shards_rows
+init|=
+name|params
+operator|.
+name|get
+argument_list|(
+name|ShardParams
+operator|.
+name|SHARDS_ROWS
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|shards_rows
+operator|!=
+literal|null
+condition|)
+block|{
+name|rb
+operator|.
+name|shards_rows
+operator|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|shards_rows
+argument_list|)
+expr_stmt|;
+block|}
+name|String
+name|shards_start
+init|=
+name|params
+operator|.
+name|get
+argument_list|(
+name|ShardParams
+operator|.
+name|SHARDS_START
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|shards_start
+operator|!=
+literal|null
+condition|)
+block|{
+name|rb
+operator|.
+name|shards_start
+operator|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|shards_start
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Actually run the query    */
 annotation|@
@@ -2148,6 +2210,35 @@ argument_list|)
 expr_stmt|;
 comment|// set the start (offset) to 0 for each shard request so we can properly merge
 comment|// results from the start.
+if|if
+condition|(
+name|rb
+operator|.
+name|shards_start
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+comment|// if the client set shards.start set this explicitly
+name|sreq
+operator|.
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|START
+argument_list|,
+name|rb
+operator|.
+name|shards_start
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|sreq
 operator|.
 name|params
@@ -2161,10 +2252,40 @@ argument_list|,
 literal|"0"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// TODO: should we even use the SortSpec?  That's obtained from the QParser, and
 comment|// perhaps we shouldn't attempt to parse the query at this level?
 comment|// Alternate Idea: instead of specifying all these things at the upper level,
 comment|// we could just specify that this is a shard request.
+if|if
+condition|(
+name|rb
+operator|.
+name|shards_rows
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+comment|// if the client set shards.rows set this explicity
+name|sreq
+operator|.
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|ROWS
+argument_list|,
+name|rb
+operator|.
+name|shards_rows
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|sreq
 operator|.
 name|params
@@ -2192,6 +2313,7 @@ name|getCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// in this first phase, request only the unique key field
 comment|// and any fields needed for merging.
 name|sreq
