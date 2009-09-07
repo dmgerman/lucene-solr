@@ -478,13 +478,6 @@ name|OneDimensionalNonWeightedTokenSettingsCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Token
-name|reusableToken
-init|=
-operator|new
-name|Token
-argument_list|()
-decl_stmt|;
 name|assertNext
 argument_list|(
 name|ts
@@ -762,14 +755,6 @@ name|TwoDimensionalNonWeightedSynonymTokenSettingsCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
-specifier|final
-name|Token
-name|reusableToken
-init|=
-operator|new
-name|Token
-argument_list|()
-decl_stmt|;
 name|assertNext
 argument_list|(
 name|ts
@@ -3124,14 +3109,6 @@ comment|//  for (Token token = ts.next(new Token()); token != null; token = ts.n
 comment|//      System.out.println("assertNext(ts, \"" + token.term() + "\", " + token.getPositionIncrement() + ", " + (token.getPayload() == null ? "1.0" : PayloadHelper.decodeFloat(token.getPayload().getData())) + "f, " + token.startOffset() + ", " + token.endOffset() + ");");
 comment|//      token.clear();
 comment|//    }
-specifier|final
-name|Token
-name|reusableToken
-init|=
-operator|new
-name|Token
-argument_list|()
-decl_stmt|;
 name|assertNext
 argument_list|(
 name|ts
