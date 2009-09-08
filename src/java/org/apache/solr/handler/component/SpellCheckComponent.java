@@ -1305,6 +1305,14 @@ name|endOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Logical structure of normal (non-extended) results:
+comment|// "suggestion":["alt1","alt2"]
+comment|//
+comment|// Logical structure of the extended results:
+comment|// "suggestion":[
+comment|//     {"word":"alt1","freq":7},
+comment|//     {"word":"alt2","freq":4}
+comment|// ]
 if|if
 condition|(
 name|extendedResults
@@ -1326,6 +1334,28 @@ name|inputToken
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|ArrayList
+argument_list|<
+name|SimpleOrderedMap
+argument_list|>
+name|sugs
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|SimpleOrderedMap
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|suggestionList
+operator|.
+name|add
+argument_list|(
+literal|"suggestion"
+argument_list|,
+name|sugs
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Map
@@ -1345,31 +1375,13 @@ argument_list|()
 control|)
 block|{
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
-name|suggestionItem
+name|sugEntry
 init|=
 operator|new
 name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
 argument_list|()
 decl_stmt|;
-name|suggestionItem
-operator|.
-name|add
-argument_list|(
-literal|"frequency"
-argument_list|,
-name|suggEntry
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|suggestionItem
+name|sugEntry
 operator|.
 name|add
 argument_list|(
@@ -1381,13 +1393,23 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|suggestionList
+name|sugEntry
 operator|.
 name|add
 argument_list|(
-literal|"suggestion"
+literal|"freq"
 argument_list|,
-name|suggestionItem
+name|suggEntry
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sugs
+operator|.
+name|add
+argument_list|(
+name|sugEntry
 argument_list|)
 expr_stmt|;
 block|}
