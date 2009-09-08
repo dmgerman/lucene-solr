@@ -219,6 +219,19 @@ operator|.
 name|termLength
 argument_list|()
 decl_stmt|;
+comment|//TODO: Is this the right behavior or should we return false?  Currently, "  ", returns true, so I think this should
+comment|//also return true
+if|if
+condition|(
+name|len
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 name|int
 name|start
 init|=
