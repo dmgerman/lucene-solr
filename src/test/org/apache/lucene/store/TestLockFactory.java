@@ -1318,6 +1318,22 @@ name|indexDirName
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testSimpleFSLockFactory
+specifier|public
+name|void
+name|testSimpleFSLockFactory
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// test string file instantiation
+operator|new
+name|SimpleFSLockFactory
+argument_list|(
+literal|"test"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Verify: setDisableLocks works
 DECL|method|testDisableLocks
 specifier|public
