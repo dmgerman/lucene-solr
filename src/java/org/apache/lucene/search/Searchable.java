@@ -134,7 +134,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns the number of documents containing<code>term</code>.    * Called by search code to compute term weights.    * @see org.apache.lucene.index.IndexReader#docFreq(Term)    */
+comment|/** Expert: Returns the number of documents containing<code>term</code>.    *     * @see org.apache.lucene.index.IndexReader#docFreq(Term)    */
 DECL|method|docFreq
 name|int
 name|docFreq
@@ -158,7 +158,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns one greater than the largest possible document number.    * Called by search code to compute term weights.    * @see org.apache.lucene.index.IndexReader#maxDoc()    */
+comment|/** Expert: Returns one greater than the largest possible document number.    *     * @see org.apache.lucene.index.IndexReader#maxDoc()    */
 DECL|method|maxDoc
 name|int
 name|maxDoc
@@ -166,7 +166,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Called by {@link Hits}.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, int)} instead.    */
+comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, int)} instead.    */
 DECL|method|search
 name|TopDocs
 name|search
@@ -183,7 +183,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Returns the stored fields of document<code>i</code>.    * Called by {@link HitCollector} implementations.    * @see org.apache.lucene.index.IndexReader#document(int)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Returns the stored fields of document<code>i</code>.    *     * @see org.apache.lucene.index.IndexReader#document(int)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|doc
 name|Document
 name|doc
