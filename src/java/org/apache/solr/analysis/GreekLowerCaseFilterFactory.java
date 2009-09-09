@@ -112,6 +112,26 @@ name|ErrorCode
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_class
 DECL|class|GreekLowerCaseFilterFactory
 specifier|public
@@ -120,6 +140,8 @@ name|GreekLowerCaseFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
 block|{
+annotation|@
+name|Deprecated
 DECL|field|CHARSETS
 specifier|private
 specifier|static
@@ -188,6 +210,21 @@ name|GreekCharsets
 operator|.
 name|UnicodeGreek
 decl_stmt|;
+DECL|field|logger
+specifier|private
+specifier|static
+name|Logger
+name|logger
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|GreekLowerCaseFilterFactory
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|init
@@ -227,6 +264,7 @@ literal|null
 operator|!=
 name|charsetName
 condition|)
+block|{
 name|charset
 operator|=
 name|CHARSETS
@@ -236,6 +274,47 @@ argument_list|(
 name|charsetName
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|charset
+operator|.
+name|equals
+argument_list|(
+name|GreekCharsets
+operator|.
+name|UnicodeGreek
+argument_list|)
+condition|)
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"Specifying UnicodeGreek is no longer required (default).  "
+operator|+
+literal|"Use of the charset parameter will cause an error in Solr 1.5"
+argument_list|)
+expr_stmt|;
+else|else
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"Support for this custom encoding is deprecated.  "
+operator|+
+literal|"Use of the charset parameter will cause an error in Solr 1.5"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|charset
+operator|=
+name|GreekCharsets
+operator|.
+name|UnicodeGreek
+expr_stmt|;
+comment|/* default to unicode */
+block|}
 if|if
 condition|(
 literal|null

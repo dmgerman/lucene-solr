@@ -64,6 +64,8 @@ name|RussianLowerCaseFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
 block|{
+annotation|@
+name|Deprecated
 DECL|field|charset
 specifier|private
 name|char
