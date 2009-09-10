@@ -356,11 +356,15 @@ name|QueryParserMessages
 operator|.
 name|TOO_MANY_BOOLEAN_CLAUSES
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|BooleanQuery
 operator|.
 name|getMaxClauseCount
 argument_list|()
-argument_list|,
+block|,
 name|queryNode
 operator|.
 name|toQueryString
@@ -369,6 +373,7 @@ operator|new
 name|EscapeQuerySyntaxImpl
 argument_list|()
 argument_list|)
+block|}
 argument_list|)
 argument_list|,
 name|ex

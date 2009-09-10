@@ -222,9 +222,14 @@ name|QueryParserMessages
 operator|.
 name|INVALID_SYNTAX_CANNOT_PARSE
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|query
-argument_list|,
+block|,
 literal|""
+block|}
 argument_list|)
 expr_stmt|;
 block|}

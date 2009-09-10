@@ -371,9 +371,14 @@ name|QueryParserMessages
 operator|.
 name|PARAMETER_VALUE_NOT_SUPPORTED
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 literal|"distance"
-argument_list|,
+block|,
 name|distance
+block|}
 argument_list|)
 argument_list|)
 throw|;

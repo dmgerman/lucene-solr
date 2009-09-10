@@ -1451,7 +1451,12 @@ name|QueryParserMessages
 operator|.
 name|INVALID_SYNTAX_ESCAPE_NONE_HEX_UNICODE
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|c
+block|}
 argument_list|)
 argument_list|)
 throw|;

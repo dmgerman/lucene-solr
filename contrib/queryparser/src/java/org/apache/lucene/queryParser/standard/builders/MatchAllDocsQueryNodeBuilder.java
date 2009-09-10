@@ -188,6 +188,10 @@ name|QueryParserMessages
 operator|.
 name|LUCENE_QUERY_CONVERSION_ERROR
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|queryNode
 operator|.
 name|toQueryString
@@ -196,7 +200,7 @@ operator|new
 name|EscapeQuerySyntaxImpl
 argument_list|()
 argument_list|)
-argument_list|,
+block|,
 name|queryNode
 operator|.
 name|getClass
@@ -204,6 +208,7 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+block|}
 argument_list|)
 argument_list|)
 throw|;

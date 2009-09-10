@@ -155,9 +155,14 @@ name|QueryParserMessages
 operator|.
 name|PARAMETER_VALUE_NOT_SUPPORTED
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 literal|"query"
-argument_list|,
+block|,
 literal|"null"
+block|}
 argument_list|)
 argument_list|)
 throw|;
