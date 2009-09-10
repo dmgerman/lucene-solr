@@ -50,6 +50,7 @@ decl_stmt|;
 comment|/**    * Set the lock directory. This method can be only called    * once to initialize the lock directory. It is used by {@link FSDirectory}    * to set the lock directory to itsself.    * Subclasses can also use this method to set the directory    * in the constructor.    */
 DECL|method|setLockDir
 specifier|protected
+specifier|final
 name|void
 name|setLockDir
 parameter_list|(
