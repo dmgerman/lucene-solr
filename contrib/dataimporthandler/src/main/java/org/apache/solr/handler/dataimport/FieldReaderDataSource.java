@@ -260,9 +260,19 @@ name|o
 operator|==
 literal|null
 condition|)
-return|return
-literal|null
-return|;
+block|{
+throw|throw
+operator|new
+name|DataImportHandlerException
+argument_list|(
+name|SEVERE
+argument_list|,
+literal|"No field available for name : "
+operator|+
+name|dataField
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|o
