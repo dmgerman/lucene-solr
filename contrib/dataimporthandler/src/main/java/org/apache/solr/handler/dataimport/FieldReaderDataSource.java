@@ -196,6 +196,11 @@ specifier|private
 name|String
 name|encoding
 decl_stmt|;
+DECL|field|entityProcessor
+specifier|private
+name|EntityProcessorWrapper
+name|entityProcessor
+decl_stmt|;
 DECL|method|init
 specifier|public
 name|void
@@ -208,13 +213,6 @@ name|Properties
 name|initProps
 parameter_list|)
 block|{
-name|vr
-operator|=
-name|context
-operator|.
-name|getVariableResolver
-argument_list|()
-expr_stmt|;
 name|dataField
 operator|=
 name|context
@@ -233,6 +231,16 @@ argument_list|(
 literal|"encoding"
 argument_list|)
 expr_stmt|;
+name|entityProcessor
+operator|=
+operator|(
+name|EntityProcessorWrapper
+operator|)
+name|context
+operator|.
+name|getEntityProcessor
+argument_list|()
+expr_stmt|;
 comment|/*no op*/
 block|}
 DECL|method|getData
@@ -247,7 +255,10 @@ block|{
 name|Object
 name|o
 init|=
-name|vr
+name|entityProcessor
+operator|.
+name|getVariableResolver
+argument_list|()
 operator|.
 name|resolve
 argument_list|(
