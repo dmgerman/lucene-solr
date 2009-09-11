@@ -896,15 +896,11 @@ name|offsetAtt
 operator|.
 name|setOffset
 argument_list|(
-name|input
-operator|.
 name|correctOffset
 argument_list|(
 name|start
 argument_list|)
 argument_list|,
-name|input
-operator|.
 name|correctOffset
 argument_list|(
 name|start

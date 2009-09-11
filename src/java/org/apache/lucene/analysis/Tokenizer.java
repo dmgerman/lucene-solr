@@ -66,7 +66,7 @@ block|{
 comment|/** The text source for this Tokenizer. */
 DECL|field|input
 specifier|protected
-name|CharStream
+name|Reader
 name|input
 decl_stmt|;
 comment|/** Construct a tokenizer with null input. */
@@ -94,22 +94,6 @@ name|get
 argument_list|(
 name|input
 argument_list|)
-expr_stmt|;
-block|}
-comment|/** Construct a token stream processing the given input. */
-DECL|method|Tokenizer
-specifier|protected
-name|Tokenizer
-parameter_list|(
-name|CharStream
-name|input
-parameter_list|)
-block|{
-name|this
-operator|.
-name|input
-operator|=
-name|input
 expr_stmt|;
 block|}
 comment|/** Construct a tokenizer with null input using the given AttributeFactory. */
@@ -156,30 +140,6 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a token stream processing the given input using the given AttributeFactory. */
-DECL|method|Tokenizer
-specifier|protected
-name|Tokenizer
-parameter_list|(
-name|AttributeFactory
-name|factory
-parameter_list|,
-name|CharStream
-name|input
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|factory
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|input
-operator|=
-name|input
-expr_stmt|;
-block|}
 comment|/** Construct a token stream processing the given input using the given AttributeSource. */
 DECL|method|Tokenizer
 specifier|protected
@@ -222,30 +182,6 @@ name|get
 argument_list|(
 name|input
 argument_list|)
-expr_stmt|;
-block|}
-comment|/** Construct a token stream processing the given input using the given AttributeSource. */
-DECL|method|Tokenizer
-specifier|protected
-name|Tokenizer
-parameter_list|(
-name|AttributeSource
-name|source
-parameter_list|,
-name|CharStream
-name|input
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|source
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|input
-operator|=
-name|input
 expr_stmt|;
 block|}
 comment|/** By default, closes the input Reader. */
@@ -263,6 +199,39 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Return the corrected offset. If {@link #input} is a {@link CharStream} subclass    * this method calls {@link CharStream#correctOffset}, else returns<code>currentOff</code>.    * @param currentOff offset as seen in the output    * @return corrected offset based on the input    * @see CharStream#correctOffset    */
+DECL|method|correctOffset
+specifier|protected
+specifier|final
+name|int
+name|correctOffset
+parameter_list|(
+name|int
+name|currentOff
+parameter_list|)
+block|{
+return|return
+operator|(
+name|input
+operator|instanceof
+name|CharStream
+operator|)
+condition|?
+operator|(
+operator|(
+name|CharStream
+operator|)
+name|input
+operator|)
+operator|.
+name|correctOffset
+argument_list|(
+name|currentOff
+argument_list|)
+else|:
+name|currentOff
+return|;
+block|}
 comment|/** Expert: Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
 DECL|method|reset
 specifier|public
@@ -270,30 +239,6 @@ name|void
 name|reset
 parameter_list|(
 name|Reader
-name|input
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-operator|.
-name|input
-operator|=
-name|CharReader
-operator|.
-name|get
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Expert: Reset the tokenizer to a new CharStream.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
-DECL|method|reset
-specifier|public
-name|void
-name|reset
-parameter_list|(
-name|CharStream
 name|input
 parameter_list|)
 throws|throws

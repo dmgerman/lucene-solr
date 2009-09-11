@@ -513,15 +513,11 @@ name|offsetAtt
 operator|.
 name|setOffset
 argument_list|(
-name|input
-operator|.
 name|correctOffset
 argument_list|(
 name|oldPos
 argument_list|)
 argument_list|,
-name|input
-operator|.
 name|correctOffset
 argument_list|(
 name|oldPos
