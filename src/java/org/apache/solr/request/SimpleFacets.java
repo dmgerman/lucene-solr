@@ -931,7 +931,7 @@ operator|new
 name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
-comment|/* Ignore SolrParams.DF - could have init param facet.query assuming      * the schema default with query param DF intented to only affect Q.      * If user doesn't want schema default for facet.query, they should be      * explicit.      */
+comment|/* Ignore CommonParams.DF - could have init param facet.query assuming      * the schema default with query param DF intented to only affect Q.      * If user doesn't want schema default for facet.query, they should be      * explicit.      */
 comment|// SolrQueryParser qp = searcher.getSchema().getSolrQueryParser(null);
 name|String
 index|[]
