@@ -99,7 +99,15 @@ name|IndexReaderFactory
 implements|implements
 name|NamedListInitializedPlugin
 block|{
-comment|/**    *<code>init</code> will be called just once, immediately after creation.    *<p>    * The args are user-level initialization parameters that may be specified    * when declaring an indexReaderFactory in solrconfig.xml    */
+DECL|field|termInfosIndexDivisor
+specifier|protected
+name|int
+name|termInfosIndexDivisor
+init|=
+literal|1
+decl_stmt|;
+comment|//IndexReader.DEFAULT_TERMS_INDEX_DIVISOR;  Set this once Lucene makes this public.
+comment|/**    * Potentially initializes {@link #termInfosIndexDivisor}.  Overriding classes should call super.init() in order    * to make sure termInfosIndexDivisor is set.    *<p>    *<code>init</code> will be called just once, immediately after creation.    *<p>    * The args are user-level initialization parameters that may be specified    * when declaring an indexReaderFactory in solrconfig.xml    *    */
 DECL|method|init
 specifier|public
 name|void
@@ -109,7 +117,45 @@ name|NamedList
 name|args
 parameter_list|)
 block|{
-comment|/* :NOOP: */
+name|Integer
+name|v
+init|=
+operator|(
+name|Integer
+operator|)
+name|args
+operator|.
+name|get
+argument_list|(
+literal|"termInfosIndexDivisor"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|v
+operator|!=
+literal|null
+condition|)
+block|{
+name|termInfosIndexDivisor
+operator|=
+name|v
+operator|.
+name|intValue
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/**    *    * @return The setting of {@link #termInfosIndexDivisor}     */
+DECL|method|getTermInfosIndexDivisor
+specifier|public
+name|int
+name|getTermInfosIndexDivisor
+parameter_list|()
+block|{
+return|return
+name|termInfosIndexDivisor
+return|;
 block|}
 comment|/**    * Creates a new IndexReader instance using the given Directory.    *     * @param indexDir indexDir index location    * @param readOnly return readOnly IndexReader    * @return An IndexReader instance    * @throws IOException    */
 DECL|method|newReader
