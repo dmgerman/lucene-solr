@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic functionality to upload a File to a Solr Cell  *<p/>  * See http://wiki.apache.org/solr/ExtractingRequestHandler  *  **/
+comment|/**  * Basic functionality to upload a File or {@link org.apache.solr.common.util.ContentStream} to a Solr Cell or some  * other handler that takes ContentStreams (CSV)  *<p/>  * See http://wiki.apache.org/solr/ExtractingRequestHandler<br/>  * See http://wiki.apache.org/solr/UpdateCSV  *   *  **/
 end_comment
 
 begin_class
@@ -219,7 +219,7 @@ name|ContentStream
 argument_list|>
 name|contentStreams
 decl_stmt|;
-comment|/**    *    * @param url The URL for Solr Cell.    */
+comment|/**    *    * @param url The URL to send the {@link org.apache.solr.common.util.ContentStream} to in Solr.    */
 DECL|method|ContentStreamUpdateRequest
 specifier|public
 name|ContentStreamUpdateRequest
