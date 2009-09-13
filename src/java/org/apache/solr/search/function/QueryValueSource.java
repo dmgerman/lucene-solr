@@ -276,6 +276,14 @@ name|other
 operator|.
 name|q
 argument_list|)
+operator|&&
+name|this
+operator|.
+name|defVal
+operator|==
+name|other
+operator|.
+name|defVal
 return|;
 block|}
 block|}
