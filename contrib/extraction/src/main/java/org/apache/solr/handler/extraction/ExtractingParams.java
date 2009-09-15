@@ -148,6 +148,16 @@ name|UNKNOWN_FIELD_PREFIX
 init|=
 literal|"uprefix"
 decl_stmt|;
+comment|/**    * Optional.  If specified and the name of a potential field cannot be determined, the default Field specified    * will be used instead.    */
+DECL|field|DEFAULT_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_FIELD
+init|=
+literal|"defaultField"
+decl_stmt|;
 block|}
 end_interface
 
