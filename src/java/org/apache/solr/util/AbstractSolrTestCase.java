@@ -833,7 +833,9 @@ return|return
 name|h
 operator|.
 name|optimize
-argument_list|()
+argument_list|(
+name|args
+argument_list|)
 return|;
 block|}
 comment|/**    * @see TestHarness#commit    */
@@ -851,7 +853,9 @@ return|return
 name|h
 operator|.
 name|commit
-argument_list|()
+argument_list|(
+name|args
+argument_list|)
 return|;
 block|}
 comment|/**    * Generates a simple&lt;add&gt;&lt;doc&gt;... XML String with no options    *    * @param fieldsAndValues 0th and Even numbered args are fields names odds are field values.    * @see #add    * @see #doc    */
