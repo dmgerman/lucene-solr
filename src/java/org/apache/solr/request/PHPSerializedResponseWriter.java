@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A description of the PHP serialization format can be found here:  * http://www.hurring.com/scott/code/perl/serialize/  *  *<p>  * If the Writer passed will result in an output of CESU-8 (UTF=8 w/o support for large code points outside of the BMP), then  * the "CESU8" system property should be set by the user.  If the "CESU8" property is not set, a guess is made based on  * other system properties.  Currently Solr assumes that all Jetty servlet containers use CESU-8 instead of UTF-8 (verified  * to the current release of 6.1.20).  Jetty is detected by checking the "jetty.home" system property.  */
+comment|/**  * A description of the PHP serialization format can be found here:  * http://www.hurring.com/scott/code/perl/serialize/  *  *<p>  * In order to support PHP Serialized strings with a proper byte count, This ResponseWriter  * must know if the Writers passed to it will result in an output of CESU-8 (UTF-8 w/o support  * for large code points outside of the BMP)  *<p>  * Currently Solr assumes that all Jetty servlet containers (detected using the "jetty.home"  * system property) use CESU-8 instead of UTF-8 (verified to the current release of 6.1.20).  *<p>  * In installations where Solr auto-detects incorrectly, the Solr Administrator should set the  * "solr.phps.cesu8" system property to either "true" or "false" accordingly.  */
 end_comment
 
 begin_class
@@ -203,7 +203,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"CESU8"
+literal|"solr.phps.cesu8"
 argument_list|)
 decl_stmt|;
 if|if
