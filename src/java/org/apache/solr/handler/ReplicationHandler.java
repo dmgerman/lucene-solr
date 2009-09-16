@@ -2079,6 +2079,16 @@ range|:
 name|files
 control|)
 block|{
+if|if
+condition|(
+name|fileName
+operator|.
+name|endsWith
+argument_list|(
+literal|".lock"
+argument_list|)
+condition|)
+continue|continue;
 name|File
 name|file
 init|=
