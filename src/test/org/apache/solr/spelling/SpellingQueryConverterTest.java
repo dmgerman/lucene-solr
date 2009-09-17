@@ -73,6 +73,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -99,6 +111,16 @@ operator|.
 name|util
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
 import|;
 end_import
 
@@ -224,6 +246,11 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|String
+name|original
+init|=
+literal|"field_with_underscore:value_with_underscore"
+decl_stmt|;
 name|Collection
 argument_list|<
 name|Token
@@ -234,7 +261,7 @@ name|converter
 operator|.
 name|convert
 argument_list|(
-literal|"field_with_underscore:value_with_underscore"
+name|original
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -246,8 +273,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -267,44 +292,21 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|tokens
-operator|=
-name|converter
-operator|.
-name|convert
+name|assertTrue
 argument_list|(
+literal|"Token offsets do not match"
+argument_list|,
+name|isOffsetCorrect
+argument_list|(
+name|original
+argument_list|,
+name|tokens
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|original
+operator|=
 literal|"field_with_digits123:value_with_digits123"
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"tokens is null and it shouldn't be"
-argument_list|,
-name|tokens
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertEquals
-argument_list|(
-literal|"tokens Size: "
-operator|+
-name|tokens
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" is not 1"
-argument_list|,
-literal|1
-argument_list|,
-name|tokens
-operator|.
-name|size
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|tokens
 operator|=
@@ -312,7 +314,7 @@ name|converter
 operator|.
 name|convert
 argument_list|(
-literal|"field-with-hyphens:value-with-hyphens"
+name|original
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -324,8 +326,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -343,16 +343,90 @@ name|tokens
 operator|.
 name|size
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Token offsets do not match"
+argument_list|,
+name|isOffsetCorrect
+argument_list|(
+name|original
+argument_list|,
+name|tokens
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|original
+operator|=
+literal|"field-with-hyphens:value-with-hyphens"
+expr_stmt|;
+name|tokens
+operator|=
+name|converter
+operator|.
+name|convert
+argument_list|(
+name|original
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"tokens is null and it shouldn't be"
+argument_list|,
+name|tokens
+operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"tokens Size: "
+operator|+
+name|tokens
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" is not 1"
+argument_list|,
+literal|1
+argument_list|,
+name|tokens
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Token offsets do not match"
+argument_list|,
+name|isOffsetCorrect
+argument_list|(
+name|original
+argument_list|,
+name|tokens
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// mix 'em up and add some to the value
+comment|//    original = "field_with-123s:value_,.|with-hyphens";
+comment|//    tokens = converter.convert(original);
+comment|//    assertTrue("tokens is null and it shouldn't be", tokens != null);
+comment|//    assertEquals("tokens Size: " + tokens.size() + " is not 1", 1, tokens.size());
+comment|//    assertTrue("Token offsets do not match", isOffsetCorrect(original, tokens));
+name|original
+operator|=
+literal|"foo:bar^5.0"
+expr_stmt|;
 name|tokens
 operator|=
 name|converter
 operator|.
 name|convert
 argument_list|(
-literal|"field_with-123s:value_,.|with-hyphens"
+name|original
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -364,8 +438,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -385,6 +457,85 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Token offsets do not match"
+argument_list|,
+name|isOffsetCorrect
+argument_list|(
+name|original
+argument_list|,
+name|tokens
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|isOffsetCorrect
+specifier|private
+name|boolean
+name|isOffsetCorrect
+parameter_list|(
+name|String
+name|s
+parameter_list|,
+name|Collection
+argument_list|<
+name|Token
+argument_list|>
+name|tokens
+parameter_list|)
+block|{
+for|for
+control|(
+name|Token
+name|token
+range|:
+name|tokens
+control|)
+block|{
+name|int
+name|start
+init|=
+name|token
+operator|.
+name|startOffset
+argument_list|()
+decl_stmt|;
+name|int
+name|end
+init|=
+name|token
+operator|.
+name|endOffset
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|s
+operator|.
+name|substring
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|token
+operator|.
+name|term
+argument_list|()
+argument_list|)
+condition|)
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
+return|;
 block|}
 annotation|@
 name|Test
@@ -442,8 +593,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -481,8 +630,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -520,8 +667,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -598,8 +743,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
@@ -638,8 +781,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"tokens Size: "
