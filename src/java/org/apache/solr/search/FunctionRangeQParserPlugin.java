@@ -349,29 +349,5 @@ block|}
 block|}
 end_class
 
-begin_class
-DECL|class|FunctionConstantScoreQuery
-class|class
-name|FunctionConstantScoreQuery
-extends|extends
-name|ConstantScoreQuery
-block|{
-DECL|method|FunctionConstantScoreQuery
-specifier|public
-name|FunctionConstantScoreQuery
-parameter_list|(
-name|Filter
-name|filter
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|filter
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-end_class
-
 end_unit
 

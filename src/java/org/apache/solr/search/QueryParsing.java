@@ -2426,7 +2426,7 @@ if|if
 condition|(
 name|query
 operator|instanceof
-name|SolrConstantScoreQuery
+name|ConstantScoreQuery
 condition|)
 block|{
 name|out
