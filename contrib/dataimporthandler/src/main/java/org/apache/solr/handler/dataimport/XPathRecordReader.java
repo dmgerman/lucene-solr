@@ -888,7 +888,7 @@ comment|// But for CDATA | CHARACTERS | SPACE it should not do so because handli
 comment|// CDATA itself would have consumed the next event. CDATA may throw multiple events
 comment|// so all the events are slurped till a  START_ELEMENT is encountered.
 name|boolean
-name|skipNextEvent
+name|isNextEventFetched
 init|=
 literal|false
 decl_stmt|;
@@ -906,7 +906,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|skipNextEvent
+name|isNextEventFetched
 condition|)
 block|{
 name|event
@@ -916,7 +916,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|skipNextEvent
+name|isNextEventFetched
 operator|=
 literal|false
 expr_stmt|;
@@ -1024,7 +1024,7 @@ argument_list|(
 name|fieldName
 argument_list|)
 expr_stmt|;
-name|skipNextEvent
+name|isNextEventFetched
 operator|=
 literal|true
 expr_stmt|;
