@@ -641,17 +641,6 @@ condition|(
 name|isId
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"delete by id : "
-operator|+
-name|s
-argument_list|)
-expr_stmt|;
 name|delcmd
 operator|.
 name|id
@@ -661,17 +650,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"delete by query  = "
-operator|+
-name|s
-argument_list|)
-expr_stmt|;
 name|delcmd
 operator|.
 name|query
