@@ -883,6 +883,10 @@ name|Node
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// for any normal event , parser.next() should be called in each iteration.
+comment|// But for CDATA | CHARACTERS | SPACE it should not do so because handling of
+comment|// CDATA itself would have consumed the next event. CDATA may throw multiple events
+comment|// so all the events are slurped till a  START_ELEMENT is encountered.
 name|boolean
 name|skipNextEvent
 init|=
