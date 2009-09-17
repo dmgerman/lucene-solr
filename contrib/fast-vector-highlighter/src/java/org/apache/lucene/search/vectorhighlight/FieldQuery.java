@@ -807,7 +807,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    * Check if src and dest have overlapped part and if it is, create PhraseQueries and add expandQueries.    *     * ex1) src="a b", dest="c d"       => no overlap    * ex2) src="a b", dest="a b c"     => no overlap    * ex3) src="a b", dest="b c"       => overlap; expandQueries={"a b c"}    * ex4) src="a b c", dest="b c d"   => overlap; expandQueries={"a b c d"}    * ex5) src="a b c", dest="b c"     => no overlap    * ex6) src="a b c", dest="b"       => no overlap    * ex7) src="a a a a", dest="a a a" => overlap;    *                                     expandQueries={"a a a a a","a a a a a a"}    */
+comment|/*    * Check if src and dest have overlapped part and if it is, create PhraseQueries and add expandQueries.    *     * ex1) src="a b", dest="c d"       => no overlap    * ex2) src="a b", dest="a b c"     => no overlap    * ex3) src="a b", dest="b c"       => overlap; expandQueries={"a b c"}    * ex4) src="a b c", dest="b c d"   => overlap; expandQueries={"a b c d"}    * ex5) src="a b c", dest="b c"     => no overlap    * ex6) src="a b c", dest="b"       => no overlap    * ex7) src="a a a a", dest="a a a" => overlap;    *                                     expandQueries={"a a a a a","a a a a a a"}    * ex8) src="a b c d", dest="b c"   => no overlap    */
 DECL|method|checkOverlap
 specifier|private
 name|void
@@ -878,6 +878,16 @@ control|)
 block|{
 if|if
 condition|(
+operator|(
+name|j
+operator|-
+name|i
+operator|)
+operator|<
+name|dest
+operator|.
+name|length
+operator|&&
 operator|!
 name|src
 index|[
