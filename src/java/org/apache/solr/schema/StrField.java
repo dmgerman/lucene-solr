@@ -166,20 +166,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|NumberUtils
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -386,6 +372,9 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
+name|Map
+name|context
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)

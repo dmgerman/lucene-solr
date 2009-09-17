@@ -82,6 +82,26 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|IdentityHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Instantiates {@link org.apache.solr.search.function.DocValues} for a particular reader.  *<br>  * Often used when creating a {@link FunctionQuery}.  *  * @version $Id$  */
 end_comment
@@ -97,7 +117,6 @@ name|Serializable
 block|{
 DECL|method|getValues
 specifier|public
-specifier|abstract
 name|DocValues
 name|getValues
 parameter_list|(
@@ -106,7 +125,35 @@ name|reader
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|{
+return|return
+name|getValues
+argument_list|(
+literal|null
+argument_list|,
+name|reader
+argument_list|)
+return|;
+block|}
+comment|/** Gets the values for this reader and the context that was previously    * passed to createWeight()    */
+DECL|method|getValues
+specifier|public
+name|DocValues
+name|getValues
+parameter_list|(
+name|Map
+name|context
+parameter_list|,
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+literal|null
+return|;
+block|}
 DECL|method|equals
 specifier|public
 specifier|abstract
@@ -140,6 +187,35 @@ parameter_list|()
 block|{
 return|return
 name|description
+argument_list|()
+return|;
+block|}
+comment|/** Implementations should propagate createWeight to sub-ValueSources which can optionally store    * weight info in the context. The context object will be passed to getValues()    * where this info can be retrieved. */
+DECL|method|createWeight
+specifier|public
+name|void
+name|createWeight
+parameter_list|(
+name|Map
+name|context
+parameter_list|,
+name|Searcher
+name|searcher
+parameter_list|)
+throws|throws
+name|IOException
+block|{   }
+comment|/** Returns a new non-threadsafe context map. */
+DECL|method|newContext
+specifier|public
+specifier|static
+name|Map
+name|newContext
+parameter_list|()
+block|{
+return|return
+operator|new
+name|IdentityHashMap
 argument_list|()
 return|;
 block|}

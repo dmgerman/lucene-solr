@@ -56,6 +56,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * A value source that wraps another and ensures that the top level reader  * is used.  This is useful for value sources like ord() who's value depend  * on all those around it.  */
 end_comment
@@ -121,6 +131,9 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
+name|Map
+name|context
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)
@@ -196,6 +209,8 @@ name|vs
 operator|.
 name|getValues
 argument_list|(
+name|context
+argument_list|,
 name|topReader
 argument_list|)
 decl_stmt|;

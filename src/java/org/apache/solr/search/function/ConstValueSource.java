@@ -42,6 +42,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>ConstValueSource</code> returns a constant for all documents  */
 end_comment
@@ -93,6 +103,9 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
+name|Map
+name|context
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)

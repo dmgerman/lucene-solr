@@ -66,15 +66,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
+name|IOException
 import|;
 end_import
 
@@ -82,9 +78,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
+name|Map
 import|;
 end_import
 
@@ -139,6 +135,9 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
+name|Map
+name|context
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)

@@ -94,6 +94,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Query that is boosted by a ValueSource  */
 end_comment
@@ -265,6 +275,10 @@ DECL|field|qWeight
 name|Weight
 name|qWeight
 decl_stmt|;
+DECL|field|context
+name|Map
+name|context
+decl_stmt|;
 DECL|method|BoostedWeight
 specifier|public
 name|BoostedWeight
@@ -289,6 +303,24 @@ name|q
 operator|.
 name|weight
 argument_list|(
+name|searcher
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|boostVal
+operator|.
+name|newContext
+argument_list|()
+expr_stmt|;
+name|boostVal
+operator|.
+name|createWeight
+argument_list|(
+name|context
+argument_list|,
 name|searcher
 argument_list|)
 expr_stmt|;
@@ -520,6 +552,8 @@ name|boostVal
 operator|.
 name|getValues
 argument_list|(
+name|context
+argument_list|,
 name|subReaders
 index|[
 name|readerPos
@@ -708,6 +742,10 @@ name|vs
 operator|.
 name|getValues
 argument_list|(
+name|weight
+operator|.
+name|context
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;

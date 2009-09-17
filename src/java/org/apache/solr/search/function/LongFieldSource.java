@@ -56,6 +56,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Obtains float field values from the {@link org.apache.lucene.search.FieldCache}  * using<code>getFloats()</code>  * and makes those values available as other numeric types, casting as needed.  *  * @version $Id: FloatFieldSource.java 555343 2007-07-11 17:46:25Z hossman $  */
 end_comment
@@ -153,6 +163,9 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
+name|Map
+name|context
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)
