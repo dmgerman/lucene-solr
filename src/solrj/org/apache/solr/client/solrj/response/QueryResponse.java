@@ -1144,6 +1144,13 @@ argument_list|(
 literal|"facet_queries"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|fq
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|Map
@@ -1174,6 +1181,7 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Parse the facet info into fields
 comment|// TODO?? The list could be<int> or<long>?  If always<long> then we can switch to<Long>
