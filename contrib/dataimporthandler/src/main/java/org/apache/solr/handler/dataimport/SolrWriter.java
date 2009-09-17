@@ -342,27 +342,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Exception while adding: "
-operator|+
-name|d
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-catch|catch
-parameter_list|(
 name|Exception
 name|e
 parameter_list|)
