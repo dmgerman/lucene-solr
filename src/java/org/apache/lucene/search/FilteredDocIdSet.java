@@ -59,6 +59,20 @@ operator|=
 name|innerSet
 expr_stmt|;
 block|}
+comment|/** This DocIdSet implementation is cacheable if the inner set is cacheable. */
+DECL|method|isCacheable
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+name|_innerSet
+operator|.
+name|isCacheable
+argument_list|()
+return|;
+block|}
 comment|/**    * Validation method to determine whether a docid should be in the result set.    * @param docid docid to be tested    * @return true if input docid should be in the result set, false otherwise.    */
 DECL|method|match
 specifier|protected

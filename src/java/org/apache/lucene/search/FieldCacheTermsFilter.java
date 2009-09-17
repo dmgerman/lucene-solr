@@ -269,6 +269,17 @@ name|FieldCacheTermsFilterDocIdSetIterator
 argument_list|()
 return|;
 block|}
+comment|/** This DocIdSet implementation is cacheable. */
+DECL|method|isCacheable
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 DECL|class|FieldCacheTermsFilterDocIdSetIterator
 specifier|protected
 class|class

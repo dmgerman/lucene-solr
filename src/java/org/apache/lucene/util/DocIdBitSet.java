@@ -100,6 +100,17 @@ name|bitSet
 argument_list|)
 return|;
 block|}
+comment|/** This DocIdSet implementation is cacheable. */
+DECL|method|isCacheable
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/**    * Returns the underlying BitSet.     */
 DECL|method|getBitSet
 specifier|public

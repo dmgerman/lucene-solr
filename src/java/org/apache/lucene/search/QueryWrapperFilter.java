@@ -244,6 +244,15 @@ literal|false
 argument_list|)
 return|;
 block|}
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 return|;
 block|}

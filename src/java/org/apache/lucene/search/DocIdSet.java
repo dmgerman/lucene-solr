@@ -103,6 +103,15 @@ return|return
 name|iterator
 return|;
 block|}
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 decl_stmt|;
 comment|/** Provides a {@link DocIdSetIterator} to access the set.    * This implementation can return<code>null</code> or    *<code>{@linkplain #EMPTY_DOCIDSET}.iterator()</code> if there    * are no docs that match. */
@@ -115,6 +124,17 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * This method is a hint for {@link CachingWrapperFilter}, if this<code>DocIdSet</code>    * should be cached without copying it into a BitSet. The default is to return    *<code>false</code>. If you have an own<code>DocIdSet</code> implementation    * that does its iteration very effective and fast without doing disk I/O,    * override this method and return<code>true</here>.    */
+DECL|method|isCacheable
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

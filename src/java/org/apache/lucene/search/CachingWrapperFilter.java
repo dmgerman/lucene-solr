@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OpenBitSetDISI
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -243,7 +257,7 @@ return|return
 name|bits
 return|;
 block|}
-comment|/** Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.    *  This implementation returns the given DocIdSet.    */
+comment|/** Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.    *<p>This implementation returns the given {@link DocIdSet}, if {@link DocIdSet#isCacheable}    *  returns<code>true</code>, else it copies the {@link DocIdSetIterator} into    *  an {@link OpenBitSetDISI}.    */
 DECL|method|docIdSetToCache
 specifier|protected
 name|DocIdSet
@@ -255,10 +269,58 @@ parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|docIdSet
+operator|.
+name|isCacheable
+argument_list|()
+condition|)
 block|{
 return|return
 name|docIdSet
 return|;
+block|}
+else|else
+block|{
+specifier|final
+name|DocIdSetIterator
+name|it
+init|=
+name|docIdSet
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+comment|// null is allowed to be returned by iterator(),
+comment|// in this case we wrap with the empty set,
+comment|// which is cacheable.
+return|return
+operator|(
+name|it
+operator|==
+literal|null
+operator|)
+condition|?
+name|DocIdSet
+operator|.
+name|EMPTY_DOCIDSET
+else|:
+operator|new
+name|OpenBitSetDISI
+argument_list|(
+name|it
+argument_list|,
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 DECL|method|getDocIdSet
 specifier|public

@@ -624,6 +624,17 @@ operator|.
 name|length
 return|;
 block|}
+comment|/** This DocIdSet implementation is cacheable. */
+DECL|method|isCacheable
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/**    * @return    An iterator over the sorted integers.    */
 DECL|method|iterator
 specifier|public

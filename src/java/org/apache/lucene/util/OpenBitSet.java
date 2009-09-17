@@ -172,6 +172,17 @@ name|wlen
 argument_list|)
 return|;
 block|}
+comment|/** This DocIdSet implementation is cacheable. */
+DECL|method|isCacheable
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/** Returns the current capacity in bits (1 greater than the index of the last bit) */
 DECL|method|capacity
 specifier|public
