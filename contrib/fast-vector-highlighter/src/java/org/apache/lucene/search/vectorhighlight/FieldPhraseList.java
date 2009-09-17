@@ -774,7 +774,7 @@ operator|<=
 name|oso
 operator|&&
 name|oso
-operator|<=
+operator|<
 name|eo
 condition|)
 return|return
@@ -783,7 +783,7 @@ return|;
 if|if
 condition|(
 name|so
-operator|<=
+operator|<
 name|oeo
 operator|&&
 name|oeo
@@ -800,7 +800,7 @@ operator|<=
 name|so
 operator|&&
 name|so
-operator|<=
+operator|<
 name|oeo
 condition|)
 return|return
@@ -809,7 +809,7 @@ return|;
 if|if
 condition|(
 name|oso
-operator|<=
+operator|<
 name|eo
 operator|&&
 name|eo
