@@ -2626,6 +2626,15 @@ name|TOTAL_DOC_PROCESSED
 init|=
 literal|"Total Documents Processed"
 decl_stmt|;
+DECL|field|TOTAL_FAILED_DOCS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TOTAL_FAILED_DOCS
+init|=
+literal|"Total Documents Failed"
+decl_stmt|;
 DECL|field|TOTAL_QUERIES_EXECUTED
 specifier|public
 specifier|static
