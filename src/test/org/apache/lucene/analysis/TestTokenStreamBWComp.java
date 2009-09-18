@@ -94,6 +94,7 @@ name|LuceneTestCase
 block|{
 DECL|field|doc
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|doc
@@ -102,6 +103,7 @@ literal|"This is the new TokenStream api"
 decl_stmt|;
 DECL|field|stopwords
 specifier|private
+specifier|static
 specifier|final
 name|String
 index|[]
@@ -116,6 +118,25 @@ block|,
 literal|"the"
 block|,
 literal|"this"
+block|}
+decl_stmt|;
+DECL|field|results
+specifier|private
+specifier|static
+specifier|final
+name|String
+index|[]
+name|results
+init|=
+operator|new
+name|String
+index|[]
+block|{
+literal|"new"
+block|,
+literal|"tokenstream"
+block|,
+literal|"api"
 block|}
 decl_stmt|;
 DECL|class|POSToken
@@ -826,6 +847,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|stream
@@ -878,16 +904,13 @@ operator|.
 name|PROPER_NOUN_ANNOTATION
 condition|)
 block|{
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"only TokenStream is a proper noun"
 argument_list|,
 literal|"tokenstream"
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|term
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -906,6 +929,19 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|assertEquals
+argument_list|(
+name|results
+index|[
+name|i
+index|]
+argument_list|,
+name|term
+argument_list|)
+expr_stmt|;
+name|i
+operator|++
+expr_stmt|;
 block|}
 block|}
 DECL|method|consumeStreamOldAPI
@@ -932,6 +968,11 @@ operator|new
 name|Token
 argument_list|()
 decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -992,16 +1033,13 @@ operator|.
 name|PROPER_NOUN_ANNOTATION
 condition|)
 block|{
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"only TokenStream is a proper noun"
 argument_list|,
 literal|"tokenstream"
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|term
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1020,6 +1058,19 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|assertEquals
+argument_list|(
+name|results
+index|[
+name|i
+index|]
+argument_list|,
+name|term
+argument_list|)
+expr_stmt|;
+name|i
+operator|++
+expr_stmt|;
 block|}
 block|}
 DECL|method|consumeStreamVeryOldAPI
@@ -1042,6 +1093,11 @@ expr_stmt|;
 name|Token
 name|token
 decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -1100,16 +1156,13 @@ operator|.
 name|PROPER_NOUN_ANNOTATION
 condition|)
 block|{
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"only TokenStream is a proper noun"
 argument_list|,
 literal|"tokenstream"
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|term
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1128,6 +1181,19 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|assertEquals
+argument_list|(
+name|results
+index|[
+name|i
+index|]
+argument_list|,
+name|term
+argument_list|)
+expr_stmt|;
+name|i
+operator|++
+expr_stmt|;
 block|}
 block|}
 comment|// test if tokenization fails, if only the new API is allowed and an old TokenStream is in the chain
@@ -1211,7 +1277,7 @@ name|UnsupportedOperationException
 name|uoe
 parameter_list|)
 block|{
-name|assertTrue
+name|assertEquals
 argument_list|(
 operator|(
 name|PartOfSpeechTaggingFilter
@@ -1223,14 +1289,11 @@ argument_list|()
 operator|+
 literal|" does not implement incrementToken() which is needed for onlyUseNewAPI."
 operator|)
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|uoe
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1277,7 +1340,7 @@ empty_stmt|;
 comment|// Test, if all attributes are implemented by their implementation, not Token/TokenWrapper
 name|assertTrue
 argument_list|(
-literal|"TermAttribute is implemented by TermAttributeImpl"
+literal|"TermAttribute is not implemented by TermAttributeImpl"
 argument_list|,
 name|stream
 operator|.
@@ -1293,7 +1356,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OffsetAttribute is implemented by OffsetAttributeImpl"
+literal|"OffsetAttribute is not implemented by OffsetAttributeImpl"
 argument_list|,
 name|stream
 operator|.
@@ -1309,7 +1372,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"FlagsAttribute is implemented by FlagsAttributeImpl"
+literal|"FlagsAttribute is not implemented by FlagsAttributeImpl"
 argument_list|,
 name|stream
 operator|.
@@ -1325,7 +1388,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"PayloadAttribute is implemented by PayloadAttributeImpl"
+literal|"PayloadAttribute is not implemented by PayloadAttributeImpl"
 argument_list|,
 name|stream
 operator|.
@@ -1341,7 +1404,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"PositionIncrementAttribute is implemented by PositionIncrementAttributeImpl"
+literal|"PositionIncrementAttribute is not implemented by PositionIncrementAttributeImpl"
 argument_list|,
 name|stream
 operator|.
@@ -1357,7 +1420,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"TypeAttribute is implemented by TypeAttributeImpl"
+literal|"TypeAttribute is not implemented by TypeAttributeImpl"
 argument_list|,
 name|stream
 operator|.
@@ -1414,17 +1477,14 @@ name|UnsupportedOperationException
 name|uoe
 parameter_list|)
 block|{
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"This TokenStream only supports the new Attributes API."
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|uoe
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1457,17 +1517,14 @@ name|UnsupportedOperationException
 name|uoe
 parameter_list|)
 block|{
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"This TokenStream only supports the new Attributes API."
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|uoe
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1497,7 +1554,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"TermAttribute is implemented by TokenWrapper"
+literal|"TermAttribute is not implemented by TokenWrapper"
 argument_list|,
 name|stream
 operator|.
@@ -1513,7 +1570,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"OffsetAttribute is implemented by TokenWrapper"
+literal|"OffsetAttribute is not implemented by TokenWrapper"
 argument_list|,
 name|stream
 operator|.
@@ -1529,7 +1586,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"FlagsAttribute is implemented by TokenWrapper"
+literal|"FlagsAttribute is not implemented by TokenWrapper"
 argument_list|,
 name|stream
 operator|.
@@ -1545,7 +1602,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"PayloadAttribute is implemented by TokenWrapper"
+literal|"PayloadAttribute is not implemented by TokenWrapper"
 argument_list|,
 name|stream
 operator|.
@@ -1561,7 +1618,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"PositionIncrementAttribute is implemented by TokenWrapper"
+literal|"PositionIncrementAttribute is not implemented by TokenWrapper"
 argument_list|,
 name|stream
 operator|.
@@ -1577,7 +1634,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"TypeAttribute is implemented by TokenWrapper"
+literal|"TypeAttribute is not implemented by TokenWrapper"
 argument_list|,
 name|stream
 operator|.
@@ -1677,6 +1734,8 @@ parameter_list|)
 block|{
 name|assertTrue
 argument_list|(
+literal|"invalid UOE message"
+argument_list|,
 name|uoe
 operator|.
 name|getMessage
@@ -1689,6 +1748,351 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+DECL|method|testMixedOldApiConsumer
+specifier|public
+name|void
+name|testMixedOldApiConsumer
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// WhitespaceTokenizer is using incrementToken() API:
+name|TokenStream
+name|stream
+init|=
+operator|new
+name|WhitespaceTokenizer
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"foo bar moo maeh"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|Token
+name|foo
+init|=
+operator|new
+name|Token
+argument_list|()
+decl_stmt|;
+name|foo
+operator|=
+name|stream
+operator|.
+name|next
+argument_list|(
+name|foo
+argument_list|)
+expr_stmt|;
+name|Token
+name|bar
+init|=
+name|stream
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo"
+argument_list|,
+name|foo
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"bar"
+argument_list|,
+name|bar
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|Token
+name|moo
+init|=
+name|stream
+operator|.
+name|next
+argument_list|(
+name|foo
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"moo"
+argument_list|,
+name|moo
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"private 'bar' term should still be valid"
+argument_list|,
+literal|"bar"
+argument_list|,
+name|bar
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// and now we also use incrementToken()... (very bad, but should work)
+name|TermAttribute
+name|termAtt
+init|=
+operator|(
+name|TermAttribute
+operator|)
+name|stream
+operator|.
+name|getAttribute
+argument_list|(
+name|TermAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|stream
+operator|.
+name|incrementToken
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"maeh"
+argument_list|,
+name|termAtt
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"private 'bar' term should still be valid"
+argument_list|,
+literal|"bar"
+argument_list|,
+name|bar
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/*    * old api that cycles thru foo, bar, meh    */
+DECL|class|RoundRobinOldAPI
+specifier|private
+class|class
+name|RoundRobinOldAPI
+extends|extends
+name|TokenStream
+block|{
+DECL|field|count
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+DECL|field|terms
+name|String
+name|terms
+index|[]
+init|=
+block|{
+literal|"foo"
+block|,
+literal|"bar"
+block|,
+literal|"meh"
+block|}
+decl_stmt|;
+DECL|method|next
+specifier|public
+name|Token
+name|next
+parameter_list|(
+name|Token
+name|reusableToken
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|reusableToken
+operator|.
+name|setTermBuffer
+argument_list|(
+name|terms
+index|[
+name|count
+operator|%
+name|terms
+operator|.
+name|length
+index|]
+argument_list|)
+expr_stmt|;
+name|count
+operator|++
+expr_stmt|;
+return|return
+name|reusableToken
+return|;
+block|}
+block|}
+DECL|method|testMixedOldApiConsumer2
+specifier|public
+name|void
+name|testMixedOldApiConsumer2
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// RoundRobinOldAPI is using TokenStream(next)
+name|TokenStream
+name|stream
+init|=
+operator|new
+name|RoundRobinOldAPI
+argument_list|()
+decl_stmt|;
+name|TermAttribute
+name|termAtt
+init|=
+operator|(
+name|TermAttribute
+operator|)
+name|stream
+operator|.
+name|getAttribute
+argument_list|(
+name|TermAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|stream
+operator|.
+name|incrementToken
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|Token
+name|bar
+init|=
+name|stream
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo"
+argument_list|,
+name|termAtt
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"bar"
+argument_list|,
+name|bar
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|stream
+operator|.
+name|incrementToken
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"meh"
+argument_list|,
+name|termAtt
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"private 'bar' term should still be valid"
+argument_list|,
+literal|"bar"
+argument_list|,
+name|bar
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|Token
+name|foo
+init|=
+name|stream
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"the term attribute should still be the same"
+argument_list|,
+literal|"meh"
+argument_list|,
+name|termAtt
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"foo"
+argument_list|,
+name|foo
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"private 'bar' term should still be valid"
+argument_list|,
+literal|"bar"
+argument_list|,
+name|bar
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
