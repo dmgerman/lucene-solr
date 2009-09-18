@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenFilter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -75,7 +89,7 @@ specifier|abstract
 class|class
 name|BufferedTokenStream
 extends|extends
-name|TokenStream
+name|TokenFilter
 block|{
 comment|// in the future, might be faster if we implemented as an array based CircularQueue
 DECL|field|inQueue
@@ -110,12 +124,6 @@ name|Token
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|field|input
-specifier|private
-specifier|final
-name|TokenStream
-name|input
-decl_stmt|;
 DECL|method|BufferedTokenStream
 specifier|public
 name|BufferedTokenStream
@@ -124,11 +132,10 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-name|this
-operator|.
+name|super
+argument_list|(
 name|input
-operator|=
-name|input
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Process a token.  Subclasses may read more tokens from the input stream,    * write more tokens to the output stream, or simply return the next token    * to be output.  Subclasses may return null if the token is to be dropped.    * If a subclass writes tokens to the output stream and returns a    * non-null Token, the returned Token is considered to be at the head of    * the token output stream.    */
