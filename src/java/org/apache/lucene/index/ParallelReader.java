@@ -2270,6 +2270,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 name|field
 operator|=
 operator|(
@@ -2280,6 +2282,16 @@ operator|.
 name|firstKey
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchElementException
+name|e
+parameter_list|)
+block|{
+comment|// No fields, so keep field == null, termEnum == null
+return|return;
+block|}
 if|if
 condition|(
 name|field

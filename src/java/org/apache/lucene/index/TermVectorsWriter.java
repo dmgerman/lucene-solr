@@ -877,6 +877,13 @@ block|}
 block|}
 block|}
 comment|// 2nd pass: write field pointers to tvd
+if|if
+condition|(
+name|numFields
+operator|>
+literal|1
+condition|)
+block|{
 name|long
 name|lastFieldPointer
 init|=
@@ -922,6 +929,7 @@ name|lastFieldPointer
 operator|=
 name|fieldPointer
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
