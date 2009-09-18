@@ -1549,9 +1549,15 @@ name|offsetAtt
 operator|.
 name|setOffset
 argument_list|(
+name|correctOffset
+argument_list|(
 literal|0
+argument_list|)
 argument_list|,
+name|correctOffset
+argument_list|(
 name|n
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
