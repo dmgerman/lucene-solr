@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only a  * subset of xpath syntax.  *</p>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject/@qualifier  * /a/b/c  *  * Keep in mind that the wild-card syntax  '//' is not supported  *  *<p/>  *<b>This API is experimental and may change in the future.</b>  * This class is thread-safe for parsing xml . But adding fields is not thread-safe. The recommended usage is  * to addField() in one thread and then share the instance across threads.  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * /a/b/c  *</pre>  * Keep in mind that the wild-card syntax  '//' is not supported  * A record is a Map<String,Object> . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -145,7 +145,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-comment|/**Use this flag in the addField() method to fetch all the cdata under a specific tag    *    */
+comment|/**     * The FLATTEN flag indicates that all text and cdata under a specific    * tag should be recursivly fetched and appended to the current Node's    * value.    */
 DECL|field|FLATTEN
 specifier|public
 specifier|static
@@ -155,7 +155,7 @@ name|FLATTEN
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * @param forEachXpath  The XPATH for which a record is emitted. At the start of this xpath tag, it starts collecting the fields and at the close    * of the tag ,a record is emitted and the fields collected since the tag start is included in the record. If there    * are fields collected in the parent tag(s) they also will be included in the record but not cleared after emitting the record.    * It can use the ' | ' syntax of XPATH to pass in multiple xpaths.    */
+comment|/**    * A constructor called with a '|' seperated list of Xpath expressions    * which define sub sections of the XML stream that are to be emitted    * seperate records.    *     * @param forEachXpath  The XPATH for which a record is emitted. Once the    * xpath tag is encountered, the Node.parse method starts collecting wanted     * fields and at the close of the tag, a record is emitted containing all     * fields collected since the tag start. Once     * emitted the collected fields are cleared. Any fields collected in the parent tag or above    * will also be included in the record, but these are not    * cleared after emitting the record.     * It uses the ' | ' syntax of XPATH to pass in multiple xpaths.    */
 DECL|method|XPathRecordReader
 specifier|public
 name|XPathRecordReader
@@ -200,6 +200,7 @@ operator|==
 literal|0
 condition|)
 continue|continue;
+comment|// The created Node has a name set to the full forEach attribute xpath
 name|addField0
 argument_list|(
 name|split
@@ -215,6 +216,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of Nodes     * based on the supplied Xpath for the given fieldName. The created nodes     * are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -267,7 +269,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**Add a field's XPATH and its name.    * @param name . The name by which this field is referred in the emitted record    * @param xpath . The xpath  to this field    * @param multiValued . If this is 'true' , then the emitted record will have a List<String> as value    * @param flags . The only supported flag is 'FLATTEN'    */
+comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of Nodes     * based on the supplied Xpath for the given fieldName. The created nodes     * are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param flags FLATTEN: Recursivly combine text from all child XML elements    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -323,6 +325,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**    * Splits the XPATH into a List of xpath segments and calls build() to    * construct a tree of Nodes representing xpath segments. The resulting    * tree structure ends up describing all the Xpaths we are interested in.    *    * @param xpath The xpath expression for this field    * @param name The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param isRecord When 'true' flags that this XPATH is from a forEach statement    * @param flags The only supported flag is 'FLATTEN'    */
 DECL|method|addField0
 specifier|private
 name|void
@@ -395,6 +398,7 @@ name|flags
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**     * Uses {@link #streamRecords streamRecords} to parse the XML source but     * collects the emitted records into a List which is returned upon completion.    *    * @param r the stream reader    * @return results a List of emitted records    *    */
 DECL|method|getAllRecords
 specifier|public
 name|List
@@ -475,7 +479,7 @@ return|return
 name|results
 return|;
 block|}
-comment|/** Stream records as and when they are colected    * @param r The reader    * @param handler The callback instance    */
+comment|/**     * Creates an XML stream reader on top of whatever reader has been    * configured. Then calls parse() with a handler which is    * invoked forEach record emitted.    *    * @param r the stream reader    * @param handler The callback instance    */
 DECL|method|streamRecords
 specifier|public
 name|void
@@ -546,33 +550,32 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**For each node/leaf in the tree there is one object of this class    */
+comment|/**    * For each node/leaf in the Node tree there is one object of this class.    * This tree of objects represents all the XPaths we are interested in.    * For each Xpath segment of interest we create a node. In most cases the    * node (branch) is rather basic , but for the final portion (leaf) of any Xpath  we add    * more information to the Node. When parsing the XML document we    * step though this tree as we stream records from the reader. If the XML    * document departs from this tree we skip start tags till we are back on     * the tree.    *    */
 DECL|class|Node
 specifier|private
 class|class
 name|Node
 block|{
-comment|/**name of the tag/attribute*/
 DECL|field|name
 name|String
 name|name
 decl_stmt|;
-comment|/**The field name as passed in the addField() . This will be used in the record*/
+comment|// genrally: segment of the Xpath represented by this Node
 DECL|field|fieldName
 name|String
 name|fieldName
 decl_stmt|;
-comment|/**stores the xpath name such as '@attr='xyz'*/
+comment|// the fieldname in the emitted record (key of the map)
 DECL|field|xpathName
 name|String
 name|xpathName
 decl_stmt|;
-comment|/**The xpath of the record. if this is a record node */
+comment|// the segment of the Xpath represented by this Node
 DECL|field|forEachPath
 name|String
 name|forEachPath
 decl_stmt|;
-comment|/**child attribute nodes */
+comment|// the full Xpath from the forEach entity attribute
 DECL|field|attributes
 name|List
 argument_list|<
@@ -580,7 +583,7 @@ name|Node
 argument_list|>
 name|attributes
 decl_stmt|;
-comment|/**child nodes*/
+comment|// a List of attribute Nodes associated with this Node
 DECL|field|childNodes
 name|List
 argument_list|<
@@ -588,7 +591,7 @@ name|Node
 argument_list|>
 name|childNodes
 decl_stmt|;
-comment|/**if attribs are used in the xpath their names and values*/
+comment|// a List of child Nodes of this node
 DECL|field|attribAndValues
 name|List
 argument_list|<
@@ -603,32 +606,38 @@ argument_list|>
 argument_list|>
 name|attribAndValues
 decl_stmt|;
-comment|/**Parent node of this node */
 DECL|field|parent
 name|Node
 name|parent
 decl_stmt|;
+comment|// parent Node in the tree
 DECL|field|hasText
-DECL|field|multiValued
-DECL|field|isRecord
 name|boolean
 name|hasText
 init|=
 literal|false
-decl_stmt|,
+decl_stmt|;
+comment|// flag: store/emit streamed text for this node
+DECL|field|multiValued
+name|boolean
 name|multiValued
 init|=
 literal|false
-decl_stmt|,
+decl_stmt|;
+comment|//flag: this fields values are returned as a List
+DECL|field|isRecord
+name|boolean
 name|isRecord
 init|=
 literal|false
 decl_stmt|;
+comment|//flag: this Node starts a new record
 DECL|field|flatten
 specifier|private
 name|boolean
 name|flatten
 decl_stmt|;
+comment|//flag: child text is also to be emitted
 DECL|method|Node
 specifier|public
 name|Node
@@ -640,6 +649,8 @@ name|Node
 name|p
 parameter_list|)
 block|{
+comment|// Create a basic Node, suitable for the mid portions of any Xpath.
+comment|// Node.xpathName and Node.name are set to same value
 name|xpathName
 operator|=
 name|this
@@ -667,26 +678,30 @@ name|boolean
 name|multiValued
 parameter_list|)
 block|{
+comment|// This is only called from build() when describing an attribute.
 name|this
 operator|.
 name|name
 operator|=
 name|name
 expr_stmt|;
+comment|// a segment from the Xpath
 name|this
 operator|.
 name|fieldName
 operator|=
 name|fieldName
 expr_stmt|;
+comment|// name to store collected values against
 name|this
 operator|.
 name|multiValued
 operator|=
 name|multiValued
 expr_stmt|;
+comment|// return collected values in a List
 block|}
-comment|/**This is the method where all the parsing happens. For each tag/subtag this gets called recursively.      */
+comment|/**      * This is the method where all the XML parsing happens. For each       * tag/subtag read from the source, this method is called recursively.      *      */
 DECL|method|parse
 specifier|private
 name|void
@@ -736,6 +751,8 @@ condition|(
 name|isRecord
 condition|)
 block|{
+comment|// This Node is a match for an XPATH from a forEach attribute,
+comment|// prepare to emit a new record when its END_ELEMENT is matched
 name|recordStarted
 operator|=
 literal|true
@@ -763,6 +780,8 @@ condition|(
 name|recordStarted
 condition|)
 block|{
+comment|// This node is a child of some parent which matched against forEach
+comment|// attribute. Continue to add values to an existing record.
 name|valuesAddedinThisFrame
 operator|=
 name|stack
@@ -773,6 +792,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//if this tag has an attribute or text which is a brank/leaf just push an item up the stack
 if|if
 condition|(
 name|attributes
@@ -883,10 +903,10 @@ name|Node
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// for any normal event , parser.next() should be called in each iteration.
-comment|// But for CDATA | CHARACTERS | SPACE it should not do so because handling of
-comment|// CDATA itself would have consumed the next event. CDATA may throw multiple events
-comment|// so all the events are slurped till a  START_ELEMENT is encountered.
+comment|// Internally we have to gobble CDATA | CHARACTERS | SPACE events as we
+comment|// store text, the gobbling continues till we have fetched some other
+comment|// event. We use "isNextEventFetched" to indcate that the gobbling has
+comment|// already fetched the next event.
 name|boolean
 name|isNextEventFetched
 init|=
@@ -1024,6 +1044,8 @@ argument_list|(
 name|fieldName
 argument_list|)
 expr_stmt|;
+comment|// becuase we are fetching events here we need to ensure the outer
+comment|// loop does not end up doing an extra parser.next()
 name|isNextEventFetched
 operator|=
 literal|true
@@ -1163,6 +1185,8 @@ block|}
 block|}
 else|else
 block|{
+comment|// We are not flatten-ing, so look to see if any of the child
+comment|// elements are wanted, and recurse if any are found.
 name|handleStartElement
 argument_list|(
 name|parser
@@ -1192,6 +1216,7 @@ name|next
 argument_list|()
 expr_stmt|;
 block|}
+comment|// save the text we have read against the fieldName in the Map values
 name|putText
 argument_list|(
 name|values
@@ -1370,11 +1395,48 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|skipTag
-argument_list|(
+comment|// skip ELEMENTS till source document is back within the tree
+name|int
+name|count
+init|=
+literal|1
+decl_stmt|;
+comment|// we have had our first START_ELEMENT
+while|while
+condition|(
+name|count
+operator|!=
+literal|0
+condition|)
+block|{
+name|int
+name|token
+init|=
 name|parser
-argument_list|)
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|token
+operator|==
+name|START_ELEMENT
+condition|)
+name|count
+operator|++
 expr_stmt|;
+elseif|else
+if|if
+condition|(
+name|token
+operator|==
+name|END_ELEMENT
+condition|)
+name|count
+operator|--
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**check if the current tag is to be parsed or not. if yes return the Node object      */
@@ -1544,7 +1606,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**If there is no value available for a field in a subtag then add a null      * TODO : needs better explanation      */
+comment|/**      * A recursive routine that walks the Node tree from a supplied start      * pushing a null string onto every multiValued fieldName's List of values.      */
 DECL|method|putNulls
 specifier|private
 name|void
@@ -1635,7 +1697,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**Handle multivalued fields by adding List<String>      */
+comment|/**      * Add the field name and text into the values Map. If it is a non multivalued field, then the text      * is simply placed in the object portion of the Map. If it is a      * multivalued field then the text is pushed onto a List which is      * the object portion of the Map.      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1735,51 +1797,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**Skip a tag w/o processing the tag or its subtags      */
-DECL|method|skipTag
-specifier|private
-name|void
-name|skipTag
-parameter_list|(
-name|XMLStreamReader
-name|parser
-parameter_list|)
-throws|throws
-name|IOException
-throws|,
-name|XMLStreamException
-block|{
-name|int
-name|type
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|type
-operator|=
-name|parser
-operator|.
-name|next
-argument_list|()
-operator|)
-operator|!=
-name|END_ELEMENT
-condition|)
-block|{
-if|if
-condition|(
-name|type
-operator|==
-name|START_ELEMENT
-condition|)
-name|skipTag
-argument_list|(
-name|parser
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**Build the node structure from the xpath      * @param paths the xpaths split by '/'      * @param fieldName name of the field      * @param multiValued . is multiValued or not      * @param record is this xpath a record or a field      * @param flags extra flags      */
+comment|/**      * Build a Node tree structure representing all Xpaths of intrest to us.      * This must be done before parsing of the XML stream starts. Each node       * holds one portion of an Xpath. Taking each Xpath segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, XPATH and       * some flags and inserts the Node into the Node tree.      *      */
 DECL|method|build
 specifier|private
 name|void
@@ -1791,19 +1809,25 @@ name|String
 argument_list|>
 name|paths
 parameter_list|,
+comment|// a List of segments from the split xpaths
 name|String
 name|fieldName
 parameter_list|,
+comment|// the fieldName assoc with this Xpath
 name|boolean
 name|multiValued
 parameter_list|,
+comment|// flag if this fieldName is multiValued or not
 name|boolean
 name|record
 parameter_list|,
+comment|// is this xpath a record or a field
 name|int
 name|flags
+comment|// are we to flatten matching xpaths
 parameter_list|)
 block|{
+comment|// recursivly walk the paths Lists adding new Nodes as required
 name|String
 name|name
 init|=
@@ -1814,6 +1838,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// shift out next Xpath segment
 if|if
 condition|(
 name|paths
@@ -1829,6 +1854,8 @@ literal|"@"
 argument_list|)
 condition|)
 block|{
+comment|// we have reached end of element portion of Xpath and can now only
+comment|// have an element attribute. Add it to this nodes list of attributes
 if|if
 condition|(
 name|attributes
@@ -1855,6 +1882,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+comment|// strip the '@'
 name|attributes
 operator|.
 name|add
@@ -1888,6 +1916,7 @@ name|Node
 argument_list|>
 argument_list|()
 expr_stmt|;
+comment|// does this "name" already exist as a child node.
 name|Node
 name|n
 init|=
@@ -1904,44 +1933,56 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|// We have reached the end of paths. When parsing the actual
+comment|// input we have traversed to a position where we actutally have to
+comment|// do something. getOrAddChildNode() will have created and returned
+comment|// a new minimal Node with name and xpathName already populated. We
+comment|// need to add more information
 if|if
 condition|(
 name|record
 condition|)
 block|{
+comment|// forEach attribute
 name|n
 operator|.
 name|isRecord
 operator|=
 literal|true
 expr_stmt|;
+comment|// flag: forEach attribute, prepare to emit rec
 name|n
 operator|.
 name|forEachPath
 operator|=
 name|fieldName
 expr_stmt|;
+comment|// the full forEach attribute xpath
 block|}
 else|else
 block|{
+comment|// xpath with content we want to store and return
 name|n
 operator|.
 name|hasText
 operator|=
 literal|true
 expr_stmt|;
+comment|// we have to store text found here
 name|n
 operator|.
 name|fieldName
 operator|=
 name|fieldName
 expr_stmt|;
+comment|// name to store collected text against
 name|n
 operator|.
 name|multiValued
 operator|=
 name|multiValued
 expr_stmt|;
+comment|// true: text be stored in a List
 name|n
 operator|.
 name|flatten
@@ -1950,10 +1991,12 @@ name|flags
 operator|==
 name|FLATTEN
 expr_stmt|;
+comment|// true: store text from child tags
 block|}
 block|}
 else|else
 block|{
+comment|// recurse to handle next paths segment
 name|n
 operator|.
 name|build
@@ -2002,6 +2045,7 @@ condition|)
 return|return
 name|n
 return|;
+comment|// new territory! add a new node for this Xpath bitty
 name|Node
 name|n
 init|=
@@ -2013,6 +2057,7 @@ argument_list|,
 name|this
 argument_list|)
 decl_stmt|;
+comment|// a minimal Node initalization
 name|Matcher
 name|m
 init|=
@@ -2165,7 +2210,8 @@ name|n
 return|;
 block|}
 block|}
-comment|/**If a field has List then they have to be deep-copied for thread safety    */
+comment|// end of class Node
+comment|/**    * Copies a supplied Map to a new Map which is returned. Used to copy a     * records values. If a fields value is a List then they have to be     * deep-copied for thread safety    */
 DECL|method|getDeepCopy
 specifier|private
 name|Map
@@ -2276,7 +2322,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Used for handling cases where there is a slash '/' character    * inside the attribute value e.g. x@html='text/html'. We need to split    * by '/' excluding the '/' which is a part of the attribute's value.    */
+comment|/**    * The Xpath is split into segments using the '/' s a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We need to split    * by '/' excluding the '/' which is a part of the attribute's value.    */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static
@@ -2491,14 +2537,14 @@ name|FALSE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**Implement this interface to stream records as and when it is found.    *    */
+comment|/**Implement this interface to stream records as and when one is found.    *    */
 DECL|interface|Handler
 specifier|public
 specifier|static
 interface|interface
 name|Handler
 block|{
-comment|/**      * @param record The record map . The key is the field name as provided in the addField() methods. The value      * can be a single String (for single valued) or a List<String> (for multiValued)      * if an Exception is thrown from this method the parsing will be aborted      * @param xpath . The forEach XPATH for which this record is being emitted      */
+comment|/**      * @param record The record map. The key is the field name as provided in       * the addField() methods. The value can be a single String (for single       * valued fields) or a List<String> (for multiValued).      * @param xpath The forEach XPATH for which this record is being emitted      * If there is any change all parsing will be aborted and the Exception is propogated up      */
 DECL|method|handle
 specifier|public
 name|void
