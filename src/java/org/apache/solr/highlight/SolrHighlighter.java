@@ -298,6 +298,8 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Deprecated
 DECL|method|initalize
 specifier|public
 specifier|abstract
