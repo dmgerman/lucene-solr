@@ -512,6 +512,7 @@ condition|(
 name|info
 operator|.
 name|isDefault
+argument_list|()
 condition|)
 name|frag
 operator|=
@@ -625,6 +626,7 @@ condition|(
 name|info
 operator|.
 name|isDefault
+argument_list|()
 condition|)
 name|fmt
 operator|=

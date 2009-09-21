@@ -132,7 +132,8 @@ literal|3
 argument_list|,
 name|chained
 operator|.
-name|chain
+name|getFactories
+argument_list|()
 operator|.
 name|length
 argument_list|)
@@ -145,7 +146,8 @@ name|LogUpdateProcessorFactory
 operator|)
 name|chained
 operator|.
-name|chain
+name|getFactories
+argument_list|()
 index|[
 literal|0
 index|]
@@ -177,7 +179,8 @@ name|CustomUpdateRequestProcessorFactory
 operator|)
 name|custom
 operator|.
-name|chain
+name|getFactories
+argument_list|()
 index|[
 literal|0
 index|]
