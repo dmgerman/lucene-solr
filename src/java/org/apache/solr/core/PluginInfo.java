@@ -656,6 +656,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**Filter children by type    * @param type The type name. must not be null    * @return The mathcing children    */
 DECL|method|getChildren
 specifier|public
 name|List
