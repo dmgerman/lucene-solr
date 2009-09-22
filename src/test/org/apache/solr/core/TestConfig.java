@@ -386,7 +386,7 @@ name|solrConfig
 operator|.
 name|get
 argument_list|(
-literal|"indexDefaults/mergePolicy"
+literal|"indexDefaults/mergePolicy/@class"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -418,7 +418,7 @@ name|solrConfig
 operator|.
 name|get
 argument_list|(
-literal|"indexDefaults/mergeScheduler"
+literal|"indexDefaults/mergeScheduler/@class"
 argument_list|)
 decl_stmt|;
 name|assertTrue
