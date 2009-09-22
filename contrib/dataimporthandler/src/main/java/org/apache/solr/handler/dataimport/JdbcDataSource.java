@@ -950,6 +950,57 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|SQLException
+name|e
+parameter_list|)
+block|{
+comment|// DriverManager does not allow you to use a driver which is not loaded through
+comment|// the class loader of the class which is trying to make the connection.
+comment|// This is a workaround for cases where the user puts the driver jar in the
+comment|// solr.home/lib or solr.home/core/lib directories.
+name|Driver
+name|d
+init|=
+operator|(
+name|Driver
+operator|)
+name|DocBuilder
+operator|.
+name|loadClass
+argument_list|(
+name|driver
+argument_list|,
+name|context
+operator|.
+name|getSolrCore
+argument_list|()
+argument_list|)
+operator|.
+name|newInstance
+argument_list|()
+decl_stmt|;
+name|c
+operator|=
+name|d
+operator|.
+name|connect
+argument_list|(
+name|url
+argument_list|,
+name|initProps
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|c
+operator|!=
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|Boolean
@@ -1179,49 +1230,6 @@ name|HOLD_CURSORS_OVER_COMMIT
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|SQLException
-name|e
-parameter_list|)
-block|{
-comment|// DriverManager does not allow you to use a driver which is not loaded through
-comment|// the class loader of the class which is trying to make the connection.
-comment|// This is a workaround for cases where the user puts the driver jar in the
-comment|// solr.home/lib or solr.home/core/lib directories.
-name|Driver
-name|d
-init|=
-operator|(
-name|Driver
-operator|)
-name|DocBuilder
-operator|.
-name|loadClass
-argument_list|(
-name|driver
-argument_list|,
-name|context
-operator|.
-name|getSolrCore
-argument_list|()
-argument_list|)
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-name|c
-operator|=
-name|d
-operator|.
-name|connect
-argument_list|(
-name|url
-argument_list|,
-name|initProps
-argument_list|)
-expr_stmt|;
 block|}
 name|LOG
 operator|.
