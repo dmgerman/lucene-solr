@@ -2894,6 +2894,19 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+comment|// register any SolrInfoMBeans SolrResourceLoader initialized
+comment|//
+comment|// this must happen after the latch is released, because a JMX server impl may
+comment|// choose to block on registering until properties can be fetched from an MBean,
+comment|// and a SolrCoreAware MBean may have properties that depend on getting a Searcher
+comment|// from the core.
+name|resourceLoader
+operator|.
+name|inform
+argument_list|(
+name|infoRegistry
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|initHighLighter
 specifier|private
@@ -3745,12 +3758,9 @@ name|name
 argument_list|)
 condition|)
 block|{
-name|registry
-operator|.
-name|put
-argument_list|(
-name|name
-argument_list|,
+name|T
+name|searchComp
+init|=
 operator|(
 name|T
 operator|)
@@ -3763,8 +3773,44 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|registry
+operator|.
+name|put
+argument_list|(
+name|name
+argument_list|,
+name|searchComp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|searchComp
+operator|instanceof
+name|SolrInfoMBean
+condition|)
+block|{
+name|infoRegistry
+operator|.
+name|put
+argument_list|(
+operator|(
+operator|(
+name|SolrInfoMBean
+operator|)
+name|searchComp
+operator|)
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+operator|(
+name|SolrInfoMBean
+operator|)
+name|searchComp
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * @return a Search Component registered to a given name.  Throw an exception if the component is undefined    */
