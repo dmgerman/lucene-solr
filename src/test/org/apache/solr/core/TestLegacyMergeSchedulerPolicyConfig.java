@@ -93,10 +93,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestLegacyMergeScedulerPolicyConfig
+DECL|class|TestLegacyMergeSchedulerPolicyConfig
 specifier|public
 class|class
-name|TestLegacyMergeScedulerPolicyConfig
+name|TestLegacyMergeSchedulerPolicyConfig
 extends|extends
 name|AbstractSolrTestCase
 block|{
