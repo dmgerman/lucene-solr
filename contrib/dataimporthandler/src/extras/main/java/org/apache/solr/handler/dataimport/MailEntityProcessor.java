@@ -954,6 +954,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|processAttachment
+operator|||
+operator|(
 name|disp
 operator|!=
 literal|null
@@ -966,9 +970,7 @@ name|Part
 operator|.
 name|ATTACHMENT
 argument_list|)
-operator|&&
-operator|!
-name|processAttachment
+operator|)
 condition|)
 return|return;
 name|InputStream
