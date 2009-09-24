@@ -449,6 +449,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|scorer
+operator|==
+literal|null
+condition|)
+return|return
+name|defVal
+return|;
 name|scorerDoc
 operator|=
 operator|-
