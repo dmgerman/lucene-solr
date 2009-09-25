@@ -202,9 +202,9 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Provides introspection of the Lucene FiledCache, "
+literal|"Provides introspection of the Lucene FieldCache, "
 operator|+
-literal|"this is **NOT** a cache that is manged by Solr."
+literal|"this is **NOT** a cache that is managed by Solr."
 return|;
 block|}
 DECL|method|getCategory
@@ -319,7 +319,7 @@ name|stats
 operator|.
 name|add
 argument_list|(
-literal|"entry#"
+literal|"entry #"
 operator|+
 name|i
 argument_list|,
@@ -373,7 +373,7 @@ name|stats
 operator|.
 name|add
 argument_list|(
-literal|"insanity#"
+literal|"insanity #"
 operator|+
 name|i
 argument_list|,
