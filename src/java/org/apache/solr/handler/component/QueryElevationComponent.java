@@ -3019,17 +3019,6 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|int
-name|sortType
-parameter_list|()
-block|{
-return|return
-name|SortField
-operator|.
-name|CUSTOM
-return|;
-block|}
-specifier|public
 name|Comparable
 name|value
 parameter_list|(
