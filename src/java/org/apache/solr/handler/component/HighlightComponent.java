@@ -666,13 +666,6 @@ operator|.
 name|STAGE_GET_FIELDS
 condition|)
 block|{
-name|NamedList
-name|hlResult
-init|=
-operator|new
-name|SimpleOrderedMap
-argument_list|()
-decl_stmt|;
 name|Map
 operator|.
 name|Entry
