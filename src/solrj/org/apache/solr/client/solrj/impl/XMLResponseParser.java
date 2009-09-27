@@ -1253,31 +1253,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-if|if
-condition|(
-name|name
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|XMLStreamException
-argument_list|(
-literal|"requires 'name' attribute: "
-operator|+
-name|parser
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|,
-name|parser
-operator|.
-name|getLocation
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|/** The name in a NamedList can actually be null         if( name == null ) {           throw new XMLStreamException( "requires 'name' attribute: "+parser.getLocalName(), parser.getLocation() );         }         **/
 if|if
 condition|(
 operator|!
