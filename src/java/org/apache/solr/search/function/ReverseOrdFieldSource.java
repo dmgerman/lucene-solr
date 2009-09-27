@@ -373,6 +373,8 @@ name|field
 operator|.
 name|equals
 argument_list|(
+name|other
+operator|.
 name|field
 argument_list|)
 return|;
