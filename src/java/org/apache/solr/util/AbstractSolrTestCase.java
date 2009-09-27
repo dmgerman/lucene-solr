@@ -130,6 +130,26 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -235,6 +255,21 @@ name|File
 name|dataDir
 decl_stmt|;
 comment|/**    * Initializes things your test might need    *    *<ul>    *<li>Creates a dataDir in the "java.io.tmpdir"</li>    *<li>initializes the TestHarness h using this data directory, and getSchemaPath()</li>    *<li>initializes the LocalRequestFactory lrf using sensible defaults.</li>    *</ul>    *    */
+DECL|field|log
+specifier|public
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|AbstractSolrTestCase
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|method|setUp
 specifier|public
 name|void
@@ -243,6 +278,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"####SETUP_START "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dataDir
 operator|=
 operator|new
@@ -281,6 +326,19 @@ operator|.
 name|mkdirs
 argument_list|()
 expr_stmt|;
+name|String
+name|configFile
+init|=
+name|getSolrConfigFile
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|configFile
+operator|!=
+literal|null
+condition|)
+block|{
 name|solrConfig
 operator|=
 name|h
@@ -325,6 +383,53 @@ literal|"2.2"
 argument_list|)
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"####SETUP_END "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Subclasses that override setUp can optionally call this method    * to log the fact that their setUp process has ended.    */
+DECL|method|postSetUp
+specifier|public
+name|void
+name|postSetUp
+parameter_list|()
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"####POSTSETUP "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Subclasses that override tearDown can optionally call this method    * to log the fact that the tearDown process has started.  This is necessary    * since subclasses will want to call super.tearDown() at the *end* of their    * tearDown method.    */
+DECL|method|preTearDown
+specifier|public
+name|void
+name|preTearDown
+parameter_list|()
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"####PRETEARDOWN "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Shuts down the test harness, and makes the best attempt possible    * to delete dataDir, unless the system property "solr.test.leavedatadir"    * is set.    */
 DECL|method|tearDown
 specifier|public
@@ -334,6 +439,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"####TEARDOWN_START "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|h
