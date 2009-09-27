@@ -319,7 +319,7 @@ name|stats
 operator|.
 name|add
 argument_list|(
-literal|"entry #"
+literal|"entry#"
 operator|+
 name|i
 argument_list|,
@@ -373,7 +373,7 @@ name|stats
 operator|.
 name|add
 argument_list|(
-literal|"insanity #"
+literal|"insanity#"
 operator|+
 name|i
 argument_list|,
