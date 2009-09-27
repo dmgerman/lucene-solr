@@ -4965,6 +4965,11 @@ DECL|field|fileChannel
 name|FileChannel
 name|fileChannel
 decl_stmt|;
+DECL|field|fileOutputStream
+specifier|private
+name|FileOutputStream
+name|fileOutputStream
+decl_stmt|;
 DECL|field|buf
 name|byte
 index|[]
@@ -5038,7 +5043,7 @@ name|long
 name|latestVersion
 parameter_list|)
 throws|throws
-name|FileNotFoundException
+name|IOException
 block|{
 name|this
 operator|.
@@ -5129,13 +5134,21 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|fileChannel
+name|fileOutputStream
 operator|=
 operator|new
 name|FileOutputStream
 argument_list|(
 name|file
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|fileChannel
+operator|=
+name|this
+operator|.
+name|fileOutputStream
 operator|.
 name|getChannel
 argument_list|()
@@ -5792,8 +5805,8 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|//close the file
-name|fileChannel
+comment|//close the FileOutputStream (which also closes the Channel)
+name|fileOutputStream
 operator|.
 name|close
 argument_list|()
