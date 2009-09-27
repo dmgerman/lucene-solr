@@ -1328,11 +1328,9 @@ operator|>
 literal|0
 condition|)
 block|{
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"starting stress..."
 argument_list|)
@@ -3070,21 +3068,16 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
+literal|"Mismatched responses:\n"
+operator|+
 name|a
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
+operator|+
+literal|"\n"
+operator|+
 name|b
 argument_list|)
 expr_stmt|;
