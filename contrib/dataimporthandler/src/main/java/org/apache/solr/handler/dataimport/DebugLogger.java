@@ -1584,6 +1584,8 @@ operator|.
 name|START_DOC
 condition|)
 block|{
+name|this
+operator|.
 name|name
 operator|=
 name|displayName
