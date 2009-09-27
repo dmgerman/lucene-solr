@@ -1407,6 +1407,25 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
+else|else
+block|{
+name|filesToDownload
+operator|=
+name|Collections
+operator|.
+name|emptyList
+argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"No files to download for indexversion: "
+operator|+
+name|version
+argument_list|)
+expr_stmt|;
+block|}
 name|f
 operator|=
 operator|(
@@ -1676,6 +1695,17 @@ argument_list|(
 name|latestVersion
 argument_list|)
 expr_stmt|;
+comment|// this can happen if the commit point is deleted before we fetch the file list.
+if|if
+condition|(
+name|filesToDownload
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+literal|false
+return|;
 name|LOG
 operator|.
 name|info
