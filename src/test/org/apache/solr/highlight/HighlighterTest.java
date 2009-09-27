@@ -3126,6 +3126,15 @@ argument_list|,
 literal|"10"
 argument_list|)
 expr_stmt|;
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"hl.usePhraseHighlighter"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|TestHarness
 operator|.
 name|LocalRequestFactory

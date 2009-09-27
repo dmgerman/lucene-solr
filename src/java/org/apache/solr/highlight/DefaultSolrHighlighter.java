@@ -885,6 +885,8 @@ argument_list|(
 name|HighlightParams
 operator|.
 name|HIGHLIGHT_MULTI_TERM
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -1624,11 +1626,14 @@ argument_list|(
 name|HighlightParams
 operator|.
 name|USE_PHRASE_HIGHLIGHTER
+argument_list|,
+literal|"true"
 argument_list|)
 argument_list|)
 condition|)
 block|{
-comment|// wrap CachingTokenFilter around TokenStream for reuse
+comment|// TODO: this is not always necessary - eventually we would like to avoid this wrap
+comment|//       when it is not needed.
 name|tstream
 operator|=
 operator|new
