@@ -28,7 +28,21 @@ name|solr
 operator|.
 name|analysis
 operator|.
-name|HTMLStripReader
+name|HTMLStripCharFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|CharReader
 import|;
 end_import
 
@@ -49,6 +63,16 @@ operator|.
 name|io
 operator|.
 name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|BufferedReader
 import|;
 end_import
 
@@ -83,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Transformer implementation which strip off HTML tags using org.apache.solr.analysis.HTMLStripReader This is useful  * in case you don't need this HTML anyway.  *  * @version $Id$  * @see org.apache.solr.analysis.HTMLStripReader  * @since solr 1.4  */
+comment|/**  * A Transformer implementation which strip off HTML tags using org.apache.solr.analysis.HTMLStripReader This is useful  * in case you don't need this HTML anyway.  *  * @version $Id$  * @see org.apache.solr.analysis.HTMLStripCharFilter  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -358,13 +382,29 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|HTMLStripReader
+name|HTMLStripCharFilter
 name|html
 init|=
 operator|new
-name|HTMLStripReader
+name|HTMLStripCharFilter
+argument_list|(
+name|CharReader
+operator|.
+name|get
 argument_list|(
 name|strReader
+operator|.
+name|markSupported
+argument_list|()
+condition|?
+name|strReader
+else|:
+operator|new
+name|BufferedReader
+argument_list|(
+name|strReader
+argument_list|)
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|char
