@@ -288,7 +288,7 @@ specifier|final
 name|String
 name|LUCENE_MAIN_VERSION
 init|=
-literal|"2.9"
+literal|"3.0"
 decl_stmt|;
 DECL|field|LUCENE_VERSION
 specifier|public
