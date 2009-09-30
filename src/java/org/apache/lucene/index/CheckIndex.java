@@ -2807,6 +2807,10 @@ operator|+
 name|lastPos
 argument_list|)
 throw|;
+name|lastPos
+operator|=
+name|pos
+expr_stmt|;
 block|}
 block|}
 comment|// Now count how many deleted docs occurred in
