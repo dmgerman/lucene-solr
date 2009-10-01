@@ -419,8 +419,9 @@ argument_list|)
 expr_stmt|;
 name|fieldsData
 operator|=
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|value
 argument_list|)
