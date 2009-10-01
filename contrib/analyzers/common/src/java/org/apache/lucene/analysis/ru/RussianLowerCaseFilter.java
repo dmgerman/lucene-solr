@@ -38,6 +38,24 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -73,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case, analyzing given ("russian") charset.  *  *  * @version $Id$  */
+comment|/**  * Normalizes token text to lower case.  * @deprecated Use {@link LowerCaseFilter} instead, which has the same  *  functionality. This filter will be removed in Lucene 3.1  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -85,40 +103,23 @@ name|RussianLowerCaseFilter
 extends|extends
 name|TokenFilter
 block|{
-comment|/**      * @deprecated Support for non-Unicode encodings will be removed in Lucene 3.0      */
-DECL|field|charset
-name|char
-index|[]
-name|charset
-decl_stmt|;
 DECL|field|termAtt
 specifier|private
 name|TermAttribute
 name|termAtt
 decl_stmt|;
-comment|/**      * @deprecated Use {@link #RussianLowerCaseFilter(TokenStream)} instead.      */
 DECL|method|RussianLowerCaseFilter
 specifier|public
 name|RussianLowerCaseFilter
 parameter_list|(
 name|TokenStream
 name|in
-parameter_list|,
-name|char
-index|[]
-name|charset
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|in
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|charset
-operator|=
-name|charset
 expr_stmt|;
 name|termAtt
 operator|=
@@ -127,24 +128,6 @@ argument_list|(
 name|TermAttribute
 operator|.
 name|class
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|RussianLowerCaseFilter
-specifier|public
-name|RussianLowerCaseFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|in
-argument_list|,
-name|RussianCharsets
-operator|.
-name|UnicodeRussian
 argument_list|)
 expr_stmt|;
 block|}
@@ -202,7 +185,7 @@ index|[
 name|i
 index|]
 operator|=
-name|RussianCharsets
+name|Character
 operator|.
 name|toLowerCase
 argument_list|(
@@ -210,8 +193,6 @@ name|chArray
 index|[
 name|i
 index|]
-argument_list|,
-name|charset
 argument_list|)
 expr_stmt|;
 block|}

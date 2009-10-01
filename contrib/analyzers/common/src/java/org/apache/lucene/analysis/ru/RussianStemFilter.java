@@ -28,6 +28,24 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -93,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems Russian words.   *<p>  * The implementation was inspired by GermanStemFilter.  * The input should be filtered by {@link RussianLowerCaseFilter} before passing it to RussianStemFilter ,  * because RussianStemFilter only works with lowercase part of any "russian" charset.  *</p>  *  * @version   $Id$  */
+comment|/**  * A {@link TokenFilter} that stems Russian words.   *<p>  * The implementation was inspired by GermanStemFilter.  * The input should be filtered by {@link LowerCaseFilter} before passing it to RussianStemFilter ,  * because RussianStemFilter only works with lowercase characters.  *</p>  *  * @version   $Id$  */
 end_comment
 
 begin_class
@@ -118,17 +136,12 @@ specifier|private
 name|TermAttribute
 name|termAtt
 decl_stmt|;
-comment|/**      * @deprecated Use {@link #RussianStemFilter(TokenStream)} instead.      */
 DECL|method|RussianStemFilter
 specifier|public
 name|RussianStemFilter
 parameter_list|(
 name|TokenStream
 name|in
-parameter_list|,
-name|char
-index|[]
-name|charset
 parameter_list|)
 block|{
 name|super
@@ -140,9 +153,7 @@ name|stemmer
 operator|=
 operator|new
 name|RussianStemmer
-argument_list|(
-name|charset
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|termAtt
 operator|=
@@ -151,24 +162,6 @@ argument_list|(
 name|TermAttribute
 operator|.
 name|class
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|RussianStemFilter
-specifier|public
-name|RussianStemFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|in
-argument_list|,
-name|RussianCharsets
-operator|.
-name|UnicodeRussian
 argument_list|)
 expr_stmt|;
 block|}

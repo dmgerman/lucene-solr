@@ -308,7 +308,7 @@ name|realStem
 init|=
 name|RussianStemmer
 operator|.
-name|stem
+name|stemWord
 argument_list|(
 operator|(
 name|String
@@ -319,10 +319,6 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-argument_list|,
-name|RussianCharsets
-operator|.
-name|UnicodeRussian
 argument_list|)
 decl_stmt|;
 name|assertEquals

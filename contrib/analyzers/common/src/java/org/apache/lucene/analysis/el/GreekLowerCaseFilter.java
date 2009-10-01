@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case, analyzing given ("greek") charset.  *  */
+comment|/**  * Normalizes token text to lower case, removes some Greek diacritics,  * and standardizes final sigma to sigma.   *  */
 end_comment
 
 begin_class
@@ -85,40 +85,23 @@ name|GreekLowerCaseFilter
 extends|extends
 name|TokenFilter
 block|{
-comment|/**      * @deprecated Support for non-Unicode encodings will be removed in Lucene 3.0      */
-DECL|field|charset
-name|char
-index|[]
-name|charset
-decl_stmt|;
 DECL|field|termAtt
 specifier|private
 name|TermAttribute
 name|termAtt
 decl_stmt|;
-comment|/**      * @deprecated Use {@link #GreekLowerCaseFilter(TokenStream)} instead.      */
 DECL|method|GreekLowerCaseFilter
 specifier|public
 name|GreekLowerCaseFilter
 parameter_list|(
 name|TokenStream
 name|in
-parameter_list|,
-name|char
-index|[]
-name|charset
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|in
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|charset
-operator|=
-name|charset
 expr_stmt|;
 name|termAtt
 operator|=
@@ -127,24 +110,6 @@ argument_list|(
 name|TermAttribute
 operator|.
 name|class
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|GreekLowerCaseFilter
-specifier|public
-name|GreekLowerCaseFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|in
-argument_list|,
-name|GreekCharsets
-operator|.
-name|UnicodeGreek
 argument_list|)
 expr_stmt|;
 block|}
@@ -181,6 +146,7 @@ operator|.
 name|termLength
 argument_list|()
 decl_stmt|;
+comment|// TODO: iterate codepoints to support supp. characters
 for|for
 control|(
 name|int
@@ -201,16 +167,15 @@ index|[
 name|i
 index|]
 operator|=
-name|GreekCharsets
-operator|.
-name|toLowerCase
+operator|(
+name|char
+operator|)
+name|lowerCase
 argument_list|(
 name|chArray
 index|[
 name|i
 index|]
-argument_list|,
-name|charset
 argument_list|)
 expr_stmt|;
 block|}
@@ -222,6 +187,158 @@ else|else
 block|{
 return|return
 literal|false
+return|;
+block|}
+block|}
+DECL|method|lowerCase
+specifier|private
+name|int
+name|lowerCase
+parameter_list|(
+name|int
+name|codepoint
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|codepoint
+condition|)
+block|{
+comment|/* There are two lowercase forms of sigma:          *   U+03C2: small final sigma (end of word)          *   U+03C3: small sigma (otherwise)          *             * Standardize both to U+03C3          */
+case|case
+literal|'\u03C2'
+case|:
+comment|/* small final sigma */
+return|return
+literal|'\u03C3'
+return|;
+comment|/* small sigma */
+comment|/* Some greek characters contain diacritics.          * This filter removes these, converting to the lowercase base form.          */
+case|case
+literal|'\u0386'
+case|:
+comment|/* capital alpha with tonos */
+case|case
+literal|'\u03AC'
+case|:
+comment|/* small alpha with tonos */
+return|return
+literal|'\u03B1'
+return|;
+comment|/* small alpha */
+case|case
+literal|'\u0388'
+case|:
+comment|/* capital epsilon with tonos */
+case|case
+literal|'\u03AD'
+case|:
+comment|/* small epsilon with tonos */
+return|return
+literal|'\u03B5'
+return|;
+comment|/* small epsilon */
+case|case
+literal|'\u0389'
+case|:
+comment|/* capital eta with tonos */
+case|case
+literal|'\u03AE'
+case|:
+comment|/* small eta with tonos */
+return|return
+literal|'\u03B7'
+return|;
+comment|/* small eta */
+case|case
+literal|'\u038A'
+case|:
+comment|/* capital iota with tonos */
+case|case
+literal|'\u03AA'
+case|:
+comment|/* capital iota with dialytika */
+case|case
+literal|'\u03AF'
+case|:
+comment|/* small iota with tonos */
+case|case
+literal|'\u03CA'
+case|:
+comment|/* small iota with dialytika */
+case|case
+literal|'\u0390'
+case|:
+comment|/* small iota with dialytika and tonos */
+return|return
+literal|'\u03B9'
+return|;
+comment|/* small iota */
+case|case
+literal|'\u038E'
+case|:
+comment|/* capital upsilon with tonos */
+case|case
+literal|'\u03AB'
+case|:
+comment|/* capital upsilon with dialytika */
+case|case
+literal|'\u03CD'
+case|:
+comment|/* small upsilon with tonos */
+case|case
+literal|'\u03CB'
+case|:
+comment|/* small upsilon with dialytika */
+case|case
+literal|'\u03B0'
+case|:
+comment|/* small upsilon with dialytika and tonos */
+return|return
+literal|'\u03C5'
+return|;
+comment|/* small upsilon */
+case|case
+literal|'\u038C'
+case|:
+comment|/* capital omicron with tonos */
+case|case
+literal|'\u03CC'
+case|:
+comment|/* small omicron with tonos */
+return|return
+literal|'\u03BF'
+return|;
+comment|/* small omicron */
+case|case
+literal|'\u038F'
+case|:
+comment|/* capital omega with tonos */
+case|case
+literal|'\u03CE'
+case|:
+comment|/* small omega with tonos */
+return|return
+literal|'\u03C9'
+return|;
+comment|/* small omega */
+comment|/* The previous implementation did the conversion below.          * Only implemented for backwards compatibility with old indexes.          */
+case|case
+literal|'\u03A2'
+case|:
+comment|/* reserved */
+return|return
+literal|'\u03C2'
+return|;
+comment|/* small final sigma */
+default|default:
+return|return
+name|Character
+operator|.
+name|toLowerCase
+argument_list|(
+name|codepoint
+argument_list|)
 return|;
 block|}
 block|}
