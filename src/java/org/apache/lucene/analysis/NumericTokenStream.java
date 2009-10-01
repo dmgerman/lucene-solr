@@ -470,7 +470,8 @@ return|return
 name|this
 return|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -495,7 +496,8 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -650,7 +652,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

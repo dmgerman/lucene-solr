@@ -462,6 +462,9 @@ literal|true
 argument_list|)
 decl_stmt|;
 name|NumericRangeQuery
+argument_list|<
+name|Integer
+argument_list|>
 name|tq
 init|=
 name|NumericRangeQuery
@@ -470,17 +473,9 @@ name|newIntRange
 argument_list|(
 literal|"trie"
 argument_list|,
-operator|new
-name|Integer
-argument_list|(
 name|lower
-argument_list|)
 argument_list|,
-operator|new
-name|Integer
-argument_list|(
 name|upper
-argument_list|)
 argument_list|,
 literal|true
 argument_list|,
