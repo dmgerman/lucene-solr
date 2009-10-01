@@ -21853,9 +21853,6 @@ specifier|final
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -21867,9 +21864,6 @@ specifier|final
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute

@@ -536,9 +536,6 @@ decl_stmt|;
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
@@ -549,9 +546,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -562,9 +556,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
@@ -2453,9 +2444,6 @@ literal|0
 expr_stmt|;
 name|posIncrAttr
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|input
 operator|.
 name|addAttribute
@@ -2467,9 +2455,6 @@ argument_list|)
 expr_stmt|;
 name|payloadAttr
 operator|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|input
 operator|.
 name|addAttribute
@@ -2481,9 +2466,6 @@ argument_list|)
 expr_stmt|;
 name|termAttr
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|input
 operator|.
 name|addAttribute

@@ -136,9 +136,6 @@ argument_list|)
 expr_stmt|;
 name|posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute

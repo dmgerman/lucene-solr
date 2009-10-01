@@ -371,16 +371,14 @@ literal|"DefaultOperatorAttribute should be set on the QueryConfigHandler"
 argument_list|)
 throw|;
 block|}
+name|this
+operator|.
 name|usingAnd
 operator|=
 name|Operator
 operator|.
 name|AND
 operator|==
-operator|(
-operator|(
-name|DefaultOperatorAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -390,7 +388,6 @@ name|DefaultOperatorAttribute
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|getOperator
 argument_list|()

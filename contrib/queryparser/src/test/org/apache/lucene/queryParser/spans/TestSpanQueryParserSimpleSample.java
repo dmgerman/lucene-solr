@@ -285,9 +285,6 @@ decl_stmt|;
 name|UniqueFieldAttribute
 name|uniqueFieldAtt
 init|=
-operator|(
-name|UniqueFieldAttribute
-operator|)
 name|spanQueryConfigHandler
 operator|.
 name|getAttribute

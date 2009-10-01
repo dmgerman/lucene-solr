@@ -405,9 +405,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|filter
 operator|.
 name|getAttribute
@@ -420,9 +417,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|filter
 operator|.
 name|getAttribute
@@ -435,9 +429,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|filter
 operator|.
 name|getAttribute
@@ -450,9 +441,6 @@ decl_stmt|;
 name|PayloadAttribute
 name|payloadAtt
 init|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|filter
 operator|.
 name|getAttribute
@@ -465,9 +453,6 @@ decl_stmt|;
 name|PositionIncrementAttribute
 name|posIncAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|filter
 operator|.
 name|getAttribute
@@ -480,9 +465,6 @@ decl_stmt|;
 name|FlagsAttribute
 name|flagsAtt
 init|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|filter
 operator|.
 name|getAttribute
@@ -630,9 +612,6 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -642,9 +621,6 @@ argument_list|)
 expr_stmt|;
 name|offsetAtt
 operator|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
@@ -654,9 +630,6 @@ argument_list|)
 expr_stmt|;
 name|typeAtt
 operator|=
-operator|(
-name|TypeAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TypeAttribute
@@ -666,9 +639,6 @@ argument_list|)
 expr_stmt|;
 name|payloadAtt
 operator|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PayloadAttribute
@@ -678,9 +648,6 @@ argument_list|)
 expr_stmt|;
 name|posIncAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
@@ -690,9 +657,6 @@ argument_list|)
 expr_stmt|;
 name|flagsAtt
 operator|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|FlagsAttribute

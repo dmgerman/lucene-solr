@@ -206,9 +206,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|nptf
 operator|.
 name|getAttribute
@@ -221,9 +218,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|nptf
 operator|.
 name|getAttribute
@@ -236,9 +230,6 @@ decl_stmt|;
 name|PayloadAttribute
 name|payloadAtt
 init|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|nptf
 operator|.
 name|getAttribute
@@ -405,9 +396,6 @@ argument_list|)
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -417,9 +405,6 @@ argument_list|)
 expr_stmt|;
 name|typeAtt
 operator|=
-operator|(
-name|TypeAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TypeAttribute

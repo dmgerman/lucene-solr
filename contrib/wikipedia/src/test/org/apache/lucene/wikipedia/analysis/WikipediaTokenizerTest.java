@@ -853,9 +853,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -868,9 +865,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -1169,9 +1163,6 @@ block|{
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -1184,9 +1175,6 @@ decl_stmt|;
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -1847,9 +1835,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -1862,9 +1847,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -2167,9 +2149,6 @@ expr_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -2182,9 +2161,6 @@ decl_stmt|;
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -2197,9 +2173,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -2998,9 +2971,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -3013,9 +2983,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -3028,9 +2995,6 @@ decl_stmt|;
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -3043,9 +3007,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute
@@ -3058,9 +3019,6 @@ decl_stmt|;
 name|FlagsAttribute
 name|flagsAtt
 init|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|tf
 operator|.
 name|addAttribute

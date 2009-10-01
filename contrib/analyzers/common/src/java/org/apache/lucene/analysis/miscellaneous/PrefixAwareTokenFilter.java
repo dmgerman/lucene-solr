@@ -282,9 +282,6 @@ literal|false
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -294,9 +291,6 @@ argument_list|)
 expr_stmt|;
 name|posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
@@ -306,9 +300,6 @@ argument_list|)
 expr_stmt|;
 name|payloadAtt
 operator|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PayloadAttribute
@@ -318,9 +309,6 @@ argument_list|)
 expr_stmt|;
 name|offsetAtt
 operator|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
@@ -330,9 +318,6 @@ argument_list|)
 expr_stmt|;
 name|typeAtt
 operator|=
-operator|(
-name|TypeAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TypeAttribute
@@ -342,9 +327,6 @@ argument_list|)
 expr_stmt|;
 name|flagsAtt
 operator|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|FlagsAttribute
@@ -354,9 +336,6 @@ argument_list|)
 expr_stmt|;
 name|p_termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|prefix
 operator|.
 name|addAttribute
@@ -368,9 +347,6 @@ argument_list|)
 expr_stmt|;
 name|p_posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|prefix
 operator|.
 name|addAttribute
@@ -382,9 +358,6 @@ argument_list|)
 expr_stmt|;
 name|p_payloadAtt
 operator|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|prefix
 operator|.
 name|addAttribute
@@ -396,9 +369,6 @@ argument_list|)
 expr_stmt|;
 name|p_offsetAtt
 operator|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|prefix
 operator|.
 name|addAttribute
@@ -410,9 +380,6 @@ argument_list|)
 expr_stmt|;
 name|p_typeAtt
 operator|=
-operator|(
-name|TypeAttribute
-operator|)
 name|prefix
 operator|.
 name|addAttribute
@@ -424,9 +391,6 @@ argument_list|)
 expr_stmt|;
 name|p_flagsAtt
 operator|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|prefix
 operator|.
 name|addAttribute

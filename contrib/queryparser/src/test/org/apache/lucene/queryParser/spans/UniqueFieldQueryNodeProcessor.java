@@ -218,10 +218,6 @@ block|}
 name|CharSequence
 name|uniqueField
 init|=
-operator|(
-operator|(
-name|UniqueFieldAttribute
-operator|)
 name|queryConfig
 operator|.
 name|getAttribute
@@ -230,7 +226,6 @@ name|UniqueFieldAttribute
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|getUniqueField
 argument_list|()

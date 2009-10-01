@@ -181,9 +181,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|tokenizer
 operator|.
 name|getAttribute

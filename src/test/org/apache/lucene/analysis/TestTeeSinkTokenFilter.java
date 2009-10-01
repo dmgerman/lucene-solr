@@ -363,9 +363,6 @@ block|{
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|a
 operator|.
 name|getAttribute
@@ -414,9 +411,6 @@ block|{
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|a
 operator|.
 name|getAttribute
@@ -497,9 +491,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|source
 operator|.
 name|getAttribute
@@ -549,9 +540,6 @@ literal|0
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|sink1
 operator|.
 name|getAttribute
@@ -601,9 +589,6 @@ literal|0
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|sink2
 operator|.
 name|getAttribute
@@ -762,9 +747,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|source1
 operator|.
 name|getAttribute
@@ -814,9 +796,6 @@ literal|0
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|source2
 operator|.
 name|getAttribute
@@ -866,9 +845,6 @@ literal|0
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|theDetector
 operator|.
 name|getAttribute
@@ -927,9 +903,6 @@ literal|0
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|dogDetector
 operator|.
 name|getAttribute
@@ -1002,9 +975,6 @@ literal|0
 expr_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|lowerCasing
 operator|.
 name|getAttribute
@@ -1255,9 +1225,6 @@ decl_stmt|;
 name|TermAttribute
 name|tfTok
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|stream
 operator|.
 name|addAttribute
@@ -1270,9 +1237,6 @@ decl_stmt|;
 name|TermAttribute
 name|sinkTok
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|sink
 operator|.
 name|addAttribute
@@ -1397,9 +1361,6 @@ expr_stmt|;
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|stream
 operator|.
 name|getAttribute
@@ -1455,9 +1416,6 @@ argument_list|)
 expr_stmt|;
 name|posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|stream
 operator|.
 name|getAttribute
@@ -1586,9 +1544,6 @@ expr_stmt|;
 name|PositionIncrementAttribute
 name|posIncrAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|teeStream
 operator|.
 name|getAttribute
@@ -1617,9 +1572,6 @@ block|}
 comment|//System.out.println("Modulo--------");
 name|posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|sink
 operator|.
 name|getAttribute

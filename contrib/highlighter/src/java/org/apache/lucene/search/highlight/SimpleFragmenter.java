@@ -126,9 +126,6 @@ parameter_list|)
 block|{
 name|offsetAtt
 operator|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|stream
 operator|.
 name|addAttribute

@@ -487,10 +487,6 @@ name|this
 operator|.
 name|analyzer
 operator|=
-operator|(
-operator|(
-name|AnalyzerAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -500,7 +496,6 @@ name|AnalyzerAttribute
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|getAnalyzer
 argument_list|()
@@ -526,10 +521,6 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
-operator|(
-name|PositionIncrementsAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -539,7 +530,6 @@ name|PositionIncrementsAttribute
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|isPositionIncrementsEnabled
 argument_list|()
@@ -704,9 +694,6 @@ condition|)
 block|{
 name|posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|buffer
 operator|.
 name|getAttribute
@@ -820,9 +807,6 @@ block|}
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|buffer
 operator|.
 name|getAttribute

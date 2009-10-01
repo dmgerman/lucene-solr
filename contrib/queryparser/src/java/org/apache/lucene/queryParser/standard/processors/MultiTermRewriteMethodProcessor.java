@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor instates the default {@link  * org.apache.lucene.search.MultiTermQuery.RewriteMethod}, {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}, for  * multi-term query nodes.  */
+comment|/**  * This processor instates the default  * {@link org.apache.lucene.search.MultiTermQuery.RewriteMethod},  * {@link MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}, for multi-term  * query nodes.  */
 end_comment
 
 begin_class
@@ -155,7 +155,8 @@ name|QueryNode
 name|node
 parameter_list|)
 block|{
-comment|// set setMultiTermRewriteMethod for WildcardQueryNode and PrefixWildcardQueryNode
+comment|// set setMultiTermRewriteMethod for WildcardQueryNode and
+comment|// PrefixWildcardQueryNode
 if|if
 condition|(
 name|node
@@ -181,7 +182,8 @@ name|class
 argument_list|)
 condition|)
 block|{
-comment|// This should not happen, this attribute is created in the StandardQueryConfigHandler
+comment|// This should not happen, this attribute is created in the
+comment|// StandardQueryConfigHandler
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -190,16 +192,12 @@ literal|"MultiTermRewriteMethodAttribute should be set on the QueryConfigHandler
 argument_list|)
 throw|;
 block|}
-comment|//read the attribute value and use a TAG to take the value to the Builder
+comment|// read the attribute value and use a TAG to take the value to the Builder
 name|MultiTermQuery
 operator|.
 name|RewriteMethod
 name|rewriteMethod
 init|=
-operator|(
-operator|(
-name|MultiTermRewriteMethodAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -209,7 +207,6 @@ name|MultiTermRewriteMethodAttribute
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|getMultiTermRewriteMethod
 argument_list|()

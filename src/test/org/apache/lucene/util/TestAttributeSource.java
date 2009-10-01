@@ -81,9 +81,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute
@@ -96,9 +93,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute
@@ -274,9 +268,6 @@ argument_list|()
 decl_stmt|;
 name|typeAtt
 operator|=
-operator|(
-name|TypeAttribute
-operator|)
 name|src2
 operator|.
 name|addAttribute
@@ -289,9 +280,6 @@ expr_stmt|;
 name|FlagsAttribute
 name|flagsAtt
 init|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|src2
 operator|.
 name|addAttribute
@@ -303,9 +291,6 @@ argument_list|)
 decl_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|src2
 operator|.
 name|addAttribute
@@ -371,9 +356,6 @@ argument_list|()
 decl_stmt|;
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|src3
 operator|.
 name|addAttribute
@@ -425,9 +407,6 @@ specifier|final
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute
@@ -441,9 +420,6 @@ specifier|final
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute
@@ -478,6 +454,14 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|Iterator
+argument_list|<
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|Attribute
+argument_list|>
+argument_list|>
 name|it
 init|=
 name|clone
@@ -527,9 +511,6 @@ specifier|final
 name|TermAttribute
 name|termAtt2
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|clone
 operator|.
 name|getAttribute
@@ -543,9 +524,6 @@ specifier|final
 name|TypeAttribute
 name|typeAtt2
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|clone
 operator|.
 name|getAttribute
@@ -608,9 +586,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute
@@ -623,9 +598,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute
@@ -676,6 +648,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 name|Iterator
+argument_list|<
+name|AttributeImpl
+argument_list|>
 name|it
 init|=
 name|src
@@ -755,9 +730,6 @@ expr_stmt|;
 comment|// this should not add a new attribute as Token implements TermAttribute, too
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|src
 operator|.
 name|addAttribute

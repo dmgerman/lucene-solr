@@ -232,9 +232,6 @@ block|{
 name|FuzzyAttribute
 name|fuzzyAttr
 init|=
-operator|(
-name|FuzzyAttribute
-operator|)
 name|config
 operator|.
 name|getAttribute

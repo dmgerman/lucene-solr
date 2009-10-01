@@ -1294,9 +1294,6 @@ parameter_list|)
 block|{
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|fieldState
 operator|.
 name|attributeSource

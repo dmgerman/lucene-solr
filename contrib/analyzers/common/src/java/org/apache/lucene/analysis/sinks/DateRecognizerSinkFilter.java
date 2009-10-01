@@ -183,9 +183,6 @@ condition|)
 block|{
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|source
 operator|.
 name|addAttribute

@@ -658,9 +658,6 @@ block|{
 name|DefaultOperatorAttribute
 name|attr
 init|=
-operator|(
-name|DefaultOperatorAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -691,9 +688,6 @@ block|{
 name|RangeCollatorAttribute
 name|attr
 init|=
-operator|(
-name|RangeCollatorAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -722,9 +716,6 @@ block|{
 name|RangeCollatorAttribute
 name|attr
 init|=
-operator|(
-name|RangeCollatorAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -755,9 +746,6 @@ block|{
 name|DefaultOperatorAttribute
 name|attr
 init|=
-operator|(
-name|DefaultOperatorAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -789,9 +777,6 @@ block|{
 name|LowercaseExpandedTermsAttribute
 name|attr
 init|=
-operator|(
-name|LowercaseExpandedTermsAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -820,9 +805,6 @@ block|{
 name|LowercaseExpandedTermsAttribute
 name|attr
 init|=
-operator|(
-name|LowercaseExpandedTermsAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -853,9 +835,6 @@ block|{
 name|AllowLeadingWildcardAttribute
 name|attr
 init|=
-operator|(
-name|AllowLeadingWildcardAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -887,9 +866,6 @@ block|{
 name|PositionIncrementsAttribute
 name|attr
 init|=
-operator|(
-name|PositionIncrementsAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -918,9 +894,6 @@ block|{
 name|PositionIncrementsAttribute
 name|attr
 init|=
-operator|(
-name|PositionIncrementsAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -953,9 +926,6 @@ block|{
 name|MultiTermRewriteMethodAttribute
 name|attr
 init|=
-operator|(
-name|MultiTermRewriteMethodAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -986,9 +956,6 @@ block|{
 name|MultiTermRewriteMethodAttribute
 name|attr
 init|=
-operator|(
-name|MultiTermRewriteMethodAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1035,9 +1002,6 @@ block|}
 name|MultiFieldAttribute
 name|attr
 init|=
-operator|(
-name|MultiFieldAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1069,9 +1033,6 @@ block|{
 name|FuzzyAttribute
 name|attr
 init|=
-operator|(
-name|FuzzyAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1103,9 +1064,6 @@ block|{
 name|LocaleAttribute
 name|attr
 init|=
-operator|(
-name|LocaleAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1134,9 +1092,6 @@ block|{
 name|LocaleAttribute
 name|attr
 init|=
-operator|(
-name|LocaleAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1167,9 +1122,6 @@ block|{
 name|DefaultPhraseSlopAttribute
 name|attr
 init|=
-operator|(
-name|DefaultPhraseSlopAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1200,9 +1152,6 @@ block|{
 name|AnalyzerAttribute
 name|attr
 init|=
-operator|(
-name|AnalyzerAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1250,9 +1199,6 @@ block|{
 name|AnalyzerAttribute
 name|attr
 init|=
-operator|(
-name|AnalyzerAttribute
-operator|)
 name|config
 operator|.
 name|getAttribute
@@ -1283,9 +1229,6 @@ block|{
 name|AllowLeadingWildcardAttribute
 name|attr
 init|=
-operator|(
-name|AllowLeadingWildcardAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1313,9 +1256,6 @@ block|{
 name|FuzzyAttribute
 name|attr
 init|=
-operator|(
-name|FuzzyAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1343,9 +1283,6 @@ block|{
 name|FuzzyAttribute
 name|attr
 init|=
-operator|(
-name|FuzzyAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1373,9 +1310,6 @@ block|{
 name|DefaultPhraseSlopAttribute
 name|attr
 init|=
-operator|(
-name|DefaultPhraseSlopAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1406,9 +1340,6 @@ block|{
 name|FuzzyAttribute
 name|attr
 init|=
-operator|(
-name|FuzzyAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1444,9 +1375,6 @@ block|{
 name|FieldBoostMapAttribute
 name|attr
 init|=
-operator|(
-name|FieldBoostMapAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1479,9 +1407,6 @@ block|{
 name|DateResolutionAttribute
 name|attr
 init|=
-operator|(
-name|DateResolutionAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.
@@ -1519,9 +1444,6 @@ block|{
 name|FieldDateResolutionMapAttribute
 name|attr
 init|=
-operator|(
-name|FieldDateResolutionMapAttribute
-operator|)
 name|getQueryConfigHandler
 argument_list|()
 operator|.

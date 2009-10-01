@@ -248,9 +248,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|tokenizer
 operator|.
 name|getAttribute
@@ -263,9 +260,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|tokenizer
 operator|.
 name|getAttribute
@@ -278,9 +272,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|tokenizer
 operator|.
 name|getAttribute
@@ -425,9 +416,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|ts
 operator|.
 name|getAttribute
@@ -440,9 +428,6 @@ decl_stmt|;
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|ts
 operator|.
 name|getAttribute
@@ -455,9 +440,6 @@ decl_stmt|;
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|ts
 operator|.
 name|getAttribute
@@ -1648,9 +1630,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|ts
 operator|.
 name|getAttribute

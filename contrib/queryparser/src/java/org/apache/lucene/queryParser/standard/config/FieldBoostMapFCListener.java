@@ -144,9 +144,6 @@ block|{
 name|FieldBoostMapAttribute
 name|fieldBoostMapAttr
 init|=
-operator|(
-name|FieldBoostMapAttribute
-operator|)
 name|this
 operator|.
 name|config
@@ -161,9 +158,6 @@ decl_stmt|;
 name|BoostAttribute
 name|boostAttr
 init|=
-operator|(
-name|BoostAttribute
-operator|)
 name|fieldConfig
 operator|.
 name|addAttribute

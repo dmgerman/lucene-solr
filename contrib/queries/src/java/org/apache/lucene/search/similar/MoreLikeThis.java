@@ -2549,9 +2549,6 @@ comment|// for every token
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|ts
 operator|.
 name|addAttribute

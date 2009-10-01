@@ -375,9 +375,6 @@ block|{
 name|UniqueFieldAttribute
 name|uniqueFieldAtt
 init|=
-operator|(
-name|UniqueFieldAttribute
-operator|)
 name|this
 operator|.
 name|spanQueryConfigHandler

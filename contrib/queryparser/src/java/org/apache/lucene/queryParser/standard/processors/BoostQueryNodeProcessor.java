@@ -276,9 +276,6 @@ block|{
 name|BoostAttribute
 name|boostAttr
 init|=
-operator|(
-name|BoostAttribute
-operator|)
 name|fieldConfig
 operator|.
 name|getAttribute
