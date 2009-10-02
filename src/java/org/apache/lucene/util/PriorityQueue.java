@@ -26,6 +26,9 @@ specifier|public
 specifier|abstract
 class|class
 name|PriorityQueue
+parameter_list|<
+name|T
+parameter_list|>
 block|{
 DECL|field|size
 specifier|private
@@ -39,7 +42,7 @@ name|maxSize
 decl_stmt|;
 DECL|field|heap
 specifier|protected
-name|Object
+name|T
 index|[]
 name|heap
 decl_stmt|;
@@ -50,17 +53,17 @@ specifier|abstract
 name|boolean
 name|lessThan
 parameter_list|(
-name|Object
+name|T
 name|a
 parameter_list|,
-name|Object
+name|T
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * This method can be overridden by extending classes to return a sentinel    * object which will be used by {@link #initialize(int)} to fill the queue, so    * that the code which uses that queue can always assume it's full and only    * change the top without attempting to insert any new object.<br>    *     * Those sentinel values should always compare worse than any non-sentinel    * value (i.e., {@link #lessThan(Object, Object)} should always favor the    * non-sentinel values).<br>    *     * By default, this method returns false, which means the queue will not be    * filled with sentinel values. Otherwise, the value returned will be used to    * pre-populate the queue. Adds sentinel values to the queue.<br>    *     * If this method is extended to return a non-null value, then the following    * usage pattern is recommended:    *     *<pre>    * // extends getSentinelObject() to return a non-null value.    * PriorityQueue pq = new MyQueue(numHits);    * // save the 'top' element, which is guaranteed to not be null.    * MyObject pqTop = (MyObject) pq.top();    *&lt;...&gt;    * // now in order to add a new element, which is 'better' than top (after     * // you've verified it is better), it is as simple as:    * pqTop.change().    * pqTop = pq.updateTop();    *</pre>    *     *<b>NOTE:</b> if this method returns a non-null value, it will be called by    * {@link #initialize(int)} {@link #size()} times, relying on a new object to    * be returned and will not check if it's null again. Therefore you should    * ensure any call to this method creates a new instance and behaves    * consistently, e.g., it cannot return null if it previously returned    * non-null.    *     * @return the sentinel object to use to pre-populate the queue, or null if    *         sentinel objects are not supported.    */
+comment|/**    * This method can be overridden by extending classes to return a sentinel    * object which will be used by {@link #initialize(int)} to fill the queue, so    * that the code which uses that queue can always assume it's full and only    * change the top without attempting to insert any new object.<br>    *     * Those sentinel values should always compare worse than any non-sentinel    * value (i.e., {@link #lessThan(T, T)} should always favor the    * non-sentinel values).<br>    *     * By default, this method returns false, which means the queue will not be    * filled with sentinel values. Otherwise, the value returned will be used to    * pre-populate the queue. Adds sentinel values to the queue.<br>    *     * If this method is extended to return a non-null value, then the following    * usage pattern is recommended:    *     *<pre>    * // extends getSentinelObject() to return a non-null value.    * PriorityQueue<MyObject> pq = new MyQueue<MyObject>(numHits);    * // save the 'top' element, which is guaranteed to not be null.    * MyObject pqTop = pq.top();    *&lt;...&gt;    * // now in order to add a new element, which is 'better' than top (after     * // you've verified it is better), it is as simple as:    * pqTop.change().    * pqTop = pq.updateTop();    *</pre>    *     *<b>NOTE:</b> if this method returns a non-null value, it will be called by    * {@link #initialize(int)} {@link #size()} times, relying on a new object to    * be returned and will not check if it's null again. Therefore you should    * ensure any call to this method creates a new instance and behaves    * consistently, e.g., it cannot return null if it previously returned    * non-null.    *     * @return the sentinel object to use to pre-populate the queue, or null if    *         sentinel objects are not supported.    */
 DECL|method|getSentinelObject
 specifier|protected
-name|Object
+name|T
 name|getSentinelObject
 parameter_list|()
 block|{
@@ -69,6 +72,11 @@ literal|null
 return|;
 block|}
 comment|/** Subclass constructors must call this. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|initialize
 specifier|protected
 specifier|final
@@ -106,12 +114,17 @@ literal|1
 expr_stmt|;
 name|heap
 operator|=
+operator|(
+name|T
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
 name|heapSize
 index|]
 expr_stmt|;
+comment|// T is unbounded type, so this unchecked cast works always
 name|this
 operator|.
 name|maxSize
@@ -119,7 +132,7 @@ operator|=
 name|maxSize
 expr_stmt|;
 comment|// If sentinel objects are supported, populate the queue with them
-name|Object
+name|T
 name|sentinel
 init|=
 name|getSentinelObject
@@ -171,14 +184,14 @@ name|maxSize
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize a RuntimeException    * (ArrayIndexOutOfBound) is thrown.    *     * @deprecated use {@link #add(Object)} which returns the new top object,    *             saving an additional call to {@link #top()}.    */
+comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize a RuntimeException    * (ArrayIndexOutOfBound) is thrown.    *     * @deprecated use {@link #add(T)} which returns the new top object,    *             saving an additional call to {@link #top()}.    */
 DECL|method|put
 specifier|public
 specifier|final
 name|void
 name|put
 parameter_list|(
-name|Object
+name|T
 name|element
 parameter_list|)
 block|{
@@ -200,10 +213,10 @@ comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tri
 DECL|method|add
 specifier|public
 specifier|final
-name|Object
+name|T
 name|add
 parameter_list|(
-name|Object
+name|T
 name|element
 parameter_list|)
 block|{
@@ -227,13 +240,13 @@ literal|1
 index|]
 return|;
 block|}
-comment|/**    * Adds element to the PriorityQueue in log(size) time if either the    * PriorityQueue is not full, or not lessThan(element, top()).    *     * @param element    * @return true if element is added, false otherwise.    * @deprecated use {@link #insertWithOverflow(Object)} instead, which    *             encourages objects reuse.    */
+comment|/**    * Adds element to the PriorityQueue in log(size) time if either the    * PriorityQueue is not full, or not lessThan(element, top()).    *     * @param element    * @return true if element is added, false otherwise.    * @deprecated use {@link #insertWithOverflow(T)} instead, which    *             encourages objects reuse.    */
 DECL|method|insert
 specifier|public
 name|boolean
 name|insert
 parameter_list|(
-name|Object
+name|T
 name|element
 parameter_list|)
 block|{
@@ -249,10 +262,10 @@ block|}
 comment|/**    * insertWithOverflow() is the same as insert() except its    * return value: it returns the object (if any) that was    * dropped off the heap because it was full. This can be    * the given parameter (in case it is smaller than the    * full heap's minimum, and couldn't be added), or another    * object that was previously the smallest value in the    * heap and now has been replaced by a larger one, or null    * if the queue wasn't yet full with maxSize elements.    */
 DECL|method|insertWithOverflow
 specifier|public
-name|Object
+name|T
 name|insertWithOverflow
 parameter_list|(
-name|Object
+name|T
 name|element
 parameter_list|)
 block|{
@@ -291,7 +304,7 @@ index|]
 argument_list|)
 condition|)
 block|{
-name|Object
+name|T
 name|ret
 init|=
 name|heap
@@ -324,7 +337,7 @@ comment|/** Returns the least element of the PriorityQueue in constant time. */
 DECL|method|top
 specifier|public
 specifier|final
-name|Object
+name|T
 name|top
 parameter_list|()
 block|{
@@ -342,7 +355,7 @@ comment|/** Removes and returns the least element of the PriorityQueue in log(si
 DECL|method|pop
 specifier|public
 specifier|final
-name|Object
+name|T
 name|pop
 parameter_list|()
 block|{
@@ -353,7 +366,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|Object
+name|T
 name|result
 init|=
 name|heap
@@ -413,7 +426,7 @@ comment|/**    * Should be called when the Object at top changes values. Still l
 DECL|method|updateTop
 specifier|public
 specifier|final
-name|Object
+name|T
 name|updateTop
 parameter_list|()
 block|{
@@ -487,7 +500,7 @@ name|i
 init|=
 name|size
 decl_stmt|;
-name|Object
+name|T
 name|node
 init|=
 name|heap
@@ -563,7 +576,7 @@ name|i
 init|=
 literal|1
 decl_stmt|;
-name|Object
+name|T
 name|node
 init|=
 name|heap
