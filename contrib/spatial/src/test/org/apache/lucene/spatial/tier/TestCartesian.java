@@ -1434,8 +1434,9 @@ comment|// to distance from center point to location
 name|float
 name|score
 init|=
-operator|new
-name|Float
+call|(
+name|float
+call|)
 argument_list|(
 operator|(
 name|miles
@@ -1445,9 +1446,6 @@ operator|)
 operator|/
 name|miles
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 decl_stmt|;
 return|return
 name|score
@@ -1977,8 +1975,9 @@ comment|// to distance from center point to location
 name|float
 name|score
 init|=
-operator|new
-name|Float
+call|(
+name|float
+call|)
 argument_list|(
 operator|(
 name|miles
@@ -1988,9 +1987,6 @@ operator|)
 operator|/
 name|miles
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 decl_stmt|;
 return|return
 name|score
@@ -2580,8 +2576,9 @@ comment|// to distance from center point to location
 name|float
 name|score
 init|=
-operator|new
-name|Float
+call|(
+name|float
+call|)
 argument_list|(
 operator|(
 name|miles
@@ -2591,9 +2588,6 @@ operator|)
 operator|/
 name|miles
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 decl_stmt|;
 return|return
 name|score
@@ -3167,8 +3161,9 @@ comment|// to distance from center point to location
 name|float
 name|score
 init|=
-operator|new
-name|Float
+call|(
+name|float
+call|)
 argument_list|(
 operator|(
 name|miles
@@ -3178,9 +3173,6 @@ operator|)
 operator|/
 name|miles
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 decl_stmt|;
 return|return
 name|score

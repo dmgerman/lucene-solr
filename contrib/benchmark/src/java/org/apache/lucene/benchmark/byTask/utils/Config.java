@@ -1549,8 +1549,9 @@ name|a
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|t
 argument_list|)
@@ -1688,8 +1689,9 @@ name|a
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Double
+operator|.
+name|valueOf
 argument_list|(
 name|t
 argument_list|)

@@ -70,8 +70,9 @@ DECL|field|idd
 name|Double
 name|idd
 init|=
-operator|new
 name|Double
+operator|.
+name|valueOf
 argument_list|(
 literal|180
 argument_list|)
@@ -178,8 +179,9 @@ block|{
 comment|// ceiling of log base 10 of tierLen
 name|tierVerticalPosDivider
 operator|=
-operator|new
 name|Double
+operator|.
+name|valueOf
 argument_list|(
 name|Math
 operator|.
@@ -189,8 +191,9 @@ name|Math
 operator|.
 name|log10
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|this
 operator|.

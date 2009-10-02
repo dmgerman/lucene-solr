@@ -4209,8 +4209,9 @@ name|docIDs
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|flushedDocCount
 operator|+
@@ -4247,8 +4248,9 @@ name|put
 argument_list|(
 name|query
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|flushedDocCount
 operator|+

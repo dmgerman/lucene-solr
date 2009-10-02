@@ -173,8 +173,9 @@ block|{
 name|Integer
 name|posVal
 init|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|positions
 index|[

@@ -165,7 +165,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an object which, when sorted according to natural order,    * will order the Term values in the correct order.    *<p>For example, if the Terms contained integer values, this method    * would return<code>new Integer(termtext)</code>.  Note that this    * might not always be the most efficient implementation - for this    * particular example, a better implementation might be to make a    * ScoreDocLookupComparator that uses an internal lookup table of int.    * @param termtext The textual value of the term.    * @return An object representing<code>termtext</code> that sorts according to the natural order of<code>termtext</code>.    * @see Comparable    * @see ScoreDocComparator    */
+comment|/**    * Returns an object which, when sorted according to natural order,    * will order the Term values in the correct order.    *<p>For example, if the Terms contained integer values, this method    * would return<code>Integer.valueOf(termtext)</code>.  Note that this    * might not always be the most efficient implementation - for this    * particular example, a better implementation might be to make a    * ScoreDocLookupComparator that uses an internal lookup table of int.    * @param termtext The textual value of the term.    * @return An object representing<code>termtext</code> that sorts according to the natural order of<code>termtext</code>.    * @see Comparable    * @see ScoreDocComparator    */
 DECL|method|getComparable
 specifier|protected
 specifier|abstract

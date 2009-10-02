@@ -1519,8 +1519,9 @@ operator|<
 literal|0
 condition|)
 return|return
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|version
 argument_list|)
@@ -1544,8 +1545,9 @@ name|segmentFileName
 argument_list|)
 expr_stmt|;
 return|return
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|sis
 operator|.

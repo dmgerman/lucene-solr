@@ -620,8 +620,9 @@ name|this
 operator|.
 name|seed
 operator|=
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|seed
 argument_list|)

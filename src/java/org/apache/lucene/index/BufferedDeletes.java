@@ -501,8 +501,9 @@ name|newDeleteDocIDs
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mapper
 operator|.
@@ -599,8 +600,9 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mapper
 operator|.

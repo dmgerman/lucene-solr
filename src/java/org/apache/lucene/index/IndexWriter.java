@@ -3852,8 +3852,9 @@ argument_list|(
 name|i
 argument_list|)
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|i
 argument_list|)

@@ -463,8 +463,9 @@ name|list
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|doc
 argument_list|)
@@ -490,8 +491,9 @@ name|list
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|doc
 argument_list|)

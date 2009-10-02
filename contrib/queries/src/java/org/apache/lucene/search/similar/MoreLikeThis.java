@@ -1627,29 +1627,33 @@ comment|// the word
 name|topField
 block|,
 comment|// the top field
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|score
 argument_list|)
 block|,
 comment|// overall score
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|idf
 argument_list|)
 block|,
 comment|// idf
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|docFreq
 argument_list|)
 block|,
 comment|// freq in all docs
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|tf
 argument_list|)

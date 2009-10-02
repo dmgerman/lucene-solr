@@ -934,8 +934,9 @@ condition|)
 block|{
 name|group
 operator|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|num
 argument_list|)

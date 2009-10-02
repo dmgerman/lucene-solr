@@ -160,8 +160,9 @@ else|else
 block|{
 name|v
 operator|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -213,7 +214,7 @@ expr_stmt|;
 comment|// Pending resolution on LUCENE-686 we may want to
 comment|// uncomment this code so that we also track that all
 comment|// clones get closed:
-comment|/*     synchronized(dir.openFiles) {       if (dir.openFiles.containsKey(name)) {         Integer v = (Integer) dir.openFiles.get(name);         v = new Integer(v.intValue()+1);         dir.openFiles.put(name, v);       } else {         throw new RuntimeException("BUG: cloned file was not open?");       }     }     */
+comment|/*     synchronized(dir.openFiles) {       if (dir.openFiles.containsKey(name)) {         Integer v = (Integer) dir.openFiles.get(name);         v = Integer.valueOf(v.intValue()+1);         dir.openFiles.put(name, v);       } else {         throw new RuntimeException("BUG: cloned file was not open?");       }     }     */
 return|return
 name|clone
 return|;

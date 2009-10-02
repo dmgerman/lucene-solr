@@ -775,8 +775,9 @@ operator|+
 literal|1
 index|]
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|max
 operator|--
@@ -1115,8 +1116,9 @@ name|slot
 parameter_list|)
 block|{
 return|return
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|values
 index|[

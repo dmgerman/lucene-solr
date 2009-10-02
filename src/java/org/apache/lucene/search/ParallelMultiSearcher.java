@@ -1263,8 +1263,9 @@ index|[
 name|j
 index|]
 operator|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 operator|(

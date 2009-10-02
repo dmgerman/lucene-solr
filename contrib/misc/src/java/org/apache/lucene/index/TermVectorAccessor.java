@@ -345,8 +345,9 @@ name|frequencies
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|termPositions
 operator|.

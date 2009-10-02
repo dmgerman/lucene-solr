@@ -802,8 +802,9 @@ operator|.
 name|text
 argument_list|()
 argument_list|,
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|tq
 operator|.

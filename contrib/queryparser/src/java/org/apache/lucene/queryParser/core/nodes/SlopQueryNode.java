@@ -215,8 +215,9 @@ block|{
 name|Float
 name|f
 init|=
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|this
 operator|.

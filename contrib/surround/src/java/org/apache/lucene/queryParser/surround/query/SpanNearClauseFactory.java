@@ -385,8 +385,9 @@ literal|null
 condition|)
 name|w
 operator|=
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|w
 operator|.
@@ -399,8 +400,9 @@ expr_stmt|;
 else|else
 name|w
 operator|=
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|weight
 argument_list|)
