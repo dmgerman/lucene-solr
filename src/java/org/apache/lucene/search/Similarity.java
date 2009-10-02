@@ -676,11 +676,11 @@ init|=
 literal|0.0f
 decl_stmt|;
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|exp
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|Iterator

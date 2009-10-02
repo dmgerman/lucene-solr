@@ -31,21 +31,21 @@ block|{
 comment|/**      * Buffer for the terms while stemming them.      */
 DECL|field|sb
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|/**      * A temporary buffer, used to reconstruct R2      */
 DECL|field|tb
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|tb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Region R0 is equal to the whole buffer 	 */
@@ -115,7 +115,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 expr_stmt|;
-comment|// Reset the StringBuffer.
+comment|// Reset the StringBuilder.
 name|sb
 operator|.
 name|delete
@@ -794,7 +794,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 	 * Second step (A) of the Porter Algorithm<br> 	 * Will be performed if nothing changed from the first step 	 * or changed were done in the amment, emment, ments or ment suffixes<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 * 	 * @return boolean - true if something changed in the StringBuffer 	 */
+comment|/** 	 * Second step (A) of the Porter Algorithm<br> 	 * Will be performed if nothing changed from the first step 	 * or changed were done in the amment, emment, ments or ment suffixes<br> 	 * refer to http://snowball.sourceforge.net/french/stemmer.html for an explanation 	 * 	 * @return boolean - true if something changed in the StringBuilder 	 */
 DECL|method|step2a
 specifier|private
 name|boolean
@@ -2444,13 +2444,13 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** 	 * Retrieve the "R zone" (1 or 2 depending on the buffer) and return the corresponding string<br> 	 * "R is the region after the first non-vowel following a vowel 	 * or is the null region at the end of the word if there is no such non-vowel"<br> 	 * @param buffer java.lang.StringBuffer - the in buffer 	 * @return java.lang.String - the resulting string 	 */
+comment|/** 	 * Retrieve the "R zone" (1 or 2 depending on the buffer) and return the corresponding string<br> 	 * "R is the region after the first non-vowel following a vowel 	 * or is the null region at the end of the word if there is no such non-vowel"<br> 	 * @param buffer java.lang.StringBuilder - the in buffer 	 * @return java.lang.String - the resulting string 	 */
 DECL|method|retrieveR
 specifier|private
 name|String
 name|retrieveR
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{
@@ -2590,13 +2590,13 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Retrieve the "RV zone" from a buffer an return the corresponding string<br> 	 * "If the word begins with two vowels, RV is the region after the third letter, 	 * otherwise the region after the first vowel not at the beginning of the word, 	 * or the end of the word if these positions cannot be found."<br> 	 * @param buffer java.lang.StringBuffer - the in buffer 	 * @return java.lang.String - the resulting string 	 */
+comment|/** 	 * Retrieve the "RV zone" from a buffer an return the corresponding string<br> 	 * "If the word begins with two vowels, RV is the region after the third letter, 	 * otherwise the region after the first vowel not at the beginning of the word, 	 * or the end of the word if these positions cannot be found."<br> 	 * @param buffer java.lang.StringBuilder - the in buffer 	 * @return java.lang.String - the resulting string 	 */
 DECL|method|retrieveRV
 specifier|private
 name|String
 name|retrieveRV
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{
@@ -2725,13 +2725,13 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Turns u and i preceded AND followed by a vowel to UpperCase<br> 	 * Turns y preceded OR followed by a vowel to UpperCase<br> 	 * Turns u preceded by q to UpperCase<br>      *      * @param buffer java.util.StringBuffer - the buffer to treat      * @return java.util.StringBuffer - the treated buffer      */
+comment|/** 	 * Turns u and i preceded AND followed by a vowel to UpperCase<br> 	 * Turns y preceded OR followed by a vowel to UpperCase<br> 	 * Turns u preceded by q to UpperCase<br>      *      * @param buffer java.util.StringBuilder - the buffer to treat      * @return java.util.StringBuilder - the treated buffer      */
 DECL|method|treatVowels
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|treatVowels
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{

@@ -646,11 +646,11 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|newText
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|TermAttribute
@@ -1737,11 +1737,11 @@ argument_list|,
 name|maxNumFragments
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

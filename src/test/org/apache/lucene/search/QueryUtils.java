@@ -1767,11 +1767,11 @@ operator|>
 name|maxDiff
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|sbord
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

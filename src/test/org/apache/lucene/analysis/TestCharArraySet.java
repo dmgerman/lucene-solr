@@ -692,7 +692,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|NOT_IN_SET
 argument_list|)

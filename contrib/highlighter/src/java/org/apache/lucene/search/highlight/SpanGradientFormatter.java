@@ -108,11 +108,11 @@ name|originalText
 return|;
 block|}
 comment|// try to size sb correctly
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|originalText
 operator|.
@@ -217,7 +217,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// guess how much extra text we'll add to the text we're highlighting to try to avoid a  StringBuffer resize
+comment|// guess how much extra text we'll add to the text we're highlighting to try to avoid a  StringBuilder resize
 DECL|field|TEMPLATE
 specifier|private
 specifier|static

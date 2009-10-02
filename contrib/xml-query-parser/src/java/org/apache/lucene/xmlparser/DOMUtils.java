@@ -895,11 +895,11 @@ name|Node
 name|e
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|getTextBuffer
@@ -981,7 +981,7 @@ parameter_list|(
 name|Node
 name|e
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|sb
 parameter_list|)
 block|{

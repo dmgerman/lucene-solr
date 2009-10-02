@@ -379,11 +379,11 @@ name|toStringEscaped
 parameter_list|()
 block|{
 comment|// non efficient implementation
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -473,11 +473,11 @@ name|enabledChars
 parameter_list|)
 block|{
 comment|// TODO: non efficient implementation, refactor this code
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

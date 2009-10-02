@@ -5299,11 +5299,11 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|inputText
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -5352,11 +5352,11 @@ argument_list|)
 expr_stmt|;
 comment|// Construct the expected output token: the ASCII string to fold to,
 comment|// duplicated as many times as the number of characters in the input text.
-name|StringBuffer
+name|StringBuilder
 name|expected
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|int

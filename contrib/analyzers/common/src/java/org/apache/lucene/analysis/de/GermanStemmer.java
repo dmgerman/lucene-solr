@@ -35,11 +35,11 @@ block|{
 comment|/**      * Buffer for the terms while stemming them.      */
 DECL|field|sb
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|/**      * Amount of characters that are removed with<tt>substitute()</tt> while stemming.      */
@@ -79,7 +79,7 @@ condition|)
 return|return
 name|term
 return|;
-comment|// Reset the StringBuffer.
+comment|// Reset the StringBuilder.
 name|sb
 operator|.
 name|delete
@@ -191,7 +191,7 @@ specifier|private
 name|void
 name|strip
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{
@@ -516,7 +516,7 @@ specifier|private
 name|void
 name|optimize
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{
@@ -613,7 +613,7 @@ specifier|private
 name|void
 name|removeParticleDenotion
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{
@@ -688,7 +688,7 @@ specifier|private
 name|void
 name|substitute
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{
@@ -1182,7 +1182,7 @@ specifier|private
 name|void
 name|resubstitute
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buffer
 parameter_list|)
 block|{

@@ -123,13 +123,13 @@ return|return
 name|originalText
 return|;
 block|}
-comment|// Allocate StringBuffer with the right number of characters from the
+comment|// Allocate StringBuilder with the right number of characters from the
 comment|// beginning, to avoid char[] allocations in the middle of appends.
-name|StringBuffer
+name|StringBuilder
 name|returnBuffer
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|preTag
 operator|.

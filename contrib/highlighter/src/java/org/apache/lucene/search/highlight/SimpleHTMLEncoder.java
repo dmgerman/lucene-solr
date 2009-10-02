@@ -81,11 +81,11 @@ return|return
 literal|""
 return|;
 block|}
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|plainText
 operator|.

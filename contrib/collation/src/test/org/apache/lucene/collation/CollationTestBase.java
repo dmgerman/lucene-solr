@@ -2103,11 +2103,11 @@ argument_list|)
 operator|.
 name|scoreDocs
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buff
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|10
 argument_list|)

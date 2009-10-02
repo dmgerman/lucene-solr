@@ -285,11 +285,11 @@ name|Directory
 name|dir
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|b
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -442,11 +442,11 @@ name|Directory
 name|dir
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|b
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|b

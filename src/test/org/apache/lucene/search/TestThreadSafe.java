@@ -595,11 +595,11 @@ argument_list|(
 name|maxFieldLen
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"^ "
 argument_list|)

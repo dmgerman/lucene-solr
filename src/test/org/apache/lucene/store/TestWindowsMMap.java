@@ -191,11 +191,11 @@ argument_list|(
 literal|7
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -265,11 +265,11 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|fb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

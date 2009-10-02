@@ -168,11 +168,11 @@ argument_list|(
 name|sentence
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|wordBuf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|SegToken

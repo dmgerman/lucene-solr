@@ -175,11 +175,11 @@ return|return
 name|MIN_STRING_VALUE
 return|;
 block|}
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|STR_SIZE
 argument_list|)

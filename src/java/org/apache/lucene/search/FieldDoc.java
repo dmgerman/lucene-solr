@@ -94,11 +94,11 @@ parameter_list|()
 block|{
 comment|// super.toString returns the doc and score information, so just add the
 comment|// fields information
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|super
 operator|.

@@ -1585,11 +1585,11 @@ name|request_next_token
 return|;
 block|}
 comment|// shingle token factory
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|termLength
 operator|+

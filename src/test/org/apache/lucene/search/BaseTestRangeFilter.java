@@ -274,11 +274,11 @@ name|int
 name|n
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|b
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|40
 argument_list|)
