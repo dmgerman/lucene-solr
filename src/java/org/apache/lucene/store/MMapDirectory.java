@@ -201,12 +201,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|// back compatibility so FSDirectory can instantiate via reflection
-comment|/** @deprecated */
-DECL|method|MMapDirectory
-name|MMapDirectory
-parameter_list|()
-block|{}
 DECL|field|NO_PARAM_TYPES
 specifier|static
 specifier|final

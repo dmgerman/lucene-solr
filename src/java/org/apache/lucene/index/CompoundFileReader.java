@@ -536,11 +536,11 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an array of strings, one for each file in the directory. */
-DECL|method|list
+DECL|method|listAll
 specifier|public
 name|String
 index|[]
-name|list
+name|listAll
 parameter_list|()
 block|{
 name|String

@@ -5910,7 +5910,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * Lotsa tests did hacks like:<br/>    * SegmentReader reader = (SegmentReader) IndexReader.open(dir);<br/>    * They broke. This method serves as a hack to keep hacks working    */
+comment|/**    * Lotsa tests did hacks like:<br/>    * SegmentReader reader = (SegmentReader) IndexReader.open(dir);<br/>    * They broke. This method serves as a hack to keep hacks working    * We do it with R/W access for the tests (BW compatibility)    * @deprecated Remove this when tests are fixed!    */
 DECL|method|getOnlySegmentReader
 specifier|static
 name|SegmentReader
@@ -5930,6 +5930,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 return|;

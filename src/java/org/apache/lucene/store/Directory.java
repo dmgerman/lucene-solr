@@ -65,32 +65,17 @@ specifier|protected
 name|LockFactory
 name|lockFactory
 decl_stmt|;
-comment|/** List the files in the directory.    *     *  @deprecated For some Directory implementations ({@link    *  FSDirectory}, and its subclasses), this method    *  silently filters its results to include only index    *  files.  Please use {@link #listAll} instead, which    *  does no filtering. */
-DECL|method|list
-specifier|public
-specifier|abstract
-name|String
-index|[]
-name|list
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Returns an array of strings, one for each file in the    *  directory.  Unlike {@link #list} this method does no    *  filtering of the contents in a directory, and it will    *  never return null (throws IOException instead).    *    *  Currently this method simply falls back to {@link    *  #list} for Directory impls outside of Lucene's core&    *  contrib, but in 3.0 that method will be removed and    *  this method will become abstract. */
+comment|/** Returns an array of strings, one for each file in the    *  directory.  Unlike {@link #list} this method does no    *  filtering of the contents in a directory, and it will    *  never return null (throws IOException instead).    */
 DECL|method|listAll
 specifier|public
+specifier|abstract
 name|String
 index|[]
 name|listAll
 parameter_list|()
 throws|throws
 name|IOException
-block|{
-return|return
-name|list
-argument_list|()
-return|;
-block|}
+function_decl|;
 comment|/** Returns true iff a file with the given name exists. */
 DECL|method|fileExists
 specifier|public
@@ -139,22 +124,6 @@ name|deleteFile
 parameter_list|(
 name|String
 name|name
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Renames an existing file in the directory.    * If a file already exists with the new name, then it is replaced.    * This replacement is not guaranteed to be atomic.    * @deprecated     */
-DECL|method|renameFile
-specifier|public
-specifier|abstract
-name|void
-name|renameFile
-parameter_list|(
-name|String
-name|from
-parameter_list|,
-name|String
-name|to
 parameter_list|)
 throws|throws
 name|IOException
@@ -299,6 +268,11 @@ name|LockFactory
 name|lockFactory
 parameter_list|)
 block|{
+assert|assert
+name|lockFactory
+operator|!=
+literal|null
+assert|;
 name|this
 operator|.
 name|lockFactory

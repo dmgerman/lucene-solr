@@ -99,12 +99,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|// back compatibility so FSDirectory can instantiate via reflection
-comment|/** @deprecated */
-DECL|method|SimpleFSDirectory
-name|SimpleFSDirectory
-parameter_list|()
-block|{}
 comment|/** Creates an IndexOutput for the file with the given name. */
 DECL|method|createOutput
 specifier|public
@@ -278,57 +272,6 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
-comment|/** @deprecated Please use ctor taking chunkSize */
-DECL|method|SimpleFSIndexInput
-specifier|public
-name|SimpleFSIndexInput
-parameter_list|(
-name|File
-name|path
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|path
-argument_list|,
-name|BufferedIndexInput
-operator|.
-name|BUFFER_SIZE
-argument_list|,
-name|SimpleFSDirectory
-operator|.
-name|DEFAULT_READ_CHUNK_SIZE
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** @deprecated Please use ctor taking chunkSize */
-DECL|method|SimpleFSIndexInput
-specifier|public
-name|SimpleFSIndexInput
-parameter_list|(
-name|File
-name|path
-parameter_list|,
-name|int
-name|bufferSize
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|path
-argument_list|,
-name|bufferSize
-argument_list|,
-name|SimpleFSDirectory
-operator|.
-name|DEFAULT_READ_CHUNK_SIZE
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|SimpleFSIndexInput
 specifier|public
 name|SimpleFSIndexInput

@@ -111,12 +111,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|// back compatibility so FSDirectory can instantiate via reflection
-comment|/** @deprecated */
-DECL|method|NIOFSDirectory
-name|NIOFSDirectory
-parameter_list|()
-block|{}
 comment|/** Creates an IndexInput for the file with the given name. */
 DECL|method|openInput
 specifier|public
@@ -220,32 +214,6 @@ specifier|final
 name|FileChannel
 name|channel
 decl_stmt|;
-comment|/** @deprecated Please use ctor taking chunkSize */
-DECL|method|NIOFSIndexInput
-specifier|public
-name|NIOFSIndexInput
-parameter_list|(
-name|File
-name|path
-parameter_list|,
-name|int
-name|bufferSize
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|path
-argument_list|,
-name|bufferSize
-argument_list|,
-name|FSDirectory
-operator|.
-name|DEFAULT_READ_CHUNK_SIZE
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|NIOFSIndexInput
 specifier|public
 name|NIOFSIndexInput
