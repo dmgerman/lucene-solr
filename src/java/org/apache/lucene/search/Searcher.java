@@ -263,7 +263,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query)}) is usually more efficient, as it skips   * non-high-scoring hits.   *<p>Note: The<code>score</code> passed to this method is a raw score.   * In other words, the score will not necessarily be a float whose value is   * between 0 and 1.   * @throws BooleanQuery.TooManyClauses   */
+comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query, int)}) is usually more efficient, as it skips   * non-high-scoring hits.   *<p>Note: The<code>score</code> passed to this method is a raw score.   * In other words, the score will not necessarily be a float whose value is   * between 0 and 1.   * @throws BooleanQuery.TooManyClauses   */
 DECL|method|search
 specifier|public
 name|void
