@@ -993,6 +993,8 @@ operator|.
 name|open
 argument_list|(
 name|small
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -1192,6 +1194,8 @@ operator|.
 name|open
 argument_list|(
 name|small
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -1748,6 +1752,8 @@ operator|.
 name|open
 argument_list|(
 name|small
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -1935,6 +1941,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -3381,6 +3389,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -4291,6 +4301,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -4899,6 +4911,8 @@ argument_list|(
 name|unsignedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -5646,6 +5660,8 @@ operator|.
 name|open
 argument_list|(
 name|farsiIndex
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -5919,6 +5935,8 @@ operator|.
 name|open
 argument_list|(
 name|danishIndex
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher

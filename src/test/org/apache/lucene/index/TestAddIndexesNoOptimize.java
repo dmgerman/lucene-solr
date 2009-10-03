@@ -1992,6 +1992,8 @@ operator|.
 name|open
 argument_list|(
 name|aux
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 for|for
@@ -2218,6 +2220,8 @@ operator|.
 name|open
 argument_list|(
 name|aux
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 for|for
@@ -2265,6 +2269,8 @@ operator|.
 name|open
 argument_list|(
 name|aux2
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 for|for
@@ -2587,6 +2593,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2640,6 +2648,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|TermDocs

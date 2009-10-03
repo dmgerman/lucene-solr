@@ -864,6 +864,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|doTest

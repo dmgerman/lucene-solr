@@ -2757,6 +2757,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStoreB
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|searchers
@@ -2768,6 +2770,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStoreA
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|Searcher

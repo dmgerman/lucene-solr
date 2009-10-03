@@ -521,6 +521,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -533,6 +535,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -637,6 +641,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -649,6 +655,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -914,6 +922,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -928,6 +938,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -982,6 +994,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -994,6 +1008,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1013,6 +1029,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|modifier
@@ -1048,6 +1066,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|modifier
@@ -1237,6 +1257,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1249,6 +1271,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1308,6 +1332,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1320,6 +1346,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1380,6 +1408,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1392,6 +1422,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1446,6 +1478,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1458,6 +1492,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2008,6 +2044,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
@@ -2048,6 +2086,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2060,6 +2100,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

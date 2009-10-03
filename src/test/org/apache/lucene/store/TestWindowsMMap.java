@@ -397,7 +397,9 @@ init|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|storePathname
+name|storeDirectory
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 for|for

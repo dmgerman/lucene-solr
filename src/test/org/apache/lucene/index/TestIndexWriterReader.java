@@ -633,6 +633,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1655,6 +1657,8 @@ operator|.
 name|open
 argument_list|(
 name|mainDir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2247,6 +2251,8 @@ operator|.
 name|open
 argument_list|(
 name|addDir
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -4889,6 +4895,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals

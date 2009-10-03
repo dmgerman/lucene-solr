@@ -1193,6 +1193,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|searcherMultiSegment
@@ -1246,6 +1248,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir2
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|searcherSingleSegment
@@ -1301,6 +1305,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir3
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|searcherFewSegment

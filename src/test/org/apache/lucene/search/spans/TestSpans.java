@@ -454,6 +454,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -3123,6 +3125,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
