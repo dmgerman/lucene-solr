@@ -290,7 +290,7 @@ name|open
 argument_list|(
 name|dir
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
