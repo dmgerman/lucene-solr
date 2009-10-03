@@ -141,9 +141,13 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-name|File
+name|FSDirectory
 name|mergedIndex
 init|=
+name|FSDirectory
+operator|.
+name|open
+argument_list|(
 operator|new
 name|File
 argument_list|(
@@ -151,6 +155,7 @@ name|args
 index|[
 literal|0
 index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|IndexWriter

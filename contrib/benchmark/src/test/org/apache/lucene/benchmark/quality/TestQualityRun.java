@@ -561,6 +561,8 @@ argument_list|,
 literal|"index"
 argument_list|)
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|QualityQueryParser

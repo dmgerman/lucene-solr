@@ -414,7 +414,7 @@ name|TestCase
 block|{
 comment|//  public void test2() throws Exception {
 comment|//    FSDirectory fsdir = FSDirectory.open(new File("/tmp/fatcorpus"));
-comment|//    IndexReader ir = IndexReader.open(fsdir);
+comment|//    IndexReader ir = IndexReader.open(fsdir, false);
 comment|//    InstantiatedIndex ii = new InstantiatedIndex(ir);
 comment|//    ir.close();
 comment|//    testEquals(fsdir, ii);
@@ -501,6 +501,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|InstantiatedIndex
@@ -699,6 +701,8 @@ operator|.
 name|open
 argument_list|(
 name|aprioriIndex
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|IndexReader
@@ -1541,6 +1545,8 @@ operator|.
 name|open
 argument_list|(
 name|aprioriIndex
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|ir
@@ -1619,6 +1625,8 @@ operator|.
 name|open
 argument_list|(
 name|aprioriIndex
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|IndexReader

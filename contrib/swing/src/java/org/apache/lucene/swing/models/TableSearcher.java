@@ -699,6 +699,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|//make an array of fields - one for each column

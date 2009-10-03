@@ -342,6 +342,8 @@ operator|.
 name|open
 argument_list|(
 name|d
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|testNorms
@@ -532,6 +534,8 @@ operator|.
 name|open
 argument_list|(
 name|d
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|termEnumTest

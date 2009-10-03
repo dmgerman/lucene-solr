@@ -154,6 +154,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|jline
 operator|.
 name|ConsoleReader
@@ -448,6 +458,20 @@ name|Searcher
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|FSDirectory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Various methods that interact with Lucene and provide info about the   * index, search, etc. Parts adapted from Lucene demo.  */
 end_comment
@@ -464,7 +488,7 @@ name|numDocs
 decl_stmt|;
 DECL|field|indexName
 specifier|private
-name|String
+name|FSDirectory
 name|indexName
 decl_stmt|;
 comment|//directory of this index
@@ -522,10 +546,21 @@ parameter_list|(
 name|String
 name|index
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|indexName
 operator|=
+name|FSDirectory
+operator|.
+name|open
+argument_list|(
+operator|new
+name|File
+argument_list|(
 name|index
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|message
 argument_list|(
@@ -644,6 +679,8 @@ operator|.
 name|open
 argument_list|(
 name|indexName
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|getFieldInfo
@@ -687,7 +724,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|IndexReader
+name|IndexWriter
 operator|.
 name|isLocked
 argument_list|(
@@ -1153,6 +1190,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexName
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|Analyzer
@@ -1273,6 +1312,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexName
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|Analyzer
@@ -1462,6 +1503,8 @@ operator|.
 name|open
 argument_list|(
 name|indexName
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|fields
@@ -1987,6 +2030,8 @@ operator|.
 name|open
 argument_list|(
 name|indexName
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|TermEnum

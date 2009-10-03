@@ -208,6 +208,20 @@ name|IndexWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|FSDirectory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Convert the prolog file wn_s.pl from the<a href="http://www.cogsci.princeton.edu/2.0/WNprolog-2.0.tar.gz">WordNet prolog download</a>  * into a Lucene index suitable for looking up synonyms and performing query expansion ({@link SynExpand#expand SynExpand.expand(...)}).  *  * This has been tested with WordNet 2.0.  *  * The index has fields named "word" ({@link #F_WORD})  * and "syn" ({@link #F_SYN}).  *<p>  * The source word (such as 'big') can be looked up in the  * "word" field, and if present there will be fields named "syn"  * for every synonym. What's tricky here is that there could be<b>multiple</b>  * fields with the same name, in the general case for words that have multiple synonyms.  * That's not a problem with Lucene, you just use {@link org.apache.lucene.document.Document#getValues}  *</p>  *<p>  * While the WordNet file distinguishes groups of synonyms with  * related meanings we don't do that here.  *</p>  *  * This can take 4 minutes to execute and build an index on a "fast" system and the index takes up almost 3 MB.  *  * @see<a href="http://www.cogsci.princeton.edu/~wn/">WordNet home page</a>  * @see<a href="http://www.cogsci.princeton.edu/~wn/man/prologdb.5WN.html">prologdb man page</a>  * @see<a href="http://www.hostmon.com/rfc/advanced.jsp">sample site that uses it</a>  */
 end_comment
@@ -913,6 +927,22 @@ name|mod
 init|=
 literal|1
 decl_stmt|;
+name|FSDirectory
+name|dir
+init|=
+name|FSDirectory
+operator|.
+name|open
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|indexDir
+argument_list|)
+argument_list|)
+decl_stmt|;
+try|try
+block|{
 comment|// override the specific index if it already exists
 name|IndexWriter
 name|writer
@@ -920,7 +950,7 @@ init|=
 operator|new
 name|IndexWriter
 argument_list|(
-name|indexDir
+name|dir
 argument_list|,
 name|ana
 argument_list|,
@@ -1089,6 +1119,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Given the 2 maps fills a document for 1 word.      */
 DECL|method|index

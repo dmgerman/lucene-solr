@@ -422,6 +422,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|SpanRegexQuery
@@ -556,6 +558,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStoreA
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|arrSearcher
@@ -567,6 +571,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStoreB
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|MultiSearcher
