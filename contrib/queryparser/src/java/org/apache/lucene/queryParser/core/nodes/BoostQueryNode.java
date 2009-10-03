@@ -173,14 +173,9 @@ name|QueryParserMessages
 operator|.
 name|NODE_ACTION_NOT_SUPPORTED
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 literal|"query"
-block|,
+argument_list|,
 literal|"null"
-block|}
 argument_list|)
 argument_list|)
 throw|;

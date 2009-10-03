@@ -222,14 +222,9 @@ name|QueryParserMessages
 operator|.
 name|INVALID_SYNTAX_CANNOT_PARSE
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 name|query
-block|,
+argument_list|,
 literal|""
-block|}
 argument_list|)
 expr_stmt|;
 block|}

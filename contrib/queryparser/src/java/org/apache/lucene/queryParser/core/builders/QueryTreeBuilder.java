@@ -574,10 +574,6 @@ name|QueryParserMessages
 operator|.
 name|LUCENE_QUERY_CONVERSION_ERROR
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 name|node
 operator|.
 name|toQueryString
@@ -586,7 +582,7 @@ operator|new
 name|EscapeQuerySyntaxImpl
 argument_list|()
 argument_list|)
-block|,
+argument_list|,
 name|node
 operator|.
 name|getClass
@@ -594,7 +590,6 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-block|}
 argument_list|)
 argument_list|)
 throw|;

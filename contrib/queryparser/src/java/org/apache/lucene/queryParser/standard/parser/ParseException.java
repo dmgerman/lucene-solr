@@ -139,10 +139,6 @@ name|QueryParserMessages
 operator|.
 name|INVALID_SYNTAX
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 name|initialise
 argument_list|(
 name|currentTokenVal
@@ -151,7 +147,6 @@ name|expectedTokenSequencesVal
 argument_list|,
 name|tokenImageVal
 argument_list|)
-block|}
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -202,12 +197,7 @@ name|QueryParserMessages
 operator|.
 name|INVALID_SYNTAX
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 literal|"Error"
-block|}
 argument_list|)
 argument_list|)
 expr_stmt|;

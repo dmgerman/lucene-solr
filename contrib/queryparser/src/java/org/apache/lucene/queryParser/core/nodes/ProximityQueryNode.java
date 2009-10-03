@@ -371,14 +371,9 @@ name|QueryParserMessages
 operator|.
 name|PARAMETER_VALUE_NOT_SUPPORTED
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 literal|"distance"
-block|,
+argument_list|,
 name|distance
-block|}
 argument_list|)
 argument_list|)
 throw|;

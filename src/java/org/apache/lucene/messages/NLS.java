@@ -144,12 +144,26 @@ DECL|field|bundles
 specifier|private
 specifier|static
 name|Map
-comment|/*<String, Class<Object>>*/
+argument_list|<
+name|String
+argument_list|,
+name|Class
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
 name|bundles
 init|=
 operator|new
 name|HashMap
-comment|/*<String, Class<Object>>*/
+argument_list|<
+name|String
+argument_list|,
+name|Class
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
 argument_list|(
 literal|0
 argument_list|)
@@ -245,7 +259,7 @@ name|Locale
 name|locale
 parameter_list|,
 name|Object
-index|[]
+modifier|...
 name|args
 parameter_list|)
 block|{
@@ -294,7 +308,7 @@ name|String
 name|key
 parameter_list|,
 name|Object
-index|[]
+modifier|...
 name|args
 parameter_list|)
 block|{
@@ -313,7 +327,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Initialize a given class with the message bundle Keys Should be called from    * a class that extends NLS in a static block at class load time.    *     * @param bundleName    *          Property file with that contains the message bundle    * @param clazz    *          where constants will reside    */
-comment|//@SuppressWarnings("unchecked")
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|initializeMessages
 specifier|protected
 specifier|static
@@ -382,7 +400,9 @@ comment|// need to loop thru all registered resource bundles
 for|for
 control|(
 name|Iterator
-comment|/*<String>*/
+argument_list|<
+name|String
+argument_list|>
 name|it
 init|=
 name|bundles
@@ -401,19 +421,15 @@ condition|;
 control|)
 block|{
 name|Class
-comment|/*<Object>*/
+argument_list|<
+name|Object
+argument_list|>
 name|clazz
 init|=
-operator|(
-name|Class
-operator|)
 name|bundles
 operator|.
 name|get
 argument_list|(
-operator|(
-name|String
-operator|)
 name|it
 operator|.
 name|next
@@ -487,7 +503,9 @@ name|void
 name|load
 parameter_list|(
 name|Class
-comment|/*<Object>*/
+argument_list|<
+name|Object
+argument_list|>
 name|clazz
 parameter_list|)
 block|{
@@ -527,12 +545,20 @@ operator|.
 name|length
 decl_stmt|;
 name|Map
-comment|/*<String, Field>*/
+argument_list|<
+name|String
+argument_list|,
+name|Field
+argument_list|>
 name|fields
 init|=
 operator|new
 name|HashMap
-comment|/*<String, Field>*/
+argument_list|<
+name|String
+argument_list|,
+name|Field
+argument_list|>
 argument_list|(
 name|len
 operator|*
@@ -600,7 +626,9 @@ name|boolean
 name|isFieldAccessible
 parameter_list|,
 name|Class
-comment|/*<Object>*/
+argument_list|<
+name|Object
+argument_list|>
 name|clazz
 parameter_list|)
 block|{
@@ -702,7 +730,9 @@ name|String
 name|key
 parameter_list|,
 name|Class
-comment|/*<Object>*/
+argument_list|<
+name|Object
+argument_list|>
 name|clazz
 parameter_list|)
 block|{
@@ -811,7 +841,11 @@ comment|// system
 block|}
 block|}
 comment|/*    * Make a class field accessible    */
-comment|//@SuppressWarnings("unchecked")
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|makeAccessible
 specifier|private
 specifier|static
