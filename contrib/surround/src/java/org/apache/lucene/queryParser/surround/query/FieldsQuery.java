@@ -380,11 +380,11 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|r
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|r
@@ -428,7 +428,7 @@ specifier|protected
 name|void
 name|fieldNamesToString
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|r
 parameter_list|)
 block|{

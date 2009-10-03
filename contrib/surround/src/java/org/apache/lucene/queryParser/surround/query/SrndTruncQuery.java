@@ -226,7 +226,7 @@ parameter_list|(
 name|char
 name|c
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|re
 parameter_list|)
 block|{
@@ -314,11 +314,11 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|re
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 while|while

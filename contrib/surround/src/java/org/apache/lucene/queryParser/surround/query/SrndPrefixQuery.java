@@ -180,7 +180,7 @@ specifier|protected
 name|void
 name|suffixToString
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|r
 parameter_list|)
 block|{
