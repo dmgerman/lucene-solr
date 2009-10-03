@@ -74,6 +74,20 @@ name|IndexWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|FSDirectory
+import|;
+end_import
+
 begin_comment
 comment|/**  * This tests the patch for issue #LUCENE-715 (IndexWriter does not  * release its write lock when trying to open an index which does not yet  * exist).  *  * @version $Id$  */
 end_comment
@@ -327,6 +341,18 @@ block|{
 name|IndexWriter
 name|im
 decl_stmt|;
+name|FSDirectory
+name|dir
+init|=
+name|FSDirectory
+operator|.
+name|open
+argument_list|(
+name|this
+operator|.
+name|__test_dir
+argument_list|)
+decl_stmt|;
 try|try
 block|{
 name|im
@@ -334,9 +360,7 @@ operator|=
 operator|new
 name|IndexWriter
 argument_list|(
-name|this
-operator|.
-name|__test_dir
+name|dir
 argument_list|,
 operator|new
 name|org
@@ -375,9 +399,7 @@ operator|=
 operator|new
 name|IndexWriter
 argument_list|(
-name|this
-operator|.
-name|__test_dir
+name|dir
 argument_list|,
 operator|new
 name|org
@@ -409,6 +431,14 @@ name|FileNotFoundException
 name|e1
 parameter_list|)
 block|{             }
+block|}
+finally|finally
+block|{
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
