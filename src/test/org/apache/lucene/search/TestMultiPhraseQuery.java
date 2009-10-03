@@ -330,6 +330,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStore
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// search for "blueberry pi*":
@@ -389,6 +391,8 @@ operator|.
 name|open
 argument_list|(
 name|indexStore
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// this TermEnum gives "piccadilly", "pie" and "pizza".
@@ -924,6 +928,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStore
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// This query will be equivalent to +body:pie +body:"blue*"
@@ -1110,6 +1116,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|indexStore
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// This query will be equivalent to +type:note +body:"a t*"

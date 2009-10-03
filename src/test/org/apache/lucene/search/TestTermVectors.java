@@ -407,6 +407,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -726,6 +728,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|TermFreqVector
@@ -1767,6 +1771,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|TermEnum
@@ -2732,6 +2738,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|Query
@@ -3039,6 +3047,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|Query

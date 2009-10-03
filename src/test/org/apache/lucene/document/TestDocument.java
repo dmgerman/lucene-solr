@@ -929,6 +929,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// search for something that does exists
@@ -1574,6 +1576,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Query

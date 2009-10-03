@@ -266,6 +266,8 @@ operator|.
 name|open
 argument_list|(
 name|store
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|reader
@@ -333,6 +335,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|store
+argument_list|,
+literal|true
 argument_list|)
 operator|.
 name|search

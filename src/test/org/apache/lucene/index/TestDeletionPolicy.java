@@ -503,6 +503,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1332,6 +1334,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|reader
@@ -1713,6 +1717,8 @@ argument_list|(
 name|commit
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|r
@@ -1757,6 +1763,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|reader
@@ -2148,6 +2156,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// Still optimized, still 11 docs
@@ -2235,6 +2245,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Not optimized because we rolled it back, and now only
@@ -2301,6 +2313,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2371,6 +2385,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2409,6 +2425,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2626,6 +2644,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|reader
@@ -2883,6 +2903,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|reader
@@ -3155,6 +3177,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|policy
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|reader
@@ -3316,6 +3340,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|ScoreDoc
@@ -3397,6 +3423,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// Work backwards in commits on what the expected
@@ -3757,6 +3785,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|policy
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|reader
@@ -3893,6 +3923,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|ScoreDoc
@@ -3974,6 +4006,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// Work backwards in commits on what the expected

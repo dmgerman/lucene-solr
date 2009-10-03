@@ -1367,6 +1367,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|verifyEquals
@@ -1410,6 +1412,8 @@ operator|.
 name|open
 argument_list|(
 name|dir1
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexReader
@@ -1420,6 +1424,8 @@ operator|.
 name|open
 argument_list|(
 name|dir2
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|verifyEquals

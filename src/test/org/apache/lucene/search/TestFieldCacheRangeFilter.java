@@ -197,6 +197,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -1172,6 +1174,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -1822,6 +1826,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -2944,6 +2950,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -4057,6 +4065,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -5171,6 +5181,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -5520,6 +5532,8 @@ argument_list|(
 name|signedIndex
 operator|.
 name|index
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -6005,6 +6019,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher

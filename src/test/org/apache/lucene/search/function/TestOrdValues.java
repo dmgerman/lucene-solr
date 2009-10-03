@@ -205,6 +205,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|ValueSource
@@ -496,6 +498,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|ValueSource
@@ -781,6 +785,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Object
@@ -1225,6 +1231,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if

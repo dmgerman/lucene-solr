@@ -537,6 +537,8 @@ operator|.
 name|open
 argument_list|(
 name|dir
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|TermEnum

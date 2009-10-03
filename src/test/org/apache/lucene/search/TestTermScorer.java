@@ -338,6 +338,8 @@ operator|new
 name|IndexSearcher
 argument_list|(
 name|directory
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|indexReader

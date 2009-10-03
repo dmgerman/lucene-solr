@@ -389,6 +389,8 @@ operator|.
 name|open
 argument_list|(
 name|rd1
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|this
@@ -400,6 +402,8 @@ operator|.
 name|open
 argument_list|(
 name|rd2
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
