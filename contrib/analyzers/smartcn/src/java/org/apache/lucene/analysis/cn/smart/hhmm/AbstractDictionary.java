@@ -260,7 +260,7 @@ argument_list|)
 operator|-
 literal|161
 decl_stmt|;
-comment|// ç¼ç ä»A1å¼å§ï¼å æ­¤åå»0xA1=161
+comment|// Code starts from A1, therefore subtract 0xA1=161
 name|int
 name|b1
 init|=
@@ -278,7 +278,8 @@ argument_list|)
 operator|-
 literal|161
 decl_stmt|;
-comment|// ç¬¬ä¸ä¸ªå­ç¬¦åæåä¸ä¸ªå­ç¬¦æ²¡ææ±å­ï¼å æ­¤æ¯ä¸ªåºåªæ¶16*6-2=94ä¸ªæ±å­
+comment|// There is no Chinese char for the first and last symbol.
+comment|// Therefore, each code page only has 16*6-2=94 characters.
 return|return
 call|(
 name|short

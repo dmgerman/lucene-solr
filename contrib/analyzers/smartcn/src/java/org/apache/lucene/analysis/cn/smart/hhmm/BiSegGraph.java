@@ -211,7 +211,7 @@ operator|.
 name|makeIndex
 argument_list|()
 expr_stmt|;
-comment|// å ä¸ºstartTokenï¼"å§##å§"ï¼çèµ·å§ä½ç½®æ¯-1å æ­¤keyä¸º-1æ¶å¯ä»¥ååºstartToken
+comment|// Because the beginning position of startToken is -1, therefore startToken can be obtained when key = -1
 name|int
 name|key
 init|=
@@ -250,7 +250,7 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-comment|// ä¸ºæä¸ä¸ªkeyå¯¹åºçææTokené½è®¡ç®ä¸æ¬¡
+comment|// Calculate all tokens for a given key.
 for|for
 control|(
 name|Iterator
@@ -295,8 +295,9 @@ name|nextTokens
 operator|=
 literal|null
 expr_stmt|;
-comment|// æ¾å°ä¸ä¸ä¸ªå¯¹åºçTokenï¼ä¾å¦âé³åæµ·å²¸âï¼å½åTokenæ¯âé³åâï¼ ä¸ä¸ä¸ªTokenå¯ä»¥æ¯âæµ·âæèâæµ·å²¸â
-comment|// å¦ææ¾ä¸å°ä¸ä¸ä¸ªTokenï¼åè¯´æå°äºæ«å°¾ï¼éæ°å¾ªç¯ã
+comment|// Find the next corresponding Token.
+comment|// For example: "Sunny seashore", the present Token is "sunny", next one should be "sea" or "seashore".
+comment|// If we cannot find the next Token, then go to the end and repeat the same cycle.
 while|while
 condition|(
 name|next
@@ -304,7 +305,7 @@ operator|<=
 name|maxStart
 condition|)
 block|{
-comment|// å ä¸ºendTokençèµ·å§ä½ç½®æ¯sentenceLenï¼å æ­¤ç­äºsentenceLenæ¯å¯ä»¥æ¾å°endToken
+comment|// Because the beginning position of endToken is sentenceLen, so equal to sentenceLen can find endToken.
 if|if
 condition|(
 name|segGraph

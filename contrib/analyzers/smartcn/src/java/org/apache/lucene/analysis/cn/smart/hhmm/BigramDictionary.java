@@ -643,7 +643,8 @@ name|total
 init|=
 literal|0
 decl_stmt|;
-comment|// æä»¶ä¸­åªç»è®¡äº6763ä¸ªæ±å­å 5ä¸ªç©ºæ±å­ç¬¦3756~3760ï¼å¶ä¸­ç¬¬3756ä¸ªç¨æ¥å­å¨ç¬¦å·ä¿¡æ¯ã
+comment|// The file only counted 6763 Chinese characters plus 5 reserved slots 3756~3760.
+comment|// The 3756th is used (as a header) to store information.
 name|int
 index|[]
 name|buffer

@@ -210,7 +210,7 @@ name|PRIME_INDEX_LENGTH
 init|=
 literal|12071
 decl_stmt|;
-comment|/**    * wordIndexTableä¿è¯å°Unicodeä¸­çæææ±å­ç¼ç hashå°PRIME_INDEX_LENGTHé¿åº¦çæ°ç»ä¸­ï¼    * å½ç¶ä¼æå²çªï¼ä½å®éä¸æ¬ç¨åºåªå¤çGB2312å­ç¬¦é¨åï¼6768ä¸ªå­ç¬¦å ä¸ä¸äºASCIIå­ç¬¦ï¼    * å æ­¤å¯¹è¿äºå­ç¬¦æ¯ææçï¼ä¸ºäºä¿è¯æ¯è¾çåç¡®æ§ï¼ä¿çåæ¥çå­ç¬¦å¨charIndexTableä¸­ä»¥ç¡®å®æ¥æ¾çåç¡®æ§    */
+comment|/**    * wordIndexTable guarantees to hash all Chinese characters in Unicode into     * PRIME_INDEX_LENGTH array. There will be conflict, but in reality this     * program only handles the 6768 characters found in GB2312 plus some     * ASCII characters. Therefore in order to guarantee better precision, it is    * necessary to retain the original symbol in the charIndexTable.    */
 DECL|field|wordIndexTable
 specifier|private
 name|short
@@ -223,7 +223,7 @@ name|char
 index|[]
 name|charIndexTable
 decl_stmt|;
-comment|/**    * å­å¨ææè¯åºççæ­£æ°æ®ç»æï¼ä¸ºäºé¿åå ç¨ç©ºé´å¤ªå¤ï¼ç¨äºä¸¤ä¸ªåç¬çå¤ç»´æ°ç»æ¥å­å¨è¯ç»åé¢çã    * æ¯ä¸ªè¯æ¾å¨ä¸ä¸ªchar[]ä¸­ï¼æ¯ä¸ªcharå¯¹åºä¸ä¸ªæ±å­æå¶ä»å­ç¬¦ï¼æ¯ä¸ªé¢çæ¾å¨ä¸ä¸ªintä¸­ï¼    * è¿ä¸¤ä¸ªæ°ç»çåä¸¤ä¸ªä¸è¡¨æ¯ä¸ä¸å¯¹åºçãå æ­¤å¯ä»¥å©ç¨wordItem_charArrayTable[i][j]æ¥æ¥è¯ï¼    * ç¨wordItem_frequencyTable[i][j]æ¥æ¥è¯¢å¯¹åºçé¢ç    */
+comment|/**    * To avoid taking too much space, the data structure needed to store the     * lexicon requires two multidimensional arrays to store word and frequency.    * Each word is placed in a char[]. Each char represents a Chinese char or     * other symbol.  Each frequency is put into an int. These two arrays     * correspond to each other one-to-one. Therefore, one can use     * wordItem_charArrayTable[i][j] to look up word from lexicon, and     * wordItem_frequencyTable[i][j] to look up the corresponding frequency.     */
 DECL|field|wordItem_charArrayTable
 specifier|private
 name|char
@@ -727,7 +727,8 @@ name|total
 init|=
 literal|0
 decl_stmt|;
-comment|// æä»¶ä¸­åªç»è®¡äº6763ä¸ªæ±å­å 5ä¸ªç©ºæ±å­ç¬¦3756~3760ï¼å¶ä¸­ç¬¬3756ä¸ªç¨æ¥å­å¨ç¬¦å·ä¿¡æ¯ã
+comment|// The file only counted 6763 Chinese characters plus 5 reserved slots 3756~3760.
+comment|// The 3756th is used (as a header) to store information.
 name|int
 index|[]
 name|buffer
@@ -1081,7 +1082,7 @@ return|return
 name|total
 return|;
 block|}
-comment|/**    * åè¯åºå°æææ ç¹ç¬¦å·çä¿¡æ¯åå¹¶å°ä¸ä¸ªåè¡¨é(ä»1å¼å§ç3755å¤)ãè¿éå°å¶å±å¼ï¼åå«æ¾å°åä¸ªç¬¦å·å¯¹åºçåè¡¨ä¸­    */
+comment|/**    * The original lexicon puts all information with punctuation into a     * chart (from 1 to 3755). Here it then gets expanded, separately being    * placed into the chart that has the corresponding symbol.    */
 DECL|method|expandDelimiterData
 specifier|private
 name|void
@@ -1094,7 +1095,8 @@ decl_stmt|;
 name|int
 name|cnt
 decl_stmt|;
-comment|// æ ç¹ç¬¦å·å¨ä»1å¼å§ç3755å¤ï¼å°åå§çæ ç¹ç¬¦å·å¯¹åºçå­å¸åéå°å¯¹åºçæ ç¹ç¬¦å·ä¸­
+comment|// Punctuation then treating index 3755 as 1,
+comment|// distribute the original punctuation corresponding dictionary into
 name|int
 name|delimiterIndex
 init|=
@@ -1140,7 +1142,7 @@ argument_list|(
 name|c
 argument_list|)
 decl_stmt|;
-comment|// è¯¥æ ç¹ç¬¦å·åºè¯¥æå¨çindexå¼
+comment|// the id value of the punctuation
 if|if
 condition|(
 name|wordItem_charArrayTable
@@ -1156,7 +1158,7 @@ name|k
 init|=
 name|i
 decl_stmt|;
-comment|// ä»iå¼å§è®¡æ°åé¢ä»¥jå¼å¤´çç¬¦å·çworditemçä¸ªæ°
+comment|// Starting from i, count the number of the following worditem symbol from j
 while|while
 condition|(
 name|k
@@ -1186,7 +1188,8 @@ name|k
 operator|++
 expr_stmt|;
 block|}
-comment|// æ­¤æ¶k-iä¸ºidä¸ºjçæ ç¹ç¬¦å·å¯¹åºçwordItemçä¸ªæ°
+comment|// c is the punctuation character, j is the id value of c
+comment|// k-1 represents the index of the last punctuation character
 name|cnt
 operator|=
 name|k
@@ -1224,7 +1227,7 @@ name|cnt
 index|]
 expr_stmt|;
 block|}
-comment|// ä¸ºæ¯ä¸ä¸ªwordItemèµå¼
+comment|// Assign value for each wordItem.
 for|for
 control|(
 name|k
@@ -1328,7 +1331,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// å°åç¬¦å·å¯¹åºçæ°ç»å é¤
+comment|// Delete the original corresponding symbol array.
 name|wordItem_charArrayTable
 index|[
 name|delimiterIndex
@@ -1820,7 +1823,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/*    * è®¡ç®å­ç¬¦cå¨åå¸è¡¨ä¸­åºè¯¥å¨çä½ç½®ï¼ç¶åå°å°ååè¡¨ä¸­è¯¥ä½ç½®çå¼åå§å    *     */
+comment|/*    * Calculate character c's position in hash table,     * then initialize the value of that position in the address table.    */
 DECL|method|setTableIndex
 specifier|private
 name|boolean
@@ -2149,7 +2152,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * å¨å­å¸åºä¸­æ¥æ¾åè¯å¯¹åºçcharæ°ç»ä¸ºcharArrayçå­ç¬¦ä¸²ãè¿åè¯¥åè¯å¨åè¯åºåä¸­çä½ç½®    *     * @param knownHashIndex å·²ç¥åè¯ç¬¬ä¸ä¸ªå­ç¬¦charArray[0]å¨hashè¡¨ä¸­çä½ç½®ï¼å¦ææªè®¡ç®ï¼å¯ä»¥ç¨å½æ°int    *        findInTable(char[] charArray) ä»£æ¿    * @param charArray æ¥æ¾åè¯å¯¹åºçcharæ°ç»    * @return åè¯å¨åè¯æ°ç»ä¸­çä½ç½®ï¼å¦ææ²¡æ¾å°åè¿å-1    */
+comment|/**    * Look up the text string corresponding with the word char array,     * and return the position of the word list.    *     * @param knownHashIndex already figure out position of the first word     *   symbol charArray[0] in hash table. If not calculated yet, can be     *   replaced with function int findInTable(char[] charArray).    * @param charArray look up the char array corresponding with the word.    * @return word location in word array.  If not found, then return -1.    */
 DECL|method|findInTable
 specifier|private
 name|int
@@ -2458,7 +2461,7 @@ expr_stmt|;
 return|return
 name|mid
 return|;
-comment|// æ¾å°ç¬¬ä¸ä¸ªä»¥charArrayä¸ºåç¼çåè¯
+comment|// Find the first word that uses charArray as prefix.
 block|}
 elseif|else
 if|if
