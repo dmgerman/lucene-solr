@@ -946,8 +946,8 @@ return|;
 block|}
 comment|/**    * Return a QueryScorer suitable for this Query and field.    * @param query The current query    * @param fieldName The name of the field    * @param request The SolrQueryRequest    */
 DECL|method|getQueryScorer
-specifier|protected
-name|QueryTermScorer
+specifier|private
+name|Scorer
 name|getQueryScorer
 parameter_list|(
 name|Query
