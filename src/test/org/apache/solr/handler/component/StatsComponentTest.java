@@ -239,6 +239,20 @@ name|String
 index|[]
 block|{
 literal|"stats_i"
+block|,
+literal|"stats_l"
+block|,
+literal|"stats_f"
+block|,
+literal|"stats_d"
+block|,
+literal|"stats_ti"
+block|,
+literal|"stats_tl"
+block|,
+literal|"stats_tf"
+block|,
+literal|"stats_td"
 block|}
 control|)
 block|{
@@ -273,6 +287,19 @@ name|String
 index|[]
 block|{
 literal|"stats_ii"
+block|,
+comment|// plain int
+literal|"stats_is"
+block|,
+comment|// sortable int
+literal|"stats_tis"
+block|,
+literal|"stats_tfs"
+block|,
+literal|"stats_tls"
+block|,
+literal|"stats_tds"
+comment|// trie fields
 block|}
 control|)
 block|{
@@ -628,8 +655,50 @@ argument_list|,
 literal|"//lst[@name='true']/double[@name='stddev'][.='128.16005617976296']"
 argument_list|)
 expr_stmt|;
-comment|//Test for fixing multivalued missing
-comment|/*assertQ("test value for active_s=false", req             , "//lst[@name='false']/double[@name='min'][.='-40.0']"             , "//lst[@name='false']/double[@name='max'][.='10.0']"             , "//lst[@name='false']/double[@name='sum'][.='-61.0']"             , "//lst[@name='false']/long[@name='count'][.='4']"             , "//lst[@name='false']/long[@name='missing'][.='1']"             , "//lst[@name='false']/double[@name='sumOfSquares'][.='2601.0']"             , "//lst[@name='false']/double[@name='mean'][.='-15.22']"             , "//lst[@name='false']/double[@name='stddev'][.='23.59908190304586']"     );*/
+name|assertQ
+argument_list|(
+literal|"test value for active_s=false"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"stats"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"stats.field"
+argument_list|,
+name|f
+argument_list|,
+literal|"stats.facet"
+argument_list|,
+literal|"active_s"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='false']/double[@name='min'][.='-40.0']"
+argument_list|,
+literal|"//lst[@name='false']/double[@name='max'][.='10.0']"
+argument_list|,
+literal|"//lst[@name='false']/double[@name='sum'][.='-61.0']"
+argument_list|,
+literal|"//lst[@name='false']/long[@name='count'][.='4']"
+argument_list|,
+literal|"//lst[@name='false']/long[@name='missing'][.='1']"
+argument_list|,
+literal|"//lst[@name='false']/double[@name='sumOfSquares'][.='2601.0']"
+argument_list|,
+literal|"//lst[@name='false']/double[@name='mean'][.='-15.25']"
+argument_list|,
+literal|"//lst[@name='false']/double[@name='stddev'][.='23.59908190304586']"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|doTestFieldStatisticsMissingResult
 specifier|public

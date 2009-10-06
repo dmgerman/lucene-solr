@@ -1258,9 +1258,32 @@ argument_list|()
 operator|||
 name|ft
 operator|.
-name|isTokenized
+name|multiValuedFieldCache
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|TrieField
+operator|.
+name|getMainValuePrefix
+argument_list|(
+name|ft
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// A TrieField with multiple parts indexed per value... currently only
+comment|// UnInvertedField can handle this case, so force it's use.
+name|enumMethod
+operator|=
+literal|false
+expr_stmt|;
+name|multiToken
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|// unless the enum method is explicitly specified, use a counting method.
 if|if
 condition|(

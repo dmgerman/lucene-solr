@@ -452,7 +452,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|//function to keep track of facet counts for term number
+comment|// Function to keep track of facet counts for term number.
+comment|// Currently only used by UnInvertedField stats
 DECL|method|facetTermNum
 specifier|public
 name|boolean

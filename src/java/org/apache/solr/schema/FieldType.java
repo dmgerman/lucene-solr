@@ -446,6 +446,18 @@ operator|!=
 literal|0
 return|;
 block|}
+comment|/** Returns true if a single field value of this type has multiple logical values    *  for the purposes of faceting, sorting, etc.  Text fields normally return    *  true since each token/word is a logical value.    */
+DECL|method|multiValuedFieldCache
+specifier|public
+name|boolean
+name|multiValuedFieldCache
+parameter_list|()
+block|{
+return|return
+name|isTokenized
+argument_list|()
+return|;
+block|}
 comment|/** subclasses should initialize themselves with the args provided    * and remove valid arguments.  leftover arguments will cause an exception.    * Common boolean properties have already been handled.    *    */
 DECL|method|init
 specifier|protected
