@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * /a/b/c  *</pre>  * Keep in mind that the wild-card syntax  '//' is not supported  * A record is a Map<String,Object> . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map<String,Object> . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -155,7 +155,7 @@ name|FLATTEN
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * A constructor called with a '|' seperated list of Xpath expressions    * which define sub sections of the XML stream that are to be emitted    * seperate records.    *     * @param forEachXpath  The XPATH for which a record is emitted. Once the    * xpath tag is encountered, the Node.parse method starts collecting wanted     * fields and at the close of the tag, a record is emitted containing all     * fields collected since the tag start. Once     * emitted the collected fields are cleared. Any fields collected in the parent tag or above    * will also be included in the record, but these are not    * cleared after emitting the record.     * It uses the ' | ' syntax of XPATH to pass in multiple xpaths.    */
+comment|/**    * A constructor called with a '|' seperated list of Xpath expressions    * which define sub sections of the XML stream that are to be emitted as    * seperate records.    *     * @param forEachXpath  The XPATH for which a record is emitted. Once the    * xpath tag is encountered, the Node.parse method starts collecting wanted     * fields and at the close of the tag, a record is emitted containing all     * fields collected since the tag start. Once     * emitted the collected fields are cleared. Any fields collected in the     * parent tag or above will also be included in the record, but these are    * not cleared after emitting the record.    *    * It uses the ' | ' syntax of XPATH to pass in multiple xpaths.    */
 DECL|method|XPathRecordReader
 specifier|public
 name|XPathRecordReader
@@ -194,6 +194,24 @@ if|if
 condition|(
 name|split
 operator|.
+name|startsWith
+argument_list|(
+literal|"//"
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"forEach cannot start with '//': "
+operator|+
+name|split
+argument_list|)
+throw|;
+if|if
+condition|(
+name|split
+operator|.
 name|length
 argument_list|()
 operator|==
@@ -216,7 +234,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of Nodes     * based on the supplied Xpath for the given fieldName. The created nodes     * are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    */
+comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -233,25 +251,6 @@ name|boolean
 name|multiValued
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|xpath
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"xpath must start with '/' : "
-operator|+
-name|xpath
-argument_list|)
-throw|;
 name|addField0
 argument_list|(
 name|xpath
@@ -269,7 +268,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of Nodes     * based on the supplied Xpath for the given fieldName. The created nodes     * are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param flags FLATTEN: Recursivly combine text from all child XML elements    */
+comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param flags FLATTEN: Recursivly combine text from all child XML elements    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -289,25 +288,6 @@ name|int
 name|flags
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|xpath
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"xpath must start with '/' : "
-operator|+
-name|xpath
-argument_list|)
-throw|;
 name|addField0
 argument_list|(
 name|xpath
@@ -325,7 +305,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Splits the XPATH into a List of xpath segments and calls build() to    * construct a tree of Nodes representing xpath segments. The resulting    * tree structure ends up describing all the Xpaths we are interested in.    *    * @param xpath The xpath expression for this field    * @param name The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param isRecord When 'true' flags that this XPATH is from a forEach statement    * @param flags The only supported flag is 'FLATTEN'    */
+comment|/**    * Splits the XPATH into a List of xpath segments and calls build() to    * construct a tree of Nodes representing xpath segments. The resulting    * tree structure ends up describing all the Xpaths we are interested in.    *    * @param xpath The xpath expression for this field    * @param name The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param isRecord Flags that this XPATH is from a forEach statement    * @param flags The only supported flag is 'FLATTEN'    */
 DECL|method|addField0
 specifier|private
 name|void
@@ -347,6 +327,25 @@ name|int
 name|flags
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|xpath
+operator|.
+name|startsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"xpath must start with '/' : "
+operator|+
+name|xpath
+argument_list|)
+throw|;
 name|List
 argument_list|<
 name|String
@@ -358,6 +357,7 @@ argument_list|(
 name|xpath
 argument_list|)
 decl_stmt|;
+comment|// deal with how split behaves when seperator starts a string!
 if|if
 condition|(
 literal|""
@@ -397,8 +397,15 @@ argument_list|,
 name|flags
 argument_list|)
 expr_stmt|;
+name|rootNode
+operator|.
+name|buildOptimise
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**     * Uses {@link #streamRecords streamRecords} to parse the XML source but     * collects the emitted records into a List which is returned upon completion.    *    * @param r the stream reader    * @return results a List of emitted records    *    */
+comment|/**     * Uses {@link #streamRecords streamRecords} to parse the XML source but with    * a handler that collects all the emitted records into a single List which     * is returned upon completion.    *    * @param r the stream reader    * @return results a List of emitted records    */
 DECL|method|getAllRecords
 specifier|public
 name|List
@@ -550,9 +557,10 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * For each node/leaf in the Node tree there is one object of this class.    * This tree of objects represents all the XPaths we are interested in.    * For each Xpath segment of interest we create a node. In most cases the    * node (branch) is rather basic , but for the final portion (leaf) of any Xpath  we add    * more information to the Node. When parsing the XML document we    * step though this tree as we stream records from the reader. If the XML    * document departs from this tree we skip start tags till we are back on     * the tree.    *    */
+comment|/**    * For each node/leaf in the Node tree there is one object of this class.    * This tree of objects represents all the XPaths we are interested in.    * For each Xpath segment of interest we create a node. In most cases the    * node (branch) is rather basic , but for the final portion (leaf) of any    * Xpath we add more information to the Node. When parsing the XML document     * we step though this tree as we stream records from the reader. If the XML    * document departs from this tree we skip start tags till we are back on     * the tree.    */
 DECL|class|Node
 specifier|private
+specifier|static
 class|class
 name|Node
 block|{
@@ -583,7 +591,7 @@ name|Node
 argument_list|>
 name|attributes
 decl_stmt|;
-comment|// a List of attribute Nodes associated with this Node
+comment|// List of attribute Nodes associated with this Node
 DECL|field|childNodes
 name|List
 argument_list|<
@@ -591,7 +599,15 @@ name|Node
 argument_list|>
 name|childNodes
 decl_stmt|;
-comment|// a List of child Nodes of this node
+comment|// List of immediate child Nodes of this node
+DECL|field|wildCardNodes
+name|List
+argument_list|<
+name|Node
+argument_list|>
+name|wildCardNodes
+decl_stmt|;
+comment|// List of '//' style decendants of this Node
 DECL|field|attribAndValues
 name|List
 argument_list|<
@@ -606,6 +622,11 @@ argument_list|>
 argument_list|>
 name|attribAndValues
 decl_stmt|;
+DECL|field|wildAncestor
+name|Node
+name|wildAncestor
+decl_stmt|;
+comment|// ancestor Node containing '//' style decendants
 DECL|field|parent
 name|Node
 name|parent
@@ -650,7 +671,7 @@ name|p
 parameter_list|)
 block|{
 comment|// Create a basic Node, suitable for the mid portions of any Xpath.
-comment|// Node.xpathName and Node.name are set to same value
+comment|// Node.xpathName and Node.name are set to same value.
 name|xpathName
 operator|=
 name|this
@@ -730,6 +751,7 @@ argument_list|>
 argument_list|>
 name|stack
 parameter_list|,
+comment|// lists of values to purge
 name|boolean
 name|recordStarted
 parameter_list|)
@@ -752,7 +774,8 @@ name|isRecord
 condition|)
 block|{
 comment|// This Node is a match for an XPATH from a forEach attribute,
-comment|// prepare to emit a new record when its END_ELEMENT is matched
+comment|// prepare for the clean up that will occurr when the record
+comment|// is emitted after its END_ELEMENT is matched
 name|recordStarted
 operator|=
 literal|true
@@ -790,36 +813,9 @@ name|peek
 argument_list|()
 expr_stmt|;
 block|}
-else|else
-block|{
-comment|//if this tag has an attribute or text which is a brank/leaf just push an item up the stack
-if|if
-condition|(
-name|attributes
-operator|!=
-literal|null
-operator|||
-name|hasText
-condition|)
-name|valuesAddedinThisFrame
-operator|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-expr_stmt|;
-name|stack
-operator|.
-name|push
-argument_list|(
-name|valuesAddedinThisFrame
-argument_list|)
-expr_stmt|;
-block|}
 try|try
 block|{
+comment|/* The input stream has deposited us at this Node in our tree of           * intresting nodes. Depending on how this node is of interest,          * process further tokens from the input stream and decide what          * we do next          */
 if|if
 condition|(
 name|attributes
@@ -827,6 +823,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// we interested in storing attributes from the input stream
 for|for
 control|(
 name|Node
@@ -903,30 +900,28 @@ name|Node
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Internally we have to gobble CDATA | CHARACTERS | SPACE events as we
-comment|// store text, the gobbling continues till we have fetched some other
-comment|// event. We use "isNextEventFetched" to indcate that the gobbling has
-comment|// already fetched the next event.
-name|boolean
-name|isNextEventFetched
-init|=
-literal|false
-decl_stmt|;
 name|int
 name|event
 init|=
 operator|-
 literal|1
 decl_stmt|;
+name|int
+name|flattenedStarts
+init|=
+literal|0
+decl_stmt|;
+comment|// our tag depth when flattening elements
+name|StringBuilder
+name|text
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 literal|true
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|isNextEventFetched
 condition|)
 block|{
 name|event
@@ -936,20 +931,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|isNextEventFetched
-operator|=
-literal|false
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|event
-operator|==
-name|END_DOCUMENT
-condition|)
-block|{
-return|return;
-block|}
 if|if
 condition|(
 name|event
@@ -957,6 +938,53 @@ operator|==
 name|END_ELEMENT
 condition|)
 block|{
+if|if
+condition|(
+name|flattenedStarts
+operator|>
+literal|0
+condition|)
+name|flattenedStarts
+operator|--
+expr_stmt|;
+else|else
+block|{
+if|if
+condition|(
+name|text
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|valuesAddedinThisFrame
+operator|!=
+literal|null
+condition|)
+block|{
+name|valuesAddedinThisFrame
+operator|.
+name|add
+argument_list|(
+name|fieldName
+argument_list|)
+expr_stmt|;
+name|putText
+argument_list|(
+name|values
+argument_list|,
+name|text
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|fieldName
+argument_list|,
+name|multiValued
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|isRecord
@@ -975,6 +1003,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|childNodes
+operator|!=
+literal|null
+operator|&&
 name|recordStarted
 operator|&&
 operator|!
@@ -989,6 +1021,8 @@ name|childNodes
 argument_list|)
 condition|)
 block|{
+comment|// nonReccord nodes where we have not collected text for ALL
+comment|// the child nodes.
 for|for
 control|(
 name|Node
@@ -997,6 +1031,8 @@ range|:
 name|childNodes
 control|)
 block|{
+comment|// For the multivalue child nodes where we could have, but
+comment|// didnt, collect text. Push a null string into values.
 if|if
 condition|(
 operator|!
@@ -1018,8 +1054,12 @@ block|}
 block|}
 return|return;
 block|}
+block|}
+elseif|else
 if|if
 condition|(
+name|hasText
+operator|&&
 operator|(
 name|event
 operator|==
@@ -1033,60 +1073,6 @@ name|event
 operator|==
 name|SPACE
 operator|)
-operator|&&
-name|hasText
-condition|)
-block|{
-name|valuesAddedinThisFrame
-operator|.
-name|add
-argument_list|(
-name|fieldName
-argument_list|)
-expr_stmt|;
-comment|// becuase we are fetching events here we need to ensure the outer
-comment|// loop does not end up doing an extra parser.next()
-name|isNextEventFetched
-operator|=
-literal|true
-expr_stmt|;
-name|StringBuilder
-name|text
-init|=
-operator|new
-name|StringBuilder
-argument_list|(
-name|parser
-operator|.
-name|getText
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|event
-operator|=
-name|parser
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-if|if
-condition|(
-name|event
-operator|==
-name|CDATA
-operator|||
-name|event
-operator|==
-name|CHARACTERS
-operator|||
-name|event
-operator|==
-name|SPACE
 condition|)
 block|{
 name|text
@@ -1112,87 +1098,10 @@ if|if
 condition|(
 name|flatten
 condition|)
-block|{
-name|int
-name|starts
-init|=
-literal|1
-decl_stmt|;
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-name|event
-operator|=
-name|parser
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|event
-operator|==
-name|CDATA
-operator|||
-name|event
-operator|==
-name|CHARACTERS
-operator|||
-name|event
-operator|==
-name|SPACE
-condition|)
-block|{
-name|text
-operator|.
-name|append
-argument_list|(
-name|parser
-operator|.
-name|getText
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|event
-operator|==
-name|START_ELEMENT
-condition|)
-block|{
-name|starts
+name|flattenedStarts
 operator|++
 expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|event
-operator|==
-name|END_ELEMENT
-condition|)
-block|{
-name|starts
-operator|--
-expr_stmt|;
-if|if
-condition|(
-name|starts
-operator|==
-literal|0
-condition|)
-break|break;
-block|}
-block|}
-block|}
 else|else
-block|{
-comment|// We are not flatten-ing, so look to see if any of the child
-comment|// elements are wanted, and recurse if any are found.
 name|handleStartElement
 argument_list|(
 name|parser
@@ -1209,92 +1118,47 @@ name|recordStarted
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-else|else
-block|{
-break|break;
-block|}
-name|event
-operator|=
-name|parser
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-block|}
-comment|// save the text we have read against the fieldName in the Map values
-name|putText
-argument_list|(
-name|values
-argument_list|,
-name|text
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|fieldName
-argument_list|,
-name|multiValued
-argument_list|)
-expr_stmt|;
-block|}
+comment|// END_DOCUMENT is least likely to appear and should be
+comment|// last in if-then-else skip chain
 elseif|else
 if|if
 condition|(
 name|event
 operator|==
-name|START_ELEMENT
+name|END_DOCUMENT
 condition|)
-block|{
-name|handleStartElement
-argument_list|(
-name|parser
-argument_list|,
-name|childrenFound
-argument_list|,
-name|handler
-argument_list|,
-name|values
-argument_list|,
-name|stack
-argument_list|,
-name|recordStarted
-argument_list|)
-expr_stmt|;
-block|}
+return|return;
 block|}
 block|}
 finally|finally
 block|{
-comment|/*If a record has ended  (tag closed) then clearup all the fields found         in this record after this tag started */
+if|if
+condition|(
+operator|(
+name|isRecord
+operator|||
+operator|!
+name|recordStarted
+operator|)
+operator|&&
+operator|!
+name|stack
+operator|.
+name|empty
+argument_list|()
+condition|)
+block|{
 name|Set
 argument_list|<
 name|String
 argument_list|>
 name|cleanThis
 init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|isRecord
-operator|||
-operator|!
-name|recordStarted
-condition|)
-block|{
-name|cleanThis
-operator|=
 name|stack
 operator|.
 name|pop
 argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-return|return;
-block|}
+decl_stmt|;
 if|if
 condition|(
 name|cleanThis
@@ -1309,7 +1173,6 @@ name|fld
 range|:
 name|cleanThis
 control|)
-block|{
 name|values
 operator|.
 name|remove
@@ -1321,7 +1184,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**if a new tag is encountered, check if it is of interest of not (if there is a matching child Node).      * if yes continue parsing else skip      */
+comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have deperted from the node       * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *      * Note, the list of // expressions found while walking back up the tree      * is chached in the HashMap decends. Then if the new tag is to be skipped,      * any inner chil tags are compared against the cache and jumped to if      * matched.      */
 DECL|method|handleStartElement
 specifier|private
 name|void
@@ -1367,10 +1230,29 @@ block|{
 name|Node
 name|n
 init|=
-name|getMatchingChild
+name|getMatchingNode
 argument_list|(
 name|parser
+argument_list|,
+name|childNodes
 argument_list|)
+decl_stmt|;
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|decends
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1401,10 +1283,119 @@ argument_list|,
 name|recordStarted
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
-else|else
+comment|// The stream has diverged from the tree of interesting elements, but
+comment|// are there any wildCardNodes ... anywhere in our path from the root?
+name|Node
+name|dn
+init|=
+name|this
+decl_stmt|;
+comment|// checking our Node first!
+do|do
 block|{
-comment|// skip ELEMENTS till source document is back within the tree
+if|if
+condition|(
+name|dn
+operator|.
+name|wildCardNodes
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Check to see if the streams tag matches one of the "//" all
+comment|// decendents type expressions for this node.
+name|n
+operator|=
+name|getMatchingNode
+argument_list|(
+name|parser
+argument_list|,
+name|dn
+operator|.
+name|wildCardNodes
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|n
+operator|!=
+literal|null
+condition|)
+block|{
+name|childrenFound
+operator|.
+name|add
+argument_list|(
+name|n
+argument_list|)
+expr_stmt|;
+name|n
+operator|.
+name|parse
+argument_list|(
+name|parser
+argument_list|,
+name|handler
+argument_list|,
+name|values
+argument_list|,
+name|stack
+argument_list|,
+name|recordStarted
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
+comment|// add the list of this nodes wild decendents to the cache
+for|for
+control|(
+name|Node
+name|nn
+range|:
+name|dn
+operator|.
+name|wildCardNodes
+control|)
+name|decends
+operator|.
+name|put
+argument_list|(
+name|nn
+operator|.
+name|name
+argument_list|,
+name|nn
+argument_list|)
+expr_stmt|;
+block|}
+name|dn
+operator|=
+name|dn
+operator|.
+name|wildAncestor
+expr_stmt|;
+comment|// leap back along the tree toward root
+block|}
+do|while
+condition|(
+name|dn
+operator|!=
+literal|null
+condition|)
+do|;
+if|if
+condition|(
+name|n
+operator|==
+literal|null
+condition|)
+block|{
+comment|// we have a START_ELEMENT which is not within the tree of
+comment|// interesting nodes. Skip over the contents of this element
+comment|// but recursivly repeat the above for any START_ELEMENTs
+comment|// found within this element.
 name|int
 name|count
 init|=
@@ -1432,9 +1423,60 @@ name|token
 operator|==
 name|START_ELEMENT
 condition|)
+block|{
+name|Node
+name|nn
+init|=
+operator|(
+name|Node
+operator|)
+name|decends
+operator|.
+name|get
+argument_list|(
+name|parser
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|nn
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// We have a //Node which matches the stream's parser.localName
+name|childrenFound
+operator|.
+name|add
+argument_list|(
+name|nn
+argument_list|)
+expr_stmt|;
+comment|// Parse the contents of this stream element
+name|nn
+operator|.
+name|parse
+argument_list|(
+name|parser
+argument_list|,
+name|handler
+argument_list|,
+name|values
+argument_list|,
+name|stack
+argument_list|,
+name|recordStarted
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 name|count
 operator|++
 expr_stmt|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -1448,19 +1490,25 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**check if the current tag is to be parsed or not. if yes return the Node object      */
-DECL|method|getMatchingChild
+comment|/**      * Check if the current tag is to be parsed or not. We step through the      * supplied List "searchList" looking for a match. If matched, return the      * Node object.      */
+DECL|method|getMatchingNode
 specifier|private
 name|Node
-name|getMatchingChild
+name|getMatchingNode
 parameter_list|(
 name|XMLStreamReader
 name|parser
+parameter_list|,
+name|List
+argument_list|<
+name|Node
+argument_list|>
+name|searchL
 parameter_list|)
 block|{
 if|if
 condition|(
-name|childNodes
+name|searchL
 operator|==
 literal|null
 condition|)
@@ -1480,7 +1528,7 @@ control|(
 name|Node
 name|n
 range|:
-name|childNodes
+name|searchL
 control|)
 block|{
 if|if
@@ -1615,7 +1663,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * A recursive routine that walks the Node tree from a supplied start      * pushing a null string onto every multiValued fieldName's List of values.      */
+comment|/**      * A recursive routine that walks the Node tree from a supplied start      * pushing a null string onto every multiValued fieldName's List of values      * where a value has not been provided from the stream.      */
 DECL|method|putNulls
 specifier|private
 name|void
@@ -1706,7 +1754,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Add the field name and text into the values Map. If it is a non multivalued field, then the text      * is simply placed in the object portion of the Map. If it is a      * multivalued field then the text is pushed onto a List which is      * the object portion of the Map.      */
+comment|/**      * Add the field name and text into the values Map. If it is a non      * multivalued field, then the text is simply placed in the object      * portion of the Map. If it is a multivalued field then the text is      * pushed onto a List which is the object portion of the Map.      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1806,7 +1854,52 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Build a Node tree structure representing all Xpaths of intrest to us.      * This must be done before parsing of the XML stream starts. Each node       * holds one portion of an Xpath. Taking each Xpath segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, XPATH and       * some flags and inserts the Node into the Node tree.      *      */
+comment|/**      * Walk the Node tree propagating any wildDescentant information to      * child nodes. This allows us to optimise the performance of the      * main parse method.      */
+DECL|method|buildOptimise
+specifier|private
+name|void
+name|buildOptimise
+parameter_list|(
+name|Node
+name|wa
+parameter_list|)
+block|{
+name|wildAncestor
+operator|=
+name|wa
+expr_stmt|;
+if|if
+condition|(
+name|wildCardNodes
+operator|!=
+literal|null
+condition|)
+name|wa
+operator|=
+name|this
+expr_stmt|;
+if|if
+condition|(
+name|childNodes
+operator|!=
+literal|null
+condition|)
+for|for
+control|(
+name|Node
+name|n
+range|:
+name|childNodes
+control|)
+name|n
+operator|.
+name|buildOptimise
+argument_list|(
+name|wa
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Build a Node tree structure representing all Xpaths of intrest to us.      * This must be done before parsing of the XML stream starts. Each node       * holds one portion of an Xpath. Taking each Xpath segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, XPATH and       * some flags and inserts the Node into the Node tree.      */
 DECL|method|build
 specifier|private
 name|void
@@ -1838,7 +1931,7 @@ parameter_list|)
 block|{
 comment|// recursivly walk the paths Lists adding new Nodes as required
 name|String
-name|name
+name|xpseg
 init|=
 name|paths
 operator|.
@@ -1855,7 +1948,7 @@ operator|.
 name|isEmpty
 argument_list|()
 operator|&&
-name|name
+name|xpseg
 operator|.
 name|startsWith
 argument_list|(
@@ -1882,9 +1975,9 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-name|name
+name|xpseg
 operator|=
-name|name
+name|xpseg
 operator|.
 name|substring
 argument_list|(
@@ -1899,7 +1992,7 @@ argument_list|(
 operator|new
 name|Node
 argument_list|(
-name|name
+name|xpseg
 argument_list|,
 name|fieldName
 argument_list|,
@@ -1907,6 +2000,114 @@ name|multiValued
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|xpseg
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// we have a '//' selector for all decendents of the current nodes
+name|xpseg
+operator|=
+name|paths
+operator|.
+name|remove
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+comment|// shift out next Xpath segment
+if|if
+condition|(
+name|wildCardNodes
+operator|==
+literal|null
+condition|)
+name|wildCardNodes
+operator|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Node
+argument_list|>
+argument_list|()
+expr_stmt|;
+name|Node
+name|n
+init|=
+name|getOrAddNode
+argument_list|(
+name|xpseg
+argument_list|,
+name|wildCardNodes
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|paths
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// We are current a leaf node.
+comment|// xpath with content we want to store and return
+name|n
+operator|.
+name|hasText
+operator|=
+literal|true
+expr_stmt|;
+comment|// we have to store text found here
+name|n
+operator|.
+name|fieldName
+operator|=
+name|fieldName
+expr_stmt|;
+comment|// name to store collected text against
+name|n
+operator|.
+name|multiValued
+operator|=
+name|multiValued
+expr_stmt|;
+comment|// true: text be stored in a List
+name|n
+operator|.
+name|flatten
+operator|=
+name|flags
+operator|==
+name|FLATTEN
+expr_stmt|;
+comment|// true: store text from child tags
+block|}
+else|else
+block|{
+comment|// recurse to handle next paths segment
+name|n
+operator|.
+name|build
+argument_list|(
+name|paths
+argument_list|,
+name|fieldName
+argument_list|,
+name|multiValued
+argument_list|,
+name|record
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1929,9 +2130,11 @@ comment|// does this "name" already exist as a child node.
 name|Node
 name|n
 init|=
-name|getOrAddChildNode
+name|getOrAddNode
 argument_list|(
-name|name
+name|xpseg
+argument_list|,
+name|childNodes
 argument_list|)
 decl_stmt|;
 if|if
@@ -1942,11 +2145,11 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-comment|// We have reached the end of paths. When parsing the actual
-comment|// input we have traversed to a position where we actutally have to
-comment|// do something. getOrAddChildNode() will have created and returned
-comment|// a new minimal Node with name and xpathName already populated. We
-comment|// need to add more information
+comment|// We have emptied paths, we are for the moment a leaf of the tree.
+comment|// When parsing the actual input we have traversed to a position
+comment|// where we actutally have to do something. getOrAddNode() will
+comment|// have created and returned a new minimal Node with name and
+comment|// xpathName already populated. We need to add more information.
 if|if
 condition|(
 name|record
@@ -2024,13 +2227,19 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|getOrAddChildNode
+DECL|method|getOrAddNode
 specifier|private
 name|Node
-name|getOrAddChildNode
+name|getOrAddNode
 parameter_list|(
 name|String
 name|xpathName
+parameter_list|,
+name|List
+argument_list|<
+name|Node
+argument_list|>
+name|searchList
 parameter_list|)
 block|{
 for|for
@@ -2038,7 +2247,7 @@ control|(
 name|Node
 name|n
 range|:
-name|childNodes
+name|searchList
 control|)
 if|if
 condition|(
@@ -2207,7 +2416,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|childNodes
+name|searchList
 operator|.
 name|add
 argument_list|(
@@ -2218,11 +2427,10 @@ return|return
 name|n
 return|;
 block|}
-block|}
-comment|// end of class Node
-comment|/**    * Copies a supplied Map to a new Map which is returned. Used to copy a     * records values. If a fields value is a List then they have to be     * deep-copied for thread safety    */
+comment|/**      * Copies a supplied Map to a new Map which is returned. Used to copy a      * records values. If a fields value is a List then they have to be      * deep-copied for thread safety      */
 DECL|method|getDeepCopy
 specifier|private
+specifier|static
 name|Map
 argument_list|<
 name|String
@@ -2331,7 +2539,9 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * The Xpath is split into segments using the '/' s a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We need to split    * by '/' excluding the '/' which is a part of the attribute's value.    */
+block|}
+comment|// end of class Node
+comment|/**    * The Xpath is split into segments using the '/' as a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but     * then reassemble things were the '/' appears within a quoted sub-string.    *    * We have already enforced that the string must begin with a seperator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple seperator's appear.     */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static
@@ -2386,26 +2596,7 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
-name|ss
-index|[
-name|i
-index|]
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
-operator|&&
-name|result
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|0
-condition|)
-continue|continue;
+comment|// i=1: skip seperator at start of string
 name|StringBuilder
 name|sb
 init|=
@@ -2470,6 +2661,7 @@ condition|)
 name|quoteCount
 operator|++
 expr_stmt|;
+comment|// have we got a split inside quoted sub-string?
 if|if
 condition|(
 operator|(
@@ -2481,6 +2673,7 @@ operator|==
 literal|0
 condition|)
 break|break;
+comment|// yes!; replace the '/' and loop to concat next token
 name|i
 operator|++
 expr_stmt|;
@@ -2553,7 +2746,7 @@ specifier|static
 interface|interface
 name|Handler
 block|{
-comment|/**      * @param record The record map. The key is the field name as provided in       * the addField() methods. The value can be a single String (for single       * valued fields) or a List<String> (for multiValued).      * @param xpath The forEach XPATH for which this record is being emitted      * If there is any change all parsing will be aborted and the Exception is propogated up      */
+comment|/**      * @param record The record map. The key is the field name as provided in       * the addField() methods. The value can be a single String (for single       * valued fields) or a List<String> (for multiValued).      * @param xpath The forEach XPATH for which this record is being emitted      * If there is any change all parsing will be aborted and the Exception      * is propogated up      */
 DECL|method|handle
 specifier|public
 name|void
