@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
+name|Analyzer
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Analyzer
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -90,20 +90,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -118,7 +104,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|WhitespaceAnalyzer
 import|;
 end_import
 
@@ -148,7 +134,23 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|*
+name|PositionIncrementAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermAttribute
 import|;
 end_import
 
@@ -232,7 +234,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanQuery
+name|BooleanClause
 import|;
 end_import
 
@@ -246,7 +248,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Hits
+name|BooleanQuery
 import|;
 end_import
 
@@ -302,7 +304,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|TermQuery
+name|ScoreDoc
 import|;
 end_import
 
@@ -316,7 +318,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanClause
+name|TermQuery
 import|;
 end_import
 
@@ -531,7 +533,8 @@ return|;
 block|}
 DECL|method|queryParsingTest
 specifier|protected
-name|Hits
+name|ScoreDoc
+index|[]
 name|queryParsingTest
 parameter_list|(
 name|Analyzer
@@ -577,7 +580,13 @@ operator|.
 name|search
 argument_list|(
 name|q
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 return|;
 block|}
 DECL|method|compareRanks
@@ -585,7 +594,8 @@ specifier|protected
 name|void
 name|compareRanks
 parameter_list|(
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 parameter_list|,
 name|int
@@ -604,7 +614,6 @@ argument_list|,
 name|hits
 operator|.
 name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -632,11 +641,11 @@ name|i
 index|]
 argument_list|,
 name|hits
-operator|.
-name|id
-argument_list|(
+index|[
 name|i
-argument_list|)
+index|]
+operator|.
+name|doc
 argument_list|)
 expr_stmt|;
 block|}
@@ -650,7 +659,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|queryParsingTest
@@ -700,7 +710,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|queryParsingTest
@@ -746,7 +757,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|queryParsingTest
@@ -792,7 +804,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|queryParsingTest
@@ -952,7 +965,8 @@ name|j
 argument_list|)
 expr_stmt|;
 block|}
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|searcher
@@ -960,7 +974,13 @@ operator|.
 name|search
 argument_list|(
 name|q
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 name|int
 index|[]
@@ -1085,7 +1105,8 @@ name|SHOULD
 argument_list|)
 expr_stmt|;
 block|}
-name|Hits
+name|ScoreDoc
+index|[]
 name|hits
 init|=
 name|searcher
@@ -1093,7 +1114,13 @@ operator|.
 name|search
 argument_list|(
 name|q
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|scoreDocs
 decl_stmt|;
 name|int
 index|[]

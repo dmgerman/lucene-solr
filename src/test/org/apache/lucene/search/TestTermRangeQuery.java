@@ -2438,15 +2438,21 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|Hits
-name|hits
+name|int
+name|numHits
 init|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 decl_stmt|;
 comment|// When Lucene-38 is fixed, use the assert on the next line:
 name|assertEquals
@@ -2455,10 +2461,7 @@ literal|"A,B,<empty string>,C,D => A, B&<empty string> are in range"
 argument_list|,
 literal|3
 argument_list|,
-name|hits
-operator|.
-name|length
-argument_list|()
+name|numHits
 argument_list|)
 expr_stmt|;
 comment|// until Lucene-38 is fixed, use this assert:
@@ -2496,14 +2499,20 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|hits
+name|numHits
 operator|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 expr_stmt|;
 comment|// When Lucene-38 is fixed, use the assert on the next line:
 name|assertEquals
@@ -2512,10 +2521,7 @@ literal|"A,B,<empty string>,D => A, B&<empty string> are in range"
 argument_list|,
 literal|3
 argument_list|,
-name|hits
-operator|.
-name|length
-argument_list|()
+name|numHits
 argument_list|)
 expr_stmt|;
 comment|// until Lucene-38 is fixed, use this assert:
@@ -2540,14 +2546,20 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|hits
+name|numHits
 operator|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 expr_stmt|;
 comment|// When Lucene-38 is fixed, use the assert on the next line:
 name|assertEquals
@@ -2556,10 +2568,7 @@ literal|"C added, still A, B&<empty string> are in range"
 argument_list|,
 literal|3
 argument_list|,
-name|hits
-operator|.
-name|length
-argument_list|()
+name|numHits
 argument_list|)
 expr_stmt|;
 comment|// until Lucene-38 is fixed, use this assert
@@ -2635,15 +2644,21 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|Hits
-name|hits
+name|int
+name|numHits
 init|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 decl_stmt|;
 comment|// When Lucene-38 is fixed, use the assert on the next line:
 name|assertEquals
@@ -2652,10 +2667,7 @@ literal|"A,B,<empty string>,C,D => A,B,<empty string>,C in range"
 argument_list|,
 literal|4
 argument_list|,
-name|hits
-operator|.
-name|length
-argument_list|()
+name|numHits
 argument_list|)
 expr_stmt|;
 comment|// until Lucene-38 is fixed, use this assert
@@ -2693,14 +2705,20 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|hits
+name|numHits
 operator|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 expr_stmt|;
 comment|// When Lucene-38 is fixed, use the assert on the next line:
 name|assertEquals
@@ -2709,10 +2727,7 @@ literal|"A,B,<empty string>,D - A, B and<empty string> in range"
 argument_list|,
 literal|3
 argument_list|,
-name|hits
-operator|.
-name|length
-argument_list|()
+name|numHits
 argument_list|)
 expr_stmt|;
 comment|// until Lucene-38 is fixed, use this assert
@@ -2737,14 +2752,20 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|hits
+name|numHits
 operator|=
 name|searcher
 operator|.
 name|search
 argument_list|(
 name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 expr_stmt|;
 comment|// When Lucene-38 is fixed, use the assert on the next line:
 name|assertEquals
@@ -2753,10 +2774,7 @@ literal|"C added => A,B,<empty string>,C in range"
 argument_list|,
 literal|4
 argument_list|,
-name|hits
-operator|.
-name|length
-argument_list|()
+name|numHits
 argument_list|)
 expr_stmt|;
 comment|// until Lucene-38 is fixed, use this assert

@@ -144,20 +144,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Hits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -417,7 +403,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//Run the query
-name|Hits
+name|int
 name|h
 init|=
 name|searcher
@@ -425,7 +411,13 @@ operator|.
 name|search
 argument_list|(
 name|q
+argument_list|,
+literal|null
+argument_list|,
+literal|1000
 argument_list|)
+operator|.
+name|totalHits
 decl_stmt|;
 comment|//Check we have the expected number of results
 name|int
@@ -455,9 +447,6 @@ argument_list|,
 name|expectedHits
 argument_list|,
 name|h
-operator|.
-name|length
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
