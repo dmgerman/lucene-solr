@@ -56,12 +56,6 @@ specifier|public
 class|class
 name|SpanFilterResult
 block|{
-comment|/** @deprecated */
-DECL|field|bits
-specifier|private
-name|BitSet
-name|bits
-decl_stmt|;
 DECL|field|docIdSet
 specifier|private
 name|DocIdSet
@@ -73,31 +67,6 @@ name|List
 name|positions
 decl_stmt|;
 comment|//Spans spans;
-comment|/**    *    * @param bits The bits for the Filter    * @param positions A List of {@link org.apache.lucene.search.SpanFilterResult.PositionInfo} objects    * @deprecated Use {@link #SpanFilterResult(DocIdSet, List)} instead    */
-DECL|method|SpanFilterResult
-specifier|public
-name|SpanFilterResult
-parameter_list|(
-name|BitSet
-name|bits
-parameter_list|,
-name|List
-name|positions
-parameter_list|)
-block|{
-name|this
-operator|.
-name|bits
-operator|=
-name|bits
-expr_stmt|;
-name|this
-operator|.
-name|positions
-operator|=
-name|positions
-expr_stmt|;
-block|}
 comment|/**   *   * @param docIdSet The DocIdSet for the Filter   * @param positions A List of {@link org.apache.lucene.search.SpanFilterResult.PositionInfo} objects   */
 DECL|method|SpanFilterResult
 specifier|public
@@ -132,17 +101,6 @@ parameter_list|()
 block|{
 return|return
 name|positions
-return|;
-block|}
-comment|/**     * @deprecated Use {@link #getDocIdSet()}    */
-DECL|method|getBits
-specifier|public
-name|BitSet
-name|getBits
-parameter_list|()
-block|{
-return|return
-name|bits
 return|;
 block|}
 comment|/** Returns the docIdSet */

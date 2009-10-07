@@ -1029,6 +1029,23 @@ name|Filter
 block|{
 comment|// Filter is just an abstract class with no abstract methods. However it is
 comment|// still added here in case someone will add abstract methods in the future.
+annotation|@
+name|Override
+DECL|method|getDocIdSet
+specifier|public
+name|DocIdSet
+name|getDocIdSet
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 DECL|class|JustCompileFilteredDocIdSet
 specifier|static
@@ -1609,6 +1626,23 @@ argument_list|(
 name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|getDocIdSet
+specifier|public
+name|DocIdSet
+name|getDocIdSet
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+literal|null
+return|;
 block|}
 block|}
 DECL|class|JustCompileTopDocsCollector

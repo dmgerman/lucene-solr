@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|IOException
@@ -65,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract base class providing a mechanism to use a subset of an index  *  for restriction or permission of index search results.  *<p>  *<b>Note:</b> In Lucene 3.0 {@link #bits(IndexReader)} will be removed  *  and {@link #getDocIdSet(IndexReader)} will be defined as abstract.  *  All implementing classes must therefore implement {@link #getDocIdSet(IndexReader)}  *  in order to work with Lucene 3.0.  */
+comment|/** Abstract base class providing a mechanism to use a subset of an index  *  for restriction or permission of index search results.  *<p>  */
 end_comment
 
 begin_class
@@ -81,27 +71,10 @@ name|io
 operator|.
 name|Serializable
 block|{
-comment|/**    * @return A BitSet with true for documents which should be permitted in    * search results, and false for those that should not.    * @deprecated Use {@link #getDocIdSet(IndexReader)} instead.    */
-DECL|method|bits
-specifier|public
-name|BitSet
-name|bits
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
 comment|/**    * @return a DocIdSet that provides the documents which should be permitted or    *         prohibited in search results.<b>NOTE:</b> null can be returned if    *         no documents will be accepted by this Filter.    *     * @see DocIdBitSet    */
 DECL|method|getDocIdSet
 specifier|public
+specifier|abstract
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
@@ -110,18 +83,7 @@ name|reader
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-operator|new
-name|DocIdBitSet
-argument_list|(
-name|bits
-argument_list|(
-name|reader
-argument_list|)
-argument_list|)
-return|;
-block|}
+function_decl|;
 block|}
 end_class
 
