@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Russian stemming algorithm implementation (see http://snowball.sourceforge.net for detailed description).  *  *  * @version $Id$  */
+comment|/**  * Russian stemming algorithm implementation (see http://snowball.sourceforge.net for detailed description).  */
 end_comment
 
 begin_class

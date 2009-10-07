@@ -27,7 +27,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A memory-resident {@link IndexInput} implementation.  *   * @version $Id$  */
+comment|/**  * A memory-resident {@link IndexInput} implementation.  */
 end_comment
 
 begin_class

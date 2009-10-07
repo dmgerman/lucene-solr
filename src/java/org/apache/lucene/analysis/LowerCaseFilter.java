@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case.  *  * @version $Id$  */
+comment|/**  * Normalizes token text to lower case.  */
 end_comment
 
 begin_class

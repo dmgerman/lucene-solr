@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Constrains search results to only match those which also match a provided  * query.  Results are cached, so that searches after the first on the same  * index using this filter are much faster.  *  * @version $Id$  * @deprecated use a CachingWrapperFilter with QueryWrapperFilter  */
+comment|/** Constrains search results to only match those which also match a provided  * query.  Results are cached, so that searches after the first on the same  * index using this filter are much faster.  *  * @deprecated use a CachingWrapperFilter with QueryWrapperFilter  */
 end_comment
 
 begin_class

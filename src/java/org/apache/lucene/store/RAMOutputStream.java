@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A memory-resident {@link IndexOutput} implementation.  *   * @version $Id$  */
+comment|/**  * A memory-resident {@link IndexOutput} implementation.  */
 end_comment
 
 begin_class

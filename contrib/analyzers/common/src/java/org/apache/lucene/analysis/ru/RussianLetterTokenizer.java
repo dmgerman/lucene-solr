@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A RussianLetterTokenizer is a {@link Tokenizer} that extends {@link LetterTokenizer}  * by also allowing the basic latin digits 0-9.   *  * @version $Id$  */
+comment|/**  * A RussianLetterTokenizer is a {@link Tokenizer} that extends {@link LetterTokenizer}  * by also allowing the basic latin digits 0-9.   */
 end_comment
 
 begin_class

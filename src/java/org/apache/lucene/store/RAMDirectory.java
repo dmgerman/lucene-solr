@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  *  * @version $Id$  */
+comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  */
 end_comment
 
 begin_class

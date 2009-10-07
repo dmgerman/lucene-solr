@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a subclass of RAMDirectory that adds methods  * intended to be used only by unit tests.  * @version $Id: RAMDirectory.java 437897 2006-08-29 01:13:10Z yonik $  */
+comment|/**  * This is a subclass of RAMDirectory that adds methods  * intended to be used only by unit tests.  */
 end_comment
 
 begin_class

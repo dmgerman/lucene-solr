@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range query that returns a constant score equal to its boost for  * all documents in the exclusive range of terms.  *  *<p>It does not have an upper bound on the number of clauses covered in the range.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is hardwired to {@link MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}.  * If you want to change this, use {@link TermRangeQuery} instead.  *  * @deprecated Use {@link TermRangeQuery} for term ranges or  * {@link NumericRangeQuery} for numeric ranges instead.  * This class will be removed in Lucene 3.0.  * @version $Id$  */
+comment|/**  * A range query that returns a constant score equal to its boost for  * all documents in the exclusive range of terms.  *  *<p>It does not have an upper bound on the number of clauses covered in the range.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link String#compareTo(String)}. It is not intended  * for numerical ranges, use {@link NumericRangeQuery} instead.  *  *<p>This query is hardwired to {@link MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}.  * If you want to change this, use {@link TermRangeQuery} instead.  *  * @deprecated Use {@link TermRangeQuery} for term ranges or  * {@link NumericRangeQuery} for numeric ranges instead.  * This class will be removed in Lucene 3.0.  */
 end_comment
 
 begin_class

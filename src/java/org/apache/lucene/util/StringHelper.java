@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Methods for manipulating strings.  *  * $Id$  */
+comment|/**  * Methods for manipulating strings.  */
 end_comment
 
 begin_class

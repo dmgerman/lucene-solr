@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link MultiSearcher} ranking, i.e. makes sure this bug is fixed:  * http://issues.apache.org/bugzilla/show_bug.cgi?id=31841  *  * @version $Id: TestMultiSearcher.java 150492 2004-09-06 22:01:49Z dnaber $  */
+comment|/**  * Tests {@link MultiSearcher} ranking, i.e. makes sure this bug is fixed:  * http://issues.apache.org/bugzilla/show_bug.cgi?id=31841  *  */
 end_comment
 
 begin_class

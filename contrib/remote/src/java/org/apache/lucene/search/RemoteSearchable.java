@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A remote searchable implementation.  *  * @version $Id$  */
+comment|/**  * A remote searchable implementation.  */
 end_comment
 
 begin_class

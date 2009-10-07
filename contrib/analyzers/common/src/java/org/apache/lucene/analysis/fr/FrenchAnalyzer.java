@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *  * @version $Id$  */
+comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  */
 end_comment
 
 begin_class

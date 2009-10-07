@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Russian language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  *  * @version $Id$  */
+comment|/**  * {@link Analyzer} for Russian language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  */
 end_comment
 
 begin_class

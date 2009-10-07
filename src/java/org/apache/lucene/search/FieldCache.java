@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @version $Id$  * @see org.apache.lucene.util.FieldCacheSanityChecker  */
+comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see org.apache.lucene.util.FieldCacheSanityChecker  */
 end_comment
 
 begin_interface

@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class responsible for access to stored document fields.  *<p/>  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  *  * @version $Id$  */
+comment|/**  * Class responsible for access to stored document fields.  *<p/>  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  */
 end_comment
 
 begin_class

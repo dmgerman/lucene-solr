@@ -23,7 +23,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A stemmer for German words.   *<p>  * The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by J&ouml;rg  * Caumanns (joerg.caumanns at isst.fhg.de).  *</p>  *  * @version   $Id$  */
+comment|/**  * A stemmer for German words.   *<p>  * The algorithm is based on the report  * "A Fast and Simple Stemming Algorithm for German Words" by J&ouml;rg  * Caumanns (joerg.caumanns at isst.fhg.de).  *</p>  */
 end_comment
 
 begin_class

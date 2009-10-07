@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case.  * @deprecated Use {@link LowerCaseFilter} instead, which has the same  *  functionality. This filter will be removed in Lucene 3.1  *  * @version $Id$  */
+comment|/**  * Normalizes token text to lower case.  * @deprecated Use {@link LowerCaseFilter} instead, which has the same  *  functionality. This filter will be removed in Lucene 3.1  */
 end_comment
 
 begin_class

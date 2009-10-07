@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An IndexReader which reads multiple indexes, appending their content.  *  * @version $Id$  */
+comment|/** An IndexReader which reads multiple indexes, appending  * their content. */
 end_comment
 
 begin_class
