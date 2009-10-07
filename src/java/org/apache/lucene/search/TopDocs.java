@@ -32,7 +32,7 @@ name|io
 operator|.
 name|Serializable
 block|{
-comment|/** Expert: The total number of hits for the query.    * @see Hits#length()   */
+comment|/** Expert: The total number of hits for the query.   */
 DECL|field|totalHits
 specifier|public
 name|int
