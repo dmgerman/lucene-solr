@@ -103,21 +103,6 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
-comment|/**      * Behaves much like {@link #LOAD} but does not uncompress any compressed data.  This is used for internal purposes.      * {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by      * the Reader.      * @deprecated This is an internal option only, and is      *    no longer needed now that {@link CompressionTools}      *    is used for field compression.      */
-DECL|field|LOAD_FOR_MERGE
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
-name|LOAD_FOR_MERGE
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|4
-argument_list|)
-decl_stmt|;
 comment|/** Expert:  Load the size of this {@link Field} rather than its value.        * Size is measured as number of bytes required to store the field == bytes for a binary or any compressed value, and 2*chars for a String value.       * The size is stored as a binary value, represented as an int in a byte[], with the higher order byte first in [0]       */
 DECL|field|SIZE
 specifier|public

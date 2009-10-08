@@ -1394,7 +1394,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"We do not have 4 term freq vectors, we have: "
+literal|"We do not have 3 term freq vectors, we have: "
 operator|+
 name|results
 operator|.
@@ -1404,7 +1404,7 @@ name|results
 operator|.
 name|length
 operator|==
-literal|4
+literal|3
 argument_list|)
 expr_stmt|;
 block|}

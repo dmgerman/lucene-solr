@@ -148,12 +148,6 @@ name|boolean
 name|isTokenized
 parameter_list|()
 function_decl|;
-comment|/** True if the value of the field is stored and compressed within the index */
-DECL|method|isCompressed
-name|boolean
-name|isCompressed
-parameter_list|()
-function_decl|;
 comment|/** True if the term or terms used to index this field are stored as a term    *  vector, available from {@link org.apache.lucene.index.IndexReader#getTermFreqVector(int,String)}.    *  These methods do not provide access to the original content of the field,    *  only to terms used to index it. If the original content must be    *  preserved, use the<code>stored</code> attribute instead.    *    * @see org.apache.lucene.index.IndexReader#getTermFreqVector(int, String)    */
 DECL|method|isTermVectorStored
 name|boolean
