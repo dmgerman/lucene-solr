@@ -93,6 +93,7 @@ name|normalizer
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
+specifier|final
 name|TermAttribute
 name|termAtt
 decl_stmt|;
@@ -141,6 +142,7 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|newlen
 init|=
@@ -170,12 +172,9 @@ return|return
 literal|true
 return|;
 block|}
-else|else
-block|{
 return|return
 literal|false
 return|;
-block|}
 block|}
 block|}
 end_class

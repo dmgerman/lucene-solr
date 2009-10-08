@@ -74,6 +74,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -240,12 +250,9 @@ decl_stmt|;
 comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stoptable
 specifier|private
+specifier|final
 name|Set
 name|stoptable
-init|=
-operator|new
-name|HashSet
-argument_list|()
 decl_stmt|;
 comment|/**    * The comment character in the stopwords file. All lines prefixed with this    * will be ignored    */
 DECL|field|STOPWORDS_COMMENT
@@ -257,13 +264,76 @@ name|STOPWORDS_COMMENT
 init|=
 literal|"#"
 decl_stmt|;
-comment|/**    * Builds an analyzer with the default stop words:    * {@link #DEFAULT_STOPWORD_FILE}.    */
-DECL|method|PersianAnalyzer
+comment|/**    * Returns an unmodifiable instance of the default stop-words set.    * @return an unmodifiable instance of the default stop-words set.    */
+DECL|method|getDefaultStopSet
 specifier|public
-name|PersianAnalyzer
+specifier|static
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|getDefaultStopSet
 parameter_list|()
 block|{
+return|return
+name|DefaultSetHolder
+operator|.
+name|DEFAULT_STOP_SET
+return|;
+block|}
+comment|/**    * Atomically loads the DEFAULT_STOP_SET in a lazy fashion once the outer class     * accesses the static final set the first time.;    */
+DECL|class|DefaultSetHolder
+specifier|private
+specifier|static
+class|class
+name|DefaultSetHolder
+block|{
+DECL|field|DEFAULT_STOP_SET
+specifier|static
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|DEFAULT_STOP_SET
+decl_stmt|;
+static|static
+block|{
 try|try
+block|{
+name|DEFAULT_STOP_SET
+operator|=
+name|loadDefaultStopWordSet
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+comment|// default set should always be present as it is part of the
+comment|// distribution (JAR)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Unable to load default stopword set"
+argument_list|)
+throw|;
+block|}
+block|}
+DECL|method|loadDefaultStopWordSet
+specifier|static
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|loadDefaultStopWordSet
+parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|InputStream
 name|stream
@@ -277,6 +347,8 @@ argument_list|(
 name|DEFAULT_STOPWORD_FILE
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|InputStreamReader
 name|reader
 init|=
@@ -288,8 +360,12 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
-name|stoptable
-operator|=
+comment|// make sure it is unmodifiable as we expose it in the outer class
+return|return
+name|Collections
+operator|.
+name|unmodifiableSet
+argument_list|(
 name|WordlistLoader
 operator|.
 name|getWordSet
@@ -298,33 +374,31 @@ name|reader
 argument_list|,
 name|STOPWORDS_COMMENT
 argument_list|)
-expr_stmt|;
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+argument_list|)
+return|;
+block|}
+finally|finally
+block|{
 name|stream
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// TODO: throw IOException
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
 block|}
+block|}
+comment|/**    * Builds an analyzer with the default stop words:    * {@link #DEFAULT_STOPWORD_FILE}.    */
+DECL|method|PersianAnalyzer
+specifier|public
+name|PersianAnalyzer
+parameter_list|()
+block|{
+name|stoptable
+operator|=
+name|DefaultSetHolder
+operator|.
+name|DEFAULT_STOP_SET
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|PersianAnalyzer
@@ -443,6 +517,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|result
 argument_list|,
 name|stoptable
@@ -558,6 +634,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|streams
 operator|.
 name|result
