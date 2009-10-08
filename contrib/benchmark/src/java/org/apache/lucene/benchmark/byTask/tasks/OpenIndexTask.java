@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Open an index writer.  *<br>Other side effects: index writer object in perfRunData is set.  *<br>Relevant properties:<code>merge.factor, max.buffered,  * max.field.length, ram.flush.mb [default 0], autocommit  * [default true]</code>.  */
+comment|/**  * Open an index writer.  *<br>Other side effects: index writer object in perfRunData is set.  *<br>Relevant properties:<code>merge.factor, max.buffered,  * max.field.length, ram.flush.mb [default 0]</code>.  */
 end_comment
 
 begin_class
@@ -151,15 +151,6 @@ name|IndexWriter
 operator|.
 name|DEFAULT_RAM_BUFFER_SIZE_MB
 decl_stmt|;
-DECL|field|DEFAULT_AUTO_COMMIT
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|DEFAULT_AUTO_COMMIT
-init|=
-literal|false
-decl_stmt|;
 DECL|method|OpenIndexTask
 specifier|public
 name|OpenIndexTask
@@ -207,21 +198,18 @@ operator|.
 name|getDirectory
 argument_list|()
 argument_list|,
-name|config
-operator|.
-name|get
-argument_list|(
-literal|"autocommit"
-argument_list|,
-name|DEFAULT_AUTO_COMMIT
-argument_list|)
-argument_list|,
 name|runData
 operator|.
 name|getAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|CreateIndexTask

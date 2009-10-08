@@ -1092,9 +1092,7 @@ operator|!
 name|mergeDocStores
 condition|)
 block|{
-comment|// When we are not merging by doc stores, that means
-comment|// all segments were written as part of a single
-comment|// autoCommit=false IndexWriter session, so their field
+comment|// When we are not merging by doc stores, their field
 comment|// name -> number mapping are the same.  So, we start
 comment|// with the fieldInfos of the last segment in this
 comment|// case, to keep that numbering.

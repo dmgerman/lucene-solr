@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create an index.<br>  * Other side effects: index writer object in perfRunData is set.<br>  * Relevant properties:<code>merge.factor, max.buffered,  *  max.field.length, ram.flush.mb [default 0], autocommit  *  [default true]</code>.  *<p>  * This task also supports a "writer.info.stream" property with the following  * values:  *<ul>  *<li>SystemOut - sets {@link IndexWriter#setInfoStream(java.io.PrintStream)}  * to {@link System#out}.  *<li>SystemErr - sets {@link IndexWriter#setInfoStream(java.io.PrintStream)}  * to {@link System#err}.  *<li>&lt;file_name&gt; - attempts to create a file given that name and sets  * {@link IndexWriter#setInfoStream(java.io.PrintStream)} to that file. If this  * denotes an invalid file name, or some error occurs, an exception will be  * thrown.  *</ul>  */
+comment|/**  * Create an index.<br>  * Other side effects: index writer object in perfRunData is set.<br>  * Relevant properties:<code>merge.factor, max.buffered,  *  max.field.length, ram.flush.mb [default 0],  *  [default true]</code>.  *<p>  * This task also supports a "writer.info.stream" property with the following  * values:  *<ul>  *<li>SystemOut - sets {@link IndexWriter#setInfoStream(java.io.PrintStream)}  * to {@link System#out}.  *<li>SystemErr - sets {@link IndexWriter#setInfoStream(java.io.PrintStream)}  * to {@link System#err}.  *<li>&lt;file_name&gt; - attempts to create a file given that name and sets  * {@link IndexWriter#setInfoStream(java.io.PrintStream)} to that file. If this  * denotes an invalid file name, or some error occurs, an exception will be  * thrown.  *</ul>  */
 end_comment
 
 begin_class
@@ -727,26 +727,18 @@ argument_list|()
 argument_list|,
 name|runData
 operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"autocommit"
-argument_list|,
-name|OpenIndexTask
-operator|.
-name|DEFAULT_AUTO_COMMIT
-argument_list|)
-argument_list|,
-name|runData
-operator|.
 name|getAnalyzer
 argument_list|()
 argument_list|,
 literal|true
 argument_list|,
 name|indexDeletionPolicy
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 name|setIndexWriterConfig

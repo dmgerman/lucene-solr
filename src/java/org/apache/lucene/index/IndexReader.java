@@ -1056,7 +1056,7 @@ literal|"This reader does not support this method."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Check whether this IndexReader is still using the    * current (i.e., most recently committed) version of the    * index.  If a writer has committed any changes to the    * index since this reader was opened, this will return    *<code>false</code>, in which case you must open a new    * IndexReader in order to see the changes.  See the    * description of the<a href="IndexWriter.html#autoCommit"><code>autoCommit</code></a>    * flag which controls when the {@link IndexWriter}    * actually commits changes to the index.    *     *<p>    * Not implemented in the IndexReader base class.    *</p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws UnsupportedOperationException unless overridden in subclass    */
+comment|/**    * Check whether this IndexReader is still using the    * current (i.e., most recently committed) version of the    * index.  If a writer has committed any changes to the    * index since this reader was opened, this will return    *<code>false</code>, in which case you must open a new    * IndexReader in order to see the changes.  Changes must    * be committed using  {@link IndexWriter#commit} to be    * visible to readers.    *     *<p>    * Not implemented in the IndexReader base class.    *</p>    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws UnsupportedOperationException unless overridden in subclass    */
 DECL|method|isCurrent
 specifier|public
 name|boolean

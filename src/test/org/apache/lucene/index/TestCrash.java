@@ -167,6 +167,12 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 comment|//writer.setMaxBufferedDocs(2);

@@ -1536,8 +1536,6 @@ literal|"content.source.forever=false"
 block|,
 literal|"doc.reuse.fields=false"
 block|,
-literal|"autocommit=false"
-block|,
 literal|"ram.flush.mb=4"
 block|,
 literal|"# ----- alg "

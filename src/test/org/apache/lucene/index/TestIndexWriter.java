@@ -917,11 +917,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1589,7 +1593,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|6
+literal|3
 condition|;
 name|iter
 operator|++
@@ -1618,21 +1622,10 @@ name|diskUsage
 operator|+
 literal|100
 decl_stmt|;
-name|boolean
-name|autoCommit
-init|=
-name|iter
-operator|%
-literal|2
-operator|==
-literal|0
-decl_stmt|;
 name|int
 name|method
 init|=
 name|iter
-operator|/
-literal|2
 decl_stmt|;
 name|boolean
 name|success
@@ -1702,13 +1695,17 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 expr_stmt|;
 name|IOException
@@ -1864,9 +1861,7 @@ literal|" with disk full at "
 operator|+
 name|diskFree
 operator|+
-literal|" bytes autoCommit="
-operator|+
-name|autoCommit
+literal|" bytes"
 expr_stmt|;
 block|}
 else|else
@@ -1889,9 +1884,7 @@ literal|"disk full test "
 operator|+
 name|methodName
 operator|+
-literal|" with unlimited disk space autoCommit="
-operator|+
-name|autoCommit
+literal|" with unlimited disk space"
 expr_stmt|;
 block|}
 if|if
@@ -2155,64 +2148,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|autoCommit
-condition|)
-block|{
-comment|// Whether we succeeded or failed, check that
-comment|// all un-referenced files were in fact
-comment|// deleted (ie, we did not create garbage).
-comment|// Only check this when autoCommit is true:
-comment|// when it's false, it's expected that there
-comment|// are unreferenced files (ie they won't be
-comment|// referenced until the "commit on close").
-comment|// Just create a new IndexFileDeleter, have it
-comment|// delete unreferenced files, then verify that
-comment|// in fact no files were deleted:
-name|String
-name|successStr
-decl_stmt|;
-if|if
-condition|(
-name|success
-condition|)
-block|{
-name|successStr
-operator|=
-literal|"success"
-expr_stmt|;
-block|}
-else|else
-block|{
-name|successStr
-operator|=
-literal|"IOException"
-expr_stmt|;
-block|}
-name|String
-name|message
-init|=
-name|methodName
-operator|+
-literal|" failed to delete unreferenced files after "
-operator|+
-name|successStr
-operator|+
-literal|" ("
-operator|+
-name|diskFree
-operator|+
-literal|" bytes)"
-decl_stmt|;
-name|assertNoUnreferencedFiles
-argument_list|(
-name|dir
-argument_list|,
-name|message
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
 name|debug
 condition|)
 block|{
@@ -2286,33 +2221,6 @@ condition|)
 block|{
 if|if
 condition|(
-name|autoCommit
-operator|&&
-name|result
-operator|!=
-name|END_COUNT
-condition|)
-block|{
-name|fail
-argument_list|(
-name|testName
-operator|+
-literal|": method did not throw exception but docFreq('aaa') is "
-operator|+
-name|result
-operator|+
-literal|" instead of expected "
-operator|+
-name|END_COUNT
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-operator|!
-name|autoCommit
-operator|&&
 name|result
 operator|!=
 name|START_COUNT
@@ -2329,8 +2237,6 @@ operator|+
 literal|" instead of expected "
 operator|+
 name|START_COUNT
-operator|+
-literal|" [autoCommit = false]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2700,7 +2606,7 @@ literal|0
 init|;
 name|pass
 operator|<
-literal|3
+literal|2
 condition|;
 name|pass
 operator|++
@@ -2722,18 +2628,11 @@ name|pass
 argument_list|)
 expr_stmt|;
 name|boolean
-name|autoCommit
-init|=
-name|pass
-operator|==
-literal|0
-decl_stmt|;
-name|boolean
 name|doAbort
 init|=
 name|pass
 operator|==
-literal|2
+literal|1
 decl_stmt|;
 name|long
 name|diskFree
@@ -2782,13 +2681,17 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|MergeScheduler
@@ -2963,9 +2866,7 @@ name|assertNoUnreferencedFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"after disk full during addDocument with autoCommit="
-operator|+
-name|autoCommit
+literal|"after disk full during addDocument"
 argument_list|)
 expr_stmt|;
 comment|// Make sure reader can open the index:
@@ -5282,7 +5183,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/*      * Simple test for "commit on close": open writer with      * autoCommit=false, so it will only commit on close,      * then add a bunch of docs, making sure reader does not      * see these docs until writer is closed.      */
+comment|/*      * Simple test for "commit on close": open writer then      * add a bunch of docs, making sure reader does not see      * these docs until writer is closed.      */
 DECL|method|testCommitOnClose
 specifier|public
 name|void
@@ -5501,7 +5402,7 @@ name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"reader incorrectly sees changes from writer with autoCommit disabled"
+literal|"reader incorrectly sees changes from writer"
 argument_list|,
 literal|14
 argument_list|,
@@ -5588,7 +5489,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*      * Simple test for "commit on close": open writer with      * autoCommit=false, so it will only commit on close,      * then add a bunch of docs, making sure reader does not      * see them until writer has closed.  Then instead of      * closing the writer, call abort and verify reader sees      * nothing was added.  Then verify we can open the index      * and add docs to it.      */
+comment|/*      * Simple test for "commit on close": open writer, then      * add a bunch of docs, making sure reader does not see      * them until writer has closed.  Then instead of      * closing the writer, call abort and verify reader sees      * nothing was added.  Then verify we can open the index      * and add docs to it.      */
 DECL|method|testCommitOnCloseAbort
 specifier|public
 name|void
@@ -5804,7 +5705,7 @@ name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"reader incorrectly sees changes from writer with autoCommit disabled"
+literal|"reader incorrectly sees changes from writer"
 argument_list|,
 literal|14
 argument_list|,
@@ -5981,7 +5882,7 @@ name|scoreDocs
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"reader incorrectly sees changes from writer with autoCommit disabled"
+literal|"reader incorrectly sees changes from writer"
 argument_list|,
 literal|14
 argument_list|,
@@ -6240,7 +6141,7 @@ comment|// will exceed this 100X:
 comment|// System.out.println("start " + startDiskUsage + "; mid " + midDiskUsage + ";end " + endDiskUsage);
 name|assertTrue
 argument_list|(
-literal|"writer used too much space while adding documents when autoCommit=false: mid="
+literal|"writer used too much space while adding documents: mid="
 operator|+
 name|midDiskUsage
 operator|+
@@ -6261,7 +6162,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"writer used too much space after close when autoCommit=false endDiskUsage="
+literal|"writer used too much space after close: endDiskUsage="
 operator|+
 name|endDiskUsage
 operator|+
@@ -13296,21 +13197,12 @@ literal|0
 init|;
 name|pass
 operator|<
-literal|3
+literal|2
 condition|;
 name|pass
 operator|++
 control|)
 block|{
-name|boolean
-name|autoCommit
-init|=
-name|pass
-operator|%
-literal|2
-operator|==
-literal|0
-decl_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -13319,16 +13211,20 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("TEST: pass=" + pass + " ac=" + autoCommit + " cms=" + (pass>= 2));
+comment|//System.out.println("TEST: pass=" + pass + " cms=" + (pass>= 2));
 for|for
 control|(
 name|int
@@ -13351,8 +13247,8 @@ decl_stmt|;
 if|if
 condition|(
 name|pass
-operator|>=
-literal|2
+operator|==
+literal|1
 condition|)
 name|ms
 operator|=
@@ -13668,13 +13564,17 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 expr_stmt|;
 block|}
@@ -14535,11 +14435,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|ConcurrentMergeScheduler
@@ -14867,11 +14771,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -14968,6 +14876,11 @@ name|addDocument
 argument_list|(
 name|doc
 argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
@@ -16555,11 +16468,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|failure
@@ -16615,11 +16532,43 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|addDoc
 argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|(
+name|i
+operator|-
+literal|1
+operator|)
+operator|%
+literal|2
+operator|==
+literal|0
+condition|)
+block|{
+try|try
+block|{
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+comment|// expected
+block|}
+block|}
+block|}
 name|cms
 operator|.
 name|sync
@@ -16700,22 +16649,12 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|4
+literal|2
 condition|;
 name|iter
 operator|++
 control|)
 block|{
-specifier|final
-name|boolean
-name|autoCommit
-init|=
-literal|1
-operator|==
-name|iter
-operator|/
-literal|2
-decl_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -16724,11 +16663,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -16941,11 +16884,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 expr_stmt|;
 name|writer
@@ -17040,22 +16987,12 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|4
+literal|2
 condition|;
 name|iter
 operator|++
 control|)
 block|{
-specifier|final
-name|boolean
-name|autoCommit
-init|=
-literal|1
-operator|==
-name|iter
-operator|/
-literal|2
-decl_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -17064,11 +17001,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-name|autoCommit
-argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|writer
@@ -18740,6 +18681,12 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|Document
@@ -24866,6 +24813,12 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 block|{
 specifier|public
@@ -27320,11 +27273,15 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|()
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|writer
