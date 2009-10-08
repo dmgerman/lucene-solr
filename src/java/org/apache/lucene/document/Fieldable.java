@@ -50,6 +50,36 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|PhraseQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanQuery
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -101,7 +131,7 @@ name|String
 name|name
 parameter_list|()
 function_decl|;
-comment|/** The value of the field as a String, or null.    *<p>    * For indexing, if isStored()==true, the stringValue() will be used as the stored field value    * unless isBinary()==true, in which case binaryValue() will be used.    *    * If isIndexed()==true and isTokenized()==false, this String value will be indexed as a single token.    * If isIndexed()==true and isTokenized()==true, then tokenStreamValue() will be used to generate indexed tokens if not null,    * else readerValue() will be used to generate indexed tokens if not null, else stringValue() will be used to generate tokens.    */
+comment|/** The value of the field as a String, or null.    *<p>    * For indexing, if isStored()==true, the stringValue() will be used as the stored field value    * unless isBinary()==true, in which case getBinaryValue() will be used.    *    * If isIndexed()==true and isTokenized()==false, this String value will be indexed as a single token.    * If isIndexed()==true and isTokenized()==true, then tokenStreamValue() will be used to generate indexed tokens if not null,    * else readerValue() will be used to generate indexed tokens if not null, else stringValue() will be used to generate tokens.    */
 DECL|method|stringValue
 specifier|public
 name|String
@@ -113,14 +143,6 @@ DECL|method|readerValue
 specifier|public
 name|Reader
 name|readerValue
-parameter_list|()
-function_decl|;
-comment|/** The value of the field in Binary, or null.    * @see #stringValue()    */
-DECL|method|binaryValue
-specifier|public
-name|byte
-index|[]
-name|binaryValue
 parameter_list|()
 function_decl|;
 comment|/** The TokenStream for this field to be used when indexing, or null.    * @see #stringValue()    */
@@ -187,22 +209,7 @@ name|boolean
 name|omitNorms
 parameter_list|)
 function_decl|;
-comment|/** @deprecated Renamed to {@link AbstractField#setOmitTermFreqAndPositions} */
-DECL|method|setOmitTf
-name|void
-name|setOmitTf
-parameter_list|(
-name|boolean
-name|omitTf
-parameter_list|)
-function_decl|;
-comment|/** @deprecated Renamed to {@link AbstractField#getOmitTermFreqAndPositions} */
-DECL|method|getOmitTf
-name|boolean
-name|getOmitTf
-parameter_list|()
-function_decl|;
-comment|/**    * Indicates whether a Field is Lazy or not.  The semantics of Lazy loading are such that if a Field is lazily loaded, retrieving    * it's values via {@link #stringValue()} or {@link #binaryValue()} is only valid as long as the {@link org.apache.lucene.index.IndexReader} that    * retrieved the {@link Document} is still open.    *      * @return true if this field can be loaded lazily    */
+comment|/**    * Indicates whether a Field is Lazy or not.  The semantics of Lazy loading are such that if a Field is lazily loaded, retrieving    * it's values via {@link #stringValue()} or {@link #getBinaryValue()} is only valid as long as the {@link org.apache.lucene.index.IndexReader} that    * retrieved the {@link Document} is still open.    *      * @return true if this field can be loaded lazily    */
 DECL|method|isLazy
 name|boolean
 name|isLazy
@@ -230,7 +237,7 @@ index|[]
 name|getBinaryValue
 parameter_list|()
 function_decl|;
-comment|/**    * Return the raw byte[] for the binary field.  Note that    * you must also call {@link #getBinaryLength} and {@link    * #getBinaryOffset} to know which range of bytes in this    * returned array belong to the field.<p>    * About reuse: if you pass in the result byte[] and it is    * used, likely the underlying implementation will hold    * onto this byte[] and return it in future calls to    * {@link #binaryValue()} or {@link #getBinaryValue()}.    * So if you subsequently re-use the same byte[] elsewhere    * it will alter this Fieldable's value.    * @param result  User defined buffer that will be used if    *  possible.  If this is null or not large enough, a new    *  buffer is allocated    * @return reference to the Field value as byte[].    */
+comment|/**    * Return the raw byte[] for the binary field.  Note that    * you must also call {@link #getBinaryLength} and {@link    * #getBinaryOffset} to know which range of bytes in this    * returned array belong to the field.<p>    * About reuse: if you pass in the result byte[] and it is    * used, likely the underlying implementation will hold    * onto this byte[] and return it in future calls to    * {@link #getBinaryValue()}.    * So if you subsequently re-use the same byte[] elsewhere    * it will alter this Fieldable's value.    * @param result  User defined buffer that will be used if    *  possible.  If this is null or not large enough, a new    *  buffer is allocated    * @return reference to the Field value as byte[].    */
 DECL|method|getBinaryValue
 specifier|abstract
 name|byte
@@ -240,6 +247,21 @@ parameter_list|(
 name|byte
 index|[]
 name|result
+parameter_list|)
+function_decl|;
+comment|/** @see #setOmitTermFreqAndPositions */
+DECL|method|getOmitTermFreqAndPositions
+name|boolean
+name|getOmitTermFreqAndPositions
+parameter_list|()
+function_decl|;
+comment|/** Expert:   *   * If set, omit term freq, positions and payloads from   * postings for this field.   *   *<p><b>NOTE</b>: While this option reduces storage space   * required in the index, it also means any query   * requiring positional information, such as {@link   * PhraseQuery} or {@link SpanQuery} subclasses will   * silently fail to find results.   */
+DECL|method|setOmitTermFreqAndPositions
+name|void
+name|setOmitTermFreqAndPositions
+parameter_list|(
+name|boolean
+name|omitTermFreqAndPositions
 parameter_list|)
 function_decl|;
 block|}

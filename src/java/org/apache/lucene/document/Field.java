@@ -222,16 +222,6 @@ argument_list|(
 literal|"ANALYZED"
 argument_list|)
 decl_stmt|;
-comment|/** @deprecated this has been renamed to {@link #ANALYZED} */
-DECL|field|TOKENIZED
-specifier|public
-specifier|static
-specifier|final
-name|Index
-name|TOKENIZED
-init|=
-name|ANALYZED
-decl_stmt|;
 comment|/** Index the field's value without using an Analyzer, so it can be searched.      * As no analyzer is used the value will be stored as a single term. This is      * useful for unique Ids like product numbers.      */
 DECL|field|NOT_ANALYZED
 specifier|public
@@ -246,16 +236,6 @@ argument_list|(
 literal|"NOT_ANALYZED"
 argument_list|)
 decl_stmt|;
-comment|/** @deprecated This has been renamed to {@link #NOT_ANALYZED} */
-DECL|field|UN_TOKENIZED
-specifier|public
-specifier|static
-specifier|final
-name|Index
-name|UN_TOKENIZED
-init|=
-name|NOT_ANALYZED
-decl_stmt|;
 comment|/** Expert: Index the field's value without an Analyzer,      * and also disable the storing of norms.  Note that you      * can also separately enable/disable norms by calling      * {@link Field#setOmitNorms}.  No norms means that      * index-time field and document boosting and field      * length normalization are disabled.  The benefit is      * less memory usage as norms take up one byte of RAM      * per indexed field for every document in the index,      * during searching.  Note that once you index a given      * field<i>with</i> norms enabled, disabling norms will      * have no effect.  In other words, for this to have the      * above described effect on a field, all instances of      * that field must be indexed with NOT_ANALYZED_NO_NORMS      * from the beginning. */
 DECL|field|NOT_ANALYZED_NO_NORMS
 specifier|public
@@ -269,16 +249,6 @@ name|Index
 argument_list|(
 literal|"NOT_ANALYZED_NO_NORMS"
 argument_list|)
-decl_stmt|;
-comment|/** @deprecated This has been renamed to      *  {@link #NOT_ANALYZED_NO_NORMS} */
-DECL|field|NO_NORMS
-specifier|public
-specifier|static
-specifier|final
-name|Index
-name|NO_NORMS
-init|=
-name|NOT_ANALYZED_NO_NORMS
 decl_stmt|;
 comment|/** Expert: Index the tokens produced by running the      *  field's value through an Analyzer, and also      *  separately disable the storing of norms.  See      *  {@link #NOT_ANALYZED_NO_NORMS} for what norms are      *  and why you may want to disable them. */
 DECL|field|ANALYZED_NO_NORMS
@@ -430,79 +400,6 @@ operator|)
 name|fieldsData
 else|:
 literal|null
-return|;
-block|}
-comment|/** The value of the field in Binary, or null.  If null, the Reader value,    * or String value is used. Exactly one of stringValue(),    * readerValue(), and getBinaryValue() must be set.    * @deprecated This method must allocate a new byte[] if    * the {@link AbstractField#getBinaryOffset()} is non-zero    * or {@link AbstractField#getBinaryLength()} is not the    * full length of the byte[]. Please use {@link    * AbstractField#getBinaryValue()} instead, which simply    * returns the byte[].    */
-DECL|method|binaryValue
-specifier|public
-name|byte
-index|[]
-name|binaryValue
-parameter_list|()
-block|{
-if|if
-condition|(
-operator|!
-name|isBinary
-condition|)
-return|return
-literal|null
-return|;
-specifier|final
-name|byte
-index|[]
-name|data
-init|=
-operator|(
-name|byte
-index|[]
-operator|)
-name|fieldsData
-decl_stmt|;
-if|if
-condition|(
-name|binaryOffset
-operator|==
-literal|0
-operator|&&
-name|data
-operator|.
-name|length
-operator|==
-name|binaryLength
-condition|)
-return|return
-name|data
-return|;
-comment|//Optimization
-specifier|final
-name|byte
-index|[]
-name|ret
-init|=
-operator|new
-name|byte
-index|[
-name|binaryLength
-index|]
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|data
-argument_list|,
-name|binaryOffset
-argument_list|,
-name|ret
-argument_list|,
-literal|0
-argument_list|,
-name|binaryLength
-argument_list|)
-expr_stmt|;
-return|return
-name|ret
 return|;
 block|}
 comment|/** The TokesStream for this field to be used when indexing, or null.  If null, the Reader value    * or String value is analyzed to produce the indexed tokens. */
@@ -669,52 +566,7 @@ operator|=
 name|offset
 expr_stmt|;
 block|}
-comment|/** Expert: change the value of this field.  See<a href="#setValue(java.lang.String)">setValue(String)</a>.    * @deprecated use {@link #setTokenStream} */
-DECL|method|setValue
-specifier|public
-name|void
-name|setValue
-parameter_list|(
-name|TokenStream
-name|value
-parameter_list|)
-block|{
-if|if
-condition|(
-name|isBinary
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot set a TokenStream value on a binary field"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|isStored
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot set a TokenStream value on a stored field"
-argument_list|)
-throw|;
-block|}
-name|fieldsData
-operator|=
-literal|null
-expr_stmt|;
-name|tokenStream
-operator|=
-name|value
-expr_stmt|;
-block|}
-comment|/** Expert: sets the token stream to be used for indexing and causes isIndexed() and isTokenized() to return true.    *  May be combined with stored values from stringValue() or binaryValue() */
+comment|/** Expert: sets the token stream to be used for indexing and causes isIndexed() and isTokenized() to return true.    *  May be combined with stored values from stringValue() or getBinaryValue() */
 DECL|method|setTokenStream
 specifier|public
 name|void

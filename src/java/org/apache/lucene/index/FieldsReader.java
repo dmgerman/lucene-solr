@@ -2257,22 +2257,7 @@ return|return
 name|localFieldsStream
 return|;
 block|}
-comment|/** The value of the field in Binary, or null.  If null, the Reader value,      * String value, or TokenStream value is used. Exactly one of stringValue(),       * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
-DECL|method|binaryValue
-specifier|public
-name|byte
-index|[]
-name|binaryValue
-parameter_list|()
-block|{
-return|return
-name|getBinaryValue
-argument_list|(
-literal|null
-argument_list|)
-return|;
-block|}
-comment|/** The value of the field as a Reader, or null.  If null, the String value,      * binary value, or TokenStream value is used.  Exactly one of stringValue(),       * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
+comment|/** The value of the field as a Reader, or null.  If null, the String value,      * binary value, or TokenStream value is used.  Exactly one of stringValue(),       * readerValue(), getBinaryValue(), and tokenStreamValue() must be set. */
 DECL|method|readerValue
 specifier|public
 name|Reader
@@ -2286,7 +2271,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** The value of the field as a TokenStream, or null.  If null, the Reader value,      * String value, or binary value is used. Exactly one of stringValue(),       * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
+comment|/** The value of the field as a TokenStream, or null.  If null, the Reader value,      * String value, or binary value is used. Exactly one of stringValue(),       * readerValue(), getBinaryValue(), and tokenStreamValue() must be set. */
 DECL|method|tokenStreamValue
 specifier|public
 name|TokenStream
@@ -2300,7 +2285,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** The value of the field as a String, or null.  If null, the Reader value,      * binary value, or TokenStream value is used.  Exactly one of stringValue(),       * readerValue(), binaryValue(), and tokenStreamValue() must be set. */
+comment|/** The value of the field as a String, or null.  If null, the Reader value,      * binary value, or TokenStream value is used.  Exactly one of stringValue(),       * readerValue(), getBinaryValue(), and tokenStreamValue() must be set. */
 DECL|method|stringValue
 specifier|public
 name|String

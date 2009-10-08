@@ -872,17 +872,6 @@ return|return
 name|omitNorms
 return|;
 block|}
-comment|/** @deprecated Renamed to {@link #getOmitTermFreqAndPositions} */
-DECL|method|getOmitTf
-specifier|public
-name|boolean
-name|getOmitTf
-parameter_list|()
-block|{
-return|return
-name|omitTermFreqAndPositions
-return|;
-block|}
 comment|/** @see #setOmitTermFreqAndPositions */
 DECL|method|getOmitTermFreqAndPositions
 specifier|public
@@ -909,23 +898,6 @@ operator|.
 name|omitNorms
 operator|=
 name|omitNorms
-expr_stmt|;
-block|}
-comment|/** @deprecated Renamed to {@link #setOmitTermFreqAndPositions} */
-DECL|method|setOmitTf
-specifier|public
-name|void
-name|setOmitTf
-parameter_list|(
-name|boolean
-name|omitTermFreqAndPositions
-parameter_list|)
-block|{
-name|this
-operator|.
-name|omitTermFreqAndPositions
-operator|=
-name|omitTermFreqAndPositions
 expr_stmt|;
 block|}
 comment|/** Expert:    *    * If set, omit term freq, positions and payloads from    * postings for this field.    *    *<p><b>NOTE</b>: While this option reduces storage space    * required in the index, it also means any query    * requiring positional information, such as {@link    * PhraseQuery} or {@link SpanQuery} subclasses will    * silently fail to find results.    */

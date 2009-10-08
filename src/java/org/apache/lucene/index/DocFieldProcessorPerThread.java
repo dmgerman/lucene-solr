@@ -859,7 +859,7 @@ literal|false
 argument_list|,
 name|field
 operator|.
-name|getOmitTf
+name|getOmitTermFreqAndPositions
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -942,7 +942,7 @@ literal|false
 argument_list|,
 name|field
 operator|.
-name|getOmitTf
+name|getOmitTermFreqAndPositions
 argument_list|()
 argument_list|)
 expr_stmt|;

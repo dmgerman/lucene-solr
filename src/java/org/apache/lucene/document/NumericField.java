@@ -323,18 +323,6 @@ literal|null
 return|;
 block|}
 comment|/** Returns always<code>null</code> for numeric fields */
-DECL|method|binaryValue
-specifier|public
-name|byte
-index|[]
-name|binaryValue
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-comment|/** Returns always<code>null</code> for numeric fields */
 annotation|@
 name|Override
 DECL|method|getBinaryValue
