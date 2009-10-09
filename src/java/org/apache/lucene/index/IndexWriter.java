@@ -419,32 +419,6 @@ name|DocumentsWriter
 operator|.
 name|MAX_TERM_LENGTH
 decl_stmt|;
-comment|/**    * Default for {@link #getMaxSyncPauseSeconds}.  On    * Windows this defaults to 10.0 seconds; elsewhere it's    * 0.    */
-DECL|field|DEFAULT_MAX_SYNC_PAUSE_SECONDS
-specifier|public
-specifier|final
-specifier|static
-name|double
-name|DEFAULT_MAX_SYNC_PAUSE_SECONDS
-decl_stmt|;
-static|static
-block|{
-if|if
-condition|(
-name|Constants
-operator|.
-name|WINDOWS
-condition|)
-name|DEFAULT_MAX_SYNC_PAUSE_SECONDS
-operator|=
-literal|10.0
-expr_stmt|;
-else|else
-name|DEFAULT_MAX_SYNC_PAUSE_SECONDS
-operator|=
-literal|0.0
-expr_stmt|;
-block|}
 comment|// The normal read buffer size defaults to 1024, but
 comment|// increasing this during merging seems to yield
 comment|// performance gains.  However we don't want to increase
@@ -557,26 +531,12 @@ name|SegmentInfos
 name|localRollbackSegmentInfos
 decl_stmt|;
 comment|// segmentInfos we will fallback to if the commit fails
-DECL|field|localAutoCommit
-specifier|private
-name|boolean
-name|localAutoCommit
-decl_stmt|;
-comment|// saved autoCommit during local transaction
 DECL|field|localFlushedDocCount
 specifier|private
 name|int
 name|localFlushedDocCount
 decl_stmt|;
 comment|// saved docWriter.getFlushedDocCount during local transaction
-DECL|field|autoCommit
-specifier|private
-name|boolean
-name|autoCommit
-init|=
-literal|true
-decl_stmt|;
-comment|// false if we should commit only on close
 DECL|field|segmentInfos
 specifier|private
 name|SegmentInfos
@@ -706,13 +666,6 @@ DECL|field|flushDeletesCount
 specifier|private
 name|int
 name|flushDeletesCount
-decl_stmt|;
-DECL|field|maxSyncPauseSeconds
-specifier|private
-name|double
-name|maxSyncPauseSeconds
-init|=
-name|DEFAULT_MAX_SYNC_PAUSE_SECONDS
 decl_stmt|;
 comment|// Used to only allow one addIndexes to proceed at once
 comment|// TODO: use ReadWriteLock once we are on 5.0
@@ -2307,8 +2260,6 @@ name|create
 argument_list|,
 literal|null
 argument_list|,
-literal|false
-argument_list|,
 name|mfl
 operator|.
 name|getLimit
@@ -2348,8 +2299,6 @@ argument_list|,
 name|a
 argument_list|,
 literal|null
-argument_list|,
-literal|false
 argument_list|,
 name|mfl
 operator|.
@@ -2393,8 +2342,6 @@ argument_list|,
 name|a
 argument_list|,
 name|deletionPolicy
-argument_list|,
-literal|false
 argument_list|,
 name|mfl
 operator|.
@@ -2443,8 +2390,6 @@ argument_list|,
 name|create
 argument_list|,
 name|deletionPolicy
-argument_list|,
-literal|false
 argument_list|,
 name|mfl
 operator|.
@@ -2499,8 +2444,6 @@ name|create
 argument_list|,
 name|deletionPolicy
 argument_list|,
-literal|false
-argument_list|,
 name|mfl
 operator|.
 name|getLimit
@@ -2549,8 +2492,6 @@ literal|false
 argument_list|,
 name|deletionPolicy
 argument_list|,
-literal|false
-argument_list|,
 name|mfl
 operator|.
 name|getLimit
@@ -2575,9 +2516,6 @@ name|a
 parameter_list|,
 name|IndexDeletionPolicy
 name|deletionPolicy
-parameter_list|,
-name|boolean
-name|autoCommit
 parameter_list|,
 name|int
 name|maxFieldLength
@@ -2615,8 +2553,6 @@ literal|false
 argument_list|,
 name|deletionPolicy
 argument_list|,
-name|autoCommit
-argument_list|,
 name|maxFieldLength
 argument_list|,
 name|indexingChain
@@ -2636,8 +2572,6 @@ argument_list|,
 literal|true
 argument_list|,
 name|deletionPolicy
-argument_list|,
-name|autoCommit
 argument_list|,
 name|maxFieldLength
 argument_list|,
@@ -2666,9 +2600,6 @@ parameter_list|,
 name|IndexDeletionPolicy
 name|deletionPolicy
 parameter_list|,
-name|boolean
-name|autoCommit
-parameter_list|,
 name|int
 name|maxFieldLength
 parameter_list|,
@@ -2685,10 +2616,6 @@ name|LockObtainFailedException
 throws|,
 name|IOException
 block|{
-assert|assert
-operator|!
-name|autoCommit
-assert|;
 name|directory
 operator|=
 name|d
@@ -2818,14 +2745,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|autoCommit
-operator|||
 name|doCommit
 condition|)
 block|{
-comment|// Always commit if autoCommit=true, else only
-comment|// commit if there is no segments file in this dir
-comment|// already.
+comment|// Only commit if there is no segments file in
+comment|// this dir already.
 name|segmentInfos
 operator|.
 name|commit
@@ -2959,12 +2883,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|this
-operator|.
-name|autoCommit
-operator|=
-name|autoCommit
-expr_stmt|;
 name|setRollbackSegmentInfos
 argument_list|(
 name|segmentInfos
@@ -6875,10 +6793,6 @@ operator|!
 name|hasExternalSegments
 argument_list|()
 assert|;
-name|localAutoCommit
-operator|=
-name|autoCommit
-expr_stmt|;
 name|localFlushedDocCount
 operator|=
 name|docWriter
@@ -6886,38 +6800,6 @@ operator|.
 name|getFlushedDocCount
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|localAutoCommit
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"flush at startTransaction"
-argument_list|)
-expr_stmt|;
-name|flush
-argument_list|(
-literal|true
-argument_list|,
-literal|false
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// Turn off auto-commit during our local transaction:
-name|autoCommit
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
 comment|// We must "protect" our files at this point from
 comment|// deletion in case we need to rollback:
 name|deleter
@@ -6966,11 +6848,6 @@ name|message
 argument_list|(
 literal|"now rollback transaction"
 argument_list|)
-expr_stmt|;
-comment|// First restore autoCommit in case we hit an exception below:
-name|autoCommit
-operator|=
-name|localAutoCommit
 expr_stmt|;
 if|if
 condition|(
@@ -7033,11 +6910,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|autoCommit
-condition|)
 comment|// Remove the incRef we did in startTransaction:
 name|deleter
 operator|.
@@ -7086,63 +6958,10 @@ argument_list|(
 literal|"now commit transaction"
 argument_list|)
 expr_stmt|;
-comment|// First restore autoCommit in case we hit an exception below:
-name|autoCommit
-operator|=
-name|localAutoCommit
-expr_stmt|;
 comment|// Give deleter a chance to remove files now:
 name|checkpoint
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|autoCommit
-condition|)
-block|{
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
-name|commit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"hit exception committing transaction"
-argument_list|)
-expr_stmt|;
-name|rollbackTransaction
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-else|else
 comment|// Remove the incRef we did in startTransaction.
 name|deleter
 operator|.
@@ -7189,17 +7008,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|autoCommit
-condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"rollback() can only be called when IndexWriter was opened with autoCommit=false"
-argument_list|)
-throw|;
 comment|// Ensure that only one thread actually gets to do the closing:
 if|if
 condition|(
@@ -9325,31 +9133,6 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-name|prepareCommit
-argument_list|(
-name|commitUserData
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|prepareCommit
-specifier|private
-specifier|final
-name|void
-name|prepareCommit
-parameter_list|(
-name|Map
-name|commitUserData
-parameter_list|,
-name|boolean
-name|internal
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
 if|if
 condition|(
 name|hitOOM
@@ -9365,23 +9148,6 @@ throw|;
 block|}
 if|if
 condition|(
-name|autoCommit
-operator|&&
-operator|!
-name|internal
-condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"this method can only be used when autoCommit is false"
-argument_list|)
-throw|;
-if|if
-condition|(
-operator|!
-name|autoCommit
-operator|&&
 name|pendingCommit
 operator|!=
 literal|null
@@ -9492,8 +9258,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|autoCommit
-operator|||
 name|pendingCommit
 operator|==
 literal|null
@@ -9513,8 +9277,6 @@ expr_stmt|;
 name|prepareCommit
 argument_list|(
 name|commitUserData
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -9810,14 +9572,6 @@ operator|.
 name|doApplyDeletes
 argument_list|()
 expr_stmt|;
-comment|// When autoCommit=true we must always flush deletes
-comment|// when flushing a segment; otherwise deletes may become
-comment|// visible before their corresponding added document
-comment|// from an updateDocument call
-name|flushDeletes
-operator||=
-name|autoCommit
-expr_stmt|;
 comment|// Make sure no threads are actively adding a document.
 comment|// Returns true if docWriter is currently aborting, in
 comment|// which case we skip flushing this segment
@@ -9862,12 +9616,6 @@ name|numDocs
 operator|>
 literal|0
 decl_stmt|;
-comment|// With autoCommit=true we always must flush the doc
-comment|// stores when we flush
-name|flushDocStores
-operator||=
-name|autoCommit
-expr_stmt|;
 name|String
 name|docStoreSegment
 init|=
@@ -9911,16 +9659,6 @@ operator|.
 name|getDocStoreOffset
 argument_list|()
 decl_stmt|;
-comment|// docStoreOffset should only be non-zero when
-comment|// autoCommit == false
-assert|assert
-operator|!
-name|autoCommit
-operator|||
-literal|0
-operator|==
-name|docStoreOffset
-assert|;
 name|boolean
 name|docStoreIsCompoundFile
 init|=
@@ -11948,21 +11686,9 @@ name|isAborted
 argument_list|()
 condition|)
 return|return;
-name|boolean
-name|changed
-init|=
 name|applyDeletes
 argument_list|()
-decl_stmt|;
-comment|// If autoCommit == true then all deletes should have
-comment|// been flushed when we flushed the last segment
-assert|assert
-operator|!
-name|changed
-operator|||
-operator|!
-name|autoCommit
-assert|;
+expr_stmt|;
 specifier|final
 name|SegmentInfos
 name|sourceSegments
@@ -11983,8 +11709,7 @@ decl_stmt|;
 comment|// Check whether this merge will allow us to skip
 comment|// merging the doc stores (stored field& vectors).
 comment|// This is a very substantial optimization (saves tons
-comment|// of IO) that can only be applied with
-comment|// autoCommit=false.
+comment|// of IO).
 name|Directory
 name|lastDir
 init|=
@@ -12574,182 +12299,6 @@ argument_list|(
 name|diagnostics
 argument_list|)
 expr_stmt|;
-block|}
-comment|/** This is called after merging a segment and before    *  building its CFS.  Return true if the files should be    *  sync'd.  If you return false, then the source segment    *  files that were merged cannot be deleted until the CFS    *  file is built& sync'd.  So, returning false consumes    *  more transient disk space, but saves performance of    *  not having to sync files which will shortly be deleted    *  anyway.    * @deprecated -- this will be removed in 3.0 when    * autoCommit is hardwired to false */
-DECL|method|doCommitBeforeMergeCFS
-specifier|private
-specifier|synchronized
-name|boolean
-name|doCommitBeforeMergeCFS
-parameter_list|(
-name|MergePolicy
-operator|.
-name|OneMerge
-name|merge
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|long
-name|freeableBytes
-init|=
-literal|0
-decl_stmt|;
-specifier|final
-name|int
-name|size
-init|=
-name|merge
-operator|.
-name|segments
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|size
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|SegmentInfo
-name|info
-init|=
-name|merge
-operator|.
-name|segments
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-comment|// It's only important to sync if the most recent
-comment|// commit actually references this segment, because if
-comment|// it doesn't, even without syncing we will free up
-comment|// the disk space:
-name|Integer
-name|loc
-init|=
-operator|(
-name|Integer
-operator|)
-name|rollbackSegments
-operator|.
-name|get
-argument_list|(
-name|info
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|loc
-operator|!=
-literal|null
-condition|)
-block|{
-specifier|final
-name|SegmentInfo
-name|oldInfo
-init|=
-name|rollbackSegmentInfos
-operator|.
-name|info
-argument_list|(
-name|loc
-operator|.
-name|intValue
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|oldInfo
-operator|.
-name|getUseCompoundFile
-argument_list|()
-operator|!=
-name|info
-operator|.
-name|getUseCompoundFile
-argument_list|()
-condition|)
-name|freeableBytes
-operator|+=
-name|info
-operator|.
-name|sizeInBytes
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-comment|// If we would free up more than 1/3rd of the index by
-comment|// committing now, then do so:
-name|long
-name|totalBytes
-init|=
-literal|0
-decl_stmt|;
-specifier|final
-name|int
-name|numSegments
-init|=
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numSegments
-condition|;
-name|i
-operator|++
-control|)
-name|totalBytes
-operator|+=
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|sizeInBytes
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-literal|3
-operator|*
-name|freeableBytes
-operator|>
-name|totalBytes
-condition|)
-return|return
-literal|true
-return|;
-else|else
-return|return
-literal|false
-return|;
 block|}
 comment|/** Does fininishing for a merge, which is fast but holds    *  the synchronized lock on IndexWriter instance. */
 DECL|method|mergeFinish
@@ -13586,43 +13135,6 @@ operator|.
 name|useCompoundFile
 condition|)
 block|{
-comment|// Maybe force a sync here to allow reclaiming of the
-comment|// disk space used by the segments we just merged:
-if|if
-condition|(
-name|autoCommit
-operator|&&
-name|doCommitBeforeMergeCFS
-argument_list|(
-name|merge
-argument_list|)
-condition|)
-block|{
-specifier|final
-name|long
-name|size
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|size
-operator|=
-name|merge
-operator|.
-name|info
-operator|.
-name|sizeInBytes
-argument_list|()
-expr_stmt|;
-block|}
-name|commit
-argument_list|(
-name|size
-argument_list|)
-expr_stmt|;
-block|}
 name|success
 operator|=
 literal|false
@@ -13820,44 +13332,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|// Force a sync after commiting the merge.  Once this
-comment|// sync completes then all index files referenced by the
-comment|// current segmentInfos are on stable storage so if the
-comment|// OS/machine crashes, or power cord is yanked, the
-comment|// index will be intact.  Note that this is just one
-comment|// (somewhat arbitrary) policy; we could try other
-comment|// policies like only sync if it's been> X minutes or
-comment|// more than Y bytes have been written, etc.
-if|if
-condition|(
-name|autoCommit
-condition|)
-block|{
-specifier|final
-name|long
-name|size
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|size
-operator|=
-name|merge
-operator|.
-name|info
-operator|.
-name|sizeInBytes
-argument_list|()
-expr_stmt|;
-block|}
-name|commit
-argument_list|(
-name|size
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 name|mergedDocCount
@@ -14503,148 +13977,6 @@ literal|true
 return|;
 block|}
 block|}
-comment|/** Pauses before syncing.  On Windows, at least, it's    *  best (performance-wise) to pause in order to let OS    *  flush writes to disk on its own, before forcing a    *  sync.    * @deprecated -- this will be removed in 3.0 when    * autoCommit is hardwired to false */
-DECL|method|syncPause
-specifier|private
-name|void
-name|syncPause
-parameter_list|(
-name|long
-name|sizeInBytes
-parameter_list|)
-block|{
-if|if
-condition|(
-name|mergeScheduler
-operator|instanceof
-name|ConcurrentMergeScheduler
-operator|&&
-name|maxSyncPauseSeconds
-operator|>
-literal|0
-condition|)
-block|{
-comment|// Rough heuristic: for every 10 MB, we pause for 1
-comment|// second, up until the max
-name|long
-name|pauseTime
-init|=
-call|(
-name|long
-call|)
-argument_list|(
-literal|1000
-operator|*
-name|sizeInBytes
-operator|/
-literal|10
-operator|/
-literal|1024
-operator|/
-literal|1024
-argument_list|)
-decl_stmt|;
-specifier|final
-name|long
-name|maxPauseTime
-init|=
-call|(
-name|long
-call|)
-argument_list|(
-name|maxSyncPauseSeconds
-operator|*
-literal|1000
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|pauseTime
-operator|>
-name|maxPauseTime
-condition|)
-name|pauseTime
-operator|=
-name|maxPauseTime
-expr_stmt|;
-specifier|final
-name|int
-name|sleepCount
-init|=
-call|(
-name|int
-call|)
-argument_list|(
-name|pauseTime
-operator|/
-literal|100
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|sleepCount
-condition|;
-name|i
-operator|++
-control|)
-block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-if|if
-condition|(
-name|stopMerges
-operator|||
-name|closing
-condition|)
-break|break;
-block|}
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|100
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-comment|// In 3.0 we will change this to throw
-comment|// InterruptedException instead
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|ie
-argument_list|)
-throw|;
-block|}
-block|}
-block|}
-block|}
 DECL|method|doWait
 specifier|private
 specifier|synchronized
@@ -14740,17 +14072,6 @@ operator|+
 name|sizeInBytes
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sizeInBytes
-operator|>
-literal|0
-condition|)
-name|syncPause
-argument_list|(
-name|sizeInBytes
-argument_list|)
-expr_stmt|;
 name|SegmentInfos
 name|toSync
 init|=
@@ -14765,20 +14086,6 @@ init|(
 name|this
 init|)
 block|{
-comment|// sizeInBytes> 0 means this is an autoCommit at
-comment|// the end of a merge.  If at this point stopMerges
-comment|// is true (which means a rollback() or
-comment|// rollbackTransaction() is waiting for us to
-comment|// finish), we skip the commit to avoid deadlock
-if|if
-condition|(
-name|sizeInBytes
-operator|>
-literal|0
-operator|&&
-name|stopMerges
-condition|)
-return|return;
 comment|// Wait for any running addIndexes to complete
 comment|// first, then block any from running until we've
 comment|// copied the segmentInfos we intend to sync:
