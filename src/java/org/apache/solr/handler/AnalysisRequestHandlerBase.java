@@ -1299,7 +1299,7 @@ name|String
 argument_list|>
 name|termsToMatch
 decl_stmt|;
-comment|/**      * Constructs a new AnalysisContext with a given field tpe, analyzer and termsToMatch. By default the field name in      * this context will be {@code null}. During the analysis processs, The produced tokens will be compaired to the      * termes in the {@code termsToMatch} set. When found, these tokens will be marked as a match.      *      * @param fieldType    The type of the field the analysis is performed on.      * @param analyzer     The analyzer to be used.      * @param termsToMatch Holds all the terms that should match during the analysis process.      */
+comment|/**      * Constructs a new AnalysisContext with a given field tpe, analyzer and       * termsToMatch. By default the field name in this context will be       * {@code null}. During the analysis processs, The produced tokens will       * be compaired to the terms in the {@code termsToMatch} set. When found,       * these tokens will be marked as a match.      *      * @param fieldType    The type of the field the analysis is performed on.      * @param analyzer     The analyzer to be used.      * @param termsToMatch Holds all the terms that should match during the       *                     analysis process.      */
 DECL|method|AnalysisContext
 specifier|public
 name|AnalysisContext
@@ -1329,7 +1329,7 @@ name|termsToMatch
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs an AnalysisContext with a given field name, field type and analyzer. By default this context will hold      * no terms to match      *      * @param fieldName The name of the field the analysis is performed on (may be {@code nuill}).      * @param fieldType The type of the field the analysis is performed on.      * @param analyzer  The analyzer to be used during the analysis process.      *      * @see #AnalysisContext(String, org.apache.solr.schema.FieldType, org.apache.lucene.analysis.Analyzer,      *      java.util.Set)      */
+comment|/**      * Constructs an AnalysisContext with a given field name, field type       * and analyzer. By default this context will hold no terms to match      *      * @param fieldName The name of the field the analysis is performed on       *                  (may be {@code null}).      * @param fieldType The type of the field the analysis is performed on.      * @param analyzer  The analyzer to be used during the analysis process.      *      */
 DECL|method|AnalysisContext
 specifier|public
 name|AnalysisContext
@@ -1358,7 +1358,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a new AnalysisContext with a given field tpe, analyzer and termsToMatch. During the analysis processs,      * The produced tokens will be compaired to the termes in the {@codce termsToMatch} set. When found, these tokens      * will be marked as a match.      *      * @param fieldName    The name of the field the analysis is performed on (may be {@code null}).      * @param fieldType    The type of the field the analysis is performed on.      * @param analyzer     The analyzer to be used.      * @param termsToMatch Holds all the terms that should match during the analysis process.      */
+comment|/**      * Constructs a new AnalysisContext with a given field tpe, analyzer and      * termsToMatch. During the analysis processs, The produced tokens will be       * compaired to the termes in the {@code termsToMatch} set. When found,       * these tokens will be marked as a match.      *      * @param fieldName    The name of the field the analysis is performed on       *                     (may be {@code null}).      * @param fieldType    The type of the field the analysis is performed on.      * @param analyzer     The analyzer to be used.      * @param termsToMatch Holds all the terms that should match during the       *                     analysis process.      */
 DECL|method|AnalysisContext
 specifier|public
 name|AnalysisContext

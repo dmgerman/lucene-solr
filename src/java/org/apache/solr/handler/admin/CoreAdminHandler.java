@@ -1033,7 +1033,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Handle 'CREATE' action.    *    * @param req    * @param rsp    *    * @return persistence flag as necessary.    *    * @throws SolrException in case of a configuration error.    */
+comment|/**    * Handle 'CREATE' action.    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    *    * @throws SolrException in case of a configuration error.    */
 DECL|method|handleCreateAction
 specifier|protected
 name|boolean
@@ -1234,7 +1234,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Handle "RENAME" Action    *    * @param req    * @param rsp    *    * @return    *    * @throws SolrException    */
+comment|/**    * Handle "RENAME" Action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    *    * @throws SolrException    */
 DECL|method|handleRenameAction
 specifier|protected
 name|boolean
@@ -1350,7 +1350,7 @@ return|return
 name|doPersist
 return|;
 block|}
-comment|/**    * Handle "ALIAS" action    *    * @param req    * @param rsp    *    * @return    */
+comment|/**    * Handle "ALIAS" action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    */
 DECL|method|handleAliasAction
 specifier|protected
 name|boolean
@@ -1453,7 +1453,7 @@ return|return
 name|doPersist
 return|;
 block|}
-comment|/**    * Handle "UNLOAD" Action    *    * @param req    * @param rsp    *    * @return    */
+comment|/**    * Handle "UNLOAD" Action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    */
 DECL|method|handleUnloadAction
 specifier|protected
 name|boolean
@@ -1535,7 +1535,7 @@ name|isPersistent
 argument_list|()
 return|;
 block|}
-comment|/**    * Handle "STATUS" action    *    * @param req    * @param rsp    *    * @return    */
+comment|/**    * Handle "STATUS" action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    */
 DECL|method|handleStatusAction
 specifier|protected
 name|boolean
@@ -1682,7 +1682,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Handler "PERSIST" action    *    * @param req    * @param rsp    *    * @return    *    * @throws SolrException    */
+comment|/**    * Handler "PERSIST" action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    *    * @throws SolrException    */
 DECL|method|handlePersistAction
 specifier|protected
 name|boolean
@@ -1803,7 +1803,7 @@ return|return
 name|doPersist
 return|;
 block|}
-comment|/**    * Handler "RELOAD" action    *    * @param req    * @param rsp    *    * @return    */
+comment|/**    * Handler "RELOAD" action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    */
 DECL|method|handleReloadAction
 specifier|protected
 name|boolean
@@ -1873,7 +1873,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Handle "SWAP" action    *    * @param req    * @param rsp    *    * @return    */
+comment|/**    * Handle "SWAP" action    *    * @param req    * @param rsp    *    * @return true if a modification has resulted that requires persistance     *         of the CoreContainer configuration.    */
 DECL|method|handleSwapAction
 specifier|protected
 name|boolean

@@ -2220,7 +2220,7 @@ return|return
 name|dataDir
 return|;
 block|}
-comment|/**SolrConfig keeps a repository of plugins by the type. The known interfaces are the types.    * @param type The key is FQN of the plugin class there are a few  known types : SolrFormatter, SolrFragmenter    * SolrRequestHandler,QParserPlugin, QueryResponseWriter,ValueSourceParser,    * SearchComponent, QueryConverter, SolrEventListener, DirectoryFactory,    * IndexDeletionPolicy, IndexReaderFactory    * @return    */
+comment|/**SolrConfig keeps a repository of plugins by the type. The known interfaces are the types.    * @param type The key is FQN of the plugin class there are a few  known types : SolrFormatter, SolrFragmenter    * SolrRequestHandler,QParserPlugin, QueryResponseWriter,ValueSourceParser,    * SearchComponent, QueryConverter, SolrEventListener, DirectoryFactory,    * IndexDeletionPolicy, IndexReaderFactory    */
 DECL|method|getPluginInfos
 specifier|public
 name|List

@@ -93,7 +93,7 @@ comment|/*  * TODO: Rewrite to use new TokenStream api from lucene 2.9 when Buff
 end_comment
 
 begin_comment
-comment|/**  * Construct bigrams for frequently occurring terms while indexing. Single terms  * are still indexed too, with bigrams overlaid. This is achieved through the  * use of {@link Token#Set<String>PositionIncrement(int)}. Bigrams have a type  * of "gram" Example  *<ul>  *<li>input:"the quick brown fox"</li>  *<li>output:|"the","the-quick"|"brown"|"fox"|</li>  *<li>"the-quick" has a position increment of 0 so it is in the same position  * as "the" "the-quick" has a term.type() of "gram"</li>  *   *</ul>  */
+comment|/**  * Construct bigrams for frequently occurring terms while indexing. Single terms  * are still indexed too, with bigrams overlaid. This is achieved through the  * use of {@link Token#setPositionIncrement(int)}. Bigrams have a type  * of "gram" Example  *<ul>  *<li>input:"the quick brown fox"</li>  *<li>output:|"the","the-quick"|"brown"|"fox"|</li>  *<li>"the-quick" has a position increment of 0 so it is in the same position  * as "the" "the-quick" has a term.type() of "gram"</li>  *   *</ul>  */
 end_comment
 
 begin_comment
