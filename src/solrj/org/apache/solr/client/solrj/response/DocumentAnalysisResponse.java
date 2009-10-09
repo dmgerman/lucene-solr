@@ -721,7 +721,7 @@ return|return
 name|fieldName
 return|;
 block|}
-comment|/**      * Returns the number of query time analysis phases or {@code -1) if this field analysis doesn't hold a query      * time analysis.      *      * @return Returns the number of query time analysis phases or {@code -1) if this field analysis doesn't hold a      *         query time analysis.      */
+comment|/**      * Returns the number of query time analysis phases or {@code -1} if       * this field analysis doesn't hold a query time analysis.      *      * @return Returns the number of query time analysis phases or {@code -1}       *         if this field analysis doesn't hold a query time analysis.      */
 DECL|method|getQueryPhasesCount
 specifier|public
 name|int
@@ -742,7 +742,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the query time analysis phases for the field or {@code null} if this field doesn't hold a query time      * analysis.      *      * @return Returns the query time analysis phases for the field or {@code null} if this field doesn't hold a      *         query time analysis.      */
+comment|/**      * Returns the query time analysis phases for the field or {@code null}       * if this field doesn't hold a query time analysis.      *      * @return Returns the query time analysis phases for the field or       *         {@code null} if this field doesn't hold a query time analysis.      */
 DECL|method|getQueryPhases
 specifier|public
 name|Iterable

@@ -918,7 +918,7 @@ name|useMultiPartPost
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @see {@link #useMultiPartPost}, {@link #_parser}    */
+comment|/**    * @see #useMultiPartPost    * @see #_parser    */
 DECL|method|CommonsHttpSolrServer
 specifier|public
 name|CommonsHttpSolrServer

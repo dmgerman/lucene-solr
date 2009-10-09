@@ -674,7 +674,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets facet missing boolean flag     *     * @param v flag to indicate the field of  {@link FacetParams#FACET_MISSING} .    * @return    */
+comment|/**    * Sets facet missing boolean flag     *     * @param v flag to indicate the field of  {@link FacetParams#FACET_MISSING} .    * @return this    */
 DECL|method|setFacetMissing
 specifier|public
 name|SolrQuery
@@ -2134,7 +2134,7 @@ name|QT
 argument_list|)
 return|;
 block|}
-comment|/**    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, String ...)    * @param name    * @param values    *      * @return    */
+comment|/**    * @see ModifiableSolrParams#set(String,String[])    * @param name    * @param values    *      * @return this    */
 DECL|method|setParam
 specifier|public
 name|SolrQuery
@@ -2161,7 +2161,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, boolean)    * @param name    * @param value    * @return    */
+comment|/**    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, boolean)    * @param name    * @param value    * @return this    */
 DECL|method|setParam
 specifier|public
 name|SolrQuery
