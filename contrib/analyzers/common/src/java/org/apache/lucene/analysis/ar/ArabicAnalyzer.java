@@ -435,7 +435,7 @@ name|STOPWORDS_COMMENT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    * 			{@link StopFilter}, {@link LowerCaseFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
+comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    * 			{@link LowerCaseFilter}, {@link StopFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -461,19 +461,19 @@ decl_stmt|;
 name|result
 operator|=
 operator|new
-name|StopFilter
+name|LowerCaseFilter
 argument_list|(
 name|result
-argument_list|,
-name|stoptable
 argument_list|)
 expr_stmt|;
 name|result
 operator|=
 operator|new
-name|LowerCaseFilter
+name|StopFilter
 argument_list|(
 name|result
+argument_list|,
+name|stoptable
 argument_list|)
 expr_stmt|;
 name|result
@@ -511,7 +511,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text     * in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    *            {@link StopFilter}, {@link LowerCaseFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text     * in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    *            {@link LowerCaseFilter}, {@link StopFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream
@@ -563,13 +563,11 @@ operator|.
 name|result
 operator|=
 operator|new
-name|StopFilter
+name|LowerCaseFilter
 argument_list|(
 name|streams
 operator|.
 name|source
-argument_list|,
-name|stoptable
 argument_list|)
 expr_stmt|;
 name|streams
@@ -577,11 +575,13 @@ operator|.
 name|result
 operator|=
 operator|new
-name|LowerCaseFilter
+name|StopFilter
 argument_list|(
 name|streams
 operator|.
 name|result
+argument_list|,
+name|stoptable
 argument_list|)
 expr_stmt|;
 name|streams
