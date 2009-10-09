@@ -433,11 +433,11 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** Release a previously saved commit point */
-DECL|method|releaseCommmitPoint
+DECL|method|releaseCommitPoint
 specifier|public
 specifier|synchronized
 name|void
-name|releaseCommmitPoint
+name|releaseCommitPoint
 parameter_list|(
 name|Long
 name|indexCommitVersion
