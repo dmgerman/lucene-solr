@@ -772,11 +772,11 @@ name|I_p1
 decl_stmt|;
 DECL|field|S_ch
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|S_ch
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 DECL|method|copy_from

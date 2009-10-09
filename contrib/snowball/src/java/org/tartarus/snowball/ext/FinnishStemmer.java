@@ -1663,11 +1663,11 @@ name|B_ending_removed
 decl_stmt|;
 DECL|field|S_x
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|S_x
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|I_p2
