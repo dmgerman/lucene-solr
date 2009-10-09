@@ -354,13 +354,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|connection
-operator|.
-name|setHoldability
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//    connection.setHoldability(1);
 name|mockControl
 operator|.
 name|replay
@@ -444,6 +438,15 @@ argument_list|(
 literal|"password"
 argument_list|,
 literal|"4r3d"
+argument_list|)
+expr_stmt|;
+name|props
+operator|.
+name|put
+argument_list|(
+literal|"holdability"
+argument_list|,
+literal|"HOLD_CURSORS_OVER_COMMIT"
 argument_list|)
 expr_stmt|;
 name|EasyMock
@@ -604,6 +607,15 @@ operator|.
 name|URL
 argument_list|,
 literal|"jdbc:fakedb"
+argument_list|)
+expr_stmt|;
+name|props
+operator|.
+name|put
+argument_list|(
+literal|"holdability"
+argument_list|,
+literal|"HOLD_CURSORS_OVER_COMMIT"
 argument_list|)
 expr_stmt|;
 name|mockControl
