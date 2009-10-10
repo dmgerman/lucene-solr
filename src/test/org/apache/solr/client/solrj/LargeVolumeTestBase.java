@@ -254,6 +254,13 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
+comment|// some of the commits could have failed because maxWarmingSearchers exceeded,
+comment|// so do a final commit to make sure everything is visible.
+name|gserver
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 name|query
 argument_list|(
 name|threadCount
