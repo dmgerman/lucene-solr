@@ -743,20 +743,6 @@ index|]
 expr_stmt|;
 block|}
 comment|/***** alternate shift implementations   // 32 bit shifts, but a long shift needed at the end   private void shift2() {     int y = (int)word;     if (y==0) {wordShift +=32; y = (int)(word>>>32); }     if ((y& 0x0000FFFF) == 0) { wordShift +=16; y>>>=16; }     if ((y& 0x000000FF) == 0) { wordShift +=8; y>>>=8; }     indexArray = bitlist[y& 0xff];     word>>>= (wordShift +1);   }    private void shift3() {     int lower = (int)word;     int lowByte = lower& 0xff;     if (lowByte != 0) {       indexArray=bitlist[lowByte];       return;     }     shift();   }   ******/
-comment|/** @deprecated use {@link #nextDoc()} instead. */
-DECL|method|next
-specifier|public
-name|boolean
-name|next
-parameter_list|()
-block|{
-return|return
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
-return|;
-block|}
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -854,25 +840,6 @@ literal|6
 operator|)
 operator|+
 name|bitIndex
-return|;
-block|}
-comment|/** @deprecated use {@link #advance(int)} instead. */
-DECL|method|skipTo
-specifier|public
-name|boolean
-name|skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-block|{
-return|return
-name|advance
-argument_list|(
-name|target
-argument_list|)
-operator|!=
-name|NO_MORE_DOCS
 return|;
 block|}
 DECL|method|advance
@@ -1006,17 +973,6 @@ literal|6
 operator|)
 operator|+
 name|bitIndex
-return|;
-block|}
-comment|/** @deprecated use {@link #docID()} instead. */
-DECL|method|doc
-specifier|public
-name|int
-name|doc
-parameter_list|()
-block|{
-return|return
-name|curDocId
 return|;
 block|}
 DECL|method|docID
