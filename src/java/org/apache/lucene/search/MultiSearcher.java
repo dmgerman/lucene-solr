@@ -952,10 +952,11 @@ expr_stmt|;
 comment|// convert doc
 if|if
 condition|(
-operator|!
+name|scoreDoc
+operator|==
 name|hq
 operator|.
-name|insert
+name|insertWithOverflow
 argument_list|(
 name|scoreDoc
 argument_list|)
@@ -1309,11 +1310,15 @@ expr_stmt|;
 comment|// convert doc
 if|if
 condition|(
-operator|!
+name|scoreDoc
+operator|==
 name|hq
 operator|.
-name|insert
+name|insertWithOverflow
 argument_list|(
+operator|(
+name|FieldDoc
+operator|)
 name|scoreDoc
 argument_list|)
 condition|)

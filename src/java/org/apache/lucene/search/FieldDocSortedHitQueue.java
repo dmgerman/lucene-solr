@@ -60,6 +60,9 @@ class|class
 name|FieldDocSortedHitQueue
 extends|extends
 name|PriorityQueue
+argument_list|<
+name|FieldDoc
+argument_list|>
 block|{
 comment|// this cannot contain AUTO fields - any AUTO fields should
 comment|// have been resolved by the time this class is used.
@@ -251,32 +254,14 @@ name|boolean
 name|lessThan
 parameter_list|(
 specifier|final
-name|Object
-name|a
-parameter_list|,
-specifier|final
-name|Object
-name|b
-parameter_list|)
-block|{
-specifier|final
 name|FieldDoc
 name|docA
-init|=
-operator|(
-name|FieldDoc
-operator|)
-name|a
-decl_stmt|;
+parameter_list|,
 specifier|final
 name|FieldDoc
 name|docB
-init|=
-operator|(
-name|FieldDoc
-operator|)
-name|b
-decl_stmt|;
+parameter_list|)
+block|{
 specifier|final
 name|int
 name|n

@@ -393,54 +393,6 @@ name|score
 argument_list|)
 expr_stmt|;
 block|}
-comment|// The signature of this method takes a FieldDoc in order to avoid
-comment|// the unneeded cast to retrieve the score.
-comment|// inherit javadoc
-DECL|method|insert
-specifier|public
-name|boolean
-name|insert
-parameter_list|(
-name|FieldDoc
-name|fdoc
-parameter_list|)
-block|{
-name|updateMaxScore
-argument_list|(
-name|fdoc
-argument_list|)
-expr_stmt|;
-return|return
-name|super
-operator|.
-name|insert
-argument_list|(
-name|fdoc
-argument_list|)
-return|;
-block|}
-comment|// This overrides PriorityQueue.insert() so that insert(FieldDoc) that
-comment|// keeps track of the score isn't accidentally bypassed.
-comment|// inherit javadoc
-DECL|method|insert
-specifier|public
-name|boolean
-name|insert
-parameter_list|(
-name|Object
-name|fdoc
-parameter_list|)
-block|{
-return|return
-name|insert
-argument_list|(
-operator|(
-name|FieldDoc
-operator|)
-name|fdoc
-argument_list|)
-return|;
-block|}
 comment|// This overrides PriorityQueue.insertWithOverflow() so that
 comment|// updateMaxScore(FieldDoc) that keeps track of the score isn't accidentally
 comment|// bypassed.

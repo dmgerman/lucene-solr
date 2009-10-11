@@ -124,7 +124,7 @@ argument_list|()
 expr_stmt|;
 name|pq
 operator|.
-name|put
+name|add
 argument_list|(
 name|pp
 argument_list|)

@@ -1359,10 +1359,11 @@ init|)
 block|{
 if|if
 condition|(
-operator|!
+name|scoreDoc
+operator|==
 name|hq
 operator|.
-name|insert
+name|insertWithOverflow
 argument_list|(
 name|scoreDoc
 argument_list|)

@@ -184,31 +184,6 @@ name|maxSize
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize a RuntimeException    * (ArrayIndexOutOfBound) is thrown.    *     * @deprecated use {@link #add(T)} which returns the new top object,    *             saving an additional call to {@link #top()}.    */
-DECL|method|put
-specifier|public
-specifier|final
-name|void
-name|put
-parameter_list|(
-name|T
-name|element
-parameter_list|)
-block|{
-name|size
-operator|++
-expr_stmt|;
-name|heap
-index|[
-name|size
-index|]
-operator|=
-name|element
-expr_stmt|;
-name|upHeap
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize an    * {@link ArrayIndexOutOfBoundsException} is thrown.    *     * @return the new 'top' element in the queue.    */
 DECL|method|add
 specifier|public
@@ -240,25 +215,6 @@ literal|1
 index|]
 return|;
 block|}
-comment|/**    * Adds element to the PriorityQueue in log(size) time if either the    * PriorityQueue is not full, or not lessThan(element, top()).    *     * @param element    * @return true if element is added, false otherwise.    * @deprecated use {@link #insertWithOverflow(T)} instead, which    *             encourages objects reuse.    */
-DECL|method|insert
-specifier|public
-name|boolean
-name|insert
-parameter_list|(
-name|T
-name|element
-parameter_list|)
-block|{
-return|return
-name|insertWithOverflow
-argument_list|(
-name|element
-argument_list|)
-operator|!=
-name|element
-return|;
-block|}
 comment|/**    * insertWithOverflow() is the same as insert() except its    * return value: it returns the object (if any) that was    * dropped off the heap because it was full. This can be    * the given parameter (in case it is smaller than the    * full heap's minimum, and couldn't be added), or another    * object that was previously the smallest value in the    * heap and now has been replaced by a larger one, or null    * if the queue wasn't yet full with maxSize elements.    */
 DECL|method|insertWithOverflow
 specifier|public
@@ -276,7 +232,7 @@ operator|<
 name|maxSize
 condition|)
 block|{
-name|put
+name|add
 argument_list|(
 name|element
 argument_list|)
@@ -319,7 +275,7 @@ index|]
 operator|=
 name|element
 expr_stmt|;
-name|adjustTop
+name|updateTop
 argument_list|()
 expr_stmt|;
 return|return
@@ -409,18 +365,6 @@ else|else
 return|return
 literal|null
 return|;
-block|}
-comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *     *<pre>    * pq.top().change();    * pq.adjustTop();    *</pre>    *     * instead of    *     *<pre>    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *     * @deprecated use {@link #updateTop()} which returns the new top element and    *             saves an additional call to {@link #top()}.    */
-DECL|method|adjustTop
-specifier|public
-specifier|final
-name|void
-name|adjustTop
-parameter_list|()
-block|{
-name|downHeap
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *     *<pre>    * pq.top().change();    * pq.updateTop();    *</pre>    *     * instead of    *     *<pre>    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *     * @return the new 'top' element.    */
 DECL|method|updateTop

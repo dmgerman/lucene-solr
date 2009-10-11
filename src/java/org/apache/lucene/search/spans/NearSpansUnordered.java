@@ -197,6 +197,9 @@ class|class
 name|CellQueue
 extends|extends
 name|PriorityQueue
+argument_list|<
+name|SpansCell
+argument_list|>
 block|{
 DECL|method|CellQueue
 specifier|public
@@ -218,29 +221,13 @@ specifier|final
 name|boolean
 name|lessThan
 parameter_list|(
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
 name|SpansCell
 name|spans1
-init|=
-operator|(
-name|SpansCell
-operator|)
-name|o1
-decl_stmt|;
+parameter_list|,
 name|SpansCell
 name|spans2
-init|=
-operator|(
-name|SpansCell
-operator|)
-name|o2
-decl_stmt|;
+parameter_list|)
+block|{
 if|if
 condition|(
 name|spans1
@@ -726,7 +713,7 @@ block|{
 comment|// trigger further scanning
 name|queue
 operator|.
-name|adjustTop
+name|updateTop
 argument_list|()
 expr_stmt|;
 comment|// maintain queue
@@ -858,7 +845,7 @@ condition|)
 block|{
 name|queue
 operator|.
-name|adjustTop
+name|updateTop
 argument_list|()
 expr_stmt|;
 comment|// maintain queue
@@ -966,7 +953,7 @@ condition|)
 block|{
 name|queue
 operator|.
-name|adjustTop
+name|updateTop
 argument_list|()
 expr_stmt|;
 block|}
@@ -1413,7 +1400,7 @@ control|)
 block|{
 name|queue
 operator|.
-name|put
+name|add
 argument_list|(
 name|cell
 argument_list|)
