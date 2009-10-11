@@ -244,7 +244,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -2305,7 +2305,7 @@ argument_list|,
 literal|null
 argument_list|)
 operator|instanceof
-name|RangeQuery
+name|TermRangeQuery
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals

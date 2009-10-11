@@ -218,20 +218,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|ConstantScoreRangeQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Searcher
 import|;
 end_import
@@ -565,10 +551,10 @@ argument_list|)
 expr_stmt|;
 comment|// Unicode order would include U+0633 in [ U+062F - U+0698 ], but Farsi
 comment|// orders the U+0698 character before the U+0633 character, so the single
-comment|// index Term below should NOT be returned by a ConstantScoreRangeQuery
+comment|// index Term below should NOT be returned by a TermRangeQuery
 comment|// with a Farsi Collator (or an Arabic one for the case when Farsi is not
 comment|// supported).
-comment|// Test ConstantScoreRangeQuery
+comment|// Test TermRangeQuery
 name|aqp
 operator|.
 name|setUseOldRangeQuery
@@ -1150,10 +1136,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testFarsiConstantScoreRangeQuery
+DECL|method|testFarsiTermRangeQuery
 specifier|public
 name|void
-name|testFarsiConstantScoreRangeQuery
+name|testFarsiTermRangeQuery
 parameter_list|(
 name|Analyzer
 name|analyzer
@@ -1291,14 +1277,14 @@ argument_list|)
 decl_stmt|;
 comment|// Unicode order would include U+0633 in [ U+062F - U+0698 ], but Farsi
 comment|// orders the U+0698 character before the U+0633 character, so the single
-comment|// index Term below should NOT be returned by a ConstantScoreRangeQuery
+comment|// index Term below should NOT be returned by a TermRangeQuery
 comment|// with a Farsi Collator (or an Arabic one for the case when Farsi is
 comment|// not supported).
 name|Query
 name|csrq
 init|=
 operator|new
-name|ConstantScoreRangeQuery
+name|TermRangeQuery
 argument_list|(
 literal|"content"
 argument_list|,
@@ -1342,7 +1328,7 @@ expr_stmt|;
 name|csrq
 operator|=
 operator|new
-name|ConstantScoreRangeQuery
+name|TermRangeQuery
 argument_list|(
 literal|"content"
 argument_list|,

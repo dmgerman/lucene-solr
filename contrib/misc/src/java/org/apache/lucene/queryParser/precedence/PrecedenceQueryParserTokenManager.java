@@ -278,7 +278,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 

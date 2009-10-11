@@ -278,7 +278,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RangeQuery
+name|TermRangeQuery
 import|;
 end_import
 
@@ -1871,23 +1871,15 @@ parameter_list|)
 block|{ }
 return|return
 operator|new
-name|RangeQuery
-argument_list|(
-operator|new
-name|Term
+name|TermRangeQuery
 argument_list|(
 name|field
 argument_list|,
 name|part1
-argument_list|)
-argument_list|,
-operator|new
-name|Term
-argument_list|(
-name|field
 argument_list|,
 name|part2
-argument_list|)
+argument_list|,
+name|inclusive
 argument_list|,
 name|inclusive
 argument_list|)
