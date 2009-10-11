@@ -33,12 +33,13 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A filter that replaces accented characters in the ISO Latin 1 character set   * (ISO-8859-1) by their unaccented equivalent. The case will not be altered.  *<p>  * For instance, '&agrave;' will be replaced by 'a'.  *<p>  *   * @deprecated in favor of {@link ASCIIFoldingFilter} which covers a superset   * of Latin 1. This class will be removed in Lucene 3.0.  */
+comment|/**  * A filter that replaces accented characters in the ISO Latin 1 character set   * (ISO-8859-1) by their unaccented equivalent. The case will not be altered.  *<p>  * For instance, '&agrave;' will be replaced by 'a'.  *<p>  *   * @deprecated If you build a new index, use {@link ASCIIFoldingFilter}  * which covers a superset of Latin 1.  * This class is included for use with existing  * indexes and will be removed in a future release (possibly Lucene 4.0).  */
 end_comment
 
 begin_class
 DECL|class|ISOLatin1AccentFilter
 specifier|public
+specifier|final
 class|class
 name|ISOLatin1AccentFilter
 extends|extends
@@ -194,54 +195,6 @@ block|}
 else|else
 return|return
 literal|false
-return|;
-block|}
-comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
-DECL|method|next
-specifier|public
-specifier|final
-name|Token
-name|next
-parameter_list|(
-specifier|final
-name|Token
-name|reusableToken
-parameter_list|)
-throws|throws
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-block|{
-return|return
-name|super
-operator|.
-name|next
-argument_list|(
-name|reusableToken
-argument_list|)
-return|;
-block|}
-comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
-DECL|method|next
-specifier|public
-specifier|final
-name|Token
-name|next
-parameter_list|()
-throws|throws
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-block|{
-return|return
-name|super
-operator|.
-name|next
-argument_list|()
 return|;
 block|}
 comment|/**    * To replace accented characters in a String by unaccented equivalents.    */

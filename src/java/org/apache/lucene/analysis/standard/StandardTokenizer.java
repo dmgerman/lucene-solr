@@ -151,6 +151,7 @@ end_comment
 begin_class
 DECL|class|StandardTokenizer
 specifier|public
+specifier|final
 class|class
 name|StandardTokenizer
 extends|extends
@@ -760,46 +761,6 @@ argument_list|,
 name|finalOffset
 argument_list|)
 expr_stmt|;
-block|}
-comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
-DECL|method|next
-specifier|public
-specifier|final
-name|Token
-name|next
-parameter_list|(
-specifier|final
-name|Token
-name|reusableToken
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|super
-operator|.
-name|next
-argument_list|(
-name|reusableToken
-argument_list|)
-return|;
-block|}
-comment|/** @deprecated Will be removed in Lucene 3.0. This method is final, as it should    * not be overridden. Delegates to the backwards compatibility layer. */
-DECL|method|next
-specifier|public
-specifier|final
-name|Token
-name|next
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|super
-operator|.
-name|next
-argument_list|()
-return|;
 block|}
 comment|/*    * (non-Javadoc)    *    * @see org.apache.lucene.analysis.TokenStream#reset()    */
 DECL|method|reset
