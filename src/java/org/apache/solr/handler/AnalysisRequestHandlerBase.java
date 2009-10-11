@@ -1152,6 +1152,12 @@ name|e
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|len
+operator|>
+literal|0
+condition|)
 name|sb
 operator|.
 name|append
