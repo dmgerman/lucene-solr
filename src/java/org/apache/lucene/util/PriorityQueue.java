@@ -215,7 +215,7 @@ literal|1
 index|]
 return|;
 block|}
-comment|/**    * insertWithOverflow() is the same as insert() except its    * return value: it returns the object (if any) that was    * dropped off the heap because it was full. This can be    * the given parameter (in case it is smaller than the    * full heap's minimum, and couldn't be added), or another    * object that was previously the smallest value in the    * heap and now has been replaced by a larger one, or null    * if the queue wasn't yet full with maxSize elements.    */
+comment|/**    * Adds an Object to a PriorityQueue in log(size) time.    * It returns the object (if any) that was    * dropped off the heap because it was full. This can be    * the given parameter (in case it is smaller than the    * full heap's minimum, and couldn't be added), or another    * object that was previously the smallest value in the    * heap and now has been replaced by a larger one, or null    * if the queue wasn't yet full with maxSize elements.    */
 DECL|method|insertWithOverflow
 specifier|public
 name|T
