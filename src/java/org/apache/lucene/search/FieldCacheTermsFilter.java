@@ -295,17 +295,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** @deprecated use {@link #docID()} instead. */
-DECL|method|doc
-specifier|public
-name|int
-name|doc
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
 DECL|method|docID
 specifier|public
 name|int
@@ -314,20 +303,6 @@ parameter_list|()
 block|{
 return|return
 name|doc
-return|;
-block|}
-comment|/** @deprecated use {@link #nextDoc()} instead. */
-DECL|method|next
-specifier|public
-name|boolean
-name|next
-parameter_list|()
-block|{
-return|return
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
 return|;
 block|}
 DECL|method|nextDoc
@@ -369,25 +344,6 @@ expr_stmt|;
 block|}
 return|return
 name|doc
-return|;
-block|}
-comment|/** @deprecated use {@link #advance(int)} instead. */
-DECL|method|skipTo
-specifier|public
-name|boolean
-name|skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-block|{
-return|return
-name|advance
-argument_list|(
-name|target
-argument_list|)
-operator|!=
-name|NO_MORE_DOCS
 return|;
 block|}
 DECL|method|advance

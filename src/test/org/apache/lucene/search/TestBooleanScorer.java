@@ -499,32 +499,11 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** @deprecated delete in 3.0. */
-function|public int doc
-parameter_list|()
-block|{
-return|return
-literal|3000
-return|;
-block|}
 function|public int docID
 parameter_list|()
 block|{
 return|return
 name|doc
-return|;
-block|}
-comment|/** @deprecated delete in 3.0 */
-function|public boolean next
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
 return|;
 block|}
 function|public int nextDoc
@@ -542,24 +521,6 @@ literal|1
 condition|?
 literal|3000
 else|:
-name|NO_MORE_DOCS
-return|;
-block|}
-comment|/** @deprecated delete in 3.0 */
-function|public boolean skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|advance
-argument_list|(
-name|target
-argument_list|)
-operator|!=
 name|NO_MORE_DOCS
 return|;
 block|}

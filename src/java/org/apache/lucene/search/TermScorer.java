@@ -414,17 +414,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** @deprecated use {@link #docID()} instead. */
-DECL|method|doc
-specifier|public
-name|int
-name|doc
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
 DECL|method|docID
 specifier|public
 name|int
@@ -433,22 +422,6 @@ parameter_list|()
 block|{
 return|return
 name|doc
-return|;
-block|}
-comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return true iff there is another document matching the query.    * @deprecated use {@link #nextDoc()} instead.    */
-DECL|method|next
-specifier|public
-name|boolean
-name|next
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
 return|;
 block|}
 comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return the document matching the query or -1 if there are no more documents.    */
@@ -586,27 +559,6 @@ literal|0xFF
 index|]
 return|;
 comment|// normalize for field
-block|}
-comment|/**    * Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses {@link TermDocs#skipTo(int)}.    *     * @param target    *          The target document number.    * @return true iff there is such a match.    * @deprecated use {@link #advance(int)} instead.    */
-DECL|method|skipTo
-specifier|public
-name|boolean
-name|skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|advance
-argument_list|(
-name|target
-argument_list|)
-operator|!=
-name|NO_MORE_DOCS
-return|;
 block|}
 comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses {@link TermDocs#skipTo(int)}.    *     * @param target    *          The target document number.    * @return the matching document or -1 if none exist.    */
 DECL|method|advance

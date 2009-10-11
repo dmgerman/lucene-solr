@@ -427,22 +427,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** @deprecated use {@link #nextDoc()} instead. */
-DECL|method|next
-specifier|public
-name|boolean
-name|next
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
-return|;
-block|}
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -605,17 +589,6 @@ return|return
 name|currentScore
 return|;
 block|}
-comment|/** @deprecated use {@link #docID()} instead. */
-DECL|method|doc
-specifier|public
-name|int
-name|doc
-parameter_list|()
-block|{
-return|return
-name|currentDoc
-return|;
-block|}
 DECL|method|docID
 specifier|public
 name|int
@@ -635,27 +608,6 @@ parameter_list|()
 block|{
 return|return
 name|nrMatchers
-return|;
-block|}
-comment|/**    * Skips to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * When this method is used the {@link #explain(int)} method should not be    * used.<br>    * The implementation uses the skipTo() method on the subscorers.    *     * @param target    *          The target document number.    * @return true iff there is such a match.    * @deprecated use {@link #advance(int)} instead.    */
-DECL|method|skipTo
-specifier|public
-name|boolean
-name|skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|advance
-argument_list|(
-name|target
-argument_list|)
-operator|!=
-name|NO_MORE_DOCS
 return|;
 block|}
 comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * When this method is used the {@link #explain(int)} method should not be    * used.<br>    * The implementation uses the skipTo() method on the subscorers.    *     * @param target    *          The target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
