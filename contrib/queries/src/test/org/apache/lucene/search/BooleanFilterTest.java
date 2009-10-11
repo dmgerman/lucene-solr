@@ -519,8 +519,12 @@ while|while
 condition|(
 name|disi
 operator|.
-name|next
+name|nextDoc
 argument_list|()
+operator|!=
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
 condition|)
 block|{
 name|actual
