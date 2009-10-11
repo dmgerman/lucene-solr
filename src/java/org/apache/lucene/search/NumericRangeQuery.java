@@ -315,6 +315,27 @@ literal|"valSize must be 32 or 64"
 argument_list|)
 throw|;
 block|}
+comment|// shortcut if upper bound == lower bound
+if|if
+condition|(
+name|min
+operator|!=
+literal|null
+operator|&&
+name|min
+operator|.
+name|equals
+argument_list|(
+name|max
+argument_list|)
+condition|)
+block|{
+name|setRewriteMethod
+argument_list|(
+name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>long</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newLongRange
