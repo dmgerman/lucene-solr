@@ -50,7 +50,7 @@ name|Context
 name|context
 parameter_list|)
 function_decl|;
-comment|/**    * This method helps streaming the data for each row . The implementation    * would fetch as many rows as needed and gives one 'row' at a time. Only this    * method is used during a full import    *    * @return A 'row' . The 'key' for the map is the column name and the 'value'    *         is the value of that column. If there are no more rows to be    *         returned, return 'null'    */
+comment|/**    * This method helps streaming the data for each row . The implementation    * would fetch as many rows as needed and gives one 'row' at a time. Only this    * method is used during a full import    *    * @return A 'row'.  The 'key' for the map is the column name and the 'value'    *         is the value of that column. If there are no more rows to be    *         returned, return 'null'    */
 DECL|method|nextRow
 specifier|public
 specifier|abstract
@@ -76,7 +76,7 @@ argument_list|>
 name|nextModifiedRowKey
 parameter_list|()
 function_decl|;
-comment|/**    * This is used during delta-import. It gives the primary keys of the rows    * that are deleted from this entity. If this entity is the root entity, solr    * document is deleted. If this is a sub-entity, the solr document is    * considered as 'changed' and will be recreated    *    * @return the pk vs value of all changed rows    */
+comment|/**    * This is used during delta-import. It gives the primary keys of the rows    * that are deleted from this entity. If this entity is the root entity, solr    * document is deleted. If this is a sub-entity, the Solr document is    * considered as 'changed' and will be recreated    *    * @return the pk vs value of all changed rows    */
 DECL|method|nextDeletedRowKey
 specifier|public
 specifier|abstract
@@ -125,7 +125,7 @@ argument_list|>
 name|r
 parameter_list|)
 block|{   }
-comment|/**    * Invoked when the Entity processor is detroyed. towards the end of import.    *    * @since solr 1.4    */
+comment|/**    * Invoked when the Entity processor is destroyed towards the end of import.    *    * @since solr 1.4    */
 DECL|method|close
 specifier|public
 name|void
