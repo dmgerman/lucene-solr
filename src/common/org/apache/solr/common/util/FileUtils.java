@@ -81,8 +81,6 @@ parameter_list|,
 name|String
 name|path
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|File
 name|r
