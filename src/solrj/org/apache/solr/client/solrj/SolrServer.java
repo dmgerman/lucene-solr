@@ -789,7 +789,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * SolrServer implementations need to implement a how a request is actually processed    */
+comment|/**    * SolrServer implementations need to implement how a request is actually processed    */
 DECL|method|request
 specifier|public
 specifier|abstract
