@@ -70,6 +70,20 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
+import|;
+end_import
+
 begin_comment
 comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link TermRangeQuery}<li> {@link NumericRangeQuery}<li> {@link org.apache.lucene.search.spans.SpanQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser QueryParser}</ul> */
 end_comment
@@ -497,6 +511,9 @@ name|void
 name|extractTerms
 parameter_list|(
 name|Set
+argument_list|<
+name|Term
+argument_list|>
 name|terms
 parameter_list|)
 block|{

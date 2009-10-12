@@ -40,6 +40,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|Term
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|TermDocs
 import|;
 end_import
@@ -558,6 +572,9 @@ name|void
 name|extractTerms
 parameter_list|(
 name|Set
+argument_list|<
+name|Term
+argument_list|>
 name|terms
 parameter_list|)
 block|{   }

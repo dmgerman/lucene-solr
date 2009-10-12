@@ -757,6 +757,9 @@ name|void
 name|extractTerms
 parameter_list|(
 name|Set
+argument_list|<
+name|Term
+argument_list|>
 name|terms
 parameter_list|)
 block|{

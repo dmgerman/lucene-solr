@@ -1259,13 +1259,16 @@ name|searcher
 argument_list|)
 return|;
 block|}
-comment|/**    * @see org.apache.lucene.search.Query#extractTerms(java.util.Set)    */
+comment|/**    * @see org.apache.lucene.search.Query#extractTerms(Set)    */
 DECL|method|extractTerms
 specifier|public
 name|void
 name|extractTerms
 parameter_list|(
 name|Set
+argument_list|<
+name|Term
+argument_list|>
 name|queryTerms
 parameter_list|)
 block|{

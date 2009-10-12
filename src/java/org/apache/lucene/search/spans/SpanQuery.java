@@ -40,6 +40,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -126,14 +136,6 @@ specifier|public
 specifier|abstract
 name|String
 name|getField
-parameter_list|()
-function_decl|;
-comment|/** Returns a collection of all terms matched by this query.    * @deprecated use extractTerms instead    * @see Query#extractTerms(Set)    */
-DECL|method|getTerms
-specifier|public
-specifier|abstract
-name|Collection
-name|getTerms
 parameter_list|()
 function_decl|;
 DECL|method|createWeight

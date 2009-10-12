@@ -256,21 +256,6 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
-comment|/** @deprecated delete in 3.0. */
-DECL|method|getTerms
-specifier|public
-name|Collection
-name|getTerms
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-name|UNSUPPORTED_MSG
-argument_list|)
-throw|;
-block|}
 DECL|method|toString
 specifier|public
 name|String
