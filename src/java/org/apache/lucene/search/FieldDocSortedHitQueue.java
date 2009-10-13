@@ -64,8 +64,6 @@ argument_list|<
 name|FieldDoc
 argument_list|>
 block|{
-comment|// this cannot contain AUTO fields - any AUTO fields should
-comment|// have been resolved by the time this class is used.
 DECL|field|fields
 specifier|volatile
 name|SortField
@@ -124,15 +122,6 @@ index|[]
 name|fields
 parameter_list|)
 block|{
-if|if
-condition|(
-name|this
-operator|.
-name|fields
-operator|==
-literal|null
-condition|)
-block|{
 name|this
 operator|.
 name|fields
@@ -148,7 +137,6 @@ argument_list|(
 name|fields
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/** Returns the fields being used to sort. */
 DECL|method|getFields
@@ -906,24 +894,6 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
-case|case
-name|SortField
-operator|.
-name|AUTO
-case|:
-block|{
-comment|// we cannot handle this - even if we determine the type of object (Float or
-comment|// Integer), we don't necessarily know how to compare them (both SCORE and
-comment|// FLOAT contain floats, but are sorted opposite of each other). Before
-comment|// we get here, each AUTO should have been replaced with its actual value.
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"FieldDocSortedHitQueue cannot use an AUTO SortField"
-argument_list|)
-throw|;
 block|}
 default|default:
 block|{

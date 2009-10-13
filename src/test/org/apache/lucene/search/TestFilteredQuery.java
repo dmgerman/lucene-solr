@@ -693,7 +693,15 @@ argument_list|,
 operator|new
 name|Sort
 argument_list|(
+operator|new
+name|SortField
+argument_list|(
 literal|"sorter"
+argument_list|,
+name|SortField
+operator|.
+name|STRING
+argument_list|)
 argument_list|)
 argument_list|)
 operator|.

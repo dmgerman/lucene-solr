@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * Uses<code>FieldCache.DEFAULT</code> for maintaining  * internal term lookup tables.  *   * This class will not resolve SortField.AUTO types, and expects the type  * of all SortFields used for construction to already have been resolved.   * {@link SortField#detectFieldType(IndexReader, String)} is a utility method which  * may be used for field type detection.  *  *<b>NOTE:</b> This API is experimental and might change in  * incompatible ways in the next release.  *  * @since 2.9  * @version $Id:  * @see Searcher#search(Query,Filter,int,Sort)  * @see FieldCache  */
+comment|/**  * Expert: A hit queue for sorting by hits by terms in more than one field.  * Uses<code>FieldCache.DEFAULT</code> for maintaining  * internal term lookup tables.  *   *<b>NOTE:</b> This API is experimental and might change in  * incompatible ways in the next release.  *  * @since 2.9  * @version $Id:  * @see Searcher#search(Query,Filter,int,Sort)  * @see FieldCache  */
 end_comment
 
 begin_class
@@ -190,17 +190,6 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|// AUTO is resolved before we are called
-assert|assert
-name|field
-operator|.
-name|getType
-argument_list|()
-operator|!=
-name|SortField
-operator|.
-name|AUTO
-assert|;
 name|comparator
 operator|=
 name|field
@@ -393,17 +382,6 @@ index|[
 name|i
 index|]
 decl_stmt|;
-comment|// AUTO is resolved before we are called
-assert|assert
-name|field
-operator|.
-name|getType
-argument_list|()
-operator|!=
-name|SortField
-operator|.
-name|AUTO
-assert|;
 name|reverseMul
 index|[
 name|i

@@ -382,8 +382,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// Create a Sort object.  reverse is set to true.
-comment|// problem occurs only with SortField.AUTO:
 name|Sort
 name|sort
 init|=
@@ -397,7 +395,7 @@ name|DATE_TIME_FIELD
 argument_list|,
 name|SortField
 operator|.
-name|AUTO
+name|STRING
 argument_list|,
 literal|true
 argument_list|)

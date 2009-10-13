@@ -1166,9 +1166,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// if we are sorting by fields, we need to tell the field sorted hit queue
-comment|// the actual type of fields, in case the original list contained AUTO.
-comment|// if the searchable returns null for fields, we'll have problems.
 if|if
 condition|(
 name|sort
