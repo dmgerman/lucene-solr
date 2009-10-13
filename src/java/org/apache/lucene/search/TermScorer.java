@@ -233,28 +233,6 @@ operator|*
 name|weightValue
 expr_stmt|;
 block|}
-comment|/** @deprecated use {@link #score(Collector)} instead. */
-DECL|method|score
-specifier|public
-name|void
-name|score
-parameter_list|(
-name|HitCollector
-name|hc
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|score
-argument_list|(
-operator|new
-name|HitCollectorWrapper
-argument_list|(
-name|hc
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|score
 specifier|public
 name|void
@@ -278,36 +256,6 @@ name|nextDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-comment|/** @deprecated use {@link #score(Collector, int, int)} instead. */
-DECL|method|score
-specifier|protected
-name|boolean
-name|score
-parameter_list|(
-name|HitCollector
-name|c
-parameter_list|,
-name|int
-name|end
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|score
-argument_list|(
-operator|new
-name|HitCollectorWrapper
-argument_list|(
-name|c
-argument_list|)
-argument_list|,
-name|end
-argument_list|,
-name|doc
-argument_list|)
-return|;
 block|}
 comment|// firstDocID is ignored since nextDoc() sets 'doc'
 DECL|method|score
@@ -664,7 +612,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()} method    * and the {@link #score(HitCollector)} method should not be used.    * @param doc The document number for the explanation.    */
+comment|/** Returns an explanation of the score for a document.    * @param doc The document number for the explanation.    */
 DECL|method|explain
 specifier|public
 name|Explanation

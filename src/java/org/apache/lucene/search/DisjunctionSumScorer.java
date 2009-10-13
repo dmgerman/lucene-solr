@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#skipTo(int)} and uses skipTo() on the given Scorers.   * TODO: Implement score(HitCollector, int).  */
+comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#skipTo(int)} and uses skipTo() on the given Scorers.   */
 end_comment
 
 begin_class
@@ -281,28 +281,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Scores and collects all matching documents.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    *<br>When this method is used the {@link #explain(int)} method should not be used.    * @deprecated use {@link #score(Collector)} instead.    */
-DECL|method|score
-specifier|public
-name|void
-name|score
-parameter_list|(
-name|HitCollector
-name|hc
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|score
-argument_list|(
-operator|new
-name|HitCollectorWrapper
-argument_list|(
-name|hc
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed through.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
 DECL|method|score
 specifier|public
@@ -338,37 +316,6 @@ name|currentDoc
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param hc The collector to which all matching documents are passed through    * {@link HitCollector#collect(int, float)}.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    * @deprecated use {@link #score(Collector, int, int)} instead.    */
-DECL|method|score
-specifier|protected
-name|boolean
-name|score
-parameter_list|(
-name|HitCollector
-name|hc
-parameter_list|,
-name|int
-name|max
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|score
-argument_list|(
-operator|new
-name|HitCollectorWrapper
-argument_list|(
-name|hc
-argument_list|)
-argument_list|,
-name|max
-argument_list|,
-name|docID
-argument_list|()
-argument_list|)
-return|;
 block|}
 comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param collector The collector to which all matching documents are passed through.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
 DECL|method|score

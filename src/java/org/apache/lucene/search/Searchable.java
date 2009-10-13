@@ -92,23 +92,6 @@ specifier|public
 interface|interface
 name|Searchable
 block|{
-comment|/** Lower-level search API.    *    *<p>{@link HitCollector#collect(int,float)} is called for every non-zero    * scoring document.    *<br>HitCollector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param weight to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, Collector)} instead.    */
-DECL|method|search
-name|void
-name|search
-parameter_list|(
-name|Weight
-name|weight
-parameter_list|,
-name|Filter
-name|filter
-parameter_list|,
-name|HitCollector
-name|results
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link Searcher#search(Query)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     * @param weight    *          to match documents    * @param filter    *          if non-null, used to permit documents to be collected.    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|void
@@ -166,7 +149,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    * @deprecated use {@link #search(Weight, Filter, int)} instead.    */
+comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Applications should usually call {@link Searcher#search(Query)} or    * {@link Searcher#search(Query,Filter)} instead.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 name|TopDocs
 name|search
