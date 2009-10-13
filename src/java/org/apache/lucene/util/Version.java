@@ -57,7 +57,7 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/** Match settings and bugs in Lucene's 2.4 release.    * @deprecated This will be removed in 3.0 */
+comment|/** Match settings and bugs in Lucene's 2.4 release. */
 DECL|field|LUCENE_24
 specifier|public
 specifier|static
@@ -73,7 +73,7 @@ argument_list|,
 literal|2400
 argument_list|)
 decl_stmt|;
-comment|/** Match settings and bugs in Lucene's 2.9 release.    * @deprecated This will be removed in 3.0 */
+comment|/** Match settings and bugs in Lucene's 2.9 release. */
 DECL|field|LUCENE_29
 specifier|public
 specifier|static
