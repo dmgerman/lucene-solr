@@ -168,7 +168,7 @@ expr_stmt|;
 block|}
 return|return
 name|doc
-operator|==
+operator|!=
 name|NO_MORE_DOCS
 return|;
 block|}
