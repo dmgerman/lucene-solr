@@ -626,6 +626,10 @@ argument_list|,
 name|delegate
 argument_list|,
 name|entityFields
+argument_list|,
+name|parentEntity
+operator|==
+literal|null
 argument_list|)
 return|;
 block|}
@@ -746,6 +750,12 @@ argument_list|>
 argument_list|>
 name|entityFields
 decl_stmt|;
+DECL|field|root
+specifier|private
+specifier|final
+name|boolean
+name|root
+decl_stmt|;
 DECL|field|script
 DECL|field|scriptlang
 name|String
@@ -778,6 +788,9 @@ name|String
 argument_list|>
 argument_list|>
 name|entityFields
+parameter_list|,
+name|boolean
+name|root
 parameter_list|)
 block|{
 name|this
@@ -797,6 +810,12 @@ operator|.
 name|entityFields
 operator|=
 name|entityFields
+expr_stmt|;
+name|this
+operator|.
+name|root
+operator|=
+name|root
 expr_stmt|;
 block|}
 DECL|method|getEntityAttribute
@@ -925,7 +944,7 @@ name|isRootEntity
 parameter_list|()
 block|{
 return|return
-literal|false
+name|root
 return|;
 block|}
 DECL|method|currentProcess
