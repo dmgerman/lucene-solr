@@ -103,12 +103,6 @@ name|Term
 name|term
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
-comment|//will be removed in 3.0
 name|this
 operator|.
 name|term
@@ -234,6 +228,8 @@ return|return
 name|term
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -315,6 +311,8 @@ return|;
 block|}
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -393,7 +391,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -439,7 +438,8 @@ return|return
 name|result
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
