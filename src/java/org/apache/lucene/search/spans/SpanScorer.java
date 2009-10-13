@@ -117,14 +117,6 @@ specifier|protected
 name|float
 name|value
 decl_stmt|;
-comment|/** @deprecated not needed anymore */
-DECL|field|firstTime
-specifier|protected
-name|boolean
-name|firstTime
-init|=
-literal|true
-decl_stmt|;
 DECL|field|more
 specifier|protected
 name|boolean
