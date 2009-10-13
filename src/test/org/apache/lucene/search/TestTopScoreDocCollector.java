@@ -236,22 +236,6 @@ block|,
 literal|"InOrderTopScoreDocCollector"
 block|}
 decl_stmt|;
-comment|// Save the original value to set later.
-name|boolean
-name|origVal
-init|=
-name|BooleanQuery
-operator|.
-name|getAllowDocsOutOfOrder
-argument_list|()
-decl_stmt|;
-name|BooleanQuery
-operator|.
-name|setAllowDocsOutOfOrder
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|BooleanQuery
 name|bq
 init|=
@@ -283,8 +267,6 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|IndexSearcher
 name|searcher
 init|=
@@ -420,20 +402,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-finally|finally
-block|{
-comment|// Whatever happens, reset BooleanQuery.allowDocsOutOfOrder to the
-comment|// original value. Don't set it to false in case the implementation in BQ
-comment|// will change some day.
-name|BooleanQuery
-operator|.
-name|setAllowDocsOutOfOrder
-argument_list|(
-name|origVal
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}

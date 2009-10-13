@@ -1316,12 +1316,6 @@ expr_stmt|;
 block|}
 block|}
 comment|// Check if we can return a BooleanScorer
-name|scoreDocsInOrder
-operator||=
-operator|!
-name|allowDocsOutOfOrder
-expr_stmt|;
-comment|// until it is removed, factor in the static setting.
 if|if
 condition|(
 operator|!
@@ -1498,73 +1492,6 @@ return|return
 literal|true
 return|;
 block|}
-block|}
-comment|/**    * Whether hit docs may be collected out of docid order.    *     * @deprecated this will not be needed anymore, as    *             {@link Weight#scoresDocsOutOfOrder()} is used.    */
-DECL|field|allowDocsOutOfOrder
-specifier|private
-specifier|static
-name|boolean
-name|allowDocsOutOfOrder
-init|=
-literal|true
-decl_stmt|;
-comment|/**    * Expert: Indicates whether hit docs may be collected out of docid order.    *     *<p>    * Background: although the contract of the Scorer class requires that    * documents be iterated in order of doc id, this was not true in early    * versions of Lucene. Many pieces of functionality in the current Lucene code    * base have undefined behavior if this contract is not upheld, but in some    * specific simple cases may be faster. (For example: disjunction queries with    * less than 32 prohibited clauses; This setting has no effect for other    * queries.)    *</p>    *     *<p>    * Specifics: By setting this option to true, docid N might be scored for a    * single segment before docid N-1. Across multiple segments, docs may be    * scored out of order regardless of this setting - it only applies to scoring    * a single segment.    *     * Being static, this setting is system wide.    *</p>    *     * @deprecated this is not needed anymore, as    *             {@link Weight#scoresDocsOutOfOrder()} is used.    */
-DECL|method|setAllowDocsOutOfOrder
-specifier|public
-specifier|static
-name|void
-name|setAllowDocsOutOfOrder
-parameter_list|(
-name|boolean
-name|allow
-parameter_list|)
-block|{
-name|allowDocsOutOfOrder
-operator|=
-name|allow
-expr_stmt|;
-block|}
-comment|/**    * Whether hit docs may be collected out of docid order.    *     * @see #setAllowDocsOutOfOrder(boolean)    * @deprecated this is not needed anymore, as    *             {@link Weight#scoresDocsOutOfOrder()} is used.    */
-DECL|method|getAllowDocsOutOfOrder
-specifier|public
-specifier|static
-name|boolean
-name|getAllowDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-name|allowDocsOutOfOrder
-return|;
-block|}
-comment|/**    * @deprecated Use {@link #setAllowDocsOutOfOrder(boolean)} instead.     */
-DECL|method|setUseScorer14
-specifier|public
-specifier|static
-name|void
-name|setUseScorer14
-parameter_list|(
-name|boolean
-name|use14
-parameter_list|)
-block|{
-name|setAllowDocsOutOfOrder
-argument_list|(
-name|use14
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * @deprecated Use {@link #getAllowDocsOutOfOrder()} instead.    */
-DECL|method|getUseScorer14
-specifier|public
-specifier|static
-name|boolean
-name|getUseScorer14
-parameter_list|()
-block|{
-return|return
-name|getAllowDocsOutOfOrder
-argument_list|()
-return|;
 block|}
 DECL|method|createWeight
 specifier|public
