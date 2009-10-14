@@ -70,8 +70,6 @@ specifier|public
 specifier|abstract
 class|class
 name|IndexCommit
-implements|implements
-name|IndexCommitPoint
 block|{
 comment|/**    * Get the segments file (<code>segments_N</code>) associated     * with this commit point.    */
 DECL|method|getSegmentsFileName

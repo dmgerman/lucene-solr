@@ -1833,18 +1833,10 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** Implements commit.    *  @deprecated Please implement {@link #doCommit(Map)    *  instead}. */
+comment|/** Implements commit.  NOTE: subclasses should override    *  this.  In 3.0 this will become an abstract method. */
 DECL|method|doCommit
 specifier|protected
 specifier|abstract
-name|void
-name|doCommit
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Implements commit.  NOTE: subclasses should override    *  this.  In 3.0 this will become an abstract method. */
-DECL|method|doCommit
 name|void
 name|doCommit
 parameter_list|(
@@ -1853,13 +1845,7 @@ name|commitUserData
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-comment|// Default impl discards commitUserData; all Lucene
-comment|// subclasses override this (do not discard it).
-name|doCommit
-argument_list|()
-expr_stmt|;
-block|}
+function_decl|;
 comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
 specifier|public
@@ -2362,7 +2348,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Expert        *  @deprecated */
+comment|/** Expert */
 DECL|method|getFieldCacheKey
 specifier|public
 name|Object
@@ -2389,34 +2375,6 @@ argument_list|(
 literal|"this reader does not implement getUniqueTermCount()"
 argument_list|)
 throw|;
-block|}
-comment|/** Expert: Return the state of the flag that disables fakes norms in favor of representing the absence of field norms with null.    * @return true if fake norms are disabled    * @deprecated This currently defaults to false (to remain    * back-compatible), but in 3.0 it will be hardwired to    * true, meaning the norms() methods will return null for    * fields that had disabled norms.    */
-DECL|method|getDisableFakeNorms
-specifier|public
-name|boolean
-name|getDisableFakeNorms
-parameter_list|()
-block|{
-return|return
-name|disableFakeNorms
-return|;
-block|}
-comment|/** Expert: Set the state of the flag that disables fakes norms in favor of representing the absence of field norms with null.    * @param disableFakeNorms true to disable fake norms, false to preserve the legacy behavior    * @deprecated This currently defaults to false (to remain    * back-compatible), but in 3.0 it will be hardwired to    * true, meaning the norms() methods will return null for    * fields that had disabled norms.    */
-DECL|method|setDisableFakeNorms
-specifier|public
-name|void
-name|setDisableFakeNorms
-parameter_list|(
-name|boolean
-name|disableFakeNorms
-parameter_list|)
-block|{
-name|this
-operator|.
-name|disableFakeNorms
-operator|=
-name|disableFakeNorms
-expr_stmt|;
 block|}
 block|}
 end_class

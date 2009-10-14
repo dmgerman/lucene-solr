@@ -473,7 +473,13 @@ block|{
 name|writer
 operator|.
 name|flush
-argument_list|()
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -754,7 +760,7 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|flush
+name|commit
 argument_list|()
 expr_stmt|;
 block|}
@@ -1183,7 +1189,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|flush
+name|commit
 argument_list|()
 expr_stmt|;
 name|writer

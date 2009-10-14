@@ -5462,7 +5462,10 @@ DECL|method|doCommit
 specifier|protected
 name|void
 name|doCommit
-parameter_list|()
+parameter_list|(
+name|Map
+name|commitUserData
+parameter_list|)
 block|{
 if|if
 condition|(

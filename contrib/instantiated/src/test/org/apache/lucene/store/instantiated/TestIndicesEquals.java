@@ -1908,11 +1908,9 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|aprioriReader
-operator|.
-name|getDisableFakeNorms
-argument_list|()
+name|aprioriNorms
+operator|!=
+literal|null
 condition|)
 block|{
 name|assertEquals

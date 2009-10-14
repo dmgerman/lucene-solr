@@ -203,11 +203,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Take a snapshot of the most recent commit to the    *  index.  You must call release() to free this snapshot.    *  Note that while the snapshot is held, the files it    *  references will not be deleted, which will consume    *  additional disk space in your index. If you take a    *  snapshot at a particularly bad time (say just before    *  you call optimize()) then in the worst case this could    *  consume an extra 1X of your total index size, until    *  you release the snapshot. */
-comment|// TODO 3.0: change this to return IndexCommit instead
 DECL|method|snapshot
 specifier|public
 specifier|synchronized
-name|IndexCommitPoint
+name|IndexCommit
 name|snapshot
 parameter_list|()
 block|{

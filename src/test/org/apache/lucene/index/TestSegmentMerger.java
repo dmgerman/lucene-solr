@@ -240,7 +240,13 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
+literal|true
+argument_list|,
 name|info1
+argument_list|,
+name|IndexReader
+operator|.
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 expr_stmt|;
 name|reader2
@@ -249,7 +255,13 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
+literal|true
+argument_list|,
 name|info2
+argument_list|,
+name|IndexReader
+operator|.
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 expr_stmt|;
 block|}
@@ -356,6 +368,8 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
+literal|true
+argument_list|,
 operator|new
 name|SegmentInfo
 argument_list|(
@@ -369,6 +383,10 @@ literal|false
 argument_list|,
 literal|true
 argument_list|)
+argument_list|,
+name|IndexReader
+operator|.
+name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 decl_stmt|;
 name|assertTrue

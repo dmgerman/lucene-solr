@@ -1585,6 +1585,12 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
+literal|false
+argument_list|,
+name|info
+operator|.
+name|dir
+argument_list|,
 name|info
 argument_list|,
 name|readBufferSize
@@ -9062,41 +9068,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{   }
-comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.     *<p>Note: while this will force buffered docs to be    * pushed into the index, it will not make these docs    * visible to a reader.  Use {@link #commit()} instead    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @deprecated please call {@link #commit()}) instead    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|flush
-specifier|public
-specifier|final
-name|void
-name|flush
-parameter_list|()
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-if|if
-condition|(
-name|hitOOM
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot flush"
-argument_list|)
-throw|;
-block|}
-name|flush
-argument_list|(
-literal|true
-argument_list|,
-literal|false
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Expert: prepare for commit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit(Map) */
 DECL|method|prepareCommit
 specifier|public
