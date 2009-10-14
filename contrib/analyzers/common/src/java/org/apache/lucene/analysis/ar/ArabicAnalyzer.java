@@ -466,6 +466,7 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+comment|// the order here is important: the stopword list is not normalized!
 name|result
 operator|=
 operator|new
@@ -570,6 +571,7 @@ operator|.
 name|source
 argument_list|)
 expr_stmt|;
+comment|// the order here is important: the stopword list is not normalized!
 name|streams
 operator|.
 name|result
