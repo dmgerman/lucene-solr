@@ -2714,6 +2714,8 @@ argument_list|(
 name|seed
 argument_list|)
 argument_list|,
+literal|true
+argument_list|,
 name|lev
 argument_list|,
 name|field
@@ -2736,6 +2738,8 @@ name|Random
 argument_list|(
 name|seed
 argument_list|)
+argument_list|,
+literal|true
 argument_list|,
 name|lev
 argument_list|,
