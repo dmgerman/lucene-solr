@@ -126,17 +126,6 @@ name|docWriter
 operator|=
 name|docWriter
 expr_stmt|;
-name|docState
-operator|.
-name|allowMinus1Position
-operator|=
-name|docWriter
-operator|.
-name|writer
-operator|.
-name|getAllowMinus1Position
-argument_list|()
-expr_stmt|;
 name|consumer
 operator|=
 name|docWriter

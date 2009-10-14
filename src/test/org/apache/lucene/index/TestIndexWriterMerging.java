@@ -120,7 +120,7 @@ name|TestIndexWriterMerging
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/**    * Tests that index merging (specifically addIndexes()) doesn't    * change the index order of documents.    */
+comment|/**    * Tests that index merging (specifically addIndexesNoOptimize()) doesn't    * change the index order of documents.    */
 DECL|method|testLucene
 specifier|public
 name|void
@@ -244,7 +244,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|addIndexes
+name|addIndexesNoOptimize
 argument_list|(
 operator|new
 name|Directory
@@ -255,6 +255,11 @@ block|,
 name|indexB
 block|}
 argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|optimize
+argument_list|()
 expr_stmt|;
 name|writer
 operator|.

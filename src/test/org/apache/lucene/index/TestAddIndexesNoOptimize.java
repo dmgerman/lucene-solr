@@ -205,7 +205,7 @@ literal|100
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -245,7 +245,7 @@ literal|40
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -277,7 +277,7 @@ literal|50
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -302,7 +302,7 @@ literal|100
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -326,7 +326,7 @@ literal|190
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -382,7 +382,7 @@ literal|40
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -407,7 +407,7 @@ literal|190
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -429,7 +429,7 @@ literal|230
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -578,7 +578,7 @@ literal|230
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -600,7 +600,7 @@ literal|231
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1468,7 +1468,7 @@ literal|100
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1594,7 +1594,7 @@ literal|100
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1696,7 +1696,7 @@ literal|1040
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1817,7 +1817,7 @@ literal|1032
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1937,7 +1937,7 @@ literal|1060
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2097,7 +2097,7 @@ literal|1020
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2208,7 +2208,7 @@ literal|30
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2369,7 +2369,7 @@ literal|1025
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2758,7 +2758,7 @@ literal|1000
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2874,7 +2874,7 @@ literal|30
 argument_list|,
 name|writer
 operator|.
-name|docCount
+name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;

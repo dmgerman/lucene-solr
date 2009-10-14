@@ -574,7 +574,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|addIndexes
+name|addIndexesNoOptimize
 argument_list|(
 operator|new
 name|Directory
@@ -585,6 +585,11 @@ block|,
 name|dir2
 block|}
 argument_list|)
+expr_stmt|;
+name|iw
+operator|.
+name|optimize
+argument_list|()
 expr_stmt|;
 name|iw
 operator|.

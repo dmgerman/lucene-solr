@@ -988,21 +988,6 @@ name|n
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @deprecated */
-DECL|method|doCommit
-specifier|protected
-name|void
-name|doCommit
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|doCommit
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|doCommit
 specifier|protected
 name|void

@@ -540,21 +540,6 @@ specifier|private
 name|Directory
 name|dir
 decl_stmt|;
-comment|/** @deprecated      *  Use {@link #MergePolicy.MergeException(String,Directory)} instead */
-DECL|method|MergeException
-specifier|public
-name|MergeException
-parameter_list|(
-name|String
-name|message
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|MergeException
 specifier|public
 name|MergeException
@@ -576,21 +561,6 @@ operator|.
 name|dir
 operator|=
 name|dir
-expr_stmt|;
-block|}
-comment|/** @deprecated      *  Use {@link #MergePolicy.MergeException(Throwable,Directory)} instead */
-DECL|method|MergeException
-specifier|public
-name|MergeException
-parameter_list|(
-name|Throwable
-name|exc
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|exc
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|MergeException

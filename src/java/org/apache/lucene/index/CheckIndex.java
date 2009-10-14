@@ -190,15 +190,6 @@ specifier|public
 class|class
 name|CheckIndex
 block|{
-comment|/** Default PrintStream for all CheckIndex instances.    *  @deprecated Use {@link #setInfoStream} per instance,    *  instead. */
-DECL|field|out
-specifier|public
-specifier|static
-name|PrintStream
-name|out
-init|=
-literal|null
-decl_stmt|;
 DECL|field|infoStream
 specifier|private
 name|PrintStream
@@ -595,7 +586,7 @@ name|dir
 expr_stmt|;
 name|infoStream
 operator|=
-name|out
+literal|null
 expr_stmt|;
 block|}
 comment|/** Set infoStream where messages should go.  If null, no    *  messages are printed */
