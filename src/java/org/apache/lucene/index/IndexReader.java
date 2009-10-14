@@ -367,13 +367,6 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 init|=
 literal|1
 decl_stmt|;
-DECL|field|disableFakeNorms
-specifier|private
-name|boolean
-name|disableFakeNorms
-init|=
-literal|false
-decl_stmt|;
 comment|/** Expert: returns the current refCount for this reader */
 DECL|method|getRefCount
 specifier|public
