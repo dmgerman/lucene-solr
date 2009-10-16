@@ -378,11 +378,13 @@ operator|!
 name|termLongEnough
 condition|)
 block|{
-comment|// can't match
+comment|// can only match if it's exact
 return|return
 operator|new
-name|BooleanQuery
-argument_list|()
+name|TermQuery
+argument_list|(
+name|term
+argument_list|)
 return|;
 block|}
 name|FilteredTermEnum
