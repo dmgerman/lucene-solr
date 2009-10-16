@@ -944,6 +944,7 @@ block|}
 block|}
 block|}
 DECL|method|loadDataConfig
+specifier|private
 name|void
 name|loadDataConfig
 parameter_list|(

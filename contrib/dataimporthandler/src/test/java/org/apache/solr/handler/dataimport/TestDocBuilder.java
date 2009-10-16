@@ -139,7 +139,7 @@ argument_list|()
 decl_stmt|;
 name|di
 operator|.
-name|loadDataConfig
+name|loadAndInit
 argument_list|(
 name|dc_singleEntity
 argument_list|)
@@ -355,7 +355,7 @@ argument_list|()
 decl_stmt|;
 name|di
 operator|.
-name|loadDataConfig
+name|loadAndInit
 argument_list|(
 name|dc_deltaConfig
 argument_list|)
@@ -586,7 +586,7 @@ argument_list|()
 decl_stmt|;
 name|di
 operator|.
-name|loadDataConfig
+name|loadAndInit
 argument_list|(
 name|dc_singleEntity
 argument_list|)
@@ -916,7 +916,7 @@ argument_list|()
 decl_stmt|;
 name|di
 operator|.
-name|loadDataConfig
+name|loadAndInit
 argument_list|(
 name|dc_singleEntity
 argument_list|)
@@ -1247,7 +1247,7 @@ argument_list|()
 decl_stmt|;
 name|di
 operator|.
-name|loadDataConfig
+name|loadAndInit
 argument_list|(
 name|dc_singleEntity
 argument_list|)
