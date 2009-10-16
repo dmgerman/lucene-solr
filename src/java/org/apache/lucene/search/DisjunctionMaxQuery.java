@@ -595,17 +595,12 @@ operator|==
 literal|1
 condition|)
 return|return
-operator|(
-operator|(
-name|Weight
-operator|)
 name|weights
 operator|.
 name|get
 argument_list|(
 literal|0
 argument_list|)
-operator|)
 operator|.
 name|explain
 argument_list|(
@@ -789,9 +784,6 @@ block|{
 name|Query
 name|singleton
 init|=
-operator|(
-name|Query
-operator|)
 name|disjuncts
 operator|.
 name|get
@@ -874,9 +866,6 @@ block|{
 name|Query
 name|clause
 init|=
-operator|(
-name|Query
-operator|)
 name|disjuncts
 operator|.
 name|get
@@ -1066,9 +1055,6 @@ block|{
 name|Query
 name|subquery
 init|=
-operator|(
-name|Query
-operator|)
 name|disjuncts
 operator|.
 name|get
