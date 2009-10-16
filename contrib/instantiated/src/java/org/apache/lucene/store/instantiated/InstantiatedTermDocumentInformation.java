@@ -116,6 +116,9 @@ name|instantiatedTermDocumentInformation1
 operator|.
 name|getTerm
 argument_list|()
+operator|.
+name|getTerm
+argument_list|()
 argument_list|)
 return|;
 block|}
