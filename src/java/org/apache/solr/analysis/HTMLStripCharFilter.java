@@ -160,6 +160,20 @@ name|numRead
 init|=
 literal|0
 decl_stmt|;
+DECL|field|numEaten
+specifier|private
+name|int
+name|numEaten
+init|=
+literal|0
+decl_stmt|;
+DECL|field|numReturned
+specifier|private
+name|int
+name|numReturned
+init|=
+literal|0
+decl_stmt|;
 DECL|field|lastMark
 specifier|private
 name|int
@@ -2158,7 +2172,7 @@ decl_stmt|;
 name|int
 name|ch
 init|=
-name|read
+name|next
 argument_list|()
 decl_stmt|;
 if|if
@@ -2190,7 +2204,7 @@ name|MISMATCH
 return|;
 name|ch
 operator|=
-name|read
+name|next
 argument_list|()
 expr_stmt|;
 if|if
@@ -2219,7 +2233,7 @@ condition|)
 block|{
 name|ch
 operator|=
-name|read
+name|next
 argument_list|()
 expr_stmt|;
 if|if
@@ -2315,7 +2329,7 @@ block|{
 name|int
 name|ch
 init|=
-name|read
+name|next
 argument_list|()
 decl_stmt|;
 if|if
@@ -2331,7 +2345,7 @@ name|MISMATCH
 return|;
 name|ch
 operator|=
-name|read
+name|next
 argument_list|()
 expr_stmt|;
 while|while
@@ -2354,7 +2368,7 @@ condition|)
 block|{
 name|ch
 operator|=
-name|read
+name|next
 argument_list|()
 expr_stmt|;
 block|}
@@ -2740,13 +2754,25 @@ operator|>
 literal|0
 condition|)
 block|{
+name|numEaten
+operator|+=
 name|numWhitespace
-operator|--
 expr_stmt|;
-return|return
-literal|' '
-return|;
+name|addOffCorrectMap
+argument_list|(
+name|numReturned
+argument_list|,
+name|numEaten
+argument_list|)
+expr_stmt|;
+name|numWhitespace
+operator|=
+literal|0
+expr_stmt|;
 block|}
+name|numReturned
+operator|++
+expr_stmt|;
 comment|//do not limit this one by the READAHEAD
 while|while
 condition|(

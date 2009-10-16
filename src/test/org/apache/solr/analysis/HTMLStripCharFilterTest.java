@@ -176,11 +176,11 @@ decl_stmt|;
 name|String
 name|gold
 init|=
-literal|"                 this is some text       here is a                link     and "
+literal|" this is some text  here is a  link  and "
 operator|+
-literal|"another                                     link    . "
+literal|"another  link . "
 operator|+
-literal|"This is an entity:&     plus a<   .  Here is an&.                      "
+literal|"This is an entity:& plus a<.  Here is an&.  "
 decl_stmt|;
 name|HTMLStripCharFilter
 name|reader
@@ -485,7 +485,7 @@ decl_stmt|;
 name|String
 name|gold
 init|=
-literal|"\u0393      "
+literal|"\u0393"
 decl_stmt|;
 name|Set
 argument_list|<
@@ -631,12 +631,12 @@ block|{
 name|String
 name|test
 init|=
-literal|"&nbsp;&lt;foo&gt;&#61;&Gamma; bar&#x393;"
+literal|"&nbsp;&lt;foo&gt;&Uuml;bermensch&#61;&Gamma; bar&#x393;"
 decl_stmt|;
 name|String
 name|gold
 init|=
-literal|"<   foo>    =     \u0393       bar \u0393     "
+literal|"<foo> \u00DCbermensch = \u0393 bar \u0393"
 decl_stmt|;
 name|Set
 argument_list|<
@@ -787,7 +787,7 @@ decl_stmt|;
 name|String
 name|gold
 init|=
-literal|"<   junk/>           !     @     and â      "
+literal|"<junk/>   ! @ and â"
 decl_stmt|;
 name|Set
 argument_list|<
@@ -1117,10 +1117,10 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testStrip
+DECL|method|testMalformedHTML
 specifier|public
 name|void
-name|testStrip
+name|testMalformedHTML
 parameter_list|()
 throws|throws
 name|Exception
@@ -1128,89 +1128,12 @@ block|{
 name|String
 name|test
 init|=
-literal|"{{aaaaaaaa|aaaaaaaaa|aaa [[aaaaaa aaaaaa]] [[aaaaaaaaa]]|aaaaaaaaa (aaaaaa)}}\n"
-operator|+
-literal|"{{aaaaaaaaa}}\n"
-operator|+
-literal|"'''aaaaaaaaa''' aa a [[aaaaaaaaa aaaaaaaaaa]] aa aaaaa aa aaaaaaaaa aaa aaaaaaaaa aaaaaaaa aa aaaaaaaaa aa aaa aaaa aa aaaaaaaaaa "
-operator|+
-literal|"[[aaaaaaaaaa]] ([[aa.]] \"[[aaaaa]]\"<ttt>aaaa aaaaaaaaaaaaa aaaaaaaaaa aaaa aaaaa: \"a aaaaaaaaaaa aaaa aa aaaaaaaa aa aaa aaaaaaaaa "
-operator|+
-literal|"aaaaa aa aaa aaaaaaaaaa aaaaaaa ''aaa aaaaaaaaaa'', aaaaaaaaa aa aaa aaaaa, aaa ''aaaaaaaaaa'', aaaaaaaaa aa aaa aaaaaaaaaaaaaa aa a aaaaaaaaa aaaaaa. aaaaaaaaaa, aaaa aaaaaaaa, "
-operator|+
-literal|"aaaa aa aaa aaa aaaa aaaaaaaaaa aa a aaaaaaa aaa aaaaa, aaa aaaa aa aaaaaaaa aa aaaaaaaaa'a ''a aaaaaa'' aaaaaaaaaa aa aaa aaaaa aa aaa aaa aaaaaaa aa aaaaaaaaaa aa aaaa aaa aaa "
-operator|+
-literal|"aaaa aa a aaaaaaaaa aaaaa aaaa aaaaaa aaa aaaaaaa aaaaaaaaa, aaa aa aaaaaaaaa, aaa aaaaa aa aaa aaaaaaaa. aaaaaaaaa aaaaaaa aaa aaaa aa aaaaaaa, aaaaaaaaaaa aaaaaaaaa aaaaaaaaa "
-operator|+
-literal|"aaa aaaa aaaaaaaa aa aaa aaaaa.\" -aaaaaaa, aaaa. aaaaaaaaa,"
-operator|+
-literal|" aaaaaaaa aaaaa aaaa, a. aa-aa</ttt>) aaa aaaaaaaaaa aaa aaaaaaaaaaa.<ttt bbbb=bbbbbbbbbbb>''aaaaaaaaa''. aaaaaaaaÂ¾aaa aaaaaaaaaa. aaaa. aaaaaaaaÂ¾aaa aaaaaaaaaa aaaaaaa aaaaaaa. "
-operator|+
-literal|"[[aa aaaaaa]] [[aaaa]]<tttb://ccc.cccccccccc.ccc/cc/ccccccc-ccccccc>. aaaaaaaaa aa \"a aaaaaaa aa aaaaaaaaa aaa aaaaaaaaa aaaaaaa aa aaa aaaaaa aaaa aaaaaaaaaa aa aaaa aaaaaaa aaa "
-operator|+
-literal|"aaaaaaaaaaa.\"</ttt><ttt dddd=dddddddddddd>''aaaaaaaaa''. aaa aaaaaaa aaaaaaaaa aaaaaaaaaaaa aa aaaaaaaaaa. aaaa. a. aa"
-operator|+
-literal|" \"aaaaaaaaa aa aaa aaaa aaaa a aaaaaaa aaaaaaa aaa aaaaa, aa aaaaaaaaaa, aa aaaa aaaaaaaa aaa aaaaaaaaa.\"</ttt> aaa aaaa \"aaaaaaaaa\" "
-operator|+
-literal|"aa [[aaaaaaaaa|aaaaaaa aaaa]] aaa [[aaaaa aaaaaaaa|aaaaa]] ''[[aaaaaaaaaa:???????|???????]]'' (\"aaaaaaa [[aaaaaa]]a\" aa \"aaaaaaa aaaaaa\")."
-operator|+
-literal|" aaaa \"aaaaaaaaa\", aa aaa aaaa aaaaaaa aaaaaaa, aa aaa aaaaaa aaaa aaa aaaaa aa [[aaaaaaaaa]] (aaa aaaa aaaa [[aaaaaaaaaaa aaaaaaaaa]]) aaa "
-operator|+
-literal|"aaaaaaaaaaa aaa aaaaaa aa aaaaaaaaa. \n"
-operator|+
-literal|"\n"
-operator|+
-literal|"aaaaa aaa a aaaaaaa aa aaaaa aaa aaaaaaaaaa aa aaaaaaaaa aaaa aaaaaaa aaaaaa aa aaaaaaaaaa.<ttt>aaaaaaaaaa, aaaa aaaaaaaaaaa. ''aaaaaaaaa: a "
-operator|+
-literal|"aaaaaaaaaa aa aaaaaaaaaaaaa aaaaaaaa'', aaaaaaa aaaaa aaaaaaaaaaaa, aaaa, a.a</ttt><tttt>{{aaaa aaaaaaa|aaaaaa=a.a. aaaaaa|aaaaa=aaa aaaaaaaaa "
-operator|+
-literal|"aaaaaaaaa aa aaaaaaaaa aaaaaaa|aaaa=aaaa|aaaaaaa=aaaaaaa aaaaaaaaa aaaaaaaaa|aaaaaa=aa|aaaaa=a|aaaaa=aaa-aaa|aaa=aa.aaaa/aaaaaa}}</ttt> aaaaaaa,"
-operator|+
-literal|" aaa aaaaaaaaa aaa aaa aaaaaaaaaaaa aaaa aaaaaaaaaaaaa aaa aaa aaa aa aaaa aaa aaaaaaaa aaaaaaaaa.<ttt>aaaaaa, aaaaaaa. aaaaaaaaa. a aaaaaaaaa aa "
-operator|+
-literal|"aaaaaaaaaaaa aaaaaaaaa aaaaaaaaaa, aaaaaaa aaaaaaa, aaaaaa a. aaa aaaaaa, aaaaaa. aaaaaaaaa aaaaaaaaaa, aaaa, a.aaa</ttt> aaaaa aaaa aaa aaaaaaaaaaa"
-operator|+
-literal|" aaaaa, \"aaaaa aa aa aaaaaa aaaaaaaa aaaaaaaa aaaa aaa aaaaaaaaaa aaaa, aaa aaaaa aaaaaaaaaa aaaaaaaaaa aa aaaa aaaaa a aaaaaaa [[aaaaaa aaaaaaaaaaa]].\"<ttt>aaaaaaaaa. "
-operator|+
-literal|"aaa aaaaaa aaaaaaaaa aa aaaaaaaaaa, aaaaaa aaaaaaaaaa aaaaa, aaaa, a. aa</ttt> aaaaaaaaa aaaaaaaa aaaaaaa aaa aaa aa aaa aaaa aaaaa aa aaaaaaaaaaaa aaa aaaaaaaaaa.<ttt>aaaaaaaa, "
-operator|+
-literal|"aaaaaa aaaaaaa \"aaaaaaaaa aaaaaaaa aaa aaa aaaaaaa aaaaa aaaaaaaa aa aaaaa, aaaa-aaaa\" [a. aaa]</ttt>\n"
-operator|+
-literal|"==aaaaaaa==\n"
-operator|+
-literal|"===aaa-aaaaaaaaaa aaaaaaa===\n"
-operator|+
-literal|"{{aaaa|aaaaaaa aa aaaaaaaaa}}\n"
-operator|+
-literal|"{{aaaaa aa aaaaaaaaaa}}\n"
-operator|+
-literal|"aaaaaaaaaa aa aaa aaaaa aaa aaaaaaaaaaaa aaaaaaaaa aaa a aaaa aaaaaaa aaaaa aa aaa aaaaaaaaa aa aaa aaaaaaaaa aaaaaaaa aa aaaaaaaaaa aaaaaaa aaaaaa. aaaa aaaaa aaaa aaaaaaaaa aaaaaa "
-operator|+
-literal|"aaa aa aaaaaaaa aa aaaaa aa aaa aa aaaaa aa aaa [[aaaaaa]] aaaa [[aaaaa|aaa aaa]],<ttt eeee=\"eeeeee\">aaaaa aaaaaaaaa, [aaaa://aaaaaaaa.aaaaaa.aaa/aaaaaaaaaaaaaaaaaa/aaaaaaaaa/aaaaaaaaaaaaaaaa.aaaa "
-operator|+
-literal|"\"aaaaaaaaa\", aaaa aaa aaaaaaaaaaaaa aaaaaaaaaa, aaaa]</ttt> aaaaaa aaaa aa a aaaaaaaaaaaaa"
-operator|+
-literal|" aaaaa.<ttt>{{aaaaaaa|[aaaa://aaa.aaaaaaaaaaaaaaaaa.aaa/aaa/aaaaaa/aaaaa--aaaaaaaaa.aaa]|aa.a&aaaa;[[aaaaaaaa|aaa]]"
-operator|+
-literal|"<!-- ggggggggggg/ggg, gggggg ggggg -->}}</aaa> [[aaaa aa aaaaaa]], aaa aaaaaaa aa [[aaaaaaaa]] aaaa aaaaaaaaaa aaaaaa aaaaa aaaaaaa aaaaaaaaa aaaaaa.<ttt ffff=\"ffffff\"/>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"aaaaaaaaa aa aaa aaaaaa aaaaa, aaaaaaa, aaa aaa aaaaa aa aaa aaaaaaa aaaaaaaaa aaaaaaa aa aaa [[aaa aa aaaaaaaaaaaaa|aaaaaaaaaaaaa]], aaaaaaaaaaaa [[aaaaaaaa]]'a aaaaaaaaa aaa aaa aaaaa "
-operator|+
-literal|"aaaaaaaaaa aa aaaaaaa.<ttt hhhh=hhhhhhh>''aaaaaaaaa'', aaaaaaaaaÂ¨ aaaaaaaÂ¨ aaaaaa aaaaaaaaaaaa aaaa (aa aaaaaaa) aaaa://aa.aaaaaaa.aaa.aaa Â© aaaa-aaaa aaaaaaaaa aaaaaaaaaaa. aaa aaaaaa aaaaaaaa\n"
-operator|+
-literal|"</ttt> aaa aaaa \"aaaaaaaaa\" aaa aaaaaaaaaa aaaa aa a aaaa aa [[aaaaa]], aaa aa aaa [[aaaaaa aaaaaaaaaa]] aaaa aaaaaa aaaa aa aaa ''aaaaaÅ½a'' aaa aaaaaaa aa aaa aaa aaaa aa a aaaaaaaa "
-operator|+
-literal|"aaaaa,<ttt>aaaaaaa, aaaa. ''aaaaaaaaa'', aaaaaa: aaaaaaaa aaaaa aaa., aaaa. aa. aa</ttt> aaaaaa aaa [[aaaaaaa (aaaaaaaa)|aaaaaaa]] aaaaaaa aa a \"aaaaaaaaaaaaa aaaaaaaaaa\" aa aa [[aaaaaaaa]]. "
-operator|+
-literal|"aa aaa aa aaaa aaaaaaaaa aaaaaaa aaaa [[aaaaaaa aaaaaa]] aaaaa aaaaaaa aaa aaaaaaaaaa, aaaaa aa aaaaaaaaaa aa aaaa aa aa aaa aaaaa aaaaaaaaaa aa aaaaaa aaaaaaaaa aaaaaaa."
-operator|+
-literal|"<ttt>[aaaa://aaaaa.aaaaaaaa.aaa/aaaaaaa/aaaaaa/ aaaaaaa aaaaaa] aaaaaaaa aaaaaaaaaaaa aa aaaaaaaaaa, aaaaa aaaaaaaaa aaa [[aa aaaaaaa]] [[aaaa]]; aaaaaaaaaaa aaaaaaaa aaa [[aaa aa]] [[aaaa]]</ttt>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"[[aaaaa aaaaaaaaaa]] aa ''[[aaa aaaaaaaaaaaa aa aaaaaa]]'' (aaaa) aaaa aaa aaaa [[zzzzzzz]] aa aaaaaaaa"
+literal|"a<a hr<ef=aa<a>></close</a>"
+decl_stmt|;
+name|String
+name|gold
+init|=
+literal|"a<a hr<ef=aa></close "
 decl_stmt|;
 name|Reader
 name|reader
@@ -1230,36 +1153,17 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Reader
-name|noStrip
-init|=
-operator|new
-name|StringReader
-argument_list|(
-name|test
-argument_list|)
-decl_stmt|;
-name|int
-name|ch
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|ch2
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|i
-init|=
-literal|0
-decl_stmt|;
 name|StringBuilder
 name|builder
 init|=
 operator|new
 name|StringBuilder
 argument_list|()
+decl_stmt|;
+name|int
+name|ch
+init|=
+literal|0
 decl_stmt|;
 while|while
 condition|(
@@ -1274,44 +1178,8 @@ operator|)
 operator|!=
 operator|-
 literal|1
-operator|&&
-operator|(
-name|ch2
-operator|=
-name|noStrip
-operator|.
-name|read
-argument_list|()
-operator|)
-operator|!=
-operator|-
-literal|1
 condition|)
 block|{
-comment|//System.out.println("char[" + i + "] = '" + (char)ch + "' NS: '" + (char)ch2 + "'" + ((ch != ch2&& (ch2 != 't' || ch2 != '<' || ch2 != '>')) ? "<<<<<<<<<<<<<<<<<<<<<<<<" : ""));
-name|assertTrue
-argument_list|(
-name|ch
-operator|+
-literal|" does not equal: "
-operator|+
-literal|"t or< or> ::: String: "
-operator|+
-name|builder
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|ch
-operator|==
-name|ch2
-operator|||
-name|ch
-operator|==
-literal|' '
-comment|/*&& ch != '<'&& ch != '>'*/
-argument_list|)
-expr_stmt|;
 name|builder
 operator|.
 name|append
@@ -1322,10 +1190,61 @@ operator|)
 name|ch
 argument_list|)
 expr_stmt|;
-name|i
-operator|++
-expr_stmt|;
 block|}
+name|String
+name|result
+init|=
+name|builder
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Resu: "
+operator|+
+name|result
+operator|+
+literal|"<EOL>"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Gold: "
+operator|+
+name|gold
+operator|+
+literal|"<EOL>"
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|result
+operator|+
+literal|" is not equal to "
+operator|+
+name|gold
+operator|+
+literal|"<EOS>"
+argument_list|,
+name|result
+operator|.
+name|equals
+argument_list|(
+name|gold
+argument_list|)
+operator|==
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testBufferOverflow
 specifier|public
@@ -1711,7 +1630,7 @@ decl_stmt|;
 name|String
 name|gold
 init|=
-literal|"                                               "
+literal|"  "
 decl_stmt|;
 name|Reader
 name|reader
