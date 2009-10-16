@@ -1269,7 +1269,8 @@ operator|.
 name|LongRangeBuilder
 argument_list|()
 block|{
-comment|//@Override
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addRange
@@ -1950,7 +1951,8 @@ operator|.
 name|IntRangeBuilder
 argument_list|()
 block|{
-comment|//@Override
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addRange

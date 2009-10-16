@@ -94,6 +94,8 @@ return|;
 block|}
 block|}
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|DocIdSetIterator
 name|iterator
@@ -103,6 +105,8 @@ return|return
 name|iterator
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable

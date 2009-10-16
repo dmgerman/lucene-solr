@@ -607,7 +607,8 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|runBare
 specifier|public
 name|void

@@ -146,7 +146,8 @@ operator|=
 name|testWithDifferentLocales
 expr_stmt|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -168,7 +169,8 @@ name|locale
 argument_list|)
 expr_stmt|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|protected
 name|void
@@ -190,7 +192,8 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|runBare
 specifier|public
 name|void

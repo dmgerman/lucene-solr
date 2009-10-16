@@ -270,6 +270,8 @@ return|return
 name|collator
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getEnum
 specifier|protected
 name|FilteredTermEnum
@@ -302,6 +304,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -421,7 +425,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -558,7 +563,8 @@ return|return
 name|result
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

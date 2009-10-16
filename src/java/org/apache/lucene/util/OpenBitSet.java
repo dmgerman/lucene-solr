@@ -156,6 +156,8 @@ operator|=
 name|numWords
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|DocIdSetIterator
@@ -173,6 +175,8 @@ argument_list|)
 return|;
 block|}
 comment|/** This DocIdSet implementation is cacheable. */
+annotation|@
+name|Override
 DECL|method|isCacheable
 specifier|public
 name|boolean

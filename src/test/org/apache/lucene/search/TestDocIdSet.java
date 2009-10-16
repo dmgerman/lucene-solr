@@ -270,7 +270,8 @@ operator|new
 name|DocIdSet
 argument_list|()
 block|{
-comment|// @Override
+annotation|@
+name|Override
 specifier|public
 name|DocIdSetIterator
 name|iterator
@@ -296,7 +297,8 @@ return|return
 name|docid
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 specifier|public
 name|int
 name|nextDoc
@@ -321,7 +323,8 @@ name|NO_MORE_DOCS
 operator|)
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 specifier|public
 name|int
 name|advance
@@ -358,7 +361,8 @@ argument_list|(
 name|innerSet
 argument_list|)
 block|{
-comment|// @Override
+annotation|@
+name|Override
 specifier|protected
 name|boolean
 name|match

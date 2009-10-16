@@ -2801,6 +2801,8 @@ throws|throws
 name|ArrayIndexOutOfBoundsException
 function_decl|;
 comment|/** this DocIdSet is cacheable, if it works solely with FieldCache and no TermDocs */
+annotation|@
+name|Override
 DECL|method|isCacheable
 specifier|public
 name|boolean
@@ -2819,6 +2821,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|DocIdSetIterator

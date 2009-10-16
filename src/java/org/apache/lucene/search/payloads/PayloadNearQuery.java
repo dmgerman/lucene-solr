@@ -354,6 +354,8 @@ operator|=
 name|function
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -375,6 +377,8 @@ name|searcher
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -466,6 +470,8 @@ return|return
 name|boostingNearQuery
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -600,7 +606,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -667,7 +674,8 @@ return|return
 name|result
 return|;
 block|}
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -860,6 +868,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|scorer
 specifier|public
 name|Scorer
@@ -1299,6 +1309,8 @@ name|setFreqCurrentDoc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -1327,6 +1339,8 @@ name|payloadScore
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|explain
 specifier|public
 name|Explanation

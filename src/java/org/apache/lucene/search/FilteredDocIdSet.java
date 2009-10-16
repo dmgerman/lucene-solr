@@ -60,6 +60,8 @@ name|innerSet
 expr_stmt|;
 block|}
 comment|/** This DocIdSet implementation is cacheable if the inner set is cacheable. */
+annotation|@
+name|Override
 DECL|method|isCacheable
 specifier|public
 name|boolean
@@ -87,7 +89,8 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/**    * Implementation of the contract to build a DocIdSetIterator.    * @see DocIdSetIterator    * @see FilteredDocIdSetIterator    */
-comment|// @Override
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|DocIdSetIterator

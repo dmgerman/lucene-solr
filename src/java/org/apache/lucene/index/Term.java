@@ -42,6 +42,9 @@ class|class
 name|Term
 implements|implements
 name|Comparable
+argument_list|<
+name|Term
+argument_list|>
 implements|,
 name|java
 operator|.
@@ -181,7 +184,8 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -304,7 +308,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|//@Override
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -366,25 +371,6 @@ operator|)
 expr_stmt|;
 return|return
 name|result
-return|;
-block|}
-DECL|method|compareTo
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-name|Object
-name|other
-parameter_list|)
-block|{
-return|return
-name|compareTo
-argument_list|(
-operator|(
-name|Term
-operator|)
-name|other
-argument_list|)
 return|;
 block|}
 comment|/** Compares two terms, returning a negative integer if this     term belongs before the argument, zero if this term is equal to the     argument, and a positive integer if this term belongs after the argument.      The ordering of terms is first by field, then by text.*/
@@ -451,6 +437,8 @@ operator|=
 name|txt
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 specifier|final

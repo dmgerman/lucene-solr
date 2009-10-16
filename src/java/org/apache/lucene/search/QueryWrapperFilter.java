@@ -83,6 +83,8 @@ operator|=
 name|query
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
@@ -115,6 +117,8 @@ operator|new
 name|DocIdSet
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSetIterator
 name|iterator
@@ -135,6 +139,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -147,6 +153,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -161,6 +169,8 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -200,6 +210,8 @@ name|query
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
