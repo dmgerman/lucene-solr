@@ -57,6 +57,9 @@ extends|extends
 name|InvertedDocEndConsumerPerField
 implements|implements
 name|Comparable
+argument_list|<
+name|NormsWriterPerField
+argument_list|>
 block|{
 DECL|field|perThread
 specifier|final
@@ -198,7 +201,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|NormsWriterPerField
 name|other
 parameter_list|)
 block|{
@@ -209,12 +212,7 @@ name|name
 operator|.
 name|compareTo
 argument_list|(
-operator|(
-operator|(
-name|NormsWriterPerField
-operator|)
 name|other
-operator|)
 operator|.
 name|fieldInfo
 operator|.

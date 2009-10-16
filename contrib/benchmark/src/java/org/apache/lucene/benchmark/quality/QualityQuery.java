@@ -39,6 +39,9 @@ class|class
 name|QualityQuery
 implements|implements
 name|Comparable
+argument_list|<
+name|QualityQuery
+argument_list|>
 block|{
 DECL|field|queryID
 specifier|private
@@ -142,18 +145,10 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
 name|QualityQuery
 name|other
-init|=
-operator|(
-name|QualityQuery
-operator|)
-name|o
-decl_stmt|;
+parameter_list|)
+block|{
 try|try
 block|{
 comment|// compare as ints when ids ints

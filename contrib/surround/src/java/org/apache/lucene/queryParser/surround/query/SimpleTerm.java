@@ -118,6 +118,9 @@ implements|implements
 name|DistanceSubQuery
 implements|,
 name|Comparable
+argument_list|<
+name|SimpleTerm
+argument_list|>
 block|{
 DECL|method|SimpleTerm
 specifier|public
@@ -178,19 +181,11 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
-name|o
+name|SimpleTerm
+name|ost
 parameter_list|)
 block|{
 comment|/* for ordering terms and prefixes before using an index, not used */
-name|SimpleTerm
-name|ost
-init|=
-operator|(
-name|SimpleTerm
-operator|)
-name|o
-decl_stmt|;
 return|return
 name|this
 operator|.
