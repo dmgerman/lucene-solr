@@ -276,6 +276,11 @@ specifier|private
 name|SegmentInfos
 name|segmentInfos
 decl_stmt|;
+DECL|field|segmentInfosStart
+specifier|private
+name|SegmentInfos
+name|segmentInfosStart
+decl_stmt|;
 DECL|field|stale
 specifier|private
 name|boolean
@@ -688,6 +693,16 @@ operator|.
 name|segmentInfos
 operator|=
 name|infos
+expr_stmt|;
+name|segmentInfosStart
+operator|=
+operator|(
+name|SegmentInfos
+operator|)
+name|infos
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -3973,7 +3988,6 @@ name|getUserData
 argument_list|()
 return|;
 block|}
-comment|/**    * Check whether this IndexReader is still using the current (i.e., most recently committed) version of the index.  If    * a writer has committed any changes to the index since this reader was opened, this will return<code>false</code>,    * in which case you must open a new IndexReader in order    * to see the changes.  Use {@link IndexWriter#commit} to    * commit changes to the index.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException           if there is a low-level IO error    */
 DECL|method|isCurrent
 specifier|public
 name|boolean
@@ -3987,6 +4001,19 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|writer
+operator|==
+literal|null
+operator|||
+name|writer
+operator|.
+name|isClosed
+argument_list|()
+condition|)
+block|{
+comment|// we loaded SegmentInfos from the directory
 return|return
 name|SegmentInfos
 operator|.
@@ -4000,6 +4027,18 @@ operator|.
 name|getVersion
 argument_list|()
 return|;
+block|}
+else|else
+block|{
+return|return
+name|writer
+operator|.
+name|nrtIsCurrent
+argument_list|(
+name|segmentInfosStart
+argument_list|)
+return|;
+block|}
 block|}
 DECL|method|doClose
 specifier|protected
