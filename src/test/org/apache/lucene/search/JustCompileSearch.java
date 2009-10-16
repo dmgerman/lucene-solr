@@ -1685,26 +1685,6 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
-comment|/** @deprecated delete in 3.0 */
-DECL|method|scorer
-specifier|public
-name|Scorer
-name|scorer
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-name|UNSUPPORTED_MSG
-argument_list|)
-throw|;
-block|}
 DECL|method|sumOfSquaredWeights
 specifier|public
 name|float
