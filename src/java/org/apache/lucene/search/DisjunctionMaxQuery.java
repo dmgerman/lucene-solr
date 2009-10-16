@@ -105,15 +105,26 @@ class|class
 name|DisjunctionMaxQuery
 extends|extends
 name|Query
+implements|implements
+name|Iterable
+argument_list|<
+name|Query
+argument_list|>
 block|{
 comment|/* The subqueries */
 DECL|field|disjuncts
 specifier|private
 name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
 name|disjuncts
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/* Multiple of the non-max disjunct scores added into our final score.  Non-zero values support tie-breaking. */
@@ -146,6 +157,9 @@ specifier|public
 name|DisjunctionMaxQuery
 parameter_list|(
 name|Collection
+argument_list|<
+name|Query
+argument_list|>
 name|disjuncts
 parameter_list|,
 name|float
@@ -189,6 +203,9 @@ name|void
 name|add
 parameter_list|(
 name|Collection
+argument_list|<
+name|Query
+argument_list|>
 name|disjuncts
 parameter_list|)
 block|{
@@ -206,6 +223,9 @@ comment|/** An Iterator<Query> over the disjuncts */
 DECL|method|iterator
 specifier|public
 name|Iterator
+argument_list|<
+name|Query
+argument_list|>
 name|iterator
 parameter_list|()
 block|{
@@ -234,10 +254,16 @@ comment|/** The Weights for our subqueries, in 1-1 correspondence with disjuncts
 DECL|field|weights
 specifier|protected
 name|ArrayList
+argument_list|<
+name|Weight
+argument_list|>
 name|weights
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Weight
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// The Weight's for our subqueries, in 1-1 correspondence with disjuncts
@@ -264,6 +290,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Query
+argument_list|>
 name|iter
 init|=
 name|disjuncts
@@ -301,6 +330,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* Return our associated DisjunctionMaxQuery */
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query
@@ -314,6 +345,8 @@ name|this
 return|;
 block|}
 comment|/* Return our boost */
+annotation|@
+name|Override
 DECL|method|getValue
 specifier|public
 name|float
@@ -326,6 +359,8 @@ argument_list|()
 return|;
 block|}
 comment|/* Compute the sub of squared weights of us applied to our subqueries.  Used for normalization. */
+annotation|@
+name|Override
 DECL|method|sumOfSquaredWeights
 specifier|public
 name|float
@@ -346,6 +381,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Weight
+argument_list|>
 name|iter
 init|=
 name|weights
@@ -421,6 +459,8 @@ name|boost
 return|;
 block|}
 comment|/* Apply the computed normalization factor to our subqueries */
+annotation|@
+name|Override
 DECL|method|normalize
 specifier|public
 name|void
@@ -439,6 +479,9 @@ comment|// Incorporate our boost
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Weight
+argument_list|>
 name|iter
 init|=
 name|weights
@@ -471,6 +514,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* Create the scorer used to score our associated DisjunctionMaxQuery */
+annotation|@
+name|Override
 DECL|method|scorer
 specifier|public
 name|Scorer
@@ -509,6 +554,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Weight
+argument_list|>
 name|iter
 init|=
 name|weights
@@ -604,6 +652,8 @@ name|result
 return|;
 block|}
 comment|/* Explain the score we computed for doc */
+annotation|@
+name|Override
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -683,6 +733,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Weight
+argument_list|>
 name|iter
 init|=
 name|weights
@@ -786,6 +839,8 @@ block|}
 block|}
 comment|// end of DisjunctionMaxWeight inner class
 comment|/* Create the Weight used to score us */
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -806,6 +861,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Optimize our representation and our subqueries representations    * @param reader the IndexReader we query    * @return an optimized copy of us (which may not be a copy if there is nothing to optimize) */
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -991,6 +1048,8 @@ name|this
 return|;
 block|}
 comment|/** Create a shallow copy of us -- used in rewriting if necessary    * @return a copy of us (but reuse, don't copy, our subqueries) */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -1027,6 +1086,8 @@ name|clone
 return|;
 block|}
 comment|// inherit javadoc
+annotation|@
+name|Override
 DECL|method|extractTerms
 specifier|public
 name|void
@@ -1074,6 +1135,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Prettyprint us.    * @param field the field to which we are applied    * @return a string that shows what we do, of the form "(disjunct1 | disjunct2 | ... | disjunctn)^boost"    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -1258,6 +1321,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Return true iff we represent the same query as o    * @param o another object    * @return true iff o is a DisjunctionMaxQuery with the same boost and the same subqueries, in the same order, as us    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1319,6 +1384,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Compute a hash code for hashing us    * @return the hash code    */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

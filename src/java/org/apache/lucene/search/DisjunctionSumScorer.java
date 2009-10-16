@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|IOException
@@ -83,6 +73,9 @@ DECL|field|subScorers
 specifier|protected
 specifier|final
 name|List
+argument_list|<
+name|Scorer
+argument_list|>
 name|subScorers
 decl_stmt|;
 comment|/** The minimum number of scorers that should match. */
@@ -131,6 +124,9 @@ specifier|public
 name|DisjunctionSumScorer
 parameter_list|(
 name|List
+argument_list|<
+name|Scorer
+argument_list|>
 name|subScorers
 parameter_list|,
 name|int
@@ -203,6 +199,9 @@ specifier|public
 name|DisjunctionSumScorer
 parameter_list|(
 name|List
+argument_list|<
+name|Scorer
+argument_list|>
 name|subScorers
 parameter_list|)
 throws|throws
@@ -225,14 +224,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Iterator
-name|si
-init|=
-name|subScorers
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
 name|scorerDocQueue
 operator|=
 operator|new
@@ -241,25 +232,14 @@ argument_list|(
 name|nrScorers
 argument_list|)
 expr_stmt|;
-while|while
-condition|(
-name|si
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
+for|for
+control|(
 name|Scorer
 name|se
-init|=
-operator|(
-name|Scorer
-operator|)
-name|si
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
+range|:
+name|subScorers
+control|)
+block|{
 if|if
 condition|(
 name|se
@@ -270,7 +250,6 @@ operator|!=
 name|NO_MORE_DOCS
 condition|)
 block|{
-comment|// doc() method will be used in scorerDocQueue.
 name|scorerDocQueue
 operator|.
 name|insert
@@ -282,6 +261,8 @@ block|}
 block|}
 block|}
 comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed through.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|void
@@ -318,6 +299,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param collector The collector to which all matching documents are passed through.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
+annotation|@
+name|Override
 DECL|method|score
 specifier|protected
 name|boolean
@@ -374,6 +357,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -524,6 +509,8 @@ condition|)
 do|;
 block|}
 comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -536,6 +523,8 @@ return|return
 name|currentScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int
@@ -558,6 +547,8 @@ name|nrMatchers
 return|;
 block|}
 comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * When this method is used the {@link #explain(int)} method should not be    * used.<br>    * The implementation uses the skipTo() method on the subscorers.    *     * @param target    *          The target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
+annotation|@
+name|Override
 DECL|method|advance
 specifier|public
 name|int
@@ -658,6 +649,8 @@ condition|)
 do|;
 block|}
 comment|/** @return An explanation for the score of a given document. */
+annotation|@
+name|Override
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -676,14 +669,6 @@ operator|new
 name|Explanation
 argument_list|()
 decl_stmt|;
-name|Iterator
-name|ssi
-init|=
-name|subScorers
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
 name|float
 name|sumScore
 init|=
@@ -694,26 +679,18 @@ name|nrMatches
 init|=
 literal|0
 decl_stmt|;
-while|while
-condition|(
-name|ssi
-operator|.
-name|hasNext
-argument_list|()
-condition|)
+for|for
+control|(
+name|Scorer
+name|se
+range|:
+name|subScorers
+control|)
 block|{
 name|Explanation
 name|es
 init|=
-operator|(
-operator|(
-name|Scorer
-operator|)
-name|ssi
-operator|.
-name|next
-argument_list|()
-operator|)
+name|se
 operator|.
 name|explain
 argument_list|(
