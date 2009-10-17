@@ -253,11 +253,16 @@ comment|/** Empty unless you passed specific segments list to check as optional 
 DECL|field|segmentsChecked
 specifier|public
 name|List
-comment|/*<String>*/
+argument_list|<
+name|String
+argument_list|>
 name|segmentsChecked
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** True if the index was created with a newer version of Lucene than the CheckIndex tool. */
@@ -270,11 +275,16 @@ comment|/** List of {@link SegmentInfoStatus} instances, detailing status of eac
 DECL|field|segmentInfos
 specifier|public
 name|List
-comment|/*<SegmentInfoStatus*/
+argument_list|<
+name|SegmentInfoStatus
+argument_list|>
 name|segmentInfos
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|SegmentInfoStatus
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** Directory index is in. */
@@ -2172,6 +2182,9 @@ name|newSegments
 operator|.
 name|add
 argument_list|(
+operator|(
+name|SegmentInfo
+operator|)
 name|info
 operator|.
 name|clone

@@ -801,10 +801,14 @@ return|return
 name|clone
 return|;
 block|}
-comment|// returns Map<String, String>
 DECL|method|readStringStringMap
 specifier|public
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|readStringStringMap
 parameter_list|()
 throws|throws
@@ -812,10 +816,20 @@ name|IOException
 block|{
 specifier|final
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|map
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|final

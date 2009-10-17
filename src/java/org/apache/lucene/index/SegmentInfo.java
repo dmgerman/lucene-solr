@@ -249,6 +249,9 @@ comment|// compound and non compound).
 DECL|field|files
 specifier|private
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|files
 decl_stmt|;
 comment|// cached list of files that this segment uses
@@ -2435,6 +2438,9 @@ comment|/*    * Return all files referenced by this SegmentInfo.  The    * retur
 DECL|method|files
 specifier|public
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|files
 parameter_list|()
 throws|throws
@@ -2456,6 +2462,9 @@ name|files
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|boolean

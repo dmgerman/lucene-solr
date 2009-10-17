@@ -46,9 +46,13 @@ specifier|public
 class|class
 name|NormalizeCharMap
 block|{
-comment|//Map<Character, NormalizeMap> submap;
 DECL|field|submap
 name|Map
+argument_list|<
+name|Character
+argument_list|,
+name|NormalizeCharMap
+argument_list|>
 name|submap
 decl_stmt|;
 DECL|field|normStr
@@ -120,6 +124,11 @@ name|submap
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Character
+argument_list|,
+name|NormalizeCharMap
+argument_list|>
 argument_list|(
 literal|1
 argument_list|)
@@ -128,9 +137,6 @@ block|}
 name|NormalizeCharMap
 name|map
 init|=
-operator|(
-name|NormalizeCharMap
-operator|)
 name|currMap
 operator|.
 name|submap
