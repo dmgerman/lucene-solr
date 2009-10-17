@@ -818,6 +818,11 @@ throws|throws
 name|IOException
 block|{
 comment|// "&#" has already been read at this point
+name|int
+name|eaten
+init|=
+literal|2
+decl_stmt|;
 comment|// is this decimal, hex, or nothing at all.
 name|int
 name|ch
@@ -914,6 +919,9 @@ operator|==
 literal|'x'
 condition|)
 block|{
+name|eaten
+operator|++
+expr_stmt|;
 comment|// hex character entity
 name|base
 operator|=
@@ -994,6 +1002,7 @@ operator|-
 literal|1
 condition|)
 block|{
+comment|// do not account for the eaten ";" due to the fact that we do output a char
 name|numWhitespace
 operator|=
 name|sb
@@ -1001,9 +1010,8 @@ operator|.
 name|length
 argument_list|()
 operator|+
-literal|2
+name|eaten
 expr_stmt|;
-comment|// + 2 accounts for&, #, and ;, then, take away 1 for the fact that we do output a char
 return|return
 name|Integer
 operator|.
@@ -1040,9 +1048,8 @@ operator|.
 name|length
 argument_list|()
 operator|+
-literal|2
+name|eaten
 expr_stmt|;
-comment|// + 2 accounts for&, #, and ;, then, take away 1 for the fact that we do output a char
 return|return
 name|Integer
 operator|.
