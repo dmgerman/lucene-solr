@@ -85,6 +85,9 @@ name|numDocsInStore
 decl_stmt|;
 DECL|field|flushedFiles
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|flushedFiles
 decl_stmt|;
 DECL|method|SegmentWriteState
@@ -159,6 +162,9 @@ name|flushedFiles
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}

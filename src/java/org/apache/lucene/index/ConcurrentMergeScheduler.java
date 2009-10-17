@@ -83,10 +83,16 @@ decl_stmt|;
 DECL|field|mergeThreads
 specifier|protected
 name|List
+argument_list|<
+name|MergeThread
+argument_list|>
 name|mergeThreads
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|MergeThread
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// Max number of threads allowed to be merging at once
@@ -1336,17 +1342,12 @@ condition|;
 name|i
 operator|++
 control|)
-operator|(
-operator|(
-name|ConcurrentMergeScheduler
-operator|)
 name|allInstances
 operator|.
 name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
 operator|.
 name|sync
 argument_list|()
@@ -1428,9 +1429,6 @@ specifier|final
 name|ConcurrentMergeScheduler
 name|other
 init|=
-operator|(
-name|ConcurrentMergeScheduler
-operator|)
 name|allInstances
 operator|.
 name|get
@@ -1523,6 +1521,9 @@ DECL|field|allInstances
 specifier|private
 specifier|static
 name|List
+argument_list|<
+name|ConcurrentMergeScheduler
+argument_list|>
 name|allInstances
 decl_stmt|;
 DECL|method|setTestMode
@@ -1536,6 +1537,9 @@ name|allInstances
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|ConcurrentMergeScheduler
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
