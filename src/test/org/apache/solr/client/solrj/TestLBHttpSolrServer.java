@@ -1484,14 +1484,38 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-name|this
-operator|.
-name|port
-operator|=
+name|int
+name|newPort
+init|=
 name|jetty
 operator|.
 name|getLocalPort
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|port
+operator|!=
+literal|0
+operator|&&
+name|newPort
+operator|!=
+name|port
+condition|)
+block|{
+name|TestCase
+operator|.
+name|fail
+argument_list|(
+literal|"TESTING FAILURE: could not grab requested port."
+argument_list|)
+expr_stmt|;
+block|}
+name|this
+operator|.
+name|port
+operator|=
+name|newPort
 expr_stmt|;
 comment|//      System.out.println("waiting.........");
 comment|//      Thread.sleep(5000);
