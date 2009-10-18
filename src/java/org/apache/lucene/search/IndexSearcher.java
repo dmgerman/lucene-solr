@@ -289,10 +289,16 @@ operator|=
 name|closeReader
 expr_stmt|;
 name|List
+argument_list|<
+name|IndexReader
+argument_list|>
 name|subReadersList
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|IndexReader
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|gatherSubReaders
@@ -304,10 +310,6 @@ argument_list|)
 expr_stmt|;
 name|subReaders
 operator|=
-operator|(
-name|IndexReader
-index|[]
-operator|)
 name|subReadersList
 operator|.
 name|toArray
@@ -379,6 +381,9 @@ name|void
 name|gatherSubReaders
 parameter_list|(
 name|List
+argument_list|<
+name|IndexReader
+argument_list|>
 name|allSubReaders
 parameter_list|,
 name|IndexReader

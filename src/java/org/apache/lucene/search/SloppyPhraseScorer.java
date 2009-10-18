@@ -550,6 +550,11 @@ literal|true
 expr_stmt|;
 comment|// check for repeats
 name|HashMap
+argument_list|<
+name|PhrasePositions
+argument_list|,
+name|Object
+argument_list|>
 name|m
 init|=
 literal|null
@@ -631,6 +636,11 @@ name|m
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|PhrasePositions
+argument_list|,
+name|Object
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|pp
@@ -674,10 +684,6 @@ literal|null
 condition|)
 name|repeats
 operator|=
-operator|(
-name|PhrasePositions
-index|[]
-operator|)
 name|m
 operator|.
 name|keySet

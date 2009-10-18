@@ -4678,9 +4678,6 @@ block|{
 name|Norm
 name|norm
 init|=
-operator|(
-name|Norm
-operator|)
 name|norms
 operator|.
 name|get
@@ -4755,9 +4752,6 @@ block|{
 name|Norm
 name|norm
 init|=
-operator|(
-name|Norm
-operator|)
 name|norms
 operator|.
 name|get
@@ -4815,9 +4809,6 @@ expr_stmt|;
 name|Norm
 name|norm
 init|=
-operator|(
-name|Norm
-operator|)
 name|norms
 operator|.
 name|get

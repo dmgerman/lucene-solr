@@ -46,16 +46,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -92,6 +82,11 @@ DECL|field|cache
 specifier|protected
 specifier|transient
 name|Map
+argument_list|<
+name|IndexReader
+argument_list|,
+name|SpanFilterResult
+argument_list|>
 name|cache
 decl_stmt|;
 comment|/**    * @param filter Filter to cache results of    */
@@ -169,6 +164,11 @@ name|cache
 operator|=
 operator|new
 name|WeakHashMap
+argument_list|<
+name|IndexReader
+argument_list|,
+name|SpanFilterResult
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -180,9 +180,6 @@ block|{
 comment|// check cache
 name|result
 operator|=
-operator|(
-name|SpanFilterResult
-operator|)
 name|cache
 operator|.
 name|get

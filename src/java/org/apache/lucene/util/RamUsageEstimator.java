@@ -68,6 +68,11 @@ DECL|field|seen
 specifier|private
 specifier|final
 name|Map
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
 name|seen
 decl_stmt|;
 DECL|field|refSize
@@ -170,6 +175,11 @@ name|seen
 operator|=
 operator|new
 name|IdentityHashMap
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
 argument_list|(
 literal|64
 argument_list|)

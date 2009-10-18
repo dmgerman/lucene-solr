@@ -41,11 +41,17 @@ block|{
 DECL|field|fieldsToLoad
 specifier|private
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|fieldsToLoad
 decl_stmt|;
 DECL|field|lazyFieldsToLoad
 specifier|private
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|lazyFieldsToLoad
 decl_stmt|;
 comment|/**    * Pass in the Set of {@link Field} names to load and the Set of {@link Field} names to load lazily.  If both are null, the    * Document will not have any {@link Field} on it.      * @param fieldsToLoad A Set of {@link String} field names to load.  May be empty, but not null    * @param lazyFieldsToLoad A Set of {@link String} field names to load lazily.  May be empty, but not null      */
@@ -54,9 +60,15 @@ specifier|public
 name|SetBasedFieldSelector
 parameter_list|(
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|fieldsToLoad
 parameter_list|,
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|lazyFieldsToLoad
 parameter_list|)
 block|{

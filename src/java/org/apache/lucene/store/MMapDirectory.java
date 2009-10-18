@@ -381,6 +381,9 @@ name|doPrivileged
 argument_list|(
 operator|new
 name|PrivilegedExceptionAction
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 block|{
 specifier|public

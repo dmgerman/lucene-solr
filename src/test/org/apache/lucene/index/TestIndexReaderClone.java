@@ -1793,9 +1793,6 @@ comment|// check the norm refs
 name|Norm
 name|norm
 init|=
-operator|(
-name|Norm
-operator|)
 name|clonedSegmentReader
 operator|.
 name|norms

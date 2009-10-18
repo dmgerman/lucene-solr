@@ -187,6 +187,11 @@ decl_stmt|;
 comment|// Used for caching the least recently looked-up Terms
 DECL|field|termInfoCache
 name|Cache
+argument_list|<
+name|Term
+argument_list|,
+name|TermInfo
+argument_list|>
 name|termInfoCache
 decl_stmt|;
 block|}
@@ -602,6 +607,11 @@ name|termInfoCache
 operator|=
 operator|new
 name|SimpleLRUCache
+argument_list|<
+name|Term
+argument_list|,
+name|TermInfo
+argument_list|>
 argument_list|(
 name|DEFAULT_CACHE_SIZE
 argument_list|)
@@ -810,6 +820,11 @@ name|getThreadResources
 argument_list|()
 decl_stmt|;
 name|Cache
+argument_list|<
+name|Term
+argument_list|,
+name|TermInfo
+argument_list|>
 name|cache
 init|=
 literal|null
@@ -828,9 +843,6 @@ expr_stmt|;
 comment|// check the cache first if the term was recently looked up
 name|ti
 operator|=
-operator|(
-name|TermInfo
-operator|)
 name|cache
 operator|.
 name|get

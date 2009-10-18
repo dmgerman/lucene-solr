@@ -316,7 +316,10 @@ comment|// TODO: Remove warning after API has been finalized
 DECL|method|getPayload
 specifier|public
 name|Collection
-comment|/*<byte[]>*/
+argument_list|<
+name|byte
+index|[]
+argument_list|>
 name|getPayload
 parameter_list|()
 throws|throws
