@@ -205,6 +205,14 @@ name|void
 name|flush
 parameter_list|(
 name|Map
+argument_list|<
+name|InvertedDocEndConsumerPerThread
+argument_list|,
+name|Collection
+argument_list|<
+name|InvertedDocEndConsumerPerField
+argument_list|>
+argument_list|>
 name|threadsAndFields
 parameter_list|,
 name|SegmentWriteState

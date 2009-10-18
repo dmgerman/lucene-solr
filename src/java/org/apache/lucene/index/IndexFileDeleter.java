@@ -2231,6 +2231,9 @@ name|gen
 decl_stmt|;
 DECL|field|files
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|files
 decl_stmt|;
 DECL|field|segmentsFileName
@@ -2399,6 +2402,9 @@ block|}
 DECL|method|getFileNames
 specifier|public
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|getFileNames
 parameter_list|()
 throws|throws

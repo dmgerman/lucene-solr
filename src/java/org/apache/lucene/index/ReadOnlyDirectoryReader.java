@@ -107,6 +107,12 @@ index|[]
 name|oldStarts
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|byte
+index|[]
+argument_list|>
 name|oldNormsCache
 parameter_list|,
 name|boolean

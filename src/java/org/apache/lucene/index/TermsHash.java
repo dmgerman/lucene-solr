@@ -466,6 +466,14 @@ name|void
 name|flush
 parameter_list|(
 name|Map
+argument_list|<
+name|InvertedDocConsumerPerThread
+argument_list|,
+name|Collection
+argument_list|<
+name|InvertedDocConsumerPerField
+argument_list|>
+argument_list|>
 name|threadsAndFields
 parameter_list|,
 specifier|final

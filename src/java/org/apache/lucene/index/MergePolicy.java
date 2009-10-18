@@ -410,10 +410,16 @@ comment|/**      * The subset of segments to be included in the primitive merge.
 DECL|field|merges
 specifier|public
 name|List
+argument_list|<
+name|OneMerge
+argument_list|>
 name|merges
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|OneMerge
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|method|add
@@ -682,6 +688,9 @@ name|int
 name|maxSegmentCount
 parameter_list|,
 name|Set
+argument_list|<
+name|SegmentInfo
+argument_list|>
 name|segmentsToOptimize
 parameter_list|)
 throws|throws

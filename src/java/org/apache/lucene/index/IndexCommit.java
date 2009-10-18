@@ -84,6 +84,9 @@ DECL|method|getFileNames
 specifier|public
 specifier|abstract
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|getFileNames
 parameter_list|()
 throws|throws
@@ -266,6 +269,11 @@ comment|/** Returns userData, previously passed to {@link    *  IndexWriter#comm
 DECL|method|getUserData
 specifier|public
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|getUserData
 parameter_list|()
 throws|throws

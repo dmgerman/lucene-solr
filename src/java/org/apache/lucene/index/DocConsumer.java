@@ -61,7 +61,7 @@ parameter_list|(
 specifier|final
 name|Collection
 argument_list|<
-name|DocFieldProcessorPerThread
+name|DocConsumerPerThread
 argument_list|>
 name|threads
 parameter_list|,

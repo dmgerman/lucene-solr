@@ -53,6 +53,9 @@ name|void
 name|onInit
 parameter_list|(
 name|List
+argument_list|<
+name|IndexCommit
+argument_list|>
 name|commits
 parameter_list|)
 throws|throws
@@ -65,6 +68,9 @@ name|void
 name|onCommit
 parameter_list|(
 name|List
+argument_list|<
+name|IndexCommit
+argument_list|>
 name|commits
 parameter_list|)
 throws|throws

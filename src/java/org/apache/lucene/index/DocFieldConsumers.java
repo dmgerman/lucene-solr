@@ -172,6 +172,14 @@ name|void
 name|flush
 parameter_list|(
 name|Map
+argument_list|<
+name|DocFieldConsumerPerThread
+argument_list|,
+name|Collection
+argument_list|<
+name|DocFieldConsumerPerField
+argument_list|>
+argument_list|>
 name|threadsAndFields
 parameter_list|,
 name|SegmentWriteState

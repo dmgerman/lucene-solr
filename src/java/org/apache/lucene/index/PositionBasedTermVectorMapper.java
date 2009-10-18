@@ -71,7 +71,16 @@ block|{
 DECL|field|fieldToTerms
 specifier|private
 name|Map
-comment|/*<String, Map<Integer, TVPositionInfo>>*/
+argument_list|<
+name|String
+argument_list|,
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|TVPositionInfo
+argument_list|>
+argument_list|>
 name|fieldToTerms
 decl_stmt|;
 DECL|field|currentField
@@ -83,7 +92,11 @@ comment|/**    * A Map of Integer and TVPositionInfo    */
 DECL|field|currentPositions
 specifier|private
 name|Map
-comment|/*<Integer, TVPositionInfo>*/
+argument_list|<
+name|Integer
+argument_list|,
+name|TVPositionInfo
+argument_list|>
 name|currentPositions
 decl_stmt|;
 DECL|field|storeOffsets
@@ -293,6 +306,16 @@ name|fieldToTerms
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|TVPositionInfo
+argument_list|>
+argument_list|>
 argument_list|(
 name|numTerms
 argument_list|)
@@ -311,6 +334,11 @@ name|currentPositions
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Integer
+argument_list|,
+name|TVPositionInfo
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|fieldToTerms
@@ -327,6 +355,16 @@ comment|/**    * Get the mapping between fields and terms, sorted by the compara
 DECL|method|getFieldToTerms
 specifier|public
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|TVPositionInfo
+argument_list|>
+argument_list|>
 name|getFieldToTerms
 parameter_list|()
 block|{
@@ -346,16 +384,20 @@ specifier|private
 name|int
 name|position
 decl_stmt|;
-comment|//a list of Strings
 DECL|field|terms
 specifier|private
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 decl_stmt|;
-comment|//A list of TermVectorOffsetInfo
 DECL|field|offsets
 specifier|private
 name|List
+argument_list|<
+name|TermVectorOffsetInfo
+argument_list|>
 name|offsets
 decl_stmt|;
 DECL|method|TVPositionInfo
@@ -379,6 +421,9 @@ name|terms
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 if|if
@@ -390,6 +435,9 @@ name|offsets
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|TermVectorOffsetInfo
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -443,6 +491,9 @@ comment|/**      * Note, there may be multiple terms at the same position      *
 DECL|method|getTerms
 specifier|public
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|getTerms
 parameter_list|()
 block|{
@@ -450,10 +501,13 @@ return|return
 name|terms
 return|;
 block|}
-comment|/**      * Parallel list (to {@link #getTerms()}) of TermVectorOffsetInfo objects.  There may be multiple entries since there may be multiple terms at a position      * @return A List of TermVectorOffsetInfo objects, if offsets are store.      */
+comment|/**      * Parallel list (to {@link #getTerms()}) of TermVectorOffsetInfo objects.  There may be multiple entries since there may be multiple terms at a position      * @return A List of TermVectorOffsetInfo objects, if offsets are stored.      */
 DECL|method|getOffsets
 specifier|public
 name|List
+argument_list|<
+name|TermVectorOffsetInfo
+argument_list|>
 name|getOffsets
 parameter_list|()
 block|{
