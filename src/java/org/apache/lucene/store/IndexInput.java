@@ -30,6 +30,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -58,6 +68,8 @@ class|class
 name|IndexInput
 implements|implements
 name|Cloneable
+implements|,
+name|Closeable
 block|{
 DECL|field|bytes
 specifier|private

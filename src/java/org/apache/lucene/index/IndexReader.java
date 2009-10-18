@@ -106,6 +106,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -144,6 +154,8 @@ class|class
 name|IndexReader
 implements|implements
 name|Cloneable
+implements|,
+name|Closeable
 block|{
 comment|/**    * Constants describing field properties, for example used for    * {@link IndexReader#getFieldNames(FieldOption)}.    */
 DECL|class|FieldOption

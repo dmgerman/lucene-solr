@@ -80,6 +80,12 @@ specifier|public
 specifier|abstract
 class|class
 name|MergePolicy
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
 block|{
 comment|/** OneMerge provides the information necessary to perform    *  an individual primitive merge operation, resulting in    *  a single new segment.  The merge spec includes the    *  subset of segments to be merged as well as whether the    *  new segment should use the compound file format. */
 DECL|class|OneMerge

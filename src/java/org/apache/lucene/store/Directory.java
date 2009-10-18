@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -50,6 +60,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Directory
+implements|implements
+name|Closeable
 block|{
 DECL|field|isOpen
 specifier|volatile

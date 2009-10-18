@@ -26,6 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
 begin_comment
 comment|/** TermDocs provides an interface for enumerating&lt;document, frequency&gt;  pairs for a term.<p> The document portion names each document containing  the term.  Documents are indicated by number.  The frequency portion gives  the number of times the term occurred in each document.<p> The pairs are  ordered by document number.   @see IndexReader#termDocs()  */
 end_comment
@@ -35,6 +45,8 @@ DECL|interface|TermDocs
 specifier|public
 interface|interface
 name|TermDocs
+extends|extends
+name|Closeable
 block|{
 comment|/** Sets this to the data for a term.    * The enumeration is reset to the start of the data for this term.    */
 DECL|method|seek

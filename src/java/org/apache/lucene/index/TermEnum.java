@@ -26,6 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
 begin_comment
 comment|/** Abstract class for enumerating terms.<p>Term enumerations are always ordered by Term.compareTo().  Each term in   the enumeration is greater than all that precede it.  */
 end_comment
@@ -36,6 +46,8 @@ specifier|public
 specifier|abstract
 class|class
 name|TermEnum
+implements|implements
+name|Closeable
 block|{
 comment|/** Increments the enumeration to the next element.  True if one exists.*/
 DECL|method|next

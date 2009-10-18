@@ -40,6 +40,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|lang
 operator|.
 name|reflect
@@ -100,6 +110,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Analyzer
+implements|implements
+name|Closeable
 block|{
 comment|/** Creates a TokenStream which tokenizes all the text in the provided    * Reader.  Must be able to handle null field name for    * backward compatibility.    */
 DECL|method|tokenStream
