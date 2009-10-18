@@ -47,6 +47,8 @@ name|onInit
 parameter_list|(
 name|List
 argument_list|<
+name|?
+extends|extends
 name|IndexCommit
 argument_list|>
 name|commits
@@ -67,6 +69,8 @@ name|onCommit
 parameter_list|(
 name|List
 argument_list|<
+name|?
+extends|extends
 name|IndexCommit
 argument_list|>
 name|commits
