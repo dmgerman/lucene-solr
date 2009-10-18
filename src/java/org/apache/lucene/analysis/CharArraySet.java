@@ -57,7 +57,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A simple class that stores Strings as char[]'s in a  * hash table.  Note that this is not a general purpose  * class.  For example, it cannot remove items from the  * set, nor does it resize its hash table to be smaller,  * etc.  It is designed to be quick to test if a char[]  * is in the set without the necessity of converting it  * to a String first.  */
+comment|/**  * A simple class that stores Strings as char[]'s in a  * hash table.  Note that this is not a general purpose  * class.  For example, it cannot remove items from the  * set, nor does it resize its hash table to be smaller,  * etc.  It is designed to be quick to test if a char[]  * is in the set without the necessity of converting it  * to a String first.  *<P>  *<em>Please note:</em> This class implements {@link Set} but  * does not behave like it should in all cases. The generic type is  * {@code Set<Object>}, because you can add any object to it,  * that has a string representation. The add methods will use  * {@link Object#toString} and store the result using a {@code char[]}  * buffer. The same behaviour have the {@code contains()} methods.  * The {@link #iterator()} returns an {@code Iterator<String>}.  * For type safety also {@link #stringIterator()} is provided.  */
 end_comment
 
 begin_class
@@ -67,6 +67,9 @@ class|class
 name|CharArraySet
 extends|extends
 name|AbstractSet
+argument_list|<
+name|Object
+argument_list|>
 block|{
 DECL|field|INIT_SIZE
 specifier|private
@@ -150,6 +153,11 @@ specifier|public
 name|CharArraySet
 parameter_list|(
 name|Collection
+argument_list|<
+name|?
+extends|extends
+name|Object
+argument_list|>
 name|c
 parameter_list|,
 name|boolean
@@ -1215,6 +1223,7 @@ name|char
 index|[]
 condition|)
 block|{
+specifier|final
 name|char
 index|[]
 name|text
@@ -1336,6 +1345,9 @@ class|class
 name|CharArraySetIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 block|{
 DECL|field|pos
 name|int
@@ -1429,7 +1441,7 @@ block|}
 comment|/** Returns the next String, as a Set<String> would...      * use nextCharArray() for better efficiency. */
 DECL|method|next
 specifier|public
-name|Object
+name|String
 name|next
 parameter_list|()
 block|{
@@ -1455,15 +1467,42 @@ argument_list|()
 throw|;
 block|}
 block|}
-DECL|method|iterator
+comment|/** returns an iterator of new allocated Strings */
+DECL|method|stringIterator
 specifier|public
 name|Iterator
-name|iterator
+argument_list|<
+name|String
+argument_list|>
+name|stringIterator
 parameter_list|()
 block|{
 return|return
 operator|new
 name|CharArraySetIterator
+argument_list|()
+return|;
+block|}
+comment|/** returns an iterator of new allocated Strings, this method violates the Set interface */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|iterator
+specifier|public
+name|Iterator
+argument_list|<
+name|Object
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+operator|(
+name|Iterator
+operator|)
+name|stringIterator
 argument_list|()
 return|;
 block|}
@@ -1524,6 +1563,11 @@ name|boolean
 name|addAll
 parameter_list|(
 name|Collection
+argument_list|<
+name|?
+extends|extends
+name|Object
+argument_list|>
 name|coll
 parameter_list|)
 block|{
