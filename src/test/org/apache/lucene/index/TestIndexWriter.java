@@ -16496,12 +16496,6 @@ operator|new
 name|ConcurrentMergeScheduler
 argument_list|()
 decl_stmt|;
-comment|// We expect sync exceptions in the merge threads
-name|cms
-operator|.
-name|setSuppressExceptions
-argument_list|()
-expr_stmt|;
 name|writer
 operator|.
 name|setMergeScheduler

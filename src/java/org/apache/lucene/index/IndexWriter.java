@@ -10543,8 +10543,8 @@ argument_list|)
 expr_stmt|;
 comment|// Must note the change to segmentInfos so any commits
 comment|// in-flight don't lose it:
-name|changeCount
-operator|++
+name|checkpoint
+argument_list|()
 expr_stmt|;
 comment|// If the merged segments had pending changes, clear
 comment|// them so that they don't bother writing them to
