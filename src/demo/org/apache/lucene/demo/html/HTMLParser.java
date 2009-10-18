@@ -1983,7 +1983,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|jj_2_1
-specifier|final
 specifier|private
 name|boolean
 name|jj_2_1
@@ -2032,7 +2031,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|jj_2_2
-specifier|final
 specifier|private
 name|boolean
 name|jj_2_2
@@ -2081,7 +2079,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|jj_3_1
-specifier|final
 specifier|private
 name|boolean
 name|jj_3_1
@@ -2112,7 +2109,6 @@ literal|false
 return|;
 block|}
 DECL|method|jj_3_2
-specifier|final
 specifier|private
 name|boolean
 name|jj_3_2
@@ -2142,6 +2138,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/** Generated Token Manager. */
 DECL|field|token_source
 specifier|public
 name|HTMLParserTokenManager
@@ -2151,12 +2148,16 @@ DECL|field|jj_input_stream
 name|SimpleCharStream
 name|jj_input_stream
 decl_stmt|;
+comment|/** Current token. */
 DECL|field|token
-DECL|field|jj_nt
 specifier|public
 name|Token
 name|token
-decl_stmt|,
+decl_stmt|;
+comment|/** Next token. */
+DECL|field|jj_nt
+specifier|public
+name|Token
 name|jj_nt
 decl_stmt|;
 DECL|field|jj_ntk
@@ -2176,18 +2177,6 @@ DECL|field|jj_la
 specifier|private
 name|int
 name|jj_la
-decl_stmt|;
-DECL|field|lookingAhead
-specifier|public
-name|boolean
-name|lookingAhead
-init|=
-literal|false
-decl_stmt|;
-DECL|field|jj_semLA
-specifier|private
-name|boolean
-name|jj_semLA
 decl_stmt|;
 DECL|field|jj_gen
 specifier|private
@@ -2216,15 +2205,15 @@ name|jj_la1_0
 decl_stmt|;
 static|static
 block|{
-name|jj_la1_0
+name|jj_la1_init_0
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|jj_la1_0
+DECL|method|jj_la1_init_0
 specifier|private
 specifier|static
 name|void
-name|jj_la1_0
+name|jj_la1_init_0
 parameter_list|()
 block|{
 name|jj_la1_0
@@ -2290,6 +2279,7 @@ name|jj_gc
 init|=
 literal|0
 decl_stmt|;
+comment|/** Constructor with InputStream. */
 DECL|method|HTMLParser
 specifier|public
 name|HTMLParser
@@ -2310,6 +2300,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Constructor with InputStream and supplied encoding */
 DECL|method|HTMLParser
 specifier|public
 name|HTMLParser
@@ -2431,6 +2422,7 @@ name|JJCalls
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Reinitialise. */
 DECL|method|ReInit
 specifier|public
 name|void
@@ -2452,6 +2444,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Reinitialise. */
 DECL|method|ReInit
 specifier|public
 name|void
@@ -2572,6 +2565,7 @@ name|JJCalls
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Constructor. */
 DECL|method|HTMLParser
 specifier|public
 name|HTMLParser
@@ -2667,6 +2661,7 @@ name|JJCalls
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Reinitialise. */
 DECL|method|ReInit
 specifier|public
 name|void
@@ -2761,6 +2756,7 @@ name|JJCalls
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Constructor with generated Token Manager. */
 DECL|method|HTMLParser
 specifier|public
 name|HTMLParser
@@ -2836,6 +2832,7 @@ name|JJCalls
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Reinitialise. */
 DECL|method|ReInit
 specifier|public
 name|void
@@ -2913,7 +2910,6 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|jj_consume_token
-specifier|final
 specifier|private
 name|Token
 name|jj_consume_token
@@ -3082,7 +3078,6 @@ name|LookaheadSuccess
 argument_list|()
 decl_stmt|;
 DECL|method|jj_scan_token
-specifier|final
 specifier|private
 name|boolean
 name|jj_scan_token
@@ -3223,6 +3218,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/** Get the next Token. */
 DECL|method|getNextToken
 specifier|final
 specifier|public
@@ -3268,6 +3264,7 @@ return|return
 name|token
 return|;
 block|}
+comment|/** Get the specific Token. */
 DECL|method|getToken
 specifier|final
 specifier|public
@@ -3281,10 +3278,6 @@ block|{
 name|Token
 name|t
 init|=
-name|lookingAhead
-condition|?
-name|jj_scanpos
-else|:
 name|token
 decl_stmt|;
 for|for
@@ -3334,7 +3327,6 @@ name|t
 return|;
 block|}
 DECL|method|jj_ntk
-specifier|final
 specifier|private
 name|int
 name|jj_ntk
@@ -3387,7 +3379,11 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|List
+argument_list|<
+name|int
+index|[]
+argument_list|>
 name|jj_expentries
 init|=
 operator|new
@@ -3395,7 +3391,11 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|ArrayList
+argument_list|<
+name|int
+index|[]
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|jj_expentry
@@ -3508,28 +3508,25 @@ name|i
 index|]
 expr_stmt|;
 block|}
-name|boolean
-name|exists
-init|=
-literal|false
-decl_stmt|;
+name|jj_entries_loop
+label|:
 for|for
 control|(
 name|java
 operator|.
 name|util
 operator|.
-name|Enumeration
-name|e
+name|Iterator
+name|it
 init|=
 name|jj_expentries
 operator|.
-name|elements
+name|iterator
 argument_list|()
 init|;
-name|e
+name|it
 operator|.
-name|hasMoreElements
+name|hasNext
 argument_list|()
 condition|;
 control|)
@@ -3543,9 +3540,9 @@ name|int
 index|[]
 operator|)
 operator|(
-name|e
+name|it
 operator|.
-name|nextElement
+name|next
 argument_list|()
 operator|)
 decl_stmt|;
@@ -3560,10 +3557,6 @@ operator|.
 name|length
 condition|)
 block|{
-name|exists
-operator|=
-literal|true
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -3594,32 +3587,23 @@ name|i
 index|]
 condition|)
 block|{
-name|exists
-operator|=
-literal|false
-expr_stmt|;
-break|break;
+continue|continue
+name|jj_entries_loop
+continue|;
 block|}
 block|}
-if|if
-condition|(
-name|exists
-condition|)
-break|break;
-block|}
-block|}
-if|if
-condition|(
-operator|!
-name|exists
-condition|)
 name|jj_expentries
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|jj_expentry
 argument_list|)
 expr_stmt|;
+break|break
+name|jj_entries_loop
+break|;
+block|}
+block|}
 if|if
 condition|(
 name|pos
@@ -3641,6 +3625,7 @@ name|kind
 expr_stmt|;
 block|}
 block|}
+comment|/** Generate ParseException. */
 DECL|method|generateParseException
 specifier|public
 name|ParseException
@@ -3649,7 +3634,7 @@ parameter_list|()
 block|{
 name|jj_expentries
 operator|.
-name|removeAllElements
+name|clear
 argument_list|()
 expr_stmt|;
 name|boolean
@@ -3662,29 +3647,6 @@ index|[
 literal|31
 index|]
 decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-literal|31
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|la1tokens
-index|[
-name|i
-index|]
-operator|=
-literal|false
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|jj_kind
@@ -3814,7 +3776,7 @@ name|i
 expr_stmt|;
 name|jj_expentries
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|jj_expentry
 argument_list|)
@@ -3873,13 +3835,9 @@ index|[
 name|i
 index|]
 operator|=
-operator|(
-name|int
-index|[]
-operator|)
 name|jj_expentries
 operator|.
-name|elementAt
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -3897,6 +3855,7 @@ name|tokenImage
 argument_list|)
 return|;
 block|}
+comment|/** Enable tracing. */
 DECL|method|enable_tracing
 specifier|final
 specifier|public
@@ -3904,6 +3863,7 @@ name|void
 name|enable_tracing
 parameter_list|()
 block|{   }
+comment|/** Disable tracing. */
 DECL|method|disable_tracing
 specifier|final
 specifier|public
@@ -3912,7 +3872,6 @@ name|disable_tracing
 parameter_list|()
 block|{   }
 DECL|method|jj_rescan_token
-specifier|final
 specifier|private
 name|void
 name|jj_rescan_token
@@ -4021,7 +3980,6 @@ literal|false
 expr_stmt|;
 block|}
 DECL|method|jj_save
-specifier|final
 specifier|private
 name|void
 name|jj_save
