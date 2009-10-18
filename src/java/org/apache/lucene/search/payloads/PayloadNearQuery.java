@@ -1234,6 +1234,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|more
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|Spans
 index|[]
 name|spansArr
