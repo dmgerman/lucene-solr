@@ -1042,7 +1042,7 @@ argument_list|)
 expr_stmt|;
 name|t
 operator|.
-name|setTermText
+name|setTermBuffer
 argument_list|(
 literal|"hi there"
 argument_list|)
@@ -1203,16 +1203,6 @@ name|assertEquals
 argument_list|(
 name|t
 operator|.
-name|termText
-argument_list|()
-argument_list|,
-literal|"hello"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|t
-operator|.
 name|termLength
 argument_list|()
 argument_list|,
@@ -1231,7 +1221,7 @@ argument_list|)
 expr_stmt|;
 name|t
 operator|.
-name|setTermText
+name|setTermBuffer
 argument_list|(
 literal|"hello2"
 argument_list|)
@@ -1274,14 +1264,12 @@ name|assertEquals
 argument_list|(
 name|t
 operator|.
-name|termText
+name|term
 argument_list|()
 argument_list|,
 literal|"hello3"
 argument_list|)
 expr_stmt|;
-comment|// Make sure if we get the buffer and change a character
-comment|// that termText() reflects the change
 name|char
 index|[]
 name|buffer
@@ -1302,7 +1290,7 @@ name|assertEquals
 argument_list|(
 name|t
 operator|.
-name|termText
+name|term
 argument_list|()
 argument_list|,
 literal|"hollo3"

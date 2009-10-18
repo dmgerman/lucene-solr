@@ -143,7 +143,7 @@ name|submap
 operator|.
 name|get
 argument_list|(
-name|CharacterCache
+name|Character
 operator|.
 name|valueOf
 argument_list|(
@@ -170,8 +170,9 @@ name|submap
 operator|.
 name|put
 argument_list|(
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 name|c
 argument_list|)
