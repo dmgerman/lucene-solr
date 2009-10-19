@@ -87,7 +87,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/**  * A range filter built on top of a cached single term field (in {@link FieldCache}).  *   *<p>FieldCacheRangeFilter builds a single cache for the field the first time it is used.  * Each subsequent FieldCacheRangeFilter on the same field then reuses this cache,  * even if the range itself changes.   *   *<p>This means that FieldCacheRangeFilter is much faster (sometimes more than 100x as fast)   * as building a {@link TermRangeFilter} (or {@link ConstantScoreRangeQuery} on a {@link TermRangeFilter})  * for each query, if using a {@link #newStringRange}. However, if the range never changes it  * is slower (around 2x as slow) than building a CachingWrapperFilter on top of a single TermRangeFilter.  *  * For numeric data types, this filter may be significantly faster than {@link NumericRangeFilter}.  * Furthermore, it does not need the numeric values encoded by {@link NumericField}. But  * it has the problem that it only works with exact one value/document (see below).  *  *<p>As with all {@link FieldCache} based functionality, FieldCacheRangeFilter is only valid for   * fields which exact one term for each document (except for {@link #newStringRange}  * where 0 terms are also allowed). Due to a restriction of {@link FieldCache}, for numeric ranges  * all terms that do not have a numeric value, 0 is assumed.  *  *<p>Thus it works on dates, prices and other single value fields but will not work on  * regular text fields. It is preferable to use a<code>NOT_ANALYZED</code> field to ensure that  * there is only a single term.   *  *<p>This class does not have an constructor, use one of the static factory methods available,  * that create a correct instance for different data types supported by {@link FieldCache}.  */
+comment|/**  * A range filter built on top of a cached single term field (in {@link FieldCache}).  *   *<p>{@code FieldCacheRangeFilter} builds a single cache for the field the first time it is used.  * Each subsequent {@code FieldCacheRangeFilter} on the same field then reuses this cache,  * even if the range itself changes.   *   *<p>This means that {@code FieldCacheRangeFilter} is much faster (sometimes more than 100x as fast)   * as building a {@link TermRangeFilter}, if using a {@link #newStringRange}.  * However, if the range never changes it is slower (around 2x as slow) than building  * a CachingWrapperFilter on top of a single {@link TermRangeFilter}.  *  * For numeric data types, this filter may be significantly faster than {@link NumericRangeFilter}.  * Furthermore, it does not need the numeric values encoded by {@link NumericField}. But  * it has the problem that it only works with exact one value/document (see below).  *  *<p>As with all {@link FieldCache} based functionality, {@code FieldCacheRangeFilter} is only valid for   * fields which exact one term for each document (except for {@link #newStringRange}  * where 0 terms are also allowed). Due to a restriction of {@link FieldCache}, for numeric ranges  * all terms that do not have a numeric value, 0 is assumed.  *  *<p>Thus it works on dates, prices and other single value fields but will not work on  * regular text fields. It is preferable to use a<code>NOT_ANALYZED</code> field to ensure that  * there is only a single term.   *  *<p>This class does not have an constructor, use one of the static factory methods available,  * that create a correct instance for different data types supported by {@link FieldCache}.  */
 end_comment
 
 begin_class
@@ -209,7 +209,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a string range query using {@link FieldCache#getStringIndex}. This works with all    * fields containing zero or one term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a string range filter using {@link FieldCache#getStringIndex}. This works with all    * fields containing zero or one term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newStringRange
 specifier|public
 specifier|static
@@ -506,7 +506,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getBytes(IndexReader,String)}. This works with all    * byte fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getBytes(IndexReader,String)}. This works with all    * byte fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newByteRange
 specifier|public
 specifier|static
@@ -549,7 +549,7 @@ name|includeUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getBytes(IndexReader,String,FieldCache.ByteParser)}. This works with all    * byte fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getBytes(IndexReader,String,FieldCache.ByteParser)}. This works with all    * byte fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newByteRange
 specifier|public
 specifier|static
@@ -815,7 +815,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getShorts(IndexReader,String)}. This works with all    * short fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getShorts(IndexReader,String)}. This works with all    * short fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newShortRange
 specifier|public
 specifier|static
@@ -858,7 +858,7 @@ name|includeUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getShorts(IndexReader,String,FieldCache.ShortParser)}. This works with all    * short fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getShorts(IndexReader,String,FieldCache.ShortParser)}. This works with all    * short fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newShortRange
 specifier|public
 specifier|static
@@ -1122,7 +1122,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getInts(IndexReader,String)}. This works with all    * int fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getInts(IndexReader,String)}. This works with all    * int fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newIntRange
 specifier|public
 specifier|static
@@ -1165,7 +1165,7 @@ name|includeUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getInts(IndexReader,String,FieldCache.IntParser)}. This works with all    * int fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getInts(IndexReader,String,FieldCache.IntParser)}. This works with all    * int fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newIntRange
 specifier|public
 specifier|static
@@ -1419,7 +1419,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getLongs(IndexReader,String)}. This works with all    * long fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getLongs(IndexReader,String)}. This works with all    * long fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newLongRange
 specifier|public
 specifier|static
@@ -1462,7 +1462,7 @@ name|includeUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getLongs(IndexReader,String,FieldCache.LongParser)}. This works with all    * long fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getLongs(IndexReader,String,FieldCache.LongParser)}. This works with all    * long fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newLongRange
 specifier|public
 specifier|static
@@ -1716,7 +1716,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getFloats(IndexReader,String)}. This works with all    * float fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getFloats(IndexReader,String)}. This works with all    * float fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newFloatRange
 specifier|public
 specifier|static
@@ -1759,7 +1759,7 @@ name|includeUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getFloats(IndexReader,String,FieldCache.FloatParser)}. This works with all    * float fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getFloats(IndexReader,String,FieldCache.FloatParser)}. This works with all    * float fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newFloatRange
 specifier|public
 specifier|static
@@ -2055,7 +2055,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getDoubles(IndexReader,String)}. This works with all    * double fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getDoubles(IndexReader,String)}. This works with all    * double fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newDoubleRange
 specifier|public
 specifier|static
@@ -2098,7 +2098,7 @@ name|includeUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a numeric range query using {@link FieldCache#getDoubles(IndexReader,String,FieldCache.DoubleParser)}. This works with all    * double fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a numeric range filter using {@link FieldCache#getDoubles(IndexReader,String,FieldCache.DoubleParser)}. This works with all    * double fields containing exactly one numeric term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newDoubleRange
 specifier|public
 specifier|static
@@ -2743,7 +2743,7 @@ return|return
 name|h
 return|;
 block|}
-comment|/** Returns the field name for this query */
+comment|/** Returns the field name for this filter */
 DECL|method|getField
 specifier|public
 name|String
@@ -2776,7 +2776,7 @@ return|return
 name|includeUpper
 return|;
 block|}
-comment|/** Returns the lower value of this range query */
+comment|/** Returns the lower value of this range filter */
 DECL|method|getLowerVal
 specifier|public
 name|T
@@ -2787,7 +2787,7 @@ return|return
 name|lowerVal
 return|;
 block|}
-comment|/** Returns the upper value of this range query */
+comment|/** Returns the upper value of this range filter */
 DECL|method|getUpperVal
 specifier|public
 name|T
