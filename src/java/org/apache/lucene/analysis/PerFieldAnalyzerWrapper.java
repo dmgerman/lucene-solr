@@ -76,10 +76,20 @@ decl_stmt|;
 DECL|field|analyzerMap
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Analyzer
+argument_list|>
 name|analyzerMap
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Analyzer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**    * Constructs with default analyzer.    *    * @param defaultAnalyzer Any fields not specifically    * defined to use a different analyzer will use the one provided here.    */
@@ -108,7 +118,11 @@ name|Analyzer
 name|defaultAnalyzer
 parameter_list|,
 name|Map
-comment|/*<String, Analyzer>*/
+argument_list|<
+name|String
+argument_list|,
+name|Analyzer
+argument_list|>
 name|fieldAnalyzers
 parameter_list|)
 block|{
@@ -179,9 +193,6 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-operator|(
-name|Analyzer
-operator|)
 name|analyzerMap
 operator|.
 name|get
@@ -246,9 +257,6 @@ block|}
 name|Analyzer
 name|analyzer
 init|=
-operator|(
-name|Analyzer
-operator|)
 name|analyzerMap
 operator|.
 name|get
@@ -290,9 +298,6 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-operator|(
-name|Analyzer
-operator|)
 name|analyzerMap
 operator|.
 name|get

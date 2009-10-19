@@ -216,10 +216,16 @@ decl_stmt|;
 DECL|field|fieldsStreamTL
 specifier|private
 name|CloseableThreadLocal
+argument_list|<
+name|IndexInput
+argument_list|>
 name|fieldsStreamTL
 init|=
 operator|new
 name|CloseableThreadLocal
+argument_list|<
+name|IndexInput
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|isOriginal
@@ -2220,9 +2226,6 @@ block|{
 name|IndexInput
 name|localFieldsStream
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|fieldsStreamTL
 operator|.
 name|get

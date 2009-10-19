@@ -154,10 +154,16 @@ block|}
 DECL|field|tokenStreams
 specifier|private
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 name|tokenStreams
 init|=
 operator|new
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** Used by Analyzers that implement reusableTokenStream    *  to retrieve previously saved TokenStreams for re-use    *  by the same thread. */

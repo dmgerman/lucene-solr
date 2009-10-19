@@ -86,6 +86,11 @@ block|{
 DECL|field|cache
 specifier|private
 name|List
+argument_list|<
+name|AttributeSource
+operator|.
+name|State
+argument_list|>
 name|cache
 init|=
 literal|null
@@ -93,6 +98,11 @@ decl_stmt|;
 DECL|field|iterator
 specifier|private
 name|Iterator
+argument_list|<
+name|AttributeSource
+operator|.
+name|State
+argument_list|>
 name|iterator
 init|=
 literal|null
@@ -139,6 +149,11 @@ name|cache
 operator|=
 operator|new
 name|LinkedList
+argument_list|<
+name|AttributeSource
+operator|.
+name|State
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|fillCache
@@ -169,11 +184,6 @@ block|}
 comment|// Since the TokenFilter can be reset, the tokens need to be preserved as immutable.
 name|restoreState
 argument_list|(
-operator|(
-name|AttributeSource
-operator|.
-name|State
-operator|)
 name|iterator
 operator|.
 name|next
