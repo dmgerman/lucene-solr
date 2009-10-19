@@ -40,6 +40,9 @@ specifier|public
 specifier|abstract
 class|class
 name|TopDocsCollector
+parameter_list|<
+name|T
+parameter_list|>
 extends|extends
 name|Collector
 block|{
@@ -72,6 +75,9 @@ comment|/**    * The priority queue which holds the top documents. Note that dif
 DECL|field|pq
 specifier|protected
 name|PriorityQueue
+argument_list|<
+name|T
+argument_list|>
 name|pq
 decl_stmt|;
 comment|/** The total number of documents that the collector encountered. */
@@ -85,6 +91,9 @@ specifier|protected
 name|TopDocsCollector
 parameter_list|(
 name|PriorityQueue
+argument_list|<
+name|T
+argument_list|>
 name|pq
 parameter_list|)
 block|{

@@ -41,6 +41,9 @@ class|class
 name|PrefixFilter
 extends|extends
 name|MultiTermQueryWrapperFilter
+argument_list|<
+name|PrefixQuery
+argument_list|>
 block|{
 DECL|method|PrefixFilter
 specifier|public
@@ -67,12 +70,7 @@ name|getPrefix
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|PrefixQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|getPrefix
 argument_list|()

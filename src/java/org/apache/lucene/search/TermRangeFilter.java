@@ -37,6 +37,9 @@ class|class
 name|TermRangeFilter
 extends|extends
 name|MultiTermQueryWrapperFilter
+argument_list|<
+name|TermRangeQuery
+argument_list|>
 block|{
 comment|/**    * @param fieldName The field this range applies to    * @param lowerTerm The lower bound on this range    * @param upperTerm The upper bound on this range    * @param includeLower Does this range include the lower bound?    * @param includeUpper Does this range include the upper bound?    * @throws IllegalArgumentException if both terms are null or if    *  lowerTerm is null and includeLower is true (similar for upperTerm    *  and includeUpper)    */
 DECL|method|TermRangeFilter
@@ -189,12 +192,7 @@ name|getField
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|TermRangeQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|getField
 argument_list|()
@@ -208,12 +206,7 @@ name|getLowerTerm
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|TermRangeQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|getLowerTerm
 argument_list|()
@@ -227,12 +220,7 @@ name|getUpperTerm
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|TermRangeQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|getUpperTerm
 argument_list|()
@@ -246,12 +234,7 @@ name|includesLower
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|TermRangeQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|includesLower
 argument_list|()
@@ -265,12 +248,7 @@ name|includesUpper
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|TermRangeQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|includesUpper
 argument_list|()
@@ -284,12 +262,7 @@ name|getCollator
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
-name|TermRangeQuery
-operator|)
 name|query
-operator|)
 operator|.
 name|getCollator
 argument_list|()

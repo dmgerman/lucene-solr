@@ -105,13 +105,18 @@ DECL|class|MultiTermQueryWrapperFilter
 specifier|public
 class|class
 name|MultiTermQueryWrapperFilter
+parameter_list|<
+name|Q
+extends|extends
+name|MultiTermQuery
+parameter_list|>
 extends|extends
 name|Filter
 block|{
 DECL|field|query
 specifier|protected
 specifier|final
-name|MultiTermQuery
+name|Q
 name|query
 decl_stmt|;
 comment|/**    * Wrap a {@link MultiTermQuery} as a Filter.    */
@@ -119,7 +124,7 @@ DECL|method|MultiTermQueryWrapperFilter
 specifier|protected
 name|MultiTermQueryWrapperFilter
 parameter_list|(
-name|MultiTermQuery
+name|Q
 name|query
 parameter_list|)
 block|{
