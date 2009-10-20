@@ -183,6 +183,101 @@ specifier|abstract
 class|class
 name|FieldComparator
 block|{
+comment|/**    * Compare hit at slot1 with hit at slot2.    *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any N< 0 if slot2's value is sorted after    * slot1, any N> 0 if the slot2's value is sorted before    * slot1 and 0 if they are equal    */
+DECL|method|compare
+specifier|public
+specifier|abstract
+name|int
+name|compare
+parameter_list|(
+name|int
+name|slot1
+parameter_list|,
+name|int
+name|slot2
+parameter_list|)
+function_decl|;
+comment|/**    * Set the bottom slot, ie the "weakest" (sorted last)    * entry in the queue.  When {@link #compareBottom} is    * called, you should compare against this slot.  This    * will always be called before {@link #compareBottom}.    *     * @param slot the currently weakest (sorted last) slot in the queue    */
+DECL|method|setBottom
+specifier|public
+specifier|abstract
+name|void
+name|setBottom
+parameter_list|(
+specifier|final
+name|int
+name|slot
+parameter_list|)
+function_decl|;
+comment|/**    * Compare the bottom of the queue with doc.  This will    * only invoked after setBottom has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if bottom were slot1 and the new    * document were slot 2.    *        *<p>For a search that hits many results, this method    * will be the hotspot (invoked by far the most    * frequently).</p>    *     * @param doc that was hit    * @return any N< 0 if the doc's value is sorted after    * the bottom entry (not competitive), any N> 0 if the    * doc's value is sorted before the bottom entry and 0 if    * they are equal.    */
+DECL|method|compareBottom
+specifier|public
+specifier|abstract
+name|int
+name|compareBottom
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * This method is called when a new hit is competitive.    * You should copy any state associated with this document    * that will be required for future comparisons, into the    * specified slot.    *     * @param slot which slot to copy the hit to    * @param doc docID relative to current reader    */
+DECL|method|copy
+specifier|public
+specifier|abstract
+name|void
+name|copy
+parameter_list|(
+name|int
+name|slot
+parameter_list|,
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Set a new Reader. All doc correspond to the current Reader.    *     * @param reader current reader    * @param docBase docBase of this reader     * @throws IOException    * @throws IOException    */
+DECL|method|setNextReader
+specifier|public
+specifier|abstract
+name|void
+name|setNextReader
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|,
+name|int
+name|docBase
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Sets the Scorer to use in case a document's score is    *  needed.    *     * @param scorer Scorer instance that you should use to    * obtain the current hit's score, if necessary. */
+DECL|method|setScorer
+specifier|public
+name|void
+name|setScorer
+parameter_list|(
+name|Scorer
+name|scorer
+parameter_list|)
+block|{
+comment|// Empty implementation since most comparators don't need the score. This
+comment|// can be overridden by those that need it.
+block|}
+comment|/**    * Return the actual value in the slot.    *    * @param slot the value    * @return value in this slot upgraded to Comparable    */
+DECL|method|value
+specifier|public
+specifier|abstract
+name|Comparable
+name|value
+parameter_list|(
+name|int
+name|slot
+parameter_list|)
+function_decl|;
 comment|/** Parses field's values as byte (using {@link    *  FieldCache#getBytes} and sorts by ascending value */
 DECL|class|ByteComparator
 specifier|public
@@ -3631,101 +3726,6 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**    * Compare hit at slot1 with hit at slot2.    *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any N< 0 if slot2's value is sorted after    * slot1, any N> 0 if the slot2's value is sorted before    * slot1 and 0 if they are equal    */
-DECL|method|compare
-specifier|public
-specifier|abstract
-name|int
-name|compare
-parameter_list|(
-name|int
-name|slot1
-parameter_list|,
-name|int
-name|slot2
-parameter_list|)
-function_decl|;
-comment|/**    * Set the bottom slot, ie the "weakest" (sorted last)    * entry in the queue.  When {@link #compareBottom} is    * called, you should compare against this slot.  This    * will always be called before {@link #compareBottom}.    *     * @param slot the currently weakest (sorted last) slot in the queue    */
-DECL|method|setBottom
-specifier|public
-specifier|abstract
-name|void
-name|setBottom
-parameter_list|(
-specifier|final
-name|int
-name|slot
-parameter_list|)
-function_decl|;
-comment|/**    * Compare the bottom of the queue with doc.  This will    * only invoked after setBottom has been called.  This    * should return the same result as {@link    * #compare(int,int)}} as if bottom were slot1 and the new    * document were slot 2.    *        *<p>For a search that hits many results, this method    * will be the hotspot (invoked by far the most    * frequently).</p>    *     * @param doc that was hit    * @return any N< 0 if the doc's value is sorted after    * the bottom entry (not competitive), any N> 0 if the    * doc's value is sorted before the bottom entry and 0 if    * they are equal.    */
-DECL|method|compareBottom
-specifier|public
-specifier|abstract
-name|int
-name|compareBottom
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * This method is called when a new hit is competitive.    * You should copy any state associated with this document    * that will be required for future comparisons, into the    * specified slot.    *     * @param slot which slot to copy the hit to    * @param doc docID relative to current reader    */
-DECL|method|copy
-specifier|public
-specifier|abstract
-name|void
-name|copy
-parameter_list|(
-name|int
-name|slot
-parameter_list|,
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Set a new Reader. All doc correspond to the current Reader.    *     * @param reader current reader    * @param docBase docBase of this reader     * @throws IOException    * @throws IOException    */
-DECL|method|setNextReader
-specifier|public
-specifier|abstract
-name|void
-name|setNextReader
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Sets the Scorer to use in case a document's score is    *  needed.    *     * @param scorer Scorer instance that you should use to    * obtain the current hit's score, if necessary. */
-DECL|method|setScorer
-specifier|public
-name|void
-name|setScorer
-parameter_list|(
-name|Scorer
-name|scorer
-parameter_list|)
-block|{
-comment|// Empty implementation since most comparators don't need the score. This
-comment|// can be overridden by those that need it.
-block|}
-comment|/**    * Return the actual value in the slot.    *    * @param slot the value    * @return value in this slot upgraded to Comparable    */
-DECL|method|value
-specifier|public
-specifier|abstract
-name|Comparable
-name|value
-parameter_list|(
-name|int
-name|slot
-parameter_list|)
-function_decl|;
 block|}
 end_class
 
