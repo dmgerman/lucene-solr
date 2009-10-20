@@ -414,7 +414,7 @@ argument_list|>
 name|namedList
 init|=
 operator|new
-name|SimpleOrderedMap
+name|NamedList
 argument_list|<
 name|List
 argument_list|<
@@ -494,7 +494,7 @@ argument_list|>
 name|namedList
 init|=
 operator|new
-name|SimpleOrderedMap
+name|NamedList
 argument_list|<
 name|List
 argument_list|<
