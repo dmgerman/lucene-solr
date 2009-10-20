@@ -429,7 +429,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generate "more like this" similarity queries.   * Based on this mail:  *<code><pre>  * Lucene does let you access the document frequency of terms, with IndexReader.docFreq().  * Term frequencies can be computed by re-tokenizing the text, which, for a single document,  * is usually fast enough.  But looking up the docFreq() of every term in the document is  * probably too slow.  *   * You can use some heuristics to prune the set of terms, to avoid calling docFreq() too much,  * or at all.  Since you're trying to maximize a tf*idf score, you're probably most interested  * in terms with a high tf. Choosing a tf threshold even as low as two or three will radically  * reduce the number of terms under consideration.  Another heuristic is that terms with a  * high idf (i.e., a low df) tend to be longer.  So you could threshold the terms by the  * number of characters, not selecting anything less than, e.g., six or seven characters.  * With these sorts of heuristics you can usually find small set of, e.g., ten or fewer terms  * that do a pretty good job of characterizing a document.  *   * It all depends on what you're trying to do.  If you're trying to eek out that last percent  * of precision and recall regardless of computational difficulty so that you can win a TREC  * competition, then the techniques I mention above are useless.  But if you're trying to  * provide a "more like this" button on a search results page that does a decent job and has  * good performance, such techniques might be useful.  *   * An efficient, effective "more-like-this" query generator would be a great contribution, if  * anyone's interested.  I'd imagine that it would take a Reader or a String (the document's  * text), analyzer Analyzer, and return a set of representative terms using heuristics like those  * above.  The frequency and length thresholds could be parameters, etc.  *   * Doug  *</pre></code>  *  *  *<p>  *<h3>Initial Usage</h3>  *  * This class has lots of options to try to make it efficient and flexible.  * See the body of {@link #main main()} below in the source for real code, or  * if you want pseudo code, the simplest possible usage is as follows. The bold  * fragment is specific to this class.  *  *<code><pre>  *  * IndexReader ir = ...  * IndexSearcher is = ...  *<b>  * MoreLikeThis mlt = new MoreLikeThis(ir);  * Reader target = ...</b><em>// orig source of doc you want to find similarities to</em><b>  * Query query = mlt.like( target);  *</b>  * Hits hits = is.search(query);  *<em>// now the usual iteration thru 'hits' - the only thing to watch for is to make sure  * you ignore the doc if it matches your 'target' document, as it should be similar to itself</em>  *  *</pre></code>  *  * Thus you:  *<ol>  *<li> do your normal, Lucene setup for searching,  *<li> create a MoreLikeThis,  *<li> get the text of the doc you want to find similarities to  *<li> then call one of the like() calls to generate a similarity query  *<li> call the searcher to find the similar docs  *</ol>  *  *<h3>More Advanced Usage</h3>  *  * You may want to use {@link #setFieldNames setFieldNames(...)} so you can examine  * multiple fields (e.g. body and title) for similarity.  *<p>  *  * Depending on the size of your index and the size and makeup of your documents you  * may want to call the other set methods to control how the similarity queries are  * generated:  *<ul>  *<li> {@link #setMinTermFreq setMinTermFreq(...)}  *<li> {@link #setMinDocFreq setMinDocFreq(...)}  *<li> {@link #setMinWordLen setMinWordLen(...)}  *<li> {@link #setMaxWordLen setMaxWordLen(...)}  *<li> {@link #setMaxQueryTerms setMaxQueryTerms(...)}  *<li> {@link #setMaxNumTokensParsed setMaxNumTokensParsed(...)}  *<li> {@link #setStopWords setStopWord(...)}   *</ul>   *  *<hr>  *<pre>  * Changes: Mark Harwood 29/02/04  * Some bugfixing, some refactoring, some optimisation.  *  - bugfix: retrieveTerms(int docNum) was not working for indexes without a termvector -added missing code  *  - bugfix: No significant terms being created for fields with a termvector - because   *            was only counting one occurrence per term/field pair in calculations(ie not including frequency info from TermVector)   *  - refactor: moved common code into isNoiseWord()  *  - optimise: when no termvector support available - used maxNumTermsParsed to limit amount of tokenization  *</pre>  *  */
+comment|/**  * Generate "more like this" similarity queries.   * Based on this mail:  *<code><pre>  * Lucene does let you access the document frequency of terms, with IndexReader.docFreq().  * Term frequencies can be computed by re-tokenizing the text, which, for a single document,  * is usually fast enough.  But looking up the docFreq() of every term in the document is  * probably too slow.  *   * You can use some heuristics to prune the set of terms, to avoid calling docFreq() too much,  * or at all.  Since you're trying to maximize a tf*idf score, you're probably most interested  * in terms with a high tf. Choosing a tf threshold even as low as two or three will radically  * reduce the number of terms under consideration.  Another heuristic is that terms with a  * high idf (i.e., a low df) tend to be longer.  So you could threshold the terms by the  * number of characters, not selecting anything less than, e.g., six or seven characters.  * With these sorts of heuristics you can usually find small set of, e.g., ten or fewer terms  * that do a pretty good job of characterizing a document.  *   * It all depends on what you're trying to do.  If you're trying to eek out that last percent  * of precision and recall regardless of computational difficulty so that you can win a TREC  * competition, then the techniques I mention above are useless.  But if you're trying to  * provide a "more like this" button on a search results page that does a decent job and has  * good performance, such techniques might be useful.  *   * An efficient, effective "more-like-this" query generator would be a great contribution, if  * anyone's interested.  I'd imagine that it would take a Reader or a String (the document's  * text), analyzer Analyzer, and return a set of representative terms using heuristics like those  * above.  The frequency and length thresholds could be parameters, etc.  *   * Doug  *</pre></code>  *  *  *<p>  *<h3>Initial Usage</h3>  *  * This class has lots of options to try to make it efficient and flexible.  * See the body of {@link #main main()} below in the source for real code, or  * if you want pseudo code, the simplest possible usage is as follows. The bold  * fragment is specific to this class.  *  *<code><pre>  *  * IndexReader ir = ...  * IndexSearcher is = ...  *<b>  * MoreLikeThis mlt = new MoreLikeThis(ir);  * Reader target = ...</b><em>// orig source of doc you want to find similarities to</em><b>  * Query query = mlt.like( target);  *</b>  * Hits hits = is.search(query);  *<em>// now the usual iteration thru 'hits' - the only thing to watch for is to make sure  * you ignore the doc if it matches your 'target' document, as it should be similar to itself</em>  *  *</pre></code>  *  * Thus you:  *<ol>  *<li> do your normal, Lucene setup for searching,  *<li> create a MoreLikeThis,  *<li> get the text of the doc you want to find similarities to  *<li> then call one of the like() calls to generate a similarity query  *<li> call the searcher to find the similar docs  *</ol>  *  *<h3>More Advanced Usage</h3>  *  * You may want to use {@link #setFieldNames setFieldNames(...)} so you can examine  * multiple fields (e.g. body and title) for similarity.  *<p>  *  * Depending on the size of your index and the size and makeup of your documents you  * may want to call the other set methods to control how the similarity queries are  * generated:  *<ul>  *<li> {@link #setMinTermFreq setMinTermFreq(...)}  *<li> {@link #setMinDocFreq setMinDocFreq(...)}  *<li> {@link #setMaxDocFreq setMaxDocFreq(...)}  *<li> {@link #setMaxDocFreqPct setMaxDocFreqPct(...)}  *<li> {@link #setMinWordLen setMinWordLen(...)}  *<li> {@link #setMaxWordLen setMaxWordLen(...)}  *<li> {@link #setMaxQueryTerms setMaxQueryTerms(...)}  *<li> {@link #setMaxNumTokensParsed setMaxNumTokensParsed(...)}  *<li> {@link #setStopWords setStopWord(...)}   *</ul>   *  *<hr>  *<pre>  * Changes: Mark Harwood 29/02/04  * Some bugfixing, some refactoring, some optimisation.  *  - bugfix: retrieveTerms(int docNum) was not working for indexes without a termvector -added missing code  *  - bugfix: No significant terms being created for fields with a termvector - because   *            was only counting one occurrence per term/field pair in calculations(ie not including frequency info from TermVector)   *  - refactor: moved common code into isNoiseWord()  *  - optimise: when no termvector support available - used maxNumTermsParsed to limit amount of tokenization  *</pre>  *  */
 end_comment
 
 begin_class
@@ -480,6 +480,18 @@ name|int
 name|DEFAULT_MIN_DOC_FREQ
 init|=
 literal|5
+decl_stmt|;
+comment|/**      * Ignore words which occur in more than this many docs. 	 * @see #getMaxDocFreq 	 * @see #setMaxDocFreq	  	 * @see #setMaxDocFreqPct	       */
+DECL|field|DEFAULT_MAX_DOC_FREQ
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_DOC_FREQ
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
 decl_stmt|;
 comment|/**      * Boost terms in query based on score. 	 * @see #isBoost 	 * @see #setBoost       */
 DECL|field|DEFAULT_BOOST
@@ -578,6 +590,14 @@ name|int
 name|minDocFreq
 init|=
 name|DEFAULT_MIN_DOC_FREQ
+decl_stmt|;
+comment|/**      * Ignore words which occur in more than this many docs. 	 */
+DECL|field|maxDocFreq
+specifier|private
+name|int
+name|maxDocFreq
+init|=
+name|DEFAULT_MAX_DOC_FREQ
 decl_stmt|;
 comment|/**      * Should we apply a boost to the Query based on the scores?      */
 DECL|field|boost
@@ -829,6 +849,58 @@ operator|.
 name|minDocFreq
 operator|=
 name|minDocFreq
+expr_stmt|;
+block|}
+comment|/**      * Returns the maximum frequency in which words may still appear.       * Words that appear in more than this many docs will be ignored. The default frequency is       * {@link #DEFAULT_MAX_DOC_FREQ}.      *      * @return get the maximum frequency at which words are still allowed,        * words which occur in more docs than this are ignored.      */
+DECL|method|getMaxDocFreq
+specifier|public
+name|int
+name|getMaxDocFreq
+parameter_list|()
+block|{
+return|return
+name|maxDocFreq
+return|;
+block|}
+comment|/**      * Set the maximum frequency in which words may still appear. Words that appear      * in more than this many docs will be ignored. 	 *  	 * @param maxFreq 	 *            the maximum count of documents that a term may appear  	 *            in to be still considered relevant 	 */
+DECL|method|setMaxDocFreq
+specifier|public
+name|void
+name|setMaxDocFreq
+parameter_list|(
+name|int
+name|maxFreq
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxDocFreq
+operator|=
+name|maxFreq
+expr_stmt|;
+block|}
+comment|/**      * Set the maximum percentage in which words may still appear. Words that appear      * in more than this many percent of all docs will be ignored. 	 *  	 * @param maxPercentage 	 *            the maximum percentage of documents (0-100) that a term may appear  	 *            in to be still considered relevant 	 */
+DECL|method|setMaxDocFreqPct
+specifier|public
+name|void
+name|setMaxDocFreqPct
+parameter_list|(
+name|int
+name|maxPercentage
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxDocFreq
+operator|=
+name|maxPercentage
+operator|*
+name|ir
+operator|.
+name|numDocs
+argument_list|()
+operator|/
+literal|100
 expr_stmt|;
 block|}
 comment|/**      * Returns whether to boost terms in query based on "score" or not. The default is      * {@link #DEFAULT_BOOST}.      *      * @return whether to boost terms in query based on "score" or not. 	 * @see #setBoost      */
@@ -1610,6 +1682,16 @@ condition|)
 block|{
 continue|continue;
 comment|// filter out words that don't occur in enough docs
+block|}
+if|if
+condition|(
+name|docFreq
+operator|>
+name|maxDocFreq
+condition|)
+block|{
+continue|continue;
+comment|// filter out words that occur in too many docs
 block|}
 if|if
 condition|(
