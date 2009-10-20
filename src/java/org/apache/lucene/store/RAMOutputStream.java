@@ -190,10 +190,6 @@ name|out
 operator|.
 name|writeBytes
 argument_list|(
-operator|(
-name|byte
-index|[]
-operator|)
 name|file
 operator|.
 name|getBuffer
@@ -492,10 +488,6 @@ else|else
 block|{
 name|currentBuffer
 operator|=
-operator|(
-name|byte
-index|[]
-operator|)
 name|file
 operator|.
 name|getBuffer

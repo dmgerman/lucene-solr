@@ -498,9 +498,6 @@ continue|continue;
 block|}
 name|reusableST
 operator|=
-operator|(
-name|ScoreTerm
-operator|)
 name|stQueue
 operator|.
 name|insertWithOverflow
@@ -562,9 +559,6 @@ block|{
 name|ScoreTerm
 name|st
 init|=
-operator|(
-name|ScoreTerm
-operator|)
 name|stQueue
 operator|.
 name|pop

@@ -316,10 +316,6 @@ expr_stmt|;
 block|}
 name|processTerms
 argument_list|(
-operator|(
-name|String
-index|[]
-operator|)
 name|terms
 operator|.
 name|toArray

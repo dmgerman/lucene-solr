@@ -4043,9 +4043,6 @@ name|queue
 operator|.
 name|fillFields
 argument_list|(
-operator|(
-name|Entry
-operator|)
 name|queue
 operator|.
 name|pop

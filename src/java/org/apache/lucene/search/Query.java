@@ -441,9 +441,6 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
-name|Query
-operator|)
 name|uniques
 operator|.
 name|iterator

@@ -630,9 +630,6 @@ block|{
 name|PhrasePositions
 name|pp
 init|=
-operator|(
-name|PhrasePositions
-operator|)
 name|pq
 operator|.
 name|pop

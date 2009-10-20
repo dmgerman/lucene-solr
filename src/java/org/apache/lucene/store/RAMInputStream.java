@@ -325,10 +325,6 @@ else|else
 block|{
 name|currentBuffer
 operator|=
-operator|(
-name|byte
-index|[]
-operator|)
 name|file
 operator|.
 name|getBuffer

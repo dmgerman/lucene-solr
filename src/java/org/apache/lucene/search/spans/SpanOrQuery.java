@@ -285,10 +285,6 @@ name|getClauses
 parameter_list|()
 block|{
 return|return
-operator|(
-name|SpanQuery
-index|[]
-operator|)
 name|clauses
 operator|.
 name|toArray
@@ -905,9 +901,6 @@ condition|)
 comment|// optimize 1-clause case
 return|return
 operator|(
-operator|(
-name|SpanQuery
-operator|)
 name|clauses
 operator|.
 name|get
@@ -1113,9 +1106,6 @@ name|top
 parameter_list|()
 block|{
 return|return
-operator|(
-name|Spans
-operator|)
 name|queue
 operator|.
 name|top
