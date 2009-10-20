@@ -555,13 +555,6 @@ comment|// index Term below should NOT be returned by a TermRangeQuery
 comment|// with a Farsi Collator (or an Arabic one for the case when Farsi is not
 comment|// supported).
 comment|// Test TermRangeQuery
-name|aqp
-operator|.
-name|setUseOldRangeQuery
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|ScoreDoc
 index|[]
 name|result
@@ -584,76 +577,6 @@ argument_list|)
 operator|.
 name|scoreDocs
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"The index Term should not be included."
-argument_list|,
-literal|0
-argument_list|,
-name|result
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|is
-operator|.
-name|search
-argument_list|(
-name|aqp
-operator|.
-name|parse
-argument_list|(
-literal|"[ \u0633 TO \u0638 ]"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|1000
-argument_list|)
-operator|.
-name|scoreDocs
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"The index Term should be included."
-argument_list|,
-literal|1
-argument_list|,
-name|result
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-comment|// Test TermRangeQuery
-name|aqp
-operator|.
-name|setUseOldRangeQuery
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|is
-operator|.
-name|search
-argument_list|(
-name|aqp
-operator|.
-name|parse
-argument_list|(
-literal|"[ \u062F TO \u0698 ]"
-argument_list|)
-argument_list|,
-literal|null
-argument_list|,
-literal|1000
-argument_list|)
-operator|.
-name|scoreDocs
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"The index Term should not be included."
