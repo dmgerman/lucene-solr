@@ -3485,7 +3485,7 @@ name|getMaxBufferedDocs
 argument_list|()
 return|;
 block|}
-comment|/** Determines the amount of RAM that may be used for    * buffering added documents and deletions before they are    * flushed to the Directory.  Generally for faster    * indexing performance it's best to flush by RAM usage    * instead of document count and use as large a RAM buffer    * as you can.    *    *<p>When this is set, the writer will flush whenever    * buffered documents and deletions use this much RAM.    * Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage.  Note that if    * flushing by document count is also enabled, then the    * flush will be triggered by whichever comes first.</p>    *    *<p><b>NOTE</b>: the account of RAM usage for pending    * deletions is only approximate.  Specifically, if you    * delete by Query, Lucene currently has no way to measure    * the RAM usage if individual Queries so the accounting    * will under-estimate and you should compensate by either    * calling commit() periodically yourself, or by using    * {@link #setMaxBufferedDeleteTerms} to flush by count    * instead of RAM usage (each buffered delete Query counts    * as one).    *    *<p> The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.</p>    *     * @throws IllegalArgumentException if ramBufferSize is    * enabled but non-positive, or it disables ramBufferSize    * when maxBufferedDocs is already disabled    */
+comment|/** Determines the amount of RAM that may be used for    * buffering added documents and deletions before they are    * flushed to the Directory.  Generally for faster    * indexing performance it's best to flush by RAM usage    * instead of document count and use as large a RAM buffer    * as you can.    *    *<p>When this is set, the writer will flush whenever    * buffered documents and deletions use this much RAM.    * Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage.  Note that if    * flushing by document count is also enabled, then the    * flush will be triggered by whichever comes first.</p>    *    *<p><b>NOTE</b>: the account of RAM usage for pending    * deletions is only approximate.  Specifically, if you    * delete by Query, Lucene currently has no way to measure    * the RAM usage if individual Queries so the accounting    * will under-estimate and you should compensate by either    * calling commit() periodically yourself, or by using    * {@link #setMaxBufferedDeleteTerms} to flush by count    * instead of RAM usage (each buffered delete Query counts    * as one).    *    *<p><b>NOTE</b>: because IndexWriter uses    *<code>int</code>s when managing its internal storage,    * the absolute maximum value for this setting is somewhat    * less than 2048 MB.  The precise limit depends on    * various factors, such as how large your documents are,    * how many fields have norms, etc., so it's best to set    * this value comfortably under 2048.</p>    *    *<p> The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.</p>    *     * @throws IllegalArgumentException if ramBufferSize is    * enabled but non-positive, or it disables ramBufferSize    * when maxBufferedDocs is already disabled    */
 DECL|method|setRAMBufferSizeMB
 specifier|public
 name|void
@@ -3495,6 +3495,25 @@ name|double
 name|mb
 parameter_list|)
 block|{
+if|if
+condition|(
+name|mb
+operator|>
+literal|2048.0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"ramBufferSize "
+operator|+
+name|mb
+operator|+
+literal|" is too large; should be comfortably less than 2048"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|mb
