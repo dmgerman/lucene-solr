@@ -16,172 +16,49 @@ begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Use by certain classes to match version compatibility  * across releases of Lucene.  */
 end_comment
 
-begin_class
-DECL|class|Version
+begin_enum
+DECL|enum|Version
 specifier|public
-specifier|final
-class|class
+enum|enum
 name|Version
-extends|extends
-name|Parameter
-implements|implements
-name|Serializable
 block|{
-comment|/** Use this to get the latest& greatest settings, bug    *  fixes, etc, for Lucene.    *    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If precise back compatibility is important    * then you should instead explicitly specify an actual    * version.    */
-DECL|field|LUCENE_CURRENT
-specifier|public
-specifier|static
-specifier|final
-name|Version
-name|LUCENE_CURRENT
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_CURRENT"
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
 comment|/** Match settings and bugs in Lucene's 2.0 release. */
-DECL|field|LUCENE_20
-specifier|public
-specifier|static
-specifier|final
-name|Version
+DECL|enum constant|LUCENE_20
 name|LUCENE_20
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_20"
-argument_list|,
-literal|2000
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** Match settings and bugs in Lucene's 2.1 release. */
-DECL|field|LUCENE_21
-specifier|public
-specifier|static
-specifier|final
-name|Version
+DECL|enum constant|LUCENE_21
 name|LUCENE_21
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_21"
-argument_list|,
-literal|2100
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** Match settings and bugs in Lucene's 2.2 release. */
-DECL|field|LUCENE_22
-specifier|public
-specifier|static
-specifier|final
-name|Version
+DECL|enum constant|LUCENE_22
 name|LUCENE_22
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_22"
-argument_list|,
-literal|2200
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** Match settings and bugs in Lucene's 2.3 release. */
-DECL|field|LUCENE_23
-specifier|public
-specifier|static
-specifier|final
-name|Version
+DECL|enum constant|LUCENE_23
 name|LUCENE_23
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_23"
-argument_list|,
-literal|2300
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** Match settings and bugs in Lucene's 2.4 release. */
-DECL|field|LUCENE_24
-specifier|public
-specifier|static
-specifier|final
-name|Version
+DECL|enum constant|LUCENE_24
 name|LUCENE_24
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_24"
-argument_list|,
-literal|2400
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** Match settings and bugs in Lucene's 2.9 release. */
-DECL|field|LUCENE_29
-specifier|public
-specifier|static
-specifier|final
-name|Version
+DECL|enum constant|LUCENE_29
 name|LUCENE_29
-init|=
-operator|new
-name|Version
-argument_list|(
-literal|"LUCENE_29"
-argument_list|,
-literal|2900
-argument_list|)
-decl_stmt|;
-DECL|field|v
-specifier|private
-specifier|final
-name|int
-name|v
-decl_stmt|;
-DECL|method|Version
-specifier|public
-name|Version
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|int
-name|v
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|v
-operator|=
-name|v
-expr_stmt|;
-block|}
+block|,
+comment|/** Match settings and bugs in Lucene's 3.0 release. */
+DECL|enum constant|LUCENE_30
+name|LUCENE_30
+block|,
+comment|/* Add new constants for later versions **here** to respect order! */
+comment|/** Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    *    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If precise back compatibility is important    * then you should instead explicitly specify an actual    * version.    */
+DECL|enum constant|LUCENE_CURRENT
+name|LUCENE_CURRENT
+block|;
 DECL|method|onOrAfter
 specifier|public
 name|boolean
@@ -192,19 +69,16 @@ name|other
 parameter_list|)
 block|{
 return|return
-name|v
-operator|==
-literal|0
-operator|||
-name|v
-operator|>=
+name|compareTo
+argument_list|(
 name|other
-operator|.
-name|v
+argument_list|)
+operator|>=
+literal|0
 return|;
 block|}
 block|}
-end_class
+end_enum
 
 end_unit
 

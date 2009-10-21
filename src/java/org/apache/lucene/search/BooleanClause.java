@@ -12,20 +12,6 @@ name|search
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Parameter
-import|;
-end_import
-
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -47,107 +33,57 @@ operator|.
 name|Serializable
 block|{
 comment|/** Specifies how clauses are to occur in matching documents. */
-DECL|class|Occur
+DECL|enum|Occur
 specifier|public
 specifier|static
-specifier|final
-class|class
+enum|enum
 name|Occur
-extends|extends
-name|Parameter
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 block|{
-DECL|method|Occur
-specifier|private
-name|Occur
-parameter_list|(
-name|String
-name|name
-parameter_list|)
+comment|/** Use this operator for clauses that<i>must</i> appear in the matching documents. */
+DECL|enum constant|MUST
+name|MUST
 block|{
-comment|// typesafe enum pattern, no public constructor
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|toString
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
-if|if
-condition|(
-name|this
-operator|==
-name|MUST
-condition|)
 return|return
 literal|"+"
 return|;
-if|if
-condition|(
-name|this
-operator|==
-name|MUST_NOT
-condition|)
-return|return
-literal|"-"
-return|;
+block|}
+block|}
+block|,
+comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with no<code>MUST</code>       * clauses one or more<code>SHOULD</code> clauses must match a document       * for the BooleanQuery to match.      * @see BooleanQuery#setMinimumNumberShouldMatch      */
+DECL|enum constant|SHOULD
+name|SHOULD
+block|{
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
 return|return
 literal|""
 return|;
 block|}
-comment|/** Use this operator for clauses that<i>must</i> appear in the matching documents. */
-DECL|field|MUST
-specifier|public
-specifier|static
-specifier|final
-name|Occur
-name|MUST
-init|=
-operator|new
-name|Occur
-argument_list|(
-literal|"MUST"
-argument_list|)
-decl_stmt|;
-comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with no<code>MUST</code>       * clauses one or more<code>SHOULD</code> clauses must match a document       * for the BooleanQuery to match.      * @see BooleanQuery#setMinimumNumberShouldMatch      */
-DECL|field|SHOULD
-specifier|public
-specifier|static
-specifier|final
-name|Occur
-name|SHOULD
-init|=
-operator|new
-name|Occur
-argument_list|(
-literal|"SHOULD"
-argument_list|)
-decl_stmt|;
-comment|/** Use this operator for clauses that<i>must not</i> appear in the matching documents.      * Note that it is not possible to search for queries that only consist      * of a<code>MUST_NOT</code> clause. */
-DECL|field|MUST_NOT
-specifier|public
-specifier|static
-specifier|final
-name|Occur
-name|MUST_NOT
-init|=
-operator|new
-name|Occur
-argument_list|(
-literal|"MUST_NOT"
-argument_list|)
-decl_stmt|;
 block|}
+block|,
+comment|/** Use this operator for clauses that<i>must not</i> appear in the matching documents.      * Note that it is not possible to search for queries that only consist      * of a<code>MUST_NOT</code> clause. */
+DECL|enum constant|MUST_NOT
+name|MUST_NOT
+block|{
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"-"
+return|;
+block|}
+block|}
+block|;    }
 comment|/** The query whose matching documents are combined by the boolean query.    */
 DECL|field|query
 specifier|private
@@ -246,11 +182,8 @@ return|return
 name|Occur
 operator|.
 name|MUST_NOT
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|occur
-argument_list|)
 return|;
 block|}
 DECL|method|isRequired
@@ -263,11 +196,8 @@ return|return
 name|Occur
 operator|.
 name|MUST
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|occur
-argument_list|)
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this. */
@@ -319,13 +249,10 @@ operator|&&
 name|this
 operator|.
 name|occur
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|other
 operator|.
 name|occur
-argument_list|)
 return|;
 block|}
 comment|/** Returns a hash code value for this object.*/
@@ -345,11 +272,8 @@ operator|(
 name|Occur
 operator|.
 name|MUST
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|occur
-argument_list|)
 condition|?
 literal|1
 else|:
@@ -360,11 +284,8 @@ operator|(
 name|Occur
 operator|.
 name|MUST_NOT
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|occur
-argument_list|)
 condition|?
 literal|2
 else|:

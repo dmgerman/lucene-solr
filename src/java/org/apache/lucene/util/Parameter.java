@@ -67,10 +67,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A serializable Enum class.  */
+comment|/**  * A serializable Enum class.  * @deprecated Use Java 5 enum  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
 DECL|class|Parameter
 specifier|public
 specifier|abstract

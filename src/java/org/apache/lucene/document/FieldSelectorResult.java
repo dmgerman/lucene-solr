@@ -12,16 +12,6 @@ name|document
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -30,200 +20,37 @@ begin_comment
 comment|/**  *  Provides information about what should be done with this Field   *  **/
 end_comment
 
-begin_comment
-comment|//Replace with an enumerated type in 1.5
-end_comment
-
-begin_class
-DECL|class|FieldSelectorResult
+begin_enum
+DECL|enum|FieldSelectorResult
 specifier|public
-specifier|final
-class|class
+enum|enum
 name|FieldSelectorResult
-implements|implements
-name|Serializable
 block|{
-comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encountered.      *  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.       */
-DECL|field|LOAD
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
+comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encountered.      *  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+DECL|enum constant|LOAD
 name|LOAD
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
+block|,
 comment|/**      * Lazily load this {@link Field}.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} SHOULD NOT BE USED.  {@link Document#getFieldable(String)} is safe to use and should      * return a valid instance of a {@link Fieldable}.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
-DECL|field|LAZY_LOAD
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
+DECL|enum constant|LAZY_LOAD
 name|LAZY_LOAD
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|1
-argument_list|)
-decl_stmt|;
+block|,
 comment|/**      * Do not load the {@link Field}.  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should return null.      * {@link Document#add(Fieldable)} is not called.      *<p/>      * {@link Document#add(Fieldable)} should not be called by the Reader.      */
-DECL|field|NO_LOAD
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
+DECL|enum constant|NO_LOAD
 name|NO_LOAD
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|2
-argument_list|)
-decl_stmt|;
+block|,
 comment|/**      * Load this field as in the {@link #LOAD} case, but immediately return from {@link Field} loading for the {@link Document}.  Thus, the      * Document may not have its complete set of Fields.  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should      * both be valid for this {@link Field}      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
-DECL|field|LOAD_AND_BREAK
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
+DECL|enum constant|LOAD_AND_BREAK
 name|LOAD_AND_BREAK
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|3
-argument_list|)
-decl_stmt|;
-comment|/** Expert:  Load the size of this {@link Field} rather than its value.        * Size is measured as number of bytes required to store the field == bytes for a binary or any compressed value, and 2*chars for a String value.       * The size is stored as a binary value, represented as an int in a byte[], with the higher order byte first in [0]       */
-DECL|field|SIZE
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
+block|,
+comment|/** Expert:  Load the size of this {@link Field} rather than its value.      * Size is measured as number of bytes required to store the field == bytes for a binary or any compressed value, and 2*chars for a String value.      * The size is stored as a binary value, represented as an int in a byte[], with the higher order byte first in [0]      */
+DECL|enum constant|SIZE
 name|SIZE
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|5
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** Expert: Like {@link #SIZE} but immediately break from the field loading loop, i.e., stop loading further fields, after the size is loaded */
-DECL|field|SIZE_AND_BREAK
-specifier|public
-specifier|transient
-specifier|static
-specifier|final
-name|FieldSelectorResult
+DECL|enum constant|SIZE_AND_BREAK
 name|SIZE_AND_BREAK
-init|=
-operator|new
-name|FieldSelectorResult
-argument_list|(
-literal|6
-argument_list|)
-decl_stmt|;
-DECL|field|id
-specifier|private
-name|int
-name|id
-decl_stmt|;
-DECL|method|FieldSelectorResult
-specifier|private
-name|FieldSelectorResult
-parameter_list|(
-name|int
-name|id
-parameter_list|)
-block|{
-name|this
-operator|.
-name|id
-operator|=
-name|id
-expr_stmt|;
 block|}
-DECL|method|equals
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
-if|if
-condition|(
-name|this
-operator|==
-name|o
-condition|)
-return|return
-literal|true
-return|;
-if|if
-condition|(
-name|o
-operator|==
-literal|null
-operator|||
-name|getClass
-argument_list|()
-operator|!=
-name|o
-operator|.
-name|getClass
-argument_list|()
-condition|)
-return|return
-literal|false
-return|;
-specifier|final
-name|FieldSelectorResult
-name|that
-init|=
-operator|(
-name|FieldSelectorResult
-operator|)
-name|o
-decl_stmt|;
-if|if
-condition|(
-name|id
-operator|!=
-name|that
-operator|.
-name|id
-condition|)
-return|return
-literal|false
-return|;
-return|return
-literal|true
-return|;
-block|}
-DECL|method|hashCode
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-name|id
-return|;
-block|}
-block|}
-end_class
+end_enum
 
 end_unit
 

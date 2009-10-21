@@ -558,20 +558,6 @@ name|Query
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Parameter
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class performs the query parsing using the new query parser  * implementation, but keeps the old {@link QueryParser} API.<br/>  *<br/>  * This class should be used when the new query parser features are and the old  * {@link QueryParser} API are needed at the same time.<br/>  *   * @deprecated this class will be removed soon, it's a temporary class to be  *             used along the transition from the old query parser to the new  *             one  */
 end_comment
@@ -583,64 +569,17 @@ class|class
 name|QueryParserWrapper
 block|{
 comment|/**    * The default operator for parsing queries. Use    * {@link QueryParserWrapper#setDefaultOperator} to change it.    */
-DECL|class|Operator
+DECL|enum|Operator
+DECL|enum constant|OR
+DECL|enum constant|AND
 specifier|static
 specifier|public
-specifier|final
-class|class
+enum|enum
 name|Operator
-extends|extends
-name|Parameter
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|3550299139196880290L
-decl_stmt|;
-DECL|method|Operator
-specifier|private
-name|Operator
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-DECL|field|OR
-specifier|static
-specifier|public
-specifier|final
-name|Operator
 name|OR
-init|=
-operator|new
-name|Operator
-argument_list|(
-literal|"OR"
-argument_list|)
-decl_stmt|;
-DECL|field|AND
-specifier|static
-specifier|public
-specifier|final
-name|Operator
+block|,
 name|AND
-init|=
-operator|new
-name|Operator
-argument_list|(
-literal|"AND"
-argument_list|)
-decl_stmt|;
 block|}
 comment|// the nested class:
 comment|/** Alternative form of QueryParser.Operator.AND */
