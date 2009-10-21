@@ -98,7 +98,7 @@ specifier|public
 name|ParallelMultiSearcher
 parameter_list|(
 name|Searchable
-index|[]
+modifier|...
 name|searchables
 parameter_list|)
 throws|throws
@@ -1358,6 +1358,8 @@ init|(
 name|hq
 init|)
 block|{
+comment|// this cast is bad, because we assume that the list has correct type.
+comment|// Because of that we have the @SuppressWarnings :-(
 if|if
 condition|(
 name|scoreDoc

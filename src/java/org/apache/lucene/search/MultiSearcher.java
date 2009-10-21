@@ -517,7 +517,7 @@ specifier|public
 name|MultiSearcher
 parameter_list|(
 name|Searchable
-index|[]
+modifier|...
 name|searchables
 parameter_list|)
 throws|throws
