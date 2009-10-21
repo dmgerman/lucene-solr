@@ -915,6 +915,9 @@ decl_stmt|;
 DECL|field|hq
 specifier|private
 name|PriorityQueue
+argument_list|<
+name|?
+argument_list|>
 name|hq
 decl_stmt|;
 DECL|field|starts
@@ -1352,7 +1355,12 @@ if|if
 condition|(
 name|scoreDoc
 operator|==
+operator|(
+operator|(
+name|HitQueue
+operator|)
 name|hq
+operator|)
 operator|.
 name|insertWithOverflow
 argument_list|(

@@ -104,7 +104,16 @@ begin_comment
 comment|/** This class implements {@link InvertedDocConsumer}, which  *  is passed each token produced by the analyzer on each  *  field.  It stores these tokens in a hash table, and  *  allocates separate byte streams per token.  Consumers of  *  this class, eg {@link FreqProxTermsWriter} and {@link  *  TermVectorsTermsWriter}, write their own byte streams  *  under each term.  */
 end_comment
 
+begin_comment
+comment|// TODO: Fix the unchecked collections, I do not understand the whole code here -- Uwe
+end_comment
+
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|class|TermsHash
 specifier|final
 class|class

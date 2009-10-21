@@ -122,7 +122,16 @@ begin_comment
 comment|/** Writes norms.  Each thread X field accumulates the norms  *  for the doc/fields it saw, then the flush method below  *  merges all of these together into a single _X.nrm file.  */
 end_comment
 
+begin_comment
+comment|// TODO: Fix the unchecked collections, I do not understand the whole code here -- Uwe
+end_comment
+
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|class|NormsWriter
 specifier|final
 class|class

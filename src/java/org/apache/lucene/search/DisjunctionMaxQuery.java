@@ -936,6 +936,11 @@ block|}
 comment|/** Create a shallow copy of us -- used in rewriting if necessary    * @return a copy of us (but reuse, don't copy, our subqueries) */
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|clone
 specifier|public
 name|Object

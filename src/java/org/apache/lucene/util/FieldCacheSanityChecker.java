@@ -1224,10 +1224,16 @@ name|seed
 parameter_list|)
 block|{
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|all
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 literal|17
 argument_list|)
