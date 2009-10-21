@@ -1107,8 +1107,6 @@ DECL|class|SolrInstance
 specifier|private
 class|class
 name|SolrInstance
-extends|extends
-name|AbstractSolrTestCase
 block|{
 DECL|field|name
 name|String
@@ -1117,6 +1115,10 @@ decl_stmt|;
 DECL|field|homeDir
 name|File
 name|homeDir
+decl_stmt|;
+DECL|field|dataDir
+name|File
+name|dataDir
 decl_stmt|;
 DECL|field|confDir
 name|File
@@ -1181,8 +1183,6 @@ operator|+
 literal|"/solr"
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getSchemaFile
 specifier|public
 name|String
@@ -1237,8 +1237,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getSolrConfigFile
 specifier|public
 name|String
@@ -1428,11 +1426,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{       }
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
 name|AbstractSolrTestCase
 operator|.
 name|recurseDelete
