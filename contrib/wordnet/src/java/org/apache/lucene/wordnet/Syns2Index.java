@@ -673,7 +673,7 @@ name|q2
 init|=
 name|line
 operator|.
-name|indexOf
+name|lastIndexOf
 argument_list|(
 literal|'\''
 argument_list|)
@@ -692,6 +692,13 @@ argument_list|)
 operator|.
 name|toLowerCase
 argument_list|()
+operator|.
+name|replace
+argument_list|(
+literal|"''"
+argument_list|,
+literal|"'"
+argument_list|)
 decl_stmt|;
 comment|// make sure is a normal word
 if|if
