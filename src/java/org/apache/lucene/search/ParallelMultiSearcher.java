@@ -917,6 +917,8 @@ specifier|private
 name|PriorityQueue
 argument_list|<
 name|?
+extends|extends
+name|ScoreDoc
 argument_list|>
 name|hq
 decl_stmt|;
@@ -1101,6 +1103,11 @@ operator|=
 name|sort
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|run
 specifier|public
 name|void
@@ -1357,7 +1364,10 @@ name|scoreDoc
 operator|==
 operator|(
 operator|(
-name|HitQueue
+name|PriorityQueue
+argument_list|<
+name|ScoreDoc
+argument_list|>
 operator|)
 name|hq
 operator|)
