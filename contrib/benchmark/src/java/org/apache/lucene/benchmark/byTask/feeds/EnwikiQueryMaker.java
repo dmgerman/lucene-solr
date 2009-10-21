@@ -214,6 +214,24 @@ name|SpanTermQuery
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|benchmark
+operator|.
+name|byTask
+operator|.
+name|tasks
+operator|.
+name|NewAnalyzerTask
+import|;
+end_import
+
 begin_comment
 comment|/**  * A QueryMaker that uses common and uncommon actual Wikipedia queries for  * searching the English Wikipedia collection. 90 queries total.  */
 end_comment
@@ -734,12 +752,9 @@ comment|// analyzer (default is standard analyzer)
 name|Analyzer
 name|anlzr
 init|=
-operator|(
-name|Analyzer
-operator|)
-name|Class
+name|NewAnalyzerTask
 operator|.
-name|forName
+name|createAnalyzer
 argument_list|(
 name|config
 operator|.
@@ -755,9 +770,6 @@ name|getName
 argument_list|()
 argument_list|)
 argument_list|)
-operator|.
-name|newInstance
-argument_list|()
 decl_stmt|;
 name|List
 name|queryList

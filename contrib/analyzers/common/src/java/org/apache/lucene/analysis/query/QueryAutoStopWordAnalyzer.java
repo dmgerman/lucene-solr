@@ -647,6 +647,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|result
 argument_list|,
 name|stopWords
@@ -810,6 +812,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|streams
 operator|.
 name|wrapped
@@ -895,6 +899,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|streams
 operator|.
 name|wrapped

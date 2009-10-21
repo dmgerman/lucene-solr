@@ -96,6 +96,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -142,9 +156,14 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|Collections
 operator|.
-name|EMPTY_SET
+name|emptySet
+argument_list|()
 argument_list|)
 argument_list|,
 literal|true

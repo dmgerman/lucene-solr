@@ -490,6 +490,20 @@ name|FSDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Various methods that interact with Lucene and provide info about the   * index, search, etc. Parts adapted from Lucene demo.  */
 end_comment
@@ -605,7 +619,11 @@ condition|)
 return|return
 operator|new
 name|StandardAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 return|;
 try|try
 block|{
@@ -647,7 +665,11 @@ expr_stmt|;
 return|return
 operator|new
 name|StandardAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 return|;
 block|}
 return|return
@@ -673,7 +695,11 @@ expr_stmt|;
 return|return
 operator|new
 name|StandardAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 return|;
 block|}
 block|}

@@ -349,7 +349,9 @@ name|analyzer
 operator|=
 operator|new
 name|StopAnalyzer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|testSearch

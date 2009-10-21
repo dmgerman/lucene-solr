@@ -330,7 +330,19 @@ name|anlzr
 operator|=
 operator|new
 name|StandardAnalyzer
-argument_list|()
+argument_list|(
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test that norms values are preserved as the index is maintained.    * Including separate norms.    * Including merging indexes with seprate norms.     * Including optimize.     */

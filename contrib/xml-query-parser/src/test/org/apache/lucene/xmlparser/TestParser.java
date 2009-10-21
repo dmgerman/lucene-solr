@@ -239,13 +239,26 @@ specifier|static
 name|Directory
 name|dir
 decl_stmt|;
+comment|// TODO: change to CURRENT and rewrite test (this needs to set QueryParser.enablePositionIncrements, too, for work with CURRENT):
 DECL|field|analyzer
 name|Analyzer
 name|analyzer
 init|=
 operator|new
 name|StandardAnalyzer
-argument_list|()
+argument_list|(
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+operator|.
+name|LUCENE_24
+argument_list|)
 decl_stmt|;
 DECL|field|reader
 name|IndexReader

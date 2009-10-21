@@ -164,6 +164,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link Analyzer} for Czech language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all).   * A default set of stopwords is used unless an alternative list is specified.  *</p>  */
 end_comment
@@ -560,7 +570,7 @@ specifier|public
 name|CzechAnalyzer
 parameter_list|(
 name|String
-index|[]
+modifier|...
 name|stopwords
 parameter_list|)
 block|{
@@ -647,8 +657,9 @@ block|{
 comment|// clear any previous table (if present)
 name|stoptable
 operator|=
-operator|new
-name|HashSet
+name|Collections
+operator|.
+name|emptySet
 argument_list|()
 expr_stmt|;
 name|InputStreamReader
@@ -679,40 +690,15 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
-name|LineNumberReader
-name|lnr
-init|=
-operator|new
-name|LineNumberReader
+name|stoptable
+operator|=
+name|WordlistLoader
+operator|.
+name|getWordSet
 argument_list|(
 name|isr
 argument_list|)
-decl_stmt|;
-name|String
-name|word
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|word
-operator|=
-name|lnr
-operator|.
-name|readLine
-argument_list|()
-operator|)
-operator|!=
-literal|null
-condition|)
-block|{
-name|stoptable
-operator|.
-name|add
-argument_list|(
-name|word
-argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -724,8 +710,9 @@ comment|// clear any previous table (if present)
 comment|// TODO: throw IOException
 name|stoptable
 operator|=
-operator|new
-name|HashSet
+name|Collections
+operator|.
+name|emptySet
 argument_list|()
 expr_stmt|;
 block|}
@@ -774,6 +761,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|result
 argument_list|,
 name|stoptable
@@ -876,6 +865,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|streams
 operator|.
 name|result

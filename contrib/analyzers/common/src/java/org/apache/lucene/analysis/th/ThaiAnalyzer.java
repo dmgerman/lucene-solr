@@ -207,6 +207,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|ts
 argument_list|,
 name|StopAnalyzer
@@ -327,6 +329,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|streams
 operator|.
 name|result

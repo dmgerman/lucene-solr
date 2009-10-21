@@ -22,7 +22,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
+name|Collections
 import|;
 end_import
 
@@ -366,8 +366,21 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-operator|new
-name|HashSet
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
+name|Collections
+operator|.
+name|emptySet
 argument_list|()
 argument_list|)
 decl_stmt|;

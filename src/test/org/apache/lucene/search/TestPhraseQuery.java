@@ -1358,7 +1358,9 @@ name|stopAnalyzer
 init|=
 operator|new
 name|StopAnalyzer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -2613,15 +2615,10 @@ name|analyzer
 init|=
 operator|new
 name|StopAnalyzer
-argument_list|()
-decl_stmt|;
-name|StopFilter
-operator|.
-name|setEnablePositionIncrementsDefault
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|QueryParser
 name|qp
 init|=

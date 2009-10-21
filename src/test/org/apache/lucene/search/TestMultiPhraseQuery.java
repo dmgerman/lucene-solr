@@ -202,6 +202,16 @@ name|LinkedList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class tests the MultiPhraseQuery class.  *  *  */
 end_comment
@@ -1070,11 +1080,22 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
-operator|new
-name|HashSet
-argument_list|(
-literal|0
-argument_list|)
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
+name|Collections
+operator|.
+name|emptySet
+argument_list|()
 argument_list|)
 argument_list|,
 literal|true

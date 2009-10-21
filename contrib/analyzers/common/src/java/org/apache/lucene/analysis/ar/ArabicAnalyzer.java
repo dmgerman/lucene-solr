@@ -218,12 +218,12 @@ decl_stmt|;
 comment|/**    * Contains the stopwords used with the StopFilter.    */
 DECL|field|stoptable
 specifier|private
+specifier|final
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stoptable
-init|=
-operator|new
-name|HashSet
-argument_list|()
 decl_stmt|;
 comment|/**    * The comment character in the stopwords file.  All lines prefixed with this will be ignored      */
 DECL|field|STOPWORDS_COMMENT
@@ -377,7 +377,7 @@ specifier|public
 name|ArabicAnalyzer
 parameter_list|(
 name|String
-index|[]
+modifier|...
 name|stopwords
 parameter_list|)
 block|{
@@ -397,6 +397,11 @@ specifier|public
 name|ArabicAnalyzer
 parameter_list|(
 name|Hashtable
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|stopwords
 parameter_list|)
 block|{
@@ -472,6 +477,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|result
 argument_list|,
 name|stoptable
@@ -579,6 +586,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
+literal|false
+argument_list|,
 name|streams
 operator|.
 name|result
