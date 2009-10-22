@@ -834,32 +834,6 @@ name|Reader
 name|reader
 parameter_list|)
 block|{
-if|if
-condition|(
-name|fieldName
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"fieldName must not be null"
-argument_list|)
-throw|;
-if|if
-condition|(
-name|reader
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"reader must not be null"
-argument_list|)
-throw|;
 name|TokenStream
 name|result
 init|=
