@@ -281,6 +281,26 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// this method prevents inlining the final version constant in compiled classes,
+comment|// see: http://www.javaworld.com/community/node/3400
+DECL|method|ident
+specifier|private
+specifier|static
+name|String
+name|ident
+parameter_list|(
+specifier|final
+name|String
+name|s
+parameter_list|)
+block|{
+return|return
+name|s
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 DECL|field|LUCENE_MAIN_VERSION
 specifier|public
 specifier|static
@@ -288,7 +308,10 @@ specifier|final
 name|String
 name|LUCENE_MAIN_VERSION
 init|=
+name|ident
+argument_list|(
 literal|"3.0"
+argument_list|)
 decl_stmt|;
 DECL|field|LUCENE_VERSION
 specifier|public
@@ -364,7 +387,10 @@ expr_stmt|;
 block|}
 name|LUCENE_VERSION
 operator|=
+name|ident
+argument_list|(
 name|v
+argument_list|)
 expr_stmt|;
 block|}
 block|}
