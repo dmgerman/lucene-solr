@@ -363,26 +363,22 @@ block|}
 elseif|else
 if|if
 condition|(
+operator|!
 name|v
 operator|.
-name|indexOf
+name|startsWith
 argument_list|(
 name|LUCENE_MAIN_VERSION
 argument_list|)
-operator|==
-operator|-
-literal|1
 condition|)
 block|{
 name|v
 operator|=
-name|v
-operator|+
-literal|" ["
-operator|+
 name|LUCENE_MAIN_VERSION
 operator|+
-literal|"]"
+literal|"-dev "
+operator|+
+name|v
 expr_stmt|;
 block|}
 name|LUCENE_VERSION
