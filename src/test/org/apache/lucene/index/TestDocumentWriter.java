@@ -310,9 +310,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|util
 operator|.
-name|BaseTokenStreamTestCase
+name|LuceneTestCase
 import|;
 end_import
 
@@ -336,7 +336,7 @@ specifier|public
 class|class
 name|TestDocumentWriter
 extends|extends
-name|BaseTokenStreamTestCase
+name|LuceneTestCase
 block|{
 DECL|field|dir
 specifier|private
