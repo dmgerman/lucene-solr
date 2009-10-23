@@ -526,6 +526,7 @@ name|factory
 decl_stmt|;
 comment|//protected Collection<String> dateFormats = DateUtil.DEFAULT_DATE_FORMATS;
 DECL|method|ExtractingDocumentLoader
+specifier|public
 name|ExtractingDocumentLoader
 parameter_list|(
 name|SolrQueryRequest
