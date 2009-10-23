@@ -188,6 +188,11 @@ name|Analyzer
 name|analyzer
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Float
+argument_list|>
 name|boosts
 parameter_list|)
 block|{
