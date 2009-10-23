@@ -1886,9 +1886,17 @@ name|sim
 operator|.
 name|idf
 argument_list|(
+name|knownSearcher
+operator|.
+name|docFreq
+argument_list|(
 name|term
+argument_list|)
 argument_list|,
 name|knownSearcher
+operator|.
+name|maxDoc
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//float qNorm = sim.queryNorm()
