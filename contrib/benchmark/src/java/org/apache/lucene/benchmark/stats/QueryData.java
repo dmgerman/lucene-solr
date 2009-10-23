@@ -110,10 +110,16 @@ name|queries
 parameter_list|)
 block|{
 name|Vector
+argument_list|<
+name|QueryData
+argument_list|>
 name|vqd
 init|=
 operator|new
 name|Vector
+argument_list|<
+name|QueryData
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -262,10 +268,6 @@ block|}
 block|}
 block|}
 return|return
-operator|(
-name|QueryData
-index|[]
-operator|)
 name|vqd
 operator|.
 name|toArray

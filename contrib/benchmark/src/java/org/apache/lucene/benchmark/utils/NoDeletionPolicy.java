@@ -48,6 +48,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexCommit
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexDeletionPolicy
 import|;
 end_import
@@ -66,22 +80,36 @@ name|void
 name|onCommit
 parameter_list|(
 name|List
+argument_list|<
+name|?
+extends|extends
+name|IndexCommit
+argument_list|>
 name|commits
 parameter_list|)
 throws|throws
 name|IOException
-block|{       }
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 DECL|method|onInit
 specifier|public
 name|void
 name|onInit
 parameter_list|(
 name|List
+argument_list|<
+name|?
+extends|extends
+name|IndexCommit
+argument_list|>
 name|commits
 parameter_list|)
 throws|throws
 name|IOException
-block|{       }
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 block|}
 end_class
 

@@ -202,11 +202,15 @@ decl_stmt|;
 DECL|field|paramFields
 specifier|protected
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|paramFields
 init|=
 name|Collections
 operator|.
-name|EMPTY_SET
+name|emptySet
+argument_list|()
 decl_stmt|;
 DECL|field|highlighter
 specifier|protected
@@ -442,7 +446,9 @@ block|}
 DECL|method|getFieldsToHighlight
 specifier|protected
 name|Collection
-comment|/*<String>*/
+argument_list|<
+name|String
+argument_list|>
 name|getFieldsToHighlight
 parameter_list|(
 name|Document
@@ -450,6 +456,9 @@ name|document
 parameter_list|)
 block|{
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|result
 init|=
 name|super
@@ -752,6 +761,9 @@ name|paramFields
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|String

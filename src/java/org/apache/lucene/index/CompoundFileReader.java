@@ -500,9 +500,6 @@ throw|;
 name|FileEntry
 name|entry
 init|=
-operator|(
-name|FileEntry
-operator|)
 name|entries
 operator|.
 name|get
@@ -567,10 +564,6 @@ argument_list|()
 index|]
 decl_stmt|;
 return|return
-operator|(
-name|String
-index|[]
-operator|)
 name|entries
 operator|.
 name|keySet
@@ -692,9 +685,6 @@ block|{
 name|FileEntry
 name|e
 init|=
-operator|(
-name|FileEntry
-operator|)
 name|entries
 operator|.
 name|get

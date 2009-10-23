@@ -1215,9 +1215,6 @@ specifier|final
 name|String
 name|fileName
 init|=
-operator|(
-name|String
-operator|)
 name|files
 operator|.
 name|get

@@ -148,10 +148,16 @@ name|indexField
 decl_stmt|;
 DECL|field|queryParser
 name|ThreadLocal
+argument_list|<
+name|QueryParser
+argument_list|>
 name|queryParser
 init|=
 operator|new
 name|ThreadLocal
+argument_list|<
+name|QueryParser
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**    * Constructor of a simple qq parser.    * @param qqName name-value pair of quality query to use for creating the query    * @param indexField corresponding index field      */
@@ -194,9 +200,6 @@ block|{
 name|QueryParser
 name|qp
 init|=
-operator|(
-name|QueryParser
-operator|)
 name|queryParser
 operator|.
 name|get

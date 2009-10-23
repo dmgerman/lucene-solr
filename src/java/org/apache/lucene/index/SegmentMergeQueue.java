@@ -128,13 +128,8 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
-operator|(
-operator|(
-name|SegmentMergeInfo
-operator|)
 name|pop
 argument_list|()
-operator|)
 operator|.
 name|close
 argument_list|()

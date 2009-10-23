@@ -756,9 +756,6 @@ block|{
 name|IndexReader
 name|oldReader
 init|=
-operator|(
-name|IndexReader
-operator|)
 name|readers
 operator|.
 name|get
@@ -769,9 +766,6 @@ decl_stmt|;
 name|IndexReader
 name|newReader
 init|=
-operator|(
-name|IndexReader
-operator|)
 name|newReaders
 operator|.
 name|get
@@ -1221,10 +1215,6 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
-name|TermFreqVector
-index|[]
-operator|)
 name|results
 operator|.
 name|toArray

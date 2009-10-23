@@ -421,9 +421,6 @@ call|(
 name|FieldInfo
 call|)
 argument_list|(
-operator|(
-name|FieldInfo
-operator|)
 name|byNumber
 operator|.
 name|get
@@ -1045,9 +1042,6 @@ name|fieldName
 parameter_list|)
 block|{
 return|return
-operator|(
-name|FieldInfo
-operator|)
 name|byName
 operator|.
 name|get

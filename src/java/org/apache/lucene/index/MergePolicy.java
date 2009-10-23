@@ -512,17 +512,12 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-operator|(
-operator|(
-name|OneMerge
-operator|)
 name|merges
 operator|.
 name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
 operator|.
 name|segString
 argument_list|(

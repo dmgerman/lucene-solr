@@ -409,9 +409,6 @@ name|i
 parameter_list|)
 block|{
 return|return
-operator|(
-name|IndexReader
-operator|)
 name|readers
 operator|.
 name|get
@@ -917,9 +914,6 @@ block|{
 name|IndexReader
 name|reader
 init|=
-operator|(
-name|IndexReader
-operator|)
 name|readers
 operator|.
 name|get
@@ -2743,9 +2737,6 @@ block|{
 name|IndexReader
 name|reader
 init|=
-operator|(
-name|IndexReader
-operator|)
 name|readers
 operator|.
 name|get
@@ -2931,9 +2922,6 @@ name|matchSize
 operator|++
 index|]
 operator|=
-operator|(
-name|SegmentMergeInfo
-operator|)
 name|queue
 operator|.
 name|pop
@@ -2952,9 +2940,6 @@ decl_stmt|;
 name|SegmentMergeInfo
 name|top
 init|=
-operator|(
-name|SegmentMergeInfo
-operator|)
 name|queue
 operator|.
 name|top
@@ -2984,9 +2969,6 @@ name|matchSize
 operator|++
 index|]
 operator|=
-operator|(
-name|SegmentMergeInfo
-operator|)
 name|queue
 operator|.
 name|pop
@@ -2994,9 +2976,6 @@ argument_list|()
 expr_stmt|;
 name|top
 operator|=
-operator|(
-name|SegmentMergeInfo
-operator|)
 name|queue
 operator|.
 name|top

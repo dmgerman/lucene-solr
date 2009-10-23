@@ -199,9 +199,6 @@ decl_stmt|;
 name|TVPositionInfo
 name|pos
 init|=
-operator|(
-name|TVPositionInfo
-operator|)
 name|currentPositions
 operator|.
 name|get

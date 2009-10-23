@@ -225,10 +225,16 @@ name|params
 expr_stmt|;
 comment|// cannot just call super.setParams(), b/c it's params differ.
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|fieldsToLoad
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -276,7 +282,11 @@ name|fieldsToLoad
 argument_list|,
 name|Collections
 operator|.
-name|EMPTY_SET
+expr|<
+name|String
+operator|>
+name|emptySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -2463,9 +2463,6 @@ comment|// again.
 name|DocumentsWriterThreadState
 name|state
 init|=
-operator|(
-name|DocumentsWriterThreadState
-operator|)
 name|threadBindings
 operator|.
 name|get
