@@ -78,7 +78,7 @@ name|Collator
 index|[]
 name|collators
 decl_stmt|;
-comment|/** 	 * Creates a hit queue sorted by the given list of fields. 	 * @param fields Fieldable names, in priority order (highest priority first). 	 * @param size  The number of hits to retain.  Must be greater than zero. 	 */
+comment|/**    * Creates a hit queue sorted by the given list of fields.    * @param fields Fieldable names, in priority order (highest priority first).    * @param size  The number of hits to retain.  Must be greater than zero.    */
 DECL|method|FieldDocSortedHitQueue
 name|FieldDocSortedHitQueue
 parameter_list|(
@@ -111,7 +111,7 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Allows redefinition of sort fields if they are<code>null</code>. 	 * This is to handle the case using ParallelMultiSearcher where the 	 * original list contains AUTO and we don't know the actual sort 	 * type until the values come back.  The fields can only be set once. 	 * This method is thread safe. 	 * @param fields 	 */
+comment|/**    * Allows redefinition of sort fields if they are<code>null</code>.    * This is to handle the case using ParallelMultiSearcher where the    * original list contains AUTO and we don't know the actual sort    * type until the values come back.  The fields can only be set once.    * This method is thread safe.    * @param fields    */
 DECL|method|setFields
 specifier|synchronized
 name|void
@@ -149,7 +149,7 @@ return|return
 name|fields
 return|;
 block|}
-comment|/** Returns an array of collators, possibly<code>null</code>.  The collators 	 * correspond to any SortFields which were given a specific locale. 	 * @param fields Array of sort fields. 	 * @return Array, possibly<code>null</code>. 	 */
+comment|/** Returns an array of collators, possibly<code>null</code>.  The collators    * correspond to any SortFields which were given a specific locale.    * @param fields Array of sort fields.    * @return Array, possibly<code>null</code>.    */
 DECL|method|hasCollators
 specifier|private
 name|Collator
@@ -234,7 +234,12 @@ return|return
 name|ret
 return|;
 block|}
-comment|/** 	 * Returns whether<code>a</code> is less relevant than<code>b</code>. 	 * @param a ScoreDoc 	 * @param b ScoreDoc 	 * @return<code>true</code> if document<code>a</code> should be sorted after document<code>b</code>. 	 */
+comment|/**    * Returns whether<code>a</code> is less relevant than<code>b</code>.    * @param a ScoreDoc    * @param b ScoreDoc    * @return<code>true</code> if document<code>a</code> should be sorted after document<code>b</code>.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|lessThan
 specifier|protected
 specifier|final
@@ -874,16 +879,6 @@ operator|.
 name|CUSTOM
 case|:
 block|{
-comment|// TODO: Use FieldComparator? This does not make sense!
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-specifier|final
-name|int
-name|temp
-init|=
 name|c
 operator|=
 operator|(
@@ -910,7 +905,7 @@ index|[
 name|i
 index|]
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 break|break;
 block|}
 default|default:
