@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -114,7 +128,9 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-literal|false
+name|Version
+operator|.
+name|LUCENE_CURRENT
 argument_list|)
 decl_stmt|;
 DECL|field|inValidTokens
@@ -303,9 +319,11 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|stopWordsSet
+name|Version
+operator|.
+name|LUCENE_24
 argument_list|,
-literal|false
+name|stopWordsSet
 argument_list|)
 decl_stmt|;
 name|StringReader
@@ -394,7 +412,7 @@ name|getPositionIncrement
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// by default stop tokenizer does not apply increments.
+comment|// in 2.4 stop tokenizer does not apply increments.
 block|}
 block|}
 DECL|method|testStopListPositions
@@ -439,9 +457,11 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|stopWordsSet
+name|Version
+operator|.
+name|LUCENE_CURRENT
 argument_list|,
-literal|true
+name|stopWordsSet
 argument_list|)
 decl_stmt|;
 name|StringReader

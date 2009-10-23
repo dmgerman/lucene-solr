@@ -238,6 +238,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests primitive queries (ie: that rewrite to themselves) to  * insure they match the expected set of docs, and that the score of each  * match is equal to the value of the scores explanation.  *  *<p>  * The assumption is that if all of the "primitive" queries work well,  * then anything that rewrites to a primitive will work well also.  *</p>  *  * @see "Subclasses for actual tests"  */
 end_comment
@@ -283,6 +297,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|FIELD
 argument_list|,
 operator|new

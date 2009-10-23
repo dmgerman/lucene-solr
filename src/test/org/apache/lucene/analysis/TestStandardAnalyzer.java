@@ -94,6 +94,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -792,7 +806,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Don't reuse a because we alter its state (setReplaceInvalidAcronym)
+comment|// Current lucene should not show the bug
 name|StandardAnalyzer
 name|a2
 init|=
@@ -850,6 +864,7 @@ literal|"<HOST>"
 block|}
 argument_list|)
 expr_stmt|;
+comment|// 2.3 should show the bug
 name|a2
 operator|=
 operator|new
@@ -886,6 +901,38 @@ name|String
 index|[]
 block|{
 literal|"<ACRONYM>"
+block|}
+argument_list|)
+expr_stmt|;
+comment|// 2.4 should not show the bug
+name|a2
+operator|=
+operator|new
+name|StandardAnalyzer
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_24
+argument_list|)
+expr_stmt|;
+name|assertAnalyzesTo
+argument_list|(
+name|a2
+argument_list|,
+literal|"www.nutch.org."
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"www.nutch.org"
+block|}
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"<HOST>"
 block|}
 argument_list|)
 expr_stmt|;

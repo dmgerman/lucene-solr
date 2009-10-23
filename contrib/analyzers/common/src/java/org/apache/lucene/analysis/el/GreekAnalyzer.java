@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -141,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  */
+comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -324,15 +338,37 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 DECL|method|GreekAnalyzer
 specifier|public
 name|GreekAnalyzer
-parameter_list|()
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
-name|this
+name|super
+argument_list|()
+expr_stmt|;
+name|stopSet
+operator|=
+name|StopFilter
+operator|.
+name|makeStopSet
 argument_list|(
 name|GREEK_STOP_WORDS
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**      * Builds an analyzer with the given stop words.      * @param stopwords Array of stopwords to use.      */
@@ -340,6 +376,9 @@ DECL|method|GreekAnalyzer
 specifier|public
 name|GreekAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 modifier|...
 name|stopwords
@@ -357,12 +396,21 @@ argument_list|(
 name|stopwords
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**      * Builds an analyzer with the given stop words.      */
 DECL|method|GreekAnalyzer
 specifier|public
 name|GreekAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Map
 name|stopwords
 parameter_list|)
@@ -380,6 +428,12 @@ operator|.
 name|keySet
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**      * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *                  {@link GreekLowerCaseFilter} and {@link StopFilter}      */
@@ -401,6 +455,8 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -417,7 +473,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -487,6 +548,8 @@ operator|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -509,7 +572,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

@@ -70,6 +70,20 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test the Persian Analyzer  *   */
 end_comment
@@ -91,7 +105,11 @@ parameter_list|()
 block|{
 operator|new
 name|PersianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * This test shows how the combination of tokenization (breaking on zero-width    * non-joiner), normalization (such as treating arabic YEH and farsi YEH the    * same), and stopwords creates a light-stemming effect for verbs.    *     * These verb forms are from http://en.wikipedia.org/wiki/Persian_grammar    */
@@ -108,7 +126,11 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 comment|// active present indicative
 name|assertAnalyzesTo
@@ -575,7 +597,11 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 comment|// active present indicative
 name|assertAnalyzesTo
@@ -1042,7 +1068,11 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1087,7 +1117,11 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -1120,7 +1154,11 @@ name|a
 init|=
 operator|new
 name|PersianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
 argument_list|(
@@ -1166,6 +1204,10 @@ init|=
 operator|new
 name|PersianAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 operator|new
 name|String
 index|[]

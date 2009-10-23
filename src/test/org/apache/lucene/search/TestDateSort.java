@@ -208,6 +208,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test date sorting, i.e. auto-sorting of fields with type "long".  * See http://issues.apache.org/jira/browse/LUCENE-1045   */
 end_comment
@@ -407,6 +421,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|TEXT_FIELD
 argument_list|,
 operator|new

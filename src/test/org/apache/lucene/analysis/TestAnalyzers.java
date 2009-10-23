@@ -124,6 +124,20 @@ name|Payload
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestAnalyzers
 specifier|public
@@ -460,7 +474,9 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-literal|true
+name|Version
+operator|.
+name|LUCENE_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo

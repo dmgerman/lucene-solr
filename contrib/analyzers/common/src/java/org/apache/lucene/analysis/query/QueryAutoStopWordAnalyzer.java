@@ -118,6 +118,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -181,11 +195,20 @@ name|defaultMaxDocFreqPercent
 init|=
 literal|0.4f
 decl_stmt|;
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 comment|/**    * Initializes this analyzer with the Analyzer object that actually produces the tokens    *    * @param delegate The choice of {@link Analyzer} that is used to produce the token stream which needs filtering    */
 DECL|method|QueryAutoStopWordAnalyzer
 specifier|public
 name|QueryAutoStopWordAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Analyzer
 name|delegate
 parameter_list|)
@@ -202,6 +225,12 @@ name|QueryAutoStopWordAnalyzer
 operator|.
 name|class
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Automatically adds stop words for all fields with terms exceeding the defaultMaxDocFreqPercent    *    * @param reader The {@link IndexReader} which will be consulted to identify potential stop words that    *               exceed the required document frequency    * @return The number of stop words identified.    * @throws IOException    */
@@ -647,7 +676,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -812,7 +846,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.
@@ -899,7 +938,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

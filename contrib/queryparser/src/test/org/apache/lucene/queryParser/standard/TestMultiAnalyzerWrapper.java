@@ -232,6 +232,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * This test case is a copy of the core Lucene query parser test, it was adapted  * to use new QueryParserWrapper instead of the old query parser.  *   * Test QueryParser's ability to deal with Analyzers that return more than one  * token per position or that return tokens with a position increment&gt; 1.  *   */
 end_comment
@@ -768,6 +782,10 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -1071,6 +1089,10 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;

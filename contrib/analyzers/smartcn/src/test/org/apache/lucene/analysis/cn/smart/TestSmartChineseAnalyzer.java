@@ -112,6 +112,20 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestSmartChineseAnalyzer
 specifier|public
@@ -133,7 +147,11 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -174,6 +192,10 @@ operator|=
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|SmartChineseAnalyzer
 operator|.
 name|getDefaultStopSet
@@ -204,7 +226,11 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -266,7 +292,11 @@ name|ca
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 comment|/* will load stopwords */
 name|String
@@ -334,6 +364,10 @@ block|{
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|false
 argument_list|)
 block|,
@@ -341,6 +375,10 @@ comment|/* doesn't load stopwords */
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|null
 argument_list|)
 comment|/* sets stopwords to empty set */
@@ -413,6 +451,10 @@ init|=
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
@@ -463,6 +505,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -503,6 +549,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -545,6 +595,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -587,6 +641,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -627,6 +685,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -677,6 +739,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -709,6 +775,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -750,6 +820,10 @@ argument_list|(
 operator|new
 name|SmartChineseAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|true
 argument_list|)
 argument_list|,
@@ -821,7 +895,11 @@ name|a
 init|=
 operator|new
 name|SmartChineseAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
 argument_list|(

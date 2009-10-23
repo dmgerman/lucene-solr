@@ -106,6 +106,20 @@ begin_comment
 comment|// for javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Removes stop words from a token stream.  */
 end_comment
@@ -492,6 +506,40 @@ comment|// reached EOS -- return false
 return|return
 literal|false
 return|;
+block|}
+comment|/**    * Returns version-dependent default for    * enablePositionIncrements.  Analyzers that embed    * StopFilter use this method when creating the    * StopFilter.  Prior to 2.9, this returns false.  On 2.9    * or later, it returns true.    */
+DECL|method|getEnablePositionIncrementsVersionDefault
+specifier|public
+specifier|static
+name|boolean
+name|getEnablePositionIncrementsVersionDefault
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_29
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|/**    * @see #setEnablePositionIncrements(boolean).     */
 DECL|method|getEnablePositionIncrements

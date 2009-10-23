@@ -76,8 +76,22 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/** Filters {@link LetterTokenizer} with {@link LowerCaseFilter} and {@link StopFilter}. */
+comment|/** Filters {@link LetterTokenizer} with {@link LowerCaseFilter} and {@link StopFilter}.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StopAnalyzer:  *<ul>  *<li> As of 2.9, position increments are preserved  *</ul> */
 end_comment
 
 begin_class
@@ -227,39 +241,42 @@ name|stopSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer which removes words in    *  {@link #ENGLISH_STOP_WORDS}.    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements} */
+comment|/** Builds an analyzer which removes words in    *  {@link #ENGLISH_STOP_WORDS}.    * @param matchVersion See<a href="#version">above</a>    */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
-name|boolean
-name|enablePositionIncrements
+name|Version
+name|matchVersion
 parameter_list|)
 block|{
 name|stopWords
 operator|=
 name|ENGLISH_STOP_WORDS_SET
 expr_stmt|;
-name|this
-operator|.
 name|enablePositionIncrements
 operator|=
-name|enablePositionIncrements
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given set.    * @param stopWords Set of stop words    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements} */
+comment|/** Builds an analyzer with the stop words from the given set.    * @param matchVersion See<a href="#version">above</a>    * @param stopWords Set of stop words    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements} */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Set
 argument_list|<
 name|?
 argument_list|>
 name|stopWords
-parameter_list|,
-name|boolean
-name|enablePositionIncrements
 parameter_list|)
 block|{
 name|this
@@ -268,23 +285,26 @@ name|stopWords
 operator|=
 name|stopWords
 expr_stmt|;
-name|this
-operator|.
 name|enablePositionIncrements
 operator|=
-name|enablePositionIncrements
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(File)    * @param stopwordsFile File to load stop words from    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements} */
+comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(File)    * @param matchVersion See<a href="#version">above</a>    * @param stopwordsFile File to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|File
 name|stopwordsFile
-parameter_list|,
-name|boolean
-name|enablePositionIncrements
 parameter_list|)
 throws|throws
 name|IOException
@@ -302,19 +322,24 @@ name|this
 operator|.
 name|enablePositionIncrements
 operator|=
-name|enablePositionIncrements
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader)    * @param stopwords Reader to load stop words from    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements} */
+comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader)    * @param matchVersion See<a href="#version">above</a>    * @param stopwords Reader to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Reader
 name|stopwords
-parameter_list|,
-name|boolean
-name|enablePositionIncrements
 parameter_list|)
 throws|throws
 name|IOException
@@ -332,7 +357,12 @@ name|this
 operator|.
 name|enablePositionIncrements
 operator|=
-name|enablePositionIncrements
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Filters LowerCaseTokenizer with StopFilter. */

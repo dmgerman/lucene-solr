@@ -378,6 +378,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|AbstractTestCase
 specifier|public
@@ -512,6 +526,10 @@ operator|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|F
 argument_list|,
 name|analyzerW
@@ -522,6 +540,10 @@ operator|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|F
 argument_list|,
 name|analyzerB

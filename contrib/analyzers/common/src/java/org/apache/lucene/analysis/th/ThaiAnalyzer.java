@@ -140,8 +140,22 @@ name|StandardTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * {@link Analyzer} for Thai language. It uses {@link java.text.BreakIterator} to break words.  * @version 0.2  */
+comment|/**  * {@link Analyzer} for Thai language. It uses {@link java.text.BreakIterator} to break words.  * @version 0.2  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -152,10 +166,19 @@ name|ThaiAnalyzer
 extends|extends
 name|Analyzer
 block|{
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 DECL|method|ThaiAnalyzer
 specifier|public
 name|ThaiAnalyzer
-parameter_list|()
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
 name|setOverridesTokenStreamMethod
 argument_list|(
@@ -163,6 +186,12 @@ name|ThaiAnalyzer
 operator|.
 name|class
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 DECL|method|tokenStream
@@ -183,6 +212,8 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -207,7 +238,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|ts
 argument_list|,
@@ -295,6 +331,8 @@ operator|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -329,7 +367,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

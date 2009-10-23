@@ -136,6 +136,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -195,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  */
+comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating FrenchAnalyzer:  *<ul>  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -672,11 +686,20 @@ operator|new
 name|HashSet
 argument_list|()
 decl_stmt|;
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 comment|/**    * Builds an analyzer with the default stop words ({@link #FRENCH_STOP_WORDS}).    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
-parameter_list|()
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
 name|stoptable
 operator|=
@@ -687,12 +710,21 @@ argument_list|(
 name|FRENCH_STOP_WORDS
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 modifier|...
 name|stopwords
@@ -707,12 +739,21 @@ argument_list|(
 name|stopwords
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    * @throws IOException    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|File
 name|stopwords
 parameter_list|)
@@ -731,6 +772,12 @@ argument_list|(
 name|stopwords
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Builds an exclusionlist from an array of Strings.    */
@@ -840,6 +887,8 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -856,7 +905,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -945,6 +999,8 @@ operator|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -967,7 +1023,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

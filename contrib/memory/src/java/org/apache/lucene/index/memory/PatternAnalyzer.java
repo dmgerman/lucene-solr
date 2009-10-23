@@ -200,6 +200,20 @@ name|TermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Efficient Lucene analyzer/tokenizer that preferably operates on a String rather than a  * {@link java.io.Reader}, that can flexibly separate text into terms via a regular expression {@link Pattern}  * (with behaviour identical to {@link String#split(String)}),  * and that combines the functionality of  * {@link org.apache.lucene.analysis.LetterTokenizer},  * {@link org.apache.lucene.analysis.LowerCaseTokenizer},  * {@link org.apache.lucene.analysis.WhitespaceTokenizer},  * {@link org.apache.lucene.analysis.StopFilter} into a single efficient  * multi-purpose class.  *<p>  * If you are unsure how exactly a regular expression should look like, consider   * prototyping by simply trying various expressions on some test texts via  * {@link String#split(String)}. Once you are satisfied, give that regex to   * PatternAnalyzer. Also see<a target="_blank"   * href="http://java.sun.com/docs/books/tutorial/extra/regex/">Java Regular Expression Tutorial</a>.  *<p>  * This class can be considerably faster than the "normal" Lucene tokenizers.   * It can also serve as a building block in a compound Lucene  * {@link org.apache.lucene.analysis.TokenFilter} chain. For example as in this   * stemming example:  *<pre>  * PatternAnalyzer pat = ...  * TokenStream tokenStream = new SnowballFilter(  *     pat.tokenStream("content", "James is running round in the woods"),   *     "English"));  *</pre>  *  */
 end_comment
@@ -832,6 +846,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|NON_WORD_PATTERN
 argument_list|,
 literal|true
@@ -852,6 +870,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|NON_WORD_PATTERN
 argument_list|,
 literal|true
@@ -877,11 +899,20 @@ specifier|final
 name|Set
 name|stopWords
 decl_stmt|;
-comment|/**    * Constructs a new instance with the given parameters.    *     * @param pattern    *            a regular expression delimiting tokens    * @param toLowerCase    *            if<code>true</code> returns tokens after applying    *            String.toLowerCase()    * @param stopWords    *            if non-null, ignores all tokens that are contained in the    *            given stop set (after previously having applied toLowerCase()    *            if applicable). For example, created via    *            {@link StopFilter#makeStopSet(String[])}and/or    *            {@link org.apache.lucene.analysis.WordlistLoader}as in    *<code>WordlistLoader.getWordSet(new File("samples/fulltext/stopwords.txt")</code>    *            or<a href="http://www.unine.ch/info/clef/">other stop words    *            lists</a>.    */
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
+comment|/**    * Constructs a new instance with the given parameters.    *     * @param matchVersion If>= {@link Version#LUCENE_29}, StopFilter.enablePositionIncrement is set to true    * @param pattern    *            a regular expression delimiting tokens    * @param toLowerCase    *            if<code>true</code> returns tokens after applying    *            String.toLowerCase()    * @param stopWords    *            if non-null, ignores all tokens that are contained in the    *            given stop set (after previously having applied toLowerCase()    *            if applicable). For example, created via    *            {@link StopFilter#makeStopSet(String[])}and/or    *            {@link org.apache.lucene.analysis.WordlistLoader}as in    *<code>WordlistLoader.getWordSet(new File("samples/fulltext/stopwords.txt")</code>    *            or<a href="http://www.unine.ch/info/clef/">other stop words    *            lists</a>.    */
 DECL|method|PatternAnalyzer
 specifier|public
 name|PatternAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Pattern
 name|pattern
 parameter_list|,
@@ -966,6 +997,12 @@ operator|.
 name|stopWords
 operator|=
 name|stopWords
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Creates a token stream that tokenizes the given string into token terms    * (aka words).    *     * @param fieldName    *            the name of the field to tokenize (currently ignored).    * @param text    *            the string to tokenize    * @return a new token stream    */
@@ -1071,7 +1108,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|stream
 argument_list|,

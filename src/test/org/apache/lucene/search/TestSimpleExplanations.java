@@ -178,6 +178,20 @@ name|MockRAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * TestExplanations subclass focusing on basic query types  */
 end_comment
@@ -2745,6 +2759,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|"fulltext"
 argument_list|,
 operator|new

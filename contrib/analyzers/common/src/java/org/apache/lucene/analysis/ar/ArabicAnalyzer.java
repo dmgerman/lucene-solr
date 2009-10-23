@@ -192,6 +192,20 @@ name|WordlistLoader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link Analyzer} for Arabic.   *<p>  * This analyzer implements light-stemming as specified by:  *<i>  * Light Stemming for Arabic Information Retrieval  *</i>      * http://www.mtholyoke.edu/~lballest/Pubs/arab_stem05.pdf  *<p>  * The analysis package contains three primary components:  *<ul>  *<li>{@link ArabicNormalizationFilter}: Arabic orthographic normalization.  *<li>{@link ArabicStemFilter}: Arabic light stemming  *<li>Arabic stop words file: a set of default Arabic stop words.  *</ul>  *   */
 end_comment
@@ -358,12 +372,27 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 comment|/**    * Builds an analyzer with the default stop words: {@link #DEFAULT_STOPWORD_FILE}.    */
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
-parameter_list|()
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 name|stoptable
 operator|=
 name|DefaultSetHolder
@@ -376,6 +405,9 @@ DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 modifier|...
 name|stopwords
@@ -390,12 +422,21 @@ argument_list|(
 name|stopwords
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Hashtable
 argument_list|<
 name|?
@@ -416,12 +457,21 @@ name|keySet
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.  Lines can be commented out using {@link #STOPWORDS_COMMENT}    */
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|File
 name|stopwords
 parameter_list|)
@@ -438,6 +488,12 @@ name|stopwords
 argument_list|,
 name|STOPWORDS_COMMENT
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    * 			{@link LowerCaseFilter}, {@link StopFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
@@ -477,7 +533,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -586,7 +647,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

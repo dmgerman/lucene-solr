@@ -204,6 +204,20 @@ name|TypeAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestSnowball
 specifier|public
@@ -226,6 +240,10 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|"English"
 argument_list|)
 decl_stmt|;
@@ -262,6 +280,10 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|"English"
 argument_list|)
 decl_stmt|;
@@ -320,6 +342,10 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|name
 argument_list|)
 expr_stmt|;

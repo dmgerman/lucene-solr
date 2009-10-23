@@ -130,6 +130,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1359,7 +1373,9 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-literal|false
+name|Version
+operator|.
+name|LUCENE_24
 argument_list|)
 decl_stmt|;
 name|IndexWriter
@@ -1505,7 +1521,7 @@ argument_list|,
 name|searcher
 argument_list|)
 expr_stmt|;
-comment|// currently StopAnalyzer does not leave "holes", so this matches.
+comment|// StopAnalyzer as of 2.4 does not leave "holes", so this matches.
 name|query
 operator|=
 operator|new
@@ -2616,7 +2632,9 @@ init|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-literal|true
+name|Version
+operator|.
+name|LUCENE_CURRENT
 argument_list|)
 decl_stmt|;
 name|QueryParser
@@ -2625,6 +2643,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|"field"
 argument_list|,
 name|analyzer

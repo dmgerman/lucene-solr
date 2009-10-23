@@ -224,6 +224,20 @@ name|ArabicNormalizationFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link Analyzer} for Persian.  *<p>  * This Analyzer uses {@link ArabicLetterTokenizer} which implies tokenizing around  * zero-width non-joiner in addition to whitespace. Some persian-specific variant forms (such as farsi  * yeh and keheh) are standardized. "Stemming" is accomplished via stopwords.  *</p>  */
 end_comment
@@ -387,11 +401,20 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 comment|/**    * Builds an analyzer with the default stop words:    * {@link #DEFAULT_STOPWORD_FILE}.    */
 DECL|method|PersianAnalyzer
 specifier|public
 name|PersianAnalyzer
-parameter_list|()
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
 block|{
 name|stoptable
 operator|=
@@ -399,12 +422,21 @@ name|DefaultSetHolder
 operator|.
 name|DEFAULT_STOP_SET
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|PersianAnalyzer
 specifier|public
 name|PersianAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|String
 index|[]
 name|stopwords
@@ -419,12 +451,21 @@ argument_list|(
 name|stopwords
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    */
 DECL|method|PersianAnalyzer
 specifier|public
 name|PersianAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|Hashtable
 name|stopwords
 parameter_list|)
@@ -440,12 +481,21 @@ name|keySet
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words. Lines can be commented out    * using {@link #STOPWORDS_COMMENT}    */
 DECL|method|PersianAnalyzer
 specifier|public
 name|PersianAnalyzer
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|File
 name|stopwords
 parameter_list|)
@@ -462,6 +512,12 @@ name|stopwords
 argument_list|,
 name|STOPWORDS_COMMENT
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided    * {@link Reader}.    *     * @return A {@link TokenStream} built from a {@link ArabicLetterTokenizer}    *         filtered with {@link LowerCaseFilter},     *         {@link ArabicNormalizationFilter},    *         {@link PersianNormalizationFilter} and Persian Stop words    */
@@ -517,7 +573,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -634,7 +695,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-literal|false
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

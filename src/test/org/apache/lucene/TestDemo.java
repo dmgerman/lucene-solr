@@ -369,6 +369,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|"fieldname"
 argument_list|,
 name|analyzer

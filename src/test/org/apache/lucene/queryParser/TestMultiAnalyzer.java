@@ -200,6 +200,20 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test QueryParser's ability to deal with Analyzers that return more  * than one token per position or that return tokens with a position  * increment&gt; 1.  *  */
 end_comment
@@ -234,6 +248,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|""
 argument_list|,
 operator|new
@@ -700,6 +718,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_24
+argument_list|,
 literal|""
 argument_list|,
 operator|new
@@ -799,6 +821,10 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -1102,6 +1128,10 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -1277,6 +1307,10 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|f
 argument_list|,
 name|a

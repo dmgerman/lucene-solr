@@ -92,6 +92,20 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Verifies the behavior of PatternAnalyzer.  */
 end_comment
@@ -120,6 +134,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|PatternAnalyzer
 operator|.
 name|NON_WORD_PATTERN
@@ -162,6 +180,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|PatternAnalyzer
 operator|.
 name|NON_WORD_PATTERN
@@ -212,6 +234,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|PatternAnalyzer
 operator|.
 name|WHITESPACE_PATTERN
@@ -254,6 +280,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|PatternAnalyzer
 operator|.
 name|WHITESPACE_PATTERN
@@ -306,6 +336,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|Pattern
 operator|.
 name|compile
@@ -349,6 +383,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|Pattern
 operator|.
 name|compile
@@ -471,6 +509,10 @@ init|=
 operator|new
 name|PatternAnalyzer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|PatternAnalyzer
 operator|.
 name|WHITESPACE_PATTERN

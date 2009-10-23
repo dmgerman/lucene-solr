@@ -128,6 +128,20 @@ name|TypeAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestCJKTokenizer
 specifier|public
@@ -1609,7 +1623,11 @@ name|analyzer
 init|=
 operator|new
 name|CJKAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|TokenStream
 name|ts
@@ -1697,7 +1715,11 @@ name|analyzer
 init|=
 operator|new
 name|CJKAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|String
 name|str

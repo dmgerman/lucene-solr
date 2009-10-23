@@ -84,6 +84,20 @@ name|WhitespaceTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test case for ThaiAnalyzer, modified from TestFrenchAnalyzer  *  * @version   0.1  */
 end_comment
@@ -109,7 +123,11 @@ name|assertAnalyzesTo
 argument_list|(
 operator|new
 name|ThaiAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|,
 literal|"à¹à¸à¸­à¸°à¸à¸´à¸§à¸¢à¸­à¸£à¹à¸à¹à¸à¸¡à¸ªà¹"
 argument_list|,
@@ -173,7 +191,11 @@ name|assertAnalyzesTo
 argument_list|(
 operator|new
 name|ThaiAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|,
 literal|"à¹à¸à¸­à¸°à¸à¸´à¸§à¸¢à¸­à¸£à¹à¸à¹à¸à¸¡à¸ªà¹ à¹à¹à¹"
 argument_list|,
@@ -227,7 +249,11 @@ name|analyzer
 init|=
 operator|new
 name|ThaiAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -338,7 +364,11 @@ name|analyzer
 init|=
 operator|new
 name|ThaiAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
 argument_list|(
@@ -413,6 +443,20 @@ name|ThaiSubclassAnalyzer
 extends|extends
 name|ThaiAnalyzer
 block|{
+DECL|method|ThaiSubclassAnalyzer
+specifier|public
+name|ThaiSubclassAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -447,7 +491,11 @@ name|a
 init|=
 operator|new
 name|ThaiSubclassAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
 argument_list|(

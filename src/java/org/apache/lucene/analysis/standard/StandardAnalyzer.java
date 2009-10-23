@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 2.9, StopFilter preserves position  *        increments by default  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1608</a>  *</ul>  */
+comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 2.9, StopFilter preserves position  *        increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1608</a>  *</ul>  */
 end_comment
 
 begin_class
@@ -130,6 +130,12 @@ init|=
 name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET
+decl_stmt|;
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
 decl_stmt|;
 comment|/** Builds an analyzer with the default stop words ({@link    * #STOP_WORDS_SET}).    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    */
 DECL|method|StandardAnalyzer
@@ -195,6 +201,12 @@ name|Version
 operator|.
 name|LUCENE_24
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
 expr_stmt|;
 block|}
 comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(File)    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopwords File to read stop words from */
@@ -270,9 +282,9 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
-name|reader
+name|matchVersion
 argument_list|,
-name|replaceInvalidAcronym
+name|reader
 argument_list|)
 decl_stmt|;
 name|tokenStream
@@ -304,7 +316,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|enableStopPositionIncrements
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -439,6 +456,8 @@ operator|=
 operator|new
 name|StandardTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -473,7 +492,12 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|enableStopPositionIncrements
+name|StopFilter
+operator|.
+name|getEnablePositionIncrementsVersionDefault
+argument_list|(
+name|matchVersion
+argument_list|)
 argument_list|,
 name|streams
 operator|.

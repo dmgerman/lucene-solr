@@ -76,6 +76,20 @@ name|TermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test the Brazilian Stem Filter, which only modifies the term text.  *   * It is very similar to the snowball portuguese algorithm but not exactly the same.  *  */
 end_comment
@@ -740,7 +754,11 @@ name|a
 init|=
 operator|new
 name|BrazilianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|checkReuse
 argument_list|(
@@ -793,7 +811,11 @@ name|a
 init|=
 operator|new
 name|BrazilianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|a
 operator|.
@@ -832,7 +854,11 @@ name|a
 init|=
 operator|new
 name|BrazilianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|checkReuse
 argument_list|(
@@ -885,7 +911,11 @@ name|checkOneTerm
 argument_list|(
 operator|new
 name|BrazilianAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|,
 name|input
 argument_list|,

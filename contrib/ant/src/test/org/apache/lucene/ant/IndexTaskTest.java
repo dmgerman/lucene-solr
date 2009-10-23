@@ -174,6 +174,20 @@ name|FileSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Test cases for index task  *  */
 end_comment
@@ -350,7 +364,9 @@ operator|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-literal|false
+name|Version
+operator|.
+name|LUCENE_CURRENT
 argument_list|)
 expr_stmt|;
 block|}
@@ -368,6 +384,10 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 literal|"contents"
 argument_list|,
 name|analyzer
