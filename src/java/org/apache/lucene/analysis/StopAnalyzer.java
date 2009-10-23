@@ -241,7 +241,7 @@ name|stopSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer which removes words in    *  {@link #ENGLISH_STOP_WORDS}.    * @param matchVersion See<a href="#version">above</a>    */
+comment|/** Builds an analyzer which removes words in    *  {@link #ENGLISH_STOP_WORDS_SET}.    * @param matchVersion See<a href="#version">above</a>    */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
