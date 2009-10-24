@@ -240,6 +240,8 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|protected
 specifier|final
@@ -345,6 +347,7 @@ name|s1
 operator|==
 literal|null
 condition|)
+block|{
 name|c
 operator|=
 operator|(
@@ -358,6 +361,7 @@ else|:
 operator|-
 literal|1
 expr_stmt|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -365,11 +369,12 @@ name|s2
 operator|==
 literal|null
 condition|)
+block|{
 name|c
 operator|=
 literal|1
 expr_stmt|;
-comment|//
+block|}
 elseif|else
 if|if
 condition|(
@@ -414,27 +419,17 @@ block|}
 block|}
 else|else
 block|{
-comment|// the casts are a no-ops, its only there to make the
-comment|// compiler happy because of unbounded generics:
 name|c
 operator|=
-operator|(
-operator|(
-name|Comparable
-operator|)
 name|docA
 operator|.
 name|fields
 index|[
 name|i
 index|]
-operator|)
 operator|.
 name|compareTo
 argument_list|(
-operator|(
-name|Comparable
-operator|)
 name|docB
 operator|.
 name|fields
