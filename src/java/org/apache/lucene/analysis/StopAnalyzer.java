@@ -264,7 +264,7 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given set.    * @param matchVersion See<a href="#version">above</a>    * @param stopWords Set of stop words    * @param enablePositionIncrements See {@link    * StopFilter#setEnablePositionIncrements} */
+comment|/** Builds an analyzer with the stop words from the given set.    * @param matchVersion See<a href="#version">above</a>    * @param stopWords Set of stop words */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
