@@ -124,6 +124,9 @@ literal|null
 decl_stmt|;
 DECL|field|uniqueTermsInFragment
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|uniqueTermsInFragment
 decl_stmt|;
 DECL|field|totalScore
@@ -141,6 +144,11 @@ decl_stmt|;
 DECL|field|termsToFind
 specifier|private
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|WeightedTerm
+argument_list|>
 name|termsToFind
 decl_stmt|;
 DECL|field|termAtt
@@ -238,6 +246,11 @@ name|termsToFind
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|WeightedTerm
+argument_list|>
 argument_list|()
 expr_stmt|;
 for|for
@@ -260,9 +273,6 @@ block|{
 name|WeightedTerm
 name|existingTerm
 init|=
-operator|(
-name|WeightedTerm
-operator|)
 name|termsToFind
 operator|.
 name|get
@@ -375,6 +385,9 @@ name|uniqueTermsInFragment
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|currentTextFragment
@@ -404,9 +417,6 @@ decl_stmt|;
 name|WeightedTerm
 name|queryTerm
 init|=
-operator|(
-name|WeightedTerm
-operator|)
 name|termsToFind
 operator|.
 name|get

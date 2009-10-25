@@ -67,10 +67,16 @@ decl_stmt|;
 DECL|field|positionSpans
 specifier|private
 name|List
+argument_list|<
+name|PositionSpan
+argument_list|>
 name|positionSpans
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|PositionSpan
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**    * @param weight    * @param term    */
@@ -98,6 +104,9 @@ name|positionSpans
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|PositionSpan
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -145,6 +154,9 @@ comment|// where kept in some sort of priority queue - that way this method
 comment|// could
 comment|// bail early without checking each PositionSpan.
 name|Iterator
+argument_list|<
+name|PositionSpan
+argument_list|>
 name|positionSpanIt
 init|=
 name|positionSpans
@@ -163,9 +175,6 @@ block|{
 name|PositionSpan
 name|posSpan
 init|=
-operator|(
-name|PositionSpan
-operator|)
 name|positionSpanIt
 operator|.
 name|next
@@ -207,6 +216,9 @@ name|void
 name|addPositionSpans
 parameter_list|(
 name|List
+argument_list|<
+name|PositionSpan
+argument_list|>
 name|positionSpans
 parameter_list|)
 block|{
@@ -249,6 +261,9 @@ block|}
 DECL|method|getPositionSpans
 specifier|public
 name|List
+argument_list|<
+name|PositionSpan
+argument_list|>
 name|getPositionSpans
 parameter_list|()
 block|{
