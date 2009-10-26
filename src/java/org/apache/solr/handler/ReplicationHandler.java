@@ -5950,6 +5950,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|s
+operator|!=
+literal|null
+condition|)
 name|s
 operator|.
 name|decref
