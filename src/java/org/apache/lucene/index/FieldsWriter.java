@@ -142,6 +142,15 @@ name|FIELD_IS_BINARY
 init|=
 literal|0x2
 decl_stmt|;
+comment|/** @deprecated Kept for backwards-compatibility with<3.0 indexes; will be removed in 4.0 */
+DECL|field|FIELD_IS_COMPRESSED
+specifier|static
+specifier|final
+name|byte
+name|FIELD_IS_COMPRESSED
+init|=
+literal|0x4
+decl_stmt|;
 comment|// Original format
 DECL|field|FORMAT
 specifier|static
@@ -160,6 +169,15 @@ name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
 init|=
 literal|1
 decl_stmt|;
+comment|// Lucene 3.0: Removal of compressed fields
+DECL|field|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
+specifier|static
+specifier|final
+name|int
+name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
+init|=
+literal|2
+decl_stmt|;
 comment|// NOTE: if you introduce a new format, make it 1 higher
 comment|// than the current one, and always change this if you
 comment|// switch to a new format!
@@ -169,7 +187,7 @@ specifier|final
 name|int
 name|FORMAT_CURRENT
 init|=
-name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
+name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
 decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
