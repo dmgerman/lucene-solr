@@ -81,7 +81,7 @@ name|Searcher
 implements|implements
 name|Searchable
 block|{
-comment|/** Search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *     *<p>NOTE: this does not compute scores by default.  If    * you need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create}    * and then pass that to {@link #search(Query, Filter,    * Collector)}.</p>    *    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *     *<p>NOTE: this does not compute scores by default; use    * {@link IndexSearcher#setDefaultFieldSortScoring} to    * enable scoring.    *    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|public
 name|TopFieldDocs
