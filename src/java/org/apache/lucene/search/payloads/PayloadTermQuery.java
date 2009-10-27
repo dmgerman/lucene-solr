@@ -293,6 +293,8 @@ operator|=
 name|includeSpanScore
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -342,6 +344,8 @@ name|searcher
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|scorer
 specifier|public
 name|Scorer
@@ -463,6 +467,8 @@ name|getPositions
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setFreqCurrentDoc
 specifier|protected
 name|boolean
@@ -664,6 +670,8 @@ comment|// zero out the payload?
 block|}
 block|}
 comment|/**        *         * @return {@link #getSpanScore()} * {@link #getPayloadScore()}        * @throws IOException        */
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -726,8 +734,10 @@ name|payloadScore
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|explain
-specifier|public
+specifier|protected
 name|Explanation
 name|explain
 parameter_list|(
@@ -846,6 +856,8 @@ return|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -905,6 +917,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

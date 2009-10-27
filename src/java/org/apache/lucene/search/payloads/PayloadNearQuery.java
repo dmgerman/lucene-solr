@@ -1290,7 +1290,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|explain
-specifier|public
+specifier|protected
 name|Explanation
 name|explain
 parameter_list|(

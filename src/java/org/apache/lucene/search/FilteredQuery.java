@@ -168,6 +168,8 @@ name|float
 name|value
 decl_stmt|;
 comment|// pass these methods through to enclosed query's weight
+annotation|@
+name|Override
 specifier|public
 name|float
 name|getValue
@@ -177,6 +179,8 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|sumOfSquaredWeights
@@ -197,6 +201,8 @@ name|getBoost
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|normalize
@@ -223,6 +229,8 @@ name|getBoost
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Explanation
 name|explain
@@ -401,6 +409,8 @@ return|;
 block|}
 block|}
 comment|// return this query
+annotation|@
+name|Override
 specifier|public
 name|Query
 name|getQuery
@@ -413,6 +423,8 @@ name|this
 return|;
 block|}
 comment|// return a filtering scorer
+annotation|@
+name|Override
 specifier|public
 name|Scorer
 name|scorer
@@ -564,6 +576,8 @@ return|return
 name|scorerDoc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|nextDoc
@@ -618,6 +632,8 @@ else|:
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|docID
@@ -627,6 +643,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|advance
@@ -688,6 +706,8 @@ else|:
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|score
@@ -705,91 +725,6 @@ name|score
 argument_list|()
 return|;
 block|}
-comment|// add an explanation about whether the document was filtered
-specifier|public
-name|Explanation
-name|explain
-parameter_list|(
-name|int
-name|i
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|Explanation
-name|exp
-init|=
-name|scorer
-operator|.
-name|explain
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|docIdSetIterator
-operator|.
-name|advance
-argument_list|(
-name|i
-argument_list|)
-operator|==
-name|i
-condition|)
-block|{
-name|exp
-operator|.
-name|setDescription
-argument_list|(
-literal|"allowed by filter: "
-operator|+
-name|exp
-operator|.
-name|getDescription
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|exp
-operator|.
-name|setValue
-argument_list|(
-name|getBoost
-argument_list|()
-operator|*
-name|exp
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|exp
-operator|.
-name|setDescription
-argument_list|(
-literal|"removed by filter: "
-operator|+
-name|exp
-operator|.
-name|getDescription
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|exp
-operator|.
-name|setValue
-argument_list|(
-literal|0.0f
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|exp
-return|;
-block|}
 block|}
 return|;
 block|}
@@ -797,6 +732,8 @@ block|}
 return|;
 block|}
 comment|/** Rewrites the wrapped query. */
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -874,6 +811,8 @@ name|filter
 return|;
 block|}
 comment|// inherit javadoc
+annotation|@
+name|Override
 DECL|method|extractTerms
 specifier|public
 name|void
@@ -896,6 +835,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -966,6 +907,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns true iff<code>o</code> is equal to this. */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1025,6 +968,8 @@ literal|false
 return|;
 block|}
 comment|/** Returns a hash code value for this object. */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

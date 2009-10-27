@@ -353,6 +353,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -403,6 +405,8 @@ return|return
 name|lastDocScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int
@@ -416,6 +420,8 @@ name|docID
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -431,6 +437,8 @@ name|nextDoc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|advance
 specifier|public
 name|int
@@ -448,26 +456,6 @@ operator|.
 name|advance
 argument_list|(
 name|target
-argument_list|)
-return|;
-block|}
-DECL|method|explain
-specifier|public
-name|Explanation
-name|explain
-parameter_list|(
-name|int
-name|docNr
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|scorer
-operator|.
-name|explain
-argument_list|(
-name|docNr
 argument_list|)
 return|;
 block|}
@@ -517,6 +505,8 @@ name|Float
 operator|.
 name|NaN
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|float
 name|score
@@ -634,6 +624,8 @@ name|Float
 operator|.
 name|NaN
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|float
 name|score
@@ -1044,7 +1036,9 @@ operator|)
 argument_list|)
 return|;
 block|}
-comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed through.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed through.    */
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|void
@@ -1086,6 +1080,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|protected
 name|boolean
@@ -1142,6 +1138,8 @@ operator|!=
 name|NO_MORE_DOCS
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int
@@ -1152,6 +1150,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -1169,6 +1169,8 @@ name|nextDoc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -1204,6 +1206,8 @@ name|nrMatchers
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|advance
 specifier|public
 name|int
@@ -1225,23 +1229,6 @@ argument_list|(
 name|target
 argument_list|)
 return|;
-block|}
-comment|/** Throws an UnsupportedOperationException.    * TODO: Implement an explanation of the coordination factor.    * @param doc The document number for the explanation.    * @throws UnsupportedOperationException    */
-DECL|method|explain
-specifier|public
-name|Explanation
-name|explain
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-comment|/* How to explain the coordination factor?     initCountingSumScorer();     return countingSumScorer.explain(doc); // misses coord factor.    */
 block|}
 block|}
 end_class

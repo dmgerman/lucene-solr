@@ -73,7 +73,7 @@ operator|.
 name|similarity
 return|;
 block|}
-comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed.    *<br>When this method is used the {@link #explain(int)} method should not be used.    */
+comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed.    */
 DECL|method|score
 specifier|public
 name|void
@@ -182,24 +182,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns an explanation of the score for a document.    *<br>When this method is used, the {@link #next()}, {@link #skipTo(int)} and    * {@link #score(HitCollector)} methods should not be used.    * @param doc The document number for the explanation.    *    * @deprecated Please use {@link IndexSearcher#explain}    * or {@link Weight#explain} instead.    */
-DECL|method|explain
-specifier|public
-name|Explanation
-name|explain
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
 block|}
 end_class
 
