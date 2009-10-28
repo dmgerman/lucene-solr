@@ -127,6 +127,17 @@ name|Similarity
 implements|implements
 name|Serializable
 block|{
+comment|/**    * The Similarity implementation used by default.    **/
+DECL|field|defaultImpl
+specifier|private
+specifier|static
+name|Similarity
+name|defaultImpl
+init|=
+operator|new
+name|DefaultSimilarity
+argument_list|()
+decl_stmt|;
 DECL|field|NO_DOC_ID_PROVIDED
 specifier|public
 specifier|static
@@ -659,17 +670,6 @@ return|return
 literal|1
 return|;
 block|}
-comment|/** The Similarity implementation used by default.     *  TODO: move back to top when old API is removed!     **/
-DECL|field|defaultImpl
-specifier|private
-specifier|static
-name|Similarity
-name|defaultImpl
-init|=
-operator|new
-name|DefaultSimilarity
-argument_list|()
-decl_stmt|;
 block|}
 end_class
 
