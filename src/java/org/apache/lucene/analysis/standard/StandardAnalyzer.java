@@ -182,13 +182,11 @@ argument_list|)
 expr_stmt|;
 name|enableStopPositionIncrements
 operator|=
-name|matchVersion
+name|StopFilter
 operator|.
-name|onOrAfter
+name|getEnablePositionIncrementsVersionDefault
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_29
+name|matchVersion
 argument_list|)
 expr_stmt|;
 name|replaceInvalidAcronym
@@ -264,6 +262,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Constructs a {@link StandardTokenizer} filtered by a {@link   StandardFilter}, a {@link LowerCaseFilter} and a {@link StopFilter}. */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -316,12 +316,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
-name|matchVersion
-argument_list|)
+name|enableStopPositionIncrements
 argument_list|,
 name|result
 argument_list|,
@@ -391,6 +386,8 @@ return|return
 name|maxTokenLength
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream
@@ -492,12 +489,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
-name|matchVersion
-argument_list|)
+name|enableStopPositionIncrements
 argument_list|,
 name|streams
 operator|.
