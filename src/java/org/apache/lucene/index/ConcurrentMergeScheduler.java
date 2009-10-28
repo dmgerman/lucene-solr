@@ -558,8 +558,15 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-comment|// TODO: enable this once we are on JRE 1.5
-comment|// assert !Thread.holdsLock(writer);
+assert|assert
+operator|!
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|writer
+argument_list|)
+assert|;
 name|this
 operator|.
 name|writer

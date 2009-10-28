@@ -311,21 +311,15 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|// TODO in Java 1.5: switch to Arrays.hashCode().  The
-comment|// Java 1.4 workaround below calculates the same hashCode
-comment|// as Java 1.5's new Arrays.hashCode()
 return|return
 literal|0x45aaf665
 operator|+
 name|Arrays
 operator|.
-name|asList
+name|hashCode
 argument_list|(
 name|fields
 argument_list|)
-operator|.
-name|hashCode
-argument_list|()
 return|;
 block|}
 block|}
