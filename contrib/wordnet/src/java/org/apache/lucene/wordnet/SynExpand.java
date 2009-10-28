@@ -472,7 +472,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Perform synonym expansion on a query. 	 * 	 * @param query users query that is assumed to not have any "special" query syntax, thus it should be just normal words, so "big dog" makes sense, but a query like "title:foo^1.2" doesn't as this should presumably be passed directly to the default query parser. 	 * 	 * @param syns a opened to the Lucene index you previously created with {@link Syns2Index}. The searcher is not closed or otherwise altered. 	 * 	 * @param a optional analyzer used to parse the users query else {@link StandardAnalyzer} is used 	 * 	 * @param field optional field name to search in or null if you want the default of "contents" 	 * 	 * @param boost optional boost applied to synonyms else no boost is applied 	 * 	 * @return the expanded Query 	 */
+comment|/** 	 * Perform synonym expansion on a query. 	 * 	 * @param query users query that is assumed to not have any "special" query syntax, thus it should be just normal words, so "big dog" makes sense, but a query like "title:foo^1.2" doesn't as this should presumably be passed directly to the default query parser. 	 * 	 * @param syns a opened to the Lucene index you previously created with {@link Syns2Index}. The searcher is not closed or otherwise altered. 	 * 	 * @param a optional analyzer used to parse the users query else {@link StandardAnalyzer} is used 	 * 	 * @param f optional field name to search in or null if you want the default of "contents" 	 * 	 * @param boost optional boost applied to synonyms else no boost is applied 	 * 	 * @return the expanded Query 	 */
 DECL|method|expand
 specifier|public
 specifier|static
