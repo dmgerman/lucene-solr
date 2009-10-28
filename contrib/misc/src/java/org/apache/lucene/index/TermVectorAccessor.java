@@ -56,26 +56,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
 comment|/*  *  Licensed under the Apache License, Version 2.0 (the "License");  *  you may not use this file except in compliance with the License.  *  You may obtain a copy of the License at  *  *      http://www.apache.org/licenses/LICENSE-2.0  *  *  Unless required by applicable law or agreed to in writing, software  *  distributed under the License is distributed on an "AS IS" BASIS,  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  *  See the License for the specific language governing permissions and  *  limitations under the License.  *  */
 end_comment
@@ -190,21 +170,28 @@ comment|/** Instance reused to save garbage collector some time */
 DECL|field|tokens
 specifier|private
 name|List
-comment|/*<String>*/
+argument_list|<
+name|String
+argument_list|>
 name|tokens
 decl_stmt|;
 comment|/** Instance reused to save garbage collector some time */
 DECL|field|positions
 specifier|private
 name|List
-comment|/*<int[]>*/
+argument_list|<
+name|int
+index|[]
+argument_list|>
 name|positions
 decl_stmt|;
 comment|/** Instance reused to save garbage collector some time */
 DECL|field|frequencies
 specifier|private
 name|List
-comment|/*<Integer>*/
+argument_list|<
+name|Integer
+argument_list|>
 name|frequencies
 decl_stmt|;
 comment|/**    * Populates the mapper with terms available for the given field in a document    * by resolving the inverted index.    *    * @param indexReader    * @param field interned field name    * @param mapper    * @param documentNumber    * @throws IOException    */
@@ -239,7 +226,9 @@ name|tokens
 operator|=
 operator|new
 name|ArrayList
-comment|/*<String>*/
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 literal|500
 argument_list|)
@@ -248,7 +237,10 @@ name|positions
 operator|=
 operator|new
 name|ArrayList
-comment|/*<int[]>*/
+argument_list|<
+name|int
+index|[]
+argument_list|>
 argument_list|(
 literal|500
 argument_list|)
@@ -257,7 +249,9 @@ name|frequencies
 operator|=
 operator|new
 name|ArrayList
-comment|/*<Integer>*/
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|(
 literal|500
 argument_list|)
@@ -508,9 +502,6 @@ name|mapper
 operator|.
 name|map
 argument_list|(
-operator|(
-name|String
-operator|)
 name|tokens
 operator|.
 name|get
@@ -518,17 +509,12 @@ argument_list|(
 name|i
 argument_list|)
 argument_list|,
-operator|(
-operator|(
-name|Integer
-operator|)
 name|frequencies
 operator|.
 name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
 operator|.
 name|intValue
 argument_list|()
@@ -539,10 +525,6 @@ index|[]
 operator|)
 literal|null
 argument_list|,
-operator|(
-name|int
-index|[]
-operator|)
 name|positions
 operator|.
 name|get

@@ -904,10 +904,6 @@ operator|=
 operator|new
 name|MultiReader
 argument_list|(
-operator|(
-name|IndexReader
-index|[]
-operator|)
 name|indexes
 operator|.
 name|toArray
