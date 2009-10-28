@@ -1123,8 +1123,21 @@ name|getSegmentInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: java 5
-comment|// assert !sr.hasChanges || Thread.holdsLock(IndexWriter.this);
+assert|assert
+operator|!
+name|sr
+operator|.
+name|hasChanges
+operator|||
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|IndexWriter
+operator|.
+name|this
+argument_list|)
+assert|;
 comment|// Drop our ref -- this will commit any pending
 comment|// changes to the dir
 name|boolean
