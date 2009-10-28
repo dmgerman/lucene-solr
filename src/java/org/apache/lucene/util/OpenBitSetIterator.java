@@ -743,6 +743,8 @@ index|]
 expr_stmt|;
 block|}
 comment|/***** alternate shift implementations   // 32 bit shifts, but a long shift needed at the end   private void shift2() {     int y = (int)word;     if (y==0) {wordShift +=32; y = (int)(word>>>32); }     if ((y& 0x0000FFFF) == 0) { wordShift +=16; y>>>=16; }     if ((y& 0x000000FF) == 0) { wordShift +=8; y>>>=8; }     indexArray = bitlist[y& 0xff];     word>>>= (wordShift +1);   }    private void shift3() {     int lower = (int)word;     int lowByte = lower& 0xff;     if (lowByte != 0) {       indexArray=bitlist[lowByte];       return;     }     shift();   }   ******/
+annotation|@
+name|Override
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -842,6 +844,8 @@ operator|+
 name|bitIndex
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|advance
 specifier|public
 name|int
@@ -975,6 +979,8 @@ operator|+
 name|bitIndex
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int

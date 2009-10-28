@@ -226,6 +226,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addField
 name|InvertedDocConsumerPerField
 name|addField
@@ -252,6 +254,8 @@ name|fieldInfo
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|synchronized
 specifier|public
@@ -375,6 +379,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|startDocument
 specifier|public
 name|void
@@ -402,6 +408,8 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|finishDocument
 specifier|public
 name|DocumentsWriter

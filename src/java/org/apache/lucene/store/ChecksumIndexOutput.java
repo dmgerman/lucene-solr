@@ -91,6 +91,8 @@ name|CRC32
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeByte
 specifier|public
 name|void
@@ -117,6 +119,8 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeBytes
 specifier|public
 name|void
@@ -171,6 +175,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|flush
 specifier|public
 name|void
@@ -185,6 +191,8 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -199,6 +207,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long
@@ -212,6 +222,8 @@ name|getFilePointer
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -299,6 +311,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long

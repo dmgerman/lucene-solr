@@ -396,6 +396,8 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|doBody
@@ -1728,6 +1730,8 @@ operator|=
 name|maxDoc
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 specifier|final
@@ -1761,6 +1765,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 specifier|final
@@ -1863,6 +1869,8 @@ return|return
 name|newReader
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reopen
 specifier|public
 specifier|final
@@ -1885,6 +1893,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reopen
 specifier|public
 specifier|final
@@ -1909,6 +1919,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reopen
 specifier|public
 specifier|final
@@ -2189,6 +2201,8 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|doBody
@@ -2315,6 +2329,8 @@ name|reader
 return|;
 block|}
 comment|/** Version number when this IndexReader was opened. */
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|long
@@ -2331,6 +2347,8 @@ name|getVersion
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVectors
 specifier|public
 name|TermFreqVector
@@ -2373,6 +2391,8 @@ argument_list|)
 return|;
 comment|// dispatch to segment
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|TermFreqVector
@@ -2418,6 +2438,8 @@ name|field
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|void
@@ -2467,6 +2489,8 @@ name|mapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|void
@@ -2512,6 +2536,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Checks is the index is optimized (if it has a single segment and no deletions)    * @return<code>true</code> if the index is optimized;<code>false</code> otherwise    */
+annotation|@
+name|Override
 DECL|method|isOptimized
 specifier|public
 name|boolean
@@ -2534,6 +2560,8 @@ name|hasDeletions
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|numDocs
 specifier|public
 specifier|synchronized
@@ -2593,6 +2621,8 @@ return|return
 name|numDocs
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|maxDoc
 specifier|public
 name|int
@@ -2605,6 +2635,8 @@ name|maxDoc
 return|;
 block|}
 comment|// inherit javadoc
+annotation|@
+name|Override
 DECL|method|document
 specifier|public
 name|Document
@@ -2653,6 +2685,8 @@ argument_list|)
 return|;
 comment|// dispatch to segment reader
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean
@@ -2691,6 +2725,8 @@ argument_list|)
 return|;
 comment|// dispatch to segment reader
 block|}
+annotation|@
+name|Override
 DECL|method|hasDeletions
 specifier|public
 name|boolean
@@ -2702,6 +2738,8 @@ return|return
 name|hasDeletions
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doDelete
 specifier|protected
 name|void
@@ -2751,6 +2789,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doUndeleteAll
 specifier|protected
 name|void
@@ -2941,6 +2981,8 @@ return|return
 name|hi
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNorms
 specifier|public
 name|boolean
@@ -2992,6 +3034,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 specifier|synchronized
@@ -3096,6 +3140,8 @@ return|return
 name|bytes
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 specifier|synchronized
@@ -3231,6 +3277,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|doSetNorm
 specifier|protected
 name|void
@@ -3294,6 +3342,8 @@ argument_list|)
 expr_stmt|;
 comment|// dispatch
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -3319,6 +3369,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -3347,6 +3399,8 @@ name|term
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -3399,6 +3453,8 @@ return|return
 name|total
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -3422,6 +3478,8 @@ name|starts
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -3446,6 +3504,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Tries to acquire the WriteLock on this directory. this method is only valid if this IndexReader is directory    * owner.    *    * @throws StaleReaderException  if the index has changed since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws org.apache.lucene.store.LockObtainFailedException    *                               if another writer has this index open (<code>write.lock</code> could not be    *                               obtained)    * @throws IOException           if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|acquireWriteLock
 specifier|protected
 name|void
@@ -3588,6 +3648,8 @@ block|}
 block|}
 block|}
 comment|/**    * Commit changes resulting from delete, undeleteAll, or setNorm operations    *<p/>    * If an exception is hit, then either no changes or all changes will have been committed to the index (transactional    * semantics).    *    * @throws IOException if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|doCommit
 specifier|protected
 name|void
@@ -3944,6 +4006,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getCommitUserData
 specifier|public
 name|Map
@@ -3965,6 +4029,8 @@ name|getUserData
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCurrent
 specifier|public
 name|boolean
@@ -4017,6 +4083,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|doClose
 specifier|protected
 specifier|synchronized
@@ -4093,6 +4161,8 @@ throw|throw
 name|ioe
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFieldNames
 specifier|public
 name|Collection
@@ -4186,6 +4256,8 @@ return|return
 name|fieldSet
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSequentialSubReaders
 specifier|public
 name|IndexReader
@@ -4198,6 +4270,8 @@ name|subReaders
 return|;
 block|}
 comment|/** Returns the directory this index resides in. */
+annotation|@
+name|Override
 DECL|method|directory
 specifier|public
 name|Directory
@@ -4222,6 +4296,8 @@ name|termInfosIndexDivisor
 return|;
 block|}
 comment|/**    * Expert: return the IndexCommit that this reader has opened.    *<p/>    *<p><b>WARNING</b>: this API is new and experimental and may suddenly change.</p>    */
+annotation|@
+name|Override
 DECL|method|getIndexCommit
 specifier|public
 name|IndexCommit
@@ -4567,6 +4643,8 @@ name|hasDeletions
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isOptimized
 specifier|public
 name|boolean
@@ -4577,6 +4655,8 @@ return|return
 name|isOptimized
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSegmentsFileName
 specifier|public
 name|String
@@ -4587,6 +4667,8 @@ return|return
 name|segmentsFileName
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFileNames
 specifier|public
 name|Collection
@@ -4600,6 +4682,8 @@ return|return
 name|files
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDirectory
 specifier|public
 name|Directory
@@ -4610,6 +4694,8 @@ return|return
 name|dir
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|long
@@ -4620,6 +4706,8 @@ return|return
 name|version
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGeneration
 specifier|public
 name|long
@@ -4630,6 +4718,8 @@ return|return
 name|generation
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean
@@ -4640,6 +4730,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getUserData
 specifier|public
 name|Map
@@ -4866,6 +4958,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -5033,6 +5127,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|term
 specifier|public
 name|Term
@@ -5043,6 +5139,8 @@ return|return
 name|term
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -5053,6 +5151,8 @@ return|return
 name|docFreq
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -5895,6 +5995,8 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|termDocs
 specifier|protected
 name|TermDocs

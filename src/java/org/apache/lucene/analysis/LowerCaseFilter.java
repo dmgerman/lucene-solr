@@ -83,6 +83,8 @@ specifier|private
 name|TermAttribute
 name|termAtt
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

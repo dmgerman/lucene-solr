@@ -115,6 +115,8 @@ literal|null
 expr_stmt|;
 comment|// the proxStream will be cloned lazily when nextPosition() is called for the first time
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|final
 name|void
@@ -167,6 +169,8 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|final
@@ -282,6 +286,8 @@ return|return
 name|delta
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|skippingDoc
 specifier|protected
 specifier|final
@@ -297,6 +303,8 @@ operator|+=
 name|freq
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 specifier|final
@@ -339,6 +347,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 specifier|final
@@ -365,6 +375,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** Called by super.skipTo(). */
+annotation|@
+name|Override
 DECL|method|skipProx
 specifier|protected
 name|void

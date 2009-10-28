@@ -332,6 +332,8 @@ init|=
 literal|false
 decl_stmt|;
 comment|/** Returns a cloned FieldsReader that shares open    *  IndexInputs with the original one.  It is the caller's    *  job not to close the original FieldsReader until all    *  clones are called (eg, currently SegmentReader manages    *  this logic). */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -2804,6 +2806,8 @@ operator|=
 name|toRead
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getBinaryValue
 specifier|public
 name|byte

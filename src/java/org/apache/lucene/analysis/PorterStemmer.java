@@ -187,6 +187,8 @@ name|ch
 expr_stmt|;
 block|}
 comment|/**    * After a word has been stemmed, it can be retrieved by toString(),    * or a reference to the internal buffer can be retrieved by getResultBuffer    * and getResultLength (which is generally more efficient.)    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

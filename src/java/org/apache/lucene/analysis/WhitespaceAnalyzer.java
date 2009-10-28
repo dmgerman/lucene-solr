@@ -49,6 +49,8 @@ name|WhitespaceAnalyzer
 extends|extends
 name|Analyzer
 block|{
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -69,6 +71,8 @@ name|reader
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

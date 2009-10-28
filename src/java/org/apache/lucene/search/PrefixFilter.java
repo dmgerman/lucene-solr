@@ -77,6 +77,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

@@ -72,6 +72,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Retrieve the corrected offset.  Note that this method    *  is slow, if you correct positions far before the most    *  recently added position, as it's a simple linear    *  search backwards through all offset corrections added    *  by {@link #addOffCorrectMap}. */
+annotation|@
+name|Override
 DECL|method|correct
 specifier|protected
 name|int
@@ -261,6 +263,8 @@ operator|=
 name|cumulativeDiff
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

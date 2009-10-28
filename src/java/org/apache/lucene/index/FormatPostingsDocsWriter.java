@@ -262,6 +262,8 @@ name|int
 name|df
 decl_stmt|;
 comment|/** Adds a new doc in this term.  If this returns null    *  then we just skip consuming positions/payloads. */
+annotation|@
+name|Override
 DECL|method|addDoc
 name|FormatPostingsPositionsConsumer
 name|addDoc
@@ -444,6 +446,8 @@ name|UTF8Result
 argument_list|()
 decl_stmt|;
 comment|/** Called when we are done adding docs to this term */
+annotation|@
+name|Override
 DECL|method|finish
 name|void
 name|finish

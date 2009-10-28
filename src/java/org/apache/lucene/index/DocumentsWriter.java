@@ -545,6 +545,8 @@ operator|new
 name|IndexingChain
 argument_list|()
 block|{
+annotation|@
+name|Override
 name|DocConsumer
 name|getChain
 parameter_list|(
@@ -4516,16 +4518,22 @@ name|SkipDocWriter
 extends|extends
 name|DocWriter
 block|{
+annotation|@
+name|Override
 DECL|method|finish
 name|void
 name|finish
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
 DECL|method|abort
 name|void
 name|abort
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
 DECL|method|sizeInBytes
 name|long
 name|sizeInBytes
@@ -4825,6 +4833,8 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/* Allocate another byte[] from the shared pool */
+annotation|@
+name|Override
 DECL|method|getByteBlock
 name|byte
 index|[]
@@ -4916,6 +4926,8 @@ return|;
 block|}
 block|}
 comment|/* Return byte[]'s to the pool */
+annotation|@
+name|Override
 DECL|method|recycleByteBlocks
 name|void
 name|recycleByteBlocks

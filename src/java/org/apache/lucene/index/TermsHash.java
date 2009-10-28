@@ -253,6 +253,8 @@ name|bytesPerPosting
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addThread
 name|InvertedDocConsumerPerThread
 name|addThread
@@ -300,6 +302,8 @@ name|primaryPerThread
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setFieldInfos
 name|void
 name|setFieldInfos
@@ -322,6 +326,8 @@ name|fieldInfos
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|synchronized
 specifier|public
@@ -437,6 +443,8 @@ name|newArray
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|closeDocStore
 specifier|synchronized
 name|void
@@ -469,6 +477,8 @@ name|state
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|flush
 specifier|synchronized
 name|void
@@ -715,6 +725,8 @@ name|state
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|freeRAM
 specifier|synchronized
 specifier|public

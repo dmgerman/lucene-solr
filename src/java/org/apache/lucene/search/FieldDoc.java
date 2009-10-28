@@ -28,7 +28,7 @@ name|FieldDoc
 extends|extends
 name|ScoreDoc
 block|{
-comment|/** Expert: The values which are used to sort the referenced document. 	 * The order of these will match the original sort criteria given by a 	 * Sort object.  Each Object will be either an Integer, Float or String, 	 * depending on the type of values in the terms of the original field. 	 * @see Sort 	 * @see Searcher#search(Query,Filter,int,Sort) 	 */
+comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will be either an Integer, Float or String,    * depending on the type of values in the terms of the original field.    * @see Sort    * @see Searcher#search(Query,Filter,int,Sort)    */
 DECL|field|fields
 specifier|public
 name|Comparable
@@ -86,6 +86,8 @@ name|fields
 expr_stmt|;
 block|}
 comment|// A convenience method for debugging.
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

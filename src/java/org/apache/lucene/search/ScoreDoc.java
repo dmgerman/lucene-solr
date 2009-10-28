@@ -70,6 +70,8 @@ name|score
 expr_stmt|;
 block|}
 comment|// A convenience method for debugging.
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

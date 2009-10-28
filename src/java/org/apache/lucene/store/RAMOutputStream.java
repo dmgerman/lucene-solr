@@ -248,6 +248,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -260,6 +262,8 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -316,6 +320,8 @@ name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -328,6 +334,8 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeByte
 specifier|public
 name|void
@@ -362,6 +370,8 @@ operator|=
 name|b
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeBytes
 specifier|public
 name|void
@@ -550,6 +560,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|flush
 specifier|public
 name|void
@@ -572,6 +584,8 @@ name|setFileLength
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long

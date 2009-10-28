@@ -625,6 +625,8 @@ comment|//         if (null != locale || SortField.CUSTOM != sortFieldType) {
 comment|//           throw new RuntimeException("Locale/sortFieldType: " + this);
 comment|//         }
 block|}
+annotation|@
+name|Override
 DECL|method|getReaderKey
 specifier|public
 name|Object
@@ -635,6 +637,8 @@ return|return
 name|readerKey
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFieldName
 specifier|public
 name|String
@@ -645,6 +649,8 @@ return|return
 name|fieldName
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCacheType
 specifier|public
 name|Class
@@ -658,6 +664,8 @@ return|return
 name|cacheType
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCustom
 specifier|public
 name|Object
@@ -668,6 +676,8 @@ return|return
 name|custom
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValue
 specifier|public
 name|Object
@@ -1174,6 +1184,8 @@ name|custom
 expr_stmt|;
 block|}
 comment|/** Two of these are equal iff they reference the same field and type. */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1250,6 +1262,8 @@ literal|false
 return|;
 block|}
 comment|/** Composes a hashcode based on the field and type. */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -1372,6 +1386,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -1661,6 +1677,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -1950,6 +1968,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -2287,6 +2307,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -2625,6 +2647,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -2963,6 +2987,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -3277,6 +3303,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object
@@ -3494,6 +3522,8 @@ name|wrapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createValue
 specifier|protected
 name|Object

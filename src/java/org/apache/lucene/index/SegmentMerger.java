@@ -274,6 +274,8 @@ argument_list|,
 literal|null
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|work
@@ -345,6 +347,8 @@ argument_list|,
 literal|null
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|work

@@ -124,6 +124,8 @@ return|return
 name|term
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getField
 specifier|public
 name|String
@@ -137,6 +139,8 @@ name|field
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|extractTerms
 specifier|public
 name|void
@@ -157,6 +161,8 @@ name|term
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -226,6 +232,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -271,6 +279,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -362,6 +372,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSpans
 specifier|public
 name|Spans

@@ -108,6 +108,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Collects only characters which do not satisfy    * {@link Character#isWhitespace(char)}.*/
+annotation|@
+name|Override
 DECL|method|isTokenChar
 specifier|protected
 name|boolean

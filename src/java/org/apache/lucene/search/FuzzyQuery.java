@@ -305,6 +305,8 @@ return|return
 name|prefixLength
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getEnum
 specifier|protected
 name|FilteredTermEnum
@@ -342,6 +344,8 @@ return|return
 name|term
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setRewriteMethod
 specifier|public
 name|void
@@ -608,6 +612,8 @@ return|return
 name|query
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

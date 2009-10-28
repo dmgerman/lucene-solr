@@ -179,6 +179,8 @@ return|return
 name|fields
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -250,6 +252,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this. */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -305,6 +309,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a hash code value for this object. */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

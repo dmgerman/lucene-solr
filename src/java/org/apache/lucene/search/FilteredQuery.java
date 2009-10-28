@@ -124,6 +124,8 @@ name|filter
 expr_stmt|;
 block|}
 comment|/**    * Returns a Weight that applies the filter to the enclosed query's Weight.    * This is accomplished by overriding the Scorer returned by the Weight.    */
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight

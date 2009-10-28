@@ -112,6 +112,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates an IndexInput for the file with the given name. */
+annotation|@
+name|Override
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -150,6 +152,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Creates an IndexOutput for the file with the given name. */
+annotation|@
+name|Override
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -247,6 +251,8 @@ name|getChannel
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newBuffer
 specifier|protected
 name|void
@@ -274,6 +280,8 @@ name|newBuffer
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -311,6 +319,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|readInternal
 specifier|protected
 name|void

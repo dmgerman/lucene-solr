@@ -98,6 +98,8 @@ operator|.
 name|docState
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|startDocument
 specifier|public
 name|void
@@ -117,6 +119,8 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void
@@ -140,6 +144,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|finishDocument
 specifier|public
 name|DocumentsWriter
@@ -246,6 +252,8 @@ name|both
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|addField
 specifier|public
 name|DocFieldConsumerPerField

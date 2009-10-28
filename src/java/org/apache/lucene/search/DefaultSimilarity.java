@@ -43,6 +43,8 @@ extends|extends
 name|Similarity
 block|{
 comment|/** Implemented as    *<code>state.getBoost()*lengthNorm(numTerms)</code>, where    *<code>numTerms</code> is {@link FieldInvertState#getLength()} if {@link    *  #setDiscountOverlaps} is false, else it's {@link    *  FieldInvertState#getLength()} - {@link    *  FieldInvertState#getNumOverlap()}.    *    *<p><b>WARNING</b>: This API is new and experimental, and may suddenly    *  change.</p> */
+annotation|@
+name|Override
 DECL|method|computeNorm
 specifier|public
 name|float
@@ -100,6 +102,8 @@ operator|)
 return|;
 block|}
 comment|/** Implemented as<code>1/sqrt(numTerms)</code>. */
+annotation|@
+name|Override
 DECL|method|lengthNorm
 specifier|public
 name|float
@@ -129,6 +133,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Implemented as<code>1/sqrt(sumOfSquaredWeights)</code>. */
+annotation|@
+name|Override
 DECL|method|queryNorm
 specifier|public
 name|float
@@ -155,6 +161,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Implemented as<code>sqrt(freq)</code>. */
+annotation|@
+name|Override
 DECL|method|tf
 specifier|public
 name|float
@@ -177,6 +185,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Implemented as<code>1 / (distance + 1)</code>. */
+annotation|@
+name|Override
 DECL|method|sloppyFreq
 specifier|public
 name|float
@@ -197,6 +207,8 @@ operator|)
 return|;
 block|}
 comment|/** Implemented as<code>log(numDocs/(docFreq+1)) + 1</code>. */
+annotation|@
+name|Override
 DECL|method|idf
 specifier|public
 name|float
@@ -235,6 +247,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Implemented as<code>overlap / maxOverlap</code>. */
+annotation|@
+name|Override
 DECL|method|coord
 specifier|public
 name|float

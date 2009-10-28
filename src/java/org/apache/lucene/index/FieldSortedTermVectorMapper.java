@@ -137,6 +137,8 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|map
 specifier|public
 name|void
@@ -182,6 +184,8 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpectations
 specifier|public
 name|void

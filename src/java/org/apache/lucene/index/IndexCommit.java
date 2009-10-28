@@ -145,6 +145,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Two IndexCommits are equal if both their Directory and versions are equal.    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -195,6 +197,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

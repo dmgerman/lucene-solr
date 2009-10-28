@@ -208,6 +208,8 @@ name|fieldInfo
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 name|void
 name|abort
@@ -224,6 +226,8 @@ name|abort
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processFields
 specifier|public
 name|void

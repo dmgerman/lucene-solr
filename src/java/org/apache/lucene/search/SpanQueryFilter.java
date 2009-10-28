@@ -144,6 +144,8 @@ operator|=
 name|query
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
@@ -170,6 +172,8 @@ name|getDocIdSet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|bitSpans
 specifier|public
 name|SpanFilterResult
@@ -324,6 +328,8 @@ return|return
 name|query
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -338,6 +344,8 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -369,6 +377,8 @@ name|query
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

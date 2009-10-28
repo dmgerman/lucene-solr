@@ -109,6 +109,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Converts char to lower case    * {@link Character#toLowerCase(char)}.*/
+annotation|@
+name|Override
 DECL|method|normalize
 specifier|protected
 name|char

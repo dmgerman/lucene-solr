@@ -158,6 +158,8 @@ specifier|private
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|addThread
 specifier|public
 name|InvertedDocEndConsumerPerThread
@@ -177,6 +179,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void
@@ -195,6 +199,8 @@ argument_list|>
 name|files
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|setFieldInfos
 name|void
 name|setFieldInfos
@@ -211,6 +217,8 @@ name|fieldInfos
 expr_stmt|;
 block|}
 comment|/** Produce _X.nrm if any document had a field with norms    *  not disabled */
+annotation|@
+name|Override
 DECL|method|flush
 specifier|public
 name|void
@@ -902,6 +910,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|closeDocStore
 name|void
 name|closeDocStore

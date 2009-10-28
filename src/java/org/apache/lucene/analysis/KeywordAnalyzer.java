@@ -61,6 +61,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -82,6 +84,8 @@ name|reader
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

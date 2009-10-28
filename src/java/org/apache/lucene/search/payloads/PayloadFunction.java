@@ -90,6 +90,8 @@ name|float
 name|payloadScore
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|abstract
@@ -97,6 +99,8 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|abstract

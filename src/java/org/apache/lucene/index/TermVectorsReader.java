@@ -2440,6 +2440,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|protected
 name|Object
@@ -2578,6 +2580,8 @@ specifier|private
 name|String
 name|field
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setExpectations
 specifier|public
 name|void
@@ -2661,6 +2665,8 @@ index|]
 index|[]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|map
 specifier|public
 name|void

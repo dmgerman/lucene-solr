@@ -103,6 +103,8 @@ name|description
 parameter_list|()
 function_decl|;
 comment|/* (non-Javadoc) @see java.lang.Object#toString() */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -115,6 +117,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Needed for possible caching of query results - used by {@link ValueSourceQuery#equals(Object)}.    * @see Object#equals(Object)    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|abstract
@@ -126,6 +130,8 @@ name|o
 parameter_list|)
 function_decl|;
 comment|/**    * Needed for possible caching of query results - used by {@link ValueSourceQuery#hashCode()}.    * @see Object#hashCode()    */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|abstract

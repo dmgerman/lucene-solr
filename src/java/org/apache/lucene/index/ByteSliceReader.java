@@ -244,6 +244,8 @@ operator|==
 name|endIndex
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readByte
 specifier|public
 name|byte
@@ -521,6 +523,8 @@ literal|4
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|readBytes
 specifier|public
 name|void
@@ -613,6 +617,8 @@ break|break;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long
@@ -627,6 +633,8 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -641,6 +649,8 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -658,6 +668,8 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

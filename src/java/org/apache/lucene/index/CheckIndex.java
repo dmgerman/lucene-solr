@@ -662,6 +662,8 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -685,6 +687,8 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|skippingDoc
 specifier|protected
 name|void

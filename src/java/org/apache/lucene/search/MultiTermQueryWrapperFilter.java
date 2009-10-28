@@ -498,6 +498,8 @@ operator|new
 name|TermGenerator
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|handleDoc

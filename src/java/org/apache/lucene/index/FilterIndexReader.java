@@ -422,6 +422,8 @@ operator|=
 name|in
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -437,6 +439,8 @@ name|next
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|term
 specifier|public
 name|Term
@@ -450,6 +454,8 @@ name|term
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -463,6 +469,8 @@ name|docFreq
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -502,6 +510,8 @@ operator|=
 name|in
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|directory
 specifier|public
 name|Directory
@@ -515,6 +525,8 @@ name|directory
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVectors
 specifier|public
 name|TermFreqVector
@@ -539,6 +551,8 @@ name|docNumber
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|TermFreqVector
@@ -567,6 +581,8 @@ name|field
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|void
@@ -599,6 +615,8 @@ name|mapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|void
@@ -626,6 +644,8 @@ name|mapper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|numDocs
 specifier|public
 name|int
@@ -640,6 +660,8 @@ name|numDocs
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|maxDoc
 specifier|public
 name|int
@@ -654,6 +676,8 @@ name|maxDoc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|document
 specifier|public
 name|Document
@@ -684,6 +708,8 @@ name|fieldSelector
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean
@@ -703,6 +729,8 @@ name|n
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasDeletions
 specifier|public
 name|boolean
@@ -717,6 +745,8 @@ name|hasDeletions
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doUndeleteAll
 specifier|protected
 name|void
@@ -733,6 +763,8 @@ name|undeleteAll
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNorms
 specifier|public
 name|boolean
@@ -756,6 +788,8 @@ name|field
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 name|byte
@@ -780,6 +814,8 @@ name|f
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 name|void
@@ -813,6 +849,8 @@ name|offset
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doSetNorm
 specifier|protected
 name|void
@@ -844,6 +882,8 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -862,6 +902,8 @@ name|terms
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -885,6 +927,8 @@ name|t
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -908,6 +952,8 @@ name|t
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -926,6 +972,8 @@ name|termDocs
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -949,6 +997,8 @@ name|term
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -967,6 +1017,8 @@ name|termPositions
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doDelete
 specifier|protected
 name|void
@@ -988,6 +1040,8 @@ name|n
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doCommit
 specifier|protected
 name|void
@@ -1012,6 +1066,8 @@ name|commitUserData
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doClose
 specifier|protected
 name|void
@@ -1026,6 +1082,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFieldNames
 specifier|public
 name|Collection
@@ -1052,6 +1110,8 @@ name|fieldNames
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|long
@@ -1068,6 +1128,8 @@ name|getVersion
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCurrent
 specifier|public
 name|boolean
@@ -1088,6 +1150,8 @@ name|isCurrent
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isOptimized
 specifier|public
 name|boolean
@@ -1104,6 +1168,8 @@ name|isOptimized
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSequentialSubReaders
 specifier|public
 name|IndexReader

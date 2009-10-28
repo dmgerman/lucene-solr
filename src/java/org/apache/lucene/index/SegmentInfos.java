@@ -1103,6 +1103,8 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|doBody
@@ -1330,6 +1332,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns a copy of this instance, also copying each    * SegmentInfo.    */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -1462,6 +1466,8 @@ argument_list|(
 name|directory
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|doBody

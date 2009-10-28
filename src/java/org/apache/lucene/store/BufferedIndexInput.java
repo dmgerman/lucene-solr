@@ -86,6 +86,8 @@ init|=
 literal|0
 decl_stmt|;
 comment|// next byte to read
+annotation|@
+name|Override
 DECL|method|readByte
 specifier|public
 name|byte
@@ -332,6 +334,8 @@ literal|")"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|readBytes
 specifier|public
 name|void
@@ -362,6 +366,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readBytes
 specifier|public
 name|void
@@ -719,6 +725,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long
@@ -731,6 +739,8 @@ operator|+
 name|bufferPosition
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -803,6 +813,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object

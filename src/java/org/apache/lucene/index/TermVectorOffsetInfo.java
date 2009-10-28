@@ -148,6 +148,8 @@ name|startOffset
 expr_stmt|;
 block|}
 comment|/**    * Two TermVectorOffsetInfos are equals if both the start and end offsets are the same    * @param o The comparison Object    * @return true if both {@link #getStartOffset()} and {@link #getEndOffset()} are the same for both objects.    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -213,6 +215,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

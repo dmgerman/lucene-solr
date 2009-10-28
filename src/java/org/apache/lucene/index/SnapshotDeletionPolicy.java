@@ -291,6 +291,8 @@ operator|=
 name|cp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSegmentsFileName
 specifier|public
 name|String
@@ -304,6 +306,8 @@ name|getSegmentsFileName
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFileNames
 specifier|public
 name|Collection
@@ -322,6 +326,8 @@ name|getFileNames
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDirectory
 specifier|public
 name|Directory
@@ -335,6 +341,8 @@ name|getDirectory
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|delete
 specifier|public
 name|void
@@ -372,6 +380,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean
@@ -385,6 +395,8 @@ name|isDeleted
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|long
@@ -398,6 +410,8 @@ name|getVersion
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGeneration
 specifier|public
 name|long
@@ -411,6 +425,8 @@ name|getGeneration
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getUserData
 specifier|public
 name|Map

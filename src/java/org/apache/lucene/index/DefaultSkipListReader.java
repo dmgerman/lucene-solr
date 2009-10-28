@@ -247,6 +247,8 @@ return|return
 name|lastPayloadLength
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|seekChild
 specifier|protected
 name|void
@@ -287,6 +289,8 @@ operator|=
 name|lastPayloadLength
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setLastSkipData
 specifier|protected
 name|void
@@ -325,6 +329,8 @@ name|level
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readSkipData
 specifier|protected
 name|int

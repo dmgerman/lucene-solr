@@ -168,6 +168,8 @@ name|TermAttribute
 name|termAtt
 decl_stmt|;
 comment|/** Returns the next token in the stream, or null at EOS.    *<p>Removes<tt>'s</tt> from the end of words.    *<p>Removes dots from acronyms.    */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

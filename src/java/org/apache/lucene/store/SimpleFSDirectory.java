@@ -100,6 +100,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates an IndexOutput for the file with the given name. */
+annotation|@
+name|Override
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -131,6 +133,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Creates an IndexInput for the file with the given name. */
+annotation|@
+name|Override
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -230,6 +234,8 @@ name|length
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -311,6 +317,8 @@ name|chunkSize
 expr_stmt|;
 block|}
 comment|/** IndexInput methods */
+annotation|@
+name|Override
 DECL|method|readInternal
 specifier|protected
 name|void
@@ -491,6 +499,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -511,6 +521,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|seekInternal
 specifier|protected
 name|void
@@ -520,6 +532,8 @@ name|long
 name|position
 parameter_list|)
 block|{     }
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -532,6 +546,8 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -626,6 +642,8 @@ literal|true
 expr_stmt|;
 block|}
 comment|/** output methods: */
+annotation|@
+name|Override
 DECL|method|flushBuffer
 specifier|public
 name|void
@@ -656,6 +674,8 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -726,6 +746,8 @@ block|}
 block|}
 block|}
 comment|/** Random-access methods */
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -752,6 +774,8 @@ name|pos
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -767,6 +791,8 @@ name|length
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setLength
 specifier|public
 name|void

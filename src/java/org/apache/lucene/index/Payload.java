@@ -417,6 +417,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Clones this payload by creating a copy of the underlying    * byte array.    */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -505,6 +507,8 @@ throw|;
 comment|// shouldn't happen
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -598,6 +602,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

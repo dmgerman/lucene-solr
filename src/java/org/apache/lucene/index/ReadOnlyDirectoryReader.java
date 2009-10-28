@@ -169,6 +169,8 @@ name|termInfosIndexDivisor
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|acquireWriteLock
 specifier|protected
 name|void

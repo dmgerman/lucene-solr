@@ -1167,6 +1167,8 @@ operator|=
 name|payload
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -1292,6 +1294,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Resets the term text, payload, flags, and positionIncrement,    * startOffset, endOffset and token type to default.    */
+annotation|@
+name|Override
 DECL|method|clear
 specifier|public
 name|void
@@ -1326,6 +1330,8 @@ operator|=
 name|DEFAULT_TYPE
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -1470,6 +1476,8 @@ return|return
 name|t
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1640,6 +1648,8 @@ name|o2
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -2252,6 +2262,8 @@ operator|.
 name|payload
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyTo
 specifier|public
 name|void
@@ -2463,6 +2475,8 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createAttributeInstance
 specifier|public
 name|AttributeImpl
@@ -2499,6 +2513,8 @@ name|attClass
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -2550,6 +2566,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

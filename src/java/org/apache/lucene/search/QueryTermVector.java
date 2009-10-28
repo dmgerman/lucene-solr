@@ -591,6 +591,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 specifier|final

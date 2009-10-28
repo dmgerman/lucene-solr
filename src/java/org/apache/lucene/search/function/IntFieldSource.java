@@ -135,6 +135,8 @@ name|parser
 expr_stmt|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.ValueSource#description() */
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -153,6 +155,8 @@ literal|')'
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.FieldCacheSource#getCachedValues(org.apache.lucene.search.FieldCache, java.lang.String, org.apache.lucene.index.IndexReader) */
+annotation|@
+name|Override
 DECL|method|getCachedFieldValues
 specifier|public
 name|DocValues
@@ -192,6 +196,8 @@ name|DocValues
 argument_list|()
 block|{
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#floatVal(int) */
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -211,6 +217,8 @@ index|]
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#intVal(int) */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -227,6 +235,8 @@ index|]
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#toString(int) */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -248,6 +258,8 @@ argument_list|)
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#getInnerArray() */
+annotation|@
+name|Override
 name|Object
 name|getInnerArray
 parameter_list|()
@@ -260,6 +272,8 @@ block|}
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.FieldCacheSource#cachedFieldSourceEquals(org.apache.lucene.search.function.FieldCacheSource) */
+annotation|@
+name|Override
 DECL|method|cachedFieldSourceEquals
 specifier|public
 name|boolean
@@ -322,6 +336,8 @@ argument_list|()
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.FieldCacheSource#cachedFieldSourceHashCode() */
+annotation|@
+name|Override
 DECL|method|cachedFieldSourceHashCode
 specifier|public
 name|int

@@ -1184,6 +1184,8 @@ return|return
 name|code
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -1194,6 +1196,8 @@ return|return
 name|count
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty
 specifier|public
 name|boolean
@@ -1206,6 +1210,8 @@ operator|==
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|contains
 specifier|public
 name|boolean
@@ -1257,6 +1263,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|boolean
@@ -1485,6 +1493,8 @@ return|;
 block|}
 comment|/** returns an iterator of new allocated Strings, this method violates the Set interface */
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -1542,6 +1552,8 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|boolean
@@ -1557,6 +1569,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|addAll
 specifier|public
 name|boolean
@@ -1577,6 +1591,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|boolean
@@ -1593,6 +1609,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|boolean
@@ -1608,6 +1626,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|boolean

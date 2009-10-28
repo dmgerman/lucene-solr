@@ -496,6 +496,8 @@ return|return
 name|DEFAULT_BYTE_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -552,6 +554,8 @@ return|return
 name|DEFAULT_SHORT_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -608,6 +612,8 @@ return|return
 name|DEFAULT_INT_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -664,6 +670,8 @@ return|return
 name|DEFAULT_FLOAT_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -720,6 +728,8 @@ return|return
 name|DEFAULT_LONG_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -776,6 +786,8 @@ return|return
 name|DEFAULT_DOUBLE_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -864,6 +876,8 @@ return|return
 name|NUMERIC_UTILS_INT_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -957,6 +971,8 @@ return|return
 name|NUMERIC_UTILS_FLOAT_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1045,6 +1061,8 @@ return|return
 name|NUMERIC_UTILS_LONG_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1138,6 +1156,8 @@ return|return
 name|NUMERIC_UTILS_DOUBLE_PARSER
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1532,6 +1552,8 @@ return|return
 name|size
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

@@ -30,6 +30,8 @@ name|AveragePayloadFunction
 extends|extends
 name|PayloadFunction
 block|{
+annotation|@
+name|Override
 DECL|method|currentScore
 specifier|public
 name|float
@@ -63,6 +65,8 @@ operator|+
 name|currentScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docScore
 specifier|public
 name|float
@@ -95,6 +99,8 @@ else|:
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -130,6 +136,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

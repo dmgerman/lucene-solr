@@ -76,6 +76,8 @@ name|clear
 parameter_list|()
 function_decl|;
 comment|/**    * The default implementation of this method accesses all declared    * fields of this object and prints the values in the following syntax:    *     *<pre>    *   public String toString() {    *     return "start=" + startOffset + ",end=" + endOffset;    *   }    *</pre>    *     * This method may be overridden by subclasses.    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -244,6 +246,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Subclasses must implement this method and should compute    * a hashCode similar to this:    *<pre>    *   public int hashCode() {    *     int code = startOffset;    *     code = code * 31 + endOffset;    *     return code;    *   }    *</pre>     *     * see also {@link #equals(Object)}    */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|abstract
@@ -252,6 +256,8 @@ name|hashCode
 parameter_list|()
 function_decl|;
 comment|/**    * All values used for computation of {@link #hashCode()}     * should be checked here for equality.    *     * see also {@link Object#equals(Object)}    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|abstract
@@ -274,6 +280,8 @@ name|target
 parameter_list|)
 function_decl|;
 comment|/**    * Shallow clone. Subclasses must override this if they     * need to clone any members deeply,    */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object

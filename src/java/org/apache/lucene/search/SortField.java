@@ -772,6 +772,8 @@ return|return
 name|reverse
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -1096,6 +1098,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this.  If a    *  {@link FieldComparatorSource} or {@link    *  FieldCache.Parser} was provided, it must properly    *  implement equals (unless a singleton is always used). */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1240,6 +1244,8 @@ operator|)
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this.  If a    *  {@link FieldComparatorSource} or {@link    *  FieldCache.Parser} was provided, it must properly    *  implement hashCode (unless a singleton is always    *  used). */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

@@ -251,6 +251,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|termCompare
 specifier|protected
 specifier|final
@@ -311,6 +313,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|difference
 specifier|public
 name|float
@@ -321,6 +325,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|endEnum
 specifier|public
 specifier|final

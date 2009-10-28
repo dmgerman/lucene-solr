@@ -90,6 +90,8 @@ name|field
 expr_stmt|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.ValueSource#description() */
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -105,6 +107,8 @@ literal|')'
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.ValueSource#getValues(org.apache.lucene.index.IndexReader) */
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -158,6 +162,8 @@ name|DocValues
 argument_list|()
 block|{
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#floatVal(int) */
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -181,6 +187,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) @see org.apache.lucene.search.function.DocValues#intVal(int) */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -199,6 +207,8 @@ index|]
 return|;
 block|}
 comment|/* (non-Javadoc) @see org.apache.lucene.search.function.DocValues#strVal(int) */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -221,6 +231,8 @@ argument_list|)
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#toString(int) */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -242,6 +254,8 @@ argument_list|)
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.DocValues#getInnerArray() */
+annotation|@
+name|Override
 name|Object
 name|getInnerArray
 parameter_list|()
@@ -254,6 +268,8 @@ block|}
 return|;
 block|}
 comment|/*(non-Javadoc) @see java.lang.Object#equals(java.lang.Object) */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -313,6 +329,8 @@ name|hashCode
 argument_list|()
 decl_stmt|;
 comment|/*(non-Javadoc) @see java.lang.Object#hashCode() */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

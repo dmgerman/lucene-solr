@@ -1202,6 +1202,8 @@ expr_stmt|;
 block|}
 block|}
 comment|//
+annotation|@
+name|Override
 DECL|method|setFreqCurrentDoc
 specifier|protected
 name|boolean

@@ -428,6 +428,8 @@ name|stopSet
 return|;
 block|}
 comment|/**    * Returns the next input Token whose term() is not a stop word.    */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

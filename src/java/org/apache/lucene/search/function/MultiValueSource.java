@@ -103,6 +103,8 @@ operator|=
 name|other
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -152,6 +154,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -165,6 +169,8 @@ name|description
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -204,6 +210,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -325,6 +333,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|floatVal
 specifier|public
 name|float
@@ -364,6 +374,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|intVal
 specifier|public
 name|int
@@ -403,6 +415,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|longVal
 specifier|public
 name|long
@@ -442,6 +456,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doubleVal
 specifier|public
 name|double
@@ -481,6 +497,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|strVal
 specifier|public
 name|String
@@ -520,6 +538,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -559,6 +579,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|explain
 specifier|public
 name|Explanation

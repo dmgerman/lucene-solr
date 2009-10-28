@@ -79,6 +79,8 @@ name|numHits
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -137,6 +139,8 @@ name|updateTop
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean
@@ -171,6 +175,8 @@ name|numHits
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -242,6 +248,8 @@ name|updateTop
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean
@@ -335,6 +343,8 @@ name|top
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newTopDocs
 specifier|protected
 name|TopDocs
@@ -435,6 +445,8 @@ name|maxScore
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -452,6 +464,8 @@ operator|=
 name|base
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void

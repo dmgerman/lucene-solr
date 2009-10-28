@@ -399,6 +399,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * The termCompare method in FuzzyTermEnum uses Levenshtein distance to     * calculate the distance between the given term and the comparing term.     */
+annotation|@
+name|Override
 DECL|method|termCompare
 specifier|protected
 specifier|final
@@ -472,6 +474,8 @@ literal|false
 return|;
 block|}
 comment|/** {@inheritDoc} */
+annotation|@
+name|Override
 DECL|method|difference
 specifier|public
 specifier|final
@@ -490,6 +494,8 @@ name|scale_factor
 return|;
 block|}
 comment|/** {@inheritDoc} */
+annotation|@
+name|Override
 DECL|method|endEnum
 specifier|public
 specifier|final
@@ -944,6 +950,8 @@ argument_list|)
 return|;
 block|}
 comment|/** {@inheritDoc} */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

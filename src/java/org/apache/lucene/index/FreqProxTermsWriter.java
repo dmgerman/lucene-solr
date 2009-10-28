@@ -117,6 +117,8 @@ name|FreqProxTermsWriter
 extends|extends
 name|TermsHashConsumer
 block|{
+annotation|@
+name|Override
 DECL|method|addThread
 specifier|public
 name|TermsHashConsumerPerThread
@@ -134,6 +136,8 @@ name|perThread
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|createPostings
 name|void
 name|createPostings
@@ -275,6 +279,8 @@ literal|0
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|closeDocStore
 name|void
 name|closeDocStore
@@ -283,6 +289,8 @@ name|SegmentWriteState
 name|state
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|abort
 name|void
 name|abort
@@ -292,6 +300,8 @@ comment|// TODO: would be nice to factor out more of this, eg the
 comment|// FreqProxFieldMergeState, and code to visit all Fields
 comment|// under the same FieldInfo together, up into TermsHash*.
 comment|// Other writers would presumably share alot of this...
+annotation|@
+name|Override
 DECL|method|flush
 specifier|public
 name|void
@@ -1403,6 +1413,8 @@ name|lastPosition
 decl_stmt|;
 comment|// Last position where this term occurred
 block|}
+annotation|@
+name|Override
 DECL|method|bytesPerPosting
 name|int
 name|bytesPerPosting

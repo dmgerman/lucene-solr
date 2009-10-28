@@ -91,6 +91,8 @@ name|field
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) @see org.apache.lucene.search.function.ValueSource#getValues(org.apache.lucene.index.IndexReader) */
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 specifier|final
@@ -117,6 +119,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) @see org.apache.lucene.search.function.ValueSource#description() */
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -147,6 +151,8 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/*(non-Javadoc) @see java.lang.Object#equals(java.lang.Object) */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|final
@@ -198,6 +204,8 @@ argument_list|)
 return|;
 block|}
 comment|/*(non-Javadoc) @see java.lang.Object#hashCode() */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|final

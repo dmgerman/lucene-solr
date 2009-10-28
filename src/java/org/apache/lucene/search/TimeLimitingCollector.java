@@ -131,6 +131,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run
 specifier|public
 name|void
@@ -438,6 +440,8 @@ name|greedy
 expr_stmt|;
 block|}
 comment|/**    * Calls {@link Collector#collect(int)} on the decorated {@link Collector}    * unless the allowed time has passed, in which case it throws an exception.    *     * @throws TimeExceededException    *           if the time allowed has exceeded.    */
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -505,6 +509,8 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -529,6 +535,8 @@ name|base
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -548,6 +556,8 @@ name|scorer
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean

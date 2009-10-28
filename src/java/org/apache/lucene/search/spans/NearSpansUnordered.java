@@ -221,6 +221,8 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|protected
 specifier|final
@@ -329,6 +331,8 @@ operator|=
 name|index
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -347,6 +351,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -460,6 +466,8 @@ return|return
 name|condition
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|int
@@ -473,6 +481,8 @@ name|doc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|int
@@ -486,6 +496,8 @@ name|start
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|end
 specifier|public
 name|int
@@ -500,6 +512,8 @@ argument_list|()
 return|;
 block|}
 comment|// TODO: Remove warning after API has been finalized
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|Collection
@@ -528,6 +542,8 @@ argument_list|)
 return|;
 block|}
 comment|// TODO: Remove warning after API has been finalized
+annotation|@
+name|Override
 DECL|method|isPayloadAvailable
 specifier|public
 name|boolean
@@ -541,6 +557,8 @@ name|isPayloadAvailable
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -681,6 +699,8 @@ return|return
 name|subSpans
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -869,6 +889,8 @@ literal|false
 return|;
 comment|// no more matches
 block|}
+annotation|@
+name|Override
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -1004,6 +1026,8 @@ name|top
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|int
@@ -1018,6 +1042,8 @@ name|doc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|int
@@ -1032,6 +1058,8 @@ name|start
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|end
 specifier|public
 name|int
@@ -1047,6 +1075,8 @@ return|;
 block|}
 comment|// TODO: Remove warning after API has been finalized
 comment|/**    * WARNING: The List is not necessarily in order of the the positions    * @return Collection of<code>byte[]</code> payloads    * @throws IOException    */
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|Collection
@@ -1117,6 +1147,8 @@ name|matchPayload
 return|;
 block|}
 comment|// TODO: Remove warning after API has been finalized
+annotation|@
+name|Override
 DECL|method|isPayloadAvailable
 specifier|public
 name|boolean
@@ -1159,6 +1191,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

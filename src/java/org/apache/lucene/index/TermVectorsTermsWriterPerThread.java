@@ -123,6 +123,8 @@ name|UTF8Result
 argument_list|()
 block|}
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|startDocument
 specifier|public
 name|void
@@ -155,6 +157,8 @@ name|docID
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|finishDocument
 specifier|public
 name|DocumentsWriter
@@ -177,6 +181,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|addField
 specifier|public
 name|TermsHashConsumerPerField
@@ -201,6 +207,8 @@ name|fieldInfo
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void

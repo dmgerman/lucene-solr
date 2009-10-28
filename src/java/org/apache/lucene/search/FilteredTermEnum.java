@@ -163,6 +163,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**       * Returns the docFreq of the current Term in the enumeration.      * Returns -1 if no Term matches or all terms have been enumerated.      */
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -192,6 +194,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Increments the enumeration to the next element.  True if one exists. */
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -276,6 +280,8 @@ literal|false
 return|;
 block|}
 comment|/** Returns the current Term in the enumeration.      * Returns null if no Term matches or all terms have been enumerated. */
+annotation|@
+name|Override
 DECL|method|term
 specifier|public
 name|Term
@@ -287,6 +293,8 @@ name|currentTerm
 return|;
 block|}
 comment|/** Closes the enumeration to further activity, freeing resources.  */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

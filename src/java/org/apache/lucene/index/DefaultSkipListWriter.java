@@ -281,6 +281,8 @@ name|getFilePointer
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|resetSkip
 specifier|protected
 name|void
@@ -343,6 +345,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeSkipData
 specifier|protected
 name|void

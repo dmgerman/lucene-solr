@@ -186,6 +186,8 @@ block|}
 block|}
 decl_stmt|;
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.util.MemoryModel#getArraySize()    */
+annotation|@
+name|Override
 DECL|method|getArraySize
 specifier|public
 name|int
@@ -197,6 +199,8 @@ literal|16
 return|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.util.MemoryModel#getClassSize()    */
+annotation|@
+name|Override
 DECL|method|getClassSize
 specifier|public
 name|int
@@ -208,6 +212,8 @@ literal|8
 return|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.util.MemoryModel#getPrimitiveSize(java.lang.Class)    */
+annotation|@
+name|Override
 DECL|method|getPrimitiveSize
 specifier|public
 name|int
@@ -230,6 +236,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.util.MemoryModel#getReferenceSize()    */
+annotation|@
+name|Override
 DECL|method|getReferenceSize
 specifier|public
 name|int

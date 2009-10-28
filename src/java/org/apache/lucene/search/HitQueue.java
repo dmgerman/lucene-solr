@@ -70,6 +70,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Returns null if prePopulate is false.
+annotation|@
+name|Override
 DECL|method|getSentinelObject
 specifier|protected
 name|ScoreDoc
@@ -98,6 +100,8 @@ name|NEGATIVE_INFINITY
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|protected
 specifier|final

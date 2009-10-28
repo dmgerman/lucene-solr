@@ -135,6 +135,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Never ignores positions.  This mapper doesn't make much sense unless there are positions    * @return false    */
+annotation|@
+name|Override
 DECL|method|isIgnoringPositions
 specifier|public
 name|boolean
@@ -146,6 +148,8 @@ literal|false
 return|;
 block|}
 comment|/**    * Callback for the TermVectorReader.     * @param term    * @param frequency    * @param offsets    * @param positions    */
+annotation|@
+name|Override
 DECL|method|map
 specifier|public
 name|void
@@ -257,6 +261,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Callback mechanism used by the TermVectorReader    * @param field  The field being read    * @param numTerms The number of terms in the vector    * @param storeOffsets Whether offsets are available    * @param storePositions Whether positions are available    */
+annotation|@
+name|Override
 DECL|method|setExpectations
 specifier|public
 name|void

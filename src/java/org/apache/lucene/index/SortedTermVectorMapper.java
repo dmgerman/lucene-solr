@@ -145,6 +145,8 @@ expr_stmt|;
 block|}
 comment|/**    *    * @param term The term to map    * @param frequency The frequency of the term    * @param offsets Offset information, may be null    * @param positions Position information, may be null    */
 comment|//We need to combine any previous mentions of the term
+annotation|@
+name|Override
 DECL|method|map
 specifier|public
 name|void
@@ -482,6 +484,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setExpectations
 specifier|public
 name|void

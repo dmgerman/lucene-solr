@@ -197,6 +197,8 @@ name|includeUpper
 expr_stmt|;
 block|}
 comment|/** This method is implemented for each data type */
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 specifier|abstract
@@ -255,6 +257,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -472,6 +476,8 @@ argument_list|,
 literal|false
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|final
 name|boolean
 name|matchDoc
@@ -600,6 +606,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -786,6 +794,8 @@ literal|0
 operator|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 name|boolean
 name|matchDoc
 parameter_list|(
@@ -909,6 +919,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -1093,6 +1105,8 @@ literal|0
 operator|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 name|boolean
 name|matchDoc
 parameter_list|(
@@ -1216,6 +1230,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -1390,6 +1406,8 @@ literal|0
 operator|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 name|boolean
 name|matchDoc
 parameter_list|(
@@ -1513,6 +1531,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -1687,6 +1707,8 @@ literal|0L
 operator|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 name|boolean
 name|matchDoc
 parameter_list|(
@@ -1810,6 +1832,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -2026,6 +2050,8 @@ literal|0.0f
 operator|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 name|boolean
 name|matchDoc
 parameter_list|(
@@ -2149,6 +2175,8 @@ argument_list|,
 name|includeUpper
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
@@ -2365,6 +2393,8 @@ literal|0.0
 operator|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 name|boolean
 name|matchDoc
 parameter_list|(
@@ -2394,6 +2424,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 specifier|final
@@ -2478,6 +2510,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|final
@@ -2643,6 +2677,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|final
@@ -2944,6 +2980,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|docID
@@ -2953,6 +2991,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|nextDoc
@@ -2994,6 +3034,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|advance
@@ -3070,6 +3112,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|docID
@@ -3079,6 +3123,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|nextDoc
@@ -3118,6 +3164,8 @@ name|NO_MORE_DOCS
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|advance

@@ -185,6 +185,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** By default, closes the input Reader. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

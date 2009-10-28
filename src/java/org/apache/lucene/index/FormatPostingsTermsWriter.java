@@ -131,6 +131,8 @@ name|long
 name|proxStart
 decl_stmt|;
 comment|/** Adds a new term in this field */
+annotation|@
+name|Override
 DECL|method|addTerm
 name|FormatPostingsDocsConsumer
 name|addTerm
@@ -196,6 +198,8 @@ name|docsWriter
 return|;
 block|}
 comment|/** Called when we are done adding terms to this field */
+annotation|@
+name|Override
 DECL|method|finish
 name|void
 name|finish

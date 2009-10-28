@@ -114,6 +114,8 @@ name|name
 expr_stmt|;
 block|}
 comment|/*(non-Javadoc) @see java.lang.Object#toString() */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

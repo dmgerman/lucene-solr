@@ -94,6 +94,8 @@ operator|=
 name|in
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|correctOffset
 specifier|public
 name|int
@@ -107,6 +109,8 @@ return|return
 name|currentOff
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -121,6 +125,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -152,6 +158,8 @@ name|len
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|markSupported
 specifier|public
 name|boolean
@@ -165,6 +173,8 @@ name|markSupported
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|mark
 specifier|public
 name|void
@@ -184,6 +194,8 @@ name|readAheadLimit
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

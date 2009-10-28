@@ -180,6 +180,8 @@ name|int
 name|lastPosition
 decl_stmt|;
 comment|/** Add a new position& payload */
+annotation|@
+name|Override
 DECL|method|addPosition
 name|void
 name|addPosition
@@ -321,6 +323,8 @@ name|storePayloads
 expr_stmt|;
 block|}
 comment|/** Called when we are done adding positions& payloads */
+annotation|@
+name|Override
 DECL|method|finish
 name|void
 name|finish

@@ -113,6 +113,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the next input Token whose term() is the right len    */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

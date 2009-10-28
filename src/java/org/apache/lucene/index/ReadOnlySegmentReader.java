@@ -37,6 +37,8 @@ literal|"This IndexReader cannot make any changes to the index (it was opened wi
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|acquireWriteLock
 specifier|protected
 name|void
@@ -48,6 +50,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Not synchronized
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean

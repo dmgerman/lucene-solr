@@ -243,6 +243,8 @@ name|docState
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void
@@ -661,6 +663,8 @@ operator|=
 name|newHashMask
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processDocument
 specifier|public
 name|DocumentsWriter
@@ -1841,6 +1845,8 @@ operator|.
 name|DocWriter
 name|two
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|sizeInBytes
 specifier|public
 name|long
@@ -1859,6 +1865,8 @@ name|sizeInBytes
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|finish
 specifier|public
 name|void
@@ -1895,6 +1903,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void

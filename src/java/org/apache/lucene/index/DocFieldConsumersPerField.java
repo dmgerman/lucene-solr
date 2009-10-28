@@ -96,6 +96,8 @@ operator|=
 name|two
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processFields
 specifier|public
 name|void
@@ -130,6 +132,8 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|abort
 specifier|public
 name|void

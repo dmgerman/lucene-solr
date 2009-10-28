@@ -106,6 +106,8 @@ name|match
 expr_stmt|;
 block|}
 comment|/**    * Indicates whether or not this Explanation models a good match.    *    *<p>    * If the match status is explicitly set (i.e.: not null) this method    * uses it; otherwise it defers to the superclass.    *</p>    * @see #getMatch    */
+annotation|@
+name|Override
 DECL|method|isMatch
 specifier|public
 name|boolean
@@ -136,6 +138,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSummary
 specifier|protected
 name|String

@@ -74,6 +74,8 @@ operator|.
 name|MAX_VALUE
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|protected
 name|long

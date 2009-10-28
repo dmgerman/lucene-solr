@@ -147,6 +147,8 @@ name|top
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|public
 specifier|final

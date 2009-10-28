@@ -166,6 +166,8 @@ name|RewriteMethod
 implements|implements
 name|Serializable
 block|{
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -242,6 +244,8 @@ name|RewriteMethod
 implements|implements
 name|Serializable
 block|{
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -406,6 +410,8 @@ name|ScoringBooleanQueryRewrite
 implements|implements
 name|Serializable
 block|{
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -456,6 +462,8 @@ name|result
 return|;
 block|}
 comment|// Make sure we are still a singleton even after deserializing
+annotation|@
+name|Override
 DECL|method|readResolve
 specifier|protected
 name|Object
@@ -577,6 +585,8 @@ return|return
 name|docCountPercent
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -1090,6 +1100,8 @@ operator|+=
 name|inc
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query

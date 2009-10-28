@@ -100,6 +100,8 @@ literal|1024
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size
 specifier|protected
 name|long

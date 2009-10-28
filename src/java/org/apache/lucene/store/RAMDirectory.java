@@ -177,6 +177,8 @@ name|closeDir
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|listAll
 specifier|public
 specifier|synchronized
@@ -239,6 +241,8 @@ name|result
 return|;
 block|}
 comment|/** Returns true iff the named file exists in this directory. */
+annotation|@
+name|Override
 DECL|method|fileExists
 specifier|public
 specifier|final
@@ -277,6 +281,8 @@ literal|null
 return|;
 block|}
 comment|/** Returns the time the named file was last modified.    * @throws IOException if the file does not exist    */
+annotation|@
+name|Override
 DECL|method|fileModified
 specifier|public
 specifier|final
@@ -331,6 +337,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Set the modified time of an existing file to now.    * @throws IOException if the file does not exist    */
+annotation|@
+name|Override
 DECL|method|touchFile
 specifier|public
 name|void
@@ -448,6 +456,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Returns the length in bytes of a file in the directory.    * @throws IOException if the file does not exist    */
+annotation|@
+name|Override
 DECL|method|fileLength
 specifier|public
 specifier|final
@@ -518,6 +528,8 @@ name|sizeInBytes
 return|;
 block|}
 comment|/** Removes an existing file in the directory.    * @throws IOException if the file does not exist    */
+annotation|@
+name|Override
 DECL|method|deleteFile
 specifier|public
 specifier|synchronized
@@ -581,6 +593,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** Creates a new, empty file in the directory with the given name. Returns a stream writing this file. */
+annotation|@
+name|Override
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -658,6 +672,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a stream reading an existing file. */
+annotation|@
+name|Override
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -712,6 +728,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Closes the store to future operations, releasing associated memory. */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

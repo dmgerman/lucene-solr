@@ -376,6 +376,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a deep clone of this FieldInfos instance.    */
+annotation|@
+name|Override
 DECL|method|clone
 specifier|synchronized
 specifier|public
