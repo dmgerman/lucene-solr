@@ -1901,13 +1901,20 @@ name|UnicodeUtil
 operator|.
 name|UNI_SUR_HIGH_START
 operator|&&
+operator|(
 name|ch
 operator|<=
 name|UnicodeUtil
 operator|.
 name|UNI_SUR_HIGH_END
+operator|||
+name|ch
+operator|==
+literal|0xffff
+operator|)
 condition|)
-comment|// Unpaired
+block|{
+comment|// Unpaired or 0xffff
 name|ch
 operator|=
 name|tokenText
@@ -1919,6 +1926,7 @@ name|UnicodeUtil
 operator|.
 name|UNI_REPLACEMENT_CHAR
 expr_stmt|;
+block|}
 name|code
 operator|=
 operator|(
