@@ -763,6 +763,10 @@ comment|// be logged by SolrCore
 comment|// if id lists were truncated, show how many more there were
 if|if
 condition|(
+name|adds
+operator|!=
+literal|null
+operator|&&
 name|numAdds
 operator|>
 name|maxNumToLog
@@ -785,6 +789,10 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|deletes
+operator|!=
+literal|null
+operator|&&
 name|numDeletes
 operator|>
 name|maxNumToLog
