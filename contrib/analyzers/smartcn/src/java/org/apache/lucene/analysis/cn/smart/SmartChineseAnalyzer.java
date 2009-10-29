@@ -230,6 +230,9 @@ DECL|field|stopWords
 specifier|private
 specifier|final
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopWords
 decl_stmt|;
 DECL|field|DEFAULT_STOPWORD_FILE
