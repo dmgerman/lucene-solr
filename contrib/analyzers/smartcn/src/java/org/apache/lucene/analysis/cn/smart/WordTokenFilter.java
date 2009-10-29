@@ -315,6 +315,10 @@ return|;
 comment|// no more sentences, end of stream!
 block|}
 block|}
+comment|// WordTokenFilter must clear attributes, as it is creating new tokens.
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 comment|// There are remaining tokens from the current sentence, return the next one.
 name|SegToken
 name|nextWord
