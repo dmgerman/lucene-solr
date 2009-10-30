@@ -486,17 +486,6 @@ block|,
 name|EXTERNAL_LINK_URL
 block|}
 decl_stmt|;
-comment|/** @deprecated Please use {@link #TOKEN_TYPES} instead */
-DECL|field|tokenImage
-specifier|public
-specifier|static
-specifier|final
-name|String
-index|[]
-name|tokenImage
-init|=
-name|TOKEN_TYPES
-decl_stmt|;
 comment|/**    * Only output tokens    */
 DECL|field|TOKENS_ONLY
 specifier|public
