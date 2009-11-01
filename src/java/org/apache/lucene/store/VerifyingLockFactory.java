@@ -285,6 +285,8 @@ specifier|synchronized
 name|boolean
 name|isLocked
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|lock

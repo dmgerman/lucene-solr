@@ -264,6 +264,8 @@ specifier|abstract
 name|boolean
 name|isLocked
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Utility class for executing code with exclusive access. */
 DECL|class|With
