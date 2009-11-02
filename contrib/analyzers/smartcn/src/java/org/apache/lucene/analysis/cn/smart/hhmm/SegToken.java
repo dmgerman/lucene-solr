@@ -71,13 +71,13 @@ name|char
 index|[]
 name|charArray
 decl_stmt|;
-comment|/**    * start offset into {@link #charArray}    */
+comment|/**    * start offset into original sentence    */
 DECL|field|startOffset
 specifier|public
 name|int
 name|startOffset
 decl_stmt|;
-comment|/**    * end offset into {@link #charArray}    */
+comment|/**    * end offset into original sentence    */
 DECL|field|endOffset
 specifier|public
 name|int
@@ -101,7 +101,7 @@ specifier|public
 name|int
 name|index
 decl_stmt|;
-comment|/**    * Create a new SegToken from a character array.    *     * @param idArray character array containing text    * @param start start offset into idArray    * @param end end offset of idArray    * @param wordType {@link WordType} of the text    * @param weight word frequency    */
+comment|/**    * Create a new SegToken from a character array.    *     * @param idArray character array containing text    * @param start start offset of SegToken in original sentence    * @param end end offset of SegToken in original sentence    * @param wordType {@link WordType} of the text    * @param weight word frequency    */
 DECL|method|SegToken
 specifier|public
 name|SegToken
