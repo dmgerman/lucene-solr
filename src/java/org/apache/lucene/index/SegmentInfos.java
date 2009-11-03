@@ -146,6 +146,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -2246,51 +2256,6 @@ literal|1
 condition|)
 block|{
 comment|// Neither approach found a generation
-name|String
-name|s
-decl_stmt|;
-if|if
-condition|(
-name|files
-operator|!=
-literal|null
-condition|)
-block|{
-name|s
-operator|=
-literal|""
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|files
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-name|s
-operator|+=
-literal|" "
-operator|+
-name|files
-index|[
-name|i
-index|]
-expr_stmt|;
-block|}
-else|else
-name|s
-operator|=
-literal|" null"
-expr_stmt|;
 throw|throw
 operator|new
 name|FileNotFoundException
@@ -2299,9 +2264,14 @@ literal|"no segments* file found in "
 operator|+
 name|directory
 operator|+
-literal|": files:"
+literal|": files: "
 operator|+
-name|s
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|files
+argument_list|)
 argument_list|)
 throw|;
 block|}
