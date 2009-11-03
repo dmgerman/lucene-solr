@@ -2935,13 +2935,6 @@ argument_list|()
 expr_stmt|;
 comment|// avoid as much superclass baggage as possible
 block|}
-comment|// lucene>= 1.9 or lucene-1.4.3 with patch removing "final" in superclass
-DECL|method|finalize
-specifier|protected
-name|void
-name|finalize
-parameter_list|()
-block|{}
 DECL|method|getInfo
 specifier|private
 name|Info
@@ -5747,7 +5740,6 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/**      * Object header of any heap allocated Java object.       * ptr to class, info for monitor, gc, hash, etc.      */
-comment|//	private static final int OBJECT_HEADER = 2*4; // even on 64 bit VMs?
 DECL|field|OBJECT_HEADER
 specifier|private
 specifier|static
@@ -5758,16 +5750,6 @@ init|=
 literal|2
 operator|*
 name|PTR
-decl_stmt|;
-comment|/** 	 * Modern VMs tend to trade space for time, allocating memory on word 	 * boundaries. For example, on a 64 bit VM, the variables of a class with 	 * one 32 bit integer and one Java char really consume 8 bytes instead of 6 	 * bytes. 2 bytes are spent on padding. Similary, on a 64 bit VM a 	 * java.lang.Integer consumes OBJECT_HEADER + 8 bytes rather than 	 * OBJECT_HEADER + 4 bytes. 	 */
-DECL|field|IS_WORD_ALIGNED_VM
-specifier|private
-specifier|static
-specifier|final
-name|boolean
-name|IS_WORD_ALIGNED_VM
-init|=
-literal|true
 decl_stmt|;
 DECL|method|VM
 specifier|private
@@ -5791,9 +5773,6 @@ name|n
 parameter_list|)
 block|{
 return|return
-name|IS_WORD_ALIGNED_VM
-condition|?
-comment|//              ((n-1)/PTR + 1) * PTR :               // slow version
 operator|(
 operator|(
 operator|(
@@ -5809,9 +5788,6 @@ literal|1
 operator|)
 operator|<<
 name|LOG_PTR
-else|:
-comment|// fast version
-name|n
 return|;
 block|}
 DECL|method|sizeOfObject
