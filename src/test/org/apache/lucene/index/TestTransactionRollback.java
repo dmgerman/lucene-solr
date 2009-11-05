@@ -577,6 +577,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*   private void showAvailableCommitPoints() throws Exception {     Collection commits = IndexReader.listCommits(dir);     for (Iterator iterator = commits.iterator(); iterator.hasNext();) {       IndexCommit comm = (IndexCommit) iterator.next();       System.out.print("\t Available commit point:["+comm.getUserData()+"] files=");       Collection files = comm.getFileNames();       for (Iterator iterator2 = files.iterator(); iterator2.hasNext();) {         String filename = (String) iterator2.next();         System.out.print(filename+", ");				       }       System.out.println();     }   }   */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

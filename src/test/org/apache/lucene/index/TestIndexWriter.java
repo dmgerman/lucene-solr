@@ -8976,6 +8976,8 @@ name|SingleInstanceLockFactory
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Lock
 name|makeLock
@@ -10432,6 +10434,8 @@ name|MyMergeScheduler
 extends|extends
 name|MergeScheduler
 block|{
+annotation|@
+name|Override
 DECL|method|merge
 specifier|synchronized
 specifier|public
@@ -10510,6 +10514,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -10689,6 +10695,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -10721,6 +10729,8 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken
@@ -11025,6 +11035,8 @@ DECL|field|count
 name|int
 name|count
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setDoFail
 specifier|public
 name|void
@@ -11038,6 +11050,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|clearDoFail
 specifier|public
 name|void
@@ -11051,6 +11065,8 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -11415,6 +11431,8 @@ operator|=
 name|fieldName
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -11453,6 +11471,8 @@ name|incrementToken
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -11487,6 +11507,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -12099,6 +12121,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -12219,6 +12243,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -13465,6 +13491,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -13714,6 +13742,8 @@ operator|=
 name|noErrors
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run
 specifier|public
 name|void
@@ -14713,6 +14743,8 @@ operator|=
 name|onlyOnce
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -15416,6 +15448,8 @@ operator|=
 name|onlyOnce
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -15603,6 +15637,8 @@ operator|=
 name|onlyOnce
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -16406,6 +16442,8 @@ DECL|field|didFail
 name|boolean
 name|didFail
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -18975,6 +19013,8 @@ DECL|field|doFail
 name|boolean
 name|doFail
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|testPoint
 name|boolean
 name|testPoint
@@ -19218,6 +19258,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -19366,6 +19408,8 @@ DECL|field|failed
 name|boolean
 name|failed
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|testPoint
 name|boolean
 name|testPoint
@@ -19608,6 +19652,8 @@ DECL|field|wasCalled
 name|boolean
 name|wasCalled
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|doAfterFlush
 specifier|public
 name|void
@@ -19804,6 +19850,8 @@ name|fail1
 decl_stmt|,
 name|fail2
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -21826,6 +21874,8 @@ name|first
 init|=
 literal|true
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken
@@ -23098,6 +23148,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -23347,6 +23399,8 @@ name|numCopy
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|handle
 name|void
 name|handle
@@ -23378,6 +23432,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|doBody
 name|void
 name|doBody
@@ -23646,6 +23702,8 @@ name|numCopy
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|handle
 name|void
 name|handle
@@ -23793,6 +23851,8 @@ name|numCopy
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doBody
 name|void
 name|doBody
@@ -23870,6 +23930,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|handle
 name|void
 name|handle
@@ -24175,6 +24237,8 @@ DECL|field|doFail
 name|boolean
 name|doFail
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|testPoint
 name|boolean
 name|testPoint
@@ -25041,6 +25105,8 @@ operator|.
 name|UNLIMITED
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|message
@@ -27761,6 +27827,8 @@ specifier|volatile
 name|boolean
 name|finish
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|run
 specifier|public
 name|void

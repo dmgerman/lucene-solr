@@ -1239,6 +1239,8 @@ name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readInternal
 specifier|protected
 name|void
@@ -1285,6 +1287,8 @@ operator|++
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|seekInternal
 specifier|protected
 name|void
@@ -1303,6 +1307,8 @@ operator|=
 name|pos
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -1310,7 +1316,9 @@ name|close
 parameter_list|()
 throws|throws
 name|IOException
-block|{ 		}
+block|{     }
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -1793,6 +1801,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -1880,6 +1890,8 @@ comment|//count++;
 block|}
 comment|//System.out.println("tweak'd " + count + " buffer sizes");
 block|}
+annotation|@
+name|Override
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -1937,6 +1949,8 @@ return|return
 name|f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -1957,6 +1971,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -1971,6 +1987,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|deleteFile
 specifier|public
 name|void
@@ -1990,6 +2008,8 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|touchFile
 specifier|public
 name|void
@@ -2009,6 +2029,8 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|fileModified
 specifier|public
 name|long
@@ -2029,6 +2051,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|fileExists
 specifier|public
 name|boolean
@@ -2049,6 +2073,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|listAll
 specifier|public
 name|String
@@ -2065,6 +2091,8 @@ name|listAll
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|fileLength
 specifier|public
 name|long

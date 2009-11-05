@@ -52,6 +52,8 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getMultiSearcherInstance
 specifier|protected
 name|MultiSearcher

@@ -473,6 +473,8 @@ name|PayloadAnalyzer
 extends|extends
 name|Analyzer
 block|{
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -562,6 +564,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -667,6 +671,8 @@ return|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -1993,6 +1999,8 @@ extends|extends
 name|DefaultSimilarity
 block|{
 comment|// TODO: Remove warning after API has been finalized
+annotation|@
+name|Override
 DECL|method|scorePayload
 specifier|public
 name|float
@@ -2032,6 +2040,8 @@ block|}
 comment|//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 comment|//Make everything else 1 so we see the effect of the payload
 comment|//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+annotation|@
+name|Override
 DECL|method|lengthNorm
 specifier|public
 name|float
@@ -2048,6 +2058,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|queryNorm
 specifier|public
 name|float
@@ -2061,6 +2073,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|sloppyFreq
 specifier|public
 name|float
@@ -2074,6 +2088,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|coord
 specifier|public
 name|float
@@ -2090,6 +2106,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|idf
 specifier|public
 name|float
@@ -2106,6 +2124,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tf
 specifier|public
 name|float

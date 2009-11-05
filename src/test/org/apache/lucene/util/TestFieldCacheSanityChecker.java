@@ -216,6 +216,8 @@ name|NUM_DOCS
 init|=
 literal|1000
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -611,6 +613,8 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void

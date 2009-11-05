@@ -262,6 +262,8 @@ specifier|private
 name|int
 name|mulFactor
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -623,6 +625,8 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -1146,6 +1150,8 @@ operator|new
 name|DefaultSimilarity
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|coord

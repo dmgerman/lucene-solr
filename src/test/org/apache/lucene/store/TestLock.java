@@ -115,6 +115,8 @@ specifier|public
 name|int
 name|lockAttempts
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|obtain
 specifier|public
 name|boolean
@@ -128,6 +130,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|release
 specifier|public
 name|void
@@ -136,6 +140,8 @@ parameter_list|()
 block|{
 comment|// do nothing
 block|}
+annotation|@
+name|Override
 DECL|method|isLocked
 specifier|public
 name|boolean

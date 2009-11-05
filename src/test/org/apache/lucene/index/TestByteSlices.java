@@ -77,6 +77,8 @@ name|ArrayList
 argument_list|()
 decl_stmt|;
 comment|/* Allocate another byte[] from the shared pool */
+annotation|@
+name|Override
 DECL|method|getByteBlock
 specifier|synchronized
 name|byte
@@ -138,6 +140,8 @@ name|b
 return|;
 block|}
 comment|/* Return a byte[] to the pool */
+annotation|@
+name|Override
 DECL|method|recycleByteBlocks
 specifier|synchronized
 name|void

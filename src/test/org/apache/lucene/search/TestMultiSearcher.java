@@ -2418,6 +2418,8 @@ name|DefaultSimilarity
 argument_list|()
 block|{
 comment|// overide all
+annotation|@
+name|Override
 specifier|public
 name|float
 name|idf
@@ -2433,6 +2435,8 @@ return|return
 literal|100.0f
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|coord
@@ -2448,6 +2452,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|lengthNorm
@@ -2463,6 +2469,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|queryNorm
@@ -2475,6 +2483,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|sloppyFreq
@@ -2487,6 +2497,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|tf

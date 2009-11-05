@@ -198,6 +198,8 @@ specifier|public
 name|TestSimilarity
 parameter_list|()
 block|{         }
+annotation|@
+name|Override
 DECL|method|tf
 specifier|public
 name|float
@@ -221,6 +223,8 @@ return|return
 literal|0.0f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lengthNorm
 specifier|public
 name|float
@@ -237,6 +241,8 @@ return|return
 literal|1.0f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|idf
 specifier|public
 name|float
@@ -278,6 +284,8 @@ specifier|public
 name|IndexSearcher
 name|s
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

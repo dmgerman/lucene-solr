@@ -563,7 +563,9 @@ return|return
 name|indexStore
 return|;
 block|}
-comment|/** 	 * Create index and query for test cases.  	 */
+comment|/**    * Create index and query for test cases.     */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -597,7 +599,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Run the test using two CustomSearcher instances.  	 */
+comment|/**    * Run the test using two CustomSearcher instances.     */
 DECL|method|testFieldSortCustomSearcher
 specifier|public
 name|void
@@ -649,7 +651,7 @@ name|custSort
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Run the test using one CustomSearcher wrapped by a MultiSearcher.  	 */
+comment|/**    * Run the test using one CustomSearcher wrapped by a MultiSearcher.     */
 DECL|method|testFieldSortSingleSearcher
 specifier|public
 name|void
@@ -710,7 +712,7 @@ name|custSort
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Run the test using two CustomSearcher instances.  	 */
+comment|/**    * Run the test using two CustomSearcher instances.     */
 DECL|method|testFieldSortMultiCustomSearcher
 specifier|public
 name|void
@@ -1014,7 +1016,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Check the hits for duplicates. 	 * @param hits 	 */
+comment|/**    * Check the hits for duplicates.    * @param hits    */
 DECL|method|checkHits
 specifier|private
 name|void
@@ -1266,6 +1268,8 @@ name|switcher
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.apache.lucene.search.Searchable#search(org.apache.lucene.search.Query, org.apache.lucene.search.Filter, int, org.apache.lucene.search.Sort)          */
+annotation|@
+name|Override
 DECL|method|search
 specifier|public
 name|TopFieldDocs
@@ -1350,6 +1354,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.apache.lucene.search.Searchable#search(org.apache.lucene.search.Query, org.apache.lucene.search.Filter, int)          */
+annotation|@
+name|Override
 DECL|method|search
 specifier|public
 name|TopDocs

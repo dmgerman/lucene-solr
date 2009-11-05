@@ -59,6 +59,8 @@ extends|extends
 name|TestSpanExplanations
 block|{
 comment|/**    * Overrides superclass to ignore matches and focus on non-matches    *    * @see CheckHits#checkNoMatchExplanations    */
+annotation|@
+name|Override
 DECL|method|qtest
 specifier|public
 name|void

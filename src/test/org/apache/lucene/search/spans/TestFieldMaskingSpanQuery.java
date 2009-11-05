@@ -304,6 +304,8 @@ specifier|protected
 name|IndexSearcher
 name|searcher
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -692,6 +694,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -856,6 +860,8 @@ literal|"sally"
 argument_list|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Query
 name|rewrite

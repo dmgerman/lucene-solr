@@ -2002,6 +2002,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -3552,6 +3554,8 @@ name|numHits
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|copy
 specifier|public
 name|void
@@ -3575,6 +3579,8 @@ name|doc
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int
@@ -3599,6 +3605,8 @@ name|slot2
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compareBottom
 specifier|public
 name|int
@@ -3617,6 +3625,8 @@ name|doc
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setBottom
 specifier|public
 name|void
@@ -3634,6 +3644,8 @@ name|bottom
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -3695,6 +3707,8 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|value
 specifier|public
 name|Comparable
@@ -3724,6 +3738,8 @@ name|MyFieldComparatorSource
 extends|extends
 name|FieldComparatorSource
 block|{
+annotation|@
+name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator
@@ -6591,6 +6607,8 @@ operator|new
 name|Filter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet

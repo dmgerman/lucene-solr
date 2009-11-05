@@ -199,6 +199,8 @@ specifier|public
 name|IndexSearcher
 name|s
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

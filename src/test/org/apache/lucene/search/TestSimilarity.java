@@ -551,6 +551,8 @@ specifier|private
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -568,6 +570,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
@@ -590,6 +594,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -601,6 +607,8 @@ name|int
 name|docBase
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -675,6 +683,8 @@ specifier|private
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -692,6 +702,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
@@ -722,6 +734,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -738,6 +752,8 @@ operator|=
 name|docBase
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -786,6 +802,8 @@ specifier|private
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -803,6 +821,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
@@ -826,6 +846,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -837,6 +859,8 @@ name|int
 name|docBase
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -871,6 +895,8 @@ specifier|private
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -888,6 +914,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
@@ -911,6 +939,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -922,6 +952,8 @@ name|int
 name|docBase
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder

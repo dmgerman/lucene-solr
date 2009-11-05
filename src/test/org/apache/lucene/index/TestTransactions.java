@@ -121,6 +121,8 @@ name|MockRAMDirectory
 operator|.
 name|Failure
 block|{
+annotation|@
+name|Override
 DECL|method|eval
 specifier|public
 name|void
@@ -207,6 +209,8 @@ operator|=
 name|threads
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run
 specifier|public
 name|void
@@ -391,6 +395,8 @@ operator|=
 name|dir2
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doWork
 specifier|public
 name|void
@@ -818,6 +824,8 @@ operator|=
 name|dir2
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doWork
 specifier|public
 name|void

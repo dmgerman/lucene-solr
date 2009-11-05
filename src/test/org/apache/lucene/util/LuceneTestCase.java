@@ -176,6 +176,8 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -231,6 +233,8 @@ name|getName
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|protected
 name|void

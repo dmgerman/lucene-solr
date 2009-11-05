@@ -61,6 +61,8 @@ extends|extends
 name|TestExplanations
 block|{
 comment|/**    * Override the Similarity used in our searcher with one that plays    * nice with boosts of 0.0    */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -96,6 +98,8 @@ operator|new
 name|DefaultSimilarity
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|queryNorm

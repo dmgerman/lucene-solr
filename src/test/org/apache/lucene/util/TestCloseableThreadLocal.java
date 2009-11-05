@@ -139,6 +139,8 @@ name|InitValueThreadLocal
 extends|extends
 name|CloseableThreadLocal
 block|{
+annotation|@
+name|Override
 DECL|method|initialValue
 specifier|protected
 name|Object

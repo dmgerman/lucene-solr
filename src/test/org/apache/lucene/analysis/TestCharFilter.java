@@ -241,6 +241,8 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|correct
 specifier|protected
 name|int
@@ -278,6 +280,8 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|correct
 specifier|protected
 name|int

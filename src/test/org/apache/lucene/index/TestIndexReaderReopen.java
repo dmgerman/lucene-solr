@@ -414,6 +414,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -434,6 +436,8 @@ name|dir1
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -481,6 +485,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -501,6 +507,8 @@ name|dir2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -572,6 +580,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -601,6 +611,8 @@ name|dir2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -696,6 +708,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -725,6 +739,8 @@ name|dir4
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -1281,6 +1297,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -1310,6 +1328,8 @@ name|dir2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -1395,6 +1415,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -1424,6 +1446,8 @@ name|dir4
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -1578,6 +1602,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -1623,6 +1649,8 @@ name|dir5
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -3883,6 +3911,8 @@ operator|new
 name|TestReopen
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|modifyIndex
@@ -4025,6 +4055,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|IndexReader
 name|openReader
@@ -4199,6 +4231,8 @@ operator|new
 name|ReaderThreadTask
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4396,6 +4430,8 @@ operator|new
 name|ReaderThreadTask
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4826,6 +4862,8 @@ name|stop
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run
 specifier|public
 name|void
@@ -5962,6 +6000,8 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

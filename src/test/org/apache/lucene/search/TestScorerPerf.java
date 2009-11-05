@@ -667,6 +667,8 @@ name|docBase
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -678,6 +680,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -718,6 +722,8 @@ return|return
 name|sum
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -735,6 +741,8 @@ operator|=
 name|base
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean
@@ -874,6 +882,8 @@ operator|new
 name|Filter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet

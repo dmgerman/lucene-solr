@@ -107,6 +107,8 @@ name|JustCompileSpans
 extends|extends
 name|Spans
 block|{
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|int
@@ -121,6 +123,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|end
 specifier|public
 name|int
@@ -135,6 +139,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -151,6 +157,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -170,6 +178,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|int
@@ -184,6 +194,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|Collection
@@ -200,6 +212,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|isPayloadAvailable
 specifier|public
 name|boolean
@@ -223,6 +237,8 @@ name|JustCompileSpanQuery
 extends|extends
 name|SpanQuery
 block|{
+annotation|@
+name|Override
 DECL|method|getField
 specifier|public
 name|String
@@ -237,6 +253,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSpans
 specifier|public
 name|Spans
@@ -256,6 +274,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -282,6 +302,8 @@ name|JustCompilePayloadSpans
 extends|extends
 name|Spans
 block|{
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|Collection
@@ -298,6 +320,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|isPayloadAvailable
 specifier|public
 name|boolean
@@ -312,6 +336,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|int
@@ -326,6 +352,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|end
 specifier|public
 name|int
@@ -340,6 +368,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -356,6 +386,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|skipTo
 specifier|public
 name|boolean
@@ -375,6 +407,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|int
@@ -430,6 +464,8 @@ name|norms
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setFreqCurrentDoc
 specifier|protected
 name|boolean

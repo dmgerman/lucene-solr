@@ -398,6 +398,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.CustomScoreQuery#name() */
+annotation|@
+name|Override
 DECL|method|name
 specifier|public
 name|String
@@ -409,6 +411,8 @@ literal|"customAdd"
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.CustomScoreQuery#customScore(int, float, float) */
+annotation|@
+name|Override
 DECL|method|customScore
 specifier|public
 name|float
@@ -431,6 +435,8 @@ name|valSrcScore
 return|;
 block|}
 comment|/* (non-Javadoc)@see org.apache.lucene.search.function.CustomScoreQuery#customExplain(int, org.apache.lucene.search.Explanation, org.apache.lucene.search.Explanation)*/
+annotation|@
+name|Override
 DECL|method|customExplain
 specifier|public
 name|Explanation
@@ -542,6 +548,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.CustomScoreQuery#name() */
+annotation|@
+name|Override
 DECL|method|name
 specifier|public
 name|String
@@ -553,6 +561,8 @@ literal|"customMulAdd"
 return|;
 block|}
 comment|/*(non-Javadoc) @see org.apache.lucene.search.function.CustomScoreQuery#customScore(int, float, float) */
+annotation|@
+name|Override
 DECL|method|customScore
 specifier|public
 name|float
@@ -618,6 +628,8 @@ return|;
 comment|// we know there are two
 block|}
 comment|/* (non-Javadoc)@see org.apache.lucene.search.function.CustomScoreQuery#customExplain(int, org.apache.lucene.search.Explanation, org.apache.lucene.search.Explanation)*/
+annotation|@
+name|Override
 DECL|method|customExplain
 specifier|public
 name|Explanation

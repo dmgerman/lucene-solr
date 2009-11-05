@@ -578,6 +578,8 @@ name|PayloadAnalyzer
 extends|extends
 name|Analyzer
 block|{
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -645,6 +647,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -726,6 +730,8 @@ operator|=
 name|input
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readByte
 specifier|public
 name|byte
@@ -750,6 +756,8 @@ name|readByte
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|readBytes
 specifier|public
 name|void
@@ -790,6 +798,8 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -806,6 +816,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long
@@ -821,6 +833,8 @@ name|getFilePointer
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -842,6 +856,8 @@ name|pos
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -857,6 +873,8 @@ name|length
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object

@@ -67,6 +67,8 @@ specifier|private
 name|boolean
 name|wasCalled
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet

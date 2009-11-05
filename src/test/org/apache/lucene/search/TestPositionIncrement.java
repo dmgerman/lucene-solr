@@ -513,6 +513,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -601,6 +603,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken
@@ -1798,6 +1802,8 @@ operator|=
 name|enablePositionIncrements
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -2341,6 +2347,8 @@ name|TestPayloadAnalyzer
 extends|extends
 name|Analyzer
 block|{
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -2473,6 +2481,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean

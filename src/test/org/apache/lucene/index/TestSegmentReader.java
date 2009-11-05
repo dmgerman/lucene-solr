@@ -174,6 +174,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO: Setup the reader w/ multiple documents
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

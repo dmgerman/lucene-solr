@@ -289,6 +289,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken

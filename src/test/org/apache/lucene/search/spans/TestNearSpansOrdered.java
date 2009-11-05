@@ -257,6 +257,8 @@ name|WhitespaceAnalyzer
 argument_list|()
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -276,6 +278,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

@@ -106,6 +106,8 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|newBuffer
 name|byte
 index|[]

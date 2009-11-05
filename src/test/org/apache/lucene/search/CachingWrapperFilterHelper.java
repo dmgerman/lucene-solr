@@ -120,6 +120,8 @@ operator|=
 name|shouldHaveCache
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
@@ -236,6 +238,8 @@ return|return
 name|bits
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -250,6 +254,8 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -285,6 +291,8 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

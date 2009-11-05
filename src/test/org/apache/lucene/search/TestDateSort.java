@@ -258,6 +258,8 @@ specifier|static
 name|Directory
 name|directory
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

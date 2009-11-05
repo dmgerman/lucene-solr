@@ -589,6 +589,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * initializes multiSearcher and singleSearcher with the same document set    */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

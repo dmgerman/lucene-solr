@@ -170,6 +170,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Scan for terms containing the letter 'e'.*/
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -237,6 +239,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Scan for odd numbered documents. */
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -290,6 +294,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Filter terms with TestTermEnum. */
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -310,6 +316,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Filter positions with TestTermPositions. */
+annotation|@
+name|Override
 DECL|method|termPositions
 specifier|public
 name|TermPositions

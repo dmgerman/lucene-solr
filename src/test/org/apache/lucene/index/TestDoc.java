@@ -264,6 +264,8 @@ name|LinkedList
 name|files
 decl_stmt|;
 comment|/** Set the test case. This test case needs      *  a few text files created in the current working directory.      */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

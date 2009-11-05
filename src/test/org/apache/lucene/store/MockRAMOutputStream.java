@@ -100,6 +100,8 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -140,6 +142,8 @@ name|size
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|flush
 specifier|public
 name|void
@@ -159,6 +163,8 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeByte
 specifier|public
 name|void
@@ -187,6 +193,8 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeBytes
 specifier|public
 name|void

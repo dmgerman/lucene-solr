@@ -232,6 +232,8 @@ specifier|private
 name|RAMDirectory
 name|dir
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -1816,6 +1818,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -1888,6 +1892,8 @@ literal|true
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 specifier|final
@@ -1913,6 +1919,8 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream
@@ -1969,6 +1977,8 @@ return|return
 name|tokenizer
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream

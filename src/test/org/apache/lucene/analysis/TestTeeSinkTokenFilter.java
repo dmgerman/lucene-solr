@@ -210,6 +210,8 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -366,6 +368,8 @@ operator|.
 name|SinkFilter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept
@@ -414,6 +418,8 @@ operator|.
 name|SinkFilter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept
@@ -1732,6 +1738,8 @@ init|=
 literal|0
 decl_stmt|;
 comment|//return every 100 tokens
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -1810,6 +1818,8 @@ operator|=
 name|mc
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|accept
 specifier|public
 name|boolean

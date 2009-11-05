@@ -288,6 +288,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|docID
@@ -699,6 +701,8 @@ operator|new
 name|Filter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSet
 name|getDocIdSet
