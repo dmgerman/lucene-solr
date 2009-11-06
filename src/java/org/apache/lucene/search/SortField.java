@@ -315,14 +315,6 @@ specifier|private
 name|FieldComparatorSource
 name|comparatorSource
 decl_stmt|;
-DECL|field|useLegacy
-specifier|private
-name|boolean
-name|useLegacy
-init|=
-literal|false
-decl_stmt|;
-comment|// remove in Lucene 3.0
 comment|/** Creates a sort by terms in the given field with the type of term    * values explicitly given.    * @param field  Name of field to sort by.  Can be<code>null</code> if    *<code>type</code> is SCORE or DOC.    * @param type   Type of values in the terms.    */
 DECL|method|SortField
 specifier|public
@@ -1360,6 +1352,12 @@ operator|.
 name|defaultReadObject
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|field
+operator|!=
+literal|null
+condition|)
 name|field
 operator|=
 name|StringHelper
