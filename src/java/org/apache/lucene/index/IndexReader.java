@@ -1796,7 +1796,7 @@ expr_stmt|;
 block|}
 comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
 DECL|method|commit
-specifier|protected
+specifier|public
 specifier|final
 specifier|synchronized
 name|void
