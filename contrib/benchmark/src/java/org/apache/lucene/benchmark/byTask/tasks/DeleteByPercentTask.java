@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Deletes a percentage of documents from an index randomly  * over the number of documents.  The parameter, X, is in  * percent.  EG 50 means 1/2 of all documents will be  * deleted.  *  *<p><b>NOTE</b>: the param is an absolute percentage of  * maxDoc().  This means if you delete 50%, and then delete  * 50% again, the 2nd delete will do nothing.  */
+comment|/**  * Deletes a percentage of documents from an index randomly  * over the number of documents.  The parameter, X, is in  * percent.  EG 50 means 1/2 of all documents will be  * deleted.  *  *<p><b>NOTE</b>: the param is an absolute percentage of  * maxDoc().  This means if you delete 50%, and then delete  * 50% again, the 2nd delete will do nothing.  *  *<p> Parameters:  *<ul>  *<li> delete.percent.rand.seed - defines the seed to  * initialize Random (default 1717)  *</ul>  */
 end_comment
 
 begin_class
@@ -97,17 +97,9 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|random
+specifier|final
 name|Random
 name|random
-init|=
-operator|new
-name|Random
-argument_list|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-argument_list|)
 decl_stmt|;
 DECL|method|DeleteByPercentTask
 specifier|public
@@ -120,6 +112,24 @@ block|{
 name|super
 argument_list|(
 name|runData
+argument_list|)
+expr_stmt|;
+name|random
+operator|=
+operator|new
+name|Random
+argument_list|(
+name|runData
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"delete.percent.rand.seed"
+argument_list|,
+literal|1717
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
