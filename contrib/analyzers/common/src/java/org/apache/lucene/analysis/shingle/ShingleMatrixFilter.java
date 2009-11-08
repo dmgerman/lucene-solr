@@ -1084,6 +1084,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -1121,6 +1123,8 @@ operator|new
 name|Token
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final
@@ -2771,6 +2775,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -2962,6 +2968,8 @@ comment|//            ret = Column.this.rows.get(0).getEndOffset();
 comment|//          }
 comment|//          return ret;
 comment|//        }
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -3256,6 +3264,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -3412,6 +3422,8 @@ name|OneDimensionalNonWeightedTokenSettingsCodec
 extends|extends
 name|TokenSettingsCodec
 block|{
+annotation|@
+name|Override
 DECL|method|getTokenPositioner
 specifier|public
 name|TokenPositioner
@@ -3429,6 +3441,8 @@ operator|.
 name|newColumn
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setTokenPositioner
 specifier|public
 name|void
@@ -3441,6 +3455,8 @@ name|TokenPositioner
 name|tokenPositioner
 parameter_list|)
 block|{     }
+annotation|@
+name|Override
 DECL|method|getWeight
 specifier|public
 name|float
@@ -3454,6 +3470,8 @@ return|return
 literal|1f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setWeight
 specifier|public
 name|void
@@ -3476,6 +3494,8 @@ name|TwoDimensionalNonWeightedSynonymTokenSettingsCodec
 extends|extends
 name|TokenSettingsCodec
 block|{
+annotation|@
+name|Override
 DECL|method|getTokenPositioner
 specifier|public
 name|TokenPositioner
@@ -3512,6 +3532,8 @@ name|newColumn
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setTokenPositioner
 specifier|public
 name|void
@@ -3530,6 +3552,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|getWeight
 specifier|public
 name|float
@@ -3543,6 +3567,8 @@ return|return
 literal|1f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setWeight
 specifier|public
 name|void
@@ -3566,6 +3592,8 @@ extends|extends
 name|TokenSettingsCodec
 block|{
 comment|/**      * @param token      * @return the token flags int value as TokenPosition      * @throws IOException      */
+annotation|@
+name|Override
 DECL|method|getTokenPositioner
 specifier|public
 name|TokenPositioner
@@ -3621,6 +3649,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * Sets the TokenPositioner as token flags int value.      *      * @param token      * @param tokenPositioner      */
+annotation|@
+name|Override
 DECL|method|setTokenPositioner
 specifier|public
 name|void
@@ -3645,6 +3675,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Returns a 32 bit float from the payload, or 1f it null.      *      * @param token      * @return 32 bit float      */
+annotation|@
+name|Override
 DECL|method|getWeight
 specifier|public
 name|float
@@ -3697,6 +3729,8 @@ return|;
 block|}
 block|}
 comment|/**      * Stores a 32 bit float in the payload, or set it to null if 1f;      * @param token      * @param weight      */
+annotation|@
+name|Override
 DECL|method|setWeight
 specifier|public
 name|void

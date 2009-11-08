@@ -190,6 +190,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Called when parser    * parses an input term token that contains one or more wildcard    * characters (like<code>*</code>), but is not a prefix term token (one    * that has just a single * character at the end).    *<p>    * Example: will be called for<code>H?user</code> or for<code>H*user</code>     * but not for<code>*user</code>.    *<p>    * Depending on analyzer and settings, a wildcard term may (most probably will)    * be lower-cased automatically. It<b>will</b> go through the default Analyzer.    *<p>    * Overrides super class, by passing terms through analyzer.    *    * @param  field   Name of the field query will use.    * @param  termStr Term token that contains one or more wild card    *                 characters (? or *), but is not simple prefix term    *    * @return Resulting {@link Query} built for the term    * @throws ParseException    */
+annotation|@
+name|Override
 DECL|method|getWildcardQuery
 specifier|protected
 name|Query
@@ -713,6 +715,8 @@ return|;
 block|}
 block|}
 comment|/**    * Called when parser parses an input term    * token that uses prefix notation; that is, contains a single '*' wildcard    * character as its last character. Since this is a special case    * of generic wildcard term, and such a query can be optimized easily,    * this usually results in a different query object.    *<p>    * Depending on analyzer and settings, a prefix term may (most probably will)    * be lower-cased automatically. It<b>will</b> go through the default Analyzer.    *<p>    * Overrides super class, by passing terms through analyzer.    *    * @param  field   Name of the field query will use.    * @param  termStr Term token to use for building term for the query    *                 (<b>without</b> trailing '*' character!)    *    * @return Resulting {@link Query} built for the term    * @throws ParseException    */
+annotation|@
+name|Override
 DECL|method|getPrefixQuery
 specifier|protected
 name|Query
@@ -880,6 +884,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Called when parser parses an input term token that has the fuzzy suffix (~) appended.    *<p>    * Depending on analyzer and settings, a fuzzy term may (most probably will)    * be lower-cased automatically. It<b>will</b> go through the default Analyzer.    *<p>    * Overrides super class, by passing terms through analyzer.    *    * @param field Name of the field query will use.    * @param termStr Term token to use for building term for the query    *    * @return Resulting {@link Query} built for the term    * @exception ParseException    */
+annotation|@
+name|Override
 DECL|method|getFuzzyQuery
 specifier|protected
 name|Query
@@ -1033,6 +1039,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Overrides super class, by passing terms through analyzer.    * @exception ParseException    */
+annotation|@
+name|Override
 DECL|method|getRangeQuery
 specifier|protected
 name|Query

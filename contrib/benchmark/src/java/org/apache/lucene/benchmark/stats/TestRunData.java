@@ -696,6 +696,8 @@ name|res
 return|;
 block|}
 comment|/** Return a string representation. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

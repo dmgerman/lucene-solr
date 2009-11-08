@@ -364,6 +364,8 @@ name|hits
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -373,6 +375,8 @@ name|Scorer
 name|scorer
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -385,6 +389,8 @@ name|int
 name|docBase
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean
@@ -395,6 +401,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void

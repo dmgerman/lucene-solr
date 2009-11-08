@@ -339,6 +339,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Increments the {@link TokenStream} with a {@link TermAttribute} without elisioned start    */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

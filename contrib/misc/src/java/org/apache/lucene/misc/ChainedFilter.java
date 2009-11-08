@@ -275,6 +275,8 @@ name|logic
 expr_stmt|;
 block|}
 comment|/**      * {@link Filter#getDocIdSet}.      */
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
@@ -792,6 +794,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

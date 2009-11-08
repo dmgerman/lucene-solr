@@ -473,6 +473,8 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|protected
 name|Object
@@ -790,6 +792,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)    * @see java.lang.Object#toString()    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

@@ -133,6 +133,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setup
 specifier|public
 name|void
@@ -147,6 +149,8 @@ name|setup
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -175,6 +179,8 @@ operator|/
 literal|100
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean
@@ -185,6 +191,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int

@@ -2390,6 +2390,8 @@ specifier|public
 name|AnalyzerReturningNull
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -2440,6 +2442,8 @@ name|EmptyTokenStream
 extends|extends
 name|TokenStream
 block|{
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean

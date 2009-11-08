@@ -58,6 +58,8 @@ specifier|private
 name|TableSearcher
 name|tableSearcher
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

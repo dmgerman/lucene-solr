@@ -770,6 +770,8 @@ name|numHits
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -781,6 +783,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|public
 name|void
@@ -796,6 +800,8 @@ name|numHits
 operator|++
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void
@@ -808,6 +814,8 @@ name|int
 name|docBase
 parameter_list|)
 block|{}
+annotation|@
+name|Override
 DECL|method|acceptsDocsOutOfOrder
 specifier|public
 name|boolean

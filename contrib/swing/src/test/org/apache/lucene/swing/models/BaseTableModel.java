@@ -237,6 +237,8 @@ name|fireTableDataChanged
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCellEditable
 specifier|public
 name|boolean
@@ -253,6 +255,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getColumnClass
 specifier|public
 name|Class
@@ -411,6 +415,8 @@ literal|""
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setValueAt
 specifier|public
 name|void
@@ -428,6 +434,8 @@ parameter_list|)
 block|{
 comment|//no op
 block|}
+annotation|@
+name|Override
 DECL|method|getColumnName
 specifier|public
 name|String

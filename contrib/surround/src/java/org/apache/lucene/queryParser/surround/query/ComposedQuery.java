@@ -266,6 +266,8 @@ return|return
 name|luceneSubQueries
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -535,6 +537,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isFieldsSubQueryAcceptable
 specifier|public
 name|boolean

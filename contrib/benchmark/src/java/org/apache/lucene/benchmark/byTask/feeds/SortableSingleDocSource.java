@@ -514,6 +514,8 @@ specifier|private
 name|Random
 name|r
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextDocData
 specifier|public
 name|DocData
@@ -682,6 +684,8 @@ name|start
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setConfig
 specifier|public
 name|void

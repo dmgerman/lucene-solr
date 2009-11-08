@@ -219,6 +219,8 @@ name|String
 index|[]
 name|fuzzyExpected
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -647,6 +649,8 @@ specifier|public
 name|ASCIIAnalyzer
 parameter_list|()
 block|{   }
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream

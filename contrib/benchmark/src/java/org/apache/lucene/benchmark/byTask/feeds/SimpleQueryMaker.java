@@ -177,6 +177,8 @@ implements|implements
 name|QueryMaker
 block|{
 comment|/**    * Prepare the queries for this test.    * Extending classes can override this method for preparing different queries.     * @return prepared queries.    * @throws Exception if cannot prepare the queries.    */
+annotation|@
+name|Override
 DECL|method|prepareQueries
 specifier|protected
 name|Query

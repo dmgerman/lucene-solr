@@ -497,6 +497,8 @@ name|matchVersion
 expr_stmt|;
 block|}
 comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    * 			{@link LowerCaseFilter}, {@link StopFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -581,6 +583,8 @@ decl_stmt|;
 block|}
 empty_stmt|;
 comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text     * in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    *            {@link LowerCaseFilter}, {@link StopFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

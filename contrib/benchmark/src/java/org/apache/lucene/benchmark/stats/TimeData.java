@@ -179,6 +179,8 @@ operator|=
 name|elapsed
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|protected
 name|Object
@@ -281,6 +283,8 @@ return|return
 literal|"# count\telapsed\trec/s\tfreeMem\ttotalMem"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

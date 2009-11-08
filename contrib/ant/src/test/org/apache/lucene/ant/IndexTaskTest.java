@@ -253,6 +253,8 @@ name|FSDirectory
 name|dir
 decl_stmt|;
 comment|/**      *  The JUnit setup method      *      *@exception  IOException  Description of Exception      */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -425,6 +427,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  The teardown method for JUnit      * TODO: remove indexDir?      */
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void

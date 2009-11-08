@@ -97,6 +97,8 @@ specifier|private
 name|TokenStream
 name|input
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

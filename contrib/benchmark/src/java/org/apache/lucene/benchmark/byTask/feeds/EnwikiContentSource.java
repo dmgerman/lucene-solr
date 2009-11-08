@@ -482,6 +482,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|characters
 specifier|public
 name|void
@@ -510,6 +512,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|endElement
 specifier|public
 name|void
@@ -922,6 +926,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|startElement
 specifier|public
 name|void
@@ -1255,6 +1261,8 @@ operator|new
 name|Parser
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -1289,6 +1297,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getNextDocData
 specifier|public
 specifier|synchronized
@@ -1361,6 +1371,8 @@ return|return
 name|docData
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|resetInputs
 specifier|public
 name|void
@@ -1382,6 +1394,8 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setConfig
 specifier|public
 name|void

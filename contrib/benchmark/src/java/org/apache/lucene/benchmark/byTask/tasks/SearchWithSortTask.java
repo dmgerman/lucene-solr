@@ -128,6 +128,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * SortFields: field:type,field:type[,noscore][,nomaxscore]    *    * If noscore is present, then we turn off score tracking    * in {@link org.apache.lucene.search.TopFieldCollector}.    * If nomaxscore is present, then we turn off maxScore tracking    * in {@link org.apache.lucene.search.TopFieldCollector}.    *     * name:string,page:int,subject:string    *     */
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -581,6 +583,8 @@ return|return
 name|type
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean
@@ -591,6 +595,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getQueryMaker
 specifier|public
 name|QueryMaker
@@ -607,6 +613,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|withRetrieve
 specifier|public
 name|boolean
@@ -617,6 +625,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|withSearch
 specifier|public
 name|boolean
@@ -627,6 +637,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|withTraverse
 specifier|public
 name|boolean
@@ -637,6 +649,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|withWarm
 specifier|public
 name|boolean
@@ -647,6 +661,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|withScore
 specifier|public
 name|boolean
@@ -657,6 +673,8 @@ return|return
 name|doScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|withMaxScore
 specifier|public
 name|boolean
@@ -667,6 +685,8 @@ return|return
 name|doMaxScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSort
 specifier|public
 name|Sort

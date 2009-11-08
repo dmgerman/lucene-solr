@@ -664,6 +664,8 @@ name|result
 return|;
 block|}
 comment|/* 	 * @see TestCase#setUp() 	 */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -767,6 +769,8 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|protected
 name|void

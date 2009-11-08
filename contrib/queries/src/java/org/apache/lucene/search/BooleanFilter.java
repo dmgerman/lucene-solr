@@ -185,6 +185,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the a DocIdSetIterator representing the Boolean composition    * of the filters that have been added.    */
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
@@ -794,6 +796,8 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -872,6 +876,8 @@ name|shouldFilters
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -945,6 +951,8 @@ name|hash
 return|;
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

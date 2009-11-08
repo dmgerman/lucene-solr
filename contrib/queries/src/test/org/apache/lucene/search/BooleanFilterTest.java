@@ -152,6 +152,8 @@ specifier|private
 name|IndexReader
 name|reader
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

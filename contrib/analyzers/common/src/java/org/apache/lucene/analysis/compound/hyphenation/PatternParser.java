@@ -1311,6 +1311,8 @@ block|}
 comment|//
 comment|// EntityResolver methods
 comment|//
+annotation|@
+name|Override
 DECL|method|resolveEntity
 specifier|public
 name|InputSource
@@ -1334,6 +1336,8 @@ comment|//
 comment|// ContentHandler methods
 comment|//
 comment|/**    * @see org.xml.sax.ContentHandler#startElement(java.lang.String,    *      java.lang.String, java.lang.String, org.xml.sax.Attributes)    */
+annotation|@
+name|Override
 DECL|method|startElement
 specifier|public
 name|void
@@ -1527,6 +1531,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @see org.xml.sax.ContentHandler#endElement(java.lang.String,    *      java.lang.String, java.lang.String)    */
+annotation|@
+name|Override
 DECL|method|endElement
 specifier|public
 name|void
@@ -1674,6 +1680,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * @see org.xml.sax.ContentHandler#characters(char[], int, int)    */
+annotation|@
+name|Override
 DECL|method|characters
 specifier|public
 name|void
@@ -1816,6 +1824,8 @@ comment|//
 comment|// ErrorHandler methods
 comment|//
 comment|/**    * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)    */
+annotation|@
+name|Override
 DECL|method|warning
 specifier|public
 name|void
@@ -1843,6 +1853,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)    */
+annotation|@
+name|Override
 DECL|method|error
 specifier|public
 name|void
@@ -1870,6 +1882,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)    */
+annotation|@
+name|Override
 DECL|method|fatalError
 specifier|public
 name|void

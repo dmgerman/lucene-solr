@@ -109,6 +109,8 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setup
 specifier|public
 name|void
@@ -159,6 +161,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -177,6 +181,8 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getLogMessage
 specifier|protected
 name|String
@@ -194,6 +200,8 @@ operator|+
 literal|" docs"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -218,6 +226,8 @@ literal|1
 return|;
 block|}
 comment|/**    * Set the params (docSize only)    * @param params docSize, or 0 for no limit.    */
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -248,6 +258,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#supportsParams()    */
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean

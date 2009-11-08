@@ -189,6 +189,8 @@ name|runData
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -421,6 +423,8 @@ return|return
 name|r
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -499,6 +503,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean

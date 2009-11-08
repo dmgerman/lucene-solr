@@ -111,6 +111,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Sort by score the list of WeightedFragInfo    */
+annotation|@
+name|Override
 DECL|method|getWeightedFragInfoList
 specifier|public
 name|List

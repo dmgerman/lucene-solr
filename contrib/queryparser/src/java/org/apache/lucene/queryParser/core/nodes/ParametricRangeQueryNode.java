@@ -381,6 +381,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|cloneTree
 specifier|public
 name|ParametricRangeQueryNode

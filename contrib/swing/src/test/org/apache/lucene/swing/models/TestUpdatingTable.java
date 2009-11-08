@@ -53,6 +53,8 @@ name|infoToAdd1
 decl_stmt|,
 name|infoToAdd2
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

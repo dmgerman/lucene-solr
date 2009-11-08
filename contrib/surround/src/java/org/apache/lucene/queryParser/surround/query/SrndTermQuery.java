@@ -139,6 +139,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toStringUnquoted
 specifier|public
 name|String
@@ -150,6 +152,8 @@ name|getTermText
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|visitMatchingTerms
 specifier|public
 name|void

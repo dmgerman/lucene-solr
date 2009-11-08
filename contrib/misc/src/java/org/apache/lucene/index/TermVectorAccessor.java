@@ -554,6 +554,8 @@ specifier|private
 name|TermVectorMapper
 name|decorated
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|isIgnoringPositions
 specifier|public
 name|boolean
@@ -567,6 +569,8 @@ name|isIgnoringPositions
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isIgnoringOffsets
 specifier|public
 name|boolean
@@ -587,6 +591,8 @@ name|termVectorStored
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setExpectations
 specifier|public
 name|void
@@ -623,6 +629,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|map
 specifier|public
 name|void
@@ -657,6 +665,8 @@ name|positions
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setDocumentNumber
 specifier|public
 name|void

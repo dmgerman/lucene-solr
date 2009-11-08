@@ -253,6 +253,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run
 specifier|public
 name|void
@@ -532,6 +534,8 @@ name|runData
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -576,6 +580,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -602,6 +608,8 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean
@@ -613,6 +621,8 @@ literal|true
 return|;
 block|}
 comment|// Close the thread
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

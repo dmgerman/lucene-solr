@@ -243,6 +243,8 @@ operator|+
 name|f
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -302,6 +304,8 @@ name|getValueString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|cloneTree
 specifier|public
 name|QueryNode

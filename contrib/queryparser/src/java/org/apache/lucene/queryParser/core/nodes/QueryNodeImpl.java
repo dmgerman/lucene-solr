@@ -536,6 +536,8 @@ return|return
 name|clone
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -811,6 +813,8 @@ literal|false
 return|;
 block|}
 comment|/**    * Every implementation of this class should return pseudo xml like this:    *     * For FieldQueryNode:<field start='1' end='2' field='subject' text='foo'/>    *     * @see org.apache.lucene.queryParser.core.nodes.QueryNode#toString()    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

@@ -97,6 +97,8 @@ operator|=
 name|typeToMatch
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|accept
 specifier|public
 name|boolean

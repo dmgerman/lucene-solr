@@ -1957,6 +1957,8 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|public
 specifier|final

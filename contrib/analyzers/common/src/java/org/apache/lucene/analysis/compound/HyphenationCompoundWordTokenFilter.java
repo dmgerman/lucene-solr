@@ -436,6 +436,8 @@ return|return
 name|tree
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|decomposeInternal
 specifier|protected
 name|void

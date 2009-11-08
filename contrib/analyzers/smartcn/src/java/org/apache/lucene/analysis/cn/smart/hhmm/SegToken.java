@@ -155,6 +155,8 @@ name|weight
 expr_stmt|;
 block|}
 comment|/**    * @see java.lang.Object#hashCode()    */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -246,6 +248,8 @@ name|result
 return|;
 block|}
 comment|/**    * @see java.lang.Object#equals(java.lang.Object)    */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

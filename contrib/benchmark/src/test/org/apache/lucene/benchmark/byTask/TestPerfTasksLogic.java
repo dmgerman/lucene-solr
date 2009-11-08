@@ -2358,6 +2358,8 @@ name|nDocs
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextDocData
 specifier|public
 specifier|synchronized
@@ -2400,6 +2402,8 @@ name|docData
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|resetInputs
 specifier|public
 specifier|synchronized

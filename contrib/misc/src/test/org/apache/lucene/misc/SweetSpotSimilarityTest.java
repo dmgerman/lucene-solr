@@ -1144,6 +1144,8 @@ operator|new
 name|SweetSpotSimilarity
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|tf

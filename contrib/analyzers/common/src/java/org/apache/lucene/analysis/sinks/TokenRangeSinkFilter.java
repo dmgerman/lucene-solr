@@ -109,6 +109,8 @@ operator|=
 name|upper
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|accept
 specifier|public
 name|boolean
@@ -146,6 +148,8 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

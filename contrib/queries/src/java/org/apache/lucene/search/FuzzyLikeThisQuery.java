@@ -250,6 +250,8 @@ specifier|private
 name|int
 name|maxNumTerms
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -335,6 +337,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -568,6 +572,8 @@ operator|=
 name|queryString
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -652,6 +658,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1246,6 +1254,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -1701,6 +1711,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.apache.lucene.util.PriorityQueue#lessThan(java.lang.Object, java.lang.Object)          */
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|protected
 name|boolean
@@ -1785,6 +1797,8 @@ operator|=
 name|ignoreTF
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSimilarity
 specifier|public
 name|Similarity
@@ -1812,6 +1826,8 @@ argument_list|(
 name|result
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|tf
@@ -1839,6 +1855,8 @@ name|freq
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|idf
@@ -1863,6 +1881,8 @@ return|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.apache.lucene.search.Query#toString(java.lang.String)      */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

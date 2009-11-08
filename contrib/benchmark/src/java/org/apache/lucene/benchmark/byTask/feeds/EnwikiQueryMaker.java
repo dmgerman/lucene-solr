@@ -762,6 +762,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|prepareQueries
 specifier|protected
 name|Query

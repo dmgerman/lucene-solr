@@ -171,6 +171,8 @@ operator|=
 name|fieldOp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isFieldsSubQueryAcceptable
 specifier|public
 name|boolean
@@ -334,6 +336,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|makeLuceneQueryFieldNoBoost
 specifier|public
 name|Query
@@ -374,6 +378,8 @@ return|return
 name|fieldOp
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

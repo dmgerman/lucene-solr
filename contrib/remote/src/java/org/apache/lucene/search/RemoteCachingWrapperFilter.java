@@ -73,6 +73,8 @@ name|filter
 expr_stmt|;
 block|}
 comment|/**    * Uses the {@link org.apache.lucene.search.FilterManager} to keep the cache for a filter on the     * searcher side of a remote connection.    * @param reader the index reader for the Filter    * @return the DocIdSet    */
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet

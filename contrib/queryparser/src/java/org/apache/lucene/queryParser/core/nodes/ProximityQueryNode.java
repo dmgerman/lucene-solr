@@ -125,6 +125,8 @@ block|{
 DECL|enum constant|PARAGRAPH
 name|PARAGRAPH
 block|{
+annotation|@
+name|Override
 name|CharSequence
 name|toQueryString
 parameter_list|()
@@ -138,6 +140,8 @@ block|,
 DECL|enum constant|SENTENCE
 name|SENTENCE
 block|{
+annotation|@
+name|Override
 name|CharSequence
 name|toQueryString
 parameter_list|()
@@ -151,6 +155,8 @@ block|,
 DECL|enum constant|NUMBER
 name|NUMBER
 block|{
+annotation|@
+name|Override
 name|CharSequence
 name|toQueryString
 parameter_list|()
@@ -482,6 +488,8 @@ operator|.
 name|proximityType
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -639,6 +647,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toQueryString
 specifier|public
 name|CharSequence
@@ -806,6 +816,8 @@ literal|")"
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|cloneTree
 specifier|public
 name|QueryNode

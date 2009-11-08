@@ -769,6 +769,8 @@ name|maxSize
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|lessThan
 specifier|protected
 name|boolean

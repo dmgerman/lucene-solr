@@ -183,6 +183,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -218,6 +220,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|flush
 specifier|public
 name|void
@@ -240,6 +244,8 @@ name|directory
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeByte
 specifier|public
 name|void
@@ -316,6 +322,8 @@ operator|=
 name|position
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeBytes
 specifier|public
 name|void
@@ -459,6 +467,8 @@ operator|=
 name|position
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|length
 specifier|public
 name|long
@@ -471,6 +481,8 @@ return|return
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|seek
 specifier|public
 name|void
@@ -542,6 +554,8 @@ name|pos
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getFilePointer
 specifier|public
 name|long

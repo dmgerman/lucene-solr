@@ -62,6 +62,8 @@ name|runData
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -81,6 +83,8 @@ literal|0
 return|;
 block|}
 comment|/*    * (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#shouldNotRecordStats()    */
+annotation|@
+name|Override
 DECL|method|shouldNotRecordStats
 specifier|protected
 name|boolean

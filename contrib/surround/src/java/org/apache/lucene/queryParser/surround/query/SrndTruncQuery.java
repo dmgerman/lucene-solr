@@ -184,6 +184,8 @@ return|return
 name|truncated
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toStringUnquoted
 specifier|public
 name|String
@@ -360,6 +362,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|visitMatchingTerms
 specifier|public
 name|void

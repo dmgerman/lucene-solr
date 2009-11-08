@@ -3426,6 +3426,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -3731,6 +3733,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -3850,6 +3854,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -3913,6 +3919,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -3981,6 +3989,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4051,6 +4061,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4119,6 +4131,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4187,6 +4201,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4874,6 +4890,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4943,6 +4961,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5055,6 +5075,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5152,6 +5174,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5292,6 +5316,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5422,6 +5448,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5490,6 +5518,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5558,6 +5588,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5919,6 +5951,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -6208,6 +6242,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -6384,6 +6420,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -6533,6 +6571,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -6782,6 +6822,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -6893,6 +6935,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -7169,6 +7213,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -7328,6 +7374,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -7567,6 +7615,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -8399,6 +8449,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -8829,6 +8881,8 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken
@@ -9102,6 +9156,8 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken
@@ -9189,6 +9245,8 @@ operator|new
 name|TestHighlightRunner
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -10602,6 +10660,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -10931,6 +10991,8 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|protected
 name|void
@@ -11050,6 +11112,8 @@ name|synonyms
 expr_stmt|;
 block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.analysis.Analyzer#tokenStream(java.lang.String,    *      java.io.Reader)    */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -11274,6 +11338,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean

@@ -335,6 +335,8 @@ operator|=
 name|field
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 name|byte
@@ -1068,6 +1070,8 @@ name|int
 name|docBase
 decl_stmt|;
 comment|// simply print docId and score of every matching document
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -1099,6 +1103,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -1108,6 +1114,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -1128,6 +1136,8 @@ operator|=
 name|docBase
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer

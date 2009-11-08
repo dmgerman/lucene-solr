@@ -345,6 +345,8 @@ name|runData
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -1132,6 +1134,8 @@ specifier|private
 name|int
 name|numHits
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setup
 specifier|public
 name|void

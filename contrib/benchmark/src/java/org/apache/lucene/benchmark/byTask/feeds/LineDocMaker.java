@@ -50,6 +50,8 @@ name|LineDocMaker
 extends|extends
 name|DocMaker
 block|{
+annotation|@
+name|Override
 DECL|method|setConfig
 specifier|public
 name|void

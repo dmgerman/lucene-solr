@@ -116,6 +116,8 @@ operator|=
 name|shouldHaveCache
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet

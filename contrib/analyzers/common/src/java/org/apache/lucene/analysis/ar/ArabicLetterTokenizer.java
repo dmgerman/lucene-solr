@@ -121,6 +121,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Allows for Letter category or NonspacingMark category    * @see org.apache.lucene.analysis.LetterTokenizer#isTokenChar(char)    */
+annotation|@
+name|Override
 DECL|method|isTokenChar
 specifier|protected
 name|boolean

@@ -160,6 +160,8 @@ operator|=
 name|forever
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|openNextFile
 name|void
 name|openNextFile
@@ -205,6 +207,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setConfig
 specifier|public
 name|void

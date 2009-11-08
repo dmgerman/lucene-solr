@@ -259,6 +259,8 @@ parameter_list|()
 block|{
 comment|// empty constructor
 block|}
+annotation|@
+name|Override
 DECL|method|postProcessNode
 specifier|protected
 name|QueryNode
@@ -625,6 +627,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|preProcessNode
 specifier|protected
 name|QueryNode
@@ -640,6 +644,8 @@ return|return
 name|node
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setChildrenOrder
 specifier|protected
 name|List

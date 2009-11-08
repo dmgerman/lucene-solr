@@ -252,6 +252,8 @@ name|BasicQueryFactory
 name|qf
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 specifier|abstract
@@ -269,6 +271,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -312,6 +316,8 @@ name|BooleanQuery
 argument_list|()
 block|{
 comment|/* no changes allowed */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBoost
@@ -326,6 +332,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -340,6 +348,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add

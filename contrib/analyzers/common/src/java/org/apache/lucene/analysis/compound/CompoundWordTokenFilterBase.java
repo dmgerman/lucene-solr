@@ -803,6 +803,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final
@@ -1211,6 +1213,8 @@ name|Token
 name|token
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

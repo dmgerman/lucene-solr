@@ -419,6 +419,8 @@ name|getDocMaker
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getLogMessage
 specifier|protected
 name|String
@@ -436,6 +438,8 @@ operator|+
 literal|" line docs"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -652,6 +656,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -672,6 +678,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Set the params (docSize only)    * @param params docSize, or 0 for no limit.    */
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -710,6 +718,8 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean

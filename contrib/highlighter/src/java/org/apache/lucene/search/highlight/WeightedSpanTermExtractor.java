@@ -2798,6 +2798,8 @@ argument_list|,
 name|WeightedSpanTerm
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|putAll
 specifier|public
 name|void
@@ -2868,6 +2870,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|put
 specifier|public
 name|WeightedSpanTerm

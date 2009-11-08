@@ -95,6 +95,8 @@ extends|extends
 name|SimpleQueryMaker
 block|{
 comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.feeds.SimpleQueryMaker#prepareQueries()    */
+annotation|@
+name|Override
 DECL|method|prepareQueries
 specifier|protected
 name|Query

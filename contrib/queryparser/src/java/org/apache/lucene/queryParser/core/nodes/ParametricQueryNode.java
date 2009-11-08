@@ -73,6 +73,8 @@ block|{
 DECL|enum constant|LE
 name|LE
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -87,6 +89,8 @@ block|,
 DECL|enum constant|LT
 name|LT
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -101,6 +105,8 @@ block|,
 DECL|enum constant|GE
 name|GE
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -115,6 +121,8 @@ block|,
 DECL|enum constant|GT
 name|GT
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -129,6 +137,8 @@ block|,
 DECL|enum constant|EQ
 name|EQ
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -143,6 +153,8 @@ block|,
 DECL|enum constant|NE
 name|NE
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -209,6 +221,8 @@ name|getText
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toQueryString
 specifier|public
 name|CharSequence
@@ -241,6 +255,8 @@ operator|+
 literal|"\""
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -272,6 +288,8 @@ operator|+
 literal|"'/>"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|cloneTree
 specifier|public
 name|ParametricQueryNode

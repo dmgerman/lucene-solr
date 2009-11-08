@@ -323,6 +323,8 @@ literal|0
 expr_stmt|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this. */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|abstract
@@ -334,6 +336,8 @@ name|o
 parameter_list|)
 function_decl|;
 comment|/** Returns a hash code value for this object.*/
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|abstract

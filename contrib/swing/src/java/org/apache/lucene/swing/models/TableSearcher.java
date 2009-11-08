@@ -1088,6 +1088,8 @@ name|getColumnCount
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getColumnName
 specifier|public
 name|String
@@ -1106,6 +1108,8 @@ name|column
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getColumnClass
 specifier|public
 name|Class
@@ -1124,6 +1128,8 @@ name|column
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCellEditable
 specifier|public
 name|boolean
@@ -1176,6 +1182,8 @@ name|column
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setValueAt
 specifier|public
 name|void

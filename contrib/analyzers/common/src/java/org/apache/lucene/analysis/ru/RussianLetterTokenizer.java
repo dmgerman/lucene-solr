@@ -157,6 +157,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Collects only characters which satisfy      * {@link Character#isLetter(char)}.      */
+annotation|@
+name|Override
 DECL|method|isTokenChar
 specifier|protected
 name|boolean

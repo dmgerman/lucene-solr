@@ -69,6 +69,8 @@ name|EmptyTokenStream
 extends|extends
 name|TokenStream
 block|{
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

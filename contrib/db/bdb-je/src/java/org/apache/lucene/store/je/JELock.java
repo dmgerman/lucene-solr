@@ -55,6 +55,8 @@ specifier|public
 name|JELock
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
 DECL|method|obtain
 specifier|public
 name|boolean
@@ -69,6 +71,8 @@ literal|true
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|release
 specifier|public
 name|void
@@ -80,6 +84,8 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isLocked
 specifier|public
 name|boolean

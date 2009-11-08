@@ -186,6 +186,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Constructs a {@link StandardTokenizer} filtered by a {@link       StandardFilter}, a {@link LowerCaseFilter}, a {@link StopFilter},       and a {@link SnowballFilter} */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -278,6 +280,8 @@ decl_stmt|;
 block|}
 empty_stmt|;
 comment|/** Returns a (possibly reused) {@link StandardTokenizer} filtered by a     * {@link StandardFilter}, a {@link LowerCaseFilter},     * a {@link StopFilter}, and a {@link SnowballFilter} */
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

@@ -604,6 +604,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -710,6 +712,8 @@ name|withStopFilter
 decl_stmt|;
 block|}
 empty_stmt|;
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

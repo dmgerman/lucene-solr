@@ -141,6 +141,8 @@ comment|/** Get the n-gram from the front of the input */
 DECL|enum constant|FRONT
 name|FRONT
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLabel
@@ -156,6 +158,8 @@ comment|/** Get the n-gram from the end of the input */
 DECL|enum constant|BACK
 name|BACK
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLabel
@@ -445,6 +449,8 @@ name|maxGram
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final
@@ -588,6 +594,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

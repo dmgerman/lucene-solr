@@ -390,6 +390,8 @@ expr_stmt|;
 block|}
 comment|//~ Methods ----------------------------------------------------------------
 comment|/**      * Returns true for the next token in the stream, or false at EOS.      * See http://java.sun.com/j2se/1.3/docs/api/java/lang/Character.UnicodeBlock.html      * for detail.      *      * @return false for end of stream, true otherwise      *      * @throws java.io.IOException - throw IOException when read error<br>      *         happened in the InputStream      *      */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -931,6 +933,8 @@ comment|// Cycle back and try for the next token (don't
 comment|// return an empty string)
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|end
 specifier|public
 specifier|final
@@ -957,6 +961,8 @@ name|finalOffset
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -987,6 +993,8 @@ operator|=
 name|WORD_TYPE
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

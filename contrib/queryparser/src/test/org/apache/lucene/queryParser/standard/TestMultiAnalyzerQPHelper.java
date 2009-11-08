@@ -844,6 +844,8 @@ specifier|public
 name|MultiAnalyzer
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -979,6 +981,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final
@@ -1151,6 +1155,8 @@ specifier|public
 name|PosIncrementAnalyzer
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -1244,6 +1250,8 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final

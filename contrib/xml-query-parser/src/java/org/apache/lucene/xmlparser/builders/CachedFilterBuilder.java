@@ -470,6 +470,8 @@ specifier|protected
 name|int
 name|maxsize
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|removeEldestEntry
 specifier|protected
 name|boolean

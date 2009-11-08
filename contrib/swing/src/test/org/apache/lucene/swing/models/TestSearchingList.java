@@ -56,6 +56,8 @@ specifier|private
 name|ListSearcher
 name|listSearcher
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

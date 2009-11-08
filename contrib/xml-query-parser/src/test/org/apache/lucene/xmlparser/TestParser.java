@@ -277,6 +277,8 @@ init|=
 literal|false
 decl_stmt|;
 comment|/* 	 * @see TestCase#setUp() 	 */
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
@@ -526,6 +528,8 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|protected
 name|void

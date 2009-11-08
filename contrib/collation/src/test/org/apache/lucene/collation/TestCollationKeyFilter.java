@@ -224,6 +224,8 @@ operator|=
 name|collator
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream

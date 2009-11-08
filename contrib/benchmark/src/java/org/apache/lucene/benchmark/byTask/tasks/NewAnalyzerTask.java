@@ -246,6 +246,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|doLogic
 specifier|public
 name|int
@@ -379,6 +381,8 @@ literal|1
 return|;
 block|}
 comment|/**    * Set the params (analyzerClassName only),  Comma-separate list of Analyzer class names.  If the Analyzer lives in    * org.apache.lucene.analysis, the name can be shortened by dropping the o.a.l.a part of the Fully Qualified Class Name.    *<p/>    * Example Declaration: {"NewAnalyzer" NewAnalyzer(WhitespaceAnalyzer, SimpleAnalyzer, StopAnalyzer, standard.StandardAnalyzer)>    * @param params analyzerClassName, or empty for the StandardAnalyzer    */
+annotation|@
+name|Override
 DECL|method|setParams
 specifier|public
 name|void
@@ -436,6 +440,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.benchmark.byTask.tasks.PerfTask#supportsParams()    */
+annotation|@
+name|Override
 DECL|method|supportsParams
 specifier|public
 name|boolean

@@ -482,6 +482,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -609,6 +611,8 @@ extends|extends
 name|Analyzer
 block|{
 comment|/** Filters LowerCaseTokenizer with StopFilter. */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -662,6 +666,8 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFuzzyQuery
 specifier|protected
 name|Query
@@ -687,6 +693,8 @@ literal|"Fuzzy queries not allowed"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|getWildcardQuery
 specifier|protected
 name|Query
@@ -715,6 +723,8 @@ specifier|private
 name|int
 name|originalMaxClauses
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -3567,6 +3577,8 @@ name|query2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void

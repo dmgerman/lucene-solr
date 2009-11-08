@@ -114,6 +114,8 @@ name|docID
 operator|++
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -122,6 +124,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{}
+annotation|@
+name|Override
 DECL|method|getNextDocData
 specifier|public
 name|DocData
@@ -172,6 +176,8 @@ return|return
 name|docData
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|resetInputs
 specifier|public
 specifier|synchronized

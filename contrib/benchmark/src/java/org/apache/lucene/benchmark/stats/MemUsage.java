@@ -50,6 +50,8 @@ name|minTotal
 decl_stmt|,
 name|avgTotal
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

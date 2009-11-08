@@ -404,6 +404,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Implemented as<code> state.getBoost() *    * lengthNorm(fieldName, numTokens)</code> where    * numTokens does not count overlap tokens if    * discountOverlaps is true by default or true for this    * specific field. */
+annotation|@
+name|Override
 DECL|method|computeNorm
 specifier|public
 name|float
@@ -487,6 +489,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
+annotation|@
+name|Override
 DECL|method|lengthNorm
 specifier|public
 name|float
@@ -633,6 +637,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Delegates to baselineTf    *    * @see #baselineTf    */
+annotation|@
+name|Override
 DECL|method|tf
 specifier|public
 name|float

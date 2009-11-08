@@ -189,6 +189,8 @@ name|userindex
 decl_stmt|,
 name|spellindex
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

@@ -744,6 +744,8 @@ expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
 comment|/** 	 * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}. 	 * 	 * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with 	 * 			{@link LowerCaseFilter}, {@link StandardFilter}, {@link StopFilter}, and  	 *          {@link BrazilianStemFilter}. 	 */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -831,6 +833,8 @@ decl_stmt|;
 block|}
 empty_stmt|;
 comment|/**      * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text       * in the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *          {@link LowerCaseFilter}, {@link StandardFilter}, {@link StopFilter}, and       *          {@link BrazilianStemFilter}.      */
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

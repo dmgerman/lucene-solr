@@ -811,6 +811,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|incrementToken
@@ -1377,6 +1379,8 @@ specifier|private
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -1398,6 +1402,8 @@ name|score
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -1415,6 +1421,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -1424,6 +1432,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -1874,6 +1884,8 @@ name|entries
 return|;
 block|}
 comment|/**    * Returns a String representation of the index data for debugging purposes.    *     * @return the string representation    */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -2951,6 +2963,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -3023,6 +3037,8 @@ return|return
 name|freq
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -3049,6 +3065,8 @@ name|MATCH_ALL_TERM
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermEnum
@@ -3285,6 +3303,8 @@ init|=
 name|jx
 decl_stmt|;
 comment|// index into sortedFields
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|next
@@ -3367,6 +3387,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Term
 name|term
@@ -3439,6 +3461,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|docFreq
@@ -3501,6 +3525,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -3589,6 +3615,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termPositions
 specifier|public
 name|TermPositions
@@ -4047,6 +4075,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|termDocs
 specifier|public
 name|TermDocs
@@ -4071,6 +4101,8 @@ name|termPositions
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVectors
 specifier|public
 name|TermFreqVector
@@ -4159,6 +4191,8 @@ return|return
 name|vectors
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|void
@@ -4210,6 +4244,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|void
@@ -4465,6 +4501,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getTermFreqVector
 specifier|public
 name|TermFreqVector
@@ -4989,6 +5027,8 @@ specifier|private
 name|Similarity
 name|cachedSimilarity
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 name|byte
@@ -5164,6 +5204,8 @@ return|return
 name|norms
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|norms
 specifier|public
 name|void
@@ -5222,6 +5264,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doSetNorm
 specifier|protected
 name|void
@@ -5243,6 +5287,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|numDocs
 specifier|public
 name|int
@@ -5275,6 +5321,8 @@ else|:
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|maxDoc
 specifier|public
 name|int
@@ -5298,6 +5346,8 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|document
 specifier|public
 name|Document
@@ -5328,6 +5378,8 @@ return|;
 comment|// there are no stored fields
 block|}
 comment|//When we convert to JDK 1.5 make this Set<String>
+annotation|@
+name|Override
 DECL|method|document
 specifier|public
 name|Document
@@ -5362,6 +5414,8 @@ argument_list|()
 return|;
 comment|// there are no stored fields
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean
@@ -5388,6 +5442,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasDeletions
 specifier|public
 name|boolean
@@ -5411,6 +5467,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doDelete
 specifier|protected
 name|void
@@ -5426,6 +5484,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|doUndeleteAll
 specifier|protected
 name|void
@@ -5438,6 +5498,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|doCommit
 specifier|protected
 name|void
@@ -5466,6 +5528,8 @@ literal|"MemoryIndexReader.doCommit"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doClose
 specifier|protected
 name|void
@@ -5487,6 +5551,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// lucene>= 1.9 (remove this method for lucene-1.4.3)
+annotation|@
+name|Override
 DECL|method|getFieldNames
 specifier|public
 name|Collection

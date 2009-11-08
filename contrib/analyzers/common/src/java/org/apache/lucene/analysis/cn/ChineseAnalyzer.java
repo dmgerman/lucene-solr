@@ -98,6 +98,8 @@ name|ChineseAnalyzer
 parameter_list|()
 block|{     }
 comment|/**     * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.     *     * @return  A {@link TokenStream} built from a {@link ChineseTokenizer}      *   filtered with {@link ChineseFilter}.     */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -148,6 +150,8 @@ decl_stmt|;
 block|}
 empty_stmt|;
 comment|/**     * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text in the     * provided {@link Reader}.     *      * @return A {@link TokenStream} built from a {@link ChineseTokenizer}      *   filtered with {@link ChineseFilter}.     */
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 specifier|final

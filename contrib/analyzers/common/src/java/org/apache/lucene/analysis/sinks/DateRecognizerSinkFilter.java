@@ -165,6 +165,8 @@ operator|=
 name|dateFormat
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|accept
 specifier|public
 name|boolean

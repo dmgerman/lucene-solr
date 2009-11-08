@@ -143,6 +143,8 @@ name|InstantiatedTerm
 name|term
 decl_stmt|;
 comment|/**    * Increments the enumeration to the next element.  True if one exists.    */
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|boolean
@@ -192,6 +194,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the current Term in the enumeration.    */
+annotation|@
+name|Override
 DECL|method|term
 specifier|public
 name|Term
@@ -212,6 +216,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the docFreq of the current Term in the enumeration.    */
+annotation|@
+name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -228,6 +234,8 @@ name|length
 return|;
 block|}
 comment|/**    * Closes the enumeration to further activity, freeing resources.    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

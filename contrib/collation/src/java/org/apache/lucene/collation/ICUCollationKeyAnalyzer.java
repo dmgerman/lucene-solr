@@ -138,6 +138,8 @@ operator|=
 name|collator
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -187,6 +189,8 @@ name|TokenStream
 name|result
 decl_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reusableTokenStream
 specifier|public
 name|TokenStream

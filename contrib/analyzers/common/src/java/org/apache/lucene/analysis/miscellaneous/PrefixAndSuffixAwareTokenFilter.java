@@ -102,6 +102,8 @@ argument_list|,
 name|input
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Token
 name|updateSuffixToken
@@ -140,6 +142,8 @@ argument_list|,
 name|suffix
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Token
 name|updateSuffixToken
@@ -259,6 +263,8 @@ return|return
 name|suffixToken
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 specifier|final
@@ -275,6 +281,8 @@ name|incrementToken
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -289,6 +297,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

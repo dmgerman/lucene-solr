@@ -232,6 +232,8 @@ operator|=
 name|analyzer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -353,6 +355,8 @@ name|bq
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.apache.lucene.search.Query#toString(java.lang.String)      */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

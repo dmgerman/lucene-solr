@@ -200,6 +200,8 @@ name|fragNum
 return|;
 block|}
 comment|/* Returns the marked-up text for this text fragment  	 */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
