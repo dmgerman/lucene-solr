@@ -214,9 +214,6 @@ block|{
 name|Integer
 name|next
 init|=
-operator|(
-name|Integer
-operator|)
 name|pq
 operator|.
 name|pop
