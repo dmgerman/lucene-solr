@@ -418,12 +418,13 @@ name|qtxt
 init|=
 literal|"one"
 decl_stmt|;
+comment|// start from 1, so that the 0th doc never matches
 for|for
 control|(
 name|int
 name|i
 init|=
-literal|0
+literal|1
 init|;
 name|i
 operator|<
