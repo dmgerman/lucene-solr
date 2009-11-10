@@ -69,6 +69,8 @@ specifier|volatile
 name|SortField
 index|[]
 name|fields
+init|=
+literal|null
 decl_stmt|;
 comment|// used in the case where the fields are sorted by locale
 comment|// based strings
@@ -77,43 +79,25 @@ specifier|volatile
 name|Collator
 index|[]
 name|collators
+init|=
+literal|null
 decl_stmt|;
 comment|/**    * Creates a hit queue sorted by the given list of fields.    * @param fields Fieldable names, in priority order (highest priority first).    * @param size  The number of hits to retain.  Must be greater than zero.    */
 DECL|method|FieldDocSortedHitQueue
 name|FieldDocSortedHitQueue
 parameter_list|(
-name|SortField
-index|[]
-name|fields
-parameter_list|,
 name|int
 name|size
 parameter_list|)
 block|{
-name|this
-operator|.
-name|fields
-operator|=
-name|fields
-expr_stmt|;
-name|this
-operator|.
-name|collators
-operator|=
-name|hasCollators
-argument_list|(
-name|fields
-argument_list|)
-expr_stmt|;
 name|initialize
 argument_list|(
 name|size
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Allows redefinition of sort fields if they are<code>null</code>.    * This is to handle the case using ParallelMultiSearcher where the    * original list contains AUTO and we don't know the actual sort    * type until the values come back.  The fields can only be set once.    * This method is thread safe.    * @param fields    */
+comment|/**    * Allows redefinition of sort fields if they are<code>null</code>.    * This is to handle the case using ParallelMultiSearcher where the    * original list contains AUTO and we don't know the actual sort    * type until the values come back.  The fields can only be set once.    * This method should be synchronized external like all other PQ methods.    * @param fields    */
 DECL|method|setFields
-specifier|synchronized
 name|void
 name|setFields
 parameter_list|(
