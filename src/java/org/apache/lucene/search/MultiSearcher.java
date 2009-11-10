@@ -191,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements search over a set of<code>Searchables</code>.  *  *<p>Applications usually need only call the inherited {@link #search(Query)}  * or {@link #search(Query,Filter)} methods.  */
+comment|/** Implements search over a set of<code>Searchables</code>.  *  *<p>Applications usually need only call the inherited {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods.  */
 end_comment
 
 begin_class

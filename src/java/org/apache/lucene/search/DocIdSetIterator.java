@@ -45,7 +45,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * When returned by {@link #nextDoc()}, {@link #advance(int)} and    * {@link #doc()} it means there are no more docs in the iterator.    */
+comment|/**    * When returned by {@link #nextDoc()}, {@link #advance(int)} and    * {@link #docID()} it means there are no more docs in the iterator.    */
 DECL|field|NO_MORE_DOCS
 specifier|public
 specifier|static

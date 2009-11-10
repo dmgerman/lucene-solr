@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements parallel search over a set of<code>Searchables</code>.  *  *<p>Applications usually need only call the inherited {@link #search(Query)}  * or {@link #search(Query,Filter)} methods.  */
+comment|/** Implements parallel search over a set of<code>Searchables</code>.  *  *<p>Applications usually need only call the inherited {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods.  */
 end_comment
 
 begin_class
@@ -829,7 +829,7 @@ name|maxScore
 argument_list|)
 return|;
 block|}
-comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query)}) is usually more efficient, as it skips   * non-high-scoring hits.   *    *<p>This method cannot be parallelized, because {@link Collector}   * supports no concurrent access.   *   * @param weight to match documents   * @param filter if non-null, a bitset used to eliminate some documents   * @param collector to receive hits   */
+comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query,int)}) is usually more efficient, as it skips   * non-high-scoring hits.   *    *<p>This method cannot be parallelized, because {@link Collector}   * supports no concurrent access.   *   * @param weight to match documents   * @param filter if non-null, a bitset used to eliminate some documents   * @param collector to receive hits   */
 annotation|@
 name|Override
 DECL|method|search

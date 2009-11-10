@@ -77,7 +77,7 @@ specifier|protected
 name|LockFactory
 name|lockFactory
 decl_stmt|;
-comment|/** Returns an array of strings, one for each file in the    *  directory.  Unlike {@link #list} this method does no    *  filtering of the contents in a directory, and it will    *  never return null (throws IOException instead).    */
+comment|/** Returns an array of strings, one for each file in the    *  directory.    * @throws IOException    */
 DECL|method|listAll
 specifier|public
 specifier|abstract
