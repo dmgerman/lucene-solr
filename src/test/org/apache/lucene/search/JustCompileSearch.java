@@ -595,6 +595,8 @@ name|UNSUPPORTED_MSG
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|Document
