@@ -290,10 +290,16 @@ comment|/**      * these keeps reference to the decorated table model for data  
 DECL|field|rowToModelIndex
 specifier|private
 name|ArrayList
+argument_list|<
+name|Integer
+argument_list|>
 name|rowToModelIndex
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//Lucene stuff.
@@ -981,20 +987,12 @@ name|row
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
-name|Integer
-operator|)
 name|rowToModelIndex
 operator|.
 name|get
 argument_list|(
 name|row
 argument_list|)
-operator|)
-operator|.
-name|intValue
-argument_list|()
 return|;
 block|}
 comment|/**      * Clear the currently active search      * Resets the complete dataset of the decorated      * table model.      */
@@ -1035,12 +1033,7 @@ name|rowToModelIndex
 operator|.
 name|add
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|t
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1113,6 +1106,9 @@ name|Override
 DECL|method|getColumnClass
 specifier|public
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|getColumnClass
 parameter_list|(
 name|int

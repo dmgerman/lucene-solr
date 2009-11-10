@@ -365,6 +365,9 @@ literal|"stopWords"
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|stopWordsSet
 init|=
 literal|null
@@ -388,6 +391,9 @@ name|stopWordsSet
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 for|for

@@ -500,18 +500,30 @@ name|IOException
 block|{
 specifier|final
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|already
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// avoid dups
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|top
 init|=
 operator|new
 name|LinkedList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// needs to be separately listed..
@@ -617,6 +629,9 @@ argument_list|()
 decl_stmt|;
 comment|// [2] form query
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|it
 init|=
 name|top

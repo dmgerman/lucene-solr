@@ -191,10 +191,16 @@ literal|false
 argument_list|)
 decl_stmt|;
 name|ArrayList
+argument_list|<
+name|SpanQuery
+argument_list|>
 name|spans
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|SpanQuery
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -252,10 +258,6 @@ name|SpanQuery
 index|[]
 name|spanQueries
 init|=
-operator|(
-name|SpanQuery
-index|[]
-operator|)
 name|spans
 operator|.
 name|toArray

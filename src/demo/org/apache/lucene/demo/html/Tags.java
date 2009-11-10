@@ -61,6 +61,9 @@ specifier|public
 specifier|static
 specifier|final
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|WS_ELEMS
 init|=
 name|Collections
@@ -69,6 +72,9 @@ name|synchronizedSet
 argument_list|(
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
