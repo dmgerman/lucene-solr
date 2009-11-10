@@ -571,11 +571,10 @@ operator|.
 name|EMPTY_DOCIDSET
 return|;
 block|}
-comment|// TODO: in 3.0, instead of removing this deprecated
-comment|// method, make it a no-op and mark it final
-comment|/** Provide a SortedVIntList when it is definitely smaller    * than an OpenBitSet.    * @deprecated Either use CachingWrapperFilter, or    * switch to a different DocIdSet implementation yourself. */
+comment|/** Provide a SortedVIntList when it is definitely smaller    * than an OpenBitSet.    * @deprecated Either use CachingWrapperFilter, or    * switch to a different DocIdSet implementation yourself.    * This method will be removed in Lucene 4.0     */
 DECL|method|finalResult
 specifier|protected
+specifier|final
 name|DocIdSet
 name|finalResult
 parameter_list|(
@@ -587,31 +586,6 @@ name|maxDocs
 parameter_list|)
 block|{
 return|return
-operator|(
-name|result
-operator|.
-name|cardinality
-argument_list|()
-operator|<
-operator|(
-name|maxDocs
-operator|/
-literal|9
-operator|)
-operator|)
-condition|?
-operator|(
-name|DocIdSet
-operator|)
-operator|new
-name|SortedVIntList
-argument_list|(
-name|result
-argument_list|)
-else|:
-operator|(
-name|DocIdSet
-operator|)
 name|result
 return|;
 block|}

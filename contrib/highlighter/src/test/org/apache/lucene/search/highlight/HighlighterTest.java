@@ -6879,7 +6879,7 @@ comment|// new Highlighter(this, new
 comment|// QueryTermScorer(query));
 name|highlighter
 operator|.
-name|setMaxDocBytesToAnalyze
+name|setMaxDocCharsToAnalyze
 argument_list|(
 literal|30
 argument_list|)
@@ -7091,7 +7091,7 @@ argument_list|)
 expr_stmt|;
 name|hg
 operator|.
-name|setMaxDocBytesToAnalyze
+name|setMaxDocCharsToAnalyze
 argument_list|(
 literal|100
 argument_list|)
@@ -7129,7 +7129,7 @@ argument_list|()
 operator|<
 name|hg
 operator|.
-name|getMaxDocBytesToAnalyze
+name|getMaxDocCharsToAnalyze
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -7185,7 +7185,7 @@ argument_list|()
 operator|<
 name|hg
 operator|.
-name|getMaxDocBytesToAnalyze
+name|getMaxDocCharsToAnalyze
 argument_list|()
 argument_list|)
 expr_stmt|;

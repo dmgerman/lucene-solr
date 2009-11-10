@@ -90,24 +90,6 @@ name|byTask
 operator|.
 name|feeds
 operator|.
-name|EnwikiDocMaker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|feeds
-operator|.
 name|NoMoreDataException
 import|;
 end_import
@@ -772,7 +754,7 @@ name|DocMaker
 name|docMaker
 init|=
 operator|new
-name|EnwikiDocMaker
+name|DocMaker
 argument_list|()
 decl_stmt|;
 name|Properties
@@ -782,6 +764,15 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+name|properties
+operator|.
+name|setProperty
+argument_list|(
+literal|"content.source"
+argument_list|,
+literal|"org.apache.lucene.benchmark.byTask.feeds.EnwikiContentSource"
+argument_list|)
+expr_stmt|;
 name|properties
 operator|.
 name|setProperty
@@ -855,7 +846,7 @@ literal|"Extracting Wikipedia to: "
 operator|+
 name|outputDir
 operator|+
-literal|" using EnwikiDocMaker"
+literal|" using EnwikiContentSource"
 argument_list|)
 expr_stmt|;
 name|outputDir
@@ -902,7 +893,7 @@ name|println
 argument_list|(
 literal|"Usage: java -cp<...> org.apache.lucene.benchmark.utils.ExtractWikipedia --input|-i<Path to Wikipedia XML file> "
 operator|+
-literal|"[--output|-o<Output Path>] [--discardImageOnlyDocs|-d] [--useLineDocMaker|-l]"
+literal|"[--output|-o<Output Path>] [--discardImageOnlyDocs|-d]"
 argument_list|)
 expr_stmt|;
 name|System
@@ -912,15 +903,6 @@ operator|.
 name|println
 argument_list|(
 literal|"--discardImageOnlyDocs tells the extractor to skip Wiki docs that contain only images"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"--useLineDocMaker uses the LineDocMaker.  Default is EnwikiDocMaker"
 argument_list|)
 expr_stmt|;
 block|}

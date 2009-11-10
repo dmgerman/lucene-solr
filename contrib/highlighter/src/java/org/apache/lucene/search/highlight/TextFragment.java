@@ -81,7 +81,7 @@ operator|=
 name|fragNum
 expr_stmt|;
 block|}
-comment|/** @deprecated */
+comment|/**     * @deprecated Use {@link #TextFragment(CharSequence, int, int)} instead.    * This constructor will be removed in Lucene 4.0    */
 DECL|method|TextFragment
 specifier|public
 name|TextFragment

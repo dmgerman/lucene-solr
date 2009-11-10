@@ -1195,21 +1195,6 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * @deprecated Use {@link #getBenchmarkHighlighter(Query)}    */
-DECL|method|getHighlighter
-specifier|final
-name|Highlighter
-name|getHighlighter
-parameter_list|(
-name|Query
-name|q
-parameter_list|)
-block|{
-comment|// not called
-return|return
-literal|null
-return|;
-block|}
 comment|/**    * Return an appropriate highlighter to be used with    * highlighting tasks    */
 DECL|method|getBenchmarkHighlighter
 specifier|protected
@@ -1222,67 +1207,6 @@ parameter_list|)
 block|{
 return|return
 literal|null
-return|;
-block|}
-comment|/**    * @return the maximum number of highlighter fragments    * @deprecated Please define getBenchmarkHighlighter instead    */
-DECL|method|maxNumFragments
-specifier|final
-name|int
-name|maxNumFragments
-parameter_list|()
-block|{
-comment|// not called -- we switched this method to final to
-comment|// force any external subclasses to cutover to
-comment|// getBenchmarkHighlighter instead
-return|return
-literal|10
-return|;
-block|}
-comment|/**    *    * @return true if the highlighter should merge contiguous fragments    * @deprecated Please define getBenchmarkHighlighter instead    */
-DECL|method|isMergeContiguousFragments
-specifier|final
-name|boolean
-name|isMergeContiguousFragments
-parameter_list|()
-block|{
-comment|// not called -- we switched this method to final to
-comment|// force any external subclasses to cutover to
-comment|// getBenchmarkHighlighter instead
-return|return
-literal|false
-return|;
-block|}
-comment|/**    * @deprecated Please define getBenchmarkHighlighter instead    */
-DECL|method|doHighlight
-specifier|final
-name|int
-name|doHighlight
-parameter_list|(
-name|TokenStream
-name|ts
-parameter_list|,
-name|String
-name|text
-parameter_list|,
-name|Highlighter
-name|highlighter
-parameter_list|,
-name|boolean
-name|mergeContiguous
-parameter_list|,
-name|int
-name|maxFragments
-parameter_list|)
-throws|throws
-name|IOException
-throws|,
-name|InvalidTokenOffsetsException
-block|{
-comment|// not called -- we switched this method to final to
-comment|// force any external subclasses to cutover to
-comment|// getBenchmarkHighlighter instead
-return|return
-literal|0
 return|;
 block|}
 DECL|method|getSort

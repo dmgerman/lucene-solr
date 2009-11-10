@@ -248,69 +248,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @deprecated will be removed in 3.0. checks if there are any obsolete    *             settings, like doc.add.log.step and doc.delete.log.step and    *             alerts the user.    */
-DECL|method|checkObsoleteSettings
-specifier|private
-name|void
-name|checkObsoleteSettings
-parameter_list|(
-name|Config
-name|config
-parameter_list|)
-block|{
-if|if
-condition|(
-name|config
-operator|.
-name|get
-argument_list|(
-literal|"doc.add.log.step"
-argument_list|,
-literal|null
-argument_list|)
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"doc.add.log.step is not supported anymore. "
-operator|+
-literal|"Use log.step.AddDoc and refer to CHANGES to read on the recent "
-operator|+
-literal|"API changes done to Benchmark's DocMaker and Task-based logging."
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|config
-operator|.
-name|get
-argument_list|(
-literal|"doc.delete.log.step"
-argument_list|,
-literal|null
-argument_list|)
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"doc.delete.log.step is not supported anymore. "
-operator|+
-literal|"Use log.step.DeleteDoc and refer to CHANGES to read on the recent "
-operator|+
-literal|"API changes done to Benchmark's DocMaker and Task-based logging."
-argument_list|)
-throw|;
-block|}
-block|}
 DECL|method|PerfTask
 specifier|public
 name|PerfTask
@@ -467,11 +404,6 @@ operator|.
 name|MAX_VALUE
 expr_stmt|;
 block|}
-name|checkObsoleteSettings
-argument_list|(
-name|config
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
