@@ -68,6 +68,20 @@ name|Term
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FieldSelector
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract base class for search implementations. Implements the main search  * methods.  *   *<p>  * Note that you can only access hits from a Searcher as long as it is not yet  * closed, otherwise an IOException will be thrown.  */
 end_comment
@@ -459,6 +473,23 @@ name|doc
 parameter_list|(
 name|int
 name|i
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+function_decl|;
+DECL|method|doc
+specifier|abstract
+specifier|public
+name|Document
+name|doc
+parameter_list|(
+name|int
+name|docid
+parameter_list|,
+name|FieldSelector
+name|fieldSelector
 parameter_list|)
 throws|throws
 name|CorruptIndexException
