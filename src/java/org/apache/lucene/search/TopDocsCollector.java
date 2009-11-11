@@ -42,6 +42,8 @@ class|class
 name|TopDocsCollector
 parameter_list|<
 name|T
+extends|extends
+name|ScoreDoc
 parameter_list|>
 extends|extends
 name|Collector
@@ -140,9 +142,6 @@ index|[
 name|i
 index|]
 operator|=
-operator|(
-name|ScoreDoc
-operator|)
 name|pq
 operator|.
 name|pop
