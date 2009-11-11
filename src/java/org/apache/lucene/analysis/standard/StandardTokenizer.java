@@ -250,7 +250,7 @@ name|CJ
 init|=
 literal|7
 decl_stmt|;
-comment|/**    * @deprecated this solves a bug where HOSTs that end with '.' are identified    *             as ACRONYMs. It is deprecated and will be removed in the next    *             release.    */
+comment|/**    * @deprecated this solves a bug where HOSTs that end with '.' are identified    *             as ACRONYMs.    */
 DECL|field|ACRONYM_DEP
 specifier|public
 specifier|static
@@ -292,18 +292,6 @@ block|,
 literal|"<ACRONYM_DEP>"
 block|}
 decl_stmt|;
-comment|/** @deprecated Please use {@link #TOKEN_TYPES} instead */
-DECL|field|tokenImage
-specifier|public
-specifier|static
-specifier|final
-name|String
-index|[]
-name|tokenImage
-init|=
-name|TOKEN_TYPES
-decl_stmt|;
-comment|/**    * Specifies whether deprecated acronyms should be replaced with HOST type.    * This is false by default to support backward compatibility.    *<p/>    * See http://issues.apache.org/jira/browse/LUCENE-1068    *     * @deprecated this should be removed in the next release (3.0).    */
 DECL|field|replaceInvalidAcronym
 specifier|private
 name|boolean
