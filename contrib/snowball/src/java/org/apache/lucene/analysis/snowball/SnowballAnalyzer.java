@@ -112,6 +112,9 @@ decl_stmt|;
 DECL|field|stopSet
 specifier|private
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopSet
 decl_stmt|;
 DECL|field|matchVersion

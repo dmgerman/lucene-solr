@@ -103,17 +103,12 @@ name|i
 operator|++
 control|)
 block|{
-operator|(
-operator|(
-name|IndexCommit
-operator|)
 name|commits
 operator|.
 name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
 operator|.
 name|delete
 argument_list|()

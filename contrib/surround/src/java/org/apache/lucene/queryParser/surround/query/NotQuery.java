@@ -85,6 +85,9 @@ specifier|public
 name|NotQuery
 parameter_list|(
 name|List
+argument_list|<
+name|SrndQuery
+argument_list|>
 name|queries
 parameter_list|,
 name|String
@@ -117,6 +120,9 @@ name|qf
 parameter_list|)
 block|{
 name|List
+argument_list|<
+name|Query
+argument_list|>
 name|luceneSubQueries
 init|=
 name|makeLuceneSubQueriesField
@@ -137,9 +143,6 @@ name|bq
 operator|.
 name|add
 argument_list|(
-operator|(
-name|Query
-operator|)
 name|luceneSubQueries
 operator|.
 name|get

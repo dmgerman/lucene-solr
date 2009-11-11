@@ -118,6 +118,11 @@ comment|/**    * This map stores hyphenation exceptions    */
 DECL|field|stoplist
 specifier|protected
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|ArrayList
+argument_list|>
 name|stoplist
 decl_stmt|;
 comment|/**    * This map stores the character classes    */
@@ -142,6 +147,11 @@ name|stoplist
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|ArrayList
+argument_list|>
 argument_list|(
 literal|23
 argument_list|)
@@ -1477,9 +1487,6 @@ comment|// null)
 name|ArrayList
 name|hw
 init|=
-operator|(
-name|ArrayList
-operator|)
 name|stoplist
 operator|.
 name|get

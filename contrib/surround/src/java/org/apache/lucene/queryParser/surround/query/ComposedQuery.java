@@ -50,6 +50,20 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
 begin_class
 DECL|class|ComposedQuery
 specifier|public
@@ -209,6 +223,9 @@ comment|/* else prefix operator */
 DECL|method|makeLuceneSubQueriesField
 specifier|public
 name|List
+argument_list|<
+name|Query
+argument_list|>
 name|makeLuceneSubQueriesField
 parameter_list|(
 name|String
@@ -219,10 +236,16 @@ name|qf
 parameter_list|)
 block|{
 name|List
+argument_list|<
+name|Query
+argument_list|>
 name|luceneSubQueries
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Iterator

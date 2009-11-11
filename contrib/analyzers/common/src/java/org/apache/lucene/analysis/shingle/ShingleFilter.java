@@ -168,6 +168,22 @@ name|AttributeSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+operator|.
+name|State
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>A ShingleFilter constructs shingles (token n-grams) from a token stream.  * In other words, it creates combinations of tokens as a single token.  *  *<p>For example, the sentence "please divide this sentence into shingles"  * might be tokenized into shingles "please divide", "divide this",  * "this sentence", "sentence into", and "into shingles".  *  *<p>This filter handles position increments> 1 by inserting filler tokens  * (tokens with termtext "_"). It does not handle a position increment of 0.  */
 end_comment
@@ -184,10 +200,16 @@ block|{
 DECL|field|shingleBuf
 specifier|private
 name|LinkedList
+argument_list|<
+name|State
+argument_list|>
 name|shingleBuf
 init|=
 operator|new
 name|LinkedList
+argument_list|<
+name|State
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|shingles
@@ -552,11 +574,6 @@ block|}
 block|}
 name|nextToken
 operator|=
-operator|(
-name|AttributeSource
-operator|.
-name|State
-operator|)
 name|shingleBuf
 operator|.
 name|getFirst
@@ -1101,6 +1118,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|State
+argument_list|>
 name|it
 init|=
 name|shingleBuf
@@ -1117,11 +1137,6 @@ control|)
 block|{
 name|restoreState
 argument_list|(
-operator|(
-name|AttributeSource
-operator|.
-name|State
-operator|)
 name|it
 operator|.
 name|next

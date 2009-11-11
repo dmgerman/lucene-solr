@@ -87,6 +87,9 @@ name|BooleanQuery
 name|bq
 parameter_list|,
 name|List
+argument_list|<
+name|Query
+argument_list|>
 name|queries
 parameter_list|,
 name|BooleanClause
@@ -117,9 +120,6 @@ name|bq
 operator|.
 name|add
 argument_list|(
-operator|(
-name|Query
-operator|)
 name|queries
 operator|.
 name|get
@@ -139,6 +139,9 @@ name|Query
 name|makeBooleanQuery
 parameter_list|(
 name|List
+argument_list|<
+name|Query
+argument_list|>
 name|queries
 parameter_list|,
 name|BooleanClause

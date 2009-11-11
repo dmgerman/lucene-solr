@@ -81,6 +81,9 @@ decl_stmt|;
 DECL|field|fieldNames
 specifier|private
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|fieldNames
 decl_stmt|;
 DECL|field|fieldOp
@@ -106,6 +109,9 @@ name|SrndQuery
 name|q
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|fieldNames
 parameter_list|,
 name|char
@@ -155,6 +161,9 @@ name|fieldNames
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|fieldNames
@@ -208,9 +217,6 @@ name|q
 operator|.
 name|makeLuceneQueryFieldNoBoost
 argument_list|(
-operator|(
-name|String
-operator|)
 name|fieldNames
 operator|.
 name|get
@@ -226,13 +232,22 @@ else|else
 block|{
 comment|/* OR query over the fields */
 name|List
+argument_list|<
+name|SrndQuery
+argument_list|>
 name|queries
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|SrndQuery
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|fni
 init|=
 name|getFieldNames
@@ -271,9 +286,6 @@ name|FieldsQuery
 argument_list|(
 name|qc
 argument_list|,
-operator|(
-name|String
-operator|)
 name|fni
 operator|.
 name|next
@@ -361,6 +373,9 @@ block|}
 DECL|method|getFieldNames
 specifier|public
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|getFieldNames
 parameter_list|()
 block|{
@@ -439,6 +454,9 @@ name|r
 parameter_list|)
 block|{
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|fni
 init|=
 name|getFieldNames
@@ -459,9 +477,6 @@ name|r
 operator|.
 name|append
 argument_list|(
-operator|(
-name|String
-operator|)
 name|fni
 operator|.
 name|next

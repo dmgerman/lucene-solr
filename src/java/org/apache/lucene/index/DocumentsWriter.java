@@ -4821,10 +4821,6 @@ block|}
 else|else
 name|b
 operator|=
-operator|(
-name|byte
-index|[]
-operator|)
 name|freeByteBlocks
 operator|.
 name|remove
@@ -5007,10 +5003,6 @@ block|}
 else|else
 name|b
 operator|=
-operator|(
-name|int
-index|[]
-operator|)
 name|freeIntBlocks
 operator|.
 name|remove
@@ -5231,10 +5223,6 @@ block|}
 else|else
 name|c
 operator|=
-operator|(
-name|char
-index|[]
-operator|)
 name|freeCharBlocks
 operator|.
 name|remove

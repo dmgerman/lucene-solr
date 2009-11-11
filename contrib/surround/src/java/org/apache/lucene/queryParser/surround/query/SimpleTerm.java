@@ -390,10 +390,16 @@ name|IOException
 block|{
 specifier|final
 name|List
+argument_list|<
+name|Query
+argument_list|>
 name|luceneSubQueries
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|visitMatchingTerms
@@ -455,9 +461,6 @@ operator|==
 literal|1
 operator|)
 condition|?
-operator|(
-name|Query
-operator|)
 name|luceneSubQueries
 operator|.
 name|get

@@ -130,6 +130,9 @@ block|}
 DECL|method|getWordsIterator
 specifier|public
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|getWordsIterator
 parameter_list|()
 block|{
@@ -145,10 +148,13 @@ class|class
 name|fileIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 block|{
 DECL|method|next
 specifier|public
-name|Object
+name|String
 name|next
 parameter_list|()
 block|{

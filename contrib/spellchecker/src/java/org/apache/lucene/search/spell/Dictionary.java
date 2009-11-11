@@ -41,6 +41,9 @@ block|{
 comment|/**    * Return all words present in the dictionary    * @return Iterator    */
 DECL|method|getWordsIterator
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|getWordsIterator
 parameter_list|()
 function_decl|;

@@ -149,6 +149,9 @@ DECL|method|getWordsIterator
 specifier|public
 specifier|final
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|getWordsIterator
 parameter_list|()
 block|{
@@ -164,6 +167,9 @@ class|class
 name|LuceneIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 block|{
 DECL|field|termEnum
 specifier|private
@@ -217,7 +223,7 @@ block|}
 block|}
 DECL|method|next
 specifier|public
-name|Object
+name|String
 name|next
 parameter_list|()
 block|{

@@ -125,6 +125,9 @@ specifier|public
 name|DistanceQuery
 parameter_list|(
 name|List
+argument_list|<
+name|SrndQuery
+argument_list|>
 name|queries
 parameter_list|,
 name|boolean

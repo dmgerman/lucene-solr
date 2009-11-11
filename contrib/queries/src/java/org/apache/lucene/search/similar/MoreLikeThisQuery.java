@@ -186,6 +186,9 @@ literal|5
 decl_stmt|;
 DECL|field|stopWords
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopWords
 init|=
 literal|null
@@ -533,6 +536,9 @@ block|}
 DECL|method|getStopWords
 specifier|public
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|getStopWords
 parameter_list|()
 block|{
@@ -546,6 +552,9 @@ name|void
 name|setStopWords
 parameter_list|(
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopWords
 parameter_list|)
 block|{
