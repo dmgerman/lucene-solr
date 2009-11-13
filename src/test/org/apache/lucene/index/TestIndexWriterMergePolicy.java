@@ -1315,11 +1315,19 @@ condition|)
 block|{
 name|assertTrue
 argument_list|(
-literal|"numSegments="
+literal|"maxMergeDocs="
+operator|+
+name|maxMergeDocs
+operator|+
+literal|"; numSegments="
 operator|+
 name|numSegments
 operator|+
-literal|" vs mergeFactor="
+literal|"; upperBound="
+operator|+
+name|upperBound
+operator|+
+literal|"; mergeFactor="
 operator|+
 name|mergeFactor
 argument_list|,
