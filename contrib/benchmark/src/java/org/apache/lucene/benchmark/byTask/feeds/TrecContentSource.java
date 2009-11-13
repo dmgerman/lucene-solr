@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a {@link ContentSource} over the TREC collection.  *<p>  * Supports the following configuration parameters (on top of  * {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory where the TREC files reside.  * Can be set to a relative path if "work.dir" is also specified  * (<b>default=trec</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the TREC documents content (<b>default=DemoHTMLParser</b>).  *<li><b>content.source.encoding</b> - if not specified, ISO-8859-1 is used.  *</ul>  */
+comment|/**  * Implements a {@link ContentSource} over the TREC collection.  *<p>  * Supports the following configuration parameters (on top of  * {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory where the TREC files reside.  * Can be set to a relative path if "work.dir" is also specified  * (<b>default=trec</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the TREC documents content (<b>default=DemoHTMLParser</b>).  *<li><b>content.source.encoding</b> - if not specified, ISO-8859-1 is used.  *<li><b>content.source.excludeIteration</b> - if true, do not append iteration number to docname  *</ul>  */
 end_comment
 
 begin_class
@@ -424,6 +424,11 @@ decl_stmt|;
 DECL|field|htmlParser
 name|HTMLParser
 name|htmlParser
+decl_stmt|;
+DECL|field|excludeDocnameIteration
+specifier|private
+name|boolean
+name|excludeDocnameIteration
 decl_stmt|;
 DECL|method|getDateFormatInfo
 specifier|private
@@ -1248,6 +1253,11 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|excludeDocnameIteration
+condition|)
 name|name
 operator|=
 name|name
@@ -1671,6 +1681,17 @@ operator|=
 literal|"ISO-8859-1"
 expr_stmt|;
 block|}
+name|excludeDocnameIteration
+operator|=
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"content.source.excludeIteration"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
