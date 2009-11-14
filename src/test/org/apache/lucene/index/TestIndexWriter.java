@@ -646,6 +646,20 @@ name|Version
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
 begin_class
 DECL|class|TestIndexWriter
 specifier|public
@@ -13897,17 +13911,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)
@@ -27965,7 +27971,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
+name|ThreadInterruptedException
 name|re
 parameter_list|)
 block|{
@@ -27977,17 +27983,16 @@ operator|.
 name|getCause
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
+name|assertTrue
+argument_list|(
 name|e
 operator|instanceof
 name|InterruptedException
-condition|)
-block|{
-comment|// Make sure IW restored interrupted bit
+argument_list|)
+expr_stmt|;
+comment|// Make sure IW cleared the interrupted bit
 if|if
 condition|(
-operator|!
 name|interrupted
 argument_list|()
 condition|)
@@ -27998,34 +28003,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"FAILED; InterruptedException hit but thread.interrupted() was false"
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-name|failed
-operator|=
-literal|true
-expr_stmt|;
-break|break;
-block|}
-block|}
-else|else
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"FAILED; unexpected exception"
+literal|"FAILED; InterruptedException hit but thread.interrupted() was true"
 argument_list|)
 expr_stmt|;
 name|e

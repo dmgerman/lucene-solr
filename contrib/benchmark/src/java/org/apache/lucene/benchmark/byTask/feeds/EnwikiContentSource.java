@@ -92,6 +92,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -309,7 +323,15 @@ parameter_list|(
 name|InterruptedException
 name|ie
 parameter_list|)
-block|{           }
+block|{
+throw|throw
+operator|new
+name|ThreadInterruptedException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -650,7 +672,15 @@ parameter_list|(
 name|InterruptedException
 name|ie
 parameter_list|)
-block|{                 }
+block|{
+throw|throw
+operator|new
+name|ThreadInterruptedException
+argument_list|(
+name|ie
+argument_list|)
+throw|;
+block|}
 block|}
 name|tuple
 operator|=

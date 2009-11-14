@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -473,19 +487,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-comment|// In 3.0 we will change this to throw
-comment|// InterruptedException instead
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)
@@ -709,19 +713,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-comment|// In 3.0 we will change this to throw
-comment|// InterruptedException instead
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)
@@ -1255,18 +1249,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-comment|// In 3.0 this will throw InterruptedException
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)

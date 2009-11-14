@@ -66,6 +66,20 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  */
 end_comment
@@ -414,19 +428,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-comment|// In 3.0 we will change this to throw
-comment|// InterruptedException instead
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)

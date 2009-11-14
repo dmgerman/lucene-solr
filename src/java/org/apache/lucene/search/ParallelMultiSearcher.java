@@ -200,6 +200,20 @@ name|PriorityQueue
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
 begin_comment
 comment|/** Implements parallel search over a set of<code>Searchables</code>.  *  *<p>Applications usually need only call the inherited {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods.  */
 end_comment
@@ -1078,24 +1092,14 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
 block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-comment|// In 3.0 we will change this to throw
-comment|// InterruptedException instead
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
-name|e
+name|ie
 argument_list|)
 throw|;
 block|}

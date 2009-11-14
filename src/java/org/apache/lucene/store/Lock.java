@@ -18,6 +18,20 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -213,27 +227,14 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
+name|ie
 parameter_list|)
 block|{
-comment|// In 3.0 we will change this to throw
-comment|// InterruptedException instead
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|IOException
+name|ThreadInterruptedException
 argument_list|(
-name|e
-operator|.
-name|toString
-argument_list|()
+name|ie
 argument_list|)
 throw|;
 block|}

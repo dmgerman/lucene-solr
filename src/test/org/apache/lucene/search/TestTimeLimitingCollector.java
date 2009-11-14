@@ -208,6 +208,20 @@ name|Version
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests the {@link TimeLimitingCollector}.  This test checks (1) search  * correctness (regardless of timeout), (2) expected timeout behavior,  * and (3) a sanity test with multiple searching threads.  */
 end_comment
@@ -1593,17 +1607,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)

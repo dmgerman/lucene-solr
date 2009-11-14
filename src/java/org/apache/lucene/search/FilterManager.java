@@ -76,6 +76,20 @@ name|TreeSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Filter caching singleton.  It can be used   * to save filters locally for reuse.  * This class makes it possible to cache Filters even when using RMI, as it  * keeps the cache on the searcher side of the RMI connection.  *   * Also could be used as a persistent storage for any filter as long as the  * filter provides a proper hashCode(), as that is used as the key in the cache.  *   * The cache is periodically cleaned up from a separate thread to ensure the  * cache doesn't exceed the maximum size.  */
 end_comment
@@ -688,17 +702,9 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|ThreadInterruptedException
 argument_list|(
 name|ie
 argument_list|)
