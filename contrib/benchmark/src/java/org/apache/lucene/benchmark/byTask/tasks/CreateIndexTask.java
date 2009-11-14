@@ -708,14 +708,6 @@ operator|.
 name|getConfig
 argument_list|()
 decl_stmt|;
-name|IndexDeletionPolicy
-name|indexDeletionPolicy
-init|=
-name|getIndexDeletionPolicy
-argument_list|(
-name|config
-argument_list|)
-decl_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -734,7 +726,10 @@ argument_list|()
 argument_list|,
 literal|true
 argument_list|,
-name|indexDeletionPolicy
+name|getIndexDeletionPolicy
+argument_list|(
+name|config
+argument_list|)
 argument_list|,
 name|IndexWriter
 operator|.

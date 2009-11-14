@@ -781,24 +781,52 @@ operator|=
 name|directory
 expr_stmt|;
 block|}
-comment|/**    * @return Returns the indexReader.    */
+comment|/**    * @return Returns the indexReader.  NOTE: this returns a    * reference.  You must call IndexReader.decRef() when    * you're done.    */
 DECL|method|getIndexReader
 specifier|public
+specifier|synchronized
 name|IndexReader
 name|getIndexReader
 parameter_list|()
 block|{
+if|if
+condition|(
+name|indexReader
+operator|!=
+literal|null
+condition|)
+block|{
+name|indexReader
+operator|.
+name|incRef
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|indexReader
 return|;
 block|}
-comment|/**    * @return Returns the indexSearcher.    */
+comment|/**    * @return Returns the indexSearcher.  NOTE: this returns    * a reference to the underlying IndexReader.  You must    * call IndexReader.decRef() when you're done.    */
 DECL|method|getIndexSearcher
 specifier|public
+specifier|synchronized
 name|IndexSearcher
 name|getIndexSearcher
 parameter_list|()
 block|{
+if|if
+condition|(
+name|indexReader
+operator|!=
+literal|null
+condition|)
+block|{
+name|indexReader
+operator|.
+name|incRef
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|indexSearcher
 return|;
@@ -806,13 +834,34 @@ block|}
 comment|/**    * @param indexReader The indexReader to set.    */
 DECL|method|setIndexReader
 specifier|public
+specifier|synchronized
 name|void
 name|setIndexReader
 parameter_list|(
 name|IndexReader
 name|indexReader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|indexReader
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Release current IR
+name|this
+operator|.
+name|indexReader
+operator|.
+name|decRef
+argument_list|()
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|indexReader
@@ -826,6 +875,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// Hold reference to new IR
+name|indexReader
+operator|.
+name|incRef
+argument_list|()
+expr_stmt|;
 name|indexSearcher
 operator|=
 operator|new

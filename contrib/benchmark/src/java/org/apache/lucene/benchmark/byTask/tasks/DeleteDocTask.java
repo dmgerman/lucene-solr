@@ -36,6 +36,20 @@ name|PerfRunData
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
 begin_comment
 comment|/**  * Delete a document by docid. If no docid param is supplied, deletes doc with  *<code>id = last-deleted-doc + doc.delete.step</code>.  */
 end_comment
@@ -114,11 +128,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|IndexReader
+name|r
+init|=
 name|getRunData
 argument_list|()
 operator|.
 name|getIndexReader
 argument_list|()
+decl_stmt|;
+name|r
 operator|.
 name|deleteDocument
 argument_list|(
@@ -128,6 +147,11 @@ expr_stmt|;
 name|lastDeleted
 operator|=
 name|docid
+expr_stmt|;
+name|r
+operator|.
+name|decRef
+argument_list|()
 expr_stmt|;
 return|return
 literal|1

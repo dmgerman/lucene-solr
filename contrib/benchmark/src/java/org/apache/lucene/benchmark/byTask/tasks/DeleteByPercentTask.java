@@ -359,6 +359,11 @@ operator|+
 literal|" docs"
 argument_list|)
 expr_stmt|;
+name|r
+operator|.
+name|decRef
+argument_list|()
+expr_stmt|;
 return|return
 name|numDeleted
 return|;
