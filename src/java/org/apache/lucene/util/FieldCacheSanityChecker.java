@@ -192,7 +192,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**     * Quick and dirty convenience method that instantiates an instance with     * "good defaults" and uses it to test the CacheEntry[]    * @see #check    */
+comment|/**     * Quick and dirty convenience method that instantiates an instance with     * "good defaults" and uses it to test the CacheEntrys    * @see #check    */
 DECL|method|checkSanity
 specifier|public
 specifier|static
@@ -201,7 +201,7 @@ index|[]
 name|checkSanity
 parameter_list|(
 name|CacheEntry
-index|[]
+modifier|...
 name|cacheEntries
 parameter_list|)
 block|{
@@ -241,7 +241,7 @@ index|[]
 name|check
 parameter_list|(
 name|CacheEntry
-index|[]
+modifier|...
 name|cacheEntries
 parameter_list|)
 block|{
@@ -1529,7 +1529,7 @@ name|String
 name|msg
 parameter_list|,
 name|CacheEntry
-index|[]
+modifier|...
 name|entries
 parameter_list|)
 block|{

@@ -286,8 +286,8 @@ name|Query
 name|subQuery
 parameter_list|,
 name|ValueSourceQuery
+modifier|...
 name|valSrcQueries
-index|[]
 parameter_list|)
 block|{
 name|super

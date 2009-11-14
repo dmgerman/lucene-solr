@@ -438,7 +438,7 @@ name|Version
 name|matchVersion
 parameter_list|,
 name|String
-index|[]
+modifier|...
 name|stopwords
 parameter_list|)
 block|{

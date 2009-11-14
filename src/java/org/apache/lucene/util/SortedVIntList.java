@@ -107,7 +107,7 @@ specifier|public
 name|SortedVIntList
 parameter_list|(
 name|int
-index|[]
+modifier|...
 name|sortedInts
 parameter_list|)
 block|{

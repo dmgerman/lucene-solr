@@ -181,7 +181,7 @@ specifier|public
 name|SpanOrQuery
 parameter_list|(
 name|SpanQuery
-index|[]
+modifier|...
 name|clauses
 parameter_list|)
 block|{
