@@ -101,7 +101,7 @@ specifier|private
 name|int
 name|maxThreadCount
 init|=
-literal|3
+literal|1
 decl_stmt|;
 DECL|field|dir
 specifier|protected
