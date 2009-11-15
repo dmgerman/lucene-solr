@@ -485,6 +485,37 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** Returns a IndexReader reading the index in the given    *  Directory, with readOnly=true.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+DECL|method|open
+specifier|public
+specifier|static
+name|IndexReader
+name|open
+parameter_list|(
+specifier|final
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|directory
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|,
+name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|)
+return|;
+block|}
 comment|/** Returns an IndexReader reading the index in the given    *  Directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param directory the index directory    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
