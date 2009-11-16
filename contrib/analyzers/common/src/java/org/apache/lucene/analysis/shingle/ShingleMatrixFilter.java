@@ -590,7 +590,7 @@ specifier|private
 name|FlagsAttribute
 name|in_flagsAtt
 decl_stmt|;
-comment|/**    * Creates a shingle filter based on a user defined matrix.    *    * The filter /will/ delete columns from the input matrix! You will not be able to reset the filter if you used this constructor.    * todo: don't touch the matrix! use a boolean, set the input stream to null or something, and keep track of where in the matrix we are at.    *    * @param matrix the input based for creating shingles. Does not need to contain any information until {@link org.apache.lucene.analysis.shingle.ShingleMatrixFilter#next(org.apache.lucene.analysis.Token)} is called the first time.    * @param minimumShingleSize minimum number of tokens in any shingle.    * @param maximumShingleSize maximum number of tokens in any shingle.    * @param spacerCharacter character to use between texts of the token parts in a shingle. null for none.    * @param ignoringSinglePrefixOrSuffixShingle if true, shingles that only contains permutation of the first of the last column will not be produced as shingles. Useful when adding boundary marker tokens such as '^' and '$'.    * @param settingsCodec codec used to read input token weight and matrix positioning.    */
+comment|/**    * Creates a shingle filter based on a user defined matrix.    *    * The filter /will/ delete columns from the input matrix! You will not be able to reset the filter if you used this constructor.    * todo: don't touch the matrix! use a boolean, set the input stream to null or something, and keep track of where in the matrix we are at.    *    * @param matrix the input based for creating shingles. Does not need to contain any information until {@link #incrementToken()} is called the first time.    * @param minimumShingleSize minimum number of tokens in any shingle.    * @param maximumShingleSize maximum number of tokens in any shingle.    * @param spacerCharacter character to use between texts of the token parts in a shingle. null for none.    * @param ignoringSinglePrefixOrSuffixShingle if true, shingles that only contains permutation of the first of the last column will not be produced as shingles. Useful when adding boundary marker tokens such as '^' and '$'.    * @param settingsCodec codec used to read input token weight and matrix positioning.    */
 DECL|method|ShingleMatrixFilter
 specifier|public
 name|ShingleMatrixFilter
@@ -1104,7 +1104,7 @@ specifier|private
 name|int
 name|currentShingleLength
 decl_stmt|;
-comment|/**    * a set containing shingles that has been the result of a call to next(Token),    * used to avoid producing the same shingle more than once.    */
+comment|/**    * a set containing shingles that has been the result of a call to {@link #incrementToken()},    * used to avoid producing the same shingle more than once.    */
 DECL|field|shinglesSeen
 specifier|private
 name|Set
@@ -2165,7 +2165,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**    * Final touch of a shingle token before it is passed on to the consumer from method {@link #next(org.apache.lucene.analysis.Token)}.    *    * Calculates and sets type, flags, position increment, start/end offsets and weight.    *    * @param token Shingle token    * @param shingle Tokens used to produce the shingle token.    * @param currentPermutationStartOffset Start offset in parameter currentPermutationTokens    * @param currentPermutationRows index to Matrix.Column.Row from the position of tokens in parameter currentPermutationTokens    * @param currentPermuationTokens tokens of the current permutation of rows in the matrix.    */
+comment|/**    * Final touch of a shingle token before it is passed on to the consumer from method {@link #incrementToken()}.    *    * Calculates and sets type, flags, position increment, start/end offsets and weight.    *    * @param token Shingle token    * @param shingle Tokens used to produce the shingle token.    * @param currentPermutationStartOffset Start offset in parameter currentPermutationTokens    * @param currentPermutationRows index to Matrix.Column.Row from the position of tokens in parameter currentPermutationTokens    * @param currentPermuationTokens tokens of the current permutation of rows in the matrix.    */
 DECL|method|updateToken
 specifier|public
 name|void
