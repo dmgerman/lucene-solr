@@ -689,7 +689,7 @@ name|DEFAULT_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words and stemming exclusion words    *     * @param matchversion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
+comment|/**    * Builds an analyzer with the given stop words and stemming exclusion words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer

@@ -680,7 +680,7 @@ operator|=
 name|matchVersion
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words and stemming exclusion words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    * @param stemExclutionSet    *          a stemming exclusion set    */
+comment|/**    * Builds an analyzer with the given stop words and stemming exclusion words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
 DECL|method|BrazilianAnalyzer
 specifier|public
 name|BrazilianAnalyzer
@@ -692,7 +692,7 @@ name|Set
 argument_list|<
 name|?
 argument_list|>
-name|stopset
+name|stopwords
 parameter_list|,
 name|Set
 argument_list|<
@@ -705,7 +705,7 @@ name|this
 argument_list|(
 name|matchVersion
 argument_list|,
-name|stopset
+name|stopwords
 argument_list|)
 expr_stmt|;
 name|excltable

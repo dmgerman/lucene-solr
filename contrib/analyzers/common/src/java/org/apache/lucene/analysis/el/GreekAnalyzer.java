@@ -449,7 +449,7 @@ name|DEFAULT_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words       *       * @param matchversion      *          lucene compatibility version      * @param stopwords      *          a stopword set      */
+comment|/**      * Builds an analyzer with the given stop words       *       * @param matchVersion      *          lucene compatibility version      * @param stopwords      *          a stopword set      */
 DECL|method|GreekAnalyzer
 specifier|public
 name|GreekAnalyzer

@@ -266,7 +266,7 @@ extends|extends
 name|Analyzer
 block|{
 comment|/**    * Extended list of typical French stopwords.    * @deprecated use {@link #getDefaultStopSet()} instead    */
-comment|// TODO make this final in 3.1
+comment|// TODO make this private in 3.1
 DECL|field|FRENCH_STOP_WORDS
 specifier|public
 specifier|final
@@ -811,7 +811,7 @@ name|DEFAULT_STOP_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words    *     * @param matchversion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
+comment|/**    * Builds an analyzer with the given stop words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -838,7 +838,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words    *     * @param matchversion    *          lucene compatibility version    * @param stopwords    *          a stopword set    * @param stemExclutionSet    *          a stemming exclusion set    */
+comment|/**    * Builds an analyzer with the given stop words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    * @param stemExclutionSet    *          a stemming exclusion set    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
