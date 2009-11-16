@@ -42,6 +42,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|LowerCaseFilter
 import|;
 end_import
@@ -204,6 +218,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -241,7 +265,8 @@ name|FrenchAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/**    * Extended list of typical French stopwords.    */
+comment|/**    * Extended list of typical French stopwords.    * @deprecated use {@link #getDefaultStopSet()} instead    */
+comment|// TODO make this final in 3.1
 DECL|field|FRENCH_STOP_WORDS
 specifier|public
 specifier|final
@@ -689,17 +714,21 @@ decl_stmt|;
 comment|/**    * Contains the stopwords used with the {@link StopFilter}.    */
 DECL|field|stoptable
 specifier|private
+specifier|final
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stoptable
-init|=
-operator|new
-name|HashSet
-argument_list|()
 decl_stmt|;
 comment|/**    * Contains words that should be indexed but not stemmed.    */
+comment|//TODO make this final in 3.0
 DECL|field|excltable
 specifier|private
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|excltable
 init|=
 operator|new
@@ -712,6 +741,57 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
+comment|/**    * Returns an unmodifiable instance of the default stop-words set.    * @return an unmodifiable instance of the default stop-words set.    */
+DECL|method|getDefaultStopSet
+specifier|public
+specifier|static
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|getDefaultStopSet
+parameter_list|()
+block|{
+return|return
+name|DefaultSetHolder
+operator|.
+name|DEFAULT_STOP_SET
+return|;
+block|}
+DECL|class|DefaultSetHolder
+specifier|private
+specifier|static
+class|class
+name|DefaultSetHolder
+block|{
+DECL|field|DEFAULT_STOP_SET
+specifier|static
+specifier|final
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|DEFAULT_STOP_SET
+init|=
+name|CharArraySet
+operator|.
+name|unmodifiableSet
+argument_list|(
+operator|new
+name|CharArraySet
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|FRENCH_STOP_WORDS
+argument_list|)
+argument_list|,
+literal|false
+argument_list|)
+argument_list|)
+decl_stmt|;
+block|}
 comment|/**    * Builds an analyzer with the default stop words ({@link #FRENCH_STOP_WORDS}).    */
 DECL|method|FrenchAnalyzer
 specifier|public
@@ -721,23 +801,104 @@ name|Version
 name|matchVersion
 parameter_list|)
 block|{
-name|stoptable
-operator|=
-name|StopFilter
-operator|.
-name|makeStopSet
+name|this
 argument_list|(
-name|FRENCH_STOP_WORDS
+name|matchVersion
+argument_list|,
+name|DefaultSetHolder
+operator|.
+name|DEFAULT_STOP_SET
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Builds an analyzer with the given stop words    *     * @param matchversion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
+DECL|method|FrenchAnalyzer
+specifier|public
+name|FrenchAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|stopwords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
+name|stopwords
+argument_list|,
+name|CharArraySet
+operator|.
+name|EMPTY_SET
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Builds an analyzer with the given stop words    *     * @param matchversion    *          lucene compatibility version    * @param stopwords    *          a stopword set    * @param stemExclutionSet    *          a stemming exclusion set    */
+DECL|method|FrenchAnalyzer
+specifier|public
+name|FrenchAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|stopwords
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|stemExclutionSet
+parameter_list|)
+block|{
 name|this
 operator|.
 name|matchVersion
 operator|=
 name|matchVersion
 expr_stmt|;
+name|this
+operator|.
+name|stoptable
+operator|=
+name|CharArraySet
+operator|.
+name|unmodifiableSet
+argument_list|(
+name|CharArraySet
+operator|.
+name|copy
+argument_list|(
+name|stopwords
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|excltable
+operator|=
+name|CharArraySet
+operator|.
+name|unmodifiableSet
+argument_list|(
+name|CharArraySet
+operator|.
+name|copy
+argument_list|(
+name|stemExclutionSet
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/**    * Builds an analyzer with the given stop words.    * @deprecated use {@link #FrenchAnalyzer(Version, Set)} instead    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -750,23 +911,20 @@ modifier|...
 name|stopwords
 parameter_list|)
 block|{
-name|stoptable
-operator|=
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
 name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
 name|stopwords
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    * @throws IOException    */
+comment|/**    * Builds an analyzer with the given stop words.    * @throws IOException    * @deprecated use {@link #FrenchAnalyzer(Version, Set)} instead    */
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -780,11 +938,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|stoptable
-operator|=
-operator|new
-name|HashSet
+name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|WordlistLoader
 operator|.
 name|getWordSet
@@ -793,14 +950,8 @@ name|stopwords
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
-expr_stmt|;
 block|}
-comment|/**    * Builds an exclusionlist from an array of Strings.    */
+comment|/**    * Builds an exclusionlist from an array of Strings.    * @deprecated use {@link #FrenchAnalyzer(Version, Set, Set)} instead    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -827,7 +978,7 @@ argument_list|)
 expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
-comment|/**    * Builds an exclusionlist from a Map.    */
+comment|/**    * Builds an exclusionlist from a Map.    * @deprecated use {@link #FrenchAnalyzer(Version, Set, Set)} instead    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -855,7 +1006,7 @@ argument_list|)
 expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
-comment|/**    * Builds an exclusionlist from the words contained in the given file.    * @throws IOException    */
+comment|/**    * Builds an exclusionlist from the words contained in the given file.    * @throws IOException    * @deprecated use {@link #FrenchAnalyzer(Version, Set, Set)} instead    */
 DECL|method|setStemExclusionTable
 specifier|public
 name|void

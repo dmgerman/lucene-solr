@@ -84,16 +84,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Hashtable
 import|;
 end_import
@@ -119,6 +109,20 @@ operator|.
 name|analysis
 operator|.
 name|Analyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|CharArraySet
 import|;
 end_import
 
@@ -239,7 +243,7 @@ name|?
 argument_list|>
 name|stoptable
 decl_stmt|;
-comment|/**    * The comment character in the stopwords file.  All lines prefixed with this will be ignored      */
+comment|/**    * The comment character in the stopwords file.  All lines prefixed with this will be ignored    * @deprecated use {@link WordlistLoader#getWordSet(File, String)} directly      */
 DECL|field|STOPWORDS_COMMENT
 specifier|public
 specifier|static
@@ -388,19 +392,52 @@ name|matchVersion
 parameter_list|)
 block|{
 name|this
-operator|.
+argument_list|(
 name|matchVersion
-operator|=
-name|matchVersion
-expr_stmt|;
-name|stoptable
-operator|=
+argument_list|,
 name|DefaultSetHolder
 operator|.
 name|DEFAULT_STOP_SET
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/**    * Builds an analyzer with the given stop words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
+DECL|method|ArabicAnalyzer
+specifier|public
+name|ArabicAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|stopwords
+parameter_list|)
+block|{
+name|stoptable
+operator|=
+name|CharArraySet
+operator|.
+name|unmodifiableSet
+argument_list|(
+name|CharArraySet
+operator|.
+name|copy
+argument_list|(
+name|stopwords
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
+block|}
+comment|/**    * Builds an analyzer with the given stop words.    * @deprecated use {@link #ArabicAnalyzer(Version, Set)} instead    */
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
@@ -413,23 +450,20 @@ modifier|...
 name|stopwords
 parameter_list|)
 block|{
-name|stoptable
-operator|=
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
 name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
 name|stopwords
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    */
+comment|/**    * Builds an analyzer with the given stop words.    * @deprecated use {@link #ArabicAnalyzer(Version, Set)} instead    */
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
@@ -446,25 +480,18 @@ argument_list|>
 name|stopwords
 parameter_list|)
 block|{
-name|stoptable
-operator|=
-operator|new
-name|HashSet
+name|this
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopwords
 operator|.
 name|keySet
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
-expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.  Lines can be commented out using {@link #STOPWORDS_COMMENT}    */
+comment|/**    * Builds an analyzer with the given stop words.  Lines can be commented out using {@link #STOPWORDS_COMMENT}    * @deprecated use {@link #ArabicAnalyzer(Version, Set)} instead    */
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
@@ -478,8 +505,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|stoptable
-operator|=
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
 name|WordlistLoader
 operator|.
 name|getWordSet
@@ -488,12 +517,7 @@ name|stopwords
 argument_list|,
 name|STOPWORDS_COMMENT
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}.    *    * @return  A {@link TokenStream} built from an {@link ArabicLetterTokenizer} filtered with    * 			{@link LowerCaseFilter}, {@link StopFilter}, {@link ArabicNormalizationFilter}    *            and {@link ArabicStemFilter}.    */
