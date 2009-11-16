@@ -209,7 +209,7 @@ return|return
 name|mergeThreadPriority
 return|;
 block|}
-comment|/** Return the priority that merge threads run at. */
+comment|/** Set the priority that merge threads run at. */
 DECL|method|setMergeThreadPriority
 specifier|public
 specifier|synchronized
