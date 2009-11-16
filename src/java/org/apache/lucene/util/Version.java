@@ -54,6 +54,10 @@ comment|/** Match settings and bugs in Lucene's 3.0 release. */
 DECL|enum constant|LUCENE_30
 name|LUCENE_30
 block|,
+comment|/** Match settings and bugs in Lucene's 3.1 release. */
+DECL|enum constant|LUCENE_31
+name|LUCENE_31
+block|,
 comment|/* Add new constants for later versions **here** to respect order! */
 comment|/** Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    *    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If precise back compatibility is important    * then you should instead explicitly specify an actual    * version.    */
 DECL|enum constant|LUCENE_CURRENT

@@ -310,7 +310,7 @@ name|LUCENE_MAIN_VERSION
 init|=
 name|ident
 argument_list|(
-literal|"3.0"
+literal|"3.1"
 argument_list|)
 decl_stmt|;
 DECL|field|LUCENE_VERSION
