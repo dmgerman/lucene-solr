@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create a range query over a function.  *<br>Other parameters:  *<br><code>l</code>, the lower bound, optional)  *<br><code>u</code>, the upper bound, optional)  *<br><code>incl</code>, include the lower bound: true/false, optional, default=true  *<br><code>incu</code>, include the upper bound: true/false, optional, default=true  *<br>Example:<code>{!frange l=1000 u=50000}myfield</code>  */
+comment|/**  * Create a range query over a function.  *<br>Other parameters:  *<br><code>l</code>, the lower bound, optional)  *<br><code>u</code>, the upper bound, optional)  *<br><code>incl</code>, include the lower bound: true/false, optional, default=true  *<br><code>incu</code>, include the upper bound: true/false, optional, default=true  *<br>Example:<code>{!frange l=1000 u=50000}myfield</code>  *<br>Filter query example:<code>fq={!frange l=0 u=2.2}sum(user_ranking,editor_ranking)</code>   */
 end_comment
 
 begin_class
