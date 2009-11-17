@@ -243,7 +243,6 @@ return|return
 literal|"dist"
 return|;
 block|}
-empty_stmt|;
 comment|/**    * Calculate the distance    *    * @param doc        The current doc    * @param docValues1 The values from the first set of value sources    * @param docValues2 The values from the second set of value sources    * @return The distance    */
 DECL|method|distance
 specifier|protected
@@ -738,9 +737,6 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|(
-name|double
-operator|)
 name|distance
 argument_list|(
 name|doc
@@ -1081,26 +1077,19 @@ literal|31
 operator|*
 name|result
 operator|+
-operator|(
-name|power
-operator|!=
-operator|+
-literal|0.0f
-condition|?
 name|Float
 operator|.
-name|floatToIntBits
+name|floatToRawIntBits
 argument_list|(
 name|power
 argument_list|)
-else|:
-literal|0
-operator|)
 expr_stmt|;
 return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
