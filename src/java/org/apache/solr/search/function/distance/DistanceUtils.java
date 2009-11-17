@@ -30,7 +30,7 @@ specifier|public
 class|class
 name|DistanceUtils
 block|{
-comment|/**    * @see org.apache.solr.search.function.distance.HaversineFunction    *     * @param x1    * @param y1    * @param x2    * @param y2    * @param radius    * @return    */
+comment|/**    * @see org.apache.solr.search.function.distance.HaversineFunction    *     * @param x1 The x coordinate of the first point    * @param y1 The y coordinate of the first point    * @param x2 The x coordinate of the second point    * @param y2 The y coordinate of the second point    * @param radius The radius of the sphere    * @return The distance between the two points, as determined by the Haversine formula.    */
 DECL|method|haversine
 specifier|public
 specifier|static
