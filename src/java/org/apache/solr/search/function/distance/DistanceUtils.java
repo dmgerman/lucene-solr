@@ -95,8 +95,8 @@ operator|.
 name|sin
 argument_list|(
 name|diffX
-operator|/
-literal|2
+operator|*
+literal|0.5
 argument_list|)
 decl_stmt|;
 name|double
@@ -107,8 +107,8 @@ operator|.
 name|sin
 argument_list|(
 name|diffY
-operator|/
-literal|2
+operator|*
+literal|0.5
 argument_list|)
 decl_stmt|;
 name|double
