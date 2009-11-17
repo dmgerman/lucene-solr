@@ -23,7 +23,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/*  NOTE: if you change this file and need to regenerate the tokenizer,       remember to use JRE 1.4 when running jflex (before Lucene 3.0).       This grammar now uses constructs (eg :digit:) whose meaning can       vary according to the JRE used to run jflex.  See       https://issues.apache.org/jira/browse/LUCENE-1126 for details  */
+comment|/*  WARNING: if you change StandardTokenizerImpl.jflex and need to regenerate       the tokenizer, only use Java 1.4 !!!       This grammar currently uses constructs (eg :digit:, :letter:) whose        meaning can vary according to the JRE used to run jflex.  See       https://issues.apache.org/jira/browse/LUCENE-1126 for details.       For current backwards compatibility it is needed to support       only Java 1.4 - this will change in Lucene 3.1.  */
 end_comment
 
 begin_import
