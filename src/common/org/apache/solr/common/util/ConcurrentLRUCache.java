@@ -624,6 +624,9 @@ argument_list|,
 name|e
 argument_list|)
 decl_stmt|;
+name|int
+name|currentSize
+decl_stmt|;
 if|if
 condition|(
 name|oldCacheEntry
@@ -631,11 +634,25 @@ operator|==
 literal|null
 condition|)
 block|{
+name|currentSize
+operator|=
 name|stats
 operator|.
 name|size
 operator|.
 name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|currentSize
+operator|=
+name|stats
+operator|.
+name|size
+operator|.
+name|get
 argument_list|()
 expr_stmt|;
 block|}
@@ -674,12 +691,7 @@ comment|// Thread safety note: isCleaning read is piggybacked (comes after) othe
 comment|// in this method.
 if|if
 condition|(
-name|stats
-operator|.
-name|size
-operator|.
-name|get
-argument_list|()
+name|currentSize
 operator|>
 name|upperWaterMark
 operator|&&
@@ -831,7 +843,7 @@ decl_stmt|;
 name|long
 name|newOldestEntry
 init|=
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
@@ -1030,7 +1042,7 @@ name|oldestEntry
 operator|=
 name|newOldestEntry
 operator|==
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 condition|?
@@ -1040,7 +1052,7 @@ name|newOldestEntry
 expr_stmt|;
 name|newOldestEntry
 operator|=
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 expr_stmt|;
@@ -1232,7 +1244,7 @@ name|oldestEntry
 operator|=
 name|newOldestEntry
 operator|==
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 condition|?
@@ -1242,7 +1254,7 @@ name|newOldestEntry
 expr_stmt|;
 name|newOldestEntry
 operator|=
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 expr_stmt|;
@@ -1531,7 +1543,7 @@ name|oldestEntry
 operator|=
 name|newOldestEntry
 operator|==
-name|Integer
+name|Long
 operator|.
 name|MAX_VALUE
 condition|?
