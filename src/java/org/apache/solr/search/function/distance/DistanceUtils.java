@@ -58,6 +58,7 @@ name|result
 init|=
 literal|0
 decl_stmt|;
+comment|//make sure they aren't all the same, as then we can just return 0
 if|if
 condition|(
 operator|(

@@ -221,11 +221,6 @@ name|y2DV
 parameter_list|)
 block|{
 name|double
-name|result
-init|=
-literal|0
-decl_stmt|;
-name|double
 name|x1
 init|=
 name|x1DV
@@ -266,9 +261,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-comment|//make sure they aren't all the same, as then we can just return 0
-name|result
-operator|=
+return|return
 name|DistanceUtils
 operator|.
 name|haversine
@@ -283,9 +276,6 @@ name|y2
 argument_list|,
 name|radius
 argument_list|)
-expr_stmt|;
-return|return
-name|result
 return|;
 block|}
 annotation|@
