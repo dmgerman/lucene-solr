@@ -187,7 +187,7 @@ specifier|protected
 name|Query
 name|query
 decl_stmt|;
-comment|/**    * Constructor for the QParser    * @param qstr The whole query string    * @param localParams The set of parameters that are specific to this QParser.  See http://wiki.apache.org/solr/LocalParams    * @param params The rest of the {@link org.apache.solr.common.params.SolrParams}    * @param req The original {@link org.apache.solr.request.SolrQueryRequest}.    */
+comment|/**    * Constructor for the QParser    * @param qstr The part of the query string specific to this parser    * @param localParams The set of parameters that are specific to this QParser.  See http://wiki.apache.org/solr/LocalParams    * @param params The rest of the {@link org.apache.solr.common.params.SolrParams}    * @param req The original {@link org.apache.solr.request.SolrQueryRequest}.    */
 DECL|method|QParser
 specifier|public
 name|QParser
