@@ -124,20 +124,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|search
-operator|.
-name|SolrQueryWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|XMLWriter
@@ -1303,15 +1289,8 @@ argument_list|,
 name|maxInclusive
 argument_list|)
 decl_stmt|;
-comment|// NumericRangeQuery extends MultiTermQuery but returns null for getTerm() which currently breaks
-comment|// the span based highlighter in Lucene 2.9.0.  Wrapping the query prevents the highlighter
-comment|// from calling getTerm()
 return|return
-operator|new
-name|SolrQueryWrapper
-argument_list|(
 name|query
-argument_list|)
 return|;
 block|}
 block|}
