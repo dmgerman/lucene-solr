@@ -1257,6 +1257,8 @@ operator|.
 name|getType
 argument_list|()
 decl_stmt|;
+name|f
+operator|=
 name|binaryField
 operator|.
 name|createField
