@@ -116,6 +116,11 @@ name|nextTaskRunNum
 init|=
 literal|0
 decl_stmt|;
+DECL|field|currentStats
+specifier|private
+name|TaskStats
+name|currentStats
+decl_stmt|;
 comment|/**    * Create a Points statistics object.     */
 DECL|method|Points
 specifier|public
@@ -174,6 +179,12 @@ argument_list|,
 name|round
 argument_list|)
 decl_stmt|;
+name|this
+operator|.
+name|currentStats
+operator|=
+name|stats
+expr_stmt|;
 name|points
 operator|.
 name|add
@@ -183,6 +194,16 @@ argument_list|)
 expr_stmt|;
 return|return
 name|stats
+return|;
+block|}
+DECL|method|getCurrentStats
+specifier|public
+name|TaskStats
+name|getCurrentStats
+parameter_list|()
+block|{
+return|return
+name|currentStats
 return|;
 block|}
 comment|// return next task num

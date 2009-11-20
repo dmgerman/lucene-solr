@@ -3641,6 +3641,15 @@ condition|)
 return|return
 literal|false
 return|;
+specifier|final
+name|long
+name|t0
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -3788,6 +3797,30 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"apply deletes took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|t0
+operator|)
+operator|+
+literal|" msec"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|any
 return|;

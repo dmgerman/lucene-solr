@@ -654,6 +654,67 @@ literal|1500
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testBGSearchTaskThreads
+specifier|public
+name|void
+name|testBGSearchTaskThreads
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|algLines
+index|[]
+init|=
+block|{
+literal|"log.time.step.msec = 100"
+block|,
+literal|"ResetSystemErase"
+block|,
+literal|"CreateIndex"
+block|,
+literal|"{ AddDoc } : 1000"
+block|,
+literal|"Optimize"
+block|,
+literal|"CloseIndex"
+block|,
+literal|"OpenReader"
+block|,
+literal|"{"
+block|,
+literal|"  [ \"XSearch\" { CountingSearchTest> : * ] : 2&-1"
+block|,
+literal|"  Wait(1.0)"
+block|,
+literal|"}"
+block|,
+literal|"CloseReader"
+block|,
+literal|"RepSumByPref X"
+block|}
+decl_stmt|;
+name|CountingSearchTestTask
+operator|.
+name|numSearches
+operator|=
+literal|0
+expr_stmt|;
+name|execBenchmark
+argument_list|(
+name|algLines
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|CountingSearchTestTask
+operator|.
+name|numSearches
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testHighlighting
 specifier|public
 name|void

@@ -10769,6 +10769,15 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+specifier|final
+name|long
+name|t0
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 try|try
@@ -10940,6 +10949,30 @@ argument_list|(
 name|oom
 argument_list|,
 literal|"merge"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"merge time "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|t0
+operator|)
+operator|+
+literal|" msec"
 argument_list|)
 expr_stmt|;
 block|}
