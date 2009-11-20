@@ -1245,10 +1245,23 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+comment|/** @deprecated Use {@link #getDirectory} instead. */
 DECL|method|getFile
 specifier|public
 name|File
 name|getFile
+parameter_list|()
+block|{
+return|return
+name|getDirectory
+argument_list|()
+return|;
+block|}
+comment|/** @return the underlying filesystem directory */
+DECL|method|getDirectory
+specifier|public
+name|File
+name|getDirectory
 parameter_list|()
 block|{
 name|ensureOpen
