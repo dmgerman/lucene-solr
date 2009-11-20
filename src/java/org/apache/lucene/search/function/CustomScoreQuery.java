@@ -1535,12 +1535,7 @@ argument_list|,
 literal|"no matching docs"
 argument_list|)
 else|:
-name|doExplain
-argument_list|(
-name|reader
-argument_list|,
-name|doc
-argument_list|)
+name|explain
 return|;
 block|}
 DECL|method|doExplain
