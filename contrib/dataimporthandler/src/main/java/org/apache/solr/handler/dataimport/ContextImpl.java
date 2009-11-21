@@ -358,6 +358,15 @@ return|;
 if|if
 condition|(
 name|entity
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+if|if
+condition|(
+name|entity
 operator|.
 name|dataSrc
 operator|==
