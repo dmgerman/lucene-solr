@@ -1287,6 +1287,18 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|termTemplate
+specifier|private
+specifier|final
+name|Term
+name|termTemplate
+init|=
+operator|new
+name|Term
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
 DECL|field|currentUpperBound
 specifier|private
 name|String
@@ -1727,17 +1739,13 @@ name|boolean
 name|endEnum
 parameter_list|()
 block|{
-assert|assert
-literal|false
-assert|;
-comment|// should never be called
-return|return
-operator|(
-name|currentTerm
-operator|==
-literal|null
-operator|)
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"not implemented"
+argument_list|)
+throw|;
 block|}
 comment|/**      * Compares if current upper bound is reached,      * this also updates the term count for statistics.      * In contrast to {@link FilteredTermEnum}, a return value      * of<code>false</code> ends iterating the current enum      * and forwards to the next sub-range.      */
 annotation|@
@@ -1841,9 +1849,19 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
+assert|assert
+name|rangeBounds
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+assert|;
 return|return
 literal|false
 return|;
+block|}
 comment|// close the current enum and read next bounds
 if|if
 condition|(
@@ -1890,11 +1908,10 @@ name|reader
 operator|.
 name|terms
 argument_list|(
-operator|new
-name|Term
+name|termTemplate
+operator|.
+name|createTerm
 argument_list|(
-name|field
-argument_list|,
 name|lowerBound
 argument_list|)
 argument_list|)
