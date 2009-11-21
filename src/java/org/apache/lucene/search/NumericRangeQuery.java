@@ -1734,7 +1734,7 @@ comment|// should never be called
 return|return
 operator|(
 name|currentTerm
-operator|!=
+operator|==
 literal|null
 operator|)
 return|;
