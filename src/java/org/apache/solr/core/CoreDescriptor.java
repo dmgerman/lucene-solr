@@ -467,6 +467,24 @@ name|dataDir
 operator|=
 name|s
 expr_stmt|;
+comment|// normalize zero length to null.
+if|if
+condition|(
+name|dataDir
+operator|!=
+literal|null
+operator|&&
+name|dataDir
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+name|dataDir
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/**@return the core instance directory. */
 DECL|method|getInstanceDir
