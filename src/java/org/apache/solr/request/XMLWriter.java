@@ -1060,6 +1060,7 @@ operator|=
 name|doIndent
 expr_stmt|;
 block|}
+comment|/** Writes the XML attribute name/val. A null val means that the attribute is missing. */
 DECL|method|writeAttr
 specifier|public
 name|void
