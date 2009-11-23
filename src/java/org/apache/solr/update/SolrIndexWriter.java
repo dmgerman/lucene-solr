@@ -524,6 +524,24 @@ operator|.
 name|useCompoundFile
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|config
+operator|.
+name|mergeFactor
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|setMergeFactor
+argument_list|(
+name|config
+operator|.
+name|mergeFactor
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -531,7 +549,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Use of compound file format cannot be configured if merge policy is not an instance "
+literal|"Use of compound file format or mergefactor cannot be configured if merge policy is not an instance "
 operator|+
 literal|"of LogMergePolicy. The configured policy's defaults will be used."
 argument_list|)
