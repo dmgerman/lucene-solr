@@ -457,12 +457,12 @@ decl_stmt|;
 name|String
 name|text
 init|=
-literal|"one two three"
+literal|"one two three si\uD834\uDD1Ex"
 decl_stmt|;
 name|String
 name|expected1
 init|=
-literal|"one \u0001eno two \u0001owt three \u0001eerht"
+literal|"one \u0001eno two \u0001owt three \u0001eerht si\uD834\uDD1Ex \u0001x\uD834\uDD1Eis"
 decl_stmt|;
 name|List
 argument_list|<
@@ -524,7 +524,7 @@ block|}
 name|String
 name|expected2
 init|=
-literal|"\u0001eno \u0001owt \u0001eerht"
+literal|"\u0001eno \u0001owt \u0001eerht \u0001x\uD834\uDD1Eis"
 decl_stmt|;
 name|List
 argument_list|<
@@ -548,7 +548,7 @@ decl_stmt|;
 name|String
 name|expected3
 init|=
-literal|"one two three"
+literal|"one two three si\uD834\uDD1Ex"
 decl_stmt|;
 name|List
 argument_list|<
@@ -737,22 +737,22 @@ expr_stmt|;
 name|String
 name|text
 init|=
-literal|"one +two *hree f*ur fiv*"
+literal|"one +two *hree f*ur fiv* *si\uD834\uDD1Ex"
 decl_stmt|;
 name|String
 name|expectedOne
 init|=
-literal|"one:one +one:two one:\u0001eerh* one:\u0001ru*f one:fiv*"
+literal|"one:one +one:two one:\u0001eerh* one:\u0001ru*f one:fiv* one:\u0001x\uD834\uDD1Eis*"
 decl_stmt|;
 name|String
 name|expectedTwo
 init|=
-literal|"two:one +two:two two:\u0001eerh* two:\u0001ru*f two:fiv*"
+literal|"two:one +two:two two:\u0001eerh* two:\u0001ru*f two:fiv* two:\u0001x\uD834\uDD1Eis*"
 decl_stmt|;
 name|String
 name|expectedThree
 init|=
-literal|"three:one +three:two three:*hree three:f*ur three:fiv*"
+literal|"three:one +three:two three:*hree three:f*ur three:fiv* three:*si\uD834\uDD1Ex"
 decl_stmt|;
 name|Query
 name|q
