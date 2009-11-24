@@ -113,6 +113,15 @@ name|getSolrHome
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.data.dir"
+argument_list|,
+literal|"./solr/data"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Subclasses need to initialize the server impl    */
 DECL|method|getSolrServer
