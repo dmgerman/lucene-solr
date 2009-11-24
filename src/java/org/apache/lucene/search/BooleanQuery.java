@@ -2142,6 +2142,14 @@ name|other
 operator|.
 name|getMinimumNumberShouldMatch
 argument_list|()
+operator|&&
+name|this
+operator|.
+name|disableCoord
+operator|==
+name|other
+operator|.
+name|disableCoord
 return|;
 block|}
 comment|/** Returns a hash code value for this object.*/
@@ -2169,6 +2177,14 @@ argument_list|()
 operator|+
 name|getMinimumNumberShouldMatch
 argument_list|()
+operator|+
+operator|(
+name|disableCoord
+condition|?
+literal|17
+else|:
+literal|0
+operator|)
 return|;
 block|}
 block|}
