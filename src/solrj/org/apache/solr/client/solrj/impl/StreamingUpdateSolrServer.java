@@ -524,6 +524,8 @@ operator|new
 name|OutputStreamWriter
 argument_list|(
 name|out
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 name|writer
