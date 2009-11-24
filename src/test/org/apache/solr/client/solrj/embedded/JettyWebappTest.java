@@ -148,13 +148,14 @@ name|Exception
 block|{
 name|System
 operator|.
-name|setProperty
+name|setPrope
+name|rty
 argument_list|(
 literal|"solr.solr.home"
 argument_list|,
 literal|"../../../example/solr"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|String
 name|path
 init|=

@@ -4041,6 +4041,24 @@ literal|"sort"
 argument_list|,
 name|tlong
 operator|+
+literal|" asc"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"score"
+argument_list|)
+expr_stmt|;
+comment|// test legacy behavior - "score"=="*,score"
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|tlong
+operator|+
 literal|" desc"
 argument_list|)
 expr_stmt|;

@@ -3187,7 +3187,7 @@ operator|.
 name|FIELD_SORT_VALUES
 argument_list|)
 expr_stmt|;
-comment|// make sure that the id is returned for correlation
+comment|// make sure that the id is returned for correlation.
 name|String
 name|fl
 init|=
@@ -3207,6 +3207,41 @@ condition|(
 name|fl
 operator|!=
 literal|null
+condition|)
+block|{
+name|fl
+operator|=
+name|fl
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
+comment|// currently, "score" is synonymous with "*,score" so
+comment|// don't add "id" if the fl is empty or "score" or it would change the meaning.
+if|if
+condition|(
+name|fl
+operator|.
+name|length
+argument_list|()
+operator|!=
+literal|0
+operator|&&
+operator|!
+literal|"score"
+operator|.
+name|equals
+argument_list|(
+name|fl
+argument_list|)
+operator|&&
+operator|!
+literal|"*"
+operator|.
+name|equals
+argument_list|(
+name|fl
+argument_list|)
 condition|)
 block|{
 name|sreq
@@ -3229,6 +3264,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|ArrayList
 argument_list|<
