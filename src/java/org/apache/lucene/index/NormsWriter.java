@@ -139,7 +139,10 @@ name|defaultNorm
 init|=
 name|Similarity
 operator|.
-name|encodeNorm
+name|getDefault
+argument_list|()
+operator|.
+name|encodeNormValue
 argument_list|(
 literal|1.0f
 argument_list|)

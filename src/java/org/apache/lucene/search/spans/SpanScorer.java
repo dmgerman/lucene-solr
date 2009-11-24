@@ -427,9 +427,10 @@ name|raw
 else|:
 name|raw
 operator|*
-name|Similarity
+name|getSimilarity
+argument_list|()
 operator|.
-name|decodeNorm
+name|decodeNormValue
 argument_list|(
 name|norms
 index|[

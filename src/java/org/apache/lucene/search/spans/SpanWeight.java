@@ -625,9 +625,9 @@ name|fieldNorms
 operator|!=
 literal|null
 condition|?
-name|Similarity
+name|similarity
 operator|.
-name|decodeNorm
+name|decodeNormValue
 argument_list|(
 name|fieldNorms
 index|[

@@ -317,7 +317,10 @@ index|]
 operator|=
 name|Similarity
 operator|.
-name|encodeNorm
+name|getDefault
+argument_list|()
+operator|.
+name|encodeNormValue
 argument_list|(
 name|norm
 argument_list|)

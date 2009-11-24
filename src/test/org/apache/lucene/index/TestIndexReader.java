@@ -3533,12 +3533,7 @@ block|{
 name|String
 name|tempDir
 init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"tempDir"
-argument_list|)
+literal|"target/test"
 decl_stmt|;
 if|if
 condition|(
