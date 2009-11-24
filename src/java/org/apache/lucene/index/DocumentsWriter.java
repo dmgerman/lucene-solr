@@ -3839,6 +3839,60 @@ return|return
 name|any
 return|;
 block|}
+comment|// used only by assert
+DECL|field|lastDeleteTerm
+specifier|private
+name|Term
+name|lastDeleteTerm
+decl_stmt|;
+comment|// used only by assert
+DECL|method|checkDeleteTerm
+specifier|private
+name|boolean
+name|checkDeleteTerm
+parameter_list|(
+name|Term
+name|term
+parameter_list|)
+block|{
+if|if
+condition|(
+name|term
+operator|!=
+literal|null
+condition|)
+block|{
+assert|assert
+name|lastDeleteTerm
+operator|==
+literal|null
+operator|||
+name|term
+operator|.
+name|compareTo
+argument_list|(
+name|lastDeleteTerm
+argument_list|)
+operator|>
+literal|0
+operator|:
+literal|"lastTerm="
+operator|+
+name|lastDeleteTerm
+operator|+
+literal|" vs term="
+operator|+
+name|term
+assert|;
+block|}
+name|lastDeleteTerm
+operator|=
+name|term
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 comment|// Apply buffered delete terms, queries and docIDs to the
 comment|// provided reader
 DECL|method|applyDeletes
@@ -3875,6 +3929,12 @@ name|any
 init|=
 literal|false
 decl_stmt|;
+assert|assert
+name|checkDeleteTerm
+argument_list|(
+literal|null
+argument_list|)
+assert|;
 comment|// Delete by term
 name|TermDocs
 name|docs
@@ -3914,6 +3974,14 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+comment|// LUCENE-2086: we should be iterating a TreeMap,
+comment|// here, so terms better be in order:
+assert|assert
+name|checkDeleteTerm
+argument_list|(
+name|term
+argument_list|)
+assert|;
 name|docs
 operator|.
 name|seek
