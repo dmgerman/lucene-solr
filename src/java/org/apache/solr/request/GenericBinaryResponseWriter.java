@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -133,6 +143,32 @@ name|SolrQueryResponse
 name|response
 parameter_list|)
 function_decl|;
+comment|/**Just to throw Exception So that the eimplementing classes do not have to do the  same    */
+DECL|method|write
+specifier|public
+name|void
+name|write
+parameter_list|(
+name|Writer
+name|writer
+parameter_list|,
+name|SolrQueryRequest
+name|request
+parameter_list|,
+name|SolrQueryResponse
+name|response
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"This is a binary writer , Cannot write to a characterstream"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
