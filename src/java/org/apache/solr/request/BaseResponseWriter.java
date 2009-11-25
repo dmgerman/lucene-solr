@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   *   * This class serves as a basis from which {@link QueryResponseWriter}s can be  * developed. The class provides a single method  * {@link #write(SingleResponseWriter, SolrQueryRequest, SolrQueryResponse)}  * that allows users to implement a {@link SingleResponseWriter} sub-class which  * defines how to output {@link SolrInputDocument}s or a  * {@link SolrDocumentList}.  *   * @version $Id  * @since 1.5  *   */
+comment|/**  *   *   * This class serves as a basis from which {@link QueryResponseWriter}s can be  * developed. The class provides a single method  * {@link #write(SingleResponseWriter, SolrQueryRequest, SolrQueryResponse)}  * that allows users to implement a {@link SingleResponseWriter} sub-class which  * defines how to output {@link SolrInputDocument}s or a  * {@link SolrDocumentList}.  *   * @version $Id$  * @since 1.5  *   */
 end_comment
 
 begin_class
