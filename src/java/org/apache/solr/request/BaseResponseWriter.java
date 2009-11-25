@@ -769,6 +769,16 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**No ops implementation so that the base classes do not have do it    */
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|NamedList
+name|args
+parameter_list|)
+block|{}
 DECL|class|IdxInfo
 specifier|private
 specifier|static
