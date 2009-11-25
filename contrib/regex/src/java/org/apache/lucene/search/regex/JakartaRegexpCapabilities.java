@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation tying<a href="http://jakarta.apache.org/regexp">Jakarta Regexp</a>  * to RegexQuery.  Thanks to some internals of Jakarta Regexp, this  * has a solid {@link #prefix} implementation.  */
+comment|/**  * Implementation tying<a href="http://jakarta.apache.org/regexp">Jakarta  * Regexp</a> to RegexQuery. Jakarta Regepx internally supports a  * {@link #prefix} implementation which can offer performance gains under  * certain circumstances. Yet, the implementation appears to be rather shaky as  * it doesn't always provide a prefix even if one would exist.  */
 end_comment
 
 begin_class
