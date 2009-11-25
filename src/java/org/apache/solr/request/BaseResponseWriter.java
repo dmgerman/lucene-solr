@@ -769,7 +769,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**No ops implementation so that the base classes do not have do it    */
+comment|/**No ops implementation so that the implementing classes do not have to do it    */
 DECL|method|init
 specifier|public
 name|void
