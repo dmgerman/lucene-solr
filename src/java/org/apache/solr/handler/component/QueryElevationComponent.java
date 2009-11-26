@@ -420,6 +420,20 @@ name|solr
 operator|.
 name|schema
 operator|.
+name|StrField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
 name|FieldType
 import|;
 end_import
@@ -1066,6 +1080,16 @@ condition|(
 name|sf
 operator|==
 literal|null
+operator|||
+operator|!
+operator|(
+name|sf
+operator|.
+name|getType
+argument_list|()
+operator|instanceof
+name|StrField
+operator|)
 condition|)
 block|{
 throw|throw
@@ -1078,7 +1102,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"QueryElevationComponent requires the schema to have a uniqueKeyField"
+literal|"QueryElevationComponent requires the schema to have a uniqueKeyField implemented using StrField"
 argument_list|)
 throw|;
 block|}
