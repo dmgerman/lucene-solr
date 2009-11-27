@@ -150,6 +150,20 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestSynonymTokenFilter
 specifier|public
@@ -721,6 +735,10 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|ts
 argument_list|)
 expr_stmt|;
@@ -810,6 +828,10 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|streams
 operator|.
 name|source

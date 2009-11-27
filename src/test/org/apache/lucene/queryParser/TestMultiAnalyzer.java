@@ -843,6 +843,10 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -1154,6 +1158,10 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
