@@ -2678,7 +2678,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|1000
+literal|50
 condition|;
 name|i
 operator|++
@@ -2792,6 +2792,13 @@ argument_list|,
 literal|100
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|i
+operator|<
+literal|100
+condition|)
+block|{
 name|QueryUtils
 operator|.
 name|check
@@ -2810,6 +2817,7 @@ argument_list|,
 name|s
 argument_list|)
 expr_stmt|;
+block|}
 comment|// The constrained query
 comment|// should be a superset to the unconstrained query.
 if|if

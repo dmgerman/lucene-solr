@@ -61,7 +61,7 @@ specifier|final
 name|int
 name|NUM_RANDOM_TESTS
 init|=
-literal|20000
+literal|2000
 decl_stmt|;
 DECL|field|MAX_RANDOM_BINARY_LENGTH
 specifier|private

@@ -390,7 +390,7 @@ specifier|final
 name|long
 name|TEST_FILE_LENGTH
 init|=
-literal|1024
+literal|100
 operator|*
 literal|1024
 decl_stmt|;
@@ -537,26 +537,6 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-comment|// run test with chunk size of 100 MB - default
-name|runReadBytesAndClose
-argument_list|(
-operator|new
-name|SimpleFSIndexInput
-argument_list|(
-name|tmpInputFile
-argument_list|,
-name|inputBufferSize
-argument_list|,
-name|FSDirectory
-operator|.
-name|DEFAULT_READ_CHUNK_SIZE
-argument_list|)
-argument_list|,
-name|inputBufferSize
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
 comment|// run test with chunk size of 10 bytes
 name|runReadBytesAndClose
 argument_list|(
@@ -568,26 +548,6 @@ argument_list|,
 name|inputBufferSize
 argument_list|,
 literal|10
-argument_list|)
-argument_list|,
-name|inputBufferSize
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-comment|// run test with chunk size of 100 MB - default
-name|runReadBytesAndClose
-argument_list|(
-operator|new
-name|NIOFSIndexInput
-argument_list|(
-name|tmpInputFile
-argument_list|,
-name|inputBufferSize
-argument_list|,
-name|FSDirectory
-operator|.
-name|DEFAULT_READ_CHUNK_SIZE
 argument_list|)
 argument_list|,
 name|inputBufferSize
@@ -725,7 +685,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|1000
+literal|100
 condition|;
 name|i
 operator|++
@@ -1316,7 +1276,7 @@ name|close
 parameter_list|()
 throws|throws
 name|IOException
-block|{     }
+block|{       }
 annotation|@
 name|Override
 DECL|method|length

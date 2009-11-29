@@ -24,16 +24,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringReader
 import|;
 end_import
@@ -85,60 +75,6 @@ operator|.
 name|util
 operator|.
 name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|feeds
-operator|.
-name|DocData
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|feeds
-operator|.
-name|NoMoreDataException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|feeds
-operator|.
-name|ReutersContentSource
 import|;
 end_import
 
@@ -358,11 +294,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -376,7 +316,7 @@ specifier|public
 class|class
 name|TestPerfTasksLogic
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|DEBUG
 specifier|private
@@ -592,11 +532,13 @@ name|algLines
 index|[]
 init|=
 block|{
+literal|"log.step=100000"
+block|,
 literal|"ResetSystemErase"
 block|,
 literal|"CreateIndex"
 block|,
-literal|"{ AddDoc } : 1000"
+literal|"{ AddDoc } : 100"
 block|,
 literal|"Optimize"
 block|,
@@ -604,7 +546,7 @@ literal|"CloseIndex"
 block|,
 literal|"OpenReader"
 block|,
-literal|"{ CountingSearchTest } : 1.5s"
+literal|"{ CountingSearchTest } : .5s"
 block|,
 literal|"CloseReader"
 block|,     }
@@ -669,6 +611,8 @@ init|=
 block|{
 literal|"log.time.step.msec = 100"
 block|,
+literal|"log.step=100000"
+block|,
 literal|"ResetSystemErase"
 block|,
 literal|"CreateIndex"
@@ -685,7 +629,7 @@ literal|"{"
 block|,
 literal|"  [ \"XSearch\" { CountingSearchTest> : * ] : 2&-1"
 block|,
-literal|"  Wait(1.0)"
+literal|"  Wait(0.5)"
 block|,
 literal|"}"
 block|,
@@ -731,13 +675,11 @@ init|=
 block|{
 literal|"doc.stored=true"
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"query.maker="
@@ -753,7 +695,7 @@ literal|"ResetSystemErase"
 block|,
 literal|"CreateIndex"
 block|,
-literal|"{ AddDoc } : 1000"
+literal|"{ AddDoc } : 100"
 block|,
 literal|"Optimize"
 block|,
@@ -793,7 +735,7 @@ name|assertEquals
 argument_list|(
 literal|"TestSearchTask was supposed to be called!"
 argument_list|,
-literal|147
+literal|92
 argument_list|,
 name|CountingHighlighterTestTask
 operator|.
@@ -890,9 +832,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"1000 docs were added to the index, this is what we expect to find!"
+literal|"100 docs were added to the index, this is what we expect to find!"
 argument_list|,
-literal|1000
+literal|100
 argument_list|,
 name|ir
 operator|.
@@ -925,13 +867,11 @@ block|,
 comment|//doc storage is required in order to have text to highlight
 literal|"doc.term.vector.offsets=true"
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"query.maker="
@@ -987,7 +927,7 @@ name|assertEquals
 argument_list|(
 literal|"TestSearchTask was supposed to be called!"
 argument_list|,
-literal|147
+literal|92
 argument_list|,
 name|CountingHighlighterTestTask
 operator|.
@@ -1116,13 +1056,11 @@ init|=
 block|{
 literal|"doc.stored=false"
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"query.maker="
@@ -1406,7 +1344,7 @@ literal|"# ----- alg "
 block|,
 literal|"CreateIndex"
 block|,
-literal|"[ { AddDoc> : 2500 ] : 4"
+literal|"[ { AddDoc> : 250 ] : 4"
 block|,
 literal|"CloseIndex"
 block|,     }
@@ -1470,7 +1408,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10000
+literal|1000
 argument_list|,
 name|maxDoc
 argument_list|)
@@ -1484,7 +1422,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10000
+literal|1000
 condition|;
 name|i
 operator|++
@@ -1535,13 +1473,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -1598,7 +1534,7 @@ name|ndocsExpected
 init|=
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -1647,9 +1583,9 @@ specifier|final
 name|int
 name|NUM_TRY_DOCS
 init|=
-literal|500
+literal|50
 decl_stmt|;
-comment|// Creates a line file with first 500 docs from reuters
+comment|// Creates a line file with first 50 docs from SingleDocSource
 name|String
 name|algLines1
 index|[]
@@ -1657,9 +1593,9 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.ReutersContentSource"
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.SingleDocSource"
 block|,
-literal|"content.source.forever=false"
+literal|"content.source.forever=true"
 block|,
 literal|"line.file.out="
 operator|+
@@ -1691,9 +1627,6 @@ argument_list|(
 name|algLines1
 argument_list|)
 decl_stmt|;
-comment|// Verify we got somewhere between 1-500 lines (some
-comment|// Reuters docs have no body, which WriteLineDoc task
-comment|// skips).
 name|BufferedReader
 name|r
 init|=
@@ -1729,9 +1662,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
-literal|"did not see the right number of docs; should be> 0 and<= "
+literal|"did not see the right number of docs; should be "
 operator|+
 name|NUM_TRY_DOCS
 operator|+
@@ -1739,13 +1672,9 @@ literal|" but was "
 operator|+
 name|numLines
 argument_list|,
-name|numLines
-operator|>
-literal|0
-operator|&&
-name|numLines
-operator|<=
 name|NUM_TRY_DOCS
+argument_list|,
+name|numLines
 argument_list|)
 expr_stmt|;
 comment|// Index the line docs
@@ -1894,7 +1823,7 @@ specifier|final
 name|int
 name|NUM_DOCS
 init|=
-literal|100
+literal|20
 decl_stmt|;
 comment|// Read tokens from first NUM_DOCS docs from Reuters and
 comment|// then build index from the same docs
@@ -1907,7 +1836,12 @@ literal|"# ----- properties "
 block|,
 literal|"analyzer=org.apache.lucene.analysis.WhitespaceAnalyzer"
 block|,
-literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.ReutersContentSource"
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
+operator|+
+name|getReuters20LinesFile
+argument_list|()
 block|,
 literal|"# ----- alg "
 block|,
@@ -2122,13 +2056,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -2193,7 +2125,7 @@ literal|2
 operator|*
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -2403,88 +2335,6 @@ name|txt
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** use reuters and the exhaust mechanism, but to be faster, add 20 docs only... */
-DECL|class|Reuters20ContentSource
-specifier|public
-specifier|static
-class|class
-name|Reuters20ContentSource
-extends|extends
-name|ReutersContentSource
-block|{
-DECL|field|nDocs
-specifier|private
-name|int
-name|nDocs
-init|=
-literal|0
-decl_stmt|;
-annotation|@
-name|Override
-DECL|method|getNextDocData
-specifier|public
-specifier|synchronized
-name|DocData
-name|getNextDocData
-parameter_list|(
-name|DocData
-name|docData
-parameter_list|)
-throws|throws
-name|NoMoreDataException
-throws|,
-name|IOException
-block|{
-if|if
-condition|(
-name|nDocs
-operator|>=
-literal|20
-operator|&&
-operator|!
-name|forever
-condition|)
-block|{
-throw|throw
-operator|new
-name|NoMoreDataException
-argument_list|()
-throw|;
-block|}
-name|nDocs
-operator|++
-expr_stmt|;
-return|return
-name|super
-operator|.
-name|getNextDocData
-argument_list|(
-name|docData
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|resetInputs
-specifier|public
-specifier|synchronized
-name|void
-name|resetInputs
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|super
-operator|.
-name|resetInputs
-argument_list|()
-expr_stmt|;
-name|nDocs
-operator|=
-literal|0
-expr_stmt|;
-block|}
-block|}
 comment|/**    * Test that exhaust in loop works as expected (LUCENE-1115).    */
 DECL|method|testExhaustedLooped
 specifier|public
@@ -2502,13 +2352,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -2573,7 +2421,7 @@ name|ndocsExpected
 init|=
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -2609,13 +2457,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"ram.flush.mb=-1"
@@ -2684,7 +2530,7 @@ name|ndocsExpected
 init|=
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -2746,13 +2592,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -2858,7 +2702,7 @@ name|ndocsExpected
 init|=
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -2925,13 +2769,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -3041,7 +2883,7 @@ name|ndocsExpected
 init|=
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -3077,13 +2919,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -3263,13 +3103,11 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=3"
@@ -3342,7 +3180,7 @@ name|ndocsExpected
 init|=
 literal|20
 decl_stmt|;
-comment|// Reuters20ContentSource exhausts after 20 docs.
+comment|// first 20 reuters docs.
 name|assertEquals
 argument_list|(
 literal|"wrong number of docs in the index!"
@@ -3656,13 +3494,11 @@ index|[]
 block|{
 literal|"# ----- properties "
 block|,
-literal|"content.source="
+literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
+block|,
+literal|"docs.file="
 operator|+
-name|Reuters20ContentSource
-operator|.
-name|class
-operator|.
-name|getName
+name|getReuters20LinesFile
 argument_list|()
 block|,
 literal|"content.source.log.step=30"
@@ -3705,6 +3541,24 @@ literal|"}"
 block|,
 literal|"RepSumByName"
 block|,     }
+return|;
+block|}
+DECL|method|getReuters20LinesFile
+specifier|private
+specifier|static
+name|String
+name|getReuters20LinesFile
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"lucene.common.dir"
+argument_list|)
+operator|+
+literal|"/contrib/benchmark/src/test/org/apache/lucene/benchmark/reuters.first20.lines.txt"
 return|;
 block|}
 block|}

@@ -298,7 +298,7 @@ name|indexRandomIWReader
 argument_list|(
 literal|10
 argument_list|,
-literal|100
+literal|10
 argument_list|,
 literal|100
 argument_list|,
@@ -385,7 +385,7 @@ name|indexRandom
 argument_list|(
 literal|10
 argument_list|,
-literal|100
+literal|10
 argument_list|,
 literal|100
 argument_list|,
@@ -435,7 +435,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|20
 condition|;
 name|i
 operator|++

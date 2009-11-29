@@ -1748,7 +1748,7 @@ specifier|final
 name|int
 name|numIter
 init|=
-literal|5
+literal|2
 decl_stmt|;
 name|int
 name|numDirs
@@ -4214,7 +4214,7 @@ specifier|final
 name|float
 name|SECONDS
 init|=
-literal|3
+literal|0.5f
 decl_stmt|;
 specifier|final
 name|long
@@ -4579,7 +4579,7 @@ specifier|final
 name|float
 name|SECONDS
 init|=
-literal|3
+literal|0.5f
 decl_stmt|;
 specifier|final
 name|long

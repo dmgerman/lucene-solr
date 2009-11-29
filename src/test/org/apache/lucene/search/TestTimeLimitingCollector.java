@@ -241,7 +241,7 @@ specifier|final
 name|int
 name|SLOW_DOWN
 init|=
-literal|47
+literal|3
 decl_stmt|;
 DECL|field|TIME_ALLOWED
 specifier|private

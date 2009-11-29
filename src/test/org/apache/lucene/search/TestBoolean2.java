@@ -1245,7 +1245,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|1000
+literal|50
 condition|;
 name|i
 operator|++

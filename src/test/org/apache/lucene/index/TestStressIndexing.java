@@ -167,7 +167,7 @@ specifier|static
 name|int
 name|RUN_TIME_SEC
 init|=
-literal|6
+literal|1
 decl_stmt|;
 DECL|field|allThreads
 specifier|private

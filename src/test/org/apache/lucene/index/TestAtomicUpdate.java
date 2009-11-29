@@ -246,10 +246,10 @@ decl_stmt|;
 DECL|field|RUN_TIME_SEC
 specifier|private
 specifier|static
-name|int
+name|float
 name|RUN_TIME_SEC
 init|=
-literal|3
+literal|0.5f
 decl_stmt|;
 DECL|field|allThreads
 specifier|private
@@ -298,9 +298,14 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
+call|(
+name|long
+call|)
+argument_list|(
 literal|1000
 operator|*
 name|RUN_TIME_SEC
+argument_list|)
 decl_stmt|;
 name|count
 operator|=

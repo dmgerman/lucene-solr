@@ -2563,10 +2563,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Try again with 2000 more bytes of free space:
+comment|// Try again with 5000 more bytes of free space:
 name|diskFree
 operator|+=
-literal|2000
+literal|5000
 expr_stmt|;
 block|}
 block|}
@@ -13822,7 +13822,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-literal|500
+literal|200
 decl_stmt|;
 while|while
 condition|(
@@ -14043,7 +14043,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|20
+literal|7
 condition|;
 name|iter
 operator|++
@@ -15048,7 +15048,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|5
+literal|2
 condition|;
 name|iter
 operator|++

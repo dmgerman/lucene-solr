@@ -727,7 +727,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|// Run for ~7 seconds
+comment|// Run for ~1 seconds
 specifier|final
 name|long
 name|stopTime
@@ -737,7 +737,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-literal|7000
+literal|1000
 decl_stmt|;
 name|SnapshotDeletionPolicy
 name|dp
