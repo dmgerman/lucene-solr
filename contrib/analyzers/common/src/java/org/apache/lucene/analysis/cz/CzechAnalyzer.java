@@ -156,26 +156,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
-import|;
-end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Version
@@ -233,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Czech language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all).   * A default set of stopwords is used unless an alternative list is specified.  *</p>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for Czech language.  *<p>  * Supports an external list of stopwords (words that will not be indexed at  * all). A default set of stopwords is used unless an alternative list is  * specified.  *</p>  *   *<a name="version"/>  *<p>  * You must specify the required {@link Version} compatibility when creating  * CzechAnalyzer:  *<ul>  *<li>As of 3.1, words are stemmed with {@link CzechStemFilter}  *<li>As of 2.9, StopFilter preserves position increments  *<li>As of 2.4, Tokens incorrectly identified as acronyms are corrected (see  *<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
 end_comment
 
 begin_class
@@ -601,7 +581,7 @@ block|,
 literal|"na\u010de\u017e"
 block|,     }
 decl_stmt|;
-comment|/** 	 * Returns a set of default Czech-stopwords  	 * @return a set of default Czech-stopwords  	 */
+comment|/**    * Returns a set of default Czech-stopwords    *     * @return a set of default Czech-stopwords    */
 DECL|method|getDefaultStopSet
 specifier|public
 specifier|static
@@ -654,7 +634,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 block|}
-comment|/** 	 * Contains the stopwords used with the {@link StopFilter}. 	 */
+comment|/**    * Contains the stopwords used with the {@link StopFilter}.    */
 comment|// TODO make this final in 3.1
 DECL|field|stoptable
 specifier|private
@@ -670,7 +650,7 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
-comment|/** 	 * Builds an analyzer with the default stop words ({@link #CZECH_STOP_WORDS}). 	 */
+comment|/**    * Builds an analyzer with the default stop words ({@link #CZECH_STOP_WORDS}).    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -689,7 +669,7 @@ name|DEFAULT_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words and stemming exclusion words    *     * @param matchVersion    *          lucene compatibility version    * @param stopwords    *          a stopword set    */
+comment|/**    * Builds an analyzer with the given stop words.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -727,7 +707,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 * @deprecated use {@link #CzechAnalyzer(Version, Set)} instead 	 */
+comment|/**    * Builds an analyzer with the given stop words.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    * @deprecated use {@link #CzechAnalyzer(Version, Set)} instead    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -753,7 +733,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    *     * @deprecated use {@link #CzechAnalyzer(Version, Set)} instead    */
+comment|/**    * Builds an analyzer with the given stop words.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    * @deprecated use {@link #CzechAnalyzer(Version, Set)} instead    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -782,7 +762,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Builds an analyzer with the given stop words. 	 * @deprecated use {@link #CzechAnalyzer(Version, Set)} instead 	 */
+comment|/**    * Builds an analyzer with the given stop words.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a file containing stopwords    * @deprecated use {@link #CzechAnalyzer(Version, Set)} instead    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -915,7 +895,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Creates a {@link TokenStream} which tokenizes all the text in the provided {@link Reader}. 	 * 	 * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with 	 * 			{@link StandardFilter}, {@link LowerCaseFilter}, and {@link StopFilter} 	 */
+comment|/**    * Creates a {@link TokenStream} which tokenizes all the text in the provided    * {@link Reader}.    *     * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *         filtered with {@link StandardFilter}, {@link LowerCaseFilter},    *         {@link StopFilter}, and {@link CzechStemFilter} (only if version is    *>= LUCENE_31)    */
 annotation|@
 name|Override
 DECL|method|tokenStream
@@ -977,6 +957,25 @@ argument_list|,
 name|stoptable
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+condition|)
+name|result
+operator|=
+operator|new
+name|CzechStemFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -996,7 +995,7 @@ name|result
 decl_stmt|;
 block|}
 empty_stmt|;
-comment|/**      * Returns a (possibly reused) {@link TokenStream} which tokenizes all the text in       * the provided {@link Reader}.      *      * @return  A {@link TokenStream} built from a {@link StandardTokenizer} filtered with      *          {@link StandardFilter}, {@link LowerCaseFilter}, and {@link StopFilter}      */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the    * text in the provided {@link Reader}.    *     * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *         filtered with {@link StandardFilter}, {@link LowerCaseFilter},    *         {@link StopFilter}, and {@link CzechStemFilter} (only if version is    *>= LUCENE_31)    */
 annotation|@
 name|Override
 DECL|method|reusableTokenStream
@@ -1092,6 +1091,29 @@ operator|.
 name|result
 argument_list|,
 name|stoptable
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+condition|)
+name|streams
+operator|.
+name|result
+operator|=
+operator|new
+name|CzechStemFilter
+argument_list|(
+name|streams
+operator|.
+name|result
 argument_list|)
 expr_stmt|;
 name|setPreviousTokenStream
