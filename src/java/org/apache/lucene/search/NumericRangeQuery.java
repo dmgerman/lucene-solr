@@ -1781,7 +1781,7 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares if current upper bound is reached,      * this also updates the term count for statistics.      * In contrast to {@link FilteredTermEnum}, a return value      * of<code>false</code> ends iterating the current enum      * and forwards to the next sub-range.      */
+comment|/**      * Compares if current upper bound is reached.      * In contrast to {@link FilteredTermEnum}, a return value      * of<code>false</code> ends iterating the current enum      * and forwards to the next sub-range.      */
 annotation|@
 name|Override
 DECL|method|termCompare
