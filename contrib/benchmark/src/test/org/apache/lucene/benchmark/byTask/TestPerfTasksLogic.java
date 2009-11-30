@@ -3557,6 +3557,13 @@ name|getProperty
 argument_list|(
 literal|"lucene.common.dir"
 argument_list|)
+operator|.
+name|replace
+argument_list|(
+literal|'\\'
+argument_list|,
+literal|'/'
+argument_list|)
 operator|+
 literal|"/contrib/benchmark/src/test/org/apache/lucene/benchmark/reuters.first20.lines.txt"
 return|;
