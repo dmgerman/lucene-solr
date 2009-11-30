@@ -417,6 +417,10 @@ argument_list|(
 operator|new
 name|CharArraySet
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|Arrays
 operator|.
 name|asList
@@ -532,6 +536,8 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopwords
 argument_list|)
 argument_list|)
@@ -546,6 +552,8 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stemExclusionSet
 argument_list|)
 argument_list|)
@@ -585,6 +593,8 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopwords
 argument_list|)
 argument_list|)
@@ -662,6 +672,8 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|exclusionlist
 argument_list|)
 expr_stmt|;
@@ -679,6 +691,11 @@ name|void
 name|setStemExclusionTable
 parameter_list|(
 name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|exclusionlist
 parameter_list|)
 block|{
@@ -686,6 +703,9 @@ name|exclusionSet
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 name|exclusionlist
 operator|.
@@ -777,12 +797,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -919,12 +934,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|streams
 operator|.

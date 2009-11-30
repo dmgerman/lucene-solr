@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 2.9, StopFilter preserves position  *        increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
+comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 3.1, StopFilter correctly handles Unicode 4.0  *         supplementary characters in stopwords  *<li> As of 2.9, StopFilter preserves position  *        increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
 end_comment
 
 begin_class
@@ -108,13 +108,10 @@ name|stopSet
 decl_stmt|;
 comment|/**    * Specifies whether deprecated acronyms should be replaced with HOST type.    * See {@linkplain https://issues.apache.org/jira/browse/LUCENE-1068}    */
 DECL|field|replaceInvalidAcronym
-DECL|field|enableStopPositionIncrements
 specifier|private
 specifier|final
 name|boolean
 name|replaceInvalidAcronym
-decl_stmt|,
-name|enableStopPositionIncrements
 decl_stmt|;
 comment|/** An unmodifiable set containing some common English words that are usually not   useful for searching. */
 DECL|field|STOP_WORDS_SET
@@ -178,15 +175,6 @@ argument_list|(
 name|StandardAnalyzer
 operator|.
 name|class
-argument_list|)
-expr_stmt|;
-name|enableStopPositionIncrements
-operator|=
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
-name|matchVersion
 argument_list|)
 expr_stmt|;
 name|replaceInvalidAcronym
@@ -318,7 +306,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|enableStopPositionIncrements
+name|matchVersion
 argument_list|,
 name|result
 argument_list|,
@@ -493,7 +481,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|enableStopPositionIncrements
+name|matchVersion
 argument_list|,
 name|streams
 operator|.

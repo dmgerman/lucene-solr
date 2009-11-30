@@ -426,6 +426,8 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopwords
 argument_list|)
 argument_list|)
@@ -458,6 +460,8 @@ name|StopFilter
 operator|.
 name|makeStopSet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stopwords
 argument_list|)
 argument_list|)
@@ -561,12 +565,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|result
 argument_list|,
@@ -679,12 +678,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|streams
 operator|.

@@ -274,6 +274,10 @@ argument_list|(
 operator|new
 name|CharArraySet
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|Arrays
 operator|.
 name|asList
@@ -904,7 +908,7 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
-comment|/**    * Constructs a new instance with the given parameters.    *     * @param matchVersion If>= {@link Version#LUCENE_29}, StopFilter.enablePositionIncrement is set to true    * @param pattern    *            a regular expression delimiting tokens    * @param toLowerCase    *            if<code>true</code> returns tokens after applying    *            String.toLowerCase()    * @param stopWords    *            if non-null, ignores all tokens that are contained in the    *            given stop set (after previously having applied toLowerCase()    *            if applicable). For example, created via    *            {@link StopFilter#makeStopSet(String[])}and/or    *            {@link org.apache.lucene.analysis.WordlistLoader}as in    *<code>WordlistLoader.getWordSet(new File("samples/fulltext/stopwords.txt")</code>    *            or<a href="http://www.unine.ch/info/clef/">other stop words    *            lists</a>.    */
+comment|/**    * Constructs a new instance with the given parameters.    *     * @param matchVersion If>= {@link Version#LUCENE_29}, StopFilter.enablePositionIncrement is set to true    * @param pattern    *            a regular expression delimiting tokens    * @param toLowerCase    *            if<code>true</code> returns tokens after applying    *            String.toLowerCase()    * @param stopWords    *            if non-null, ignores all tokens that are contained in the    *            given stop set (after previously having applied toLowerCase()    *            if applicable). For example, created via    *            {@link StopFilter#makeStopSet(Version, String[])}and/or    *            {@link org.apache.lucene.analysis.WordlistLoader}as in    *<code>WordlistLoader.getWordSet(new File("samples/fulltext/stopwords.txt")</code>    *            or<a href="http://www.unine.ch/info/clef/">other stop words    *            lists</a>.    */
 DECL|method|PatternAnalyzer
 specifier|public
 name|PatternAnalyzer
@@ -1110,12 +1114,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|stream
 argument_list|,
@@ -1984,6 +1983,9 @@ DECL|field|stopWords
 specifier|private
 specifier|final
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopWords
 decl_stmt|;
 DECL|field|locale
@@ -2036,6 +2038,9 @@ name|boolean
 name|toLowerCase
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopWords
 parameter_list|)
 block|{

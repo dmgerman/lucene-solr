@@ -96,6 +96,20 @@ name|TermAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link TokenFilter} with a stop word table.    *<ul>  *<li>Numeric tokens are removed.  *<li>English tokens must be larger than 1 character.  *<li>One Chinese character as one Chinese word.  *</ul>  * TO DO:  *<ol>  *<li>Add Chinese stop words, such as \ue400  *<li>Dictionary based Chinese word extraction  *<li>Intelligent Chinese word extraction  *</ol>  *   * @version 1.0  *  */
 end_comment
@@ -210,6 +224,10 @@ operator|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|Arrays
 operator|.
 name|asList

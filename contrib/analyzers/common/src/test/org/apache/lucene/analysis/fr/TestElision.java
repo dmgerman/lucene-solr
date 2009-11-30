@@ -235,6 +235,10 @@ init|=
 operator|new
 name|ElisionFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|tokenizer
 argument_list|,
 name|articles

@@ -260,12 +260,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|ts
 argument_list|,
@@ -391,12 +386,7 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|StopFilter
-operator|.
-name|getEnablePositionIncrementsVersionDefault
-argument_list|(
 name|matchVersion
-argument_list|)
 argument_list|,
 name|streams
 operator|.
