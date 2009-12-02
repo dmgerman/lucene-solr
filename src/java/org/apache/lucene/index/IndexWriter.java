@@ -8799,6 +8799,17 @@ name|commitUserData
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Used only by commit, below; lock order is commitLock -> IW
+DECL|field|commitLock
+specifier|private
+specifier|final
+name|Object
+name|commitLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|method|commit
 specifier|private
 name|void
@@ -8810,6 +8821,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+synchronized|synchronized
+init|(
+name|commitLock
+init|)
+block|{
 name|startCommit
 argument_list|(
 name|sizeInBytes
@@ -8820,6 +8836,7 @@ expr_stmt|;
 name|finishCommit
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/**    *<p>Commits all pending changes (added& deleted    * documents, optimizations, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit    * @see #commit(Map)    */
 DECL|method|commit
@@ -8868,11 +8885,31 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"commit: start"
 argument_list|)
 expr_stmt|;
+block|}
+synchronized|synchronized
+init|(
+name|commitLock
+init|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"commit: enter lock"
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|pendingCommit
@@ -8886,11 +8923,13 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"commit: now prepare"
 argument_list|)
 expr_stmt|;
+block|}
 name|prepareCommit
 argument_list|(
 name|commitUserData
@@ -8904,14 +8943,17 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"commit: already prepared"
 argument_list|)
 expr_stmt|;
+block|}
 name|finishCommit
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|finishCommit
 specifier|private
@@ -13728,6 +13770,8 @@ argument_list|(
 literal|"startStartCommit"
 argument_list|)
 assert|;
+comment|// TODO: as of LUCENE-2095, we can simplify this method,
+comment|// since only 1 thread can be in here at once
 if|if
 condition|(
 name|hitOOM
