@@ -671,6 +671,7 @@ name|sizeInBytes
 operator|.
 name|addAndGet
 argument_list|(
+operator|-
 name|existing
 operator|.
 name|sizeInBytes
