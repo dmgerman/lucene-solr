@@ -218,6 +218,20 @@ literal|"5"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"9"
+argument_list|,
+literal|"v_s"
+argument_list|,
+literal|"internal\"quote"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Object
 index|[]
 name|arr
@@ -559,6 +573,74 @@ literal|"{!raw f=v_f}1.5"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+comment|//
+comment|// test escapes in quoted strings
+comment|//
+comment|// the control... unescaped queries looking for internal"quote
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!raw f=v_s}internal\"quote"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// test that single quoted string needs no escape
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!raw f=v_s v='internal\"quote'}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// but it's OK if the escape is done
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!raw f=v_s v='internal\\\"quote'}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// test unicode escape
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!raw f=v_s v=\"internal\\u0022quote\"}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// inside a quoted string, internal"quote needs to be escaped
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!raw f=v_s v=\"internal\\\"quote\"}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
