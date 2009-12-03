@@ -322,6 +322,28 @@ name|String
 name|query
 parameter_list|)
 function_decl|;
+comment|/**Use this directly to  resolve variable    * @param var the variable neme     * @return the resolved value    */
+DECL|method|resolve
+specifier|public
+specifier|abstract
+name|Object
+name|resolve
+parameter_list|(
+name|String
+name|var
+parameter_list|)
+function_decl|;
+comment|/** Resolve variables in a template    * @param template    * @return The string w/ variables resolved    */
+DECL|method|replaceTokens
+specifier|public
+specifier|abstract
+name|String
+name|replaceTokens
+parameter_list|(
+name|String
+name|template
+parameter_list|)
+function_decl|;
 block|}
 end_class
 
