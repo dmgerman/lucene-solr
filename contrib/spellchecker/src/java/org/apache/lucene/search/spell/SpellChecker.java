@@ -1798,6 +1798,25 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * Close the IndexSearcher used by this SpellChecker.    */
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|searcher
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 
