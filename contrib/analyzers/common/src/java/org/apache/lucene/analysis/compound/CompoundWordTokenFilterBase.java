@@ -356,7 +356,7 @@ operator|new
 name|Token
 argument_list|()
 decl_stmt|;
-comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[], int, int, int, boolean) instead    */
+comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[], int, int, int, boolean)} instead    */
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -404,7 +404,7 @@ name|onlyLongestMatch
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[], boolean) instead    */
+comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[], boolean)} instead    */
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -443,7 +443,7 @@ name|onlyLongestMatch
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set, boolean) instead    */
+comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set, boolean)} instead    */
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -481,7 +481,7 @@ name|onlyLongestMatch
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[]) instead    */
+comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[])} instead    */
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -517,7 +517,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set) instead    */
+comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set)} instead    */
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -552,7 +552,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set[], int, int, int, boolean) instead    */
+comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set, int, int, int, boolean)} instead    */
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
