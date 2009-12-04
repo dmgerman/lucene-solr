@@ -1663,6 +1663,9 @@ name|i
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|Fieldable
+argument_list|>
 name|fields
 init|=
 name|d
@@ -1745,9 +1748,6 @@ expr_stmt|;
 name|Field
 name|f
 init|=
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField
@@ -1769,9 +1769,6 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|=
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField
@@ -1791,9 +1788,6 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|=
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField
@@ -1813,9 +1807,6 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|=
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField
@@ -1835,9 +1826,6 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|=
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField

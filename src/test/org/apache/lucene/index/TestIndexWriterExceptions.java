@@ -710,10 +710,16 @@ block|}
 block|}
 DECL|field|doFail
 name|ThreadLocal
+argument_list|<
+name|Thread
+argument_list|>
 name|doFail
 init|=
 operator|new
 name|ThreadLocal
+argument_list|<
+name|Thread
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|class|MockIndexWriter

@@ -296,6 +296,9 @@ operator|++
 control|)
 block|{
 name|TopDocsCollector
+argument_list|<
+name|ScoreDoc
+argument_list|>
 name|tdc
 init|=
 name|TopScoreDocCollector

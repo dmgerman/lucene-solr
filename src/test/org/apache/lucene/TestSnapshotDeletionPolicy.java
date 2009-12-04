@@ -28,16 +28,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -522,9 +512,6 @@ block|}
 name|IndexCommit
 name|cp
 init|=
-operator|(
-name|IndexCommit
-operator|)
 name|dp
 operator|.
 name|snapshot
@@ -1095,9 +1082,6 @@ name|copyFiles
 argument_list|(
 name|dir
 argument_list|,
-operator|(
-name|IndexCommit
-operator|)
 name|dp
 operator|.
 name|snapshot
@@ -1135,6 +1119,9 @@ comment|// While we hold the snapshot, and nomatter how long
 comment|// we take to do the backup, the IndexWriter will
 comment|// never delete the files in the snapshot:
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|files
 init|=
 name|cp
@@ -1142,34 +1129,15 @@ operator|.
 name|getFileNames
 argument_list|()
 decl_stmt|;
-name|Iterator
-name|it
-init|=
-name|files
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|it
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
+for|for
+control|(
 specifier|final
 name|String
 name|fileName
-init|=
-operator|(
-name|String
-operator|)
-name|it
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
+range|:
+name|files
+control|)
+block|{
 comment|// NOTE: in a real backup you would not use
 comment|// readFile; you would need to use something else
 comment|// that copies the file to a backup location.  This

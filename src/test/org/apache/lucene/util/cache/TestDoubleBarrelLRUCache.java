@@ -44,6 +44,11 @@ name|testCache
 argument_list|(
 operator|new
 name|DoubleBarrelLRUCache
+argument_list|<
+name|Integer
+argument_list|,
+name|Object
+argument_list|>
 argument_list|(
 name|n
 argument_list|)

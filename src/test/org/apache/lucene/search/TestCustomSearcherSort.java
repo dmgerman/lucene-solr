@@ -823,10 +823,20 @@ argument_list|)
 expr_stmt|;
 comment|// check for duplicates
 name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|Integer
+argument_list|>
 name|resultMap
 init|=
 operator|new
 name|TreeMap
+argument_list|<
+name|Integer
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// store hits in TreeMap - TreeMap does not allow duplicates; existing entries are silently overwritten
@@ -1038,10 +1048,20 @@ literal|null
 condition|)
 block|{
 name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|Integer
+argument_list|>
 name|idMap
 init|=
 operator|new
 name|TreeMap
+argument_list|<
+name|Integer
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1125,9 +1145,6 @@ operator|.
 name|append
 argument_list|(
 operator|(
-operator|(
-name|Integer
-operator|)
 name|idMap
 operator|.
 name|get

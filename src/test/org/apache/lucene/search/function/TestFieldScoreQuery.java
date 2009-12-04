@@ -863,10 +863,24 @@ name|Exception
 block|{
 comment|// prepare expected array types for comparison
 name|HashMap
+argument_list|<
+name|FieldScoreQuery
+operator|.
+name|Type
+argument_list|,
+name|Object
+argument_list|>
 name|expectedArrayTypes
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|FieldScoreQuery
+operator|.
+name|Type
+argument_list|,
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|expectedArrayTypes

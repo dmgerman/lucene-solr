@@ -421,10 +421,16 @@ decl_stmt|;
 comment|//we have 2 documents with the term all in them, one document for all the other values
 specifier|final
 name|List
+argument_list|<
+name|TestHit
+argument_list|>
 name|docs
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|TestHit
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//must call next first
@@ -591,9 +597,6 @@ expr_stmt|;
 name|TestHit
 name|doc0
 init|=
-operator|(
-name|TestHit
-operator|)
 name|docs
 operator|.
 name|get
@@ -604,9 +607,6 @@ decl_stmt|;
 name|TestHit
 name|doc5
 init|=
-operator|(
-name|TestHit
-operator|)
 name|docs
 operator|.
 name|get

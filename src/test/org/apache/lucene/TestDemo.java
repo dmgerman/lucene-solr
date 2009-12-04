@@ -222,20 +222,6 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  * Please try to keep src/java/overview.html up-to-date when making changes  * to this class.  */
 end_comment

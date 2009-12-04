@@ -142,12 +142,20 @@ DECL|field|priority
 specifier|private
 specifier|final
 name|Map
-comment|/*<String, Integer>*/
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
 name|priority
 init|=
 operator|new
 name|HashMap
-comment|/*<String, Integer>*/
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//@Test
@@ -874,7 +882,11 @@ DECL|field|priority
 specifier|private
 specifier|final
 name|Map
-comment|/*<String, Integer>*/
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
 name|priority
 decl_stmt|;
 DECL|method|ElevationComparatorSource
@@ -883,7 +895,11 @@ name|ElevationComparatorSource
 parameter_list|(
 specifier|final
 name|Map
-comment|/*<String, Integer>*/
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
 name|boosts
 parameter_list|)
 block|{
@@ -1015,9 +1031,6 @@ decl_stmt|;
 name|Integer
 name|prio
 init|=
-operator|(
-name|Integer
-operator|)
 name|priority
 operator|.
 name|get

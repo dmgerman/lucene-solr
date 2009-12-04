@@ -18,34 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -1236,6 +1208,9 @@ name|useBitSet
 parameter_list|,
 specifier|final
 name|Iterator
+argument_list|<
+name|Long
+argument_list|>
 name|neededBounds
 parameter_list|)
 throws|throws
@@ -1354,15 +1329,10 @@ name|assertEquals
 argument_list|(
 literal|"inner min bound"
 argument_list|,
-operator|(
-operator|(
-name|Long
-operator|)
 name|neededBounds
 operator|.
 name|next
 argument_list|()
-operator|)
 operator|.
 name|longValue
 argument_list|()
@@ -1376,15 +1346,10 @@ name|assertEquals
 argument_list|(
 literal|"inner max bound"
 argument_list|,
-operator|(
-operator|(
-name|Long
-operator|)
 name|neededBounds
 operator|.
 name|next
 argument_list|()
-operator|)
 operator|.
 name|longValue
 argument_list|()
@@ -1849,7 +1814,11 @@ literal|false
 argument_list|,
 name|Collections
 operator|.
-name|EMPTY_LIST
+expr|<
+name|Long
+operator|>
+name|emptyList
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -1918,6 +1887,9 @@ name|useBitSet
 parameter_list|,
 specifier|final
 name|Iterator
+argument_list|<
+name|Integer
+argument_list|>
 name|neededBounds
 parameter_list|)
 throws|throws
@@ -2036,15 +2008,10 @@ name|assertEquals
 argument_list|(
 literal|"inner min bound"
 argument_list|,
-operator|(
-operator|(
-name|Integer
-operator|)
 name|neededBounds
 operator|.
 name|next
 argument_list|()
-operator|)
 operator|.
 name|intValue
 argument_list|()
@@ -2058,15 +2025,10 @@ name|assertEquals
 argument_list|(
 literal|"inner max bound"
 argument_list|,
-operator|(
-operator|(
-name|Integer
-operator|)
 name|neededBounds
 operator|.
 name|next
 argument_list|()
-operator|)
 operator|.
 name|intValue
 argument_list|()
@@ -2531,7 +2493,11 @@ literal|false
 argument_list|,
 name|Collections
 operator|.
-name|EMPTY_LIST
+expr|<
+name|Integer
+operator|>
+name|emptyList
+argument_list|()
 operator|.
 name|iterator
 argument_list|()

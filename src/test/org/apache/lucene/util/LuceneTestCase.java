@@ -394,6 +394,9 @@ comment|/**    * Convinience method for logging an iterator.    * @param label S
 DECL|method|dumpIterator
 specifier|public
 specifier|static
+parameter_list|<
+name|T
+parameter_list|>
 name|void
 name|dumpIterator
 parameter_list|(
@@ -401,6 +404,9 @@ name|String
 name|label
 parameter_list|,
 name|Iterator
+argument_list|<
+name|T
+argument_list|>
 name|iter
 parameter_list|,
 name|PrintStream
@@ -489,6 +495,9 @@ name|stream
 parameter_list|)
 block|{
 name|Iterator
+argument_list|<
+name|Object
+argument_list|>
 name|iter
 init|=
 operator|(

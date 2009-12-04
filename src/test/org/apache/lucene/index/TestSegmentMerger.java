@@ -527,6 +527,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|stored
 init|=
 name|mergedReader

@@ -72,6 +72,9 @@ DECL|field|testWithDifferentLocales
 specifier|private
 specifier|final
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|testWithDifferentLocales
 decl_stmt|;
 DECL|method|LocalizedTestCase
@@ -110,6 +113,9 @@ specifier|public
 name|LocalizedTestCase
 parameter_list|(
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|testWithDifferentLocales
 parameter_list|)
 block|{
@@ -131,6 +137,9 @@ name|String
 name|name
 parameter_list|,
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|testWithDifferentLocales
 parameter_list|)
 block|{

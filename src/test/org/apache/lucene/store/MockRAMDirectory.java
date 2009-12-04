@@ -225,6 +225,9 @@ name|createdFiles
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 if|if
@@ -237,6 +240,9 @@ name|unSyncedFiles
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -349,6 +355,11 @@ name|openFiles
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|Iterator
@@ -366,6 +377,9 @@ name|unSyncedFiles
 operator|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|int
@@ -1204,6 +1218,11 @@ name|openFiles
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1292,6 +1311,9 @@ block|}
 block|}
 DECL|field|failures
 name|ArrayList
+argument_list|<
+name|Failure
+argument_list|>
 name|failures
 decl_stmt|;
 comment|/**    * add a Failure object to the list of objects to be evaluated    * at every potential failure point    */
@@ -1316,6 +1338,9 @@ name|failures
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Failure
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}

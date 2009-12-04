@@ -106,6 +106,9 @@ init|=
 literal|"ONE\n  two \nthree"
 decl_stmt|;
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|wordSet1
 init|=
 name|WordlistLoader
@@ -125,6 +128,9 @@ name|wordSet1
 argument_list|)
 expr_stmt|;
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|wordSet2
 init|=
 name|WordlistLoader
@@ -162,6 +168,9 @@ init|=
 literal|"ONE\n  two \nthree\n#comment"
 decl_stmt|;
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|wordSet1
 init|=
 name|WordlistLoader
@@ -209,6 +218,9 @@ name|void
 name|checkSet
 parameter_list|(
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|wordset
 parameter_list|)
 block|{

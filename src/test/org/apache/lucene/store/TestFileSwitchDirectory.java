@@ -134,10 +134,16 @@ throws|throws
 name|IOException
 block|{
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|fileExtensions
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|fileExtensions

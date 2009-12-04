@@ -92,7 +92,7 @@ name|void
 name|testMax
 parameter_list|()
 block|{
-comment|// make sure the constants convert to their equivelents
+comment|// make sure the constants convert to their equivalents
 name|assertEquals
 argument_list|(
 name|Long

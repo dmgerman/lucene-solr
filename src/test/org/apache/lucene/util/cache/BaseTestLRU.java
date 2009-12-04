@@ -46,6 +46,11 @@ name|void
 name|testCache
 parameter_list|(
 name|Cache
+argument_list|<
+name|Integer
+argument_list|,
+name|Object
+argument_list|>
 name|cache
 parameter_list|,
 name|int

@@ -86,20 +86,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenFilter
 import|;
 end_import
@@ -627,9 +613,6 @@ name|boolean
 name|inOrder
 parameter_list|)
 block|{
-name|int
-name|n
-decl_stmt|;
 name|String
 index|[]
 name|words
@@ -1145,9 +1128,6 @@ name|q2
 decl_stmt|;
 name|PayloadNearQuery
 name|query
-decl_stmt|;
-name|TopDocs
-name|hits
 decl_stmt|;
 comment|//SpanNearQuery(clauses, 10000, false)
 name|q1

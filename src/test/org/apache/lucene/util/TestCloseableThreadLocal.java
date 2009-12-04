@@ -76,10 +76,16 @@ block|{
 comment|// Tests that null can be set as a valid value (LUCENE-1805). This
 comment|// previously failed in get().
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 name|ctl
 init|=
 operator|new
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|ctl
@@ -109,20 +115,18 @@ block|{
 comment|// LUCENE-1805: make sure default get returns null,
 comment|// twice in a row
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 name|ctl
 init|=
 operator|new
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
-name|assertNull
-argument_list|(
-name|ctl
-operator|.
-name|get
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertNull
 argument_list|(
 name|ctl
@@ -138,6 +142,9 @@ class|class
 name|InitValueThreadLocal
 extends|extends
 name|CloseableThreadLocal
+argument_list|<
+name|Object
+argument_list|>
 block|{
 annotation|@
 name|Override

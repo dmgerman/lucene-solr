@@ -70,10 +70,18 @@ name|Allocator
 block|{
 DECL|field|freeByteBlocks
 name|ArrayList
+argument_list|<
+name|byte
+index|[]
+argument_list|>
 name|freeByteBlocks
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|byte
+index|[]
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/* Allocate another byte[] from the shared pool */
@@ -122,10 +130,6 @@ expr_stmt|;
 else|else
 name|b
 operator|=
-operator|(
-name|byte
-index|[]
-operator|)
 name|freeByteBlocks
 operator|.
 name|remove

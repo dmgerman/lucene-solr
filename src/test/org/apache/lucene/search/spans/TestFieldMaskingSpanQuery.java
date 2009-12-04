@@ -1047,10 +1047,16 @@ name|qr
 argument_list|)
 expr_stmt|;
 name|HashSet
+argument_list|<
+name|Term
+argument_list|>
 name|set
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Term
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|qr

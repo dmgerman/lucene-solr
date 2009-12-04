@@ -939,6 +939,9 @@ argument_list|)
 condition|)
 continue|continue;
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|kids
 init|=
 name|getAllDecendentReaderKeys
@@ -1217,6 +1220,9 @@ comment|/**    * Checks if the seed is an IndexReader, and if so will walk    * 
 DECL|method|getAllDecendentReaderKeys
 specifier|private
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|getAllDecendentReaderKeys
 parameter_list|(
 name|Object

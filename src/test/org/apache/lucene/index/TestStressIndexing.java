@@ -88,20 +88,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryParser
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -821,15 +807,10 @@ control|)
 name|assertTrue
 argument_list|(
 operator|!
-operator|(
-operator|(
-name|TimedThread
-operator|)
 name|threads
 index|[
 name|i
 index|]
-operator|)
 operator|.
 name|failed
 argument_list|)

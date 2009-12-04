@@ -199,6 +199,10 @@ name|Override
 DECL|method|getPayload
 specifier|public
 name|Collection
+argument_list|<
+name|byte
+index|[]
+argument_list|>
 name|getPayload
 parameter_list|()
 throws|throws
@@ -307,6 +311,10 @@ name|Override
 DECL|method|getPayload
 specifier|public
 name|Collection
+argument_list|<
+name|byte
+index|[]
+argument_list|>
 name|getPayload
 parameter_list|()
 throws|throws
