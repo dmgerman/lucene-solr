@@ -28,7 +28,41 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|LuceneTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertTrue
 import|;
 end_import
 
@@ -42,23 +76,10 @@ specifier|public
 class|class
 name|TestDocValues
 extends|extends
-name|LuceneTestCase
+name|LuceneTestCaseJ4
 block|{
-comment|/* @override constructor */
-DECL|method|TestDocValues
-specifier|public
-name|TestDocValues
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
+annotation|@
+name|Test
 DECL|method|testGetMinValue
 specifier|public
 name|void
@@ -139,6 +160,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testGetMaxValue
 specifier|public
 name|void
@@ -310,6 +333,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testGetAverageValue
 specifier|public
 name|void
@@ -492,7 +517,6 @@ name|innerArray
 expr_stmt|;
 block|}
 comment|/**      * @see org.apache.lucene.search.function.DocValues#floatVal(int)      */
-comment|/* @Override */
 annotation|@
 name|Override
 DECL|method|floatVal
@@ -512,7 +536,6 @@ index|]
 return|;
 block|}
 comment|/**      * @see org.apache.lucene.search.function.DocValues#toString(int)      */
-comment|/* @Override */
 annotation|@
 name|Override
 DECL|method|toString

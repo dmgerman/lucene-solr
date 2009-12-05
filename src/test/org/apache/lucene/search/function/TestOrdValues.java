@@ -56,7 +56,19 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -64,63 +76,24 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|QueryUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ScoreDoc
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TopDocs
+name|Test
 import|;
 end_import
 
 begin_comment
-comment|/**  * Test search based on OrdFieldSource and ReverseOrdFieldSource.  *<p>  * Tests here create an index with a few documents, each having  * an indexed "id" field.  * The ord values of this field are later used for scoring.  *<p>  * The order tests use Hits to verify that docs are ordered as expected.  *<p>  * The exact score tests use TopDocs top to verify the exact score.    */
+comment|/**  * Test search based on OrdFieldSource and ReverseOrdFieldSource.  *<p/>  * Tests here create an index with a few documents, each having  * an indexed "id" field.  * The ord values of this field are later used for scoring.  *<p/>  * The order tests use Hits to verify that docs are ordered as expected.  *<p/>  * The exact score tests use TopDocs top to verify the exact score.  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"UseOfSystemOutOrSystemErr"
+block|}
+argument_list|)
 DECL|class|TestOrdValues
 specifier|public
 class|class
@@ -128,22 +101,9 @@ name|TestOrdValues
 extends|extends
 name|FunctionTestSetup
 block|{
-comment|/* @override constructor */
-DECL|method|TestOrdValues
-specifier|public
-name|TestOrdValues
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Test OrdFieldSource */
+comment|/**    * Test OrdFieldSource    */
+annotation|@
+name|Test
 DECL|method|testOrdFieldRank
 specifier|public
 name|void
@@ -162,7 +122,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Test ReverseOrdFieldSource */
+comment|/**    * Test ReverseOrdFieldSource    */
+annotation|@
+name|Test
 DECL|method|testReverseOrdFieldRank
 specifier|public
 name|void
@@ -428,7 +390,9 @@ name|resID
 expr_stmt|;
 block|}
 block|}
-comment|/** Test exact score for OrdFieldSource */
+comment|/**    * Test exact score for OrdFieldSource    */
+annotation|@
+name|Test
 DECL|method|testOrdFieldExactScore
 specifier|public
 name|void
@@ -447,7 +411,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Test exact score for ReverseOrdFieldSource */
+comment|/**    * Test exact score for ReverseOrdFieldSource    */
+annotation|@
+name|Test
 DECL|method|testReverseOrdFieldExactScore
 specifier|public
 name|void
@@ -715,7 +681,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Test caching OrdFieldSource */
+comment|/**    * Test caching OrdFieldSource    */
+annotation|@
+name|Test
 DECL|method|testCachingOrd
 specifier|public
 name|void
@@ -734,11 +702,13 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Test caching for ReverseOrdFieldSource */
-DECL|method|tesCachingReverseOrd
+comment|/**    * Test caching for ReverseOrdFieldSource    */
+annotation|@
+name|Test
+DECL|method|testCachingReverseOrd
 specifier|public
 name|void
-name|tesCachingReverseOrd
+name|testCachingReverseOrd
 parameter_list|()
 throws|throws
 name|CorruptIndexException
@@ -888,29 +858,12 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|readers
-operator|.
-name|length
-condition|;
-name|j
-operator|++
-control|)
-block|{
 name|IndexReader
 name|reader
-init|=
+range|:
 name|readers
-index|[
-name|j
-index|]
-decl_stmt|;
+control|)
+block|{
 if|if
 condition|(
 name|i
@@ -1115,29 +1068,12 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|readers
-operator|.
-name|length
-condition|;
-name|j
-operator|++
-control|)
-block|{
 name|IndexReader
 name|reader
-init|=
+range|:
 name|readers
-index|[
-name|j
-index|]
-decl_stmt|;
+control|)
+block|{
 try|try
 block|{
 name|log
@@ -1298,29 +1234,12 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|readers
-operator|.
-name|length
-condition|;
-name|j
-operator|++
-control|)
-block|{
 name|IndexReader
 name|reader
-init|=
+range|:
 name|readers
-index|[
-name|j
-index|]
-decl_stmt|;
+control|)
+block|{
 try|try
 block|{
 name|log
