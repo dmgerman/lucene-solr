@@ -965,6 +965,9 @@ decl_stmt|;
 comment|//    boolean toLowerCase = false;
 comment|//    Set stopWords = null;
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|stopWords
 init|=
 name|StopAnalyzer
@@ -1747,10 +1750,16 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|lines
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|String
@@ -2364,10 +2373,16 @@ name|fileNames
 parameter_list|)
 block|{
 name|LinkedHashSet
+argument_list|<
+name|String
+argument_list|>
 name|allFiles
 init|=
 operator|new
 name|LinkedHashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for

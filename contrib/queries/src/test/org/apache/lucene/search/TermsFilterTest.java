@@ -214,10 +214,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|HashSet
+argument_list|<
+name|Filter
+argument_list|>
 name|cachedFilters
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Filter
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|cachedFilters

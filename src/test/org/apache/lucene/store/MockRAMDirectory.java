@@ -1061,9 +1061,6 @@ block|{
 name|Integer
 name|v
 init|=
-operator|(
-name|Integer
-operator|)
 name|openFiles
 operator|.
 name|get
@@ -1386,17 +1383,12 @@ name|i
 operator|++
 control|)
 block|{
-operator|(
-operator|(
-name|Failure
-operator|)
 name|failures
 operator|.
 name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
 operator|.
 name|eval
 argument_list|(

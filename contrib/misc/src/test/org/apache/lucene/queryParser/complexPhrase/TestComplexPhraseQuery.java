@@ -509,10 +509,16 @@ name|qString
 argument_list|)
 decl_stmt|;
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|expecteds
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|String
