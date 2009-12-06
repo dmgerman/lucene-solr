@@ -106,12 +106,38 @@ operator|=
 literal|2
 expr_stmt|;
 else|else
+block|{
+if|if
+condition|(
+name|maxSize
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+comment|// Don't wrap heapSize to -1, in this case, which
+comment|// causes a confusing NegativeArraySizeException.
+comment|// Note that very likely this will simply then hit
+comment|// an OOME, but at least that's more indicative to
+comment|// caller that this values is too big:
+name|heapSize
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+block|}
+else|else
+block|{
 name|heapSize
 operator|=
 name|maxSize
 operator|+
 literal|1
 expr_stmt|;
+block|}
+block|}
 name|heap
 operator|=
 operator|(
