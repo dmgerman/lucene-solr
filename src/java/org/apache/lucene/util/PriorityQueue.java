@@ -120,7 +120,10 @@ comment|// Don't wrap heapSize to -1, in this case, which
 comment|// causes a confusing NegativeArraySizeException.
 comment|// Note that very likely this will simply then hit
 comment|// an OOME, but at least that's more indicative to
-comment|// caller that this values is too big:
+comment|// caller that this values is too big.  We don't +1
+comment|// in this case, but it's very unlikely in practice
+comment|// one will actually insert this many objects into
+comment|// the PQ:
 name|heapSize
 operator|=
 name|Integer
@@ -130,6 +133,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// NOTE: we add +1 because all access to heap is
+comment|// 1-based not 0-based.  heap[0] is unused.
 name|heapSize
 operator|=
 name|maxSize
