@@ -1489,33 +1489,8 @@ name|tots
 init|=
 literal|null
 decl_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|docTexts
-operator|.
-name|length
-condition|;
-name|j
-operator|++
-control|)
-block|{
-comment|// create TokenStream
+comment|// to be non-null iff we're using TermOffsets optimization
 try|try
-block|{
-comment|// attempt term vectors
-if|if
-condition|(
-name|tots
-operator|==
-literal|null
-condition|)
 block|{
 name|TokenStream
 name|tvStream
@@ -1549,6 +1524,42 @@ argument_list|(
 name|tvStream
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+comment|// No problem. But we can't use TermOffsets optimization.
+block|}
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|0
+init|;
+name|j
+operator|<
+name|docTexts
+operator|.
+name|length
+condition|;
+name|j
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|tots
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// if we're using TermOffsets optimization, then get the next
+comment|// field value's TokenStream (i.e. get field j's TokenStream) from tots:
 name|tstream
 operator|=
 name|tots
@@ -1566,30 +1577,6 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
-block|{
-comment|// fall back to analyzer
-name|tstream
-operator|=
-name|createAnalyzerTStream
-argument_list|(
-name|schema
-argument_list|,
-name|fieldName
-argument_list|,
-name|docTexts
-index|[
-name|j
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
 block|{
 comment|// fall back to analyzer
 name|tstream
