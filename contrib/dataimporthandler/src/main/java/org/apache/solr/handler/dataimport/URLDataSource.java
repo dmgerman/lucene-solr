@@ -583,9 +583,6 @@ block|}
 return|return
 name|context
 operator|.
-name|getVariableResolver
-argument_list|()
-operator|.
 name|replaceTokens
 argument_list|(
 name|expr

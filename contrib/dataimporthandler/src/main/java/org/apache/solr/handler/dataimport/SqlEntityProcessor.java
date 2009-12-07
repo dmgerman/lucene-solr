@@ -260,7 +260,7 @@ argument_list|()
 decl_stmt|;
 name|initQuery
 argument_list|(
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(
@@ -313,7 +313,7 @@ literal|null
 return|;
 name|initQuery
 argument_list|(
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(
@@ -366,7 +366,7 @@ literal|null
 return|;
 name|initQuery
 argument_list|(
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(
@@ -433,7 +433,7 @@ argument_list|)
 expr_stmt|;
 name|initQuery
 argument_list|(
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(
@@ -632,7 +632,7 @@ expr_stmt|;
 name|Object
 name|val
 init|=
-name|resolver
+name|context
 operator|.
 name|resolve
 argument_list|(
@@ -668,7 +668,7 @@ condition|)
 block|{
 name|val
 operator|=
-name|resolver
+name|context
 operator|.
 name|resolve
 argument_list|(

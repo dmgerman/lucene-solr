@@ -160,14 +160,6 @@ name|Context
 name|context
 parameter_list|)
 block|{
-name|VariableResolver
-name|resolver
-init|=
-name|context
-operator|.
-name|getVariableResolver
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Map
@@ -187,7 +179,7 @@ block|{
 name|String
 name|style
 init|=
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(
@@ -238,7 +230,7 @@ decl_stmt|;
 name|String
 name|localeStr
 init|=
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(

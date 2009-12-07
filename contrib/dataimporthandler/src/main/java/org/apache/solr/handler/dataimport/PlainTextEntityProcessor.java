@@ -232,9 +232,6 @@ name|url
 init|=
 name|context
 operator|.
-name|getVariableResolver
-argument_list|()
-operator|.
 name|replaceTokens
 argument_list|(
 name|context

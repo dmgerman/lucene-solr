@@ -142,14 +142,6 @@ name|Context
 name|context
 parameter_list|)
 block|{
-name|VariableResolver
-name|resolver
-init|=
-name|context
-operator|.
-name|getVariableResolver
-argument_list|()
-decl_stmt|;
 name|List
 argument_list|<
 name|Map
@@ -194,7 +186,7 @@ decl_stmt|;
 name|String
 name|splitHTML
 init|=
-name|resolver
+name|context
 operator|.
 name|replaceTokens
 argument_list|(

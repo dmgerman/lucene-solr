@@ -111,11 +111,6 @@ specifier|protected
 name|Context
 name|context
 decl_stmt|;
-DECL|field|resolver
-specifier|protected
-name|VariableResolverImpl
-name|resolver
-decl_stmt|;
 DECL|field|rowIterator
 specifier|protected
 name|Iterator
@@ -167,16 +162,6 @@ operator|.
 name|context
 operator|=
 name|context
-expr_stmt|;
-name|resolver
-operator|=
-operator|(
-name|VariableResolverImpl
-operator|)
-name|context
-operator|.
-name|getVariableResolver
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -699,7 +684,7 @@ decl_stmt|;
 name|Object
 name|key
 init|=
-name|resolver
+name|context
 operator|.
 name|resolve
 argument_list|(
