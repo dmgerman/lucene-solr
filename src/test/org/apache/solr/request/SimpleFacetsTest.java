@@ -1074,6 +1074,188 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"check counts for month of facet by day with global mincount = 1"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.date"
+argument_list|,
+name|f
+argument_list|,
+literal|"facet.date.start"
+argument_list|,
+literal|"1976-07-01T00:00:00.000Z"
+argument_list|,
+literal|"facet.date.end"
+argument_list|,
+literal|"1976-07-01T00:00:00.000Z+1MONTH"
+argument_list|,
+literal|"facet.date.gap"
+argument_list|,
+literal|"+1DAY"
+argument_list|,
+literal|"facet.date.other"
+argument_list|,
+literal|"all"
+argument_list|,
+literal|"facet.mincount"
+argument_list|,
+literal|"1"
+argument_list|)
+comment|// 31 days + pre+post+inner = 34
+argument_list|,
+literal|"*[count("
+operator|+
+name|pre
+operator|+
+literal|"/int)=11]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
+comment|// july4th = 2 because exists doc @ 00:00:00.000 on July5
+comment|// (date faceting is inclusive)
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-05T00:00:00Z'][.='2'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-12T00:00:00Z'][.='1'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-13T00:00:00Z'][.='1'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-15T00:00:00Z'][.='2'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-21T00:00:00Z'][.='1'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-30T00:00:00Z'][.='1'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='before' ][.='2']"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='after'  ][.='1']"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='between'][.='11']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check counts for month of facet by day with field mincount = 1"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.date"
+argument_list|,
+name|f
+argument_list|,
+literal|"facet.date.start"
+argument_list|,
+literal|"1976-07-01T00:00:00.000Z"
+argument_list|,
+literal|"facet.date.end"
+argument_list|,
+literal|"1976-07-01T00:00:00.000Z+1MONTH"
+argument_list|,
+literal|"facet.date.gap"
+argument_list|,
+literal|"+1DAY"
+argument_list|,
+literal|"facet.date.other"
+argument_list|,
+literal|"all"
+argument_list|,
+literal|"f."
+operator|+
+name|f
+operator|+
+literal|".facet.mincount"
+argument_list|,
+literal|"2"
+argument_list|)
+comment|// 31 days + pre+post+inner = 34
+argument_list|,
+literal|"*[count("
+operator|+
+name|pre
+operator|+
+literal|"/int)=7]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
+comment|// july4th = 2 because exists doc @ 00:00:00.000 on July5
+comment|// (date faceting is inclusive)
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-05T00:00:00Z'][.='2'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='1976-07-15T00:00:00Z'][.='2'  ]"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='before' ][.='2']"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='after'  ][.='1']"
+argument_list|,
+name|pre
+operator|+
+literal|"/int[@name='between'][.='11']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"check hardend=false"
 argument_list|,
 name|req
