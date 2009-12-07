@@ -59,6 +59,13 @@ operator|new
 name|NoLockFactory
 argument_list|()
 decl_stmt|;
+comment|/**    * @deprecated This constructor was not intended to be public and should not be used.    *  It will be made private in Lucene 4.0    * @see #getNoLockFactory()    */
+comment|// make private in 4.0!
+DECL|method|NoLockFactory
+specifier|public
+name|NoLockFactory
+parameter_list|()
+block|{}
 DECL|method|getNoLockFactory
 specifier|public
 specifier|static
