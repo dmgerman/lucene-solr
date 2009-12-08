@@ -130,6 +130,9 @@ name|InputStream
 argument_list|>
 block|{
 DECL|field|LOG
+specifier|private
+specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -152,8 +155,6 @@ specifier|private
 name|int
 name|connectionTimeout
 init|=
-name|URLDataSource
-operator|.
 name|CONNECTION_TIMEOUT
 decl_stmt|;
 DECL|field|readTimeout
@@ -161,8 +162,6 @@ specifier|private
 name|int
 name|readTimeout
 init|=
-name|URLDataSource
-operator|.
 name|READ_TIMEOUT
 decl_stmt|;
 DECL|field|context
