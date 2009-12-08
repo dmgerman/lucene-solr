@@ -1698,7 +1698,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * EXPERT: Generates an array of CacheEntry objects representing all items     * currently in the FieldCache.    *<p>    * NOTE: These CacheEntry objects maintain a strong reference to the     * Cached Values.  Maintaining references to a CacheEntry the IndexReader     * associated with it has garbage collected will prevent the Value itself    * from being garbage collected when the Cache drops the WeakRefrence.    *</p>    *<p>    *<b>EXPERIMENTAL API:</b> This API is considered extremely advanced     * and experimental.  It may be removed or altered w/o warning in future     * releases     * of Lucene.    *</p>    */
+comment|/**    * EXPERT: Generates an array of CacheEntry objects representing all items     * currently in the FieldCache.    *<p>    * NOTE: These CacheEntry objects maintain a strong reference to the     * Cached Values.  Maintaining references to a CacheEntry the IndexReader     * associated with it has garbage collected will prevent the Value itself    * from being garbage collected when the Cache drops the WeakReference.    *</p>    *<p>    *<b>EXPERIMENTAL API:</b> This API is considered extremely advanced     * and experimental.  It may be removed or altered w/o warning in future     * releases     * of Lucene.    *</p>    */
 DECL|method|getCacheEntries
 specifier|public
 specifier|abstract
