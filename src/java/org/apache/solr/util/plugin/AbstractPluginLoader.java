@@ -477,7 +477,17 @@ name|info
 argument_list|(
 literal|"created "
 operator|+
+operator|(
+operator|(
 name|name
+operator|!=
+literal|null
+operator|)
+condition|?
+name|name
+else|:
+literal|""
+operator|)
 operator|+
 literal|": "
 operator|+
