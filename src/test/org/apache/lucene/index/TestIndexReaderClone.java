@@ -1772,7 +1772,7 @@ operator|.
 name|bytesRef
 argument_list|()
 operator|.
-name|refCount
+name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2357,7 +2357,7 @@ name|reader
 operator|.
 name|deletedDocsRef
 operator|.
-name|refCount
+name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
