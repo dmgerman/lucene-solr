@@ -523,6 +523,14 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// no term should match
+name|assertNull
+argument_list|(
+name|terms
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|assertFalse
 argument_list|(
 name|terms
