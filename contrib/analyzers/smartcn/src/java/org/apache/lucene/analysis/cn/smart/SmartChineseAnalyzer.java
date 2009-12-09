@@ -221,6 +221,7 @@ end_comment
 begin_class
 DECL|class|SmartChineseAnalyzer
 specifier|public
+specifier|final
 class|class
 name|SmartChineseAnalyzer
 extends|extends

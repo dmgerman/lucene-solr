@@ -181,6 +181,7 @@ end_comment
 begin_class
 DECL|class|ThaiAnalyzer
 specifier|public
+specifier|final
 class|class
 name|ThaiAnalyzer
 extends|extends
@@ -200,13 +201,6 @@ name|Version
 name|matchVersion
 parameter_list|)
 block|{
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|ThaiAnalyzer
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|matchVersion
@@ -304,23 +298,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|overridesTokenStreamMethod
-condition|)
-block|{
-comment|// LUCENE-1678: force fallback to tokenStream() if we
-comment|// have been subclassed and that subclass overrides
-comment|// tokenStream but not reusableTokenStream
-return|return
-name|tokenStream
-argument_list|(
-name|fieldName
-argument_list|,
-name|reader
-argument_list|)
-return|;
-block|}
 name|SavedStreams
 name|streams
 init|=

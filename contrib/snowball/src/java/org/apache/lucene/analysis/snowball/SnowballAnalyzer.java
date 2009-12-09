@@ -115,6 +115,7 @@ end_comment
 begin_class
 DECL|class|SnowballAnalyzer
 specifier|public
+specifier|final
 class|class
 name|SnowballAnalyzer
 extends|extends
@@ -156,13 +157,6 @@ operator|.
 name|name
 operator|=
 name|name
-expr_stmt|;
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|SnowballAnalyzer
-operator|.
-name|class
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -324,7 +318,6 @@ name|TokenStream
 name|result
 decl_stmt|;
 block|}
-empty_stmt|;
 comment|/** Returns a (possibly reused) {@link StandardTokenizer} filtered by a     * {@link StandardFilter}, a {@link LowerCaseFilter},     * a {@link StopFilter}, and a {@link SnowballFilter} */
 annotation|@
 name|Override
@@ -342,23 +335,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|overridesTokenStreamMethod
-condition|)
-block|{
-comment|// LUCENE-1678: force fallback to tokenStream() if we
-comment|// have been subclassed and that subclass overrides
-comment|// tokenStream but not reusableTokenStream
-return|return
-name|tokenStream
-argument_list|(
-name|fieldName
-argument_list|,
-name|reader
-argument_list|)
-return|;
-block|}
 name|SavedStreams
 name|streams
 init|=

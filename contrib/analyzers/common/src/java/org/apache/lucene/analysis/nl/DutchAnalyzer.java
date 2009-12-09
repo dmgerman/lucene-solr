@@ -265,6 +265,7 @@ end_comment
 begin_class
 DECL|class|DutchAnalyzer
 specifier|public
+specifier|final
 class|class
 name|DutchAnalyzer
 extends|extends
@@ -728,13 +729,6 @@ name|matchVersion
 operator|=
 name|matchVersion
 expr_stmt|;
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|DutchAnalyzer
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    *    * @param matchVersion    * @param stopwords    * @deprecated use {@link #DutchAnalyzer(Version, Set)} instead    */
 DECL|method|DutchAnalyzer
@@ -806,13 +800,6 @@ name|stopwords
 parameter_list|)
 block|{
 comment|// this is completely broken!
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|DutchAnalyzer
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|stoptable
@@ -1098,23 +1085,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|overridesTokenStreamMethod
-condition|)
-block|{
-comment|// LUCENE-1678: force fallback to tokenStream() if we
-comment|// have been subclassed and that subclass overrides
-comment|// tokenStream but not reusableTokenStream
-return|return
-name|tokenStream
-argument_list|(
-name|fieldName
-argument_list|,
-name|reader
-argument_list|)
-return|;
-block|}
 name|SavedStreams
 name|streams
 init|=

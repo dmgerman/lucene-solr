@@ -167,6 +167,7 @@ end_comment
 begin_class
 DECL|class|QueryAutoStopWordAnalyzer
 specifier|public
+specifier|final
 class|class
 name|QueryAutoStopWordAnalyzer
 extends|extends
@@ -234,13 +235,6 @@ operator|.
 name|delegate
 operator|=
 name|delegate
-expr_stmt|;
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|QueryAutoStopWordAnalyzer
-operator|.
-name|class
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -761,23 +755,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|overridesTokenStreamMethod
-condition|)
-block|{
-comment|// LUCENE-1678: force fallback to tokenStream() if we
-comment|// have been subclassed and that subclass overrides
-comment|// tokenStream but not reusableTokenStream
-return|return
-name|tokenStream
-argument_list|(
-name|fieldName
-argument_list|,
-name|reader
-argument_list|)
-return|;
-block|}
 comment|/* map of SavedStreams for each field */
 name|Map
 argument_list|<

@@ -113,6 +113,7 @@ end_comment
 begin_class
 DECL|class|ICUCollationKeyAnalyzer
 specifier|public
+specifier|final
 class|class
 name|ICUCollationKeyAnalyzer
 extends|extends

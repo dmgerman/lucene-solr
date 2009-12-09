@@ -225,6 +225,7 @@ end_comment
 begin_class
 DECL|class|PatternAnalyzer
 specifier|public
+specifier|final
 class|class
 name|PatternAnalyzer
 extends|extends
