@@ -56,6 +56,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|tr
+operator|.
+name|TurkishLowerCaseFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Version
@@ -93,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link StopFilter} and {@link SnowballFilter}.  *  * Available stemmers are listed in org.tartarus.snowball.ext.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link org.tartarus.snowball.ext.EnglishStemmer} is named "English".  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link StopFilter} and {@link SnowballFilter}.  *  * Available stemmers are listed in org.tartarus.snowball.ext.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link org.tartarus.snowball.ext.EnglishStemmer} is named "English".  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}, with the following addition:  *<ul>  *<li> As of 3.1, uses {@link TurkishLowerCaseFilter} for Turkish language.  *</ul>  *</p>  */
 end_comment
 
 begin_class
@@ -224,6 +240,34 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+comment|// Use a special lowercase filter for turkish, the stemmer expects it.
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+operator|&&
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"Turkish"
+argument_list|)
+condition|)
+name|result
+operator|=
+operator|new
+name|TurkishLowerCaseFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+else|else
 name|result
 operator|=
 operator|new
@@ -361,6 +405,38 @@ operator|.
 name|source
 argument_list|)
 expr_stmt|;
+comment|// Use a special lowercase filter for turkish, the stemmer expects it.
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+operator|&&
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"Turkish"
+argument_list|)
+condition|)
+name|streams
+operator|.
+name|result
+operator|=
+operator|new
+name|TurkishLowerCaseFilter
+argument_list|(
+name|streams
+operator|.
+name|result
+argument_list|)
+expr_stmt|;
+else|else
 name|streams
 operator|.
 name|result

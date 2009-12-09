@@ -76,6 +76,44 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tr
+operator|.
+name|TurkishLowerCaseFilter
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
 name|tartarus
 operator|.
 name|snowball
@@ -85,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter that stems words using a Snowball-generated stemmer.  *  * Available stemmers are listed in {@link org.tartarus.snowball.ext}.  */
+comment|/**  * A filter that stems words using a Snowball-generated stemmer.  *  * Available stemmers are listed in {@link org.tartarus.snowball.ext}.  *<p><b>NOTE</b>: SnowballFilter expects lowercased text.  *<ul>  *<li>For the Turkish language, see {@link TurkishLowerCaseFilter}.  *<li>For other languages, see {@link LowerCaseFilter}.  *</ul>  *</p>  */
 end_comment
 
 begin_class
