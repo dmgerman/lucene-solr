@@ -18,15 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|ibm
+name|apache
 operator|.
-name|icu
+name|lucene
 operator|.
-name|text
+name|analysis
 operator|.
-name|Collator
+name|TokenStream
 import|;
 end_import
 
@@ -46,6 +46,30 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|KeywordTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -54,14 +78,27 @@ name|Locale
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
 begin_class
-DECL|class|TestICUCollationKeyAnalyzer
+DECL|class|TestCollationKeyFilter
 specifier|public
 class|class
-name|TestICUCollationKeyAnalyzer
+name|TestCollationKeyFilter
 extends|extends
 name|CollationTestBase
 block|{
+comment|// Neither Java 1.4.2 nor 1.5.0 has Farsi Locale collation available in
+comment|// RuleBasedCollator.  However, the Arabic Locale seems to order the Farsi
+comment|// characters properly.
 DECL|field|collator
 specifier|private
 name|Collator
@@ -74,7 +111,7 @@ argument_list|(
 operator|new
 name|Locale
 argument_list|(
-literal|"fa"
+literal|"ar"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -84,7 +121,7 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|ICUCollationKeyAnalyzer
+name|TestAnalyzer
 argument_list|(
 name|collator
 argument_list|)
@@ -161,19 +198,69 @@ name|toByteArray
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|method|testFarsiQueryParserCollating
+DECL|class|TestAnalyzer
 specifier|public
-name|void
-name|testFarsiQueryParserCollating
-parameter_list|()
-throws|throws
-name|Exception
+class|class
+name|TestAnalyzer
+extends|extends
+name|Analyzer
 block|{
-name|testFarsiQueryParserCollating
+DECL|field|collator
+specifier|private
+name|Collator
+name|collator
+decl_stmt|;
+DECL|method|TestAnalyzer
+name|TestAnalyzer
+parameter_list|(
+name|Collator
+name|collator
+parameter_list|)
+block|{
+name|this
+operator|.
+name|collator
+operator|=
+name|collator
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|tokenStream
+specifier|public
+name|TokenStream
+name|tokenStream
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|Reader
+name|reader
+parameter_list|)
+block|{
+name|TokenStream
+name|result
+init|=
+operator|new
+name|KeywordTokenizer
 argument_list|(
-name|analyzer
+name|reader
+argument_list|)
+decl_stmt|;
+name|result
+operator|=
+operator|new
+name|CollationKeyFilter
+argument_list|(
+name|result
+argument_list|,
+name|collator
 argument_list|)
 expr_stmt|;
+return|return
+name|result
+return|;
+block|}
 block|}
 DECL|method|testFarsiRangeFilterCollating
 specifier|public
@@ -241,12 +328,6 @@ name|secondRangeEnd
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Test using various international locales with accented characters (which
-comment|// sort differently depending on locale)
-comment|//
-comment|// Copied (and slightly modified) from
-comment|// org.apache.lucene.search.TestSort.testInternationalSort()
-comment|//
 DECL|method|testCollationKeySort
 specifier|public
 name|void
@@ -259,7 +340,7 @@ name|Analyzer
 name|usAnalyzer
 init|=
 operator|new
-name|ICUCollationKeyAnalyzer
+name|TestAnalyzer
 argument_list|(
 name|Collator
 operator|.
@@ -275,7 +356,7 @@ name|Analyzer
 name|franceAnalyzer
 init|=
 operator|new
-name|ICUCollationKeyAnalyzer
+name|TestAnalyzer
 argument_list|(
 name|Collator
 operator|.
@@ -291,7 +372,7 @@ name|Analyzer
 name|swedenAnalyzer
 init|=
 operator|new
-name|ICUCollationKeyAnalyzer
+name|TestAnalyzer
 argument_list|(
 name|Collator
 operator|.
@@ -311,7 +392,7 @@ name|Analyzer
 name|denmarkAnalyzer
 init|=
 operator|new
-name|ICUCollationKeyAnalyzer
+name|TestAnalyzer
 argument_list|(
 name|Collator
 operator|.
@@ -328,7 +409,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// The ICU Collator and java.text.Collator implementations differ in their
-comment|// orderings - "BFJHD" is the ordering for the ICU Collator for Locale.US.
+comment|// orderings - "BFJDH" is the ordering for java.text.Collator for Locale.US.
 name|testCollationKeySort
 argument_list|(
 name|usAnalyzer
@@ -339,7 +420,7 @@ name|swedenAnalyzer
 argument_list|,
 name|denmarkAnalyzer
 argument_list|,
-literal|"BFJHD"
+literal|"BFJDH"
 argument_list|)
 expr_stmt|;
 block|}
