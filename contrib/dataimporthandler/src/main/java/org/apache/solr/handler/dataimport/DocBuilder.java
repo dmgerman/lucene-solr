@@ -1437,6 +1437,8 @@ literal|"Optimized"
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|writer
 operator|.
 name|persist
@@ -1444,6 +1446,34 @@ argument_list|(
 name|lastIndexTimeProps
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not write property file"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|statusMessages
+operator|.
+name|put
+argument_list|(
+literal|"error"
+argument_list|,
+literal|"Could not write property file. Delta imports will not work. "
+operator|+
+literal|"Make sure your conf directory is writable"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|rollback
 name|void
