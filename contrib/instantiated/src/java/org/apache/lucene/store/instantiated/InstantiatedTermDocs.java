@@ -220,11 +220,6 @@ if|if
 condition|(
 name|reader
 operator|.
-name|hasDeletions
-argument_list|()
-operator|&&
-name|reader
-operator|.
 name|isDeleted
 argument_list|(
 name|currentDocumentInformation
@@ -248,6 +243,21 @@ return|return
 literal|true
 return|;
 block|}
+block|}
+else|else
+block|{
+comment|// mimic SegmentTermDocs
+name|currentDocumentIndex
+operator|=
+name|currentTerm
+operator|.
+name|getAssociatedDocuments
+argument_list|()
+operator|.
+name|length
+operator|-
+literal|1
+expr_stmt|;
 block|}
 block|}
 return|return
@@ -381,6 +391,18 @@ operator|-
 literal|1
 condition|)
 block|{
+comment|// mimic SegmentTermDocs that positions at the last index
+name|currentDocumentIndex
+operator|=
+name|currentTerm
+operator|.
+name|getAssociatedDocuments
+argument_list|()
+operator|.
+name|length
+operator|-
+literal|1
+expr_stmt|;
 return|return
 literal|false
 return|;

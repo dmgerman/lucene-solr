@@ -3924,7 +3924,7 @@ operator|.
 name|docCount
 return|;
 block|}
-comment|/**    * @see IndexReader#getFieldNames(IndexReader.FieldOption fldOption)    */
+comment|/**    * @see IndexReader#getFieldNames(org.apache.lucene.index.IndexReader.FieldOption)    */
 annotation|@
 name|Override
 DECL|method|getFieldNames
