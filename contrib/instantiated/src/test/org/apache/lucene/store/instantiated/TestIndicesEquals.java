@@ -1333,7 +1333,49 @@ operator|.
 name|termDocs
 argument_list|()
 expr_stmt|;
-comment|// todo consider seeking and skipping some too
+comment|// this is invalid use of the API,
+comment|// but if the response differs then it's an indication that something might have changed.
+comment|// in 2.9 and 3.0 the two TermDocs-implementations returned different values at this point.
+name|assertEquals
+argument_list|(
+literal|"Descripency during invalid use of the TermDocs API, see comments in test code for details."
+argument_list|,
+name|aprioriTermDocs
+operator|.
+name|next
+argument_list|()
+argument_list|,
+name|testTermDocs
+operator|.
+name|next
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// start using the API one is supposed to
+name|t
+operator|=
+operator|new
+name|Term
+argument_list|(
+literal|""
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|aprioriTermDocs
+operator|.
+name|seek
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+name|testTermDocs
+operator|.
+name|seek
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|aprioriTermDocs
