@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements the fuzzy search query. The similarity measurement  * is based on the Levenshtein (edit distance) algorithm.  *   *<p><em>Warning:</em> this query is not very scalable with its default prefix  * length of 0 - in this case, *every* term will be enumerated and  * cause an edit score calculation.  *   *<p>This query uses {@link MultiTermQuery#TOP_TERMS_SCORING_BOOLEAN_REWRITE)  * as default. So terms will be collected and scored according to their  * edit distance. Only the top terms are used for building the {@link BooleanQuery}.  * It is not recommended to change the rewrite mode for fuzzy queries.  */
+comment|/** Implements the fuzzy search query. The similarity measurement  * is based on the Levenshtein (edit distance) algorithm.  *   *<p><em>Warning:</em> this query is not very scalable with its default prefix  * length of 0 - in this case, *every* term will be enumerated and  * cause an edit score calculation.  *   *<p>This query uses {@link MultiTermQuery#TOP_TERMS_SCORING_BOOLEAN_REWRITE}  * as default. So terms will be collected and scored according to their  * edit distance. Only the top terms are used for building the {@link BooleanQuery}.  * It is not recommended to change the rewrite mode for fuzzy queries.  */
 end_comment
 
 begin_class
