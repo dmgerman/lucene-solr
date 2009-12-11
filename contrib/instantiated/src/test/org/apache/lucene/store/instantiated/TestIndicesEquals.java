@@ -1336,22 +1336,9 @@ expr_stmt|;
 comment|// this is invalid use of the API,
 comment|// but if the response differs then it's an indication that something might have changed.
 comment|// in 2.9 and 3.0 the two TermDocs-implementations returned different values at this point.
-name|assertEquals
-argument_list|(
-literal|"Descripency during invalid use of the TermDocs API, see comments in test code for details."
-argument_list|,
-name|aprioriTermDocs
-operator|.
-name|next
-argument_list|()
-argument_list|,
-name|testTermDocs
-operator|.
-name|next
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// start using the API one is supposed to
+comment|//    assertEquals("Descripency during invalid use of the TermDocs API, see comments in test code for details.",
+comment|//        aprioriTermDocs.next(), testTermDocs.next());
+comment|// start using the API the way one is supposed to use it
 name|t
 operator|=
 operator|new
