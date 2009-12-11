@@ -18,6 +18,18 @@ name|params
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
 begin_comment
 comment|/**  *  *  **/
 end_comment
@@ -133,9 +145,133 @@ name|TERMS_PREFIX
 operator|+
 literal|"prefix"
 decl_stmt|;
-comment|/**    * Optional.  The minimum value of docFreq to be returned.  1 by default    */
-DECL|field|TERMS_MINCOUNT
+DECL|field|TERMS_REGEXP_STR
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_REGEXP_STR
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"regex"
+decl_stmt|;
+DECL|field|TERMS_REGEXP_FLAG
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_REGEXP_FLAG
+init|=
+name|TERMS_REGEXP_STR
+operator|+
+literal|".flag"
+decl_stmt|;
+DECL|enum|TermsRegexpFlag
+specifier|public
+specifier|static
+enum|enum
+name|TermsRegexpFlag
+block|{
+DECL|enum constant|UNIX_LINES
+name|UNIX_LINES
+parameter_list|(
+name|Pattern
+operator|.
+name|UNIX_LINES
+parameter_list|)
+operator|,
+DECL|enum constant|CASE_INSENSITIVE
+constructor|CASE_INSENSITIVE(Pattern.CASE_INSENSITIVE
+block|)
+enum|,
+DECL|enum constant|COMMENTS
+name|COMMENTS
+parameter_list|(
+name|Pattern
+operator|.
+name|COMMENTS
+parameter_list|)
+operator|,
+DECL|enum constant|MULTILINE
+constructor|MULTILINE(Pattern.MULTILINE
+block|)
+operator|,
+DECL|enum constant|LITERAL
+name|LITERAL
+argument_list|(
+name|Pattern
+operator|.
+name|LITERAL
+argument_list|)
+operator|,
+DECL|enum constant|DOTALL
+name|DOTALL
+argument_list|(
+name|Pattern
+operator|.
+name|DOTALL
+argument_list|)
+operator|,
+DECL|enum constant|UNICODE_CASE
+name|UNICODE_CASE
+argument_list|(
+name|Pattern
+operator|.
+name|UNICODE_CASE
+argument_list|)
+operator|,
+DECL|enum constant|CANON_EQ
+name|CANON_EQ
+argument_list|(
+name|Pattern
+operator|.
+name|CANON_EQ
+argument_list|)
+expr_stmt|;
+end_interface
+
+begin_decl_stmt
+DECL|field|value
+name|int
+name|value
+decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
+DECL|method|TermsRegexpFlag
+name|TermsRegexpFlag
+argument_list|(
+name|int
+name|value
+argument_list|)
+block|{
+name|this
+operator|.
+name|value
+operator|=
+name|value
+block|;       }
+DECL|method|getValue
+specifier|public
+name|int
+name|getValue
+argument_list|()
+block|{
+return|return
+name|value
+return|;
+block|}
+end_expr_stmt
+
+begin_comment
+unit|}
+comment|/**    * Optional.  The minimum value of docFreq to be returned.  1 by default    */
+end_comment
+
+begin_decl_stmt
+DECL|field|TERMS_MINCOUNT
+unit|public
 specifier|static
 specifier|final
 name|String
@@ -145,7 +281,13 @@ name|TERMS_PREFIX
 operator|+
 literal|"mincount"
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Optional.  The maximum value of docFreq to be returned.  -1 by default means no boundary    */
+end_comment
+
+begin_decl_stmt
 DECL|field|TERMS_MAXCOUNT
 specifier|public
 specifier|static
@@ -157,7 +299,13 @@ name|TERMS_PREFIX
 operator|+
 literal|"maxcount"
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Optional.  If true, return the raw characters of the indexed term, regardless of if it is readable.    * For instance, the index form of numeric numbers is not human readable.  The default is false.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|TERMS_RAW
 specifier|public
 specifier|static
@@ -169,7 +317,13 @@ name|TERMS_PREFIX
 operator|+
 literal|"raw"
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Optional.  If sorting by frequency is enabled.  Defaults to sorting by count.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|TERMS_SORT
 specifier|public
 specifier|static
@@ -181,6 +335,9 @@ name|TERMS_PREFIX
 operator|+
 literal|"sort"
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|TERMS_SORT_COUNT
 specifier|public
 specifier|static
@@ -190,6 +347,9 @@ name|TERMS_SORT_COUNT
 init|=
 literal|"count"
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|TERMS_SORT_INDEX
 specifier|public
 specifier|static
@@ -199,8 +359,8 @@ name|TERMS_SORT_INDEX
 init|=
 literal|"index"
 decl_stmt|;
-block|}
-end_interface
+end_decl_stmt
 
+unit|}
 end_unit
 
