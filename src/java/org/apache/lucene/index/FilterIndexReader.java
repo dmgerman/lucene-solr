@@ -60,6 +60,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldCache
+import|;
+end_import
+
+begin_comment
+comment|// not great (circular); used only to purge FieldCache entry on close
+end_comment
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1081,6 +1099,18 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// NOTE: only needed in case someone had asked for
+comment|// FieldCache for top-level reader (which is generally
+comment|// not a good idea):
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|purge
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1181,6 +1211,22 @@ return|return
 name|in
 operator|.
 name|getSequentialSubReaders
+argument_list|()
+return|;
+block|}
+comment|/** If the subclass of FilteredIndexReader modifies the    *  contents of the FieldCache, you must override this    *  method to provide a different key */
+annotation|@
+name|Override
+DECL|method|getFieldCacheKey
+specifier|public
+name|Object
+name|getFieldCacheKey
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getFieldCacheKey
 argument_list|()
 return|;
 block|}

@@ -1715,6 +1715,17 @@ name|void
 name|purgeAllCaches
 parameter_list|()
 function_decl|;
+comment|/**    * Expert: drops all cache entries associated with this    * reader.  NOTE: this reader must precisely match the    * reader that the cache entry is keyed on. If you pass a    * top-level reader, it usually will have no effect as    * Lucene now caches at the segment reader level.    */
+DECL|method|purge
+specifier|public
+specifier|abstract
+name|void
+name|purge
+parameter_list|(
+name|IndexReader
+name|r
+parameter_list|)
+function_decl|;
 comment|/**    * If non-null, FieldCacheImpl will warn whenever    * entries are created that are not sane according to    * {@link org.apache.lucene.util.FieldCacheSanityChecker}.    */
 DECL|method|setInfoStream
 specifier|public

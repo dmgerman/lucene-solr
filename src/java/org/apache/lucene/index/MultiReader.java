@@ -156,6 +156,24 @@ name|Similarity
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldCache
+import|;
+end_import
+
+begin_comment
+comment|// not great (circular); used only to purge FieldCache entry on close
+end_comment
+
 begin_comment
 comment|/** An IndexReader which reads multiple indexes, appending  * their content. */
 end_comment
@@ -2046,6 +2064,18 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// NOTE: only needed in case someone had asked for
+comment|// FieldCache for top-level reader (which is generally
+comment|// not a good idea):
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|purge
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

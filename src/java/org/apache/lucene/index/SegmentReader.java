@@ -246,6 +246,24 @@ name|CloseableThreadLocal
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldCache
+import|;
+end_import
+
+begin_comment
+comment|// not great (circular); used only to purge FieldCache entry on close
+end_comment
+
 begin_comment
 comment|/** @version $Id */
 end_comment
@@ -447,6 +465,12 @@ specifier|final
 name|int
 name|termsIndexDivisor
 decl_stmt|;
+DECL|field|origInstance
+specifier|private
+specifier|final
+name|SegmentReader
+name|origInstance
+decl_stmt|;
 DECL|field|tis
 name|TermInfosReader
 name|tis
@@ -470,6 +494,9 @@ decl_stmt|;
 DECL|method|CoreReaders
 name|CoreReaders
 parameter_list|(
+name|SegmentReader
+name|origInstance
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -502,6 +529,12 @@ operator|.
 name|dir
 operator|=
 name|dir
+expr_stmt|;
+name|this
+operator|.
+name|origInstance
+operator|=
+name|origInstance
 expr_stmt|;
 name|boolean
 name|success
@@ -985,6 +1018,24 @@ name|storeCFSReader
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+block|}
+comment|// Force FieldCache to evict our entries at this point
+if|if
+condition|(
+name|freqStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|purge
+argument_list|(
+name|origInstance
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -2330,6 +2381,8 @@ operator|=
 operator|new
 name|CoreReaders
 argument_list|(
+name|instance
+argument_list|,
 name|dir
 argument_list|,
 name|si
