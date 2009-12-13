@@ -1330,6 +1330,13 @@ operator|+
 literal|"; mergeFactor="
 operator|+
 name|mergeFactor
+operator|+
+literal|"; segs="
+operator|+
+name|writer
+operator|.
+name|segString
+argument_list|()
 argument_list|,
 name|numSegments
 operator|<
