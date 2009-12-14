@@ -530,12 +530,6 @@ name|dir
 operator|=
 name|dir
 expr_stmt|;
-name|this
-operator|.
-name|origInstance
-operator|=
-name|origInstance
-expr_stmt|;
 name|boolean
 name|success
 init|=
@@ -716,6 +710,16 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// Must assign this at the end -- if we hit an
+comment|// exception above core, we don't want to attempt to
+comment|// purge the FieldCache (will hit NPE because core is
+comment|// not assigned yet).
+name|this
+operator|.
+name|origInstance
+operator|=
+name|origInstance
+expr_stmt|;
 block|}
 DECL|method|getTermVectorsReaderOrig
 specifier|synchronized
