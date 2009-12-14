@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|GregorianCalendar
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -420,11 +430,15 @@ decl_stmt|;
 name|Calendar
 name|cal
 init|=
-name|Calendar
-operator|.
-name|getInstance
+operator|new
+name|GregorianCalendar
 argument_list|()
 decl_stmt|;
+name|cal
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|cal
 operator|.
 name|setTimeInMillis

@@ -686,6 +686,11 @@ argument_list|()
 decl_stmt|;
 name|calendar
 operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|calendar
+operator|.
 name|set
 argument_list|(
 name|year
