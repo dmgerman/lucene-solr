@@ -188,6 +188,18 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assertEquals
+argument_list|(
+literal|"default locale unexpectedly changed:"
+argument_list|,
+name|locale
+argument_list|,
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Locale
 operator|.
 name|setDefault
