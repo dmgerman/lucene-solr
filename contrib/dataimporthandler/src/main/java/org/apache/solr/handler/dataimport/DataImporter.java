@@ -1656,20 +1656,6 @@ name|Context
 name|ctx
 parameter_list|)
 block|{
-if|if
-condition|(
-literal|"null"
-operator|.
-name|equals
-argument_list|(
-name|name
-argument_list|)
-condition|)
-return|return
-operator|new
-name|MockDataSource
-argument_list|()
-return|;
 name|Properties
 name|p
 init|=
@@ -1754,7 +1740,7 @@ name|name
 argument_list|)
 throw|;
 name|String
-name|impl
+name|type
 init|=
 name|p
 operator|.
@@ -1770,7 +1756,7 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|impl
+name|type
 operator|==
 literal|null
 condition|)
@@ -1795,7 +1781,7 @@ name|DocBuilder
 operator|.
 name|loadClass
 argument_list|(
-name|impl
+name|type
 argument_list|,
 name|getCore
 argument_list|()
@@ -1819,7 +1805,7 @@ name|e
 argument_list|,
 literal|"Invalid type for data source: "
 operator|+
-name|impl
+name|type
 argument_list|)
 expr_stmt|;
 block|}

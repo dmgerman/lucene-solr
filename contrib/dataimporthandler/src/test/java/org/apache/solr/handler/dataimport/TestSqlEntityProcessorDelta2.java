@@ -1360,7 +1360,7 @@ specifier|static
 name|String
 name|dataConfig_delta2
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+

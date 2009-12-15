@@ -1091,7 +1091,7 @@ specifier|static
 name|String
 name|dataConfig_LastIndexTime
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"\t<function name=\"checkDateFormat\" class=\"org.apache.solr.handler.dataimport.TestSqlEntityProcessor2$DateFormatValidatingEvaluator\"/>\n"
 operator|+
@@ -1109,7 +1109,7 @@ specifier|static
 name|String
 name|dataConfig
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+
@@ -1135,7 +1135,7 @@ specifier|static
 name|String
 name|dataConfig_deltaimportquery
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+

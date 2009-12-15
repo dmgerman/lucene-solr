@@ -1749,7 +1749,7 @@ specifier|final
 name|String
 name|dataConfigWithDynamicTransformer
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+
@@ -1773,7 +1773,7 @@ specifier|final
 name|String
 name|dataConfigForSkipTransform
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+
@@ -1799,7 +1799,7 @@ specifier|final
 name|String
 name|dataConfigWithTwoEntities
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+
@@ -1827,7 +1827,7 @@ specifier|final
 name|String
 name|dataConfigWithCaseInsensitiveFields
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document onImportStart=\"TestDocBuilder2$StartEventListener\" onImportEnd=\"TestDocBuilder2$EndEventListener\">\n"
 operator|+
@@ -1849,7 +1849,7 @@ specifier|final
 name|String
 name|dataConfigWithTemplatizedFieldNames
 init|=
-literal|"<dataConfig>\n"
+literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
 literal|"<document>\n"
 operator|+

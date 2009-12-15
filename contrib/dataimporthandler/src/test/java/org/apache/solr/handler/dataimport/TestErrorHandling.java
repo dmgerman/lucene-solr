@@ -512,6 +512,8 @@ literal|"<dataConfig>\n"
 operator|+
 literal|"<dataSource name=\"str\" type=\"TestErrorHandling$StringDataSource\" />"
 operator|+
+literal|"<dataSource  type=\"MockDataSource\"/>"
+operator|+
 literal|"<document>\n"
 operator|+
 literal|"<entity name=\"node\" dataSource=\"str\" processor=\"XPathEntityProcessor\" url=\"test\" forEach=\"/root/node\">\n"
