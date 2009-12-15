@@ -5557,6 +5557,8 @@ literal|" is not a SegmentReader or a single-segment DirectoryReader"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int
