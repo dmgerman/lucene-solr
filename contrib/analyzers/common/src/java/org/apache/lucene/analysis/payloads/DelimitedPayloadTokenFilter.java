@@ -213,11 +213,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|boolean
-name|result
-init|=
-literal|false
-decl_stmt|;
 if|if
 condition|(
 name|input
@@ -245,12 +240,6 @@ operator|.
 name|termLength
 argument_list|()
 decl_stmt|;
-comment|//look for the delimiter
-name|boolean
-name|seen
-init|=
-literal|false
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -276,17 +265,6 @@ operator|==
 name|delimiter
 condition|)
 block|{
-name|termAtt
-operator|.
-name|setTermBuffer
-argument_list|(
-name|buffer
-argument_list|,
-literal|0
-argument_list|,
-name|i
-argument_list|)
-expr_stmt|;
 name|payAtt
 operator|.
 name|setPayload
@@ -313,22 +291,20 @@ operator|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|seen
-operator|=
-literal|true
+name|termAtt
+operator|.
+name|setTermLength
+argument_list|(
+name|i
+argument_list|)
 expr_stmt|;
-break|break;
-comment|//at this point, we know the whole piece, so we can exit.  If we don't see the delimiter, then the termAtt is the same
+comment|// simply set a new length
+return|return
+literal|true
+return|;
 block|}
 block|}
-if|if
-condition|(
-name|seen
-operator|==
-literal|false
-condition|)
-block|{
-comment|//no delimiter
+comment|// we have not seen the delimiter
 name|payAtt
 operator|.
 name|setPayload
@@ -336,14 +312,13 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-block|}
-name|result
-operator|=
-literal|true
-expr_stmt|;
-block|}
 return|return
-name|result
+literal|true
+return|;
+block|}
+else|else
+return|return
+literal|false
 return|;
 block|}
 block|}
