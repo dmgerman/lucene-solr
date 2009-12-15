@@ -119,7 +119,7 @@ literal|"<dataSource name=\"binary\" type=\"BinFileDataSource\"/>"
 operator|+
 literal|"<document>"
 operator|+
-literal|"<entity processor=\"TikaEntityProcessor\" url=\"../../../../extraction/src/test/resources/solr-word.pdf\" dataSource=\"binary\">"
+literal|"<entity processor=\"TikaEntityProcessor\" url=\"../../../../../extraction/src/test/resources/solr-word.pdf\" dataSource=\"binary\">"
 operator|+
 literal|"<field column=\"Author\" meta=\"true\" name=\"author\"/>"
 operator|+
