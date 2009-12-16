@@ -818,7 +818,7 @@ literal|true
 argument_list|,
 literal|true
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Prevent segmentInfos from changing while opening the
@@ -829,6 +829,9 @@ init|(
 name|this
 init|)
 block|{
+name|applyDeletes
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|ReadOnlyDirectoryReader
@@ -9672,9 +9675,6 @@ condition|(
 name|flushDeletes
 condition|)
 block|{
-name|flushDeletesCount
-operator|++
-expr_stmt|;
 name|applyDeletes
 argument_list|()
 expr_stmt|;
@@ -13099,6 +13099,9 @@ argument_list|(
 literal|"startApplyDeletes"
 argument_list|)
 assert|;
+name|flushDeletesCount
+operator|++
+expr_stmt|;
 name|SegmentInfos
 name|rollback
 init|=
