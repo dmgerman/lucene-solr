@@ -2473,6 +2473,91 @@ name|si
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|checkDeletedCounts
+specifier|private
+name|boolean
+name|checkDeletedCounts
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+specifier|final
+name|int
+name|recomputedCount
+init|=
+name|deletedDocs
+operator|.
+name|getRecomputedCount
+argument_list|()
+decl_stmt|;
+assert|assert
+name|deletedDocs
+operator|.
+name|count
+argument_list|()
+operator|==
+name|recomputedCount
+operator|:
+literal|"deleted count="
+operator|+
+name|deletedDocs
+operator|.
+name|count
+argument_list|()
+operator|+
+literal|" vs recomputed count="
+operator|+
+name|recomputedCount
+assert|;
+assert|assert
+name|si
+operator|.
+name|getDelCount
+argument_list|()
+operator|==
+name|recomputedCount
+operator|:
+literal|"delete count mismatch: info="
+operator|+
+name|si
+operator|.
+name|getDelCount
+argument_list|()
+operator|+
+literal|" vs BitVector="
+operator|+
+name|recomputedCount
+assert|;
+comment|// Verify # deletes does not exceed maxDoc for this
+comment|// segment:
+assert|assert
+name|si
+operator|.
+name|getDelCount
+argument_list|()
+operator|<=
+name|maxDoc
+argument_list|()
+operator|:
+literal|"delete count mismatch: "
+operator|+
+name|recomputedCount
+operator|+
+literal|") exceeds max doc ("
+operator|+
+name|maxDoc
+argument_list|()
+operator|+
+literal|") for segment "
+operator|+
+name|si
+operator|.
+name|name
+assert|;
+return|return
+literal|true
+return|;
+block|}
 DECL|method|loadDeletedDocs
 specifier|private
 name|void
@@ -2513,58 +2598,8 @@ literal|1
 argument_list|)
 expr_stmt|;
 assert|assert
-name|si
-operator|.
-name|getDelCount
+name|checkDeletedCounts
 argument_list|()
-operator|==
-name|deletedDocs
-operator|.
-name|count
-argument_list|()
-operator|:
-literal|"delete count mismatch: info="
-operator|+
-name|si
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-literal|" vs BitVector="
-operator|+
-name|deletedDocs
-operator|.
-name|count
-argument_list|()
-assert|;
-comment|// Verify # deletes does not exceed maxDoc for this
-comment|// segment:
-assert|assert
-name|si
-operator|.
-name|getDelCount
-argument_list|()
-operator|<=
-name|maxDoc
-argument_list|()
-operator|:
-literal|"delete count mismatch: "
-operator|+
-name|deletedDocs
-operator|.
-name|count
-argument_list|()
-operator|+
-literal|") exceeds max doc ("
-operator|+
-name|maxDoc
-argument_list|()
-operator|+
-literal|") for segment "
-operator|+
-name|si
-operator|.
-name|name
 assert|;
 block|}
 else|else

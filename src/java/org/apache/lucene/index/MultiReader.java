@@ -957,12 +957,13 @@ annotation|@
 name|Override
 DECL|method|numDocs
 specifier|public
-specifier|synchronized
 name|int
 name|numDocs
 parameter_list|()
 block|{
 comment|// Don't call ensureOpen() here (it could affect performance)
+comment|// NOTE: multiple threads may wind up init'ing
+comment|// numDocs... but that's harmless
 if|if
 condition|(
 name|numDocs

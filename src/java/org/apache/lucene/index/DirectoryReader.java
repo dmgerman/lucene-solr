@@ -702,8 +702,6 @@ name|readOnly
 operator|=
 literal|true
 expr_stmt|;
-name|this
-operator|.
 name|segmentInfos
 operator|=
 name|infos
@@ -1878,7 +1876,6 @@ name|Override
 DECL|method|reopen
 specifier|public
 specifier|final
-specifier|synchronized
 name|IndexReader
 name|reopen
 parameter_list|()
@@ -1902,7 +1899,6 @@ name|Override
 DECL|method|reopen
 specifier|public
 specifier|final
-specifier|synchronized
 name|IndexReader
 name|reopen
 parameter_list|(
@@ -1928,7 +1924,6 @@ name|Override
 DECL|method|reopen
 specifier|public
 specifier|final
-specifier|synchronized
 name|IndexReader
 name|reopen
 parameter_list|(
@@ -1950,13 +1945,12 @@ name|commit
 argument_list|)
 return|;
 block|}
-DECL|method|doReopen
+DECL|method|doReopenFromWriter
 specifier|private
-specifier|synchronized
-name|IndexReader
-name|doReopen
-parameter_list|(
 specifier|final
+name|IndexReader
+name|doReopenFromWriter
+parameter_list|(
 name|boolean
 name|openReadOnly
 parameter_list|,
@@ -1967,25 +1961,6 @@ throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-assert|assert
-name|commit
-operator|==
-literal|null
-operator|||
-name|openReadOnly
-assert|;
-comment|// If we were obtained by writer.getReader(), re-ask the
-comment|// writer to get a new reader.
-if|if
-condition|(
-name|writer
-operator|!=
-literal|null
-condition|)
 block|{
 assert|assert
 name|readOnly
@@ -2022,18 +1997,88 @@ block|}
 comment|// TODO: right now we *always* make a new reader; in
 comment|// the future we could have write make some effort to
 comment|// detect that no changes have occurred
-name|IndexReader
-name|reader
-init|=
+return|return
 name|writer
 operator|.
 name|getReader
 argument_list|()
-decl_stmt|;
-return|return
-name|reader
 return|;
 block|}
+DECL|method|doReopen
+specifier|private
+name|IndexReader
+name|doReopen
+parameter_list|(
+specifier|final
+name|boolean
+name|openReadOnly
+parameter_list|,
+name|IndexCommit
+name|commit
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+assert|assert
+name|commit
+operator|==
+literal|null
+operator|||
+name|openReadOnly
+assert|;
+comment|// If we were obtained by writer.getReader(), re-ask the
+comment|// writer to get a new reader.
+if|if
+condition|(
+name|writer
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|doReopenFromWriter
+argument_list|(
+name|openReadOnly
+argument_list|,
+name|commit
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+name|doReopenNoWriter
+argument_list|(
+name|openReadOnly
+argument_list|,
+name|commit
+argument_list|)
+return|;
+block|}
+block|}
+DECL|method|doReopenNoWriter
+specifier|private
+specifier|synchronized
+name|IndexReader
+name|doReopenNoWriter
+parameter_list|(
+specifier|final
+name|boolean
+name|openReadOnly
+parameter_list|,
+name|IndexCommit
+name|commit
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
 if|if
 condition|(
 name|commit
@@ -2549,12 +2594,13 @@ annotation|@
 name|Override
 DECL|method|numDocs
 specifier|public
-specifier|synchronized
 name|int
 name|numDocs
 parameter_list|()
 block|{
 comment|// Don't call ensureOpen() here (it could affect performance)
+comment|// NOTE: multiple threads may wind up init'ing
+comment|// numDocs... but that's harmless
 if|if
 condition|(
 name|numDocs
