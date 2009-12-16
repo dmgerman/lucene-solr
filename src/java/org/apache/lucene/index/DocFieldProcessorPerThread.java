@@ -1193,6 +1193,7 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|docState
 operator|.
 name|infoStream
@@ -1214,6 +1215,13 @@ operator|+
 literal|"...'"
 argument_list|)
 expr_stmt|;
+name|docState
+operator|.
+name|maxTermPrefix
+operator|=
+literal|null
+expr_stmt|;
+block|}
 specifier|final
 name|DocumentsWriter
 operator|.
