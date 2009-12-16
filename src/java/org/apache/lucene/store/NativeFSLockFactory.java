@@ -435,10 +435,6 @@ block|}
 block|}
 end_class
 
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
-
 begin_class
 DECL|class|NativeFSLock
 class|class
@@ -931,6 +927,55 @@ operator|+
 name|path
 argument_list|)
 throw|;
+block|}
+else|else
+block|{
+comment|// if we don't hold the lock, and somebody still called release(), for
+comment|// example as a result of calling IndexWriter.unlock(), we should attempt
+comment|// to obtain the lock and release it. If the obtain fails, it means the
+comment|// lock cannot be released, and we should throw a proper exception rather
+comment|// than silently failing/not doing anything.
+name|boolean
+name|obtained
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|obtained
+operator|=
+name|obtain
+argument_list|()
+operator|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|LockReleaseFailedException
+argument_list|(
+literal|"Cannot forcefully unlock a NativeFSLock which is held by another indexer component: "
+operator|+
+name|path
+argument_list|)
+throw|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|obtained
+condition|)
+block|{
+name|release
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 annotation|@
