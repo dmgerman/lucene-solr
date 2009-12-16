@@ -789,6 +789,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -1929,33 +1932,9 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|isOpen
-specifier|synchronized
-specifier|final
-name|boolean
-name|isOpen
-parameter_list|(
-name|boolean
-name|includePendingClose
-parameter_list|)
-block|{
-return|return
-operator|!
-operator|(
-name|closed
-operator|||
-operator|(
-name|includePendingClose
-operator|&&
-name|closing
-operator|)
-operator|)
-return|;
-block|}
 comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is    */
 DECL|method|ensureOpen
 specifier|protected
-specifier|synchronized
 specifier|final
 name|void
 name|ensureOpen
@@ -1968,11 +1947,13 @@ name|AlreadyClosedException
 block|{
 if|if
 condition|(
-operator|!
-name|isOpen
-argument_list|(
+name|closed
+operator|||
+operator|(
 name|includePendingClose
-argument_list|)
+operator|&&
+name|closing
+operator|)
 condition|)
 block|{
 throw|throw
@@ -1986,7 +1967,6 @@ block|}
 block|}
 DECL|method|ensureOpen
 specifier|protected
-specifier|synchronized
 specifier|final
 name|void
 name|ensureOpen
@@ -7494,10 +7474,7 @@ DECL|method|blockAddIndexes
 specifier|private
 name|void
 name|blockAddIndexes
-parameter_list|(
-name|boolean
-name|includePendingClose
-parameter_list|)
+parameter_list|()
 block|{
 name|acquireRead
 argument_list|()
@@ -7513,7 +7490,7 @@ comment|// Make sure we are still open since we could have
 comment|// waited quite a while for last addIndexes to finish
 name|ensureOpen
 argument_list|(
-name|includePendingClose
+literal|false
 argument_list|)
 expr_stmt|;
 name|success
@@ -13818,9 +13795,7 @@ comment|// Wait for any running addIndexes to complete
 comment|// first, then block any from running until we've
 comment|// copied the segmentInfos we intend to sync:
 name|blockAddIndexes
-argument_list|(
-literal|false
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// On commit the segmentInfos must never
 comment|// reference a segment in another directory:

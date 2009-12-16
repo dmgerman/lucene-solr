@@ -168,20 +168,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|AlreadyClosedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|Directory
 import|;
 end_import
@@ -2030,25 +2016,6 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"a reader obtained from IndexWriter.getReader() cannot currently accept a commit"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-operator|!
-name|writer
-operator|.
-name|isOpen
-argument_list|(
-literal|true
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|AlreadyClosedException
-argument_list|(
-literal|"cannot reopen: the IndexWriter this reader was obtained from is now closed"
 argument_list|)
 throw|;
 block|}
