@@ -165,7 +165,7 @@ operator|=
 name|matchVersion
 expr_stmt|;
 block|}
-comment|/** Builds the named analyzer with the given stop words. */
+comment|/**     * Builds the named analyzer with the given stop words.    * @deprecated Use {@link #SnowballAnalyzer(Version, String, Set)} instead.      */
 DECL|method|SnowballAnalyzer
 specifier|public
 name|SnowballAnalyzer
@@ -197,6 +197,48 @@ argument_list|(
 name|matchVersion
 argument_list|,
 name|stopWords
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Builds the named analyzer with the given stop words. */
+DECL|method|SnowballAnalyzer
+specifier|public
+name|SnowballAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|stopWords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
+name|stopSet
+operator|=
+name|CharArraySet
+operator|.
+name|unmodifiableSet
+argument_list|(
+name|CharArraySet
+operator|.
+name|copy
+argument_list|(
+name|matchVersion
+argument_list|,
+name|stopWords
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
