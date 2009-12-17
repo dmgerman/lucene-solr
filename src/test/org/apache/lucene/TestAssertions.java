@@ -63,7 +63,16 @@ parameter_list|(
 name|AssertionError
 name|e
 parameter_list|)
-block|{     }
+block|{
+assert|assert
+name|Boolean
+operator|.
+name|TRUE
+operator|.
+name|booleanValue
+argument_list|()
+assert|;
+block|}
 block|}
 block|}
 end_class
