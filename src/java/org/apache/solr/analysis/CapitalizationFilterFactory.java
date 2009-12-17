@@ -958,6 +958,14 @@ name|DEFAULT_MAX_WORD_COUNT
 condition|)
 block|{
 comment|//make a backup in case we exceed the word count
+name|backup
+operator|=
+operator|new
+name|char
+index|[
+name|termBufferLength
+index|]
+expr_stmt|;
 name|System
 operator|.
 name|arraycopy
