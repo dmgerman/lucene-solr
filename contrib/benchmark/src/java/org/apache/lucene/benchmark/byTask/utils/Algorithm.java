@@ -248,13 +248,6 @@ argument_list|(
 literal|')'
 argument_list|)
 expr_stmt|;
-name|stok
-operator|.
-name|ordinaryChar
-argument_list|(
-literal|'-'
-argument_list|)
-expr_stmt|;
 name|boolean
 name|colonOk
 init|=
