@@ -5312,6 +5312,22 @@ name|docNumber
 argument_list|)
 return|;
 block|}
+comment|/** {@inheritDoc} */
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|si
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 comment|/**    * Return the name of the segment this reader is reading.    */
 DECL|method|getSegmentName
 specifier|public

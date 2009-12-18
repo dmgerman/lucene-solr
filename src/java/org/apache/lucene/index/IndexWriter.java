@@ -13400,7 +13400,7 @@ name|append
 argument_list|(
 name|info
 operator|.
-name|segString
+name|toString
 argument_list|(
 name|directory
 argument_list|)

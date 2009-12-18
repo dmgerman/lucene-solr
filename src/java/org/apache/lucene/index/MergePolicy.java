@@ -346,7 +346,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|segString
+name|toString
 argument_list|(
 name|dir
 argument_list|)
