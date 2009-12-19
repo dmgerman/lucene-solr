@@ -13403,6 +13403,8 @@ operator|.
 name|toString
 argument_list|(
 name|directory
+argument_list|,
+literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
