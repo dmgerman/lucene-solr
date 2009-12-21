@@ -916,16 +916,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-if|if
-condition|(
-name|ABORT
-operator|.
-name|equals
-argument_list|(
-name|onError
-argument_list|)
-condition|)
-block|{
 name|wrapAndThrow
 argument_list|(
 name|SEVERE
@@ -935,29 +925,6 @@ argument_list|,
 literal|"Unable to read content"
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Unable to parse document "
-operator|+
-name|context
-operator|.
-name|getResolvedEntityAttribute
-argument_list|(
-name|URL
-argument_list|)
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
 block|}
 name|IOUtils
 operator|.
