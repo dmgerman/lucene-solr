@@ -10991,7 +10991,15 @@ operator|-
 name|t0
 operator|)
 operator|+
-literal|" msec"
+literal|" msec for "
+operator|+
+name|merge
+operator|.
+name|info
+operator|.
+name|docCount
+operator|+
+literal|" docs"
 argument_list|)
 expr_stmt|;
 block|}

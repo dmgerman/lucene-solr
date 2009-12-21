@@ -3195,6 +3195,37 @@ return|return
 literal|false
 return|;
 block|}
+comment|/** Returns sum of all segment's docCounts.  Note that    *  this does not include deletions */
+DECL|method|totalDocCount
+specifier|public
+name|int
+name|totalDocCount
+parameter_list|()
+block|{
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfo
+name|info
+range|:
+name|this
+control|)
+block|{
+name|count
+operator|+=
+name|info
+operator|.
+name|docCount
+expr_stmt|;
+block|}
+return|return
+name|count
+return|;
+block|}
 block|}
 end_class
 
