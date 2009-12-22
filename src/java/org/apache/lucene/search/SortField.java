@@ -704,6 +704,17 @@ return|return
 name|reverse
 return|;
 block|}
+comment|/** Returns the {@link FieldComparatorSource} used for    * custom sorting    */
+DECL|method|getComparatorSource
+specifier|public
+name|FieldComparatorSource
+name|getComparatorSource
+parameter_list|()
+block|{
+return|return
+name|comparatorSource
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString
