@@ -204,6 +204,16 @@ argument_list|,
 name|SKIPVAL
 argument_list|)
 expr_stmt|;
+comment|// we care only about the spellcheck results
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"response"
+argument_list|,
+name|SKIP
+argument_list|)
+expr_stmt|;
 name|query
 argument_list|(
 literal|"q"
