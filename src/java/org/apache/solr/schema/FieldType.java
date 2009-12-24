@@ -528,7 +528,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**    * A "polyField" is a FieldType that can produce more than one Field per FieldType, via the {@link #createFields(org.apache.solr.schema.SchemaField, String, float)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by three different field types, all of which may produce 1 or more    * fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, String, float)} method may return more than one field    */
+comment|/**    * A "polyField" is a FieldType that can produce more than one Fieldable instance for a single value, via the {@link #createFields(org.apache.solr.schema.SchemaField, String, float)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by multiple different fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, String, float)} method may return more than one field    */
 DECL|method|isPolyField
 specifier|public
 name|boolean
@@ -1266,7 +1266,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.document.Field} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param externalVal The value to add to the field    * @param boost The boost to apply    * @return The {@link org.apache.lucene.document.Field} instances    *    * @see #createField(SchemaField, String, float)    * @see #isPolyField()    */
+comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.document.Fieldable} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param externalVal The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.document.Fieldable}    *    * @see #createField(SchemaField, String, float)    * @see #isPolyField()    */
 DECL|method|createFields
 specifier|public
 name|Fieldable
@@ -1295,24 +1295,22 @@ argument_list|,
 name|boost
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|f
-operator|!=
-literal|null
-condition|)
-block|{
 return|return
+name|f
+operator|==
+literal|null
+condition|?
 operator|new
-name|Field
+name|Fieldable
+index|[]
+block|{}
+else|:
+operator|new
+name|Fieldable
 index|[]
 block|{
 name|f
 block|}
-return|;
-block|}
-return|return
-literal|null
 return|;
 block|}
 comment|/* Helpers for field construction */
@@ -2037,7 +2035,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not *    @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
+comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not    *  @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
 DECL|method|getRangeQuery
 specifier|public
 name|Query
@@ -2136,8 +2134,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a collection of all the Fields in the index where the {@link org.apache.solr.schema.SchemaField}    * @param polyField The instance of the {@link org.apache.solr.schema.SchemaField} to find the actual field names from    * @return The {@link java.util.Collection} of names of the actual fields that are a poly field.    *    *    */
-comment|/*protected Collection<String> getPolyFieldNames(SchemaField polyField){     if (polyField.isPolyField()) {       if (polyField != null) {         //we need the names of all the fields.  Do this lazily and then cache?         }     } //TODO: Should we throw an exception here in an else clause?     return Collections.emptyList();   }*/
 block|}
 end_class
 
