@@ -848,7 +848,6 @@ return|return
 name|name
 return|;
 block|}
-empty_stmt|;
 comment|/**    * Provides direct access to the Map containing all explicit    * (ie: non-dynamic) fields in the index, keyed on field name.    *    *<p>    * Modifying this Map (or any item in it) will affect the real schema    *</p>    *     *<p>    * NOTE: this function is not thread safe.  However, it is safe to use within the standard    *<code>inform( SolrCore core )</code> function for<code>SolrCoreAware</code> classes.    * Outside<code>inform</code>, this could potentially throw a ConcurrentModificationException    *</p>    */
 DECL|method|getFields
 specifier|public
@@ -3415,16 +3414,14 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"dynamic field creation avoided: dynamic field: ["
+literal|"dynamic field already exists: dynamic field: ["
 operator|+
 name|field
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"] "
-operator|+
-literal|"already defined in the schema!"
+literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3438,10 +3435,6 @@ argument_list|)
 expr_stmt|;
 name|dynamicFields
 operator|=
-operator|(
-name|DynamicField
-index|[]
-operator|)
 name|dynFields
 operator|.
 name|toArray
@@ -3508,11 +3501,6 @@ name|SchemaField
 name|f
 parameter_list|)
 block|{
-name|boolean
-name|dup
-init|=
-literal|false
-decl_stmt|;
 for|for
 control|(
 name|DynamicField
@@ -3534,16 +3522,12 @@ operator|.
 name|name
 argument_list|)
 condition|)
-block|{
-name|dup
-operator|=
+return|return
 literal|true
-expr_stmt|;
-break|break;
-block|}
+return|;
 block|}
 return|return
-name|dup
+literal|false
 return|;
 block|}
 DECL|method|registerCopyField
@@ -5377,7 +5361,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the SchemaField that should be used for the specified field name, or    * null if none exists.    *    * @param fieldName may be an explicitly defined field, a PolyField, or a name that    * matches a dynamic field.    * @see #getFieldType    * @see #getField(String)    * @return The {@link org.apache.solr.schema.SchemaField}    */
+comment|/**    * Returns the SchemaField that should be used for the specified field name, or    * null if none exists.    *    * @param fieldName may be an explicitly defined field or a name that    * matches a dynamic field.    * @see #getFieldType    * @see #getField(String)    * @return The {@link org.apache.solr.schema.SchemaField}    */
 DECL|method|getFieldOrNull
 specifier|public
 name|SchemaField
@@ -5436,7 +5420,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**    * Returns the SchemaField that should be used for the specified field name    *    * @param fieldName may be an explicitly defined field, a PolyField type, or a name that    * matches a dynamic field.    * @throws SolrException if no such field exists    * @see #getFieldType    * @see #getFieldOrNull(String)    * @return The {@link SchemaField}    */
+comment|/**    * Returns the SchemaField that should be used for the specified field name    *    * @param fieldName may be an explicitly defined field or a name that    * matches a dynamic field.    * @throws SolrException if no such field exists    * @see #getFieldType    * @see #getFieldOrNull(String)    * @return The {@link SchemaField}    */
 DECL|method|getField
 specifier|public
 name|SchemaField
@@ -5671,99 +5655,6 @@ literal|null
 return|;
 block|}
 empty_stmt|;
-comment|/**    *    * @param fieldName The name of the field    * @return the {@link FieldType} or a {@link org.apache.solr.common.SolrException} if the field is not a poly field.    */
-DECL|method|getPolyFieldType
-specifier|public
-name|FieldType
-name|getPolyFieldType
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|)
-block|{
-name|SchemaField
-name|f
-init|=
-name|fields
-operator|.
-name|get
-argument_list|(
-name|fieldName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|f
-operator|!=
-literal|null
-operator|&&
-name|f
-operator|.
-name|isPolyField
-argument_list|()
-condition|)
-return|return
-name|f
-operator|.
-name|getType
-argument_list|()
-return|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"undefined field or not a poly field "
-operator|+
-name|fieldName
-argument_list|)
-throw|;
-block|}
-DECL|method|getPolyFieldTypeNoEx
-specifier|public
-name|FieldType
-name|getPolyFieldTypeNoEx
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|)
-block|{
-name|SchemaField
-name|f
-init|=
-name|fields
-operator|.
-name|get
-argument_list|(
-name|fieldName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|f
-operator|!=
-literal|null
-operator|&&
-name|f
-operator|.
-name|isPolyField
-argument_list|()
-condition|)
-return|return
-name|f
-operator|.
-name|getType
-argument_list|()
-return|;
-return|return
-literal|null
-return|;
-block|}
 comment|/**    * Get all copy fields, both the static and the dynamic ones.    * @param destField    * @return Array of fields copied into this field    */
 DECL|method|getCopySources
 specifier|public
