@@ -317,7 +317,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * StreamingHttpSolrServer buffers all added documents and writes them  * into open http connections. This class is thread safe.  *   * Although any SolrServer request can be made with this implementation,   * it is only recommended to use the {@link StreamingUpdateSolrServer} with  * /update requests.  The query interface is better suited for   *   * @version $Id: CommonsHttpSolrServer.java 724175 2008-12-07 19:07:11Z ryan $  * @since solr 1.4  */
+comment|/**  * StreamingHttpSolrServer buffers all added documents and writes them  * into open HTTP connections. This class is thread safe.  *   * Although any SolrServer request can be made with this implementation,   * it is only recommended to use the {@link StreamingUpdateSolrServer} with  * /update requests.  The query interface is better suited for   *   * @version $Id: CommonsHttpSolrServer.java 724175 2008-12-07 19:07:11Z ryan $  * @since solr 1.4  */
 end_comment
 
 begin_class
@@ -389,7 +389,7 @@ specifier|final
 name|int
 name|threadCount
 decl_stmt|;
-comment|/**    * Uses an internal MultiThreadedHttpConnectionManager to manage http connections    *    * @param solrServerUrl The solr server url    * @param queueSize     The buffer size before the documents are sent o the server    * @param threadCount   The number of backgtound threads used to empty the queue    * @throws MalformedURLException    */
+comment|/**    * Uses an internal MultiThreadedHttpConnectionManager to manage http connections    *    * @param solrServerUrl The Solr server URL    * @param queueSize     The buffer size before the documents are sent to the server    * @param threadCount   The number of background threads used to empty the queue    * @throws MalformedURLException    */
 DECL|method|StreamingUpdateSolrServer
 specifier|public
 name|StreamingUpdateSolrServer
@@ -418,7 +418,7 @@ name|threadCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Uses the supplied HttpClient to send documents to the solr server, the HttpClient should be instantiated using a    * MultiThreadedHttpConnectionManager.    */
+comment|/**    * Uses the supplied HttpClient to send documents to the Solr server, the HttpClient should be instantiated using a    * MultiThreadedHttpConnectionManager.    */
 DECL|method|StreamingUpdateSolrServer
 specifier|public
 name|StreamingUpdateSolrServer
@@ -1187,7 +1187,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"interuped"
+literal|"interrupted"
 argument_list|,
 name|e
 argument_list|)
