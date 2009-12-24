@@ -232,6 +232,20 @@ name|SchemaField
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|TextField
+import|;
+end_import
+
 begin_comment
 comment|// TODO: implement the analysis of simple fields with
 end_comment
@@ -712,6 +726,52 @@ name|getQuery
 argument_list|()
 return|;
 block|}
+block|}
+comment|//Intercept poly fields, as they get expanded by default to an OR clause of
+name|SchemaField
+name|sf
+init|=
+name|schema
+operator|.
+name|getField
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
+comment|//TODO: is there anyway to avoid this instance of check?
+if|if
+condition|(
+name|sf
+operator|!=
+literal|null
+operator|&&
+operator|!
+operator|(
+name|sf
+operator|.
+name|getType
+argument_list|()
+operator|instanceof
+name|TextField
+operator|)
+condition|)
+block|{
+comment|//we have a poly field, deal with it specially by delegating to the FieldType
+return|return
+name|sf
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|getFieldQuery
+argument_list|(
+name|parser
+argument_list|,
+name|sf
+argument_list|,
+name|queryText
+argument_list|)
+return|;
 block|}
 comment|// default to a normal field query
 return|return
