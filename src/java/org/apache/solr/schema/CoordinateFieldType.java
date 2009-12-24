@@ -229,11 +229,10 @@ init|=
 literal|"subFieldType"
 decl_stmt|;
 DECL|field|suffix
-specifier|private
+specifier|protected
 name|String
 name|suffix
 decl_stmt|;
-comment|//need to keep this around between init and inform, since dynamic fields aren't created until before inform
 DECL|field|dynFieldProps
 specifier|protected
 name|int
@@ -334,6 +333,14 @@ name|trim
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|suffix
+operator|=
+name|POLY_FIELD_SEPARATOR
+operator|+
+name|subType
+operator|.
+name|typeName
+expr_stmt|;
 block|}
 elseif|else
 if|if
@@ -405,40 +412,6 @@ block|{
 comment|//Can't do this until here b/c the Dynamic Fields are not initialized until here.
 if|if
 condition|(
-name|suffix
-operator|!=
-literal|null
-condition|)
-block|{
-name|SchemaField
-name|sf
-init|=
-name|schema
-operator|.
-name|getField
-argument_list|(
-name|suffix
-argument_list|)
-decl_stmt|;
-name|subType
-operator|=
-name|sf
-operator|.
-name|getType
-argument_list|()
-expr_stmt|;
-comment|//this means it is already registered
-name|dynFieldProps
-operator|=
-name|sf
-operator|.
-name|getProperties
-argument_list|()
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
 name|subType
 operator|!=
 literal|null
@@ -461,34 +434,6 @@ operator|.
 name|getProperties
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"The field type: "
-operator|+
-name|typeName
-operator|+
-literal|" must specify the "
-operator|+
-name|SUB_FIELD_TYPE
-operator|+
-literal|" attribute or the "
-operator|+
-name|SUB_FIELD_SUFFIX
-operator|+
-literal|" attribute."
-argument_list|)
-throw|;
 block|}
 block|}
 comment|/**    * Helper method for creating a dynamic field SchemaField prototype.  Returns a {@link org.apache.solr.schema.SchemaField} with    * the {@link org.apache.solr.schema.FieldType} given and a name of "*" + {@link org.apache.solr.schema.FieldType#POLY_FIELD_SEPARATOR} + {@link org.apache.solr.schema.FieldType#typeName}    * and props of indexed=true, stored=false.    * @param schema the IndexSchema    * @param type The {@link org.apache.solr.schema.FieldType} of the prototype.    * @return The {@link org.apache.solr.schema.SchemaField}    */
