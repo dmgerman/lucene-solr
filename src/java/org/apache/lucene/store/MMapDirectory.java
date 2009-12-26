@@ -1528,7 +1528,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|getFile
+name|getDirectory
 argument_list|()
 argument_list|,
 name|name
