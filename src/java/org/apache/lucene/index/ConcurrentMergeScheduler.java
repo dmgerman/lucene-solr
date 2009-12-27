@@ -264,7 +264,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/** @see #setMaxThreadCount. */
+comment|/** @see #setMaxThreadCount(int) */
 DECL|method|getMaxThreadCount
 specifier|public
 name|int
