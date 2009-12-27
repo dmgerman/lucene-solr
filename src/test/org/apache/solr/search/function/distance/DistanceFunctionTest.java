@@ -1416,7 +1416,7 @@ argument_list|)
 argument_list|,
 literal|"//float[@name='score']='"
 operator|+
-literal|0.0f
+literal|1.0f
 operator|+
 literal|"'"
 argument_list|)
