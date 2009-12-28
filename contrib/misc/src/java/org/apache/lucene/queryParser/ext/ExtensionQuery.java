@@ -14,6 +14,20 @@ name|ext
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|QueryParser
+import|;
+end_import
+
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -40,11 +54,20 @@ specifier|final
 name|String
 name|rawQueryString
 decl_stmt|;
+DECL|field|topLevelParser
+specifier|private
+specifier|final
+name|QueryParser
+name|topLevelParser
+decl_stmt|;
 comment|/**    * Creates a new {@link ExtensionQuery}    *     * @param field    *          the query field    * @param rawQueryString    *          the raw extension query string    */
 DECL|method|ExtensionQuery
 specifier|public
 name|ExtensionQuery
 parameter_list|(
+name|QueryParser
+name|topLevelParser
+parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -63,6 +86,12 @@ operator|.
 name|rawQueryString
 operator|=
 name|rawQueryString
+expr_stmt|;
+name|this
+operator|.
+name|topLevelParser
+operator|=
+name|topLevelParser
 expr_stmt|;
 block|}
 comment|/**    * Returns the query field    *     * @return the query field    */
@@ -85,6 +114,17 @@ parameter_list|()
 block|{
 return|return
 name|rawQueryString
+return|;
+block|}
+comment|/**    * Returns the top level parser which created this {@link ExtensionQuery}     * @return the top level parser which created this {@link ExtensionQuery}    */
+DECL|method|getTopLevelParser
+specifier|public
+name|QueryParser
+name|getTopLevelParser
+parameter_list|()
+block|{
+return|return
+name|topLevelParser
 return|;
 block|}
 block|}
