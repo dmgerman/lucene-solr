@@ -115,10 +115,10 @@ comment|//Not crazy about the name, but...
 end_comment
 
 begin_class
-DECL|class|ToMultiValueSource
+DECL|class|VectorValueSource
 specifier|public
 class|class
-name|ToMultiValueSource
+name|VectorValueSource
 extends|extends
 name|MultiValueSource
 block|{
@@ -130,9 +130,9 @@ name|ValueSource
 argument_list|>
 name|sources
 decl_stmt|;
-DECL|method|ToMultiValueSource
+DECL|method|VectorValueSource
 specifier|public
-name|ToMultiValueSource
+name|VectorValueSource
 parameter_list|(
 name|List
 argument_list|<
@@ -181,7 +181,7 @@ name|name
 parameter_list|()
 block|{
 return|return
-literal|"toMultiVS"
+literal|"vector"
 return|;
 block|}
 annotation|@
@@ -1184,17 +1184,17 @@ operator|!
 operator|(
 name|o
 operator|instanceof
-name|ToMultiValueSource
+name|VectorValueSource
 operator|)
 condition|)
 return|return
 literal|false
 return|;
-name|ToMultiValueSource
+name|VectorValueSource
 name|that
 init|=
 operator|(
-name|ToMultiValueSource
+name|VectorValueSource
 operator|)
 name|o
 decl_stmt|;

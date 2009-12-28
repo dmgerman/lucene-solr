@@ -923,7 +923,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}sqedist(home, toMultiVS(0, 0))"
+literal|"{!func}sqedist(home, vector(0, 0))"
 argument_list|)
 argument_list|,
 literal|"\"//*[@numFound='50']\""
@@ -939,7 +939,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}dist(2, home, toMultiVS(0, 0))"
+literal|"{!func}dist(2, home, vector(0, 0))"
 argument_list|)
 argument_list|,
 literal|"\"//*[@numFound='50']\""
