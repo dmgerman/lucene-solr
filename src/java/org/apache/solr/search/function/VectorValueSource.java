@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.search
+DECL|package|org.apache.solr.search.function
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|solr
 operator|.
 name|search
+operator|.
+name|function
 package|;
 end_package
 
@@ -41,6 +43,22 @@ operator|.
 name|search
 operator|.
 name|Searcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|function
+operator|.
+name|MultiValueSource
 import|;
 end_import
 
