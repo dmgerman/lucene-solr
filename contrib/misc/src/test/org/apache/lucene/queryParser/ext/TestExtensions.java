@@ -49,6 +49,8 @@ specifier|private
 name|Extensions
 name|ext
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void

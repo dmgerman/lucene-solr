@@ -73,6 +73,8 @@ name|deletedDocs
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean

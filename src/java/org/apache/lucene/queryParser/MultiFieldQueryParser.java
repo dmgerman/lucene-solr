@@ -244,6 +244,8 @@ operator|=
 name|fields
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFieldQuery
 specifier|protected
 name|Query
@@ -486,6 +488,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getFieldQuery
 specifier|protected
 name|Query
@@ -511,6 +515,8 @@ literal|0
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getFuzzyQuery
 specifier|protected
 name|Query
@@ -615,6 +621,8 @@ name|minSimilarity
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getPrefixQuery
 specifier|protected
 name|Query
@@ -712,6 +720,8 @@ name|termStr
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getWildcardQuery
 specifier|protected
 name|Query
@@ -809,6 +819,8 @@ name|termStr
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRangeQuery
 specifier|protected
 name|Query

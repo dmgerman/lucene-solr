@@ -66,6 +66,8 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDeleted
 specifier|public
 name|boolean
