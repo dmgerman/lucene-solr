@@ -139,7 +139,7 @@ operator|=
 name|positionSensitive
 expr_stmt|;
 block|}
-comment|/**    * Checks to see if this term is valid at<code>position</code>.    *    * @param position    *            to check against valid term postions    * @return true iff this term is a hit at this position    */
+comment|/**    * Checks to see if this term is valid at<code>position</code>.    *    * @param position    *            to check against valid term positions    * @return true if this term is a hit at this position    */
 DECL|method|checkPosition
 specifier|public
 name|boolean
