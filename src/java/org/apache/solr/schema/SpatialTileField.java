@@ -322,6 +322,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -336,18 +346,8 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
 begin_comment
-comment|/**  * Represents a Tiling system for spatial data representation (lat/lon).  A Tile is like a zoom level on an  * interactive map.  *<p/>  * Specify a lower and upper tile, and this will create tiles for all the levels in between, inclusive of the upper tile.  *<p/>  * Querying directly against this field is probably not all that useful unless you specifically know the box id  *<p/>  *  * See http://wiki.apache.org/solr/SpatialSearch  */
+comment|/**  * Represents a Tiling system for spatial data representation (lat/lon).  A Tile is like a zoom level on an  * interactive map.  *<p/>  * Specify a lower and upper tile, and this will create tiles for all the levels in between, inclusive of the upper tile.  *<p/>  * Querying directly against this field is probably not all that useful unless you specifically know the box id  *<p/>  *<p/>  * See http://wiki.apache.org/solr/SpatialSearch  */
 end_comment
 
 begin_class
@@ -421,10 +421,6 @@ DECL|field|tileDiff
 specifier|private
 name|int
 name|tileDiff
-init|=
-name|DEFAULT_END_LEVEL
-operator|-
-name|DEFAULT_START_LEVEL
 decl_stmt|;
 comment|//we're going to need this over and over, so cache it.
 DECL|field|projectorName
@@ -540,6 +536,13 @@ name|class
 operator|.
 name|getName
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|remove
+argument_list|(
+name|PROJECTOR_CLASS
 argument_list|)
 expr_stmt|;
 name|super
