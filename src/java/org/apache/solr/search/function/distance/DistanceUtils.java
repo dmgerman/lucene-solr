@@ -35,7 +35,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Useful distance utiltities  *  **/
+comment|/**  * Useful distance utiltities.  * solr-internal: subject to change w/o notification.  *  **/
 end_comment
 
 begin_class
