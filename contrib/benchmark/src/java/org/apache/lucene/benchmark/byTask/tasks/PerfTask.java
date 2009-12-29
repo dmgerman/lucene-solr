@@ -1023,7 +1023,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Sub classes that supports parameters must override this method to return true.    * @return true if this task supports command line params.    */
+comment|/**    * Sub classes that supports parameters must override this method to return true.    * @return true iff this task supports command line params.    */
 DECL|method|supportsParams
 specifier|public
 name|boolean

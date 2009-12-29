@@ -228,7 +228,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/**    * Skips entries to the first beyond the current whose document number is    * greater than or equal to<currentTermPositionIndex>target</currentTermPositionIndex>.<p>Returns true if there is such    * an entry.<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Some implementations are considerably more efficient than that.    */
+comment|/**    * Skips entries to the first beyond the current whose document number is    * greater than or equal to<currentTermPositionIndex>target</currentTermPositionIndex>.<p>Returns true iff there is such    * an entry.<p>Behaves as if written:<pre>    *   boolean skipTo(int target) {    *     do {    *       if (!next())    * 	     return false;    *     } while (target> doc());    *     return true;    *   }    *</pre>    * Some implementations are considerably more efficient than that.    */
 annotation|@
 name|Override
 DECL|method|skipTo
