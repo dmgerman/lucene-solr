@@ -5540,6 +5540,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Lotsa tests did hacks like:<br/>    * SegmentReader reader = (SegmentReader) IndexReader.open(dir);<br/>    * They broke. This method serves as a hack to keep hacks working    * We do it with R/W access for the tests (BW compatibility)    * @deprecated Remove this when tests are fixed!    */
+annotation|@
+name|Deprecated
 DECL|method|getOnlySegmentReader
 specifier|static
 name|SegmentReader

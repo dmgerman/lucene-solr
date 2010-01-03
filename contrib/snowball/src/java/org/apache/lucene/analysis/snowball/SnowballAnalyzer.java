@@ -166,6 +166,8 @@ name|matchVersion
 expr_stmt|;
 block|}
 comment|/**     * Builds the named analyzer with the given stop words.    * @deprecated Use {@link #SnowballAnalyzer(Version, String, Set)} instead.      */
+annotation|@
+name|Deprecated
 DECL|method|SnowballAnalyzer
 specifier|public
 name|SnowballAnalyzer

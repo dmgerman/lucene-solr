@@ -2317,6 +2317,8 @@ name|long
 name|pointer
 decl_stmt|;
 comment|/** @deprecated Only kept for backward-compatbility with<3.0 indexes. Will be removed in 4.0. */
+annotation|@
+name|Deprecated
 DECL|field|isCompressed
 specifier|private
 name|boolean

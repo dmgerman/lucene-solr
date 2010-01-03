@@ -357,6 +357,8 @@ name|Token
 argument_list|()
 decl_stmt|;
 comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[], int, int, int, boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -405,6 +407,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[], boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -444,6 +448,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set, boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -482,6 +488,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, String[])} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -518,6 +526,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase
@@ -553,6 +563,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated use {@link #CompoundWordTokenFilterBase(Version, TokenStream, Set, int, int, int, boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CompoundWordTokenFilterBase
 specifier|protected
 name|CompoundWordTokenFilterBase

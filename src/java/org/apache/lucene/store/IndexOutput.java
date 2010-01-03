@@ -393,6 +393,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Writes a sub sequence of characters from s as the old    *  format (modified UTF-8 encoded bytes).    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @deprecated -- please pre-convert to utf8 bytes    * instead or use {@link #writeString}    */
+annotation|@
+name|Deprecated
 DECL|method|writeChars
 specifier|public
 name|void
@@ -578,6 +580,8 @@ block|}
 block|}
 block|}
 comment|/** Writes a sub sequence of characters from char[] as    *  the old format (modified UTF-8 encoded bytes).    * @param s the source of the characters    * @param start the first character in the sequence    * @param length the number of characters in the sequence    * @deprecated -- please pre-convert to utf8 bytes instead or use {@link #writeString}    */
+annotation|@
+name|Deprecated
 DECL|method|writeChars
 specifier|public
 name|void

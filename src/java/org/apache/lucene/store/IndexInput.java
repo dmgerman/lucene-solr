@@ -500,6 +500,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Reads Lucene's old "modified UTF-8" encoded    *  characters into an array.    * @param buffer the array to read characters into    * @param start the offset in the array to start storing characters    * @param length the number of characters to read    * @see IndexOutput#writeChars(String,int,int)    * @deprecated -- please use readString or readBytes    *                instead, and construct the string    *                from those utf8 bytes    */
+annotation|@
+name|Deprecated
 DECL|method|readChars
 specifier|public
 name|void
@@ -653,6 +655,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Expert    *     * Similar to {@link #readChars(char[], int, int)} but does not do any conversion operations on the bytes it is reading in.  It still    * has to invoke {@link #readByte()} just as {@link #readChars(char[], int, int)} does, but it does not need a buffer to store anything    * and it does not have to do any of the bitwise operations, since we don't actually care what is in the byte except to determine    * how many more bytes to read    * @param length The number of chars to read    * @deprecated this method operates on old "modified utf8" encoded    *             strings    */
+annotation|@
+name|Deprecated
 DECL|method|skipChars
 specifier|public
 name|void

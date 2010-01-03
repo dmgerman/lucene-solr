@@ -223,6 +223,8 @@ literal|'\u2019'
 block|}
 decl_stmt|;
 comment|/**    * Set the stopword articles    * @param matchVersion the lucene backwards compatibility version    * @param articles a set of articles    * @deprecated use {@link #ElisionFilter(Version, TokenStream, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setArticles
 specifier|public
 name|void
@@ -258,6 +260,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Set the stopword articles    * @param articles a set of articles    * @deprecated use {@link #setArticles(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setArticles
 specifier|public
 name|void
@@ -303,6 +307,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs an elision filter with standard stop words    * @deprecated use {@link #ElisionFilter(Version, TokenStream)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|ElisionFilter
 specifier|protected
 name|ElisionFilter
@@ -322,6 +328,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs an elision filter with a Set of stop words    * @deprecated use {@link #ElisionFilter(Version, TokenStream, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|ElisionFilter
 specifier|public
 name|ElisionFilter
@@ -401,6 +409,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs an elision filter with an array of stop words    * @deprecated use {@link #ElisionFilter(Version, TokenStream, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|ElisionFilter
 specifier|public
 name|ElisionFilter

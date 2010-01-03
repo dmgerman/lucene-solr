@@ -117,6 +117,8 @@ comment|/**  * Provides support for converting dates to strings and vice-versa. 
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|DateField
 specifier|public
 class|class

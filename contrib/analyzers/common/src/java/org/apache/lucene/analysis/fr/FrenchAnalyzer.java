@@ -311,6 +311,8 @@ name|StopwordAnalyzerBase
 block|{
 comment|/**    * Extended list of typical French stopwords.    * @deprecated use {@link #getDefaultStopSet()} instead    */
 comment|// TODO make this private in 3.1
+annotation|@
+name|Deprecated
 DECL|field|FRENCH_STOP_WORDS
 specifier|public
 specifier|final
@@ -922,6 +924,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    * @deprecated use {@link #FrenchAnalyzer(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -950,6 +954,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    * @throws IOException    * @deprecated use {@link #FrenchAnalyzer(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|FrenchAnalyzer
 specifier|public
 name|FrenchAnalyzer
@@ -977,6 +983,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an exclusionlist from an array of Strings.    * @deprecated use {@link #FrenchAnalyzer(Version, Set, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -1006,6 +1014,8 @@ expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
 comment|/**    * Builds an exclusionlist from a Map.    * @deprecated use {@link #FrenchAnalyzer(Version, Set, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setStemExclusionTable
 specifier|public
 name|void
@@ -1042,6 +1052,8 @@ expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
 comment|/**    * Builds an exclusionlist from the words contained in the given file.    * @throws IOException    * @deprecated use {@link #FrenchAnalyzer(Version, Set, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setStemExclusionTable
 specifier|public
 name|void

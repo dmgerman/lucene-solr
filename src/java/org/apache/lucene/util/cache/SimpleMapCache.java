@@ -53,6 +53,8 @@ comment|/**  * Simple cache implementation that uses a HashMap to store (key, va
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SimpleMapCache
 specifier|public
 class|class

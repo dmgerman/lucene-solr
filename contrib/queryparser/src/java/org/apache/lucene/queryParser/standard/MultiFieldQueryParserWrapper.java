@@ -103,6 +103,8 @@ comment|/**  * This class behaves as the as the lucene 2.4 MultiFieldQueryParser
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|MultiFieldQueryParserWrapper
 specifier|public
 class|class

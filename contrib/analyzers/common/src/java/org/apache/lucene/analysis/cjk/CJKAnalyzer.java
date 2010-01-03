@@ -169,6 +169,8 @@ comment|//~ Static fields/initializers -----------------------------------------
 comment|/**    * An array containing some common English words that are not usually    * useful for searching and some double-byte interpunctions.    * @deprecated use {@link #getDefaultStopSet()} instead    */
 comment|// TODO make this final in 3.1 -
 comment|// this might be revised and merged with StopFilter stop words too
+annotation|@
+name|Deprecated
 DECL|field|STOP_WORDS
 specifier|public
 specifier|final
@@ -351,6 +353,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer which removes words in the provided array.    *    * @param stopWords stop word array    * @deprecated use {@link #CJKAnalyzer(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CJKAnalyzer
 specifier|public
 name|CJKAnalyzer

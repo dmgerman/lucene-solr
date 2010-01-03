@@ -43,6 +43,8 @@ comment|/**  * Simple LRU cache implementation that uses a LinkedHashMap.  * Thi
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SimpleLRUCache
 specifier|public
 class|class

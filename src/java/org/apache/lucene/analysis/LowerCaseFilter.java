@@ -126,6 +126,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated Use {@link #LowerCaseFilter(Version, TokenStream)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|LowerCaseFilter
 specifier|public
 name|LowerCaseFilter

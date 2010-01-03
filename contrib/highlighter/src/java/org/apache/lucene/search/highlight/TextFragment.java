@@ -82,6 +82,8 @@ name|fragNum
 expr_stmt|;
 block|}
 comment|/**     * @deprecated Use {@link #TextFragment(CharSequence, int, int)} instead.    * This constructor will be removed in Lucene 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|TextFragment
 specifier|public
 name|TextFragment

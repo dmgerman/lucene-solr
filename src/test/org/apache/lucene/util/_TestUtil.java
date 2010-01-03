@@ -442,6 +442,8 @@ literal|true
 return|;
 block|}
 comment|/** Use only for testing.    *  @deprecated -- in 3.0 we can use Arrays.toString    *  instead */
+annotation|@
+name|Deprecated
 DECL|method|arrayToString
 specifier|public
 specifier|static
@@ -525,6 +527,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Use only for testing.    *  @deprecated -- in 3.0 we can use Arrays.toString    *  instead */
+annotation|@
+name|Deprecated
 DECL|method|arrayToString
 specifier|public
 specifier|static

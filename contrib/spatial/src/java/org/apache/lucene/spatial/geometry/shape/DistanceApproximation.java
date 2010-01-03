@@ -25,6 +25,8 @@ comment|/**  * Imported from mq java client.  No changes made.  *  *<p><font col
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|DistanceApproximation
 specifier|public
 class|class

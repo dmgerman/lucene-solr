@@ -142,6 +142,8 @@ literal|"org/apache/lucene/analysis/cz/customStopWordFile.txt"
 argument_list|)
 decl_stmt|;
 comment|/**    * @deprecated Remove this test when support for 3.0 indexes is no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|method|testStopWordLegacy
 specifier|public
 name|void
@@ -205,6 +207,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated Remove this test when support for 3.0 indexes is no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|method|testReusableTokenStreamLegacy
 specifier|public
 name|void
@@ -310,6 +314,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * An input stream that always throws IOException for testing.    * @deprecated Remove this class when the loadStopWords method is removed.    */
+annotation|@
+name|Deprecated
 DECL|class|UnreliableInputStream
 specifier|private
 class|class
@@ -335,6 +341,8 @@ throw|;
 block|}
 block|}
 comment|/**    * The loadStopWords method does not throw IOException on error,    * instead previously it set the stoptable to null (versus empty)    * this would cause a NPE when it is time to create the StopFilter.    * @deprecated Remove this test when the loadStopWords method is removed.    */
+annotation|@
+name|Deprecated
 DECL|method|testInvalidStopWordFile
 specifier|public
 name|void
@@ -387,6 +395,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Test that changes to the stop table via loadStopWords are applied immediately    * when using reusable token streams.    * @deprecated Remove this test when the loadStopWords method is removed.    */
+annotation|@
+name|Deprecated
 DECL|method|testStopWordFileReuse
 specifier|public
 name|void

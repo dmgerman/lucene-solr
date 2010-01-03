@@ -247,6 +247,8 @@ literal|"stopwords.txt"
 decl_stmt|;
 comment|/**    * The comment character in the stopwords file. All lines prefixed with this    * will be ignored    * @deprecated use {@link WordlistLoader#getWordSet(File, String)} directly    */
 comment|//TODO make this private
+annotation|@
+name|Deprecated
 DECL|field|STOPWORDS_COMMENT
 specifier|public
 specifier|static

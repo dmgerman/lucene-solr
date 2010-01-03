@@ -143,6 +143,8 @@ init|=
 literal|0x2
 decl_stmt|;
 comment|/** @deprecated Kept for backwards-compatibility with<3.0 indexes; will be removed in 4.0 */
+annotation|@
+name|Deprecated
 DECL|field|FIELD_IS_COMPRESSED
 specifier|static
 specifier|final

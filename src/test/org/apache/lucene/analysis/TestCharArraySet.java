@@ -1859,6 +1859,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * @deprecated remove this test when lucene 3.0 "broken unicode 4" support is    *             no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|method|testSupplementaryCharsBWCompat
 specifier|public
 name|void
@@ -2116,6 +2118,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * @deprecated remove this test when lucene 3.0 "broken unicode 4" support is    *             no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|method|testSingleHighSurrogateBWComapt
 specifier|public
 name|void

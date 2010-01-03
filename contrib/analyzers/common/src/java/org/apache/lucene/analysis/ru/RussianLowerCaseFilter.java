@@ -95,6 +95,8 @@ comment|/**  * Normalizes token text to lower case.  * @deprecated Use {@link Lo
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianLowerCaseFilter
 specifier|public
 specifier|final

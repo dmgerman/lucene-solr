@@ -869,6 +869,8 @@ return|;
 block|}
 block|}
 comment|/**    * @deprecated remove this when lucene 3.0 "broken unicode 4" support    * is no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|class|LowerCaseWhitespaceAnalyzerBWComp
 specifier|private
 specifier|static
@@ -1142,6 +1144,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test that LowercaseFilter only works on BMP for back compat,    * depending upon version    * @deprecated remove this test when lucene 3.0 "broken unicode 4" support    * is no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|method|testLowerCaseFilterBWComp
 specifier|public
 name|void

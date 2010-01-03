@@ -225,6 +225,8 @@ literal|"stopwords.txt"
 decl_stmt|;
 comment|/**    * The comment character in the stopwords file.  All lines prefixed with this will be ignored    * @deprecated use {@link WordlistLoader#getWordSet(File, String)} directly      */
 comment|// TODO make this private
+annotation|@
+name|Deprecated
 DECL|field|STOPWORDS_COMMENT
 specifier|public
 specifier|static
@@ -348,6 +350,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    * @deprecated use {@link #ArabicAnalyzer(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
@@ -376,6 +380,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.    * @deprecated use {@link #ArabicAnalyzer(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer
@@ -404,6 +410,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the given stop words.  Lines can be commented out using {@link #STOPWORDS_COMMENT}    * @deprecated use {@link #ArabicAnalyzer(Version, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|ArabicAnalyzer
 specifier|public
 name|ArabicAnalyzer

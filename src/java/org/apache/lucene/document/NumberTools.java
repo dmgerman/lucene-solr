@@ -79,6 +79,8 @@ comment|/**  * Provides support for converting longs to Strings, and back again.
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|NumberTools
 specifier|public
 class|class

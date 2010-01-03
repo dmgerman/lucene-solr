@@ -37,6 +37,8 @@ comment|/**  * A filter that replaces accented characters in the ISO Latin 1 cha
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ISOLatin1AccentFilter
 specifier|public
 specifier|final

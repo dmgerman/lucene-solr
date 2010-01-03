@@ -226,6 +226,8 @@ return|;
 block|}
 block|}
 comment|/**    * @deprecated Use HTMLParser(FileInputStream) instead    */
+annotation|@
+name|Deprecated
 DECL|method|HTMLParser
 specifier|public
 name|HTMLParser

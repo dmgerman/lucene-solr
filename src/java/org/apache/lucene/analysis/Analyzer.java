@@ -261,6 +261,8 @@ block|}
 block|}
 block|}
 comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|overridesTokenStreamMethod
 specifier|protected
 name|boolean
@@ -269,6 +271,8 @@ init|=
 literal|false
 decl_stmt|;
 comment|/** @deprecated This is only present to preserve    *  back-compat of classes that subclass a core analyzer    *  and override tokenStream but not reusableTokenStream */
+annotation|@
+name|Deprecated
 DECL|method|setOverridesTokenStreamMethod
 specifier|protected
 name|void

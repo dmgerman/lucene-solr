@@ -251,6 +251,8 @@ init|=
 literal|7
 decl_stmt|;
 comment|/**    * @deprecated this solves a bug where HOSTs that end with '.' are identified    *             as ACRONYMs.    */
+annotation|@
+name|Deprecated
 DECL|field|ACRONYM_DEP
 specifier|public
 specifier|static
@@ -818,6 +820,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Prior to https://issues.apache.org/jira/browse/LUCENE-1068, StandardTokenizer mischaracterized as acronyms tokens like www.abc.com    * when they should have been labeled as hosts instead.    * @return true if StandardTokenizer now returns these tokens as Hosts, otherwise false    *    * @deprecated Remove in 3.X and make true the only valid value    */
+annotation|@
+name|Deprecated
 DECL|method|isReplaceInvalidAcronym
 specifier|public
 name|boolean
@@ -829,6 +833,8 @@ name|replaceInvalidAcronym
 return|;
 block|}
 comment|/**    *    * @param replaceInvalidAcronym Set to true to replace mischaracterized acronyms as HOST.    * @deprecated Remove in 3.X and make true the only valid value    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    */
+annotation|@
+name|Deprecated
 DECL|method|setReplaceInvalidAcronym
 specifier|public
 name|void

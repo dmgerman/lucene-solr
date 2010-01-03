@@ -290,6 +290,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a set with enough capacity to hold startSize terms    *     * @param startSize    *          the initial capacity    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    * @deprecated use {@link #CharArraySet(Version, int, boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|CharArraySet
 specifier|public
 name|CharArraySet
@@ -314,6 +316,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a set from a Collection of objects.     *     * @param c    *          a collection whose elements to be placed into the set    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    * @deprecated use {@link #CharArraySet(Version, Collection, boolean)} instead             */
+annotation|@
+name|Deprecated
 DECL|method|CharArraySet
 specifier|public
 name|CharArraySet
@@ -1675,6 +1679,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a copy of the given set as a {@link CharArraySet}. If the given set    * is a {@link CharArraySet} the ignoreCase property will be preserved.    *     * @param set    *          a set to copy    * @return a copy of the given set as a {@link CharArraySet}. If the given set    *         is a {@link CharArraySet} the ignoreCase and matchVersion property will be    *         preserved.    * @deprecated use {@link #copy(Version, Set)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|copy
 specifier|public
 specifier|static

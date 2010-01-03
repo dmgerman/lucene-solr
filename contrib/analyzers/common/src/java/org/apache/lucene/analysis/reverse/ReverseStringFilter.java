@@ -166,6 +166,8 @@ init|=
 literal|'\u200F'
 decl_stmt|;
 comment|/**    * Create a new ReverseStringFilter that reverses all tokens in the     * supplied {@link TokenStream}.    *<p>    * The reversed tokens will not be marked.     *</p>    *     * @param in {@link TokenStream} to filter    * @deprecated use {@link #ReverseStringFilter(Version, TokenStream)}     *    instead. This constructor will be removed in Lucene 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|ReverseStringFilter
 specifier|public
 name|ReverseStringFilter
@@ -183,6 +185,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Create a new ReverseStringFilter that reverses and marks all tokens in the    * supplied {@link TokenStream}.    *<p>    * The reversed tokens will be prepended (marked) by the<code>marker</code>    * character.    *</p>    *     * @param in {@link TokenStream} to filter    * @param marker A character used to mark reversed tokens    * @deprecated use {@link #ReverseStringFilter(Version, TokenStream, char)}     *    instead. This constructor will be removed in Lucene 4.0     */
+annotation|@
+name|Deprecated
 DECL|method|ReverseStringFilter
 specifier|public
 name|ReverseStringFilter
@@ -359,6 +363,8 @@ return|;
 block|}
 block|}
 comment|/**    * Reverses the given input string    *     * @param input the string to reverse    * @return the given input string in reversed order    * @deprecated use {@link #reverse(Version, String)} instead. This method     *    will be removed in Lucene 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -428,6 +434,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Reverses the given input buffer in-place    * @param buffer the input char array to reverse    * @deprecated use {@link #reverse(Version, char[])} instead. This     *    method will be removed in Lucene 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -483,6 +491,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Partially reverses the given input buffer in-place from offset 0    * up to the given length.    * @param buffer the input char array to reverse    * @param len the length in the buffer up to where the    *        buffer should be reversed    * @deprecated use {@link #reverse(Version, char[], int)} instead. This     *    method will be removed in Lucene 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -542,6 +552,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Partially reverses the given input buffer in-place from the given offset    * up to the given length.    * @param buffer the input char array to reverse    * @param start the offset from where to reverse the buffer    * @param len the length in the buffer up to where the    *        buffer should be reversed    * @deprecated use {@link #reverse(Version, char[], int, int)} instead. This     *    method will be removed in Lucene 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -570,6 +582,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated Remove this when support for 3.0 indexes is no longer needed.    */
+annotation|@
+name|Deprecated
 DECL|method|reverseUnicode3
 specifier|private
 specifier|static

@@ -157,6 +157,8 @@ name|PositionIncrementAttribute
 name|posIncrAtt
 decl_stmt|;
 comment|/**    * Construct a token stream filtering the given input.    * If<code>stopWords</code> is an instance of {@link CharArraySet} (true if    *<code>makeStopSet()</code> was used to construct the set) it will be directly used    * and<code>ignoreCase</code> will be ignored since<code>CharArraySet</code>    * directly controls case sensitivity.    *<p/>    * If<code>stopWords</code> is not an instance of {@link CharArraySet},    * a new CharArraySet will be constructed and<code>ignoreCase</code> will be    * used to specify the case sensitivity of that set.    *    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param input Input TokenStream    * @param stopWords A Set of Strings or char[] or any other toString()-able set representing the stopwords    * @param ignoreCase if true, all words are lower cased first    * @deprecated use {@link #StopFilter(Version, TokenStream, Set, boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -309,6 +311,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a filter which removes words from the input    * TokenStream that are named in the Set.    *    * @param enablePositionIncrements true if token positions should record the removed stop words    * @param in Input stream    * @param stopWords A Set of Strings or char[] or any other toString()-able set representing the stopwords    * @see #makeStopSet(Version, java.lang.String[])    * @deprecated use {@link #StopFilter(Version, TokenStream, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|StopFilter
 specifier|public
 name|StopFilter
@@ -373,6 +377,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    *     * @see #makeStopSet(Version, java.lang.String[], boolean) passing false to ignoreCase    * @deprecated use {@link #makeStopSet(Version, String...)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|makeStopSet
 specifier|public
 specifier|static
@@ -432,6 +438,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Builds a Set from an array of stop words,    * appropriate for passing into the StopFilter constructor.    * This permits this stopWords construction to be cached once when    * an Analyzer is constructed.    * @param stopWords A List of Strings or char[] or any other toString()-able list representing the stopwords    * @return A Set ({@link CharArraySet}) containing the words    * @see #makeStopSet(Version, java.lang.String[], boolean) passing false to ignoreCase    * @deprecated use {@link #makeStopSet(Version, List)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|makeStopSet
 specifier|public
 specifier|static
@@ -495,6 +503,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a stopword set from the given stopword array.    * @param stopWords An array of stopwords    * @param ignoreCase If true, all words are lower cased first.      * @return a Set containing the words    * @deprecated use {@link #makeStopSet(Version, String[], boolean)} instead;    */
+annotation|@
+name|Deprecated
 DECL|method|makeStopSet
 specifier|public
 specifier|static
@@ -580,6 +590,8 @@ name|stopSet
 return|;
 block|}
 comment|/**    * Creates a stopword set from the given stopword list.    * @param stopWords A List of Strings or char[] or any other toString()-able list representing the stopwords    * @param ignoreCase if true, all words are lower cased first    * @return A Set ({@link CharArraySet}) containing the words    * @deprecated use {@link #makeStopSet(Version, List, boolean)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|makeStopSet
 specifier|public
 specifier|static
@@ -747,6 +759,8 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns version-dependent default for    * enablePositionIncrements.  Analyzers that embed    * StopFilter use this method when creating the    * StopFilter.  Prior to 2.9, this returns false.  On 2.9    * or later, it returns true.    * @deprecated use {@link #StopFilter(Version, TokenStream, Set)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getEnablePositionIncrementsVersionDefault
 specifier|public
 specifier|static

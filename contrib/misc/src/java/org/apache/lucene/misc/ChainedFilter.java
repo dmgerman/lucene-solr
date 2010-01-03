@@ -558,6 +558,8 @@ name|result
 return|;
 block|}
 comment|/** Provide a SortedVIntList when it is definitely      *  smaller than an OpenBitSet      *  @deprecated Either use CachingWrapperFilter, or      *  switch to a different DocIdSet implementation yourself.      *  This method will be removed in Lucene 4.0       **/
+annotation|@
+name|Deprecated
 DECL|method|finalResult
 specifier|protected
 specifier|final

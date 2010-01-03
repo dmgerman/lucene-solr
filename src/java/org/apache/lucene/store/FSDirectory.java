@@ -1246,6 +1246,8 @@ literal|false
 expr_stmt|;
 block|}
 comment|/** @deprecated Use {@link #getDirectory} instead. */
+annotation|@
+name|Deprecated
 DECL|method|getFile
 specifier|public
 name|File

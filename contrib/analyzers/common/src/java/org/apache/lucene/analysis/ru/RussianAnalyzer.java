@@ -473,6 +473,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Builds an analyzer with the given stop words.      * @deprecated use {@link #RussianAnalyzer(Version, Set)} instead      */
+annotation|@
+name|Deprecated
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer
@@ -524,6 +526,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Builds an analyzer with the given stop words.      * TODO: create a Set version of this ctor      * @deprecated use {@link #RussianAnalyzer(Version, Set)} instead      */
+annotation|@
+name|Deprecated
 DECL|method|RussianAnalyzer
 specifier|public
 name|RussianAnalyzer

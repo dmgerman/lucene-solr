@@ -563,6 +563,8 @@ comment|/**  * This class performs the query parsing using the new query parser 
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|QueryParserWrapper
 specifier|public
 class|class
