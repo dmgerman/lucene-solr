@@ -114,22 +114,6 @@ name|AttributeSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
-operator|.
-name|AttributeFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  * CJKTokenizer is designed for Chinese, Japanese, and Korean languages.  *<p>    * The tokens returned are every two adjacent characters with overlap match.  *</p>  *<p>  * Example: "java C1C2C3C4" will be segmented to: "java" "C1C2" "C2C3" "C3C4".  *</p>  * Additionally, the following is applied to Latin text (such as English):  *<ul>  *<li>Text is converted to lowercase.  *<li>Numeric digits, '+', '#', and '_' are tokenized as letters.  *<li>Full-width forms are converted to half-width forms.  *</ul>  * For more info on Asian language (Chinese, Japanese, and Korean) text segmentation:  * please search<a  * href="http://www.google.com/search?q=word+chinese+segment">google</a>  *  */
 end_comment
