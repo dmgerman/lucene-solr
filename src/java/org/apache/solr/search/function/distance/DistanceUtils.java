@@ -70,6 +70,24 @@ name|Math
 operator|.
 name|PI
 decl_stmt|;
+DECL|field|KM_TO_MILES
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|KM_TO_MILES
+init|=
+literal|0.621371192
+decl_stmt|;
+DECL|field|MILES_TO_KM
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MILES_TO_KM
+init|=
+literal|1.609344
+decl_stmt|;
 comment|/**    * Calculate the p-norm (i.e. length) between two vectors    *    * @param vec1  The first vector    * @param vec2  The second vector    * @param power The power (2 for Euclidean distance, 1 for manhattan, etc.)    * @return The length.    *<p/>    *         See http://en.wikipedia.org/wiki/Lp_space    * @see #vectorDistance(double[], double[], double, double)    */
 DECL|method|vectorDistance
 specifier|public
