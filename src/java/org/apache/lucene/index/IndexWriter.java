@@ -3813,6 +3813,12 @@ literal|" index="
 operator|+
 name|segString
 argument_list|()
+operator|+
+literal|" version="
+operator|+
+name|Constants
+operator|.
+name|LUCENE_VERSION
 argument_list|)
 expr_stmt|;
 block|}

@@ -1977,7 +1977,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"IndexFileDeleter: unable to remove file \""
+literal|"unable to remove file \""
 operator|+
 name|fileName
 operator|+
