@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * While not strictly a distance, the Sq. Euclidean Distance is often all that is needed in many applications  * that require a distance, thus saving a sq. rt. calculation  *  **/
+comment|/**  * While not strictly a distance, the Sq. Euclidean Distance is often all that is needed in many applications  * that require a distance, thus saving a sq. rt. calculation  */
 end_comment
 
 begin_class
@@ -121,11 +121,6 @@ name|dv2
 parameter_list|)
 block|{
 name|double
-name|result
-init|=
-literal|0
-decl_stmt|;
-name|double
 index|[]
 name|vals1
 init|=
@@ -169,45 +164,15 @@ argument_list|,
 name|vals2
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|vals1
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|double
-name|v
-init|=
-name|vals1
-index|[
-name|i
-index|]
-operator|-
-name|vals2
-index|[
-name|i
-index|]
-decl_stmt|;
-name|result
-operator|+=
-name|v
-operator|*
-name|v
-expr_stmt|;
-block|}
 return|return
-name|result
+name|DistanceUtils
+operator|.
+name|squaredEuclideanDistance
+argument_list|(
+name|vals1
+argument_list|,
+name|vals2
+argument_list|)
 return|;
 block|}
 annotation|@
