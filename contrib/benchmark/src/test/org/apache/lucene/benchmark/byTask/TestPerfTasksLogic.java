@@ -598,10 +598,10 @@ expr_stmt|;
 block|}
 comment|// disabled until we fix BG thread prio -- this test
 comment|// causes build to hang
-DECL|method|XXXtestBGSearchTaskThreads
+DECL|method|testBGSearchTaskThreads
 specifier|public
 name|void
-name|XXXtestBGSearchTaskThreads
+name|testBGSearchTaskThreads
 parameter_list|()
 throws|throws
 name|Exception
