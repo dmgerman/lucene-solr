@@ -68,20 +68,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|TextResponseWriter
@@ -161,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat lon pair and is internally represented as a string  *  */
+comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see org.apache.solr.search.function.distance.DistanceUtils#parseLatitudeLongitude(double[], String)  */
 end_comment
 
 begin_class
