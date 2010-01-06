@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Hides implementation issues associated with obtaining a TokenStream for use with  * the higlighter - can obtain from TermFreqVectors with offsets and (optionally) positions or  * from Analyzer class reparsing the stored content.  */
+comment|/**  * Hides implementation issues associated with obtaining a TokenStream for use  * with the higlighter - can obtain from TermFreqVectors with offsets and  * (optionally) positions or from Analyzer class reparsing the stored content.  */
 end_comment
 
 begin_class
@@ -226,7 +226,7 @@ specifier|public
 class|class
 name|TokenSources
 block|{
-comment|/**    * A convenience method that tries to first get a TermPositionVector for the specified docId, then, falls back to    * using the passed in {@link org.apache.lucene.document.Document} to retrieve the TokenStream.  This is useful when    * you already have the document, but would prefer to use the vector first.    * @param reader The {@link org.apache.lucene.index.IndexReader} to use to try and get the vector from    * @param docId The docId to retrieve.    * @param field The field to retrieve on the document    * @param doc The document to fall back on    * @param analyzer The analyzer to use for creating the TokenStream if the vector doesn't exist    * @return The {@link org.apache.lucene.analysis.TokenStream} for the {@link org.apache.lucene.document.Fieldable} on the {@link org.apache.lucene.document.Document}    * @throws IOException if there was an error loading    */
+comment|/**    * A convenience method that tries to first get a TermPositionVector for the    * specified docId, then, falls back to using the passed in    * {@link org.apache.lucene.document.Document} to retrieve the TokenStream.    * This is useful when you already have the document, but would prefer to use    * the vector first.    *     * @param reader The {@link org.apache.lucene.index.IndexReader} to use to try    *        and get the vector from    * @param docId The docId to retrieve.    * @param field The field to retrieve on the document    * @param doc The document to fall back on    * @param analyzer The analyzer to use for creating the TokenStream if the    *        vector doesn't exist    * @return The {@link org.apache.lucene.analysis.TokenStream} for the    *         {@link org.apache.lucene.document.Fieldable} on the    *         {@link org.apache.lucene.document.Document}    * @throws IOException if there was an error loading    */
 DECL|method|getAnyTokenStream
 specifier|public
 specifier|static
@@ -294,7 +294,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//No token info stored so fall back to analyzing raw content
+comment|// No token info stored so fall back to analyzing raw content
 if|if
 condition|(
 name|ts
@@ -318,7 +318,7 @@ return|return
 name|ts
 return|;
 block|}
-comment|/**      * A convenience method that tries a number of approaches to getting a token stream.      * The cost of finding there are no termVectors in the index is minimal (1000 invocations still       * registers 0 ms). So this "lazy" (flexible?) approach to coding is probably acceptable      * @param reader      * @param docId      * @param field      * @param analyzer      * @return null if field not stored correctly       * @throws IOException      */
+comment|/**    * A convenience method that tries a number of approaches to getting a token    * stream. The cost of finding there are no termVectors in the index is    * minimal (1000 invocations still registers 0 ms). So this "lazy" (flexible?)    * approach to coding is probably acceptable    *     * @param reader    * @param docId    * @param field    * @param analyzer    * @return null if field not stored correctly    * @throws IOException    */
 DECL|method|getAnyTokenStream
 specifier|public
 specifier|static
@@ -383,7 +383,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//No token info stored so fall back to analyzing raw content
+comment|// No token info stored so fall back to analyzing raw content
 if|if
 condition|(
 name|ts
@@ -419,7 +419,8 @@ name|TermPositionVector
 name|tpv
 parameter_list|)
 block|{
-comment|//assumes the worst and makes no assumptions about token position sequences.
+comment|// assumes the worst and makes no assumptions about token position
+comment|// sequences.
 return|return
 name|getTokenStream
 argument_list|(
@@ -429,7 +430,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * Low level api.      * Returns a token stream or null if no offset info available in index.      * This can be used to feed the highlighter with a pre-parsed token stream       *       * In my tests the speeds to recreate 1000 token streams using this method are:      * - with TermVector offset only data stored - 420  milliseconds       * - with TermVector offset AND position data stored - 271 milliseconds      *  (nb timings for TermVector with position data are based on a tokenizer with contiguous      *  positions - no overlaps or gaps)      * The cost of not using TermPositionVector to store      * pre-parsed content and using an analyzer to re-parse the original content:       * - reanalyzing the original content - 980 milliseconds      *       * The re-analyze timings will typically vary depending on -      * 	1) The complexity of the analyzer code (timings above were using a       * 	   stemmer/lowercaser/stopword combo)      *  2) The  number of other fields (Lucene reads ALL fields off the disk       *     when accessing just one document field - can cost dear!)      *  3) Use of compression on field storage - could be faster due to compression (less disk IO)      *     or slower (more CPU burn) depending on the content.      *      * @param tpv      * @param tokenPositionsGuaranteedContiguous true if the token position numbers have no overlaps or gaps. If looking      * to eek out the last drops of performance, set to true. If in doubt, set to false.      */
+comment|/**    * Low level api. Returns a token stream or null if no offset info available    * in index. This can be used to feed the highlighter with a pre-parsed token    * stream    *     * In my tests the speeds to recreate 1000 token streams using this method    * are: - with TermVector offset only data stored - 420 milliseconds - with    * TermVector offset AND position data stored - 271 milliseconds (nb timings    * for TermVector with position data are based on a tokenizer with contiguous    * positions - no overlaps or gaps) The cost of not using TermPositionVector    * to store pre-parsed content and using an analyzer to re-parse the original    * content: - reanalyzing the original content - 980 milliseconds    *     * The re-analyze timings will typically vary depending on - 1) The complexity    * of the analyzer code (timings above were using a    * stemmer/lowercaser/stopword combo) 2) The number of other fields (Lucene    * reads ALL fields off the disk when accessing just one document field - can    * cost dear!) 3) Use of compression on field storage - could be faster due to    * compression (less disk IO) or slower (more CPU burn) depending on the    * content.    *     * @param tpv    * @param tokenPositionsGuaranteedContiguous true if the token position    *        numbers have no overlaps or gaps. If looking to eek out the last    *        drops of performance, set to true. If in doubt, set to false.    */
 DECL|method|getTokenStream
 specifier|public
 specifier|static
@@ -443,7 +444,30 @@ name|boolean
 name|tokenPositionsGuaranteedContiguous
 parameter_list|)
 block|{
-comment|//an object used to iterate across an array of tokens
+if|if
+condition|(
+operator|!
+name|tokenPositionsGuaranteedContiguous
+operator|&&
+name|tpv
+operator|.
+name|getTermPositions
+argument_list|(
+literal|0
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|TokenStreamFromTermPositionVector
+argument_list|(
+name|tpv
+argument_list|)
+return|;
+block|}
+comment|// an object used to iterate across an array of tokens
 class|class
 name|StoredTokenStream
 extends|extends
@@ -557,7 +581,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|//code to reconstruct the original sequence of Tokens
+comment|// code to reconstruct the original sequence of Tokens
 name|String
 index|[]
 name|terms
@@ -659,9 +683,13 @@ operator|==
 literal|null
 condition|)
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Required TermVector Offset information was not found"
+argument_list|)
+throw|;
 block|}
 name|int
 index|[]
@@ -674,7 +702,8 @@ condition|(
 name|tokenPositionsGuaranteedContiguous
 condition|)
 block|{
-comment|//try get the token position info to speed up assembly of tokens into sorted sequence
+comment|// try get the token position info to speed up assembly of tokens into
+comment|// sorted sequence
 name|pos
 operator|=
 name|tpv
@@ -692,7 +721,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//tokens NOT stored with positions or not guaranteed contiguous - must add to list and sort later
+comment|// tokens NOT stored with positions or not guaranteed contiguous - must
+comment|// add to list and sort later
 if|if
 condition|(
 name|unsortedTokens
@@ -771,10 +801,14 @@ block|}
 block|}
 else|else
 block|{
-comment|//We have positions stored and a guarantee that the token position information is contiguous
-comment|// This may be fast BUT wont work if Tokenizers used which create>1 token in same position or
-comment|// creates jumps in position numbers - this code would fail under those circumstances
-comment|//tokens stored with positions - can use this to index straight into sorted array
+comment|// We have positions stored and a guarantee that the token position
+comment|// information is contiguous
+comment|// This may be fast BUT wont work if Tokenizers used which create>1
+comment|// token in same position or
+comment|// creates jumps in position numbers - this code would fail under those
+comment|// circumstances
+comment|// tokens stored with positions - can use this to index straight into
+comment|// sorted array
 for|for
 control|(
 name|int
@@ -833,7 +867,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//If the field has been stored without position data we must perform a sort
+comment|// If the field has been stored without position data we must perform a sort
 if|if
 condition|(
 name|unsortedTokens
@@ -1022,7 +1056,7 @@ literal|"does not have any term position data stored"
 argument_list|)
 throw|;
 block|}
-comment|//convenience method
+comment|// convenience method
 DECL|method|getTokenStream
 specifier|public
 specifier|static
@@ -1121,7 +1155,7 @@ name|analyzer
 argument_list|)
 return|;
 block|}
-comment|//convenience method
+comment|// convenience method
 DECL|method|getTokenStream
 specifier|public
 specifier|static
