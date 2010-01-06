@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class; subclasses must override {@link #incrementToken()}<p>   NOTE: Subclasses overriding {@link #incrementToken()} must   call {@link AttributeSource#clearAttributes()} before   setting attributes.   Subclasses overriding {@link #incrementToken()} must call   {@link Token#clear()} before setting Token attributes.   */
+comment|/** A Tokenizer is a TokenStream whose input is a Reader.<p>   This is an abstract class; subclasses must override {@link #incrementToken()}<p>   NOTE: Subclasses overriding {@link #incrementToken()} must   call {@link AttributeSource#clearAttributes()} before   setting attributes.  */
 end_comment
 
 begin_class
