@@ -243,6 +243,12 @@ DECL|class|SpellChecker
 specifier|public
 class|class
 name|SpellChecker
+implements|implements
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
 block|{
 comment|/**    * Field name for each word in the ngram index.    */
 DECL|field|F_WORD
