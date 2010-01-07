@@ -859,7 +859,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**    * Compute a custom score by the subQuery score and the ValueSourceQuery score.    *<p>     * Subclasses can override this method to modify the custom score.    *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override this customScore() method, which is simpler.     *<p>    * The default computation herein is a multiplication of the two scores:    *<pre>    *     ModifiedScore = subQueryScore * valSrcScore    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScore score of that doc by the ValueSourceQuery.    * @return custom score.    */
+comment|/**    * Compute a custom score by the subQuery score and the ValueSourceQuery score.    *<p>     * Subclasses can override this method to modify the custom score.    *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override this customScore() method, which is simpler.     *<p>    * The default computation herein is a multiplication of the two scores:    *<pre>    *     ModifiedScore = subQueryScore * valSrcScore    *</pre>    *    *<p><b>NOTE</b>: The doc is relative to the current    * reader, last passed to {@link #setNextReader}.    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScore score of that doc by the ValueSourceQuery.    * @return custom score.    */
 DECL|method|customScore
 specifier|public
 name|float
@@ -881,6 +881,18 @@ operator|*
 name|valSrcScore
 return|;
 block|}
+comment|/**    * Called when the scoring switches to another reader.    *     * @param reader    *          next IndexReader    */
+DECL|method|setNextReader
+specifier|public
+name|void
+name|setNextReader
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+throws|throws
+name|IOException
+block|{   }
 comment|/**    * Explain the custom score.    * Whenever overriding {@link #customScore(int, float, float[])},     * this method should also be overridden to provide the correct explanation    * for the part of the custom scoring.    *      * @param doc doc being explained.    * @param subQueryExpl explanation for the sub-query part.    * @param valSrcExpls explanation for the value source part.    * @return an explanation for the custom score    */
 DECL|method|customExplain
 specifier|public
@@ -1716,12 +1728,6 @@ name|CustomScorer
 extends|extends
 name|Scorer
 block|{
-DECL|field|weight
-specifier|private
-specifier|final
-name|CustomWeight
-name|weight
-decl_stmt|;
 DECL|field|qWeight
 specifier|private
 specifier|final
@@ -1782,12 +1788,6 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|weight
-operator|=
-name|w
-expr_stmt|;
-name|this
-operator|.
 name|qWeight
 operator|=
 name|w
@@ -1824,6 +1824,11 @@ name|valSrcScorers
 operator|.
 name|length
 index|]
+expr_stmt|;
+name|setNextReader
+argument_list|(
+name|reader
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

@@ -101,6 +101,18 @@ name|TestOrdValues
 extends|extends
 name|FunctionTestSetup
 block|{
+comment|/* @override constructor */
+DECL|method|TestOrdValues
+specifier|public
+name|TestOrdValues
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Test OrdFieldSource    */
 annotation|@
 name|Test
