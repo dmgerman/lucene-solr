@@ -171,7 +171,7 @@ DECL|method|PatternReplaceCharFilter
 specifier|public
 name|PatternReplaceCharFilter
 parameter_list|(
-name|String
+name|Pattern
 name|pattern
 parameter_list|,
 name|String
@@ -199,7 +199,7 @@ DECL|method|PatternReplaceCharFilter
 specifier|public
 name|PatternReplaceCharFilter
 parameter_list|(
-name|String
+name|Pattern
 name|pattern
 parameter_list|,
 name|String
@@ -230,7 +230,7 @@ DECL|method|PatternReplaceCharFilter
 specifier|public
 name|PatternReplaceCharFilter
 parameter_list|(
-name|String
+name|Pattern
 name|pattern
 parameter_list|,
 name|String
@@ -261,7 +261,7 @@ DECL|method|PatternReplaceCharFilter
 specifier|public
 name|PatternReplaceCharFilter
 parameter_list|(
-name|String
+name|Pattern
 name|pattern
 parameter_list|,
 name|String
@@ -286,12 +286,7 @@ name|this
 operator|.
 name|pattern
 operator|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
 name|pattern
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
