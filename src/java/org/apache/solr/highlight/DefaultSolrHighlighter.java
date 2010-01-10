@@ -1943,6 +1943,7 @@ return|return
 name|fragments
 return|;
 block|}
+comment|/*    * If fieldName is undefined, this method returns false, then    * doHighlightingByHighlighter() will do nothing for the field.    */
 DECL|method|useFastVectorHighlighter
 specifier|private
 name|boolean
@@ -1963,12 +1964,16 @@ name|schemaField
 init|=
 name|schema
 operator|.
-name|getField
+name|getFieldOrNull
 argument_list|(
 name|fieldName
 argument_list|)
 decl_stmt|;
 return|return
+name|schemaField
+operator|!=
+literal|null
+operator|&&
 name|schemaField
 operator|.
 name|storeTermPositions
@@ -2039,11 +2044,14 @@ argument_list|(
 name|fieldName
 argument_list|)
 decl_stmt|;
+comment|// according to Document javadoc, doc.getValues() never returns null. check empty instead of null
 if|if
 condition|(
 name|docTexts
+operator|.
+name|length
 operator|==
-literal|null
+literal|0
 condition|)
 return|return;
 name|SolrIndexSearcher
