@@ -86,14 +86,14 @@ extends|extends
 name|TokenFilter
 block|{
 DECL|field|normalizer
-specifier|protected
+specifier|private
+specifier|final
 name|ArabicNormalizer
 name|normalizer
-init|=
-literal|null
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
+specifier|final
 name|TermAttribute
 name|termAtt
 decl_stmt|;

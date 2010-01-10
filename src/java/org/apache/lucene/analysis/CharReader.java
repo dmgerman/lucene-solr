@@ -50,7 +50,8 @@ extends|extends
 name|CharStream
 block|{
 DECL|field|input
-specifier|protected
+specifier|private
+specifier|final
 name|Reader
 name|input
 decl_stmt|;
