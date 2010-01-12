@@ -66,20 +66,6 @@ name|SolrQueryRequest
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|XMLWriter
-import|;
-end_import
-
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment
