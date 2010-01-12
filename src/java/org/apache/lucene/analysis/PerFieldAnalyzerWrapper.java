@@ -147,13 +147,6 @@ name|fieldAnalyzers
 argument_list|)
 expr_stmt|;
 block|}
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|PerFieldAnalyzerWrapper
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Defines an analyzer to use for the specified field.    *    * @param fieldName field name requiring a non-default analyzer    * @param analyzer non-default analyzer to use for field    */
 DECL|method|addAnalyzer

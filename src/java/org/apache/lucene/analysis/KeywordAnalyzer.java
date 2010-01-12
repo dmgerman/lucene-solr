@@ -52,15 +52,7 @@ DECL|method|KeywordAnalyzer
 specifier|public
 name|KeywordAnalyzer
 parameter_list|()
-block|{
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|KeywordAnalyzer
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 annotation|@
 name|Override
 DECL|method|tokenStream

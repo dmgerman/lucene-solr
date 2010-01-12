@@ -149,7 +149,6 @@ argument_list|>
 name|stopwords
 parameter_list|)
 block|{
-comment|/*      * no need to call      * setOverridesTokenStreamMethod(StopwordAnalyzerBase.class); here, both      * tokenStream methods are final in this class.      */
 name|matchVersion
 operator|=
 name|version

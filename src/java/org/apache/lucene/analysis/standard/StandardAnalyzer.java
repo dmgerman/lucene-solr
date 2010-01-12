@@ -170,13 +170,6 @@ name|stopSet
 operator|=
 name|stopWords
 expr_stmt|;
-name|setOverridesTokenStreamMethod
-argument_list|(
-name|StandardAnalyzer
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 name|replaceInvalidAcronym
 operator|=
 name|matchVersion
