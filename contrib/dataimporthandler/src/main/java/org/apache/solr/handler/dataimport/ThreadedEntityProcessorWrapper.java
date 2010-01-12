@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Each Entity may have only a single EntityProcessor .  But the same entity can be run by  * multiple EntityProcessorWrapper (1 per thread) . thhis helps running transformations in multiple threads  * @since Solr 1.5  */
+comment|/**  * Each Entity may have only a single EntityProcessor .  But the same entity can be run by  * multiple EntityProcessorWrapper (1 per thread) . this helps running transformations in multiple threads  * @since Solr 1.5  */
 end_comment
 
 begin_class
@@ -477,7 +477,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//SKIP is not really possible. If this calls the nextRow() again the Entityprocessor would be in an inconisttent state
+comment|//SKIP is not really possible. If this calls the nextRow() again the Entityprocessor would be in an inconistent state
 name|LOG
 operator|.
 name|error
