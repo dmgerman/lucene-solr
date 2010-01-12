@@ -2601,6 +2601,37 @@ assert|assert
 name|checkDeletedCounts
 argument_list|()
 assert|;
+if|if
+condition|(
+name|deletedDocs
+operator|.
+name|size
+argument_list|()
+operator|!=
+name|si
+operator|.
+name|docCount
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"document count mismatch: deleted docs count "
+operator|+
+name|deletedDocs
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" vs segment doc count "
+operator|+
+name|si
+operator|.
+name|docCount
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 assert|assert
