@@ -290,6 +290,15 @@ range|:
 name|fields
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|field
+operator|.
+name|isTokenized
+argument_list|()
+condition|)
+continue|continue;
 specifier|final
 name|TokenStream
 name|stream
