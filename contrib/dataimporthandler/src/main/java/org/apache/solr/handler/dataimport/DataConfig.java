@@ -453,12 +453,6 @@ name|Entity
 argument_list|>
 name|entities
 decl_stmt|;
-DECL|field|primaryKeys
-specifier|public
-name|String
-index|[]
-name|primaryKeys
-decl_stmt|;
 DECL|field|parentEntity
 specifier|public
 name|Entity
@@ -478,11 +472,6 @@ DECL|field|dataSrc
 specifier|public
 name|DataSource
 name|dataSrc
-decl_stmt|;
-DECL|field|script
-specifier|public
-name|Script
-name|script
 decl_stmt|;
 DECL|field|colNameVsField
 specifier|public
