@@ -159,7 +159,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
 name|QueryResponseWriter
 import|;
@@ -173,7 +173,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
 name|XMLResponseWriter
 import|;

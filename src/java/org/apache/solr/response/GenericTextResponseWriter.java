@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.request
+DECL|package|org.apache.solr.response
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 package|;
 end_package
 
@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|OutputStream
+name|Writer
 import|;
 end_import
 
@@ -33,16 +33,6 @@ operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Writer
 import|;
 end_import
 
@@ -74,76 +64,36 @@ name|SolrInputDocument
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
-comment|/**  *   *   * A generic {@link QueryResponseWriter} implementation that requires a user to  * implement the  * {@link #getSingleResponseWriter(OutputStream, SolrQueryRequest, SolrQueryResponse)}  * that defines a {@link SingleResponseWriter} to handle the binary output.  *   * @since 1.5  * @version $Id$  *   */
+comment|/**  *   *   * A generic {@link QueryResponseWriter} implementation that requires a user to  * implement the  * {@link #getSingleResponseWriter(Writer, SolrQueryRequest, SolrQueryResponse)}  * that defines a {@link SingleResponseWriter} to handle plain ol' text output.  *   * @since 1.5  * @version $Id$  *   */
 end_comment
 
 begin_class
-DECL|class|GenericBinaryResponseWriter
+DECL|class|GenericTextResponseWriter
 specifier|public
 specifier|abstract
 class|class
-name|GenericBinaryResponseWriter
+name|GenericTextResponseWriter
 extends|extends
 name|BaseResponseWriter
 implements|implements
-name|BinaryQueryResponseWriter
+name|QueryResponseWriter
 block|{
-comment|/**    *     * Writes the binary output data using the {@link SingleResponseWriter}    * provided by a call to    * {@link #getSingleResponseWriter(OutputStream, SolrQueryRequest, SolrQueryResponse)}    * .    *     * @param out    *          The {@link OutputStream} to write the binary data to.    * @param request    *          The provided {@link SolrQueryRequest}.    * @param response    *          The provided {@link SolrQueryResponse}.    */
-DECL|method|write
-specifier|public
-name|void
-name|write
-parameter_list|(
-name|OutputStream
-name|out
-parameter_list|,
-name|SolrQueryRequest
-name|request
-parameter_list|,
-name|SolrQueryResponse
-name|response
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
-operator|.
-name|write
-argument_list|(
-name|getSingleResponseWriter
-argument_list|(
-name|out
-argument_list|,
-name|request
-argument_list|,
-name|response
-argument_list|)
-argument_list|,
-name|request
-argument_list|,
-name|response
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Users of this class should implement this method to define a    * {@link SingleResponseWriter} responsible for writing the binary output    * given a {@link SolrDocumentList} or doc-by-doc, given a    * {@link SolrInputDocument}.    *     * @param out    *          The {@link OutputStream} to write the binary data response to.    * @param request    *          The provided {@link SolrQueryRequest}.    * @param response    *          The provided {@link SolrQueryResponse}.    * @return A {@link SingleResponseWriter} that will be used to generate the    *         response output from this {@link QueryResponseWriter}.    */
-DECL|method|getSingleResponseWriter
-specifier|public
-specifier|abstract
-name|SingleResponseWriter
-name|getSingleResponseWriter
-parameter_list|(
-name|OutputStream
-name|out
-parameter_list|,
-name|SolrQueryRequest
-name|request
-parameter_list|,
-name|SolrQueryResponse
-name|response
-parameter_list|)
-function_decl|;
-comment|/**Just to throw Exception So that the eimplementing classes do not have to do the  same    */
+comment|/**    *     * Writes text output using the {@link SingleResponseWriter} provided by a    * call to    * {@link #getSingleResponseWriter(Writer, SolrQueryRequest, SolrQueryResponse)}    * .    *     * @param out    *          The {@link Writer} to write the text output to.    * @param request    *          The provided {@link SolrQueryRequest}.    * @param response    *          The provided {@link SolrQueryResponse}.    */
 DECL|method|write
 specifier|public
 name|void
@@ -161,14 +111,42 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|super
+operator|.
+name|write
 argument_list|(
-literal|"This is a binary writer , Cannot write to a characterstream"
+name|getSingleResponseWriter
+argument_list|(
+name|writer
+argument_list|,
+name|request
+argument_list|,
+name|response
 argument_list|)
-throw|;
+argument_list|,
+name|request
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
 block|}
+comment|/**    * Users of this class should implement this method to define a    * {@link SingleResponseWriter} responsible for writing text output given a    * {@link SolrDocumentList} or doc-by-doc, given a {@link SolrInputDocument}.    *     * @param writer    *          The {@link Writer} to write the text data response to.    * @param request    *          The provided {@link SolrQueryRequest}.    * @param response    *          The provided {@link SolrQueryResponse}.    * @return A {@link SingleResponseWriter} that will be used to generate the    *         response output from this {@link QueryResponseWriter}.    */
+DECL|method|getSingleResponseWriter
+specifier|protected
+specifier|abstract
+name|SingleResponseWriter
+name|getSingleResponseWriter
+parameter_list|(
+name|Writer
+name|writer
+parameter_list|,
+name|SolrQueryRequest
+name|request
+parameter_list|,
+name|SolrQueryResponse
+name|response
+parameter_list|)
+function_decl|;
 block|}
 end_class
 

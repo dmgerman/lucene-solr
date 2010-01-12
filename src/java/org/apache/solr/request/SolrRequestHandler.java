@@ -46,6 +46,20 @@ name|SolrInfoMBean
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|SolrQueryResponse
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementations of<code>SolrRequestHandler</code> are called to handle query requests.  *  * Different<code>SolrRequestHandler</code>s are registered with the<code>SolrCore</code>.  * One way to register a SolrRequestHandler with the core is thorugh the<code>solrconfig.xml</code> file.  *<p>  * Example<code>solrconfig.xml</code> entry to register a<code>SolrRequestHandler</code> implementation to  * handle all queries with a query type of "test":  *<p>  *<code>  *&lt;requestHandler name="test" class="solr.tst.TestRequestHandler" /&gt;  *</code>  *<p>  * A single instance of any registered SolrRequestHandler is created  * via the default constructor and is reused for all relevant queries.  *  * @version $Id$  */
 end_comment

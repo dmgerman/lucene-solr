@@ -208,20 +208,6 @@ name|solr
 operator|.
 name|request
 operator|.
-name|BinaryResponseWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
 name|SolrQueryRequest
 import|;
 end_import
@@ -236,7 +222,7 @@ name|solr
 operator|.
 name|request
 operator|.
-name|SolrQueryResponse
+name|SolrRequestHandler
 import|;
 end_import
 
@@ -248,9 +234,23 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
-name|SolrRequestHandler
+name|BinaryResponseWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|SolrQueryResponse
 import|;
 end_import
 

@@ -38,7 +38,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
 name|SolrQueryResponse
 import|;
@@ -308,7 +308,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"$Revision:$"
+literal|"$Revision$"
 return|;
 block|}
 annotation|@
@@ -320,7 +320,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id:$"
+literal|"$Id$"
 return|;
 block|}
 annotation|@
@@ -332,7 +332,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL:$"
+literal|"$URL$"
 return|;
 block|}
 block|}

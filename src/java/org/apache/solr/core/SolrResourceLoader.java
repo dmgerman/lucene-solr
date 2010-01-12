@@ -334,7 +334,7 @@ name|solr
 operator|.
 name|request
 operator|.
-name|QueryResponseWriter
+name|SolrRequestHandler
 import|;
 end_import
 
@@ -346,9 +346,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
-name|SolrRequestHandler
+name|QueryResponseWriter
 import|;
 end_import
 
@@ -483,6 +483,8 @@ block|,
 literal|"update."
 block|,
 literal|"core."
+block|,
+literal|"response"
 block|,
 literal|"request."
 block|,

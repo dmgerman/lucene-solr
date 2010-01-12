@@ -106,7 +106,7 @@ name|solr
 operator|.
 name|request
 operator|.
-name|SolrQueryResponse
+name|SolrRequestHandler
 import|;
 end_import
 
@@ -118,9 +118,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
-name|SolrRequestHandler
+name|SolrQueryResponse
 import|;
 end_import
 

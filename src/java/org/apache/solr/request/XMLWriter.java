@@ -100,6 +100,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|response
+operator|.
+name|SolrQueryResponse
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
@@ -1449,7 +1463,6 @@ literal|'>'
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Begins the writing of an XML tag output, using the provided     *<code>tag</code> as the name, with an optional<code>name</code>    * attribute, set to the provided value of name. If<code>closeTag</code> is    * set to true, then the tag is written with no internal text value.    *     * @param tag The name of the XML tag to write.    * @param name If provided (not set to null), a&quot;name&quot; attribute is    * written to the tag, with the value set to the provided parameter.    * @param closeTag If set to true, then the tag is closed, without writing any    * internal text value.    * @throws IOException If the underlying {@link #writer} throws an Exception.    */
 DECL|method|startTag
 specifier|public
 name|void
