@@ -333,7 +333,7 @@ name|String
 name|var
 parameter_list|)
 function_decl|;
-comment|/** Resolve variables in a template    * @param template    * @return The string w/ variables resolved    */
+comment|/** Resolve variables in a template    * @param template    *    * @return The string w/ variables resolved    */
 DECL|method|replaceTokens
 specifier|public
 specifier|abstract
@@ -344,6 +344,22 @@ name|String
 name|template
 parameter_list|)
 function_decl|;
+DECL|field|CURRENT_CONTEXT
+specifier|static
+specifier|final
+name|ThreadLocal
+argument_list|<
+name|Context
+argument_list|>
+name|CURRENT_CONTEXT
+init|=
+operator|new
+name|ThreadLocal
+argument_list|<
+name|Context
+argument_list|>
+argument_list|()
+decl_stmt|;
 block|}
 end_class
 
