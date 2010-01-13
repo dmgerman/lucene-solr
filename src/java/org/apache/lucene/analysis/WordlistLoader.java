@@ -594,7 +594,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Reads a stem dictionary. Each line contains:    *<pre>word<b>\t</b>stem</pre>    * (i.e. two tab seperated words)    *    * @return stem dictionary that overrules the stemming algorithm    * @throws IOException     */
+comment|/**    * Reads a stem dictionary. Each line contains:    *<pre>word<b>\t</b>stem</pre>    * (i.e. two tab separated words)    *    * @return stem dictionary that overrules the stemming algorithm    * @throws IOException     */
 DECL|method|getStemDict
 specifier|public
 specifier|static
