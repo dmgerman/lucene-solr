@@ -270,10 +270,15 @@ name|this
 operator|.
 name|stopWords
 operator|=
+name|stopWords
+operator|instanceof
 name|CharArraySet
-operator|.
-name|unmodifiableSet
-argument_list|(
+condition|?
+operator|(
+name|CharArraySet
+operator|)
+name|stopWords
+else|:
 operator|new
 name|CharArraySet
 argument_list|(
@@ -282,7 +287,6 @@ argument_list|,
 name|stopWords
 argument_list|,
 name|ignoreCase
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|this
