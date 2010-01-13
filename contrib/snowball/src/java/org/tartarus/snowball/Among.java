@@ -66,6 +66,9 @@ operator|.
 name|s
 operator|=
 name|s
+operator|.
+name|toCharArray
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -133,48 +136,55 @@ name|NoSuchMethodException
 name|e
 parameter_list|)
 block|{
-comment|// FIXME - debug message
-name|this
-operator|.
-name|method
-operator|=
-literal|null
-expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
 DECL|field|s_size
 specifier|public
+specifier|final
 name|int
 name|s_size
 decl_stmt|;
 comment|/* search string */
 DECL|field|s
 specifier|public
-name|String
+specifier|final
+name|char
+index|[]
 name|s
 decl_stmt|;
 comment|/* search string */
 DECL|field|substring_i
 specifier|public
+specifier|final
 name|int
 name|substring_i
 decl_stmt|;
 comment|/* index to longest matching substring */
 DECL|field|result
 specifier|public
+specifier|final
 name|int
 name|result
 decl_stmt|;
 comment|/* result of the lookup */
 DECL|field|method
 specifier|public
+specifier|final
 name|Method
 name|method
 decl_stmt|;
 comment|/* method to use if substring matches */
 DECL|field|methodobject
 specifier|public
+specifier|final
 name|SnowballProgram
 name|methodobject
 decl_stmt|;
