@@ -66,17 +66,7 @@ argument_list|(
 name|string
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size:"
-operator|+
-name|size
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("size:" + size);
 name|string
 operator|=
 operator|new
@@ -94,17 +84,7 @@ argument_list|(
 name|string
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size:"
-operator|+
-name|size
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("size:" + size);
 name|Holder
 name|holder
 init|=
@@ -133,17 +113,7 @@ argument_list|(
 name|holder
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size:"
-operator|+
-name|size
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("size:" + size);
 name|String
 index|[]
 name|strings
@@ -180,17 +150,7 @@ argument_list|(
 name|strings
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"size:"
-operator|+
-name|size
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("size:" + size);
 block|}
 DECL|class|Holder
 specifier|private
