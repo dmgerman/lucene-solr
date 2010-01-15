@@ -230,6 +230,9 @@ operator|>=
 literal|0
 condition|)
 block|{
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer

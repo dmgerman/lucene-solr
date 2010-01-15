@@ -593,6 +593,9 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAttribute
 operator|.
 name|setTermBuffer

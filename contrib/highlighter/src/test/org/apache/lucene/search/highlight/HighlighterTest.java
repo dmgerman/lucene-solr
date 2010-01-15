@@ -9140,6 +9140,9 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer
@@ -9421,6 +9424,9 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer
@@ -11631,6 +11637,9 @@ literal|false
 return|;
 block|}
 comment|//Token nextRealToken = new Token(, offsetAtt.startOffset(), offsetAtt.endOffset());
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer
@@ -11749,6 +11758,9 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer

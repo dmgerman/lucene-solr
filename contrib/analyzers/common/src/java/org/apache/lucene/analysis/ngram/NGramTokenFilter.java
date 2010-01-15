@@ -363,6 +363,9 @@ name|curTermLength
 condition|)
 block|{
 comment|// while there is input
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|termAtt
 operator|.
 name|setTermBuffer

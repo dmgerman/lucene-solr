@@ -528,6 +528,9 @@ name|start
 operator|+
 name|curGramSize
 decl_stmt|;
+name|clearAttributes
+argument_list|()
+expr_stmt|;
 name|offsetAtt
 operator|.
 name|setOffset
