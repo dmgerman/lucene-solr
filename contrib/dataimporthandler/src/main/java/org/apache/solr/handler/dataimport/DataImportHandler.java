@@ -1333,6 +1333,11 @@ operator|.
 name|contentStream
 operator|==
 literal|null
+operator|&&
+operator|!
+name|requestParams
+operator|.
+name|syncMode
 condition|)
 block|{
 name|importer
