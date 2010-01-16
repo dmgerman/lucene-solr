@@ -58,6 +58,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -273,6 +283,143 @@ operator|.
 name|contains
 argument_list|(
 literal|"four"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Test stopwords in snowball format    */
+DECL|method|testSnowballListLoading
+specifier|public
+name|void
+name|testSnowballListLoading
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|String
+name|s
+init|=
+literal|"|comment\n"
+operator|+
+comment|// commented line
+literal|" |comment\n"
+operator|+
+comment|// commented line with leading whitespace
+literal|"\n"
+operator|+
+comment|// blank line
+literal|"  \t\n"
+operator|+
+comment|// line with only whitespace
+literal|" |comment | comment\n"
+operator|+
+comment|// commented line with comment
+literal|"ONE\n"
+operator|+
+comment|// stopword, in uppercase
+literal|"   two   \n"
+operator|+
+comment|// stopword with leading/trailing space
+literal|" three   four five \n"
+operator|+
+comment|// multiple stopwords
+literal|"six seven | comment\n"
+decl_stmt|;
+comment|//multiple stopwords + comment
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|wordset
+init|=
+name|WordlistLoader
+operator|.
+name|getSnowballWordSet
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|s
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|7
+argument_list|,
+name|wordset
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"ONE"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"two"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"three"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"four"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"five"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"six"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|wordset
+operator|.
+name|contains
+argument_list|(
+literal|"seven"
 argument_list|)
 argument_list|)
 expr_stmt|;
