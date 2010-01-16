@@ -409,18 +409,16 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// biggest possible int does not fit
-name|resizeBytes
+comment|// Biggest possible int does not fit.
+comment|// Requires initial size of at least 9,
+comment|// see SortedVIntList.initBytes() and ArrayUtil.getNextSize()
+name|ArrayUtil
+operator|.
+name|getNextSize
 argument_list|(
-operator|(
 name|bytes
 operator|.
 name|length
-operator|*
-literal|2
-operator|)
-operator|+
-name|MAX_BYTES_PER_INT
 argument_list|)
 expr_stmt|;
 block|}
