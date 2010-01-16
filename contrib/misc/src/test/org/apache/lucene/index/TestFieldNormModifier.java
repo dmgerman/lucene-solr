@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests changing of field norms with a custom similarity and with fake norms.  *  * @version $Id$  */
+comment|/**  * Tests changing of field norms with a custom similarity and with fake norms.  */
 end_comment
 
 begin_class

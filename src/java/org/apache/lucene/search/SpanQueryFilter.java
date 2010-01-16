@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Constrains search results to only match those which also match a provided  * query. Also provides position information about where each document matches  * at the cost of extra space compared with the QueryWrapperFilter.  * There is an added cost to this above what is stored in a {@link QueryWrapperFilter}.  Namely,  * the position information for each matching document is stored.  *<p/>  * This filter does not cache.  See the {@link org.apache.lucene.search.CachingSpanFilter} for a wrapper that  * caches.  *  *  * @version $Id:$  */
+comment|/**  * Constrains search results to only match those which also match a provided  * query. Also provides position information about where each document matches  * at the cost of extra space compared with the QueryWrapperFilter.  * There is an added cost to this above what is stored in a {@link QueryWrapperFilter}.  Namely,  * the position information for each matching document is stored.  *<p/>  * This filter does not cache.  See the {@link org.apache.lucene.search.CachingSpanFilter} for a wrapper that  * caches.  */
 end_comment
 
 begin_class

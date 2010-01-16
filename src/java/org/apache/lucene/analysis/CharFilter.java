@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclasses of CharFilter can be chained to filter CharStream.  * They can be used as {@link java.io.Reader} with additional offset  * correction. {@link Tokenizer}s will automatically use {@link #correctOffset}  * if a CharFilter/CharStream subclass is used.  *  * @version $Id$  *  */
+comment|/**  * Subclasses of CharFilter can be chained to filter CharStream.  * They can be used as {@link java.io.Reader} with additional offset  * correction. {@link Tokenizer}s will automatically use {@link #correctOffset}  * if a CharFilter/CharStream subclass is used.  */
 end_comment
 
 begin_class

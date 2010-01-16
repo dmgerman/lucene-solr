@@ -265,10 +265,6 @@ comment|// not great (circular); used only to purge FieldCache entry on close
 end_comment
 
 begin_comment
-comment|/** @version $Id */
-end_comment
-
-begin_comment
 comment|/**  *<p><b>NOTE:</b> This API is new and still experimental  * (subject to change suddenly in the next release)</p>  */
 end_comment
 

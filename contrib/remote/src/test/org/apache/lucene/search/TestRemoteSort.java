@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for remote sorting code.  * Note: This is a modified copy of {@link TestSort} without duplicated test  * methods and therefore unused members and methodes.   *  * @version $Id:$  */
+comment|/**  * Unit tests for remote sorting code.  * Note: This is a modified copy of {@link TestSort} without duplicated test  * methods and therefore unused members and methodes.   */
 end_comment
 
 begin_class

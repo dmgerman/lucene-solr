@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Marker interface to enable subclasses of {@link org.apache.lucene.search.Searchable} to be used via  * Java RMI. Classes implementing this interface can be used as a RMI -  * "remote object".  *<p>  * {@link RMIRemoteSearchable} extends {@link org.apache.lucene.search.Searchable} and can transparently  * be used as a such.  *<p>  * Example usage:  *   *<pre>  *   RMIRemoteSearchable remoteObject = ...;  *   String remoteObjectName = ...;  *   Naming.rebind (remoteObjectName, remoteObject);  *   Searchable luceneSearchable = (Searchable) Naming.lookup (remoteObjectName);  *</pre>  *   *</p>  *</p>  *   *  @version $Id:$  */
+comment|/**  * Marker interface to enable subclasses of {@link org.apache.lucene.search.Searchable} to be used via  * Java RMI. Classes implementing this interface can be used as a RMI -  * "remote object".  *<p>  * {@link RMIRemoteSearchable} extends {@link org.apache.lucene.search.Searchable} and can transparently  * be used as a such.  *<p>  * Example usage:  *   *<pre>  *   RMIRemoteSearchable remoteObject = ...;  *   String remoteObjectName = ...;  *   Naming.rebind (remoteObjectName, remoteObject);  *   Searchable luceneSearchable = (Searchable) Naming.lookup (remoteObjectName);  *</pre>  *   *</p>  *</p>  */
 end_comment
 
 begin_interface
