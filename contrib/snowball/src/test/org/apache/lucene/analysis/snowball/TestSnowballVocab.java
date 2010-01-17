@@ -213,6 +213,26 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|dataRoot
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARN: This test was disabled, as the svn checkout of snowball test files is not supported on your system!"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|assertCorrectOutput
 argument_list|(
 literal|"Danish"
