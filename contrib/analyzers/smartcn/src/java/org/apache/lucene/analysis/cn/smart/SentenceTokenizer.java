@@ -570,6 +570,36 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|end
+specifier|public
+name|void
+name|end
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// set final offset
+specifier|final
+name|int
+name|finalOffset
+init|=
+name|correctOffset
+argument_list|(
+name|tokenEnd
+argument_list|)
+decl_stmt|;
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|finalOffset
+argument_list|,
+name|finalOffset
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -430,10 +430,15 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
+name|offset
+operator|--
+expr_stmt|;
 return|return
 name|flush
 argument_list|()
 return|;
+block|}
 else|else
 name|c
 operator|=
@@ -545,7 +550,10 @@ specifier|final
 name|int
 name|finalOffset
 init|=
+name|correctOffset
+argument_list|(
 name|offset
+argument_list|)
 decl_stmt|;
 name|this
 operator|.
