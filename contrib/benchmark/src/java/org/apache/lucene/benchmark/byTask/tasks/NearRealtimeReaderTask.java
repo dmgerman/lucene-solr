@@ -351,6 +351,10 @@ name|newReader
 expr_stmt|;
 block|}
 block|}
+name|stopNow
+operator|=
+literal|false
+expr_stmt|;
 return|return
 name|reopenCount
 return|;

@@ -512,10 +512,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|stopNow
-operator|=
-literal|false
-expr_stmt|;
 if|if
 condition|(
 operator|!

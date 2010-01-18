@@ -1101,6 +1101,10 @@ name|logByTimeMsec
 argument_list|)
 expr_stmt|;
 block|}
+name|stopNow
+operator|=
+literal|false
+expr_stmt|;
 return|return
 name|count
 return|;
@@ -1355,6 +1359,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|stopNow
+operator|=
+literal|false
+expr_stmt|;
 return|return
 name|count
 return|;
