@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *<p/>  * http://www.apache.org/licenses/LICENSE-2.0  *<p/>  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
@@ -381,36 +381,210 @@ name|result
 return|;
 block|}
 comment|/*   END APACHE HARMONY CODE   */
-DECL|method|getNextSize
+comment|/** Returns an array size>= minTargetSize, generally    *  over-allocating exponentially to achieve amortized    *  linear-time cost as the array grows.    *    *  NOTE: this was originally borrowed from Python 2.4.2    *  listobject.c sources (attribution in LICENSE.txt), but    *  has now been substantially changed based on    *  discussions from java-dev thread with subject "Dynamic    *  array reallocation algorithms", started on Jan 12    *  2010.    *    * @param minTargetSize Minimum required value to be returned.    * @param bytesPerElement Bytes used by each element of    * the array.  See constants in {@link RamUsageEstimator}.    *    * @lucene.internal    */
+DECL|method|oversize
 specifier|public
 specifier|static
 name|int
-name|getNextSize
+name|oversize
 parameter_list|(
 name|int
-name|targetSize
+name|minTargetSize
+parameter_list|,
+name|int
+name|bytesPerElement
 parameter_list|)
 block|{
-comment|/* This over-allocates proportional to the list size, making room      * for additional growth.  The over-allocation is mild, but is      * enough to give linear-time amortized behavior over a long      * sequence of appends() in the presence of a poorly-performing      * system realloc().      * The growth pattern is:  0, 4, 8, 16, 25, 35, 46, 58, 72, 88, ...      */
+if|if
+condition|(
+name|minTargetSize
+operator|<
+literal|0
+condition|)
+block|{
+comment|// catch usage that accidentally overflows int
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid array size "
+operator|+
+name|minTargetSize
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|minTargetSize
+operator|==
+literal|0
+condition|)
+block|{
+comment|// wait until at least one element is requested
 return|return
-operator|(
-name|targetSize
+literal|0
+return|;
+block|}
+comment|// asymptotic exponential growth by 1/8th, favors
+comment|// spending a bit more CPU to not tye up too much wasted
+comment|// RAM:
+name|int
+name|extra
+init|=
+name|minTargetSize
 operator|>>
 literal|3
-operator|)
-operator|+
-operator|(
-name|targetSize
+decl_stmt|;
+if|if
+condition|(
+name|extra
 operator|<
-literal|9
-condition|?
 literal|3
-else|:
-literal|6
-operator|)
+condition|)
+block|{
+comment|// for very small arrays, where constant overhead of
+comment|// realloc is presumably relatively high, we grow
+comment|// faster
+name|extra
+operator|=
+literal|3
+expr_stmt|;
+block|}
+name|int
+name|newSize
+init|=
+name|minTargetSize
 operator|+
-name|targetSize
+name|extra
+decl_stmt|;
+comment|// add 7 to allow for worst case byte alignment addition below:
+if|if
+condition|(
+name|newSize
+operator|+
+literal|7
+operator|<
+literal|0
+condition|)
+block|{
+comment|// int overflowed -- return max allowed array size
+return|return
+name|Integer
+operator|.
+name|MAX_VALUE
 return|;
+block|}
+if|if
+condition|(
+name|Constants
+operator|.
+name|JRE_IS_64BIT
+condition|)
+block|{
+comment|// round up to 8 byte alignment in 64bit env
+switch|switch
+condition|(
+name|bytesPerElement
+condition|)
+block|{
+case|case
+literal|4
+case|:
+comment|// round up to multiple of 2
+return|return
+operator|(
+name|newSize
+operator|+
+literal|1
+operator|)
+operator|&
+literal|0x7ffffffe
+return|;
+case|case
+literal|2
+case|:
+comment|// round up to multiple of 4
+return|return
+operator|(
+name|newSize
+operator|+
+literal|3
+operator|)
+operator|&
+literal|0x7ffffffc
+return|;
+case|case
+literal|1
+case|:
+comment|// round up to multiple of 8
+return|return
+operator|(
+name|newSize
+operator|+
+literal|7
+operator|)
+operator|&
+literal|0x7ffffff8
+return|;
+case|case
+literal|8
+case|:
+comment|// no rounding
+default|default:
+comment|// odd (invalid?) size
+return|return
+name|newSize
+return|;
+block|}
+block|}
+else|else
+block|{
+comment|// round up to 4 byte alignment in 64bit env
+switch|switch
+condition|(
+name|bytesPerElement
+condition|)
+block|{
+case|case
+literal|2
+case|:
+comment|// round up to multiple of 2
+return|return
+operator|(
+name|newSize
+operator|+
+literal|1
+operator|)
+operator|&
+literal|0x7ffffffe
+return|;
+case|case
+literal|1
+case|:
+comment|// round up to multiple of 4
+return|return
+operator|(
+name|newSize
+operator|+
+literal|3
+operator|)
+operator|&
+literal|0x7ffffffc
+return|;
+case|case
+literal|4
+case|:
+case|case
+literal|8
+case|:
+comment|// no rounding
+default|default:
+comment|// odd (invalid?) size
+return|return
+name|newSize
+return|;
+block|}
+block|}
 block|}
 DECL|method|getShrinkSize
 specifier|public
@@ -423,15 +597,20 @@ name|currentSize
 parameter_list|,
 name|int
 name|targetSize
+parameter_list|,
+name|int
+name|bytesPerElement
 parameter_list|)
 block|{
 specifier|final
 name|int
 name|newSize
 init|=
-name|getNextSize
+name|oversize
 argument_list|(
 name|targetSize
+argument_list|,
+name|bytesPerElement
 argument_list|)
 decl_stmt|;
 comment|// Only reallocate if we are "substantially" smaller.
@@ -484,9 +663,13 @@ init|=
 operator|new
 name|int
 index|[
-name|getNextSize
+name|oversize
 argument_list|(
 name|minSize
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
 argument_list|)
 index|]
 decl_stmt|;
@@ -567,6 +750,10 @@ operator|.
 name|length
 argument_list|,
 name|targetSize
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
 argument_list|)
 decl_stmt|;
 if|if
@@ -643,9 +830,13 @@ init|=
 operator|new
 name|long
 index|[
-name|getNextSize
+name|oversize
 argument_list|(
 name|minSize
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_LONG
 argument_list|)
 index|]
 decl_stmt|;
@@ -726,6 +917,10 @@ operator|.
 name|length
 argument_list|,
 name|targetSize
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_LONG
 argument_list|)
 decl_stmt|;
 if|if
@@ -802,9 +997,11 @@ init|=
 operator|new
 name|byte
 index|[
-name|getNextSize
+name|oversize
 argument_list|(
 name|minSize
+argument_list|,
+literal|1
 argument_list|)
 index|]
 decl_stmt|;
@@ -885,6 +1082,8 @@ operator|.
 name|length
 argument_list|,
 name|targetSize
+argument_list|,
+literal|1
 argument_list|)
 decl_stmt|;
 if|if

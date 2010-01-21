@@ -40,6 +40,20 @@ name|ArrayUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  * NOTE: this API is experimental and will likely change  */
 end_comment
@@ -111,11 +125,15 @@ name|char
 index|[
 name|ArrayUtil
 operator|.
-name|getNextSize
+name|oversize
 argument_list|(
 literal|1
 operator|+
 name|len
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_CHAR
 argument_list|)
 index|]
 expr_stmt|;

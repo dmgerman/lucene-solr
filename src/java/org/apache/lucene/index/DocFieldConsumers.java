@@ -90,6 +90,20 @@ name|ArrayUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/** This is just a "splitter" class: it lets you wrap two  *  DocFieldConsumer instances as a single consumer. */
 end_comment
@@ -586,9 +600,13 @@ name|PerDoc
 index|[
 name|ArrayUtil
 operator|.
-name|getNextSize
+name|oversize
 argument_list|(
 name|allocCount
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 index|]
 expr_stmt|;
