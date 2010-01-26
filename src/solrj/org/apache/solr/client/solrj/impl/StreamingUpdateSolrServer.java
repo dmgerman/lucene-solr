@@ -516,6 +516,8 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+do|do
+block|{
 name|RequestEntity
 name|request
 init|=
@@ -906,6 +908,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+do|while
+condition|(
+operator|!
+name|queue
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+do|;
+block|}
 catch|catch
 parameter_list|(
 name|Throwable
@@ -923,6 +935,12 @@ block|{
 try|try
 block|{
 comment|// make sure to release the connection
+if|if
+condition|(
+name|method
+operator|!=
+literal|null
+condition|)
 name|method
 operator|.
 name|releaseConnection
@@ -1121,6 +1139,11 @@ argument_list|(
 name|req
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|runners
+init|)
+block|{
 if|if
 condition|(
 name|runners
@@ -1147,11 +1170,6 @@ operator|<
 name|threadCount
 operator|)
 condition|)
-block|{
-synchronized|synchronized
-init|(
-name|runners
-init|)
 block|{
 name|Runner
 name|r
