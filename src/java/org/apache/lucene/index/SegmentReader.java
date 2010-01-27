@@ -1022,7 +1022,7 @@ expr_stmt|;
 block|}
 comment|// Force FieldCache to evict our entries at this
 comment|// point.  If the exception occurred while
-comment|// initialzing the core readers, then
+comment|// initializing the core readers, then
 comment|// origInstance will be null, and we don't want
 comment|// to call FieldCache.purge (it leads to NPE):
 if|if
