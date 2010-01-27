@@ -48,6 +48,24 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|KeywordMarkerTokenFilter
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -78,12 +96,28 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
+name|KeywordAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
 name|TermAttribute
 import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems German words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a {@link GermanStemmer}).  *</p>  */
+comment|/**  * A {@link TokenFilter} that stems German words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a {@link GermanStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  */
 end_comment
 
 begin_class
@@ -106,15 +140,26 @@ decl_stmt|;
 DECL|field|exclusionSet
 specifier|private
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|exclusionSet
 init|=
 literal|null
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
+specifier|final
 name|TermAttribute
 name|termAtt
 decl_stmt|;
+DECL|field|keywordAttr
+specifier|private
+specifier|final
+name|KeywordAttribute
+name|keywordAttr
+decl_stmt|;
+comment|/**      * Creates a {@link GermanStemFilter} instance      * @param in the source {@link TokenStream}       */
 DECL|method|GermanStemFilter
 specifier|public
 name|GermanStemFilter
@@ -143,8 +188,19 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|keywordAttr
+operator|=
+name|addAttribute
+argument_list|(
+name|KeywordAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**      * Builds a GermanStemFilter that uses an exclusion table.      */
+comment|/**      * Builds a GermanStemFilter that uses an exclusion table.      * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.      */
+annotation|@
+name|Deprecated
 DECL|method|GermanStemFilter
 specifier|public
 name|GermanStemFilter
@@ -153,6 +209,9 @@ name|TokenStream
 name|in
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|exclusionSet
 parameter_list|)
 block|{
@@ -198,6 +257,13 @@ decl_stmt|;
 comment|// Check the exclusion table.
 if|if
 condition|(
+operator|!
+name|keywordAttr
+operator|.
+name|isKeyword
+argument_list|()
+operator|&&
+operator|(
 name|exclusionSet
 operator|==
 literal|null
@@ -209,6 +275,7 @@ name|contains
 argument_list|(
 name|term
 argument_list|)
+operator|)
 condition|)
 block|{
 name|String
@@ -282,13 +349,18 @@ name|stemmer
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set an alternative exclusion list for this filter.      */
+comment|/**      * Set an alternative exclusion list for this filter.      * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.      */
+annotation|@
+name|Deprecated
 DECL|method|setExclusionSet
 specifier|public
 name|void
 name|setExclusionSet
 parameter_list|(
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|exclusionSet
 parameter_list|)
 block|{

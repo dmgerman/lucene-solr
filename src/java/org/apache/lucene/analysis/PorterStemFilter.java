@@ -38,12 +38,28 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
+name|KeywordAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
 name|TermAttribute
 import|;
 end_import
 
 begin_comment
-comment|/** Transforms the token stream as per the Porter stemming algorithm.     Note: the input to the stemming filter must already be in lower case,     so you will need to use LowerCaseFilter or LowerCaseTokenizer farther     down the Tokenizer chain in order for this to work properly!<P>     To use this filter with other analyzers, you'll want to write an     Analyzer class that sets up the TokenStream chain as you want it.     To use this with LowerCaseTokenizer, for example, you'd write an     analyzer like this:<P><PRE>     class MyAnalyzer extends Analyzer {       public final TokenStream tokenStream(String fieldName, Reader reader) {         return new PorterStemFilter(new LowerCaseTokenizer(reader));       }     }</PRE> */
+comment|/** Transforms the token stream as per the Porter stemming algorithm.     Note: the input to the stemming filter must already be in lower case,     so you will need to use LowerCaseFilter or LowerCaseTokenizer farther     down the Tokenizer chain in order for this to work properly!<P>     To use this filter with other analyzers, you'll want to write an     Analyzer class that sets up the TokenStream chain as you want it.     To use this with LowerCaseTokenizer, for example, you'd write an     analyzer like this:<P><PRE>     class MyAnalyzer extends Analyzer {       public final TokenStream tokenStream(String fieldName, Reader reader) {         return new PorterStemFilter(new LowerCaseTokenizer(reader));       }     }</PRE><p>     Note: This filter is aware of the {@link KeywordAttribute}. To prevent     certain terms from being passed to the stemmer     {@link KeywordAttribute#isKeyword()} should be set to<code>true</code>     in a previous {@link TokenStream}.</p> */
 end_comment
 
 begin_class
@@ -57,13 +73,21 @@ name|TokenFilter
 block|{
 DECL|field|stemmer
 specifier|private
+specifier|final
 name|PorterStemmer
 name|stemmer
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
+specifier|final
 name|TermAttribute
 name|termAtt
+decl_stmt|;
+DECL|field|keywordAttr
+specifier|private
+specifier|final
+name|KeywordAttribute
+name|keywordAttr
 decl_stmt|;
 DECL|method|PorterStemFilter
 specifier|public
@@ -93,6 +117,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|keywordAttr
+operator|=
+name|addAttribute
+argument_list|(
+name|KeywordAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -118,6 +151,14 @@ literal|false
 return|;
 if|if
 condition|(
+operator|(
+operator|!
+name|keywordAttr
+operator|.
+name|isKeyword
+argument_list|()
+operator|)
+operator|&&
 name|stemmer
 operator|.
 name|stem

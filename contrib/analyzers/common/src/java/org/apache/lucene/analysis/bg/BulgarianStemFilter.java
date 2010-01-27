@@ -38,6 +38,24 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|KeywordMarkerTokenFilter
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -68,12 +86,28 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
+name|KeywordAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
 name|TermAttribute
 import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that applies {@link BulgarianStemmer} to stem Bulgarian  * words.  */
+comment|/**  * A {@link TokenFilter} that applies {@link BulgarianStemmer} to stem Bulgarian  * words.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  */
 end_comment
 
 begin_class
@@ -96,6 +130,12 @@ specifier|private
 specifier|final
 name|TermAttribute
 name|termAtt
+decl_stmt|;
+DECL|field|keywordAttr
+specifier|private
+specifier|final
+name|KeywordAttribute
+name|keywordAttr
 decl_stmt|;
 DECL|method|BulgarianStemFilter
 specifier|public
@@ -126,6 +166,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|keywordAttr
+operator|=
+name|addAttribute
+argument_list|(
+name|KeywordAttribute
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -142,6 +191,15 @@ condition|(
 name|input
 operator|.
 name|incrementToken
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|keywordAttr
+operator|.
+name|isKeyword
 argument_list|()
 condition|)
 block|{
@@ -171,6 +229,7 @@ argument_list|(
 name|newlen
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
