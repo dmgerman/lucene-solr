@@ -409,18 +409,19 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// biggest possible int does not fit
+comment|// Biggest possible int does not fit.
 name|resizeBytes
 argument_list|(
-operator|(
-name|bytes
+name|ArrayUtil
 operator|.
-name|length
-operator|*
-literal|2
-operator|)
+name|oversize
+argument_list|(
+name|lastBytePos
 operator|+
 name|MAX_BYTES_PER_INT
+argument_list|,
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
