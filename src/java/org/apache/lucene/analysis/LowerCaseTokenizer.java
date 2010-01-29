@@ -40,8 +40,22 @@ name|AttributeSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/**  * LowerCaseTokenizer performs the function of LetterTokenizer  * and LowerCaseFilter together.  It divides text at non-letters and converts  * them to lower case.  While it is functionally equivalent to the combination  * of LetterTokenizer and LowerCaseFilter, there is a performance advantage  * to doing the two tasks at once, hence this (redundant) implementation.  *<P>  * Note: this does a decent job for most European languages, but does a terrible  * job for some Asian languages, where words are not separated by spaces.  */
+comment|/**  * LowerCaseTokenizer performs the function of LetterTokenizer  * and LowerCaseFilter together.  It divides text at non-letters and converts  * them to lower case.  While it is functionally equivalent to the combination  * of LetterTokenizer and LowerCaseFilter, there is a performance advantage  * to doing the two tasks at once, hence this (redundant) implementation.  *<P>  * Note: this does a decent job for most European languages, but does a terrible  * job for some Asian languages, where words are not separated by spaces.  *</p>  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link LowerCaseTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *</p>  */
 end_comment
 
 begin_class
@@ -53,7 +67,79 @@ name|LowerCaseTokenizer
 extends|extends
 name|LetterTokenizer
 block|{
-comment|/** Construct a new LowerCaseTokenizer. */
+comment|/**    * Construct a new LowerCaseTokenizer.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    *     * @param in    *          the input to split up into tokens    */
+DECL|method|LowerCaseTokenizer
+specifier|public
+name|LowerCaseTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**     * Construct a new LowerCaseTokenizer using a given {@link AttributeSource}.    *    * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param source    *          the attribute source to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|LowerCaseTokenizer
+specifier|public
+name|LowerCaseTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|AttributeSource
+name|source
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|source
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new LowerCaseTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|LowerCaseTokenizer
+specifier|public
+name|LowerCaseTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|factory
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new LowerCaseTokenizer.    *     * @deprecated use {@link #LowerCaseTokenizer(Reader)} instead. This will be    *             removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
@@ -64,11 +150,15 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new LowerCaseTokenizer using a given {@link AttributeSource}. */
+comment|/**    * Construct a new LowerCaseTokenizer using a given {@link AttributeSource}.    *     * @deprecated use {@link #LowerCaseTokenizer(AttributeSource, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
@@ -82,13 +172,17 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 name|source
 argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new LowerCaseTokenizer using a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. */
+comment|/**    * Construct a new LowerCaseTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #LowerCaseTokenizer(AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
@@ -102,21 +196,25 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 name|factory
 argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Converts char to lower case    * {@link Character#toLowerCase(char)}.*/
+comment|/** Converts char to lower case    * {@link Character#toLowerCase(int)}.*/
 annotation|@
 name|Override
 DECL|method|normalize
 specifier|protected
-name|char
+name|int
 name|normalize
 parameter_list|(
-name|char
+name|int
 name|c
 parameter_list|)
 block|{

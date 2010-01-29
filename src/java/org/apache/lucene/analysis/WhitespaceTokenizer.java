@@ -40,8 +40,22 @@ name|AttributeSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/** A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens. */
+comment|/**  * A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens.<a  * name="version"/>  *<p>  * You must specify the required {@link Version} compatibility when creating  * {@link WhitespaceTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -52,7 +66,79 @@ name|WhitespaceTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/** Construct a new WhitespaceTokenizer. */
+comment|/**    * Construct a new WhitespaceTokenizer. * @param matchVersion Lucene version    * to match See {@link<a href="#version">above</a>}    *     * @param in    *          the input to split up into tokens    */
+DECL|method|WhitespaceTokenizer
+specifier|public
+name|WhitespaceTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new WhitespaceTokenizer using a given {@link AttributeSource}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param source    *          the attribute source to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|WhitespaceTokenizer
+specifier|public
+name|WhitespaceTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|AttributeSource
+name|source
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|source
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. * @param    * matchVersion Lucene version to match See    * {@link<a href="#version">above</a>}    *     * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|WhitespaceTokenizer
+specifier|public
+name|WhitespaceTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|factory
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new WhitespaceTokenizer.    *     * @deprecated use {@link #WhitespaceTokenizer(Version, Reader)} instead. This will    *             be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer
@@ -67,7 +153,9 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new WhitespaceTokenizer using a given {@link AttributeSource}. */
+comment|/**    * Construct a new WhitespaceTokenizer using a given {@link AttributeSource}.    *     * @deprecated use {@link #WhitespaceTokenizer(Version, AttributeSource, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer
@@ -87,7 +175,9 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new WhitespaceTokenizer using a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. */
+comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #WhitespaceTokenizer(Version, AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer
@@ -107,7 +197,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which do not satisfy    * {@link Character#isWhitespace(char)}.*/
+comment|/** Collects only characters which do not satisfy    * {@link Character#isWhitespace(int)}.*/
 annotation|@
 name|Override
 DECL|method|isTokenChar
@@ -115,7 +205,7 @@ specifier|protected
 name|boolean
 name|isTokenChar
 parameter_list|(
-name|char
+name|int
 name|c
 parameter_list|)
 block|{

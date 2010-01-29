@@ -759,7 +759,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words and a set of work to be    * excluded from the {@link CzechStemFilter}.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    * @param a stemming exclusion set    */
+comment|/**    * Builds an analyzer with the given stop words and a set of work to be    * excluded from the {@link CzechStemFilter}.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    * @param stemExclusionTable a stemming exclusion set    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer

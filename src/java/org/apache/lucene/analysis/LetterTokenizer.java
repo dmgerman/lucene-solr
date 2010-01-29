@@ -40,8 +40,22 @@ name|AttributeSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/** A LetterTokenizer is a tokenizer that divides text at non-letters.  That's   to say, it defines tokens as maximal strings of adjacent letters, as defined   by java.lang.Character.isLetter() predicate.    Note: this does a decent job for most European languages, but does a terrible   job for some Asian languages, where words are not separated by spaces. */
+comment|/**  * A LetterTokenizer is a tokenizer that divides text at non-letters. That's to  * say, it defines tokens as maximal strings of adjacent letters, as defined by  * java.lang.Character.isLetter() predicate.  *<p>  * Note: this does a decent job for most European languages, but does a terrible  * job for some Asian languages, where words are not separated by spaces.  *</p>  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link LetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *</p>  */
 end_comment
 
 begin_class
@@ -52,7 +66,77 @@ name|LetterTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/** Construct a new LetterTokenizer. */
+comment|/**    * Construct a new LetterTokenizer.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param in    *          the input to split up into tokens    */
+DECL|method|LetterTokenizer
+specifier|public
+name|LetterTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new LetterTokenizer using a given {@link AttributeSource}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param source    *          the attribute source to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|LetterTokenizer
+specifier|public
+name|LetterTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|AttributeSource
+name|source
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|source
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|LetterTokenizer
+specifier|public
+name|LetterTokenizer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|matchVersion
+argument_list|,
+name|factory
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a new LetterTokenizer.    *     * @deprecated use {@link #LetterTokenizer(Version, Reader)} instead. This    *             will be removed in Lucene 4.0.    */
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer
@@ -63,11 +147,15 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new LetterTokenizer using a given {@link AttributeSource}. */
+comment|/**    * Construct a new LetterTokenizer using a given {@link AttributeSource}.     * @deprecated    * use {@link #LetterTokenizer(Version, AttributeSource, Reader)} instead.    * This will be removed in Lucene 4.0.    */
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer
@@ -81,13 +169,17 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 name|source
 argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a new LetterTokenizer using a given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. */
+comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #LetterTokenizer(Version, AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer
@@ -101,13 +193,17 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 name|factory
 argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which satisfy    * {@link Character#isLetter(char)}.*/
+comment|/** Collects only characters which satisfy    * {@link Character#isLetter(int)}.*/
 annotation|@
 name|Override
 DECL|method|isTokenChar
@@ -115,7 +211,7 @@ specifier|protected
 name|boolean
 name|isTokenChar
 parameter_list|(
-name|char
+name|int
 name|c
 parameter_list|)
 block|{
