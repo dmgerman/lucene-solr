@@ -100,20 +100,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|WhitespaceTokenizer
 import|;
 end_import
@@ -134,7 +120,13 @@ name|OffsetAttribute
 import|;
 end_import
 
+begin_comment
+comment|/** @deprecated Remove this test when ChineseAnalyzer is removed. */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestChineseTokenizer
 specifier|public
 class|class

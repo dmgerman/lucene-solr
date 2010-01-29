@@ -72,6 +72,26 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|standard
+operator|.
+name|StandardAnalyzer
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|Analyzer
 import|;
 end_import
@@ -91,10 +111,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link Analyzer} that tokenizes text with {@link ChineseTokenizer} and  * filters with {@link ChineseFilter}  *  */
+comment|/**  * An {@link Analyzer} that tokenizes text with {@link ChineseTokenizer} and  * filters with {@link ChineseFilter}  * @deprecated Use {@link StandardAnalyzer} instead, which has the same functionality.  * This analyzer will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ChineseAnalyzer
 specifier|public
 specifier|final
