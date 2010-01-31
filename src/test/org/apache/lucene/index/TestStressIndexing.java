@@ -123,7 +123,11 @@ name|ANALYZER
 init|=
 operator|new
 name|SimpleAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 DECL|field|RANDOM
 specifier|private

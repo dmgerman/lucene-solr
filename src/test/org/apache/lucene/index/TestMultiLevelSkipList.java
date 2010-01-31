@@ -210,6 +210,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * This testcase tests whether multi-level skipping is being used  * to reduce I/O while skipping through posting lists.  *   * Skipping in general is already covered by several other  * testcases.  *   */
 end_comment
@@ -599,6 +613,10 @@ argument_list|(
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 argument_list|)

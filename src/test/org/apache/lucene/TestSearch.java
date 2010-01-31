@@ -348,7 +348,11 @@ name|analyzer
 init|=
 operator|new
 name|SimpleAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 name|IndexWriter
 name|writer

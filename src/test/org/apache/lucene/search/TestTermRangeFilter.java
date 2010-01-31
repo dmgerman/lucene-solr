@@ -144,6 +144,20 @@ name|RAMDirectory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * A basic 'positive' Unit test class for the TermRangeFilter class.  *  *<p>  * NOTE: at the moment, this class only tests for 'positive' results,  * it does not verify the results to ensure there are no 'false positives',  * nor does it adequately test 'negative' results.  It also does not test  * that garbage in results in an Exception.  */
 end_comment
@@ -3286,7 +3300,11 @@ name|farsiIndex
 argument_list|,
 operator|new
 name|SimpleAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|,
 name|T
 argument_list|,
@@ -3537,7 +3555,11 @@ name|danishIndex
 argument_list|,
 operator|new
 name|SimpleAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|,
 name|T
 argument_list|,

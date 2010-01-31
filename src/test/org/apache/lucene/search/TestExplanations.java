@@ -305,7 +305,11 @@ name|FIELD
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -361,7 +365,11 @@ name|directory
 argument_list|,
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 argument_list|,
 literal|true
 argument_list|,

@@ -26,8 +26,22 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/** An {@link Analyzer} that filters {@link LetterTokenizer}   *  with {@link LowerCaseFilter} */
+comment|/** An {@link Analyzer} that filters {@link LetterTokenizer}   *  with {@link LowerCaseFilter}   *<p>  *<a name="version">You must specify the required {@link Version} compatibility  * when creating {@link CharTokenizer}:  *<ul>  *<li>As of 3.1, {@link LowerCaseTokenizer} uses an int based API to normalize and  * detect token codepoints. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *<p>  **/
 end_comment
 
 begin_class
@@ -39,6 +53,44 @@ name|SimpleAnalyzer
 extends|extends
 name|ReusableAnalyzerBase
 block|{
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
+comment|/**    * Creates a new {@link SimpleAnalyzer}    * @param matchVersion Lucene version to match See {@link<a href="#version">above</a>}    */
+DECL|method|SimpleAnalyzer
+specifier|public
+name|SimpleAnalyzer
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|)
+block|{
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
+block|}
+comment|/**    * Creates a new {@link SimpleAnalyzer}    * @deprecated use {@link #SimpleAnalyzer(Version)} instead     */
+DECL|method|SimpleAnalyzer
+annotation|@
+name|Deprecated
+specifier|public
+name|SimpleAnalyzer
+parameter_list|()
+block|{
+name|this
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -62,6 +114,8 @@ argument_list|(
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 argument_list|)

@@ -1778,7 +1778,11 @@ name|a
 init|=
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 decl_stmt|;
 DECL|method|StopWhitespaceAnalyzer
 specifier|public
@@ -2345,6 +2349,10 @@ init|=
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
