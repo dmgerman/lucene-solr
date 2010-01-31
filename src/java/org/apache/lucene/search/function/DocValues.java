@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: represents field values as different types.  * Normally created via a   * {@link org.apache.lucene.search.function.ValueSource ValueSuorce}   * for a particular field and reader.  *  *<p><font color="#FF0000">  * WARNING: The status of the<b>search.function</b> package is experimental.   * The APIs introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *   *  */
+comment|/**  * Expert: represents field values as different types.  * Normally created via a   * {@link org.apache.lucene.search.function.ValueSource ValueSuorce}   * for a particular field and reader.  *  * @lucene.experimental  *   *  */
 end_comment
 
 begin_class

@@ -289,7 +289,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Experimental class to get set of payloads for most standard Lucene queries.  * Operates like Highlighter - IndexReader should only contain doc of interest,  * best to use MemoryIndex.  *  *<p/>  *<font color="#FF0000">    * WARNING: The status of the<b>Payloads</b> feature is experimental.    * The APIs introduced here might change in the future and will not be    * supported anymore in such a case.</font>  *   */
+comment|/**  * Experimental class to get set of payloads for most standard Lucene queries.  * Operates like Highlighter - IndexReader should only contain doc of interest,  * best to use MemoryIndex.  *  * @lucene.experimental  *   */
 end_comment
 
 begin_class

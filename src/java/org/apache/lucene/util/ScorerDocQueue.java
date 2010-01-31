@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A ScorerDocQueue maintains a partial ordering of its Scorers such that the   least Scorer can always be found in constant time.  Put()'s and pop()'s   require log(size) time. The ordering is by Scorer.doc().  */
+comment|/** A ScorerDocQueue maintains a partial ordering of its Scorers such that the   least Scorer can always be found in constant time.  Put()'s and pop()'s   require log(size) time. The ordering is by Scorer.doc().  *  * @lucene.internal  */
 end_comment
 
 begin_class

@@ -255,7 +255,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: directly specify the reader, subReaders and    *  their docID starts.    *     *<p><b>NOTE:</b> This API is experimental and    * might change in incompatible ways in the next    * release.</font></p> */
+comment|/** Expert: directly specify the reader, subReaders and    *  their docID starts.    *     * @lucene.experimental */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher

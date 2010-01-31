@@ -37,7 +37,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * {@link CharacterUtils} provides a unified interface to Character-related  * operations to implement backwards compatible character operations based on a  * {@link Version} instance.  */
+comment|/**  * {@link CharacterUtils} provides a unified interface to Character-related  * operations to implement backwards compatible character operations based on a  * {@link Version} instance.  *   * @lucene.internal  */
 end_comment
 
 begin_class

@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Filters a {@link SegToken} by converting full-width latin to half-width, then lowercasing latin.  * Additionally, all punctuation is converted into {@link Utility#COMMON_DELIMITER}  *</p>  *<p><font color="#FF0000">  * WARNING: The status of the analyzers/smartcn<b>analysis.cn.smart</b> package is experimental.   * The APIs and file formats introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *</p>  */
+comment|/**  *<p>  * Filters a {@link SegToken} by converting full-width latin to half-width, then lowercasing latin.  * Additionally, all punctuation is converted into {@link Utility#COMMON_DELIMITER}  *</p>  * @lucene.experimental  */
 end_comment
 
 begin_class

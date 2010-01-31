@@ -1319,7 +1319,7 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the {@link FieldComparator} to use for    * sorting.    *    *<b>NOTE:</b> This API is experimental and might change in    * incompatible ways in the next release.    *    * @param numHits number of top hits the queue will store    * @param sortPos position of this SortField within {@link    *   Sort}.  The comparator is primary if sortPos==0,    *   secondary if sortPos==1, etc.  Some comparators can    *   optimize themselves when they are the primary sort.    * @return {@link FieldComparator} to use when sorting    */
+comment|/** Returns the {@link FieldComparator} to use for    * sorting.    *    * @lucene.experimental    *    * @param numHits number of top hits the queue will store    * @param sortPos position of this SortField within {@link    *   Sort}.  The comparator is primary if sortPos==0,    *   secondary if sortPos==1, etc.  Some comparators can    *   optimize themselves when they are the primary sort.    * @return {@link FieldComparator} to use when sorting    */
 DECL|method|getComparator
 specifier|public
 name|FieldComparator

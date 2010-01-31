@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Graph representing possible tokens at each start offset in the sentence.  *<p>  * For each start offset, a list of possible tokens is stored.  *</p>  *<p><font color="#FF0000">  * WARNING: The status of the analyzers/smartcn<b>analysis.cn.smart</b> package is experimental.   * The APIs and file formats introduced here might change in the future and will not be   * supported anymore in such a case.</font>  *</p>  */
+comment|/**  * Graph representing possible tokens at each start offset in the sentence.  *<p>  * For each start offset, a list of possible tokens is stored.  *</p>  * @lucene.experimental  */
 end_comment
 
 begin_class

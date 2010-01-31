@@ -1417,7 +1417,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * EXPERT: A unique Identifier/Description for each item in the FieldCache.     * Can be useful for logging/debugging.    *<p>    *<b>EXPERIMENTAL API:</b> This API is considered extremely advanced     * and experimental.  It may be removed or altered w/o warning in future     * releases     * of Lucene.    *</p>    */
+comment|/**    * EXPERT: A unique Identifier/Description for each item in the FieldCache.     * Can be useful for logging/debugging.    * @lucene.experimental    */
 DECL|class|CacheEntry
 specifier|public
 specifier|static
@@ -1698,7 +1698,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * EXPERT: Generates an array of CacheEntry objects representing all items     * currently in the FieldCache.    *<p>    * NOTE: These CacheEntry objects maintain a strong reference to the     * Cached Values.  Maintaining references to a CacheEntry the IndexReader     * associated with it has garbage collected will prevent the Value itself    * from being garbage collected when the Cache drops the WeakReference.    *</p>    *<p>    *<b>EXPERIMENTAL API:</b> This API is considered extremely advanced     * and experimental.  It may be removed or altered w/o warning in future     * releases     * of Lucene.    *</p>    */
+comment|/**    * EXPERT: Generates an array of CacheEntry objects representing all items     * currently in the FieldCache.    *<p>    * NOTE: These CacheEntry objects maintain a strong reference to the     * Cached Values.  Maintaining references to a CacheEntry the IndexReader     * associated with it has garbage collected will prevent the Value itself    * from being garbage collected when the Cache drops the WeakReference.    *</p>    * @lucene.experimental    */
 DECL|method|getCacheEntries
 specifier|public
 specifier|abstract
@@ -1707,7 +1707,7 @@ index|[]
 name|getCacheEntries
 parameter_list|()
 function_decl|;
-comment|/**    *<p>    * EXPERT: Instructs the FieldCache to forcibly expunge all entries     * from the underlying caches.  This is intended only to be used for     * test methods as a way to ensure a known base state of the Cache     * (with out needing to rely on GC to free WeakReferences).      * It should not be relied on for "Cache maintenance" in general     * application code.    *</p>    *<p>    *<b>EXPERIMENTAL API:</b> This API is considered extremely advanced     * and experimental.  It may be removed or altered w/o warning in future     * releases     * of Lucene.    *</p>    */
+comment|/**    *<p>    * EXPERT: Instructs the FieldCache to forcibly expunge all entries     * from the underlying caches.  This is intended only to be used for     * test methods as a way to ensure a known base state of the Cache     * (with out needing to rely on GC to free WeakReferences).      * It should not be relied on for "Cache maintenance" in general     * application code.    *</p>    * @lucene.experimental    */
 DECL|method|purgeAllCaches
 specifier|public
 specifier|abstract

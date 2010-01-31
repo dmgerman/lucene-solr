@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  *<p><b>WARNING</b>: this tool and API is new and  * experimental and is subject to suddenly change in the  * next release.  Please make a complete backup of your  * index before using this to fix your index!  */
+comment|/**  * Basic tool and API to check the health of an index and  * write a new segments file that removes reference to  * problematic segments.  *   *<p>As this tool checks every byte in the index, on a large  * index it can take quite a long time to run.  *  * @lucene.experimental Please make a complete backup of your  * index before using this to fix your index!  */
 end_comment
 
 begin_class
@@ -190,7 +190,7 @@ specifier|private
 name|Directory
 name|dir
 decl_stmt|;
-comment|/**    * Returned from {@link #checkIndex()} detailing the health and status of the index.    *    *<p><b>WARNING</b>: this API is new and experimental and is    * subject to suddenly change in the next release.    **/
+comment|/**    * Returned from {@link #checkIndex()} detailing the health and status of the index.    *    * @lucene.experimental    **/
 DECL|class|Status
 specifier|public
 specifier|static

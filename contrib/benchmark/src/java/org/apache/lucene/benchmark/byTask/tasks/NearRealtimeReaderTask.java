@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Spawns a BG thread that periodically (defaults to 3.0  * seconds, but accepts param in seconds) wakes up and asks  * IndexWriter for a near real-time reader.  Then runs a  * single query (body: 1) sorted by docdate, and prints  * time to reopen and time to run the search.  *  *<b>NOTE</b>: this is very experimental at this point, and  * subject to change.  It's also not generally usable, eg  * you cannot change which query is executed.  */
+comment|/**  * Spawns a BG thread that periodically (defaults to 3.0  * seconds, but accepts param in seconds) wakes up and asks  * IndexWriter for a near real-time reader.  Then runs a  * single query (body: 1) sorted by docdate, and prints  * time to reopen and time to run the search.  *  * @lucene.experimental It's also not generally usable, eg  * you cannot change which query is executed.  */
 end_comment
 
 begin_class

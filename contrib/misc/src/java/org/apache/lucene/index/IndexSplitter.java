@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Command-line tool that enables listing segments in an  * index, copying specific segments to another index, and  * deleting segments from an index.  *  *<p>This tool does file-level copying of segments files.  * This means it's unable to split apart a single segment  * into multiple segments.  For example if your index is  * optimized, this tool won't help.  Also, it does basic  * file-level copying (using simple  * File{In,Out}putStream) so it will not work with non  * FSDirectory Directory impls.</p>  *  *<p><b>NOTE</b>: The tool is experimental and might change  * in incompatible ways in the next release.  You can easily  * accidentally remove segments from your index so be  * careful!  */
+comment|/**  * Command-line tool that enables listing segments in an  * index, copying specific segments to another index, and  * deleting segments from an index.  *  *<p>This tool does file-level copying of segments files.  * This means it's unable to split apart a single segment  * into multiple segments.  For example if your index is  * optimized, this tool won't help.  Also, it does basic  * file-level copying (using simple  * File{In,Out}putStream) so it will not work with non  * FSDirectory Directory impls.</p>  *  * @lucene.experimental You can easily  * accidentally remove segments from your index so be  * careful!  */
 end_comment
 
 begin_class

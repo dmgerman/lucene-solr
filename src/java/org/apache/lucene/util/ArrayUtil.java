@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Methods for manipulating arrays.  */
+comment|/**  * Methods for manipulating arrays.  *  * @lucene.internal  */
 end_comment
 
 begin_class

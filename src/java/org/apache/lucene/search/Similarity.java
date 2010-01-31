@@ -275,7 +275,7 @@ return|return
 name|NORM_TABLE
 return|;
 block|}
-comment|/**    * Compute the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a float value based on the field    * state and then return that value.    *    *<p>For backward compatibility this method by default calls    * {@link #lengthNorm(String, int)} passing    * {@link FieldInvertState#getLength()} as the second argument, and    * then multiplies this value by {@link FieldInvertState#getBoost()}.</p>    *     *<p><b>WARNING</b>: This API is new and experimental and may    * suddenly change.</p>    *     * @param field field name    * @param state current processing state for this field    * @return the calculated float norm    */
+comment|/**    * Compute the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a float value based on the field    * state and then return that value.    *    *<p>For backward compatibility this method by default calls    * {@link #lengthNorm(String, int)} passing    * {@link FieldInvertState#getLength()} as the second argument, and    * then multiplies this value by {@link FieldInvertState#getBoost()}.</p>    *     * @lucene.experimental    *     * @param field field name    * @param state current processing state for this field    * @return the calculated float norm    */
 DECL|method|computeNorm
 specifier|public
 name|float

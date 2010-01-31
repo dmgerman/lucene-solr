@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *   * *<p><b>NOTE:</b> This API is new and still experimental  * (subject to change suddenly in the next release)</p>  */
+comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

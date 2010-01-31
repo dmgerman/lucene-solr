@@ -1143,7 +1143,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**    * EXPERIMENTAL:  While we think this is here to stay, we may want to change it to be a long.    *<p/>    *    * Get the bitset for any bits that have been set.  This is completely distinct from {@link #type()}, although they do share similar purposes.    * The flags can be used to encode information about the token for use by other {@link org.apache.lucene.analysis.TokenFilter}s.    *    *    * @return The bits    */
+comment|/**    *<p/>    *    * Get the bitset for any bits that have been set.  This is completely distinct from {@link #type()}, although they do share similar purposes.    * The flags can be used to encode information about the token for use by other {@link org.apache.lucene.analysis.TokenFilter}s.    *    *     * @return The bits    * @lucene.experimental While we think this is here to stay, we may want to change it to be a long.    */
 DECL|method|getFlags
 specifier|public
 name|int

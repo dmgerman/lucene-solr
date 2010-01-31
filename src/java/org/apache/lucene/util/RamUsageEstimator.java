@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Estimates the size of a given Object using a given MemoryModel for primitive  * size information.  *   * Resource Usage:   *   * Internally uses a Map to temporally hold a reference to every  * object seen.   *   * If checkInterned, all Strings checked will be interned, but those  * that were not already interned will be released for GC when the  * estimate is complete.  */
+comment|/**  * Estimates the size of a given Object using a given MemoryModel for primitive  * size information.  *   * Resource Usage:   *   * Internally uses a Map to temporally hold a reference to every  * object seen.   *   * If checkInterned, all Strings checked will be interned, but those  * that were not already interned will be released for GC when the  * estimate is complete.  *   * @lucene.internal  */
 end_comment
 
 begin_class

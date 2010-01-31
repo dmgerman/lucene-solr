@@ -17,7 +17,7 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/** Floating point numbers smaller than 32 bits.  */
+comment|/** Floating point numbers smaller than 32 bits.  *  * @lucene.internal  */
 end_comment
 
 begin_class

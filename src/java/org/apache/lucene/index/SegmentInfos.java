@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of segmentInfo objects with methods for operating on  * those segments in relation to the file system.  *   *<p><b>NOTE:</b> This API is new and still experimental  * (subject to change suddenly in the next release)</p>  */
+comment|/**  * A collection of segmentInfo objects with methods for operating on  * those segments in relation to the file system.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

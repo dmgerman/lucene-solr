@@ -2107,7 +2107,7 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|/**    * Expert: return the IndexCommit that this reader has    * opened.  This method is only implemented by those    * readers that correspond to a Directory with its own    * segments_N file.    *    *<p><b>WARNING</b>: this API is new and experimental and    * may suddenly change.</p>    */
+comment|/**    * Expert: return the IndexCommit that this reader has    * opened.  This method is only implemented by those    * readers that correspond to a Directory with its own    * segments_N file.    *    * @lucene.experimental    */
 DECL|method|getIndexCommit
 specifier|public
 name|IndexCommit

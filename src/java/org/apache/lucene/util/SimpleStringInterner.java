@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Simple lockless and memory barrier free String intern cache that is guaranteed  * to return the same String instance as String.intern() does.  */
+comment|/**  * Simple lockless and memory barrier free String intern cache that is guaranteed  * to return the same String instance as String.intern()  * does.  *  * @lucene.internal  */
 end_comment
 
 begin_class

@@ -4565,7 +4565,7 @@ return|return
 name|termInfosIndexDivisor
 return|;
 block|}
-comment|/**    * Expert: return the IndexCommit that this reader has opened.    *<p/>    *<p><b>WARNING</b>: this API is new and experimental and may suddenly change.</p>    */
+comment|/**    * Expert: return the IndexCommit that this reader has opened.    *<p/>    * @lucene.experimental    */
 annotation|@
 name|Override
 DECL|method|getIndexCommit

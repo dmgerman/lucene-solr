@@ -42,7 +42,7 @@ name|DefaultSimilarity
 extends|extends
 name|Similarity
 block|{
-comment|/** Implemented as    *<code>state.getBoost()*lengthNorm(numTerms)</code>, where    *<code>numTerms</code> is {@link FieldInvertState#getLength()} if {@link    *  #setDiscountOverlaps} is false, else it's {@link    *  FieldInvertState#getLength()} - {@link    *  FieldInvertState#getNumOverlap()}.    *    *<p><b>WARNING</b>: This API is new and experimental, and may suddenly    *  change.</p> */
+comment|/** Implemented as    *<code>state.getBoost()*lengthNorm(numTerms)</code>, where    *<code>numTerms</code> is {@link FieldInvertState#getLength()} if {@link    *  #setDiscountOverlaps} is false, else it's {@link    *  FieldInvertState#getLength()} - {@link    *  FieldInvertState#getNumOverlap()}.    *    *  @lucene.experimental */
 annotation|@
 name|Override
 DECL|method|computeNorm
@@ -276,7 +276,7 @@ specifier|protected
 name|boolean
 name|discountOverlaps
 decl_stmt|;
-comment|/** Determines whether overlap tokens (Tokens with    *  0 position increment) are ignored when computing    *  norm.  By default this is false, meaning overlap    *  tokens are counted just like non-overlap tokens.    *    *<p><b>WARNING</b>: This API is new and experimental, and may suddenly    *  change.</p>    *    *  @see #computeNorm    */
+comment|/** Determines whether overlap tokens (Tokens with    *  0 position increment) are ignored when computing    *  norm.  By default this is false, meaning overlap    *  tokens are counted just like non-overlap tokens.    *    *  @lucene.experimental    *    *  @see #computeNorm    */
 DECL|method|setDiscountOverlaps
 specifier|public
 name|void
