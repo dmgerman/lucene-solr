@@ -668,6 +668,8 @@ init|=
 operator|new
 name|RussianLetterTokenizer
 argument_list|(
+name|matchVersion
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;

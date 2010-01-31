@@ -299,6 +299,10 @@ init|=
 operator|new
 name|RussianLetterTokenizer
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|sampleUnicode
 argument_list|)
 decl_stmt|;

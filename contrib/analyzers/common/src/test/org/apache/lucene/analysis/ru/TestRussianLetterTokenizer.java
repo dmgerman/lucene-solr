@@ -103,7 +103,7 @@ name|RussianLetterTokenizer
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_31
+name|LUCENE_CURRENT
 argument_list|,
 name|reader
 argument_list|)
