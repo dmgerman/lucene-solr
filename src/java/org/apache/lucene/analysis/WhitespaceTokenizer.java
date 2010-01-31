@@ -111,7 +111,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}. * @param    * matchVersion Lucene version to match See    * {@link<a href="#version">above</a>}    *     * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param    *          matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
 DECL|method|WhitespaceTokenizer
 specifier|public
 name|WhitespaceTokenizer
