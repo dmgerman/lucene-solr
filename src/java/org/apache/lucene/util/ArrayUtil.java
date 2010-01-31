@@ -27,6 +27,16 @@ specifier|final
 class|class
 name|ArrayUtil
 block|{
+comment|/**    * @deprecated This constructor was not intended to be public and should not be used.    *  This class contains solely a static utility methods.    *  It will be made private in Lucene 4.0    */
+comment|// make private in 4.0!
+annotation|@
+name|Deprecated
+DECL|method|ArrayUtil
+specifier|public
+name|ArrayUtil
+parameter_list|()
+block|{}
+comment|// no instance
 comment|/*      Begin Apache Harmony code       Revision taken on Friday, June 12. https://svn.apache.org/repos/asf/harmony/enhanced/classlib/archive/java6/modules/luni/src/main/java/java/lang/Integer.java     */
 comment|/**    * Parses the string argument as if it was an int value and returns the    * result. Throws NumberFormatException if the string does not represent an    * int quantity.    *    * @param chars a string representation of an int quantity.    * @return int the value represented by the argument    * @throws NumberFormatException if the argument could not be parsed as an int quantity.    */
 DECL|method|parseInt
