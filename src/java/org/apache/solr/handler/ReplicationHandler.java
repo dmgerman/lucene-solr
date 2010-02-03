@@ -1812,19 +1812,6 @@ operator|.
 name|getLatestCommit
 argument_list|()
 decl_stmt|;
-comment|// race?
-name|delPolicy
-operator|.
-name|setReserveDuration
-argument_list|(
-name|indexCommit
-operator|.
-name|getVersion
-argument_list|()
-argument_list|,
-name|reserveCommitDuration
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|indexCommit
@@ -1845,14 +1832,20 @@ operator|.
 name|getIndexCommit
 argument_list|()
 expr_stmt|;
-block|}
-if|if
-condition|(
+comment|// race?
+name|delPolicy
+operator|.
+name|setReserveDuration
+argument_list|(
 name|indexCommit
-operator|!=
-literal|null
-condition|)
-block|{
+operator|.
+name|getVersion
+argument_list|()
+argument_list|,
+name|reserveCommitDuration
+argument_list|)
+expr_stmt|;
+block|}
 operator|new
 name|SnapShooter
 argument_list|(
@@ -1873,7 +1866,6 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
