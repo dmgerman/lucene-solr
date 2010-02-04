@@ -1863,11 +1863,12 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+comment|// wait for 60 seconds - usually this is very fast but coverage runs could take quite long
 name|executor
 operator|.
 name|awaitTermination
 argument_list|(
-literal|5
+literal|60L
 argument_list|,
 name|TimeUnit
 operator|.
@@ -1893,6 +1894,15 @@ control|)
 block|{
 name|assertFalse
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"worker thread %d failed"
+argument_list|,
+name|i
+argument_list|)
+argument_list|,
 name|workers
 index|[
 name|i
@@ -1903,6 +1913,15 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"worker thread %d is still running but should be terminated"
+argument_list|,
+name|i
+argument_list|)
+argument_list|,
 name|workers
 index|[
 name|i
@@ -2126,12 +2145,14 @@ name|IndexReader
 name|reader
 decl_stmt|;
 DECL|field|terminated
+specifier|volatile
 name|boolean
 name|terminated
 init|=
 literal|false
 decl_stmt|;
 DECL|field|failed
+specifier|volatile
 name|boolean
 name|failed
 init|=
