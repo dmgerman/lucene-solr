@@ -3534,7 +3534,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Copy a file by the File#renameTo() method. If it fails, it is considered a failure    *<p/>    * Todo may be we should try a simple copy if it fails    */
+comment|/**    * Copy a file by the File#renameTo() method. If it fails, it is considered a failure    *<p/>    */
 DECL|method|copyAFile
 specifier|private
 name|boolean
@@ -3594,6 +3594,8 @@ operator|!
 name|success
 condition|)
 block|{
+try|try
+block|{
 name|LOG
 operator|.
 name|error
@@ -3605,8 +3607,53 @@ operator|+
 literal|" to: "
 operator|+
 name|indexFileInIndex
+operator|+
+literal|"Trying to do a copy"
 argument_list|)
 expr_stmt|;
+name|FileUtils
+operator|.
+name|copyFile
+argument_list|(
+name|indexFileInTmpDir
+argument_list|,
+name|indexFileInIndex
+argument_list|)
+expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Unable to copy index file from: "
+operator|+
+name|indexFileInTmpDir
+operator|+
+literal|" to: "
+operator|+
+name|indexFileInIndex
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
 for|for
 control|(
 name|String
