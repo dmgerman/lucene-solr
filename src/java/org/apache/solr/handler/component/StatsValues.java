@@ -382,11 +382,11 @@ block|{
 name|String
 name|val
 init|=
-name|f
+name|vals
 operator|.
 name|getName
 argument_list|(
-name|i
+name|j
 argument_list|)
 decl_stmt|;
 name|StatsValues
@@ -429,11 +429,11 @@ argument_list|(
 operator|(
 name|NamedList
 operator|)
-name|f
+name|vals
 operator|.
 name|getVal
 argument_list|(
-name|i
+name|j
 argument_list|)
 argument_list|)
 expr_stmt|;
