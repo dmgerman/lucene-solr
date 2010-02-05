@@ -86,6 +86,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|AttributeSource
@@ -107,10 +127,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A RussianLetterTokenizer is a {@link Tokenizer} that extends {@link LetterTokenizer}  * by also allowing the basic Latin digits 0-9.  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link RussianLetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>   */
+comment|/**  * A RussianLetterTokenizer is a {@link Tokenizer} that extends {@link LetterTokenizer}  * by also allowing the basic Latin digits 0-9.  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link RussianLetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  * @deprecated Use {@link StandardTokenizer} instead, which has the same functionality.  * This filter will be removed in Lucene 4.0   */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianLetterTokenizer
 specifier|public
 class|class

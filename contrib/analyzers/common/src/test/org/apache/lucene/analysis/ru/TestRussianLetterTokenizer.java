@@ -67,10 +67,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Testcase for {@link RussianLetterTokenizer}  */
+comment|/**  * Testcase for {@link RussianLetterTokenizer}  * @deprecated Remove this test class in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestRussianLetterTokenizer
 specifier|public
 class|class

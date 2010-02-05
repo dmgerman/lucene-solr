@@ -34,20 +34,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io

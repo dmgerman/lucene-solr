@@ -29,10 +29,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A stemmer for Dutch words.   *<p>  * The algorithm is an implementation of  * the<a href="http://snowball.tartarus.org/algorithms/dutch/stemmer.html">dutch stemming</a>  * algorithm in Martin Porter's snowball project.  *</p>  */
+comment|/**  * A stemmer for Dutch words.   *<p>  * The algorithm is an implementation of  * the<a href="http://snowball.tartarus.org/algorithms/dutch/stemmer.html">dutch stemming</a>  * algorithm in Martin Porter's snowball project.  *</p>  * @deprecated Use {@link org.tartarus.snowball.ext.DutchStemmer} instead,   * which has the same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|DutchStemmer
 specifier|public
 class|class

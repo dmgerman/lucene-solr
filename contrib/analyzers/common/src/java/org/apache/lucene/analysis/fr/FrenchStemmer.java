@@ -19,10 +19,12 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A stemmer for French words.   *<p>  * The algorithm is based on the work of  * Dr Martin Porter on his snowball project<br>  * refer to http://snowball.sourceforge.net/french/stemmer.html<br>  * (French stemming algorithm) for details  *</p>  */
+comment|/**  * A stemmer for French words.   *<p>  * The algorithm is based on the work of  * Dr Martin Porter on his snowball project<br>  * refer to http://snowball.sourceforge.net/french/stemmer.html<br>  * (French stemming algorithm) for details  *</p>  * @deprecated Use {@link org.tartarus.snowball.ext.FrenchStemmer} instead,   * which has the same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|FrenchStemmer
 specifier|public
 class|class

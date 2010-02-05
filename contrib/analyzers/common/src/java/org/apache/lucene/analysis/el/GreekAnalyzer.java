@@ -134,6 +134,22 @@ name|analysis
 operator|.
 name|standard
 operator|.
+name|StandardFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
 name|StandardTokenizer
 import|;
 end_import
@@ -213,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating GreekAnalyzer:  *<ul>  *<li> As of 3.1, StandardFilter is used by default.  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *   *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -544,7 +560,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Creates {@link TokenStreamComponents} used to tokenize all the text in the     * provided {@link Reader}.     *      * @return {@link TokenStreamComponents} built from a     *         {@link StandardTokenizer} filtered with     *         {@link GreekLowerCaseFilter} and {@link StopFilter}     */
+comment|/**     * Creates {@link TokenStreamComponents} used to tokenize all the text in the     * provided {@link Reader}.     *      * @return {@link TokenStreamComponents} built from a     *         {@link StandardTokenizer} filtered with     *         {@link GreekLowerCaseFilter}, {@link StandardFilter} and {@link StopFilter}     */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -571,7 +587,6 @@ argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
-specifier|final
 name|TokenStream
 name|result
 init|=
@@ -581,6 +596,25 @@ argument_list|(
 name|source
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+condition|)
+name|result
+operator|=
+operator|new
+name|StandardFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|TokenStreamComponents

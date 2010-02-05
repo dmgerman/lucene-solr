@@ -136,6 +136,26 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|snowball
+operator|.
+name|SnowballFilter
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -145,10 +165,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems Russian words.   *<p>  * The implementation was inspired by GermanStemFilter.  * The input should be filtered by {@link LowerCaseFilter} before passing it to RussianStemFilter ,  * because RussianStemFilter only works with lowercase characters.  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  */
+comment|/**  * A {@link TokenFilter} that stems Russian words.   *<p>  * The implementation was inspired by GermanStemFilter.  * The input should be filtered by {@link LowerCaseFilter} before passing it to RussianStemFilter ,  * because RussianStemFilter only works with lowercase characters.  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.RussianStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianStemFilter
 specifier|public
 specifier|final

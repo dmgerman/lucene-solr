@@ -74,6 +74,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|snowball
+operator|.
+name|SnowballFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|tokenattributes
 operator|.
 name|KeywordAttribute
@@ -137,10 +153,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  */
+comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.FrenchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|FrenchStemFilter
 specifier|public
 specifier|final

@@ -82,7 +82,13 @@ name|ArrayList
 import|;
 end_import
 
+begin_comment
+comment|/**  * @deprecated Remove this test class (and its datafiles!) in Lucene 4.0  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestRussianStem
 specifier|public
 class|class

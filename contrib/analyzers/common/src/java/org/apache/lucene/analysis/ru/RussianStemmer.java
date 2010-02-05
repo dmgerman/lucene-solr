@@ -19,10 +19,12 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Russian stemming algorithm implementation (see http://snowball.sourceforge.net for detailed description).  */
+comment|/**  * Russian stemming algorithm implementation (see http://snowball.sourceforge.net for detailed description).  * @deprecated Use {@link org.tartarus.snowball.ext.RussianStemmer} instead,   * which has the same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianStemmer
 class|class
 name|RussianStemmer

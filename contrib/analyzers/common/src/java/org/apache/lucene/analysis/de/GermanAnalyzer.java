@@ -248,6 +248,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|snowball
+operator|.
+name|SnowballFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|standard
 operator|.
 name|StandardAnalyzer
@@ -300,8 +316,22 @@ name|Version
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|tartarus
+operator|.
+name|snowball
+operator|.
+name|ext
+operator|.
+name|German2Stemmer
+import|;
+end_import
+
 begin_comment
-comment|/**  * {@link Analyzer} for German language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *   *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for German language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *   *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating GermanAnalyzer:  *<ul>  *<li> As of 3.1, Snowball stemming is done with SnowballFilter, and   *        Snowball stopwords are used by default.  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *   *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -314,7 +344,7 @@ extends|extends
 name|StopwordAnalyzerBase
 block|{
 comment|/**    * List of typical german stopwords.    * @deprecated use {@link #getDefaultStopSet()} instead    */
-comment|//TODO make this private in 3.1
+comment|//TODO make this private in 3.1, remove in 4.0
 annotation|@
 name|Deprecated
 DECL|field|GERMAN_STOP_WORDS
@@ -423,6 +453,16 @@ block|,
 literal|"wird"
 block|}
 decl_stmt|;
+comment|/** File containing default German stopwords. */
+DECL|field|DEFAULT_STOPWORD_FILE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|DEFAULT_STOPWORD_FILE
+init|=
+literal|"german_stop.txt"
+decl_stmt|;
 comment|/**    * Returns a set of default German-stopwords     * @return a set of default German-stopwords     */
 DECL|method|getDefaultStopSet
 specifier|public
@@ -447,7 +487,10 @@ specifier|static
 class|class
 name|DefaultSetHolder
 block|{
-DECL|field|DEFAULT_SET
+comment|/** @deprecated remove in Lucene 4.0 */
+annotation|@
+name|Deprecated
+DECL|field|DEFAULT_SET_30
 specifier|private
 specifier|static
 specifier|final
@@ -455,7 +498,7 @@ name|Set
 argument_list|<
 name|?
 argument_list|>
-name|DEFAULT_SET
+name|DEFAULT_SET_30
 init|=
 name|CharArraySet
 operator|.
@@ -479,6 +522,51 @@ literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
+DECL|field|DEFAULT_SET
+specifier|private
+specifier|static
+specifier|final
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|DEFAULT_SET
+decl_stmt|;
+static|static
+block|{
+try|try
+block|{
+name|DEFAULT_SET
+operator|=
+name|WordlistLoader
+operator|.
+name|getSnowballWordSet
+argument_list|(
+name|SnowballFilter
+operator|.
+name|class
+argument_list|,
+name|DEFAULT_STOPWORD_FILE
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+comment|// default set should always be present as it is part of the
+comment|// distribution (JAR)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Unable to load default stopword set"
+argument_list|)
+throw|;
+block|}
+block|}
 block|}
 comment|/**    * Contains the stopwords used with the {@link StopFilter}.    */
 comment|/**    * Contains words that should be indexed but not stemmed.    */
@@ -504,9 +592,22 @@ name|this
 argument_list|(
 name|matchVersion
 argument_list|,
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+condition|?
 name|DefaultSetHolder
 operator|.
 name|DEFAULT_SET
+else|:
+name|DefaultSetHolder
+operator|.
+name|DEFAULT_SET_30
 argument_list|)
 expr_stmt|;
 block|}
@@ -770,7 +871,7 @@ argument_list|)
 expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
-comment|/**    * Creates {@link TokenStreamComponents} used to tokenize all the text in the    * provided {@link Reader}.    *     * @return {@link TokenStreamComponents} built from a    *         {@link StandardTokenizer} filtered with {@link StandardFilter},    *         {@link LowerCaseFilter}, {@link StopFilter}, and    *         {@link GermanStemFilter}    */
+comment|/**    * Creates {@link TokenStreamComponents} used to tokenize all the text in the    * provided {@link Reader}.    *     * @return {@link TokenStreamComponents} built from a    *         {@link StandardTokenizer} filtered with {@link StandardFilter},    *         {@link LowerCaseFilter}, {@link StopFilter},     *         {@link KeywordMarkerTokenFilter} if a stem exclusion set is provided, and    *         {@link SnowballFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -838,17 +939,45 @@ argument_list|,
 name|exclusionSet
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+condition|)
+name|result
+operator|=
+operator|new
+name|SnowballFilter
+argument_list|(
+name|result
+argument_list|,
+operator|new
+name|German2Stemmer
+argument_list|()
+argument_list|)
+expr_stmt|;
+else|else
+name|result
+operator|=
+operator|new
+name|GermanStemFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|TokenStreamComponents
 argument_list|(
 name|source
 argument_list|,
-operator|new
-name|GermanStemFilter
-argument_list|(
 name|result
-argument_list|)
 argument_list|)
 return|;
 block|}
