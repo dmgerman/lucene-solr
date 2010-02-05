@@ -250,7 +250,11 @@ name|a
 operator|=
 operator|new
 name|SimpleAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 expr_stmt|;
 name|QueryParser
 name|qp

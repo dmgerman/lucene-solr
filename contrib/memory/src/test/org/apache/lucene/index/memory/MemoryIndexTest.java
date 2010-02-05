@@ -984,7 +984,11 @@ index|[]
 block|{
 operator|new
 name|SimpleAnalyzer
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|)
 block|,
 operator|new
 name|StopAnalyzer
@@ -1010,7 +1014,7 @@ operator|.
 name|LUCENE_CURRENT
 argument_list|)
 block|,
-comment|//        new WhitespaceAnalyzer(),
+comment|//        new WhitespaceAnalyzer(Version.LUCENE_CURRENT),
 comment|//        new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, false, null),
 comment|//        new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, true, stopWords),
 comment|//        new SnowballAnalyzer("English", StopAnalyzer.ENGLISH_STOP_WORDS),
