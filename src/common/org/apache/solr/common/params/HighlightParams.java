@@ -202,16 +202,16 @@ name|HIGHLIGHT
 operator|+
 literal|".mergeContiguous"
 decl_stmt|;
-DECL|field|USE_HIGHLIGHTER
+DECL|field|USE_FVH
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|USE_HIGHLIGHTER
+name|USE_FVH
 init|=
 name|HIGHLIGHT
 operator|+
-literal|".useHighlighter"
+literal|".useFastVectorHighlighter"
 decl_stmt|;
 comment|// Formatter
 DECL|field|SIMPLE
