@@ -238,7 +238,13 @@ throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
 argument_list|(
+literal|"bit="
+operator|+
 name|bit
+operator|+
+literal|" size="
+operator|+
+name|size
 argument_list|)
 throw|;
 block|}
@@ -285,7 +291,13 @@ throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
 argument_list|(
+literal|"bit="
+operator|+
 name|bit
+operator|+
+literal|" size="
+operator|+
+name|size
 argument_list|)
 throw|;
 block|}
