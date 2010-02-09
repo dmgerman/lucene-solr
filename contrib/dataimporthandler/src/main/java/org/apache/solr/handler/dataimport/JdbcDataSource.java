@@ -742,14 +742,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Resolve variables again because the variables may have changed
-name|resolveVariables
-argument_list|(
-name|context
-argument_list|,
-name|initProps
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|info

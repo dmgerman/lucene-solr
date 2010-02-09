@@ -2131,6 +2131,7 @@ name|String
 name|currentProcess
 decl_stmt|;
 DECL|field|currentEntityProcWrapper
+specifier|final
 name|ThreadLocal
 argument_list|<
 name|ThreadedEntityProcessorWrapper
@@ -2150,10 +2151,12 @@ name|ContextImpl
 name|context
 decl_stmt|;
 DECL|field|parent
+specifier|final
 name|EntityRunner
 name|parent
 decl_stmt|;
 DECL|field|entityEnded
+specifier|final
 name|AtomicBoolean
 name|entityEnded
 init|=
