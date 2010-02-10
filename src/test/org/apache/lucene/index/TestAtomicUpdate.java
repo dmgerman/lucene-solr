@@ -120,9 +120,7 @@ init|=
 operator|new
 name|SimpleAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 DECL|field|RANDOM

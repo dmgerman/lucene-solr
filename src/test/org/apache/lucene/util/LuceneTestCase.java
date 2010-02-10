@@ -141,6 +141,17 @@ name|LuceneTestCase
 extends|extends
 name|TestCase
 block|{
+DECL|field|TEST_VERSION_CURRENT
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|TEST_VERSION_CURRENT
+init|=
+name|LuceneTestCaseJ4
+operator|.
+name|TEST_VERSION_CURRENT
+decl_stmt|;
 DECL|method|LuceneTestCase
 specifier|public
 name|LuceneTestCase

@@ -218,6 +218,18 @@ name|LuceneTestCaseJ4
 extends|extends
 name|TestWatchman
 block|{
+comment|/** Change this when development starts for new Lucene version: */
+DECL|field|TEST_VERSION_CURRENT
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|TEST_VERSION_CURRENT
+init|=
+name|Version
+operator|.
+name|LUCENE_31
+decl_stmt|;
 comment|// This is how we get control when errors occur.
 comment|// Think of this as start/end/success/failed
 comment|// events.
@@ -623,7 +635,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"please call LuceneTestCase.newRandom only once per test"
+literal|"please call LuceneTestCaseJ4.newRandom only once per test"
 argument_list|)
 throw|;
 block|}
@@ -660,7 +672,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"please call LuceneTestCase.newRandom only once per test"
+literal|"please call LuceneTestCaseJ4.newRandom only once per test"
 argument_list|)
 throw|;
 block|}

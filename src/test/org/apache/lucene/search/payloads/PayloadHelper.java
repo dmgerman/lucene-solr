@@ -140,20 +140,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -171,6 +157,22 @@ operator|.
 name|search
 operator|.
 name|Similarity
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCaseJ4
+operator|.
+name|TEST_VERSION_CURRENT
 import|;
 end_import
 
@@ -297,9 +299,7 @@ init|=
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|reader
 argument_list|)

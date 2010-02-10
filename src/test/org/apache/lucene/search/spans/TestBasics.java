@@ -252,20 +252,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests basic search capabilities.  *  *<p>Uses a collection of 1000 documents, each the english rendition of their  * document number.  For example, the document numbered 333 has text "three  * hundred thirty three".  *  *<p>Tests are each a single query, and its hits are checked to ensure that  * all and only the correct documents are returned, thus providing end-to-end  * testing of the indexing and search code.  *  */
 end_comment
@@ -316,9 +302,7 @@ argument_list|,
 operator|new
 name|SimpleAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
