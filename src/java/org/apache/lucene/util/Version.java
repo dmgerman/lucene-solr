@@ -54,15 +54,18 @@ comment|/** Match settings and bugs in Lucene's 3.0 release. */
 DECL|enum constant|LUCENE_30
 name|LUCENE_30
 block|,
-comment|/** Match settings and bugs in Lucene's 3.1 release. */
+comment|/** Match settings and bugs in Lucene's 3.1 release.     *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
 DECL|enum constant|LUCENE_31
 name|LUCENE_31
 block|,
 comment|/* Add new constants for later versions **here** to respect order! */
-comment|/** Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    *    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If precise back compatibility is important    * then you should instead explicitly specify an actual    * version.    */
+comment|/**    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If backwards compatibility is important    * then you should instead explicitly specify an actual    * version.    *<p>    * If you use this constant then you  may need to     *<b>re-index all of your documents</b> when upgrading    * Lucene, as the way text is indexed may have changed.     * Additionally, you may need to<b>re-test your entire    * application</b> to ensure it behaves as expected, as     * some defaults may have changed and may break functionality     * in your application.     * @deprecated Use an actual version instead.     */
+DECL|enum constant|Deprecated
+annotation|@
+name|Deprecated
 DECL|enum constant|LUCENE_CURRENT
 name|LUCENE_CURRENT
-block|;
+decl_stmt|;
 DECL|method|onOrAfter
 specifier|public
 name|boolean
