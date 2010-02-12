@@ -4418,6 +4418,21 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|writer
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Since we just closed, writer may now be able to
+comment|// delete unused files:
+name|writer
+operator|.
+name|deleteUnusedFiles
+argument_list|()
+expr_stmt|;
+block|}
 comment|// throw the first exception
 if|if
 condition|(
