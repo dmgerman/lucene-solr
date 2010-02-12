@@ -474,7 +474,7 @@ parameter_list|(
 name|long
 name|pointer
 parameter_list|,
-name|int
+name|long
 name|p
 parameter_list|,
 name|Term
