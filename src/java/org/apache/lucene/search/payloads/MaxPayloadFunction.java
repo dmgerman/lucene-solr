@@ -59,6 +59,19 @@ name|float
 name|currentPayloadScore
 parameter_list|)
 block|{
+if|if
+condition|(
+name|numPayloadsSeen
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+name|currentPayloadScore
+return|;
+block|}
+else|else
+block|{
 return|return
 name|Math
 operator|.
@@ -69,6 +82,7 @@ argument_list|,
 name|currentScore
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override
