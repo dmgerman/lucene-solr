@@ -296,6 +296,12 @@ name|Math
 operator|.
 name|max
 argument_list|(
+name|result
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
 name|vec1
 index|[
 name|i
@@ -305,6 +311,7 @@ name|vec2
 index|[
 name|i
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
