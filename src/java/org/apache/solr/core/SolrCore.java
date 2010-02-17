@@ -5519,41 +5519,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-name|logid
-operator|+
-literal|"Null Request Handler '"
-operator|+
-name|req
-operator|.
-name|getParams
-argument_list|()
-operator|.
-name|get
-argument_list|(
-name|CommonParams
-operator|.
-name|QT
-argument_list|)
-operator|+
-literal|"' :"
-operator|+
-name|req
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
+name|String
+name|msg
+init|=
 literal|"Null Request Handler '"
 operator|+
 name|req
@@ -5569,6 +5537,38 @@ name|QT
 argument_list|)
 operator|+
 literal|"'"
+decl_stmt|;
+if|if
+condition|(
+name|log
+operator|.
+name|isWarnEnabled
+argument_list|()
+condition|)
+name|log
+operator|.
+name|warn
+argument_list|(
+name|logid
+operator|+
+name|msg
+operator|+
+literal|":"
+operator|+
+name|req
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+name|msg
 argument_list|,
 literal|true
 argument_list|)
@@ -5598,6 +5598,7 @@ argument_list|,
 name|responseHeader
 argument_list|)
 expr_stmt|;
+comment|// toLog is a local ref to the same NamedList used by the request
 name|NamedList
 name|toLog
 init|=
@@ -5606,7 +5607,8 @@ operator|.
 name|getToLog
 argument_list|()
 decl_stmt|;
-comment|//toLog.add("core", getName());
+comment|// for back compat, we set these now just in case other code
+comment|// are expecting them during handleRequest
 name|toLog
 operator|.
 name|add
@@ -5675,12 +5677,22 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|log
+operator|.
+name|isInfoEnabled
+argument_list|()
+condition|)
+block|{
 name|StringBuilder
 name|sb
 init|=
 operator|new
 name|StringBuilder
-argument_list|()
+argument_list|(
+name|logid
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -5747,15 +5759,13 @@ name|log
 operator|.
 name|info
 argument_list|(
-name|logid
-operator|+
 name|sb
 operator|.
 name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*log.info(logid+"" + req.getContext().get("path") + " "             + req.getParamString()+ " 0 "+        (int)(rsp.getEndTime() - req.getStartTime()));*/
+block|}
 block|}
 comment|/**    * @deprecated Use {@link #execute(SolrRequestHandler, SolrQueryRequest, SolrQueryResponse)} instead.     */
 annotation|@
