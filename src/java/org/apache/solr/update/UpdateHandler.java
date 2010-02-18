@@ -694,7 +694,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Document is missing uniqueKey field "
+literal|"Document is missing mandatory uniqueKey field: "
 operator|+
 name|idField
 operator|.
@@ -720,7 +720,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Document specifies multiple unique ids! "
+literal|"Document contains multiple values for uniqueKey field: "
 operator|+
 name|idField
 operator|.
