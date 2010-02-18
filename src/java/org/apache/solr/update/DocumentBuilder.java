@@ -1088,7 +1088,36 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Document missing value for uniqueKeyField: "
+literal|"Document missing a value for uniqueKey field: "
+operator|+
+name|uniqueKeyField
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+literal|1
+operator|<
+name|keys
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Document contains multiple values for uniqueKey field: "
 operator|+
 name|uniqueKeyField
 operator|.
