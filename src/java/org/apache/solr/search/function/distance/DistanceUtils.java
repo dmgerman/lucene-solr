@@ -1042,7 +1042,7 @@ argument_list|,
 name|start
 argument_list|)
 expr_stmt|;
-name|idex
+name|idx
 operator|=
 name|end
 expr_stmt|;
