@@ -750,7 +750,7 @@ argument_list|)
 expr_stmt|;
 name|start
 operator|=
-name|end
+name|idx
 operator|+
 literal|1
 expr_stmt|;
@@ -764,6 +764,10 @@ literal|','
 argument_list|,
 name|start
 argument_list|)
+expr_stmt|;
+name|idx
+operator|=
+name|end
 expr_stmt|;
 if|if
 condition|(
@@ -1005,7 +1009,7 @@ argument_list|)
 expr_stmt|;
 name|start
 operator|=
-name|end
+name|idx
 operator|+
 literal|1
 expr_stmt|;
@@ -1019,6 +1023,10 @@ literal|','
 argument_list|,
 name|start
 argument_list|)
+expr_stmt|;
+name|idex
+operator|=
+name|end
 expr_stmt|;
 if|if
 condition|(
