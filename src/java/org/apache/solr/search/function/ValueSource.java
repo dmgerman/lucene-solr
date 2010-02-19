@@ -269,7 +269,7 @@ name|description
 argument_list|()
 return|;
 block|}
-comment|/**    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, org.apache.lucene.index.IndexReader)}    * to populate the SortField.    *     * @param reverse true if the order should be reversed.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
+comment|/**    * EXPERIMENTAL: This method is subject to change.    *<br>WARNING: Sorted function queries are not currently weighted.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, org.apache.lucene.index.IndexReader)}    * to populate the SortField.    *     * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
 DECL|method|getSortField
 specifier|public
 name|SortField
