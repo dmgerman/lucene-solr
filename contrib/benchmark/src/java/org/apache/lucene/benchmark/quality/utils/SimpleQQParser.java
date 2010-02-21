@@ -189,7 +189,7 @@ name|QueryParser
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Constructor of a simple qq parser.    * @param qqName name-value pairs of quality query to use for creating the query    * @param indexField corresponding index field      */
+comment|/**    * Constructor of a simple qq parser.    * @param qqNames name-value pairs of quality query to use for creating the query    * @param indexField corresponding index field      */
 DECL|method|SimpleQQParser
 specifier|public
 name|SimpleQQParser
