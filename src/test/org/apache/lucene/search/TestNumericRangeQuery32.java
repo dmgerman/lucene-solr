@@ -227,20 +227,6 @@ static|static
 block|{
 try|try
 block|{
-comment|// set the theoretical maximum term count for 8bit (see docs for the number)
-name|BooleanQuery
-operator|.
-name|setMaxClauseCount
-argument_list|(
-literal|3
-operator|*
-literal|255
-operator|*
-literal|2
-operator|+
-literal|255
-argument_list|)
-expr_stmt|;
 name|directory
 operator|=
 operator|new
@@ -586,6 +572,37 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+comment|// set the theoretical maximum term count for 8bit (see docs for the number)
+comment|// super.tearDown will restore the default
+name|BooleanQuery
+operator|.
+name|setMaxClauseCount
+argument_list|(
+literal|3
+operator|*
+literal|255
+operator|*
+literal|2
+operator|+
+literal|255
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** test for both constant score and boolean query, the other tests only use the constant score mode */
 DECL|method|testRange
