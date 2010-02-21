@@ -724,6 +724,16 @@ decl_stmt|;
 name|int
 name|i
 decl_stmt|;
+name|long
+name|savedWriteLockTimeout
+init|=
+name|IndexWriter
+operator|.
+name|getDefaultWriteLockTimeout
+argument_list|()
+decl_stmt|;
+try|try
+block|{
 name|IndexWriter
 operator|.
 name|setDefaultWriteLockTimeout
@@ -761,13 +771,17 @@ operator|.
 name|LIMITED
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|IndexWriter
 operator|.
 name|setDefaultWriteLockTimeout
 argument_list|(
-literal|1000
+name|savedWriteLockTimeout
 argument_list|)
 expr_stmt|;
+block|}
 comment|// add 100 documents
 for|for
 control|(
