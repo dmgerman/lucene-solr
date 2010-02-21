@@ -764,24 +764,7 @@ name|term
 argument_list|)
 expr_stmt|;
 block|}
-comment|// test BooleanQuery.maxClauseCount
-name|int
-name|savedClauseCount
-init|=
-name|BooleanQuery
-operator|.
-name|getMaxClauseCount
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-name|BooleanQuery
-operator|.
-name|setMaxClauseCount
-argument_list|(
-literal|2
-argument_list|)
-expr_stmt|;
+comment|// test pq size by supplying maxExpansions=2
 comment|// This query would normally return 3 documents, because 3 terms match (see above):
 name|query
 operator|=
@@ -801,6 +784,8 @@ operator|.
 name|defaultMinSimilarity
 argument_list|,
 literal|0
+argument_list|,
+literal|2
 argument_list|)
 expr_stmt|;
 name|hits
@@ -889,17 +874,6 @@ name|i
 argument_list|)
 argument_list|,
 name|term
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|BooleanQuery
-operator|.
-name|setMaxClauseCount
-argument_list|(
-name|savedClauseCount
 argument_list|)
 expr_stmt|;
 block|}

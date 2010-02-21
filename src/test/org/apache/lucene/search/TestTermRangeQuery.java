@@ -806,9 +806,11 @@ name|query
 operator|.
 name|setRewriteMethod
 argument_list|(
+operator|new
 name|MultiTermQuery
 operator|.
-name|TOP_TERMS_SCORING_BOOLEAN_REWRITE
+name|TopTermsScoringBooleanQueryRewrite
+argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final

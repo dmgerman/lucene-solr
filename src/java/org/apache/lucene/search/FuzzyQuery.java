@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements the fuzzy search query. The similarity measurement  * is based on the Levenshtein (edit distance) algorithm.  *   *<p><em>Warning:</em> this query is not very scalable with its default prefix  * length of 0 - in this case, *every* term will be enumerated and  * cause an edit score calculation.  *   *<p>This query uses {@link MultiTermQuery#TOP_TERMS_SCORING_BOOLEAN_REWRITE}  * as default. So terms will be collected and scored according to their  * edit distance. Only the top terms are used for building the {@link BooleanQuery}.  * It is not recommended to change the rewrite mode for fuzzy queries.  */
+comment|/** Implements the fuzzy search query. The similarity measurement  * is based on the Levenshtein (edit distance) algorithm.  *   *<p><em>Warning:</em> this query is not very scalable with its default prefix  * length of 0 - in this case, *every* term will be enumerated and  * cause an edit score calculation.  *   *<p>This query uses {@link MultiTermQuery.TopTermsScoringBooleanQueryRewrite}  * as default. So terms will be collected and scored according to their  * edit distance. Only the top terms are used for building the {@link BooleanQuery}.  * It is not recommended to change the rewrite mode for fuzzy queries.  */
 end_comment
 
 begin_class
@@ -98,6 +98,17 @@ name|defaultPrefixLength
 init|=
 literal|0
 decl_stmt|;
+DECL|field|defaultMaxExpansions
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|defaultMaxExpansions
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 DECL|field|minimumSimilarity
 specifier|private
 name|float
@@ -120,7 +131,7 @@ specifier|protected
 name|Term
 name|term
 decl_stmt|;
-comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    * If a<code>prefixLength</code>&gt; 0 is specified, a common prefix    * of that length is also required.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>    * @param prefixLength length of common (non-fuzzy) prefix    * @throws IllegalArgumentException if minimumSimilarity is&gt;= 1 or&lt; 0    * or if prefixLength&lt; 0    */
+comment|/**    * Create a new FuzzyQuery that will match terms with a similarity     * of at least<code>minimumSimilarity</code> to<code>term</code>.    * If a<code>prefixLength</code>&gt; 0 is specified, a common prefix    * of that length is also required.    *     * @param term the term to search for    * @param minimumSimilarity a value between 0 and 1 to set the required similarity    *  between the query term and the matching terms. For example, for a    *<code>minimumSimilarity</code> of<code>0.5</code> a term of the same length    *  as the query term is considered similar to the query term if the edit distance    *  between both terms is less than<code>length(term)*0.5</code>    * @param prefixLength length of common (non-fuzzy) prefix    * @param maxExpansions the maximum number of terms to match. If this number is    *  greater than {@link BooleanQuery#getMaxClauseCount} when the query is rewritten,     *  then the maxClauseCount will be used instead.    * @throws IllegalArgumentException if minimumSimilarity is&gt;= 1 or&lt; 0    * or if prefixLength&lt; 0    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery
@@ -133,20 +144,16 @@ name|minimumSimilarity
 parameter_list|,
 name|int
 name|prefixLength
+parameter_list|,
+name|int
+name|maxExpansions
 parameter_list|)
-throws|throws
-name|IllegalArgumentException
 block|{
 name|this
 operator|.
 name|term
 operator|=
 name|term
-expr_stmt|;
-name|setRewriteMethod
-argument_list|(
-name|TOP_TERMS_SCORING_BOOLEAN_REWRITE
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -190,6 +197,30 @@ argument_list|)
 throw|;
 if|if
 condition|(
+name|maxExpansions
+operator|<
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxExpansions< 0"
+argument_list|)
+throw|;
+name|setRewriteMethod
+argument_list|(
+operator|new
+name|MultiTermQuery
+operator|.
+name|TopTermsScoringBooleanQueryRewrite
+argument_list|(
+name|maxExpansions
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|term
 operator|.
 name|text
@@ -227,7 +258,34 @@ operator|=
 name|prefixLength
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, minimumSimilarity, 0)}.    */
+comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, minimumSimilarity, prefixLength, Integer.MAX_VALUE)}.    */
+DECL|method|FuzzyQuery
+specifier|public
+name|FuzzyQuery
+parameter_list|(
+name|Term
+name|term
+parameter_list|,
+name|float
+name|minimumSimilarity
+parameter_list|,
+name|int
+name|prefixLength
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|term
+argument_list|,
+name|minimumSimilarity
+argument_list|,
+name|prefixLength
+argument_list|,
+name|defaultMaxExpansions
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, minimumSimilarity, 0, Integer.MAX_VALUE)}.    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery
@@ -238,8 +296,6 @@ parameter_list|,
 name|float
 name|minimumSimilarity
 parameter_list|)
-throws|throws
-name|IllegalArgumentException
 block|{
 name|this
 argument_list|(
@@ -248,10 +304,12 @@ argument_list|,
 name|minimumSimilarity
 argument_list|,
 name|defaultPrefixLength
+argument_list|,
+name|defaultMaxExpansions
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, 0.5f, 0)}.    */
+comment|/**    * Calls {@link #FuzzyQuery(Term, float) FuzzyQuery(term, 0.5f, 0, Integer.MAX_VALUE)}.    */
 DECL|method|FuzzyQuery
 specifier|public
 name|FuzzyQuery
@@ -267,6 +325,8 @@ argument_list|,
 name|defaultMinSimilarity
 argument_list|,
 name|defaultPrefixLength
+argument_list|,
+name|defaultMaxExpansions
 argument_list|)
 expr_stmt|;
 block|}
