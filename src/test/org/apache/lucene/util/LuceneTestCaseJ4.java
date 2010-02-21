@@ -40,6 +40,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|BooleanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|FieldCache
 import|;
 end_import
@@ -230,6 +244,11 @@ name|Version
 operator|.
 name|LUCENE_31
 decl_stmt|;
+DECL|field|savedBoolMaxClauseCount
+specifier|private
+name|int
+name|savedBoolMaxClauseCount
+decl_stmt|;
 comment|// This is how we get control when errors occur.
 comment|// Think of this as start/end/success/failed
 comment|// events.
@@ -279,6 +298,13 @@ block|{
 name|ConcurrentMergeScheduler
 operator|.
 name|setTestMode
+argument_list|()
+expr_stmt|;
+name|savedBoolMaxClauseCount
+operator|=
+name|BooleanQuery
+operator|.
+name|getMaxClauseCount
 argument_list|()
 expr_stmt|;
 name|seed
@@ -332,6 +358,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|BooleanQuery
+operator|.
+name|setMaxClauseCount
+argument_list|(
+name|savedBoolMaxClauseCount
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// this isn't as useful as calling directly from the scope where the
