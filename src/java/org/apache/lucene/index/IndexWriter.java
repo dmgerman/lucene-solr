@@ -8680,16 +8680,24 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// This is called after pending added and deleted
-comment|// documents have been flushed to the Directory but before
-comment|// the change is committed (new segments_N file written).
+comment|/**    * A hook for extending classes to execute operations after pending added and    * deleted documents have been flushed to the Directory but before the change    * is committed (new segments_N file written).    */
 DECL|method|doAfterFlush
+specifier|protected
 name|void
 name|doAfterFlush
 parameter_list|()
 throws|throws
 name|IOException
-block|{   }
+block|{}
+comment|/**    * A hook for extending classes to execute operations before pending added and    * deleted documents are flushed to the Directory.    */
+DECL|method|doBeforeFlush
+specifier|protected
+name|void
+name|doBeforeFlush
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 comment|/** Expert: prepare for commit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit(Map) */
 DECL|method|prepareCommit
 specifier|public
@@ -9204,6 +9212,9 @@ argument_list|(
 literal|"startDoFlush"
 argument_list|)
 assert|;
+name|doBeforeFlush
+argument_list|()
+expr_stmt|;
 name|flushCount
 operator|++
 expr_stmt|;
