@@ -76,7 +76,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"<matchAllDocs field='*' term='*'>"
+literal|"<matchAllDocs field='*' term='*'/>"
 return|;
 block|}
 DECL|method|toQueryString
