@@ -122,18 +122,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|rules
-operator|.
-name|TestWatchman
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -259,8 +247,6 @@ DECL|class|LuceneTestCaseJ4
 specifier|public
 class|class
 name|LuceneTestCaseJ4
-extends|extends
-name|TestWatchman
 block|{
 comment|/** Change this when development starts for new Lucene version: */
 DECL|field|TEST_VERSION_CURRENT
@@ -972,7 +958,7 @@ operator|.
 name|name
 return|;
 block|}
-comment|// We get here fro InterceptTestCaseEvents on the 'failed' event....
+comment|// We get here from InterceptTestCaseEvents on the 'failed' event....
 DECL|method|reportAdditionalFailureInfo
 specifier|public
 name|void
