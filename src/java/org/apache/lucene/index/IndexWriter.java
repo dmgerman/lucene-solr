@@ -832,7 +832,10 @@ block|{
 name|applyDeletes
 argument_list|()
 expr_stmt|;
-return|return
+specifier|final
+name|IndexReader
+name|r
+init|=
 operator|new
 name|ReadOnlyDirectoryReader
 argument_list|(
@@ -842,6 +845,31 @@ name|segmentInfos
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"return reader version="
+operator|+
+name|r
+operator|.
+name|getVersion
+argument_list|()
+operator|+
+literal|" reader="
+operator|+
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|r
 return|;
 block|}
 block|}
