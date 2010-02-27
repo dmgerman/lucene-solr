@@ -157,15 +157,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|char
-index|[]
-name|buf
-init|=
-name|t
-operator|.
-name|termBuffer
-argument_list|()
-decl_stmt|;
 name|assertNotSame
 argument_list|(
 name|t

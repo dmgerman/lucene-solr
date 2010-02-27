@@ -111,13 +111,6 @@ name|String
 name|name
 decl_stmt|;
 DECL|method|Parameter
-specifier|private
-name|Parameter
-parameter_list|()
-block|{
-comment|// typesafe enum pattern, no public constructor
-block|}
-DECL|method|Parameter
 specifier|protected
 name|Parameter
 parameter_list|(

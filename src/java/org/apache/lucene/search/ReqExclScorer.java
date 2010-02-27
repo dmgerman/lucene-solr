@@ -270,7 +270,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    * @return The score of the required scorer.    */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} is called the first time.    * @return The score of the required scorer.    */
 annotation|@
 name|Override
 DECL|method|score

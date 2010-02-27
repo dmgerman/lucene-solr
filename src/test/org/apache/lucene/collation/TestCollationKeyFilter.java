@@ -205,10 +205,10 @@ name|TestAnalyzer
 extends|extends
 name|Analyzer
 block|{
-DECL|field|collator
+DECL|field|_collator
 specifier|private
 name|Collator
-name|collator
+name|_collator
 decl_stmt|;
 DECL|method|TestAnalyzer
 name|TestAnalyzer
@@ -217,9 +217,7 @@ name|Collator
 name|collator
 parameter_list|)
 block|{
-name|this
-operator|.
-name|collator
+name|_collator
 operator|=
 name|collator
 expr_stmt|;
@@ -254,7 +252,7 @@ name|CollationKeyFilter
 argument_list|(
 name|result
 argument_list|,
-name|collator
+name|_collator
 argument_list|)
 expr_stmt|;
 return|return

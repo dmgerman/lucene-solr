@@ -202,9 +202,7 @@ argument_list|(
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|"Pokud mluvime o volnem"
@@ -289,9 +287,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
@@ -493,9 +489,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -515,9 +509,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|CharArraySet
 operator|.

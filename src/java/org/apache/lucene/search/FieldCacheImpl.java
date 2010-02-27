@@ -1676,7 +1676,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// inherit javadocs
 DECL|method|getShorts
 specifier|public
@@ -1967,7 +1966,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// inherit javadocs
 DECL|method|getInts
 specifier|public
@@ -2306,7 +2304,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// inherit javadocs
 DECL|method|getFloats
 specifier|public
@@ -2645,7 +2642,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 DECL|method|getLongs
 specifier|public
 name|long
@@ -2984,7 +2980,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// inherit javadocs
 DECL|method|getDoubles
 specifier|public
@@ -3329,7 +3324,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// inherit javadocs
 DECL|method|getStrings
 specifier|public
@@ -3550,7 +3544,6 @@ name|retArray
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// inherit javadocs
 DECL|method|getStringIndex
 specifier|public
@@ -3879,7 +3872,6 @@ name|value
 return|;
 block|}
 block|}
-empty_stmt|;
 DECL|field|infoStream
 specifier|private
 specifier|volatile

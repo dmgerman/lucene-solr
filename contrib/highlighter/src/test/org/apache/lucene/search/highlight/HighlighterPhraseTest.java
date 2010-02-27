@@ -450,7 +450,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|LuceneTestCase
 import|;
 end_import
 
@@ -464,17 +464,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
+name|OpenBitSet
 import|;
 end_import
 
@@ -484,7 +474,7 @@ specifier|public
 class|class
 name|HighlighterPhraseTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|FIELD
 specifier|private
@@ -535,9 +525,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 name|MaxFieldLength
@@ -816,9 +804,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 name|MaxFieldLength
@@ -971,6 +957,8 @@ specifier|private
 name|int
 name|baseDoc
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -980,6 +968,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -1002,6 +992,8 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -1022,6 +1014,8 @@ operator|=
 name|i
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -1218,9 +1212,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 name|MaxFieldLength
@@ -1499,9 +1491,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 name|MaxFieldLength
@@ -1777,9 +1767,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 name|MaxFieldLength
@@ -2201,6 +2189,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -2514,6 +2504,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

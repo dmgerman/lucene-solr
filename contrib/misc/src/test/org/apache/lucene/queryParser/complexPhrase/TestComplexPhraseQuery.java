@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -220,7 +210,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -230,7 +220,7 @@ specifier|public
 class|class
 name|TestComplexPhraseQuery
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|analyzer
 name|Analyzer
@@ -239,17 +229,7 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 DECL|field|docsContent
@@ -416,9 +396,7 @@ init|=
 operator|new
 name|ComplexPhraseQueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|defaultFieldName
 argument_list|,
@@ -481,9 +459,7 @@ init|=
 operator|new
 name|ComplexPhraseQueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|defaultFieldName
 argument_list|,
@@ -685,6 +661,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|RAMDirectory
 name|rd
 init|=
@@ -828,6 +809,11 @@ block|{
 name|searcher
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
 argument_list|()
 expr_stmt|;
 block|}

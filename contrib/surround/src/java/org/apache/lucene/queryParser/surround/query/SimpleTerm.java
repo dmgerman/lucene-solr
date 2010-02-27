@@ -209,9 +209,7 @@ parameter_list|(
 name|StringBuilder
 name|r
 parameter_list|)
-block|{
-empty_stmt|;
-block|}
+block|{}
 comment|/* override for prefix query */
 annotation|@
 name|Override

@@ -133,7 +133,7 @@ name|docID
 argument_list|()
 return|;
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    * @return The score of the required scorer, eventually increased by the score    * of the optional scorer when it also matches the current document.    */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} is called the first time.    * @return The score of the required scorer, eventually increased by the score    * of the optional scorer when it also matches the current document.    */
 annotation|@
 name|Override
 DECL|method|score

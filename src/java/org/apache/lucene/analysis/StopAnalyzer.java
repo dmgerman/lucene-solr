@@ -84,26 +84,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|ReusableAnalyzerBase
-operator|.
-name|TokenStreamComponents
-import|;
-end_import
-
-begin_comment
-comment|// javadoc @link
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Version
@@ -344,7 +324,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates {@link TokenStreamComponents} used to tokenize all the text in the provided {@link Reader}.    *    * @return {@link TokenStreamComponents} built from a {@link LowerCaseTokenizer} filtered with    *         {@link StopFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link LowerCaseTokenizer} filtered with    *         {@link StopFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents

@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: obtains short field values from the   * {@link org.apache.lucene.search.FieldCache FieldCache}  * using<code>getShorts()</code> and makes those values   * available as other numeric types, casting as needed.  *   * @lucene.experimental  *   * @see org.apache.lucene.search.function.FieldCacheSource for requirements   * on the field.  *  *<p><b>NOTE</b>: with the switch in 2.9 to segment-based  * searching, if {@link #getValues} is invoked with a  * composite (multi-segment) reader, this can easily cause  * double RAM usage for the values in the FieldCache.  It's  * best to switch your application to pass only atomic  * (single segment) readers to this API.  Alternatively, for  * a short-term fix, you could wrap your ValueSource using  * {@link MultiValueSource}, which costs more CPU per lookup  * but will not consume double the FieldCache RAM.</p>  */
+comment|/**  * Expert: obtains short field values from the   * {@link org.apache.lucene.search.FieldCache FieldCache}  * using<code>getShorts()</code> and makes those values   * available as other numeric types, casting as needed.  *   * @lucene.experimental  *   * @see org.apache.lucene.search.function.FieldCacheSource for requirements   * on the field.  *  *<p><b>NOTE</b>: with the switch in 2.9 to segment-based  * searching, if {@link #getValues} is invoked with a  * composite (multi-segment) reader, this can easily cause  * double RAM usage for the values in the FieldCache.  It's  * best to switch your application to pass only atomic  * (single segment) readers to this API.</p>  */
 end_comment
 
 begin_class
@@ -207,9 +207,6 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|(
-name|float
-operator|)
 name|arr
 index|[
 name|doc

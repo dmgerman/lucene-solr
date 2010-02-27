@@ -237,10 +237,6 @@ name|other
 operator|instanceof
 name|FuzzyAttributeImpl
 operator|&&
-name|other
-operator|!=
-literal|null
-operator|&&
 operator|(
 operator|(
 name|FuzzyAttributeImpl

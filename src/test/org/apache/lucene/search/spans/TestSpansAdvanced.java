@@ -174,7 +174,6 @@ specifier|protected
 name|Directory
 name|mDirectory
 decl_stmt|;
-empty_stmt|;
 DECL|field|searcher
 specifier|protected
 name|IndexSearcher
@@ -210,11 +209,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
 name|super
 operator|.
 name|setUp
@@ -313,11 +307,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
 name|searcher
 operator|.
 name|close
@@ -331,6 +320,11 @@ expr_stmt|;
 name|mDirectory
 operator|=
 literal|null
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Adds the document to the index.      *      * @param writer the Lucene index writer      * @param id the unique id of the document      * @param text the text of the document      * @throws IOException      */

@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For performance reasons it is   * recommended to open only one IndexSearcher and use it for all of your searches.  *   *<a name="thread-safety"></a><p><b>NOTE</b>: {@link  *<code>IndexSearcher</code>} instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
+comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For performance reasons it is   * recommended to open only one IndexSearcher and use it for all of your searches.  *   *<a name="thread-safety"></a><p><b>NOTE</b>:<code>{@link  * IndexSearcher}</code> instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
 end_comment
 
 begin_class
@@ -179,7 +179,7 @@ name|int
 index|[]
 name|docStarts
 decl_stmt|;
-comment|/** Creates a searcher searching the index in the named    *  directory, with readOnly=true    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path directory where IndexReader will be opened    */
+comment|/** Creates a searcher searching the index in the named    *  directory, with readOnly=true    * @param path directory where IndexReader will be opened    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
@@ -207,7 +207,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a searcher searching the index in the named    *  directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the underlying IndexReader.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @param path directory where IndexReader will be opened    * @param readOnly if true, the underlying IndexReader    * will be opened readOnly    */
+comment|/** Creates a searcher searching the index in the named    *  directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the underlying IndexReader.    * @param path directory where IndexReader will be opened    * @param readOnly if true, the underlying IndexReader    * will be opened readOnly    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher

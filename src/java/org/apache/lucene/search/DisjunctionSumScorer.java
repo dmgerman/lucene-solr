@@ -508,7 +508,7 @@ literal|true
 condition|)
 do|;
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #next()} is called the first time.    */
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} is called the first time.    */
 annotation|@
 name|Override
 DECL|method|score
@@ -535,7 +535,7 @@ return|return
 name|currentDoc
 return|;
 block|}
-comment|/** Returns the number of subscorers matching the current document.    * Initially invalid, until {@link #next()} is called the first time.    */
+comment|/** Returns the number of subscorers matching the current document.    * Initially invalid, until {@link #nextDoc()} is called the first time.    */
 DECL|method|nrMatchers
 specifier|public
 name|int

@@ -2428,6 +2428,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecated"
+argument_list|)
 DECL|method|testCopyCharArraySetBWCompat
 specifier|public
 name|void
@@ -2553,6 +2558,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// This should use the deprecated methods, because it checks a bw compatibility.
 name|CharArraySet
 name|copy
 init|=
@@ -3380,9 +3386,6 @@ name|EMPTY_SET
 operator|.
 name|contains
 argument_list|(
-operator|(
-name|Object
-operator|)
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -3398,6 +3401,18 @@ argument_list|(
 operator|(
 name|Object
 operator|)
+literal|"foo"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|CharArraySet
+operator|.
+name|EMPTY_SET
+operator|.
+name|contains
+argument_list|(
 literal|"foo"
 operator|.
 name|toCharArray

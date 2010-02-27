@@ -38,16 +38,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -184,7 +174,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -198,7 +188,7 @@ specifier|public
 class|class
 name|IndexTaskTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|docHandler
 specifier|private
@@ -256,13 +246,18 @@ comment|/**      *  The JUnit setup method      *      *@exception  IOException 
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|public
+specifier|protected
 name|void
 name|setUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|Project
 name|project
 init|=
@@ -366,9 +361,7 @@ operator|=
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 block|}
@@ -386,9 +379,7 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"contents"
 argument_list|,
@@ -430,12 +421,12 @@ comment|/**      *  The teardown method for JUnit      * TODO: remove indexDir? 
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|public
+specifier|protected
 name|void
 name|tearDown
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|searcher
 operator|.
@@ -445,6 +436,11 @@ expr_stmt|;
 name|dir
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
 argument_list|()
 expr_stmt|;
 block|}

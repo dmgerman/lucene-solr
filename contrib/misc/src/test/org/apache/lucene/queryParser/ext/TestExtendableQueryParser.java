@@ -144,20 +144,6 @@ name|TermQuery
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Testcase for the class {@link ExtendableQueryParser}  */
 end_comment
@@ -251,9 +237,7 @@ operator|=
 operator|new
 name|SimpleAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|QueryParser
@@ -266,9 +250,7 @@ condition|?
 operator|new
 name|ExtendableQueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"field"
 argument_list|,
@@ -278,9 +260,7 @@ else|:
 operator|new
 name|ExtendableQueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"field"
 argument_list|,

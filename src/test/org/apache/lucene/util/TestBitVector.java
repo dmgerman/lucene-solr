@@ -740,7 +740,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Test r/w when size/count cause switching between bit-set and d-gaps file formats.        * @throws Exception      */
+comment|/**      * Test r/w when size/count cause switching between bit-set and d-gaps file formats.        */
 DECL|method|testDgaps
 specifier|public
 name|void

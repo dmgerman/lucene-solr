@@ -1356,9 +1356,9 @@ name|MergeThread
 extends|extends
 name|Thread
 block|{
-DECL|field|writer
+DECL|field|tWriter
 name|IndexWriter
-name|writer
+name|tWriter
 decl_stmt|;
 DECL|field|startMerge
 name|MergePolicy
@@ -1395,7 +1395,7 @@ name|IOException
 block|{
 name|this
 operator|.
-name|writer
+name|tWriter
 operator|=
 name|writer
 expr_stmt|;
@@ -1559,7 +1559,7 @@ comment|// Subsequent times through the loop we do any new
 comment|// merge that writer says is necessary:
 name|merge
 operator|=
-name|writer
+name|tWriter
 operator|.
 name|getNextMerge
 argument_list|()
@@ -1571,7 +1571,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|writer
+name|tWriter
 operator|.
 name|mergeInit
 argument_list|(

@@ -144,9 +144,7 @@ init|=
 operator|new
 name|GermanAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|checkOneTermReuse
@@ -194,9 +192,7 @@ argument_list|(
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -212,9 +208,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -264,9 +258,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -292,9 +284,7 @@ argument_list|(
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -336,9 +326,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -358,9 +346,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -393,9 +379,7 @@ argument_list|(
 operator|new
 name|LowerCaseTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -445,9 +429,7 @@ init|=
 operator|new
 name|GermanAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|checkOneTermReuse
@@ -496,9 +478,7 @@ init|=
 operator|new
 name|GermanAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// a/o/u + e is equivalent to the umlaut form

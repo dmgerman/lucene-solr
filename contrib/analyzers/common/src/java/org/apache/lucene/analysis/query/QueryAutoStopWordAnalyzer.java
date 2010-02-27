@@ -738,7 +738,6 @@ name|TokenStream
 name|withStopFilter
 decl_stmt|;
 block|}
-empty_stmt|;
 annotation|@
 name|Override
 DECL|method|reusableTokenStream

@@ -405,12 +405,6 @@ init|=
 literal|null
 decl_stmt|;
 name|int
-name|index
-init|=
-operator|-
-literal|1
-decl_stmt|;
-name|int
 name|docNumber
 init|=
 literal|0
@@ -432,16 +426,12 @@ block|{
 comment|//when we see a closing reuters tag, flush the file
 if|if
 condition|(
-operator|(
-name|index
-operator|=
 name|line
 operator|.
 name|indexOf
 argument_list|(
 literal|"</REUTERS"
 argument_list|)
-operator|)
 operator|==
 operator|-
 literal|1

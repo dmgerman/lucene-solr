@@ -69,10 +69,16 @@ block|{
 DECL|field|data
 specifier|private
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|data
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|method|BaseListModel
@@ -80,6 +86,9 @@ specifier|public
 name|BaseListModel
 parameter_list|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|iterator
 parameter_list|)
 block|{

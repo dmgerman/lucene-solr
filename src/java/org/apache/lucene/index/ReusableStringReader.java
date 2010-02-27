@@ -214,7 +214,6 @@ name|void
 name|close
 parameter_list|()
 block|{}
-empty_stmt|;
 block|}
 end_class
 

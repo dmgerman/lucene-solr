@@ -108,20 +108,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -129,10 +115,6 @@ operator|.
 name|StringReader
 import|;
 end_import
-
-begin_comment
-comment|/**  *  *  **/
-end_comment
 
 begin_class
 DECL|class|DelimitedPayloadTokenFilterTest
@@ -164,9 +146,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -404,9 +384,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -580,9 +558,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -818,9 +794,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader

@@ -690,6 +690,9 @@ name|length
 decl_stmt|;
 specifier|final
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|fields
 init|=

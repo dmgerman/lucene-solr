@@ -83,7 +83,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**    * Validation method to determine whether a docid should be in the result set.    * @param doc docid to be tested    * @return true if input docid should be in the result set, false otherwise.    * @see #FilteredDocIdSetIterator(DocIdSetIterator).    */
+comment|/**    * Validation method to determine whether a docid should be in the result set.    * @param doc docid to be tested    * @return true if input docid should be in the result set, false otherwise.    * @see #FilteredDocIdSetIterator(DocIdSetIterator)    */
 DECL|method|match
 specifier|abstract
 specifier|protected

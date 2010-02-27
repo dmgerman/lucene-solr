@@ -106,9 +106,6 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|(
-name|double
-operator|)
 name|floatVal
 argument_list|(
 name|doc

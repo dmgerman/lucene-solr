@@ -462,10 +462,6 @@ else|else
 block|{
 name|curTermBuffer
 operator|=
-operator|(
-name|char
-index|[]
-operator|)
 name|termAtt
 operator|.
 name|termBuffer

@@ -150,26 +150,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-operator|.
-name|TokenStreamComponents
-import|;
-end_import
-
-begin_comment
-comment|// javadoc @link
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|KeywordMarkerTokenFilter
 import|;
 end_import
@@ -934,7 +914,7 @@ argument_list|)
 expr_stmt|;
 comment|// force a new stemmer to be created
 block|}
-comment|/**    * Creates {@link TokenStreamComponents} used to tokenize all the text in the provided {@link Reader}.    *    * @return  {@link TokenStreamComponents} built from a {@link StandardTokenizer} filtered with    *      {@link LowerCaseFilter}, {@link StandardFilter}, {@link StopFilter}, and     *          {@link BrazilianStemFilter}.    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link LowerCaseFilter}, {@link StandardFilter}, {@link StopFilter}    *         , and {@link BrazilianStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents

@@ -20,20 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -54,21 +40,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|lucene
 operator|.
-name|util
+name|index
 operator|.
-name|Arrays
+name|Term
 import|;
 end_import
 

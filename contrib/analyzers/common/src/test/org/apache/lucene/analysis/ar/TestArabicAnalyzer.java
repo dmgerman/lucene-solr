@@ -86,20 +86,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test the Arabic Analyzer  *  */
 end_comment
@@ -122,9 +108,7 @@ block|{
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 block|}
@@ -143,9 +127,7 @@ init|=
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -314,9 +296,7 @@ init|=
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
@@ -363,9 +343,7 @@ argument_list|(
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|"English text."
@@ -422,9 +400,7 @@ init|=
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|set
 argument_list|)
@@ -482,9 +458,7 @@ init|=
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|CharArraySet
 operator|.
@@ -538,9 +512,7 @@ operator|=
 operator|new
 name|ArabicAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|CharArraySet
 operator|.

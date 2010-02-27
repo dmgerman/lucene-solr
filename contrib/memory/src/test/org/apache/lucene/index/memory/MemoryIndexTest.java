@@ -162,16 +162,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -438,20 +428,6 @@ name|TermDocs
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/** Verifies that Lucene MemoryIndex and RAMDirectory have the same behaviour, returning the same results for any given query. Runs a set of queries against a set of files and compares results for identity. Can also be used as a simple benchmark.<p> Example usage:<pre> cd lucene-svn java -server -cp ~/unix/java/share/misc/junit/junit.jar:build/classes:build/lucene-core-2.1-dev.jar:build/contrib/memory/classes/test:build/contrib/memory/classes/java org.apache.lucene.index.memory.MemoryIndexTest 1 1 memram @contrib/memory/src/test/org/apache/lucene/index/memory/testqueries.txt *.txt *.html *.xml xdocs/*.xml src/test/org/apache/lucene/queryParser/*.java contrib/memory/src/java/org/apache/lucene/index/memory/*.java</pre> where testqueries.txt is a file with one query per line, such as:<pre> # # queries extracted from TestQueryParser.java # Apache Apach~ AND Copy*  a AND b (a AND b) c OR (a AND b) a AND NOT b a AND -b a AND !b a&& b a&& ! b  a OR b a || b a OR !b a OR ! b a OR -b  +term -term term foo:term AND field:anotherTerm term AND "phrase phrase" "hello there"  germ term^2.0 (term)^2.0 (germ term)^2.0 term^2.0 term^2 "germ term"^2.0 "term germ"^2  (foo OR bar) AND (baz OR boo) ((a OR b) AND NOT c) OR d +(apple "steve jobs") -(foo bar baz) +title:(dog OR cat) -author:"bob dole"   a&b a&&b .NET  "term germ"~2 "term germ"~2 flork "term"~2 "~2 germ" "term germ"~2^2  3 term 1.0 1 2 term term1 term2  term* term*^2 term~ term~0.7 term~^2 term^2~ term*germ term*germ^3   term* Term* TERM* term* Term* TERM*  // Then 'full' wildcard queries: te?m Te?m TE?M Te?m*gerM te?m Te?m TE?M Te?m*gerM  term term term term +stop term term -stop term drop AND stop AND roll term phrase term term AND NOT phrase term stop   [ a TO c] [ a TO c ] { a TO c} { a TO c } { a TO c }^2.0 [ a TO c] OR bar [ a TO c] AND bar ( bar blar { a TO c})  gack ( bar blar { a TO c})    +weltbank +worlbank +weltbank\n+worlbank weltbank \n+worlbank weltbank \n +worlbank +weltbank\r+worlbank weltbank \r+worlbank weltbank \r +worlbank +weltbank\r\n+worlbank weltbank \r\n+worlbank weltbank \r\n +worlbank weltbank \r \n +worlbank +weltbank\t+worlbank weltbank \t+worlbank weltbank \t +worlbank   term term term term +term term term term +term term +term +term -term term term   on^1.0 "hello"^2.0 hello^2.0 "on"^1.0 the^3</pre>  */
 end_comment
@@ -468,13 +444,6 @@ DECL|field|analyzer
 specifier|private
 name|Analyzer
 name|analyzer
-decl_stmt|;
-DECL|field|fastMode
-specifier|private
-name|boolean
-name|fastMode
-init|=
-literal|false
 decl_stmt|;
 DECL|field|verbose
 specifier|private
@@ -957,23 +926,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|boolean
-name|toLowerCase
-init|=
-literal|true
-decl_stmt|;
 comment|//    boolean toLowerCase = false;
 comment|//    Set stopWords = null;
-name|Set
-argument_list|<
-name|?
-argument_list|>
-name|stopWords
-init|=
-name|StopAnalyzer
-operator|.
-name|ENGLISH_STOP_WORDS_SET
-decl_stmt|;
 name|Analyzer
 index|[]
 name|analyzers
@@ -985,36 +939,22 @@ block|{
 operator|new
 name|SimpleAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 block|,
 operator|new
 name|StopAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 block|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 block|,
-comment|//        new WhitespaceAnalyzer(Version.LUCENE_CURRENT),
+comment|//        new WhitespaceAnalyzer(TEST_VERSION_CURRENT),
 comment|//        new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, false, null),
 comment|//        new PatternAnalyzer(PatternAnalyzer.NON_WORD_PATTERN, true, stopWords),
 comment|//        new SnowballAnalyzer("English", StopAnalyzer.ENGLISH_STOP_WORDS),
@@ -2223,8 +2163,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// for debugging purposes
 DECL|method|getMemorySize
-specifier|private
 name|int
 name|getMemorySize
 parameter_list|(
@@ -2345,9 +2285,7 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|FIELD_NAME
 argument_list|,
@@ -2888,12 +2826,6 @@ return|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|input
-operator|!=
-literal|null
-condition|)
 name|input
 operator|.
 name|close

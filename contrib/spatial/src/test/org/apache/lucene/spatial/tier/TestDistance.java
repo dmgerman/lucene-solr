@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -160,7 +150,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LuceneTestCase
 import|;
 end_import
 
@@ -174,7 +164,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|NumericUtils
 import|;
 end_import
 
@@ -192,17 +182,13 @@ name|RAMDirectory
 import|;
 end_import
 
-begin_comment
-comment|/**  *  */
-end_comment
-
 begin_class
 DECL|class|TestDistance
 specifier|public
 class|class
 name|TestDistance
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|directory
 specifier|private
@@ -252,8 +238,13 @@ name|void
 name|setUp
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|directory
 operator|=
 operator|new
@@ -270,9 +261,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -298,11 +287,16 @@ name|void
 name|tearDown
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
 name|writer
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
 argument_list|()
 expr_stmt|;
 block|}

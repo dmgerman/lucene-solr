@@ -3713,25 +3713,6 @@ literal|"dk"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Query
-name|query
-init|=
-operator|new
-name|TermRangeQuery
-argument_list|(
-literal|"content"
-argument_list|,
-literal|"H\u00D8T"
-argument_list|,
-literal|"MAND"
-argument_list|,
-literal|false
-argument_list|,
-literal|false
-argument_list|,
-name|collator
-argument_list|)
-decl_stmt|;
 comment|// Unicode order would not include "H\u00C5T" in [ "H\u00D8T", "MAND" ],
 comment|// but Danish collation does.
 name|int

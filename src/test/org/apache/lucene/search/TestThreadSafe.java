@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -290,8 +280,6 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
-name|TestCase
-operator|.
 name|fail
 argument_list|(
 name|failure
@@ -782,8 +770,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|TestCase
-operator|.
 name|fail
 argument_list|(
 name|failure

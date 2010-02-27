@@ -138,20 +138,6 @@ name|Tokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test the German stemmer. The stemming algorithm is known to work less   * than perfect, as it doesn't use any word lists with exceptions. We   * also check some of the cases where the algorithm is wrong.  *  */
 end_comment
@@ -194,9 +180,7 @@ argument_list|(
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|tokenizer
 argument_list|)

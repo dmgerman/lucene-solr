@@ -65,7 +65,6 @@ name|TWENTYFEET
 block|,
 name|TWOHUNDREDFEET
 block|}
-empty_stmt|;
 DECL|field|distances
 specifier|private
 name|Map

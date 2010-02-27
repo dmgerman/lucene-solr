@@ -135,9 +135,7 @@ init|=
 operator|new
 name|BulgarianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// -Ð¸ pattern
@@ -740,9 +738,7 @@ init|=
 operator|new
 name|BulgarianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -817,9 +813,7 @@ init|=
 operator|new
 name|BulgarianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// -Ð° pattern
@@ -1038,9 +1032,7 @@ init|=
 operator|new
 name|BulgarianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -1185,9 +1177,7 @@ init|=
 operator|new
 name|BulgarianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// ÑÐ¸ -> Ðº
@@ -1700,9 +1690,7 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader

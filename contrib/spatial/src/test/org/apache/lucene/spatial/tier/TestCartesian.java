@@ -60,16 +60,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -472,7 +462,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LuceneTestCase
 import|;
 end_import
 
@@ -486,13 +476,9 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|NumericUtils
 import|;
 end_import
-
-begin_comment
-comment|/**  *  */
-end_comment
 
 begin_class
 DECL|class|TestCartesian
@@ -500,9 +486,8 @@ specifier|public
 class|class
 name|TestCartesian
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
-comment|/**    * @param args    */
 DECL|field|directory
 specifier|private
 name|Directory
@@ -582,8 +567,13 @@ name|void
 name|setUp
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|directory
 operator|=
 operator|new
@@ -601,9 +591,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -3405,32 +3393,8 @@ comment|// Create a distance sort
 comment|// As the radius filter has performed the distance calculations
 comment|// already, pass in the filter to reuse the results.
 comment|//
-name|DistanceFieldComparatorSource
-name|dsort
-init|=
-operator|new
-name|DistanceFieldComparatorSource
-argument_list|(
-name|dq
-operator|.
-name|distanceFilter
-argument_list|)
-decl_stmt|;
-name|Sort
-name|sort
-init|=
-operator|new
-name|Sort
-argument_list|(
-operator|new
-name|SortField
-argument_list|(
-literal|"foo"
-argument_list|,
-name|dsort
-argument_list|)
-argument_list|)
-decl_stmt|;
+comment|//DistanceFieldComparatorSource dsort = new DistanceFieldComparatorSource(dq.distanceFilter);
+comment|//Sort sort = new Sort(new SortField("foo", dsort));
 comment|// Perform the search, using the term query, the serial chain filter, and the
 comment|// distance sort
 name|TopDocs

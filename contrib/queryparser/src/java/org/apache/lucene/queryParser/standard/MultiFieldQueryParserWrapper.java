@@ -143,9 +143,6 @@ expr_stmt|;
 name|StandardQueryParser
 name|qpHelper
 init|=
-operator|(
-name|StandardQueryParser
-operator|)
 name|getQueryParserHelper
 argument_list|()
 decl_stmt|;
@@ -187,9 +184,6 @@ expr_stmt|;
 name|StandardQueryParser
 name|qpHelper
 init|=
-operator|(
-name|StandardQueryParser
-operator|)
 name|getQueryParserHelper
 argument_list|()
 decl_stmt|;

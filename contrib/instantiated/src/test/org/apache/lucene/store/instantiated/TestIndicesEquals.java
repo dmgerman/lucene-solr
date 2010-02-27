@@ -80,16 +80,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -344,6 +334,20 @@ name|AttributeImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  * Asserts equality of content and behaviour of two index readers.  */
 end_comment
@@ -354,7 +358,7 @@ specifier|public
 class|class
 name|TestIndicesEquals
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|//  public void test2() throws Exception {
 comment|//    FSDirectory fsdir = FSDirectory.open(new File("/tmp/fatcorpus"));
@@ -390,17 +394,7 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -523,17 +517,7 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -598,17 +582,7 @@ argument_list|(
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true

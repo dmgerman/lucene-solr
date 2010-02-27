@@ -1124,12 +1124,6 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-if|if
-condition|(
-name|keep
-operator|==
-literal|null
-condition|)
 name|keep
 operator|=
 name|e

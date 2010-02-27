@@ -293,7 +293,6 @@ argument_list|(
 literal|"tests.verbose"
 argument_list|)
 decl_stmt|;
-comment|/**    * @param arg0    */
 DECL|method|TestQualityRun
 specifier|public
 name|TestQualityRun

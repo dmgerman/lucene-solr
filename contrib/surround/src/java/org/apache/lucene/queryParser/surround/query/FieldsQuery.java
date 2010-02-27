@@ -296,11 +296,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|infix
-init|=
-literal|true
-decl_stmt|;
 name|OrQuery
 name|oq
 init|=

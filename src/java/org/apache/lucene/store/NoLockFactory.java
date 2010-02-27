@@ -105,13 +105,8 @@ name|String
 name|lockName
 parameter_list|)
 block|{}
-empty_stmt|;
 block|}
 end_class
-
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
 
 begin_class
 DECL|class|NoLock

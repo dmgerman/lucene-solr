@@ -76,20 +76,6 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_class
 DECL|class|TestItalianAnalyzer
 specifier|public
@@ -108,9 +94,7 @@ block|{
 operator|new
 name|ItalianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 block|}
@@ -129,9 +113,7 @@ init|=
 operator|new
 name|ItalianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// stemming
@@ -202,9 +184,7 @@ init|=
 operator|new
 name|ItalianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|ItalianAnalyzer
 operator|.

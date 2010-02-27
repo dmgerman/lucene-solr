@@ -86,11 +86,6 @@ specifier|public
 class|class
 name|Points
 block|{
-DECL|field|config
-specifier|private
-name|Config
-name|config
-decl_stmt|;
 comment|// stat points ordered by their start time.
 comment|// for now we collect points as TaskStats objects.
 comment|// later might optimize to collect only native data.
@@ -129,14 +124,7 @@ parameter_list|(
 name|Config
 name|config
 parameter_list|)
-block|{
-name|this
-operator|.
-name|config
-operator|=
-name|config
-expr_stmt|;
-block|}
+block|{   }
 comment|/**    * Return the current task stats.    * the actual task stats are returned, so caller should not modify this task stats.     * @return current {@link TaskStats}.    */
 DECL|method|taskStats
 specifier|public

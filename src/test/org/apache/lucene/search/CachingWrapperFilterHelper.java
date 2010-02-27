@@ -42,7 +42,7 @@ name|junit
 operator|.
 name|framework
 operator|.
-name|TestCase
+name|Assert
 import|;
 end_import
 
@@ -163,7 +163,7 @@ condition|(
 name|shouldHaveCache
 condition|)
 block|{
-name|TestCase
+name|Assert
 operator|.
 name|assertNotNull
 argument_list|(
@@ -175,7 +175,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|TestCase
+name|Assert
 operator|.
 name|assertNull
 argument_list|(
@@ -276,9 +276,6 @@ name|filter
 operator|.
 name|equals
 argument_list|(
-operator|(
-name|CachingWrapperFilterHelper
-operator|)
 name|o
 argument_list|)
 return|;

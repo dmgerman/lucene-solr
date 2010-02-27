@@ -509,9 +509,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|FieldTermStack
-name|ftl
-init|=
 operator|new
 name|FieldTermStack
 argument_list|(
@@ -523,7 +520,7 @@ literal|"f"
 argument_list|,
 name|fieldQuery
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|reader
 operator|.
 name|close

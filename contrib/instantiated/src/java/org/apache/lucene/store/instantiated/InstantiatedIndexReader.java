@@ -597,17 +597,17 @@ name|void
 name|doCommit
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|commitUserData
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 comment|// todo: read/write lock
-name|boolean
-name|updated
-init|=
-literal|false
-decl_stmt|;
 comment|// 1. update norms
 if|if
 condition|(
@@ -683,10 +683,6 @@ name|uncommittedNormsByFieldNameAndDocumentNumber
 operator|=
 literal|null
 expr_stmt|;
-name|updated
-operator|=
-literal|true
-expr_stmt|;
 block|}
 comment|// 2. remove deleted documents
 if|if
@@ -760,10 +756,6 @@ block|}
 name|uncommittedDeletedDocuments
 operator|=
 literal|null
-expr_stmt|;
-name|updated
-operator|=
-literal|true
 expr_stmt|;
 block|}
 comment|// todo unlock read/writelock

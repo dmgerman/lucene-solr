@@ -86,12 +86,6 @@ specifier|public
 class|class
 name|FieldFragList
 block|{
-DECL|field|fragCharSize
-specifier|private
-specifier|final
-name|int
-name|fragCharSize
-decl_stmt|;
 DECL|field|fragInfos
 name|List
 argument_list|<
@@ -114,14 +108,7 @@ parameter_list|(
 name|int
 name|fragCharSize
 parameter_list|)
-block|{
-name|this
-operator|.
-name|fragCharSize
-operator|=
-name|fragCharSize
-expr_stmt|;
-block|}
+block|{   }
 comment|/**    * convert the list of WeightedPhraseInfo to WeightedFragInfo, then add it to the fragInfos    *     * @param startOffset start offset of the fragment    * @param endOffset end offset of the fragment    * @param phraseInfoList list of WeightedPhraseInfo objects    */
 DECL|method|add
 specifier|public

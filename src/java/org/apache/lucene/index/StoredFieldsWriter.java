@@ -243,11 +243,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-assert|assert
-name|docStoreSegment
-operator|!=
-literal|null
-assert|;
 name|fieldsWriter
 operator|=
 operator|new

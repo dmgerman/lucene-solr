@@ -79,9 +79,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|Environment
-name|env
-init|=
 operator|new
 name|Environment
 argument_list|(
@@ -89,7 +86,7 @@ literal|null
 argument_list|,
 name|envConfig
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 block|}
 end_class

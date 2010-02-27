@@ -173,17 +173,14 @@ name|doc
 parameter_list|)
 block|{
 return|return
-call|(
-name|float
-call|)
-argument_list|(
+operator|(
 name|end
 operator|-
 name|arr
 index|[
 name|doc
 index|]
-argument_list|)
+operator|)
 return|;
 block|}
 comment|/* (non-Javadoc) @see org.apache.lucene.search.function.DocValues#intVal(int) */

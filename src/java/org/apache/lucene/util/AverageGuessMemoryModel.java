@@ -55,6 +55,9 @@ specifier|final
 name|Map
 argument_list|<
 name|Class
+argument_list|<
+name|?
+argument_list|>
 argument_list|,
 name|Integer
 argument_list|>
@@ -64,6 +67,9 @@ operator|new
 name|IdentityHashMap
 argument_list|<
 name|Class
+argument_list|<
+name|?
+argument_list|>
 argument_list|,
 name|Integer
 argument_list|>
@@ -184,7 +190,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-decl_stmt|;
+empty_stmt|;
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.util.MemoryModel#getArraySize()    */
 annotation|@
 name|Override
@@ -220,6 +226,9 @@ name|int
 name|getPrimitiveSize
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 parameter_list|)
 block|{

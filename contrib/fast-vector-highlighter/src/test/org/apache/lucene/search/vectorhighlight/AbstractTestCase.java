@@ -50,16 +50,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -83,20 +73,6 @@ operator|.
 name|analysis
 operator|.
 name|KeywordAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Token
 import|;
 end_import
 
@@ -416,7 +392,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -427,7 +403,7 @@ specifier|abstract
 class|class
 name|AbstractTestCase
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|F
 specifier|protected
@@ -560,14 +536,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|analyzerW
 operator|=
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|analyzerB
@@ -587,9 +566,7 @@ operator|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|F
 argument_list|,
@@ -601,9 +578,7 @@ operator|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|F
 argument_list|,
@@ -644,6 +619,11 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|tq
 specifier|protected
@@ -1631,9 +1611,6 @@ block|}
 name|int
 name|c
 init|=
-operator|(
-name|int
-operator|)
 name|charBuffer
 index|[
 name|charBufferIndex
@@ -1667,6 +1644,8 @@ operator|>=
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -1689,6 +1668,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void

@@ -2433,17 +2433,11 @@ operator|.
 name|append
 argument_list|(
 operator|(
-operator|(
-name|Object
-operator|)
 name|values
 index|[
 name|pos
 index|]
 operator|==
-operator|(
-name|Object
-operator|)
 name|CharArrayMap
 operator|.
 name|this

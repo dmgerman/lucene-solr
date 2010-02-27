@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -150,7 +140,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -164,7 +154,7 @@ specifier|public
 class|class
 name|TestAnalyzingQueryParser
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|a
 specifier|private
@@ -222,11 +212,18 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|public
+specifier|protected
 name|void
 name|setUp
 parameter_list|()
+throws|throws
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|wildcardInput
 operator|=
 operator|new
@@ -590,9 +587,7 @@ init|=
 operator|new
 name|AnalyzingQueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"field"
 argument_list|,
@@ -669,9 +664,9 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
-name|Version
+name|LuceneTestCase
 operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|reader
 argument_list|)
@@ -697,6 +692,10 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
+name|LuceneTestCase
+operator|.
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|result
 argument_list|)
 expr_stmt|;

@@ -350,20 +350,6 @@ name|RAMDirectory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * A test class for ShingleAnalyzerWrapper as regards queries and scoring.  */
 end_comment
@@ -579,9 +565,7 @@ init|=
 operator|new
 name|QueryParser
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"content"
 argument_list|,
@@ -695,9 +679,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -750,9 +732,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -801,9 +781,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -852,9 +830,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -902,9 +878,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -1063,9 +1037,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -1210,9 +1182,7 @@ argument_list|(
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|2
@@ -1426,9 +1396,7 @@ return|return
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|reader
 argument_list|)
@@ -1438,9 +1406,7 @@ return|return
 operator|new
 name|LetterTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|reader
 argument_list|)
@@ -1732,7 +1698,9 @@ name|ShingleAnalyzerWrapper
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|,
 literal|3
 argument_list|,
@@ -1977,7 +1945,9 @@ name|ShingleAnalyzerWrapper
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|,
 literal|3
 argument_list|,
@@ -2174,7 +2144,9 @@ name|ShingleAnalyzerWrapper
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|analyzer
@@ -2342,7 +2314,9 @@ name|ShingleAnalyzerWrapper
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|analyzer
@@ -2510,7 +2484,9 @@ name|ShingleAnalyzerWrapper
 argument_list|(
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|analyzer

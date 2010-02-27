@@ -36,12 +36,6 @@ name|int
 index|[]
 name|hyphenPoints
 decl_stmt|;
-comment|/**    * number of hyphenation points in word    */
-DECL|field|len
-specifier|private
-name|int
-name|len
-decl_stmt|;
 comment|/**    * rawWord as made of alternating strings and {@link Hyphen Hyphen} instances    */
 DECL|method|Hyphenation
 name|Hyphenation

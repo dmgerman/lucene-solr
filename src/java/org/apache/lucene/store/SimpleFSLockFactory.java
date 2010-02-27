@@ -217,10 +217,6 @@ block|}
 block|}
 end_class
 
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
-
 begin_class
 DECL|class|SimpleFSLock
 class|class

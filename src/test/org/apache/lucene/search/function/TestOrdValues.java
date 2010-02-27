@@ -87,13 +87,6 @@ comment|/**  * Test search based on OrdFieldSource and ReverseOrdFieldSource.  *
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"UseOfSystemOutOrSystemErr"
-block|}
-argument_list|)
 DECL|class|TestOrdValues
 specifier|public
 class|class

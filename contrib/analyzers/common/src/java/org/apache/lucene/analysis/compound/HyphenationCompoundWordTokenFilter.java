@@ -300,6 +300,9 @@ name|HyphenationTree
 name|hyphenator
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|dictionary
 parameter_list|)
 block|{
@@ -336,6 +339,9 @@ name|HyphenationTree
 name|hyphenator
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|dictionary
 parameter_list|,
 name|int
@@ -487,6 +493,9 @@ name|HyphenationTree
 name|hyphenator
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|dictionary
 parameter_list|)
 block|{
@@ -526,6 +535,9 @@ name|HyphenationTree
 name|hyphenator
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|dictionary
 parameter_list|,
 name|int

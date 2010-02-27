@@ -106,7 +106,7 @@ name|?
 argument_list|>
 name|stopSet
 decl_stmt|;
-comment|/**    * Specifies whether deprecated acronyms should be replaced with HOST type.    * See {@linkplain https://issues.apache.org/jira/browse/LUCENE-1068}    */
+comment|/**    * Specifies whether deprecated acronyms should be replaced with HOST type.    * See {@linkplain "https://issues.apache.org/jira/browse/LUCENE-1068"}    */
 DECL|field|replaceInvalidAcronym
 specifier|private
 specifier|final

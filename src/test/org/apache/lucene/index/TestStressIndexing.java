@@ -333,11 +333,6 @@ DECL|field|writer
 name|IndexWriter
 name|writer
 decl_stmt|;
-DECL|field|count
-specifier|public
-name|int
-name|count
-decl_stmt|;
 DECL|field|nextID
 name|int
 name|nextID

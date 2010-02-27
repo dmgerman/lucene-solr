@@ -307,7 +307,7 @@ condition|(
 name|incrementToken
 argument_list|()
 condition|)
-empty_stmt|;
+block|{}
 block|}
 annotation|@
 name|Override

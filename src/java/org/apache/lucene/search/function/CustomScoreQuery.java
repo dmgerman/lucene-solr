@@ -1518,11 +1518,6 @@ name|Scorer
 index|[]
 name|valSrcScorers
 decl_stmt|;
-DECL|field|reader
-specifier|private
-name|IndexReader
-name|reader
-decl_stmt|;
 DECL|field|provider
 specifier|private
 specifier|final
@@ -1585,12 +1580,6 @@ operator|.
 name|valSrcScorers
 operator|=
 name|valSrcScorers
-expr_stmt|;
-name|this
-operator|.
-name|reader
-operator|=
-name|reader
 expr_stmt|;
 name|this
 operator|.

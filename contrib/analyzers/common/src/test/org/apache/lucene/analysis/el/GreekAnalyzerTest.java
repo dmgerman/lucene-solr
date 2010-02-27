@@ -87,9 +87,7 @@ init|=
 operator|new
 name|GreekAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// Verify the correct analysis of capitals and small accented letters
@@ -178,9 +176,7 @@ init|=
 operator|new
 name|GreekAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|// Verify the correct analysis of capitals and small accented letters

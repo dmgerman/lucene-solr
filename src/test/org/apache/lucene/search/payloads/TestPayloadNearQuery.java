@@ -1336,6 +1336,15 @@ argument_list|,
 literal|100
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"hits is null and it shouldn't be"
+argument_list|,
+name|hits
+operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
 name|ScoreDoc
 name|doc
 init|=
@@ -1348,15 +1357,6 @@ index|]
 decl_stmt|;
 comment|//		System.out.println("Doc: " + doc.toString());
 comment|//		System.out.println("Explain: " + searcher.explain(query, doc.doc));
-name|assertTrue
-argument_list|(
-literal|"hits is null and it shouldn't be"
-argument_list|,
-name|hits
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 literal|"there should only be one hit"

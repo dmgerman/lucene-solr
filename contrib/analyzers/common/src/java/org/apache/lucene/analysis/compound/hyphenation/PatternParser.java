@@ -206,6 +206,9 @@ name|token
 decl_stmt|;
 DECL|field|exception
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 name|exception
 decl_stmt|;
 DECL|field|hyphenChar
@@ -903,17 +906,29 @@ block|}
 DECL|method|normalizeException
 specifier|protected
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 name|normalizeException
 parameter_list|(
 name|ArrayList
+argument_list|<
+name|?
+argument_list|>
 name|ex
 parameter_list|)
 block|{
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 name|res
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1111,6 +1126,9 @@ name|String
 name|getExceptionWord
 parameter_list|(
 name|ArrayList
+argument_list|<
+name|?
+argument_list|>
 name|ex
 parameter_list|)
 block|{
@@ -1448,6 +1466,9 @@ name|exception
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1529,6 +1550,11 @@ block|}
 comment|/**    * @see org.xml.sax.ContentHandler#endElement(java.lang.String,    *      java.lang.String, java.lang.String)    */
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|endElement
 specifier|public
 name|void
@@ -1676,6 +1702,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * @see org.xml.sax.ContentHandler#characters(char[], int, int)    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|characters
@@ -2054,6 +2085,9 @@ name|String
 name|w
 parameter_list|,
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 name|e
 parameter_list|)
 block|{

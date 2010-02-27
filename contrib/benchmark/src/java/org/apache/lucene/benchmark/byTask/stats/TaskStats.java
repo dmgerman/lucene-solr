@@ -638,10 +638,6 @@ name|c
 operator|.
 name|countsByTime
 operator|=
-operator|(
-name|int
-index|[]
-operator|)
 name|c
 operator|.
 name|countsByTime

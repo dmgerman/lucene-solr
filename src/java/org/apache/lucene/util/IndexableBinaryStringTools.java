@@ -224,12 +224,9 @@ name|int
 call|)
 argument_list|(
 operator|(
-operator|(
-name|long
-operator|)
-name|inputLength
-operator|*
 literal|8L
+operator|*
+name|inputLength
 operator|+
 literal|14L
 operator|)

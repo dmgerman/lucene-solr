@@ -2409,13 +2409,6 @@ argument_list|(
 name|prevSegmentFileName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|exc
-operator|!=
-literal|null
-condition|)
-block|{
 name|message
 argument_list|(
 literal|"success on fallback "
@@ -2423,7 +2416,6 @@ operator|+
 name|prevSegmentFileName
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|v
 return|;

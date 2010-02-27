@@ -171,12 +171,10 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Base class for all Lucene unit tests.    *<p>  * Currently the  * only added functionality over JUnit's TestCase is  * asserting that no unhandled exceptions occurred in  * threads launched by ConcurrentMergeScheduler and asserting sane  * FieldCache usage athe moment of tearDown.  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  * @see #assertSaneFieldCaches  *  * @deprecated Replaced by {@link #LuceneTestCaseJ4}  *  */
+comment|/**   * Base class for all Lucene unit tests.    *<p>  * Currently the  * only added functionality over JUnit's TestCase is  * asserting that no unhandled exceptions occurred in  * threads launched by ConcurrentMergeScheduler and asserting sane  * FieldCache usage athe moment of tearDown.  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  * @see #assertSaneFieldCaches  *  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
 DECL|class|LuceneTestCase
 specifier|public
 specifier|abstract
@@ -754,7 +752,7 @@ literal|" ***"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Convinience method for logging an array.  Wraps the array in an iterator and delegates    * @see dumpIterator(String,Iterator,PrintStream)    */
+comment|/**     * Convinience method for logging an array.  Wraps the array in an iterator and delegates    * @see #dumpIterator(String,Iterator,PrintStream)    */
 DECL|method|dumpArray
 specifier|public
 specifier|static

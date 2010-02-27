@@ -342,10 +342,20 @@ operator|+
 literal|" [http://foo.boo.com/test/test/test.html?g=b&c=d Test Test]<ref>Citation</ref><sup>martian</sup><span class=\"glue\">code</span>"
 decl_stmt|;
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|tcm
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//map tokens to types
@@ -988,9 +998,6 @@ comment|//System.out.println("Text: " + tokText + " Type: " + token.type());
 name|String
 name|expectedType
 init|=
-operator|(
-name|String
-operator|)
 name|tcm
 operator|.
 name|get
@@ -2168,10 +2175,16 @@ throws|throws
 name|Exception
 block|{
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|untoks
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|untoks
@@ -3013,10 +3026,16 @@ throws|throws
 name|Exception
 block|{
 name|Set
+argument_list|<
+name|String
+argument_list|>
 name|untoks
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|untoks

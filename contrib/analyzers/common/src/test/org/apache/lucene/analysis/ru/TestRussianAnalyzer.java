@@ -302,9 +302,7 @@ init|=
 operator|new
 name|RussianLetterTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|sampleUnicode
 argument_list|)
@@ -411,9 +409,7 @@ init|=
 operator|new
 name|RussianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|TokenStream
@@ -581,9 +577,7 @@ init|=
 operator|new
 name|RussianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse
@@ -645,9 +639,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -667,9 +659,7 @@ init|=
 operator|new
 name|RussianAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|RussianAnalyzer
 operator|.

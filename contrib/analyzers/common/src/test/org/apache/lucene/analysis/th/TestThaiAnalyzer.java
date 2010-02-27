@@ -32,20 +32,6 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test case for ThaiAnalyzer, modified from TestFrenchAnalyzer  *  * @version   0.1  */
 end_comment
@@ -72,9 +58,7 @@ argument_list|(
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|"à¹à¸à¸­à¸°à¸à¸´à¸§à¸¢à¸­à¸£à¹à¸à¹à¸à¸¡à¸ªà¹"
@@ -140,9 +124,7 @@ argument_list|(
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|"à¹à¸à¸­à¸°à¸à¸´à¸§à¸¢à¸­à¸£à¹à¸à¹à¸à¸¡à¸ªà¹ à¹à¹à¹"
@@ -198,9 +180,7 @@ init|=
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -314,9 +294,7 @@ init|=
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -453,9 +431,7 @@ init|=
 operator|new
 name|ThaiAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesToReuse

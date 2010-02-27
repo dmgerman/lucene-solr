@@ -153,11 +153,11 @@ name|NumericField
 extends|extends
 name|AbstractField
 block|{
-DECL|field|tokenStream
+DECL|field|numericTS
 specifier|private
 specifier|final
 name|NumericTokenStream
-name|tokenStream
+name|numericTS
 decl_stmt|;
 comment|/**    * Creates a field for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (4). The instance is not yet initialized with    * a numeric value, before indexing a document containing this field,    * set a value using the various set<em>???</em>Value() methods.    * This constructor creates an indexed, but not stored field.    * @param name the field name    */
 DECL|method|NumericField
@@ -297,7 +297,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|tokenStream
+name|numericTS
 operator|=
 operator|new
 name|NumericTokenStream
@@ -317,7 +317,7 @@ return|return
 name|isIndexed
 argument_list|()
 condition|?
-name|tokenStream
+name|numericTS
 else|:
 literal|null
 return|;
@@ -398,7 +398,7 @@ name|long
 name|value
 parameter_list|)
 block|{
-name|tokenStream
+name|numericTS
 operator|.
 name|setLongValue
 argument_list|(
@@ -429,7 +429,7 @@ name|int
 name|value
 parameter_list|)
 block|{
-name|tokenStream
+name|numericTS
 operator|.
 name|setIntValue
 argument_list|(
@@ -460,7 +460,7 @@ name|double
 name|value
 parameter_list|)
 block|{
-name|tokenStream
+name|numericTS
 operator|.
 name|setDoubleValue
 argument_list|(
@@ -491,7 +491,7 @@ name|float
 name|value
 parameter_list|)
 block|{
-name|tokenStream
+name|numericTS
 operator|.
 name|setFloatValue
 argument_list|(

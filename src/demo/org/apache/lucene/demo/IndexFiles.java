@@ -520,9 +520,7 @@ parameter_list|(
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
-block|{
-empty_stmt|;
-block|}
+block|{         }
 block|}
 block|}
 block|}

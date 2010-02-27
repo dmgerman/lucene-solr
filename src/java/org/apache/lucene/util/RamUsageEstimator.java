@@ -382,6 +382,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 init|=
 name|obj
@@ -600,6 +603,9 @@ init|=
 name|arraySize
 decl_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|arrayElementClazz
 init|=
 name|obj

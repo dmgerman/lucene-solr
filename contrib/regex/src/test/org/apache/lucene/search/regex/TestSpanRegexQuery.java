@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -266,7 +256,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -276,7 +266,7 @@ specifier|public
 class|class
 name|TestSpanRegexQuery
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|indexStoreA
 name|Directory
@@ -320,9 +310,7 @@ argument_list|,
 operator|new
 name|SimpleAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -742,17 +730,7 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -793,17 +771,7 @@ argument_list|,
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true

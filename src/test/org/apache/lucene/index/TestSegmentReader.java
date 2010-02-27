@@ -942,6 +942,13 @@ operator|.
 name|termPositions
 argument_list|()
 decl_stmt|;
+name|assertTrue
+argument_list|(
+name|positions
+operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
 name|positions
 operator|.
 name|seek
@@ -955,13 +962,6 @@ name|TEXT_FIELD_1_KEY
 argument_list|,
 literal|"field"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|positions
-operator|!=
-literal|null
 argument_list|)
 expr_stmt|;
 name|assertTrue

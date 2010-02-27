@@ -272,22 +272,8 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
-comment|/**  * Spell checker test case  *  *  */
+comment|/**  * Spell checker test case  */
 end_comment
 
 begin_class
@@ -361,9 +347,7 @@ argument_list|,
 operator|new
 name|SimpleAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -2104,51 +2088,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|showSearchersOpen
-specifier|private
-name|void
-name|showSearchersOpen
-parameter_list|()
-block|{
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|IndexSearcher
-name|searcher
-range|:
-name|searchers
-control|)
-block|{
-if|if
-condition|(
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
-operator|.
-name|getRefCount
-argument_list|()
-operator|>
-literal|0
-condition|)
-operator|++
-name|count
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|count
-argument_list|)
-expr_stmt|;
-block|}
+comment|// For debug
+comment|//  private void showSearchersOpen() {
+comment|//    int count = 0;
+comment|//    for (IndexSearcher searcher : searchers) {
+comment|//      if(searcher.getIndexReader().getRefCount()> 0)
+comment|//        ++count;
+comment|//    }
+comment|//    System.out.println(count);
+comment|//  }
 DECL|class|SpellCheckWorker
 specifier|private
 class|class

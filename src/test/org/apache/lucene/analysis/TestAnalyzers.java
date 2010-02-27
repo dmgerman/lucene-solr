@@ -650,6 +650,11 @@ expr_stmt|;
 block|}
 comment|// LUCENE-1150: Just a compile time test, to ensure the
 comment|// StandardAnalyzer constants remain publicly accessible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 DECL|method|_testStandardConstants
 specifier|public
 name|void

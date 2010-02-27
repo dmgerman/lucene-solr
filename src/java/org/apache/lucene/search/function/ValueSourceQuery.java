@@ -428,12 +428,6 @@ name|ValueSourceScorer
 extends|extends
 name|Scorer
 block|{
-DECL|field|weight
-specifier|private
-specifier|final
-name|ValueSourceWeight
-name|weight
-decl_stmt|;
 DECL|field|qWeight
 specifier|private
 specifier|final
@@ -482,14 +476,6 @@ argument_list|(
 name|similarity
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|weight
-operator|=
-name|w
-expr_stmt|;
-name|this
-operator|.
 name|qWeight
 operator|=
 name|w

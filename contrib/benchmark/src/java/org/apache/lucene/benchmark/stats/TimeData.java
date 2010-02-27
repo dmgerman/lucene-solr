@@ -78,7 +78,6 @@ specifier|public
 name|TimeData
 parameter_list|()
 block|{}
-empty_stmt|;
 DECL|method|TimeData
 specifier|public
 name|TimeData
@@ -246,17 +245,11 @@ block|{
 name|double
 name|rps
 init|=
-operator|(
-name|double
-operator|)
 name|count
 operator|*
 literal|1000.0
 operator|/
-call|(
-name|double
-call|)
-argument_list|(
+operator|(
 name|elapsed
 operator|>
 literal|0
@@ -264,7 +257,7 @@ condition|?
 name|elapsed
 else|:
 literal|1
-argument_list|)
+operator|)
 decl_stmt|;
 comment|// assume at least 1ms for any countable op
 return|return

@@ -139,13 +139,6 @@ comment|/**  * Test FieldScoreQuery search.  *<p>  * Tests here create an index 
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"UseOfSystemOutOrSystemErr"
-block|}
-argument_list|)
 DECL|class|TestFieldScoreQuery
 specifier|public
 class|class

@@ -277,7 +277,6 @@ specifier|private
 name|AnalyzerUtil
 parameter_list|()
 block|{}
-empty_stmt|;
 comment|/**    * Returns a simple analyzer wrapper that logs all tokens produced by the    * underlying child analyzer to the given log stream (typically System.err);    * Otherwise behaves exactly like the child analyzer, delivering the very    * same tokens; useful for debugging purposes on custom indexing and/or    * querying.    *     * @param child    *            the underlying child analyzer    * @param log    *            the print stream to log to (typically System.err)    * @param logName    *            a name for this logger (typically "log" or similar)    * @return a logging analyzer    */
 DECL|method|getLoggingAnalyzer
 specifier|public
@@ -1541,7 +1540,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 comment|// TODO: could use a more general i18n approach ala http://icu.sourceforge.net/docs/papers/text_boundary_analysis_in_java/
 comment|/** (Line terminator followed by zero or more whitespace) two or more times */
 DECL|field|PARAGRAPHS
@@ -1648,20 +1646,7 @@ return|;
 block|}
 comment|// TODO: don't split on floating point numbers, e.g. 3.1415 (digit before or after '.')
 comment|/** Divides text into sentences; Includes inverted spanish exclamation and question mark */
-DECL|field|SENTENCES
-specifier|private
-specifier|static
-specifier|final
-name|Pattern
-name|SENTENCES
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|"[!\\.\\?\\xA1\\xBF]+"
-argument_list|)
-decl_stmt|;
+comment|//  private static final Pattern SENTENCES  = Pattern.compile("[!\\.\\?\\xA1\\xBF]+");
 comment|/**    * Returns at most the first N sentences of the given text. Delimiting    * characters are excluded from the results. Each returned sentence is    * whitespace-trimmed via String.trim(), potentially an empty string.    *     * @param text    *            the text to tokenize into sentences    * @param limit    *            the maximum number of sentences to return; zero indicates "as    *            many as possible".    * @return the first N sentences    */
 DECL|method|getSentences
 specifier|public

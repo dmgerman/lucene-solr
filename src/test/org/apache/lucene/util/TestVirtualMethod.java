@@ -179,10 +179,10 @@ name|TestClass5
 extends|extends
 name|TestClass4
 block|{   }
-DECL|method|test
+DECL|method|testGeneral
 specifier|public
 name|void
-name|test
+name|testGeneral
 parameter_list|()
 block|{
 name|assertEquals
@@ -383,17 +383,21 @@ name|protectedTestMethod
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|// cast to Class to remove generics:
+block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-name|int
-name|dist
-init|=
+DECL|method|testExceptions
+specifier|public
+name|void
+name|testExceptions
+parameter_list|()
+block|{
+try|try
+block|{
+comment|// cast to Class to remove generics:
 name|publicTestMethod
 operator|.
 name|getImplementationDistance
@@ -405,7 +409,7 @@ name|LuceneTestCase
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"LuceneTestCase is not a subclass and can never override publicTest(String)"

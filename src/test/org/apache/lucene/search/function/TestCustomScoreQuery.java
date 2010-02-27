@@ -367,15 +367,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// must have static class otherwise serialization tests fail
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"SerializableHasSerializationMethods"
-block|,
-literal|"serial"
-block|}
-argument_list|)
 DECL|class|CustomAddQuery
 specifier|private
 specifier|static
@@ -533,15 +524,6 @@ return|;
 block|}
 block|}
 comment|// must have static class otherwise serialization tests fail
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"SerializableHasSerializationMethods"
-block|,
-literal|"serial"
-block|}
-argument_list|)
 DECL|class|CustomMulAddQuery
 specifier|private
 specifier|static
@@ -886,9 +868,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
-name|float
-operator|)
 name|values
 index|[
 name|doc
@@ -1230,15 +1209,6 @@ argument_list|,
 name|original
 operator|!=
 name|rewritten
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"rewritten query should be a CustomScoreQuery"
-argument_list|,
-name|rewritten
-operator|instanceof
-name|CustomScoreQuery
 argument_list|)
 expr_stmt|;
 name|assertTrue

@@ -5475,7 +5475,6 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-empty_stmt|;
 name|assertTermEquals
 argument_list|(
 name|expectedIter

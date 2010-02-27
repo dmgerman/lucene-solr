@@ -56,26 +56,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-operator|.
-name|TokenStreamComponents
-import|;
-end_import
-
-begin_comment
-comment|// javadoc @link
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|StopFilter
 import|;
 end_import

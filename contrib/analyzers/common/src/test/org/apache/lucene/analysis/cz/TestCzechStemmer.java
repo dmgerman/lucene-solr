@@ -94,20 +94,6 @@ name|WhitespaceTokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test the Czech Stemmer.  *   * Note: its algorithmic, so some stems are nonsense  *  */
 end_comment
@@ -135,9 +121,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|/* animate ending with a hard consonant */
@@ -848,9 +832,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|/* ending with hard consonant */
@@ -1266,9 +1248,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|/* ending with o */
@@ -1683,9 +1663,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|/* ending with Ã½/Ã¡/Ã© */
@@ -1944,9 +1922,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -1993,9 +1969,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 comment|/* rewrite of Å¡t -> sk */
@@ -2260,9 +2234,7 @@ init|=
 operator|new
 name|CzechAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
@@ -2308,9 +2280,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,
@@ -2336,9 +2306,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader

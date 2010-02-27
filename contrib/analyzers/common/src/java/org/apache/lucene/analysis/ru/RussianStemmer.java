@@ -31,14 +31,12 @@ name|RussianStemmer
 block|{
 comment|// positions of RV, R1 and R2 respectively
 DECL|field|RV
-DECL|field|R1
 DECL|field|R2
 specifier|private
 name|int
 name|RV
 decl_stmt|,
-name|R1
-decl_stmt|,
+comment|/*R1,*/
 name|R2
 decl_stmt|;
 comment|// letters (currently unused letters are commented out)
@@ -1347,11 +1345,9 @@ return|return
 literal|false
 return|;
 comment|// if adjective ending was found, try for participle ending.
-comment|// variable r is unused, we are just interested in the side effect of
-comment|// findAndRemoveEnding():
-name|boolean
-name|r
-init|=
+if|if
+condition|(
+operator|!
 name|findAndRemoveEnding
 argument_list|(
 name|stemmingZone
@@ -1360,14 +1356,14 @@ name|participleEndings1
 argument_list|,
 name|participle1Predessors
 argument_list|)
-operator|||
+condition|)
 name|findAndRemoveEnding
 argument_list|(
 name|stemmingZone
 argument_list|,
 name|participleEndings2
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -1774,10 +1770,7 @@ name|RV
 operator|=
 literal|0
 expr_stmt|;
-name|R1
-operator|=
-literal|0
-expr_stmt|;
+comment|//        R1 = 0;
 name|R2
 operator|=
 literal|0
@@ -1870,10 +1863,7 @@ name|i
 condition|)
 return|return;
 comment|// R1 zone is empty
-name|R1
-operator|=
-name|i
-expr_stmt|;
+comment|//        R1 = i;
 comment|// find R2
 while|while
 condition|(
@@ -2236,27 +2226,27 @@ argument_list|(
 name|stemmingZone
 argument_list|)
 expr_stmt|;
-comment|// variable r is unused, we are just interested in the flow that gets
-comment|// created by logical expression: apply adjectival(); if that fails,
-comment|// apply verb() etc
-name|boolean
-name|r
-init|=
+if|if
+condition|(
+operator|!
 name|adjectival
 argument_list|(
 name|stemmingZone
 argument_list|)
-operator|||
+condition|)
+if|if
+condition|(
+operator|!
 name|verb
 argument_list|(
 name|stemmingZone
 argument_list|)
-operator|||
+condition|)
 name|noun
 argument_list|(
 name|stemmingZone
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 comment|// Step 2
 name|removeI

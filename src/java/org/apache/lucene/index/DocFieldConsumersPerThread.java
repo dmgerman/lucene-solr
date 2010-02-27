@@ -237,13 +237,13 @@ name|docID
 assert|;
 name|both
 operator|.
-name|one
+name|writerOne
 operator|=
 name|oneDoc
 expr_stmt|;
 name|both
 operator|.
-name|two
+name|writerTwo
 operator|=
 name|twoDoc
 expr_stmt|;

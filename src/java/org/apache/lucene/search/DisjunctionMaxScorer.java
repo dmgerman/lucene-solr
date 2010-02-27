@@ -213,7 +213,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/** Determine the current document score.  Initially invalid, until {@link #next()} is called the first time.    * @return the score of the current generated document    */
+comment|/** Determine the current document score.  Initially invalid, until {@link #nextDoc()} is called the first time.    * @return the score of the current generated document    */
 annotation|@
 name|Override
 DECL|method|score

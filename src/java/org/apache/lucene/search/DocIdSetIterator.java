@@ -37,14 +37,6 @@ specifier|abstract
 class|class
 name|DocIdSetIterator
 block|{
-DECL|field|doc
-specifier|private
-name|int
-name|doc
-init|=
-operator|-
-literal|1
-decl_stmt|;
 comment|/**    * When returned by {@link #nextDoc()}, {@link #advance(int)} and    * {@link #docID()} it means there are no more docs in the iterator.    */
 DECL|field|NO_MORE_DOCS
 specifier|public

@@ -222,9 +222,7 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"English"
 argument_list|)
@@ -262,9 +260,7 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"English"
 argument_list|,
@@ -309,9 +305,7 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"English"
 argument_list|)
@@ -401,9 +395,7 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"Turkish"
 argument_list|)
@@ -505,9 +497,7 @@ init|=
 operator|new
 name|SnowballAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|"English"
 argument_list|)

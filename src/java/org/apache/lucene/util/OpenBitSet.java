@@ -2463,10 +2463,6 @@ name|obs
 operator|.
 name|bits
 operator|=
-operator|(
-name|long
-index|[]
-operator|)
 name|obs
 operator|.
 name|bits

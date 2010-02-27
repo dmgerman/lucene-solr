@@ -207,7 +207,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|public
+specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -1721,13 +1721,6 @@ operator|.
 name|LIMITED
 argument_list|)
 decl_stmt|;
-name|assertTrue
-argument_list|(
-name|writer
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
 name|writer
 operator|.
 name|addDocument

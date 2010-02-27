@@ -160,13 +160,6 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|reader
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
 return|return
 name|reader
 return|;

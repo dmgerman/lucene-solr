@@ -20,31 +20,11 @@ end_comment
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -114,7 +94,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -170,7 +150,7 @@ specifier|public
 class|class
 name|TestUnoptimizedReaderOnConstructor
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|test
 specifier|public
@@ -198,9 +178,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|true
@@ -241,9 +219,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|false
@@ -284,9 +260,7 @@ argument_list|,
 operator|new
 name|WhitespaceAnalyzer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
 literal|false
@@ -336,13 +310,8 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-name|InstantiatedIndex
-name|ii
-decl_stmt|;
 try|try
 block|{
-name|ii
-operator|=
 operator|new
 name|InstantiatedIndex
 argument_list|(

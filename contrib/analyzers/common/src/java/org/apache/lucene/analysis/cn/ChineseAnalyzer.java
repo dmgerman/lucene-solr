@@ -52,26 +52,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-operator|.
-name|TokenStreamComponents
-import|;
-end_import
-
-begin_comment
-comment|// javadoc @link
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|standard
 operator|.
 name|StandardAnalyzer
@@ -125,7 +105,7 @@ name|ChineseAnalyzer
 extends|extends
 name|ReusableAnalyzerBase
 block|{
-comment|/**    * Creates {@link TokenStreamComponents} used to tokenize all the text in the    * provided {@link Reader}.    *     * @return {@link TokenStreamComponents} built from a    *         {@link ChineseTokenizer} filtered with {@link ChineseFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link ChineseTokenizer} filtered with    *         {@link ChineseFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents

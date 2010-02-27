@@ -1426,7 +1426,6 @@ throw|throw
 name|newException
 throw|;
 block|}
-empty_stmt|;
 return|return
 name|clone
 return|;
@@ -1554,9 +1553,6 @@ operator|.
 name|length
 argument_list|()
 operator|<=
-operator|(
-name|long
-operator|)
 name|maxBBuf
 operator|)
 condition|?

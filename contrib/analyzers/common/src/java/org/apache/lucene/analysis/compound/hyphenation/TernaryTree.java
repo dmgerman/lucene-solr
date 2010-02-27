@@ -1484,10 +1484,6 @@ name|t
 operator|.
 name|lo
 operator|=
-operator|(
-name|char
-index|[]
-operator|)
 name|this
 operator|.
 name|lo
@@ -1499,10 +1495,6 @@ name|t
 operator|.
 name|hi
 operator|=
-operator|(
-name|char
-index|[]
-operator|)
 name|this
 operator|.
 name|hi
@@ -1514,10 +1506,6 @@ name|t
 operator|.
 name|eq
 operator|=
-operator|(
-name|char
-index|[]
-operator|)
 name|this
 operator|.
 name|eq
@@ -1529,10 +1517,6 @@ name|t
 operator|.
 name|sc
 operator|=
-operator|(
-name|char
-index|[]
-operator|)
 name|this
 operator|.
 name|sc

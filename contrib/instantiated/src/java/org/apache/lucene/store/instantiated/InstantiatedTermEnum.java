@@ -46,26 +46,6 @@ name|TermEnum
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
 begin_comment
 comment|/**  * A {@link org.apache.lucene.index.TermEnum} navigating an {@link org.apache.lucene.store.instantiated.InstantiatedIndexReader}.  */
 end_comment

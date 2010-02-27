@@ -341,7 +341,7 @@ name|perThread
 operator|.
 name|doc
 operator|.
-name|tvf
+name|perDocTvf
 operator|.
 name|length
 argument_list|()
@@ -353,7 +353,7 @@ name|perThread
 operator|.
 name|doc
 operator|.
-name|tvf
+name|perDocTvf
 operator|.
 name|getFilePointer
 argument_list|()
@@ -461,7 +461,7 @@ name|perThread
 operator|.
 name|doc
 operator|.
-name|tvf
+name|perDocTvf
 decl_stmt|;
 comment|// This is called once, after inverting all occurrences
 comment|// of a given field in the doc.  At this point we flush
@@ -972,7 +972,6 @@ operator|.
 name|startOffset
 argument_list|()
 decl_stmt|;
-empty_stmt|;
 name|int
 name|endOffset
 init|=
@@ -1090,7 +1089,6 @@ operator|.
 name|startOffset
 argument_list|()
 decl_stmt|;
-empty_stmt|;
 name|int
 name|endOffset
 init|=

@@ -96,26 +96,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-operator|.
-name|TokenStreamComponents
-import|;
-end_import
-
-begin_comment
-comment|// javadoc @link
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|CharArraySet
 import|;
 end_import
@@ -459,7 +439,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link TokenStreamComponents} which tokenizes all the text in the provided    * {@link Reader}.    *     * @return A {@link TokenStreamComponents} built from an {@link StandardTokenizer}    *         filtered with {@link StandardFilter}, {@link LowerCaseFilter},    *         {@link StopFilter}, {@link KeywordMarkerTokenFilter} if a stem    *         exclusion set is provided and {@link BulgarianStemFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerTokenFilter} if a stem exclusion set is    *         provided and {@link BulgarianStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents

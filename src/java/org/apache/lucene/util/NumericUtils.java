@@ -648,9 +648,6 @@ name|Integer
 operator|.
 name|toHexString
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ch
 argument_list|)
 operator|+
@@ -664,9 +661,6 @@ throw|;
 block|}
 name|sortableBits
 operator||=
-operator|(
-name|long
-operator|)
 name|ch
 expr_stmt|;
 block|}
@@ -781,9 +775,6 @@ name|Integer
 operator|.
 name|toHexString
 argument_list|(
-operator|(
-name|int
-operator|)
 name|ch
 argument_list|)
 operator|+
@@ -797,9 +788,6 @@ throw|;
 block|}
 name|sortableBits
 operator||=
-operator|(
-name|int
-operator|)
 name|ch
 expr_stmt|;
 block|}
@@ -1097,14 +1085,8 @@ literal|32
 argument_list|,
 name|precisionStep
 argument_list|,
-operator|(
-name|long
-operator|)
 name|minBound
 argument_list|,
-operator|(
-name|long
-operator|)
 name|maxBound
 argument_list|)
 expr_stmt|;

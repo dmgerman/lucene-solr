@@ -81,6 +81,9 @@ decl_stmt|;
 DECL|field|list
 specifier|private
 name|List
+argument_list|<
+name|RestaurantInfo
+argument_list|>
 name|list
 decl_stmt|;
 annotation|@
@@ -97,6 +100,9 @@ name|list
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|RestaurantInfo
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|list

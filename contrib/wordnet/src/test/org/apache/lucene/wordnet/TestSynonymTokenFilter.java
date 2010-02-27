@@ -58,16 +58,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -147,20 +137,6 @@ operator|.
 name|analysis
 operator|.
 name|BaseTokenStreamTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
 import|;
 end_import
 
@@ -727,6 +703,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -735,9 +713,7 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|ts
 argument_list|)
@@ -772,7 +748,6 @@ name|TokenStream
 name|result
 decl_stmt|;
 block|}
-empty_stmt|;
 annotation|@
 name|Override
 DECL|method|reusableTokenStream
@@ -818,6 +793,8 @@ operator|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -828,9 +805,7 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|streams
 operator|.

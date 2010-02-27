@@ -469,7 +469,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Create config without algorithm - useful for a programmatic perf test.    * @param props - configuration properties.    * @throws IOException    */
+comment|/**    * Create config without algorithm - useful for a programmatic perf test.    * @param props - configuration properties.    */
 DECL|method|Config
 specifier|public
 name|Config
@@ -509,6 +509,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|printProps
 specifier|private
 name|void

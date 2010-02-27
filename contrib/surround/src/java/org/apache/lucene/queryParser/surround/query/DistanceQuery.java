@@ -203,6 +203,9 @@ name|distanceSubQueryNotAllowed
 parameter_list|()
 block|{
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|sqi
 init|=
 name|getSubQueriesIterator
@@ -434,6 +437,9 @@ argument_list|()
 index|]
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|sqi
 init|=
 name|getSubQueriesIterator

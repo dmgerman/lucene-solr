@@ -414,12 +414,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-operator|(
-operator|(
-name|long
-operator|)
-literal|1000
-operator|)
+literal|1000L
 decl_stmt|;
 for|for
 control|(

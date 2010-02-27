@@ -827,10 +827,6 @@ expr_stmt|;
 if|if
 condition|(
 name|wikipedia
-operator|!=
-literal|null
-operator|&&
-name|wikipedia
 operator|.
 name|exists
 argument_list|()
