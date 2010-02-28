@@ -270,13 +270,15 @@ operator|)
 name|maxOverlap
 return|;
 block|}
-comment|// Default false
+comment|// Default true
 DECL|field|discountOverlaps
 specifier|protected
 name|boolean
 name|discountOverlaps
+init|=
+literal|true
 decl_stmt|;
-comment|/** Determines whether overlap tokens (Tokens with    *  0 position increment) are ignored when computing    *  norm.  By default this is false, meaning overlap    *  tokens are counted just like non-overlap tokens.    *    *  @lucene.experimental    *    *  @see #computeNorm    */
+comment|/** Determines whether overlap tokens (Tokens with    *  0 position increment) are ignored when computing    *  norm.  By default this is true, meaning overlap    *  tokens do not count when computing norms.    *    *  @lucene.experimental    *    *  @see #computeNorm    */
 DECL|method|setDiscountOverlaps
 specifier|public
 name|void
