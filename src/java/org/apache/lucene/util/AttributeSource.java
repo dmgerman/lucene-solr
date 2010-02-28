@@ -1296,12 +1296,10 @@ implements|implements
 name|Cloneable
 block|{
 DECL|field|attribute
-specifier|private
 name|AttributeImpl
 name|attribute
 decl_stmt|;
 DECL|field|next
-specifier|private
 name|State
 name|next
 decl_stmt|;
