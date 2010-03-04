@@ -121,6 +121,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|newBuffer
+specifier|protected
 name|byte
 index|[]
 name|newBuffer

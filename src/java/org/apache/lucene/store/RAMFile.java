@@ -36,8 +36,13 @@ name|Serializable
 import|;
 end_import
 
+begin_comment
+comment|/** @lucene.internal */
+end_comment
+
 begin_class
 DECL|class|RAMFile
+specifier|public
 class|class
 name|RAMFile
 implements|implements
@@ -53,7 +58,7 @@ init|=
 literal|1l
 decl_stmt|;
 DECL|field|buffers
-specifier|private
+specifier|protected
 name|ArrayList
 argument_list|<
 name|byte
@@ -78,6 +83,7 @@ name|RAMDirectory
 name|directory
 decl_stmt|;
 DECL|field|sizeInBytes
+specifier|protected
 name|long
 name|sizeInBytes
 decl_stmt|;
@@ -94,6 +100,7 @@ argument_list|()
 decl_stmt|;
 comment|// File used as buffer, in no RAMDirectory
 DECL|method|RAMFile
+specifier|protected
 name|RAMFile
 parameter_list|()
 block|{}
@@ -113,6 +120,7 @@ expr_stmt|;
 block|}
 comment|// For non-stream access from thread that might be concurrent with writing
 DECL|method|getLength
+specifier|public
 specifier|synchronized
 name|long
 name|getLength
@@ -123,6 +131,7 @@ name|length
 return|;
 block|}
 DECL|method|setLength
+specifier|protected
 specifier|synchronized
 name|void
 name|setLength
@@ -140,6 +149,7 @@ expr_stmt|;
 block|}
 comment|// For non-stream access from thread that might be concurrent with writing
 DECL|method|getLastModified
+specifier|public
 specifier|synchronized
 name|long
 name|getLastModified
@@ -150,6 +160,7 @@ name|lastModified
 return|;
 block|}
 DECL|method|setLastModified
+specifier|protected
 specifier|synchronized
 name|void
 name|setLastModified
@@ -166,6 +177,7 @@ name|lastModified
 expr_stmt|;
 block|}
 DECL|method|addBuffer
+specifier|protected
 specifier|final
 name|byte
 index|[]
@@ -223,6 +235,7 @@ name|buffer
 return|;
 block|}
 DECL|method|getBuffer
+specifier|protected
 specifier|final
 specifier|synchronized
 name|byte
@@ -243,6 +256,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|numBuffers
+specifier|protected
 specifier|final
 specifier|synchronized
 name|int
@@ -258,6 +272,7 @@ return|;
 block|}
 comment|/**    * Expert: allocate a new buffer.     * Subclasses can allocate differently.     * @param size size of allocated buffer.    * @return allocated buffer.    */
 DECL|method|newBuffer
+specifier|protected
 name|byte
 index|[]
 name|newBuffer
@@ -275,6 +290,7 @@ index|]
 return|;
 block|}
 DECL|method|getSizeInBytes
+specifier|public
 specifier|synchronized
 name|long
 name|getSizeInBytes

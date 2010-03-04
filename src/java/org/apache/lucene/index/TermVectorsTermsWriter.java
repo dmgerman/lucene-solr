@@ -1273,15 +1273,27 @@ name|DocumentsWriter
 operator|.
 name|DocWriter
 block|{
-comment|// TODO: use something more memory efficient; for small
-comment|// docs the 1024 buffer size of RAMOutputStream wastes alot
+DECL|field|buffer
+specifier|final
+name|DocumentsWriter
+operator|.
+name|PerDocBuffer
+name|buffer
+init|=
+name|docWriter
+operator|.
+name|newPerDocBuffer
+argument_list|()
+decl_stmt|;
 DECL|field|perDocTvf
 name|RAMOutputStream
 name|perDocTvf
 init|=
 operator|new
 name|RAMOutputStream
-argument_list|()
+argument_list|(
+name|buffer
+argument_list|)
 decl_stmt|;
 DECL|field|numVectorFields
 name|int
@@ -1317,6 +1329,11 @@ block|{
 name|perDocTvf
 operator|.
 name|reset
+argument_list|()
+expr_stmt|;
+name|buffer
+operator|.
+name|recycle
 argument_list|()
 expr_stmt|;
 name|numVectorFields
@@ -1417,9 +1434,9 @@ name|sizeInBytes
 parameter_list|()
 block|{
 return|return
-name|perDocTvf
+name|buffer
 operator|.
-name|sizeInBytes
+name|getSizeInBytes
 argument_list|()
 return|;
 block|}
