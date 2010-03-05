@@ -446,7 +446,7 @@ specifier|private
 name|String
 name|defaultCoreName
 init|=
-name|DEFAULT_DEFAULT_CORE_NAME
+literal|""
 decl_stmt|;
 DECL|method|CoreContainer
 specifier|public
@@ -1018,7 +1018,7 @@ name|cfg
 operator|.
 name|get
 argument_list|(
-literal|"solr/@defaultCoreName"
+literal|"solr/cores/@defaultCoreName"
 argument_list|,
 literal|null
 argument_list|)
@@ -2926,6 +2926,16 @@ return|return
 name|coreAdminHandler
 return|;
 block|}
+DECL|method|getDefaultCoreName
+specifier|public
+name|String
+name|getDefaultCoreName
+parameter_list|()
+block|{
+return|return
+name|defaultCoreName
+return|;
+block|}
 comment|// all of the following properties aren't synchronized
 comment|// but this should be OK since they normally won't be changed rapidly
 DECL|method|isPersistent
@@ -4047,7 +4057,11 @@ literal|"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 operator|+
 literal|"<solr persistent=\"false\">\n"
 operator|+
-literal|"<cores adminPath=\"/admin/cores\">\n"
+literal|"<cores adminPath=\"/admin/cores\" defaultCoreName=\""
+operator|+
+name|DEFAULT_DEFAULT_CORE_NAME
+operator|+
+literal|"\">\n"
 operator|+
 literal|"<core name=\""
 operator|+
