@@ -319,8 +319,7 @@ control|(
 name|QueryNode
 name|child
 range|:
-name|getChildren
-argument_list|()
+name|children
 control|)
 block|{
 name|add
