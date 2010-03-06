@@ -186,7 +186,8 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|cumulativeStats
+comment|// contains the statistics objects for all open caches of the same type
+DECL|field|statsList
 specifier|private
 name|List
 argument_list|<
@@ -194,7 +195,7 @@ name|ConcurrentLRUCache
 operator|.
 name|Stats
 argument_list|>
-name|cumulativeStats
+name|statsList
 decl_stmt|;
 DECL|field|warmupTime
 specifier|private
@@ -628,29 +629,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|persistence
-operator|==
-literal|null
-condition|)
-block|{
-comment|// must be the first time a cache of this type is being created
-comment|// Use a CopyOnWriteArrayList since puts are very rare and iteration may be a frequent operation
-comment|// because it is used in getStatistics()
-name|persistence
-operator|=
-operator|new
-name|CopyOnWriteArrayList
-argument_list|<
-name|ConcurrentLRUCache
-operator|.
-name|Stats
-argument_list|>
-argument_list|()
-expr_stmt|;
-block|}
-name|cumulativeStats
+name|statsList
 operator|=
 operator|(
 name|List
@@ -662,7 +641,41 @@ argument_list|>
 operator|)
 name|persistence
 expr_stmt|;
-name|cumulativeStats
+if|if
+condition|(
+name|statsList
+operator|==
+literal|null
+condition|)
+block|{
+comment|// must be the first time a cache of this type is being created
+comment|// Use a CopyOnWriteArrayList since puts are very rare and iteration may be a frequent operation
+comment|// because it is used in getStatistics()
+name|statsList
+operator|=
+operator|new
+name|CopyOnWriteArrayList
+argument_list|<
+name|ConcurrentLRUCache
+operator|.
+name|Stats
+argument_list|>
+argument_list|()
+expr_stmt|;
+comment|// the first entry will be for cumulative stats of caches that have been closed.
+name|statsList
+operator|.
+name|add
+argument_list|(
+operator|new
+name|ConcurrentLRUCache
+operator|.
+name|Stats
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|statsList
 operator|.
 name|add
 argument_list|(
@@ -673,7 +686,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|cumulativeStats
+name|statsList
 return|;
 block|}
 DECL|method|name
@@ -1021,6 +1034,32 @@ name|void
 name|close
 parameter_list|()
 block|{
+comment|// add the stats to the cumulative stats object (the first in the statsList)
+name|statsList
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|cache
+operator|.
+name|getStats
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|statsList
+operator|.
+name|remove
+argument_list|(
+name|cache
+operator|.
+name|getStats
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|cache
 operator|.
 name|destroy
@@ -1346,7 +1385,7 @@ operator|.
 name|Stats
 name|statistiscs
 range|:
-name|cumulativeStats
+name|statsList
 control|)
 block|{
 name|clookups
