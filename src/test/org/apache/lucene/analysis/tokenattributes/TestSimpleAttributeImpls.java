@@ -313,7 +313,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|TypeAttributeImpl
+name|TypeAttribute
 operator|.
 name|DEFAULT_TYPE
 argument_list|,
@@ -388,7 +388,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|TypeAttributeImpl
+name|TypeAttribute
 operator|.
 name|DEFAULT_TYPE
 argument_list|,

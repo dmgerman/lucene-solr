@@ -671,7 +671,7 @@ if|if
 condition|(
 name|other
 operator|instanceof
-name|TermAttribute
+name|TermAttributeImpl
 condition|)
 block|{
 name|initTermBuffer

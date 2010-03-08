@@ -44,6 +44,16 @@ name|TypeAttribute
 extends|extends
 name|Attribute
 block|{
+comment|/** the default type */
+DECL|field|DEFAULT_TYPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_TYPE
+init|=
+literal|"word"
+decl_stmt|;
 comment|/** Returns this Token's lexical type.  Defaults to "word". */
 DECL|method|type
 specifier|public
