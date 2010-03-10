@@ -24,9 +24,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|common
 operator|.
-name|AbstractSolrTestCase
+name|ResourceLoader
 import|;
 end_import
 
@@ -38,9 +38,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
+name|core
 operator|.
-name|ResourceLoader
+name|SolrResourceLoader
 import|;
 end_import
 
@@ -74,6 +74,16 @@ name|HashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  *  *  **/
 end_comment
@@ -84,28 +94,8 @@ specifier|public
 class|class
 name|TestKeepFilterFactory
 extends|extends
-name|AbstractSolrTestCase
+name|TestCase
 block|{
-DECL|method|getSchemaFile
-specifier|public
-name|String
-name|getSchemaFile
-parameter_list|()
-block|{
-return|return
-literal|"schema-stop-keep.xml"
-return|;
-block|}
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
-literal|"solrconfig.xml"
-return|;
-block|}
 DECL|method|testInform
 specifier|public
 name|void
@@ -117,10 +107,13 @@ block|{
 name|ResourceLoader
 name|loader
 init|=
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+operator|new
+name|SolrResourceLoader
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(

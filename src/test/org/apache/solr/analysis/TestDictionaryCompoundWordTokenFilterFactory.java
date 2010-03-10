@@ -112,6 +112,20 @@ name|ResourceLoader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrResourceLoader
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple tests to ensure the Dictionary compound filter factory is working.  */
 end_comment
@@ -161,10 +175,13 @@ decl_stmt|;
 name|ResourceLoader
 name|loader
 init|=
-name|solrConfig
-operator|.
-name|getResourceLoader
-argument_list|()
+operator|new
+name|SolrResourceLoader
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|)
 decl_stmt|;
 name|Map
 argument_list|<

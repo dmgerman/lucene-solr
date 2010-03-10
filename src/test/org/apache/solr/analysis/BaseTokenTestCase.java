@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -139,7 +149,7 @@ specifier|abstract
 class|class
 name|BaseTokenTestCase
 extends|extends
-name|AnalysisTestCase
+name|TestCase
 block|{
 comment|// some helpers to test Analyzers and TokenStreams:
 comment|// these are taken from Lucene's BaseTokenStreamTestCase
