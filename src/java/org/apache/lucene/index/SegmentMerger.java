@@ -191,7 +191,7 @@ specifier|private
 name|int
 name|termIndexInterval
 init|=
-name|IndexWriter
+name|IndexWriterConfig
 operator|.
 name|DEFAULT_TERM_INDEX_INTERVAL
 decl_stmt|;
@@ -367,6 +367,9 @@ block|}
 name|termIndexInterval
 operator|=
 name|writer
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getTermIndexInterval
 argument_list|()

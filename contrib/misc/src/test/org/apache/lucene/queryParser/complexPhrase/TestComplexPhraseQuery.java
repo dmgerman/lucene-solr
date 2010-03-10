@@ -110,9 +110,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
-operator|.
-name|MaxFieldLength
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -681,11 +679,16 @@ name|IndexWriter
 argument_list|(
 name|rd
 argument_list|,
-name|analyzer
-argument_list|,
-name|MaxFieldLength
+operator|new
+name|IndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 operator|.
-name|UNLIMITED
+name|setAnalyzer
+argument_list|(
+name|analyzer
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for

@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -68,9 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|index
 operator|.
-name|SimpleAnalyzer
+name|Term
 import|;
 end_import
 
@@ -230,18 +230,10 @@ argument_list|(
 name|directory
 argument_list|,
 operator|new
-name|SimpleAnalyzer
+name|IndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|LIMITED
 argument_list|)
 decl_stmt|;
 name|Document

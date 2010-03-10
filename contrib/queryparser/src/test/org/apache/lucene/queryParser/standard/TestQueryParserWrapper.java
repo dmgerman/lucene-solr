@@ -763,7 +763,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This test case is a copy of the core Lucene query parser test, it was adapted  * to use new {@link QueryParserWrapper} instead of the old query parser.  *   * Tests QueryParser.  */
+comment|/**  * This test case is a copy of the core Lucene query parser test, it was adapted  * to use new {@link QueryParserWrapper} instead of the old query parser.  *   * Tests QueryParser.  *   * @deprecated this entire test case tests QueryParserWrapper which is  *             deprecated. When QPW is gone, so will the test.  */
 end_comment
 
 begin_class

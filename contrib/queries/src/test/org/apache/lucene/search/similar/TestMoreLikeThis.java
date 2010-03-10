@@ -150,9 +150,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
-operator|.
-name|MaxFieldLength
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -293,16 +291,19 @@ argument_list|(
 name|directory
 argument_list|,
 operator|new
+name|IndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
+operator|.
+name|setAnalyzer
+argument_list|(
+operator|new
 name|StandardAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-name|MaxFieldLength
-operator|.
-name|UNLIMITED
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// Add series of docs with specific information for MoreLikeThis

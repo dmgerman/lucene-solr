@@ -38,20 +38,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|WhitespaceAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -96,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -110,9 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
-operator|.
-name|MaxFieldLength
+name|Term
 import|;
 end_import
 
@@ -733,15 +717,6 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|WhitespaceAnalyzer
-name|analyzer
-init|=
-operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
-decl_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -750,11 +725,11 @@ name|IndexWriter
 argument_list|(
 name|ramDir
 argument_list|,
-name|analyzer
-argument_list|,
-name|MaxFieldLength
-operator|.
-name|UNLIMITED
+operator|new
+name|IndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|writer
