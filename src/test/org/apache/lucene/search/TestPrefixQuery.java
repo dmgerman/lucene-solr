@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|Term
 import|;
 end_import
 
@@ -80,9 +80,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|analysis
 operator|.
-name|Term
+name|WhitespaceAnalyzer
 import|;
 end_import
 
@@ -165,10 +165,18 @@ argument_list|(
 name|directory
 argument_list|,
 operator|new
-name|IndexWriterConfig
+name|WhitespaceAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
+argument_list|,
+literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 decl_stmt|;
 for|for

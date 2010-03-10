@@ -295,7 +295,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests multi field query parsing using the  * {@link MultiFieldQueryParserWrapper}.  *   * @deprecated this tests test the deprecated MultiFieldQueryParserWrapper, so  *             when the latter is gone, so should this test.  */
+comment|/**  * Tests multi field query parsing using the {@link MultiFieldQueryParserWrapper}.  */
 end_comment
 
 begin_class

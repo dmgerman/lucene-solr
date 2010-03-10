@@ -96,9 +96,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|analysis
 operator|.
-name|IndexWriterConfig
+name|WhitespaceAnalyzer
 import|;
 end_import
 
@@ -182,10 +182,18 @@ argument_list|(
 name|dir
 argument_list|,
 operator|new
-name|IndexWriterConfig
+name|WhitespaceAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
+argument_list|,
+literal|true
+argument_list|,
+name|IndexWriter
+operator|.
+name|MaxFieldLength
+operator|.
+name|UNLIMITED
 argument_list|)
 decl_stmt|;
 name|Document

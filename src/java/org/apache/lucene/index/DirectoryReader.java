@@ -3864,7 +3864,7 @@ name|writeLock
 operator|.
 name|obtain
 argument_list|(
-name|IndexWriterConfig
+name|IndexWriter
 operator|.
 name|WRITE_LOCK_TIMEOUT
 argument_list|)
