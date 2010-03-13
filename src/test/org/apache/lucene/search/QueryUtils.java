@@ -138,7 +138,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiReader
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -152,9 +152,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
-operator|.
-name|MaxFieldLength
+name|MultiReader
 import|;
 end_import
 
@@ -1154,16 +1152,16 @@ argument_list|(
 name|d
 argument_list|,
 operator|new
+name|IndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
 name|WhitespaceAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-name|MaxFieldLength
-operator|.
-name|LIMITED
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for
