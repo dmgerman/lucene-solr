@@ -930,6 +930,10 @@ break|break;
 default|default:
 return|return;
 block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -1434,6 +1438,10 @@ operator|.
 name|INDEXORDER
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -1825,6 +1833,10 @@ operator|.
 name|INDEXORDER
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -3123,7 +3135,11 @@ name|termCountC
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|VERBOSE
+condition|)
 block|{
 name|System
 operator|.
@@ -4680,6 +4696,10 @@ name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
