@@ -14736,7 +14736,7 @@ specifier|private
 name|IndexReaderWarmer
 name|mergedSegmentWarmer
 decl_stmt|;
-comment|/**    * Set the merged segment warmer. See {@link IndexReaderWarmer}.    *     * @deprecated use    *             {@link IndexWriterConfig#setMergedSegmentWarmer(IndexReaderWarmer)}    *             instead.    */
+comment|/**    * Set the merged segment warmer. See {@link IndexReaderWarmer}.    *     * @deprecated use    *             {@link IndexWriterConfig#setMergedSegmentWarmer}    *             instead.    */
 DECL|method|setMergedSegmentWarmer
 specifier|public
 name|void
