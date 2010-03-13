@@ -260,11 +260,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -278,21 +282,8 @@ specifier|public
 class|class
 name|TestQualityRun
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
-DECL|field|DEBUG
-specifier|private
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-name|Boolean
-operator|.
-name|getBoolean
-argument_list|(
-literal|"tests.verbose"
-argument_list|)
-decl_stmt|;
 DECL|method|TestQualityRun
 specifier|public
 name|TestQualityRun
@@ -366,7 +357,7 @@ comment|// orig docID is in the linedoc format title
 name|PrintWriter
 name|logger
 init|=
-name|DEBUG
+name|VERBOSE
 condition|?
 operator|new
 name|PrintWriter
@@ -596,7 +587,7 @@ decl_stmt|;
 name|SubmissionReport
 name|submitLog
 init|=
-name|DEBUG
+name|VERBOSE
 condition|?
 operator|new
 name|SubmissionReport

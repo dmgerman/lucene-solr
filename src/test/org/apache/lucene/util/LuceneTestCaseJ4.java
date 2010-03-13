@@ -274,6 +274,21 @@ specifier|public
 class|class
 name|LuceneTestCaseJ4
 block|{
+comment|/**    * true iff tests are run in verbose mode. Note: if it is false, tests are not    * expected to print any messages.    */
+DECL|field|VERBOSE
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|VERBOSE
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"tests.verbose"
+argument_list|)
+decl_stmt|;
 comment|/** Change this when development starts for new Lucene version: */
 DECL|field|TEST_VERSION_CURRENT
 specifier|public

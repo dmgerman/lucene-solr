@@ -183,6 +183,18 @@ name|LuceneTestCase
 extends|extends
 name|TestCase
 block|{
+comment|/**    * true iff tests are run in verbose mode. Note: if it is false, tests are not    * expected to print any messages.    */
+DECL|field|VERBOSE
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|VERBOSE
+init|=
+name|LuceneTestCaseJ4
+operator|.
+name|VERBOSE
+decl_stmt|;
 DECL|field|TEST_VERSION_CURRENT
 specifier|public
 specifier|static
