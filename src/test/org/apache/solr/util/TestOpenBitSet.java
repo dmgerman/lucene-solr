@@ -282,14 +282,14 @@ condition|)
 block|{
 name|iterator
 operator|.
-name|next
+name|nextDoc
 argument_list|()
 expr_stmt|;
 name|bb
 operator|=
 name|iterator
 operator|.
-name|doc
+name|docID
 argument_list|()
 expr_stmt|;
 block|}
@@ -297,7 +297,7 @@ else|else
 block|{
 name|iterator
 operator|.
-name|skipTo
+name|advance
 argument_list|(
 name|bb
 operator|+
@@ -308,7 +308,7 @@ name|bb
 operator|=
 name|iterator
 operator|.
-name|doc
+name|docID
 argument_list|()
 expr_stmt|;
 block|}

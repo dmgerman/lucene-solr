@@ -309,16 +309,9 @@ operator|=
 operator|(
 name|CharArraySet
 operator|)
-name|CommonGramsFilter
-operator|.
-name|makeCommonSet
-argument_list|(
 name|StopAnalyzer
 operator|.
-name|ENGLISH_STOP_WORDS
-argument_list|,
-name|ignoreCase
-argument_list|)
+name|ENGLISH_STOP_WORDS_SET
 expr_stmt|;
 block|}
 block|}

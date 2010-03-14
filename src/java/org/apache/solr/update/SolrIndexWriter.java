@@ -989,14 +989,16 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
 name|schema
 operator|.
 name|getAnalyzer
 argument_list|()
 argument_list|,
 name|create
+argument_list|,
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 name|init
@@ -1011,6 +1013,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Deprecated
+comment|// nocommit: remove?
 DECL|method|SolrIndexWriter
 specifier|public
 name|SolrIndexWriter
@@ -1047,16 +1050,16 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
-name|config
-operator|.
-name|luceneAutoCommit
-argument_list|,
 name|schema
 operator|.
 name|getAnalyzer
 argument_list|()
 argument_list|,
 name|create
+argument_list|,
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 name|init
@@ -1070,6 +1073,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated    */
+comment|// nocommit: remove?
 DECL|method|SolrIndexWriter
 specifier|public
 name|SolrIndexWriter
@@ -1098,14 +1102,16 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
-literal|false
-argument_list|,
 name|schema
 operator|.
 name|getAnalyzer
 argument_list|()
 argument_list|,
 name|create
+argument_list|,
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 name|init
@@ -1119,6 +1125,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated    */
+comment|// nocommit: remove?
 DECL|method|SolrIndexWriter
 specifier|public
 name|SolrIndexWriter
@@ -1150,16 +1157,16 @@ argument_list|,
 name|config
 argument_list|)
 argument_list|,
-name|config
-operator|.
-name|luceneAutoCommit
-argument_list|,
 name|schema
 operator|.
 name|getAnalyzer
 argument_list|()
 argument_list|,
 name|create
+argument_list|,
+name|MaxFieldLength
+operator|.
+name|LIMITED
 argument_list|)
 expr_stmt|;
 name|init

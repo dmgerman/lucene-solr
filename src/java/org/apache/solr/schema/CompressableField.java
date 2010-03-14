@@ -184,20 +184,10 @@ name|isCompressed
 argument_list|()
 condition|)
 block|{
+comment|// nocommit: handle compression
+comment|//return internalVal.length()>= compressThreshold ?
+comment|//  Field.Store.COMPRESS : Field.Store.YES;
 return|return
-name|internalVal
-operator|.
-name|length
-argument_list|()
-operator|>=
-name|compressThreshold
-condition|?
-name|Field
-operator|.
-name|Store
-operator|.
-name|COMPRESS
-else|:
 name|Field
 operator|.
 name|Store

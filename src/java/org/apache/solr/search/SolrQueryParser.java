@@ -112,9 +112,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|util
 operator|.
-name|Analyzer
+name|Version
 import|;
 end_import
 
@@ -128,9 +128,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|reverse
-operator|.
-name|ReverseStringFilter
+name|Analyzer
 import|;
 end_import
 
@@ -187,34 +185,6 @@ operator|.
 name|schema
 operator|.
 name|IndexSchema
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|SchemaField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|TrieField
 import|;
 end_import
 
@@ -322,6 +292,10 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_24
+argument_list|,
 name|defaultField
 operator|==
 literal|null
@@ -417,6 +391,10 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_24
+argument_list|,
 name|defaultField
 argument_list|,
 name|analyzer

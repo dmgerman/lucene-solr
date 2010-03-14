@@ -455,7 +455,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -478,7 +478,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -524,7 +524,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -547,7 +547,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -570,7 +570,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -631,7 +631,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1980,7 +1980,7 @@ name|YES
 argument_list|,
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;

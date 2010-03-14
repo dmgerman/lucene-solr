@@ -475,7 +475,7 @@ name|arr
 init|=
 name|f
 operator|.
-name|binaryValue
+name|getBinaryValue
 argument_list|()
 decl_stmt|;
 if|if
@@ -824,7 +824,7 @@ name|arr
 init|=
 name|f
 operator|.
-name|binaryValue
+name|getBinaryValue
 argument_list|()
 decl_stmt|;
 if|if
@@ -981,7 +981,7 @@ name|arr
 init|=
 name|f
 operator|.
-name|binaryValue
+name|getBinaryValue
 argument_list|()
 decl_stmt|;
 if|if
@@ -2157,7 +2157,7 @@ name|arr
 init|=
 name|f
 operator|.
-name|binaryValue
+name|getBinaryValue
 argument_list|()
 decl_stmt|;
 if|if

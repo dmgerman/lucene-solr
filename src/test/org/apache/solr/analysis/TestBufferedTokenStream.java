@@ -213,7 +213,7 @@ argument_list|)
 condition|)
 name|t
 operator|.
-name|setTermText
+name|setTermBuffer
 argument_list|(
 literal|"Q"
 argument_list|)

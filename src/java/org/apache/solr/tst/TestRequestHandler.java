@@ -829,7 +829,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|UN_TOKENIZED
+name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1065,7 +1065,7 @@ expr_stmt|;
 comment|//
 comment|// test against hits
 comment|//
-name|Hits
+name|TopFieldDocs
 name|hits
 init|=
 name|searcher
@@ -1076,6 +1076,8 @@ name|query
 argument_list|,
 name|lfilter
 argument_list|,
+literal|1000
+argument_list|,
 name|sort
 argument_list|)
 decl_stmt|;
@@ -1083,8 +1085,7 @@ name|test
 argument_list|(
 name|hits
 operator|.
-name|length
-argument_list|()
+name|totalHits
 operator|==
 name|results
 operator|.
@@ -1147,15 +1148,12 @@ argument_list|()
 operator|==
 name|hits
 operator|.
-name|id
-argument_list|(
+name|scoreDocs
+index|[
 name|i
-operator|+
-name|results
+index|]
 operator|.
-name|offset
-argument_list|()
-argument_list|)
+name|doc
 argument_list|)
 expr_stmt|;
 comment|// Document doesn't implement equals()

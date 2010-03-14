@@ -400,6 +400,9 @@ name|KeepWordFilter
 argument_list|(
 name|input
 argument_list|,
+operator|(
+name|Set
+operator|)
 name|words
 argument_list|,
 name|ignoreCase

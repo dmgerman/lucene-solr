@@ -677,7 +677,7 @@ name|spellcheckerIndexDir
 operator|=
 name|FSDirectory
 operator|.
-name|getDirectory
+name|open
 argument_list|(
 name|f
 argument_list|)

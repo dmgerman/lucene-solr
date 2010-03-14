@@ -262,6 +262,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -2029,7 +2045,6 @@ argument_list|,
 name|sreq
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
 if|if
 condition|(
@@ -2518,7 +2533,9 @@ comment|// Merge the docs via a priority queue so we don't have to sort *all* of
 comment|// documents... we only need to order the top (rows+start)
 name|ShardFieldSortedHitQueue
 name|queue
-init|=
+decl_stmt|;
+name|queue
+operator|=
 operator|new
 name|ShardFieldSortedHitQueue
 argument_list|(
@@ -2534,7 +2551,7 @@ operator|.
 name|getCount
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|long
 name|numFound
 init|=
@@ -2804,7 +2821,7 @@ name|sortFieldValues
 expr_stmt|;
 name|queue
 operator|.
-name|insert
+name|insertWithOverflow
 argument_list|(
 name|shardDoc
 argument_list|)

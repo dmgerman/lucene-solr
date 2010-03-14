@@ -2925,120 +2925,21 @@ name|Field
 name|luf
 decl_stmt|;
 comment|// Lucene field
-name|f
-operator|=
-name|ischema
-operator|.
-name|getField
-argument_list|(
-literal|"test_hlt"
-argument_list|)
-expr_stmt|;
-name|luf
-operator|=
-name|f
-operator|.
-name|createField
-argument_list|(
-literal|"test"
-argument_list|,
-literal|0f
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-name|luf
-operator|.
-name|isCompressed
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|luf
-operator|.
-name|isStored
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|f
-operator|=
-name|ischema
-operator|.
-name|getField
-argument_list|(
-literal|"test_hlt"
-argument_list|)
-expr_stmt|;
-name|luf
-operator|=
-name|f
-operator|.
-name|createField
-argument_list|(
-name|mkstr
-argument_list|(
-literal|345
-argument_list|)
-argument_list|,
-literal|0f
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|luf
-operator|.
-name|isCompressed
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|luf
-operator|.
-name|isStored
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|f
-operator|=
-name|ischema
-operator|.
-name|getField
-argument_list|(
-literal|"test_hlt_off"
-argument_list|)
-expr_stmt|;
-name|luf
-operator|=
-name|f
-operator|.
-name|createField
-argument_list|(
-name|mkstr
-argument_list|(
-literal|400
-argument_list|)
-argument_list|,
-literal|0f
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-name|luf
-operator|.
-name|isCompressed
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|luf
-operator|.
-name|isStored
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//    f = ischema.getField("test_hlt");
+comment|//    luf = f.createField("test", 0f);
+comment|//    assertFalse(luf.isCompressed());
+comment|//    assertTrue(luf.isStored());
+comment|//
+comment|//    f = ischema.getField("test_hlt");
+comment|//    luf = f.createField(mkstr(345), 0f);
+comment|//    assertTrue(luf.isCompressed());
+comment|//    assertTrue(luf.isStored());
+comment|//
+comment|//    f = ischema.getField("test_hlt_off");
+comment|//    luf = f.createField(mkstr(400), 0f);
+comment|//    assertFalse(luf.isCompressed());
+comment|//    assertTrue(luf.isStored());
+comment|//
 block|}
 DECL|method|testNotLazyField
 specifier|public
