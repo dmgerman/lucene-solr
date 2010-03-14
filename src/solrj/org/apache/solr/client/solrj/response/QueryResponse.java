@@ -1188,7 +1188,7 @@ comment|// Parse the queries
 name|_facetQuery
 operator|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<
 name|String
 argument_list|,
