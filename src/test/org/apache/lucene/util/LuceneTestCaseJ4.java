@@ -152,7 +152,27 @@ name|java
 operator|.
 name|io
 operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -241,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for all Lucene unit tests, Junit4 variant.  * Replaces LuceneTestCase.  *<p>  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  *  * @After - replaces setup  * @Before - replaces teardown  * @Test - any public method with this annotation is a test case, regardless  * of its name  *<p>  *<p>  * See Junit4 documentation for a complete list of features at  * http://junit.org/junit/javadoc/4.7/  *<p>  * Import from org.junit rather than junit.framework.  *<p>  * You should be able to use this class anywhere you used LuceneTestCase  * if you annotate your derived class correctly with the annotations above  * @see #assertSaneFieldCaches(String)  */
+comment|/**  * Base class for all Lucene unit tests, Junit4 variant.  * Replaces LuceneTestCase.  *<p>  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  *  * @After - replaces setup  * @Before - replaces teardown  * @Test - any public method with this annotation is a test case, regardless  * of its name  *<p>  *<p>  * See Junit4<a href="http://junit.org/junit/javadoc/4.7/">documentation</a> for a complete list of features.  *<p>  * Import from org.junit rather than junit.framework.  *<p>  * You should be able to use this class anywhere you used LuceneTestCase  * if you annotate your derived class correctly with the annotations above  * @see #assertSaneFieldCaches(String)  */
 end_comment
 
 begin_comment
@@ -289,7 +309,7 @@ argument_list|(
 literal|"tests.verbose"
 argument_list|)
 decl_stmt|;
-comment|/** Change this when development starts for new Lucene version: */
+comment|/** Use this constant when creating Analyzers and any other version-dependent stuff.    *<p><b>NOTE:</b> Change this when development starts for new Lucene version:    */
 DECL|field|TEST_VERSION_CURRENT
 specifier|public
 specifier|static
@@ -301,6 +321,55 @@ name|Version
 operator|.
 name|LUCENE_31
 decl_stmt|;
+comment|/** Create indexes in this directory, optimally use a subdir, named after the test */
+DECL|field|TEMP_DIR
+specifier|public
+specifier|static
+specifier|final
+name|File
+name|TEMP_DIR
+decl_stmt|;
+static|static
+block|{
+name|String
+name|s
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tempDir"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.io.tmpdir"
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|s
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"To run tests, you need to define system property 'tempDir' or 'java.io.tmpdir'."
+argument_list|)
+throw|;
+name|TEMP_DIR
+operator|=
+operator|new
+name|File
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+block|}
 DECL|field|savedBoolMaxClauseCount
 specifier|private
 name|int
@@ -1040,6 +1109,56 @@ name|this
 operator|.
 name|name
 return|;
+block|}
+comment|/** Gets a resource from the classpath as {@link File}. This method should only be used,    * if a real file is needed. To get a stream, code should prefer    * {@link Class#getResourceAsStream} using {@code this.getClass()}.    */
+DECL|method|getDataFile
+specifier|protected
+name|File
+name|getDataFile
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+try|try
+block|{
+return|return
+operator|new
+name|File
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getResource
+argument_list|(
+name|name
+argument_list|)
+operator|.
+name|toURI
+argument_list|()
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Cannot find resource: "
+operator|+
+name|name
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// We get here from InterceptTestCaseEvents on the 'failed' event....
 DECL|method|reportAdditionalFailureInfo

@@ -228,12 +228,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.io.tmpdir"
-argument_list|)
+name|TEMP_DIR
 argument_list|,
 literal|"index"
 argument_list|)

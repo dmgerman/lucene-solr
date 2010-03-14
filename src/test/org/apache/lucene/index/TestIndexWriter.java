@@ -27604,12 +27604,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"tempDir"
-argument_list|)
+name|TEMP_DIR
 argument_list|,
 literal|"otherfiles"
 argument_list|)

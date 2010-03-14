@@ -414,32 +414,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// tmp dir
-name|String
-name|tempDir
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.io.tmpdir"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|tempDir
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"java.io.tmpdir undefined, cannot run test"
-argument_list|)
-throw|;
-block|}
 comment|// test with a single index: index1
 name|File
 name|indexDir1
@@ -447,7 +421,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|tempDir
+name|TEMP_DIR
 argument_list|,
 literal|"lucenetestindex1"
 argument_list|)
@@ -547,7 +521,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|tempDir
+name|TEMP_DIR
 argument_list|,
 literal|"lucenetestindex2"
 argument_list|)
@@ -579,7 +553,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|tempDir
+name|TEMP_DIR
 argument_list|,
 literal|"lucenetestindex3"
 argument_list|)

@@ -165,18 +165,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|String
-name|tmp_dir
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.io.tmpdir"
-argument_list|,
-literal|"tmp"
-argument_list|)
-decl_stmt|;
 name|this
 operator|.
 name|__test_dir
@@ -184,7 +172,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-name|tmp_dir
+name|TEMP_DIR
 argument_list|,
 literal|"testIndexWriter"
 argument_list|)
