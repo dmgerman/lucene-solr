@@ -2039,7 +2039,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** Implements commit.  NOTE: subclasses should override    *  this.  In 3.0 this will become an abstract method. */
+comment|/** Implements commit.  */
 DECL|method|doCommit
 specifier|protected
 specifier|abstract
