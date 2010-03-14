@@ -355,12 +355,15 @@ else|else
 block|{
 name|stopWords
 operator|=
-operator|(
+operator|new
 name|CharArraySet
-operator|)
+argument_list|(
 name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET
+argument_list|,
+name|ignoreCase
+argument_list|)
 expr_stmt|;
 block|}
 block|}
