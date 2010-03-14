@@ -127,7 +127,7 @@ name|args
 operator|.
 name|get
 argument_list|(
-literal|"termInfosIndexDivisor"
+literal|"setTermIndexInterval"
 argument_list|)
 decl_stmt|;
 if|if
