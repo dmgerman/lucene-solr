@@ -569,6 +569,89 @@ argument_list|,
 name|typeAtt
 argument_list|)
 expr_stmt|;
+comment|// test copy back
+name|termAtt2
+operator|.
+name|setTermBuffer
+argument_list|(
+literal|"OtherTerm"
+argument_list|)
+expr_stmt|;
+name|typeAtt2
+operator|.
+name|setType
+argument_list|(
+literal|"OtherType"
+argument_list|)
+expr_stmt|;
+name|clone
+operator|.
+name|copyTo
+argument_list|(
+name|src
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"TermAttribute of original must now contain updated term"
+argument_list|,
+literal|"OtherTerm"
+argument_list|,
+name|termAtt
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"TypeAttribute of original must now contain updated type"
+argument_list|,
+literal|"OtherType"
+argument_list|,
+name|typeAtt
+operator|.
+name|type
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// verify again:
+name|assertNotSame
+argument_list|(
+literal|"TermAttribute of original and clone must be different instances"
+argument_list|,
+name|termAtt2
+argument_list|,
+name|termAtt
+argument_list|)
+expr_stmt|;
+name|assertNotSame
+argument_list|(
+literal|"TypeAttribute of original and clone must be different instances"
+argument_list|,
+name|typeAtt2
+argument_list|,
+name|typeAtt
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"TermAttribute of original and clone must be equal"
+argument_list|,
+name|termAtt2
+argument_list|,
+name|termAtt
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"TypeAttribute of original and clone must be equal"
+argument_list|,
+name|typeAtt2
+argument_list|,
+name|typeAtt
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testToStringAndMultiAttributeImplementations
 specifier|public
