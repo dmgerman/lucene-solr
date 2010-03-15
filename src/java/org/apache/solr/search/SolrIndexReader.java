@@ -2230,6 +2230,21 @@ name|getFieldCacheKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getTermInfosIndexDivisor
+specifier|public
+name|int
+name|getTermInfosIndexDivisor
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getTermInfosIndexDivisor
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
