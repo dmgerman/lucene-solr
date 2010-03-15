@@ -93,13 +93,14 @@ name|Reader
 name|input
 parameter_list|)
 block|{
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|StandardTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_24
+name|luceneMatchVersion
 argument_list|,
 operator|new
 name|HTMLStripReader
