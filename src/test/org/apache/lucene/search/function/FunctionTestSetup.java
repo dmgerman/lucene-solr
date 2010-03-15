@@ -213,16 +213,6 @@ name|TEST_SCORE_TOLERANCE_DELTA
 init|=
 literal|0.001f
 decl_stmt|;
-DECL|field|DBG
-specifier|protected
-specifier|static
-specifier|final
-name|boolean
-name|DBG
-init|=
-literal|false
-decl_stmt|;
-comment|// change to true for logging to print
 DECL|field|N_DOCS
 specifier|protected
 specifier|static
@@ -845,7 +835,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|DBG
+name|VERBOSE
 condition|)
 block|{
 name|System

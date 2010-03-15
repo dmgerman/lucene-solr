@@ -446,15 +446,6 @@ name|TestPayloadSpans
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|DEBUG
-specifier|private
-specifier|final
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-literal|true
-decl_stmt|;
 DECL|field|searcher
 specifier|private
 name|IndexSearcher
@@ -2828,7 +2819,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 for|for
@@ -3013,7 +3004,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -3041,7 +3032,7 @@ control|)
 block|{
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -3450,7 +3441,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -3483,7 +3474,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -3511,7 +3502,7 @@ control|)
 block|{
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 name|System
 operator|.

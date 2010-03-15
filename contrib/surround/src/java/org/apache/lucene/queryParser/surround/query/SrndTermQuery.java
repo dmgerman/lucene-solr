@@ -234,25 +234,6 @@ name|it
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"No term in "
-operator|+
-name|fieldName
-operator|+
-literal|" field for: "
-operator|+
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 finally|finally
 block|{

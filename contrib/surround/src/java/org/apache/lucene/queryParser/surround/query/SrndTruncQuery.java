@@ -381,11 +381,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|boolean
-name|expanded
-init|=
-literal|false
-decl_stmt|;
 name|int
 name|prefixLength
 init|=
@@ -504,10 +499,6 @@ argument_list|(
 name|term
 argument_list|)
 expr_stmt|;
-name|expanded
-operator|=
-literal|true
-expr_stmt|;
 block|}
 block|}
 block|}
@@ -532,29 +523,6 @@ name|matcher
 operator|.
 name|reset
 argument_list|()
-expr_stmt|;
-block|}
-if|if
-condition|(
-operator|!
-name|expanded
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"No terms in "
-operator|+
-name|fieldName
-operator|+
-literal|" field for: "
-operator|+
-name|toString
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}

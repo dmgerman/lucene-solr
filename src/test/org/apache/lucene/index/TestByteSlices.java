@@ -314,11 +314,6 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-name|boolean
-name|debug
-init|=
-literal|false
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -346,7 +341,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|debug
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -401,7 +396,7 @@ name|byteOffset
 expr_stmt|;
 if|if
 condition|(
-name|debug
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -455,7 +450,7 @@ control|)
 block|{
 if|if
 condition|(
-name|debug
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -508,7 +503,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|debug
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -542,7 +537,7 @@ control|)
 block|{
 if|if
 condition|(
-name|debug
+name|VERBOSE
 condition|)
 name|System
 operator|.

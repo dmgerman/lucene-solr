@@ -144,15 +144,6 @@ name|TestStopFilter
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
-DECL|field|VERBOSE
-specifier|private
-specifier|final
-specifier|static
-name|boolean
-name|VERBOSE
-init|=
-literal|false
-decl_stmt|;
 comment|// other StopFilter functionality is already tested by TestStopAnalyzer
 DECL|method|testExactCase
 specifier|public

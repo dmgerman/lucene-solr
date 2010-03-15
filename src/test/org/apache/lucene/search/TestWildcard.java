@@ -1648,11 +1648,6 @@ name|field
 init|=
 literal|"content"
 decl_stmt|;
-name|boolean
-name|dbg
-init|=
-literal|false
-decl_stmt|;
 name|QueryParser
 name|qp
 init|=
@@ -1970,7 +1965,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|dbg
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -2064,7 +2059,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|dbg
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -2179,7 +2174,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|dbg
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -2326,7 +2321,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|dbg
+name|VERBOSE
 condition|)
 name|System
 operator|.

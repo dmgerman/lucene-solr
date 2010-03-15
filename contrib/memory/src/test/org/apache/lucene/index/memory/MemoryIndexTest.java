@@ -459,14 +459,6 @@ specifier|private
 name|Analyzer
 name|analyzer
 decl_stmt|;
-DECL|field|verbose
-specifier|private
-specifier|final
-name|boolean
-name|verbose
-init|=
-literal|false
-decl_stmt|;
 DECL|field|FIELD_NAME
 specifier|private
 specifier|static
@@ -566,6 +558,10 @@ literal|"contrib/memory/src/java/org/apache/lucene/index/memory/*.java"
 block|,     }
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -994,6 +990,10 @@ name|iter
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -1115,7 +1115,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|verbose
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -1405,7 +1405,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|verbose
+name|VERBOSE
 condition|)
 name|System
 operator|.
@@ -1513,6 +1513,10 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -1550,6 +1554,11 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -1651,6 +1660,13 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+operator|!
+name|VERBOSE
+condition|)
+return|return;
 if|if
 condition|(
 name|useMemIndex

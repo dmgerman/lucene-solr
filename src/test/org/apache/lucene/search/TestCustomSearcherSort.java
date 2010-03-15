@@ -1212,6 +1212,10 @@ name|String
 name|message
 parameter_list|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out

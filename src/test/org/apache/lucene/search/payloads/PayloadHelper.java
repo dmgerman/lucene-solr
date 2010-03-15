@@ -536,7 +536,7 @@ name|similarity
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//writer.infoStream = System.out;
+comment|// writer.infoStream = System.out;
 for|for
 control|(
 name|int
