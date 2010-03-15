@@ -463,7 +463,9 @@ block|}
 block|}
 name|assertTrue
 argument_list|(
-literal|"there are at least 10 SolrInfoMBean that should be found in the classpath."
+literal|"there are at least 10 SolrInfoMBean that should be found in the classpath, found "
+operator|+
+name|checked
 argument_list|,
 name|checked
 operator|>

@@ -38,6 +38,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -151,6 +171,27 @@ name|BaseTokenTestCase
 extends|extends
 name|TestCase
 block|{
+DECL|field|DEFAULT_VERSION_PARAM
+specifier|protected
+specifier|static
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|DEFAULT_VERSION_PARAM
+init|=
+name|Collections
+operator|.
+name|singletonMap
+argument_list|(
+literal|"luceneMatchVersion"
+argument_list|,
+literal|"LUCENE_30"
+argument_list|)
+decl_stmt|;
 comment|// some helpers to test Analyzers and TokenStreams:
 comment|// these are taken from Lucene's BaseTokenStreamTestCase
 DECL|method|assertTokenStreamContents

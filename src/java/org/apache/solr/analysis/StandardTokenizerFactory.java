@@ -48,20 +48,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -95,9 +81,7 @@ return|return
 operator|new
 name|StandardTokenizer
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_24
+name|luceneMatchVersion
 argument_list|,
 name|input
 argument_list|)
