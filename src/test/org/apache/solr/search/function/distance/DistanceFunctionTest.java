@@ -507,7 +507,7 @@ argument_list|,
 literal|"id:1"
 argument_list|)
 argument_list|,
-literal|"//float[@name='score']='122.30894'"
+literal|"//float[@name='score']='122.309006'"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -572,7 +572,7 @@ argument_list|,
 literal|"id:1"
 argument_list|)
 argument_list|,
-literal|"//float[@name='score']='122.30894'"
+literal|"//float[@name='score']='122.309006'"
 argument_list|)
 expr_stmt|;
 block|}
