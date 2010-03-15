@@ -318,7 +318,7 @@ specifier|public
 class|class
 name|TextField
 extends|extends
-name|CompressableField
+name|FieldType
 block|{
 DECL|method|init
 specifier|protected

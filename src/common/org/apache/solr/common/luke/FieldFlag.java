@@ -116,14 +116,6 @@ argument_list|,
 literal|"Binary"
 argument_list|)
 block|,
-DECL|enum constant|COMPRESSED
-name|COMPRESSED
-argument_list|(
-literal|'C'
-argument_list|,
-literal|"Compressed"
-argument_list|)
-block|,
 DECL|enum constant|SORT_MISSING_FIRST
 name|SORT_MISSING_FIRST
 argument_list|(

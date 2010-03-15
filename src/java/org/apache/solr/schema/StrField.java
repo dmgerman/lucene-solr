@@ -194,7 +194,7 @@ specifier|public
 class|class
 name|StrField
 extends|extends
-name|CompressableField
+name|FieldType
 block|{
 DECL|method|init
 specifier|protected
