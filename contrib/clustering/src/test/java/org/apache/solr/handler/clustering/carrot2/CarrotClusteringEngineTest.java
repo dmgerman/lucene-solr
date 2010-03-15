@@ -296,7 +296,6 @@ literal|10
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit, what is wrong with this test: get the carrot2 guys to investigate
 DECL|method|testProduceSummary
 specifier|public
 name|void
