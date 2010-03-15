@@ -190,6 +190,16 @@ name|WRITE_LOCK_TIMEOUT
 init|=
 literal|1000
 decl_stmt|;
+comment|/** The maximum number of simultaneous threads that may be    *  indexing documents at once in IndexWriter; if more    *  than this many threads arrive they will wait for    *  others to finish. */
+DECL|field|DEFAULT_MAX_THREAD_STATES
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|DEFAULT_MAX_THREAD_STATES
+init|=
+literal|8
+decl_stmt|;
 comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
@@ -288,6 +298,11 @@ specifier|private
 name|IndexReaderWarmer
 name|mergedSegmentWarmer
 decl_stmt|;
+DECL|field|maxThreadStates
+specifier|private
+name|int
+name|maxThreadStates
+decl_stmt|;
 comment|// required for clone
 DECL|field|matchVersion
 specifier|private
@@ -380,6 +395,10 @@ expr_stmt|;
 name|mergedSegmentWarmer
 operator|=
 literal|null
+expr_stmt|;
+name|maxThreadStates
+operator|=
+name|DEFAULT_MAX_THREAD_STATES
 expr_stmt|;
 block|}
 annotation|@
@@ -929,6 +948,37 @@ return|return
 name|mergedSegmentWarmer
 return|;
 block|}
+comment|/** Sets the max number of simultaneous threads that may    *  be indexing documents at once in IndexWriter. */
+DECL|method|setMaxThreadStates
+specifier|public
+name|IndexWriterConfig
+name|setMaxThreadStates
+parameter_list|(
+name|int
+name|maxThreadStates
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxThreadStates
+operator|=
+name|maxThreadStates
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/** Returns the max number of simultaneous threads that    *  may be indexing documents at once in IndexWriter. */
+DECL|method|getMaxThreadStates
+specifier|public
+name|int
+name|getMaxThreadStates
+parameter_list|()
+block|{
+return|return
+name|maxThreadStates
+return|;
+block|}
 comment|/** Expert: sets the {@link DocConsumer} chain to be used to process documents. */
 DECL|method|setIndexingChain
 name|IndexWriterConfig
@@ -1265,6 +1315,23 @@ operator|.
 name|append
 argument_list|(
 name|mergedSegmentWarmer
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"maxThreadStates="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|maxThreadStates
 argument_list|)
 operator|.
 name|append

@@ -633,6 +633,13 @@ argument_list|(
 literal|"getMergedSegmentWarmer"
 argument_list|)
 expr_stmt|;
+name|getters
+operator|.
+name|add
+argument_list|(
+literal|"getMaxThreadStates"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Method
