@@ -4181,6 +4181,34 @@ argument_list|(
 name|matchVersionStr
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|luceneMatchVersion
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Configuration Error: Analyzer '"
+operator|+
+name|clazz
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' needs a 'luceneMatchVersion' parameter"
+argument_list|)
+throw|;
+block|}
 return|return
 name|cnstr
 operator|.
