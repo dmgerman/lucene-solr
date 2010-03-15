@@ -18,15 +18,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
+name|Reader
 import|;
 end_import
 
@@ -74,26 +70,6 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @version $Id$  * @deprecated Use {@link HTMLStripCharFilterFactory} and {@link StandardTokenizerFactory}  */
 end_comment
@@ -132,6 +108,13 @@ name|input
 argument_list|)
 argument_list|)
 return|;
+comment|// nocommit: what to do about this?
+comment|//    new HTMLStripReader(input)) {
+comment|//      @Override
+comment|//      public void reset(Reader reader) throws IOException {
+comment|//        super.reset(new HTMLStripReader(reader));
+comment|//      }
+comment|//    };
 block|}
 block|}
 end_class
