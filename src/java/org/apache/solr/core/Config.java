@@ -1446,16 +1446,30 @@ specifier|final
 name|Version
 name|parseLuceneVersionString
 parameter_list|(
+specifier|final
 name|String
 name|matchVersion
 parameter_list|)
 block|{
-name|matchVersion
-operator|=
+name|String
+name|parsedMatchVersion
+init|=
 name|matchVersion
 operator|.
 name|toUpperCase
 argument_list|()
+decl_stmt|;
+comment|// be lenient with the supplied version parameter
+name|parsedMatchVersion
+operator|=
+name|parsedMatchVersion
+operator|.
+name|replaceFirst
+argument_list|(
+literal|"^(\\d)\\.(\\d)$"
+argument_list|,
+literal|"LUCENE_$1$2"
+argument_list|)
 expr_stmt|;
 specifier|final
 name|Version
@@ -1469,7 +1483,7 @@ name|Version
 operator|.
 name|valueOf
 argument_list|(
-name|matchVersion
+name|parsedMatchVersion
 argument_list|)
 expr_stmt|;
 block|}
@@ -1493,7 +1507,7 @@ literal|"Invalid luceneMatchVersion '"
 operator|+
 name|matchVersion
 operator|+
-literal|"' property, valid values are: "
+literal|"', valid values are: "
 operator|+
 name|Arrays
 operator|.
@@ -1504,6 +1518,8 @@ operator|.
 name|values
 argument_list|()
 argument_list|)
+operator|+
+literal|" or a string in format 'V.V'"
 argument_list|,
 name|iae
 argument_list|,

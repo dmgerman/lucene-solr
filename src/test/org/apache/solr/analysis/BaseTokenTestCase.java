@@ -189,7 +189,14 @@ name|singletonMap
 argument_list|(
 literal|"luceneMatchVersion"
 argument_list|,
-literal|"LUCENE_30"
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.luceneMatchVersion"
+argument_list|,
+literal|"LUCENE_CURRENT"
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// some helpers to test Analyzers and TokenStreams:
