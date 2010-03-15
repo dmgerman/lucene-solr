@@ -4111,7 +4111,7 @@ literal|"Error invoking setter "
 operator|+
 name|setterName
 operator|+
-literal|"on class : "
+literal|" on class : "
 operator|+
 name|clazz
 operator|.
@@ -4136,7 +4136,7 @@ literal|"Error invoking setter "
 operator|+
 name|setterName
 operator|+
-literal|"on class : "
+literal|" on class : "
 operator|+
 name|clazz
 operator|.

@@ -331,7 +331,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10
+literal|4
 argument_list|,
 name|cms
 operator|.
