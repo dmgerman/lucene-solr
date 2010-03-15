@@ -294,28 +294,14 @@ name|position
 operator|++
 expr_stmt|;
 block|}
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|gold
-operator|+
-literal|" is not equal to "
-operator|+
-name|builder
-operator|.
-name|toString
-argument_list|()
 argument_list|,
-name|gold
-operator|.
-name|equals
-argument_list|(
 name|builder
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-operator|==
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -573,32 +559,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resu: "
-operator|+
-name|result
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Gold: "
-operator|+
-name|gold
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Resu: " + result + "<EOL>");
+comment|// System.out.println("Gold: " + gold + "<EOL>");
 name|assertTrue
 argument_list|(
 name|result
@@ -724,32 +686,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resu: "
-operator|+
-name|result
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Gold: "
-operator|+
-name|gold
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Resu: " + result + "<EOL>");
+comment|// System.out.println("Gold: " + gold + "<EOL>");
 name|assertTrue
 argument_list|(
 name|result
@@ -875,32 +813,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resu: "
-operator|+
-name|result
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Gold: "
-operator|+
-name|gold
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Resu: " + result + "<EOL>");
+comment|// System.out.println("Gold: " + gold + "<EOL>");
 name|assertTrue
 argument_list|(
 name|result
@@ -1019,17 +933,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Result: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Result: " + result);
 name|assertTrue
 argument_list|(
 literal|"Escaped tag not preserved: "
@@ -1199,32 +1103,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resu: "
-operator|+
-name|result
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Gold: "
-operator|+
-name|gold
-operator|+
-literal|"<EOL>"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Resu: " + result + "<EOL>");
+comment|// System.out.println("Gold: " + gold + "<EOL>");
 name|assertTrue
 argument_list|(
 name|result
@@ -1490,15 +1370,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-------------------processBuffer----------"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("-------------------processBuffer----------");
 name|Reader
 name|reader
 init|=
@@ -1565,25 +1437,7 @@ block|}
 block|}
 finally|finally
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"String (trimmed): "
-operator|+
-name|builder
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|trim
-argument_list|()
-operator|+
-literal|"<EOS>"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("String (trimmed): " + builder.toString().trim() + "<EOS>");
 block|}
 name|assertTrue
 argument_list|(
@@ -1698,20 +1552,7 @@ block|}
 block|}
 finally|finally
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"String: "
-operator|+
-name|builder
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("String: " + builder.toString());
 block|}
 name|assertTrue
 argument_list|(
