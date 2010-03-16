@@ -448,6 +448,23 @@ name|defaultCoreName
 init|=
 literal|""
 decl_stmt|;
+comment|// assigned by Initializer
+DECL|field|defaultAbortOnConfigError
+specifier|private
+name|boolean
+name|defaultAbortOnConfigError
+init|=
+literal|false
+decl_stmt|;
+comment|// number of cores that either explicitly, or because of
+comment|// default, said to abort on config error
+DECL|field|numCoresAbortOnConfigError
+specifier|private
+name|int
+name|numCoresAbortOnConfigError
+init|=
+literal|0
+decl_stmt|;
 DECL|method|CoreContainer
 specifier|public
 name|CoreContainer
@@ -485,6 +502,7 @@ name|solrConfigFilename
 init|=
 literal|null
 decl_stmt|;
+comment|// default to true for legacy behavior
 DECL|field|abortOnConfigurationError
 specifier|protected
 name|boolean
@@ -502,6 +520,7 @@ return|return
 name|abortOnConfigurationError
 return|;
 block|}
+comment|/** Note for no good reason what so ever, this method has only ever      * influenced the default behavior of "single core" mode.  when using      * solr.xml values specified this way are ignored, and false is the default.      * initialize() will modify this value.      */
 DECL|method|setAbortOnConfigurationError
 specifier|public
 name|void
@@ -620,6 +639,14 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
+comment|// default abortOnConfigurationError ignored in multicore
+name|cores
+operator|.
+name|defaultAbortOnConfigError
+operator|=
+literal|false
+expr_stmt|;
 name|cores
 operator|.
 name|load
@@ -629,8 +656,15 @@ argument_list|,
 name|fconf
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+name|cores
+operator|.
+name|defaultAbortOnConfigError
+operator|=
+name|abortOnConfigurationError
+expr_stmt|;
 name|cores
 operator|.
 name|load
@@ -654,44 +688,15 @@ operator|=
 name|fconf
 expr_stmt|;
 block|}
-name|abortOnConfigurationError
-operator|=
-literal|false
-expr_stmt|;
-comment|// if any core aborts on startup, then abort
-for|for
-control|(
-name|SolrCore
-name|c
-range|:
+name|setAbortOnConfigurationError
+argument_list|(
+literal|0
+operator|<
 name|cores
 operator|.
-name|getCores
-argument_list|()
-control|)
-block|{
-if|if
-condition|(
-name|c
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|getBool
-argument_list|(
-literal|"abortOnConfigurationError"
-argument_list|,
-literal|false
+name|numCoresAbortOnConfigError
 argument_list|)
-condition|)
-block|{
-name|abortOnConfigurationError
-operator|=
-literal|true
 expr_stmt|;
-break|break;
-block|}
-block|}
 name|solrConfigFilename
 operator|=
 name|cores
@@ -2080,6 +2085,22 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|config
+operator|.
+name|getBool
+argument_list|(
+literal|"abortOnConfigurationError"
+argument_list|,
+name|defaultAbortOnConfigError
+argument_list|)
+condition|)
+block|{
+name|numCoresAbortOnConfigError
+operator|++
+expr_stmt|;
+block|}
 name|IndexSchema
 name|schema
 init|=
