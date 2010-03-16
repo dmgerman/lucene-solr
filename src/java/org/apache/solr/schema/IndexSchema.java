@@ -4101,7 +4101,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// nocommit: add support for CoreAware& Co here?
+comment|// No need to be core-aware as Analyzers are not in the core-aware list
 specifier|final
 name|Class
 argument_list|<
