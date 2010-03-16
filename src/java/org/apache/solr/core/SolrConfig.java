@@ -725,6 +725,15 @@ operator|.
 name|LUCENE_24
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Using Lucene MatchVersion: "
+operator|+
+name|luceneMatchVersion
+argument_list|)
+expr_stmt|;
 name|filtOptEnabled
 operator|=
 name|getBool
