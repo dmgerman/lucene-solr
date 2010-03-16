@@ -75,10 +75,15 @@ name|Reader
 name|input
 parameter_list|)
 block|{
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|input
 argument_list|)
 return|;

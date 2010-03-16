@@ -145,10 +145,15 @@ name|Reader
 name|in
 parameter_list|)
 block|{
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|RussianLetterTokenizer
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|in
 argument_list|)
 return|;
