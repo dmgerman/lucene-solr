@@ -138,7 +138,7 @@ name|HindiStemmer
 argument_list|()
 decl_stmt|;
 DECL|method|HindiStemFilter
-specifier|protected
+specifier|public
 name|HindiStemFilter
 parameter_list|(
 name|TokenStream
