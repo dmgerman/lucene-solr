@@ -218,7 +218,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"WARN: This test was disabled, as the svn checkout of snowball test files is not supported on your system!"
+literal|"WARN: This test was disabled, as the snowball test files are not available!"
 argument_list|)
 expr_stmt|;
 block|}
