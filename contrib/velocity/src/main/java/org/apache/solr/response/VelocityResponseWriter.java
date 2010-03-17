@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.request
+DECL|package|org.apache.solr.response
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 package|;
 end_package
 
@@ -24,11 +24,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
+name|client
 operator|.
-name|util
+name|solrj
 operator|.
-name|NamedList
+name|SolrResponse
 import|;
 end_import
 
@@ -44,7 +44,9 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrResponse
+name|embedded
+operator|.
+name|EmbeddedSolrServer
 import|;
 end_import
 
@@ -92,13 +94,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|client
+name|common
 operator|.
-name|solrj
+name|util
 operator|.
-name|embedded
-operator|.
-name|EmbeddedSolrServer
+name|NamedList
 import|;
 end_import
 
@@ -110,23 +110,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|request
 operator|.
-name|QueryResponseWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|response
-operator|.
-name|SolrQueryResponse
+name|SolrQueryRequest
 import|;
 end_import
 
@@ -162,11 +148,9 @@ name|apache
 operator|.
 name|velocity
 operator|.
-name|tools
+name|app
 operator|.
-name|generic
-operator|.
-name|*
+name|VelocityEngine
 import|;
 end_import
 
@@ -178,9 +162,11 @@ name|apache
 operator|.
 name|velocity
 operator|.
-name|app
+name|tools
 operator|.
-name|VelocityEngine
+name|generic
+operator|.
+name|*
 import|;
 end_import
 
@@ -210,47 +196,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Writer
+name|*
 import|;
 end_import
 
@@ -272,6 +218,7 @@ name|VelocityResponseWriter
 implements|implements
 name|QueryResponseWriter
 block|{
+comment|// TODO: maybe pass this Logger to the template for logging from there?
 DECL|field|log
 specifier|private
 specifier|static
@@ -314,7 +261,6 @@ name|request
 argument_list|)
 decl_stmt|;
 comment|// TODO: have HTTP headers available for configuring engine
-comment|// TODO: Add layout capability, render to string buffer, then render layout
 name|Template
 name|template
 init|=
@@ -414,6 +360,11 @@ parameter_list|)
 block|{
 comment|// known edge case where QueryResponse's extraction assumes "response" is a SolrDocumentList
 comment|// (AnalysisRequestHandler emits a "response")
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|rsp
 operator|=
 operator|new
@@ -453,21 +404,10 @@ name|context
 operator|.
 name|put
 argument_list|(
-literal|"sort"
+literal|"date"
 argument_list|,
 operator|new
-name|SortTool
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|put
-argument_list|(
-literal|"number"
-argument_list|,
-operator|new
-name|NumberTool
+name|ComparisonDateTool
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -486,10 +426,10 @@ name|context
 operator|.
 name|put
 argument_list|(
-literal|"date"
+literal|"math"
 argument_list|,
 operator|new
-name|ComparisonDateTool
+name|MathTool
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -497,10 +437,21 @@ name|context
 operator|.
 name|put
 argument_list|(
-literal|"math"
+literal|"number"
 argument_list|,
 operator|new
-name|MathTool
+name|NumberTool
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|put
+argument_list|(
+literal|"sort"
+argument_list|,
+operator|new
+name|SortTool
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -831,6 +782,7 @@ argument_list|,
 name|resourceLoader
 argument_list|)
 expr_stmt|;
+comment|// TODO: Externalize Velocity properties
 name|engine
 operator|.
 name|setProperty
