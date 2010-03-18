@@ -575,6 +575,11 @@ argument_list|,
 literal|8
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|lrf
 operator|.
 name|args
