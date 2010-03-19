@@ -1749,6 +1749,21 @@ name|delete
 argument_list|()
 return|;
 block|}
+DECL|method|clearIndex
+specifier|public
+name|void
+name|clearIndex
+parameter_list|()
+block|{
+name|assertU
+argument_list|(
+name|delQ
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
