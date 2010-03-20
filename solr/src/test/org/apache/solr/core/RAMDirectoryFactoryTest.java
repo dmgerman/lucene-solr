@@ -109,7 +109,7 @@ name|Directory
 name|directory
 init|=
 operator|new
-name|RAMDirectory
+name|RefCntRamDirectory
 argument_list|()
 decl_stmt|;
 name|RAMDirectoryFactory
@@ -163,7 +163,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"RAMDirectoryFactory should not create new instance of RAMDirectory "
+literal|"RAMDirectoryFactory should not create new instance of RefCntRamDirectory "
 operator|+
 literal|"every time open() is called for the same path"
 argument_list|,
@@ -174,7 +174,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"RAMDirectoryFactory should not create new instance of RAMDirectory "
+literal|"RAMDirectoryFactory should not create new instance of RefCntRamDirectory "
 operator|+
 literal|"every time open() is called for the same path"
 argument_list|,
@@ -211,7 +211,7 @@ argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"RAMDirectoryFactory should create RAMDirectory even if the path doen't lead "
+literal|"RAMDirectoryFactory should create RefCntRamDirectory even if the path doen't lead "
 operator|+
 literal|"to index directory on the file system"
 argument_list|,
