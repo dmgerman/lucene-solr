@@ -80,6 +80,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|SolrCore
@@ -127,6 +139,48 @@ operator|.
 name|params
 operator|.
 name|HighlightParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|After
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -190,7 +244,7 @@ specifier|public
 class|class
 name|HighlighterTest
 extends|extends
-name|AbstractSolrTestCase
+name|SolrTestCaseJ4
 block|{
 DECL|field|LONG_TEXT
 specifier|private
@@ -208,48 +262,27 @@ literal|"is is is is is is is is is is is is is is is is is is is is sufficientl
 operator|+
 literal|"at all--we want two disjoint long fragments."
 decl_stmt|;
-DECL|method|getSchemaFile
 annotation|@
-name|Override
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
-parameter_list|()
-block|{
-return|return
-literal|"schema.xml"
-return|;
-block|}
-DECL|method|getSolrConfigFile
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
-literal|"solrconfig.xml"
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|setUp
-specifier|public
+specifier|static
 name|void
-name|setUp
+name|beforeClass
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// if you override setUp or tearDown, you better call
-comment|// the super classes version
-name|super
-operator|.
-name|setUp
-argument_list|()
+name|initCore
+argument_list|(
+literal|"solrconfig.xml"
+argument_list|,
+literal|"schema.xml"
+argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|After
 annotation|@
 name|Override
 DECL|method|tearDown
@@ -262,12 +295,17 @@ name|Exception
 block|{
 comment|// if you override setUp or tearDown, you better call
 comment|// the super classes version
+name|clearIndex
+argument_list|()
+expr_stmt|;
 name|super
 operator|.
 name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testConfig
 specifier|public
 name|void
@@ -383,6 +421,8 @@ name|RegexFragmenter
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testMergeContiguous
 specifier|public
 name|void
@@ -681,6 +721,8 @@ literal|"//lst[@name='1']/arr[@name='t_text']/str[.=' see what happens to<em>lon
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testTermVecHighlight
 specifier|public
 name|void
@@ -795,6 +837,8 @@ literal|"//arr[@name='tv_text']/str[.='<em>long</em> fragments.']"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testTermOffsetsTokenStream
 specifier|public
 name|void
@@ -922,6 +966,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 DECL|method|testTermVecMultiValuedHighlight
 specifier|public
 name|void
@@ -1045,6 +1091,8 @@ block|}
 comment|// Variant of testTermVecMultiValuedHighlight to make sure that
 comment|// more than just the first value of a multi-valued field is
 comment|// considered for highlighting.
+annotation|@
+name|Test
 DECL|method|testTermVecMultiValuedHighlight2
 specifier|public
 name|void
@@ -1170,6 +1218,8 @@ literal|"//arr[@name='tv_mv_text']/str[.='<em>long</em> fragments.']"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testDisMaxHighlight
 specifier|public
 name|void
@@ -1313,6 +1363,8 @@ literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testMultiValueAnalysisHighlight
 specifier|public
 name|void
@@ -1429,6 +1481,8 @@ literal|"//lst[@name='1']/arr[@name='textgap']/str"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testMultiValueBestFragmentHighlight
 specifier|public
 name|void
@@ -1544,6 +1598,8 @@ literal|"//lst[@name='1']/arr[@name='textgap']/str[.=\'second entry has both wor
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testDefaultFieldHighlight
 specifier|public
 name|void
@@ -1656,6 +1712,8 @@ literal|"//lst[@name='1']/arr[@name='t_text']/str"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testHighlightDisabled
 specifier|public
 name|void
@@ -1757,6 +1815,8 @@ literal|"not(//lst[@name='highlighting'])"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testTwoFieldHighlight
 specifier|public
 name|void
@@ -1866,6 +1926,8 @@ literal|"//lst[@name='1']/arr[@name='tv_text']/str"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldMatch
 specifier|public
 name|void
@@ -2084,6 +2146,8 @@ literal|"//lst[@name='2']/arr[@name='t_text2']/str[.='more random<em>words</em> 
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testCustomSimpleFormatterHighlight
 specifier|public
 name|void
@@ -2255,6 +2319,8 @@ literal|"//lst[@name='1']/arr[@name='t_text']/str[.='a<I>long</I> days night']"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testLongFragment
 specifier|public
 name|void
@@ -2362,6 +2428,8 @@ literal|"//lst[@name='1']/arr[@name='tv_text']/str"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testMaxChars
 specifier|public
 name|void
@@ -2562,6 +2630,8 @@ literal|"//lst[@name='1']/arr[count(str)=1]"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testRegexFragmenter
 specifier|public
 name|void
@@ -2773,6 +2843,8 @@ literal|"//arr/str[.='? I wonder how slashes/other punctuation fare in these<em>
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testVariableFragsize
 specifier|public
 name|void
@@ -2958,6 +3030,8 @@ literal|"//lst[@name='1']/arr[@name='tv_text']/str[.='a<em>long</em> days night 
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testAlternateSummary
 specifier|public
 name|void
@@ -3171,6 +3245,8 @@ literal|"//lst[@name='highlighting']/lst[@name='1']/arr[@name='t_text']/str[.='a
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testPhraseHighlighter
 specifier|public
 name|void
@@ -3414,6 +3490,8 @@ name|oldHighlight3
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testGetHighlightFields
 specifier|public
 name|void
@@ -3702,6 +3780,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testDefaultFieldPrefixWildcardHighlight
 specifier|public
 name|void
@@ -3832,6 +3912,8 @@ literal|"//lst[@name='1']/arr[@name='t_text']/str"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testDefaultFieldNonPrefixWildcardHighlight
 specifier|public
 name|void
