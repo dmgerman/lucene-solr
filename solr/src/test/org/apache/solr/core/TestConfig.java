@@ -38,6 +38,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|admin
@@ -112,7 +124,7 @@ name|solr
 operator|.
 name|util
 operator|.
-name|AbstractSolrTestCase
+name|RefCounted
 import|;
 end_import
 
@@ -120,13 +132,19 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|solr
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|util
+name|junit
 operator|.
-name|RefCounted
+name|Test
 import|;
 end_import
 
@@ -151,6 +169,18 @@ operator|.
 name|dom
 operator|.
 name|NodeList
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -192,29 +222,29 @@ specifier|public
 class|class
 name|TestConfig
 extends|extends
-name|AbstractSolrTestCase
+name|SolrTestCaseJ4
 block|{
-DECL|method|getSchemaFile
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
+specifier|static
+name|void
+name|beforeClass
 parameter_list|()
+throws|throws
+name|Exception
 block|{
-return|return
-literal|"schema.xml"
-return|;
-block|}
-comment|//public String getSolrConfigFile() { return "solrconfig.xml"; }
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
+name|initCore
+argument_list|(
 literal|"solrconfig-termindex.xml"
-return|;
+argument_list|,
+literal|"schema-reversed.xml"
+argument_list|)
+expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testLib
 specifier|public
 name|void
@@ -348,6 +378,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 DECL|method|testJavaProperty
 specifier|public
 name|void
@@ -491,6 +523,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testLucene23Upgrades
 specifier|public
 name|void
@@ -611,6 +645,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// sometime if the config referes to old things, it must be replaced with new stuff
+annotation|@
+name|Test
 DECL|method|testAutomaticDeprecationSupport
 specifier|public
 name|void
@@ -675,6 +711,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testTermIndexInterval
 specifier|public
 name|void
@@ -744,6 +782,8 @@ name|interval
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testTermIndexDivisor
 specifier|public
 name|void

@@ -96,13 +96,31 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|solr
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|util
+name|junit
 operator|.
-name|AbstractSolrTestCase
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -116,7 +134,7 @@ specifier|public
 class|class
 name|OutputWriterTest
 extends|extends
-name|AbstractSolrTestCase
+name|SolrTestCaseJ4
 block|{
 comment|/** The XML string that's output for testing purposes. */
 DECL|field|USELESS_OUTPUT
@@ -128,27 +146,28 @@ name|USELESS_OUTPUT
 init|=
 literal|"useless output"
 decl_stmt|;
-DECL|method|getSchemaFile
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
+specifier|static
+name|void
+name|beforeClass
 parameter_list|()
+throws|throws
+name|Exception
 block|{
-return|return
-literal|"solr/crazy-path-to-schema.xml"
-return|;
-block|}
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
+name|initCore
+argument_list|(
 literal|"solr/crazy-path-to-config.xml"
-return|;
+argument_list|,
+literal|"solr/crazy-path-to-schema.xml"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** responseHeader has changed in SOLR-59, check old and new variants */
+annotation|@
+name|Test
 DECL|method|testSOLR59responseHeaderVersions
 specifier|public
 name|void
@@ -310,6 +329,8 @@ literal|"/response/lst[@name='responseHeader']/int[@name='QTime']"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testUselessWriter
 specifier|public
 name|void
@@ -350,6 +371,8 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testTrivialXsltWriter
 specifier|public
 name|void

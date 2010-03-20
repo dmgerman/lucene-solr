@@ -42,8 +42,40 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
-comment|/**  * This is an example of how to write a JUnit tests for Solr using the  * AbstractSolrTestCase  */
+comment|/**  * This is an example of how to write a JUnit tests for Solr using the  * SolrTestCaseJ4  */
 end_comment
 
 begin_class
@@ -52,31 +84,31 @@ specifier|public
 class|class
 name|SampleTest
 extends|extends
-name|AbstractSolrTestCase
+name|SolrTestCaseJ4
 block|{
-comment|/**    * All subclasses of AbstractSolrTestCase must define this method.    *    *<p>    * Note that different tests can use different schemas by refering    * to any crazy path they want (as long as it works).    *</p>    */
-DECL|method|getSchemaFile
+comment|/**    * All subclasses of SolrTestCaseJ4 should initialize the core.    *    *<p>    * Note that different tests can use different schemas/configs by referring    * to any crazy path they want (as long as it works).    *</p>    */
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
+specifier|static
+name|void
+name|beforeClass
 parameter_list|()
+throws|throws
+name|Exception
 block|{
-return|return
-literal|"solr/crazy-path-to-schema.xml"
-return|;
-block|}
-comment|/**    * All subclasses of AbstractSolrTestCase must define this method    *    *<p>    * Note that different tests can use different configs by refering    * to any crazy path they want (as long as it works).    *</p>    */
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
+name|initCore
+argument_list|(
 literal|"solr/crazy-path-to-config.xml"
-return|;
+argument_list|,
+literal|"solr/crazy-path-to-schema.xml"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Demonstration of some of the simple ways to use the base class    */
+annotation|@
+name|Test
 DECL|method|testSimple
 specifier|public
 name|void
@@ -153,6 +185,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Demonstration of some of the more complex ways to use the base class    */
+annotation|@
+name|Test
 DECL|method|testAdvanced
 specifier|public
 name|void

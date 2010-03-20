@@ -18,13 +18,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|*
+name|BeforeClass
 import|;
 end_import
 
@@ -32,11 +28,19 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|solr
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
 operator|.
-name|util
+name|junit
+operator|.
+name|Assert
 operator|.
 name|*
 import|;
@@ -62,43 +66,28 @@ specifier|public
 class|class
 name|MinimalSchemaTest
 extends|extends
-name|AbstractSolrTestCase
+name|SolrTestCaseJ4
 block|{
-DECL|method|getSchemaFile
+comment|/**    * NOTE: we explicitly use the general 'solrconfig.xml' file here, in     * an attempt to test as many broad features as possible.    *    * Do not change this to point at some other "simpler" solrconfig.xml     * just because you want to add a new test case using solrconfig.xml,     * but your new testcase adds a feature that breaks this test.    */
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
-parameter_list|()
-block|{
-return|return
-literal|"solr/conf/schema-minimal.xml"
-return|;
-block|}
-comment|/**    * NOTE: we explicilty use the general 'solrconfig.xml' file here, in     * an attempt to test as many braod features as possible.    *    * Do not change this to point at some other "simpler" solrconfig.xml     * just because you want to add a new test case using solrconfig.xml,     * but your new testcase adds a feature that breaks this test.    */
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
-literal|"solr/conf/solrconfig.xml"
-return|;
-block|}
-DECL|method|setUp
-specifier|public
+specifier|static
 name|void
-name|setUp
+name|beforeClass
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
+name|initCore
+argument_list|(
+literal|"solr/conf/solrconfig.xml"
+argument_list|,
+literal|"solr/conf/schema-minimal.xml"
+argument_list|)
 expr_stmt|;
-comment|/* make sure some missguided soul doesn't inadvertantly give us         a uniqueKey field and defeat the point of hte tests     */
+comment|/* make sure some misguided soul doesn't inadvertently give us         a uniqueKey field and defeat the point of the tests     */
 name|assertNull
 argument_list|(
 literal|"UniqueKey Field isn't null"
@@ -126,10 +115,14 @@ argument_list|,
 literal|"2.0"
 argument_list|)
 expr_stmt|;
-name|assertU
+name|assertNull
 argument_list|(
 literal|"Simple assertion that adding a document works"
 argument_list|,
+name|h
+operator|.
+name|validateUpdate
+argument_list|(
 name|adoc
 argument_list|(
 literal|"id"
@@ -145,8 +138,13 @@ argument_list|,
 literal|"Solr"
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
-name|assertU
+name|assertNull
+argument_list|(
+name|h
+operator|.
+name|validateUpdate
 argument_list|(
 name|adoc
 argument_list|(
@@ -163,20 +161,33 @@ argument_list|,
 literal|"Solr"
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
-name|assertU
+name|assertNull
+argument_list|(
+name|h
+operator|.
+name|validateUpdate
 argument_list|(
 name|commit
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
-name|assertU
+name|assertNull
+argument_list|(
+name|h
+operator|.
+name|validateUpdate
 argument_list|(
 name|optimize
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testSimpleQueries
 specifier|public
 name|void
@@ -213,6 +224,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** SOLR-1371 */
+annotation|@
+name|Test
 DECL|method|testLuke
 specifier|public
 name|void
@@ -261,6 +274,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Iterates over all (non "/update/*") handlers in the core and hits     * them with a request (using some simple params) to verify that they     * don't generate an error against the minimal schema    */
+annotation|@
+name|Test
 DECL|method|testAllConfiguredHandlers
 specifier|public
 name|void
