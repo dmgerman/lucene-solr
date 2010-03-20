@@ -1063,11 +1063,9 @@ operator|.
 name|doc
 condition|)
 block|{
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error at pos "
 operator|+

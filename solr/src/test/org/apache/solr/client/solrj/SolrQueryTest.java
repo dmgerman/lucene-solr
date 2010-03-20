@@ -554,15 +554,7 @@ name|getTimeAllowed
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|q
-argument_list|)
-expr_stmt|;
+comment|// System.out.println(q);
 block|}
 DECL|method|testFacetSort
 specifier|public

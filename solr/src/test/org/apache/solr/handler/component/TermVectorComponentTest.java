@@ -562,17 +562,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TVs:"
-operator|+
-name|termVectors
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("TVs:" + termVectors);
 name|NamedList
 name|doc
 init|=
@@ -998,17 +988,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TVs: "
-operator|+
-name|termVectors
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("TVs: " + termVectors);
 name|NamedList
 name|doc
 init|=
@@ -1859,11 +1839,9 @@ name|request
 operator|.
 name|params
 decl_stmt|;
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Shard: "
 operator|+

@@ -140,11 +140,9 @@ operator|.
 name|getHighlighter
 argument_list|()
 decl_stmt|;
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"highlighter"
 argument_list|)

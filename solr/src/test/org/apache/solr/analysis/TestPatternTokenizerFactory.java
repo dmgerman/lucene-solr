@@ -365,22 +365,7 @@ argument_list|(
 name|stream
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|test
-index|[
-literal|2
-index|]
-operator|+
-literal|" ==> "
-operator|+
-name|out
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( test[2] + " ==> " + out );
 name|assertEquals
 argument_list|(
 literal|"pattern: "

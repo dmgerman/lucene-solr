@@ -305,17 +305,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Using port: "
-operator|+
-name|port
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Using port: " + port);
 try|try
 block|{
 name|LocateRegistry

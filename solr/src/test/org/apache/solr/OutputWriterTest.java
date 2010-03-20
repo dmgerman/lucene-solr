@@ -393,15 +393,7 @@ literal|"foo"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|out
-argument_list|)
-expr_stmt|;
+comment|// System.out.println(out);
 name|assertTrue
 argument_list|(
 name|out

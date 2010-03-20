@@ -225,46 +225,10 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|f
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"GAP: "
-operator|+
-name|f
-operator|.
-name|getGap
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"END: "
-operator|+
-name|f
-operator|.
-name|getEnd
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// TODO - test values?
+comment|// System.out.println(f.toString());
+comment|// System.out.println("GAP: " + f.getGap());
+comment|// System.out.println("END: " + f.getEnd());
 block|}
 block|}
 block|}

@@ -198,11 +198,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Didn't run testXInclude, because this XML DocumentBuilderFactory doesn't support it"
 argument_list|)

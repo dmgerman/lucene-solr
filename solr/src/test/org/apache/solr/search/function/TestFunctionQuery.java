@@ -1909,17 +1909,7 @@ argument_list|,
 name|answers
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Done test "
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Done test "+i);
 block|}
 block|}
 DECL|method|testGeneral

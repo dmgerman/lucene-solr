@@ -218,11 +218,9 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Started thread: "
 operator|+
@@ -268,11 +266,9 @@ operator|*
 name|numdocs
 argument_list|)
 expr_stmt|;
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"done"
 argument_list|)
@@ -469,11 +465,9 @@ operator|==
 literal|0
 condition|)
 block|{
-name|System
+name|log
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 name|getName
 argument_list|()

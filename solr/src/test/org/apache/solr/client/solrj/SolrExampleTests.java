@@ -479,20 +479,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ADD:"
-operator|+
-name|upres
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "ADD:"+upres.getResponse() );
 name|Assert
 operator|.
 name|assertEquals
@@ -516,20 +503,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"COMMIT:"
-operator|+
-name|upres
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "COMMIT:"+upres.getResponse() );
 name|Assert
 operator|.
 name|assertEquals
@@ -553,20 +527,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OPTIMIZE:"
-operator|+
-name|upres
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "OPTIMIZE:"+upres.getResponse() );
 name|Assert
 operator|.
 name|assertEquals
@@ -906,20 +867,7 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ADD:"
-operator|+
-name|upres
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "ADD:"+upres.getResponse() );
 name|Assert
 operator|.
 name|assertEquals
@@ -943,20 +891,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"COMMIT:"
-operator|+
-name|upres
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "COMMIT:"+upres.getResponse() );
 name|Assert
 operator|.
 name|assertEquals
@@ -980,20 +915,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OPTIMIZE:"
-operator|+
-name|upres
-operator|.
-name|getResponse
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "OPTIMIZE:"+upres.getResponse() );
 name|Assert
 operator|.
 name|assertEquals
@@ -1421,18 +1343,7 @@ name|getNumFound
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|rsp
-operator|.
-name|getResults
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( rsp.getResults() );
 comment|// Now do it again
 name|server
 operator|.
@@ -3718,20 +3629,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"111: "
-operator|+
-name|ff
-operator|.
-name|getValues
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( "111: "+ff.getValues() );
 comment|// check all counts
 name|assertEquals
 argument_list|(
@@ -3851,28 +3749,7 @@ argument_list|(
 literal|"features"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|rsp
-operator|.
-name|getResults
-argument_list|()
-operator|.
-name|getNumFound
-argument_list|()
-operator|+
-literal|" :::: 444: "
-operator|+
-name|ff
-operator|.
-name|getValues
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println( rsp.getResults().getNumFound() + " :::: 444: "+ff.getValues() );
 block|}
 block|}
 end_class
