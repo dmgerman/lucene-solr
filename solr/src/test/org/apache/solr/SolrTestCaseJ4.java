@@ -357,7 +357,7 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Call initCore in @BeforeClass to instantiate a solr core in your test class,    * then call deleteCore in @AfterClass */
+comment|/** Call initCore in @BeforeClass to instantiate a solr core in your test class.    * deleteCore will be called for you via SolrTestCaseJ4 @AfterClass */
 DECL|method|initCore
 specifier|public
 specifier|static
