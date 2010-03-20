@@ -119,7 +119,7 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solrConfig-functionquery.xml"
+literal|"solrconfig-functionquery.xml"
 argument_list|,
 literal|"schema11.xml"
 argument_list|)
