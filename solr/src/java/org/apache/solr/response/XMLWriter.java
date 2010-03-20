@@ -3416,7 +3416,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//A map is currently represented as a named list
+comment|/**    * writes a Map in the same format as a NamedList, using the    * stringification of the key Object when it's non-null.    *    * @param name    * @param map    * @throws IOException    * @see http://lucene.apache.org/solr/api/org/apache/solr/response/SolrQueryResponse.html#returnable_data    */
 DECL|method|writeMap
 specifier|public
 name|void
@@ -3426,16 +3426,16 @@ name|String
 name|name
 parameter_list|,
 name|Map
-name|val
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|map
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Map
-name|map
-init|=
-name|val
-decl_stmt|;
 name|int
 name|sz
 init|=
@@ -3463,29 +3463,22 @@ control|(
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
 name|entry
 range|:
-operator|(
-name|Set
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|>
-operator|)
 name|map
 operator|.
 name|entrySet
 argument_list|()
 control|)
 block|{
-comment|// possible class-cast exception here...
-name|String
+name|Object
 name|k
 init|=
-operator|(
-name|String
-operator|)
 name|entry
 operator|.
 name|getKey
@@ -3502,7 +3495,16 @@ decl_stmt|;
 comment|// if (sz<indentThreshold) indent();
 name|writeVal
 argument_list|(
+literal|null
+operator|==
 name|k
+condition|?
+literal|null
+else|:
+name|k
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|v
 argument_list|)
