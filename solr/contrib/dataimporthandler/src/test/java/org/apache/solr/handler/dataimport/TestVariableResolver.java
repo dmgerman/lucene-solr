@@ -155,12 +155,7 @@ name|void
 name|testDefaults
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
+comment|// System.out.println(System.setProperty(TestVariableResolver.class.getName(),"hello"));
 name|System
 operator|.
 name|setProperty
@@ -174,29 +169,8 @@ argument_list|()
 argument_list|,
 literal|"hello"
 argument_list|)
-argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"s.gP()"
-operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-name|TestVariableResolver
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("s.gP()"+ System.getProperty(TestVariableResolver.class.getName()));
 name|HashMap
 name|m
 init|=
@@ -237,17 +211,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"val = "
-operator|+
-name|val
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("val = " + val);
 name|Assert
 operator|.
 name|assertEquals
