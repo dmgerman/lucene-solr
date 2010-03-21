@@ -94,17 +94,8 @@ decl_stmt|;
 DECL|method|BalancedSegmentMergePolicy
 specifier|public
 name|BalancedSegmentMergePolicy
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|writer
-argument_list|)
-expr_stmt|;
-block|}
+parameter_list|()
+block|{   }
 DECL|method|setMergePolicyParams
 specifier|public
 name|void
@@ -529,6 +520,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|writer
+operator|!=
+literal|null
+assert|;
 return|return
 operator|!
 name|info
@@ -600,6 +596,9 @@ argument_list|(
 name|infos
 argument_list|,
 name|writer
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|maxNumSegments
 argument_list|,
@@ -685,6 +684,9 @@ operator|!
 name|isOptimized
 argument_list|(
 name|writer
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|infos
 operator|.

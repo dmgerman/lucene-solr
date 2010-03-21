@@ -648,16 +648,13 @@ decl_stmt|;
 DECL|method|MergePolicy
 specifier|public
 name|MergePolicy
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
+parameter_list|()
 block|{
 name|this
 operator|.
 name|writer
 operator|=
-name|writer
+literal|null
 expr_stmt|;
 block|}
 comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    */

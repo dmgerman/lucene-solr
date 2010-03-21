@@ -650,12 +650,6 @@ DECL|field|mergePolicy
 specifier|private
 name|MergePolicy
 name|mergePolicy
-init|=
-operator|new
-name|LogByteSizeMergePolicy
-argument_list|(
-name|this
-argument_list|)
 decl_stmt|;
 comment|// TODO 4.0: this should be made final once the setter is removed
 DECL|field|mergeScheduler
@@ -2287,8 +2281,8 @@ name|termIndexInterval
 operator|=
 name|interval
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getTermIndexInterval returns the right value. But this
+comment|// will go away together with the method in 4.0.
 name|config
 operator|.
 name|setTermIndexInterval
@@ -2681,6 +2675,20 @@ name|conf
 operator|.
 name|getSimilarity
 argument_list|()
+expr_stmt|;
+name|mergePolicy
+operator|=
+name|conf
+operator|.
+name|getMergePolicy
+argument_list|()
+expr_stmt|;
+name|mergePolicy
+operator|.
+name|setIndexWriter
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|mergeScheduler
 operator|=
@@ -3218,7 +3226,7 @@ return|return
 name|config
 return|;
 block|}
-comment|/**    * Expert: set the merge policy used by this writer.    */
+comment|/**    * Expert: set the merge policy used by this writer.    *     * @deprecated use {@link IndexWriterConfig#setMergePolicy(MergePolicy)} instead.    */
 DECL|method|setMergePolicy
 specifier|public
 name|void
@@ -3259,6 +3267,13 @@ name|mergePolicy
 operator|=
 name|mp
 expr_stmt|;
+name|mergePolicy
+operator|.
+name|setIndexWriter
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|pushMaxBufferedDocs
 argument_list|()
 expr_stmt|;
@@ -3275,8 +3290,17 @@ operator|+
 name|mp
 argument_list|)
 expr_stmt|;
+comment|// Required so config.getMergePolicy returns the right value. But this will
+comment|// go away together with the method in 4.0.
+name|config
+operator|.
+name|setMergePolicy
+argument_list|(
+name|mp
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**    * Expert: returns the current MergePolicy in use by this writer.    * @see #setMergePolicy    */
+comment|/**    * Expert: returns the current MergePolicy in use by this writer.    * @see #setMergePolicy    *     * @deprecated use {@link IndexWriterConfig#getMergePolicy()} instead    */
 DECL|method|getMergePolicy
 specifier|public
 name|MergePolicy
@@ -3362,7 +3386,7 @@ operator|+
 name|mergeScheduler
 argument_list|)
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
+comment|// Required so config.getMergeScheduler returns the right value. But this will
 comment|// go away together with the method in 4.0.
 name|config
 operator|.
@@ -3459,8 +3483,8 @@ operator|+
 name|maxFieldLength
 argument_list|)
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getMaxFieldLength returns the right value. But this
+comment|// will go away together with the method in 4.0.
 name|config
 operator|.
 name|setMaxFieldLength
@@ -3554,8 +3578,8 @@ operator|+
 name|maxBufferedDocs
 argument_list|)
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getMaxBufferedDocs returns the right value. But this
+comment|// will go away together with the method in 4.0.
 name|config
 operator|.
 name|setMaxBufferedDocs
@@ -3748,8 +3772,8 @@ operator|+
 name|mb
 argument_list|)
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getRAMBufferSizeMB returns the right value. But this
+comment|// will go away together with the method in 4.0.
 name|config
 operator|.
 name|setRAMBufferSizeMB
@@ -3822,8 +3846,8 @@ operator|+
 name|maxBufferedDeleteTerms
 argument_list|)
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getMaxBufferedDeleteTerms returns the right value. But
+comment|// this will go away together with the method in 4.0.
 name|config
 operator|.
 name|setMaxBufferedDeleteTerms
@@ -4045,8 +4069,8 @@ name|writeLockTimeout
 operator|=
 name|writeLockTimeout
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getWriteLockTimeout returns the right value. But this
+comment|// will go away together with the method in 4.0.
 name|config
 operator|.
 name|setWriteLockTimeout
@@ -14755,8 +14779,8 @@ name|mergedSegmentWarmer
 operator|=
 name|warmer
 expr_stmt|;
-comment|// Required so config.getSimilarity returns the right value. But this will
-comment|// go away together with the method in 4.0.
+comment|// Required so config.getMergedSegmentWarmer returns the right value. But
+comment|// this will go away together with the method in 4.0.
 name|config
 operator|.
 name|setMergedSegmentWarmer

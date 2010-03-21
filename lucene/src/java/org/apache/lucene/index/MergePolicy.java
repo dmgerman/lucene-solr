@@ -32,6 +32,36 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SetOnce
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SetOnce
+operator|.
+name|AlreadySetException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -71,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations to be used for overall merge  * and optimize operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.optimize is called, it calls  * {@link #findMergesForOptimize} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * LogByteSizeMergePolicy}.</p>  *  * @lucene.experimental  *  *<p><b>NOTE</b>: This class typically requires access to  * package-private APIs (e.g.<code>SegmentInfos</code>) to do its job;  * if you implement your own MergePolicy, you'll need to put  * it in package org.apache.lucene.index in order to use  * these APIs.  */
+comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations to be used for overall merge  * and optimize operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.optimize is called, it calls  * {@link #findMergesForOptimize} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * LogByteSizeMergePolicy}.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -738,14 +768,35 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|writer
-specifier|final
 specifier|protected
+specifier|final
+name|SetOnce
+argument_list|<
 name|IndexWriter
+argument_list|>
 name|writer
 decl_stmt|;
+comment|/**    * Creates a new merge policy instance. Note that if you intend to use it    * without passing it to {@link IndexWriter}, you should call    * {@link #setIndexWriter(IndexWriter)}.    */
 DECL|method|MergePolicy
 specifier|public
 name|MergePolicy
+parameter_list|()
+block|{
+name|writer
+operator|=
+operator|new
+name|SetOnce
+argument_list|<
+name|IndexWriter
+argument_list|>
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Sets the {@link IndexWriter} to use by this merge policy. This method is    * allowed to be called only once, and is usually set by IndexWriter. If it is    * called more than once, {@link AlreadySetException} is thrown.    *     * @see SetOnce    */
+DECL|method|setIndexWriter
+specifier|public
+name|void
+name|setIndexWriter
 parameter_list|(
 name|IndexWriter
 name|writer
@@ -754,8 +805,11 @@ block|{
 name|this
 operator|.
 name|writer
-operator|=
+operator|.
+name|set
+argument_list|(
 name|writer
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    */

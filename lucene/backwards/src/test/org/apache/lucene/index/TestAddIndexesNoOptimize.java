@@ -2441,9 +2441,7 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|(
-name|writer
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -2937,9 +2935,7 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogByteSizeMergePolicy
-argument_list|(
-name|writer
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer
@@ -3194,9 +3190,7 @@ name|lmp
 init|=
 operator|new
 name|LogByteSizeMergePolicy
-argument_list|(
-name|writer
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|lmp
 operator|.

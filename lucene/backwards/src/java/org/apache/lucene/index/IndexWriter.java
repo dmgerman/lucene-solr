@@ -626,9 +626,7 @@ name|mergePolicy
 init|=
 operator|new
 name|LogByteSizeMergePolicy
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 decl_stmt|;
 DECL|field|mergeScheduler
 specifier|private

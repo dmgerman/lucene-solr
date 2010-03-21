@@ -552,6 +552,23 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
+name|LogDocMergePolicy
+name|mp
+init|=
+operator|new
+name|LogDocMergePolicy
+argument_list|()
+decl_stmt|;
+comment|// Force degenerate merging so we can get a mix of
+comment|// merging of segments with and without deletes at the
+comment|// start:
+name|mp
+operator|.
+name|setMinMergeDocs
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -571,34 +588,13 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|)
-argument_list|)
-decl_stmt|;
-name|LogDocMergePolicy
-name|mp
-init|=
-operator|new
-name|LogDocMergePolicy
-argument_list|(
-name|writer
-argument_list|)
-decl_stmt|;
-name|writer
 operator|.
 name|setMergePolicy
 argument_list|(
 name|mp
 argument_list|)
-expr_stmt|;
-comment|// Force degenerate merging so we can get a mix of
-comment|// merging of segments with and without deletes at the
-comment|// start:
-name|mp
-operator|.
-name|setMinMergeDocs
-argument_list|(
-literal|1000
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Document
 name|doc
 init|=
@@ -1027,6 +1023,9 @@ name|LogMergePolicy
 operator|)
 name|writer
 operator|.
+name|getConfig
+argument_list|()
+operator|.
 name|getMergePolicy
 argument_list|()
 operator|)
@@ -1143,6 +1142,9 @@ name|LogMergePolicy
 operator|)
 name|writer
 operator|.
+name|getConfig
+argument_list|()
+operator|.
 name|getMergePolicy
 argument_list|()
 operator|)
@@ -1237,6 +1239,9 @@ operator|(
 name|LogMergePolicy
 operator|)
 name|writer
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getMergePolicy
 argument_list|()

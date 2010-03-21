@@ -262,6 +262,9 @@ name|LogMergePolicy
 operator|)
 name|writer
 operator|.
+name|getConfig
+argument_list|()
+operator|.
 name|getMergePolicy
 argument_list|()
 operator|)
@@ -276,6 +279,9 @@ operator|(
 name|LogMergePolicy
 operator|)
 name|writer
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getMergePolicy
 argument_list|()

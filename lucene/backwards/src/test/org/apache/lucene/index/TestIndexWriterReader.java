@@ -3408,9 +3408,7 @@ name|setMergePolicy
 argument_list|(
 operator|new
 name|LogDocMergePolicy
-argument_list|(
-name|w
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for

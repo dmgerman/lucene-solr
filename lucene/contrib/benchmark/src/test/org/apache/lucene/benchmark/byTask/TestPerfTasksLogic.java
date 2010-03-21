@@ -2940,16 +2940,8 @@ decl_stmt|;
 DECL|method|MyMergePolicy
 specifier|public
 name|MyMergePolicy
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
+parameter_list|()
 block|{
-name|super
-argument_list|(
-name|writer
-argument_list|)
-expr_stmt|;
 name|called
 operator|=
 literal|true
@@ -3031,7 +3023,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"did not use the specified MergeScheduler"
+literal|"did not use the specified MergePolicy"
 argument_list|,
 operator|(
 operator|(
@@ -3043,6 +3035,9 @@ name|getRunData
 argument_list|()
 operator|.
 name|getIndexWriter
+argument_list|()
+operator|.
+name|getConfig
 argument_list|()
 operator|.
 name|getMergePolicy
@@ -3229,6 +3224,9 @@ name|LogMergePolicy
 operator|)
 name|writer
 operator|.
+name|getConfig
+argument_list|()
+operator|.
 name|getMergePolicy
 argument_list|()
 operator|)
@@ -3244,6 +3242,9 @@ operator|(
 name|LogMergePolicy
 operator|)
 name|writer
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getMergePolicy
 argument_list|()

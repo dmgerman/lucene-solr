@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**<p>Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}.</p>  *  * @lucene.experimental  *  *<p><b>NOTE</b>: This class typically requires access to  * package-private APIs (eg, SegmentInfos) to do its job;  * if you implement your own MergePolicy, you'll need to put  * it in package org.apache.lucene.index in order to use  * these APIs. */
+comment|/**<p>Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}.</p>  *  * @lucene.experimental */
 end_comment
 
 begin_class
