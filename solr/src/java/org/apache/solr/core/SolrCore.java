@@ -2978,6 +2978,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+comment|// last call before the latch is released.
 name|instance
 operator|=
 name|this
