@@ -200,6 +200,16 @@ name|DEFAULT_MAX_THREAD_STATES
 init|=
 literal|8
 decl_stmt|;
+comment|/** Default setting for {@link #setIndexWriterPooling}. */
+DECL|field|DEFAULT_READER_POOLING
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|DEFAULT_READER_POOLING
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
@@ -308,6 +318,11 @@ specifier|private
 name|int
 name|maxThreadStates
 decl_stmt|;
+DECL|field|readerPooling
+specifier|private
+name|boolean
+name|readerPooling
+decl_stmt|;
 comment|// required for clone
 DECL|field|matchVersion
 specifier|private
@@ -410,6 +425,10 @@ expr_stmt|;
 name|maxThreadStates
 operator|=
 name|DEFAULT_MAX_THREAD_STATES
+expr_stmt|;
+name|readerPooling
+operator|=
+name|DEFAULT_READER_POOLING
 expr_stmt|;
 block|}
 annotation|@
@@ -987,6 +1006,17 @@ return|return
 name|this
 return|;
 block|}
+comment|/**    * Returns the current MergePolicy in use by this writer.    *     * @see #setMergePolicy(MergePolicy)    */
+DECL|method|getMergePolicy
+specifier|public
+name|MergePolicy
+name|getMergePolicy
+parameter_list|()
+block|{
+return|return
+name|mergePolicy
+return|;
+block|}
 comment|/**    * Sets the max number of simultaneous threads that may be indexing documents    * at once in IndexWriter. Values&lt; 1 are invalid and if passed    *<code>maxThreadStates</code> will be set to    * {@link #DEFAULT_MAX_THREAD_STATES}.    */
 DECL|method|setMaxThreadStates
 specifier|public
@@ -1024,15 +1054,35 @@ return|return
 name|maxThreadStates
 return|;
 block|}
-comment|/**    * Returns the current MergePolicy in use by this writer.    *     * @see #setMergePolicy(MergePolicy)    */
-DECL|method|getMergePolicy
+comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link IndexWriter#getReader}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link IndexWriter#getReader} is called. */
+DECL|method|setReaderPooling
 specifier|public
-name|MergePolicy
-name|getMergePolicy
+name|IndexWriterConfig
+name|setReaderPooling
+parameter_list|(
+name|boolean
+name|readerPooling
+parameter_list|)
+block|{
+name|this
+operator|.
+name|readerPooling
+operator|=
+name|readerPooling
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/** Returns true if IndexWriter should pool readers even    *  if {@link IndexWriter#getReader} has not been called. */
+DECL|method|getReaderPooling
+specifier|public
+name|boolean
+name|getReaderPooling
 parameter_list|()
 block|{
 return|return
-name|mergePolicy
+name|readerPooling
 return|;
 block|}
 comment|/** Expert: sets the {@link DocConsumer} chain to be used to process documents. */
@@ -1405,6 +1455,23 @@ operator|.
 name|append
 argument_list|(
 name|maxThreadStates
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"readerPooling="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|readerPooling
 argument_list|)
 operator|.
 name|append
