@@ -27,20 +27,49 @@ import|;
 end_import
 
 begin_comment
-comment|/**<p>Expert: {@link IndexWriter} uses an instance  *  implementing this interface to execute the merges  *  selected by a {@link MergePolicy}.  The default  *  MergeScheduler is {@link ConcurrentMergeScheduler}.</p>  *  * @lucene.experimental */
+comment|/**  * A {@link MergeScheduler} which never executes any merges. It is also a  * singleton and can be accessed through {@link NoMergeScheduler#INSTANCE}. Use  * it if you want to prevent an {@link IndexWriter} from ever executing merges,  * irregardles of the {@link MergePolicy} used. Note that you can achieve the  * same thing by using {@link NoMergePolicy}, however with  * {@link NoMergeScheduler} you also ensure that no unnecessary code of any  * {@link MergeScheduler} implementation is ever executed. Hence it is  * recommended to use both if you want to disable merges from ever happening.  */
 end_comment
 
 begin_class
-DECL|class|MergeScheduler
+DECL|class|NoMergeScheduler
 specifier|public
-specifier|abstract
+specifier|final
 class|class
+name|NoMergeScheduler
+extends|extends
 name|MergeScheduler
 block|{
-comment|/** Run the merges provided by {@link IndexWriter#getNextMerge()}. */
+comment|/** The single instance of {@link NoMergeScheduler} */
+DECL|field|INSTANCE
+specifier|public
+specifier|static
+specifier|final
+name|MergeScheduler
+name|INSTANCE
+init|=
+operator|new
+name|NoMergeScheduler
+argument_list|()
+decl_stmt|;
+DECL|method|NoMergeScheduler
+specifier|private
+name|NoMergeScheduler
+parameter_list|()
+block|{
+comment|// prevent instantiation
+block|}
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{}
+annotation|@
+name|Override
 DECL|method|merge
 specifier|public
-specifier|abstract
 name|void
 name|merge
 parameter_list|(
@@ -51,19 +80,7 @@ throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
-function_decl|;
-comment|/** Close this MergeScheduler. */
-DECL|method|close
-specifier|public
-specifier|abstract
-name|void
-name|close
-parameter_list|()
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-function_decl|;
+block|{}
 block|}
 end_class
 
