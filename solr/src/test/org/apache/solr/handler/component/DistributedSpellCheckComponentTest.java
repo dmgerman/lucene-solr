@@ -107,6 +107,13 @@ operator|.
 name|tearDown
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|saveProp
+operator|!=
+literal|null
+condition|)
+block|{
 name|System
 operator|.
 name|setProperty
@@ -116,6 +123,7 @@ argument_list|,
 name|saveProp
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
