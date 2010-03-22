@@ -309,7 +309,15 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// System.setProperty("solr.directoryFactory","solr.RAMDirectoryFactory");
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|,
+literal|"solr.RAMDirectoryFactory"
+argument_list|)
+expr_stmt|;
 block|}
 name|dataDir
 operator|=
