@@ -367,6 +367,11 @@ name|getDefaultValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"missing required field"
+argument_list|)
+expr_stmt|;
 name|assertFailedU
 argument_list|(
 literal|"adding doc without required field"
@@ -386,6 +391,9 @@ argument_list|,
 literal|"what's inside?"
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|resetExceptionIgnores
+argument_list|()
 expr_stmt|;
 name|assertU
 argument_list|(
@@ -620,19 +628,11 @@ literal|"id"
 argument_list|,
 literal|"802"
 argument_list|,
-literal|"field_t"
-argument_list|,
 literal|"name"
 argument_list|,
 literal|"baddef batch two"
 argument_list|,
-literal|"what's inside?"
-argument_list|,
-literal|"subject"
-argument_list|,
-literal|"info"
-argument_list|,
-literal|"GaRbAgeFiElD"
+literal|"missing_field_ignore_exception"
 argument_list|,
 literal|"garbage"
 argument_list|)
@@ -676,6 +676,11 @@ literal|"name:baddef"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound=1]"
+argument_list|)
+expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"missing required field"
 argument_list|)
 expr_stmt|;
 comment|// Add three documents at once, with the middle one missing a required field that has no default
@@ -740,6 +745,9 @@ argument_list|)
 operator|+
 literal|"</add>"
 argument_list|)
+expr_stmt|;
+name|resetExceptionIgnores
+argument_list|()
 expr_stmt|;
 name|assertU
 argument_list|(
