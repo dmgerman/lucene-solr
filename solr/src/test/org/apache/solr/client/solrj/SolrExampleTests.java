@@ -3301,7 +3301,7 @@ name|set
 argument_list|(
 literal|"qt"
 argument_list|,
-literal|"unknown handler!"
+literal|"unknown handler! ignore_exception"
 argument_list|)
 expr_stmt|;
 name|ping
