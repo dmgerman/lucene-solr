@@ -124,6 +124,21 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|ignoreException
+argument_list|(
+literal|"_twice"
+argument_list|)
+expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"ftAgain"
+argument_list|)
+expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"fAgain"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|setUp
@@ -227,9 +242,9 @@ control|)
 block|{
 name|log
 operator|.
-name|error
+name|info
 argument_list|(
-literal|"ERROR:"
+literal|"got ex:"
 operator|+
 name|t
 operator|.

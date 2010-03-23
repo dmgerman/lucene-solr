@@ -424,6 +424,11 @@ expr_stmt|;
 comment|// You can't add it to core1
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"unknown field"
+argument_list|)
+expr_stmt|;
 name|up
 operator|.
 name|process
@@ -444,6 +449,9 @@ name|Exception
 name|ex
 parameter_list|)
 block|{}
+name|resetExceptionIgnores
+argument_list|()
+expr_stmt|;
 comment|// Add to core1
 name|doc
 operator|.
@@ -488,6 +496,11 @@ expr_stmt|;
 comment|// You can't add it to core1
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"unknown field"
+argument_list|)
+expr_stmt|;
 name|up
 operator|.
 name|process
@@ -508,6 +521,9 @@ name|Exception
 name|ex
 parameter_list|)
 block|{}
+name|resetExceptionIgnores
+argument_list|()
+expr_stmt|;
 comment|// now Make sure AAA is in 0 and BBB in 1
 name|SolrQuery
 name|q
