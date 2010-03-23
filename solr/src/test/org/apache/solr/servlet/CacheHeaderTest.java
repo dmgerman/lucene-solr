@@ -232,6 +232,8 @@ expr_stmt|;
 name|checkVetoHeaders
 argument_list|(
 name|m
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -299,6 +301,8 @@ expr_stmt|;
 name|checkVetoHeaders
 argument_list|(
 name|m
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -309,6 +313,9 @@ name|checkVetoHeaders
 parameter_list|(
 name|HttpMethodBase
 name|m
+parameter_list|,
+name|boolean
+name|checkExpires
 parameter_list|)
 throws|throws
 name|Exception
@@ -330,14 +337,34 @@ argument_list|,
 name|head
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"no-cache, no-store"
+literal|"We got no no-cache in the Cache-Control header"
 argument_list|,
 name|head
 operator|.
 name|getValue
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"no-cache"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"We got no no-store in the Cache-Control header"
+argument_list|,
+name|head
+operator|.
+name|getValue
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"no-store"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|head
@@ -366,6 +393,11 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|checkExpires
+condition|)
+block|{
 name|head
 operator|=
 name|m
@@ -377,7 +409,12 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"We got no Expires header"
+literal|"We got no Expires header:"
+operator|+
+name|m
+operator|.
+name|getResponseHeaders
+argument_list|()
 argument_list|,
 name|head
 argument_list|)
@@ -412,6 +449,7 @@ operator|>
 literal|100000
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|doLastModified
 specifier|protected
