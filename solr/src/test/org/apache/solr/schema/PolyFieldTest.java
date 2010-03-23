@@ -975,6 +975,11 @@ literal|"\"//*[@numFound='2']\""
 argument_list|)
 expr_stmt|;
 comment|//bad
+name|ignoreException
+argument_list|(
+literal|"dimension"
+argument_list|)
+expr_stmt|;
 name|assertQEx
 argument_list|(
 literal|"Query should throw an exception due to incorrect dimensions"
@@ -996,6 +1001,9 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|)
+expr_stmt|;
+name|resetExceptionIgnores
+argument_list|()
 expr_stmt|;
 name|clearIndex
 argument_list|()
