@@ -38,6 +38,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -166,7 +186,9 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Ensure that any writes to this file are moved to    *  stable storage.  Lucene uses this to properly commit    *  changes to the index, to prevent a machine/OS crash    *  from corrupting the index. */
+comment|/**    * Ensure that any writes to this file are moved to    * stable storage.  Lucene uses this to properly commit    * changes to the index, to prevent a machine/OS crash    * from corrupting the index.    */
+annotation|@
+name|Deprecated
 DECL|method|sync
 specifier|public
 name|void
@@ -177,7 +199,38 @@ name|name
 parameter_list|)
 throws|throws
 name|IOException
-block|{}
+block|{
+comment|// TODO 4.0 kill me
+block|}
+comment|/**    * Ensure that any writes to these files are moved to    * stable storage.  Lucene uses this to properly commit    * changes to the index, to prevent a machine/OS crash    * from corrupting the index.<br/>    *<br/>    * NOTE: Clients may call this method for same files over    * and over again, so some impls might optimize for that.    * For other impls the operation can be a noop, for various    * reasons.    */
+DECL|method|sync
+specifier|public
+name|void
+name|sync
+parameter_list|(
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|names
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO 4.0 make me abstract
+for|for
+control|(
+name|String
+name|name
+range|:
+name|names
+control|)
+name|sync
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Returns a stream reading an existing file. */
 DECL|method|openInput
 specifier|public

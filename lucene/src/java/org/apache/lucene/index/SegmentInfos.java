@@ -2917,7 +2917,12 @@ name|dir
 operator|.
 name|sync
 argument_list|(
+name|Collections
+operator|.
+name|singleton
+argument_list|(
 name|fileName
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|success
