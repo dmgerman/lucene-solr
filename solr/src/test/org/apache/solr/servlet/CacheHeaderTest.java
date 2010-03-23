@@ -267,7 +267,7 @@ name|NameValuePair
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"xyz:solr"
+literal|"xyz_ignore_exception:solr"
 argument_list|)
 block|,
 operator|new
