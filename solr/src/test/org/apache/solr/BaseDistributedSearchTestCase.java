@@ -665,6 +665,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|SolrTestCaseJ4
+operator|.
+name|resetExceptionIgnores
+argument_list|()
+expr_stmt|;
+comment|// ignore anything with ignore_exception in it
 name|super
 operator|.
 name|setUp

@@ -144,13 +144,13 @@ DECL|field|missingField
 name|String
 name|missingField
 init|=
-literal|"missing_but_valid_field_t"
+literal|"ignore_exception__missing_but_valid_field_t"
 decl_stmt|;
 DECL|field|invalidField
 name|String
 name|invalidField
 init|=
-literal|"invalid_field_not_in_schema"
+literal|"ignore_exception__invalid_field_not_in_schema"
 decl_stmt|;
 annotation|@
 name|Override
