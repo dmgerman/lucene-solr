@@ -119,7 +119,12 @@ name|setProperty
 argument_list|(
 literal|"solr.data.dir"
 argument_list|,
-literal|"./solr/data"
+name|this
+operator|.
+name|dataDir
+operator|.
+name|getCanonicalPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
