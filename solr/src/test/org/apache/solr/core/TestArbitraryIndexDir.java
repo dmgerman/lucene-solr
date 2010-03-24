@@ -611,6 +611,20 @@ name|e
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|os
+operator|!=
+literal|null
+condition|)
+name|os
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 comment|//add a doc in the new index dir
 name|Directory
 name|dir
