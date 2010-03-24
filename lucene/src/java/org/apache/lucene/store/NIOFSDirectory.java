@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link FSDirectory} implementation that uses  * java.nio's FileChannel's positional read, which allows  * multiple threads to read from the same file without  * synchronizing.  *  *<p>This class only uses FileChannel when reading; writing  * is achieved with {@link SimpleFSDirectory.SimpleFSIndexOutput}.  *   *<p><b>NOTE</b>: NIOFSDirectory is not recommended on Windows because of a bug  * in how FileChannel.read is implemented in Sun's JRE.  * Inside of the implementation the position is apparently  * synchronized.  See<a  * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">here</a>  * for details.  */
+comment|/**  * An {@link FSDirectory} implementation that uses  * java.nio's FileChannel's positional read, which allows  * multiple threads to read from the same file without  * synchronizing.  *  *<p>This class only uses FileChannel when reading; writing  * is achieved with {@link FSDirectory.FSIndexOutput}.  *   *<p><b>NOTE</b>: NIOFSDirectory is not recommended on Windows because of a bug  * in how FileChannel.read is implemented in Sun's JRE.  * Inside of the implementation the position is apparently  * synchronized.  See<a  * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">here</a>  * for details.  */
 end_comment
 
 begin_class

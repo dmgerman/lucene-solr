@@ -200,7 +200,7 @@ name|DEFAULT_MAX_THREAD_STATES
 init|=
 literal|8
 decl_stmt|;
-comment|/** Default setting for {@link #setIndexWriterPooling}. */
+comment|/** Default setting for {@link #setReaderPooling}. */
 DECL|field|DEFAULT_READER_POOLING
 specifier|public
 specifier|final
