@@ -186,7 +186,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Ensure that any writes to this file are moved to    * stable storage.  Lucene uses this to properly commit    * changes to the index, to prevent a machine/OS crash    * from corrupting the index.    */
+comment|/**    * Ensure that any writes to this file are moved to    * stable storage.  Lucene uses this to properly commit    * changes to the index, to prevent a machine/OS crash    * from corrupting the index.    * @deprecated use {@link #sync(Collection)} instead.    * For easy migration you can change your code to call    * sync(Collections.singleton(name))    */
 annotation|@
 name|Deprecated
 DECL|method|sync
