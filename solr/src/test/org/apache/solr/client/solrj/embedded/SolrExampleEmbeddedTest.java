@@ -90,6 +90,8 @@ argument_list|(
 name|EXAMPLE_CONFIG
 argument_list|,
 name|EXAMPLE_SCHEMA
+argument_list|,
+name|EXAMPLE_HOME
 argument_list|)
 expr_stmt|;
 block|}
