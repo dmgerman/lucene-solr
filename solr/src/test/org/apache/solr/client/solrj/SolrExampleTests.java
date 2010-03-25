@@ -366,6 +366,28 @@ name|FacetParams
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * This should include tests against the example solr config  *   * This lets us try various SolrServer implementations with the same tests.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -377,9 +399,11 @@ specifier|public
 class|class
 name|SolrExampleTests
 extends|extends
-name|SolrExampleTestBase
+name|SolrJettyTestBase
 block|{
 comment|/**    * query the example    */
+annotation|@
+name|Test
 DECL|method|testExampleConfig
 specifier|public
 name|void
@@ -1153,6 +1177,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * query the example    */
+annotation|@
+name|Test
 DECL|method|testAddRetrieve
 specifier|public
 name|void
@@ -1412,6 +1438,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * query the example    */
+annotation|@
+name|Test
 DECL|method|testCommitWithin
 specifier|public
 name|void
@@ -1639,6 +1667,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testContentStreamRequest
 specifier|public
 name|void
@@ -1977,6 +2007,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 DECL|method|testAddDelete
 specifier|public
 name|void
@@ -2297,6 +2329,8 @@ argument_list|)
 expr_stmt|;
 comment|// make sure it got out
 block|}
+annotation|@
+name|Test
 DECL|method|testLukeHandler
 specifier|public
 name|void
@@ -2456,6 +2490,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testStatistics
 specifier|public
 name|void
@@ -2661,6 +2697,11 @@ name|stats
 operator|.
 name|getMin
 argument_list|()
+operator|.
+name|doubleValue
+argument_list|()
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2671,6 +2712,11 @@ name|stats
 operator|.
 name|getMax
 argument_list|()
+operator|.
+name|doubleValue
+argument_list|()
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2867,6 +2913,11 @@ name|stats
 operator|.
 name|getMin
 argument_list|()
+operator|.
+name|doubleValue
+argument_list|()
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2877,6 +2928,11 @@ name|stats
 operator|.
 name|getMax
 argument_list|()
+operator|.
+name|doubleValue
+argument_list|()
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3241,6 +3297,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testPingHandler
 specifier|public
 name|void
@@ -3326,6 +3384,8 @@ block|{
 comment|// expected
 block|}
 block|}
+annotation|@
+name|Test
 DECL|method|testFaceting
 specifier|public
 name|void

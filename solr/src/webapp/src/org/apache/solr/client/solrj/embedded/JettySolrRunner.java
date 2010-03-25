@@ -242,6 +242,12 @@ argument_list|,
 name|port
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|solrConfigFilename
+operator|!=
+literal|null
+condition|)
 name|dispatchFilter
 operator|.
 name|setInitParameter
