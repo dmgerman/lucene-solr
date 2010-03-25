@@ -515,7 +515,7 @@ name|NamedList
 name|terms
 init|=
 operator|new
-name|NamedList
+name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
 name|rb
