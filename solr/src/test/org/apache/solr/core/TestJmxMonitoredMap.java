@@ -267,6 +267,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|int
+name|retries
+init|=
+literal|5
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -276,7 +281,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|5
+name|retries
 condition|;
 name|i
 operator|++
@@ -293,6 +298,8 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|port
 operator|=
 name|server
@@ -300,11 +307,15 @@ operator|.
 name|getLocalPort
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|server
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 comment|// System.out.println("Using port: " + port);
 try|try
 block|{
@@ -321,7 +332,11 @@ parameter_list|(
 name|RemoteException
 name|e
 parameter_list|)
-block|{         }
+block|{
+throw|throw
+name|e
+throw|;
+block|}
 name|String
 name|url
 init|=
@@ -391,7 +406,23 @@ parameter_list|(
 name|Exception
 name|e
 parameter_list|)
-block|{        }
+block|{
+if|if
+condition|(
+name|retries
+operator|==
+operator|(
+name|i
+operator|+
+literal|1
+operator|)
+condition|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+block|}
 block|}
 block|}
 annotation|@
