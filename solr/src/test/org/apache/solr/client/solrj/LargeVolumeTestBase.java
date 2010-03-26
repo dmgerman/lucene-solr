@@ -576,6 +576,8 @@ name|getStatus
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|resp
 operator|=
 name|tserver
@@ -610,6 +612,27 @@ name|getStatus
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// a commit/optimize can fail with a too many warming searchers exception
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Caught benign exception during commit: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
