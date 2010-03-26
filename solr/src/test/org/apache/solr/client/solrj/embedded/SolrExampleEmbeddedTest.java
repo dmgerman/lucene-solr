@@ -95,27 +95,6 @@ name|EXAMPLE_HOME
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|createNewSolrServer
-specifier|protected
-name|SolrServer
-name|createNewSolrServer
-parameter_list|()
-block|{
-return|return
-operator|new
-name|EmbeddedSolrServer
-argument_list|(
-name|h
-operator|.
-name|getCoreContainer
-argument_list|()
-argument_list|,
-literal|""
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 

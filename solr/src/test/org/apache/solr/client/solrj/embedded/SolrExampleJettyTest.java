@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *   */
 end_comment
 
 begin_class
@@ -160,76 +160,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|createNewSolrServer
-specifier|protected
-name|SolrServer
-name|createNewSolrServer
-parameter_list|()
-block|{
-try|try
-block|{
-comment|// setup the server...
-name|String
-name|url
-init|=
-literal|"http://localhost:"
-operator|+
-name|port
-operator|+
-name|context
-decl_stmt|;
-name|CommonsHttpSolrServer
-name|s
-init|=
-operator|new
-name|CommonsHttpSolrServer
-argument_list|(
-name|url
-argument_list|)
-decl_stmt|;
-name|s
-operator|.
-name|setConnectionTimeout
-argument_list|(
-literal|100
-argument_list|)
-expr_stmt|;
-comment|// 1/10th sec
-name|s
-operator|.
-name|setDefaultMaxConnectionsPerHost
-argument_list|(
-literal|100
-argument_list|)
-expr_stmt|;
-name|s
-operator|.
-name|setMaxTotalConnections
-argument_list|(
-literal|100
-argument_list|)
-expr_stmt|;
-return|return
-name|s
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|ex
-argument_list|)
-throw|;
-block|}
 block|}
 annotation|@
 name|Test
