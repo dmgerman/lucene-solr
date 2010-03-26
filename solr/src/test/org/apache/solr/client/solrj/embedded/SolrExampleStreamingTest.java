@@ -175,7 +175,7 @@ name|Throwable
 name|ex
 parameter_list|)
 block|{
-comment|// do somethign...
+comment|// do something...    TODO?
 block|}
 block|}
 decl_stmt|;
