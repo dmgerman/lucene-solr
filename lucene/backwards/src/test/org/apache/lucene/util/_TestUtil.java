@@ -160,7 +160,14 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
+literal|"tempDir"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
 literal|"java.io.tmpdir"
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -173,7 +180,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"java.io.tmpdir undefined, cannot run test"
+literal|"System property tempDir undefined, cannot run test"
 argument_list|)
 throw|;
 return|return
