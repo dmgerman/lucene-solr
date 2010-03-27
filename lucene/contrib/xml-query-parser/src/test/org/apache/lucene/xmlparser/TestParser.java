@@ -616,6 +616,11 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|//		dir.close();
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testSimpleXML
 specifier|public
