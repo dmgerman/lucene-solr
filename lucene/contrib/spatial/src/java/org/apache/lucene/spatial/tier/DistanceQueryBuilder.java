@@ -152,7 +152,7 @@ specifier|final
 name|DistanceFilter
 name|distanceFilter
 decl_stmt|;
-comment|/**    * Create a distance query using    * a boundary box wrapper around a more precise    * DistanceFilter.    *     * @param lat    * @param lng    * @param miles    */
+comment|/**    * Create a distance query using    * a boundary box wrapper around a more precise    * DistanceFilter.    *     * @param lat The latitude to search around    * @param lng the Longitude to search around    * @param miles The radius to search within    * @param latField The name of the field containing the latitude    * @param lngField The name of the field containing the longitude    * @param tierFieldPrefix The prefix of the tier    * @param needPrecise if true, then distance is calculated in addition to tier info    * @param minTierIndexed The minimum tier level indexed    * @param maxTierIndexed The maximum tier level indexed    */
 DECL|method|DistanceQueryBuilder
 specifier|public
 name|DistanceQueryBuilder
@@ -177,6 +177,12 @@ name|tierFieldPrefix
 parameter_list|,
 name|boolean
 name|needPrecise
+parameter_list|,
+name|int
+name|minTierIndexed
+parameter_list|,
+name|int
+name|maxTierIndexed
 parameter_list|)
 block|{
 name|this
@@ -204,6 +210,10 @@ operator|new
 name|CartesianPolyFilterBuilder
 argument_list|(
 name|tierFieldPrefix
+argument_list|,
+name|minTierIndexed
+argument_list|,
+name|maxTierIndexed
 argument_list|)
 decl_stmt|;
 name|Filter
@@ -281,6 +291,12 @@ name|tierFieldPrefix
 parameter_list|,
 name|boolean
 name|needPrecise
+parameter_list|,
+name|int
+name|minTierIndexed
+parameter_list|,
+name|int
+name|maxTierIndexed
 parameter_list|)
 block|{
 name|this
@@ -308,6 +324,10 @@ operator|new
 name|CartesianPolyFilterBuilder
 argument_list|(
 name|tierFieldPrefix
+argument_list|,
+name|minTierIndexed
+argument_list|,
+name|maxTierIndexed
 argument_list|)
 decl_stmt|;
 name|Filter
