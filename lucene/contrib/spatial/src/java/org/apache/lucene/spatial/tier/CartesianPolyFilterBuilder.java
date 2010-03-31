@@ -338,6 +338,7 @@ name|longX2
 init|=
 literal|0.0
 decl_stmt|;
+comment|//Are we crossing the 180 deg. longitude, if so, we need to do some special things
 if|if
 condition|(
 name|ur
@@ -368,6 +369,7 @@ operator|-
 literal|180.0
 expr_stmt|;
 block|}
+comment|//are we crossing the prime meridian (0 degrees)?  If so, we need to account for it and boxes on both sides
 if|if
 condition|(
 name|ur
@@ -499,13 +501,7 @@ operator|!=
 literal|0.0
 condition|)
 block|{
-if|if
-condition|(
-name|longX2
-operator|!=
-literal|0.0
-condition|)
-block|{
+comment|//We are around the prime meridian
 if|if
 condition|(
 name|longX
@@ -541,6 +537,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//we are around the 180th longitude
 name|longX
 operator|=
 name|longX2
@@ -567,7 +564,6 @@ argument_list|,
 name|longX
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|//System.err.println("getBoxShape2:"+latY+"," + longY);
 comment|//System.err.println("getBoxShape2:"+latX+"," + longX);
