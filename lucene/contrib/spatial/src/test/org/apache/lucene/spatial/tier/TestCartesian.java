@@ -1350,6 +1350,7 @@ literal|2800.0
 decl_stmt|;
 comment|// Hawaii
 comment|// 2300 miles to Marshall Island Airfield
+comment|//Hawaii to Midway is 911 miles
 name|lat
 operator|=
 literal|21.6032207
