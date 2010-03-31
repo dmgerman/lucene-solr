@@ -338,6 +338,9 @@ name|longX2
 init|=
 literal|0.0
 decl_stmt|;
+comment|//These two if checks setup us up to deal with issues around the prime meridian and the 180th meridian
+comment|//In these two cases, we need to get tiles (tiers) from the lower left up to the meridian and then
+comment|//from the meridan to the upper right
 comment|//Are we crossing the 180 deg. longitude, if so, we need to do some special things
 if|if
 condition|(
