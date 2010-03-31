@@ -675,6 +675,34 @@ return|return
 name|sval
 return|;
 block|}
+elseif|else
+if|if
+condition|(
+name|sval
+operator|.
+name|indexOf
+argument_list|(
+literal|":\\"
+argument_list|)
+operator|>=
+literal|0
+operator|||
+name|sval
+operator|.
+name|indexOf
+argument_list|(
+literal|":/"
+argument_list|)
+operator|>=
+literal|0
+condition|)
+block|{
+comment|// this previously messed up absolute path names on Windows. Assuming
+comment|// there is no real value that starts with \ or /
+return|return
+name|sval
+return|;
+block|}
 comment|// first time this prop is extracted by round
 name|int
 name|k
