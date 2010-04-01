@@ -1987,12 +1987,12 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.snowball.SnowballFilter"
+literal|"org.apache.lucene.analysis.PorterStemFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expcting SnowballFilter analysis breakdown"
+literal|"Expcting PorterStemFilter analysis breakdown"
 argument_list|,
 name|tokenList
 argument_list|)
@@ -2629,12 +2629,12 @@ name|queryPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.snowball.SnowballFilter"
+literal|"org.apache.lucene.analysis.PorterStemFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expcting SnowballFilter analysis breakdown"
+literal|"Expcting PorterStemFilter analysis breakdown"
 argument_list|,
 name|tokenList
 argument_list|)
