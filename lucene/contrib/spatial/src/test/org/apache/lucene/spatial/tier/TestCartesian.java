@@ -1153,6 +1153,18 @@ name|addPoint
 argument_list|(
 name|writer
 argument_list|,
+literal|"Wonga Wongue Reserve, Gabon"
+argument_list|,
+operator|-
+literal|0.546562
+argument_list|,
+literal|9.459229
+argument_list|)
+expr_stmt|;
+name|addPoint
+argument_list|(
+name|writer
+argument_list|,
 literal|"Midway Island"
 argument_list|,
 literal|25.7
@@ -1322,6 +1334,7 @@ name|miles
 argument_list|)
 expr_stmt|;
 block|}
+comment|/*public void testCartesianPolyFilterBuilder() throws Exception {     CartesianPolyFilterBuilder cpfb = new CartesianPolyFilterBuilder(CartesianTierPlotter.DEFALT_FIELD_PREFIX, 2, 15);     //try out some shapes     final double miles = 20.0;         // Hawaii         // 2300 miles to Marshall Island Airfield     //Hawaii to Midway is 911 miles     lat = 0;     lng = -179.9;     Shape shape;     shape = cpfb.getBoxShape(lat, lng, miles);     System.out.println("Tier: " + shape.getTierLevel());     System.out.println("area: " + shape.getArea().size());     lat = 30;     lng = -100;     shape = cpfb.getBoxShape(lat, lng, miles);     System.out.println("Tier: " + shape.getTierLevel());     System.out.println("area: " + shape.getArea().size());      lat = 30;     lng = 100;     shape = cpfb.getBoxShape(lat, lng, miles);     System.out.println("Tier: " + shape.getTierLevel());     System.out.println("area: " + shape.getArea().size());   } */
 DECL|method|testAntiM
 specifier|public
 name|void
