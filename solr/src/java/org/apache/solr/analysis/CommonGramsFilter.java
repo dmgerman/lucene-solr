@@ -152,6 +152,20 @@ name|TypeAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/*  * TODO: Consider implementing https://issues.apache.org/jira/browse/LUCENE-1688 changes to stop list and associated constructors   */
 end_comment
@@ -212,9 +226,6 @@ specifier|final
 name|TermAttribute
 name|termAttribute
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -228,9 +239,6 @@ specifier|final
 name|OffsetAttribute
 name|offsetAttribute
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
@@ -244,9 +252,6 @@ specifier|final
 name|TypeAttribute
 name|typeAttribute
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TypeAttribute
@@ -260,9 +265,6 @@ specifier|final
 name|PositionIncrementAttribute
 name|posIncAttribute
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
@@ -285,7 +287,7 @@ specifier|private
 name|State
 name|savedState
 decl_stmt|;
-comment|/**    * Construct a token stream filtering the given input using a Set of common    * words to create bigrams. Outputs both unigrams with position increment and    * bigrams with position increment 0 type=gram where one or both of the words    * in a potential bigram are in the set of common words .    *     * @param input TokenStream input in filter chain    * @param commonWords The set of common words.    */
+comment|/** @deprecated Use {@link #CommonGramsFilter(Version, TokenStream, Set)} instead */
 DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
@@ -294,11 +296,78 @@ name|TokenStream
 name|input
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|commonWords
 parameter_list|)
 block|{
 name|this
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_29
+argument_list|,
+name|input
+argument_list|,
+name|commonWords
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** @deprecated Use {@link #CommonGramsFilter(Version, TokenStream, Set, boolean)} instead */
+DECL|method|CommonGramsFilter
+specifier|public
+name|CommonGramsFilter
+parameter_list|(
+name|TokenStream
+name|input
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|commonWords
+parameter_list|,
+name|boolean
+name|ignoreCase
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_29
+argument_list|,
+name|input
+argument_list|,
+name|commonWords
+argument_list|,
+name|ignoreCase
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Construct a token stream filtering the given input using a Set of common    * words to create bigrams. Outputs both unigrams with position increment and    * bigrams with position increment 0 type=gram where one or both of the words    * in a potential bigram are in the set of common words .    *     * @param input TokenStream input in filter chain    * @param commonWords The set of common words.    */
+DECL|method|CommonGramsFilter
+specifier|public
+name|CommonGramsFilter
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
+name|TokenStream
+name|input
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|commonWords
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|matchVersion
+argument_list|,
 name|input
 argument_list|,
 name|commonWords
@@ -312,10 +381,16 @@ DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|commonWords
 parameter_list|,
 name|boolean
@@ -353,6 +428,8 @@ operator|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|matchVersion
+argument_list|,
 name|commonWords
 operator|.
 name|size
@@ -372,7 +449,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Construct a token stream filtering the given input using an Array of common    * words to create bigrams.    *     * @param input Tokenstream in filter chain    * @param commonWords words to be used in constructing bigrams    */
+comment|/**    * Construct a token stream filtering the given input using an Array of common    * words to create bigrams.    *     * @param input Tokenstream in filter chain    * @param commonWords words to be used in constructing bigrams    * @deprecated Use {@link #CommonGramsFilter(Version, TokenStream, Set)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
@@ -395,7 +474,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a token stream filtering the given input using an Array of common    * words to create bigrams and is case-sensitive if ignoreCase is false.    *     * @param input Tokenstream in filter chain    * @param commonWords words to be used in constructing bigrams    * @param ignoreCase -Ignore case when constructing bigrams for common words.    */
+comment|/**    * Construct a token stream filtering the given input using an Array of common    * words to create bigrams and is case-sensitive if ignoreCase is false.    *     * @param input Tokenstream in filter chain    * @param commonWords words to be used in constructing bigrams    * @param ignoreCase -Ignore case when constructing bigrams for common words.    * @deprecated Use {@link #CommonGramsFilter(Version, TokenStream, Set, boolean)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
@@ -428,7 +509,9 @@ name|ignoreCase
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Build a CharArraySet from an array of common words, appropriate for passing    * into the CommonGramsFilter constructor. This permits this commonWords    * construction to be cached once when an Analyzer is constructed.    *    * @param commonWords Array of common words which will be converted into the CharArraySet    * @return CharArraySet of the given words, appropriate for passing into the CommonGramFilter constructor    * @see #makeCommonSet(java.lang.String[], boolean) passing false to ignoreCase    */
+comment|/**    * Build a CharArraySet from an array of common words, appropriate for passing    * into the CommonGramsFilter constructor. This permits this commonWords    * construction to be cached once when an Analyzer is constructed.    *    * @param commonWords Array of common words which will be converted into the CharArraySet    * @return CharArraySet of the given words, appropriate for passing into the CommonGramFilter constructor    * @see #makeCommonSet(java.lang.String[], boolean) passing false to ignoreCase    * @deprecated create a CharArraySet with CharArraySet instead    */
+annotation|@
+name|Deprecated
 DECL|method|makeCommonSet
 specifier|public
 specifier|static
@@ -449,7 +532,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Build a CharArraySet from an array of common words, appropriate for passing    * into the CommonGramsFilter constructor,case-sensitive if ignoreCase is    * false.    *     * @param commonWords Array of common words which will be converted into the CharArraySet    * @param ignoreCase If true, all words are lower cased first.    * @return a Set containing the words    */
+comment|/**    * Build a CharArraySet from an array of common words, appropriate for passing    * into the CommonGramsFilter constructor,case-sensitive if ignoreCase is    * false.    *     * @param commonWords Array of common words which will be converted into the CharArraySet    * @param ignoreCase If true, all words are lower cased first.    * @return a Set containing the words    * @deprecated create a CharArraySet with CharArraySet instead    */
+annotation|@
+name|Deprecated
 DECL|method|makeCommonSet
 specifier|public
 specifier|static

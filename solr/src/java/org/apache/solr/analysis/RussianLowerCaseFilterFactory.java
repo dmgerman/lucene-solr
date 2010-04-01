@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|LowerCaseFilter
 import|;
 end_import
 
@@ -50,9 +50,35 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ru
+name|TokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|RussianLowerCaseFilter
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
 import|;
 end_import
 
@@ -86,7 +112,13 @@ name|ErrorCode
 import|;
 end_import
 
+begin_comment
+comment|/** @deprecated Use {@link LowerCaseFilterFactory} instead which has the  *  same functionality.  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianLowerCaseFilterFactory
 specifier|public
 class|class
@@ -142,17 +174,22 @@ throw|;
 block|}
 DECL|method|create
 specifier|public
-name|RussianLowerCaseFilter
+name|TokenFilter
 name|create
 parameter_list|(
 name|TokenStream
 name|in
 parameter_list|)
 block|{
+comment|// hardcode the version to give exactly the old behavior
 return|return
 operator|new
-name|RussianLowerCaseFilter
+name|LowerCaseFilter
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_29
+argument_list|,
 name|in
 argument_list|)
 return|;

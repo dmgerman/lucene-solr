@@ -74,16 +74,6 @@ name|HashMap
 import|;
 end_import
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
 begin_comment
 comment|/**  *  *  **/
 end_comment
@@ -94,7 +84,7 @@ specifier|public
 class|class
 name|TestStopFilterFactory
 extends|extends
-name|TestCase
+name|BaseTokenTestCase
 block|{
 DECL|method|testInform
 specifier|public
@@ -146,7 +136,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -181,6 +173,9 @@ name|loader
 argument_list|)
 expr_stmt|;
 name|Set
+argument_list|<
+name|?
+argument_list|>
 name|words
 init|=
 name|factory

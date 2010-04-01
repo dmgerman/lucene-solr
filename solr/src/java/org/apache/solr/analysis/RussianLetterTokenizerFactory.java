@@ -82,7 +82,13 @@ name|ErrorCode
 import|;
 end_import
 
+begin_comment
+comment|/** @deprecated Use {@link StandardTokenizerFactory} instead.  *  This tokenizer has no Russian-specific functionality.  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianLetterTokenizerFactory
 specifier|public
 class|class

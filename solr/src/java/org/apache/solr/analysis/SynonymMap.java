@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CharArrayMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|Token
 import|;
 end_import
@@ -36,11 +50,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.
-name|CharArrayMap
+name|Version
 import|;
 end_import
 
@@ -198,6 +212,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// for now hardcode at 2.9, as its what the old code did.
+comment|// would be nice to fix, but shouldn't store a version in each submap!!!
 name|currMap
 operator|.
 name|submap
@@ -208,6 +224,10 @@ argument_list|<
 name|SynonymMap
 argument_list|>
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_29
+argument_list|,
 literal|1
 argument_list|,
 name|ignoreCase
@@ -288,6 +308,9 @@ argument_list|)
 throw|;
 block|}
 name|List
+argument_list|<
+name|Token
+argument_list|>
 name|superset
 init|=
 name|currMap

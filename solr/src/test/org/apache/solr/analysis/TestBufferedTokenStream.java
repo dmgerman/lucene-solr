@@ -364,6 +364,8 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -414,6 +416,8 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -455,6 +459,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -474,9 +480,6 @@ decl_stmt|;
 name|TermAttribute
 name|term
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|ts
 operator|.
 name|addAttribute

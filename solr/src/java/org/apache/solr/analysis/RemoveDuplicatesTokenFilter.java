@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -82,11 +96,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.
-name|CharArrayMap
+name|Version
 import|;
 end_import
 
@@ -119,9 +133,6 @@ specifier|final
 name|TermAttribute
 name|termAttribute
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -135,9 +146,6 @@ specifier|final
 name|PositionIncrementAttribute
 name|posIncAttribute
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
@@ -145,23 +153,20 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|// keep a seen 'set' after each term with posInc> 0
-comment|// for now use CharArrayMap vs CharArraySet, as it has clear()
+comment|// use a fixed version, as we don't care about case sensitivity.
 DECL|field|previous
 specifier|private
 specifier|final
-name|CharArrayMap
-argument_list|<
-name|Boolean
-argument_list|>
+name|CharArraySet
 name|previous
 init|=
 operator|new
-name|CharArrayMap
-argument_list|<
-name|Boolean
-argument_list|>
+name|CharArraySet
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|,
 literal|8
 argument_list|,
 literal|false
@@ -252,7 +257,7 @@ literal|0
 operator|&&
 name|previous
 operator|.
-name|get
+name|contains
 argument_list|(
 name|term
 argument_list|,
@@ -260,8 +265,6 @@ literal|0
 argument_list|,
 name|length
 argument_list|)
-operator|!=
-literal|null
 operator|)
 decl_stmt|;
 comment|// clone the term, and add to the set of seen terms.
@@ -292,13 +295,9 @@ argument_list|)
 expr_stmt|;
 name|previous
 operator|.
-name|put
+name|add
 argument_list|(
 name|saved
-argument_list|,
-name|Boolean
-operator|.
-name|TRUE
 argument_list|)
 expr_stmt|;
 if|if

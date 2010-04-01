@@ -54,20 +54,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|CharArraySet
 import|;
 end_import
@@ -85,18 +71,6 @@ operator|.
 name|tokenattributes
 operator|.
 name|TermAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tartarus
-operator|.
-name|snowball
-operator|.
-name|SnowballProgram
 import|;
 end_import
 
@@ -145,6 +119,9 @@ specifier|final
 name|TermAttribute
 name|termAtt
 decl_stmt|;
+comment|/** @deprecated Use {@link #KeepWordFilter(TokenStream, Set, boolean)} instead */
+annotation|@
+name|Deprecated
 DECL|method|KeepWordFilter
 specifier|public
 name|KeepWordFilter
@@ -203,9 +180,6 @@ name|this
 operator|.
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute

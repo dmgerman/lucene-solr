@@ -18,22 +18,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|cn
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -52,21 +36,19 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|cn
+operator|.
+name|ChineseTokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
+begin_comment
+comment|/**   * Factory for {@link ChineseTokenizer}  * @deprecated Use {@link StandardTokenizerFactory} instead.  */
+end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ChineseTokenizerFactory
 specifier|public
 class|class

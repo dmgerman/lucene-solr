@@ -1208,12 +1208,12 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.solr.analysis.EnglishPorterFilter"
+literal|"org.apache.lucene.analysis.snowball.SnowballFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expecting the 'EnglishPorterFilter' to be applied on the query for the 'text' field"
+literal|"Expecting the 'SnowballFilter' to be applied on the query for the 'text' field"
 argument_list|,
 name|tokenList
 argument_list|)
@@ -2077,12 +2077,12 @@ name|valueResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.solr.analysis.EnglishPorterFilter"
+literal|"org.apache.lucene.analysis.snowball.SnowballFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expecting the 'EnglishPorterFilter' to be applied on the index for the 'text' field"
+literal|"Expecting the 'SnowballFilter' to be applied on the index for the 'text' field"
 argument_list|,
 name|tokenList
 argument_list|)

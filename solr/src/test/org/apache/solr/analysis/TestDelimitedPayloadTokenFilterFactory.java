@@ -48,16 +48,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -182,7 +172,7 @@ specifier|public
 class|class
 name|TestDelimitedPayloadTokenFilterFactory
 extends|extends
-name|TestCase
+name|BaseTokenTestCase
 block|{
 DECL|method|testEncoder
 specifier|public
@@ -258,6 +248,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -286,9 +278,6 @@ block|{
 name|PayloadAttribute
 name|payAttr
 init|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|tf
 operator|.
 name|getAttribute
@@ -452,6 +441,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -480,9 +471,6 @@ block|{
 name|PayloadAttribute
 name|payAttr
 init|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|tf
 operator|.
 name|getAttribute

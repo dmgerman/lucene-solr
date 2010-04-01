@@ -26,19 +26,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|cn
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Hashtable
+name|TokenStream
 import|;
 end_import
 
@@ -52,21 +40,19 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|cn
+operator|.
+name|ChineseFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
+begin_comment
+comment|/**  * Factory for {@link ChineseFilter}  * @deprecated Use {@link StopFilterFactory} instead.  */
+end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ChineseFilterFactory
 specifier|public
 class|class

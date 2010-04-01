@@ -28,35 +28,7 @@ name|analysis
 operator|.
 name|cjk
 operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Tokenizer
+name|CJKTokenizer
 import|;
 end_import
 
@@ -70,15 +42,9 @@ name|Reader
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
+begin_comment
+comment|/** Factory for {@link CJKTokenizer} */
+end_comment
 
 begin_class
 DECL|class|CJKTokenizerFactory

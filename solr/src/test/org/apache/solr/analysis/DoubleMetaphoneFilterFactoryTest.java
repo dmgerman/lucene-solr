@@ -133,6 +133,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -240,6 +242,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -318,6 +322,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -338,9 +344,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|filteredStream
 operator|.
 name|addAttribute

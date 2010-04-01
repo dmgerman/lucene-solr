@@ -689,9 +689,6 @@ decl_stmt|;
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|in
 operator|.
 name|addAttribute

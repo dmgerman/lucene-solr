@@ -18,11 +18,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Map
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenFilter
 import|;
 end_import
 
@@ -50,13 +54,19 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ru
+name|snowball
 operator|.
-name|RussianStemFilter
+name|SnowballFilter
 import|;
 end_import
 
+begin_comment
+comment|/**  * @deprecated Use {@link SnowballPorterFilterFactory} with "Russian" instead,  * which has the same functionality.  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RussianStemFilterFactory
 specifier|public
 class|class
@@ -66,7 +76,7 @@ name|BaseTokenFilterFactory
 block|{
 DECL|method|create
 specifier|public
-name|RussianStemFilter
+name|TokenFilter
 name|create
 parameter_list|(
 name|TokenStream
@@ -75,9 +85,21 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|RussianStemFilter
+name|SnowballFilter
 argument_list|(
 name|in
+argument_list|,
+operator|new
+name|org
+operator|.
+name|tartarus
+operator|.
+name|snowball
+operator|.
+name|ext
+operator|.
+name|RussianStemmer
+argument_list|()
 argument_list|)
 return|;
 block|}

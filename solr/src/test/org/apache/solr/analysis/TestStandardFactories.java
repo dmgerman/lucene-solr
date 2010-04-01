@@ -502,6 +502,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -566,6 +568,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;

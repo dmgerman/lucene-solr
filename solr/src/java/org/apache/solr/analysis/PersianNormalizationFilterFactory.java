@@ -28,31 +28,7 @@ name|analysis
 operator|.
 name|fa
 operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenFilter
+name|PersianNormalizationFilter
 import|;
 end_import
 
@@ -70,31 +46,9 @@ name|TokenStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|tokenattributes
-operator|.
-name|TermAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
+begin_comment
+comment|/** Factory for {@link PersianNormalizationFilter} */
+end_comment
 
 begin_class
 DECL|class|PersianNormalizationFilterFactory

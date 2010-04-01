@@ -616,9 +616,6 @@ DECL|field|termAtt
 name|TermAttribute
 name|termAtt
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -630,9 +627,6 @@ DECL|field|offsetAtt
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
@@ -644,9 +638,6 @@ DECL|field|posIncAtt
 name|PositionIncrementAttribute
 name|posIncAtt
 init|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
@@ -658,9 +649,6 @@ DECL|field|flagsAtt
 name|FlagsAttribute
 name|flagsAtt
 init|=
-operator|(
-name|FlagsAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|FlagsAttribute
@@ -672,9 +660,6 @@ DECL|field|typeAtt
 name|TypeAttribute
 name|typeAtt
 init|=
-operator|(
-name|TypeAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TypeAttribute
@@ -686,9 +671,6 @@ DECL|field|payloadAtt
 name|PayloadAttribute
 name|payloadAtt
 init|=
-operator|(
-name|PayloadAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|PayloadAttribute

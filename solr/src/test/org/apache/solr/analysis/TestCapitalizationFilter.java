@@ -137,7 +137,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -481,6 +483,8 @@ operator|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -531,6 +535,8 @@ operator|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -575,6 +581,8 @@ operator|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -632,6 +640,8 @@ operator|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -678,6 +688,8 @@ operator|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -773,7 +785,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -986,7 +1000,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -1030,6 +1046,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -1086,7 +1104,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -1119,6 +1139,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -1179,7 +1201,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -1266,7 +1290,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -1299,6 +1325,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -1359,7 +1387,9 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|()
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
 decl_stmt|;
 name|args
 operator|.
@@ -1403,6 +1433,8 @@ init|=
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
+name|DEFAULT_VERSION
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(

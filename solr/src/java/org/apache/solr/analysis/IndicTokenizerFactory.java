@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Factory for IndicTokenizer */
+comment|/** Factory for {@link IndicTokenizer} */
 end_comment
 
 begin_class

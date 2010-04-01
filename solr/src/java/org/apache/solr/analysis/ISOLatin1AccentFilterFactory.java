@@ -45,10 +45,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Factory for ISOLatin1AccentFilter  *  $Id$   */
+comment|/** Factory for ISOLatin1AccentFilter  * @deprecated Use {@link ASCIIFoldingFilterFactory} instead.  *  $Id$   */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ISOLatin1AccentFilterFactory
 specifier|public
 class|class

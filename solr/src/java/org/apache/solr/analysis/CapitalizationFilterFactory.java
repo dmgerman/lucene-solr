@@ -275,6 +275,9 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
 name|String
 name|k
 init|=
@@ -336,6 +339,8 @@ operator|=
 operator|new
 name|CharArraySet
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 literal|10
 argument_list|,
 name|ignoreCase
@@ -891,9 +896,6 @@ name|this
 operator|.
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute

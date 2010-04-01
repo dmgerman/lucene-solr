@@ -50,6 +50,34 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|Config
+import|;
+end_import
+
 begin_comment
 comment|/**  * General token testing helper functions  */
 end_comment
@@ -63,6 +91,7 @@ name|BaseTokenTestCase
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
+comment|/** a map containing the default test version param for easy testing */
 DECL|field|DEFAULT_VERSION_PARAM
 specifier|protected
 specifier|static
@@ -88,6 +117,26 @@ argument_list|(
 literal|"tests.luceneMatchVersion"
 argument_list|,
 literal|"LUCENE_CURRENT"
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|/** The default test version for easy testing */
+DECL|field|DEFAULT_VERSION
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|DEFAULT_VERSION
+init|=
+name|Config
+operator|.
+name|parseLuceneVersionString
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+operator|.
+name|get
+argument_list|(
+literal|"luceneMatchVersion"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -91,9 +91,6 @@ specifier|final
 name|TermAttribute
 name|termAttribute
 init|=
-operator|(
-name|TermAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|TermAttribute
@@ -107,9 +104,6 @@ specifier|final
 name|OffsetAttribute
 name|offsetAttribute
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
