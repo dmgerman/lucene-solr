@@ -13527,6 +13527,13 @@ block|{
 return|return
 name|segmentInfos
 operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|?
+name|segmentInfos
+operator|.
 name|info
 argument_list|(
 name|segmentInfos
@@ -13536,6 +13543,8 @@ argument_list|()
 operator|-
 literal|1
 argument_list|)
+else|:
+literal|null
 return|;
 block|}
 DECL|method|segString
