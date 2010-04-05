@@ -172,26 +172,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -219,22 +199,7 @@ implements|implements
 name|QueryResponseWriter
 block|{
 comment|// TODO: maybe pass this Logger to the template for logging from there?
-DECL|field|log
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|VelocityResponseWriter
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//  private static final Logger log = LoggerFactory.getLogger(VelocityResponseWriter.class);
 DECL|method|write
 specifier|public
 name|void
