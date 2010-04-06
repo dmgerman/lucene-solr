@@ -2215,6 +2215,21 @@ argument_list|()
 condition|)
 break|break;
 block|}
+name|assertEquals
+argument_list|(
+name|len1
+argument_list|,
+name|len2
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|len1
+operator|==
+literal|0
+condition|)
+break|break;
+comment|// no more terms
 if|if
 condition|(
 operator|!
@@ -2233,21 +2248,6 @@ name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|len1
-argument_list|,
-name|len2
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|len1
-operator|==
-literal|0
-condition|)
-break|break;
-comment|// no more terms
 name|assertEquals
 argument_list|(
 name|term1

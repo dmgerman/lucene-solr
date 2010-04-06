@@ -495,6 +495,8 @@ specifier|public
 name|void
 name|testMissingField
 parameter_list|()
+throws|throws
+name|Exception
 block|{
 name|FieldNormModifier
 name|fnm
@@ -507,8 +509,6 @@ argument_list|,
 name|s
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|fnm
 operator|.
 name|reSetNorms
@@ -516,21 +516,6 @@ argument_list|(
 literal|"nobodyherebutuschickens"
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|assertNull
-argument_list|(
-literal|"caught something"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 DECL|method|testFieldWithNoNorm
 specifier|public
@@ -598,8 +583,6 @@ argument_list|,
 name|s
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|fnm
 operator|.
 name|reSetNorms
@@ -607,21 +590,6 @@ argument_list|(
 literal|"nonorm"
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|assertNull
-argument_list|(
-literal|"caught something"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 comment|// nothing should have changed
 name|r
 operator|=

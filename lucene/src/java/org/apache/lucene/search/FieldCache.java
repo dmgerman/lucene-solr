@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|NumericField
@@ -347,8 +361,8 @@ specifier|public
 name|byte
 name|parseByte
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 function_decl|;
 block|}
@@ -366,8 +380,8 @@ specifier|public
 name|short
 name|parseShort
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 function_decl|;
 block|}
@@ -385,8 +399,8 @@ specifier|public
 name|int
 name|parseInt
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 function_decl|;
 block|}
@@ -404,8 +418,8 @@ specifier|public
 name|float
 name|parseFloat
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 function_decl|;
 block|}
@@ -423,8 +437,8 @@ specifier|public
 name|long
 name|parseLong
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 function_decl|;
 block|}
@@ -442,8 +456,8 @@ specifier|public
 name|double
 name|parseDouble
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 function_decl|;
 block|}
@@ -474,16 +488,23 @@ specifier|public
 name|byte
 name|parseByte
 parameter_list|(
-name|String
-name|value
+name|BytesRef
+name|term
 parameter_list|)
 block|{
+comment|// TODO: would be far better to directly parse from
+comment|// UTF8 bytes... but really users should use
+comment|// NumericField, instead, which already decodes
+comment|// directly from byte[]
 return|return
 name|Byte
 operator|.
 name|parseByte
 argument_list|(
-name|value
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -532,16 +553,23 @@ specifier|public
 name|short
 name|parseShort
 parameter_list|(
-name|String
-name|value
+name|BytesRef
+name|term
 parameter_list|)
 block|{
+comment|// TODO: would be far better to directly parse from
+comment|// UTF8 bytes... but really users should use
+comment|// NumericField, instead, which already decodes
+comment|// directly from byte[]
 return|return
 name|Short
 operator|.
 name|parseShort
 argument_list|(
-name|value
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -590,16 +618,23 @@ specifier|public
 name|int
 name|parseInt
 parameter_list|(
-name|String
-name|value
+name|BytesRef
+name|term
 parameter_list|)
 block|{
+comment|// TODO: would be far better to directly parse from
+comment|// UTF8 bytes... but really users should use
+comment|// NumericField, instead, which already decodes
+comment|// directly from byte[]
 return|return
 name|Integer
 operator|.
 name|parseInt
 argument_list|(
-name|value
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -648,16 +683,23 @@ specifier|public
 name|float
 name|parseFloat
 parameter_list|(
-name|String
-name|value
+name|BytesRef
+name|term
 parameter_list|)
 block|{
+comment|// TODO: would be far better to directly parse from
+comment|// UTF8 bytes... but really users should use
+comment|// NumericField, instead, which already decodes
+comment|// directly from byte[]
 return|return
 name|Float
 operator|.
 name|parseFloat
 argument_list|(
-name|value
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -706,16 +748,23 @@ specifier|public
 name|long
 name|parseLong
 parameter_list|(
-name|String
-name|value
+name|BytesRef
+name|term
 parameter_list|)
 block|{
+comment|// TODO: would be far better to directly parse from
+comment|// UTF8 bytes... but really users should use
+comment|// NumericField, instead, which already decodes
+comment|// directly from byte[]
 return|return
 name|Long
 operator|.
 name|parseLong
 argument_list|(
-name|value
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -764,16 +813,23 @@ specifier|public
 name|double
 name|parseDouble
 parameter_list|(
-name|String
-name|value
+name|BytesRef
+name|term
 parameter_list|)
 block|{
+comment|// TODO: would be far better to directly parse from
+comment|// UTF8 bytes... but really users should use
+comment|// NumericField, instead, which already decodes
+comment|// directly from byte[]
 return|return
 name|Double
 operator|.
 name|parseDouble
 argument_list|(
-name|value
+name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -806,7 +862,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for int values encoded by {@link NumericUtils#intToPrefixCoded(int)}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
+comment|/**    * A parser instance for int values encoded by {@link NumericUtils}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
 DECL|field|NUMERIC_UTILS_INT_PARSER
 specifier|public
 specifier|static
@@ -822,34 +878,20 @@ specifier|public
 name|int
 name|parseInt
 parameter_list|(
-name|String
-name|val
+name|BytesRef
+name|term
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|shift
-init|=
-name|val
-operator|.
-name|charAt
-argument_list|(
-literal|0
-argument_list|)
-operator|-
-name|NumericUtils
-operator|.
-name|SHIFT_START_INT
-decl_stmt|;
 if|if
 condition|(
-name|shift
+name|NumericUtils
+operator|.
+name|getPrefixCodedIntShift
+argument_list|(
+name|term
+argument_list|)
 operator|>
 literal|0
-operator|&&
-name|shift
-operator|<=
-literal|31
 condition|)
 throw|throw
 operator|new
@@ -863,7 +905,7 @@ name|NumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
-name|val
+name|term
 argument_list|)
 return|;
 block|}
@@ -912,34 +954,20 @@ specifier|public
 name|float
 name|parseFloat
 parameter_list|(
-name|String
-name|val
+name|BytesRef
+name|term
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|shift
-init|=
-name|val
-operator|.
-name|charAt
-argument_list|(
-literal|0
-argument_list|)
-operator|-
-name|NumericUtils
-operator|.
-name|SHIFT_START_INT
-decl_stmt|;
 if|if
 condition|(
-name|shift
+name|NumericUtils
+operator|.
+name|getPrefixCodedIntShift
+argument_list|(
+name|term
+argument_list|)
 operator|>
 literal|0
-operator|&&
-name|shift
-operator|<=
-literal|31
 condition|)
 throw|throw
 operator|new
@@ -957,7 +985,7 @@ name|NumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
-name|val
+name|term
 argument_list|)
 argument_list|)
 return|;
@@ -991,7 +1019,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for long values encoded by {@link NumericUtils#longToPrefixCoded(long)}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
+comment|/**    * A parser instance for long values encoded by {@link NumericUtils}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
 DECL|field|NUMERIC_UTILS_LONG_PARSER
 specifier|public
 specifier|static
@@ -1007,34 +1035,20 @@ specifier|public
 name|long
 name|parseLong
 parameter_list|(
-name|String
-name|val
+name|BytesRef
+name|term
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|shift
-init|=
-name|val
-operator|.
-name|charAt
-argument_list|(
-literal|0
-argument_list|)
-operator|-
-name|NumericUtils
-operator|.
-name|SHIFT_START_LONG
-decl_stmt|;
 if|if
 condition|(
-name|shift
+name|NumericUtils
+operator|.
+name|getPrefixCodedLongShift
+argument_list|(
+name|term
+argument_list|)
 operator|>
 literal|0
-operator|&&
-name|shift
-operator|<=
-literal|63
 condition|)
 throw|throw
 operator|new
@@ -1048,7 +1062,7 @@ name|NumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
-name|val
+name|term
 argument_list|)
 return|;
 block|}
@@ -1097,34 +1111,20 @@ specifier|public
 name|double
 name|parseDouble
 parameter_list|(
-name|String
-name|val
+name|BytesRef
+name|term
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|shift
-init|=
-name|val
-operator|.
-name|charAt
-argument_list|(
-literal|0
-argument_list|)
-operator|-
-name|NumericUtils
-operator|.
-name|SHIFT_START_LONG
-decl_stmt|;
 if|if
 condition|(
-name|shift
+name|NumericUtils
+operator|.
+name|getPrefixCodedLongShift
+argument_list|(
+name|term
+argument_list|)
 operator|>
 literal|0
-operator|&&
-name|shift
-operator|<=
-literal|63
 condition|)
 throw|throw
 operator|new
@@ -1142,7 +1142,7 @@ name|NumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
-name|val
+name|term
 argument_list|)
 argument_list|)
 return|;

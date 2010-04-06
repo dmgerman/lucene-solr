@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermDocs
+name|DocsEnum
 import|;
 end_import
 
@@ -57,10 +57,10 @@ specifier|private
 name|Weight
 name|weight
 decl_stmt|;
-DECL|field|termDocs
+DECL|field|docsEnum
 specifier|private
-name|TermDocs
-name|termDocs
+name|DocsEnum
+name|docsEnum
 decl_stmt|;
 DECL|field|norms
 specifier|private
@@ -81,34 +81,11 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-DECL|field|docs
+DECL|field|freq
 specifier|private
-specifier|final
 name|int
-index|[]
-name|docs
-init|=
-operator|new
-name|int
-index|[
-literal|32
-index|]
+name|freq
 decl_stmt|;
-comment|// buffered doc numbers
-DECL|field|freqs
-specifier|private
-specifier|final
-name|int
-index|[]
-name|freqs
-init|=
-operator|new
-name|int
-index|[
-literal|32
-index|]
-decl_stmt|;
-comment|// buffered term freqs
 DECL|field|pointer
 specifier|private
 name|int
@@ -140,6 +117,26 @@ index|[
 name|SCORE_CACHE_SIZE
 index|]
 decl_stmt|;
+DECL|field|docs
+specifier|private
+name|int
+index|[]
+name|docs
+decl_stmt|;
+DECL|field|freqs
+specifier|private
+name|int
+index|[]
+name|freqs
+decl_stmt|;
+DECL|field|bulkResult
+specifier|private
+specifier|final
+name|DocsEnum
+operator|.
+name|BulkReadResult
+name|bulkResult
+decl_stmt|;
 comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param similarity    *          The</code>Similarity</code> implementation to be used for score    *          computations.    * @param norms    *          The field norms of the document fields for the<code>Term</code>.    */
 DECL|method|TermScorer
 name|TermScorer
@@ -147,7 +144,7 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|TermDocs
+name|DocsEnum
 name|td
 parameter_list|,
 name|Similarity
@@ -171,7 +168,7 @@ name|weight
 expr_stmt|;
 name|this
 operator|.
-name|termDocs
+name|docsEnum
 operator|=
 name|td
 expr_stmt|;
@@ -188,6 +185,13 @@ operator|=
 name|weight
 operator|.
 name|getValue
+argument_list|()
+expr_stmt|;
+name|bulkResult
+operator|=
+name|td
+operator|.
+name|getBulkResult
 argument_list|()
 expr_stmt|;
 for|for
@@ -246,6 +250,40 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|refillBuffer
+specifier|private
+specifier|final
+name|void
+name|refillBuffer
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|pointerMax
+operator|=
+name|docsEnum
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
+comment|// refill
+name|docs
+operator|=
+name|bulkResult
+operator|.
+name|docs
+operator|.
+name|ints
+expr_stmt|;
+name|freqs
+operator|=
+name|bulkResult
+operator|.
+name|freqs
+operator|.
+name|ints
+expr_stmt|;
+block|}
 comment|// firstDocID is ignored since nextDoc() sets 'doc'
 annotation|@
 name|Override
@@ -297,18 +335,9 @@ operator|>=
 name|pointerMax
 condition|)
 block|{
-name|pointerMax
-operator|=
-name|termDocs
-operator|.
-name|read
-argument_list|(
-name|docs
-argument_list|,
-name|freqs
-argument_list|)
+name|refillBuffer
+argument_list|()
 expr_stmt|;
-comment|// refill buffers
 if|if
 condition|(
 name|pointerMax
@@ -323,17 +352,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|termDocs
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// close stream
 name|doc
 operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
+name|NO_MORE_DOCS
 expr_stmt|;
 comment|// set to sentinel value
 return|return
@@ -344,6 +365,13 @@ block|}
 name|doc
 operator|=
 name|docs
+index|[
+name|pointer
+index|]
+expr_stmt|;
+name|freq
+operator|=
+name|freqs
 index|[
 name|pointer
 index|]
@@ -365,7 +393,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return the document matching the query or -1 if there are no more documents.    */
+comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return the document matching the query or NO_MORE_DOCS if there are no more documents.    */
 annotation|@
 name|Override
 DECL|method|nextDoc
@@ -386,18 +414,9 @@ operator|>=
 name|pointerMax
 condition|)
 block|{
-name|pointerMax
-operator|=
-name|termDocs
-operator|.
-name|read
-argument_list|(
-name|docs
-argument_list|,
-name|freqs
-argument_list|)
+name|refillBuffer
+argument_list|()
 expr_stmt|;
-comment|// refill buffer
 if|if
 condition|(
 name|pointerMax
@@ -412,12 +431,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|termDocs
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// close stream
 return|return
 name|doc
 operator|=
@@ -432,6 +445,18 @@ index|[
 name|pointer
 index|]
 expr_stmt|;
+name|freq
+operator|=
+name|freqs
+index|[
+name|pointer
+index|]
+expr_stmt|;
+assert|assert
+name|doc
+operator|!=
+name|NO_MORE_DOCS
+assert|;
 return|return
 name|doc
 return|;
@@ -447,29 +472,20 @@ block|{
 assert|assert
 name|doc
 operator|!=
-operator|-
-literal|1
+name|NO_MORE_DOCS
 assert|;
-name|int
-name|f
-init|=
-name|freqs
-index|[
-name|pointer
-index|]
-decl_stmt|;
 name|float
 name|raw
 init|=
 comment|// compute tf(f)*weight
-name|f
+name|freq
 operator|<
 name|SCORE_CACHE_SIZE
 comment|// check cache
 condition|?
 name|scoreCache
 index|[
-name|f
+name|freq
 index|]
 comment|// cache hit
 else|:
@@ -478,7 +494,7 @@ argument_list|()
 operator|.
 name|tf
 argument_list|(
-name|f
+name|freq
 argument_list|)
 operator|*
 name|weightValue
@@ -506,7 +522,7 @@ argument_list|)
 return|;
 comment|// normalize for field
 block|}
-comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses {@link TermDocs#skipTo(int)}.    *     * @param target    *          The target document number.    * @return the matching document or -1 if none exist.    */
+comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses {@link DocsEnum#advance(int)}.    *     * @param target    *          The target document number.    * @return the matching document or NO_MORE_DOCS if none exist.    */
 annotation|@
 name|Override
 DECL|method|advance
@@ -544,6 +560,13 @@ operator|>=
 name|target
 condition|)
 block|{
+name|freq
+operator|=
+name|freqs
+index|[
+name|pointer
+index|]
+expr_stmt|;
 return|return
 name|doc
 operator|=
@@ -554,48 +577,34 @@ index|]
 return|;
 block|}
 block|}
-comment|// not found in cache, seek underlying stream
-name|boolean
-name|result
+comment|// not found in readahead cache, seek underlying stream
+name|int
+name|newDoc
 init|=
-name|termDocs
+name|docsEnum
 operator|.
-name|skipTo
+name|advance
 argument_list|(
 name|target
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("ts.advance docsEnum=" + docsEnum);
 if|if
 condition|(
-name|result
+name|newDoc
+operator|!=
+name|DocsEnum
+operator|.
+name|NO_MORE_DOCS
 condition|)
 block|{
-name|pointerMax
-operator|=
-literal|1
-expr_stmt|;
-name|pointer
-operator|=
-literal|0
-expr_stmt|;
-name|docs
-index|[
-name|pointer
-index|]
-operator|=
 name|doc
 operator|=
-name|termDocs
-operator|.
-name|doc
-argument_list|()
+name|newDoc
 expr_stmt|;
-name|freqs
-index|[
-name|pointer
-index|]
+name|freq
 operator|=
-name|termDocs
+name|docsEnum
 operator|.
 name|freq
 argument_list|()

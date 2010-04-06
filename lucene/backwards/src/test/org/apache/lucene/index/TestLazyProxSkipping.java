@@ -270,6 +270,13 @@ name|endsWith
 argument_list|(
 literal|".prx"
 argument_list|)
+operator|||
+name|name
+operator|.
+name|endsWith
+argument_list|(
+literal|".pos"
+argument_list|)
 condition|)
 block|{
 comment|// we decorate the proxStream with a wrapper class that allows to count the number of calls of seek()

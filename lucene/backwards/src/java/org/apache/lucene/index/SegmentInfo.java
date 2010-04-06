@@ -74,6 +74,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|Codec
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -571,6 +587,42 @@ operator|+
 name|docCount
 assert|;
 block|}
+comment|// stub
+DECL|method|SegmentInfo
+specifier|public
+name|SegmentInfo
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|int
+name|docCount
+parameter_list|,
+name|Directory
+name|dir
+parameter_list|,
+name|boolean
+name|isCompoundFile
+parameter_list|,
+name|boolean
+name|hasSingleNormFile
+parameter_list|,
+name|int
+name|docStoreOffset
+parameter_list|,
+name|String
+name|docStoreSegment
+parameter_list|,
+name|boolean
+name|docStoreIsCompoundFile
+parameter_list|,
+name|boolean
+name|hasProx
+parameter_list|,
+name|Codec
+name|codec
+parameter_list|)
+block|{   }
 comment|/**    * Copy everything from src SegmentInfo into our instance.    */
 DECL|method|reset
 name|void

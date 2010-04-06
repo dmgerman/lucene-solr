@@ -59,6 +59,8 @@ comment|/**  * Subclass of FilteredTermEnum for enumerating a single term.  *<p>
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SingleTermEnum
 specifier|public
 class|class

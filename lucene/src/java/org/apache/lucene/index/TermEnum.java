@@ -37,10 +37,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract class for enumerating terms.<p>Term enumerations are always ordered by Term.compareTo().  Each term in   the enumeration is greater than all that precede it.  */
+comment|/** Abstract class for enumerating terms.<p>Term enumerations are always ordered by Term.compareTo().  Each term in   the enumeration is greater than all that precede it. * @deprecated Use TermsEnum instead */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TermEnum
 specifier|public
 specifier|abstract

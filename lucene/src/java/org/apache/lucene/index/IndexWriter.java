@@ -180,6 +180,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
@@ -432,7 +448,7 @@ name|IndexWriterConfig
 operator|.
 name|DEFAULT_TERM_INDEX_INTERVAL
 decl_stmt|;
-comment|/**    * Absolute hard maximum length for a term.  If a term    * arrives from the analyzer longer than this length, it    * is skipped and a message is printed to infoStream, if    * set (see {@link #setInfoStream}).    */
+comment|/**    * Absolute hard maximum length for a term, in bytes once    * encoded as UTF8.  If a term arrives from the analyzer    * longer than this length, it is skipped and a message is    * printed to infoStream, if set (see {@link    * #setInfoStream}).    */
 DECL|field|MAX_TERM_LENGTH
 specifier|public
 specifier|final
@@ -442,7 +458,7 @@ name|MAX_TERM_LENGTH
 init|=
 name|DocumentsWriter
 operator|.
-name|MAX_TERM_LENGTH
+name|MAX_TERM_LENGTH_UTF8
 decl_stmt|;
 comment|// The normal read buffer size defaults to 1024, but
 comment|// increasing this during merging seems to yield
@@ -786,7 +802,7 @@ specifier|final
 name|IndexWriterConfig
 name|config
 decl_stmt|;
-comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#commit} and then using {@link IndexReader#open} to    * open a new reader.  But the turarnound time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
+comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#commit} and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
 DECL|method|getReader
 specifier|public
 name|IndexReader
@@ -871,6 +887,8 @@ argument_list|,
 name|segmentInfos
 argument_list|,
 name|termInfosIndexDivisor
+argument_list|,
+name|codecs
 argument_list|)
 decl_stmt|;
 if|if
@@ -1662,6 +1680,8 @@ argument_list|,
 name|doOpenStores
 argument_list|,
 name|termsIndexDivisor
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 if|if
@@ -1704,12 +1724,6 @@ name|termsIndexDivisor
 operator|!=
 operator|-
 literal|1
-operator|&&
-operator|!
-name|sr
-operator|.
-name|termsIndexLoaded
-argument_list|()
 condition|)
 block|{
 comment|// If this reader was originally opened because we
@@ -2604,6 +2618,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|field|codecs
+name|CodecProvider
+name|codecs
+decl_stmt|;
 comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *<b>NOTE:</b> by default, {@link IndexWriterConfig#getMaxFieldLength()}    * returns {@link IndexWriterConfig#UNLIMITED_FIELD_LENGTH}. Pay attention to    * whether this setting fits your application.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initalized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
@@ -2702,6 +2720,13 @@ operator|=
 name|conf
 operator|.
 name|getMergedSegmentWarmer
+argument_list|()
+expr_stmt|;
+name|codecs
+operator|=
+name|conf
+operator|.
+name|getCodecProvider
 argument_list|()
 expr_stmt|;
 name|poolReaders
@@ -2829,6 +2854,8 @@ operator|.
 name|read
 argument_list|(
 name|directory
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 name|segmentInfos
@@ -2884,6 +2911,8 @@ operator|.
 name|read
 argument_list|(
 name|directory
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 name|IndexCommit
@@ -2939,6 +2968,8 @@ name|commit
 operator|.
 name|getSegmentsFileName
 argument_list|()
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 name|segmentInfos
@@ -3029,6 +3060,10 @@ argument_list|,
 name|infoStream
 argument_list|,
 name|docWriter
+argument_list|,
+name|this
+operator|.
+name|codecs
 argument_list|)
 expr_stmt|;
 if|if
@@ -3084,6 +3119,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|message
+argument_list|(
+literal|"init: create="
+operator|+
+name|create
+argument_list|)
+expr_stmt|;
 name|messageState
 argument_list|()
 expr_stmt|;
@@ -7968,6 +8010,8 @@ name|dirs
 index|[
 name|i
 index|]
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 for|for
@@ -8482,11 +8526,15 @@ operator|=
 operator|new
 name|SegmentMerger
 argument_list|(
-name|this
+name|directory
+argument_list|,
+name|termIndexInterval
 argument_list|,
 name|mergedName
 argument_list|,
 literal|null
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 name|SegmentReader
@@ -8626,6 +8674,11 @@ argument_list|,
 name|merger
 operator|.
 name|hasProx
+argument_list|()
+argument_list|,
+name|merger
+operator|.
+name|getCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8784,6 +8837,8 @@ argument_list|(
 name|mergedName
 operator|+
 literal|".cfs"
+argument_list|,
+name|info
 argument_list|)
 expr_stmt|;
 synchronized|synchronized
@@ -9769,6 +9824,11 @@ argument_list|,
 name|docWriter
 operator|.
 name|hasProx
+argument_list|()
+argument_list|,
+name|docWriter
+operator|.
+name|getCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -11040,10 +11100,6 @@ argument_list|(
 name|directory
 argument_list|)
 operator|+
-literal|"\n  merge="
-operator|+
-name|merge
-operator|+
 literal|"\n  index="
 operator|+
 name|segString
@@ -11971,6 +12027,8 @@ argument_list|,
 name|docStoreIsCompoundFile
 argument_list|,
 literal|false
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|Map
@@ -12406,11 +12464,15 @@ operator|=
 operator|new
 name|SegmentMerger
 argument_list|(
-name|this
+name|directory
+argument_list|,
+name|termIndexInterval
 argument_list|,
 name|mergedName
 argument_list|,
 name|merge
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 name|merge
@@ -12739,11 +12801,40 @@ operator|.
 name|mergeDocStores
 argument_list|)
 expr_stmt|;
+comment|// Record which codec was used to write the segment
+name|merge
+operator|.
+name|info
+operator|.
+name|setCodec
+argument_list|(
+name|merger
+operator|.
+name|getCodec
+argument_list|()
+argument_list|)
+expr_stmt|;
 assert|assert
 name|mergedDocCount
 operator|==
 name|totDocCount
 assert|;
+comment|// Very important to do this before opening the reader
+comment|// because codec must know if prox was written for
+comment|// this segment:
+comment|//System.out.println("merger set hasProx=" + merger.hasProx() + " seg=" + merge.info.name);
+name|merge
+operator|.
+name|info
+operator|.
+name|setHasProx
+argument_list|(
+name|merger
+operator|.
+name|hasProx
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// TODO: in the non-realtime case, we may want to only
 comment|// keep deletes (it's costly to open entire reader
 comment|// when we just need deletes)
@@ -12925,7 +13016,8 @@ name|Throwable
 name|t
 parameter_list|)
 block|{               }
-comment|// This was a private clone and we had the only reference
+comment|// This was a private clone and we had the
+comment|// only reference
 assert|assert
 name|merge
 operator|.
@@ -12938,6 +13030,18 @@ name|getRefCount
 argument_list|()
 operator|==
 literal|0
+operator|:
+literal|"refCount should be 0 but is "
+operator|+
+name|merge
+operator|.
+name|readersClone
+index|[
+name|i
+index|]
+operator|.
+name|getRefCount
+argument_list|()
 assert|;
 block|}
 block|}
@@ -13083,6 +13187,10 @@ operator|.
 name|createCompoundFile
 argument_list|(
 name|compoundFileName
+argument_list|,
+name|merge
+operator|.
+name|info
 argument_list|)
 expr_stmt|;
 name|success

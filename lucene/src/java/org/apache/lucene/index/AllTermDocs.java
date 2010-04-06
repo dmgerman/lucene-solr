@@ -30,7 +30,13 @@ name|BitVector
 import|;
 end_import
 
+begin_comment
+comment|/** @deprecated Switch to AllDocsEnum */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|AllTermDocs
 class|class
 name|AllTermDocs

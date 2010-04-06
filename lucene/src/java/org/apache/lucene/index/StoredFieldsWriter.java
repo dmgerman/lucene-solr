@@ -418,8 +418,6 @@ argument_list|(
 name|fieldsIdxName
 argument_list|)
 expr_stmt|;
-name|state
-operator|.
 name|docWriter
 operator|.
 name|removeOpenFile
@@ -427,8 +425,6 @@ argument_list|(
 name|fieldsName
 argument_list|)
 expr_stmt|;
-name|state
-operator|.
 name|docWriter
 operator|.
 name|removeOpenFile

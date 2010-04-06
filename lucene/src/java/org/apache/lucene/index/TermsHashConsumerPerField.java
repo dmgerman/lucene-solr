@@ -127,12 +127,6 @@ name|int
 name|size
 parameter_list|)
 function_decl|;
-DECL|method|bytesPerPosting
-specifier|abstract
-name|int
-name|bytesPerPosting
-parameter_list|()
-function_decl|;
 block|}
 end_class
 

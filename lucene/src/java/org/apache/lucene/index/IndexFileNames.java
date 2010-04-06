@@ -16,8 +16,28 @@ begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|Codec
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class contains useful constants representing filenames and extensions  * used by lucene, as well as convenience methods for querying whether a file  * name matches an extension ({@link #matchesExtension(String, String)  * matchesExtension}), as well as generating file names from a segment name,  * generation and extension (  * {@link #fileNameFromGeneration(String, String, long) fileNameFromGeneration},  * {@link #segmentFileName(String, String) segmentFileName}).  *   * @lucene.internal  */
+comment|// for javadocs
+end_comment
+
+begin_comment
+comment|/**  * This class contains useful constants representing filenames and extensions  * used by lucene, as well as convenience methods for querying whether a file  * name matches an extension ({@link #matchesExtension(String, String)  * matchesExtension}), as well as generating file names from a segment name,  * generation and extension (  * {@link #fileNameFromGeneration(String, String, long) fileNameFromGeneration},  * {@link #segmentFileName(String, String) segmentFileName}).  *  *<p><b>NOTE</b>: extensions used by codecs are not  * listed here.  You must interact with the {@link Codec}  * directly.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -37,6 +57,16 @@ name|SEGMENTS
 init|=
 literal|"segments"
 decl_stmt|;
+comment|/** Extension of gen file */
+DECL|field|GEN_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GEN_EXTENSION
+init|=
+literal|"gen"
+decl_stmt|;
 comment|/** Name of the generation reference file name */
 DECL|field|SEGMENTS_GEN
 specifier|public
@@ -45,7 +75,9 @@ specifier|final
 name|String
 name|SEGMENTS_GEN
 init|=
-literal|"segments.gen"
+literal|"segments."
+operator|+
+name|GEN_EXTENSION
 decl_stmt|;
 comment|/** Name of the index deletable file (only used in    * pre-lockless indices) */
 DECL|field|DELETABLE
@@ -66,46 +98,6 @@ name|String
 name|NORMS_EXTENSION
 init|=
 literal|"nrm"
-decl_stmt|;
-comment|/** Extension of freq postings file */
-DECL|field|FREQ_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FREQ_EXTENSION
-init|=
-literal|"frq"
-decl_stmt|;
-comment|/** Extension of prox postings file */
-DECL|field|PROX_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|PROX_EXTENSION
-init|=
-literal|"prx"
-decl_stmt|;
-comment|/** Extension of terms file */
-DECL|field|TERMS_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|TERMS_EXTENSION
-init|=
-literal|"tis"
-decl_stmt|;
-comment|/** Extension of terms index file */
-DECL|field|TERMS_INDEX_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|TERMS_INDEX_EXTENSION
-init|=
-literal|"tii"
 decl_stmt|;
 comment|/** Extension of stored fields index file */
 DECL|field|FIELDS_INDEX_EXTENSION
@@ -217,16 +209,6 @@ name|SEPARATE_NORMS_EXTENSION
 init|=
 literal|"s"
 decl_stmt|;
-comment|/** Extension of gen file */
-DECL|field|GEN_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|GEN_EXTENSION
-init|=
-literal|"gen"
-decl_stmt|;
 comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with two exceptions, namely the    * extension made up from<code>.f</code> + a number and    * from<code>.s</code> + a number.  Also note that    * Lucene's<code>segments_N</code> files do not have any    * filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|public
@@ -248,14 +230,6 @@ name|FIELDS_INDEX_EXTENSION
 block|,
 name|FIELDS_EXTENSION
 block|,
-name|TERMS_INDEX_EXTENSION
-block|,
-name|TERMS_EXTENSION
-block|,
-name|FREQ_EXTENSION
-block|,
-name|PROX_EXTENSION
-block|,
 name|DELETES_EXTENSION
 block|,
 name|VECTORS_INDEX_EXTENSION
@@ -270,42 +244,6 @@ name|NORMS_EXTENSION
 block|,
 name|COMPOUND_FILE_STORE_EXTENSION
 block|,   }
-decl_stmt|;
-comment|/** File extensions that are added to a compound file    * (same as above, minus "del", "gen", "cfs"). */
-DECL|field|INDEX_EXTENSIONS_IN_COMPOUND_FILE
-specifier|public
-specifier|static
-specifier|final
-name|String
-index|[]
-name|INDEX_EXTENSIONS_IN_COMPOUND_FILE
-init|=
-operator|new
-name|String
-index|[]
-block|{
-name|FIELD_INFOS_EXTENSION
-block|,
-name|FIELDS_INDEX_EXTENSION
-block|,
-name|FIELDS_EXTENSION
-block|,
-name|TERMS_INDEX_EXTENSION
-block|,
-name|TERMS_EXTENSION
-block|,
-name|FREQ_EXTENSION
-block|,
-name|PROX_EXTENSION
-block|,
-name|VECTORS_INDEX_EXTENSION
-block|,
-name|VECTORS_DOCUMENTS_EXTENSION
-block|,
-name|VECTORS_FIELDS_EXTENSION
-block|,
-name|NORMS_EXTENSION
-block|}
 decl_stmt|;
 DECL|field|STORE_INDEX_EXTENSIONS
 specifier|public
@@ -344,24 +282,14 @@ index|[]
 block|{
 name|FIELD_INFOS_EXTENSION
 block|,
-name|FREQ_EXTENSION
-block|,
-name|PROX_EXTENSION
-block|,
-name|TERMS_EXTENSION
-block|,
-name|TERMS_INDEX_EXTENSION
-block|,
 name|NORMS_EXTENSION
 block|}
 decl_stmt|;
-comment|/** File extensions of old-style index files */
-DECL|field|COMPOUND_EXTENSIONS
-specifier|public
+DECL|field|COMPOUND_EXTENSIONS_NOT_CODEC
 specifier|static
 specifier|final
 name|String
-name|COMPOUND_EXTENSIONS
+name|COMPOUND_EXTENSIONS_NOT_CODEC
 index|[]
 init|=
 operator|new
@@ -370,18 +298,10 @@ index|[]
 block|{
 name|FIELD_INFOS_EXTENSION
 block|,
-name|FREQ_EXTENSION
-block|,
-name|PROX_EXTENSION
-block|,
 name|FIELDS_INDEX_EXTENSION
 block|,
 name|FIELDS_EXTENSION
-block|,
-name|TERMS_INDEX_EXTENSION
-block|,
-name|TERMS_EXTENSION
-block|}
+block|,   }
 decl_stmt|;
 comment|/** File extensions for term vector support */
 DECL|field|VECTOR_EXTENSIONS
@@ -606,6 +526,15 @@ operator|>
 literal|0
 condition|)
 block|{
+assert|assert
+operator|!
+name|ext
+operator|.
+name|startsWith
+argument_list|(
+literal|"."
+argument_list|)
+assert|;
 return|return
 operator|new
 name|StringBuilder

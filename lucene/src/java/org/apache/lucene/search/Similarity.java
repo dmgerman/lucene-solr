@@ -670,6 +670,7 @@ name|maxOverlap
 parameter_list|)
 function_decl|;
 comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param docId The docId currently being scored.  If this value is {@link #NO_DOC_ID_PROVIDED}, then it should be assumed that the PayloadQuery implementation does not provide document information    * @param fieldName The fieldName of the term this payload belongs to    * @param start The start position of the payload    * @param end The end position of the payload    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor    *    */
+comment|// TODO: maybe switch this API to BytesRef?
 DECL|method|scorePayload
 specifier|public
 name|float

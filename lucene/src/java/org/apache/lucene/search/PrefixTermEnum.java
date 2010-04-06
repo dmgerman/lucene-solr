@@ -55,10 +55,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified prefix filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  *  */
+comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified prefix filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  *  * @deprecated Use {@link PrefixTermsEnum} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PrefixTermEnum
 specifier|public
 class|class

@@ -290,7 +290,21 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -640,7 +654,7 @@ name|Directory
 name|ram
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|PayloadAnalyzer
@@ -1048,6 +1062,15 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|writer
+argument_list|)
+expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
@@ -1123,6 +1146,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|ram
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Tests if payloads are correctly stored and loaded using both RamDirectory and FSDirectory
 DECL|method|testPayloadsEncoding
@@ -1143,7 +1175,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|performTest
@@ -1478,10 +1510,28 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|writer
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|optimize
 argument_list|()
+expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|writer
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -1721,6 +1771,13 @@ operator|.
 name|nextPosition
 argument_list|()
 expr_stmt|;
+comment|// NOTE: prior rev of this test was failing to first
+comment|// call next here:
+name|tp
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
 comment|// now we don't read this payload
 name|tp
 operator|.
@@ -1764,6 +1821,13 @@ index|[
 name|numTerms
 index|]
 argument_list|)
+expr_stmt|;
+comment|// NOTE: prior rev of this test was failing to first
+comment|// call next here:
+name|tp
+operator|.
+name|next
+argument_list|()
 expr_stmt|;
 name|tp
 operator|.
@@ -2080,10 +2144,28 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|writer
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|optimize
 argument_list|()
+expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|writer
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -2952,7 +3034,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -3493,16 +3575,14 @@ block|}
 block|}
 DECL|field|utf8Result
 specifier|private
-name|UnicodeUtil
-operator|.
-name|UTF8Result
+name|BytesRef
 name|utf8Result
 init|=
 operator|new
-name|UnicodeUtil
-operator|.
-name|UTF8Result
-argument_list|()
+name|BytesRef
+argument_list|(
+literal|10
+argument_list|)
 decl_stmt|;
 DECL|method|bytesToString
 specifier|synchronized
@@ -3547,7 +3627,7 @@ name|String
 argument_list|(
 name|utf8Result
 operator|.
-name|result
+name|bytes
 argument_list|,
 literal|0
 argument_list|,

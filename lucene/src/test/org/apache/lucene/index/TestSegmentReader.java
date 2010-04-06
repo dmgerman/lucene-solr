@@ -964,6 +964,16 @@ literal|"field"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// NOTE: prior rev of this test was failing to first
+comment|// call next here:
+name|assertTrue
+argument_list|(
+name|positions
+operator|.
+name|next
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|positions

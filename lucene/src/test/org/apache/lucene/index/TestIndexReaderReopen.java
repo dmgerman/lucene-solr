@@ -4708,6 +4708,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|rnd
+argument_list|,
+name|dir
+argument_list|)
+expr_stmt|;
 name|dir
 operator|.
 name|close

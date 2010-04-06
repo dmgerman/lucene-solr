@@ -33,10 +33,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The term text of a Token.  */
+comment|/**  * The term text of a Token.  * @deprecated Use {@link CharTermAttribute} instead.  */
 end_comment
 
 begin_interface
+annotation|@
+name|Deprecated
 DECL|interface|TermAttribute
 specifier|public
 interface|interface

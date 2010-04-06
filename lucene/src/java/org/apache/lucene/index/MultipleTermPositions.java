@@ -85,10 +85,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Allows you to iterate over the {@link TermPositions} for multiple {@link Term}s as  * a single {@link TermPositions}.  *  */
+comment|/**  * Allows you to iterate over the {@link TermPositions} for multiple {@link Term}s as  * a single {@link TermPositions}.  * @deprecated This class is being replaced by the package  * private MultiDocsEnum on org.apache.lucene.search.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|MultipleTermPositions
 specifier|public
 class|class

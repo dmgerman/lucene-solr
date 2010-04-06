@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermDocs
+name|MultiFields
 import|;
 end_import
 
@@ -65,6 +65,20 @@ operator|.
 name|util
 operator|.
 name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
 import|;
 end_import
 
@@ -465,7 +479,7 @@ name|inclusiveUpperPoint
 operator|>
 literal|0
 assert|;
-comment|// for this DocIdSet, we never need to use TermDocs,
+comment|// for this DocIdSet, we can ignore deleted docs
 comment|// because deleted docs have an order of 0 (null entry in StringIndex)
 return|return
 operator|new
@@ -473,7 +487,7 @@ name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 block|{
 annotation|@
@@ -776,13 +790,14 @@ operator|)
 name|parser
 argument_list|)
 decl_stmt|;
-comment|// we only request the usage of termDocs, if the range contains 0
+comment|// we only respect deleted docs if the range contains 0
 return|return
 operator|new
 name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
+operator|!
 operator|(
 name|inclusiveLowerPoint
 operator|<=
@@ -1087,13 +1102,14 @@ operator|)
 name|parser
 argument_list|)
 decl_stmt|;
-comment|// we only request the usage of termDocs, if the range contains 0
+comment|// ignore deleted docs if range doesn't contain 0
 return|return
 operator|new
 name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
+operator|!
 operator|(
 name|inclusiveLowerPoint
 operator|<=
@@ -1388,13 +1404,14 @@ operator|)
 name|parser
 argument_list|)
 decl_stmt|;
-comment|// we only request the usage of termDocs, if the range contains 0
+comment|// ignore deleted docs if range doesn't contain 0
 return|return
 operator|new
 name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
+operator|!
 operator|(
 name|inclusiveLowerPoint
 operator|<=
@@ -1689,13 +1706,14 @@ operator|)
 name|parser
 argument_list|)
 decl_stmt|;
-comment|// we only request the usage of termDocs, if the range contains 0
+comment|// ignore deleted docs if range doesn't contain 0
 return|return
 operator|new
 name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
+operator|!
 operator|(
 name|inclusiveLowerPoint
 operator|<=
@@ -2032,13 +2050,14 @@ operator|)
 name|parser
 argument_list|)
 decl_stmt|;
-comment|// we only request the usage of termDocs, if the range contains 0
+comment|// ignore deleted docs if range doesn't contain 0
 return|return
 operator|new
 name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
+operator|!
 operator|(
 name|inclusiveLowerPoint
 operator|<=
@@ -2375,13 +2394,14 @@ operator|)
 name|parser
 argument_list|)
 decl_stmt|;
-comment|// we only request the usage of termDocs, if the range contains 0
+comment|// ignore deleted docs if range doesn't contain 0
 return|return
 operator|new
 name|FieldCacheDocIdSet
 argument_list|(
 name|reader
 argument_list|,
+operator|!
 operator|(
 name|inclusiveLowerPoint
 operator|<=
@@ -2861,10 +2881,10 @@ specifier|final
 name|IndexReader
 name|reader
 decl_stmt|;
-DECL|field|mayUseTermDocs
+DECL|field|canIgnoreDeletedDocs
 specifier|private
 name|boolean
-name|mayUseTermDocs
+name|canIgnoreDeletedDocs
 decl_stmt|;
 DECL|method|FieldCacheDocIdSet
 name|FieldCacheDocIdSet
@@ -2873,7 +2893,7 @@ name|IndexReader
 name|reader
 parameter_list|,
 name|boolean
-name|mayUseTermDocs
+name|canIgnoreDeletedDocs
 parameter_list|)
 block|{
 name|this
@@ -2884,12 +2904,12 @@ name|reader
 expr_stmt|;
 name|this
 operator|.
-name|mayUseTermDocs
+name|canIgnoreDeletedDocs
 operator|=
-name|mayUseTermDocs
+name|canIgnoreDeletedDocs
 expr_stmt|;
 block|}
-comment|/** this method checks, if a doc is a hit, should throw AIOBE, when position invalid */
+comment|/**      * this method checks, if a doc is a hit, should throw AIOBE, when position      * invalid      */
 DECL|method|matchDoc
 specifier|abstract
 name|boolean
@@ -2901,7 +2921,7 @@ parameter_list|)
 throws|throws
 name|ArrayIndexOutOfBoundsException
 function_decl|;
-comment|/** this DocIdSet is cacheable, if it works solely with FieldCache and no TermDocs */
+comment|/**      * this DocIdSet is cacheable, if it can ignore deletions      */
 annotation|@
 name|Override
 DECL|method|isCacheable
@@ -2911,15 +2931,13 @@ name|isCacheable
 parameter_list|()
 block|{
 return|return
+name|canIgnoreDeletedDocs
+operator|||
 operator|!
-operator|(
-name|mayUseTermDocs
-operator|&&
 name|reader
 operator|.
 name|hasDeletions
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -2934,172 +2952,53 @@ name|IOException
 block|{
 comment|// Synchronization needed because deleted docs BitVector
 comment|// can change after call to hasDeletions until TermDocs creation.
-comment|// We only use an iterator with termDocs, when this was requested (e.g. range contains 0)
+comment|// We only use an iterator with termDocs, when this was requested (e.g.
+comment|// range contains 0)
 comment|// and the index has deletions
 specifier|final
-name|TermDocs
-name|termDocs
+name|Bits
+name|skipDocs
 decl_stmt|;
 synchronized|synchronized
 init|(
 name|reader
 init|)
 block|{
-name|termDocs
-operator|=
+if|if
+condition|(
 name|isCacheable
 argument_list|()
-condition|?
+condition|)
+block|{
+name|skipDocs
+operator|=
 literal|null
-else|:
-name|reader
-operator|.
-name|termDocs
-argument_list|(
-literal|null
-argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|termDocs
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// a DocIdSetIterator using TermDocs to iterate valid docIds
-return|return
-operator|new
-name|DocIdSetIterator
-argument_list|()
-block|{
-specifier|private
-name|int
-name|doc
-init|=
-operator|-
-literal|1
-decl_stmt|;
-annotation|@
-name|Override
-specifier|public
-name|int
-name|docID
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|int
-name|nextDoc
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-do|do
-block|{
-if|if
-condition|(
-operator|!
-name|termDocs
-operator|.
-name|next
-argument_list|()
-condition|)
-return|return
-name|doc
-operator|=
-name|NO_MORE_DOCS
-return|;
-block|}
-do|while
-condition|(
-operator|!
-name|matchDoc
-argument_list|(
-name|doc
-operator|=
-name|termDocs
-operator|.
-name|doc
-argument_list|()
-argument_list|)
-condition|)
-do|;
-return|return
-name|doc
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|int
-name|advance
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-operator|!
-name|termDocs
-operator|.
-name|skipTo
-argument_list|(
-name|target
-argument_list|)
-condition|)
-return|return
-name|doc
-operator|=
-name|NO_MORE_DOCS
-return|;
-while|while
-condition|(
-operator|!
-name|matchDoc
-argument_list|(
-name|doc
-operator|=
-name|termDocs
-operator|.
-name|doc
-argument_list|()
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|termDocs
-operator|.
-name|next
-argument_list|()
-condition|)
-return|return
-name|doc
-operator|=
-name|NO_MORE_DOCS
-return|;
-block|}
-return|return
-name|doc
-return|;
-block|}
-block|}
-return|;
 block|}
 else|else
 block|{
-comment|// a DocIdSetIterator generating docIds by incrementing a variable -
-comment|// this one can be used if there are no deletions are on the index
+name|skipDocs
+operator|=
+name|MultiFields
+operator|.
+name|getDeletedDocs
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|final
+name|int
+name|maxDoc
+init|=
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+decl_stmt|;
+comment|// a DocIdSetIterator generating docIds by
+comment|// incrementing a variable& checking skipDocs -
 return|return
 operator|new
 name|DocIdSetIterator
@@ -3140,6 +3039,23 @@ expr_stmt|;
 block|}
 do|while
 condition|(
+operator|(
+name|skipDocs
+operator|!=
+literal|null
+operator|&&
+name|doc
+operator|<
+name|maxDoc
+operator|&&
+name|skipDocs
+operator|.
+name|get
+argument_list|(
+name|doc
+argument_list|)
+operator|)
+operator|||
 operator|!
 name|matchDoc
 argument_list|(
@@ -3212,7 +3128,6 @@ block|}
 block|}
 block|}
 return|;
-block|}
 block|}
 block|}
 block|}

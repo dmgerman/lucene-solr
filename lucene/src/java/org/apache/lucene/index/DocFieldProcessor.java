@@ -265,10 +265,14 @@ specifier|final
 name|String
 name|fileName
 init|=
-name|state
+name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
+name|state
+operator|.
+name|segmentName
+argument_list|,
 name|IndexFileNames
 operator|.
 name|FIELD_INFOS_EXTENSION

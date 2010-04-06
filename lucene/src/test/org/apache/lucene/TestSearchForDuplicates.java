@@ -474,6 +474,8 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// NOTE: this ID_FIELD produces no tokens since
+comment|// SimpleAnalyzer discards numbers
 name|d
 operator|.
 name|add

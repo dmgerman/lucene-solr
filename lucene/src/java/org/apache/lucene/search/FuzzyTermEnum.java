@@ -55,10 +55,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Subclass of FilteredTermEnum for enumerating all terms that are similar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
+comment|/** Subclass of FilteredTermEnum for enumerating all terms that are similar  * to the specified filter term.  *  *<p>Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  *  * @deprecated Please use {@link FuzzyTermsEnum} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|FuzzyTermEnum
 specifier|public
 specifier|final
@@ -473,7 +475,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** {@inheritDoc} */
+comment|/** @deprecated Use {@link MultiTermQuery.BoostAttribute} together with {@link FuzzyTermsEnum} */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|difference

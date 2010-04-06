@@ -31,6 +31,8 @@ comment|/** Base class for enumerating all but deleted docs.  *   *<p>NOTE: this
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|AbstractAllTermDocs
 specifier|public
 specifier|abstract

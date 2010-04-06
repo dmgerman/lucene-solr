@@ -522,6 +522,7 @@ name|stringValue
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -529,6 +530,7 @@ argument_list|(
 literal|"field must have either TokenStream, String or Reader value"
 argument_list|)
 throw|;
+block|}
 name|perThread
 operator|.
 name|stringReader

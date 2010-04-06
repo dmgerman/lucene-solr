@@ -55,10 +55,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified wildcard filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  */
+comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified wildcard filter term.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  * @deprecated Please use {@link AutomatonTermsEnum} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|WildcardTermEnum
 specifier|public
 class|class
@@ -346,7 +348,9 @@ specifier|final
 name|char
 name|WILDCARD_STRING
 init|=
-literal|'*'
+name|WildcardQuery
+operator|.
+name|WILDCARD_STRING
 decl_stmt|;
 DECL|field|WILDCARD_CHAR
 specifier|public
@@ -355,7 +359,9 @@ specifier|final
 name|char
 name|WILDCARD_CHAR
 init|=
-literal|'?'
+name|WildcardQuery
+operator|.
+name|WILDCARD_CHAR
 decl_stmt|;
 comment|/**    * Determines if a word matches a wildcard pattern.    *<small>Work released by Granta Design Ltd after originally being done on    * company time.</small>    */
 DECL|method|wildcardEquals

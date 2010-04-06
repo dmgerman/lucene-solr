@@ -97,7 +97,7 @@ specifier|static
 name|float
 name|EXPLAIN_SCORE_TOLERANCE_DELTA
 init|=
-literal|0.00005f
+literal|0.0002f
 decl_stmt|;
 comment|/**    * Tests that all documents up to maxDoc which are *not* in the    * expected result set, have an explanation which indicates no match    * (ie: Explanation value of 0.0f)    */
 DECL|method|checkNoMatchExplanations

@@ -404,14 +404,14 @@ name|AttributeSource
 argument_list|()
 decl_stmt|;
 specifier|final
-name|TermAttribute
-name|termAtt
+name|FlagsAttribute
+name|flagsAtt
 init|=
 name|src
 operator|.
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|FlagsAttribute
 operator|.
 name|class
 argument_list|)
@@ -429,11 +429,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|termAtt
+name|flagsAtt
 operator|.
-name|setTermBuffer
+name|setFlags
 argument_list|(
-literal|"TestTerm"
+literal|1234
 argument_list|)
 expr_stmt|;
 name|typeAtt
@@ -471,9 +471,9 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"TermAttribute must be the first attribute"
+literal|"FlagsAttribute must be the first attribute"
 argument_list|,
-name|TermAttribute
+name|FlagsAttribute
 operator|.
 name|class
 argument_list|,
@@ -508,14 +508,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
-name|TermAttribute
-name|termAtt2
+name|FlagsAttribute
+name|flagsAtt2
 init|=
 name|clone
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|FlagsAttribute
 operator|.
 name|class
 argument_list|)
@@ -535,11 +535,11 @@ argument_list|)
 decl_stmt|;
 name|assertNotSame
 argument_list|(
-literal|"TermAttribute of original and clone must be different instances"
+literal|"FlagsAttribute of original and clone must be different instances"
 argument_list|,
-name|termAtt2
+name|flagsAtt2
 argument_list|,
-name|termAtt
+name|flagsAtt
 argument_list|)
 expr_stmt|;
 name|assertNotSame
@@ -553,11 +553,11 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"TermAttribute of original and clone must be equal"
+literal|"FlagsAttribute of original and clone must be equal"
 argument_list|,
-name|termAtt2
+name|flagsAtt2
 argument_list|,
-name|termAtt
+name|flagsAtt
 argument_list|)
 expr_stmt|;
 name|assertEquals

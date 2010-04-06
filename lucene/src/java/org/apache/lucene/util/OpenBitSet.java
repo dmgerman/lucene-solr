@@ -76,6 +76,8 @@ name|OpenBitSet
 extends|extends
 name|DocIdSet
 implements|implements
+name|Bits
+implements|,
 name|Cloneable
 implements|,
 name|Serializable
@@ -212,6 +214,21 @@ block|{
 return|return
 name|capacity
 argument_list|()
+return|;
+block|}
+comment|// @Override -- not until Java 1.6
+DECL|method|length
+specifier|public
+name|int
+name|length
+parameter_list|()
+block|{
+return|return
+name|bits
+operator|.
+name|length
+operator|<<
+literal|6
 return|;
 block|}
 comment|/** Returns true if there are no set bits */

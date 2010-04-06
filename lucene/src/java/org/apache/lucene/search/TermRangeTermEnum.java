@@ -79,10 +79,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified range parameters.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  * @since 2.9  */
+comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified range parameters.  *<p>  * Term enumerations are always ordered by Term.compareTo().  Each term in  * the enumeration is greater than all that precede it.  * @since 2.9  * @deprecated Please switch to {@link TermRangeTermsEnum}  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TermRangeTermEnum
 specifier|public
 class|class

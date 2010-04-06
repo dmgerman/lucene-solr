@@ -2348,7 +2348,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("doc="+doc);
 name|float
 name|score
 init|=

@@ -106,6 +106,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|Term
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexWriterConfig
 import|;
 end_import
@@ -163,6 +177,20 @@ operator|.
 name|search
 operator|.
 name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermQuery
 import|;
 end_import
 
@@ -293,9 +321,16 @@ name|Document
 argument_list|()
 decl_stmt|;
 name|String
+name|longTerm
+init|=
+literal|"longtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongtermlongterm"
+decl_stmt|;
+name|String
 name|text
 init|=
-literal|"This is the text to be indexed."
+literal|"This is the text to be indexed. "
+operator|+
+name|longTerm
 decl_stmt|;
 name|doc
 operator|.
@@ -347,6 +382,32 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|// read-only=true
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|isearcher
+operator|.
+name|search
+argument_list|(
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"fieldname"
+argument_list|,
+name|longTerm
+argument_list|)
+argument_list|)
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
 comment|// Parse a simple query that searches for "text":
 name|QueryParser
 name|parser
@@ -383,7 +444,7 @@ name|query
 argument_list|,
 literal|null
 argument_list|,
-literal|1000
+literal|1
 argument_list|)
 operator|.
 name|scoreDocs
@@ -432,7 +493,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"This is the text to be indexed."
+name|text
 argument_list|,
 name|hitDoc
 operator|.

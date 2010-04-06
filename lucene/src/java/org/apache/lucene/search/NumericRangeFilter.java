@@ -560,20 +560,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Returns the field name for this filter */
-DECL|method|getField
-specifier|public
-name|String
-name|getField
-parameter_list|()
-block|{
-return|return
-name|query
-operator|.
-name|getField
-argument_list|()
-return|;
-block|}
 comment|/** Returns<code>true</code> if the lower endpoint is inclusive */
 DECL|method|includesMin
 specifier|public

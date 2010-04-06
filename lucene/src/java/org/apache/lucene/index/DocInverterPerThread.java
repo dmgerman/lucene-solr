@@ -68,7 +68,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -117,7 +117,7 @@ name|AttributeSource
 block|{
 DECL|field|termAttribute
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAttribute
 decl_stmt|;
 DECL|field|offsetAttribute
@@ -134,7 +134,7 @@ name|termAttribute
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -166,7 +166,10 @@ parameter_list|)
 block|{
 name|termAttribute
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|stringValue
 argument_list|)

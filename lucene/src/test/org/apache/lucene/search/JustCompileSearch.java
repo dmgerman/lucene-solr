@@ -106,7 +106,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermPositions
+name|DocsAndPositionsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -819,7 +833,7 @@ specifier|public
 name|long
 name|parseLong
 parameter_list|(
-name|String
+name|BytesRef
 name|string
 parameter_list|)
 block|{
@@ -847,8 +861,8 @@ specifier|public
 name|double
 name|parseDouble
 parameter_list|(
-name|String
-name|string
+name|BytesRef
+name|term
 parameter_list|)
 block|{
 throw|throw
@@ -1226,9 +1240,9 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|TermPositions
+name|DocsAndPositionsEnum
 index|[]
-name|tps
+name|docs
 parameter_list|,
 name|int
 index|[]
@@ -1246,7 +1260,7 @@ name|super
 argument_list|(
 name|weight
 argument_list|,
-name|tps
+name|docs
 argument_list|,
 name|offsets
 argument_list|,

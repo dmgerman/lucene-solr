@@ -128,7 +128,7 @@ specifier|public
 class|class
 name|TestStressIndexing
 extends|extends
-name|LuceneTestCase
+name|MultiCodecTestCase
 block|{
 DECL|field|RANDOM
 specifier|private
@@ -793,6 +793,15 @@ name|modifier
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+name|FlexTestUtil
+operator|.
+name|verifyFlexVsPreFlex
+argument_list|(
+name|RANDOM
+argument_list|,
+name|directory
+argument_list|)
 expr_stmt|;
 for|for
 control|(

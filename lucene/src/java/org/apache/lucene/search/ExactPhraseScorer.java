@@ -54,9 +54,9 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|TermPositions
+name|DocsAndPositionsEnum
 index|[]
-name|tps
+name|postings
 parameter_list|,
 name|int
 index|[]
@@ -74,7 +74,7 @@ name|super
 argument_list|(
 name|weight
 argument_list|,
-name|tps
+name|postings
 argument_list|,
 name|offsets
 argument_list|,

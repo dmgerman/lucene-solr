@@ -32,6 +32,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -71,6 +87,9 @@ name|deletionPolicy
 parameter_list|,
 name|int
 name|termInfosIndexDivisor
+parameter_list|,
+name|CodecProvider
+name|codecs
 parameter_list|)
 throws|throws
 name|IOException
@@ -86,6 +105,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|termInfosIndexDivisor
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 block|}
@@ -120,6 +141,9 @@ name|doClone
 parameter_list|,
 name|int
 name|termInfosIndexDivisor
+parameter_list|,
+name|CodecProvider
+name|codecs
 parameter_list|)
 throws|throws
 name|IOException
@@ -141,6 +165,8 @@ argument_list|,
 name|doClone
 argument_list|,
 name|termInfosIndexDivisor
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 block|}
@@ -155,6 +181,9 @@ name|infos
 parameter_list|,
 name|int
 name|termInfosIndexDivisor
+parameter_list|,
+name|CodecProvider
+name|codecs
 parameter_list|)
 throws|throws
 name|IOException
@@ -166,6 +195,8 @@ argument_list|,
 name|infos
 argument_list|,
 name|termInfosIndexDivisor
+argument_list|,
+name|codecs
 argument_list|)
 expr_stmt|;
 block|}

@@ -68,6 +68,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -502,6 +512,14 @@ name|TestPositionIncrement
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|VERBOSE
+specifier|final
+specifier|static
+name|boolean
+name|VERBOSE
+init|=
+literal|false
+decl_stmt|;
 DECL|method|testSetPosition
 specifier|public
 name|void
@@ -2101,7 +2119,21 @@ name|sawZero
 init|=
 literal|false
 decl_stmt|;
-comment|//System.out.println("\ngetPayloadSpans test");
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\ngetPayloadSpans test"
+argument_list|)
+expr_stmt|;
+block|}
 name|Spans
 name|pspans
 init|=
@@ -2123,7 +2155,40 @@ name|next
 argument_list|()
 condition|)
 block|{
-comment|//System.out.println(pspans.doc() + " - " + pspans.start() + " - "+ pspans.end());
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"doc "
+operator|+
+name|pspans
+operator|.
+name|doc
+argument_list|()
+operator|+
+literal|": span "
+operator|+
+name|pspans
+operator|.
+name|start
+argument_list|()
+operator|+
+literal|" to "
+operator|+
+name|pspans
+operator|.
+name|end
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|Collection
 argument_list|<
 name|byte
@@ -2145,13 +2210,54 @@ argument_list|()
 operator|==
 literal|0
 expr_stmt|;
-name|count
-operator|+=
+for|for
+control|(
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+name|byte
+index|[]
+name|bytes
+range|:
 name|payloads
-operator|.
-name|size
-argument_list|()
+control|)
+block|{
+name|count
+operator|++
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|VERBOSE
+condition|)
+block|{
+comment|// do nothing
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  payload: "
+operator|+
+operator|new
+name|String
+argument_list|(
+operator|(
+name|byte
+index|[]
+operator|)
+name|bytes
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 name|assertEquals
 argument_list|(
@@ -2165,7 +2271,7 @@ argument_list|(
 name|sawZero
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("\ngetSpans test");
+comment|// System.out.println("\ngetSpans test");
 name|Spans
 name|spans
 init|=
@@ -2207,7 +2313,8 @@ argument_list|()
 operator|==
 literal|0
 expr_stmt|;
-comment|//System.out.println(spans.doc() + " - " + spans.start() + " - " + spans.end());
+comment|// System.out.println(spans.doc() + " - " + spans.start() + " - " +
+comment|// spans.end());
 block|}
 name|assertEquals
 argument_list|(
@@ -2221,7 +2328,7 @@ argument_list|(
 name|sawZero
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("\nPayloadSpanUtil test");
+comment|// System.out.println("\nPayloadSpanUtil test");
 name|sawZero
 operator|=
 literal|false
@@ -2538,7 +2645,32 @@ name|pos
 operator|+=
 name|posIncr
 expr_stmt|;
-comment|// System.out.println("term=" + termAttr.term() + " pos=" + pos);
+if|if
+condition|(
+name|TestPositionIncrement
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"term="
+operator|+
+name|termAttr
+operator|.
+name|term
+argument_list|()
+operator|+
+literal|" pos="
+operator|+
+name|pos
+argument_list|)
+expr_stmt|;
+block|}
 name|i
 operator|++
 expr_stmt|;

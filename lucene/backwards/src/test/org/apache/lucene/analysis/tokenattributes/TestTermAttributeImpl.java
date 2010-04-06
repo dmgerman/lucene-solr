@@ -640,7 +640,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"term=aloha"
+literal|"aloha"
 argument_list|,
 name|t
 operator|.
@@ -657,7 +657,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"term=hi there"
+literal|"hi there"
 argument_list|,
 name|t
 operator|.
