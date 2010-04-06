@@ -426,6 +426,40 @@ name|base
 index|]
 operator|)
 expr_stmt|;
+if|if
+condition|(
+name|bitPos
+operator|<=
+name|BLOCK_SIZE
+operator|-
+name|elementBits
+condition|)
+block|{
+comment|// Second block not used
+name|currentMasks
+index|[
+name|base
+operator|+
+literal|1
+index|]
+operator|=
+operator|~
+literal|0
+expr_stmt|;
+comment|// Keep all bits
+name|currentMasks
+index|[
+name|base
+operator|+
+literal|2
+index|]
+operator|=
+literal|0
+expr_stmt|;
+comment|// Or with 0
+block|}
+else|else
+block|{
 name|currentMasks
 index|[
 name|base
@@ -466,6 +500,7 @@ else|:
 operator|~
 literal|0
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
