@@ -704,7 +704,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|checkIndex
-specifier|protected
+specifier|public
 name|Status
 name|checkIndex
 parameter_list|(
@@ -731,7 +731,7 @@ return|;
 block|}
 comment|/** Returns a {@link Status} instance detailing    *  the state of the index.    *     *  @param onlySegments list of specific segment names to check    *    *<p>As this method checks every byte in the specified    *  segments, on a large index it can take quite a long    *  time to run.    *    *<p><b>WARNING</b>: make sure    *  you only call this when the index is not opened by any    *  writer. */
 DECL|method|checkIndex
-specifier|protected
+specifier|public
 name|Status
 name|checkIndex
 parameter_list|(

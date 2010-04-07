@@ -153,7 +153,6 @@ specifier|public
 name|int
 name|length
 decl_stmt|;
-comment|/*     public String toString() {       return new String(result, 0, length);     }     */
 DECL|method|setLength
 specifier|public
 name|void
