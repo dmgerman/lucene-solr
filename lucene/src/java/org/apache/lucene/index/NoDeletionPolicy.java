@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.benchmark.utils
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|benchmark
-operator|.
-name|utils
+name|index
 package|;
 end_package
 
@@ -38,42 +36,38 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexCommit
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexDeletionPolicy
-import|;
-end_import
+begin_comment
+comment|/**  * An {@link IndexDeletionPolicy} which keeps all index commits around, never  * deleting them. This class is a singleton and can be accessed by referencing  * {@link #INSTANCE}.  */
+end_comment
 
 begin_class
 DECL|class|NoDeletionPolicy
 specifier|public
+specifier|final
 class|class
 name|NoDeletionPolicy
 implements|implements
 name|IndexDeletionPolicy
 block|{
+comment|/** The single instance of this class. */
+DECL|field|INSTANCE
+specifier|public
+specifier|static
+specifier|final
+name|IndexDeletionPolicy
+name|INSTANCE
+init|=
+operator|new
+name|NoDeletionPolicy
+argument_list|()
+decl_stmt|;
+DECL|method|NoDeletionPolicy
+specifier|private
+name|NoDeletionPolicy
+parameter_list|()
+block|{
+comment|// keep private to avoid instantiation
+block|}
 DECL|method|onCommit
 specifier|public
 name|void
@@ -89,9 +83,7 @@ name|commits
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-comment|// TODO Auto-generated method stub
-block|}
+block|{}
 DECL|method|onInit
 specifier|public
 name|void
@@ -107,9 +99,7 @@ name|commits
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-comment|// TODO Auto-generated method stub
-block|}
+block|{}
 block|}
 end_class
 

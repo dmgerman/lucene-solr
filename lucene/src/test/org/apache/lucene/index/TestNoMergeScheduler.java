@@ -227,9 +227,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Ensures that all methods of MergePolicy are overridden. That's important
-comment|// to ensure that NoMergePolicy overrides everything, so that no unexpected
-comment|// behavior/error occurs
+comment|// Ensures that all methods of MergeScheduler are overridden. That's
+comment|// important to ensure that NoMergeScheduler overrides everything, so that
+comment|// no unexpected behavior/error occurs
 for|for
 control|(
 name|Method
