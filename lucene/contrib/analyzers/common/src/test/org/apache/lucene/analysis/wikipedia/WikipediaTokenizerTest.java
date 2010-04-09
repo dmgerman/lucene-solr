@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.wikipedia.analysis
+DECL|package|org.apache.lucene.analysis.wikipedia
 package|package
 name|org
 operator|.
@@ -12,9 +12,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|wikipedia
-operator|.
 name|analysis
+operator|.
+name|wikipedia
 package|;
 end_package
 
