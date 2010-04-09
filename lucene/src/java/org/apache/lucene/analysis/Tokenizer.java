@@ -195,11 +195,25 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|input
+operator|!=
+literal|null
+condition|)
+block|{
 name|input
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// LUCENE-2387: don't hold onto Reader after close, so
+comment|// GC can reclaim
+name|input
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/** Return the corrected offset. If {@link #input} is a {@link CharStream} subclass    * this method calls {@link CharStream#correctOffset}, else returns<code>currentOff</code>.    * @param currentOff offset as seen in the output    * @return corrected offset based on the input    * @see CharStream#correctOffset    */
 DECL|method|correctOffset

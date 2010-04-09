@@ -838,6 +838,15 @@ name|getBoost
 argument_list|()
 expr_stmt|;
 block|}
+comment|// LUCENE-2387: don't hang onto the field, so GC can
+comment|// reclaim
+name|fields
+index|[
+name|i
+index|]
+operator|=
+literal|null
+expr_stmt|;
 block|}
 name|consumer
 operator|.
