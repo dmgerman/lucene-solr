@@ -486,7 +486,7 @@ specifier|static
 name|int
 name|NUM_TEST_ITER
 init|=
-literal|4000
+literal|20
 decl_stmt|;
 DECL|field|NUM_TEST_THREADS
 specifier|private
