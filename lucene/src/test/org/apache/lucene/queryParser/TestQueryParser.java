@@ -296,7 +296,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -705,7 +705,7 @@ extends|extends
 name|TokenFilter
 block|{
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 DECL|field|offsetAtt
@@ -730,7 +730,7 @@ name|termAtt
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -786,7 +786,7 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|append
 argument_list|(
 literal|"phrase2"
 argument_list|)
@@ -817,7 +817,7 @@ if|if
 condition|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 operator|.
 name|equals
@@ -846,7 +846,10 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 literal|"phrase1"
 argument_list|)
@@ -870,7 +873,7 @@ condition|(
 operator|!
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 operator|.
 name|equals

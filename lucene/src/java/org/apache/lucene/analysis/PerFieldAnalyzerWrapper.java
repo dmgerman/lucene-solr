@@ -77,6 +77,7 @@ end_comment
 begin_class
 DECL|class|PerFieldAnalyzerWrapper
 specifier|public
+specifier|final
 class|class
 name|PerFieldAnalyzerWrapper
 extends|extends
@@ -248,23 +249,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|overridesTokenStreamMethod
-condition|)
-block|{
-comment|// LUCENE-1678: force fallback to tokenStream() if we
-comment|// have been subclassed and that subclass overrides
-comment|// tokenStream but not reusableTokenStream
-return|return
-name|tokenStream
-argument_list|(
-name|fieldName
-argument_list|,
-name|reader
-argument_list|)
-return|;
-block|}
 name|Analyzer
 name|analyzer
 init|=

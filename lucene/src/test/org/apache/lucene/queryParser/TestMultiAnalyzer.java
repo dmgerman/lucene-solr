@@ -142,7 +142,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -863,7 +863,7 @@ name|int
 name|prevEndOffset
 decl_stmt|;
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 DECL|field|posIncrAtt
@@ -895,7 +895,7 @@ name|termAtt
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -952,7 +952,10 @@ condition|)
 block|{
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 literal|"multi"
 operator|+
@@ -1040,7 +1043,7 @@ name|text
 init|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 decl_stmt|;
 if|if
@@ -1159,7 +1162,7 @@ extends|extends
 name|TokenFilter
 block|{
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 DECL|field|posIncrAtt
@@ -1183,7 +1186,7 @@ name|termAtt
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1225,7 +1228,7 @@ if|if
 condition|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 operator|.
 name|equals
@@ -1241,7 +1244,7 @@ if|if
 condition|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 operator|.
 name|equals

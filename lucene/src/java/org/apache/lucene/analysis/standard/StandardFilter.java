@@ -58,7 +58,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -105,24 +105,6 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|typeAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TypeAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 DECL|field|APOSTROPHE_TYPE
 specifier|private
@@ -162,12 +144,26 @@ specifier|private
 specifier|final
 name|TypeAttribute
 name|typeAtt
+init|=
+name|addAttribute
+argument_list|(
+name|TypeAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|/** Returns the next token in the stream, or null at EOS.    *<p>Removes<tt>'s</tt> from the end of words.    *<p>Removes dots from acronyms.    */
 annotation|@
@@ -198,13 +194,14 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|char
 index|[]
 name|buffer
 init|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -213,7 +210,7 @@ name|bufferLength
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -269,7 +266,7 @@ block|{
 comment|// Strip last 2 characters off
 name|termAtt
 operator|.
-name|setTermLength
+name|setLength
 argument_list|(
 name|bufferLength
 operator|-
@@ -331,7 +328,7 @@ expr_stmt|;
 block|}
 name|termAtt
 operator|.
-name|setTermLength
+name|setLength
 argument_list|(
 name|upto
 argument_list|)

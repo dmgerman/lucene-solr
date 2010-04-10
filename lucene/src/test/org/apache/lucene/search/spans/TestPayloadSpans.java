@@ -178,7 +178,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -3694,7 +3694,7 @@ name|PayloadAttribute
 name|payloadAtt
 decl_stmt|;
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 DECL|field|posIncrAtt
@@ -3759,7 +3759,7 @@ name|termAtt
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -3804,21 +3804,10 @@ block|{
 name|String
 name|token
 init|=
-operator|new
-name|String
-argument_list|(
 name|termAtt
 operator|.
-name|termBuffer
+name|toString
 argument_list|()
-argument_list|,
-literal|0
-argument_list|,
-name|termAtt
-operator|.
-name|termLength
-argument_list|()
-argument_list|)
 decl_stmt|;
 if|if
 condition|(

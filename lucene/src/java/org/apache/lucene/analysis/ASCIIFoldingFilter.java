@@ -38,7 +38,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -96,15 +96,6 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 DECL|field|output
 specifier|private
@@ -125,8 +116,16 @@ name|outputPos
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
@@ -153,7 +152,7 @@ name|buffer
 init|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -162,7 +161,7 @@ name|length
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 comment|// If no characters actually require rewriting then we
@@ -207,7 +206,7 @@ argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|output
 argument_list|,

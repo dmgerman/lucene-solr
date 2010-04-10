@@ -1766,13 +1766,13 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"TermAttribute is not implemented by Token"
+literal|"CharTermAttribute is not implemented by Token"
 argument_list|,
 name|ts
 operator|.
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)

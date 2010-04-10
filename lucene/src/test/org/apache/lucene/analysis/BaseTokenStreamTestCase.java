@@ -327,26 +327,26 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"has no TermAttribute"
+literal|"has no CharTermAttribute"
 argument_list|,
 name|ts
 operator|.
 name|hasAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|ts
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -503,7 +503,10 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 literal|"bogusTerm"
 argument_list|)
@@ -592,7 +595,7 @@ index|]
 argument_list|,
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

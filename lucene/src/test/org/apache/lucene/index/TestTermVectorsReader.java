@@ -148,7 +148,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -890,7 +890,7 @@ name|int
 name|tokenUpto
 decl_stmt|;
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 DECL|field|posIncrAtt
@@ -910,7 +910,7 @@ name|termAtt
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -970,7 +970,7 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|append
 argument_list|(
 name|testToken
 operator|.

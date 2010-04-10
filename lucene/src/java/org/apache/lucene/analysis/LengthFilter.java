@@ -38,7 +38,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -56,19 +56,29 @@ extends|extends
 name|TokenFilter
 block|{
 DECL|field|min
+specifier|private
 specifier|final
 name|int
 name|min
 decl_stmt|;
 DECL|field|max
+specifier|private
 specifier|final
 name|int
 name|max
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|/**    * Build a filter that removes words that are too long or too    * short from the text.    */
 DECL|method|LengthFilter
@@ -102,15 +112,6 @@ name|max
 operator|=
 name|max
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Returns the next input Token whose term() is the right len    */
 annotation|@
@@ -138,7 +139,7 @@ name|len
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 if|if

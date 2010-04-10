@@ -44,7 +44,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -251,14 +251,14 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|stream
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -279,7 +279,7 @@ name|contains
 argument_list|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 argument_list|)
@@ -367,14 +367,14 @@ argument_list|(
 name|stream
 argument_list|)
 expr_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|stream
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -404,7 +404,7 @@ name|text
 init|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -538,14 +538,14 @@ name|i
 init|=
 literal|0
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|stream
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -575,7 +575,7 @@ name|text
 init|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 decl_stmt|;
 name|assertFalse

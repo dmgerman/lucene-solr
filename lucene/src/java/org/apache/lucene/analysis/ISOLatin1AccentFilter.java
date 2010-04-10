@@ -12,6 +12,10 @@ name|analysis
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -24,13 +28,9 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
-
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * A filter that replaces accented characters in the ISO Latin 1 character set   * (ISO-8859-1) by their unaccented equivalent. The case will not be altered.  *<p>  * For instance, '&agrave;' will be replaced by 'a'.  *<p>  *   * @deprecated If you build a new index, use {@link ASCIIFoldingFilter}  * which covers a superset of Latin 1.  * This class is included for use with existing  * indexes and will be removed in a future release (possibly Lucene 4.0).  */
@@ -60,15 +60,6 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 DECL|field|output
 specifier|private
@@ -89,8 +80,16 @@ name|outputPos
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
@@ -122,7 +121,7 @@ name|buffer
 init|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -131,7 +130,7 @@ name|length
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 comment|// If no characters actually require rewriting then we
@@ -180,7 +179,7 @@ argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|output
 argument_list|,
