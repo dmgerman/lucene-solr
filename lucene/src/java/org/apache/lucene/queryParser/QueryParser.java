@@ -635,7 +635,7 @@ name|OR
 block|,
 name|AND
 block|}
-comment|/** Constructs a query parser.    *  @param matchVersion  Lucene version to match.  See<a href="#version">above</a>)    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
+comment|/** Constructs a query parser.    *  @param matchVersion  Lucene version to match. See<a href="#version">above</a>.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|QueryParser
 specifier|public
 name|QueryParser

@@ -29,6 +29,11 @@ comment|/** Token Manager Error. */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
 DECL|class|TokenMgrError
 specifier|public
 class|class
@@ -36,18 +41,8 @@ name|TokenMgrError
 extends|extends
 name|Error
 block|{
-comment|/**    * The version identifier for this Serializable class.    * Increment only if the<i>serialized</i> form of the    * class changes.    */
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1L
-decl_stmt|;
-comment|/*    * Ordinals for various reasons why an Error of this type can be thrown.    */
-comment|/**    * Lexical error occurred.    */
+comment|/*     * Ordinals for various reasons why an Error of this type can be thrown.     */
+comment|/**     * Lexical error occurred.     */
 DECL|field|LEXICAL_ERROR
 specifier|static
 specifier|final
@@ -56,7 +51,7 @@ name|LEXICAL_ERROR
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * An attempt was made to create a second instance of a static token manager.    */
+comment|/**     * An attempt was made to create a second instance of a static token manager.     */
 DECL|field|STATIC_LEXER_ERROR
 specifier|static
 specifier|final
@@ -65,7 +60,7 @@ name|STATIC_LEXER_ERROR
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * Tried to change to an invalid lexical state.    */
+comment|/**     * Tried to change to an invalid lexical state.     */
 DECL|field|INVALID_LEXICAL_STATE
 specifier|static
 specifier|final
@@ -74,7 +69,7 @@ name|INVALID_LEXICAL_STATE
 init|=
 literal|2
 decl_stmt|;
-comment|/**    * Detected (and bailed out of) an infinite loop in the token manager.    */
+comment|/**     * Detected (and bailed out of) an infinite loop in the token manager.     */
 DECL|field|LOOP_DETECTED
 specifier|static
 specifier|final
@@ -83,12 +78,12 @@ name|LOOP_DETECTED
 init|=
 literal|3
 decl_stmt|;
-comment|/**    * Indicates the reason why the exception is thrown. It will have    * one of the above 4 values.    */
+comment|/**     * Indicates the reason why the exception is thrown. It will have     * one of the above 4 values.     */
 DECL|field|errorCode
 name|int
 name|errorCode
 decl_stmt|;
-comment|/**    * Replaces unprintable characters by their escaped (or unicode escaped)    * equivalents in the given string    */
+comment|/**     * Replaces unprintable characters by their escaped (or unicode escaped)     * equivalents in the given string     */
 DECL|method|addEscapes
 specifier|protected
 specifier|static
@@ -310,7 +305,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a detailed message for the Error when it is thrown by the    * token manager to indicate a lexical error.    * Parameters :    *    EOFSeen     : indicates if EOF caused the lexical error    *    curLexState : lexical state in which this error occurred    *    errorLine   : line number when the error occurred    *    errorColumn : column number when the error occurred    *    errorAfter  : prefix that was seen before this error occurred    *    curchar     : the offending character    * Note: You can customize the lexical error message by modifying this method.    */
+comment|/**     * Returns a detailed message for the Error when it is thrown by the     * token manager to indicate a lexical error.     * Parameters :     *    EOFSeen     : indicates if EOF caused the lexical error     *    curLexState : lexical state in which this error occurred     *    errorLine   : line number when the error occurred     *    errorColumn : column number when the error occurred     *    errorAfter  : prefix that was seen before this error occurred     *    curchar     : the offending character     * Note: You can customize the lexical error message by modifying this method.     */
 DECL|method|LexicalError
 specifier|protected
 specifier|static
@@ -390,7 +385,7 @@ literal|"\""
 operator|)
 return|;
 block|}
-comment|/**    * You can also modify the body of this method to customize your error messages.    * For example, cases like LOOP_DETECTED and INVALID_LEXICAL_STATE are not    * of end-users concern, so you can return something like :    *    *     "Internal Error : Please file a bug report .... "    *    * from this method for such cases in the release version of your parser.    */
+comment|/**     * You can also modify the body of this method to customize your error messages.     * For example, cases like LOOP_DETECTED and INVALID_LEXICAL_STATE are not     * of end-users concern, so you can return something like :     *     *     "Internal Error : Please file a bug report .... "     *     * from this method for such cases in the release version of your parser.     */
 DECL|method|getMessage
 specifier|public
 name|String
@@ -404,13 +399,13 @@ name|getMessage
 argument_list|()
 return|;
 block|}
-comment|/*    * Constructors of various flavors follow.    */
+comment|/*     * Constructors of various flavors follow.     */
 comment|/** No arg constructor. */
 DECL|method|TokenMgrError
 specifier|public
 name|TokenMgrError
 parameter_list|()
-block|{   }
+block|{    }
 comment|/** Constructor with message and reason. */
 DECL|method|TokenMgrError
 specifier|public
@@ -485,7 +480,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=9672a6de7ecf4f5789a473d7dd40f6fb (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=a75b5b61664a73631a032a6e44f4b38a (do not edit this line) */
 end_comment
 
 end_unit

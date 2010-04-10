@@ -24,10 +24,6 @@ name|parser
 package|;
 end_package
 
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
 begin_import
 import|import
 name|org
@@ -68,7 +64,7 @@ name|queryParser
 operator|.
 name|core
 operator|.
-name|QueryNodeParseException
+name|*
 import|;
 end_import
 
@@ -86,12 +82,12 @@ name|core
 operator|.
 name|messages
 operator|.
-name|QueryParserMessages
+name|*
 import|;
 end_import
 
 begin_comment
-comment|/**  * This exception is thrown when parse errors are encountered. You can  * explicitly create objects of this exception type by calling the method  * generateParseException in the generated parser.  *   * You can modify this class to customize your error reporting mechanisms so  * long as you retain the public fields.  */
+comment|/**  * This exception is thrown when parse errors are encountered.  * You can explicitly create objects of this exception type by  * calling the method generateParseException in the generated  * parser.  *  * You can modify this class to customize your error reporting  * mechanisms so long as you retain the public fields.  */
 end_comment
 
 begin_class
@@ -102,17 +98,7 @@ name|ParseException
 extends|extends
 name|QueryNodeParseException
 block|{
-comment|/**    * The version identifier for this Serializable class. Increment only if the    *<i>serialized</i> form of the class changes.    */
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1L
-decl_stmt|;
-comment|/**    * This constructor is used by the method "generateParseException" in the    * generated parser. Calling this constructor generates a new object of this    * type with the fields "currentToken", "expectedTokenSequences", and    * "tokenImage" set.    */
+comment|/**    * This constructor is used by the method "generateParseException"    * in the generated parser.  Calling this constructor generates    * a new object of this type with the fields "currentToken",    * "expectedTokenSequences", and "tokenImage" set.  The boolean    * flag "specialConstructor" is also set to true to indicate that    * this constructor was used to create this object.    * This constructor calls its super class with the empty string    * to force the "toString" method of parent class "Throwable" to    * print the error message in the form:    *     ParseException:<result of getMessage>    */
 DECL|method|ParseException
 specifier|public
 name|ParseException
@@ -169,20 +155,7 @@ operator|=
 name|tokenImageVal
 expr_stmt|;
 block|}
-DECL|method|ParseException
-specifier|public
-name|ParseException
-parameter_list|(
-name|Message
-name|message
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
-block|}
+comment|/**    * The following constructors are for use by you for whatever    * purpose you can think of.  Constructing the exception in this    * manner makes the exception behave in the normal way - i.e., as    * documented in the class "Throwable".  The fields "errorToken",    * "expectedTokenSequences", and "tokenImage" do not contain    * relevant information.  The JavaCC generated code does not use    * these constructors.    */
 DECL|method|ParseException
 specifier|public
 name|ParseException
@@ -202,43 +175,49 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This is the last token that has been consumed successfully. If this object    * has been created due to a parse error, the token followng this token will    * (therefore) be the first error token.    */
-annotation|@
-name|SuppressWarnings
+comment|/** Constructor with message. */
+DECL|method|ParseException
+specifier|public
+name|ParseException
+parameter_list|(
+name|Message
+name|message
+parameter_list|)
+block|{
+name|super
 argument_list|(
-literal|"unused"
+name|message
 argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * This variable determines which constructor was used to create    * this object and thereby affects the semantics of the    * "getMessage" method (see below).    */
+DECL|field|specialConstructor
+specifier|protected
+name|boolean
+name|specialConstructor
+decl_stmt|;
+comment|/**    * This is the last token that has been consumed successfully.  If    * this object has been created due to a parse error, the token    * followng this token will (therefore) be the first error token.    */
 DECL|field|currentToken
-specifier|private
+specifier|public
 name|Token
 name|currentToken
 decl_stmt|;
-comment|/**    * Each entry in this array is an array of integers. Each array of integers    * represents a sequence of tokens (by their ordinal values) that is expected    * at this point of the parse.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
+comment|/**    * Each entry in this array is an array of integers.  Each array    * of integers represents a sequence of tokens (by their ordinal    * values) that is expected at this point of the parse.    */
 DECL|field|expectedTokenSequences
-specifier|private
+specifier|public
 name|int
 index|[]
 index|[]
 name|expectedTokenSequences
 decl_stmt|;
-comment|/**    * This is a reference to the "tokenImage" array of the generated parser    * within which the parse error occurred. This array is defined in the    * generated ...Constants interface.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
+comment|/**    * This is a reference to the "tokenImage" array of the generated    * parser within which the parse error occurred.  This array is    * defined in the generated ...Constants interface.    */
 DECL|field|tokenImage
-specifier|private
+specifier|public
 name|String
 index|[]
 name|tokenImage
 decl_stmt|;
-comment|/**    * It uses "currentToken" and "expectedTokenSequences" to generate a parse    * error message and returns it. If this object has been created due to a    * parse error, and you do not catch it (it gets thrown from the parser) the    * correct error message gets displayed.    */
+comment|/**    * This method has the standard behavior when this object has been    * created using the standard constructors.  Otherwise, it uses    * "currentToken" and "expectedTokenSequences" to generate a parse    * error message and returns it.  If this object has been created    * due to a parse error, and you do not catch it (it gets thrown    * from the parser), then this method is called during the printing    * of the final stack trace, and hence the correct error message    * gets displayed.    */
 DECL|method|initialise
 specifier|private
 specifier|static
@@ -267,7 +246,7 @@ name|getProperty
 argument_list|(
 literal|"line.separator"
 argument_list|,
-literal|"\n"
+literal|"n"
 argument_list|)
 decl_stmt|;
 name|StringBuffer
@@ -559,13 +538,8 @@ name|retval
 return|;
 block|}
 comment|/**    * The end of line string for this machine.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 DECL|field|eol
-specifier|private
+specifier|protected
 name|String
 name|eol
 init|=
@@ -578,7 +552,7 @@ argument_list|,
 literal|"\n"
 argument_list|)
 decl_stmt|;
-comment|/**    * Used to convert raw characters to their escaped version when these raw    * version cannot be used as part of an ASCII string literal.    */
+comment|/**    * Used to convert raw characters to their escaped version    * when these raw version cannot be used as part of an ASCII    * string literal.    */
 DECL|method|add_escapes
 specifier|static
 specifier|private
@@ -803,7 +777,7 @@ block|}
 end_class
 
 begin_comment
-comment|/*  * JavaCC - StandardChecksum=c04ac45b94787832e67e6d1b49d8774c (do not edit this  * line)  */
+comment|/* JavaCC - OriginalChecksum=38bce846fe6c8482993969f741c0323e (do not edit this line) */
 end_comment
 
 end_unit
