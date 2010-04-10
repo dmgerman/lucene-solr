@@ -593,26 +593,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|getRandomSocketPort
-specifier|public
-specifier|static
-name|int
-name|getRandomSocketPort
-parameter_list|()
-block|{
-return|return
-literal|1024
-operator|+
-operator|new
-name|Random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|64512
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 
