@@ -3257,7 +3257,7 @@ specifier|private
 name|Fields
 name|fields
 decl_stmt|;
-comment|/** lucene.internal */
+comment|/** @lucene.internal */
 DECL|method|storeFields
 name|void
 name|storeFields
@@ -3273,7 +3273,7 @@ operator|=
 name|fields
 expr_stmt|;
 block|}
-comment|/** lucene.internal */
+comment|/** @lucene.internal */
 DECL|method|retrieveFields
 name|Fields
 name|retrieveFields
@@ -3288,7 +3288,7 @@ specifier|private
 name|Bits
 name|storedDelDocs
 decl_stmt|;
-comment|/** lucene.internal */
+comment|/** @lucene.internal */
 DECL|method|storeDelDocs
 name|void
 name|storeDelDocs
@@ -3304,7 +3304,7 @@ operator|=
 name|delDocs
 expr_stmt|;
 block|}
-comment|/** lucene.internal */
+comment|/** @lucene.internal */
 DECL|method|retrieveDelDocs
 name|Bits
 name|retrieveDelDocs
