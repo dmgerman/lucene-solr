@@ -429,7 +429,7 @@ name|isReplaceInvalidAcronym
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// this is a hack to get the private matchVersion field in StandardAnalyzer, may break in later lucene versions - we have no getter :(
+comment|// this is a hack to get the private matchVersion field in StandardAnalyzer's superclass, may break in later lucene versions - we have no getter :(
 specifier|final
 name|Field
 name|matchVersionField
@@ -437,6 +437,9 @@ init|=
 name|StandardAnalyzer
 operator|.
 name|class
+operator|.
+name|getSuperclass
+argument_list|()
 operator|.
 name|getDeclaredField
 argument_list|(
