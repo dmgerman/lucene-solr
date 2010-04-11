@@ -1314,6 +1314,12 @@ argument_list|,
 literal|"testSetBufferSize"
 argument_list|)
 decl_stmt|;
+name|indexDir
+operator|.
+name|mkdirs
+argument_list|()
+expr_stmt|;
+comment|// required for this MockFSDir since we don't commit on IW creation anymore.
 name|MockFSDirectory
 name|dir
 init|=

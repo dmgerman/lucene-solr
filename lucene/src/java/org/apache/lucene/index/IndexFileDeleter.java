@@ -426,45 +426,27 @@ argument_list|(
 name|codecs
 argument_list|)
 expr_stmt|;
-name|String
-index|[]
-name|files
-init|=
-name|directory
-operator|.
-name|listAll
-argument_list|()
-decl_stmt|;
 name|CommitPoint
 name|currentCommitPoint
 init|=
 literal|null
 decl_stmt|;
+name|boolean
+name|seenIndexFiles
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|files
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|String
 name|fileName
-init|=
-name|files
-index|[
-name|i
-index|]
-decl_stmt|;
+range|:
+name|directory
+operator|.
+name|listAll
+argument_list|()
+control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -497,6 +479,10 @@ name|SEGMENTS_GEN
 argument_list|)
 condition|)
 block|{
+name|seenIndexFiles
+operator|=
+literal|true
+expr_stmt|;
 comment|// Add this file to refCounts with initial count 0:
 name|getRefCount
 argument_list|(
@@ -660,11 +646,16 @@ block|}
 block|}
 block|}
 block|}
+comment|// If we haven't seen any Lucene files, then currentCommitPoint is expected
+comment|// to be null, because it means it's a fresh Directory. Therefore it cannot
+comment|// be any NFS cache issues - so just ignore.
 if|if
 condition|(
 name|currentCommitPoint
 operator|==
 literal|null
+operator|&&
+name|seenIndexFiles
 condition|)
 block|{
 comment|// We did not in fact see the segments_N file
@@ -836,6 +827,11 @@ block|}
 block|}
 comment|// Finally, give policy a chance to remove things on
 comment|// startup:
+if|if
+condition|(
+name|seenIndexFiles
+condition|)
+block|{
 name|policy
 operator|.
 name|onInit
@@ -843,6 +839,7 @@ argument_list|(
 name|commits
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Always protect the incoming segmentInfos since
 comment|// sometime it may not be the most recent commit
 name|checkpoint
@@ -854,6 +851,12 @@ argument_list|)
 expr_stmt|;
 name|startingCommitDeleted
 operator|=
+name|currentCommitPoint
+operator|==
+literal|null
+condition|?
+literal|false
+else|:
 name|currentCommitPoint
 operator|.
 name|isDeleted

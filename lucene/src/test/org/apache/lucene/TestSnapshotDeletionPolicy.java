@@ -759,6 +759,11 @@ literal|2
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 specifier|final
 name|Thread
 name|t

@@ -386,6 +386,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -4569,13 +4583,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 1 but got "
+literal|"segment generation should be> 0 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|1
+literal|0
 argument_list|)
 expr_stmt|;
 comment|// Make the next segments file, with last byte
@@ -4858,13 +4872,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 1 but got "
+literal|"segment generation should be> 0 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|1
+literal|0
 argument_list|)
 expr_stmt|;
 name|String
@@ -5168,13 +5182,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 1 but got "
+literal|"segment generation should be> 0 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|1
+literal|0
 argument_list|)
 expr_stmt|;
 name|String
@@ -14450,10 +14464,17 @@ name|dir
 operator|.
 name|setMaxSizeInBytes
 argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
 name|dir
 operator|.
 name|getRecomputedActualSizeInBytes
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|writer
@@ -16154,13 +16175,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 1 but got "
+literal|"segment generation should be> 0 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|1
+literal|0
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -16347,6 +16368,11 @@ name|setMergeFactor
 argument_list|(
 literal|5
 argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -22319,6 +22345,11 @@ argument_list|(
 literal|5
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -22628,6 +22659,11 @@ name|setMergeFactor
 argument_list|(
 literal|5
 argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -23153,6 +23189,11 @@ name|MaxFieldLength
 operator|.
 name|LIMITED
 argument_list|)
+expr_stmt|;
+name|writer2
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 name|cms
 operator|=

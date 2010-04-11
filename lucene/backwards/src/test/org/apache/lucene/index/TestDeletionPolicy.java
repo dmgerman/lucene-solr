@@ -1605,7 +1605,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|1
 argument_list|,
 name|policy
 operator|.
@@ -1634,10 +1634,10 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-comment|// 1 from opening writer + 2 from closing writer
+comment|// 2 from closing writer
 name|assertEquals
 argument_list|(
-literal|3
+literal|2
 argument_list|,
 name|commits
 operator|.
@@ -1946,7 +1946,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|6
+literal|5
 argument_list|,
 name|commits
 operator|.
@@ -2062,7 +2062,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|7
+literal|6
 argument_list|,
 name|IndexReader
 operator|.
@@ -2191,7 +2191,7 @@ expr_stmt|;
 comment|// Now 8 because we made another commit
 name|assertEquals
 argument_list|(
-literal|8
+literal|7
 argument_list|,
 name|IndexReader
 operator|.
@@ -2578,7 +2578,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|1
 argument_list|,
 name|policy
 operator|.
@@ -2777,8 +2777,6 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 name|N
-operator|+
-literal|1
 argument_list|,
 name|policy
 operator|.
@@ -3249,8 +3247,10 @@ operator|*
 operator|(
 name|N
 operator|+
-literal|2
+literal|1
 operator|)
+operator|+
+literal|1
 argument_list|,
 name|policy
 operator|.
@@ -3266,8 +3266,6 @@ name|N
 operator|+
 literal|2
 operator|)
-operator|-
-literal|1
 argument_list|,
 name|policy
 operator|.
@@ -3819,8 +3817,6 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-literal|1
-operator|+
 literal|3
 operator|*
 operator|(
@@ -3843,6 +3839,8 @@ name|N
 operator|+
 literal|1
 operator|)
+operator|+
+literal|1
 argument_list|,
 name|policy
 operator|.
