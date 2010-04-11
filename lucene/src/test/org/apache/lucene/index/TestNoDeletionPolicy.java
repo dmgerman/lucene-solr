@@ -488,13 +488,16 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+comment|// the reason to expect i + 2 commits is because when IndexWriter is
+comment|// created it creates a first commit. If this ever changes, then the
+comment|// expected should be i + 1 (and this comment removed).
 name|assertEquals
 argument_list|(
 literal|"wrong number of commits !"
 argument_list|,
 name|i
 operator|+
-literal|1
+literal|2
 argument_list|,
 name|IndexReader
 operator|.

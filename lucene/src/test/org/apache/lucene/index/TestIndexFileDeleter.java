@@ -611,7 +611,7 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"segments_2"
+literal|"segments_3"
 argument_list|,
 literal|"segments"
 argument_list|)
@@ -620,9 +620,9 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"segments_2"
+literal|"segments_3"
 argument_list|,
-literal|"segments_1"
+literal|"segments_2"
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus cfs file shadowing a non-cfs segment:
@@ -630,9 +630,9 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_1.cfs"
-argument_list|,
 literal|"_2.cfs"
+argument_list|,
+literal|"_3.cfs"
 argument_list|)
 expr_stmt|;
 name|String

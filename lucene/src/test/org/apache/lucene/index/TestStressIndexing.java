@@ -652,11 +652,6 @@ name|mergeScheduler
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|modifier
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
 name|TimedThread
 index|[]
 name|threads

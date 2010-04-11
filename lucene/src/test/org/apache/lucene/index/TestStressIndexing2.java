@@ -933,11 +933,6 @@ name|maxBufferedDocs
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|w
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
 name|LogMergePolicy
 name|lmp
 init|=

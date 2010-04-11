@@ -4655,13 +4655,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 0 but got "
+literal|"segment generation should be> 1 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 comment|// Make the next segments file, with last byte
@@ -4951,13 +4951,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 0 but got "
+literal|"segment generation should be> 1 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|String
@@ -5261,13 +5261,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 0 but got "
+literal|"segment generation should be> 1 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|String
@@ -14624,17 +14624,10 @@ name|dir
 operator|.
 name|setMaxSizeInBytes
 argument_list|(
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|1
-argument_list|,
 name|dir
 operator|.
 name|getRecomputedActualSizeInBytes
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -16350,13 +16343,13 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"segment generation should be> 0 but got "
+literal|"segment generation should be> 1 but got "
 operator|+
 name|gen
 argument_list|,
 name|gen
 operator|>
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -16554,11 +16547,6 @@ name|setMergeFactor
 argument_list|(
 literal|5
 argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|commit
-argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -22456,11 +22444,6 @@ argument_list|(
 literal|5
 argument_list|)
 expr_stmt|;
-name|writer
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -22781,11 +22764,6 @@ name|setMergeFactor
 argument_list|(
 literal|5
 argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|commit
-argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -23323,11 +23301,6 @@ name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|writer2
-operator|.
-name|commit
-argument_list|()
 expr_stmt|;
 name|cms
 operator|=
@@ -31928,86 +31901,6 @@ name|dir
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-block|}
-DECL|method|testNoCommits
-specifier|public
-name|void
-name|testNoCommits
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// Tests that if we don't call commit(), the directory has 0 commits. This has
-comment|// changed since LUCENE-2386, where before IW would always commit on a fresh
-comment|// new index.
-name|Directory
-name|dir
-init|=
-operator|new
-name|RAMDirectory
-argument_list|()
-decl_stmt|;
-name|IndexWriter
-name|writer
-init|=
-operator|new
-name|IndexWriter
-argument_list|(
-name|dir
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"expected 0 commits!"
-argument_list|,
-literal|0
-argument_list|,
-name|IndexReader
-operator|.
-name|listCommits
-argument_list|(
-name|dir
-argument_list|)
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// No changes still should generate a commit, because it's a new index.
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"expected 1 commits!"
-argument_list|,
-literal|1
-argument_list|,
-name|IndexReader
-operator|.
-name|listCommits
-argument_list|(
-name|dir
-argument_list|)
-operator|.
-name|size
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}
