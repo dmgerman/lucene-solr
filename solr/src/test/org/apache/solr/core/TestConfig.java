@@ -620,29 +620,6 @@ operator|==
 literal|true
 argument_list|)
 expr_stmt|;
-name|boolean
-name|luceneAutoCommit
-init|=
-name|solrConfig
-operator|.
-name|getBool
-argument_list|(
-literal|"indexDefaults/luceneAutoCommit"
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|luceneAutoCommit
-operator|+
-literal|" does not equal: "
-operator|+
-literal|false
-argument_list|,
-name|luceneAutoCommit
-operator|==
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 comment|// sometime if the config referes to old things, it must be replaced with new stuff
 annotation|@
