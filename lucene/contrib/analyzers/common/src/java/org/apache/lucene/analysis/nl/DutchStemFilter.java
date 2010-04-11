@@ -78,7 +78,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems Dutch words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a {@link DutchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.DutchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
+comment|/**  * A {@link TokenFilter} that stems Dutch words.   *<p>  * It supports a table of words that should  * not be stemmed at all. The stemmer used can be changed at runtime after the  * filter object is created (as long as it is a {@link DutchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.DutchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
@@ -245,7 +245,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds a DutchStemFilter that uses an exclusion table.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.    */
+comment|/**    * Builds a DutchStemFilter that uses an exclusion table.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|DutchStemFilter
@@ -302,7 +302,7 @@ name|stemdictionary
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param stemdictionary Dictionary of word stem pairs, that overrule the algorithm    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.    */
+comment|/**    * @param stemdictionary Dictionary of word stem pairs, that overrule the algorithm    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|DutchStemFilter
@@ -466,7 +466,7 @@ name|stemmer
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Set an alternative exclusion list for this filter.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.    */
+comment|/**    * Set an alternative exclusion list for this filter.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|setExclusionTable

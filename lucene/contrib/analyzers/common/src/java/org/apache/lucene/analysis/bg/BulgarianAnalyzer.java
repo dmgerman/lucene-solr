@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -392,7 +392,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words and a stem exclusion set.    * If a stem exclusion set is provided this analyzer will add a {@link KeywordMarkerTokenFilter}     * before {@link BulgarianStemFilter}.    */
+comment|/**    * Builds an analyzer with the given stop words and a stem exclusion set.    * If a stem exclusion set is provided this analyzer will add a {@link KeywordMarkerFilter}     * before {@link BulgarianStemFilter}.    */
 DECL|method|BulgarianAnalyzer
 specifier|public
 name|BulgarianAnalyzer
@@ -439,7 +439,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerTokenFilter} if a stem exclusion set is    *         provided and {@link BulgarianStemFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link BulgarianStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -508,7 +508,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

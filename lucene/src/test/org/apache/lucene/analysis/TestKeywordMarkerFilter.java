@@ -99,14 +99,14 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Testcase for {@link KeywordMarkerTokenFilter}  */
+comment|/**  * Testcase for {@link KeywordMarkerFilter}  */
 end_comment
 
 begin_class
-DECL|class|TestKeywordMarkerTokenFilter
+DECL|class|TestKeywordMarkerFilter
 specifier|public
 class|class
-name|TestKeywordMarkerTokenFilter
+name|TestKeywordMarkerFilter
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
@@ -165,7 +165,7 @@ operator|new
 name|LowerCaseFilterMock
 argument_list|(
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 operator|new
 name|WhitespaceTokenizer
@@ -212,7 +212,7 @@ operator|new
 name|LowerCaseFilterMock
 argument_list|(
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 operator|new
 name|WhitespaceTokenizer
@@ -247,7 +247,7 @@ operator|new
 name|LowerCaseFilterMock
 argument_list|(
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 operator|new
 name|WhitespaceTokenizer

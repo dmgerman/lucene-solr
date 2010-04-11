@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that applies {@link BrazilianStemmer}.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  *   */
+comment|/**  * A {@link TokenFilter} that applies {@link BrazilianStemmer}.  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerFilter  *   */
 end_comment
 
 begin_class
@@ -198,7 +198,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new BrazilianStemFilter     *     * @param in the source {@link TokenStream}     * @param exclusiontable a set of terms that should be prevented from being stemmed.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.    */
+comment|/**    * Creates a new BrazilianStemFilter     *     * @param in the source {@link TokenStream}     * @param exclusiontable a set of terms that should be prevented from being stemmed.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|BrazilianStemFilter

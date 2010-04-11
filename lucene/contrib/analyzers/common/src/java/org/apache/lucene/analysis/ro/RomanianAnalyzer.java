@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -395,7 +395,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words. If a non-empty stem exclusion set is    * provided this analyzer will add a {@link KeywordMarkerTokenFilter} before    * stemming.    *     * @param matchVersion lucene compatibility version    * @param stopwords a stopword set    * @param stemExclusionSet a set of terms not to be stemmed    */
+comment|/**    * Builds an analyzer with the given stop words. If a non-empty stem exclusion set is    * provided this analyzer will add a {@link KeywordMarkerFilter} before    * stemming.    *     * @param matchVersion lucene compatibility version    * @param stopwords a stopword set    * @param stemExclusionSet a set of terms not to be stemmed    */
 DECL|method|RomanianAnalyzer
 specifier|public
 name|RomanianAnalyzer
@@ -442,7 +442,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerTokenFilter} if a stem exclusion set is    *         provided and {@link SnowballFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link SnowballFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -511,7 +511,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

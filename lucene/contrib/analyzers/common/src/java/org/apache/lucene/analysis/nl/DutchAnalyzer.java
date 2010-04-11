@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -900,7 +900,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link LowerCaseFilter},     *   {@link StopFilter}, {@link KeywordMarkerTokenFilter} if a stem exclusion set is provided,    *   {@link StemmerOverrideFilter}, and {@link SnowballFilter}    */
+comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link LowerCaseFilter},     *   {@link StopFilter}, {@link KeywordMarkerFilter} if a stem exclusion set is provided,    *   {@link StemmerOverrideFilter}, and {@link SnowballFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -981,7 +981,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,
@@ -1084,7 +1084,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 name|result
 argument_list|,

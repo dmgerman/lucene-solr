@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerTokenFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.FrenchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
+comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.FrenchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
 end_comment
 
 begin_class
@@ -235,7 +235,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param in the {@link TokenStream} to filter    * @param exclusiontable a set of terms not to be stemmed    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead.    */
+comment|/**    *     * @param in the {@link TokenStream} to filter    * @param exclusiontable a set of terms not to be stemmed    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead.    */
 annotation|@
 name|Deprecated
 comment|// TODO remove in 3.2
@@ -385,7 +385,7 @@ name|stemmer
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Set an alternative exclusion list for this filter.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerTokenFilter} instead. 	 */
+comment|/** 	 * Set an alternative exclusion list for this filter.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead. 	 */
 annotation|@
 name|Deprecated
 comment|// TODO remove in 3.2

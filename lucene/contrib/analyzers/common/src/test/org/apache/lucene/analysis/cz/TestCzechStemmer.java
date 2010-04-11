@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -2301,7 +2301,7 @@ operator|new
 name|CzechStemFilter
 argument_list|(
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 operator|new
 name|WhitespaceTokenizer

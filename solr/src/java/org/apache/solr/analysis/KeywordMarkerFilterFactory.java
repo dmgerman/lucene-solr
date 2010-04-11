@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -99,7 +99,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Factory for {@link KeywordMarkerTokenFilter}  */
+comment|/**  * Factory for {@link KeywordMarkerFilter}  */
 end_comment
 
 begin_class
@@ -223,7 +223,7 @@ condition|?
 name|input
 else|:
 operator|new
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 argument_list|(
 name|input
 argument_list|,

@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordMarkerTokenFilter
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that applies {@link HindiNormalizer} to normalize the  * orthography.  *<p>  * In some cases the normalization may cause unrelated terms to conflate, so  * to prevent terms from being normalized use an instance of  * {@link KeywordMarkerTokenFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see HindiNormalizer  */
+comment|/**  * A {@link TokenFilter} that applies {@link HindiNormalizer} to normalize the  * orthography.  *<p>  * In some cases the normalization may cause unrelated terms to conflate, so  * to prevent terms from being normalized use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see HindiNormalizer  */
 end_comment
 
 begin_class
