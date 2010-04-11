@@ -773,7 +773,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// TODO change this API to support custom attributes
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 literal|null
@@ -789,7 +789,7 @@ name|tokenStream
 operator|.
 name|hasAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -801,7 +801,7 @@ name|tokenStream
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -935,7 +935,7 @@ name|setTermBuffer
 argument_list|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1456,6 +1456,7 @@ comment|/**    * TokenStream that iterates over a list of pre-existing Tokens   
 comment|// TODO refactor to support custom attributes
 DECL|class|ListBasedTokenStream
 specifier|protected
+specifier|final
 specifier|static
 class|class
 name|ListBasedTokenStream
@@ -1482,15 +1483,15 @@ decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 operator|(
-name|TermAttribute
+name|CharTermAttribute
 operator|)
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1629,7 +1630,7 @@ argument_list|()
 decl_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|next
 operator|.

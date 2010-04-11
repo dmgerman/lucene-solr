@@ -189,6 +189,7 @@ end_class
 
 begin_class
 DECL|class|TrieTokenizer
+specifier|final
 class|class
 name|TrieTokenizer
 extends|extends

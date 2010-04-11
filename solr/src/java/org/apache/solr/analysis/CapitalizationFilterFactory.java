@@ -42,7 +42,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -852,6 +852,7 @@ end_comment
 
 begin_class
 DECL|class|CapitalizationFilter
+specifier|final
 class|class
 name|CapitalizationFilter
 extends|extends
@@ -866,8 +867,15 @@ decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|method|CapitalizationFilter
 specifier|public
@@ -891,17 +899,6 @@ operator|.
 name|factory
 operator|=
 name|factory
-expr_stmt|;
-name|this
-operator|.
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -931,7 +928,7 @@ name|termBuffer
 init|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 name|int
@@ -939,7 +936,7 @@ name|termBufferLength
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 name|char
@@ -1113,7 +1110,7 @@ condition|)
 block|{
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|backup
 argument_list|,

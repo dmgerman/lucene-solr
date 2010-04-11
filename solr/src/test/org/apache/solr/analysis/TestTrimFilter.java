@@ -160,7 +160,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -613,12 +613,12 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -761,7 +761,10 @@ index|]
 decl_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|token
 operator|.

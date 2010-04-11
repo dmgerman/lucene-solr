@@ -88,7 +88,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -242,12 +242,12 @@ operator|new
 name|TokenStream
 argument_list|()
 block|{
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -298,7 +298,10 @@ argument_list|()
 decl_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|tok
 operator|.

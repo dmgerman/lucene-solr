@@ -170,7 +170,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -570,7 +570,7 @@ argument_list|(
 name|source
 argument_list|)
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 literal|null
@@ -621,7 +621,7 @@ name|buffer
 operator|.
 name|hasAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -629,14 +629,11 @@ condition|)
 block|{
 name|termAtt
 operator|=
-operator|(
-name|TermAttribute
-operator|)
 name|buffer
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -656,9 +653,6 @@ condition|)
 block|{
 name|posIncrAtt
 operator|=
-operator|(
-name|PositionIncrementAttribute
-operator|)
 name|buffer
 operator|.
 name|getAttribute
@@ -826,7 +820,7 @@ name|term
 operator|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 expr_stmt|;
 block|}
@@ -917,7 +911,7 @@ name|term
 operator|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 expr_stmt|;
 block|}
@@ -1038,7 +1032,7 @@ name|term
 operator|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 expr_stmt|;
 if|if
@@ -1277,7 +1271,7 @@ name|term
 operator|=
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 expr_stmt|;
 if|if

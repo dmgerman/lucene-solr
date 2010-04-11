@@ -86,7 +86,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -341,14 +341,14 @@ argument_list|(
 name|inputStream
 argument_list|)
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|filteredStream
 operator|.
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -379,7 +379,7 @@ literal|13
 argument_list|,
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -389,7 +389,7 @@ literal|"international"
 argument_list|,
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -54,20 +54,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -877,7 +863,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// TODO: support custom attributes
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 literal|null
@@ -893,7 +879,7 @@ name|tstream
 operator|.
 name|hasAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -905,7 +891,7 @@ name|tstream
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1028,7 +1014,7 @@ literal|"value"
 argument_list|,
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

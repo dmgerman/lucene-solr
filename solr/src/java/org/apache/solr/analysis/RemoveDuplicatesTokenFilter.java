@@ -70,7 +70,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|PositionIncrementAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -86,7 +86,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|PositionIncrementAttribute
 import|;
 end_import
 
@@ -130,12 +130,12 @@ block|{
 DECL|field|termAttribute
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAttribute
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -213,7 +213,7 @@ index|[]
 init|=
 name|termAttribute
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -222,7 +222,7 @@ name|length
 init|=
 name|termAttribute
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 specifier|final

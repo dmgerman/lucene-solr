@@ -3028,6 +3028,7 @@ end_comment
 
 begin_class
 DECL|class|TokenOrderingFilter
+specifier|final
 class|class
 name|TokenOrderingFilter
 extends|extends
@@ -3369,6 +3370,7 @@ argument_list|)
 return|;
 block|}
 DECL|class|MultiValuedStream
+specifier|final
 class|class
 name|MultiValuedStream
 extends|extends

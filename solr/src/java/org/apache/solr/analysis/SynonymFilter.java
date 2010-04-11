@@ -102,7 +102,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -183,6 +183,7 @@ end_comment
 begin_class
 DECL|class|SynonymFilter
 specifier|public
+specifier|final
 class|class
 name|SynonymFilter
 extends|extends
@@ -229,7 +230,7 @@ expr_stmt|;
 comment|// just ensuring these attributes exist...
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -316,14 +317,14 @@ condition|)
 return|return
 literal|false
 return|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|firstTok
 operator|.
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -345,14 +346,14 @@ name|get
 argument_list|(
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 literal|0
 argument_list|,
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 argument_list|)
 else|:
@@ -557,14 +558,14 @@ operator|.
 name|cloneAttributes
 argument_list|()
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|newTermAtt
 init|=
 name|newTok
 operator|.
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -622,7 +623,7 @@ argument_list|)
 expr_stmt|;
 name|newTermAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|repTok
 operator|.
@@ -1017,14 +1018,14 @@ name|cloneAttributes
 argument_list|()
 expr_stmt|;
 comment|// check for positionIncrement!=1?  if>1, should not match, if==0, check multiple at this level?
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|tok
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1040,14 +1041,14 @@ name|get
 argument_list|(
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 literal|0
 argument_list|,
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 argument_list|)
 decl_stmt|;
