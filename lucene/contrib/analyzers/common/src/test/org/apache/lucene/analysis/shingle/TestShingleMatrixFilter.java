@@ -4226,6 +4226,7 @@ return|;
 block|}
 DECL|class|TokenListStream
 specifier|public
+specifier|final
 specifier|static
 class|class
 name|TokenListStream

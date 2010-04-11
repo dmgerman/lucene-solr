@@ -61,6 +61,7 @@ end_comment
 begin_class
 DECL|class|WhitespaceTokenizer
 specifier|public
+specifier|final
 class|class
 name|WhitespaceTokenizer
 extends|extends

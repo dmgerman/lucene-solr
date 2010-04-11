@@ -182,13 +182,10 @@ name|TermVectorOffsetInfo
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author CMorris  */
-end_comment
-
 begin_class
 DECL|class|TokenStreamFromTermPositionVector
 specifier|public
+specifier|final
 class|class
 name|TokenStreamFromTermPositionVector
 extends|extends

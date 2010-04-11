@@ -2342,6 +2342,7 @@ end_class
 
 begin_class
 DECL|class|TestPayloadAnalyzer
+specifier|final
 class|class
 name|TestPayloadAnalyzer
 extends|extends
@@ -2385,6 +2386,7 @@ end_class
 
 begin_class
 DECL|class|PayloadFilter
+specifier|final
 class|class
 name|PayloadFilter
 extends|extends

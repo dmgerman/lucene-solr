@@ -468,6 +468,7 @@ argument_list|)
 return|;
 block|}
 comment|// an object used to iterate across an array of tokens
+specifier|final
 class|class
 name|StoredTokenStream
 extends|extends

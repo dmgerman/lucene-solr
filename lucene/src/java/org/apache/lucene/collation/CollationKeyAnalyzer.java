@@ -109,6 +109,7 @@ end_comment
 begin_class
 DECL|class|CollationKeyAnalyzer
 specifier|public
+specifier|final
 class|class
 name|CollationKeyAnalyzer
 extends|extends

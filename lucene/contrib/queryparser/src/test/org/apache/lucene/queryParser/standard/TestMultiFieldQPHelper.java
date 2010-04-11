@@ -2286,6 +2286,7 @@ comment|/**    * Return empty tokens for field "f1".    */
 DECL|class|AnalyzerReturningNull
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|AnalyzerReturningNull
 extends|extends

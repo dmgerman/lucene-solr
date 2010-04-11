@@ -11471,6 +11471,7 @@ end_comment
 
 begin_class
 DECL|class|SynonymAnalyzer
+specifier|final
 class|class
 name|SynonymAnalyzer
 extends|extends
@@ -11580,6 +11581,7 @@ end_comment
 
 begin_class
 DECL|class|SynonymTokenizer
+specifier|final
 class|class
 name|SynonymTokenizer
 extends|extends
