@@ -212,6 +212,16 @@ begin_import
 import|import
 name|org
 operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -269,7 +279,7 @@ specifier|abstract
 class|class
 name|BaseDistributedSearchTestCase
 extends|extends
-name|TestCase
+name|SolrTestCaseJ4
 block|{
 DECL|field|r
 specifier|public
@@ -3270,6 +3280,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 DECL|method|testDistribSearch
 specifier|public
 name|void

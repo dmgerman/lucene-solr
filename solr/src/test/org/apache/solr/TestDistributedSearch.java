@@ -16,6 +16,16 @@ end_package
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -42,26 +52,6 @@ name|TestDistributedSearch
 extends|extends
 name|BaseDistributedSearchTestCase
 block|{
-DECL|method|getSchemaFile
-specifier|public
-name|String
-name|getSchemaFile
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
 DECL|field|t1
 name|String
 name|t1
@@ -1400,6 +1390,8 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+name|TestCase
+operator|.
 name|fail
 argument_list|(
 literal|"SolrServerException expected for invalid field that is not in schema"
