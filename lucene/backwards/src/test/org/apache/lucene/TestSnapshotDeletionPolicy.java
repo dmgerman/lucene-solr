@@ -784,6 +784,11 @@ operator|.
 name|UNLIMITED
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 comment|// Force frequent flushes
 name|writer
 operator|.

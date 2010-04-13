@@ -146,6 +146,20 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|NoSuchDirectoryException
+import|;
+end_import
+
 begin_comment
 comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * The same directory file may be referenced by more than  * one IndexCommit, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
 end_comment
@@ -426,45 +440,56 @@ argument_list|(
 name|codecs
 argument_list|)
 expr_stmt|;
-name|String
-index|[]
-name|files
-init|=
-name|directory
-operator|.
-name|listAll
-argument_list|()
-decl_stmt|;
 name|CommitPoint
 name|currentCommitPoint
 init|=
 literal|null
 decl_stmt|;
+name|boolean
+name|seenIndexFiles
+init|=
+literal|false
+decl_stmt|;
+name|String
+index|[]
+name|files
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|files
+operator|=
+name|directory
+operator|.
+name|listAll
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchDirectoryException
+name|e
+parameter_list|)
+block|{
+comment|// it means the directory is empty, so ignore it.
+name|files
+operator|=
+operator|new
+name|String
+index|[
+literal|0
+index|]
+expr_stmt|;
+block|}
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|files
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|String
 name|fileName
-init|=
+range|:
 name|files
-index|[
-name|i
-index|]
-decl_stmt|;
+control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -497,6 +522,10 @@ name|SEGMENTS_GEN
 argument_list|)
 condition|)
 block|{
+name|seenIndexFiles
+operator|=
+literal|true
+expr_stmt|;
 comment|// Add this file to refCounts with initial count 0:
 name|getRefCount
 argument_list|(
@@ -660,11 +689,16 @@ block|}
 block|}
 block|}
 block|}
+comment|// If we haven't seen any Lucene files, then currentCommitPoint is expected
+comment|// to be null, because it means it's a fresh Directory. Therefore it cannot
+comment|// be any NFS cache issues - so just ignore.
 if|if
 condition|(
 name|currentCommitPoint
 operator|==
 literal|null
+operator|&&
+name|seenIndexFiles
 condition|)
 block|{
 comment|// We did not in fact see the segments_N file
@@ -836,6 +870,11 @@ block|}
 block|}
 comment|// Finally, give policy a chance to remove things on
 comment|// startup:
+if|if
+condition|(
+name|seenIndexFiles
+condition|)
+block|{
 name|policy
 operator|.
 name|onInit
@@ -843,6 +882,7 @@ argument_list|(
 name|commits
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Always protect the incoming segmentInfos since
 comment|// sometime it may not be the most recent commit
 name|checkpoint
@@ -854,6 +894,12 @@ argument_list|)
 expr_stmt|;
 name|startingCommitDeleted
 operator|=
+name|currentCommitPoint
+operator|==
+literal|null
+condition|?
+literal|false
+else|:
 name|currentCommitPoint
 operator|.
 name|isDeleted

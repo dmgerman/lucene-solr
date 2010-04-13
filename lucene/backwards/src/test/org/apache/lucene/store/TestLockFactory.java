@@ -484,6 +484,12 @@ operator|.
 name|LIMITED
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// required so the second open succeed
 comment|// Create a 2nd IndexWriter.  This is normally not allowed but it should run through since we're not
 comment|// using any locks:
 name|IndexWriter

@@ -887,6 +887,11 @@ name|setSuppressExceptions
 argument_list|()
 expr_stmt|;
 comment|//writer.setMaxBufferedDocs(10);
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -1117,6 +1122,11 @@ name|setSuppressExceptions
 argument_list|()
 expr_stmt|;
 comment|//writer.setMaxBufferedDocs(10);
+name|writer
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|VERBOSE
