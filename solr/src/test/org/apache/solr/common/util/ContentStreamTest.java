@@ -332,7 +332,7 @@ init|=
 operator|new
 name|URL
 argument_list|(
-literal|"http://svn.apache.org/repos/asf/lucene/solr/trunk/"
+literal|"http://svn.apache.org/repos/asf/lucene/dev/trunk/"
 argument_list|)
 decl_stmt|;
 name|InputStream
