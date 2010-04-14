@@ -324,6 +324,10 @@ argument_list|,
 name|projector
 argument_list|,
 name|tierPrefix
+argument_list|,
+name|minTier
+argument_list|,
+name|maxTier
 argument_list|)
 decl_stmt|;
 name|Shape
