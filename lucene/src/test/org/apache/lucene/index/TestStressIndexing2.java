@@ -394,9 +394,9 @@ name|dw
 init|=
 name|indexRandomIWReader
 argument_list|(
-literal|10
+literal|5
 argument_list|,
-literal|10
+literal|3
 argument_list|,
 literal|100
 argument_list|,
@@ -528,9 +528,9 @@ name|docs
 init|=
 name|indexRandom
 argument_list|(
-literal|10
+literal|5
 argument_list|,
-literal|10
+literal|3
 argument_list|,
 literal|100
 argument_list|,
@@ -602,7 +602,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|20
+literal|3
 condition|;
 name|i
 operator|++
@@ -680,7 +680,7 @@ name|r
 operator|.
 name|nextInt
 argument_list|(
-literal|10
+literal|5
 argument_list|)
 operator|+
 literal|1
