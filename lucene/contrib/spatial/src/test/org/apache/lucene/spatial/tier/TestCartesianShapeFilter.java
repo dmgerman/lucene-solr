@@ -97,7 +97,7 @@ argument_list|(
 operator|new
 name|Shape
 argument_list|(
-literal|1
+literal|"1"
 argument_list|)
 argument_list|,
 literal|"test"
