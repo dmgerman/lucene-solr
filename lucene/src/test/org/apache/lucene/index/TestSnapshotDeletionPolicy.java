@@ -1,26 +1,32 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|index
 package|;
 end_package
 
 begin_comment
-comment|// Intentionally not in org.apache.lucene.index, to assert
-end_comment
-
-begin_comment
-comment|// that we do not require any package private access.
-end_comment
-
-begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
 
 begin_import
 import|import
@@ -218,7 +224,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TestIndexWriter
+name|SnapshotDeletionPolicy
 import|;
 end_import
 
@@ -230,9 +236,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|SnapshotDeletionPolicy
+name|LuceneTestCaseJ4
 import|;
 end_import
 
@@ -260,7 +266,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|_TestUtil
 import|;
 end_import
 
@@ -268,13 +274,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|junit
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
+name|Test
 import|;
 end_import
 
@@ -300,7 +302,7 @@ specifier|public
 class|class
 name|TestSnapshotDeletionPolicy
 extends|extends
-name|LuceneTestCase
+name|LuceneTestCaseJ4
 block|{
 DECL|field|INDEX_PATH
 specifier|public
@@ -311,6 +313,8 @@ name|INDEX_PATH
 init|=
 literal|"test.snapshots"
 decl_stmt|;
+annotation|@
+name|Test
 DECL|method|testSnapshotDeletionPolicy
 specifier|public
 name|void
@@ -380,6 +384,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testReuseAcrossWriters
 specifier|public
 name|void
@@ -1255,6 +1261,42 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Test
+argument_list|(
+name|expected
+operator|=
+name|IllegalStateException
+operator|.
+name|class
+argument_list|)
+DECL|method|testNoCommits
+specifier|public
+name|void
+name|testNoCommits
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Tests that if there were no commits when snapshot() is called, then
+comment|// IllegalStateException is thrown rather than NPE.
+name|SnapshotDeletionPolicy
+name|sdp
+init|=
+operator|new
+name|SnapshotDeletionPolicy
+argument_list|(
+operator|new
+name|KeepOnlyLastCommitDeletionPolicy
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|sdp
+operator|.
+name|snapshot
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

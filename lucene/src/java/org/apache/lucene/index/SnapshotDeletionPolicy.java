@@ -216,6 +216,21 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|lastCommit
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"no index commits to snapshot !"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|snapshot
 operator|==
 literal|null
