@@ -135,6 +135,36 @@ name|char
 name|c
 parameter_list|)
 function_decl|;
+comment|/** Appends the specified {@code String} to this character sequence.     *<p>The characters of the {@code String} argument are appended, in order, increasing the length of    * this sequence by the length of the argument. If argument is {@code null}, then the four    * characters {@code "null"} are appended.     */
+DECL|method|append
+specifier|public
+name|CharTermAttribute
+name|append
+parameter_list|(
+name|String
+name|s
+parameter_list|)
+function_decl|;
+comment|/** Appends the specified {@code StringBuilder} to this character sequence.     *<p>The characters of the {@code StringBuilder} argument are appended, in order, increasing the length of    * this sequence by the length of the argument. If argument is {@code null}, then the four    * characters {@code "null"} are appended.     */
+DECL|method|append
+specifier|public
+name|CharTermAttribute
+name|append
+parameter_list|(
+name|StringBuilder
+name|sb
+parameter_list|)
+function_decl|;
+comment|/** Appends the contents of the other {@code CharTermAttribute} to this character sequence.     *<p>The characters of the {@code CharTermAttribute} argument are appended, in order, increasing the length of    * this sequence by the length of the argument. If argument is {@code null}, then the four    * characters {@code "null"} are appended.     */
+DECL|method|append
+specifier|public
+name|CharTermAttribute
+name|append
+parameter_list|(
+name|CharTermAttribute
+name|termAtt
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
