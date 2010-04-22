@@ -199,6 +199,7 @@ index|]
 expr_stmt|;
 block|}
 block|}
+comment|/** Call this once, up front, and hold a reference to the    *  returned bulk result.  When you call {@link #read}, it    *  fills the docs and freqs of this pre-shared bulk    *  result. */
 DECL|method|getBulkResult
 specifier|public
 name|BulkReadResult
@@ -212,7 +213,7 @@ return|return
 name|bulkResult
 return|;
 block|}
-comment|/** Bulk read (docs and freqs).  After this is called,    * {@link #docID()} and {@link #freq} are undefined.  This    * returns the count read, or 0 if the end is reached.    * The IntsRef for docs and freqs will not have their    * length set.    *     *<p>NOTE: the default impl simply delegates to {@link    *  #nextDoc}, but subclasses may do this more    *  efficiently. */
+comment|/** Bulk read (docs and freqs).  After this is called,    *  {@link #docID()} and {@link #freq} are undefined.    *  This returns the count read, or 0 if the end is    *  reached.  The resulting docs and freqs are placed into    *  the pre-shard {@link BulkReadResult} instance returned    *  by {@link #getBulkResult}.  Note that the {@link    *  IntsRef} for docs and freqs will not have their length    *  set.    *     *<p>NOTE: the default impl simply delegates to {@link    *  #nextDoc}, but subclasses may do this more    *  efficiently. */
 DECL|method|read
 specifier|public
 name|int
