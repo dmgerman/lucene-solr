@@ -41,22 +41,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a {@link Reader} over a {@link StringBuffer} instance. Although  * one can use {@link java.io.StringReader} by passing it  * {@link StringBuffer#toString()}, it is better to use this class, as it  * doesn't mark the passed-in {@link StringBuffer} as shared (which will cause  * inner char[] allocations at the next append() attempt).<br>  * Notes:  *<ul>  *<li>This implementation assumes the underlying {@link StringBuffer} is not  * changed during the use of this {@link Reader} implementation.  *<li>This implementation is thread-safe.  *<li>The implementation looks very much like {@link java.io.StringReader} (for  * the right reasons).  *<li>If one wants to reuse that instance, then the following needs to be done:  *<pre>  * StringBuffer sb = new StringBuffer("some text");  * Reader reader = new StringBufferReader(sb);  * ... read from reader - don't close it ! ...  * sb.setLength(0);  * sb.append("some new text");  * reader.reset();  * ... read the new string from the reader ...  *</pre>  *</ul>  */
+comment|/**  * Implements a {@link Reader} over a {@link StringBuilder} instance. Although  * one can use {@link java.io.StringReader} by passing it  * {@link StringBuilder#toString()}, it is better to use this class, as it  * doesn't mark the passed-in {@link StringBuilder} as shared (which will cause  * inner char[] allocations at the next append() attempt).<br>  * Notes:  *<ul>  *<li>This implementation assumes the underlying {@link StringBuilder} is not  * changed during the use of this {@link Reader} implementation.  *<li>This implementation is thread-safe.  *<li>The implementation looks very much like {@link java.io.StringReader} (for  * the right reasons).  *<li>If one wants to reuse that instance, then the following needs to be done:  *<pre>  * StringBuilder sb = new StringBuilder("some text");  * Reader reader = new StringBuilderReader(sb);  * ... read from reader - don't close it ! ...  * sb.setLength(0);  * sb.append("some new text");  * reader.reset();  * ... read the new string from the reader ...  *</pre>  *</ul>  */
 end_comment
 
 begin_class
-DECL|class|StringBufferReader
+DECL|class|StringBuilderReader
 specifier|public
 class|class
-name|StringBufferReader
+name|StringBuilderReader
 extends|extends
 name|Reader
 block|{
-comment|// TODO (3.0): change to StringBuffer (including the name of the class)
-comment|// The StringBuffer to read from.
+comment|// The StringBuilder to read from.
 DECL|field|sb
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|sb
 decl_stmt|;
 comment|// The length of 'sb'.
@@ -65,7 +64,7 @@ specifier|private
 name|int
 name|length
 decl_stmt|;
-comment|// The next position to read from the StringBuffer.
+comment|// The next position to read from the StringBuilder.
 DECL|field|next
 specifier|private
 name|int
@@ -81,11 +80,11 @@ name|mark
 init|=
 literal|0
 decl_stmt|;
-DECL|method|StringBufferReader
+DECL|method|StringBuilderReader
 specifier|public
-name|StringBufferReader
+name|StringBuilderReader
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|sb
 parameter_list|)
 block|{
@@ -139,7 +138,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Mark the present position in the stream. Subsequent calls to reset() will    * reposition the stream to this point.    *     * @param readAheadLimit Limit on the number of characters that may be read    *        while still preserving the mark. Because the stream's input comes    *        from a StringBuffer, there is no actual limit, so this argument     *        must not be negative, but is otherwise ignored.    * @exception IllegalArgumentException If readAheadLimit is< 0    * @exception IOException If an I/O error occurs    */
+comment|/**    * Mark the present position in the stream. Subsequent calls to reset() will    * reposition the stream to this point.    *     * @param readAheadLimit Limit on the number of characters that may be read    *        while still preserving the mark. Because the stream's input comes    *        from a StringBuilder, there is no actual limit, so this argument     *        must not be negative, but is otherwise ignored.    * @exception IllegalArgumentException If readAheadLimit is< 0    * @exception IOException If an I/O error occurs    */
 annotation|@
 name|Override
 DECL|method|mark
@@ -426,7 +425,7 @@ specifier|public
 name|void
 name|set
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|sb
 parameter_list|)
 block|{

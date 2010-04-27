@@ -52,24 +52,6 @@ name|Config
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|utils
-operator|.
-name|Format
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstract base query maker.   * Each query maker should just implement the {@link #prepareQueries()} method.  **/
 end_comment
@@ -200,10 +182,6 @@ name|i
 operator|+
 literal|". "
 operator|+
-name|Format
-operator|.
-name|simpleName
-argument_list|(
 name|queries
 index|[
 name|i
@@ -211,7 +189,9 @@ index|]
 operator|.
 name|getClass
 argument_list|()
-argument_list|)
+operator|.
+name|getSimpleName
+argument_list|()
 operator|+
 literal|" - "
 operator|+

@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ContentSource} using the Dir collection for its input. Supports  * the following configuration parameters (on top of {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory the Dir collection. Can be set  * to a relative path if "work.dir" is also specified (<b>default=dir-out</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the TREC documents content (<b>default=DemoHTMLParser</b>).  *</ul>  */
+comment|/**  * A {@link ContentSource} using the Dir collection for its input. Supports  * the following configuration parameters (on top of {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory the Dir collection. Can be set  * to a relative path if "work.dir" is also specified (<b>default=dir-out</b>).  *</ul>  */
 end_comment
 
 begin_class

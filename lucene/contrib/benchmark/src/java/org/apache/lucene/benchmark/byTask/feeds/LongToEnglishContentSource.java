@@ -16,6 +16,10 @@ name|feeds
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -51,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Creates documents whose content is a<code>long</code> number starting from  *<code>{@link Long#MIN_VALUE} + 10</code>.  */
 end_comment
 
 begin_class
@@ -67,11 +71,7 @@ specifier|private
 name|long
 name|counter
 init|=
-name|Long
-operator|.
-name|MIN_VALUE
-operator|+
-literal|10
+literal|0
 decl_stmt|;
 annotation|@
 name|Override
@@ -82,8 +82,7 @@ name|close
 parameter_list|()
 throws|throws
 name|IOException
-block|{    }
-comment|//TODO: reduce/clean up synchonization
+block|{   }
 annotation|@
 name|Override
 DECL|method|getNextDocData
@@ -105,54 +104,18 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|docData
-operator|.
-name|setBody
-argument_list|(
-name|English
-operator|.
-name|longToEnglish
-argument_list|(
+comment|// store the current counter to avoid synchronization later on
+name|long
+name|curCounter
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|curCounter
+operator|=
 name|counter
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|docData
-operator|.
-name|setName
-argument_list|(
-literal|"doc_"
-operator|+
-name|String
-operator|.
-name|valueOf
-argument_list|(
-name|counter
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|docData
-operator|.
-name|setTitle
-argument_list|(
-literal|"title_"
-operator|+
-name|String
-operator|.
-name|valueOf
-argument_list|(
-name|counter
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|docData
-operator|.
-name|setDate
-argument_list|(
-operator|new
-name|Date
-argument_list|()
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -168,13 +131,64 @@ operator|=
 name|Long
 operator|.
 name|MIN_VALUE
-operator|+
-literal|10
 expr_stmt|;
 comment|//loop around
 block|}
-name|counter
+else|else
+block|{
 operator|++
+name|counter
+expr_stmt|;
+block|}
+block|}
+name|docData
+operator|.
+name|setBody
+argument_list|(
+name|English
+operator|.
+name|longToEnglish
+argument_list|(
+name|curCounter
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docData
+operator|.
+name|setName
+argument_list|(
+literal|"doc_"
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|curCounter
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docData
+operator|.
+name|setTitle
+argument_list|(
+literal|"title_"
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|curCounter
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docData
+operator|.
+name|setDate
+argument_list|(
+operator|new
+name|Date
+argument_list|()
+argument_list|)
 expr_stmt|;
 return|return
 name|docData
