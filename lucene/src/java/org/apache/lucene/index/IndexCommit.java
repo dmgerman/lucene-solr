@@ -206,17 +206,19 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
+call|(
+name|int
+call|)
+argument_list|(
 name|getDirectory
 argument_list|()
 operator|.
 name|hashCode
 argument_list|()
 operator|+
-name|getSegmentsFileName
+name|getVersion
 argument_list|()
-operator|.
-name|hashCode
-argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/** Returns the version for this IndexCommit.  This is the    *  same value that {@link IndexReader#getVersion} would    *  return if it were opened on this commit. */
