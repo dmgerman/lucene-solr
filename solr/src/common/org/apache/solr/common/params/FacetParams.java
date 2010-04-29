@@ -84,6 +84,16 @@ name|FACET_METHOD_fc
 init|=
 literal|"fc"
 decl_stmt|;
+comment|/** Value for FACET_METHOD param, like FACET_METHOD_fc but counts per-segment.    */
+DECL|field|FACET_METHOD_fcs
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_METHOD_fcs
+init|=
+literal|"fcs"
+decl_stmt|;
 comment|/**    * Any lucene formated queries the user would like to use for    * Facet Constraint Counts (multi-value)    */
 DECL|field|FACET_QUERY
 specifier|public

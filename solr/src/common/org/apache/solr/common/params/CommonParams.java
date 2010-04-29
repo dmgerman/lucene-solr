@@ -381,6 +381,15 @@ name|VALUE
 init|=
 literal|"v"
 decl_stmt|;
+DECL|field|THREADS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|THREADS
+init|=
+literal|"threads"
+decl_stmt|;
 DECL|field|TRUE
 specifier|public
 specifier|static

@@ -363,6 +363,14 @@ name|Version
 operator|.
 name|LUCENE_31
 decl_stmt|;
+DECL|field|checkFieldCacheSanity
+specifier|public
+specifier|static
+name|boolean
+name|checkFieldCacheSanity
+init|=
+literal|true
+decl_stmt|;
 comment|/** Create indexes in this directory, optimally use a subdir, named after the test */
 DECL|field|TEMP_DIR
 specifier|public
@@ -851,6 +859,10 @@ comment|// this isn't as useful as calling directly from the scope where the
 comment|// index readers are used, because they could be gc'ed just before
 comment|// tearDown is called.
 comment|// But it's better then nothing.
+if|if
+condition|(
+name|checkFieldCacheSanity
+condition|)
 name|assertSaneFieldCaches
 argument_list|(
 name|getTestLabel
