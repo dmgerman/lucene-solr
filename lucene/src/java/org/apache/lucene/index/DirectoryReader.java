@@ -5485,6 +5485,22 @@ return|return
 name|userData
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|delete
+specifier|public
+name|void
+name|delete
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This IndexCommit does not support deletions"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// @deprecated This is pre-flex API
 comment|// Exposes pre-flex API by doing on-the-fly merging

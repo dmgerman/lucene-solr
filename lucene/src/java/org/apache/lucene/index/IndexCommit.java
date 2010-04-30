@@ -103,48 +103,27 @@ function_decl|;
 comment|/**    * Delete this commit point.  This only applies when using    * the commit point in the context of IndexWriter's    * IndexDeletionPolicy.    *<p>    * Upon calling this, the writer is notified that this commit     * point should be deleted.     *<p>    * Decision that a commit-point should be deleted is taken by the {@link IndexDeletionPolicy} in effect    * and therefore this should only be called by its {@link IndexDeletionPolicy#onInit onInit()} or     * {@link IndexDeletionPolicy#onCommit onCommit()} methods.   */
 DECL|method|delete
 specifier|public
+specifier|abstract
 name|void
 name|delete
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This IndexCommit does not support this method."
-argument_list|)
-throw|;
-block|}
+function_decl|;
 DECL|method|isDeleted
 specifier|public
+specifier|abstract
 name|boolean
 name|isDeleted
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This IndexCommit does not support this method."
-argument_list|)
-throw|;
-block|}
-comment|/**    * Returns true if this commit is an optimized index.    */
+function_decl|;
+comment|/** Returns true if this commit is an optimized index. */
 DECL|method|isOptimized
 specifier|public
+specifier|abstract
 name|boolean
 name|isOptimized
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This IndexCommit does not support this method."
-argument_list|)
-throw|;
-block|}
-comment|/**    * Two IndexCommits are equal if both their Directory and versions are equal.    */
+function_decl|;
+comment|/** Two IndexCommits are equal if both their Directory and versions are equal. */
 annotation|@
 name|Override
 DECL|method|equals
@@ -224,33 +203,19 @@ block|}
 comment|/** Returns the version for this IndexCommit.  This is the    *  same value that {@link IndexReader#getVersion} would    *  return if it were opened on this commit. */
 DECL|method|getVersion
 specifier|public
+specifier|abstract
 name|long
 name|getVersion
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This IndexCommit does not support this method."
-argument_list|)
-throw|;
-block|}
+function_decl|;
 comment|/** Returns the generation (the _N in segments_N) for this    *  IndexCommit */
 DECL|method|getGeneration
 specifier|public
+specifier|abstract
 name|long
 name|getGeneration
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This IndexCommit does not support this method."
-argument_list|)
-throw|;
-block|}
+function_decl|;
 comment|/** Convenience method that returns the last modified time    *  of the segments_N file corresponding to this index    *  commit, equivalent to    *  getDirectory().fileModified(getSegmentsFileName()). */
 DECL|method|getTimestamp
 specifier|public
@@ -274,6 +239,7 @@ block|}
 comment|/** Returns userData, previously passed to {@link    *  IndexWriter#commit(Map)} for this commit.  Map is    *  String -> String. */
 DECL|method|getUserData
 specifier|public
+specifier|abstract
 name|Map
 argument_list|<
 name|String
@@ -284,15 +250,7 @@ name|getUserData
 parameter_list|()
 throws|throws
 name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This IndexCommit does not support this method."
-argument_list|)
-throw|;
-block|}
+function_decl|;
 block|}
 end_class
 
