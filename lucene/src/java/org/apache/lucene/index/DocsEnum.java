@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Iterates through the documents, term freq and positions.  *  NOTE: you must first call {@link #nextDoc}.  *  *  @lucene.experimental */
+comment|/** Iterates through the documents, term freq and positions.  *  NOTE: you must first call {@link #nextDoc} before using  *  any of the per-doc methods (this does not apply to the  *  bulk read {@link #read} method).  *  *  @lucene.experimental */
 end_comment
 
 begin_class
