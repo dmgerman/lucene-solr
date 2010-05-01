@@ -363,14 +363,6 @@ name|Version
 operator|.
 name|LUCENE_31
 decl_stmt|;
-DECL|field|checkFieldCacheSanity
-specifier|public
-specifier|static
-name|boolean
-name|checkFieldCacheSanity
-init|=
-literal|true
-decl_stmt|;
 comment|/** Create indexes in this directory, optimally use a subdir, named after the test */
 DECL|field|TEMP_DIR
 specifier|public
@@ -855,14 +847,18 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// this isn't as useful as calling directly from the scope where the
-comment|// index readers are used, because they could be gc'ed just before
-comment|// tearDown is called.
+comment|// calling assertSaneFieldCaches here isn't as useful as having test
+comment|// classes call it directly from the scope where the index readers
+comment|// are used, because they could be gc'ed just before this tearDown
+comment|// method is called.
+comment|//
 comment|// But it's better then nothing.
-if|if
-condition|(
-name|checkFieldCacheSanity
-condition|)
+comment|//
+comment|// If you are testing functionality that you know for a fact
+comment|// "violates" FieldCache sanity, then you should either explicitly
+comment|// call purgeFieldCache at the end of your test method, or refactor
+comment|// your Test class so that the inconsistant FieldCache usages are
+comment|// isolated in distinct test methods
 name|assertSaneFieldCaches
 argument_list|(
 name|getTestLabel
