@@ -262,7 +262,7 @@ name|otherLength
 expr_stmt|;
 block|}
 block|}
-comment|/** Encode characters from a char[] source, starting at    *  offset for length chars.  Returns a hash of the resulting bytes */
+comment|/** Encode characters from a char[] source, starting at    *  offset for length chars.  Returns a hash of the resulting bytes.  After encoding, result.offset will always be 0. */
 DECL|method|UTF16toUTF8WithHash
 specifier|public
 specifier|static
@@ -817,7 +817,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/** Encode characters from a char[] source, starting at    *  offset for length chars.    */
+comment|/** Encode characters from a char[] source, starting at    *  offset for length chars. After encoding, result.offset will always be 0.    */
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
@@ -1251,7 +1251,7 @@ operator|=
 name|upto
 expr_stmt|;
 block|}
-comment|/** Encode characters from this String, starting at offset    *  for length characters.    */
+comment|/** Encode characters from this String, starting at offset    *  for length characters. After encoding, result.offset will always be 0.    */
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
