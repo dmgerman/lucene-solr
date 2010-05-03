@@ -76,6 +76,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|en
+operator|.
 name|PorterStemFilter
 import|;
 end_import

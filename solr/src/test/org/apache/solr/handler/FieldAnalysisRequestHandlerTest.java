@@ -1987,7 +1987,7 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.PorterStemFilter"
+literal|"org.apache.lucene.analysis.en.PorterStemFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2629,7 +2629,7 @@ name|queryPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.PorterStemFilter"
+literal|"org.apache.lucene.analysis.en.PorterStemFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull

@@ -1208,7 +1208,7 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.PorterStemFilter"
+literal|"org.apache.lucene.analysis.en.PorterStemFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2077,7 +2077,7 @@ name|valueResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.PorterStemFilter"
+literal|"org.apache.lucene.analysis.en.PorterStemFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
