@@ -429,7 +429,7 @@ name|FACET_DATE
 operator|+
 literal|".include"
 decl_stmt|;
-comment|/**    * An enumeration of the legal values for FACET_DATE_INCLUDE...    *<ul>    *<li>lower = all gap based ranges include their lower bound</li>    *<li>upper = all gap based ranges include their upper bound</li>    *<li>edge = the first and last gap ranges include their edge bounds (ie: lower     *     for the first one, upper for the last one) even if the corrisponding     *     upper/lower option is not specified    *</li>    *<li>outer = the FacetDateOther.BEFORE and FacetDateOther.AFTER ranges     *     should be inclusive of their bounds, even if the first or last ranges     *     already include thouse boundaries.    *</li>    *<li>all = shorthand for lower, upper, edge, and outer</li>    *</ul>    * @see #FACET_DATE_INCLUDE    */
+comment|/**    * An enumeration of the legal values for FACET_DATE_INCLUDE...    *<ul>    *<li>lower = all gap based ranges include their lower bound</li>    *<li>upper = all gap based ranges include their upper bound</li>    *<li>edge = the first and last gap ranges include their edge bounds (ie: lower     *     for the first one, upper for the last one) even if the corresponding     *     upper/lower option is not specified    *</li>    *<li>outer = the FacetDateOther.BEFORE and FacetDateOther.AFTER ranges     *     should be inclusive of their bounds, even if the first or last ranges     *     already include those boundaries.    *</li>    *<li>all = shorthand for lower, upper, edge, and outer</li>    *</ul>    * @see #FACET_DATE_INCLUDE    */
 DECL|enum|FacetDateInclude
 specifier|public
 enum|enum
