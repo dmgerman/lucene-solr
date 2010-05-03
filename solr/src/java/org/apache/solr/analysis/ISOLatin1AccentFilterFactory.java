@@ -26,6 +26,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|miscellaneous
+operator|.
 name|ISOLatin1AccentFilter
 import|;
 end_import
