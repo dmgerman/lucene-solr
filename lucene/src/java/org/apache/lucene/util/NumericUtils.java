@@ -167,7 +167,7 @@ literal|7
 operator|+
 literal|2
 decl_stmt|;
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
 DECL|method|longToPrefixCoded
 specifier|public
 specifier|static
@@ -219,6 +219,12 @@ literal|7
 operator|+
 literal|1
 decl_stmt|;
+name|bytes
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
 name|bytes
 operator|.
 name|length
@@ -350,7 +356,7 @@ return|;
 block|}
 comment|/*    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link LongRangeBuilder}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @deprecated This method is no longer needed!    *   @Deprecated   public static String longToPrefixCoded(final long val, final int shift) {     final BytesRef buffer = new BytesRef(BUF_SIZE_LONG);     longToPrefixCoded(val, shift, buffer);     return buffer.utf8ToString();   }*/
 comment|/*    * This is a convenience method, that returns prefix coded bits of a long without    * reducing the precision. It can be used to store the full precision value as a    * stored field in index.    *<p>To decode, use {@link #prefixCodedToLong}.    * @deprecated This method is no longer needed!    *   @Deprecated   public static String longToPrefixCoded(final long val) {     return longToPrefixCoded(val, 0);   }*/
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link NumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    * @return the hash code for indexing (TermsHash)    */
 DECL|method|intToPrefixCoded
 specifier|public
 specifier|static
@@ -402,6 +408,12 @@ literal|7
 operator|+
 literal|1
 decl_stmt|;
+name|bytes
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
 name|bytes
 operator|.
 name|length
