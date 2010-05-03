@@ -4029,7 +4029,7 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.MappingCharFilter"
+literal|"org.apache.lucene.analysis.charfilter.MappingCharFilter"
 argument_list|)
 argument_list|)
 expr_stmt|;

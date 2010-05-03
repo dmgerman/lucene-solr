@@ -70,6 +70,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|charfilter
+operator|.
 name|BaseCharFilter
 import|;
 end_import
