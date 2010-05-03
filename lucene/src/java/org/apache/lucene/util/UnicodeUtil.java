@@ -817,7 +817,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/** Encode characters from a char[] source, starting at    *  offset for length chars.  Returns the number of bytes    *  written to bytesOut. */
+comment|/** Encode characters from a char[] source, starting at    *  offset for length chars.    */
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
@@ -893,14 +893,7 @@ operator|=
 operator|new
 name|byte
 index|[
-name|ArrayUtil
-operator|.
-name|oversize
-argument_list|(
 name|maxLen
-argument_list|,
-literal|1
-argument_list|)
 index|]
 expr_stmt|;
 name|result
@@ -1258,7 +1251,7 @@ operator|=
 name|upto
 expr_stmt|;
 block|}
-comment|/** Encode characters from this String, starting at offset    *  for length characters.  Returns the number of bytes    *  written to bytesOut. */
+comment|/** Encode characters from this String, starting at offset    *  for length characters.    */
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
@@ -1329,14 +1322,7 @@ operator|=
 operator|new
 name|byte
 index|[
-name|ArrayUtil
-operator|.
-name|oversize
-argument_list|(
 name|maxLen
-argument_list|,
-literal|1
-argument_list|)
 index|]
 expr_stmt|;
 name|int

@@ -58,7 +58,7 @@ name|TermToBytesRefAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/** Copies the token's term text into the given {@link BytesRef}.    * @param termBytes destination to write the bytes to (UTF-8 for text terms).    * @return the hashcode as defined by {@link BytesRef#hashCode}:    *<pre>    *  int hash = 0;    *  for (int i = termBytes.offset; i&lt; termBytes.offset+termBytes.length; i++) {    *    hash = 31*hash + termBytes.bytes[i];    *  }    *</pre>    * Implement this for performance reasons, if your code can calculate    * the hash on-the-fly. If this is not the case, just return    * {@code termBytes.hashCode()}.    */
+comment|/** Copies the token's term text into the given {@link BytesRef}.    * @param termBytes destination to write the bytes to (UTF-8 for text terms).    * The length of the BytesRef's buffer may be not large enough, so you need to grow.    * The parameters' {@code bytes} is guaranteed to be not {@code null}.    * @return the hashcode as defined by {@link BytesRef#hashCode}:    *<pre>    *  int hash = 0;    *  for (int i = termBytes.offset; i&lt; termBytes.offset+termBytes.length; i++) {    *    hash = 31*hash + termBytes.bytes[i];    *  }    *</pre>    * Implement this for performance reasons, if your code can calculate    * the hash on-the-fly. If this is not the case, just return    * {@code termBytes.hashCode()}.    */
 DECL|method|toBytesRef
 specifier|public
 name|int
