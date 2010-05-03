@@ -159,20 +159,18 @@ literal|true
 expr_stmt|;
 name|s
 operator|.
-name|transitions
-operator|.
-name|add
+name|addTransition
 argument_list|(
 operator|new
 name|Transition
 argument_list|(
 name|Character
 operator|.
-name|MIN_VALUE
+name|MIN_CODE_POINT
 argument_list|,
 name|Character
 operator|.
-name|MAX_VALUE
+name|MAX_CODE_POINT
 argument_list|,
 name|s
 argument_list|)
@@ -188,7 +186,7 @@ return|return
 name|a
 return|;
 block|}
-comment|/**    * Returns a new (deterministic) automaton that accepts any single character.    */
+comment|/**    * Returns a new (deterministic) automaton that accepts any single codepoint.    */
 DECL|method|makeAnyChar
 specifier|public
 specifier|static
@@ -201,22 +199,22 @@ name|makeCharRange
 argument_list|(
 name|Character
 operator|.
-name|MIN_VALUE
+name|MIN_CODE_POINT
 argument_list|,
 name|Character
 operator|.
-name|MAX_VALUE
+name|MAX_CODE_POINT
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new (deterministic) automaton that accepts a single character of    * the given value.    */
+comment|/**    * Returns a new (deterministic) automaton that accepts a single codepoint of    * the given value.    */
 DECL|method|makeChar
 specifier|public
 specifier|static
 name|Automaton
 name|makeChar
 parameter_list|(
-name|char
+name|int
 name|c
 parameter_list|)
 block|{
@@ -231,11 +229,15 @@ name|a
 operator|.
 name|singleton
 operator|=
+operator|new
+name|String
+argument_list|(
 name|Character
 operator|.
-name|toString
+name|toChars
 argument_list|(
 name|c
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|a
@@ -248,17 +250,17 @@ return|return
 name|a
 return|;
 block|}
-comment|/**    * Returns a new (deterministic) automaton that accepts a single char whose    * value is in the given interval (including both end points).    */
+comment|/**    * Returns a new (deterministic) automaton that accepts a single codepoint whose    * value is in the given interval (including both end points).    */
 DECL|method|makeCharRange
 specifier|public
 specifier|static
 name|Automaton
 name|makeCharRange
 parameter_list|(
-name|char
+name|int
 name|min
 parameter_list|,
-name|char
+name|int
 name|max
 parameter_list|)
 block|{
@@ -315,9 +317,7 @@ name|max
 condition|)
 name|s1
 operator|.
-name|transitions
-operator|.
-name|add
+name|addTransition
 argument_list|(
 operator|new
 name|Transition
