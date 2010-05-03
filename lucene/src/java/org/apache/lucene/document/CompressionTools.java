@@ -336,9 +336,7 @@ name|result
 init|=
 operator|new
 name|BytesRef
-argument_list|(
-literal|10
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|UnicodeUtil
 operator|.

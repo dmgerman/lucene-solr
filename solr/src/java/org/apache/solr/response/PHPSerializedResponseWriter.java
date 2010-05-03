@@ -412,9 +412,7 @@ literal|null
 else|:
 operator|new
 name|BytesRef
-argument_list|(
-literal|10
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// never indent serialized PHP data
 name|doIndent
