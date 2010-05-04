@@ -361,7 +361,7 @@ name|TEST_VERSION_CURRENT
 init|=
 name|Version
 operator|.
-name|LUCENE_31
+name|LUCENE_40
 decl_stmt|;
 comment|/** Create indexes in this directory, optimally use a subdir, named after the test */
 DECL|field|TEMP_DIR
