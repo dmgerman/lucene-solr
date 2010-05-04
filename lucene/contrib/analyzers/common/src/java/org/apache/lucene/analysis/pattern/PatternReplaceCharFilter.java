@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.pattern
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|pattern
 package|;
 end_package
 
@@ -91,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CharFilter that uses a regular expression for the target of replace string.  * The pattern match will be done in each "block" in char stream.  *   *<p>  * ex1) source="aa&nbsp;&nbsp;bb&nbsp;aa&nbsp;bb", pattern="(aa)\\s+(bb)" replacement="$1#$2"<br/>  * output="aa#bb&nbsp;aa#bb"  *</p>  *   * NOTE: If you produce a phrase that has different length to source string  * and the field is used for highlighting for a term of the phrase, you will  * face a trouble.  *   *<p>  * ex2) source="aa123bb", pattern="(aa)\\d+(bb)" replacement="$1&nbsp;$2"<br/>  * output="aa&nbsp;bb"<br/>  * and you want to search bb and highlight it, you will get<br/>  * highlight snippet="aa1&lt;em&gt;23bb&lt;/em&gt;"  *</p>  *   * @version $Id$  * @since Solr 1.5  */
+comment|/**  * CharFilter that uses a regular expression for the target of replace string.  * The pattern match will be done in each "block" in char stream.  *   *<p>  * ex1) source="aa&nbsp;&nbsp;bb&nbsp;aa&nbsp;bb", pattern="(aa)\\s+(bb)" replacement="$1#$2"<br/>  * output="aa#bb&nbsp;aa#bb"  *</p>  *   * NOTE: If you produce a phrase that has different length to source string  * and the field is used for highlighting for a term of the phrase, you will  * face a trouble.  *   *<p>  * ex2) source="aa123bb", pattern="(aa)\\d+(bb)" replacement="$1&nbsp;$2"<br/>  * output="aa&nbsp;bb"<br/>  * and you want to search bb and highlight it, you will get<br/>  * highlight snippet="aa1&lt;em&gt;23bb&lt;/em&gt;"  *</p>  *   * @since Solr 1.5  */
 end_comment
 
 begin_class

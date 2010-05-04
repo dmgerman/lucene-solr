@@ -64,6 +64,22 @@ name|CharStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|pattern
+operator|.
+name|PatternReplaceCharFilter
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @version $Id$  * @since Solr 1.5  */
 end_comment

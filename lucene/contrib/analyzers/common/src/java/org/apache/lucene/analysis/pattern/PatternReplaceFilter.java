@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.pattern
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|pattern
 package|;
 end_package
 
@@ -95,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TokenFilter which applies a Pattern to each token in the stream,  * replacing match occurances with the specified replacement string.  *  *<p>  *<b>Note:</b> Depending on the input and the pattern used and the input  * TokenStream, this TokenFilter may produce Tokens whose text is the empty  * string.  *</p>  *   * @version $Id:$  * @see Pattern  */
+comment|/**  * A TokenFilter which applies a Pattern to each token in the stream,  * replacing match occurances with the specified replacement string.  *  *<p>  *<b>Note:</b> Depending on the input and the pattern used and the input  * TokenStream, this TokenFilter may produce Tokens whose text is the empty  * string.  *</p>  *   * @see Pattern  */
 end_comment
 
 begin_class

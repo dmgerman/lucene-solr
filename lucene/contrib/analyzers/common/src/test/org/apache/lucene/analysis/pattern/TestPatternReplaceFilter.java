@@ -4,17 +4,33 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.pattern
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|pattern
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
 
 begin_import
 import|import
@@ -76,7 +92,7 @@ specifier|public
 class|class
 name|TestPatternReplaceFilter
 extends|extends
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|method|testReplaceAll
 specifier|public
@@ -100,7 +116,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -160,7 +176,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -220,7 +236,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -280,7 +296,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
@@ -340,7 +356,7 @@ argument_list|(
 operator|new
 name|WhitespaceTokenizer
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|StringReader
