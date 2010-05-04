@@ -30,6 +30,22 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|miscellaneous
+operator|.
+name|RemoveDuplicatesTokenFilter
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id:$  */
 end_comment
