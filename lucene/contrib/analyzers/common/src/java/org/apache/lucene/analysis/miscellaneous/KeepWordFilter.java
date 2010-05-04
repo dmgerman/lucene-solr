@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.miscellaneous
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|miscellaneous
 package|;
 end_package
 
@@ -95,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TokenFilter that only keeps tokens with text contained in the  * required words.  This filter behaves like the inverse of StopFilter.  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * A TokenFilter that only keeps tokens with text contained in the  * required words.  This filter behaves like the inverse of StopFilter.  *   * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -126,7 +128,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** @deprecated Use {@link #KeepWordFilter(TokenStream, Set, boolean)} instead */
+comment|/** @deprecated Use {@link #KeepWordFilter(TokenStream, CharArraySet)} instead */
 annotation|@
 name|Deprecated
 DECL|method|KeepWordFilter

@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.miscellaneous
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|miscellaneous
 package|;
 end_package
 
@@ -87,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Trims leading and trailing whitespace from Tokens in the stream.  *  * @version $Id:$  */
+comment|/**  * Trims leading and trailing whitespace from Tokens in the stream.  */
 end_comment
 
 begin_class
