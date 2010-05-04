@@ -5415,7 +5415,7 @@ name|s
 init|=
 name|q
 operator|.
-name|pop
+name|removeFirst
 argument_list|()
 decl_stmt|;
 name|List

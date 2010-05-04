@@ -1337,6 +1337,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// map<state, set<state>>
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|Set
 argument_list|<
 name|State
