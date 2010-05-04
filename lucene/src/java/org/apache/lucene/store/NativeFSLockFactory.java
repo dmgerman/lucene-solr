@@ -20,6 +20,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|channels
@@ -185,10 +197,32 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|// add the RuntimeMXBean's name to the lock file, to reduce the chance for
+comment|// name collisions when this code is invoked by multiple JVMs (such as in
+comment|// our tests). On most systems, the name includes the process Id.
+comment|// Also, remove any non-alphanumeric characters, so that the lock file will
+comment|// be created for sure on all systems.
 name|String
 name|randomLockName
 init|=
 literal|"lucene-"
+operator|+
+name|ManagementFactory
+operator|.
+name|getRuntimeMXBean
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|replaceAll
+argument_list|(
+literal|"[^a..zA..Z0..9]+"
+argument_list|,
+literal|""
+argument_list|)
+operator|+
+literal|"-"
 operator|+
 name|Long
 operator|.
@@ -228,6 +262,33 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+comment|// If the test lock failed to delete after all the attempts, attempt a
+comment|// delete when the JVM exits.
+name|File
+name|lockFile
+init|=
+operator|new
+name|File
+argument_list|(
+name|lockDir
+argument_list|,
+name|randomLockName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|lockFile
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+name|lockFile
+operator|.
+name|deleteOnExit
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -910,23 +971,14 @@ block|}
 block|}
 block|}
 block|}
-if|if
-condition|(
-operator|!
+comment|// LUCENE-2421: we don't care anymore if the file cannot be deleted
+comment|// because it's held up by another process (e.g. AntiVirus). NativeFSLock
+comment|// does not depend on the existence/absence of the lock file
 name|path
 operator|.
 name|delete
 argument_list|()
-condition|)
-throw|throw
-operator|new
-name|LockReleaseFailedException
-argument_list|(
-literal|"failed to delete "
-operator|+
-name|path
-argument_list|)
-throw|;
+expr_stmt|;
 block|}
 else|else
 block|{
