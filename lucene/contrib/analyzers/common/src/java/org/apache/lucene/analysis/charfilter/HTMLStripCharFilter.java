@@ -1,14 +1,16 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.charfilter
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|charfilter
 package|;
 end_package
 
@@ -121,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A CharFilter that wraps another Reader and attempts to strip out HTML constructs.  *   * @version $Id$  */
+comment|/**  * A CharFilter that wraps another Reader and attempts to strip out HTML constructs.  */
 end_comment
 
 begin_class

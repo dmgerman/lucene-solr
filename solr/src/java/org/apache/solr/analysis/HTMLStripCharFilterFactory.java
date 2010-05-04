@@ -30,6 +30,22 @@ name|CharStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|charfilter
+operator|.
+name|HTMLStripCharFilter
+import|;
+end_import
+
 begin_class
 DECL|class|HTMLStripCharFilterFactory
 specifier|public

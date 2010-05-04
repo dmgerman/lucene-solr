@@ -4017,7 +4017,7 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.solr.analysis.HTMLStripCharFilter"
+literal|"org.apache.lucene.analysis.charfilter.HTMLStripCharFilter"
 argument_list|)
 argument_list|)
 expr_stmt|;
