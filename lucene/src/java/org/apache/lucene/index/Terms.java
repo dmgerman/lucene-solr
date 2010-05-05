@@ -179,7 +179,7 @@ literal|0
 return|;
 block|}
 block|}
-comment|/** Get DocsEnum for the specified term.  This method may    *  return null if the term does not exist. */
+comment|/** Get {@link DocsEnum} for the specified term.  This    *  method may return null if the term does not exist. */
 DECL|method|docs
 specifier|public
 name|DocsEnum
@@ -238,7 +238,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** Get DocsEnum for the specified term.  This method will    *  may return null if the term does not exists, or    *  positions were not indexed. */
+comment|/** Get {@link DocsEnum} for the specified term.  This    *  method will may return null if the term does not    *  exists, or positions were not indexed. */
 DECL|method|docsAndPositions
 specifier|public
 name|DocsAndPositionsEnum
