@@ -426,6 +426,8 @@ name|term
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -460,6 +462,8 @@ name|term
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -1086,12 +1090,12 @@ specifier|final
 name|long
 name|termsStartPointer
 decl_stmt|;
-DECL|field|indexReader
+DECL|field|fieldIndexReader
 specifier|final
 name|StandardTermsIndexReader
 operator|.
 name|FieldReader
-name|indexReader
+name|fieldIndexReader
 decl_stmt|;
 DECL|method|FieldReader
 name|FieldReader
@@ -1136,7 +1140,7 @@ name|termsStartPointer
 expr_stmt|;
 name|this
 operator|.
-name|indexReader
+name|fieldIndexReader
 operator|=
 name|fieldIndexReader
 expr_stmt|;
@@ -1156,6 +1160,8 @@ return|return
 name|termComp
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -1457,7 +1463,7 @@ name|cmp
 operator|<
 literal|0
 operator|&&
-name|indexReader
+name|fieldIndexReader
 operator|.
 name|nextIndexTerm
 argument_list|(
@@ -1503,7 +1509,7 @@ condition|)
 block|{
 comment|// As index to find biggest index term that's<=
 comment|// our text:
-name|indexReader
+name|fieldIndexReader
 operator|.
 name|getIndexOffset
 argument_list|(
@@ -1690,7 +1696,7 @@ operator|==
 name|startOrd
 operator|||
 operator|!
-name|indexReader
+name|fieldIndexReader
 operator|.
 name|isIndexTerm
 argument_list|(
@@ -1747,7 +1753,7 @@ operator|.
 name|END
 return|;
 block|}
-name|indexReader
+name|fieldIndexReader
 operator|.
 name|getIndexOffset
 argument_list|(
@@ -1953,7 +1959,7 @@ name|fieldInfo
 argument_list|,
 name|state
 argument_list|,
-name|indexReader
+name|fieldIndexReader
 operator|.
 name|isIndexTerm
 argument_list|(
