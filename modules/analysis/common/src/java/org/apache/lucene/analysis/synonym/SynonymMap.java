@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.synonym
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|synonym
 package|;
 end_package
 
@@ -69,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Mapping rules for use with {@link org.apache.solr.analysis.SynonymFilter}  *  * @version $Id$  */
+comment|/** Mapping rules for use with {@link SynonymFilter}  */
 end_comment
 
 begin_class
@@ -78,7 +80,9 @@ specifier|public
 class|class
 name|SynonymMap
 block|{
+comment|/** @lucene.internal */
 DECL|field|submap
+specifier|public
 name|CharArrayMap
 argument_list|<
 name|SynonymMap
@@ -86,7 +90,9 @@ argument_list|>
 name|submap
 decl_stmt|;
 comment|// recursive: Map<String, SynonymMap>
+comment|/** @lucene.internal */
 DECL|field|synonyms
+specifier|public
 name|Token
 index|[]
 name|synonyms

@@ -80,6 +80,22 @@ name|Token
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|synonym
+operator|.
+name|SynonymMap
+import|;
+end_import
+
 begin_class
 DECL|class|TestSynonymMap
 specifier|public
