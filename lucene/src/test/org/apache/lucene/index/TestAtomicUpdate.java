@@ -202,6 +202,14 @@ name|float
 name|RUN_TIME_SEC
 init|=
 literal|0.5f
+operator|*
+operator|(
+name|float
+operator|)
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 DECL|field|allThreads
 specifier|private

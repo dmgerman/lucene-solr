@@ -134,6 +134,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestTransactions
 specifier|public
@@ -221,6 +235,11 @@ name|float
 name|RUN_TIME_SEC
 init|=
 literal|0.5f
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 DECL|field|allThreads
 specifier|private

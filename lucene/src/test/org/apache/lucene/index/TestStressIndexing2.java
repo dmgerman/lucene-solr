@@ -603,6 +603,11 @@ init|;
 name|i
 operator|<
 literal|3
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 condition|;
 name|i
 operator|++

@@ -3017,6 +3017,11 @@ name|int
 name|numDocs
 init|=
 literal|50
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 specifier|final
 name|ByteArrayPool

@@ -60,6 +60,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestByteSlices
 specifier|public
@@ -385,6 +399,11 @@ init|;
 name|iter
 operator|<
 literal|10000
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 condition|;
 name|iter
 operator|++

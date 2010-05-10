@@ -854,6 +854,30 @@ name|end
 argument_list|)
 return|;
 block|}
+comment|/** gets a random multiplier, which you should use when writing    *  random tests: multiply it by the number of iterations */
+DECL|method|getRandomMultiplier
+specifier|public
+specifier|static
+name|int
+name|getRandomMultiplier
+parameter_list|()
+block|{
+return|return
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"random.multiplier"
+argument_list|,
+literal|"1"
+argument_list|)
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

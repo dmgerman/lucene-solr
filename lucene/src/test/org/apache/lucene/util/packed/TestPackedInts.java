@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -274,6 +288,11 @@ init|;
 name|iter
 operator|<
 literal|5
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 condition|;
 name|iter
 operator|++

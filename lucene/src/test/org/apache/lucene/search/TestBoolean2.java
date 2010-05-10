@@ -208,6 +208,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/** Test BooleanQuery2 against BooleanQuery by overriding the standard query parser.  * This also tests the scoring order of BooleanQuery.  */
 end_comment
@@ -1255,6 +1269,11 @@ init|;
 name|i
 operator|<
 literal|50
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 condition|;
 name|i
 operator|++

@@ -40,6 +40,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestCharArrayMap
 specifier|public
@@ -333,6 +347,11 @@ init|;
 name|i
 operator|<
 literal|5
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 condition|;
 name|i
 operator|++

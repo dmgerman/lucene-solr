@@ -210,6 +210,11 @@ init|;
 name|iter
 operator|<
 literal|10000
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 condition|;
 name|iter
 operator|++

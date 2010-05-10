@@ -160,6 +160,11 @@ name|int
 name|RUN_TIME_SEC
 init|=
 literal|1
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 DECL|field|allThreads
 specifier|private

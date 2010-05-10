@@ -62,6 +62,11 @@ name|int
 name|NUM_RANDOM_TESTS
 init|=
 literal|2000
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 DECL|field|MAX_RANDOM_BINARY_LENGTH
 specifier|private
@@ -71,6 +76,11 @@ name|int
 name|MAX_RANDOM_BINARY_LENGTH
 init|=
 literal|300
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 comment|/** @deprecated remove this test for Lucene 4.0 */
 annotation|@

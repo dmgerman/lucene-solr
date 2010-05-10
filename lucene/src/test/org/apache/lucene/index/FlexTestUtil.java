@@ -2400,6 +2400,11 @@ name|int
 name|ITER
 init|=
 literal|100
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 name|List
 argument_list|<

@@ -693,8 +693,9 @@ init|=
 operator|new
 name|LevenshteinAutomata
 argument_list|(
-operator|new
-name|String
+name|UnicodeUtil
+operator|.
+name|newString
 argument_list|(
 name|termText
 argument_list|,
@@ -759,8 +760,9 @@ name|BasicAutomata
 operator|.
 name|makeString
 argument_list|(
-operator|new
-name|String
+name|UnicodeUtil
+operator|.
+name|newString
 argument_list|(
 name|termText
 argument_list|,
@@ -1701,8 +1703,9 @@ specifier|final
 name|String
 name|prefix
 init|=
-operator|new
-name|String
+name|UnicodeUtil
+operator|.
+name|newString
 argument_list|(
 name|termText
 argument_list|,

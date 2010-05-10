@@ -382,6 +382,20 @@ name|Version
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|// TODO: test multiple codecs here?
 end_comment
@@ -487,6 +501,11 @@ name|int
 name|NUM_TEST_ITER
 init|=
 literal|20
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 DECL|field|NUM_TEST_THREADS
 specifier|private

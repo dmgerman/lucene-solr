@@ -272,6 +272,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit test for sorting code.  *  */
 end_comment
@@ -309,6 +323,11 @@ name|int
 name|INDEX_SIZE
 init|=
 literal|2000
+operator|*
+name|_TestUtil
+operator|.
+name|getRandomMultiplier
+argument_list|()
 decl_stmt|;
 DECL|method|TestCustomSearcherSort
 specifier|public
@@ -811,7 +830,9 @@ name|query
 argument_list|,
 literal|null
 argument_list|,
-literal|1000
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 operator|.
 name|scoreDocs
@@ -899,7 +920,9 @@ name|query
 argument_list|,
 literal|null
 argument_list|,
-literal|1000
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|,
 name|sort
 argument_list|)
