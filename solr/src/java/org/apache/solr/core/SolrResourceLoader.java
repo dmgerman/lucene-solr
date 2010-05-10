@@ -1199,6 +1199,17 @@ return|return
 name|coreProperties
 return|;
 block|}
+comment|/**    * EXPERT    *<p/>    * The underlying class loader.  Most applications will not need to use this.    * @return The {@link ClassLoader}    */
+DECL|method|getClassLoader
+specifier|public
+name|ClassLoader
+name|getClassLoader
+parameter_list|()
+block|{
+return|return
+name|classLoader
+return|;
+block|}
 comment|/** Opens a schema resource by its name.    * Override this method to customize loading schema resources.    *@return the stream for the named schema    */
 DECL|method|openSchema
 specifier|public
