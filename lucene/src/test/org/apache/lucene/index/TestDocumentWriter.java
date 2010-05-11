@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|SimpleAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -117,22 +117,6 @@ operator|.
 name|analysis
 operator|.
 name|WhitespaceTokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
 import|;
 end_import
 
@@ -429,10 +413,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1461,10 +1443,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|SimpleAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1887,10 +1867,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|StandardAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2118,10 +2096,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|StandardAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

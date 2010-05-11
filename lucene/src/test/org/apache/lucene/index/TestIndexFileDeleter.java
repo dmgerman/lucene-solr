@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -205,10 +205,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -659,10 +657,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 operator|.
 name|setOpenMode

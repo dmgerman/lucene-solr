@@ -104,7 +104,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -339,15 +339,13 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 operator|.
 name|class
 argument_list|,
@@ -991,10 +989,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 operator|.
 name|toString
@@ -1103,10 +1099,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|IndexWriterConfig
@@ -1178,10 +1172,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// Test IndexDeletionPolicy
@@ -1690,10 +1682,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory

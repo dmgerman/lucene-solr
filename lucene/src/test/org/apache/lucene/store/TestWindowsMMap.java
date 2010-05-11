@@ -84,9 +84,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -412,19 +410,12 @@ argument_list|)
 decl_stmt|;
 comment|// plan to add a set of useful stopwords, consider changing some of the
 comment|// interior filters.
-name|StandardAnalyzer
+name|MockAnalyzer
 name|analyzer
 init|=
 operator|new
-name|StandardAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-name|Collections
-operator|.
-name|emptySet
+name|MockAnalyzer
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// TODO: something about lock timeouts and leftover locks.
 name|IndexWriter

@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -186,10 +186,8 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -905,10 +903,8 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 decl_stmt|;
 name|FuzzyLikeThisQuery
 name|fltq1

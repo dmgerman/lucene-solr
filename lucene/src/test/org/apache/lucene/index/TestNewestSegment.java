@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|SimpleAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -115,7 +115,7 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|SimpleAnalyzer
+name|MockAnalyzer
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -132,10 +132,8 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|SimpleAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

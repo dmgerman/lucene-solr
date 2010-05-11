@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -1799,14 +1799,12 @@ name|enablePositionIncrements
 decl_stmt|;
 DECL|field|a
 specifier|final
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 name|a
 init|=
 operator|new
-name|WhitespaceAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|MockAnalyzer
+argument_list|()
 decl_stmt|;
 DECL|method|StopWhitespaceAnalyzer
 specifier|public

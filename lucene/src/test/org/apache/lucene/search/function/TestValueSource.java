@@ -150,7 +150,7 @@ argument_list|(
 name|dir
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 argument_list|()
 argument_list|,
 name|IndexWriter
