@@ -131,10 +131,7 @@ specifier|abstract
 name|byte
 index|[]
 name|getByteBlock
-parameter_list|(
-name|boolean
-name|trackAllocations
-parameter_list|)
+parameter_list|()
 function_decl|;
 block|}
 DECL|field|buffers
@@ -187,12 +184,6 @@ operator|.
 name|BYTE_BLOCK_SIZE
 decl_stmt|;
 comment|// Current head offset
-DECL|field|trackAllocations
-specifier|private
-specifier|final
-name|boolean
-name|trackAllocations
-decl_stmt|;
 DECL|field|allocator
 specifier|private
 specifier|final
@@ -205,9 +196,6 @@ name|ByteBlockPool
 parameter_list|(
 name|Allocator
 name|allocator
-parameter_list|,
-name|boolean
-name|trackAllocations
 parameter_list|)
 block|{
 name|this
@@ -215,12 +203,6 @@ operator|.
 name|allocator
 operator|=
 name|allocator
-expr_stmt|;
-name|this
-operator|.
-name|trackAllocations
-operator|=
-name|trackAllocations
 expr_stmt|;
 block|}
 DECL|method|reset
@@ -404,9 +386,7 @@ operator|=
 name|allocator
 operator|.
 name|getByteBlock
-argument_list|(
-name|trackAllocations
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|bufferUpto
 operator|++

@@ -301,10 +301,6 @@ argument_list|(
 name|termsHash
 operator|.
 name|docWriter
-argument_list|,
-name|termsHash
-operator|.
-name|trackAllocations
 argument_list|)
 expr_stmt|;
 name|bytePool
@@ -317,10 +313,6 @@ operator|.
 name|docWriter
 operator|.
 name|byteBlockAllocator
-argument_list|,
-name|termsHash
-operator|.
-name|trackAllocations
 argument_list|)
 expr_stmt|;
 if|if
