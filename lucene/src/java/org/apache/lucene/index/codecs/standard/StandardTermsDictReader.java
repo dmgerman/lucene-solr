@@ -1388,11 +1388,7 @@ name|termsCache
 operator|.
 name|get
 argument_list|(
-operator|new
-name|FieldAndTerm
-argument_list|(
 name|fieldTerm
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if

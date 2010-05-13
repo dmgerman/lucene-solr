@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple concurrent LRU cache, using a "double barrel"  * approach where two ConcurrentHashMaps record entries.  *  *<p>At any given time, one hash is primary and the other  * is secondary.  {@link #get} first checks primary, and if  * that's a miss, checks secondary.  If secondary has the  * entry, it's promoted to primary.  Once primary is full,  * the secondary is cleared and the two are swapped.</p>  *  *<p>This is not as space efficient as other possible  * concurrent approaches (see LUCENE-2075): to achieve  * perfect LRU(N) it requires 2*N storage.  But, this  * approach is relatively simple and seems in practice to  * not grow unbounded in size when under hideously high  * load.</p>  *  * @lucene.internal  */
+comment|/**  * Simple concurrent LRU cache, using a "double barrel"  * approach where two ConcurrentHashMaps record entries.  *  *<p>At any given time, one hash is primary and the other  * is secondary.  {@link #get} first checks primary, and if  * that's a miss, checks secondary.  If secondary has the  * entry, it's promoted to primary (<b>NOTE</b>: the key is  * cloned at this point).  Once primary is full, the  * secondary is cleared and the two are swapped.</p>  *  *<p>This is not as space efficient as other possible  * concurrent approaches (see LUCENE-2075): to achieve  * perfect LRU(N) it requires 2*N storage.  But, this  * approach is relatively simple and seems in practice to  * not grow unbounded in size when under hideously high  * load.</p>  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -64,6 +64,10 @@ class|class
 name|DoubleBarrelLRUCache
 parameter_list|<
 name|K
+extends|extends
+name|DoubleBarrelLRUCache
+operator|.
+name|CloneableKey
 parameter_list|,
 name|V
 parameter_list|>
@@ -168,6 +172,11 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|get
 specifier|public
 name|V
@@ -258,7 +267,13 @@ block|{
 comment|// Promote to primary
 name|put
 argument_list|(
+operator|(
+name|K
+operator|)
 name|key
+operator|.
+name|clone
+argument_list|()
 argument_list|,
 name|result
 argument_list|)
