@@ -2018,33 +2018,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|// it is forbidden to call getPayload() more than once
-comment|// without calling nextPosition()
-name|tp
-operator|.
-name|getPayload
-argument_list|(
-literal|null
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expected exception not thrown"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 name|reader
 operator|.
 name|close

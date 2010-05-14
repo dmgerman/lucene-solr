@@ -63,14 +63,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns length of payload at current position */
-DECL|method|getPayloadLength
-specifier|public
-specifier|abstract
-name|int
-name|getPayloadLength
-parameter_list|()
-function_decl|;
 comment|/** Returns the payload at this position, or null if no    *  payload was indexed. */
 DECL|method|getPayload
 specifier|public

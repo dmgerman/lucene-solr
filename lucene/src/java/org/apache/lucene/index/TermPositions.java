@@ -53,6 +53,8 @@ DECL|method|getPayloadLength
 name|int
 name|getPayloadLength
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/**       * Returns the payload data at the current term position.      * This is invalid until {@link #nextPosition()} is called for      * the first time.      * This method must not be called more than once after each call      * of {@link #nextPosition()}. However, payloads are loaded lazily,      * so if the payload data for the current position is not needed,      * this method may not be called at all for performance reasons.<br>      *       * @param data the array into which the data of this payload is to be      *             stored, if it is big enough; otherwise, a new byte[] array      *             is allocated for this purpose.       * @param offset the offset in the array into which the data of this payload      *               is to be stored.      * @return a byte[] array containing the data of this payload      * @throws IOException      */
 DECL|method|getPayload
