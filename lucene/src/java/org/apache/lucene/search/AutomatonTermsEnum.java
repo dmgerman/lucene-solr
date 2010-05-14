@@ -645,6 +645,12 @@ argument_list|()
 condition|)
 block|{
 comment|// reposition
+comment|// FIXME: this is really bad to turn off
+comment|// but it cannot work correctly until terms are in utf8 order.
+name|linear
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|linear
