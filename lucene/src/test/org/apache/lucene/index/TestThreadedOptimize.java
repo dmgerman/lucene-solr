@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|SimpleAnalyzer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -208,9 +208,13 @@ name|Analyzer
 name|ANALYZER
 init|=
 operator|new
-name|SimpleAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockAnalyzer
+operator|.
+name|SIMPLE
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 DECL|field|NUM_THREADS

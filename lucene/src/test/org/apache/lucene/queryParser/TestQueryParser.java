@@ -164,7 +164,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|LowerCaseTokenizer
+name|MockAnalyzer
 import|;
 end_import
 
@@ -178,7 +178,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|SimpleAnalyzer
+name|MockTokenizer
 import|;
 end_import
 
@@ -900,7 +900,7 @@ name|QPTestAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** Filters LowerCaseTokenizer with StopFilter. */
+comment|/** Filters MockTokenizer with StopFilter. */
 annotation|@
 name|Override
 DECL|method|tokenStream
@@ -921,11 +921,15 @@ operator|new
 name|QPTestFilter
 argument_list|(
 operator|new
-name|LowerCaseTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|reader
+argument_list|,
+name|MockAnalyzer
+operator|.
+name|SIMPLE
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 return|;
@@ -1060,9 +1064,13 @@ condition|)
 name|a
 operator|=
 operator|new
-name|SimpleAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockAnalyzer
+operator|.
+name|SIMPLE
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|QueryParser
@@ -1527,9 +1535,13 @@ condition|)
 name|a
 operator|=
 operator|new
-name|SimpleAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockAnalyzer
+operator|.
+name|SIMPLE
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|QueryParser
@@ -3079,9 +3091,13 @@ argument_list|,
 literal|"field"
 argument_list|,
 operator|new
-name|SimpleAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockAnalyzer
+operator|.
+name|SIMPLE
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4003,9 +4019,13 @@ argument_list|,
 literal|"field"
 argument_list|,
 operator|new
-name|SimpleAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockAnalyzer
+operator|.
+name|SIMPLE
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;
