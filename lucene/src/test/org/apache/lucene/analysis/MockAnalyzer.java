@@ -52,22 +52,6 @@ name|CharacterRunAutomaton
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|RegExp
-import|;
-end_import
-
 begin_comment
 comment|/**  * Analyzer for testing  */
 end_comment
@@ -81,70 +65,6 @@ name|MockAnalyzer
 extends|extends
 name|Analyzer
 block|{
-comment|/** Acts Similar to WhitespaceAnalyzer */
-DECL|field|WHITESPACE
-specifier|public
-specifier|static
-specifier|final
-name|CharacterRunAutomaton
-name|WHITESPACE
-init|=
-operator|new
-name|CharacterRunAutomaton
-argument_list|(
-operator|new
-name|RegExp
-argument_list|(
-literal|"[^ \t\r\n]+"
-argument_list|)
-operator|.
-name|toAutomaton
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|/** Acts Similar to KeywordAnalyzer.    * TODO: Keyword returns an "empty" token for an empty reader...     */
-DECL|field|KEYWORD
-specifier|public
-specifier|static
-specifier|final
-name|CharacterRunAutomaton
-name|KEYWORD
-init|=
-operator|new
-name|CharacterRunAutomaton
-argument_list|(
-operator|new
-name|RegExp
-argument_list|(
-literal|".*"
-argument_list|)
-operator|.
-name|toAutomaton
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|/** Acts like SimpleAnalyzer/LetterTokenizer. */
-comment|// the ugly regex below is Unicode 5.2 [:Letter:]
-DECL|field|SIMPLE
-specifier|public
-specifier|static
-specifier|final
-name|CharacterRunAutomaton
-name|SIMPLE
-init|=
-operator|new
-name|CharacterRunAutomaton
-argument_list|(
-operator|new
-name|RegExp
-argument_list|(
-literal|"[A-Za-zÂªÂµÂºÃ-ÃÃ-Ã¶Ã¸-ËË-ËË -Ë¤Ë¬Ë®Í°-Í´Í¶Í·Íº-Í½ÎÎ-ÎÎÎ-Î¡Î£-ÏµÏ·-ÒÒ-Ô¥Ô±-ÕÕÕ¡-Ö×-×ª×°-×²Ø¡-ÙÙ®Ù¯Ù±-ÛÛÛ¥Û¦Û®Û¯Ûº-Û¼Û¿ÜÜ-Ü¯Ý-Þ¥Þ±ß-ßªß´ßµßºà -à à à ¤à ¨à¤-à¤¹à¤½à¥à¥-à¥¡à¥±à¥²à¥¹-à¥¿à¦-à¦à¦à¦à¦-à¦¨à¦ª-à¦°à¦²à¦¶-à¦¹à¦½à§à§à§à§-à§¡à§°à§±à¨-à¨à¨à¨à¨-à¨¨à¨ª-à¨°à¨²à¨³à¨µà¨¶à¨¸à¨¹à©-à©à©à©²-à©´àª-àªàª-àªàª-àª¨àªª-àª°àª²àª³àªµ-àª¹àª½à«à« à«¡à¬-à¬à¬à¬à¬-à¬¨à¬ª-à¬°à¬²à¬³à¬µ-à¬¹à¬½à­à­à­-à­¡à­±à®à®-à®à®-à®à®-à®à®à®à®à®à®à®£à®¤à®¨-à®ªà®®-à®¹à¯à°-à°à°-à°à°-à°¨à°ª-à°³à°µ-à°¹à°½à±à±à± à±¡à²-à²à²-à²à²-à²¨à²ª-à²³à²µ-à²¹à²½à³à³ à³¡à´-à´à´-à´à´-à´¨à´ª-à´¹à´½àµ àµ¡àµº-àµ¿à¶-à¶à¶-à¶±à¶³-à¶»à¶½à·-à·à¸-à¸°à¸²à¸³à¹-à¹àºàºàºàºàºàºàºàº-àºàº-àºàº¡-àº£àº¥àº§àºªàº«àº­-àº°àº²àº³àº½à»-à»à»à»à»à¼à½-à½à½-à½¬à¾-à¾á-áªá¿á-áá-áá¡á¥á¦á®-á°áµ-ááá -áá-áºá¼á-áá-áá-ááá-áá -áá-áá-á°á²-áµá¸-á¾áá-áá-áá-áá-áá-áá-áá -á´á-á¬á¯-á¿á-áá -áªá-áá-áá -á±á-áá -á¬á®-á°á-á³ááá  -á¡·á¢-á¢¨á¢ªá¢°-á£µá¤-á¤á¥-á¥­á¥°-á¥´á¦-á¦«á§-á§á¨-á¨á¨ -á©áª§á¬-á¬³á­-á­á®-á® á®®á®¯á°-á°£á±-á±á±-á±½á³©-á³¬á³®-á³±á´-á¶¿á¸-á¼á¼-á¼á¼ -á½á½-á½á½-á½á½á½á½á½-á½½á¾-á¾´á¾¶-á¾¼á¾¾á¿-á¿á¿-á¿á¿-á¿á¿-á¿á¿ -á¿¬á¿²-á¿´á¿¶-á¿¼â±â¿â-ââââ-âââ-ââ¤â¦â¨âª-â­â¯-â¹â¼-â¿â-âââââ°-â°®â°°-â±â± -â³¤â³«-â³®â´-â´¥â´°-âµ¥âµ¯â¶-â¶â¶ -â¶¦â¶¨-â¶®â¶°-â¶¶â¶¸-â¶¾â·-â·â·-â·â·-â·â·-â·â¸¯ããã±-ãµã»ã¼ã-ãã-ãã¡-ãºã¼-ã¿ã-ã­ã±-ãã -ã·ã°-ã¿ã-ä¶µä¸-é¿ê-êê-ê½ê-êê-êêªê«ê-êê¢-ê®ê¿-êê -ê¥ê-êê¢-êêêê»-ê ê -ê ê -ê ê -ê ¢ê¡-ê¡³ê¢-ê¢³ê£²-ê£·ê£»ê¤-ê¤¥ê¤°-ê¥ê¥ -ê¥¼ê¦-ê¦²ê§ê¨-ê¨¨ê©-ê©ê©-ê©ê© -ê©¶ê©ºêª-êª¯êª±êªµêª¶êª¹-êª½ê«ê«ê«-ê«ê¯-ê¯¢ê°-í£í°-íí-í»ï¤-ï¨­ï¨°-ï©­ï©°-ï«ï¬-ï¬ï¬-ï¬ï¬ï¬-ï¬¨ï¬ª-ï¬¶ï¬¸-ï¬¼ï¬¾ï­ï­ï­ï­ï­-ï®±ï¯-ï´½ïµ-ï¶ï¶-ï·ï·°-ï·»ï¹°-ï¹´ï¹¶-ï»¼ï¼¡-ï¼ºï½-ï½ï½¦-ï¾¾ï¿-ï¿ï¿-ï¿ï¿-ï¿ï¿-ï¿ð-ðð-ð¦ð¨-ðºð¼ð½ð¿-ðð-ðð-ðºð-ðð -ðð-ðð°-ðð-ðð-ðð -ðð-ðð-ðð -ð ð ð -ð µð ·ð ¸ð ¼ð ¿-ð¡ð¤-ð¤ð¤ -ð¤¹ð¨ð¨-ð¨ð¨-ð¨ð¨-ð¨³ð© -ð©¼ð¬-ð¬µð­-ð­ð­ -ð­²ð°-ð±ð-ð¯ð-ð®ð-ð®ð-ðð-ðððð¢ð¥ð¦ð©-ð¬ð®-ð¹ð»ð½-ðð-ðð-ðð-ðð-ðð-ð¹ð»-ð¾ð-ððð-ðð-ð¥ð¨-ðð-ðð-ðºð¼-ðð-ð´ð¶-ðð-ð®ð°-ðð-ð¨ðª-ðð-ðð -ðªðª-ð«´ð¯ -ð¯¨]+"
-argument_list|)
-operator|.
-name|toAutomaton
-argument_list|()
-argument_list|)
-decl_stmt|;
 DECL|field|runAutomaton
 specifier|private
 specifier|final
@@ -157,6 +77,19 @@ specifier|final
 name|boolean
 name|lowerCase
 decl_stmt|;
+DECL|field|filter
+specifier|private
+specifier|final
+name|CharacterRunAutomaton
+name|filter
+decl_stmt|;
+DECL|field|enablePositionIncrements
+specifier|private
+specifier|final
+name|boolean
+name|enablePositionIncrements
+decl_stmt|;
+comment|/**    * Creates a new MockAnalyzer.    *     * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -166,6 +99,12 @@ name|runAutomaton
 parameter_list|,
 name|boolean
 name|lowerCase
+parameter_list|,
+name|CharacterRunAutomaton
+name|filter
+parameter_list|,
+name|boolean
+name|enablePositionIncrements
 parameter_list|)
 block|{
 name|this
@@ -180,7 +119,46 @@ name|lowerCase
 operator|=
 name|lowerCase
 expr_stmt|;
+name|this
+operator|.
+name|filter
+operator|=
+name|filter
+expr_stmt|;
+name|this
+operator|.
+name|enablePositionIncrements
+operator|=
+name|enablePositionIncrements
+expr_stmt|;
 block|}
+comment|/**    * Creates a new MockAnalyzer, with no filtering.    *     * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    */
+DECL|method|MockAnalyzer
+specifier|public
+name|MockAnalyzer
+parameter_list|(
+name|CharacterRunAutomaton
+name|runAutomaton
+parameter_list|,
+name|boolean
+name|lowerCase
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|runAutomaton
+argument_list|,
+name|lowerCase
+argument_list|,
+name|MockTokenFilter
+operator|.
+name|EMPTY_STOPSET
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**     * Create a Whitespace-lowercasing analyzer with no stopwords removal     */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -188,6 +166,8 @@ parameter_list|()
 block|{
 name|this
 argument_list|(
+name|MockTokenizer
+operator|.
 name|WHITESPACE
 argument_list|,
 literal|true
@@ -208,7 +188,9 @@ name|Reader
 name|reader
 parameter_list|)
 block|{
-return|return
+name|MockTokenizer
+name|tokenizer
+init|=
 operator|new
 name|MockTokenizer
 argument_list|(
@@ -218,7 +200,32 @@ name|runAutomaton
 argument_list|,
 name|lowerCase
 argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|MockTokenFilter
+argument_list|(
+name|tokenizer
+argument_list|,
+name|filter
+argument_list|,
+name|enablePositionIncrements
+argument_list|)
 return|;
+block|}
+DECL|class|SavedStreams
+specifier|private
+class|class
+name|SavedStreams
+block|{
+DECL|field|tokenizer
+name|MockTokenizer
+name|tokenizer
+decl_stmt|;
+DECL|field|filter
+name|MockTokenFilter
+name|filter
+decl_stmt|;
 block|}
 annotation|@
 name|Override
@@ -236,23 +243,31 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|MockTokenizer
-name|t
+name|SavedStreams
+name|saved
 init|=
 operator|(
-name|MockTokenizer
+name|SavedStreams
 operator|)
 name|getPreviousTokenStream
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|t
+name|saved
 operator|==
 literal|null
 condition|)
 block|{
-name|t
+name|saved
+operator|=
+operator|new
+name|SavedStreams
+argument_list|()
+expr_stmt|;
+name|saved
+operator|.
+name|tokenizer
 operator|=
 operator|new
 name|MockTokenizer
@@ -264,25 +279,50 @@ argument_list|,
 name|lowerCase
 argument_list|)
 expr_stmt|;
-name|setPreviousTokenStream
+name|saved
+operator|.
+name|filter
+operator|=
+operator|new
+name|MockTokenFilter
 argument_list|(
-name|t
+name|saved
+operator|.
+name|tokenizer
+argument_list|,
+name|filter
+argument_list|,
+name|enablePositionIncrements
 argument_list|)
 expr_stmt|;
+name|setPreviousTokenStream
+argument_list|(
+name|saved
+argument_list|)
+expr_stmt|;
+return|return
+name|saved
+operator|.
+name|filter
+return|;
 block|}
 else|else
 block|{
-name|t
+name|saved
+operator|.
+name|tokenizer
 operator|.
 name|reset
 argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-block|}
 return|return
-name|t
+name|saved
+operator|.
+name|filter
 return|;
+block|}
 block|}
 block|}
 end_class

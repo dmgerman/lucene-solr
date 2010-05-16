@@ -54,6 +54,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|SimpleAnalyzer
 import|;
 end_import
@@ -265,7 +279,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockAnalyzer
+name|MockTokenizer
 operator|.
 name|SIMPLE
 argument_list|,
@@ -598,7 +612,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockAnalyzer
+name|MockTokenizer
 operator|.
 name|SIMPLE
 argument_list|,
@@ -1748,7 +1762,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockAnalyzer
+name|MockTokenizer
 operator|.
 name|SIMPLE
 argument_list|,
@@ -2551,7 +2565,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockAnalyzer
+name|MockTokenizer
 operator|.
 name|SIMPLE
 argument_list|,
@@ -2836,7 +2850,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockAnalyzer
+name|MockTokenizer
 operator|.
 name|SIMPLE
 argument_list|,

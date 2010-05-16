@@ -2471,7 +2471,7 @@ name|MockTokenizer
 argument_list|(
 name|reader
 argument_list|,
-name|MockAnalyzer
+name|MockTokenizer
 operator|.
 name|WHITESPACE
 argument_list|,
