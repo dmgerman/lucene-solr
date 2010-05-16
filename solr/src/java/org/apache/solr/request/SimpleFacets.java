@@ -3064,6 +3064,7 @@ block|{
 comment|// iterate over TermDocs to calculate the intersection
 comment|// TODO: specialize when base docset is a bitset or hash set (skipDocs)?  or does it matter for this?
 comment|// TODO: do this per-segment for better efficiency (MultiDocsEnum just uses base class impl)
+comment|// TODO: would passing deleted docs lead to better efficiency over checking the fastForRandomSet?
 name|docsEnum
 operator|=
 name|termsEnum
