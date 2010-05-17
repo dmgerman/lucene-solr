@@ -383,9 +383,13 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 argument_list|)

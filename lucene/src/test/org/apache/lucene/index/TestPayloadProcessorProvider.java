@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|MockAnalyzer
 import|;
 end_import
 
@@ -82,7 +82,21 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceAnalyzer
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
 import|;
 end_import
 
@@ -618,9 +632,13 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|WhitespaceAnalyzer
+name|MockAnalyzer
 argument_list|(
-name|TEST_VERSION_CURRENT
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 return|;
