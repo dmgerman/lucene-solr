@@ -446,7 +446,7 @@ literal|0
 return|;
 block|}
 comment|// asymptotic exponential growth by 1/8th, favors
-comment|// spending a bit more CPU to not tye up too much wasted
+comment|// spending a bit more CPU to not tie up too much wasted
 comment|// RAM:
 name|int
 name|extra
