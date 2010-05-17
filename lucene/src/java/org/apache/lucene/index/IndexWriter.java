@@ -9394,6 +9394,8 @@ name|IOException
 block|{
 try|try
 block|{
+try|try
+block|{
 return|return
 name|doFlushInternal
 argument_list|(
@@ -9402,6 +9404,15 @@ argument_list|,
 name|flushDeletes
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|docWriter
+operator|.
+name|balanceRAM
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{

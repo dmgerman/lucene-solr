@@ -163,6 +163,11 @@ operator|==
 name|left
 condition|)
 block|{
+comment|// don't keep a reference (s could have been very large)
+name|s
+operator|=
+literal|null
+expr_stmt|;
 return|return
 operator|-
 literal|1
