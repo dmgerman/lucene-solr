@@ -216,6 +216,16 @@ name|InputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_class
 DECL|class|TestConfig
 specifier|public
@@ -670,7 +680,11 @@ argument_list|(
 literal|"scheam.xml"
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

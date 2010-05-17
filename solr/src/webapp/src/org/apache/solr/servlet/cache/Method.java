@@ -18,6 +18,16 @@ name|cache
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_enum
 DECL|enum|Method
 specifier|public
@@ -56,7 +66,11 @@ argument_list|(
 name|method
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 argument_list|)
 return|;
 block|}

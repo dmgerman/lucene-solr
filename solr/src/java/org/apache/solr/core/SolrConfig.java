@@ -2062,7 +2062,11 @@ argument_list|(
 name|s
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 argument_list|)
 return|;
 block|}

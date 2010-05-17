@@ -128,6 +128,16 @@ name|URLConnection
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Three concrete implementations for ContentStream - one for File/URL/String  *   * @version $Id$  * @since solr 1.2  */
 end_comment
@@ -195,7 +205,11 @@ init|=
 name|contentType
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 operator|.
 name|indexOf
 argument_list|(

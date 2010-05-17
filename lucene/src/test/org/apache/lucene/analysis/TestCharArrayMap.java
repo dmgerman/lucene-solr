@@ -204,7 +204,11 @@ condition|?
 name|keyStr
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 else|:
 name|keyStr
 decl_stmt|;

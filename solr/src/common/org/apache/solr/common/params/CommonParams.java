@@ -18,6 +18,16 @@ name|params
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Parameters used across many handlers  */
 end_comment
@@ -275,7 +285,11 @@ operator|=
 name|v
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

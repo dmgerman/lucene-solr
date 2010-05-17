@@ -18,6 +18,16 @@ name|params
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * @since solr 1.3  */
 end_comment
@@ -203,7 +213,11 @@ argument_list|(
 name|p
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 argument_list|)
 return|;
 block|}
