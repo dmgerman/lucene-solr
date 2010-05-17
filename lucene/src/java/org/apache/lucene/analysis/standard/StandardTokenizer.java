@@ -770,7 +770,7 @@ argument_list|)
 expr_stmt|;
 name|scanner
 operator|.
-name|reset
+name|yyreset
 argument_list|(
 name|reader
 argument_list|)

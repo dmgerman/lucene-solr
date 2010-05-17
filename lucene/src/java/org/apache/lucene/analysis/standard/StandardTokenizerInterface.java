@@ -86,9 +86,9 @@ name|yychar
 parameter_list|()
 function_decl|;
 comment|/**    * Resets the scanner to read from a new input stream.    * Does not close the old reader.    *    * All internal variables are reset, the old input stream     *<b>cannot</b> be reused (internal buffer is discarded and lost).    * Lexical state is set to<tt>ZZ_INITIAL</tt>.    *    * @param reader   the new input stream     */
-DECL|method|reset
+DECL|method|yyreset
 name|void
-name|reset
+name|yyreset
 parameter_list|(
 name|Reader
 name|reader
