@@ -3026,6 +3026,10 @@ argument_list|(
 name|SnapShooter
 operator|.
 name|DATE_FMT
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 operator|.
 name|format
@@ -4014,6 +4018,10 @@ argument_list|(
 name|SnapShooter
 operator|.
 name|DATE_FMT
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 operator|.
 name|format

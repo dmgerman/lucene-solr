@@ -925,6 +925,10 @@ name|getTimeZone
 argument_list|(
 literal|"GMT"
 argument_list|)
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 DECL|field|sb

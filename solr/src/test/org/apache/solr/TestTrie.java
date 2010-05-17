@@ -1398,6 +1398,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyy-MM-dd'T'HH:mm:ss'Z'"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 name|format
@@ -1842,6 +1846,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyy-MM-dd'T'HH:mm:ss'Z'"
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 name|format

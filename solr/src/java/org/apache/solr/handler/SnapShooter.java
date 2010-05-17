@@ -98,6 +98,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -473,6 +483,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 name|DATE_FMT
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 name|directoryName
