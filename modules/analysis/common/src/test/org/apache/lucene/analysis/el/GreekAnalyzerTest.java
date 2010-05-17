@@ -72,7 +72,7 @@ name|GreekAnalyzerTest
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
-comment|/** 	 * Test the analysis of various greek strings. 	 * 	 * @throws Exception in case an error occurs 	 */
+comment|/**    * Test the analysis of various greek strings.    *    * @throws Exception in case an error occurs    */
 DECL|method|testAnalyzer
 specifier|public
 name|void
@@ -90,32 +90,33 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
-comment|// Verify the correct analysis of capitals and small accented letters
+comment|// Verify the correct analysis of capitals and small accented letters, and
+comment|// stemming
 name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"\u039c\u03af\u03b1 \u03b5\u03be\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03ac \u03ba\u03b1\u03bb\u03ae \u03ba\u03b1\u03b9 \u03c0\u03bb\u03bf\u03cd\u03c3\u03b9\u03b1 \u03c3\u03b5\u03b9\u03c1\u03ac \u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03ae\u03c1\u03c9\u03bd \u03c4\u03b7\u03c2 \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ae\u03c2 \u03b3\u03bb\u03ce\u03c3\u03c3\u03b1\u03c2"
+literal|"ÎÎ¯Î± ÎµÎ¾Î±Î¹ÏÎµÏÎ¹ÎºÎ¬ ÎºÎ±Î»Î® ÎºÎ±Î¹ ÏÎ»Î¿ÏÏÎ¹Î± ÏÎµÎ¹ÏÎ¬ ÏÎ±ÏÎ±ÎºÏÎ®ÏÏÎ½ ÏÎ·Ï ÎÎ»Î»Î·Î½Î¹ÎºÎ®Ï Î³Î»ÏÏÏÎ±Ï"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"\u03bc\u03b9\u03b1"
+literal|"Î¼Î¹Î±"
 block|,
-literal|"\u03b5\u03be\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03b1"
+literal|"ÎµÎ¾Î±Î¹ÏÎµÏ"
 block|,
-literal|"\u03ba\u03b1\u03bb\u03b7"
+literal|"ÎºÎ±Î»"
 block|,
-literal|"\u03c0\u03bb\u03bf\u03c5\u03c3\u03b9\u03b1"
+literal|"ÏÎ»Î¿ÏÏ"
 block|,
-literal|"\u03c3\u03b5\u03b9\u03c1\u03b1"
+literal|"ÏÎµÎ¹Ï"
 block|,
-literal|"\u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03b7\u03c1\u03c9\u03bd"
+literal|"ÏÎ±ÏÎ±ÎºÏÎ·Ï"
 block|,
-literal|"\u03b5\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03b7\u03c3"
+literal|"ÎµÎ»Î»Î·Î½Î¹Îº"
 block|,
-literal|"\u03b3\u03bb\u03c9\u03c3\u03c3\u03b1\u03c3"
+literal|"Î³Î»ÏÏÏ"
 block|}
 argument_list|)
 expr_stmt|;
@@ -125,39 +126,133 @@ name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"\u03a0\u03c1\u03bf\u03ca\u03cc\u03bd\u03c4\u03b1 (\u03ba\u03b1\u03b9)     [\u03c0\u03bf\u03bb\u03bb\u03b1\u03c0\u03bb\u03ad\u03c2]	-	\u0391\u039d\u0391\u0393\u039a\u0395\u03a3"
+literal|"Î ÏÎ¿ÏÏÎ½ÏÎ± (ÎºÎ±Î¹)     [ÏÎ¿Î»Î»Î±ÏÎ»Î­Ï] - ÎÎÎÎÎÎÎ£"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"\u03c0\u03c1\u03bf\u03b9\u03bf\u03bd\u03c4\u03b1"
+literal|"ÏÏÎ¿Î¹Î¿Î½Ï"
 block|,
-literal|"\u03c0\u03bf\u03bb\u03bb\u03b1\u03c0\u03bb\u03b5\u03c3"
+literal|"ÏÎ¿Î»Î»Î±ÏÎ»"
 block|,
-literal|"\u03b1\u03bd\u03b1\u03b3\u03ba\u03b5\u03c3"
+literal|"Î±Î½Î±Î³Îº"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Verify the correct analysis of capital accented letters and capitalletters with diaeresis,
+comment|// Verify the correct analysis of capital accented letters and capital letters with diaeresis,
 comment|// as well as the elimination of stop words
 name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"\u03a0\u03a1\u039f\u03ab\u03a0\u039f\u0398\u0395\u03a3\u0395\u0399\u03a3  \u0386\u03c8\u03bf\u03b3\u03bf\u03c2, \u03bf \u03bc\u03b5\u03c3\u03c4\u03cc\u03c2 \u03ba\u03b1\u03b9 \u03bf\u03b9 \u03ac\u03bb\u03bb\u03bf\u03b9"
+literal|"Î Î¡ÎÎ«Î ÎÎÎÎ£ÎÎÎ£  ÎÏÎ¿Î³Î¿Ï, Î¿ Î¼ÎµÏÏÏÏ ÎºÎ±Î¹ Î¿Î¹ Î¬Î»Î»Î¿Î¹"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"\u03c0\u03c1\u03bf\u03c5\u03c0\u03bf\u03b8\u03b5\u03c3\u03b5\u03b9\u03c3"
+literal|"ÏÏÎ¿ÏÏÎ¿Î¸ÎµÏ"
 block|,
-literal|"\u03b1\u03c8\u03bf\u03b3\u03bf\u03c3"
+literal|"Î±ÏÎ¿Î³"
 block|,
-literal|"\u03bc\u03b5\u03c3\u03c4\u03bf\u03c3"
+literal|"Î¼ÎµÏÏ"
 block|,
-literal|"\u03b1\u03bb\u03bb\u03bf\u03b9"
+literal|"Î±Î»Î»"
+block|}
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * Test the analysis of various greek strings. 	 * 	 * @throws Exception in case an error occurs 	 * @deprecated Remove this test when support for 3.0 is no longer needed 	 */
+annotation|@
+name|Deprecated
+DECL|method|testAnalyzerBWCompat
+specifier|public
+name|void
+name|testAnalyzerBWCompat
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|GreekAnalyzer
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|)
+decl_stmt|;
+comment|// Verify the correct analysis of capitals and small accented letters
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"ÎÎ¯Î± ÎµÎ¾Î±Î¹ÏÎµÏÎ¹ÎºÎ¬ ÎºÎ±Î»Î® ÎºÎ±Î¹ ÏÎ»Î¿ÏÏÎ¹Î± ÏÎµÎ¹ÏÎ¬ ÏÎ±ÏÎ±ÎºÏÎ®ÏÏÎ½ ÏÎ·Ï ÎÎ»Î»Î·Î½Î¹ÎºÎ®Ï Î³Î»ÏÏÏÎ±Ï"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"Î¼Î¹Î±"
+block|,
+literal|"ÎµÎ¾Î±Î¹ÏÎµÏÎ¹ÎºÎ±"
+block|,
+literal|"ÎºÎ±Î»Î·"
+block|,
+literal|"ÏÎ»Î¿ÏÏÎ¹Î±"
+block|,
+literal|"ÏÎµÎ¹ÏÎ±"
+block|,
+literal|"ÏÎ±ÏÎ±ÎºÏÎ·ÏÏÎ½"
+block|,
+literal|"ÎµÎ»Î»Î·Î½Î¹ÎºÎ·Ï"
+block|,
+literal|"Î³Î»ÏÏÏÎ±Ï"
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Verify the correct analysis of small letters with diaeresis and the elimination
+comment|// of punctuation marks
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"Î ÏÎ¿ÏÏÎ½ÏÎ± (ÎºÎ±Î¹)     [ÏÎ¿Î»Î»Î±ÏÎ»Î­Ï] - ÎÎÎÎÎÎÎ£"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"ÏÏÎ¿Î¹Î¿Î½ÏÎ±"
+block|,
+literal|"ÏÎ¿Î»Î»Î±ÏÎ»ÎµÏ"
+block|,
+literal|"Î±Î½Î±Î³ÎºÎµÏ"
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Verify the correct analysis of capital accented letters and capital letters with diaeresis,
+comment|// as well as the elimination of stop words
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"Î Î¡ÎÎ«Î ÎÎÎÎ£ÎÎÎ£  ÎÏÎ¿Î³Î¿Ï, Î¿ Î¼ÎµÏÏÏÏ ÎºÎ±Î¹ Î¿Î¹ Î¬Î»Î»Î¿Î¹"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"ÏÏÎ¿ÏÏÎ¿Î¸ÎµÏÎµÎ¹Ï"
+block|,
+literal|"Î±ÏÎ¿Î³Î¿Ï"
+block|,
+literal|"Î¼ÎµÏÏÎ¿Ï"
+block|,
+literal|"Î±Î»Î»Î¿Î¹"
 block|}
 argument_list|)
 expr_stmt|;
@@ -179,32 +274,33 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 decl_stmt|;
-comment|// Verify the correct analysis of capitals and small accented letters
+comment|// Verify the correct analysis of capitals and small accented letters, and
+comment|// stemming
 name|assertAnalyzesToReuse
 argument_list|(
 name|a
 argument_list|,
-literal|"\u039c\u03af\u03b1 \u03b5\u03be\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03ac \u03ba\u03b1\u03bb\u03ae \u03ba\u03b1\u03b9 \u03c0\u03bb\u03bf\u03cd\u03c3\u03b9\u03b1 \u03c3\u03b5\u03b9\u03c1\u03ac \u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03ae\u03c1\u03c9\u03bd \u03c4\u03b7\u03c2 \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ae\u03c2 \u03b3\u03bb\u03ce\u03c3\u03c3\u03b1\u03c2"
+literal|"ÎÎ¯Î± ÎµÎ¾Î±Î¹ÏÎµÏÎ¹ÎºÎ¬ ÎºÎ±Î»Î® ÎºÎ±Î¹ ÏÎ»Î¿ÏÏÎ¹Î± ÏÎµÎ¹ÏÎ¬ ÏÎ±ÏÎ±ÎºÏÎ®ÏÏÎ½ ÏÎ·Ï ÎÎ»Î»Î·Î½Î¹ÎºÎ®Ï Î³Î»ÏÏÏÎ±Ï"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"\u03bc\u03b9\u03b1"
+literal|"Î¼Î¹Î±"
 block|,
-literal|"\u03b5\u03be\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03b1"
+literal|"ÎµÎ¾Î±Î¹ÏÎµÏ"
 block|,
-literal|"\u03ba\u03b1\u03bb\u03b7"
+literal|"ÎºÎ±Î»"
 block|,
-literal|"\u03c0\u03bb\u03bf\u03c5\u03c3\u03b9\u03b1"
+literal|"ÏÎ»Î¿ÏÏ"
 block|,
-literal|"\u03c3\u03b5\u03b9\u03c1\u03b1"
+literal|"ÏÎµÎ¹Ï"
 block|,
-literal|"\u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03b7\u03c1\u03c9\u03bd"
+literal|"ÏÎ±ÏÎ±ÎºÏÎ·Ï"
 block|,
-literal|"\u03b5\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03b7\u03c3"
+literal|"ÎµÎ»Î»Î·Î½Î¹Îº"
 block|,
-literal|"\u03b3\u03bb\u03c9\u03c3\u03c3\u03b1\u03c3"
+literal|"Î³Î»ÏÏÏ"
 block|}
 argument_list|)
 expr_stmt|;
@@ -214,39 +310,39 @@ name|assertAnalyzesToReuse
 argument_list|(
 name|a
 argument_list|,
-literal|"\u03a0\u03c1\u03bf\u03ca\u03cc\u03bd\u03c4\u03b1 (\u03ba\u03b1\u03b9)     [\u03c0\u03bf\u03bb\u03bb\u03b1\u03c0\u03bb\u03ad\u03c2] -   \u0391\u039d\u0391\u0393\u039a\u0395\u03a3"
+literal|"Î ÏÎ¿ÏÏÎ½ÏÎ± (ÎºÎ±Î¹)     [ÏÎ¿Î»Î»Î±ÏÎ»Î­Ï] - ÎÎÎÎÎÎÎ£"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"\u03c0\u03c1\u03bf\u03b9\u03bf\u03bd\u03c4\u03b1"
+literal|"ÏÏÎ¿Î¹Î¿Î½Ï"
 block|,
-literal|"\u03c0\u03bf\u03bb\u03bb\u03b1\u03c0\u03bb\u03b5\u03c3"
+literal|"ÏÎ¿Î»Î»Î±ÏÎ»"
 block|,
-literal|"\u03b1\u03bd\u03b1\u03b3\u03ba\u03b5\u03c3"
+literal|"Î±Î½Î±Î³Îº"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Verify the correct analysis of capital accented letters and capitalletters with diaeresis,
+comment|// Verify the correct analysis of capital accented letters and capital letters with diaeresis,
 comment|// as well as the elimination of stop words
 name|assertAnalyzesToReuse
 argument_list|(
 name|a
 argument_list|,
-literal|"\u03a0\u03a1\u039f\u03ab\u03a0\u039f\u0398\u0395\u03a3\u0395\u0399\u03a3  \u0386\u03c8\u03bf\u03b3\u03bf\u03c2, \u03bf \u03bc\u03b5\u03c3\u03c4\u03cc\u03c2 \u03ba\u03b1\u03b9 \u03bf\u03b9 \u03ac\u03bb\u03bb\u03bf\u03b9"
+literal|"Î Î¡ÎÎ«Î ÎÎÎÎ£ÎÎÎ£  ÎÏÎ¿Î³Î¿Ï, Î¿ Î¼ÎµÏÏÏÏ ÎºÎ±Î¹ Î¿Î¹ Î¬Î»Î»Î¿Î¹"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"\u03c0\u03c1\u03bf\u03c5\u03c0\u03bf\u03b8\u03b5\u03c3\u03b5\u03b9\u03c3"
+literal|"ÏÏÎ¿ÏÏÎ¿Î¸ÎµÏ"
 block|,
-literal|"\u03b1\u03c8\u03bf\u03b3\u03bf\u03c3"
+literal|"Î±ÏÎ¿Î³"
 block|,
-literal|"\u03bc\u03b5\u03c3\u03c4\u03bf\u03c3"
+literal|"Î¼ÎµÏÏ"
 block|,
-literal|"\u03b1\u03bb\u03bb\u03bf\u03b9"
+literal|"Î±Î»Î»"
 block|}
 argument_list|)
 expr_stmt|;

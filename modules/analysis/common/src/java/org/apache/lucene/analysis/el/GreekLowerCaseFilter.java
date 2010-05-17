@@ -68,12 +68,40 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CharacterUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
 import|;
 end_import
 
 begin_comment
-comment|/**  * Normalizes token text to lower case, removes some Greek diacritics,  * and standardizes final sigma to sigma.   *  */
+comment|/**  * Normalizes token text to lower case, removes some Greek diacritics,  * and standardizes final sigma to sigma.   *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating GreekLowerCaseFilter:  *<ul>  *<li> As of 3.1, supplementary characters are properly lowercased.  *</ul>  */
 end_comment
 
 begin_class
@@ -87,13 +115,52 @@ name|TokenFilter
 block|{
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
+DECL|field|charUtils
+specifier|private
+specifier|final
+name|CharacterUtils
+name|charUtils
+decl_stmt|;
+comment|/** @deprecated Use {@link #GreekLowerCaseFilter(Version, TokenStream)} instead. */
+annotation|@
+name|Deprecated
 DECL|method|GreekLowerCaseFilter
 specifier|public
 name|GreekLowerCaseFilter
 parameter_list|(
+name|TokenStream
+name|in
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Create a GreekLowerCaseFilter that normalizes Greek token text.    *     * @param matchVersion Lucene compatibility version,     *   See<a href="#version">above</a>    * @param in TokenStream to filter    */
+DECL|method|GreekLowerCaseFilter
+specifier|public
+name|GreekLowerCaseFilter
+parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|)
@@ -103,13 +170,15 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
+name|this
 operator|.
-name|class
+name|charUtils
+operator|=
+name|CharacterUtils
+operator|.
+name|getInstance
+argument_list|(
+name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
@@ -137,7 +206,7 @@ name|chArray
 init|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 name|int
@@ -145,10 +214,9 @@ name|chLen
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
-comment|// TODO: iterate codepoints to support supp. characters
 for|for
 control|(
 name|int
@@ -160,24 +228,29 @@ name|i
 operator|<
 name|chLen
 condition|;
-name|i
-operator|++
 control|)
 block|{
-name|chArray
-index|[
 name|i
-index|]
-operator|=
-operator|(
-name|char
-operator|)
+operator|+=
+name|Character
+operator|.
+name|toChars
+argument_list|(
 name|lowerCase
 argument_list|(
+name|charUtils
+operator|.
+name|codePointAt
+argument_list|(
 name|chArray
-index|[
+argument_list|,
 name|i
-index|]
+argument_list|)
+argument_list|)
+argument_list|,
+name|chArray
+argument_list|,
+name|i
 argument_list|)
 expr_stmt|;
 block|}
@@ -206,7 +279,7 @@ condition|(
 name|codepoint
 condition|)
 block|{
-comment|/* There are two lowercase forms of sigma:          *   U+03C2: small final sigma (end of word)          *   U+03C3: small sigma (otherwise)          *             * Standardize both to U+03C3          */
+comment|/* There are two lowercase forms of sigma:        *   U+03C2: small final sigma (end of word)        *   U+03C3: small sigma (otherwise)        *           * Standardize both to U+03C3        */
 case|case
 literal|'\u03C2'
 case|:
@@ -215,7 +288,7 @@ return|return
 literal|'\u03C3'
 return|;
 comment|/* small sigma */
-comment|/* Some greek characters contain diacritics.          * This filter removes these, converting to the lowercase base form.          */
+comment|/* Some greek characters contain diacritics.        * This filter removes these, converting to the lowercase base form.        */
 case|case
 literal|'\u0386'
 case|:
@@ -324,7 +397,7 @@ return|return
 literal|'\u03C9'
 return|;
 comment|/* small omega */
-comment|/* The previous implementation did the conversion below.          * Only implemented for backwards compatibility with old indexes.          */
+comment|/* The previous implementation did the conversion below.        * Only implemented for backwards compatibility with old indexes.        */
 case|case
 literal|'\u03A2'
 case|:
