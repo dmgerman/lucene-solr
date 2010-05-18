@@ -237,7 +237,7 @@ name|TOKEN_TYPE_LOWER_PREC
 init|=
 literal|"lowerPrecNumeric"
 decl_stmt|;
-comment|/**<b>Expert:</b> Use this attribute to get the details of the currently generated token    * @lucene.experimental    * @since 3.1    */
+comment|/**<b>Expert:</b> Use this attribute to get the details of the currently generated token    * @lucene.experimental    * @since 4.0    */
 DECL|interface|NumericTermAttribute
 specifier|public
 interface|interface
