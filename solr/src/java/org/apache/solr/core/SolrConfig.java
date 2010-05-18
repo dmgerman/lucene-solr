@@ -498,7 +498,9 @@ name|config
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Singleton keeping track of configuration errors    */
+comment|/**    * Singleton keeping track of configuration errors    *    * @deprecated All exceptions encountered during config parsing are now thrown by the respective constructors, preventing initialization.    */
+annotation|@
+name|Deprecated
 DECL|field|severeErrors
 specifier|public
 specifier|static

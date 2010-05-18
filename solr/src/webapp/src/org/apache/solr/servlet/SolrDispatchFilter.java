@@ -644,34 +644,6 @@ argument_list|(
 literal|"Check your log files for more detailed information on what may be wrong.\n"
 argument_list|)
 expr_stmt|;
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"If you want solr to continue after configuration errors, change: \n"
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"<abortOnConfigurationError>false</abortOnConfigurationError>\n"
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"in "
-operator|+
-name|init
-operator|.
-name|getSolrConfigFilename
-argument_list|()
-operator|+
-literal|"\n"
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Throwable
