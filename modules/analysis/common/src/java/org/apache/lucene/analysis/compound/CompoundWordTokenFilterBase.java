@@ -870,6 +870,10 @@ expr_stmt|;
 if|if
 condition|(
 name|dictionary
+operator|==
+literal|null
+operator|||
+name|dictionary
 operator|instanceof
 name|CharArraySet
 condition|)
@@ -1016,6 +1020,17 @@ index|[]
 name|dictionary
 parameter_list|)
 block|{
+if|if
+condition|(
+name|dictionary
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|// is the below really case insensitive?
 name|CharArraySet
 name|dict
