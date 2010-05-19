@@ -12715,6 +12715,14 @@ init|(
 name|this
 init|)
 block|{
+comment|// If 1) we must now merge doc stores, and 2) at
+comment|// least one of the segments we are merging uses
+comment|// the doc store we are now writing to, we must at
+comment|// this point force this doc store closed (by
+comment|// calling flush).  If we didn't do this then the
+comment|// readers will attempt to open an IndexInput
+comment|// on files that have still-open IndexOutputs
+comment|// against them:
 if|if
 condition|(
 name|dss
