@@ -2819,15 +2819,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-specifier|public
-name|int
-name|doc
-parameter_list|()
-block|{
-return|return
-name|adjustedDoc
-return|;
-block|}
 annotation|@
 name|Override
 specifier|public
