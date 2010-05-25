@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.analysis
+DECL|package|org.apache.lucene.analysis.util
 package|package
 name|org
 operator|.
@@ -13,6 +13,8 @@ operator|.
 name|lucene
 operator|.
 name|analysis
+operator|.
+name|util
 package|;
 end_package
 
@@ -23,6 +25,38 @@ operator|.
 name|util
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharArrayMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharArraySet
 import|;
 end_import
 

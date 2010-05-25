@@ -56,7 +56,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharArraySet
+name|tokenattributes
+operator|.
+name|CharTermAttribute
 import|;
 end_import
 
@@ -70,9 +72,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|tokenattributes
+name|util
 operator|.
-name|CharTermAttribute
+name|CharArraySet
 import|;
 end_import
 

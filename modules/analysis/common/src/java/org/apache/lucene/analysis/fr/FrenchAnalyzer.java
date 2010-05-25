@@ -42,20 +42,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|core
 operator|.
 name|LowerCaseFilter
@@ -189,6 +175,22 @@ end_import
 begin_comment
 comment|// for javadoc
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharArraySet
+import|;
+end_import
 
 begin_import
 import|import

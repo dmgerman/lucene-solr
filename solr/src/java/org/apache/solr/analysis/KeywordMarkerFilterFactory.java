@@ -32,7 +32,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharArraySet
+name|miscellaneous
+operator|.
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -46,9 +48,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|miscellaneous
+name|util
 operator|.
-name|KeywordMarkerFilter
+name|CharArraySet
 import|;
 end_import
 

@@ -90,7 +90,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharArraySet
+name|snowball
+operator|.
+name|SnowballFilter
 import|;
 end_import
 
@@ -104,9 +106,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|snowball
+name|util
 operator|.
-name|SnowballFilter
+name|CharArraySet
 import|;
 end_import
 

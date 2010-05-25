@@ -174,7 +174,7 @@ name|dictionary
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *      * @param input the {@link TokenStream} to process    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.    * @deprecated use {@link #DictionaryCompoundWordTokenFilter(Version, TokenStream, Set)} instead     */
+comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *      * @param input the {@link TokenStream} to process    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.util.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.    * @deprecated use {@link #DictionaryCompoundWordTokenFilter(Version, TokenStream, Set)} instead     */
 annotation|@
 name|Deprecated
 DECL|method|DictionaryCompoundWordTokenFilter
@@ -200,7 +200,7 @@ name|dictionary
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *      * @param input the {@link TokenStream} to process    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.     * @param minWordSize only words longer than this get processed    * @param minSubwordSize only subwords longer than this get to the output stream    * @param maxSubwordSize only subwords shorter than this get to the output stream    * @param onlyLongestMatch Add only the longest matching subword to the stream    * @deprecated use {@link #DictionaryCompoundWordTokenFilter(Version, TokenStream, Set, int, int, int, boolean)} instead    */
+comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *      * @param input the {@link TokenStream} to process    * @param dictionary the word dictionary to match against. If this is a {@link org.apache.lucene.analysis.util.CharArraySet CharArraySet} it must have set ignoreCase=false and only contain    *        lower case strings.     * @param minWordSize only words longer than this get processed    * @param minSubwordSize only subwords longer than this get to the output stream    * @param maxSubwordSize only subwords shorter than this get to the output stream    * @param onlyLongestMatch Add only the longest matching subword to the stream    * @deprecated use {@link #DictionaryCompoundWordTokenFilter(Version, TokenStream, Set, int, int, int, boolean)} instead    */
 annotation|@
 name|Deprecated
 DECL|method|DictionaryCompoundWordTokenFilter
@@ -318,7 +318,7 @@ name|dictionary
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param dictionary    *          the word dictionary to match against. If this is a    *          {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it    *          must have set ignoreCase=false and only contain lower case    *          strings.    */
+comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param dictionary    *          the word dictionary to match against. If this is a    *          {@link org.apache.lucene.analysis.util.CharArraySet CharArraySet} it    *          must have set ignoreCase=false and only contain lower case    *          strings.    */
 DECL|method|DictionaryCompoundWordTokenFilter
 specifier|public
 name|DictionaryCompoundWordTokenFilter
@@ -343,7 +343,7 @@ name|dictionary
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param dictionary    *          the word dictionary to match against. If this is a    *          {@link org.apache.lucene.analysis.CharArraySet CharArraySet} it    *          must have set ignoreCase=false and only contain lower case    *          strings.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
+comment|/**    * Creates a new {@link DictionaryCompoundWordTokenFilter}    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param dictionary    *          the word dictionary to match against. If this is a    *          {@link org.apache.lucene.analysis.util.CharArraySet CharArraySet} it    *          must have set ignoreCase=false and only contain lower case    *          strings.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
 DECL|method|DictionaryCompoundWordTokenFilter
 specifier|public
 name|DictionaryCompoundWordTokenFilter

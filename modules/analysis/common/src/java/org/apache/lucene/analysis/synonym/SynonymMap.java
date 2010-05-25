@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharArrayMap
+name|Token
 import|;
 end_import
 
@@ -42,7 +42,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
+name|util
+operator|.
+name|CharArrayMap
 import|;
 end_import
 
