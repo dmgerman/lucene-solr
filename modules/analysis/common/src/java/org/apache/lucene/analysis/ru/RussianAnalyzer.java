@@ -106,20 +106,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|LowerCaseFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|snowball
 operator|.
 name|SnowballFilter
@@ -168,9 +154,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|miscellaneous
+name|util
 operator|.
-name|KeywordMarkerFilter
+name|StopwordAnalyzerBase
 import|;
 end_import
 
@@ -183,6 +169,40 @@ operator|.
 name|lucene
 operator|.
 name|analysis
+operator|.
+name|util
+operator|.
+name|WordlistLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|core
+operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|core
 operator|.
 name|StopFilter
 import|;
@@ -198,7 +218,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|StopwordAnalyzerBase
+name|miscellaneous
+operator|.
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -227,20 +249,6 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|WordlistLoader
 import|;
 end_import
 
@@ -772,7 +780,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided, and {@link SnowballFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided, and {@link SnowballFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents

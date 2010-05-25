@@ -70,13 +70,11 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
 name|LetterTokenizer
 import|;
 end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
 
 begin_import
 import|import

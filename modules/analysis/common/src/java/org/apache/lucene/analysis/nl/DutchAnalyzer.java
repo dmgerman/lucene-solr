@@ -56,21 +56,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|miscellaneous
-operator|.
-name|KeywordMarkerFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
+name|core
 operator|.
 name|LowerCaseFilter
 import|;
@@ -86,7 +72,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
+name|core
+operator|.
+name|StopFilter
 import|;
 end_import
 
@@ -100,7 +88,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|StopFilter
+name|miscellaneous
+operator|.
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -129,20 +119,6 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|WordlistLoader
 import|;
 end_import
 
@@ -229,6 +205,38 @@ end_import
 begin_comment
 comment|// for javadoc
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|ReusableAnalyzerBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|WordlistLoader
+import|;
+end_import
 
 begin_import
 import|import
@@ -717,6 +725,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|util
+operator|.
 name|WordlistLoader
 operator|.
 name|getWordSet
@@ -827,6 +837,8 @@ operator|.
 name|lucene
 operator|.
 name|analysis
+operator|.
+name|util
 operator|.
 name|WordlistLoader
 operator|.

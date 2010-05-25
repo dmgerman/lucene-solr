@@ -90,6 +90,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
 name|StopFilter
 import|;
 end_import

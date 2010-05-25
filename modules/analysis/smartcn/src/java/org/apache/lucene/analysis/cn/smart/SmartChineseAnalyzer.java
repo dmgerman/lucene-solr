@@ -120,7 +120,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|StopFilter
+name|util
+operator|.
+name|WordlistLoader
 import|;
 end_import
 
@@ -162,20 +164,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WordlistLoader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|cn
 operator|.
 name|smart
@@ -199,6 +187,22 @@ operator|.
 name|smart
 operator|.
 name|WordTokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|core
+operator|.
+name|StopFilter
 import|;
 end_import
 

@@ -48,6 +48,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
 name|WhitespaceAnalyzer
 import|;
 end_import

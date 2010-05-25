@@ -110,6 +110,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
 name|LowerCaseFilter
 import|;
 end_import

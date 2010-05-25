@@ -42,34 +42,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|StopFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|StopwordAnalyzerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -85,6 +57,22 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|core
+operator|.
+name|StopFilter
 import|;
 end_import
 
@@ -139,6 +127,22 @@ end_import
 begin_comment
 comment|// for javadoc
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|StopwordAnalyzerBase
+import|;
+end_import
 
 begin_import
 import|import
@@ -391,7 +395,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link GreekLowerCaseFilter}, {@link StandardFilter},    *         {@link StopFilter}, and {@link GreekStemFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link GreekLowerCaseFilter}, {@link StandardFilter},    *         {@link StopFilter}, and {@link GreekStemFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents

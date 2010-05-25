@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis
+DECL|package|org.apache.lucene.analysis.core
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|analysis
+operator|.
+name|core
 package|;
 end_package
 
@@ -34,6 +36,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|CharTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Tokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|AttributeSource
@@ -55,21 +85,22 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A LetterTokenizer is a tokenizer that divides text at non-letters. That's to  * say, it defines tokens as maximal strings of adjacent letters, as defined by  * java.lang.Character.isLetter() predicate.  *<p>  * Note: this does a decent job for most European languages, but does a terrible  * job for some Asian languages, where words are not separated by spaces.  *</p>  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link LetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *</p>  */
+comment|/**  * A WhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens.<a  * name="version"/>  *<p>  * You must specify the required {@link Version} compatibility when creating  * {@link WhitespaceTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  */
 end_comment
 
 begin_class
-DECL|class|LetterTokenizer
+DECL|class|WhitespaceTokenizer
 specifier|public
+specifier|final
 class|class
-name|LetterTokenizer
+name|WhitespaceTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/**    * Construct a new LetterTokenizer.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param in    *          the input to split up into tokens    */
-DECL|method|LetterTokenizer
+comment|/**    * Construct a new WhitespaceTokenizer. * @param matchVersion Lucene version    * to match See {@link<a href="#version">above</a>}    *     * @param in    *          the input to split up into tokens    */
+DECL|method|WhitespaceTokenizer
 specifier|public
-name|LetterTokenizer
+name|WhitespaceTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
@@ -86,10 +117,10 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer using a given {@link AttributeSource}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param source    *          the attribute source to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
-DECL|method|LetterTokenizer
+comment|/**    * Construct a new WhitespaceTokenizer using a given {@link AttributeSource}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param source    *          the attribute source to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|WhitespaceTokenizer
 specifier|public
-name|LetterTokenizer
+name|WhitespaceTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
@@ -111,10 +142,10 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @param matchVersion    *          Lucene version to match See {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
-DECL|method|LetterTokenizer
+comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param    *          matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    * @param in    *          the input to split up into tokens    */
+DECL|method|WhitespaceTokenizer
 specifier|public
-name|LetterTokenizer
+name|WhitespaceTokenizer
 parameter_list|(
 name|Version
 name|matchVersion
@@ -136,10 +167,12 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer.    *     * @deprecated use {@link #LetterTokenizer(Version, Reader)} instead. This    *             will be removed in Lucene 4.0.    */
-DECL|method|LetterTokenizer
+comment|/**    * Construct a new WhitespaceTokenizer.    *     * @deprecated use {@link #WhitespaceTokenizer(Version, Reader)} instead. This will    *             be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
+DECL|method|WhitespaceTokenizer
 specifier|public
-name|LetterTokenizer
+name|WhitespaceTokenizer
 parameter_list|(
 name|Reader
 name|in
@@ -147,18 +180,16 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer using a given {@link AttributeSource}.     * @deprecated    * use {@link #LetterTokenizer(Version, AttributeSource, Reader)} instead.    * This will be removed in Lucene 4.0.    */
-DECL|method|LetterTokenizer
+comment|/**    * Construct a new WhitespaceTokenizer using a given {@link AttributeSource}.    *     * @deprecated use {@link #WhitespaceTokenizer(Version, AttributeSource, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
+DECL|method|WhitespaceTokenizer
 specifier|public
-name|LetterTokenizer
+name|WhitespaceTokenizer
 parameter_list|(
 name|AttributeSource
 name|source
@@ -169,20 +200,18 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
 name|source
 argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #LetterTokenizer(Version, AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
-DECL|method|LetterTokenizer
+comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #WhitespaceTokenizer(Version, AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
+DECL|method|WhitespaceTokenizer
 specifier|public
-name|LetterTokenizer
+name|WhitespaceTokenizer
 parameter_list|(
 name|AttributeFactory
 name|factory
@@ -193,17 +222,13 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
 name|factory
 argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which satisfy    * {@link Character#isLetter(int)}.*/
+comment|/** Collects only characters which do not satisfy    * {@link Character#isWhitespace(int)}.*/
 annotation|@
 name|Override
 DECL|method|isTokenChar
@@ -216,9 +241,10 @@ name|c
 parameter_list|)
 block|{
 return|return
+operator|!
 name|Character
 operator|.
-name|isLetter
+name|isWhitespace
 argument_list|(
 name|c
 argument_list|)

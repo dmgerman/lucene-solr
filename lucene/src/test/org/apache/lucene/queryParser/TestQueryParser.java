@@ -140,20 +140,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|MockAnalyzer
 import|;
 end_import
@@ -1704,28 +1690,10 @@ argument_list|,
 literal|"Ã¼mlaut"
 argument_list|)
 expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"\"\""
-argument_list|,
-operator|new
-name|KeywordAnalyzer
-argument_list|()
-argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"foo:\"\""
-argument_list|,
-operator|new
-name|KeywordAnalyzer
-argument_list|()
-argument_list|,
-literal|"foo:"
-argument_list|)
-expr_stmt|;
+comment|// FIXME: enhance MockAnalyzer to be able to support this
+comment|// it must no longer extend CharTokenizer
+comment|//assertQueryEquals("\"\"", new KeywordAnalyzer(), "");
+comment|//assertQueryEquals("foo:\"\"", new KeywordAnalyzer(), "foo:");
 name|assertQueryEquals
 argument_list|(
 literal|"a AND b"

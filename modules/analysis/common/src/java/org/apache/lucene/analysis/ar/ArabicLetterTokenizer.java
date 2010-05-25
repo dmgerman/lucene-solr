@@ -52,6 +52,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
 name|LetterTokenizer
 import|;
 end_import
@@ -227,7 +229,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Allows for Letter category or NonspacingMark category    * @see org.apache.lucene.analysis.LetterTokenizer#isTokenChar(int)    */
+comment|/**     * Allows for Letter category or NonspacingMark category    * @see org.apache.lucene.analysis.core.LetterTokenizer#isTokenChar(int)    */
 annotation|@
 name|Override
 DECL|method|isTokenChar

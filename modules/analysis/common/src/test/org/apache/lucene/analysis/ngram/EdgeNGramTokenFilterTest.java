@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceTokenizer
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -56,7 +56,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
+name|core
+operator|.
+name|WhitespaceTokenizer
 import|;
 end_import
 

@@ -88,6 +88,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|util
+operator|.
 name|ReusableAnalyzerBase
 import|;
 end_import

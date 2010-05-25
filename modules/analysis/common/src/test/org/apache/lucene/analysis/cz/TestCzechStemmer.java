@@ -76,9 +76,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|miscellaneous
+name|core
 operator|.
-name|KeywordMarkerFilter
+name|WhitespaceTokenizer
 import|;
 end_import
 
@@ -92,7 +92,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceTokenizer
+name|miscellaneous
+operator|.
+name|KeywordMarkerFilter
 import|;
 end_import
 

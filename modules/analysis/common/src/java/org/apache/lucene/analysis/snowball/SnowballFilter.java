@@ -66,6 +66,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|tokenattributes
 operator|.
 name|KeywordAttribute
@@ -101,24 +117,6 @@ operator|.
 name|tr
 operator|.
 name|TurkishLowerCaseFilter
-import|;
-end_import
-
-begin_comment
-comment|// javadoc @link
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|LowerCaseFilter
 import|;
 end_import
 

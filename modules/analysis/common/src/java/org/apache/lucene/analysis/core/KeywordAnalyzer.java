@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis
+DECL|package|org.apache.lucene.analysis.core
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|analysis
+operator|.
+name|core
 package|;
 end_package
 
@@ -34,63 +36,32 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
 name|util
 operator|.
-name|Version
+name|ReusableAnalyzerBase
 import|;
 end_import
 
 begin_comment
-comment|/**  * An Analyzer that uses {@link WhitespaceTokenizer}.  *<p>  *<a name="version">You must specify the required {@link Version} compatibility  * when creating {@link CharTokenizer}:  *<ul>  *<li>As of 3.1, {@link WhitespaceTokenizer} uses an int based API to normalize and  * detect token codepoints. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *<p>  **/
+comment|/**  * "Tokenizes" the entire stream as a single token. This is useful  * for data like zip codes, ids, and some product names.  */
 end_comment
 
 begin_class
-DECL|class|WhitespaceAnalyzer
+DECL|class|KeywordAnalyzer
 specifier|public
 specifier|final
 class|class
-name|WhitespaceAnalyzer
+name|KeywordAnalyzer
 extends|extends
 name|ReusableAnalyzerBase
 block|{
-DECL|field|matchVersion
-specifier|private
-specifier|final
-name|Version
-name|matchVersion
-decl_stmt|;
-comment|/**    * Creates a new {@link WhitespaceAnalyzer}    * @param matchVersion Lucene version to match See {@link<a href="#version">above</a>}    */
-DECL|method|WhitespaceAnalyzer
+DECL|method|KeywordAnalyzer
 specifier|public
-name|WhitespaceAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|)
-block|{
-name|this
-operator|.
-name|matchVersion
-operator|=
-name|matchVersion
-expr_stmt|;
-block|}
-comment|/**    * Creates a new {@link WhitespaceAnalyzer}    * @deprecated use {@link #WhitespaceAnalyzer(Version)} instead     */
-annotation|@
-name|Deprecated
-DECL|method|WhitespaceAnalyzer
-specifier|public
-name|WhitespaceAnalyzer
+name|KeywordAnalyzer
 parameter_list|()
-block|{
-name|this
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -112,10 +83,8 @@ operator|new
 name|TokenStreamComponents
 argument_list|(
 operator|new
-name|WhitespaceTokenizer
+name|KeywordTokenizer
 argument_list|(
-name|matchVersion
-argument_list|,
 name|reader
 argument_list|)
 argument_list|)

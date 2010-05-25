@@ -1735,7 +1735,7 @@ name|TokenStream
 name|ts
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
 name|Token
 operator|.
@@ -1746,6 +1746,12 @@ name|StringReader
 argument_list|(
 literal|"foo bar"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertTrue

@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|StopAnalyzer
+name|TokenStream
 import|;
 end_import
 
@@ -88,7 +88,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|core
+operator|.
+name|StopAnalyzer
 import|;
 end_import
 

@@ -735,7 +735,7 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.WhitespaceTokenizer"
+literal|"org.apache.lucene.analysis.core.WhitespaceTokenizer"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1080,7 +1080,7 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.LowerCaseFilter"
+literal|"org.apache.lucene.analysis.core.LowerCaseFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1144,7 +1144,7 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.StopFilter"
+literal|"org.apache.lucene.analysis.core.StopFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1721,7 +1721,7 @@ name|valueResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.LowerCaseFilter"
+literal|"org.apache.lucene.analysis.core.LowerCaseFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1929,7 +1929,7 @@ name|valueResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.StopFilter"
+literal|"org.apache.lucene.analysis.core.StopFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull

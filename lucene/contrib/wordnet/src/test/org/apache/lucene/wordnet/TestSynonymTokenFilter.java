@@ -80,20 +80,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|LowerCaseFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|MockTokenizer
 import|;
 end_import
@@ -136,7 +122,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|WhitespaceTokenizer
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -150,7 +136,25 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
+name|core
+operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|core
+operator|.
+name|WhitespaceTokenizer
 import|;
 end_import
 

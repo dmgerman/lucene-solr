@@ -118,9 +118,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|miscellaneous
+name|core
 operator|.
-name|KeywordMarkerFilter
+name|KeywordTokenizer
 import|;
 end_import
 
@@ -134,7 +134,25 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|KeywordTokenizer
+name|core
+operator|.
+name|WhitespaceTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|miscellaneous
+operator|.
+name|KeywordMarkerFilter
 import|;
 end_import
 
@@ -163,20 +181,6 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|WhitespaceTokenizer
 import|;
 end_import
 

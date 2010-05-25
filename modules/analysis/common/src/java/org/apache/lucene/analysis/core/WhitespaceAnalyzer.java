@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis
+DECL|package|org.apache.lucene.analysis.core
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|analysis
+operator|.
+name|core
 package|;
 end_package
 
@@ -34,6 +36,54 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|CharTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|ReusableAnalyzerBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|ReusableAnalyzerBase
+operator|.
+name|TokenStreamComponents
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Version
@@ -41,15 +91,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** An {@link Analyzer} that filters {@link LetterTokenizer}   *  with {@link LowerCaseFilter}   *<p>  *<a name="version">You must specify the required {@link Version} compatibility  * when creating {@link CharTokenizer}:  *<ul>  *<li>As of 3.1, {@link LowerCaseTokenizer} uses an int based API to normalize and  * detect token codepoints. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *<p>  **/
+comment|/**  * An Analyzer that uses {@link WhitespaceTokenizer}.  *<p>  *<a name="version">You must specify the required {@link Version} compatibility  * when creating {@link CharTokenizer}:  *<ul>  *<li>As of 3.1, {@link WhitespaceTokenizer} uses an int based API to normalize and  * detect token codepoints. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  *<p>  **/
 end_comment
 
 begin_class
-DECL|class|SimpleAnalyzer
+DECL|class|WhitespaceAnalyzer
 specifier|public
 specifier|final
 class|class
-name|SimpleAnalyzer
+name|WhitespaceAnalyzer
 extends|extends
 name|ReusableAnalyzerBase
 block|{
@@ -59,10 +109,10 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
-comment|/**    * Creates a new {@link SimpleAnalyzer}    * @param matchVersion Lucene version to match See {@link<a href="#version">above</a>}    */
-DECL|method|SimpleAnalyzer
+comment|/**    * Creates a new {@link WhitespaceAnalyzer}    * @param matchVersion Lucene version to match See {@link<a href="#version">above</a>}    */
+DECL|method|WhitespaceAnalyzer
 specifier|public
-name|SimpleAnalyzer
+name|WhitespaceAnalyzer
 parameter_list|(
 name|Version
 name|matchVersion
@@ -75,12 +125,12 @@ operator|=
 name|matchVersion
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link SimpleAnalyzer}    * @deprecated use {@link #SimpleAnalyzer(Version)} instead     */
-DECL|method|SimpleAnalyzer
+comment|/**    * Creates a new {@link WhitespaceAnalyzer}    * @deprecated use {@link #WhitespaceAnalyzer(Version)} instead     */
 annotation|@
 name|Deprecated
+DECL|method|WhitespaceAnalyzer
 specifier|public
-name|SimpleAnalyzer
+name|WhitespaceAnalyzer
 parameter_list|()
 block|{
 name|this
@@ -112,7 +162,7 @@ operator|new
 name|TokenStreamComponents
 argument_list|(
 operator|new
-name|LowerCaseTokenizer
+name|WhitespaceTokenizer
 argument_list|(
 name|matchVersion
 argument_list|,

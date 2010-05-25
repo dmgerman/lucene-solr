@@ -2272,95 +2272,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Command line tool to test QueryParser, using {@link org.apache.lucene.analysis.SimpleAnalyzer}.    * Usage:<br>    *<code>java org.apache.lucene.queryParser.QueryParser&lt;input&gt;</code>    */
-DECL|method|main
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-throws|throws
-name|Exception
-block|{
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|0
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Usage: java org.apache.lucene.queryParser.QueryParser<input>"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-block|}
-name|PrecedenceQueryParser
-name|qp
-init|=
-operator|new
-name|PrecedenceQueryParser
-argument_list|(
-literal|"field"
-argument_list|,
-operator|new
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|SimpleAnalyzer
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|Query
-name|q
-init|=
-name|qp
-operator|.
-name|parse
-argument_list|(
-name|args
-index|[
-literal|0
-index|]
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|q
-operator|.
-name|toString
-argument_list|(
-literal|"field"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|// *   Query  ::= ( Clause )*
 comment|// *   Clause ::= ["+", "-"] [<TERM> ":"] (<TERM> | "(" Query ")" )
 DECL|method|Conjunction
@@ -6317,6 +6228,17 @@ name|JJCalls
 name|next
 decl_stmt|;
 block|}
+comment|/**    * Command line tool to test QueryParser, using {@link org.apache.lucene.analysis.SimpleAnalyzer}.    * Usage:<br>    *<code>java org.apache.lucene.queryParser.QueryParser&lt;input&gt;</code>    */
+comment|//  public static void main(String[] args) throws Exception {
+comment|//    if (args.length == 0) {
+comment|//      System.out.println("Usage: java org.apache.lucene.queryParser.QueryParser<input>");
+comment|//      System.exit(0);
+comment|//    }
+comment|//    PrecedenceQueryParser qp = new PrecedenceQueryParser("field",
+comment|//                           new org.apache.lucene.analysis.SimpleAnalyzer());
+comment|//    Query q = qp.parse(args[0]);
+comment|//    System.out.println(q.toString("field"));
+comment|//  }
 block|}
 end_class
 
