@@ -2021,6 +2021,9 @@ name|field
 parameter_list|,
 name|String
 name|queryText
+parameter_list|,
+name|boolean
+name|quoted
 parameter_list|)
 throws|throws
 name|ParseException
