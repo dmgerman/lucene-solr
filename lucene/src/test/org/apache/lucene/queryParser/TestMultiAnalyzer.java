@@ -636,8 +636,6 @@ argument_list|(
 literal|""
 argument_list|,
 literal|"foo bar"
-argument_list|,
-literal|true
 argument_list|)
 operator|.
 name|toString
@@ -655,8 +653,6 @@ argument_list|(
 literal|""
 argument_list|,
 literal|"multi bar"
-argument_list|,
-literal|true
 argument_list|)
 operator|.
 name|toString
@@ -1301,9 +1297,6 @@ name|f
 parameter_list|,
 name|String
 name|t
-parameter_list|,
-name|boolean
-name|quoted
 parameter_list|)
 throws|throws
 name|ParseException
@@ -1316,8 +1309,6 @@ argument_list|(
 name|f
 argument_list|,
 name|t
-argument_list|,
-name|quoted
 argument_list|)
 return|;
 block|}
@@ -1334,9 +1325,6 @@ name|f
 parameter_list|,
 name|String
 name|t
-parameter_list|,
-name|boolean
-name|quoted
 parameter_list|)
 throws|throws
 name|ParseException
@@ -1350,8 +1338,6 @@ argument_list|(
 name|f
 argument_list|,
 name|t
-argument_list|,
-name|quoted
 argument_list|)
 argument_list|)
 return|;
