@@ -9522,6 +9522,19 @@ comment|// Returns true if docWriter is currently aborting, in
 comment|// which case we skip flushing this segment
 if|if
 condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"flush: now pause all indexing threads"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|docWriter
 operator|.
 name|pauseAllThreads

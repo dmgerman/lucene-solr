@@ -547,6 +547,23 @@ name|name
 argument_list|)
 return|;
 block|}
+DECL|method|clear
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+comment|// don't hold onto doc nor analyzer, in case it is
+comment|// largish:
+name|doc
+operator|=
+literal|null
+expr_stmt|;
+name|analyzer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/** Consumer returns this on each doc.  This holds any    *  state that must be flushed synchronized "in docID    *  order".  We gather these and flush them in order. */
 DECL|class|DocWriter
@@ -3134,14 +3151,27 @@ comment|// work
 specifier|final
 name|DocWriter
 name|perDoc
-init|=
+decl_stmt|;
+try|try
+block|{
+name|perDoc
+operator|=
 name|state
 operator|.
 name|consumer
 operator|.
 name|processDocument
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|docState
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|// This call is synchronized but fast
 name|finishDocument
 argument_list|(

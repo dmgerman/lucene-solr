@@ -474,33 +474,12 @@ name|numPostings
 operator|==
 literal|0
 assert|;
-comment|// Cannot use ArrayUtil.shrink because we require power
-comment|// of 2:
+specifier|final
 name|int
 name|newSize
 init|=
-name|postingsHash
-operator|.
-name|length
-decl_stmt|;
-while|while
-condition|(
-name|newSize
-operator|>=
-literal|8
-operator|&&
-name|newSize
-operator|/
 literal|4
-operator|>
-name|targetSize
-condition|)
-block|{
-name|newSize
-operator|/=
-literal|2
-expr_stmt|;
-block|}
+decl_stmt|;
 if|if
 condition|(
 name|newSize
