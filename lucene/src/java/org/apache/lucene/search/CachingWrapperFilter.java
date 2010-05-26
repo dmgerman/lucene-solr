@@ -159,6 +159,21 @@ block|{
 if|if
 condition|(
 name|docIdSet
+operator|==
+literal|null
+condition|)
+block|{
+comment|// this is better than returning null, as the nonnull result can be cached
+return|return
+name|DocIdSet
+operator|.
+name|EMPTY_DOCIDSET
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|docIdSet
 operator|.
 name|isCacheable
 argument_list|()
