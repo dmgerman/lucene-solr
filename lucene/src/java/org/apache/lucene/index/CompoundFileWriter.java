@@ -121,6 +121,36 @@ name|long
 name|dataOffset
 decl_stmt|;
 block|}
+comment|// Before versioning started.
+DECL|field|FORMAT_PRE_VERSION
+specifier|static
+specifier|final
+name|int
+name|FORMAT_PRE_VERSION
+init|=
+literal|0
+decl_stmt|;
+comment|// Segment name is not written in the file names.
+DECL|field|FORMAT_NO_SEGMENT_PREFIX
+specifier|static
+specifier|final
+name|int
+name|FORMAT_NO_SEGMENT_PREFIX
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|// NOTE: if you introduce a new format, make it 1 lower
+comment|// than the current one, and always change this if you
+comment|// switch to a new format!
+DECL|field|FORMAT_CURRENT
+specifier|static
+specifier|final
+name|int
+name|FORMAT_CURRENT
+init|=
+name|FORMAT_NO_SEGMENT_PREFIX
+decl_stmt|;
 DECL|field|directory
 specifier|private
 name|Directory
@@ -410,6 +440,15 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
+comment|// Write the Version info - must be a VInt because CFR reads a VInt
+comment|// in older versions!
+name|os
+operator|.
+name|writeVInt
+argument_list|(
+name|FORMAT_CURRENT
+argument_list|)
+expr_stmt|;
 comment|// Write the number of entries
 name|os
 operator|.
@@ -458,9 +497,14 @@ name|os
 operator|.
 name|writeString
 argument_list|(
+name|IndexFileNames
+operator|.
+name|stripSegmentName
+argument_list|(
 name|fe
 operator|.
 name|file
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|totalSize

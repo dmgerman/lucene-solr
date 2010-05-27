@@ -176,6 +176,8 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|VECTORS_INDEX_EXTENSION
@@ -203,6 +205,8 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|VECTORS_DOCUMENTS_EXTENSION
@@ -229,6 +233,8 @@ operator|.
 name|segmentFileName
 argument_list|(
 name|segment
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.

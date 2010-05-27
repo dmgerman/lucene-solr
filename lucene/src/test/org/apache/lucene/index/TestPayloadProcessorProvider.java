@@ -1038,9 +1038,6 @@ name|void
 name|doTest
 parameter_list|(
 name|boolean
-name|addIndexesNoOptimize
-parameter_list|,
-name|boolean
 name|addToEmptyIndex
 parameter_list|,
 name|int
@@ -1182,12 +1179,6 @@ name|processors
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|addIndexesNoOptimize
-condition|)
-block|{
 name|IndexReader
 index|[]
 name|readers
@@ -1260,17 +1251,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
-else|else
-block|{
-name|writer
-operator|.
-name|addIndexesNoOptimize
-argument_list|(
-name|dirs
-argument_list|)
-expr_stmt|;
-block|}
 name|writer
 operator|.
 name|close
@@ -1337,8 +1317,6 @@ block|{
 comment|// addIndexes - single commit in each
 name|doTest
 argument_list|(
-literal|false
-argument_list|,
 literal|true
 argument_list|,
 literal|0
@@ -1349,32 +1327,6 @@ expr_stmt|;
 comment|// addIndexes - multiple commits in each
 name|doTest
 argument_list|(
-literal|false
-argument_list|,
-literal|true
-argument_list|,
-literal|0
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-comment|// addIndexesNoOptimize - single commit in each
-name|doTest
-argument_list|(
-literal|true
-argument_list|,
-literal|true
-argument_list|,
-literal|0
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// addIndexesNoOptimize - multiple commits in each
-name|doTest
-argument_list|(
-literal|true
-argument_list|,
 literal|true
 argument_list|,
 literal|0
@@ -1398,8 +1350,6 @@ name|doTest
 argument_list|(
 literal|false
 argument_list|,
-literal|false
-argument_list|,
 name|NUM_DOCS
 argument_list|,
 literal|false
@@ -1408,32 +1358,6 @@ expr_stmt|;
 comment|// addIndexes - multiple commits in each
 name|doTest
 argument_list|(
-literal|false
-argument_list|,
-literal|false
-argument_list|,
-name|NUM_DOCS
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-comment|// addIndexesNoOptimize - single commit in each
-name|doTest
-argument_list|(
-literal|true
-argument_list|,
-literal|false
-argument_list|,
-name|NUM_DOCS
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// addIndexesNoOptimize - multiple commits in each
-name|doTest
-argument_list|(
-literal|true
-argument_list|,
 literal|false
 argument_list|,
 name|NUM_DOCS

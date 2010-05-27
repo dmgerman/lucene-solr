@@ -404,6 +404,8 @@ name|state
 operator|.
 name|docStoreSegmentName
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|VECTORS_INDEX_EXTENSION
@@ -481,6 +483,8 @@ name|state
 operator|.
 name|docStoreSegmentName
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|VECTORS_FIELDS_EXTENSION
@@ -496,6 +500,8 @@ argument_list|(
 name|state
 operator|.
 name|docStoreSegmentName
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.
@@ -755,6 +761,8 @@ name|segmentFileName
 argument_list|(
 name|docStoreSegment
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|VECTORS_INDEX_EXTENSION
@@ -769,6 +777,8 @@ name|segmentFileName
 argument_list|(
 name|docStoreSegment
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|VECTORS_DOCUMENTS_EXTENSION
@@ -782,6 +792,8 @@ operator|.
 name|segmentFileName
 argument_list|(
 name|docStoreSegment
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.

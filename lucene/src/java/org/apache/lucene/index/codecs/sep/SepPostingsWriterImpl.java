@@ -323,6 +323,8 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|DOC_EXTENSION
@@ -379,6 +381,8 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|FREQ_EXTENSION
@@ -424,6 +428,8 @@ argument_list|(
 name|state
 operator|.
 name|segmentName
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.
@@ -471,6 +477,8 @@ argument_list|(
 name|state
 operator|.
 name|segmentName
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.
@@ -532,6 +540,8 @@ argument_list|(
 name|state
 operator|.
 name|segmentName
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.

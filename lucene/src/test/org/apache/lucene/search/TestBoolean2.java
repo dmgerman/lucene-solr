@@ -444,7 +444,7 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|addIndexesNoOptimize
+name|addIndexes
 argument_list|(
 operator|new
 name|Directory

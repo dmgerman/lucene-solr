@@ -616,6 +616,8 @@ name|info
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|PreFlexCodec
 operator|.
 name|TERMS_EXTENSION
@@ -634,6 +636,8 @@ name|info
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|PreFlexCodec
 operator|.
 name|TERMS_INDEX_EXTENSION
@@ -651,6 +655,8 @@ argument_list|(
 name|info
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|PreFlexCodec
 operator|.
@@ -682,6 +688,8 @@ argument_list|(
 name|info
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|PreFlexCodec
 operator|.
@@ -854,6 +862,8 @@ argument_list|(
 name|si
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.

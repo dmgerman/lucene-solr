@@ -729,6 +729,8 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|COMPOUND_FILE_EXTENSION
@@ -758,6 +760,8 @@ operator|.
 name|segmentFileName
 argument_list|(
 name|segment
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.
@@ -1057,6 +1061,8 @@ operator|.
 name|getDocStoreSegment
 argument_list|()
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|COMPOUND_FILE_STORE_EXTENSION
@@ -1119,6 +1125,8 @@ operator|.
 name|segmentFileName
 argument_list|(
 name|segment
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.

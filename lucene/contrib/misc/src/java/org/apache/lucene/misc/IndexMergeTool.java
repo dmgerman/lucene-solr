@@ -300,7 +300,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|addIndexesNoOptimize
+name|addIndexes
 argument_list|(
 name|indexes
 argument_list|)

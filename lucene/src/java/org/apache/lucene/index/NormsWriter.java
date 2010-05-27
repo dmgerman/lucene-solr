@@ -412,6 +412,8 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|NORMS_EXTENSION

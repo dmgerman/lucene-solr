@@ -335,6 +335,8 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
+literal|""
+argument_list|,
 name|StandardCodec
 operator|.
 name|TERMS_EXTENSION

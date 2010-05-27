@@ -2415,15 +2415,6 @@ operator|.
 name|hasDeletions
 argument_list|()
 expr_stmt|;
-assert|assert
-operator|!
-name|segmentInfos
-operator|.
-name|hasExternalSegments
-argument_list|(
-name|directory
-argument_list|)
-assert|;
 block|}
 annotation|@
 name|Override

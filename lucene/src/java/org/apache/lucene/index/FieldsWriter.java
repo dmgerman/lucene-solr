@@ -245,6 +245,8 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
+literal|""
+argument_list|,
 name|IndexFileNames
 operator|.
 name|FIELDS_EXTENSION
@@ -328,6 +330,8 @@ operator|.
 name|segmentFileName
 argument_list|(
 name|segment
+argument_list|,
+literal|""
 argument_list|,
 name|IndexFileNames
 operator|.

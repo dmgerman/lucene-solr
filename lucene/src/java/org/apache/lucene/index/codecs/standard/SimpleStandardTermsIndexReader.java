@@ -344,6 +344,8 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
+literal|""
+argument_list|,
 name|StandardCodec
 operator|.
 name|TERMS_INDEX_EXTENSION
@@ -2064,6 +2066,8 @@ argument_list|(
 name|info
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|StandardCodec
 operator|.

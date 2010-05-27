@@ -311,6 +311,8 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|DOC_EXTENSION
@@ -340,6 +342,8 @@ argument_list|(
 name|segmentInfo
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.
@@ -373,6 +377,8 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|FREQ_EXTENSION
@@ -395,6 +401,8 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|POS_EXTENSION
@@ -416,6 +424,8 @@ argument_list|(
 name|segmentInfo
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.
@@ -488,6 +498,8 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|DOC_EXTENSION
@@ -505,6 +517,8 @@ argument_list|(
 name|segmentInfo
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.
@@ -532,6 +546,8 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|FREQ_EXTENSION
@@ -550,6 +566,8 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
+literal|""
+argument_list|,
 name|SepCodec
 operator|.
 name|POS_EXTENSION
@@ -567,6 +585,8 @@ argument_list|(
 name|segmentInfo
 operator|.
 name|name
+argument_list|,
+literal|""
 argument_list|,
 name|SepCodec
 operator|.

@@ -618,7 +618,7 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|addIndexesNoOptimize
+name|addIndexes
 argument_list|(
 operator|new
 name|Directory
