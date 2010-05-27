@@ -62,7 +62,7 @@ specifier|public
 class|class
 name|ByteUtils
 block|{
-comment|/** Converts utf8 to utf16 and returns the number of 16 bit Java chars written.    * Full characters are read, even if this reads past the length passed (and can result in    * an exception if invalid UTF8 is passed).    * The char[] out should probably have enough room to hold the worst case of each byte becoming a Java char. */
+comment|/** Converts utf8 to utf16 and returns the number of 16 bit Java chars written.    * Full characters are read, even if this reads past the length passed (and can result in    * an ArrayOutOfBoundsException if invalid UTF8 is passed).  Explicit checks for valid UTF8 are not performed.    * The char[] out should probably have enough room to hold the worst case of each byte becoming a Java char.    */
 DECL|method|UTF8toUTF16
 specifier|public
 specifier|static
