@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps another filter's result and caches it.  The purpose is to allow  * filters to simply filter, and then wrap with this class to add caching.  */
+comment|/**  * Wraps another filter's result and caches it.  The purpose is to allow  * filters to simply filter, and then wrap with this class  * to add caching.  *  *<p><b>NOTE</b>: if you wrap this filter as a query (eg,  * using ConstantScoreQuery), you'll likely want to enforce  * deletions (using either {@link DeletesMode#RECACHE} or  * {@link DeletesMode#DYNAMIC}).  */
 end_comment
 
 begin_class
