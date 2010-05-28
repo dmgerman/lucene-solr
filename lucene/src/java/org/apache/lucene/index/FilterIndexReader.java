@@ -1335,16 +1335,16 @@ block|}
 comment|/** If the subclass of FilteredIndexReader modifies the    *  contents of the FieldCache, you must override this    *  method to provide a different key */
 annotation|@
 name|Override
-DECL|method|getFieldCacheKey
+DECL|method|getCoreCacheKey
 specifier|public
 name|Object
-name|getFieldCacheKey
+name|getCoreCacheKey
 parameter_list|()
 block|{
 return|return
 name|in
 operator|.
-name|getFieldCacheKey
+name|getCoreCacheKey
 argument_list|()
 return|;
 block|}

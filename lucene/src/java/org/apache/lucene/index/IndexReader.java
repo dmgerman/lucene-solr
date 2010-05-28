@@ -3148,10 +3148,10 @@ argument_list|()
 throw|;
 block|}
 comment|/** Expert */
-DECL|method|getFieldCacheKey
+DECL|method|getCoreCacheKey
 specifier|public
 name|Object
-name|getFieldCacheKey
+name|getCoreCacheKey
 parameter_list|()
 block|{
 return|return

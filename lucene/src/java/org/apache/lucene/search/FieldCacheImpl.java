@@ -899,7 +899,7 @@ name|readerKey
 init|=
 name|r
 operator|.
-name|getFieldCacheKey
+name|getCoreCacheKey
 argument_list|()
 decl_stmt|;
 synchronized|synchronized
@@ -947,7 +947,7 @@ name|readerKey
 init|=
 name|reader
 operator|.
-name|getFieldCacheKey
+name|getCoreCacheKey
 argument_list|()
 decl_stmt|;
 synchronized|synchronized

@@ -5787,11 +5787,11 @@ comment|// share the underlying postings data) will map to the
 comment|// same entry in the FieldCache.  See LUCENE-1579.
 annotation|@
 name|Override
-DECL|method|getFieldCacheKey
+DECL|method|getCoreCacheKey
 specifier|public
 specifier|final
 name|Object
-name|getFieldCacheKey
+name|getCoreCacheKey
 parameter_list|()
 block|{
 return|return
