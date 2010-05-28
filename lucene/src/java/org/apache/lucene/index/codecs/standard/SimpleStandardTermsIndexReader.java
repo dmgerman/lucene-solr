@@ -902,7 +902,6 @@ annotation|@
 name|Override
 DECL|method|getIndexOffset
 specifier|public
-specifier|final
 name|void
 name|getIndexOffset
 parameter_list|(
@@ -945,7 +944,6 @@ annotation|@
 name|Override
 DECL|method|getIndexOffset
 specifier|public
-specifier|final
 name|void
 name|getIndexOffset
 parameter_list|(
@@ -1508,7 +1506,6 @@ block|}
 block|}
 DECL|method|nextIndexTerm
 specifier|public
-specifier|final
 name|boolean
 name|nextIndexTerm
 parameter_list|(
@@ -1562,7 +1559,6 @@ block|}
 block|}
 DECL|method|fillResult
 specifier|private
-specifier|final
 name|void
 name|fillResult
 parameter_list|(
@@ -1643,7 +1639,6 @@ expr_stmt|;
 block|}
 DECL|method|getIndexOffset
 specifier|public
-specifier|final
 name|void
 name|getIndexOffset
 parameter_list|(
@@ -1895,7 +1890,6 @@ expr_stmt|;
 block|}
 DECL|method|getIndexOffset
 specifier|public
-specifier|final
 name|void
 name|getIndexOffset
 parameter_list|(
