@@ -341,6 +341,7 @@ block|}
 DECL|field|offset
 DECL|field|bufferIndex
 DECL|field|dataLen
+DECL|field|finalOffset
 specifier|private
 name|int
 name|offset
@@ -352,6 +353,10 @@ init|=
 literal|0
 decl_stmt|,
 name|dataLen
+init|=
+literal|0
+decl_stmt|,
+name|finalOffset
 init|=
 literal|0
 decl_stmt|;
@@ -598,8 +603,10 @@ decl_stmt|;
 name|int
 name|start
 init|=
-name|bufferIndex
+operator|-
+literal|1
 decl_stmt|;
+comment|// this variable is always initialized
 name|char
 index|[]
 name|buffer
@@ -650,11 +657,22 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
+name|finalOffset
+operator|=
+name|correctOffset
+argument_list|(
+name|offset
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
+block|}
 block|}
 name|dataLen
 operator|=
@@ -709,7 +727,14 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 comment|// start of token
+assert|assert
+name|start
+operator|==
+operator|-
+literal|1
+assert|;
 name|start
 operator|=
 name|offset
@@ -718,6 +743,7 @@ name|bufferIndex
 operator|-
 literal|1
 expr_stmt|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -729,6 +755,7 @@ name|length
 operator|-
 literal|1
 condition|)
+block|{
 comment|// check if a supplementary could run out of bounds
 name|buffer
 operator|=
@@ -742,6 +769,7 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// make sure a supplementary fits in the buffer
+block|}
 name|length
 operator|+=
 name|Character
@@ -786,6 +814,12 @@ argument_list|(
 name|length
 argument_list|)
 expr_stmt|;
+assert|assert
+name|start
+operator|!=
+operator|-
+literal|1
+assert|;
 name|offsetAtt
 operator|.
 name|setOffset
@@ -795,6 +829,8 @@ argument_list|(
 name|start
 argument_list|)
 argument_list|,
+name|finalOffset
+operator|=
 name|correctOffset
 argument_list|(
 name|start
@@ -826,8 +862,10 @@ decl_stmt|;
 name|int
 name|start
 init|=
-name|bufferIndex
+operator|-
+literal|1
 decl_stmt|;
+comment|// this variable is always initialized
 name|char
 index|[]
 name|buffer
@@ -891,11 +929,22 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
+name|finalOffset
+operator|=
+name|correctOffset
+argument_list|(
+name|offset
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
+block|}
 block|}
 name|bufferIndex
 operator|=
@@ -927,7 +976,14 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 comment|// start of token
+assert|assert
+name|start
+operator|==
+operator|-
+literal|1
+assert|;
 name|start
 operator|=
 name|offset
@@ -936,6 +992,7 @@ name|bufferIndex
 operator|-
 literal|1
 expr_stmt|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -945,6 +1002,7 @@ name|buffer
 operator|.
 name|length
 condition|)
+block|{
 name|buffer
 operator|=
 name|termAtt
@@ -956,6 +1014,7 @@ operator|+
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|buffer
 index|[
 name|length
@@ -995,6 +1054,12 @@ argument_list|(
 name|length
 argument_list|)
 expr_stmt|;
+assert|assert
+name|start
+operator|!=
+operator|-
+literal|1
+assert|;
 name|offsetAtt
 operator|.
 name|setOffset
@@ -1026,15 +1091,6 @@ name|end
 parameter_list|()
 block|{
 comment|// set final offset
-specifier|final
-name|int
-name|finalOffset
-init|=
-name|correctOffset
-argument_list|(
-name|offset
-argument_list|)
-decl_stmt|;
 name|offsetAtt
 operator|.
 name|setOffset
@@ -1074,6 +1130,10 @@ operator|=
 literal|0
 expr_stmt|;
 name|dataLen
+operator|=
+literal|0
+expr_stmt|;
+name|finalOffset
 operator|=
 literal|0
 expr_stmt|;
