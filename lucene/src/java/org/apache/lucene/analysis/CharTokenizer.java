@@ -554,7 +554,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"since LUCENE_3_1 subclasses of CharTokenizer must implement isTokenChar(int)"
+literal|"since LUCENE_31 subclasses of CharTokenizer must implement isTokenChar(int)"
 argument_list|)
 throw|;
 block|}
