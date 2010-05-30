@@ -231,7 +231,7 @@ block|}
 catch|catch
 parameter_list|(
 name|NoSuchMethodException
-name|name
+name|nsme
 parameter_list|)
 block|{
 throw|throw
@@ -245,7 +245,7 @@ argument_list|()
 operator|+
 literal|" has no such method: "
 operator|+
-name|name
+name|nsme
 operator|.
 name|getMessage
 argument_list|()
