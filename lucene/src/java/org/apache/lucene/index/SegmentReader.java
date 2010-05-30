@@ -3359,7 +3359,7 @@ block|{
 comment|// re-write norms
 name|si
 operator|.
-name|setNumFields
+name|initNormGen
 argument_list|(
 name|core
 operator|.

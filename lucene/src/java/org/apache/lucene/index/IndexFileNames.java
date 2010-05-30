@@ -79,16 +79,6 @@ literal|"segments."
 operator|+
 name|GEN_EXTENSION
 decl_stmt|;
-comment|/** Name of the index deletable file (only used in    * pre-lockless indices) */
-DECL|field|DELETABLE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DELETABLE
-init|=
-literal|"deletable"
-decl_stmt|;
 comment|/** Extension of norms file */
 DECL|field|NORMS_EXTENSION
 specifier|public
@@ -189,16 +179,6 @@ name|FIELD_INFOS_EXTENSION
 init|=
 literal|"fnm"
 decl_stmt|;
-comment|/** Extension of plain norms */
-DECL|field|PLAIN_NORMS_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|PLAIN_NORMS_EXTENSION
-init|=
-literal|"f"
-decl_stmt|;
 comment|/** Extension of separate norms */
 DECL|field|SEPARATE_NORMS_EXTENSION
 specifier|public
@@ -209,7 +189,7 @@ name|SEPARATE_NORMS_EXTENSION
 init|=
 literal|"s"
 decl_stmt|;
-comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with two exceptions, namely the    * extension made up from<code>.f</code> + a number and    * from<code>.s</code> + a number.  Also note that    * Lucene's<code>segments_N</code> files do not have any    * filename extension.    */
+comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with one exception, namely the    * extension made up from<code>.s</code> + a number.    * Also note that Lucene's<code>segments_N</code> files    * do not have any filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|public
 specifier|static
@@ -327,7 +307,6 @@ comment|/**    * Computes the full file name from base, extension and generation
 DECL|method|fileNameFromGeneration
 specifier|public
 specifier|static
-specifier|final
 name|String
 name|fileNameFromGeneration
 parameter_list|(
@@ -458,7 +437,6 @@ comment|/**    * Returns true if the provided filename is one of the doc store f
 DECL|method|isDocStoreFile
 specifier|public
 specifier|static
-specifier|final
 name|boolean
 name|isDocStoreFile
 parameter_list|(
@@ -507,7 +485,6 @@ comment|/**    * Returns a file name that includes the given segment name, your 
 DECL|method|segmentFileName
 specifier|public
 specifier|static
-specifier|final
 name|String
 name|segmentFileName
 parameter_list|(
@@ -642,7 +619,6 @@ comment|/**    * Returns true if the given filename ends with the given extensio
 DECL|method|matchesExtension
 specifier|public
 specifier|static
-specifier|final
 name|boolean
 name|matchesExtension
 parameter_list|(
@@ -670,7 +646,6 @@ comment|/**    * Strips the segment name out of the given file name. If you used
 DECL|method|stripSegmentName
 specifier|public
 specifier|static
-specifier|final
 name|String
 name|stripSegmentName
 parameter_list|(

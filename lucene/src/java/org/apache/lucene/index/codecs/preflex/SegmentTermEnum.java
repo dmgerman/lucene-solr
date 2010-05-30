@@ -137,17 +137,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** The file format version, a negative number. */
-DECL|field|FORMAT
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORMAT
-init|=
-operator|-
-literal|3
-decl_stmt|;
 comment|// Changed strings to true utf8 with length-in-bytes not
 comment|// length-in-chars
 DECL|field|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
@@ -404,14 +393,6 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|format
-operator|<=
-name|FORMAT
-condition|)
-block|{
-comment|// this new format introduces multi-level skipping
 name|maxSkipLevels
 operator|=
 name|input
@@ -419,7 +400,6 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 assert|assert
 name|indexInterval
@@ -443,29 +423,6 @@ name|skipInterval
 operator|+
 literal|" is negative; must be> 0"
 assert|;
-block|}
-if|if
-condition|(
-name|format
-operator|>
-name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
-condition|)
-block|{
-name|termBuffer
-operator|.
-name|setPreUTF8Strings
-argument_list|()
-expr_stmt|;
-name|scanBuffer
-operator|.
-name|setPreUTF8Strings
-argument_list|()
-expr_stmt|;
-name|prevBuffer
-operator|.
-name|setPreUTF8Strings
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 annotation|@

@@ -594,16 +594,6 @@ argument_list|,
 literal|"_0.fnm"
 argument_list|)
 expr_stmt|;
-comment|// Create a deletable file:
-name|copyFile
-argument_list|(
-name|dir
-argument_list|,
-literal|"_0.cfs"
-argument_list|,
-literal|"deletable"
-argument_list|)
-expr_stmt|;
 comment|// Create some old segments file:
 name|copyFile
 argument_list|(

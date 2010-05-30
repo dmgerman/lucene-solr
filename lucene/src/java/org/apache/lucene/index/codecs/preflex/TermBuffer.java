@@ -133,12 +133,6 @@ name|Term
 name|term
 decl_stmt|;
 comment|// cached
-DECL|field|preUTF8Strings
-specifier|private
-name|boolean
-name|preUTF8Strings
-decl_stmt|;
-comment|// true if strings are stored in modified UTF8 encoding (LUCENE-510)
 DECL|field|dirty
 specifier|private
 name|boolean
@@ -227,7 +221,6 @@ block|}
 DECL|method|compareChars
 specifier|private
 specifier|static
-specifier|final
 name|int
 name|compareChars
 parameter_list|(
@@ -309,17 +302,6 @@ operator|-
 name|len2
 return|;
 block|}
-comment|/** Call this if the IndexInput passed to {@link #read}    *  stores terms in the "modified UTF8" (pre LUCENE-510)    *  format. */
-DECL|method|setPreUTF8Strings
-name|void
-name|setPreUTF8Strings
-parameter_list|()
-block|{
-name|preUTF8Strings
-operator|=
-literal|true
-expr_stmt|;
-block|}
 DECL|method|read
 specifier|public
 specifier|final
@@ -365,34 +347,6 @@ name|start
 operator|+
 name|length
 decl_stmt|;
-if|if
-condition|(
-name|preUTF8Strings
-condition|)
-block|{
-name|text
-operator|.
-name|setLength
-argument_list|(
-name|totalLength
-argument_list|)
-expr_stmt|;
-name|input
-operator|.
-name|readChars
-argument_list|(
-name|text
-operator|.
-name|result
-argument_list|,
-name|start
-argument_list|,
-name|length
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 if|if
 condition|(
 name|dirty
@@ -537,7 +491,6 @@ argument_list|,
 name|text
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|this
 operator|.

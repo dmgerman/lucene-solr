@@ -142,35 +142,6 @@ name|FIELD_IS_BINARY
 init|=
 literal|0x2
 decl_stmt|;
-comment|/** @deprecated Kept for backwards-compatibility with<3.0 indexes; will be removed in 4.0 */
-annotation|@
-name|Deprecated
-DECL|field|FIELD_IS_COMPRESSED
-specifier|static
-specifier|final
-name|byte
-name|FIELD_IS_COMPRESSED
-init|=
-literal|0x4
-decl_stmt|;
-comment|// Original format
-DECL|field|FORMAT
-specifier|static
-specifier|final
-name|int
-name|FORMAT
-init|=
-literal|0
-decl_stmt|;
-comment|// Changed strings to UTF8
-DECL|field|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
-specifier|static
-specifier|final
-name|int
-name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
-init|=
-literal|1
-decl_stmt|;
 comment|// Lucene 3.0: Removal of compressed fields
 DECL|field|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
 specifier|static
