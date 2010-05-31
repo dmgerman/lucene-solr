@@ -30877,7 +30877,9 @@ comment|// Keep that commit
 name|sdp
 operator|.
 name|snapshot
-argument_list|()
+argument_list|(
+literal|"id"
+argument_list|)
 expr_stmt|;
 comment|// Second commit - now KeepOnlyLastCommit cannot delete the prev commit.
 name|doc
@@ -30942,7 +30944,9 @@ comment|// Should delete the unreferenced commit
 name|sdp
 operator|.
 name|release
-argument_list|()
+argument_list|(
+literal|"id"
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
