@@ -383,37 +383,6 @@ return|return
 name|writer
 return|;
 block|}
-comment|// use a combination of tabs and spaces to minimize the size of an indented response.
-DECL|field|indentArr
-specifier|private
-specifier|static
-specifier|final
-name|String
-index|[]
-name|indentArr
-init|=
-operator|new
-name|String
-index|[]
-block|{
-literal|"\n"
-block|,
-literal|"\n "
-block|,
-literal|"\n  "
-block|,
-literal|"\n\t"
-block|,
-literal|"\n\t "
-block|,
-literal|"\n\t  "
-block|,
-comment|// could skip this one (the only 3 char seq)
-literal|"\n\t\t"
-block|,
-literal|"\n\t\t "
-block|}
-decl_stmt|;
 DECL|method|indent
 specifier|public
 name|void
@@ -443,37 +412,34 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|int
-name|arrsz
-init|=
-name|indentArr
-operator|.
-name|length
-operator|-
-literal|1
-decl_stmt|;
-comment|// power-of-two intent array (gratuitous optimization :-)
-name|String
-name|istr
-init|=
-name|indentArr
-index|[
-name|lev
-operator|&
-operator|(
-name|indentArr
-operator|.
-name|length
-operator|-
-literal|1
-operator|)
-index|]
-decl_stmt|;
 name|writer
 operator|.
 name|write
 argument_list|(
-name|istr
+name|XMLWriter
+operator|.
+name|indentChars
+argument_list|,
+literal|0
+argument_list|,
+name|Math
+operator|.
+name|min
+argument_list|(
+operator|(
+name|lev
+operator|<<
+literal|1
+operator|)
+operator|+
+literal|1
+argument_list|,
+name|XMLWriter
+operator|.
+name|indentChars
+operator|.
+name|length
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
