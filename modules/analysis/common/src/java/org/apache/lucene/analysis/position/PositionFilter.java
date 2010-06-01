@@ -105,6 +105,13 @@ DECL|field|posIncrAtt
 specifier|private
 name|PositionIncrementAttribute
 name|posIncrAtt
+init|=
+name|addAttribute
+argument_list|(
+name|PositionIncrementAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|/**    * Constructs a PositionFilter that assigns a position increment of zero to    * all but the first token from the given input stream.    *     * @param input the input stream    */
 DECL|method|PositionFilter
@@ -119,15 +126,6 @@ block|{
 name|super
 argument_list|(
 name|input
-argument_list|)
-expr_stmt|;
-name|posIncrAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|PositionIncrementAttribute
-operator|.
-name|class
 argument_list|)
 expr_stmt|;
 block|}

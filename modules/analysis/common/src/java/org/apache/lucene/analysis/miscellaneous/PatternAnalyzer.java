@@ -174,7 +174,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|OffsetAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -190,7 +190,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|OffsetAttribute
 import|;
 end_import
 
@@ -1713,18 +1713,20 @@ argument_list|()
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
 DECL|field|offsetAtt
 specifier|private
+specifier|final
 name|OffsetAttribute
 name|offsetAtt
 init|=
@@ -1886,7 +1888,10 @@ argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|text
 argument_list|)
@@ -2005,18 +2010,20 @@ argument_list|()
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
 DECL|field|offsetAtt
 specifier|private
+specifier|final
 name|OffsetAttribute
 name|offsetAtt
 init|=
@@ -2246,7 +2253,10 @@ return|;
 block|}
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|text
 argument_list|)

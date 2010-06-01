@@ -114,7 +114,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|OffsetAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -130,7 +130,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|OffsetAttribute
 import|;
 end_import
 
@@ -471,12 +471,12 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|termAtt
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -516,7 +516,10 @@ literal|false
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 literal|"phrase2"
 argument_list|)
@@ -546,7 +549,7 @@ if|if
 condition|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 operator|.
 name|equals
@@ -575,7 +578,10 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 literal|"phrase1"
 argument_list|)
@@ -599,7 +605,7 @@ condition|(
 operator|!
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 operator|.
 name|equals

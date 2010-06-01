@@ -354,7 +354,7 @@ argument_list|()
 decl_stmt|;
 name|tok
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|termAtt
 operator|.

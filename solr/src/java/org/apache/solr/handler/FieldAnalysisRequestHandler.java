@@ -889,7 +889,7 @@ name|add
 argument_list|(
 name|token
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

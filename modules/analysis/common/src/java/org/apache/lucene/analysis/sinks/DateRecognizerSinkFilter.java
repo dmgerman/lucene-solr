@@ -60,7 +60,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|dateFormat
 decl_stmt|;
 DECL|field|termAtt
 specifier|protected
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 comment|/**    * Uses {@link java.text.SimpleDateFormat#getDateInstance()} as the {@link java.text.DateFormat} object.    */
@@ -165,7 +165,7 @@ name|source
 operator|.
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -182,7 +182,7 @@ name|parse
 argument_list|(
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;

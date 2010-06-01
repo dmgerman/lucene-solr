@@ -527,7 +527,7 @@ name|equals
 argument_list|(
 name|token
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 condition|)

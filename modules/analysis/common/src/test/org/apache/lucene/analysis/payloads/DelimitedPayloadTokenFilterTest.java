@@ -60,7 +60,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|PayloadAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|PayloadAttribute
 import|;
 end_import
 
@@ -166,14 +166,14 @@ name|IdentityEncoder
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|filter
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -576,14 +576,14 @@ name|FloatEncoder
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|filter
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -812,14 +812,14 @@ name|IntegerEncoder
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|filter
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1022,14 +1022,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|stream
 operator|.
 name|getAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1060,7 +1060,7 @@ name|expected
 argument_list|,
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1173,7 +1173,7 @@ parameter_list|,
 name|TokenStream
 name|stream
 parameter_list|,
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 parameter_list|,
 name|PayloadAttribute
@@ -1200,7 +1200,7 @@ name|expected
 argument_list|,
 name|termAtt
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

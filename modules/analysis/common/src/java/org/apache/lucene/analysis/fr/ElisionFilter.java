@@ -108,7 +108,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -167,8 +167,15 @@ decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|field|DEFAULT_ARTICLES
 specifier|private
@@ -400,15 +407,6 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Constructs an elision filter with an array of stop words    * @deprecated use {@link #ElisionFilter(Version, TokenStream, Set)} instead    */
 annotation|@
@@ -452,7 +450,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Increments the {@link TokenStream} with a {@link TermAttribute} without elisioned start    */
+comment|/**    * Increments the {@link TokenStream} with a {@link CharTermAttribute} without elisioned start    */
 annotation|@
 name|Override
 DECL|method|incrementToken
@@ -478,7 +476,7 @@ name|termBuffer
 init|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 decl_stmt|;
 name|int
@@ -486,7 +484,7 @@ name|termLength
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 name|int
@@ -577,7 +575,7 @@ name|contains
 argument_list|(
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 literal|0
@@ -588,11 +586,11 @@ condition|)
 block|{
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 name|minPoz
@@ -601,7 +599,7 @@ literal|1
 argument_list|,
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 operator|-
 operator|(

@@ -74,7 +74,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -269,14 +269,28 @@ decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|field|offsetAtt
 specifier|private
 specifier|final
 name|OffsetAttribute
 name|offsetAtt
+init|=
+name|addAttribute
+argument_list|(
+name|OffsetAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param side the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenFilter
@@ -364,28 +378,6 @@ name|side
 operator|=
 name|side
 expr_stmt|;
-name|this
-operator|.
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|offsetAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|OffsetAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Creates EdgeNGramTokenFilter that can generate n-grams in the sizes of the given range    *    * @param input {@link TokenStream} holding the input to be tokenized    * @param sideLabel the name of the {@link Side} from which to chop off an n-gram    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|EdgeNGramTokenFilter
@@ -464,7 +456,7 @@ name|curTermBuffer
 operator|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 operator|.
 name|clone
@@ -474,7 +466,7 @@ name|curTermLength
 operator|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 expr_stmt|;
 name|curGramSize
@@ -554,7 +546,7 @@ argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|curTermBuffer
 argument_list|,

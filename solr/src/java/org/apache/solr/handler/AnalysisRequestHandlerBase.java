@@ -931,12 +931,12 @@ condition|)
 block|{
 name|token
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|termAtt
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -957,7 +957,10 @@ expr_stmt|;
 comment|// TODO: This is incorrect when numeric fields change in later lucene versions. It should use BytesRef directly!
 name|token
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|bytes
 operator|.
@@ -1170,7 +1173,7 @@ name|indexedToReadable
 argument_list|(
 name|token
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1192,7 +1195,7 @@ name|equals
 argument_list|(
 name|token
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 condition|)
@@ -1205,7 +1208,7 @@ literal|"raw_text"
 argument_list|,
 name|token
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1273,7 +1276,7 @@ name|contains
 argument_list|(
 name|token
 operator|.
-name|term
+name|toString
 argument_list|()
 argument_list|)
 condition|)
@@ -1634,14 +1637,14 @@ name|copyBuffer
 argument_list|(
 name|next
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 literal|0
 argument_list|,
 name|next
 operator|.
-name|termLength
+name|length
 argument_list|()
 argument_list|)
 expr_stmt|;

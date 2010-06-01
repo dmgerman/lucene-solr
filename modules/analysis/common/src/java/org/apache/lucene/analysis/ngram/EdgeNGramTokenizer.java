@@ -44,7 +44,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|OffsetAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -60,7 +60,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|OffsetAttribute
 import|;
 end_import
 
@@ -142,13 +142,29 @@ literal|1
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|field|offsetAtt
 specifier|private
+specifier|final
 name|OffsetAttribute
 name|offsetAtt
+init|=
+name|addAttribute
+argument_list|(
+name|OffsetAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|/** Specifies which side of the input the n-gram should be generated from */
 DECL|enum|Side
@@ -587,28 +603,6 @@ name|side
 operator|=
 name|side
 expr_stmt|;
-name|this
-operator|.
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|offsetAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|OffsetAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** Returns the next token in the stream, or null at EOS. */
 annotation|@
@@ -733,13 +727,16 @@ name|gramSize
 decl_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|inStr
 argument_list|,
 name|start
 argument_list|,
-name|gramSize
+name|end
 argument_list|)
 expr_stmt|;
 name|offsetAtt

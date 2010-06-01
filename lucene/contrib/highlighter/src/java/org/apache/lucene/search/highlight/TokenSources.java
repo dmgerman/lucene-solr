@@ -126,7 +126,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|OffsetAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -142,7 +142,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|OffsetAttribute
 import|;
 end_import
 
@@ -483,7 +483,7 @@ name|currentToken
 init|=
 literal|0
 decl_stmt|;
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 decl_stmt|;
 name|OffsetAttribute
@@ -506,7 +506,7 @@ name|termAtt
 operator|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -557,12 +557,12 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|token
-operator|.
-name|term
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|offsetAtt
@@ -767,6 +767,11 @@ init|=
 operator|new
 name|Token
 argument_list|(
+name|terms
+index|[
+name|t
+index|]
+argument_list|,
 name|offsets
 index|[
 name|tp
@@ -784,16 +789,6 @@ name|getEndOffset
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|token
-operator|.
-name|setTermBuffer
-argument_list|(
-name|terms
-index|[
-name|t
-index|]
-argument_list|)
-expr_stmt|;
 name|unsortedTokens
 operator|.
 name|add

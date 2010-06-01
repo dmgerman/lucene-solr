@@ -84,7 +84,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -118,8 +118,16 @@ name|testToken
 decl_stmt|;
 DECL|field|termAtt
 specifier|protected
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|method|TestTokenStream
 specifier|public
@@ -138,15 +146,6 @@ operator|.
 name|testToken
 operator|=
 name|testToken
-expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -174,7 +173,10 @@ condition|)
 block|{
 name|termAtt
 operator|.
-name|setTermBuffer
+name|setEmpty
+argument_list|()
+operator|.
+name|append
 argument_list|(
 name|testToken
 index|[

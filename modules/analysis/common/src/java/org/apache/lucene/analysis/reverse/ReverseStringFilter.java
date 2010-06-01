@@ -58,7 +58,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -101,8 +101,16 @@ name|TokenFilter
 block|{
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|field|marker
 specifier|private
@@ -264,15 +272,6 @@ name|marker
 operator|=
 name|marker
 expr_stmt|;
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -297,7 +296,7 @@ name|len
 init|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 decl_stmt|;
 if|if
@@ -312,14 +311,14 @@ operator|++
 expr_stmt|;
 name|termAtt
 operator|.
-name|resizeTermBuffer
+name|resizeBuffer
 argument_list|(
 name|len
 argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 index|[
 name|len
@@ -336,7 +335,7 @@ name|matchVersion
 argument_list|,
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 literal|0
@@ -346,7 +345,7 @@ argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermLength
+name|setLength
 argument_list|(
 name|len
 argument_list|)

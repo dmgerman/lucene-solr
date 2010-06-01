@@ -104,7 +104,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -134,12 +134,12 @@ decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
-name|TermAttribute
+name|CharTermAttribute
 name|termAtt
 init|=
 name|addAttribute
 argument_list|(
-name|TermAttribute
+name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -199,7 +199,7 @@ argument_list|()
 condition|)
 name|termAtt
 operator|.
-name|setTermLength
+name|setLength
 argument_list|(
 name|normalizer
 operator|.
@@ -207,12 +207,12 @@ name|normalize
 argument_list|(
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 argument_list|,
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 argument_list|)
 argument_list|)

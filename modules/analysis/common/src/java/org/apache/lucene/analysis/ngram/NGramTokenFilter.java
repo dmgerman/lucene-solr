@@ -84,7 +84,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|TermAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -155,13 +155,29 @@ name|tokStart
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
-name|TermAttribute
+specifier|final
+name|CharTermAttribute
 name|termAtt
+init|=
+name|addAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|field|offsetAtt
 specifier|private
+specifier|final
 name|OffsetAttribute
 name|offsetAtt
+init|=
+name|addAttribute
+argument_list|(
+name|OffsetAttribute
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|/**    * Creates NGramTokenFilter with given min and max n-grams.    * @param input {@link TokenStream} holding the input to be tokenized    * @param minGram the smallest n-gram to generate    * @param maxGram the largest n-gram to generate    */
 DECL|method|NGramTokenFilter
@@ -224,28 +240,6 @@ operator|.
 name|maxGram
 operator|=
 name|maxGram
-expr_stmt|;
-name|this
-operator|.
-name|termAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|TermAttribute
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|offsetAtt
-operator|=
-name|addAttribute
-argument_list|(
-name|OffsetAttribute
-operator|.
-name|class
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates NGramTokenFilter with default min and max n-grams.    * @param input {@link TokenStream} holding the input to be tokenized    */
@@ -310,7 +304,7 @@ name|curTermBuffer
 operator|=
 name|termAtt
 operator|.
-name|termBuffer
+name|buffer
 argument_list|()
 operator|.
 name|clone
@@ -320,7 +314,7 @@ name|curTermLength
 operator|=
 name|termAtt
 operator|.
-name|termLength
+name|length
 argument_list|()
 expr_stmt|;
 name|curGramSize
@@ -362,7 +356,7 @@ argument_list|()
 expr_stmt|;
 name|termAtt
 operator|.
-name|setTermBuffer
+name|copyBuffer
 argument_list|(
 name|curTermBuffer
 argument_list|,
