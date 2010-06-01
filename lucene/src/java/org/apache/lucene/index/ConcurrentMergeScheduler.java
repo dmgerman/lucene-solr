@@ -1744,6 +1744,17 @@ name|Throwable
 name|exc
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"HANDLE "
+operator|+
+name|exc
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// When an exception is hit during merge, IndexWriter
