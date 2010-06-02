@@ -805,9 +805,10 @@ block|{
 return|return
 name|getReader
 argument_list|(
-name|IndexReader
+name|config
 operator|.
-name|DEFAULT_TERMS_INDEX_DIVISOR
+name|getReaderTermsIndexDivisor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1592,9 +1593,10 @@ name|BufferedIndexInput
 operator|.
 name|BUFFER_SIZE
 argument_list|,
-name|IndexReader
+name|config
 operator|.
-name|DEFAULT_TERMS_INDEX_DIVISOR
+name|getReaderTermsIndexDivisor
+argument_list|()
 argument_list|)
 return|;
 block|}
