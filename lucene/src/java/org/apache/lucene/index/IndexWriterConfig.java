@@ -1212,7 +1212,7 @@ return|return
 name|indexingChain
 return|;
 block|}
-comment|/** Sets the term index divisor passed to any readers that    *  IndexWriter opens, for example when apply deletes or    *  creating a near-real-time reader in {@link    *  IndexWriter#getReader}. */
+comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. */
 DECL|method|setReaderTermsIndexDivisor
 specifier|public
 name|IndexWriterConfig
