@@ -11763,6 +11763,50 @@ comment|// TODO: in the non-realtime case, we may want to only
 comment|// keep deletes (it's costly to open entire reader
 comment|// when we just need deletes)
 specifier|final
+name|int
+name|termsIndexDivisor
+decl_stmt|;
+specifier|final
+name|boolean
+name|loadDocStores
+decl_stmt|;
+if|if
+condition|(
+name|poolReaders
+operator|&&
+name|mergedSegmentWarmer
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Load terms index& doc stores so the segment
+comment|// warmer can run searches, load documents/term
+comment|// vectors
+name|termsIndexDivisor
+operator|=
+name|config
+operator|.
+name|getReaderTermsIndexDivisor
+argument_list|()
+expr_stmt|;
+name|loadDocStores
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
+name|termsIndexDivisor
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|loadDocStores
+operator|=
+literal|false
+expr_stmt|;
+block|}
+specifier|final
 name|SegmentReader
 name|mergedReader
 init|=
@@ -11774,14 +11818,13 @@ name|merge
 operator|.
 name|info
 argument_list|,
-literal|false
+name|loadDocStores
 argument_list|,
 name|BufferedIndexInput
 operator|.
 name|BUFFER_SIZE
 argument_list|,
-operator|-
-literal|1
+name|termsIndexDivisor
 argument_list|)
 decl_stmt|;
 try|try

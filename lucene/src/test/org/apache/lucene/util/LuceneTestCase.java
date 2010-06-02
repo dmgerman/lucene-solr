@@ -483,48 +483,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// this isn't as useful as calling directly from the scope where the
-comment|// index readers are used, because they could be gc'ed just before
-comment|// tearDown is called.
-comment|// But it's better then nothing.
-name|assertSaneFieldCaches
-argument_list|(
-name|getTestLabel
-argument_list|()
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|ConcurrentMergeScheduler
-operator|.
-name|anyUnhandledExceptions
-argument_list|()
-condition|)
-block|{
-comment|// Clear the failure so that we don't just keep
-comment|// failing subsequent test cases
-name|ConcurrentMergeScheduler
-operator|.
-name|clearUnhandledExceptions
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"ConcurrentMergeScheduler hit unhandled exceptions"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|purgeFieldCache
-argument_list|(
-name|FieldCache
-operator|.
-name|DEFAULT
-argument_list|)
-expr_stmt|;
-block|}
 name|Thread
 operator|.
 name|setDefaultUncaughtExceptionHandler
@@ -590,7 +548,49 @@ expr_stmt|;
 block|}
 name|fail
 argument_list|(
-literal|"Some threads throwed uncaught exceptions!"
+literal|"Some threads threw uncaught exceptions!"
+argument_list|)
+expr_stmt|;
+block|}
+comment|// this isn't as useful as calling directly from the scope where the
+comment|// index readers are used, because they could be gc'ed just before
+comment|// tearDown is called.
+comment|// But it's better then nothing.
+name|assertSaneFieldCaches
+argument_list|(
+name|getTestLabel
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|ConcurrentMergeScheduler
+operator|.
+name|anyUnhandledExceptions
+argument_list|()
+condition|)
+block|{
+comment|// Clear the failure so that we don't just keep
+comment|// failing subsequent test cases
+name|ConcurrentMergeScheduler
+operator|.
+name|clearUnhandledExceptions
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"ConcurrentMergeScheduler hit unhandled exceptions"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|purgeFieldCache
+argument_list|(
+name|FieldCache
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
