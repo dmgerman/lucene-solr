@@ -158,17 +158,15 @@ name|DEBUG_QUERY
 init|=
 literal|"debugQuery"
 decl_stmt|;
-comment|/**     * whether score explanations should be in legacy plain text format     * @deprecated The plain text version will be removed in a future version    */
-annotation|@
-name|Deprecated
-DECL|field|EXPLAIN_AS_STRING
+comment|/**     * boolean indicating whether score explanations should structured (true),     * or plain text (false)    */
+DECL|field|EXPLAIN_STRUCT
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|EXPLAIN_AS_STRING
+name|EXPLAIN_STRUCT
 init|=
-literal|"debug.explain.stringFormat"
+literal|"debug.explain.structured"
 decl_stmt|;
 comment|/** another query to explain against */
 DECL|field|EXPLAIN_OTHER
