@@ -471,12 +471,40 @@ literal|"qf"
 argument_list|,
 literal|"name title subject text"
 argument_list|,
+literal|"q.op"
+argument_list|,
+literal|"AND"
+argument_list|,
 literal|"q"
 argument_list|,
 literal|"Order op"
 argument_list|)
 argument_list|,
 name|oner
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"name title subject text"
+argument_list|,
+literal|"q.op"
+argument_list|,
+literal|"OR"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"Order op"
+argument_list|)
+argument_list|,
+name|twor
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -697,6 +725,10 @@ argument_list|,
 literal|"stopwords"
 argument_list|,
 literal|"false"
+argument_list|,
+literal|"q.op"
+argument_list|,
+literal|"AND"
 argument_list|,
 literal|"q"
 argument_list|,
