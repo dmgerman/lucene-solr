@@ -16,6 +16,26 @@ name|request
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * @deprecated use org.apache.solr.response.PHPSerializedResponseWriter  */
 end_comment
@@ -35,7 +55,49 @@ operator|.
 name|response
 operator|.
 name|PHPSerializedResponseWriter
-block|{ 	 }
+block|{
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|PHPSerializedResponseWriter
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
+DECL|method|PHPSerializedResponseWriter
+specifier|public
+name|PHPSerializedResponseWriter
+parameter_list|()
+block|{
+name|super
+argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|warn
+argument_list|(
+name|PHPSerializedResponseWriter
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" is deprecated. Please use the corresponding class in org.apache.solr.response"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 end_class
 
 end_unit
