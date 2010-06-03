@@ -1530,7 +1530,7 @@ name|ps
 operator|.
 name|getFacetCounts
 argument_list|(
-name|facetExecutor
+name|executor
 argument_list|)
 expr_stmt|;
 block|}
