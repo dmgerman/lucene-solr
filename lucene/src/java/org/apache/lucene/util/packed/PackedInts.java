@@ -653,8 +653,6 @@ parameter_list|,
 name|int
 name|bitsPerValue
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 switch|switch
 condition|(

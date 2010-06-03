@@ -636,6 +636,28 @@ name|Random
 name|r
 parameter_list|)
 block|{
+return|return
+name|randomUnicodeString
+argument_list|(
+name|r
+argument_list|,
+literal|20
+argument_list|)
+return|;
+block|}
+DECL|method|randomUnicodeString
+specifier|public
+specifier|static
+name|String
+name|randomUnicodeString
+parameter_list|(
+name|Random
+name|r
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|)
+block|{
 specifier|final
 name|int
 name|end
@@ -644,7 +666,7 @@ name|r
 operator|.
 name|nextInt
 argument_list|(
-literal|20
+name|maxLength
 argument_list|)
 decl_stmt|;
 if|if
@@ -695,6 +717,7 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
+comment|//buffer[i] = (char) (97 + r.nextInt(26));
 if|if
 condition|(
 literal|0

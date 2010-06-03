@@ -92,20 +92,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -161,38 +147,6 @@ block|{
 return|return
 literal|"basic"
 return|;
-block|}
-DECL|method|setUp
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// if you override setUp or tearDown, you better call
-comment|// the super classes version
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|tearDown
-specifier|public
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// if you override setUp or tearDown, you better call
-comment|// the super classes version
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|getStringVal
 specifier|private
@@ -496,21 +450,6 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
-comment|// make sure the String returned is the exact same instance (i.e. same FieldCache instance)
-name|assertTrue
-argument_list|(
-name|sval1
-operator|==
-name|getStringVal
-argument_list|(
-name|sr2
-argument_list|,
-literal|"v_s"
-argument_list|,
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertU
 argument_list|(
 name|adoc
@@ -758,18 +697,6 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|String
-name|beforeDelete
-init|=
-name|getStringVal
-argument_list|(
-name|sr5
-argument_list|,
-literal|"v_s"
-argument_list|,
-literal|1
-argument_list|)
-decl_stmt|;
 name|assertU
 argument_list|(
 name|delI
@@ -846,26 +773,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// readers now different
-name|String
-name|afterDelete
-init|=
-name|getStringVal
-argument_list|(
-name|sr6
-argument_list|,
-literal|"v_s"
-argument_list|,
-literal|1
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|beforeDelete
-operator|==
-name|afterDelete
-argument_list|)
-expr_stmt|;
-comment|// same field cache is used even though deletions are different
 name|sr5
 operator|.
 name|close

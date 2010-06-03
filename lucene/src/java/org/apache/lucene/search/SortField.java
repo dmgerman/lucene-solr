@@ -183,9 +183,6 @@ name|STRING_VAL
 init|=
 literal|11
 decl_stmt|;
-comment|// IMPLEMENTATION NOTE: the FieldCache.STRING_INDEX is in the same "namespace"
-comment|// as the above static int values.  Any new values must not have the same value
-comment|// as FieldCache.STRING_INDEX.
 comment|/** Represents sorting by document score (relevancy). */
 DECL|field|FIELD_SCORE
 specifier|public
@@ -1534,7 +1531,7 @@ return|return
 operator|new
 name|FieldComparator
 operator|.
-name|StringOrdValComparator
+name|TermOrdValComparator
 argument_list|(
 name|numHits
 argument_list|,
@@ -1554,7 +1551,7 @@ return|return
 operator|new
 name|FieldComparator
 operator|.
-name|StringValComparator
+name|TermValComparator
 argument_list|(
 name|numHits
 argument_list|,
