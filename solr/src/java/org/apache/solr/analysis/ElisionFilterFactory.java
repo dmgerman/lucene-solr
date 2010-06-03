@@ -176,16 +176,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"No articles specified for ElisionFilterFactory"
-argument_list|)
-throw|;
-block|}
 block|}
 DECL|method|create
 specifier|public
@@ -200,6 +190,18 @@ name|assureMatchVersion
 argument_list|()
 expr_stmt|;
 return|return
+name|articles
+operator|==
+literal|null
+condition|?
+operator|new
+name|ElisionFilter
+argument_list|(
+name|luceneMatchVersion
+argument_list|,
+name|input
+argument_list|)
+else|:
 operator|new
 name|ElisionFilter
 argument_list|(
