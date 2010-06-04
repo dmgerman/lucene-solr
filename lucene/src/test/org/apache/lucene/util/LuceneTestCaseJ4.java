@@ -847,63 +847,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// calling assertSaneFieldCaches here isn't as useful as having test
-comment|// classes call it directly from the scope where the index readers
-comment|// are used, because they could be gc'ed just before this tearDown
-comment|// method is called.
-comment|//
-comment|// But it's better then nothing.
-comment|//
-comment|// If you are testing functionality that you know for a fact
-comment|// "violates" FieldCache sanity, then you should either explicitly
-comment|// call purgeFieldCache at the end of your test method, or refactor
-comment|// your Test class so that the inconsistant FieldCache usages are
-comment|// isolated in distinct test methods
-name|assertSaneFieldCaches
-argument_list|(
-name|getTestLabel
-argument_list|()
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|ConcurrentMergeScheduler
-operator|.
-name|anyUnhandledExceptions
-argument_list|()
-condition|)
-block|{
-comment|// Clear the failure so that we don't just keep
-comment|// failing subsequent test cases
-name|ConcurrentMergeScheduler
-operator|.
-name|clearUnhandledExceptions
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"ConcurrentMergeScheduler hit unhandled exceptions"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|purgeFieldCache
-argument_list|(
-name|FieldCache
-operator|.
-name|DEFAULT
-argument_list|)
-expr_stmt|;
-block|}
-name|Thread
-operator|.
-name|setDefaultUncaughtExceptionHandler
-argument_list|(
-name|savedUncaughtExceptionHandler
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -962,10 +905,67 @@ expr_stmt|;
 block|}
 name|fail
 argument_list|(
-literal|"Some threads throwed uncaught exceptions!"
+literal|"Some threads threw uncaught exceptions!"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// calling assertSaneFieldCaches here isn't as useful as having test
+comment|// classes call it directly from the scope where the index readers
+comment|// are used, because they could be gc'ed just before this tearDown
+comment|// method is called.
+comment|//
+comment|// But it's better then nothing.
+comment|//
+comment|// If you are testing functionality that you know for a fact
+comment|// "violates" FieldCache sanity, then you should either explicitly
+comment|// call purgeFieldCache at the end of your test method, or refactor
+comment|// your Test class so that the inconsistant FieldCache usages are
+comment|// isolated in distinct test methods
+name|assertSaneFieldCaches
+argument_list|(
+name|getTestLabel
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|ConcurrentMergeScheduler
+operator|.
+name|anyUnhandledExceptions
+argument_list|()
+condition|)
+block|{
+comment|// Clear the failure so that we don't just keep
+comment|// failing subsequent test cases
+name|ConcurrentMergeScheduler
+operator|.
+name|clearUnhandledExceptions
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"ConcurrentMergeScheduler hit unhandled exceptions"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|purgeFieldCache
+argument_list|(
+name|FieldCache
+operator|.
+name|DEFAULT
+argument_list|)
+expr_stmt|;
+block|}
+name|Thread
+operator|.
+name|setDefaultUncaughtExceptionHandler
+argument_list|(
+name|savedUncaughtExceptionHandler
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Asserts that FieldCacheSanityChecker does not detect any    * problems with FieldCache.DEFAULT.    *<p>    * If any problems are found, they are logged to System.err    * (allong with the msg) when the Assertion is thrown.    *</p>    *<p>    * This method is called by tearDown after every test method,    * however IndexReaders scoped inside test methods may be garbage    * collected prior to this method being called, causing errors to    * be overlooked. Tests are encouraged to keep their IndexReaders    * scoped at the class level, or to explicitly call this method    * directly in the same scope as the IndexReader.    *</p>    *    * @see FieldCacheSanityChecker    */
 DECL|method|assertSaneFieldCaches
