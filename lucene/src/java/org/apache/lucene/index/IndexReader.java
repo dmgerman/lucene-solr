@@ -1853,20 +1853,13 @@ function_decl|;
 comment|/** Flex API: returns {@link Fields} for this reader.    *  This method may return null if the reader has no    *  postings.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need a {@link Fields} for such a reader,    * use {@link MultiFields#getFields}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
 DECL|method|fields
 specifier|public
+specifier|abstract
 name|Fields
 name|fields
 parameter_list|()
 throws|throws
 name|IOException
-block|{
-return|return
-operator|new
-name|LegacyFields
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
+function_decl|;
 comment|/** Returns an enumeration of all terms starting at a given term. If    * the given term does not exist, the enumeration is positioned at the    * first term greater than the supplied term. The enumeration is    * ordered by Term.compareTo(). Each term is greater than all that    * precede it in the enumeration.    * @deprecated Use the new flex API ({@link #fields()}) instead.    * @throws IOException if there is a low-level IO error    */
 annotation|@
 name|Deprecated
@@ -2605,74 +2598,17 @@ function_decl|;
 comment|// Only used by external subclasses of IndexReader; all
 comment|// internal classes should implement Bits more
 comment|// efficiently:
-DECL|class|DeletedDocsBits
-specifier|private
-specifier|final
-class|class
-name|DeletedDocsBits
-implements|implements
-name|Bits
-block|{
-DECL|method|get
-specifier|public
-name|boolean
-name|get
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-block|{
-return|return
-name|isDeleted
-argument_list|(
-name|docID
-argument_list|)
-return|;
-block|}
-DECL|method|length
-specifier|public
-name|int
-name|length
-parameter_list|()
-block|{
-return|return
-name|maxDoc
-argument_list|()
-return|;
-block|}
-block|}
-DECL|field|deletedDocsBits
-specifier|private
-name|Bits
-name|deletedDocsBits
-decl_stmt|;
+comment|/*   private final class DeletedDocsBits implements Bits {     public boolean get(int docID) {       return isDeleted(docID);     }     public int length() {       return maxDoc();     }   }    private Bits deletedDocsBits;   */
 comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    * @lucene.experimental */
 DECL|method|getDeletedDocs
 specifier|public
+specifier|abstract
 name|Bits
 name|getDeletedDocs
 parameter_list|()
 throws|throws
 name|IOException
-block|{
-if|if
-condition|(
-name|deletedDocsBits
-operator|==
-literal|null
-condition|)
-block|{
-name|deletedDocsBits
-operator|=
-operator|new
-name|DeletedDocsBits
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|deletedDocsBits
-return|;
-block|}
+function_decl|;
 comment|/**    * Expert: return the IndexCommit that this reader has    * opened.  This method is only implemented by those    * readers that correspond to a Directory with its own    * segments_N file.    *    * @lucene.experimental    */
 DECL|method|getIndexCommit
 specifier|public
