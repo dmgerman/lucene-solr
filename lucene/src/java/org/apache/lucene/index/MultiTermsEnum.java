@@ -756,6 +756,8 @@ index|[
 name|i
 index|]
 expr_stmt|;
+name|current
+operator|=
 name|currentSubs
 index|[
 name|i
@@ -763,7 +765,15 @@ index|]
 operator|.
 name|current
 operator|=
+name|currentSubs
+index|[
+name|i
+index|]
+operator|.
+name|terms
+operator|.
 name|term
+argument_list|()
 expr_stmt|;
 block|}
 elseif|else
@@ -827,10 +837,6 @@ literal|0
 condition|)
 block|{
 comment|// at least one sub had exact match to the requested term
-name|current
-operator|=
-name|term
-expr_stmt|;
 return|return
 name|SeekStatus
 operator|.
@@ -1262,10 +1268,7 @@ name|multiSkipDocs
 operator|.
 name|getMatchingSub
 argument_list|(
-name|top
-index|[
-name|i
-index|]
+name|entry
 operator|.
 name|subSlice
 argument_list|)
@@ -1295,10 +1298,7 @@ name|BitsSlice
 argument_list|(
 name|skipDocs
 argument_list|,
-name|top
-index|[
-name|i
-index|]
+name|entry
 operator|.
 name|subSlice
 argument_list|)
@@ -1320,10 +1320,7 @@ name|BitsSlice
 argument_list|(
 name|skipDocs
 argument_list|,
-name|top
-index|[
-name|i
-index|]
+name|entry
 operator|.
 name|subSlice
 argument_list|)
@@ -1809,6 +1806,7 @@ name|current
 operator|=
 name|term
 expr_stmt|;
+comment|// TODO: can we not null these?
 name|reuseDocs
 operator|=
 literal|null

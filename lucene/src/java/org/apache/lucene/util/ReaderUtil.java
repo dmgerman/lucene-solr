@@ -155,6 +155,10 @@ operator|+
 literal|" length="
 operator|+
 name|length
+operator|+
+literal|" readerIndex="
+operator|+
+name|readerIndex
 return|;
 block|}
 block|}
@@ -500,8 +504,6 @@ block|}
 return|return
 name|subReaders
 index|[
-name|ReaderUtil
-operator|.
 name|subIndex
 argument_list|(
 name|doc
