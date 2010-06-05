@@ -4161,13 +4161,6 @@ name|term
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|bytes
-operator|.
-name|copyUsingLengthPrefix
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
 name|docs
 operator|=
 name|termsEnum
