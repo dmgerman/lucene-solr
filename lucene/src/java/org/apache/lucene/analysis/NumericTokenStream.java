@@ -302,11 +302,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|createAttributeInstance
 specifier|public
 name|AttributeImpl
@@ -338,40 +333,20 @@ argument_list|)
 return|;
 if|if
 condition|(
-name|attClass
-operator|.
-name|isAssignableFrom
-argument_list|(
 name|CharTermAttribute
 operator|.
 name|class
-argument_list|)
-operator|||
-comment|// TODO: remove in 4.0 (deprecated class, also remove the suppress above):
-name|attClass
 operator|.
 name|isAssignableFrom
 argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|tokenattributes
-operator|.
-name|TermAttribute
-operator|.
-name|class
+name|attClass
 argument_list|)
 condition|)
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"NumericTokenStream does not support CharTermAttribute/TermAttribute."
+literal|"NumericTokenStream does not support CharTermAttribute."
 argument_list|)
 throw|;
 return|return
