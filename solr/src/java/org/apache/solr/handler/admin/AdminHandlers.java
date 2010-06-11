@@ -376,6 +376,16 @@ block|,
 operator|new
 name|StandardHandler
 argument_list|(
+literal|"mbeans"
+argument_list|,
+operator|new
+name|SolrInfoMBeanHandler
+argument_list|()
+argument_list|)
+block|,
+operator|new
+name|StandardHandler
+argument_list|(
 literal|"plugins"
 argument_list|,
 operator|new
