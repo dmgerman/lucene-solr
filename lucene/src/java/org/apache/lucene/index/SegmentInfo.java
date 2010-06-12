@@ -682,13 +682,18 @@ name|FORMAT_4_0
 condition|)
 block|{
 comment|// pre-4.0 indexes write a byte if there is a single norms file
-assert|assert
-literal|1
-operator|==
+name|byte
+name|b
+init|=
 name|input
 operator|.
 name|readByte
 argument_list|()
+decl_stmt|;
+assert|assert
+literal|1
+operator|==
+name|b
 assert|;
 block|}
 name|int
