@@ -38,6 +38,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|TermsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|NumericUtils
@@ -1473,6 +1487,14 @@ specifier|public
 specifier|abstract
 name|int
 name|size
+parameter_list|()
+function_decl|;
+comment|/** Returns a TermsEnum that can iterate over the values in this index entry */
+DECL|method|getTermsEnum
+specifier|public
+specifier|abstract
+name|TermsEnum
+name|getTermsEnum
 parameter_list|()
 function_decl|;
 block|}
