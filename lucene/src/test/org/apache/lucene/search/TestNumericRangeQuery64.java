@@ -4736,37 +4736,6 @@ argument_list|)
 expr_stmt|;
 comment|// difference to int range is tested in TestNumericRangeQuery32
 block|}
-annotation|@
-name|Test
-annotation|@
-name|Deprecated
-DECL|method|testBackwardsLayer
-specifier|public
-name|void
-name|testBackwardsLayer
-parameter_list|()
-block|{
-name|assertTrue
-argument_list|(
-name|NumericRangeQuery
-operator|.
-name|newLongRange
-argument_list|(
-literal|"dummy"
-argument_list|,
-literal|null
-argument_list|,
-literal|null
-argument_list|,
-literal|true
-argument_list|,
-literal|true
-argument_list|)
-operator|.
-name|hasNewAPI
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 

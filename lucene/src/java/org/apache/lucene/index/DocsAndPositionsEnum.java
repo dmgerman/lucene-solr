@@ -63,7 +63,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the payload at this position, or null if no    *  payload was indexed. */
+comment|/** Returns the payload at this position, or null if no    *  payload was indexed.  Only call this once per    *  position. */
 DECL|method|getPayload
 specifier|public
 specifier|abstract

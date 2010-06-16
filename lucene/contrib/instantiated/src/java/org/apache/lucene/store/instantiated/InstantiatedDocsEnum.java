@@ -213,6 +213,10 @@ block|{
 if|if
 condition|(
 name|currentDoc
+operator|!=
+literal|null
+operator|&&
+name|currentDoc
 operator|.
 name|getDocument
 argument_list|()

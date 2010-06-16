@@ -104,7 +104,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|MultiFields
 import|;
 end_import
 
@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermEnum
+name|Term
 import|;
 end_import
 
@@ -479,10 +479,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testTermEnum
+DECL|method|testTermsEnum
 specifier|public
 name|void
-name|testTermEnum
+name|testTermsEnum
 parameter_list|()
 throws|throws
 name|Exception
@@ -503,7 +503,7 @@ argument_list|(
 name|ii
 argument_list|)
 decl_stmt|;
-name|termEnumTest
+name|termsEnumTest
 argument_list|(
 name|r
 argument_list|)
@@ -556,7 +556,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|termEnumTest
+name|termsEnumTest
 argument_list|(
 name|r
 argument_list|)
@@ -572,10 +572,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|termEnumTest
+DECL|method|termsEnumTest
 specifier|public
 name|void
-name|termEnumTest
+name|termsEnumTest
 parameter_list|(
 name|IndexReader
 name|r
@@ -583,28 +583,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|TermEnum
-name|terms
-init|=
-name|r
-operator|.
-name|terms
-argument_list|()
-decl_stmt|;
 name|assertNull
 argument_list|(
-name|terms
+name|MultiFields
 operator|.
-name|term
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertFalse
+name|getFields
 argument_list|(
-name|terms
-operator|.
-name|next
-argument_list|()
+name|r
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

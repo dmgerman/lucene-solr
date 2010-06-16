@@ -48,6 +48,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|analysis
 operator|.
 name|MockAnalyzer
@@ -450,19 +464,22 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|TermEnum
+name|TermsEnum
 name|termEnum
 init|=
-literal|null
+name|MultiFields
+operator|.
+name|getTerms
+argument_list|(
+name|reader
+argument_list|,
+literal|"content"
+argument_list|)
+operator|.
+name|iterator
+argument_list|()
 decl_stmt|;
 comment|// create enumeration of all terms
-name|termEnum
-operator|=
-name|reader
-operator|.
-name|terms
-argument_list|()
-expr_stmt|;
 comment|// go to the first term (aaa)
 name|termEnum
 operator|.
@@ -479,7 +496,7 @@ operator|.
 name|term
 argument_list|()
 operator|.
-name|text
+name|utf8ToString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -509,7 +526,7 @@ operator|.
 name|term
 argument_list|()
 operator|.
-name|text
+name|utf8ToString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -523,23 +540,15 @@ name|docFreq
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// create enumeration of terms after term 'aaa',
+comment|// including 'aaa'
 name|termEnum
 operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// create enumeration of terms after term 'aaa', including 'aaa'
-name|termEnum
-operator|=
-name|reader
-operator|.
-name|terms
+name|seek
 argument_list|(
 operator|new
-name|Term
+name|BytesRef
 argument_list|(
-literal|"content"
-argument_list|,
 literal|"aaa"
 argument_list|)
 argument_list|)
@@ -554,7 +563,7 @@ operator|.
 name|term
 argument_list|()
 operator|.
-name|text
+name|utf8ToString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -584,7 +593,7 @@ operator|.
 name|term
 argument_list|()
 operator|.
-name|text
+name|utf8ToString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -597,11 +606,6 @@ operator|.
 name|docFreq
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|termEnum
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|addDoc

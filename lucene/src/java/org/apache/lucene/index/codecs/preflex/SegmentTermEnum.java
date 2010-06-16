@@ -68,20 +68,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -112,8 +98,6 @@ specifier|public
 specifier|final
 class|class
 name|SegmentTermEnum
-extends|extends
-name|TermEnum
 implements|implements
 name|Cloneable
 block|{
@@ -567,8 +551,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Increments the enumeration to the next element.  True if one exists.*/
-annotation|@
-name|Override
 DECL|method|next
 specifier|public
 specifier|final
@@ -771,8 +753,6 @@ name|count
 return|;
 block|}
 comment|/** Returns the current Term in the enumeration.    Initially invalid, valid after next() called for the first time.*/
-annotation|@
-name|Override
 DECL|method|term
 specifier|public
 specifier|final
@@ -835,8 +815,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Returns the docFreq from the current TermInfo in the enumeration.    Initially invalid, valid after next() called for the first time.*/
-annotation|@
-name|Override
 DECL|method|docFreq
 specifier|public
 specifier|final
@@ -877,8 +855,6 @@ name|proxPointer
 return|;
 block|}
 comment|/** Closes the enumeration to further activity, freeing resources. */
-annotation|@
-name|Override
 DECL|method|close
 specifier|public
 specifier|final
