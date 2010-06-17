@@ -210,10 +210,14 @@ decl_stmt|;
 name|int
 name|numDocs
 init|=
-name|r
+name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
+name|r
+argument_list|,
+literal|1
+argument_list|,
 literal|100
 operator|*
 name|_TestUtil
