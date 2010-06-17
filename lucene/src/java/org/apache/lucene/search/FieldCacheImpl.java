@@ -4614,7 +4614,9 @@ argument_list|(
 name|bytes
 operator|.
 name|freeze
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 argument_list|,
 name|termOrdToBytesOffset
 operator|.
@@ -5148,7 +5150,9 @@ argument_list|(
 name|bytes
 operator|.
 name|freeze
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 argument_list|,
 name|docToOffset
 operator|.
