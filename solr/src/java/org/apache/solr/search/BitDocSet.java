@@ -337,6 +337,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
+comment|/** Returns true of the doc exists in the set.    *  Should only be called when doc< OpenBitSet.size()    */
 DECL|method|exists
 specifier|public
 name|boolean
@@ -349,7 +350,7 @@ block|{
 return|return
 name|bits
 operator|.
-name|get
+name|fastGet
 argument_list|(
 name|doc
 argument_list|)
