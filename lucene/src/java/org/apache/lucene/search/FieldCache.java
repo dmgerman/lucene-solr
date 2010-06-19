@@ -124,6 +124,22 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1495,6 +1511,16 @@ specifier|public
 specifier|abstract
 name|TermsEnum
 name|getTermsEnum
+parameter_list|()
+function_decl|;
+comment|/** @lucene.internal */
+DECL|method|getDocToOrd
+specifier|public
+specifier|abstract
+name|PackedInts
+operator|.
+name|Reader
+name|getDocToOrd
 parameter_list|()
 function_decl|;
 block|}
