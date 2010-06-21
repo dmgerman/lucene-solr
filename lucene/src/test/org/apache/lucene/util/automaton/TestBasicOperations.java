@@ -604,13 +604,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
-name|BasicOperations
+name|AutomatonTestUtil
 operator|.
 name|RandomAcceptedStrings
 name|rx
 init|=
 operator|new
-name|BasicOperations
+name|AutomatonTestUtil
 operator|.
 name|RandomAcceptedStrings
 argument_list|(

@@ -1056,13 +1056,13 @@ name|automaton
 argument_list|)
 decl_stmt|;
 specifier|final
-name|BasicOperations
+name|AutomatonTestUtil
 operator|.
 name|RandomAcceptedStrings
 name|ras
 init|=
 operator|new
-name|BasicOperations
+name|AutomatonTestUtil
 operator|.
 name|RandomAcceptedStrings
 argument_list|(
