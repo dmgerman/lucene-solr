@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.phonetic
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|phonetic
 package|;
 end_package
 
@@ -189,7 +191,7 @@ name|class
 argument_list|)
 decl_stmt|;
 DECL|method|DoubleMetaphoneFilter
-specifier|protected
+specifier|public
 name|DoubleMetaphoneFilter
 parameter_list|(
 name|TokenStream

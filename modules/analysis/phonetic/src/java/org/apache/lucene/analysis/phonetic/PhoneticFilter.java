@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.phonetic
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|phonetic
 package|;
 end_package
 
@@ -101,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create tokens for phonetic matches.  See:  * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *  * @version $Id$  */
+comment|/**  * Create tokens for phonetic matches.  See:  * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  */
 end_comment
 
 begin_class
@@ -124,13 +126,6 @@ DECL|field|encoder
 specifier|protected
 name|Encoder
 name|encoder
-init|=
-literal|null
-decl_stmt|;
-DECL|field|name
-specifier|protected
-name|String
-name|name
 init|=
 literal|null
 decl_stmt|;
@@ -177,9 +172,6 @@ parameter_list|,
 name|Encoder
 name|encoder
 parameter_list|,
-name|String
-name|name
-parameter_list|,
 name|boolean
 name|inject
 parameter_list|)
@@ -194,12 +186,6 @@ operator|.
 name|encoder
 operator|=
 name|encoder
-expr_stmt|;
-name|this
-operator|.
-name|name
-operator|=
-name|name
 expr_stmt|;
 name|this
 operator|.
