@@ -217,7 +217,7 @@ argument_list|()
 operator|.
 name|replaceAll
 argument_list|(
-literal|"[^a..zA..Z0..9]+"
+literal|"[^a-zA-Z0-9]+"
 argument_list|,
 literal|""
 argument_list|)
