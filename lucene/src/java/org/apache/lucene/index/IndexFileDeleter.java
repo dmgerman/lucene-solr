@@ -278,6 +278,11 @@ specifier|final
 name|boolean
 name|startingCommitDeleted
 decl_stmt|;
+DECL|field|lastSegmentInfos
+specifier|private
+name|SegmentInfos
+name|lastSegmentInfos
+decl_stmt|;
 comment|/** Change to true to see details of reference counts when    *  infoStream != null */
 DECL|field|VERBOSE_REF_COUNTS
 specifier|public
@@ -546,18 +551,6 @@ comment|// it's valid (<= the max gen).  Load it, then
 comment|// incref all files it refers to:
 if|if
 condition|(
-name|SegmentInfos
-operator|.
-name|generationFromSegmentsFileName
-argument_list|(
-name|fileName
-argument_list|)
-operator|<=
-name|currentGen
-condition|)
-block|{
-if|if
-condition|(
 name|infoStream
 operator|!=
 literal|null
@@ -629,6 +622,35 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|SegmentInfos
+operator|.
+name|generationFromSegmentsFileName
+argument_list|(
+name|fileName
+argument_list|)
+operator|<=
+name|currentGen
+condition|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+else|else
+block|{
+comment|// Most likely we are opening an index that
+comment|// has an aborted "future" commit, so suppress
+comment|// exc in this case
+block|}
+block|}
 if|if
 condition|(
 name|sis
@@ -680,6 +702,27 @@ name|sis
 argument_list|,
 literal|true
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|lastSegmentInfos
+operator|==
+literal|null
+operator|||
+name|sis
+operator|.
+name|getGeneration
+argument_list|()
+operator|>
+name|lastSegmentInfos
+operator|.
+name|getGeneration
+argument_list|()
+condition|)
+block|{
+name|lastSegmentInfos
+operator|=
+name|sis
 expr_stmt|;
 block|}
 block|}
@@ -903,6 +946,16 @@ expr_stmt|;
 name|deleteCommits
 argument_list|()
 expr_stmt|;
+block|}
+DECL|method|getLastSegmentInfos
+specifier|public
+name|SegmentInfos
+name|getLastSegmentInfos
+parameter_list|()
+block|{
+return|return
+name|lastSegmentInfos
+return|;
 block|}
 comment|/**    * Remove the CommitPoints in the commitsToDelete List by    * DecRef'ing all files from each SegmentInfos.    */
 DECL|method|deleteCommits
