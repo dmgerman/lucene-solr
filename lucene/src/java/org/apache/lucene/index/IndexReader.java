@@ -2511,10 +2511,6 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|// Only used by external subclasses of IndexReader; all
-comment|// internal classes should implement Bits more
-comment|// efficiently:
-comment|/*   private final class DeletedDocsBits implements Bits {     public boolean get(int docID) {       return isDeleted(docID);     }     public int length() {       return maxDoc();     }   }    private Bits deletedDocsBits;   */
 comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    * @lucene.experimental */
 DECL|method|getDeletedDocs
 specifier|public
