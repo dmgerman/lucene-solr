@@ -420,9 +420,8 @@ expr_stmt|;
 if|if
 condition|(
 name|indexDivisor
-operator|==
-operator|-
-literal|1
+operator|<
+literal|0
 condition|)
 block|{
 name|totalIndexInterval
@@ -602,9 +601,8 @@ block|{
 if|if
 condition|(
 name|indexDivisor
-operator|!=
-operator|-
-literal|1
+operator|>
+literal|0
 condition|)
 block|{
 name|in
@@ -781,9 +779,8 @@ comment|// isIndexTerm for each field:
 if|if
 condition|(
 name|indexDivisor
-operator|!=
-operator|-
-literal|1
+operator|>
+literal|0
 condition|)
 block|{
 name|coreIndex
@@ -981,7 +978,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// You must call loadTermsIndex if you had specified -1 for indexDivisor
+comment|// You must call loadTermsIndex if you had specified
+comment|// indexDivisor< 0 to ctor
 if|if
 condition|(
 name|coreIndex

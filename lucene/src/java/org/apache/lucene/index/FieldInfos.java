@@ -248,11 +248,13 @@ name|int
 name|format
 decl_stmt|;
 DECL|method|FieldInfos
+specifier|public
 name|FieldInfos
 parameter_list|()
 block|{ }
 comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * IndexInput    * @param d The directory to open the IndexInput from    * @param name The name of the file to open the IndexInput from in the Directory    * @throws IOException    */
 DECL|method|FieldInfos
+specifier|public
 name|FieldInfos
 parameter_list|(
 name|Directory

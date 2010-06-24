@@ -11534,7 +11534,10 @@ argument_list|,
 name|MERGE_READ_BUFFER_SIZE
 argument_list|,
 operator|-
-literal|1
+name|config
+operator|.
+name|getReaderTermsIndexDivisor
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// We clone the segment readers because other

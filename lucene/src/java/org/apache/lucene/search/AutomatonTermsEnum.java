@@ -378,7 +378,7 @@ name|sortTransitions
 argument_list|(
 name|Transition
 operator|.
-name|CompareByMinMaxThenDestUTF8InUTF16Order
+name|CompareByMinMaxThenDest
 argument_list|)
 expr_stmt|;
 name|state
@@ -645,12 +645,6 @@ argument_list|()
 condition|)
 block|{
 comment|// reposition
-comment|// FIXME: this is really bad to turn off
-comment|// but it cannot work correctly until terms are in utf8 order.
-name|linear
-operator|=
-literal|false
-expr_stmt|;
 if|if
 condition|(
 name|linear
@@ -774,29 +768,11 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|compareToUTF16
-argument_list|(
 name|t
 operator|.
 name|getMin
 argument_list|()
-argument_list|,
-operator|(
-name|seekBytesRef
-operator|.
-name|bytes
-index|[
-name|position
-index|]
-operator|&
-literal|0xff
-operator|)
-argument_list|)
 operator|<=
-literal|0
-operator|&&
-name|compareToUTF16
-argument_list|(
 operator|(
 name|seekBytesRef
 operator|.
@@ -807,14 +783,22 @@ index|]
 operator|&
 literal|0xff
 operator|)
-argument_list|,
+operator|&&
+operator|(
+name|seekBytesRef
+operator|.
+name|bytes
+index|[
+name|position
+index|]
+operator|&
+literal|0xff
+operator|)
+operator|<=
 name|t
 operator|.
 name|getMax
 argument_list|()
-argument_list|)
-operator|<=
-literal|0
 condition|)
 block|{
 name|maxInterval
@@ -827,16 +811,16 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|// 0xef terms don't get the optimization... not worth the trouble.
+comment|// 0xff terms don't get the optimization... not worth the trouble.
 if|if
 condition|(
 name|maxInterval
 operator|!=
-literal|0xef
+literal|0xff
 condition|)
 name|maxInterval
 operator|=
-name|incrementUTF16
+name|incrementUTF8
 argument_list|(
 name|maxInterval
 argument_list|)
@@ -1124,7 +1108,7 @@ comment|// then by definition it puts us in a reject state, and therefore this
 comment|// path is dead. there cannot be any higher transitions. backtrack.
 name|c
 operator|=
-name|incrementUTF16
+name|incrementUTF8
 argument_list|(
 name|c
 argument_list|)
@@ -1190,23 +1174,20 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|compareToUTF16
-argument_list|(
 name|transition
 operator|.
 name|getMax
 argument_list|()
-argument_list|,
-name|c
-argument_list|)
 operator|>=
-literal|0
+name|c
 condition|)
 block|{
 name|int
 name|nextChar
 init|=
-name|compareToUTF16
+name|Math
+operator|.
+name|max
 argument_list|(
 name|c
 argument_list|,
@@ -1215,15 +1196,6 @@ operator|.
 name|getMin
 argument_list|()
 argument_list|)
-operator|>
-literal|0
-condition|?
-name|c
-else|:
-name|transition
-operator|.
-name|getMin
-argument_list|()
 decl_stmt|;
 comment|// append either the next sequential char, or the minimum transition
 name|seekBytesRef
@@ -1420,11 +1392,11 @@ index|]
 operator|&
 literal|0xff
 decl_stmt|;
-comment|// if a character is 0xef its a dead-end too,
-comment|// because there is no higher character in UTF-16 sort order.
+comment|// if a character is 0xff its a dead-end too,
+comment|// because there is no higher character in UTF-8 sort order.
 name|nextChar
 operator|=
-name|incrementUTF16
+name|incrementUTF8
 argument_list|(
 name|nextChar
 argument_list|)
@@ -1470,12 +1442,12 @@ literal|false
 return|;
 comment|/* all solutions exhausted */
 block|}
-comment|/* return the next utf8 byte in utf16 order, or -1 if exhausted */
-DECL|method|incrementUTF16
+comment|/* return the next utf8 byte in utf8 order, or -1 if exhausted */
+DECL|method|incrementUTF8
 specifier|private
 specifier|final
 name|int
-name|incrementUTF16
+name|incrementUTF8
 parameter_list|(
 name|int
 name|utf8
@@ -1487,25 +1459,7 @@ name|utf8
 condition|)
 block|{
 case|case
-literal|0xed
-case|:
-return|return
-literal|0xf0
-return|;
-case|case
-literal|0xfd
-case|:
-return|return
-literal|0xee
-return|;
-case|case
-literal|0xee
-case|:
-return|return
-literal|0xef
-return|;
-case|case
-literal|0xef
+literal|0xff
 case|:
 return|return
 operator|-
@@ -1518,82 +1472,6 @@ operator|+
 literal|1
 return|;
 block|}
-block|}
-DECL|method|compareToUTF16
-name|int
-name|compareToUTF16
-parameter_list|(
-name|int
-name|aByte
-parameter_list|,
-name|int
-name|bByte
-parameter_list|)
-block|{
-if|if
-condition|(
-name|aByte
-operator|!=
-name|bByte
-condition|)
-block|{
-comment|// See http://icu-project.org/docs/papers/utf16_code_point_order.html#utf-8-in-utf-16-order
-comment|// We know the terms are not equal, but, we may
-comment|// have to carefully fixup the bytes at the
-comment|// difference to match UTF16's sort order:
-if|if
-condition|(
-name|aByte
-operator|>=
-literal|0xee
-operator|&&
-name|bByte
-operator|>=
-literal|0xee
-condition|)
-block|{
-if|if
-condition|(
-operator|(
-name|aByte
-operator|&
-literal|0xfe
-operator|)
-operator|==
-literal|0xee
-condition|)
-block|{
-name|aByte
-operator|+=
-literal|0x10
-expr_stmt|;
-block|}
-if|if
-condition|(
-operator|(
-name|bByte
-operator|&
-literal|0xfe
-operator|)
-operator|==
-literal|0xee
-condition|)
-block|{
-name|bByte
-operator|+=
-literal|0x10
-expr_stmt|;
-block|}
-block|}
-return|return
-name|aByte
-operator|-
-name|bByte
-return|;
-block|}
-return|return
-literal|0
-return|;
 block|}
 block|}
 end_class

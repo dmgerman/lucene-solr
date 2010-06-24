@@ -264,7 +264,7 @@ name|docs
 argument_list|,
 name|BytesRef
 operator|.
-name|getUTF8SortedAsUTF16Comparator
+name|getUTF8SortedAsUnicodeComparator
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -379,7 +379,7 @@ name|termsIndexDivisor
 argument_list|,
 name|BytesRef
 operator|.
-name|getUTF8SortedAsUTF16Comparator
+name|getUTF8SortedAsUnicodeComparator
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -439,7 +439,7 @@ name|readBufferSize
 argument_list|,
 name|BytesRef
 operator|.
-name|getUTF8SortedAsUTF16Comparator
+name|getUTF8SortedAsUnicodeComparator
 argument_list|()
 argument_list|,
 name|TERMS_CACHE_SIZE
