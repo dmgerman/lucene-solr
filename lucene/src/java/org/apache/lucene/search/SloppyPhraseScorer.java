@@ -18,20 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsAndPositionsEnum
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -87,13 +73,11 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|DocsAndPositionsEnum
+name|PhraseQuery
+operator|.
+name|PostingsAndFreq
 index|[]
 name|postings
-parameter_list|,
-name|int
-index|[]
-name|offsets
 parameter_list|,
 name|Similarity
 name|similarity
@@ -112,8 +96,6 @@ name|weight
 argument_list|,
 name|postings
 argument_list|,
-name|offsets
-argument_list|,
 name|similarity
 argument_list|,
 name|norms
@@ -131,7 +113,6 @@ annotation|@
 name|Override
 DECL|method|phraseFreq
 specifier|protected
-specifier|final
 name|float
 name|phraseFreq
 parameter_list|()
