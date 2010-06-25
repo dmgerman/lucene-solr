@@ -649,6 +649,10 @@ block|{
 comment|// Most likely we are opening an index that
 comment|// has an aborted "future" commit, so suppress
 comment|// exc in this case
+name|sis
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 if|if
