@@ -1246,6 +1246,8 @@ name|String
 index|[]
 block|{
 literal|"x"
+block|,
+literal|"a"
 block|}
 argument_list|,
 operator|new
@@ -1260,9 +1262,11 @@ literal|null
 argument_list|,
 name|req
 argument_list|,
-literal|"//*[@numFound='1']"
+literal|"//*[@numFound='2']"
 argument_list|,
 literal|"//result/doc[1]/str[@name='id'][.='x']"
+argument_list|,
+literal|"//result/doc[2]/str[@name='id'][.='a']"
 argument_list|)
 expr_stmt|;
 comment|// Test exclusion
