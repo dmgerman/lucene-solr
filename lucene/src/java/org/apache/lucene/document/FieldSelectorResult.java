@@ -49,6 +49,10 @@ block|,
 comment|/** Expert: Like {@link #SIZE} but immediately break from the field loading loop, i.e., stop loading further fields, after the size is loaded */
 DECL|enum constant|SIZE_AND_BREAK
 name|SIZE_AND_BREAK
+block|,
+comment|/**      * Lazily load this {@link Field}, but do not cache the result.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} SHOULD NOT BE USED.  {@link Document#getFieldable(String)} is safe to use and should      * return a valid instance of a {@link Fieldable}.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+DECL|enum constant|LATENT
+name|LATENT
 block|}
 end_enum
 
