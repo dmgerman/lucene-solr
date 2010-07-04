@@ -1682,6 +1682,21 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+comment|// LUCENE-2526
+DECL|method|testEmptyToString
+specifier|public
+name|void
+name|testEmptyToString
+parameter_list|()
+block|{
+operator|new
+name|MultiPhraseQuery
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
