@@ -98,23 +98,36 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_class
 DECL|class|TestSurrogates
 specifier|public
 class|class
 name|TestSurrogates
 extends|extends
-name|LuceneTestCase
+name|LuceneTestCaseJ4
 block|{
-DECL|field|DEBUG
-specifier|private
-specifier|static
-specifier|final
-name|boolean
-name|DEBUG
-init|=
-literal|false
-decl_stmt|;
 comment|// like Term, but uses BytesRef for text
 DECL|class|FieldAndText
 specifier|private
@@ -636,7 +649,7 @@ literal|0
 decl_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 name|System
@@ -730,7 +743,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 name|System
@@ -782,7 +795,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 name|System
@@ -909,6 +922,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Test
 DECL|method|testSurrogatesOrder
 specifier|public
 name|void
@@ -1012,7 +1027,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 name|System
@@ -1117,7 +1132,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 name|System
@@ -1232,7 +1247,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|DEBUG
+name|VERBOSE
 condition|)
 block|{
 name|System
