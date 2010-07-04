@@ -208,6 +208,26 @@ block|,
 literal|"<b style=\"background:lime\">"
 block|,
 literal|"<b style=\"background:deepskyblue\">"
+block|,
+literal|"<b style=\"background:deeppink\">"
+block|,
+literal|"<b style=\"background:salmon\">"
+block|,
+literal|"<b style=\"background:peachpuff\">"
+block|,
+literal|"<b style=\"background:violet\">"
+block|,
+literal|"<b style=\"background:mediumpurple\">"
+block|,
+literal|"<b style=\"background:palegoldenrod\">"
+block|,
+literal|"<b style=\"background:darkkhaki\">"
+block|,
+literal|"<b style=\"background:springgreen\">"
+block|,
+literal|"<b style=\"background:turquoise\">"
+block|,
+literal|"<b style=\"background:powderblue\">"
 block|}
 decl_stmt|;
 DECL|field|COLORED_POST_TAGS
@@ -1153,21 +1173,19 @@ name|int
 name|num
 parameter_list|)
 block|{
-return|return
+name|int
+name|n
+init|=
+name|num
+operator|%
 name|preTags
 operator|.
 name|length
-operator|>
-name|num
-condition|?
+decl_stmt|;
+return|return
 name|preTags
 index|[
-name|num
-index|]
-else|:
-name|preTags
-index|[
-literal|0
+name|n
 index|]
 return|;
 block|}
@@ -1180,21 +1198,19 @@ name|int
 name|num
 parameter_list|)
 block|{
-return|return
+name|int
+name|n
+init|=
+name|num
+operator|%
 name|postTags
 operator|.
 name|length
-operator|>
-name|num
-condition|?
+decl_stmt|;
+return|return
 name|postTags
 index|[
-name|num
-index|]
-else|:
-name|postTags
-index|[
-literal|0
+name|n
 index|]
 return|;
 block|}
