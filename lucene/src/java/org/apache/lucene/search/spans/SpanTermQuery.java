@@ -431,19 +431,6 @@ block|{
 comment|// NOTE: debateably, the caller should never pass in a
 comment|// multi reader...
 specifier|final
-name|BytesRef
-name|textBytes
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-name|term
-operator|.
-name|text
-argument_list|()
-argument_list|)
-decl_stmt|;
-specifier|final
 name|DocsAndPositionsEnum
 name|postings
 init|=
@@ -465,7 +452,10 @@ operator|.
 name|field
 argument_list|()
 argument_list|,
-name|textBytes
+name|term
+operator|.
+name|bytes
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -507,7 +497,10 @@ operator|.
 name|field
 argument_list|()
 argument_list|,
-name|textBytes
+name|term
+operator|.
+name|bytes
+argument_list|()
 argument_list|)
 operator|!=
 literal|null

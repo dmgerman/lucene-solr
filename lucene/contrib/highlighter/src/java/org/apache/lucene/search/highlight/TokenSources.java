@@ -216,6 +216,20 @@ name|TermVectorOffsetInfo
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_comment
 comment|/**  * Hides implementation issues associated with obtaining a TokenStream for use  * with the higlighter - can obtain from TermFreqVectors with offsets and  * (optionally) positions or from Analyzer class reparsing the stored content.  */
 end_comment
@@ -586,7 +600,7 @@ return|;
 block|}
 block|}
 comment|// code to reconstruct the original sequence of Tokens
-name|String
+name|BytesRef
 index|[]
 name|terms
 init|=
@@ -771,6 +785,9 @@ name|terms
 index|[
 name|t
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 name|offsets
 index|[
@@ -835,6 +852,9 @@ name|terms
 index|[
 name|t
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 name|offsets
 index|[

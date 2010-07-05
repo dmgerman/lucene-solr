@@ -566,14 +566,10 @@ operator|.
 name|field
 argument_list|()
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
 name|idTerm
 operator|.
-name|text
+name|bytes
 argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if

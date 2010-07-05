@@ -677,7 +677,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|String
+name|BytesRef
 index|[]
 name|terms
 init|=
@@ -753,6 +753,9 @@ name|terms
 index|[
 name|i
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 decl_stmt|;
 name|int
 name|freq

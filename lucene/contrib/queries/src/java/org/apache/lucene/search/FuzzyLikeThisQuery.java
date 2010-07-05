@@ -1120,10 +1120,11 @@ operator|.
 name|field
 argument_list|()
 argument_list|,
+operator|new
+name|BytesRef
+argument_list|(
 name|possibleMatch
-operator|.
-name|utf8ToString
-argument_list|()
+argument_list|)
 argument_list|)
 argument_list|,
 name|score

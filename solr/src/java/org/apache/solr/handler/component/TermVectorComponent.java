@@ -2024,7 +2024,7 @@ specifier|public
 name|void
 name|map
 parameter_list|(
-name|String
+name|BytesRef
 name|term
 parameter_list|,
 name|int
@@ -2051,6 +2051,9 @@ operator|.
 name|add
 argument_list|(
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 name|termInfo
 argument_list|)
@@ -2264,7 +2267,7 @@ specifier|private
 name|int
 name|getDocFreq
 parameter_list|(
-name|String
+name|BytesRef
 name|term
 parameter_list|)
 block|{
@@ -2320,11 +2323,7 @@ name|termsEnum
 operator|.
 name|seek
 argument_list|(
-operator|new
-name|BytesRef
-argument_list|(
 name|term
-argument_list|)
 argument_list|)
 operator|==
 name|TermsEnum

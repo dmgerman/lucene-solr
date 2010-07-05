@@ -334,23 +334,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|query
-operator|.
-name|field
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"If you implement getTermsEnum(), you must specify a non-null field in the constructor of MultiTermQuery."
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|Fields
 name|fields

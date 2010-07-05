@@ -30,6 +30,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -103,7 +117,7 @@ decl_stmt|;
 DECL|field|terms
 specifier|private
 specifier|final
-name|String
+name|BytesRef
 name|terms
 index|[]
 decl_stmt|;
@@ -146,7 +160,7 @@ expr_stmt|;
 name|terms
 operator|=
 operator|new
-name|String
+name|BytesRef
 index|[
 name|termDocumentInformations
 operator|.
@@ -203,7 +217,10 @@ operator|.
 name|getTerm
 argument_list|()
 operator|.
-name|text
+name|getTerm
+argument_list|()
+operator|.
+name|bytes
 argument_list|()
 expr_stmt|;
 name|termFrequencies
@@ -361,7 +378,7 @@ return|;
 block|}
 DECL|method|getTerms
 specifier|public
-name|String
+name|BytesRef
 index|[]
 name|getTerms
 parameter_list|()
@@ -386,7 +403,7 @@ specifier|public
 name|int
 name|indexOf
 parameter_list|(
-name|String
+name|BytesRef
 name|termText
 parameter_list|)
 block|{
@@ -429,7 +446,7 @@ name|int
 index|[]
 name|indexesOf
 parameter_list|(
-name|String
+name|BytesRef
 index|[]
 name|termNumbers
 parameter_list|,

@@ -1816,6 +1816,9 @@ argument_list|()
 index|[
 name|i
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 decl_stmt|;
 name|InstantiatedTerm
 name|term

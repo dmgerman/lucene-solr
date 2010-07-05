@@ -774,6 +774,9 @@ argument_list|()
 index|[
 literal|0
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -850,6 +853,9 @@ argument_list|()
 index|[
 literal|1
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -926,6 +932,9 @@ argument_list|()
 index|[
 literal|2
 index|]
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals

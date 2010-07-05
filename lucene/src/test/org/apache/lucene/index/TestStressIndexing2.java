@@ -3241,7 +3241,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-name|String
+name|BytesRef
 index|[]
 name|terms1
 init|=
@@ -3250,7 +3250,7 @@ operator|.
 name|getTerms
 argument_list|()
 decl_stmt|;
-name|String
+name|BytesRef
 index|[]
 name|terms2
 init|=

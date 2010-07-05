@@ -1328,6 +1328,7 @@ name|i
 index|]
 operator|.
 name|text
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|sb

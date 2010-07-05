@@ -113,14 +113,10 @@ name|setInitialSeekTerm
 argument_list|(
 name|prefixRef
 operator|=
-operator|new
-name|BytesRef
-argument_list|(
 name|prefix
 operator|.
-name|text
+name|bytes
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

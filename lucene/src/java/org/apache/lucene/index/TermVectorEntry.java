@@ -12,6 +12,20 @@ name|index
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_comment
 comment|/**  * Copyright 2007 The Apache Software Foundation  *<p/>  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *<p/>  * http://www.apache.org/licenses/LICENSE-2.0  *<p/>  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -33,7 +47,7 @@ name|field
 decl_stmt|;
 DECL|field|term
 specifier|private
-name|String
+name|BytesRef
 name|term
 decl_stmt|;
 DECL|field|frequency
@@ -64,7 +78,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|String
+name|BytesRef
 name|term
 parameter_list|,
 name|int
@@ -154,7 +168,7 @@ return|;
 block|}
 DECL|method|getTerm
 specifier|public
-name|String
+name|BytesRef
 name|getTerm
 parameter_list|()
 block|{

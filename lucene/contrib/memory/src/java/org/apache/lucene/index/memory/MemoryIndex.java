@@ -717,7 +717,7 @@ return|;
 return|return
 operator|(
 operator|(
-name|String
+name|Comparable
 operator|)
 name|o1
 operator|)
@@ -725,7 +725,7 @@ operator|.
 name|compareTo
 argument_list|(
 operator|(
-name|String
+name|Comparable
 operator|)
 name|o2
 argument_list|)
@@ -1148,7 +1148,7 @@ argument_list|)
 throw|;
 name|HashMap
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -1157,7 +1157,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -1184,7 +1184,7 @@ name|termAtt
 init|=
 name|stream
 operator|.
-name|addAttribute
+name|getAttribute
 argument_list|(
 name|TermToBytesRefAttribute
 operator|.
@@ -1244,21 +1244,11 @@ argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
-comment|// TODO: support non-UTF8 strings (like numerics) here
-name|String
-name|term
-init|=
-name|ref
-operator|.
-name|utf8ToString
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
-name|term
+name|ref
 operator|.
 name|length
-argument_list|()
 operator|==
 literal|0
 condition|)
@@ -1297,7 +1287,7 @@ name|terms
 operator|.
 name|get
 argument_list|(
-name|term
+name|ref
 argument_list|)
 decl_stmt|;
 if|if
@@ -1320,7 +1310,11 @@ name|terms
 operator|.
 name|put
 argument_list|(
-name|term
+operator|new
+name|BytesRef
+argument_list|(
+name|ref
+argument_list|)
 argument_list|,
 name|positions
 argument_list|)
@@ -1827,7 +1821,7 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -1857,7 +1851,7 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -1868,6 +1862,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|// FIXME: this calculation is probably not correct since we use bytes now.
 name|size
 operator|+=
 name|VM
@@ -2113,7 +2108,7 @@ name|sortFields
 argument_list|()
 expr_stmt|;
 name|int
-name|sumChars
+name|sumBytes
 init|=
 literal|0
 decl_stmt|;
@@ -2190,7 +2185,7 @@ literal|":\n"
 argument_list|)
 expr_stmt|;
 name|int
-name|numChars
+name|numBytes
 init|=
 literal|0
 decl_stmt|;
@@ -2222,7 +2217,7 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -2235,7 +2230,7 @@ index|[
 name|j
 index|]
 decl_stmt|;
-name|String
+name|BytesRef
 name|term
 init|=
 name|e
@@ -2296,12 +2291,11 @@ argument_list|(
 name|positions
 argument_list|)
 expr_stmt|;
-name|numChars
+name|numBytes
 operator|+=
 name|term
 operator|.
 name|length
-argument_list|()
 expr_stmt|;
 block|}
 name|result
@@ -2330,10 +2324,10 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|", Kchars="
+literal|", Kbytes="
 operator|+
 operator|(
-name|numChars
+name|numBytes
 operator|/
 literal|1000.0f
 operator|)
@@ -2350,9 +2344,9 @@ name|sumPositions
 operator|+=
 name|numPositions
 expr_stmt|;
-name|sumChars
+name|sumBytes
 operator|+=
-name|numChars
+name|numBytes
 expr_stmt|;
 name|sumTerms
 operator|+=
@@ -2396,10 +2390,10 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|", Kchars="
+literal|", Kbytes="
 operator|+
 operator|(
-name|sumChars
+name|sumBytes
 operator|/
 literal|1000.0f
 operator|)
@@ -2446,7 +2440,7 @@ specifier|private
 specifier|final
 name|HashMap
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -2460,7 +2454,7 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -2510,7 +2504,7 @@ name|Info
 parameter_list|(
 name|HashMap
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -2578,7 +2572,7 @@ specifier|public
 name|ArrayIntList
 name|getPositions
 parameter_list|(
-name|String
+name|BytesRef
 name|term
 parameter_list|)
 block|{
@@ -3256,7 +3250,7 @@ name|getPositions
 argument_list|(
 name|term
 operator|.
-name|text
+name|bytes
 argument_list|()
 argument_list|)
 operator|!=
@@ -3555,15 +3549,6 @@ name|boolean
 name|useCache
 parameter_list|)
 block|{
-specifier|final
-name|String
-name|s
-init|=
-name|text
-operator|.
-name|utf8ToString
-argument_list|()
-decl_stmt|;
 name|termUpto
 operator|=
 name|Arrays
@@ -3574,7 +3559,7 @@ name|info
 operator|.
 name|sortedTerms
 argument_list|,
-name|s
+name|text
 argument_list|,
 name|termComparator
 argument_list|)
@@ -4729,7 +4714,7 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|String
+name|BytesRef
 argument_list|,
 name|ArrayIntList
 argument_list|>
@@ -4761,17 +4746,17 @@ name|length
 return|;
 block|}
 specifier|public
-name|String
+name|BytesRef
 index|[]
 name|getTerms
 parameter_list|()
 block|{
-name|String
+name|BytesRef
 index|[]
 name|terms
 init|=
 operator|new
-name|String
+name|BytesRef
 index|[
 name|sortedTerms
 operator|.
@@ -4871,7 +4856,7 @@ specifier|public
 name|int
 name|indexOf
 parameter_list|(
-name|String
+name|BytesRef
 name|term
 parameter_list|)
 block|{
@@ -4905,7 +4890,7 @@ name|int
 index|[]
 name|indexesOf
 parameter_list|(
-name|String
+name|BytesRef
 index|[]
 name|terms
 parameter_list|,

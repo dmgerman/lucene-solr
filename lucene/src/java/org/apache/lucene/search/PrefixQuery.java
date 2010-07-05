@@ -179,11 +179,10 @@ if|if
 condition|(
 name|prefix
 operator|.
-name|text
+name|bytes
 argument_list|()
 operator|.
 name|length
-argument_list|()
 operator|==
 literal|0
 condition|)

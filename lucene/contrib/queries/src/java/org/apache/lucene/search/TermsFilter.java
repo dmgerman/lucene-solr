@@ -398,7 +398,7 @@ name|copy
 argument_list|(
 name|term
 operator|.
-name|text
+name|bytes
 argument_list|()
 argument_list|)
 expr_stmt|;

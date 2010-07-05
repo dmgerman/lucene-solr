@@ -3159,13 +3159,9 @@ name|term
 operator|.
 name|field
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
 name|term
 operator|.
-name|text
-argument_list|)
+name|bytes
 argument_list|)
 decl_stmt|;
 name|int

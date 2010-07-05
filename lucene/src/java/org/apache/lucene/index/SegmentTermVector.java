@@ -26,6 +26,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_class
 DECL|class|SegmentTermVector
 class|class
@@ -40,7 +54,7 @@ name|field
 decl_stmt|;
 DECL|field|terms
 specifier|private
-name|String
+name|BytesRef
 name|terms
 index|[]
 decl_stmt|;
@@ -56,7 +70,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|String
+name|BytesRef
 name|terms
 index|[]
 parameter_list|,
@@ -225,7 +239,7 @@ return|;
 block|}
 DECL|method|getTerms
 specifier|public
-name|String
+name|BytesRef
 index|[]
 name|getTerms
 parameter_list|()
@@ -250,8 +264,8 @@ specifier|public
 name|int
 name|indexOf
 parameter_list|(
-name|String
-name|termText
+name|BytesRef
+name|termBytes
 parameter_list|)
 block|{
 if|if
@@ -273,7 +287,7 @@ name|binarySearch
 argument_list|(
 name|terms
 argument_list|,
-name|termText
+name|termBytes
 argument_list|)
 decl_stmt|;
 return|return
@@ -293,7 +307,7 @@ name|int
 index|[]
 name|indexesOf
 parameter_list|(
-name|String
+name|BytesRef
 index|[]
 name|termNumbers
 parameter_list|,
