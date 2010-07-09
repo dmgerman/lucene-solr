@@ -579,8 +579,9 @@ return|return
 name|diagnostics
 return|;
 block|}
-comment|/**    * Construct a new SegmentInfo instance by reading a    * previously saved SegmentInfo from input.    *    * @param dir directory to load from    * @param format format of the segments info file    * @param input input handle to read segment info from    */
+comment|/**    * Construct a new SegmentInfo instance by reading a    * previously saved SegmentInfo from input.    *<p>Note: this is public only to allow access from    * the codecs package.</p>    *    * @param dir directory to load from    * @param format format of the segments info file    * @param input input handle to read segment info from    */
 DECL|method|SegmentInfo
+specifier|public
 name|SegmentInfo
 parameter_list|(
 name|Directory
@@ -1481,6 +1482,7 @@ expr_stmt|;
 block|}
 comment|/** Save this segment's info. */
 DECL|method|write
+specifier|public
 name|void
 name|write
 parameter_list|(
