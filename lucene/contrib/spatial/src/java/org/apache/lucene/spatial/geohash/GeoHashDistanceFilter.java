@@ -396,9 +396,6 @@ name|d
 operator|=
 name|DistanceUtils
 operator|.
-name|getInstance
-argument_list|()
-operator|.
 name|getDistanceMi
 argument_list|(
 name|lat

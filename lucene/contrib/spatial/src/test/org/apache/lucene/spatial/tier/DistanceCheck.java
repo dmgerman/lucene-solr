@@ -86,9 +86,6 @@ name|dis
 init|=
 name|DistanceUtils
 operator|.
-name|getInstance
-argument_list|()
-operator|.
 name|getDistanceMi
 argument_list|(
 name|lat1
