@@ -1346,9 +1346,7 @@ name|docs
 argument_list|(
 name|b
 argument_list|,
-name|entry
-operator|.
-name|reuseDocs
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -1358,10 +1356,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|entry
-operator|.
-name|reuseDocs
-operator|=
 name|subDocs
 index|[
 name|upto
@@ -1625,9 +1619,7 @@ name|docsAndPositions
 argument_list|(
 name|b
 argument_list|,
-name|entry
-operator|.
-name|reusePostings
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -1637,10 +1629,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|entry
-operator|.
-name|reusePostings
-operator|=
 name|subDocsAndPositions
 index|[
 name|upto
@@ -1677,9 +1665,7 @@ name|docs
 argument_list|(
 name|b
 argument_list|,
-name|entry
-operator|.
-name|reuseDocs
+literal|null
 argument_list|)
 operator|!=
 literal|null
@@ -1739,16 +1725,6 @@ specifier|private
 name|TermsEnum
 name|terms
 decl_stmt|;
-DECL|field|reuseDocs
-specifier|private
-name|DocsEnum
-name|reuseDocs
-decl_stmt|;
-DECL|field|reusePostings
-specifier|private
-name|DocsAndPositionsEnum
-name|reusePostings
-decl_stmt|;
 DECL|field|current
 specifier|public
 name|BytesRef
@@ -1805,15 +1781,6 @@ expr_stmt|;
 name|current
 operator|=
 name|term
-expr_stmt|;
-comment|// TODO: can we not null these?
-name|reuseDocs
-operator|=
-literal|null
-expr_stmt|;
-name|reusePostings
-operator|=
-literal|null
 expr_stmt|;
 block|}
 block|}
