@@ -78,7 +78,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -468,6 +468,11 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
+DECL|field|reader
+specifier|private
+name|IndexReader
+name|reader
+decl_stmt|;
 DECL|method|doSearch
 specifier|private
 name|TopDocsCollector
@@ -495,9 +500,7 @@ init|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|dir
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 decl_stmt|;
 name|TopDocsCollector
@@ -547,12 +550,15 @@ argument_list|()
 expr_stmt|;
 comment|// populate an index with 30 documents, this should be enough for the test.
 comment|// The documents have no content - the test uses MatchAllDocsQuery().
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|dir
 argument_list|,
 operator|new
@@ -591,6 +597,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|reader
+operator|=
+name|writer
+operator|.
+name|getReader
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -607,6 +620,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|dir
 operator|.
 name|close

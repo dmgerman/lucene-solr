@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test of the DisjunctionMaxQuery.  *  */
+comment|/**  * Test of the DisjunctionMaxQuery.  *   */
 end_comment
 
 begin_class
@@ -198,7 +198,7 @@ name|SCORE_COMP_THRESH
 init|=
 literal|0.0000f
 decl_stmt|;
-comment|/**      * Similarity to eliminate tf, idf and lengthNorm effects to      * isolate test case.      *      *<p>      * same as TestRankingSimilarity in TestRanking.zip from      * http://issues.apache.org/jira/browse/LUCENE-323      *</p>      */
+comment|/**    * Similarity to eliminate tf, idf and lengthNorm effects to isolate test    * case.    *     *<p>    * same as TestRankingSimilarity in TestRanking.zip from    * http://issues.apache.org/jira/browse/LUCENE-323    *</p>    */
 DECL|class|TestSimilarity
 specifier|private
 specifier|static
@@ -211,7 +211,7 @@ DECL|method|TestSimilarity
 specifier|public
 name|TestSimilarity
 parameter_list|()
-block|{         }
+block|{}
 annotation|@
 name|Override
 DECL|method|tf
@@ -319,12 +319,15 @@ operator|new
 name|RAMDirectory
 argument_list|()
 expr_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|index
 argument_list|,
 operator|new
@@ -344,7 +347,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// hed is the most important field, dek is secondary
-comment|// d1 is an "ok" match for:  albino elephant
+comment|// d1 is an "ok" match for: albino elephant
 block|{
 name|Document
 name|d1
@@ -378,7 +381,8 @@ name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Keyword("id", "d1"));
+comment|// Field.Keyword("id",
+comment|// "d1"));
 name|d1
 operator|.
 name|add
@@ -404,7 +408,7 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("hed", "elephant"));
+comment|// Field.Text("hed", "elephant"));
 name|d1
 operator|.
 name|add
@@ -430,7 +434,7 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("dek", "elephant"));
+comment|// Field.Text("dek", "elephant"));
 name|writer
 operator|.
 name|addDocument
@@ -439,7 +443,7 @@ name|d1
 argument_list|)
 expr_stmt|;
 block|}
-comment|// d2 is a "good" match for:  albino elephant
+comment|// d2 is a "good" match for: albino elephant
 block|{
 name|Document
 name|d2
@@ -473,7 +477,8 @@ name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Keyword("id", "d2"));
+comment|// Field.Keyword("id",
+comment|// "d2"));
 name|d2
 operator|.
 name|add
@@ -499,7 +504,7 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("hed", "elephant"));
+comment|// Field.Text("hed", "elephant"));
 name|d2
 operator|.
 name|add
@@ -525,7 +530,8 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("dek", "albino"));
+comment|// Field.Text("dek",
+comment|// "albino"));
 name|d2
 operator|.
 name|add
@@ -551,7 +557,7 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("dek", "elephant"));
+comment|// Field.Text("dek", "elephant"));
 name|writer
 operator|.
 name|addDocument
@@ -560,7 +566,7 @@ name|d2
 argument_list|)
 expr_stmt|;
 block|}
-comment|// d3 is a "better" match for:  albino elephant
+comment|// d3 is a "better" match for: albino elephant
 block|{
 name|Document
 name|d3
@@ -594,7 +600,8 @@ name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Keyword("id", "d3"));
+comment|// Field.Keyword("id",
+comment|// "d3"));
 name|d3
 operator|.
 name|add
@@ -620,7 +627,8 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("hed", "albino"));
+comment|// Field.Text("hed",
+comment|// "albino"));
 name|d3
 operator|.
 name|add
@@ -646,7 +654,7 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("hed", "elephant"));
+comment|// Field.Text("hed", "elephant"));
 name|writer
 operator|.
 name|addDocument
@@ -655,7 +663,7 @@ name|d3
 argument_list|)
 expr_stmt|;
 block|}
-comment|// d4 is the "best" match for:  albino elephant
+comment|// d4 is the "best" match for: albino elephant
 block|{
 name|Document
 name|d4
@@ -689,7 +697,8 @@ name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Keyword("id", "d4"));
+comment|// Field.Keyword("id",
+comment|// "d4"));
 name|d4
 operator|.
 name|add
@@ -715,7 +724,8 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("hed", "albino"));
+comment|// Field.Text("hed",
+comment|// "albino"));
 name|d4
 operator|.
 name|add
@@ -741,7 +751,7 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("hed", "elephant"));
+comment|// Field.Text("hed", "elephant"));
 name|d4
 operator|.
 name|add
@@ -767,7 +777,8 @@ name|ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Field.Text("dek", "albino"));
+comment|// Field.Text("dek",
+comment|// "albino"));
 name|writer
 operator|.
 name|addDocument
@@ -776,21 +787,17 @@ name|d4
 argument_list|)
 expr_stmt|;
 block|}
+name|r
+operator|=
+name|writer
+operator|.
+name|getReader
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|r
-operator|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|index
-argument_list|,
-literal|true
-argument_list|)
 expr_stmt|;
 name|s
 operator|=
@@ -806,6 +813,37 @@ name|setSimilarity
 argument_list|(
 name|sim
 argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|protected
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|r
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|index
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSkipToFirsttimeMiss
@@ -1777,7 +1815,7 @@ operator|.
 name|MUST
 argument_list|)
 expr_stmt|;
-comment|//true,false);
+comment|// true,false);
 name|QueryUtils
 operator|.
 name|check
@@ -1835,7 +1873,7 @@ operator|.
 name|MUST
 argument_list|)
 expr_stmt|;
-comment|//true,false);
+comment|// true,false);
 name|QueryUtils
 operator|.
 name|check
@@ -2021,7 +2059,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-comment|//false,false);
+comment|// false,false);
 block|}
 block|{
 name|DisjunctionMaxQuery
@@ -2070,7 +2108,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-comment|//false,false);
+comment|// false,false);
 block|}
 name|QueryUtils
 operator|.
@@ -2307,7 +2345,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-comment|//false,false);
+comment|// false,false);
 block|}
 block|{
 name|DisjunctionMaxQuery
@@ -2356,7 +2394,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-comment|//false,false);
+comment|// false,false);
 block|}
 name|QueryUtils
 operator|.
@@ -2708,7 +2746,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-comment|//false,false);
+comment|// false,false);
 block|}
 block|{
 name|DisjunctionMaxQuery
@@ -2759,7 +2797,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-comment|//false,false);
+comment|// false,false);
 block|}
 name|QueryUtils
 operator|.

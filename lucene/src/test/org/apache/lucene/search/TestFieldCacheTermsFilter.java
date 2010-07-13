@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -180,12 +180,15 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|w
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|rd
 argument_list|,
 operator|new
@@ -264,23 +267,19 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+name|IndexReader
+name|reader
+init|=
+name|w
+operator|.
+name|getReader
+argument_list|()
+decl_stmt|;
 name|w
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
-name|reader
-init|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|rd
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
 name|IndexSearcher
 name|searcher
 init|=

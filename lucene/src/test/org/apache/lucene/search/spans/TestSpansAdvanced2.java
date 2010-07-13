@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*******************************************************************************  * Some expanded tests to make sure my patch doesn't break other SpanTermQuery  * functionality.  *  */
+comment|/*******************************************************************************  * Some expanded tests to make sure my patch doesn't break other SpanTermQuery  * functionality.  *   */
 end_comment
 
 begin_class
@@ -172,7 +172,11 @@ DECL|field|searcher2
 name|IndexSearcher
 name|searcher2
 decl_stmt|;
-comment|/**      * Initializes the tests by adding documents to the index.      */
+DECL|field|reader2
+name|IndexReader
+name|reader2
+decl_stmt|;
+comment|/**    * Initializes the tests by adding documents to the index.    */
 annotation|@
 name|Override
 DECL|method|setUp
@@ -190,12 +194,14 @@ argument_list|()
 expr_stmt|;
 comment|// create test index
 specifier|final
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|random
+argument_list|,
 name|mDirectory
 argument_list|,
 operator|new
@@ -264,6 +270,13 @@ argument_list|,
 literal|"Should we, should we, should we."
 argument_list|)
 expr_stmt|;
+name|reader2
+operator|=
+name|writer
+operator|.
+name|getReader
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -275,13 +288,37 @@ operator|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|mDirectory
-argument_list|,
-literal|true
+name|reader2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Verifies that the index has the correct number of documents.      *      * @throws Exception      */
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|protected
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|searcher2
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader2
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Verifies that the index has the correct number of documents.    *     * @throws Exception    */
 DECL|method|testVerifyIndex
 specifier|public
 name|void
@@ -319,7 +356,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Tests a single span query that matches multiple documents.      *      * @throws IOException      */
+comment|/**    * Tests a single span query that matches multiple documents.    *     * @throws IOException    */
 DECL|method|testSingleSpanQuery
 specifier|public
 name|void
@@ -390,7 +427,7 @@ block|,
 literal|0.35355338f
 block|,
 literal|0.26516503f
-block|, }
+block|,}
 decl_stmt|;
 name|assertHits
 argument_list|(
@@ -406,7 +443,7 @@ name|expectedScores
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Tests a single span query that matches multiple documents.      *      * @throws IOException      */
+comment|/**    * Tests a single span query that matches multiple documents.    *     * @throws IOException    */
 DECL|method|testMultipleDifferentSpanQueries
 specifier|public
 name|void
@@ -525,7 +562,7 @@ name|expectedScores
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Tests two span queries.      *      * @throws IOException      */
+comment|/**    * Tests two span queries.    *     * @throws IOException    */
 annotation|@
 name|Override
 DECL|method|testBooleanQueryWithSpanQueries

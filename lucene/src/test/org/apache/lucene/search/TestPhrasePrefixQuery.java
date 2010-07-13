@@ -82,6 +82,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|RandomIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|TermsEnum
 import|;
 end_import
@@ -97,20 +111,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriter
 import|;
 end_import
 
@@ -246,12 +246,15 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|indexStore
 argument_list|,
 operator|new
@@ -460,11 +463,14 @@ argument_list|(
 name|doc5
 argument_list|)
 expr_stmt|;
+name|IndexReader
+name|reader
+init|=
 name|writer
 operator|.
-name|optimize
+name|getReader
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|writer
 operator|.
 name|close
@@ -476,12 +482,10 @@ init|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|indexStore
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 decl_stmt|;
-comment|//PhrasePrefixQuery query1 = new PhrasePrefixQuery();
+comment|// PhrasePrefixQuery query1 = new PhrasePrefixQuery();
 name|MultiPhraseQuery
 name|query1
 init|=
@@ -489,7 +493,7 @@ operator|new
 name|MultiPhraseQuery
 argument_list|()
 decl_stmt|;
-comment|//PhrasePrefixQuery query2 = new PhrasePrefixQuery();
+comment|// PhrasePrefixQuery query2 = new PhrasePrefixQuery();
 name|MultiPhraseQuery
 name|query2
 init|=
@@ -536,18 +540,6 @@ name|Term
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|IndexReader
-name|ir
-init|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|indexStore
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
 comment|// this TermEnum gives "piccadilly", "pie" and "pizza".
 name|String
 name|prefix
@@ -561,7 +553,7 @@ name|MultiFields
 operator|.
 name|getFields
 argument_list|(
-name|ir
+name|reader
 argument_list|)
 operator|.
 name|terms
@@ -718,6 +710,21 @@ name|result
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|indexStore
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

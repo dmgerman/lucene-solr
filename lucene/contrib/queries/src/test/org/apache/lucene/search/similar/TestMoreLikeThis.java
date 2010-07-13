@@ -148,7 +148,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -162,7 +162,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -294,12 +294,15 @@ operator|new
 name|RAMDirectory
 argument_list|()
 expr_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|directory
 argument_list|,
 operator|new
@@ -328,21 +331,17 @@ argument_list|,
 literal|"lucene release"
 argument_list|)
 expr_stmt|;
+name|reader
+operator|=
+name|writer
+operator|.
+name|getReader
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|reader
-operator|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|directory
-argument_list|,
-literal|true
-argument_list|)
 expr_stmt|;
 name|searcher
 operator|=
@@ -389,7 +388,7 @@ specifier|private
 name|void
 name|addDoc
 parameter_list|(
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 parameter_list|,
 name|String

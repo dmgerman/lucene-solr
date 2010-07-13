@@ -88,36 +88,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -196,7 +166,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -210,7 +180,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -285,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for sorting code.  *  */
+comment|/**  * Unit test for sorting code.  *   */
 end_comment
 
 begin_class
@@ -304,6 +274,11 @@ name|Directory
 name|index
 init|=
 literal|null
+decl_stmt|;
+DECL|field|reader
+specifier|private
+name|IndexReader
+name|reader
 decl_stmt|;
 DECL|field|query
 specifier|private
@@ -327,80 +302,43 @@ operator|.
 name|getRandomMultiplier
 argument_list|()
 decl_stmt|;
-DECL|method|TestCustomSearcherSort
-specifier|public
-name|TestCustomSearcherSort
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|main
-specifier|public
-specifier|static
+comment|/**    * Create index and query for test cases.    */
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|protected
 name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|argv
-parameter_list|)
-block|{
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|suite
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|suite
-specifier|public
-specifier|static
-name|Test
-name|suite
-parameter_list|()
-block|{
-return|return
-operator|new
-name|TestSuite
-argument_list|(
-name|TestCustomSearcherSort
-operator|.
-name|class
-argument_list|)
-return|;
-block|}
-comment|// create an index for testing
-DECL|method|getIndex
-specifier|private
-name|Directory
-name|getIndex
+name|setUp
 parameter_list|()
 throws|throws
-name|IOException
+name|Exception
 block|{
-name|RAMDirectory
-name|indexStore
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+name|Random
+name|rand
 init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
+name|index
+operator|=
 operator|new
 name|RAMDirectory
 argument_list|()
-decl_stmt|;
-name|IndexWriter
+expr_stmt|;
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
-name|indexStore
+name|rand
+argument_list|,
+name|index
 argument_list|,
 operator|new
 name|IndexWriterConfig
@@ -419,8 +357,7 @@ init|=
 operator|new
 name|RandomGen
 argument_list|(
-name|newRandom
-argument_list|()
+name|rand
 argument_list|)
 decl_stmt|;
 for|for
@@ -438,7 +375,8 @@ operator|++
 name|i
 control|)
 block|{
-comment|// don't decrease; if to low the problem doesn't show up
+comment|// don't decrease; if to low the
+comment|// problem doesn't show up
 name|Document
 name|doc
 init|=
@@ -457,7 +395,8 @@ operator|!=
 literal|0
 condition|)
 block|{
-comment|// some documents must not have an entry in the first sort field
+comment|// some documents must not have an entry in the first
+comment|// sort field
 name|doc
 operator|.
 name|add
@@ -566,39 +505,16 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+name|reader
+operator|=
 name|writer
 operator|.
-name|optimize
+name|getReader
 argument_list|()
 expr_stmt|;
 name|writer
 operator|.
 name|close
-argument_list|()
-expr_stmt|;
-return|return
-name|indexStore
-return|;
-block|}
-comment|/**    * Create index and query for test cases.     */
-annotation|@
-name|Override
-DECL|method|setUp
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-name|index
-operator|=
-name|getIndex
 argument_list|()
 expr_stmt|;
 name|query
@@ -616,7 +532,33 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Run the test using two CustomSearcher instances.     */
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|protected
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|index
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Run the test using two CustomSearcher instances.    */
 DECL|method|testFieldSortCustomSearcher
 specifier|public
 name|void
@@ -654,7 +596,7 @@ init|=
 operator|new
 name|CustomSearcher
 argument_list|(
-name|index
+name|reader
 argument_list|,
 literal|2
 argument_list|)
@@ -668,7 +610,7 @@ name|custSort
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Run the test using one CustomSearcher wrapped by a MultiSearcher.     */
+comment|/**    * Run the test using one CustomSearcher wrapped by a MultiSearcher.    */
 DECL|method|testFieldSortSingleSearcher
 specifier|public
 name|void
@@ -713,7 +655,7 @@ block|{
 operator|new
 name|CustomSearcher
 argument_list|(
-name|index
+name|reader
 argument_list|,
 literal|2
 argument_list|)
@@ -729,7 +671,7 @@ name|custSort
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Run the test using two CustomSearcher instances.     */
+comment|/**    * Run the test using two CustomSearcher instances.    */
 DECL|method|testFieldSortMultiCustomSearcher
 specifier|public
 name|void
@@ -774,7 +716,7 @@ block|{
 operator|new
 name|CustomSearcher
 argument_list|(
-name|index
+name|reader
 argument_list|,
 literal|0
 argument_list|)
@@ -782,7 +724,7 @@ block|,
 operator|new
 name|CustomSearcher
 argument_list|(
-name|index
+name|reader
 argument_list|,
 literal|2
 argument_list|)
@@ -858,7 +800,8 @@ name|Integer
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// store hits in TreeMap - TreeMap does not allow duplicates; existing entries are silently overwritten
+comment|// store hits in TreeMap - TreeMap does not allow duplicates; existing
+comment|// entries are silently overwritten
 for|for
 control|(
 name|int
@@ -892,7 +835,8 @@ operator|.
 name|doc
 argument_list|)
 argument_list|,
-comment|// Key:   Lucene Document ID
+comment|// Key: Lucene
+comment|// Document ID
 name|Integer
 operator|.
 name|valueOf
@@ -966,7 +910,9 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-comment|// document ID from sorted search
+comment|// document ID
+comment|// from sorted
+comment|// search
 if|if
 condition|(
 operator|!
@@ -998,8 +944,11 @@ name|idHitDate
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// same ID must be in the Map from the rank-sorted search
-comment|// every hit must appear once in both result sets --> remove it from the Map.
+comment|// same ID must be in the
+comment|// Map from the rank-sorted
+comment|// search
+comment|// every hit must appear once in both result sets --> remove it from the
+comment|// Map.
 comment|// At the end the Map must be empty!
 name|resultMap
 operator|.
@@ -1047,7 +996,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Check the hits for duplicates.    * @param hits    */
+comment|/**    * Check the hits for duplicates.    *     * @param hits    */
 DECL|method|checkHits
 specifier|private
 name|void
@@ -1257,35 +1206,7 @@ specifier|private
 name|int
 name|switcher
 decl_stmt|;
-comment|/**          * @param directory          * @throws IOException          */
-DECL|method|CustomSearcher
-specifier|public
-name|CustomSearcher
-parameter_list|(
-name|Directory
-name|directory
-parameter_list|,
-name|int
-name|switcher
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
-argument_list|(
-name|directory
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|switcher
-operator|=
-name|switcher
-expr_stmt|;
-block|}
-comment|/**          * @param r          */
+comment|/**      * @param r      */
 DECL|method|CustomSearcher
 specifier|public
 name|CustomSearcher
@@ -1309,7 +1230,7 @@ operator|=
 name|switcher
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.apache.lucene.search.Searchable#search(org.apache.lucene.search.Query, org.apache.lucene.search.Filter, int, org.apache.lucene.search.Sort)          */
+comment|/*      * (non-Javadoc)      *       * @see      * org.apache.lucene.search.Searchable#search(org.apache.lucene.search.Query      * , org.apache.lucene.search.Filter, int, org.apache.lucene.search.Sort)      */
 annotation|@
 name|Override
 DECL|method|search
@@ -1395,7 +1316,7 @@ name|sort
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.apache.lucene.search.Searchable#search(org.apache.lucene.search.Query, org.apache.lucene.search.Filter, int)          */
+comment|/*      * (non-Javadoc)      *       * @see      * org.apache.lucene.search.Searchable#search(org.apache.lucene.search.Query      * , org.apache.lucene.search.Filter, int)      */
 annotation|@
 name|Override
 DECL|method|search

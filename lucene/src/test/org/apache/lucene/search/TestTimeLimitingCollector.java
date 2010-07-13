@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -274,6 +274,16 @@ specifier|private
 name|Searcher
 name|searcher
 decl_stmt|;
+DECL|field|directory
+specifier|private
+name|Directory
+name|directory
+decl_stmt|;
+DECL|field|reader
+specifier|private
+name|IndexReader
+name|reader
+decl_stmt|;
 DECL|field|FIELD_NAME
 specifier|private
 specifier|final
@@ -340,19 +350,21 @@ block|,
 literal|"blueberry pizza"
 block|,     }
 decl_stmt|;
-name|Directory
 name|directory
-init|=
+operator|=
 operator|new
 name|RAMDirectory
 argument_list|()
-decl_stmt|;
-name|IndexWriter
+expr_stmt|;
+name|RandomIndexWriter
 name|iw
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|directory
 argument_list|,
 operator|new
@@ -396,6 +408,13 @@ name|iw
 argument_list|)
 expr_stmt|;
 block|}
+name|reader
+operator|=
+name|iw
+operator|.
+name|getReader
+argument_list|()
+expr_stmt|;
 name|iw
 operator|.
 name|close
@@ -406,9 +425,7 @@ operator|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|directory
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 expr_stmt|;
 name|String
@@ -497,6 +514,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|directory
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|super
 operator|.
 name|tearDown
@@ -511,7 +538,7 @@ parameter_list|(
 name|String
 name|value
 parameter_list|,
-name|IndexWriter
+name|RandomIndexWriter
 name|iw
 parameter_list|)
 throws|throws

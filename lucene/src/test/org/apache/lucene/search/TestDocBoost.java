@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -179,12 +179,15 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|store
 argument_list|,
 operator|new
@@ -353,11 +356,14 @@ argument_list|(
 name|d4
 argument_list|)
 expr_stmt|;
+name|IndexReader
+name|reader
+init|=
 name|writer
 operator|.
-name|optimize
+name|getReader
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|writer
 operator|.
 name|close
@@ -377,9 +383,7 @@ decl_stmt|;
 operator|new
 name|IndexSearcher
 argument_list|(
-name|store
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 operator|.
 name|search
@@ -525,6 +529,16 @@ name|i
 index|]
 expr_stmt|;
 block|}
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|store
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

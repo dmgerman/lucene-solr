@@ -114,7 +114,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -184,6 +184,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_comment
 comment|/**  * TestWildcard tests the '*' and '?' wildcard characters.  */
 end_comment
@@ -196,6 +206,32 @@ name|TestWildcard
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|random
+specifier|private
+name|Random
+name|random
+decl_stmt|;
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+name|random
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testEquals
 specifier|public
 name|void
@@ -1322,12 +1358,14 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|random
+argument_list|,
 name|indexStore
 argument_list|,
 operator|new
@@ -1401,11 +1439,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|writer
-operator|.
-name|optimize
-argument_list|()
-expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -1657,12 +1690,14 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|iw
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 operator|new
