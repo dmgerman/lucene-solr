@@ -132,7 +132,7 @@ specifier|public
 class|class
 name|TestDocBuilder2
 extends|extends
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 block|{
 annotation|@
 name|Before

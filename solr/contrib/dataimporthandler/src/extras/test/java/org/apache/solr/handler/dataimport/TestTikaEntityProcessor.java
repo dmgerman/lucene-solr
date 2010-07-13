@@ -48,7 +48,7 @@ specifier|public
 class|class
 name|TestTikaEntityProcessor
 extends|extends
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 block|{
 annotation|@
 name|Before

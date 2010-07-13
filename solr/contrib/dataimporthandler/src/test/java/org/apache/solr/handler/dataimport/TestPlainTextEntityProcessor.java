@@ -40,9 +40,21 @@ name|handler
 operator|.
 name|dataimport
 operator|.
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|createMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -85,6 +97,8 @@ DECL|class|TestPlainTextEntityProcessor
 specifier|public
 class|class
 name|TestPlainTextEntityProcessor
+extends|extends
+name|SolrTestCaseJ4
 block|{
 annotation|@
 name|Test

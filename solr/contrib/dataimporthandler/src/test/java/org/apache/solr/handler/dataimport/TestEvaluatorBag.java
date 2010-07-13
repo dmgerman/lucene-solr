@@ -34,9 +34,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|Before
+name|solr
+operator|.
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -46,7 +48,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
+name|Before
 import|;
 end_import
 
@@ -109,6 +111,8 @@ DECL|class|TestEvaluatorBag
 specifier|public
 class|class
 name|TestEvaluatorBag
+extends|extends
+name|SolrTestCaseJ4
 block|{
 DECL|field|ENCODING
 specifier|private
@@ -151,6 +155,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|resolver
 operator|=
 operator|new

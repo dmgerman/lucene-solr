@@ -131,11 +131,11 @@ comment|/**  *<p>  * Abstract base class for DataImportHandler tests  *</p>  *<p
 end_comment
 
 begin_class
-DECL|class|AbstractDataImportHandlerTest
+DECL|class|AbstractDataImportHandlerTestCase
 specifier|public
 specifier|abstract
 class|class
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 extends|extends
 name|AbstractSolrTestCase
 block|{
