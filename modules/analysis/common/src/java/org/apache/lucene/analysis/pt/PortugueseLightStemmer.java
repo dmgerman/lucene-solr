@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Light Stemmer for Portuguese  */
+comment|/**  * Light Stemmer for Portuguese  *<p>  * This stemmer implements the "UniNE" algorithm in:  *<i>Light Stemming Approaches for the French, Portuguese, German and Hungarian Languages</i>  * Jacques Savoy  */
 end_comment
 
 begin_class
