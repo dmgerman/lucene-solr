@@ -487,8 +487,13 @@ operator|.
 name|getCommits
 argument_list|()
 decl_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
+name|commits
+operator|.
+name|size
+argument_list|()
+operator|<=
 operator|(
 call|(
 name|SolrDeletionPolicy
@@ -502,11 +507,6 @@ argument_list|)
 operator|)
 operator|.
 name|getMaxOptimizedCommitsToKeep
-argument_list|()
-argument_list|,
-name|commits
-operator|.
-name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
