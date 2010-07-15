@@ -734,7 +734,7 @@ specifier|final
 name|String
 name|DATE_FMT
 init|=
-literal|"yyyyMMddhhmmss"
+literal|"yyyyMMddHHmmss"
 decl_stmt|;
 DECL|class|FileCopier
 specifier|private

@@ -2230,7 +2230,7 @@ operator|+
 operator|new
 name|SimpleDateFormat
 argument_list|(
-literal|"yyyyMMddhhmmss"
+literal|"yyyyMMddHHmmss"
 argument_list|,
 name|Locale
 operator|.
