@@ -368,6 +368,9 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
+comment|// TODO: fix mocktokenizer to not extend chartokenizer, so you can have an 'empty' keyword.
+comment|// currently, this means 'empty tokens' arent created/tested in the enumeration:
+comment|//<mikemccand> it's like having a big hairy scary monster in the basement but being upset that it doesn't have fangs
 name|RandomIndexWriter
 name|writer
 init|=
