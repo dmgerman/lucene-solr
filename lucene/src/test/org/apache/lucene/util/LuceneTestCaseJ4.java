@@ -106,6 +106,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Before
 import|;
 end_import
@@ -437,6 +447,12 @@ name|savedUncaughtExceptionHandler
 init|=
 literal|null
 decl_stmt|;
+comment|/** Used to track if setUp and tearDown are called correctly from subclasses */
+DECL|field|setup
+specifier|private
+name|boolean
+name|setup
+decl_stmt|;
 DECL|class|UncaughtExceptionEntry
 specifier|private
 specifier|static
@@ -725,6 +741,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assert
+operator|.
+name|assertFalse
+argument_list|(
+literal|"ensure your tearDown() calls super.tearDown()!!!"
+argument_list|,
+name|setup
+argument_list|)
+expr_stmt|;
+name|setup
+operator|=
+literal|true
+expr_stmt|;
 name|savedUncaughtExceptionHandler
 operator|=
 name|Thread
@@ -848,6 +877,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assert
+operator|.
+name|assertTrue
+argument_list|(
+literal|"ensure your setUp() calls super.setUp()!!!"
+argument_list|,
+name|setup
+argument_list|)
+expr_stmt|;
+name|setup
+operator|=
+literal|false
+expr_stmt|;
 name|BooleanQuery
 operator|.
 name|setMaxClauseCount

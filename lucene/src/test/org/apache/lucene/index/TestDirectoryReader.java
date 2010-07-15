@@ -335,9 +335,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|setUp
-argument_list|()
-expr_stmt|;
 name|doTestDocument
 argument_list|()
 expr_stmt|;
