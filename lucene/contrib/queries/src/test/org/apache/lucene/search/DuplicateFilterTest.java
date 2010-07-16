@@ -102,20 +102,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriterConfig
 import|;
 end_import
@@ -397,6 +383,13 @@ literal|"Oops. Lucene 2.1 out"
 argument_list|,
 literal|"20050102"
 argument_list|)
+expr_stmt|;
+comment|// Until we fix LUCENE-2348, the index must
+comment|// have only 1 segment:
+name|writer
+operator|.
+name|optimize
+argument_list|()
 expr_stmt|;
 name|reader
 operator|=
