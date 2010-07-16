@@ -184,7 +184,7 @@ name|nio
 operator|.
 name|charset
 operator|.
-name|MalformedInputException
+name|CharacterCodingException
 import|;
 end_import
 
@@ -715,10 +715,21 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|MalformedInputException
+name|SolrException
 name|expected
 parameter_list|)
-block|{}
+block|{
+name|assertTrue
+argument_list|(
+name|expected
+operator|.
+name|getCause
+argument_list|()
+operator|instanceof
+name|CharacterCodingException
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
