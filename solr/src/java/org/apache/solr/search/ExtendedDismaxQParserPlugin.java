@@ -4307,6 +4307,9 @@ name|field
 parameter_list|,
 name|String
 name|val
+parameter_list|,
+name|boolean
+name|quoted
 parameter_list|)
 throws|throws
 name|ParseException
@@ -4936,6 +4939,12 @@ argument_list|(
 name|field
 argument_list|,
 name|val
+argument_list|,
+name|type
+operator|==
+name|QType
+operator|.
+name|PHRASE
 argument_list|)
 decl_stmt|;
 if|if
