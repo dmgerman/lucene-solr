@@ -86,6 +86,34 @@ name|CorruptIndexException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexFormatTooOldException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexFormatTooNewException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @deprecated No longer used with flex indexing, except for  * reading old segments   * @lucene.experimental */
 end_comment
@@ -134,12 +162,23 @@ operator|-
 literal|4
 decl_stmt|;
 comment|// NOTE: always change this if you switch to a new format!
+comment|// whenever you add a new format, make it 1 smaller (negative version logic)!
 DECL|field|FORMAT_CURRENT
 specifier|public
 specifier|static
 specifier|final
 name|int
 name|FORMAT_CURRENT
+init|=
+name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
+decl_stmt|;
+comment|// when removing support for old versions, levae the last supported version here
+DECL|field|FORMAT_MINIMUM
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_MINIMUM
 init|=
 name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
 decl_stmt|;
@@ -301,22 +340,39 @@ comment|// check that it is a format we can understand
 if|if
 condition|(
 name|format
+operator|>
+name|FORMAT_MINIMUM
+condition|)
+throw|throw
+operator|new
+name|IndexFormatTooOldException
+argument_list|(
+literal|null
+argument_list|,
+name|format
+argument_list|,
+name|FORMAT_MINIMUM
+argument_list|,
+name|FORMAT_CURRENT
+argument_list|)
+throw|;
+if|if
+condition|(
+name|format
 operator|<
 name|FORMAT_CURRENT
 condition|)
 throw|throw
 operator|new
-name|CorruptIndexException
+name|IndexFormatTooNewException
 argument_list|(
-literal|"Unknown format version:"
-operator|+
+literal|null
+argument_list|,
 name|format
-operator|+
-literal|" expected "
-operator|+
+argument_list|,
+name|FORMAT_MINIMUM
+argument_list|,
 name|FORMAT_CURRENT
-operator|+
-literal|" or higher"
 argument_list|)
 throw|;
 name|size

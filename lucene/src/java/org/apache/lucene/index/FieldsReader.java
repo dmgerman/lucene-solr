@@ -525,12 +525,10 @@ argument_list|,
 name|readBufferSize
 argument_list|)
 expr_stmt|;
-name|cloneableIndexStream
-operator|=
-name|d
-operator|.
-name|openInput
-argument_list|(
+specifier|final
+name|String
+name|indexStreamFN
+init|=
 name|IndexFileNames
 operator|.
 name|segmentFileName
@@ -543,6 +541,14 @@ name|IndexFileNames
 operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)
+decl_stmt|;
+name|cloneableIndexStream
+operator|=
+name|d
+operator|.
+name|openInput
+argument_list|(
+name|indexStreamFN
 argument_list|,
 name|readBufferSize
 argument_list|)
@@ -557,6 +563,31 @@ expr_stmt|;
 if|if
 condition|(
 name|format
+operator|<
+name|FieldsWriter
+operator|.
+name|FORMAT_MINIMUM
+condition|)
+throw|throw
+operator|new
+name|IndexFormatTooOldException
+argument_list|(
+name|indexStreamFN
+argument_list|,
+name|format
+argument_list|,
+name|FieldsWriter
+operator|.
+name|FORMAT_MINIMUM
+argument_list|,
+name|FieldsWriter
+operator|.
+name|FORMAT_CURRENT
+argument_list|)
+throw|;
+if|if
+condition|(
+name|format
 operator|>
 name|FieldsWriter
 operator|.
@@ -564,19 +595,19 @@ name|FORMAT_CURRENT
 condition|)
 throw|throw
 operator|new
-name|CorruptIndexException
+name|IndexFormatTooNewException
 argument_list|(
-literal|"Incompatible format version: "
-operator|+
+name|indexStreamFN
+argument_list|,
 name|format
-operator|+
-literal|" expected "
-operator|+
+argument_list|,
+name|FieldsWriter
+operator|.
+name|FORMAT_MINIMUM
+argument_list|,
 name|FieldsWriter
 operator|.
 name|FORMAT_CURRENT
-operator|+
-literal|" or lower"
 argument_list|)
 throw|;
 name|fieldsStream
@@ -870,16 +901,10 @@ name|boolean
 name|canReadRawDocs
 parameter_list|()
 block|{
-comment|// Disable reading raw docs in 2.x format, because of the removal of compressed
-comment|// fields in 3.0. We don't want rawDocs() to decode field bits to figure out
-comment|// if a field was compressed, hence we enforce ordinary (non-raw) stored field merges
-comment|// for<3.0 indexes.
+comment|// Since we currently only support>3.0 format anymore, always return true!
+comment|// I leave this method in because it may help for later format changes.
 return|return
-name|format
-operator|>=
-name|FieldsWriter
-operator|.
-name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
+literal|true
 return|;
 block|}
 DECL|method|doc
@@ -1603,7 +1628,6 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-comment|//we have a binary stored field, and it may be compressed
 if|if
 condition|(
 name|binary

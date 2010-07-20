@@ -623,6 +623,10 @@ argument_list|,
 name|SepPostingsWriterImpl
 operator|.
 name|VERSION_START
+argument_list|,
+name|SepPostingsWriterImpl
+operator|.
+name|VERSION_START
 argument_list|)
 expr_stmt|;
 name|skipInterval

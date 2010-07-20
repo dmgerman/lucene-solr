@@ -251,7 +251,7 @@ name|SegmentInfo
 argument_list|>
 block|{
 comment|/*     * The file format version, a negative number.    *      * NOTE: future format numbers must always be one smaller     * than the latest. With time, support for old formats will    * be removed, however the numbers should continue to decrease.     */
-comment|/** Used for the segments.gen file only! */
+comment|/** Used for the segments.gen file only!    * Whenever you add a new format, make it 1 smaller (negative version logic)! */
 DECL|field|FORMAT_SEGMENTS_GEN_CURRENT
 specifier|public
 specifier|static
@@ -261,38 +261,6 @@ name|FORMAT_SEGMENTS_GEN_CURRENT
 init|=
 operator|-
 literal|2
-decl_stmt|;
-comment|/** This format adds optional per-segment String    *  diagnostics storage, and switches userData to Map */
-DECL|field|FORMAT_DIAGNOSTICS
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORMAT_DIAGNOSTICS
-init|=
-operator|-
-literal|9
-decl_stmt|;
-comment|/** Each segment records whether its postings are written    *  in the new flex format */
-DECL|field|FORMAT_4_0
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORMAT_4_0
-init|=
-operator|-
-literal|10
-decl_stmt|;
-comment|/* This must always point to the most recent file format. */
-DECL|field|CURRENT_FORMAT
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|CURRENT_FORMAT
-init|=
-name|FORMAT_4_0
 decl_stmt|;
 DECL|field|counter
 specifier|public
@@ -1824,6 +1792,10 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+else|else
+block|{
+comment|/* TODO: Investigate this!                    throw new IndexFormatTooNewException("segments.gen version number invalid: " + version +                     " (must be " + FORMAT_SEGMENTS_GEN_CURRENT + ")");                   */
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1831,7 +1803,17 @@ name|IOException
 name|err2
 parameter_list|)
 block|{
-comment|// will retry
+comment|// rethrow any format exception
+if|if
+condition|(
+name|err2
+operator|instanceof
+name|CorruptIndexException
+condition|)
+throw|throw
+name|err2
+throw|;
+comment|// else will retry
 block|}
 finally|finally
 block|{

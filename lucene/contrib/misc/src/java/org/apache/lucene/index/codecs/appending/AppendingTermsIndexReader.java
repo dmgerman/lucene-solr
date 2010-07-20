@@ -201,6 +201,10 @@ argument_list|,
 name|AppendingTermsIndexWriter
 operator|.
 name|VERSION_START
+argument_list|,
+name|AppendingTermsIndexWriter
+operator|.
+name|VERSION_START
 argument_list|)
 expr_stmt|;
 block|}

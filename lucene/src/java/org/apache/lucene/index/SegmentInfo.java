@@ -92,6 +92,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|DefaultSegmentInfosWriter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -677,7 +693,7 @@ if|if
 condition|(
 name|format
 operator|>
-name|SegmentInfos
+name|DefaultSegmentInfosWriter
 operator|.
 name|FORMAT_4_0
 condition|)
@@ -789,7 +805,7 @@ if|if
 condition|(
 name|format
 operator|<=
-name|SegmentInfos
+name|DefaultSegmentInfosWriter
 operator|.
 name|FORMAT_4_0
 condition|)
