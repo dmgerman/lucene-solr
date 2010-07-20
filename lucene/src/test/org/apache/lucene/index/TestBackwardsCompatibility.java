@@ -132,6 +132,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|zip
 operator|.
 name|ZipEntry
@@ -657,6 +667,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|Random
+name|rnd
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -740,26 +757,6 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
-name|MultiFields
-operator|.
-name|getFields
-argument_list|(
-name|reader
-argument_list|)
-operator|.
-name|terms
-argument_list|(
-literal|"content"
-argument_list|)
-expr_stmt|;
-name|reader
-operator|.
-name|document
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// to catch also 2.9->3.0 stored field change
 name|fail
 argument_list|(
 literal|"IndexReader.open should not pass for "
@@ -825,11 +822,23 @@ argument_list|)
 comment|// no threads!
 argument_list|)
 expr_stmt|;
+comment|// TODO: Make IndexWriter fail on open!
+if|if
+condition|(
+name|rnd
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
 name|writer
 operator|.
 name|optimize
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
 name|reader
 operator|=
 name|writer
@@ -837,14 +846,7 @@ operator|.
 name|getReader
 argument_list|()
 expr_stmt|;
-name|reader
-operator|.
-name|document
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// to catch also 2.9->3.0 stored field change
+block|}
 name|fail
 argument_list|(
 literal|"IndexWriter creation should not pass for "
