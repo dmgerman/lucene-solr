@@ -84,8 +84,6 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|tier
-operator|.
 name|DistanceUtils
 import|;
 end_import
@@ -267,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see org.apache.lucene.spatial.tier.DistanceUtils#parseLatitudeLongitude(double[], String)  */
+comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see org.apache.lucene.spatial.DistanceUtils#parseLatitudeLongitude(double[], String)  */
 end_comment
 
 begin_class

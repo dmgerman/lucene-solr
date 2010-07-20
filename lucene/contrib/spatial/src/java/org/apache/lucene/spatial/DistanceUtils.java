@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.tier
+DECL|package|org.apache.lucene.spatial
 package|package
 name|org
 operator|.
@@ -13,8 +13,6 @@ operator|.
 name|lucene
 operator|.
 name|spatial
-operator|.
-name|tier
 package|;
 end_package
 
@@ -99,6 +97,22 @@ operator|.
 name|shape
 operator|.
 name|Rectangle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|tier
+operator|.
+name|InvalidGeoException
 import|;
 end_import
 
@@ -1500,7 +1514,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Given a string containing<i>dimension</i> values encoded in it, separated by commas, return a String array of length<i>dimension</i>    * containing the values.    *    * @param out         A preallocated array.  Must be size dimension.  If it is not it will be resized.    * @param externalVal The value to parse    * @param dimension   The expected number of values for the point    * @return An array of the values that make up the point (aka vector)    * @throws InvalidGeoException if the dimension specified does not match the number of values in the externalValue.    */
+comment|/**    * Given a string containing<i>dimension</i> values encoded in it, separated by commas, return a String array of length<i>dimension</i>    * containing the values.    *    * @param out         A preallocated array.  Must be size dimension.  If it is not it will be resized.    * @param externalVal The value to parse    * @param dimension   The expected number of values for the point    * @return An array of the values that make up the point (aka vector)    * @throws org.apache.lucene.spatial.tier.InvalidGeoException if the dimension specified does not match the number of values in the externalValue.    */
 DECL|method|parsePoint
 specifier|public
 specifier|static

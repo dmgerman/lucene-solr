@@ -110,8 +110,6 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|tier
-operator|.
 name|DistanceUtils
 import|;
 end_import
@@ -129,24 +127,6 @@ operator|.
 name|tier
 operator|.
 name|InvalidGeoException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|tier
-operator|.
-name|projections
-operator|.
-name|CartesianTierPlotter
 import|;
 end_import
 

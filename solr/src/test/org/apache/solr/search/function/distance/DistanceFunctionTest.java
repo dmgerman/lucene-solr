@@ -30,9 +30,7 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|geohash
-operator|.
-name|GeoHashUtils
+name|DistanceUtils
 import|;
 end_import
 
@@ -46,9 +44,9 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|tier
+name|geohash
 operator|.
-name|DistanceUtils
+name|GeoHashUtils
 import|;
 end_import
 
