@@ -196,7 +196,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
+name|TermToBytesRefAttribute
 import|;
 end_import
 
@@ -407,6 +407,20 @@ operator|.
 name|search
 operator|.
 name|WildcardQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
