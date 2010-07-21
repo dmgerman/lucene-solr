@@ -49,7 +49,7 @@ specifier|public
 name|int
 name|intUpto
 init|=
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|INT_BLOCK_SIZE
 decl_stmt|;
@@ -67,7 +67,7 @@ name|int
 name|intOffset
 init|=
 operator|-
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|INT_BLOCK_SIZE
 decl_stmt|;
@@ -75,14 +75,14 @@ comment|// Current head offset
 DECL|field|docWriter
 specifier|final
 specifier|private
-name|DocumentsWriter
+name|DocumentsWriterPerThread
 name|docWriter
 decl_stmt|;
 DECL|method|IntBlockPool
 specifier|public
 name|IntBlockPool
 parameter_list|(
-name|DocumentsWriter
+name|DocumentsWriterPerThread
 name|docWriter
 parameter_list|)
 block|{
@@ -115,6 +115,8 @@ literal|0
 condition|)
 comment|// Recycle all but the first buffer
 name|docWriter
+operator|.
+name|ramAllocator
 operator|.
 name|recycleIntBlocks
 argument_list|(
@@ -220,6 +222,8 @@ index|]
 operator|=
 name|docWriter
 operator|.
+name|ramAllocator
+operator|.
 name|getIntBlock
 argument_list|()
 expr_stmt|;
@@ -232,7 +236,7 @@ literal|0
 expr_stmt|;
 name|intOffset
 operator|+=
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|INT_BLOCK_SIZE
 expr_stmt|;

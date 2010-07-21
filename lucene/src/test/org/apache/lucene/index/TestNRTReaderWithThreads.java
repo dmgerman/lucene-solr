@@ -138,10 +138,11 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-DECL|method|testIndexing
+comment|// nocommit
+DECL|method|_testIndexing
 specifier|public
 name|void
-name|testIndexing
+name|_testIndexing
 parameter_list|()
 throws|throws
 name|Exception

@@ -154,7 +154,7 @@ name|bufferUpto
 operator|=
 name|startIndex
 operator|/
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_SIZE
 expr_stmt|;
@@ -162,7 +162,7 @@ name|bufferOffset
 operator|=
 name|bufferUpto
 operator|*
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_SIZE
 expr_stmt|;
@@ -179,7 +179,7 @@ name|upto
 operator|=
 name|startIndex
 operator|&
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_MASK
 expr_stmt|;
@@ -208,7 +208,7 @@ name|limit
 operator|=
 name|endIndex
 operator|&
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_MASK
 expr_stmt|;
@@ -456,7 +456,7 @@ name|bufferUpto
 operator|=
 name|nextIndex
 operator|/
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_SIZE
 expr_stmt|;
@@ -464,7 +464,7 @@ name|bufferOffset
 operator|=
 name|bufferUpto
 operator|*
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_SIZE
 expr_stmt|;
@@ -481,7 +481,7 @@ name|upto
 operator|=
 name|nextIndex
 operator|&
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_MASK
 expr_stmt|;

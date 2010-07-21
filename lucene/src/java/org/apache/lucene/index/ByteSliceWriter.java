@@ -96,7 +96,7 @@ name|buffers
 index|[
 name|address
 operator|>>
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_SHIFT
 index|]
@@ -110,7 +110,7 @@ name|upto
 operator|=
 name|address
 operator|&
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_MASK
 expr_stmt|;
@@ -301,7 +301,7 @@ operator|+
 operator|(
 name|offset0
 operator|&
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|BYTE_BLOCK_NOT_MASK
 operator|)

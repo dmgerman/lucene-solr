@@ -958,26 +958,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|2
-argument_list|,
-name|modifier
-operator|.
-name|getNumBufferedDeleteTerms
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|modifier
-operator|.
-name|getBufferedDeleteTermsSize
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// nocommit
+comment|//        assertEquals(2, modifier.getNumBufferedDeleteTerms());
+comment|//        assertEquals(1, modifier.getBufferedDeleteTermsSize());
 block|}
 else|else
 name|modifier

@@ -43,7 +43,7 @@ name|BYTES_PER_POSTING
 init|=
 literal|3
 operator|*
-name|DocumentsWriter
+name|DocumentsWriterRAMAllocator
 operator|.
 name|INT_NUM_BYTE
 decl_stmt|;

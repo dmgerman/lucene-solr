@@ -919,10 +919,11 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/*     Run above stress test against RAMDirectory and then     FSDirectory.   */
-DECL|method|testThreadedOptimize
+comment|// nocommit
+DECL|method|_testThreadedOptimize
 specifier|public
 name|void
-name|testThreadedOptimize
+name|_testThreadedOptimize
 parameter_list|()
 throws|throws
 name|Exception
