@@ -802,15 +802,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|FlexTestUtil
-operator|.
-name|verifyFlexVsPreFlex
-argument_list|(
-name|RANDOM
-argument_list|,
-name|directory
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int

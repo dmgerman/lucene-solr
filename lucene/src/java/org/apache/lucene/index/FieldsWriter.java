@@ -162,6 +162,15 @@ name|FORMAT_CURRENT
 init|=
 name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
 decl_stmt|;
+comment|// when removing support for old versions, leave the last supported version here
+DECL|field|FORMAT_MINIMUM
+specifier|static
+specifier|final
+name|int
+name|FORMAT_MINIMUM
+init|=
+name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
+decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
 name|FieldInfos

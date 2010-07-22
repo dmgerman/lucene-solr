@@ -48,7 +48,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Iterator
 import|;
 end_import
 
@@ -58,7 +58,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|HashMap
 import|;
 end_import
 
@@ -87,20 +87,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermEnum
 import|;
 end_import
 
@@ -287,34 +273,6 @@ parameter_list|()
 block|{
 return|return
 name|qf
-return|;
-block|}
-DECL|method|getTermEnum
-specifier|public
-name|TermEnum
-name|getTermEnum
-parameter_list|(
-name|String
-name|termText
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|getIndexReader
-argument_list|()
-operator|.
-name|terms
-argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|getFieldName
-argument_list|()
-argument_list|,
-name|termText
-argument_list|)
-argument_list|)
 return|;
 block|}
 DECL|method|size

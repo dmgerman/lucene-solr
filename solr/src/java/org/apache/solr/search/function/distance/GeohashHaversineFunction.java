@@ -26,6 +26,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|DistanceUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|search
@@ -461,6 +475,8 @@ operator|==
 literal|false
 condition|)
 block|{
+comment|//TODO: If one of the hashes is a literal value source, seems like we could cache it
+comment|//and avoid decoding every time
 name|double
 index|[]
 name|h1Pair

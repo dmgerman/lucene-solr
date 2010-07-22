@@ -68,20 +68,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -100,6 +86,34 @@ name|CorruptIndexException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexFormatTooOldException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexFormatTooNewException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @deprecated No longer used with flex indexing, except for  * reading old segments   * @lucene.experimental */
 end_comment
@@ -112,8 +126,6 @@ specifier|public
 specifier|final
 class|class
 name|SegmentTermEnum
-extends|extends
-name|TermEnum
 implements|implements
 name|Cloneable
 block|{
@@ -150,12 +162,23 @@ operator|-
 literal|4
 decl_stmt|;
 comment|// NOTE: always change this if you switch to a new format!
+comment|// whenever you add a new format, make it 1 smaller (negative version logic)!
 DECL|field|FORMAT_CURRENT
 specifier|public
 specifier|static
 specifier|final
 name|int
 name|FORMAT_CURRENT
+init|=
+name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
+decl_stmt|;
+comment|// when removing support for old versions, levae the last supported version here
+DECL|field|FORMAT_MINIMUM
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_MINIMUM
 init|=
 name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
 decl_stmt|;
@@ -221,6 +244,10 @@ decl_stmt|;
 DECL|field|skipInterval
 name|int
 name|skipInterval
+decl_stmt|;
+DECL|field|newSuffixStart
+name|int
+name|newSuffixStart
 decl_stmt|;
 DECL|field|maxSkipLevels
 name|int
@@ -313,22 +340,39 @@ comment|// check that it is a format we can understand
 if|if
 condition|(
 name|format
+operator|>
+name|FORMAT_MINIMUM
+condition|)
+throw|throw
+operator|new
+name|IndexFormatTooOldException
+argument_list|(
+literal|null
+argument_list|,
+name|format
+argument_list|,
+name|FORMAT_MINIMUM
+argument_list|,
+name|FORMAT_CURRENT
+argument_list|)
+throw|;
+if|if
+condition|(
+name|format
 operator|<
 name|FORMAT_CURRENT
 condition|)
 throw|throw
 operator|new
-name|CorruptIndexException
+name|IndexFormatTooNewException
 argument_list|(
-literal|"Unknown format version:"
-operator|+
+literal|null
+argument_list|,
 name|format
-operator|+
-literal|" expected "
-operator|+
+argument_list|,
+name|FORMAT_MINIMUM
+argument_list|,
 name|FORMAT_CURRENT
-operator|+
-literal|" or higher"
 argument_list|)
 throw|;
 name|size
@@ -567,8 +611,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Increments the enumeration to the next element.  True if one exists.*/
-annotation|@
-name|Override
 DECL|method|next
 specifier|public
 specifier|final
@@ -619,6 +661,12 @@ name|input
 argument_list|,
 name|fieldInfos
 argument_list|)
+expr_stmt|;
+name|newSuffixStart
+operator|=
+name|termBuffer
+operator|.
+name|newSuffixStart
 expr_stmt|;
 name|termInfo
 operator|.
@@ -771,8 +819,6 @@ name|count
 return|;
 block|}
 comment|/** Returns the current Term in the enumeration.    Initially invalid, valid after next() called for the first time.*/
-annotation|@
-name|Override
 DECL|method|term
 specifier|public
 specifier|final
@@ -835,8 +881,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Returns the docFreq from the current TermInfo in the enumeration.    Initially invalid, valid after next() called for the first time.*/
-annotation|@
-name|Override
 DECL|method|docFreq
 specifier|public
 specifier|final
@@ -877,8 +921,6 @@ name|proxPointer
 return|;
 block|}
 comment|/** Closes the enumeration to further activity, freeing resources. */
-annotation|@
-name|Override
 DECL|method|close
 specifier|public
 specifier|final

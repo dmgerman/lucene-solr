@@ -342,12 +342,8 @@ argument_list|>
 name|getComparator
 parameter_list|()
 block|{
-comment|// return an unused dummy to prevent NPE
 return|return
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUTF16Comparator
-argument_list|()
+literal|null
 return|;
 block|}
 annotation|@

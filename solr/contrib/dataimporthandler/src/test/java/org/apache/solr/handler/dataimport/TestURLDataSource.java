@@ -82,6 +82,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -93,6 +105,8 @@ DECL|class|TestURLDataSource
 specifier|public
 class|class
 name|TestURLDataSource
+extends|extends
+name|SolrTestCaseJ4
 block|{
 DECL|field|fields
 specifier|private
@@ -142,7 +156,7 @@ specifier|private
 name|Context
 name|context
 init|=
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|getContext
 argument_list|(

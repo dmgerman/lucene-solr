@@ -114,6 +114,20 @@ name|TermVectorOffsetInfo
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>FieldTermStack</code> is a stack that keeps query terms in the specified field  * of the document to be highlighted.  */
 end_comment
@@ -254,7 +268,7 @@ condition|)
 return|return;
 for|for
 control|(
-name|String
+name|BytesRef
 name|term
 range|:
 name|tpv
@@ -271,6 +285,9 @@ operator|.
 name|contains
 argument_list|(
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 condition|)
 continue|continue;
@@ -346,6 +363,9 @@ operator|new
 name|TermInfo
 argument_list|(
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 name|tvois
 index|[

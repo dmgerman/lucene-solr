@@ -229,7 +229,7 @@ comment|// analyzer.  Should lead to faster query parsing.
 end_comment
 
 begin_comment
-comment|/**  * A variation on the Lucene QueryParser which knows about the field   * types and query time analyzers configured in Solr's schema.xml.  *  *<p>  * This class also deviates from the Lucene QueryParser by using   * ConstantScore versions of RangeQuery and PrefixQuery to prevent   * TooManyClauses exceptions.  *</p>   *  *<p>  * If the magic field name "<code>_val_</code>" is used in a term or   * phrase query, the value is parsed as a function.  *</p>  *  * @see QueryParsing#parseFunction  * @see ConstantScoreRangeQuery  * @see ConstantScorePrefixQuery  */
+comment|/**  * A variation on the Lucene QueryParser which knows about the field   * types and query time analyzers configured in Solr's schema.xml.  *  *<p>  * This class also deviates from the Lucene QueryParser by using   * ConstantScore versions of RangeQuery and PrefixQuery to prevent   * TooManyClauses exceptions.  *</p>   *  *<p>  * If the magic field name "<code>_val_</code>" is used in a term or   * phrase query, the value is parsed as a function.  *</p>  *  * @see QueryParsing#parseFunction  */
 end_comment
 
 begin_class
@@ -401,9 +401,25 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|parser
+operator|.
+name|getReq
+argument_list|()
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getSolrConfig
+argument_list|()
+operator|.
+name|getLuceneVersion
+argument_list|(
+literal|"luceneMatchVersion"
+argument_list|,
 name|Version
 operator|.
 name|LUCENE_24
+argument_list|)
 argument_list|,
 name|defaultField
 argument_list|,
@@ -612,6 +628,9 @@ name|field
 parameter_list|,
 name|String
 name|queryText
+parameter_list|,
+name|boolean
+name|quoted
 parameter_list|)
 throws|throws
 name|ParseException
@@ -770,6 +789,8 @@ argument_list|(
 name|field
 argument_list|,
 name|queryText
+argument_list|,
+name|quoted
 argument_list|)
 return|;
 block|}

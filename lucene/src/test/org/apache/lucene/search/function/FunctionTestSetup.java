@@ -381,11 +381,6 @@ name|setUp
 argument_list|()
 expr_stmt|;
 comment|// prepare a small index with just a few documents.
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
 name|dir
 operator|=
 operator|new

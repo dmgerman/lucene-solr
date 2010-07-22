@@ -217,7 +217,7 @@ argument_list|()
 operator|.
 name|replaceAll
 argument_list|(
-literal|"[^a..zA..Z0..9]+"
+literal|"[^a-zA-Z0-9]+"
 argument_list|,
 literal|""
 argument_list|)
@@ -440,6 +440,19 @@ name|exists
 argument_list|()
 condition|)
 block|{
+comment|// Try to release the lock first - if it's held by another process, this
+comment|// method should not silently fail.
+comment|// NOTE: makeLock fixes the lock name by prefixing it w/ lockPrefix.
+comment|// Therefore it should be called before the code block next which prefixes
+comment|// the given name.
+name|makeLock
+argument_list|(
+name|lockName
+argument_list|)
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|lockPrefix
@@ -456,9 +469,7 @@ operator|+
 name|lockName
 expr_stmt|;
 block|}
-name|File
-name|lockFile
-init|=
+comment|// As mentioned above, we don't care if the deletion of the file failed.
 operator|new
 name|File
 argument_list|(
@@ -466,31 +477,10 @@ name|lockDir
 argument_list|,
 name|lockName
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|lockFile
-operator|.
-name|exists
-argument_list|()
-operator|&&
-operator|!
-name|lockFile
 operator|.
 name|delete
 argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Cannot delete "
-operator|+
-name|lockFile
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 block|}
 block|}
 block|}

@@ -67,11 +67,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Direct wrapping of 8 bit values to a backing array of bytes.  */
+comment|/**  * Direct wrapping of 8 bit values to a backing array of bytes.  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|Direct8
+specifier|public
 class|class
 name|Direct8
 extends|extends
@@ -256,6 +257,17 @@ name|values
 operator|=
 name|values
 expr_stmt|;
+block|}
+DECL|method|getArray
+specifier|public
+name|byte
+index|[]
+name|getArray
+parameter_list|()
+block|{
+return|return
+name|values
+return|;
 block|}
 DECL|method|get
 specifier|public

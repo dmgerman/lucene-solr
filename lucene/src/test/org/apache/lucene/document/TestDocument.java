@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|IndexReader
 import|;
 end_import
 
@@ -51,6 +51,20 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -494,7 +508,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests {@link Document#removeField(String)} method for a brand new Document    * that has not been indexed yet.    *    * @throws Exception on error    */
+comment|/**    * Tests {@link Document#removeField(String)} method for a brand new Document    * that has not been indexed yet.    *     * @throws Exception on error    */
 DECL|method|testRemoveForNewDocument
 specifier|public
 name|void
@@ -547,7 +561,8 @@ argument_list|(
 literal|"doesnotexists"
 argument_list|)
 expr_stmt|;
-comment|// removing non-existing fields is siltenlty ignored
+comment|// removing non-existing fields is
+comment|// siltenlty ignored
 name|doc
 operator|.
 name|removeFields
@@ -632,7 +647,8 @@ argument_list|(
 literal|"doesnotexists"
 argument_list|)
 expr_stmt|;
-comment|// removing non-existing fields is siltenlty ignored
+comment|// removing non-existing fields is
+comment|// siltenlty ignored
 name|assertEquals
 argument_list|(
 literal|4
@@ -690,7 +706,8 @@ argument_list|(
 literal|"doesnotexists"
 argument_list|)
 expr_stmt|;
-comment|// removing non-existing fields is siltenlty ignored
+comment|// removing non-existing fields is
+comment|// siltenlty ignored
 name|assertEquals
 argument_list|(
 literal|0
@@ -854,7 +871,7 @@ block|{
 comment|// expected exception
 block|}
 block|}
-comment|/**      * Tests {@link Document#getValues(String)} method for a brand new Document      * that has not been indexed yet.      *      * @throws Exception on error      */
+comment|/**    * Tests {@link Document#getValues(String)} method for a brand new Document    * that has not been indexed yet.    *     * @throws Exception on error    */
 DECL|method|testGetValuesForNewDocument
 specifier|public
 name|void
@@ -872,7 +889,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Tests {@link Document#getValues(String)} method for a Document retrieved from      * an index.      *      * @throws Exception on error      */
+comment|/**    * Tests {@link Document#getValues(String)} method for a Document retrieved    * from an index.    *     * @throws Exception on error    */
 DECL|method|testGetValuesForIndexedDocument
 specifier|public
 name|void
@@ -888,12 +905,15 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|dir
 argument_list|,
 operator|new
@@ -915,20 +935,21 @@ name|makeDocumentWithFields
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|IndexReader
+name|reader
+init|=
 name|writer
 operator|.
-name|close
+name|getReader
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|Searcher
 name|searcher
 init|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|dir
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 decl_stmt|;
 comment|// search for something that does exists
@@ -991,7 +1012,22 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()
@@ -1506,12 +1542,15 @@ operator|new
 name|RAMDirectory
 argument_list|()
 decl_stmt|;
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|dir
 argument_list|,
 operator|new
@@ -1560,20 +1599,21 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|IndexReader
+name|reader
+init|=
 name|writer
 operator|.
-name|close
+name|getReader
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|Searcher
 name|searcher
 init|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|dir
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 decl_stmt|;
 name|Query
@@ -1720,7 +1760,17 @@ literal|"unexpected id field"
 argument_list|)
 expr_stmt|;
 block|}
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader
 operator|.
 name|close
 argument_list|()

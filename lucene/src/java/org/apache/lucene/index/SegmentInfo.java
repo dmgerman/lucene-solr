@@ -92,6 +92,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|DefaultSegmentInfosWriter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -659,8 +675,9 @@ operator|=
 name|maxID
 expr_stmt|;
 block|}
-comment|/**    * Construct a new SegmentInfo instance by reading a    * previously saved SegmentInfo from input.    *    * @param dir directory to load from    * @param format format of the segments info file    * @param input input handle to read segment info from    */
+comment|/**    * Construct a new SegmentInfo instance by reading a    * previously saved SegmentInfo from input.    *<p>Note: this is public only to allow access from    * the codecs package.</p>    *    * @param dir directory to load from    * @param format format of the segments info file    * @param input input handle to read segment info from    */
 DECL|method|SegmentInfo
+specifier|public
 name|SegmentInfo
 parameter_list|(
 name|Directory
@@ -756,19 +773,24 @@ if|if
 condition|(
 name|format
 operator|>
-name|SegmentInfos
+name|DefaultSegmentInfosWriter
 operator|.
 name|FORMAT_4_0
 condition|)
 block|{
 comment|// pre-4.0 indexes write a byte if there is a single norms file
-assert|assert
-literal|1
-operator|==
+name|byte
+name|b
+init|=
 name|input
 operator|.
 name|readByte
 argument_list|()
+decl_stmt|;
+assert|assert
+literal|1
+operator|==
+name|b
 assert|;
 block|}
 name|int
@@ -863,7 +885,7 @@ if|if
 condition|(
 name|format
 operator|<=
-name|SegmentInfos
+name|DefaultSegmentInfosWriter
 operator|.
 name|FORMAT_4_0
 condition|)
@@ -1556,6 +1578,7 @@ expr_stmt|;
 block|}
 comment|/** Save this segment's info. */
 DECL|method|write
+specifier|public
 name|void
 name|write
 parameter_list|(

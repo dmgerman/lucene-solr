@@ -64,6 +64,11 @@ specifier|final
 name|int
 name|readBufferSize
 decl_stmt|;
+comment|// NOTE: if this is< 0, that means "defer terms index
+comment|// load until needed".  But if the codec must load the
+comment|// terms index on init (preflex is the only once currently
+comment|// that must do so), then it should negate this value to
+comment|// get the app's terms divisor:
 DECL|field|termsIndexDivisor
 specifier|public
 specifier|final

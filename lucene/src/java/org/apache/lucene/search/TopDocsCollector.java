@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base class for all collectors that return a {@link TopDocs} output. This  * collector allows easy extension by providing a single constructor which  * accepts a {@link PriorityQueue} as well as protected members for that  * priority queue and a counter of the number of total hits.<br>  * Extending classes can override {@link #topDocs(int, int)} and  * {@link #getTotalHits()} in order to provide their own implementation.  */
+comment|/**  * A base class for all collectors that return a {@link TopDocs} output. This  * collector allows easy extension by providing a single constructor which  * accepts a {@link PriorityQueue} as well as protected members for that  * priority queue and a counter of the number of total hits.<br>  * Extending classes can override any of the methods to provide their own  * implementation, as well as avoid the use of the priority queue entirely by  * passing null to {@link #TopDocsCollector(PriorityQueue)}. In that case  * however, you might want to consider overriding all methods, in order to avoid  * a NullPointerException.  */
 end_comment
 
 begin_class
@@ -106,7 +106,7 @@ operator|=
 name|pq
 expr_stmt|;
 block|}
-comment|/**    * Populates the results array with the ScoreDoc instaces. This can be    * overridden in case a different ScoreDoc type should be returned.    */
+comment|/**    * Populates the results array with the ScoreDoc instances. This can be    * overridden in case a different ScoreDoc type should be returned.    */
 DECL|method|populateResults
 specifier|protected
 name|void
@@ -193,7 +193,6 @@ block|}
 comment|/** Returns the top docs that were collected by this collector. */
 DECL|method|topDocs
 specifier|public
-specifier|final
 name|TopDocs
 name|topDocs
 parameter_list|()
@@ -225,7 +224,6 @@ block|}
 comment|/**    * Returns the documents in the rage [start .. pq.size()) that were collected    * by this collector. Note that if start>= pq.size(), an empty TopDocs is    * returned.<br>    * This method is convenient to call if the application always asks for the    * last results, starting from the last 'page'.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different<code>start</code>, you should call {@link #topDocs()} and work    * with the returned {@link TopDocs} object, which will contain all the    * results this search execution collected.    */
 DECL|method|topDocs
 specifier|public
-specifier|final
 name|TopDocs
 name|topDocs
 parameter_list|(
@@ -260,7 +258,6 @@ block|}
 comment|/**    * Returns the documents in the rage [start .. start+howMany) that were    * collected by this collector. Note that if start>= pq.size(), an empty    * TopDocs is returned, and if pq.size() - start&lt; howMany, then only the    * available documents in [start .. pq.size()) are returned.<br>    * This method is useful to call in case pagination of search results is    * allowed by the search application, as well as it attempts to optimize the    * memory used by allocating only as much as requested by howMany.<br>    *<b>NOTE:</b> you cannot call this method more than once for each search    * execution. If you need to call it more than once, passing each time a    * different range, you should call {@link #topDocs()} and work with the    * returned {@link TopDocs} object, which will contain all the results this    * search execution collected.    */
 DECL|method|topDocs
 specifier|public
-specifier|final
 name|TopDocs
 name|topDocs
 parameter_list|(

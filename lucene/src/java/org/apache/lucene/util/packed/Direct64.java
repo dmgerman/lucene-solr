@@ -67,11 +67,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Direct wrapping of 32 bit values to a backing array of ints.  */
+comment|/**  * Direct wrapping of 32 bit values to a backing array of ints.  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|Direct64
+specifier|public
 class|class
 name|Direct64
 extends|extends
@@ -184,6 +185,17 @@ name|values
 operator|=
 name|values
 expr_stmt|;
+block|}
+DECL|method|getArray
+specifier|public
+name|long
+index|[]
+name|getArray
+parameter_list|()
+block|{
+return|return
+name|values
+return|;
 block|}
 comment|/**    * Creates an array backed by the given values.    *</p><p>    * Note: The values are used directly, so changes to the given values will    * affect the structure.    * @param values   used as the internal backing array.    */
 DECL|method|Direct64

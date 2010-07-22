@@ -442,6 +442,15 @@ operator|new
 name|JavaBinCodec
 argument_list|()
 block|{
+comment|// NOTE: this only works because this is an anonymous inner class
+comment|// which will only ever be used on a single stream -- if this class
+comment|// is ever refactored, this will not work.
+specifier|private
+name|boolean
+name|seenOuterMostDocIterator
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|NamedList
 name|readNamedList
@@ -536,6 +545,42 @@ block|}
 specifier|public
 name|List
 name|readIterator
+parameter_list|(
+name|FastInputStream
+name|fis
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// default behavior for reading any regular Iterator in the stream
+if|if
+condition|(
+name|seenOuterMostDocIterator
+condition|)
+return|return
+name|super
+operator|.
+name|readIterator
+argument_list|(
+name|fis
+argument_list|)
+return|;
+comment|// special treatment for first outermost Iterator
+comment|// (the list of documents)
+name|seenOuterMostDocIterator
+operator|=
+literal|true
+expr_stmt|;
+return|return
+name|readOuterMostDocIterator
+argument_list|(
+name|fis
+argument_list|)
+return|;
+block|}
+specifier|private
+name|List
+name|readOuterMostDocIterator
 parameter_list|(
 name|FastInputStream
 name|fis

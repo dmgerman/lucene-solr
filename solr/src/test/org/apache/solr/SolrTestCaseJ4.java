@@ -2083,6 +2083,22 @@ name|sub
 argument_list|)
 condition|)
 block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"!!!! WARNING: best effort to remove "
+operator|+
+name|sub
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|" FAILED !!!!!"
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;

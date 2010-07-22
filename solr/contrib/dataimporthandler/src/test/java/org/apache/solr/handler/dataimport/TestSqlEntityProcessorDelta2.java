@@ -78,7 +78,7 @@ specifier|public
 class|class
 name|TestSqlEntityProcessorDelta2
 extends|extends
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 block|{
 DECL|field|FULLIMPORT_QUERY
 specifier|private

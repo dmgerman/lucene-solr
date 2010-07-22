@@ -142,11 +142,20 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
-DECL|field|CURRENT_FORMAT
+comment|// whenever you add a new format, make it 1 smaller (negative version logic)!
+DECL|field|FORMAT_CURRENT
 specifier|static
 specifier|final
 name|int
-name|CURRENT_FORMAT
+name|FORMAT_CURRENT
+init|=
+name|FORMAT_START
+decl_stmt|;
+DECL|field|FORMAT_MINIMUM
+specifier|static
+specifier|final
+name|int
+name|FORMAT_MINIMUM
 init|=
 name|FORMAT_START
 decl_stmt|;
@@ -248,11 +257,13 @@ name|int
 name|format
 decl_stmt|;
 DECL|method|FieldInfos
+specifier|public
 name|FieldInfos
 parameter_list|()
 block|{ }
 comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * IndexInput    * @param d The directory to open the IndexInput from    * @param name The name of the file to open the IndexInput from in the Directory    * @throws IOException    */
 DECL|method|FieldInfos
+specifier|public
 name|FieldInfos
 parameter_list|(
 name|Directory
@@ -1147,7 +1158,7 @@ name|output
 operator|.
 name|writeVInt
 argument_list|(
-name|CURRENT_FORMAT
+name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
 name|output
@@ -1300,22 +1311,41 @@ if|if
 condition|(
 name|format
 operator|>
-name|FORMAT_START
+name|FORMAT_MINIMUM
 condition|)
 block|{
 throw|throw
 operator|new
-name|CorruptIndexException
+name|IndexFormatTooOldException
 argument_list|(
-literal|"unrecognized format "
-operator|+
-name|format
-operator|+
-literal|" in file \""
-operator|+
 name|fileName
-operator|+
-literal|"\""
+argument_list|,
+name|format
+argument_list|,
+name|FORMAT_MINIMUM
+argument_list|,
+name|FORMAT_CURRENT
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|format
+operator|<
+name|FORMAT_CURRENT
+condition|)
+block|{
+throw|throw
+operator|new
+name|IndexFormatTooNewException
+argument_list|(
+name|fileName
+argument_list|,
+name|format
+argument_list|,
+name|FORMAT_MINIMUM
+argument_list|,
+name|FORMAT_CURRENT
 argument_list|)
 throw|;
 block|}

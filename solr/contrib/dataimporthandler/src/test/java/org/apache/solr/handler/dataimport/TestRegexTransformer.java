@@ -102,7 +102,7 @@ name|handler
 operator|.
 name|dataimport
 operator|.
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|createMap
 import|;
@@ -120,9 +120,21 @@ name|handler
 operator|.
 name|dataimport
 operator|.
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|getContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -195,6 +207,8 @@ DECL|class|TestRegexTransformer
 specifier|public
 class|class
 name|TestRegexTransformer
+extends|extends
+name|SolrTestCaseJ4
 block|{
 annotation|@
 name|Test
@@ -249,7 +263,7 @@ expr_stmt|;
 name|Context
 name|context
 init|=
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|getContext
 argument_list|(
@@ -434,7 +448,7 @@ expr_stmt|;
 name|Context
 name|context
 init|=
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|getContext
 argument_list|(
@@ -738,7 +752,7 @@ expr_stmt|;
 name|Context
 name|context
 init|=
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|getContext
 argument_list|(
@@ -1038,7 +1052,7 @@ name|String
 argument_list|>
 name|eAttrs
 init|=
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|createMap
 argument_list|(
@@ -1050,7 +1064,7 @@ decl_stmt|;
 name|Context
 name|context
 init|=
-name|AbstractDataImportHandlerTest
+name|AbstractDataImportHandlerTestCase
 operator|.
 name|getContext
 argument_list|(

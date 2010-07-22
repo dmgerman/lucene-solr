@@ -67,11 +67,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Direct wrapping of 16 bit values to a backing array of shorts.  */
+comment|/**  * Direct wrapping of 16 bit values to a backing array of shorts.  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|Direct16
+specifier|public
 class|class
 name|Direct16
 extends|extends
@@ -256,6 +257,17 @@ name|values
 operator|=
 name|values
 expr_stmt|;
+block|}
+DECL|method|getArray
+specifier|public
+name|short
+index|[]
+name|getArray
+parameter_list|()
+block|{
+return|return
+name|values
+return|;
 block|}
 DECL|method|get
 specifier|public

@@ -3496,7 +3496,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:42 AND subword:IBM'sx"
+literal|"id:42 AND subword:\"IBM'sx\""
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=0]"

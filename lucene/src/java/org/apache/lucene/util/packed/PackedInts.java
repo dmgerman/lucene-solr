@@ -447,6 +447,8 @@ argument_list|,
 name|CODEC_NAME
 argument_list|,
 name|VERSION_START
+argument_list|,
+name|VERSION_START
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -593,6 +595,8 @@ argument_list|(
 name|in
 argument_list|,
 name|CODEC_NAME
+argument_list|,
+name|VERSION_START
 argument_list|,
 name|VERSION_START
 argument_list|)

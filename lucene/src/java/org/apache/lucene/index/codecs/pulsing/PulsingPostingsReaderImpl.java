@@ -281,6 +281,10 @@ argument_list|,
 name|PulsingPostingsWriterImpl
 operator|.
 name|VERSION_START
+argument_list|,
+name|PulsingPostingsWriterImpl
+operator|.
+name|VERSION_START
 argument_list|)
 expr_stmt|;
 name|maxPulsingDocFreq

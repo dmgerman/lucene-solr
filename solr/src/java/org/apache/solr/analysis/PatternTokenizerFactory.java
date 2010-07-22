@@ -178,16 +178,6 @@ name|GROUP
 init|=
 literal|"group"
 decl_stmt|;
-DECL|field|args
-specifier|protected
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-decl_stmt|;
 DECL|field|pattern
 specifier|protected
 name|Pattern

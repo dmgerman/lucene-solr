@@ -254,6 +254,12 @@ name|savedUncaughtExceptionHandler
 init|=
 literal|null
 decl_stmt|;
+comment|/** Used to track if setUp and tearDown are called correctly from subclasses */
+DECL|field|setup
+specifier|private
+name|boolean
+name|setup
+decl_stmt|;
 DECL|class|UncaughtExceptionEntry
 specifier|private
 specifier|static
@@ -354,6 +360,17 @@ name|super
 operator|.
 name|setUp
 argument_list|()
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"ensure your tearDown() calls super.tearDown()!!!"
+argument_list|,
+name|setup
+argument_list|)
+expr_stmt|;
+name|setup
+operator|=
+literal|true
 expr_stmt|;
 name|savedUncaughtExceptionHandler
 operator|=
@@ -474,6 +491,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assertTrue
+argument_list|(
+literal|"ensure your setUp() calls super.setUp()!!!"
+argument_list|,
+name|setup
+argument_list|)
+expr_stmt|;
+name|setup
+operator|=
+literal|false
+expr_stmt|;
 name|BooleanQuery
 operator|.
 name|setMaxClauseCount

@@ -82,34 +82,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermDocs
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|standard
@@ -157,8 +129,6 @@ DECL|class|SegmentTermDocs
 specifier|public
 class|class
 name|SegmentTermDocs
-implements|implements
-name|TermDocs
 block|{
 comment|//protected SegmentReader parent;
 DECL|field|fieldInfos
@@ -352,8 +322,8 @@ specifier|public
 name|void
 name|seek
 parameter_list|(
-name|TermEnum
-name|termEnum
+name|SegmentTermEnum
+name|segmentTermEnum
 parameter_list|)
 throws|throws
 name|IOException
@@ -367,16 +337,7 @@ decl_stmt|;
 comment|// use comparison of fieldinfos to verify that termEnum belongs to the same segment as this SegmentTermDocs
 if|if
 condition|(
-name|termEnum
-operator|instanceof
-name|SegmentTermEnum
-operator|&&
-operator|(
-operator|(
-name|SegmentTermEnum
-operator|)
-name|termEnum
-operator|)
+name|segmentTermEnum
 operator|.
 name|fieldInfos
 operator|==
@@ -384,16 +345,6 @@ name|fieldInfos
 condition|)
 block|{
 comment|// optimized case
-name|SegmentTermEnum
-name|segmentTermEnum
-init|=
-operator|(
-operator|(
-name|SegmentTermEnum
-operator|)
-name|termEnum
-operator|)
-decl_stmt|;
 name|term
 operator|=
 name|segmentTermEnum
@@ -414,7 +365,7 @@ block|{
 comment|// punt case
 name|term
 operator|=
-name|termEnum
+name|segmentTermEnum
 operator|.
 name|term
 argument_list|()
