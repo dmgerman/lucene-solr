@@ -127,15 +127,10 @@ name|assertTrue
 argument_list|(
 literal|"actual bigger than last (BytesRef)"
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
-operator|.
-name|compare
-argument_list|(
 name|last
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|act
 argument_list|)
 operator|<
@@ -258,15 +253,10 @@ name|assertTrue
 argument_list|(
 literal|"actual bigger than last (BytesRef)"
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
-operator|.
-name|compare
-argument_list|(
 name|last
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|act
 argument_list|)
 operator|<
@@ -533,20 +523,15 @@ name|assertTrue
 argument_list|(
 literal|"check sort order"
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
-operator|.
-name|compare
-argument_list|(
 name|prefixVals
 index|[
 name|i
 operator|-
 literal|1
 index|]
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|prefixVals
 index|[
 name|i
@@ -875,20 +860,15 @@ name|assertTrue
 argument_list|(
 literal|"check sort order"
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
-operator|.
-name|compare
-argument_list|(
 name|prefixVals
 index|[
 name|i
 operator|-
 literal|1
 index|]
-argument_list|,
+operator|.
+name|compareTo
+argument_list|(
 name|prefixVals
 index|[
 name|i
