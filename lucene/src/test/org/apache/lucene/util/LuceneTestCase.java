@@ -190,6 +190,40 @@ name|Insanity
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|preflexrw
+operator|.
+name|PreFlexRWCodec
+import|;
+end_import
+
 begin_comment
 comment|/**   * Base class for all Lucene unit tests.    *<p>  * Currently the  * only added functionality over JUnit's TestCase is  * asserting that no unhandled exceptions occurred in  * threads launched by ConcurrentMergeScheduler and asserting sane  * FieldCache usage athe moment of tearDown.  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  * @see #assertSaneFieldCaches  *  */
 end_comment
@@ -253,6 +287,11 @@ name|UncaughtExceptionHandler
 name|savedUncaughtExceptionHandler
 init|=
 literal|null
+decl_stmt|;
+DECL|field|savedDefaultCodec
+specifier|private
+name|String
+name|savedDefaultCodec
 decl_stmt|;
 comment|/** Used to track if setUp and tearDown are called correctly from subclasses */
 DECL|field|setup
@@ -444,6 +483,23 @@ operator|.
 name|getMaxClauseCount
 argument_list|()
 expr_stmt|;
+name|savedDefaultCodec
+operator|=
+name|CodecProvider
+operator|.
+name|getDefaultCodec
+argument_list|()
+expr_stmt|;
+name|CodecProvider
+operator|.
+name|setDefaultCodec
+argument_list|(
+name|_TestUtil
+operator|.
+name|getTestCodec
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Forcible purges all cache entries from the FieldCache.    *<p>    * This method will be called by tearDown to clean up FieldCache.DEFAULT.    * If a (poorly written) test has some expectation that the FieldCache    * will persist across test methods (ie: a static IndexReader) this     * method can be overridden to do nothing.    *</p>    * @see FieldCache#purgeAllCaches()    */
 DECL|method|purgeFieldCache
@@ -507,6 +563,13 @@ operator|.
 name|setMaxClauseCount
 argument_list|(
 name|savedBoolMaxClauseCount
+argument_list|)
+expr_stmt|;
+name|CodecProvider
+operator|.
+name|setDefaultCodec
+argument_list|(
+name|savedDefaultCodec
 argument_list|)
 expr_stmt|;
 try|try
@@ -1113,6 +1176,22 @@ operator|new
 name|Random
 argument_list|()
 decl_stmt|;
+comment|// register preflex-rw statically.
+static|static
+block|{
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|register
+argument_list|(
+operator|new
+name|PreFlexRWCodec
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

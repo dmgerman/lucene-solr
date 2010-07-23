@@ -1390,9 +1390,10 @@ operator|==
 literal|0xee
 condition|)
 block|{
+comment|// nocommit
 name|aByte
 operator|+=
-literal|0x10
+literal|0xe
 expr_stmt|;
 block|}
 if|if
@@ -1406,9 +1407,10 @@ operator|==
 literal|0xee
 condition|)
 block|{
+comment|// nocommit
 name|bByte
 operator|+=
-literal|0x10
+literal|0xe
 expr_stmt|;
 block|}
 block|}
@@ -1428,21 +1430,6 @@ operator|-
 name|b
 operator|.
 name|length
-return|;
-block|}
-DECL|method|equals
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|other
-parameter_list|)
-block|{
-return|return
-name|this
-operator|==
-name|other
 return|;
 block|}
 block|}

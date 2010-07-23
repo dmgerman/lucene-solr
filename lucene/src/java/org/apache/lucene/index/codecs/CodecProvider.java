@@ -254,6 +254,8 @@ block|,
 literal|"Pulsing"
 block|,
 literal|"IntBlock"
+block|,
+literal|"PreFlex"
 block|}
 decl_stmt|;
 DECL|method|register
@@ -282,6 +284,7 @@ literal|"code.name is null"
 argument_list|)
 throw|;
 block|}
+comment|// nocommit
 if|if
 condition|(
 operator|!
@@ -292,6 +295,15 @@ argument_list|(
 name|codec
 operator|.
 name|name
+argument_list|)
+operator|||
+name|codec
+operator|.
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"PreFlex"
 argument_list|)
 condition|)
 block|{

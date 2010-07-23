@@ -29711,6 +29711,8 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
+comment|// nocommit -- allow preflexrw but must force preflex
+comment|// for reading
 name|IndexWriter
 name|writer
 init|=
@@ -29720,14 +29722,24 @@ argument_list|(
 name|dir
 argument_list|,
 operator|new
+name|IndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
 name|MockAnalyzer
 argument_list|()
-argument_list|,
-name|IndexWriter
+argument_list|)
 operator|.
-name|MaxFieldLength
+name|setCodecProvider
+argument_list|(
+name|_TestUtil
 operator|.
-name|UNLIMITED
+name|alwaysCodec
+argument_list|(
+literal|"Standard"
+argument_list|)
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document
@@ -29807,7 +29819,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|200
+literal|10
 operator|*
 name|_TestUtil
 operator|.
@@ -30003,7 +30015,6 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("add " + termDesc(s));
 name|writer
 operator|.
 name|addDocument
