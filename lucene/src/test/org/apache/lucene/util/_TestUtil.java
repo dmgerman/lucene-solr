@@ -1921,6 +1921,9 @@ name|String
 name|name
 parameter_list|)
 block|{
+comment|// can't do this until we fix PreFlexRW to not
+comment|//impersonate PreFlex:
+comment|//return CodecProvider.getDefault().lookup(name);
 return|return
 name|c
 return|;
@@ -1928,6 +1931,7 @@ block|}
 block|}
 return|;
 block|}
+comment|/** Return a CodecProvider that can read any of the    *  default codecs, but always writes in the specified    *  codec. */
 DECL|method|alwaysCodec
 specifier|public
 specifier|static

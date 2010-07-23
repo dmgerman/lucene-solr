@@ -383,46 +383,6 @@ name|readLong
 argument_list|()
 expr_stmt|;
 comment|// read the size
-if|if
-condition|(
-name|format
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|isIndex
-condition|)
-block|{
-name|indexInterval
-operator|=
-name|input
-operator|.
-name|readInt
-argument_list|()
-expr_stmt|;
-name|formatM1SkipInterval
-operator|=
-name|input
-operator|.
-name|readInt
-argument_list|()
-expr_stmt|;
-block|}
-comment|// switch off skipTo optimization for file format prior to 1.4rc2 in order to avoid a bug in
-comment|// skipTo implementation of these versions
-name|skipInterval
-operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
-expr_stmt|;
-block|}
-else|else
-block|{
 name|indexInterval
 operator|=
 name|input
@@ -444,7 +404,6 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-block|}
 assert|assert
 name|indexInterval
 operator|>
