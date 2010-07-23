@@ -1368,6 +1368,10 @@ comment|// See http://icu-project.org/docs/papers/utf16_code_point_order.html#ut
 comment|// We know the terms are not equal, but, we may
 comment|// have to carefully fixup the bytes at the
 comment|// difference to match UTF16's sort order:
+comment|// NOTE: instead of moving supplementary code points (0xee and 0xef) to the unused 0xfe and 0xff,
+comment|// we move them to the unused 0xfc and 0xfd [reserved for future 6-byte character sequences]
+comment|// this reserves 0xff for preflex's term reordering (surrogate dance), and if unicode grows such
+comment|// that 6-byte sequences are needed we have much bigger problems anyway.
 if|if
 condition|(
 name|aByte
@@ -1390,7 +1394,6 @@ operator|==
 literal|0xee
 condition|)
 block|{
-comment|// nocommit
 name|aByte
 operator|+=
 literal|0xe
@@ -1407,7 +1410,6 @@ operator|==
 literal|0xee
 condition|)
 block|{
-comment|// nocommit
 name|bByte
 operator|+=
 literal|0xe
