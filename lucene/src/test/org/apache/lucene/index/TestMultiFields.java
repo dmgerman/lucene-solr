@@ -625,7 +625,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit
 name|IndexReader
 name|reader
 init|=

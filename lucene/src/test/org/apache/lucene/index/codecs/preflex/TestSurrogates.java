@@ -1714,7 +1714,9 @@ name|alwaysCodec
 argument_list|(
 operator|new
 name|PreFlexRWCodec
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1778,15 +1780,6 @@ init|=
 literal|"f"
 operator|+
 name|f
-decl_stmt|;
-name|Term
-name|protoTerm
-init|=
-operator|new
-name|Term
-argument_list|(
-name|field
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int

@@ -354,16 +354,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -769,7 +759,9 @@ name|length
 argument_list|)
 index|]
 expr_stmt|;
-comment|//nocommit
+comment|// If we're running w/ PreFlex codec we must swap in the
+comment|// test-only PreFlexRW codec (since core PreFlex can
+comment|// only read segments):
 if|if
 condition|(
 name|codec
@@ -789,7 +781,9 @@ name|register
 argument_list|(
 operator|new
 name|PreFlexRWCodec
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -810,7 +804,7 @@ name|void
 name|afterClassLuceneTestCaseJ4
 parameter_list|()
 block|{
-comment|//nocommit
+comment|// Restore read-only PreFlex codec:
 if|if
 condition|(
 name|codec
@@ -830,7 +824,9 @@ name|unregister
 argument_list|(
 operator|new
 name|PreFlexRWCodec
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|CodecProvider

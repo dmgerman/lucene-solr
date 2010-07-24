@@ -166,48 +166,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|LogDocMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LogMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SerialMergeScheduler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|BooleanQuery
@@ -617,7 +575,9 @@ name|length
 argument_list|)
 index|]
 expr_stmt|;
-comment|//nocommit
+comment|// If we're running w/ PreFlex codec we must swap in the
+comment|// test-only PreFlexRW codec (since core PreFlex can
+comment|// only read segments):
 if|if
 condition|(
 name|codec
@@ -637,7 +597,9 @@ name|register
 argument_list|(
 operator|new
 name|PreFlexRWCodec
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -713,7 +675,7 @@ argument_list|(
 name|savedBoolMaxClauseCount
 argument_list|)
 expr_stmt|;
-comment|// nocommit
+comment|// Restore read-only PreFlex codec:
 if|if
 condition|(
 name|codec
@@ -733,7 +695,9 @@ name|unregister
 argument_list|(
 operator|new
 name|PreFlexRWCodec
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|CodecProvider

@@ -132,6 +132,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|preflexrw
+operator|.
+name|PreFlexRWCodec
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -404,7 +422,7 @@ name|dir
 argument_list|)
 decl_stmt|;
 name|IndexReader
-name|r
+name|reader
 init|=
 name|dw
 operator|.
@@ -424,12 +442,14 @@ name|verifyEquals
 argument_list|(
 name|r
 argument_list|,
+name|reader
+argument_list|,
 name|dir
 argument_list|,
 literal|"id"
 argument_list|)
 expr_stmt|;
-name|r
+name|reader
 operator|.
 name|close
 argument_list|()
@@ -1606,6 +1626,9 @@ specifier|static
 name|void
 name|verifyEquals
 parameter_list|(
+name|Random
+name|r
+parameter_list|,
 name|IndexReader
 name|r1
 parameter_list|,
@@ -1618,6 +1641,9 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
+comment|// When we're testing w/ PreFlex codec, we must open
+comment|// this reader with UTF16 terms since incoming NRT
+comment|// reader is sorted this way:
 name|IndexReader
 name|r2
 init|=
@@ -1627,7 +1653,31 @@ name|open
 argument_list|(
 name|dir2
 argument_list|,
+literal|null
+argument_list|,
 literal|true
+argument_list|,
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|r
+argument_list|,
+literal|1
+argument_list|,
+literal|3
+argument_list|)
+argument_list|,
+name|_TestUtil
+operator|.
+name|alwaysCodec
+argument_list|(
+operator|new
+name|PreFlexRWCodec
+argument_list|(
+literal|"utf16"
+argument_list|)
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|verifyEquals

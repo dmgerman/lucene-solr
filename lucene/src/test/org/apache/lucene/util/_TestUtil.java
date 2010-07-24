@@ -1870,6 +1870,7 @@ name|String
 name|getTestCodec
 parameter_list|()
 block|{
+comment|// nocommit: should we default to random?
 return|return
 name|System
 operator|.
@@ -1923,10 +1924,36 @@ parameter_list|)
 block|{
 comment|// can't do this until we fix PreFlexRW to not
 comment|//impersonate PreFlex:
-comment|//return CodecProvider.getDefault().lookup(name);
+if|if
+condition|(
+name|name
+operator|.
+name|equals
+argument_list|(
+name|c
+operator|.
+name|name
+argument_list|)
+condition|)
+block|{
 return|return
 name|c
 return|;
+block|}
+else|else
+block|{
+return|return
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|lookup
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 block|}
 block|}
 return|;

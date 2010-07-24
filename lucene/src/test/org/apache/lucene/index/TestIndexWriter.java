@@ -29695,7 +29695,7 @@ name|s0
 return|;
 block|}
 comment|// Make sure terms, including ones with surrogate pairs,
-comment|// sort in UTF16 sort order by default
+comment|// sort in codepoint sort order by default
 DECL|method|testTermUTF16SortOrder
 specifier|public
 name|void
@@ -29704,6 +29704,12 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+name|Random
+name|rnd
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|Directory
 name|dir
 init|=
@@ -29711,35 +29717,15 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
-comment|// nocommit -- allow preflexrw but must force preflex
-comment|// for reading
-name|IndexWriter
+name|RandomIndexWriter
 name|writer
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|rnd
+argument_list|,
 name|dir
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|MockAnalyzer
-argument_list|()
-argument_list|)
-operator|.
-name|setCodecProvider
-argument_list|(
-name|_TestUtil
-operator|.
-name|alwaysCodec
-argument_list|(
-literal|"Standard"
-argument_list|)
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document
@@ -29789,12 +29775,6 @@ name|char
 index|[
 literal|2
 index|]
-decl_stmt|;
-name|Random
-name|rnd
-init|=
-name|newRandom
-argument_list|()
 decl_stmt|;
 specifier|final
 name|Set
