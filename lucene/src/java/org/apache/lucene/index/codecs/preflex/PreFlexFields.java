@@ -402,18 +402,6 @@ specifier|private
 name|Directory
 name|cfsReader
 decl_stmt|;
-DECL|field|unicodeSortOrder
-specifier|private
-specifier|final
-name|boolean
-name|unicodeSortOrder
-decl_stmt|;
-comment|// If unicodeSortOrder is true, we do the surrogates dance
-comment|// so that the terms are sorted by unicode sort order.
-comment|// This should be true when segments are used for "normal"
-comment|// searching; it's only false during testing, to create a
-comment|// pre-flex index, using the preflexrw codec under
-comment|// src/test.
 DECL|method|PreFlexFields
 specifier|public
 name|PreFlexFields
@@ -432,9 +420,6 @@ name|readBufferSize
 parameter_list|,
 name|int
 name|indexDivisor
-parameter_list|,
-name|boolean
-name|unicodeSortOrder
 parameter_list|)
 throws|throws
 name|IOException
@@ -442,12 +427,6 @@ block|{
 name|si
 operator|=
 name|info
-expr_stmt|;
-name|this
-operator|.
-name|unicodeSortOrder
-operator|=
-name|unicodeSortOrder
 expr_stmt|;
 comment|// NOTE: we must always load terms index, even for
 comment|// "sequential" scan during merging, because what is
@@ -645,6 +624,21 @@ name|dir
 operator|=
 name|dir
 expr_stmt|;
+block|}
+comment|// If this returns, we do the surrogates dance so that the
+comment|// terms are sorted by unicode sort order.  This should be
+comment|// true when segments are used for "normal" searching;
+comment|// it's only false during testing, to create a pre-flex
+comment|// index, using the test-only PreFlexRW.
+DECL|method|sortTermsByUnicode
+specifier|protected
+name|boolean
+name|sortTermsByUnicode
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 DECL|method|files
 specifier|static
@@ -1227,7 +1221,8 @@ comment|// Pre-flex indexes always sorted in UTF16 order, but
 comment|// we remap on-the-fly to unicode order
 if|if
 condition|(
-name|unicodeSortOrder
+name|sortTermsByUnicode
+argument_list|()
 condition|)
 block|{
 return|return
@@ -3192,6 +3187,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|field|unicodeSortOrder
+specifier|private
+name|boolean
+name|unicodeSortOrder
+decl_stmt|;
 DECL|method|reset
 name|void
 name|reset
@@ -3264,6 +3264,11 @@ block|}
 name|skipNext
 operator|=
 literal|true
+expr_stmt|;
+name|unicodeSortOrder
+operator|=
+name|sortTermsByUnicode
+argument_list|()
 expr_stmt|;
 specifier|final
 name|Term

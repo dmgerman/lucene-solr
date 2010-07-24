@@ -132,24 +132,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|preflexrw
-operator|.
-name|PreFlexRWCodec
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -1641,9 +1623,6 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
-comment|// When we're testing w/ PreFlex codec, we must open
-comment|// this reader with UTF16 terms since incoming NRT
-comment|// reader is sorted this way:
 name|IndexReader
 name|r2
 init|=
@@ -1652,32 +1631,6 @@ operator|.
 name|open
 argument_list|(
 name|dir2
-argument_list|,
-literal|null
-argument_list|,
-literal|true
-argument_list|,
-name|_TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|r
-argument_list|,
-literal|1
-argument_list|,
-literal|3
-argument_list|)
-argument_list|,
-name|_TestUtil
-operator|.
-name|alwaysCodec
-argument_list|(
-operator|new
-name|PreFlexRWCodec
-argument_list|(
-literal|"utf16"
-argument_list|)
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|verifyEquals

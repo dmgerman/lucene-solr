@@ -265,8 +265,6 @@ argument_list|,
 name|state
 operator|.
 name|termsIndexDivisor
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}
