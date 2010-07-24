@@ -2121,8 +2121,7 @@ name|newSuffixStart
 argument_list|)
 condition|)
 block|{
-comment|// Seek type 2 -- put U+FFFF at this position:
-comment|// nocommit -- can we somehow use 0xff???
+comment|// Seek type 2 -- put 0xFF at this position:
 name|scratchTerm
 operator|.
 name|bytes
@@ -2135,42 +2134,13 @@ name|byte
 operator|)
 literal|0xff
 expr_stmt|;
-comment|//scratchTerm.bytes[newSuffixStart] = (byte) 0xef;
-name|scratchTerm
-operator|.
-name|bytes
-index|[
-name|newSuffixStart
-operator|+
-literal|1
-index|]
-operator|=
-operator|(
-name|byte
-operator|)
-literal|0xbf
-expr_stmt|;
-name|scratchTerm
-operator|.
-name|bytes
-index|[
-name|newSuffixStart
-operator|+
-literal|2
-index|]
-operator|=
-operator|(
-name|byte
-operator|)
-literal|0xbf
-expr_stmt|;
 name|scratchTerm
 operator|.
 name|length
 operator|=
 name|newSuffixStart
 operator|+
-literal|3
+literal|1
 expr_stmt|;
 if|if
 condition|(
