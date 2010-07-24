@@ -851,8 +851,6 @@ name|flush
 argument_list|(
 literal|true
 argument_list|,
-literal|true
-argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
@@ -3606,8 +3604,6 @@ argument_list|(
 name|waitForMerges
 argument_list|,
 literal|true
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -4753,8 +4749,6 @@ expr_stmt|;
 name|flush
 argument_list|(
 literal|true
-argument_list|,
-literal|false
 argument_list|,
 literal|true
 argument_list|)
@@ -6339,8 +6333,6 @@ name|flush
 argument_list|(
 literal|true
 argument_list|,
-literal|false
-argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -6594,19 +6586,9 @@ block|}
 comment|// Update SI appropriately
 name|info
 operator|.
-name|setDocStore
+name|setDocStoreSegment
 argument_list|(
-name|info
-operator|.
-name|getDocStoreOffset
-argument_list|()
-argument_list|,
 name|newDsName
-argument_list|,
-name|info
-operator|.
-name|getDocStoreIsCompoundFile
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|info
@@ -6757,13 +6739,6 @@ argument_list|,
 name|docCount
 argument_list|,
 name|directory
-argument_list|,
-literal|false
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-literal|null
 argument_list|,
 literal|false
 argument_list|,
@@ -7016,8 +6991,6 @@ argument_list|)
 expr_stmt|;
 name|flush
 argument_list|(
-literal|true
-argument_list|,
 literal|true
 argument_list|,
 literal|true
@@ -7333,9 +7306,6 @@ name|boolean
 name|triggerMerge
 parameter_list|,
 name|boolean
-name|flushDocStores
-parameter_list|,
-name|boolean
 name|flushDeletes
 parameter_list|)
 throws|throws
@@ -7353,8 +7323,6 @@ if|if
 condition|(
 name|doFlush
 argument_list|(
-name|flushDocStores
-argument_list|,
 name|flushDeletes
 argument_list|)
 operator|&&
@@ -7375,9 +7343,6 @@ name|boolean
 name|doFlush
 parameter_list|(
 name|boolean
-name|flushDocStores
-parameter_list|,
-name|boolean
 name|flushDeletes
 parameter_list|)
 throws|throws
@@ -7390,8 +7355,6 @@ name|docWriter
 operator|.
 name|flushAllThreads
 argument_list|(
-name|flushDocStores
-argument_list|,
 name|flushDeletes
 argument_list|)
 return|;
@@ -8078,11 +8041,6 @@ argument_list|)
 expr_stmt|;
 comment|// nocommit
 comment|//docWriter.remapDeletes(segmentInfos, merger.getDocMaps(), merger.getDelCounts(), merge, mergedDocCount);
-name|setMergeDocStoreIsCompoundFile
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
 name|merge
 operator|.
 name|info
@@ -8945,317 +8903,11 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-comment|// Check whether this merge will allow us to skip
-comment|// merging the doc stores (stored field& vectors).
-comment|// This is a very substantial optimization (saves tons
-comment|// of IO).
-name|Directory
-name|lastDir
-init|=
-name|directory
-decl_stmt|;
-name|String
-name|lastDocStoreSegment
-init|=
-literal|null
-decl_stmt|;
-name|int
-name|next
-init|=
-operator|-
-literal|1
-decl_stmt|;
-name|boolean
-name|mergeDocStores
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|doFlushDocStore
-init|=
-literal|false
-decl_stmt|;
-comment|// nocommit
-comment|//final String currentDocStoreSegment = docWriter.getDocStoreSegment();
-comment|// Test each segment to be merged: check if we need to
-comment|// flush/merge doc stores
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|end
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|SegmentInfo
-name|si
-init|=
-name|sourceSegments
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-comment|// If it has deletions we must merge the doc stores
-if|if
-condition|(
-name|si
-operator|.
-name|hasDeletions
-argument_list|()
-condition|)
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-comment|// If it has its own (private) doc stores we must
-comment|// merge the doc stores
-if|if
-condition|(
-operator|-
-literal|1
-operator|==
-name|si
-operator|.
-name|getDocStoreOffset
-argument_list|()
-condition|)
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-comment|// If it has a different doc store segment than
-comment|// previous segments, we must merge the doc stores
-name|String
-name|docStoreSegment
-init|=
-name|si
-operator|.
-name|getDocStoreSegment
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|docStoreSegment
-operator|==
-literal|null
-condition|)
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|lastDocStoreSegment
-operator|==
-literal|null
-condition|)
-name|lastDocStoreSegment
-operator|=
-name|docStoreSegment
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-operator|!
-name|lastDocStoreSegment
-operator|.
-name|equals
-argument_list|(
-name|docStoreSegment
-argument_list|)
-condition|)
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-comment|// Segments' docScoreOffsets must be in-order,
-comment|// contiguous.  For the default merge policy now
-comment|// this will always be the case but for an arbitrary
-comment|// merge policy this may not be the case
-if|if
-condition|(
-operator|-
-literal|1
-operator|==
-name|next
-condition|)
-name|next
-operator|=
-name|si
-operator|.
-name|getDocStoreOffset
-argument_list|()
-operator|+
-name|si
-operator|.
-name|docCount
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|next
-operator|!=
-name|si
-operator|.
-name|getDocStoreOffset
-argument_list|()
-condition|)
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-else|else
-name|next
-operator|=
-name|si
-operator|.
-name|getDocStoreOffset
-argument_list|()
-operator|+
-name|si
-operator|.
-name|docCount
-expr_stmt|;
-comment|// If the segment comes from a different directory
-comment|// we must merge
-if|if
-condition|(
-name|lastDir
-operator|!=
-name|si
-operator|.
-name|dir
-condition|)
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-comment|// If the segment is referencing the current "live"
-comment|// doc store outputs then we must merge
-comment|// nocommit
-comment|//      if (si.getDocStoreOffset() != -1&& currentDocStoreSegment != null&& si.getDocStoreSegment().equals(currentDocStoreSegment)) {
-comment|//        doFlushDocStore = true;
-comment|//      }
-block|}
-specifier|final
-name|int
-name|docStoreOffset
-decl_stmt|;
-specifier|final
-name|String
-name|docStoreSegment
-decl_stmt|;
-specifier|final
-name|boolean
-name|docStoreIsCompoundFile
-decl_stmt|;
-if|if
-condition|(
-name|mergeDocStores
-condition|)
-block|{
-name|docStoreOffset
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-name|docStoreSegment
-operator|=
-literal|null
-expr_stmt|;
-name|docStoreIsCompoundFile
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
-block|{
-name|SegmentInfo
-name|si
-init|=
-name|sourceSegments
-operator|.
-name|info
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-name|docStoreOffset
-operator|=
-name|si
-operator|.
-name|getDocStoreOffset
-argument_list|()
-expr_stmt|;
-name|docStoreSegment
-operator|=
-name|si
-operator|.
-name|getDocStoreSegment
-argument_list|()
-expr_stmt|;
-name|docStoreIsCompoundFile
-operator|=
-name|si
-operator|.
-name|getDocStoreIsCompoundFile
-argument_list|()
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|mergeDocStores
-operator|&&
-name|doFlushDocStore
-condition|)
-block|{
-comment|// SegmentMerger intends to merge the doc stores
-comment|// (stored fields, vectors), and at least one of the
-comment|// segments to be merged refers to the currently
-comment|// live doc stores.
-comment|// TODO: if we know we are about to merge away these
-comment|// newly flushed doc store files then we should not
-comment|// make compound file out of them...
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"now flush at merge"
-argument_list|)
-expr_stmt|;
-name|doFlush
-argument_list|(
-literal|true
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|merge
 operator|.
 name|increfDone
 operator|=
 literal|true
-expr_stmt|;
-name|merge
-operator|.
-name|mergeDocStores
-operator|=
-name|mergeDocStores
 expr_stmt|;
 comment|// Bind a new segment name here so even with
 comment|// ConcurrentMergePolicy we keep deterministic segment
@@ -9275,12 +8927,6 @@ argument_list|,
 name|directory
 argument_list|,
 literal|false
-argument_list|,
-name|docStoreOffset
-argument_list|,
-name|docStoreSegment
-argument_list|,
-name|docStoreIsCompoundFile
 argument_list|,
 literal|false
 argument_list|,
@@ -9331,20 +8977,6 @@ operator|.
 name|toString
 argument_list|(
 name|end
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|details
-operator|.
-name|put
-argument_list|(
-literal|"mergeDocStores"
-argument_list|,
-name|Boolean
-operator|.
-name|toString
-argument_list|(
-name|mergeDocStores
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -9664,121 +9296,6 @@ name|merge
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setMergeDocStoreIsCompoundFile
-specifier|private
-specifier|synchronized
-name|void
-name|setMergeDocStoreIsCompoundFile
-parameter_list|(
-name|MergePolicy
-operator|.
-name|OneMerge
-name|merge
-parameter_list|)
-block|{
-specifier|final
-name|String
-name|mergeDocStoreSegment
-init|=
-name|merge
-operator|.
-name|info
-operator|.
-name|getDocStoreSegment
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|mergeDocStoreSegment
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|merge
-operator|.
-name|info
-operator|.
-name|getDocStoreIsCompoundFile
-argument_list|()
-condition|)
-block|{
-specifier|final
-name|int
-name|size
-init|=
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|size
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|SegmentInfo
-name|info
-init|=
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-specifier|final
-name|String
-name|docStoreSegment
-init|=
-name|info
-operator|.
-name|getDocStoreSegment
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|docStoreSegment
-operator|!=
-literal|null
-operator|&&
-name|docStoreSegment
-operator|.
-name|equals
-argument_list|(
-name|mergeDocStoreSegment
-argument_list|)
-operator|&&
-name|info
-operator|.
-name|getDocStoreIsCompoundFile
-argument_list|()
-condition|)
-block|{
-name|merge
-operator|.
-name|info
-operator|.
-name|setDocStoreIsCompoundFile
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-break|break;
-block|}
-block|}
-block|}
-block|}
 comment|/** Does the actual (time-consuming) work of the merge,    *  but without holding synchronized lock on IndexWriter    *  instance */
 DECL|method|mergeMiddle
 specifier|final
@@ -9895,25 +9412,6 @@ index|[
 name|numSegments
 index|]
 expr_stmt|;
-name|boolean
-name|mergeDocStores
-init|=
-literal|false
-decl_stmt|;
-specifier|final
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|dss
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
 comment|// This is try/finally to make sure merger's readers are
 comment|// closed:
 name|boolean
@@ -9972,9 +9470,7 @@ name|get
 argument_list|(
 name|info
 argument_list|,
-name|merge
-operator|.
-name|mergeDocStores
+literal|true
 argument_list|,
 name|MERGE_READ_BUFFER_SIZE
 argument_list|,
@@ -10015,41 +9511,6 @@ argument_list|(
 name|clone
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|clone
-operator|.
-name|hasDeletions
-argument_list|()
-condition|)
-block|{
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|info
-operator|.
-name|getDocStoreOffset
-argument_list|()
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-name|dss
-operator|.
-name|add
-argument_list|(
-name|info
-operator|.
-name|getDocStoreSegment
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|totDocCount
 operator|+=
 name|clone
@@ -10082,44 +9543,6 @@ argument_list|(
 name|directory
 argument_list|)
 expr_stmt|;
-comment|// If deletions have arrived and it has now become
-comment|// necessary to merge doc stores, go and open them:
-if|if
-condition|(
-name|mergeDocStores
-operator|&&
-operator|!
-name|merge
-operator|.
-name|mergeDocStores
-condition|)
-block|{
-name|merge
-operator|.
-name|mergeDocStores
-operator|=
-literal|true
-expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-comment|// If 1) we must now merge doc stores, and 2) at
-comment|// least one of the segments we are merging uses
-comment|// the doc store we are now writing to, we must at
-comment|// this point force this doc store closed (by
-comment|// calling flush).  If we didn't do this then the
-comment|// readers will attempt to open an IndexInput
-comment|// on files that have still-open IndexOutputs
-comment|// against them:
-comment|// nocommit
-comment|//          if (dss.contains(docWriter.getDocStoreSegment())) {
-comment|//            if (infoStream != null)
-comment|//              message("now flush at mergeMiddle");
-comment|//            doFlush(true, false);
-comment|//          }
-block|}
 for|for
 control|(
 name|int
@@ -10146,28 +9569,6 @@ name|openDocStores
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Clear DSS
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|merge
-operator|.
-name|info
-operator|.
-name|setDocStore
-argument_list|(
-operator|-
-literal|1
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|// This is where all the work happens:
 name|mergedDocCount
 operator|=
@@ -10180,11 +9581,7 @@ operator|=
 name|merger
 operator|.
 name|merge
-argument_list|(
-name|merge
-operator|.
-name|mergeDocStores
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// Record which codec was used to write the segment
 name|merge
@@ -10236,15 +9633,6 @@ init|(
 name|this
 init|)
 block|{
-comment|// If the doc store we are using has been closed and
-comment|// is in now compound format (but wasn't when we
-comment|// started), then we will switch to the compound
-comment|// format as well:
-name|setMergeDocStoreIsCompoundFile
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
 assert|assert
 name|merge
 operator|.

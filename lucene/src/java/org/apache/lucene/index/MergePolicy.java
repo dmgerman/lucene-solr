@@ -129,11 +129,6 @@ name|SegmentInfo
 name|info
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|mergeDocStores
-name|boolean
-name|mergeDocStores
-decl_stmt|;
-comment|// used by IndexWriter
 DECL|field|optimize
 name|boolean
 name|optimize
@@ -520,19 +515,6 @@ argument_list|(
 literal|" [optimize]"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|mergeDocStores
-condition|)
-block|{
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" [mergeDocStores]"
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|b
 operator|.

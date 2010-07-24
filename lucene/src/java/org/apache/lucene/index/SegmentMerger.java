@@ -352,15 +352,6 @@ specifier|final
 name|CheckAbort
 name|checkAbort
 decl_stmt|;
-comment|// Whether we should merge doc stores (stored fields and
-comment|// vectors files).  When all segments we are merging
-comment|// already share the same doc store files, we don't need
-comment|// to merge the doc stores.
-DECL|field|mergeDocStores
-specifier|private
-name|boolean
-name|mergeDocStores
-decl_stmt|;
 comment|/** Maximum number of contiguous documents to bulk-copy       when merging stored fields */
 DECL|field|MAX_RAW_MERGE_DOCS
 specifier|private
@@ -550,33 +541,6 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-return|return
-name|merge
-argument_list|(
-literal|true
-argument_list|)
-return|;
-block|}
-comment|/**    * Merges the readers specified by the {@link #add} method    * into the directory passed to the constructor.    * @param mergeDocStores if false, we will not merge the    * stored fields nor vectors files    * @return The number of documents that were merged    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|merge
-specifier|final
-name|int
-name|merge
-parameter_list|(
-name|boolean
-name|mergeDocStores
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-name|this
-operator|.
-name|mergeDocStores
-operator|=
-name|mergeDocStores
-expr_stmt|;
 comment|// NOTE: it's important to add calls to
 comment|// checkAbort.work(...) if you make any changes to this
 comment|// method that will spend alot of time.  The frequency
@@ -596,8 +560,6 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|mergeDocStores
-operator|&&
 name|fieldInfos
 operator|.
 name|hasVectors
@@ -690,32 +652,6 @@ operator|.
 name|COMPOUND_EXTENSIONS_NOT_CODEC
 control|)
 block|{
-if|if
-condition|(
-name|mergeDocStores
-operator|||
-operator|(
-operator|!
-name|ext
-operator|.
-name|equals
-argument_list|(
-name|IndexFileNames
-operator|.
-name|FIELDS_EXTENSION
-argument_list|)
-operator|&&
-operator|!
-name|ext
-operator|.
-name|equals
-argument_list|(
-name|IndexFileNames
-operator|.
-name|FIELDS_INDEX_EXTENSION
-argument_list|)
-operator|)
-condition|)
 name|fileSet
 operator|.
 name|add
@@ -818,8 +754,6 @@ name|fieldInfos
 operator|.
 name|hasVectors
 argument_list|()
-operator|&&
-name|mergeDocStores
 condition|)
 block|{
 for|for
@@ -1146,52 +1080,17 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-if|if
-condition|(
-operator|!
-name|mergeDocStores
-condition|)
-block|{
-comment|// When we are not merging by doc stores, their field
-comment|// name -> number mapping are the same.  So, we start
-comment|// with the fieldInfos of the last segment in this
-comment|// case, to keep that numbering.
-specifier|final
-name|SegmentReader
-name|sr
-init|=
-operator|(
-name|SegmentReader
-operator|)
-name|readers
-operator|.
-name|get
-argument_list|(
-name|readers
-operator|.
-name|size
-argument_list|()
-operator|-
-literal|1
-argument_list|)
-decl_stmt|;
-name|fieldInfos
-operator|=
-operator|(
-name|FieldInfos
-operator|)
-name|sr
-operator|.
-name|core
-operator|.
-name|fieldInfos
-operator|.
-name|clone
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|//nocommit
+comment|//    if (!mergeDocStores) {
+comment|//      // When we are not merging by doc stores, their field
+comment|//      // name -> number mapping are the same.  So, we start
+comment|//      // with the fieldInfos of the last segment in this
+comment|//      // case, to keep that numbering.
+comment|//      final SegmentReader sr = (SegmentReader) readers.get(readers.size()-1);
+comment|//      fieldInfos = (FieldInfos) sr.core.fieldInfos.clone();
+comment|//    } else {
+comment|//      fieldInfos = new FieldInfos();		  // merge field names
+comment|//    }
 name|fieldInfos
 operator|=
 operator|new
@@ -1199,7 +1098,6 @@ name|FieldInfos
 argument_list|()
 expr_stmt|;
 comment|// merge field names
-block|}
 for|for
 control|(
 name|IndexReader
@@ -1530,11 +1428,6 @@ decl_stmt|;
 name|setMatchingSegmentReaders
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|mergeDocStores
-condition|)
-block|{
 comment|// merge field values
 specifier|final
 name|FieldsWriter
@@ -1701,6 +1594,7 @@ literal|8
 operator|!=
 name|fdxFileLength
 condition|)
+block|{
 comment|// This is most likely a bug in Sun JRE 1.6.0_04/_05;
 comment|// we detect that the bug has struck, here, and
 comment|// throw an exception to prevent the corruption from
@@ -1735,29 +1629,6 @@ literal|"; now aborting this merge to prevent index corruption"
 argument_list|)
 throw|;
 block|}
-else|else
-block|{
-comment|// If we are skipping the doc stores, that means there
-comment|// are no deletions in any of these segments, so we
-comment|// just sum numDocs() of each segment to get total docCount
-for|for
-control|(
-specifier|final
-name|IndexReader
-name|reader
-range|:
-name|readers
-control|)
-block|{
-name|docCount
-operator|+=
-name|reader
-operator|.
-name|numDocs
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 name|segmentWriteState
 operator|=
 operator|new
@@ -1771,11 +1642,7 @@ name|segment
 argument_list|,
 name|fieldInfos
 argument_list|,
-literal|null
-argument_list|,
 name|docCount
-argument_list|,
-literal|0
 argument_list|,
 name|termIndexInterval
 argument_list|,

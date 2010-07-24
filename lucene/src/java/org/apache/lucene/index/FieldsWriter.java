@@ -453,15 +453,12 @@ comment|// Writes the contents of buffer into the fields stream
 comment|// and adds a new entry for this document into the index
 comment|// stream.  This assumes the buffer was already written
 comment|// in the correct fields format.
-DECL|method|flushDocument
+DECL|method|startDocument
 name|void
-name|flushDocument
+name|startDocument
 parameter_list|(
 name|int
 name|numStoredFields
-parameter_list|,
-name|RAMOutputStream
-name|buffer
 parameter_list|)
 throws|throws
 name|IOException
@@ -481,13 +478,6 @@ operator|.
 name|writeVInt
 argument_list|(
 name|numStoredFields
-argument_list|)
-expr_stmt|;
-name|buffer
-operator|.
-name|writeTo
-argument_list|(
-name|fieldsStream
 argument_list|)
 expr_stmt|;
 block|}
@@ -650,8 +640,8 @@ specifier|final
 name|void
 name|writeField
 parameter_list|(
-name|FieldInfo
-name|fi
+name|int
+name|fieldNumber
 parameter_list|,
 name|Fieldable
 name|field
@@ -663,9 +653,7 @@ name|fieldsStream
 operator|.
 name|writeVInt
 argument_list|(
-name|fi
-operator|.
-name|number
+name|fieldNumber
 argument_list|)
 expr_stmt|;
 name|byte
@@ -952,6 +940,8 @@ operator|.
 name|name
 argument_list|()
 argument_list|)
+operator|.
+name|number
 argument_list|,
 name|field
 argument_list|)

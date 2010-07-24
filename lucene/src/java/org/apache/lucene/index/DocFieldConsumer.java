@@ -66,18 +66,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called when DocumentsWriter decides to close the doc    *  stores */
-DECL|method|closeDocStore
-specifier|abstract
-name|void
-name|closeDocStore
-parameter_list|(
-name|SegmentWriteState
-name|state
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Called when an aborting exception is hit */
 DECL|method|abort
 specifier|abstract
@@ -111,9 +99,7 @@ parameter_list|)
 function_decl|;
 DECL|method|finishDocument
 specifier|abstract
-name|DocumentsWriterPerThread
-operator|.
-name|DocWriter
+name|void
 name|finishDocument
 parameter_list|()
 throws|throws

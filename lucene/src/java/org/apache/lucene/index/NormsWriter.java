@@ -464,16 +464,6 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|closeDocStore
-name|void
-name|closeDocStore
-parameter_list|(
-name|SegmentWriteState
-name|state
-parameter_list|)
-block|{}
-annotation|@
-name|Override
 DECL|method|finishDocument
 name|void
 name|finishDocument
