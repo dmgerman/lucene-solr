@@ -1870,7 +1870,9 @@ name|String
 name|getTestCodec
 parameter_list|()
 block|{
-comment|// nocommit: should we default to random?
+comment|// by default we randomly pick a different codec for
+comment|// each test case (non-J4 tests) and each test class (J4
+comment|// tests)
 return|return
 name|System
 operator|.
@@ -1878,7 +1880,7 @@ name|getProperty
 argument_list|(
 literal|"tests.codec"
 argument_list|,
-literal|"Standard"
+literal|"random"
 argument_list|)
 return|;
 block|}
