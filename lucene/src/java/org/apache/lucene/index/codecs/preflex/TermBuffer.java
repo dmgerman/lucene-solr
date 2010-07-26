@@ -344,8 +344,8 @@ name|other
 operator|.
 name|field
 expr_stmt|;
-comment|// nocommit -- right?
-comment|//term = other.term;
+comment|// dangerous to copy Term over, since the underlying
+comment|// BytesRef could subsequently be modified:
 name|term
 operator|=
 literal|null

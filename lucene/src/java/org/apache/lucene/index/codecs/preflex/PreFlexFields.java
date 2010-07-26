@@ -1446,7 +1446,8 @@ argument_list|,
 name|pos
 argument_list|)
 assert|;
-comment|// nocommit -- why does this trip?
+comment|// TODO: understand why this assert sometimes (rarely)
+comment|// trips!
 comment|// assert term.length>= pos + 3: "term.length=" + term.length + " pos+3=" + (pos+3);
 comment|// Save the bytes&& length, since we need to
 comment|// restore this if seek "back" finds no matching
@@ -2687,7 +2688,6 @@ operator|)
 operator|)
 condition|)
 block|{
-comment|// nocommit -- we can't cmp to prevTerm if we'd done a seek 3 or seek 2 before?
 comment|// A non-BMP char (4 bytes UTF8) starts here:
 assert|assert
 name|scratchTerm
@@ -3509,8 +3509,8 @@ operator|.
 name|name
 condition|)
 block|{
-comment|// nocommit -- why can't we handle this like the
-comment|// next() into null?  set term as prevTerm then dance?
+comment|// TODO: maybe we can handle this like the next()
+comment|// into null?  set term as prevTerm then dance?
 if|if
 condition|(
 name|DEBUG_SURROGATES
