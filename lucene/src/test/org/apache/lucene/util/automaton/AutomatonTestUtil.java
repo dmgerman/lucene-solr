@@ -194,11 +194,24 @@ condition|)
 continue|continue;
 try|try
 block|{
+comment|// NOTE: we parse-tostring-parse again, because we are
+comment|// really abusing RegExp.toString() here (its just for debugging)
 return|return
 operator|new
 name|RegExp
 argument_list|(
+operator|new
+name|RegExp
+argument_list|(
 name|regexp
+argument_list|,
+name|RegExp
+operator|.
+name|NONE
+argument_list|)
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|RegExp
 operator|.

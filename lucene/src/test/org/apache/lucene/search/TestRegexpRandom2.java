@@ -546,6 +546,9 @@ name|DumbRegexpQuery
 parameter_list|(
 name|Term
 name|term
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 block|{
 name|super
@@ -566,6 +569,8 @@ name|term
 operator|.
 name|text
 argument_list|()
+argument_list|,
+name|flags
 argument_list|)
 decl_stmt|;
 name|automaton
@@ -807,6 +812,10 @@ literal|"field"
 argument_list|,
 name|regexp
 argument_list|)
+argument_list|,
+name|RegExp
+operator|.
+name|NONE
 argument_list|)
 decl_stmt|;
 name|DumbRegexpQuery
@@ -822,6 +831,10 @@ literal|"field"
 argument_list|,
 name|regexp
 argument_list|)
+argument_list|,
+name|RegExp
+operator|.
+name|NONE
 argument_list|)
 decl_stmt|;
 comment|// we can't compare the two if automaton rewrites to a simpler enum.
