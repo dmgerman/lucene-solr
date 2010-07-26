@@ -604,7 +604,15 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"sub-readers have different BytesRef.Comparators; cannot merge"
+literal|"sub-readers have different BytesRef.Comparators: "
+operator|+
+name|subTermComp
+operator|+
+literal|" vs "
+operator|+
+name|termComp
+operator|+
+literal|"; cannot merge"
 argument_list|)
 throw|;
 block|}

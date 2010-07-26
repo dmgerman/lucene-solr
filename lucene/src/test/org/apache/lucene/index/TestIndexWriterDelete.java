@@ -2506,7 +2506,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|testOperationsOnDiskFull
+name|doTestOperationsOnDiskFull
 argument_list|(
 literal|false
 argument_list|)
@@ -2520,17 +2520,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|testOperationsOnDiskFull
+name|doTestOperationsOnDiskFull
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Make sure if modifier tries to commit but hits disk full that modifier    * remains consistent and usable. Similar to TestIndexReader.testDiskFull().    */
-DECL|method|testOperationsOnDiskFull
+DECL|method|doTestOperationsOnDiskFull
 specifier|private
 name|void
-name|testOperationsOnDiskFull
+name|doTestOperationsOnDiskFull
 parameter_list|(
 name|boolean
 name|updates
@@ -3991,6 +3991,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|// expected
 name|failed
 operator|=
 literal|true

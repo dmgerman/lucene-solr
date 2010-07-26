@@ -1003,16 +1003,6 @@ argument_list|(
 name|random
 argument_list|,
 name|indexStore
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|MockAnalyzer
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 for|for

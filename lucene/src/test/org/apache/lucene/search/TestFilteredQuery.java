@@ -24,20 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|MockAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -69,20 +55,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
 import|;
 end_import
 
@@ -250,16 +222,6 @@ name|newRandom
 argument_list|()
 argument_list|,
 name|directory
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|MockAnalyzer
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document
@@ -514,6 +476,14 @@ name|addDocument
 argument_list|(
 name|doc
 argument_list|)
+expr_stmt|;
+comment|// tests here require single segment (eg try seed
+comment|// 8239472272678419952L), because SingleDocTestFilter(x)
+comment|// blindly accepts that docID in any sub-segment
+name|writer
+operator|.
+name|optimize
+argument_list|()
 expr_stmt|;
 name|reader
 operator|=

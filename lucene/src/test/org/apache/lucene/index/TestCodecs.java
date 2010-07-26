@@ -3260,6 +3260,8 @@ index|[
 name|idx
 index|]
 expr_stmt|;
+try|try
+block|{
 name|status
 operator|=
 name|termsEnum
@@ -3269,6 +3271,26 @@ argument_list|(
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|uoe
+parameter_list|)
+block|{
+comment|// ok -- skip it
+name|status
+operator|=
+literal|null
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|status
+operator|!=
+literal|null
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 name|status
@@ -3371,6 +3393,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Test seek to non-existent terms:
 for|for
@@ -3571,6 +3594,8 @@ name|i
 operator|--
 control|)
 block|{
+try|try
+block|{
 name|assertEquals
 argument_list|(
 name|Thread
@@ -3657,6 +3682,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|uoe
+parameter_list|)
+block|{           }
 block|}
 comment|// Seek to non-existent empty-string term
 name|status
