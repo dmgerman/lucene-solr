@@ -1446,9 +1446,10 @@ argument_list|,
 name|pos
 argument_list|)
 assert|;
-comment|// TODO: understand why this assert sometimes (rarely)
-comment|// trips!
-comment|// assert term.length>= pos + 3: "term.length=" + term.length + " pos+3=" + (pos+3);
+comment|// NOTE: we cannot make this assert, because
+comment|// AutomatonQuery legitimately sends us malformed UTF8
+comment|// (eg the UTF8 bytes with just 0xee)
+comment|// assert term.length>= pos + 3: "term.length=" + term.length + " pos+3=" + (pos+3) + " byte=" + Integer.toHexString(term.bytes[pos]) + " term=" + term.toString();
 comment|// Save the bytes&& length, since we need to
 comment|// restore this if seek "back" finds no matching
 comment|// terms
