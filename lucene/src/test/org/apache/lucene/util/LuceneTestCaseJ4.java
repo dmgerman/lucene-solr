@@ -1301,6 +1301,30 @@ name|nextLong
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: random seed of testcase '"
+operator|+
+name|getName
+argument_list|()
+operator|+
+literal|"' is: "
+operator|+
+name|this
+operator|.
+name|seed
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 operator|new
 name|Random
