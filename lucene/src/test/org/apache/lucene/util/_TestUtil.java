@@ -1019,12 +1019,6 @@ literal|0xAC00
 block|,
 literal|0xD7B0
 block|,
-literal|0xD800
-block|,
-literal|0xDB80
-block|,
-literal|0xDC00
-block|,
 literal|0xE000
 block|,
 literal|0xF900
@@ -1422,12 +1416,6 @@ block|,
 literal|0xD7AF
 block|,
 literal|0xD7FF
-block|,
-literal|0xDB7F
-block|,
-literal|0xDBFF
-block|,
-literal|0xDFFF
 block|,
 literal|0xF8FF
 block|,
