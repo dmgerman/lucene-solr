@@ -148,20 +148,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|RandomIndexWriter
 import|;
 end_import
@@ -304,16 +290,6 @@ name|newRandom
 argument_list|()
 argument_list|,
 name|directory
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|MockAnalyzer
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// Add series of docs with specific information for MoreLikeThis

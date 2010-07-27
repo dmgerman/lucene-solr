@@ -254,6 +254,8 @@ block|,
 literal|"Pulsing"
 block|,
 literal|"IntBlock"
+block|,
+literal|"PreFlex"
 block|}
 decl_stmt|;
 DECL|method|register
@@ -342,6 +344,92 @@ operator|+
 literal|"' is already registered as a different codec instance"
 argument_list|)
 throw|;
+block|}
+block|}
+comment|/** @lucene.internal */
+DECL|method|unregister
+specifier|public
+name|void
+name|unregister
+parameter_list|(
+name|Codec
+name|codec
+parameter_list|)
+block|{
+if|if
+condition|(
+name|codec
+operator|.
+name|name
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"code.name is null"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|codecs
+operator|.
+name|containsKey
+argument_list|(
+name|codec
+operator|.
+name|name
+argument_list|)
+condition|)
+block|{
+name|Codec
+name|c
+init|=
+name|codecs
+operator|.
+name|get
+argument_list|(
+name|codec
+operator|.
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|codec
+operator|==
+name|c
+condition|)
+block|{
+name|codecs
+operator|.
+name|remove
+argument_list|(
+name|codec
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"codec '"
+operator|+
+name|codec
+operator|.
+name|name
+operator|+
+literal|"' is being impersonated by a different codec instance!!!"
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 DECL|method|getAllExtensions
@@ -551,9 +639,6 @@ name|getDefaultCodec
 argument_list|()
 argument_list|)
 return|;
-comment|//return lookup("Pulsing");
-comment|//return lookup("Sep");
-comment|//return lookup("IntBlock");
 block|}
 block|}
 end_class

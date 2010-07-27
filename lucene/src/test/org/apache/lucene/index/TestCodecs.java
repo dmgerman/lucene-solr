@@ -382,20 +382,6 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_comment
 comment|// TODO: test multiple codecs here?
 end_comment
@@ -502,10 +488,7 @@ name|NUM_TEST_ITER
 init|=
 literal|20
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 DECL|field|NUM_TEST_THREADS
 specifier|private
@@ -3246,6 +3229,8 @@ index|[
 name|idx
 index|]
 expr_stmt|;
+try|try
+block|{
 name|status
 operator|=
 name|termsEnum
@@ -3255,6 +3240,26 @@ argument_list|(
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|uoe
+parameter_list|)
+block|{
+comment|// ok -- skip it
+name|status
+operator|=
+literal|null
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|status
+operator|!=
+literal|null
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 name|status
@@ -3357,6 +3362,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Test seek to non-existent terms:
 for|for
@@ -3557,6 +3563,8 @@ name|i
 operator|--
 control|)
 block|{
+try|try
+block|{
 name|assertEquals
 argument_list|(
 name|Thread
@@ -3643,6 +3651,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|uoe
+parameter_list|)
+block|{           }
 block|}
 comment|// Seek to non-existent empty-string term
 name|status

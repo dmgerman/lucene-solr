@@ -342,20 +342,6 @@ name|BitVector
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_class
 DECL|class|TestIndexReaderReopen
 specifier|public
@@ -3828,10 +3814,7 @@ name|n
 init|=
 literal|30
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 name|IndexWriter
 name|writer

@@ -94,20 +94,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|MockAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|DateTools
@@ -153,20 +139,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
 import|;
 end_import
 
@@ -240,22 +212,8 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_comment
-comment|/**  * Unit test for sorting code.  *   */
+comment|/** Unit test for sorting code. */
 end_comment
 
 begin_class
@@ -297,10 +255,7 @@ name|INDEX_SIZE
 init|=
 literal|2000
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 comment|/**    * Create index and query for test cases.    */
 annotation|@
@@ -339,16 +294,6 @@ argument_list|(
 name|rand
 argument_list|,
 name|index
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-operator|new
-name|MockAnalyzer
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|RandomGen

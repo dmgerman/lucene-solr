@@ -102,22 +102,6 @@ name|analysis
 operator|.
 name|compound
 operator|.
-name|DictionaryCompoundWordTokenFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|compound
-operator|.
 name|HyphenationCompoundWordTokenFilter
 import|;
 end_import
@@ -225,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link DictionaryCompoundWordTokenFilter}  *<p>  * This factory accepts the following parameters:  *<ul>  *<li><code>hyphenator</code> (mandatory): path to the FOP xml hyphenation pattern.   *  See<a href="http://offo.sourceforge.net/hyphenation/">http://offo.sourceforge.net/hyphenation/</a>.  *<li><code>encoding</code> (optional): encoding of the xml hyphenation file. defaults to UTF-8.  *<li><code>dictionary</code> (optional): dictionary of words. defaults to no dictionary.  *<li><code>minWordSize</code> (optional): minimal word length that gets decomposed. defaults to 5.  *<li><code>minSubwordSize</code> (optional): minimum length of subwords. defaults to 2.  *<li><code>maxSubwordSize</code> (optional): maximum length of subwords. defaults to 15.  *<li><code>onlyLongestMatch</code> (optional): if true, adds only the longest matching subword   *    to the stream. defaults to false.  *</ul>  *<p>  * @see HyphenationCompoundWordTokenFilter  */
+comment|/**  * Factory for {@link HyphenationCompoundWordTokenFilter}  *<p>  * This factory accepts the following parameters:  *<ul>  *<li><code>hyphenator</code> (mandatory): path to the FOP xml hyphenation pattern.   *  See<a href="http://offo.sourceforge.net/hyphenation/">http://offo.sourceforge.net/hyphenation/</a>.  *<li><code>encoding</code> (optional): encoding of the xml hyphenation file. defaults to UTF-8.  *<li><code>dictionary</code> (optional): dictionary of words. defaults to no dictionary.  *<li><code>minWordSize</code> (optional): minimal word length that gets decomposed. defaults to 5.  *<li><code>minSubwordSize</code> (optional): minimum length of subwords. defaults to 2.  *<li><code>maxSubwordSize</code> (optional): maximum length of subwords. defaults to 15.  *<li><code>onlyLongestMatch</code> (optional): if true, adds only the longest matching subword   *    to the stream. defaults to false.  *</ul>  *<p>  * @see HyphenationCompoundWordTokenFilter  */
 end_comment
 
 begin_class

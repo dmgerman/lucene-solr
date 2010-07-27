@@ -360,6 +360,13 @@ name|newRandom
 argument_list|()
 decl_stmt|;
 comment|// up iterations for more exhaustive test after changing something
+name|int
+name|num
+init|=
+literal|100000
+operator|*
+name|RANDOM_MULTIPLIER
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -369,12 +376,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100000
-operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|num
 condition|;
 name|i
 operator|++
@@ -395,9 +397,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|Float
+operator|.
+name|isNaN
+argument_list|(
 name|f
-operator|!=
-name|f
+argument_list|)
 condition|)
 continue|continue;
 comment|// skip NaN
