@@ -1237,6 +1237,7 @@ name|failure
 operator|!=
 literal|null
 condition|)
+block|{
 name|fail
 argument_list|(
 literal|"thread "
@@ -1252,6 +1253,7 @@ operator|+
 literal|": hit unexpected failure"
 argument_list|)
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|commit

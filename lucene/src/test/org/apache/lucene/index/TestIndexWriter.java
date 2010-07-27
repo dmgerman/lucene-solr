@@ -14572,7 +14572,7 @@ name|getMethodName
 argument_list|()
 argument_list|)
 operator|||
-literal|"flushDocument"
+literal|"finishDocument"
 operator|.
 name|equals
 argument_list|(
@@ -14985,7 +14985,7 @@ argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"hit unexpected Throwable"
+literal|"hit unexpected Throwable "
 argument_list|,
 name|threads
 index|[
@@ -15270,7 +15270,7 @@ control|)
 block|{
 if|if
 condition|(
-literal|"closeDocStore"
+literal|"finishDocument"
 operator|.
 name|equals
 argument_list|(
@@ -15280,6 +15280,19 @@ name|i
 index|]
 operator|.
 name|getMethodName
+argument_list|()
+argument_list|)
+operator|&&
+literal|"org.apache.lucene.index.DocFieldProcessor"
+operator|.
+name|equals
+argument_list|(
+name|trace
+index|[
+name|i
+index|]
+operator|.
+name|getClassName
 argument_list|()
 argument_list|)
 condition|)
@@ -18668,7 +18681,7 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"DocumentsWriter.ThreadState.init start"
+literal|"DocumentsWriterPerThread.init start"
 argument_list|)
 condition|)
 throw|throw
@@ -18747,13 +18760,6 @@ name|Index
 operator|.
 name|ANALYZED
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|w
-operator|.
-name|addDocument
-argument_list|(
-name|doc
 argument_list|)
 expr_stmt|;
 name|w
@@ -31490,7 +31496,7 @@ argument_list|()
 operator|.
 name|length
 operator|>
-literal|5
+literal|0
 argument_list|)
 expr_stmt|;
 comment|// After rollback, IW should remove all files

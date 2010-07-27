@@ -102,6 +102,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -1536,9 +1546,6 @@ argument_list|(
 literal|"now checkpoint \""
 operator|+
 name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
-argument_list|()
 operator|+
 literal|"\" ["
 operator|+
@@ -1606,47 +1613,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-specifier|final
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|docWriterFiles
-decl_stmt|;
-if|if
-condition|(
-name|docWriter
-operator|!=
-literal|null
-condition|)
-block|{
-name|docWriterFiles
-operator|=
-name|docWriter
-operator|.
-name|openFiles
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|docWriterFiles
-operator|!=
-literal|null
-condition|)
-comment|// We must incRef these files before decRef'ing
-comment|// last files to make sure we don't accidentally
-comment|// delete them:
-name|incRef
-argument_list|(
-name|docWriterFiles
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-name|docWriterFiles
-operator|=
-literal|null
-expr_stmt|;
 comment|// DecRef old files from the last checkpoint, if any:
 name|int
 name|size
@@ -1706,19 +1672,6 @@ name|directory
 argument_list|,
 literal|false
 argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|docWriterFiles
-operator|!=
-literal|null
-condition|)
-name|lastFiles
-operator|.
-name|add
-argument_list|(
-name|docWriterFiles
 argument_list|)
 expr_stmt|;
 block|}
