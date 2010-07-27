@@ -980,7 +980,7 @@ argument_list|>
 name|set
 init|=
 operator|new
-name|HashSet
+name|LinkedHashSet
 argument_list|<
 name|String
 argument_list|>
