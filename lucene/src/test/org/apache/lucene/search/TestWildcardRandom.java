@@ -178,20 +178,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * Create an index with terms from 0000-9999.  * Generates random wildcards according to patterns,  * and validates the correct number of hits are returned.  */
 end_comment
@@ -561,6 +547,13 @@ throws|throws
 name|Exception
 block|{
 empty_stmt|;
+name|int
+name|num
+init|=
+literal|100
+operator|*
+name|RANDOM_MULTIPLIER
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -570,12 +563,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
-operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|num
 condition|;
 name|i
 operator|++
@@ -617,6 +605,12 @@ literal|10
 argument_list|)
 expr_stmt|;
 block|}
+name|num
+operator|=
+literal|10
+operator|*
+name|RANDOM_MULTIPLIER
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -626,12 +620,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10
-operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|num
 condition|;
 name|i
 operator|++

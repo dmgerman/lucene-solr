@@ -1225,6 +1225,13 @@ decl_stmt|;
 try|try
 block|{
 comment|// increase number of iterations for more complete testing
+name|int
+name|num
+init|=
+literal|50
+operator|*
+name|RANDOM_MULTIPLIER
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1234,12 +1241,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|50
-operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|num
 condition|;
 name|i
 operator|++

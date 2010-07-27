@@ -562,6 +562,47 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+comment|// by default we randomly pick a different codec for
+comment|// each test case (non-J4 tests) and each test class (J4
+comment|// tests)
+comment|/** Gets the codec to run tests with. */
+DECL|field|TEST_CODEC
+specifier|static
+specifier|final
+name|String
+name|TEST_CODEC
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.codec"
+argument_list|,
+literal|"random"
+argument_list|)
+decl_stmt|;
+comment|/**    * A random multiplier which you should use when writing random tests:    * multiply it by the number of iterations    */
+DECL|field|RANDOM_MULTIPLIER
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|RANDOM_MULTIPLIER
+init|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"random.multiplier"
+argument_list|,
+literal|"1"
+argument_list|)
+argument_list|)
+decl_stmt|;
 DECL|field|savedBoolMaxClauseCount
 specifier|private
 name|int
@@ -840,10 +881,7 @@ argument_list|()
 expr_stmt|;
 name|codec
 operator|=
-name|_TestUtil
-operator|.
-name|getTestCodec
-argument_list|()
+name|TEST_CODEC
 expr_stmt|;
 if|if
 condition|(
@@ -2199,10 +2237,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|_TestUtil
-operator|.
-name|getTestCodec
-argument_list|()
+name|TEST_CODEC
 operator|.
 name|equals
 argument_list|(

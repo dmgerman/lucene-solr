@@ -201,10 +201,7 @@ name|iter
 init|=
 literal|1000000
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 comment|// try native intern
 comment|// StringHelper.interner = new StringInterner();

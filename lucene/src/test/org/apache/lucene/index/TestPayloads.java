@@ -3145,10 +3145,7 @@ name|numDocs
 init|=
 literal|50
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 specifier|final
 name|ByteArrayPool

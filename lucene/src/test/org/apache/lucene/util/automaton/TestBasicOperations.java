@@ -48,20 +48,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -542,10 +528,7 @@ name|ITER1
 init|=
 literal|100
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 specifier|final
 name|int
@@ -553,10 +536,7 @@ name|ITER2
 init|=
 literal|100
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 for|for
 control|(

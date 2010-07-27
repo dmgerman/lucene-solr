@@ -42,20 +42,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * Not thorough, but tries to test determinism correctness  * somewhat randomly.  */
 end_comment
@@ -103,6 +89,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|int
+name|num
+init|=
+literal|500
+operator|*
+name|RANDOM_MULTIPLIER
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -112,12 +105,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|500
-operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|num
 condition|;
 name|i
 operator|++

@@ -325,10 +325,7 @@ name|ITERATIONS
 init|=
 literal|100
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 decl_stmt|;
 annotation|@
 name|Override
@@ -551,10 +548,7 @@ name|nextInt
 argument_list|(
 literal|250
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 argument_list|)
 decl_stmt|;
 for|for
@@ -599,10 +593,7 @@ name|nextInt
 argument_list|(
 literal|250
 operator|*
-name|_TestUtil
-operator|.
-name|getRandomMultiplier
-argument_list|()
+name|RANDOM_MULTIPLIER
 argument_list|)
 decl_stmt|;
 for|for

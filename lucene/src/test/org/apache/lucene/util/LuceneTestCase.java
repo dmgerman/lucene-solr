@@ -299,6 +299,30 @@ name|LuceneTestCaseJ4
 operator|.
 name|TEMP_DIR
 decl_stmt|;
+comment|/** Gets the codec to run tests with. */
+DECL|field|TEST_CODEC
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TEST_CODEC
+init|=
+name|LuceneTestCaseJ4
+operator|.
+name|TEST_CODEC
+decl_stmt|;
+comment|/**    * A random multiplier which you should use when writing random tests:    * multiply it by the number of iterations    */
+DECL|field|RANDOM_MULTIPLIER
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|RANDOM_MULTIPLIER
+init|=
+name|LuceneTestCaseJ4
+operator|.
+name|RANDOM_MULTIPLIER
+decl_stmt|;
 DECL|field|savedBoolMaxClauseCount
 specifier|private
 name|int
@@ -528,10 +552,7 @@ argument_list|()
 expr_stmt|;
 name|codec
 operator|=
-name|_TestUtil
-operator|.
-name|getTestCodec
-argument_list|()
+name|TEST_CODEC
 expr_stmt|;
 if|if
 condition|(
@@ -1288,10 +1309,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|_TestUtil
-operator|.
-name|getTestCodec
-argument_list|()
+name|TEST_CODEC
 operator|.
 name|equals
 argument_list|(
