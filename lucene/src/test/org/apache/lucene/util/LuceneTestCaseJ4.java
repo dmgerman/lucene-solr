@@ -2072,16 +2072,6 @@ argument_list|()
 decl_stmt|;
 name|logmp
 operator|.
-name|setUseCompoundDocStore
-argument_list|(
-name|r
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|logmp
-operator|.
 name|setUseCompoundFile
 argument_list|(
 name|r

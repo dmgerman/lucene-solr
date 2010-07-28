@@ -117,13 +117,6 @@ name|useCompoundFile
 init|=
 literal|true
 decl_stmt|;
-DECL|field|useCompoundDocStore
-specifier|private
-name|boolean
-name|useCompoundDocStore
-init|=
-literal|true
-decl_stmt|;
 DECL|method|LogMergePolicy
 specifier|public
 name|LogMergePolicy
@@ -271,50 +264,6 @@ parameter_list|()
 block|{
 return|return
 name|useCompoundFile
-return|;
-block|}
-comment|// Javadoc inherited
-annotation|@
-name|Override
-DECL|method|useCompoundDocStore
-specifier|public
-name|boolean
-name|useCompoundDocStore
-parameter_list|(
-name|SegmentInfos
-name|infos
-parameter_list|)
-block|{
-return|return
-name|useCompoundDocStore
-return|;
-block|}
-comment|/** Sets whether compound file format should be used for    *  newly flushed and newly merged doc store    *  segment files (term vectors and stored fields). */
-DECL|method|setUseCompoundDocStore
-specifier|public
-name|void
-name|setUseCompoundDocStore
-parameter_list|(
-name|boolean
-name|useCompoundDocStore
-parameter_list|)
-block|{
-name|this
-operator|.
-name|useCompoundDocStore
-operator|=
-name|useCompoundDocStore
-expr_stmt|;
-block|}
-comment|/** Returns true if newly flushed and newly merge doc    *  store segment files (term vectors and stored fields)    *  are written in compound file format. @see    *  #setUseCompoundDocStore */
-DECL|method|getUseCompoundDocStore
-specifier|public
-name|boolean
-name|getUseCompoundDocStore
-parameter_list|()
-block|{
-return|return
-name|useCompoundDocStore
 return|;
 block|}
 comment|/** Sets whether the segment size should be calibrated by    *  the number of deletes when choosing segments for merge. */

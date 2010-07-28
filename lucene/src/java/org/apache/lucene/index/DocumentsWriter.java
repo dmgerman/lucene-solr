@@ -1803,7 +1803,8 @@ expr_stmt|;
 block|}
 name|indexWriter
 operator|.
-name|deleter
+name|getIndexFileDeleter
+argument_list|()
 operator|.
 name|deleteFile
 argument_list|(
@@ -1837,7 +1838,8 @@ control|)
 block|{
 name|indexWriter
 operator|.
-name|deleter
+name|getIndexFileDeleter
+argument_list|()
 operator|.
 name|deleteFile
 argument_list|(
@@ -1861,7 +1863,8 @@ control|)
 block|{
 name|indexWriter
 operator|.
-name|deleter
+name|getIndexFileDeleter
+argument_list|()
 operator|.
 name|deleteFile
 argument_list|(

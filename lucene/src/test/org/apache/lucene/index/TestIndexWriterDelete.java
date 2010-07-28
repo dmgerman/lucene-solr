@@ -3719,13 +3719,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|lmp
-operator|.
-name|setUseCompoundDocStore
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|dir
 operator|.
 name|failOn

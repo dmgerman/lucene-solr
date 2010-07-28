@@ -401,13 +401,6 @@ argument_list|(
 name|useCompoundFiles
 argument_list|)
 expr_stmt|;
-name|lmp
-operator|.
-name|setUseCompoundDocStore
-argument_list|(
-name|useCompoundFiles
-argument_list|)
-expr_stmt|;
 name|IndexWriter
 name|writer
 init|=
