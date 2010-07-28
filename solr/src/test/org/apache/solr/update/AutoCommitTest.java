@@ -1191,7 +1191,7 @@ name|trigger
 operator|.
 name|waitForCommit
 argument_list|(
-literal|30000
+literal|45000
 argument_list|)
 argument_list|)
 expr_stmt|;
