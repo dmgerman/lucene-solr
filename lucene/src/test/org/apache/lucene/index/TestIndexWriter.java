@@ -27564,6 +27564,18 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|failed
+condition|)
+block|{
+comment|// clear interrupt state:
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|w
@@ -27586,12 +27598,6 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-operator|!
-name|failed
-condition|)
-block|{
 try|try
 block|{
 name|_TestUtil
@@ -29365,6 +29371,14 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
+name|assertFalse
+argument_list|(
+name|failed
+operator|.
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|w
 operator|.
 name|close
@@ -29374,14 +29388,6 @@ name|dir
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|assertFalse
-argument_list|(
-name|failed
-operator|.
-name|get
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 comment|// both start& end are inclusive
