@@ -4022,7 +4022,7 @@ literal|"//float[.='1.4142135'] "
 argument_list|,
 literal|"//float[@name='score'] "
 argument_list|,
-literal|"*[count(//doc/*)=13]"
+literal|"*[count(//doc/*)>=13]"
 argument_list|)
 expr_stmt|;
 name|args
@@ -4085,7 +4085,7 @@ literal|"//float[.='1.4142135'] "
 argument_list|,
 literal|"//float[@name='score'] "
 argument_list|,
-literal|"*[count(//doc/*)=13]"
+literal|"*[count(//doc/*)>=13]"
 argument_list|)
 expr_stmt|;
 name|args

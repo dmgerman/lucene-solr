@@ -2413,12 +2413,23 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO: facet dates
+comment|// TODO: facet dates& numbers
 name|facet_counts
 operator|.
 name|add
 argument_list|(
 literal|"facet_dates"
+argument_list|,
+operator|new
+name|SimpleOrderedMap
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|facet_counts
+operator|.
+name|add
+argument_list|(
+literal|"facet_ranges"
 argument_list|,
 operator|new
 name|SimpleOrderedMap
