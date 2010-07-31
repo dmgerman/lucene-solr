@@ -2878,6 +2878,17 @@ argument_list|(
 literal|100
 argument_list|)
 expr_stmt|;
+comment|// The last commit may have failed due to exceeding max warming searchers.
+comment|// We'll try again.
+name|slaveClient
+operator|.
+name|commit
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 name|assertNotNull
 argument_list|(
