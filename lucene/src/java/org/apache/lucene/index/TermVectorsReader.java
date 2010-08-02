@@ -539,10 +539,15 @@ assert|;
 block|}
 block|}
 else|else
+block|{
+comment|// TODO: understand why FieldInfos.hasVectors() can
+comment|// return true yet the term vectors files don't
+comment|// exist...
 name|format
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|fieldInfos
@@ -626,10 +631,12 @@ name|boolean
 name|canReadRawDocs
 parameter_list|()
 block|{
+comment|// we can always read raw docs, unless the term vectors
+comment|// didn't exist
 return|return
 name|format
-operator|>=
-name|FORMAT_UTF8_LENGTH_IN_BYTES
+operator|!=
+literal|0
 return|;
 block|}
 comment|/** Retrieve the length (in bytes) of the tvd and tvf    *  entries for the next numDocs starting with    *  startDocID.  This is used for bulk copying when    *  merging segments, if the field numbers are    *  congruent.  Once this returns, the tvf& tvd streams    *  are seeked to the startDocID. */
@@ -682,21 +689,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|// SegmentMerger calls canReadRawDocs() first and should
-comment|// not call us if that returns false.
-if|if
-condition|(
-name|format
-operator|<
-name|FORMAT_UTF8_LENGTH_IN_BYTES
-condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"cannot read raw docs with older term vector formats"
-argument_list|)
-throw|;
 name|seekTvx
 argument_list|(
 name|startDocID

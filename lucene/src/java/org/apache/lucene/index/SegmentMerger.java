@@ -1601,11 +1601,6 @@ condition|(
 name|fieldsReader
 operator|!=
 literal|null
-operator|&&
-name|fieldsReader
-operator|.
-name|canReadRawDocs
-argument_list|()
 condition|)
 block|{
 name|matchingFieldsReader
