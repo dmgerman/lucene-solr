@@ -995,7 +995,7 @@ name|fragsBuilder
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Return a phrase Highlighter appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @param tokenStream document text CachingTokenStream    * @throws IOException     */
+comment|/**    * Return a phrase {@link org.apache.lucene.search.highlight.Highlighter} appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @param tokenStream document text CachingTokenStream    * @throws IOException     */
 DECL|method|getPhraseHighlighter
 specifier|protected
 name|Highlighter
@@ -1069,7 +1069,7 @@ return|return
 name|highlighter
 return|;
 block|}
-comment|/**    * Return a Highlighter appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Highlighter} appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    */
 DECL|method|getHighlighter
 specifier|protected
 name|Highlighter
@@ -1132,7 +1132,7 @@ return|return
 name|highlighter
 return|;
 block|}
-comment|/**    * Return a SpanScorer suitable for this Query and field.    * @param query The current query    * @param tokenStream document text CachingTokenStream    * @param fieldName The name of the field    * @param request The SolrQueryRequest    * @throws IOException     */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.QueryScorer} suitable for this Query and field.    * @param query The current query    * @param tokenStream document text CachingTokenStream    * @param fieldName The name of the field    * @param request The SolrQueryRequest    * @throws IOException     */
 DECL|method|getSpanQueryScorer
 specifier|private
 name|QueryScorer
@@ -1244,7 +1244,7 @@ return|return
 name|scorer
 return|;
 block|}
-comment|/**    * Return a QueryScorer suitable for this Query and field.    * @param query The current query    * @param fieldName The name of the field    * @param request The SolrQueryRequest    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Scorer} suitable for this Query and field.    * @param query The current query    * @param fieldName The name of the field    * @param request The SolrQueryRequest    */
 DECL|method|getQueryScorer
 specifier|private
 name|Scorer
@@ -1369,7 +1369,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a formatter appropriate for this field. If a formatter    * has not been configured for this field, fall back to the configured    * default or the solr default (SimpleHTMLFormatter).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate Formatter.    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Formatter} appropriate for this field. If a formatter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.SimpleHTMLFormatter}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Formatter}.    */
 DECL|method|getFormatter
 specifier|protected
 name|Formatter
@@ -1440,7 +1440,7 @@ name|params
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a fragmenter appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default (GapFragmenter).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate Fragmenter.    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Fragmenter} appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.GapFragmenter}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Fragmenter}.    */
 DECL|method|getFragmenter
 specifier|protected
 name|Fragmenter
