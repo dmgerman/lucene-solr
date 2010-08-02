@@ -203,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Fragmenter that tries to produce snippets that "look" like a regular   * expression.  *  *<code>solrconfig.xml</code> parameters:  *<ul>  *<li><code>hl.regex.pattern</code>: regular expression corresponding to "nice" fragments.</li>  *<li><code>hl.regex.slop</code>: how far the fragmenter can stray from the ideal fragment size.        A slop of 0.2 means that the fragmenter can go over or under by 20%.</li>  *<li><code>hl.regex.maxAnalyzedChars</code>: how many characters to apply the        regular expression to (independent from the global highlighter setting).</li>  *</ul>  *  * NOTE: the default for<code>maxAnalyzedChars</code> is much lower for this   * fragmenter.  After this limit is exhausted, fragments are produced in the  * same way as<code>GapFragmenter</code>  */
+comment|/**  * {@link org.apache.lucene.search.highlight.Fragmenter} that tries to produce snippets that "look" like a regular   * expression.  *  *<code>solrconfig.xml</code> parameters:  *<ul>  *<li><code>hl.regex.pattern</code>: regular expression corresponding to "nice" fragments.</li>  *<li><code>hl.regex.slop</code>: how far the fragmenter can stray from the ideal fragment size.        A slop of 0.2 means that the fragmenter can go over or under by 20%.</li>  *<li><code>hl.regex.maxAnalyzedChars</code>: how many characters to apply the        regular expression to (independent from the global highlighter setting).</li>  *</ul>  *  * NOTE: the default for<code>maxAnalyzedChars</code> is much lower for this   * fragmenter.  After this limit is exhausted, fragments are produced in the  * same way as<code>GapFragmenter</code>  */
 end_comment
 
 begin_class

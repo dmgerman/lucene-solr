@@ -114,7 +114,7 @@ name|NamedList
 name|args
 parameter_list|)
 function_decl|;
-comment|/**    * Return a formatter appropriate for this field.    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate Formatter.    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Formatter} appropriate for this field.    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Formatter}    */
 DECL|method|getFormatter
 specifier|public
 name|Formatter
