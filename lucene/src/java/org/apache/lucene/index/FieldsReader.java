@@ -896,6 +896,17 @@ literal|8L
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|canReadRawDocs
+name|boolean
+name|canReadRawDocs
+parameter_list|()
+block|{
+comment|// Since we currently only support>3.0 format anymore, always return true!
+comment|// I leave this method in because it may help for later format changes.
+return|return
+literal|true
+return|;
+block|}
 DECL|method|doc
 specifier|final
 name|Document

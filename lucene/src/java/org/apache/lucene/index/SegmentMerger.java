@@ -1601,6 +1601,11 @@ condition|(
 name|fieldsReader
 operator|!=
 literal|null
+operator|&&
+name|fieldsReader
+operator|.
+name|canReadRawDocs
+argument_list|()
 condition|)
 block|{
 name|matchingFieldsReader
@@ -2237,6 +2242,11 @@ condition|(
 name|vectorsReader
 operator|!=
 literal|null
+operator|&&
+name|vectorsReader
+operator|.
+name|canReadRawDocs
+argument_list|()
 condition|)
 block|{
 name|matchingVectorsReader
