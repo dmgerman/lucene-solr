@@ -1666,6 +1666,17 @@ operator|.
 name|getChannel
 argument_list|()
 decl_stmt|;
+comment|// Necessary because BufferedIndexInput does lazy seeking:
+name|in
+operator|.
+name|position
+argument_list|(
+name|fsInput
+operator|.
+name|getFilePointer
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|FileChannel
 name|out
 init|=
