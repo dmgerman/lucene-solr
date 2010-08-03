@@ -103,6 +103,17 @@ name|HIGHLIGHT
 operator|+
 literal|".formatter"
 decl_stmt|;
+DECL|field|ENCODER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ENCODER
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".encoder"
+decl_stmt|;
 DECL|field|FRAGMENTER
 specifier|public
 specifier|static
