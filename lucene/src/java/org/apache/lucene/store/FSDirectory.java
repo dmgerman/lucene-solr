@@ -1608,8 +1608,6 @@ comment|// NOTE: the below check relies on NIOIndexInput extending Simple. If th
 comment|// changes in the future, we should change the check as well.
 if|if
 condition|(
-literal|true
-operator|||
 name|numBytes
 operator|<=
 name|BUFFER_SIZE
@@ -1641,10 +1639,6 @@ name|SimpleFSIndexInput
 operator|)
 name|input
 decl_stmt|;
-comment|// flush any bytes in the buffer
-name|flush
-argument_list|()
-expr_stmt|;
 comment|// flush any bytes in the input's buffer.
 name|numBytes
 operator|-=
@@ -1656,6 +1650,10 @@ name|this
 argument_list|,
 name|numBytes
 argument_list|)
+expr_stmt|;
+comment|// flush any bytes in the buffer
+name|flush
+argument_list|()
 expr_stmt|;
 comment|// do the optimized copy
 name|FileChannel
