@@ -1608,6 +1608,8 @@ comment|// NOTE: the below check relies on NIOIndexInput extending Simple. If th
 comment|// changes in the future, we should change the check as well.
 if|if
 condition|(
+literal|true
+operator|||
 name|numBytes
 operator|<=
 name|BUFFER_SIZE
