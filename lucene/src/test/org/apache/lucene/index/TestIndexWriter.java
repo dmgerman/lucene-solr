@@ -32223,8 +32223,6 @@ argument_list|(
 name|index
 argument_list|)
 decl_stmt|;
-comment|// nocommit seed
-comment|//Random rand = newRandom(1864464794067677128L);
 name|Random
 name|rand
 init|=

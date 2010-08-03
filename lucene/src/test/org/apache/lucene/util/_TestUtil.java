@@ -581,8 +581,6 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-comment|// nocommit
-comment|//buffer[i] = (char) nextInt(r, 0x41, 0x61);
 if|if
 condition|(
 literal|0
