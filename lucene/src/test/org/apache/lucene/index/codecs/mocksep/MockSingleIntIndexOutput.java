@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.sep
+DECL|package|org.apache.lucene.index.codecs.mocksep
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|sep
+name|mocksep
 package|;
 end_package
 
@@ -64,6 +64,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|sep
+operator|.
+name|IntIndexOutput
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -77,10 +95,10 @@ comment|/** Writes ints directly to the file (not in blocks) as  *  vInt.  *   *
 end_comment
 
 begin_class
-DECL|class|SingleIntIndexOutput
+DECL|class|MockSingleIntIndexOutput
 specifier|public
 class|class
-name|SingleIntIndexOutput
+name|MockSingleIntIndexOutput
 extends|extends
 name|IntIndexOutput
 block|{
@@ -114,9 +132,9 @@ name|VERSION_CURRENT
 init|=
 name|VERSION_START
 decl_stmt|;
-DECL|method|SingleIntIndexOutput
+DECL|method|MockSingleIntIndexOutput
 specifier|public
-name|SingleIntIndexOutput
+name|MockSingleIntIndexOutput
 parameter_list|(
 name|Directory
 name|dir

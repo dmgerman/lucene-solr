@@ -313,7 +313,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|DOC_EXTENSION
 argument_list|)
@@ -345,7 +345,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|SKIP_EXTENSION
 argument_list|)
@@ -379,7 +379,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|FREQ_EXTENSION
 argument_list|)
@@ -403,7 +403,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|POS_EXTENSION
 argument_list|)
@@ -427,7 +427,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|PAYLOAD_EXTENSION
 argument_list|)
@@ -500,7 +500,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|DOC_EXTENSION
 argument_list|)
@@ -520,7 +520,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|SKIP_EXTENSION
 argument_list|)
@@ -548,7 +548,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|FREQ_EXTENSION
 argument_list|)
@@ -568,7 +568,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|POS_EXTENSION
 argument_list|)
@@ -588,7 +588,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
 name|PAYLOAD_EXTENSION
 argument_list|)

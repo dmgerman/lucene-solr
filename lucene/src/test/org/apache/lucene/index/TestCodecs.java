@@ -222,9 +222,9 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|sep
+name|mocksep
 operator|.
-name|SepCodec
+name|MockSepCodec
 import|;
 end_import
 
@@ -2266,7 +2266,7 @@ operator|.
 name|setCodecProvider
 argument_list|(
 operator|new
-name|SepCodecs
+name|MockSepCodecs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2572,17 +2572,17 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|class|SepCodecs
+DECL|class|MockSepCodecs
 specifier|public
 specifier|static
 class|class
-name|SepCodecs
+name|MockSepCodecs
 extends|extends
 name|CodecProvider
 block|{
-DECL|method|SepCodecs
+DECL|method|MockSepCodecs
 specifier|protected
-name|SepCodecs
+name|MockSepCodecs
 parameter_list|()
 block|{
 name|this
@@ -2590,7 +2590,7 @@ operator|.
 name|register
 argument_list|(
 operator|new
-name|SepCodec
+name|MockSepCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2612,7 +2612,7 @@ name|this
 operator|.
 name|lookup
 argument_list|(
-literal|"Sep"
+literal|"MockSep"
 argument_list|)
 return|;
 block|}

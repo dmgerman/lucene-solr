@@ -66,6 +66,24 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|mockintblock
+operator|.
+name|*
+import|;
+end_import
+
 begin_class
 DECL|class|TestIntBlockCodec
 specifier|public
@@ -93,7 +111,7 @@ name|IntIndexOutput
 name|out
 init|=
 operator|new
-name|SimpleIntBlockIndexOutput
+name|MockFixedIntBlockIndexOutput
 argument_list|(
 name|dir
 argument_list|,
@@ -134,7 +152,7 @@ name|IntIndexInput
 name|in
 init|=
 operator|new
-name|SimpleIntBlockIndexInput
+name|MockFixedIntBlockIndexInput
 argument_list|(
 name|dir
 argument_list|,
@@ -209,7 +227,7 @@ name|IntIndexOutput
 name|out
 init|=
 operator|new
-name|SimpleIntBlockIndexOutput
+name|MockFixedIntBlockIndexOutput
 argument_list|(
 name|dir
 argument_list|,
@@ -228,7 +246,7 @@ name|IntIndexInput
 name|in
 init|=
 operator|new
-name|SimpleIntBlockIndexInput
+name|MockFixedIntBlockIndexInput
 argument_list|(
 name|dir
 argument_list|,

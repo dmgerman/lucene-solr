@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.intblock
+DECL|package|org.apache.lucene.index.codecs.mockintblock
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|intblock
+name|mockintblock
 package|;
 end_package
 
@@ -127,24 +127,6 @@ operator|.
 name|codecs
 operator|.
 name|FieldsProducer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|sep
-operator|.
-name|SepCodec
 import|;
 end_import
 
@@ -375,25 +357,25 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * A silly codec that simply writes each block as a series  * of vInts.  Don't use this (performance will be poor)!  * This is here just to test the core intblock codec  * classes.  */
 end_comment
 
 begin_class
-DECL|class|IntBlockCodec
+DECL|class|MockFixedIntBlockCodec
 specifier|public
 class|class
-name|IntBlockCodec
+name|MockFixedIntBlockCodec
 extends|extends
 name|Codec
 block|{
-DECL|method|IntBlockCodec
+DECL|method|MockFixedIntBlockCodec
 specifier|public
-name|IntBlockCodec
+name|MockFixedIntBlockCodec
 parameter_list|()
 block|{
 name|name
 operator|=
-literal|"IntBlock"
+literal|"MockFixedIntBlock"
 expr_stmt|;
 block|}
 annotation|@
@@ -418,7 +400,7 @@ argument_list|(
 name|state
 argument_list|,
 operator|new
-name|SimpleIntBlockFactory
+name|MockFixedIntBlockFactory
 argument_list|(
 literal|1024
 argument_list|)
@@ -553,7 +535,7 @@ operator|.
 name|readBufferSize
 argument_list|,
 operator|new
-name|SimpleIntBlockFactory
+name|MockFixedIntBlockFactory
 argument_list|(
 literal|1024
 argument_list|)
@@ -763,9 +745,23 @@ argument_list|>
 name|extensions
 parameter_list|)
 block|{
-name|SepCodec
+name|SepPostingsWriterImpl
 operator|.
-name|getSepExtensions
+name|getExtensions
+argument_list|(
+name|extensions
+argument_list|)
+expr_stmt|;
+name|StandardTermsDictReader
+operator|.
+name|getExtensions
+argument_list|(
+name|extensions
+argument_list|)
+expr_stmt|;
+name|SimpleStandardTermsIndexReader
+operator|.
+name|getIndexExtensions
 argument_list|(
 name|extensions
 argument_list|)

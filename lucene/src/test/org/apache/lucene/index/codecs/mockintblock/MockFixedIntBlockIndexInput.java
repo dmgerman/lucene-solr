@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.intblock
+DECL|package|org.apache.lucene.index.codecs.mockintblock
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|intblock
+name|mockintblock
 package|;
 end_package
 
@@ -68,6 +68,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|intblock
+operator|.
+name|FixedIntBlockIndexInput
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -77,20 +95,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Don't use this class!!  It naively encodes ints one vInt  * at a time.  Use it only for testing.  *  * @lucene.experimental  */
+comment|/** Don't use this class!!  It naively encodes ints one vInt  * at a time.  Use it only for testing. */
 end_comment
 
 begin_class
-DECL|class|SimpleIntBlockIndexInput
+DECL|class|MockFixedIntBlockIndexInput
 specifier|public
 class|class
-name|SimpleIntBlockIndexInput
+name|MockFixedIntBlockIndexInput
 extends|extends
 name|FixedIntBlockIndexInput
 block|{
-DECL|method|SimpleIntBlockIndexInput
+DECL|method|MockFixedIntBlockIndexInput
 specifier|public
-name|SimpleIntBlockIndexInput
+name|MockFixedIntBlockIndexInput
 parameter_list|(
 name|Directory
 name|dir
@@ -122,15 +140,15 @@ name|checkHeader
 argument_list|(
 name|in
 argument_list|,
-name|SimpleIntBlockIndexOutput
+name|MockFixedIntBlockIndexOutput
 operator|.
 name|CODEC
 argument_list|,
-name|SimpleIntBlockIndexOutput
+name|MockFixedIntBlockIndexOutput
 operator|.
 name|VERSION_START
 argument_list|,
-name|SimpleIntBlockIndexOutput
+name|MockFixedIntBlockIndexOutput
 operator|.
 name|VERSION_START
 argument_list|)

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.sep
+DECL|package|org.apache.lucene.index.codecs.mocksep
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|sep
+name|mocksep
 package|;
 end_package
 
@@ -72,15 +72,33 @@ name|CodecUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|sep
+operator|.
+name|IntIndexInput
+import|;
+end_import
+
 begin_comment
 comment|/** Reads IndexInputs written with {@link  *  SingleIntIndexOutput}.  NOTE: this class is just for  *  demonstration puprposes (it is a very slow way to read a  *  block of ints).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|SingleIntIndexInput
+DECL|class|MockSingleIntIndexInput
 specifier|public
 class|class
-name|SingleIntIndexInput
+name|MockSingleIntIndexInput
 extends|extends
 name|IntIndexInput
 block|{
@@ -90,9 +108,9 @@ specifier|final
 name|IndexInput
 name|in
 decl_stmt|;
-DECL|method|SingleIntIndexInput
+DECL|method|MockSingleIntIndexInput
 specifier|public
-name|SingleIntIndexInput
+name|MockSingleIntIndexInput
 parameter_list|(
 name|Directory
 name|dir
@@ -123,15 +141,15 @@ name|checkHeader
 argument_list|(
 name|in
 argument_list|,
-name|SingleIntIndexOutput
+name|MockSingleIntIndexOutput
 operator|.
 name|CODEC
 argument_list|,
-name|SingleIntIndexOutput
+name|MockSingleIntIndexOutput
 operator|.
 name|VERSION_START
 argument_list|,
-name|SingleIntIndexOutput
+name|MockSingleIntIndexOutput
 operator|.
 name|VERSION_START
 argument_list|)
