@@ -27266,6 +27266,7 @@ name|boolean
 name|finish
 decl_stmt|;
 DECL|field|allowInterrupt
+specifier|volatile
 name|boolean
 name|allowInterrupt
 init|=
@@ -27806,11 +27807,6 @@ operator|.
 name|finish
 operator|=
 literal|true
-expr_stmt|;
-name|t
-operator|.
-name|interrupt
-argument_list|()
 expr_stmt|;
 name|t
 operator|.
