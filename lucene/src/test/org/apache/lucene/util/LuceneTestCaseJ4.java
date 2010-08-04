@@ -988,15 +988,6 @@ name|String
 name|codec
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove"
-argument_list|)
-expr_stmt|;
 specifier|final
 name|CodecProvider
 name|cp
