@@ -2281,7 +2281,7 @@ specifier|final
 name|float
 name|maxDiff
 init|=
-literal|1e-5f
+literal|1e-3f
 decl_stmt|;
 specifier|final
 name|int
