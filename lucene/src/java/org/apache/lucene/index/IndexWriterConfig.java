@@ -154,7 +154,7 @@ specifier|final
 name|int
 name|DEFAULT_TERM_INDEX_INTERVAL
 init|=
-literal|128
+literal|32
 decl_stmt|;
 comment|/** Denotes a flush trigger is disabled. */
 DECL|field|DISABLE_AUTO_FLUSH

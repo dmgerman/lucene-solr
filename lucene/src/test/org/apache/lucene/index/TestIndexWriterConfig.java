@@ -909,7 +909,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|128
+literal|32
 argument_list|,
 name|IndexWriterConfig
 operator|.
