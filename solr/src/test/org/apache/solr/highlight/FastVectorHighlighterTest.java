@@ -396,7 +396,7 @@ argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='1']"
 argument_list|,
-literal|"//lst[@name='1']/arr[@name='tv_text']/str[.=' fast<b>vector</b> highlighter test']"
+literal|"//lst[@name='1']/arr[@name='tv_text']/str[.=' fast<em>vector</em> highlighter test']"
 argument_list|)
 expr_stmt|;
 block|}
