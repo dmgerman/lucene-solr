@@ -985,6 +985,32 @@ operator|.
 name|payloadOffset
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"tis.fp="
+operator|+
+name|filePointer
+operator|+
+literal|" docFreq="
+operator|+
+name|docFreq
+operator|+
+literal|" ord="
+operator|+
+name|ord
+operator|+
+literal|" docIndex="
+operator|+
+name|docIndex
+return|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -2792,10 +2818,7 @@ decl_stmt|;
 if|if
 condition|(
 name|storePayloads
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|(
 name|code
 operator|&
@@ -2818,7 +2841,6 @@ name|payloadLength
 operator|>=
 literal|0
 assert|;
-block|}
 block|}
 name|pendingPosCount
 operator|--

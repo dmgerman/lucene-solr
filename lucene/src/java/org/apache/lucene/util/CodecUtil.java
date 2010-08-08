@@ -119,7 +119,7 @@ decl_stmt|;
 DECL|method|writeHeader
 specifier|public
 specifier|static
-name|void
+name|IndexOutput
 name|writeHeader
 parameter_list|(
 name|IndexOutput
@@ -194,6 +194,9 @@ literal|"]"
 argument_list|)
 throw|;
 block|}
+return|return
+name|out
+return|;
 block|}
 DECL|method|headerLength
 specifier|public

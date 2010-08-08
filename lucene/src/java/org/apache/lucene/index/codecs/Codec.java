@@ -258,6 +258,18 @@ argument_list|>
 name|extensions
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
+block|}
 block|}
 end_class
 
