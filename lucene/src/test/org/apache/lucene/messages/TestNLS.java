@@ -28,11 +28,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LocalizedTestCase
 import|;
 end_import
 
@@ -46,7 +50,7 @@ specifier|public
 class|class
 name|TestNLS
 extends|extends
-name|TestCase
+name|LocalizedTestCase
 block|{
 DECL|method|testMessageLoading
 specifier|public
@@ -67,6 +71,23 @@ argument_list|,
 literal|"XXX"
 argument_list|)
 decl_stmt|;
+comment|/*       * if the default locale is ja, you get ja as a fallback:      * see ResourceBundle.html#getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)      */
+if|if
+condition|(
+operator|!
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"ja"
+argument_list|)
+condition|)
 name|assertEquals
 argument_list|(
 literal|"Syntax Error: XXX"
@@ -74,7 +95,11 @@ argument_list|,
 name|invalidSyntax
 operator|.
 name|getLocalizedMessage
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -128,8 +153,29 @@ argument_list|(
 name|MessagesTestBundle
 operator|.
 name|Q0004E_INVALID_SYNTAX_ESCAPE_UNICODE_TRUNCATION
+argument_list|,
+name|Locale
+operator|.
+name|ENGLISH
 argument_list|)
 decl_stmt|;
+comment|/*       * if the default locale is ja, you get ja as a fallback:      * see ResourceBundle.html#getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)      */
+if|if
+condition|(
+operator|!
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"ja"
+argument_list|)
+condition|)
 name|assertEquals
 argument_list|(
 literal|"Truncated unicode escape sequence."
@@ -147,9 +193,30 @@ name|MessagesTestBundle
 operator|.
 name|Q0001E_INVALID_SYNTAX
 argument_list|,
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|,
 literal|"XXX"
 argument_list|)
 expr_stmt|;
+comment|/*       * if the default locale is ja, you get ja as a fallback:      * see ResourceBundle.html#getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)      */
+if|if
+condition|(
+operator|!
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"ja"
+argument_list|)
+condition|)
 name|assertEquals
 argument_list|(
 literal|"Syntax Error: XXX"
@@ -245,6 +312,23 @@ argument_list|,
 name|locale
 argument_list|)
 decl_stmt|;
+comment|/*       * if the default locale is ja, you get ja as a fallback:      * see ResourceBundle.html#getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)      */
+if|if
+condition|(
+operator|!
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"ja"
+argument_list|)
+condition|)
 name|assertEquals
 argument_list|(
 literal|"Truncated unicode escape sequence."
@@ -267,6 +351,23 @@ argument_list|,
 literal|"XXX"
 argument_list|)
 expr_stmt|;
+comment|/*       * if the default locale is ja, you get ja as a fallback:      * see ResourceBundle.html#getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)      */
+if|if
+condition|(
+operator|!
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"ja"
+argument_list|)
+condition|)
 name|assertEquals
 argument_list|(
 literal|"Syntax Error: XXX"
