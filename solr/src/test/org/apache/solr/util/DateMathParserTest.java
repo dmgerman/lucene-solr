@@ -22,21 +22,25 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|util
 operator|.
-name|DateMathParser
+name|LocalizedTestCase
 import|;
 end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|solr
+operator|.
+name|util
+operator|.
+name|DateMathParser
 import|;
 end_import
 
@@ -140,7 +144,7 @@ specifier|public
 class|class
 name|DateMathParserTest
 extends|extends
-name|TestCase
+name|LocalizedTestCase
 block|{
 DECL|field|UTC
 specifier|public

@@ -2948,6 +2948,7 @@ argument_list|(
 literal|"random"
 argument_list|)
 condition|)
+comment|// careful to not deliver NPE here in case they forgot super.setUp
 name|System
 operator|.
 name|out
@@ -2961,10 +2962,18 @@ argument_list|()
 operator|+
 literal|"' was: "
 operator|+
+operator|(
+name|timeZone
+operator|==
+literal|null
+condition|?
+literal|"(null)"
+else|:
 name|timeZone
 operator|.
 name|getID
 argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 if|if

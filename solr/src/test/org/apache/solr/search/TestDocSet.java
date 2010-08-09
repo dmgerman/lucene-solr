@@ -18,16 +18,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -53,6 +43,20 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -178,7 +182,7 @@ specifier|public
 class|class
 name|TestDocSet
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|rand
 name|Random

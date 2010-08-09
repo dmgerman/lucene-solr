@@ -40,11 +40,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
 import|;
 end_import
 
@@ -56,9 +60,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|RAMDirectory
+name|LuceneTestCase
 import|;
 end_import
 
@@ -72,7 +76,7 @@ specifier|public
 class|class
 name|TestPlainTextDictionary
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|testBuild
 specifier|public

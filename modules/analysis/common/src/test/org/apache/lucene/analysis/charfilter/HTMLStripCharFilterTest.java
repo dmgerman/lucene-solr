@@ -134,11 +134,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -148,7 +152,7 @@ specifier|public
 class|class
 name|HTMLStripCharFilterTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|HTMLStripCharFilterTest
 specifier|public
@@ -164,18 +168,38 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|protected
 name|void
 name|setUp
 parameter_list|()
-block|{   }
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-block|{    }
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+block|}
 comment|//this is some text  here is a  link  and another  link . This is an entity:& plus a<.  Here is an&
 comment|//
 DECL|method|test

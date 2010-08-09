@@ -24,16 +24,6 @@ name|junit
 operator|.
 name|framework
 operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
 name|Assert
 import|;
 end_import
@@ -63,6 +53,20 @@ operator|.
 name|io
 operator|.
 name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -266,7 +270,7 @@ specifier|public
 class|class
 name|TestLBHttpSolrServer
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|solr
 name|SolrInstance
@@ -1505,8 +1509,6 @@ operator|!=
 name|port
 condition|)
 block|{
-name|TestCase
-operator|.
 name|fail
 argument_list|(
 literal|"TESTING FAILURE: could not grab requested port."

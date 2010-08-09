@@ -16,11 +16,15 @@ end_package
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -188,7 +192,7 @@ specifier|public
 class|class
 name|SolrInfoMBeanTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|/**    * Gets a list of everything we can find in the classpath and makes sure it has    * a name, description, etc...    */
 DECL|method|testCallMBeanInfo

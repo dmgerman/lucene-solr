@@ -20,16 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|swing
@@ -40,13 +30,27 @@ name|TableModel
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_class
 DECL|class|TestSearchingTable
 specifier|public
 class|class
 name|TestSearchingTable
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|baseTableModel
 specifier|private
@@ -68,6 +72,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|baseTableModel
 operator|=
 operator|new
