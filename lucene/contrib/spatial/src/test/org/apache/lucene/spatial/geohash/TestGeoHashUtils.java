@@ -34,6 +34,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -49,6 +63,8 @@ DECL|class|TestGeoHashUtils
 specifier|public
 class|class
 name|TestGeoHashUtils
+extends|extends
+name|LuceneTestCase
 block|{
 comment|/**    * Pass condition: lat=42.6, lng=-5.6 should be encoded as "ezs42e44yx96",    * lat=57.64911 lng=10.40744 should be encoded as "u4pruydqqvj8"    */
 annotation|@

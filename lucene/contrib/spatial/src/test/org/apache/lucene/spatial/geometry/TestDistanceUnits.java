@@ -30,6 +30,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -45,6 +59,8 @@ DECL|class|TestDistanceUnits
 specifier|public
 class|class
 name|TestDistanceUnits
+extends|extends
+name|LuceneTestCase
 block|{
 comment|/**    * Pass condition: When finding the DistanceUnit for "km", KILOMETRES is found.  When finding the DistanceUnit for    * "miles", MILES is found.    */
 annotation|@
