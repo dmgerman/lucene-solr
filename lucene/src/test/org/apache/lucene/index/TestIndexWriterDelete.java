@@ -166,6 +166,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestIndexWriterDelete
 specifier|public
@@ -3168,6 +3182,14 @@ if|if
 condition|(
 name|success
 condition|)
+block|{
+name|_TestUtil
+operator|.
+name|checkIndex
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|TestIndexWriter
 operator|.
 name|assertNoUnreferencedFiles
@@ -3177,6 +3199,7 @@ argument_list|,
 literal|"after writer.close"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Finally, verify index is not corrupt, and, if
 comment|// we succeeded, we see all docs changed, and if
 comment|// we failed, we see either all docs or no docs

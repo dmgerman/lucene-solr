@@ -1156,7 +1156,7 @@ decl_stmt|;
 assert|assert
 operator|!
 name|pooled
-operator||
+operator|||
 name|readerMap
 operator|.
 name|get
@@ -1197,18 +1197,8 @@ operator|)
 operator|)
 condition|)
 block|{
-comment|// We are the last ref to this reader; since we're
-comment|// not pooling readers, we release it:
-name|readerMap
-operator|.
-name|remove
-argument_list|(
-name|sr
-operator|.
-name|getSegmentInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// We invoke deleter.checkpoint below, so we must be
+comment|// sync'd on IW if there are changes:
 assert|assert
 operator|!
 name|sr
@@ -1224,61 +1214,60 @@ operator|.
 name|this
 argument_list|)
 assert|;
+comment|// Discard (don't save) changes when we are dropping
+comment|// the reader; this is used only on the sub-readers
+comment|// after a successful merge.
+name|sr
+operator|.
+name|hasChanges
+operator|&=
+operator|!
+name|drop
+expr_stmt|;
+specifier|final
+name|boolean
+name|hasChanges
+init|=
+name|sr
+operator|.
+name|hasChanges
+decl_stmt|;
 comment|// Drop our ref -- this will commit any pending
 comment|// changes to the dir
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 name|sr
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
+comment|// We are the last ref to this reader; since we're
+comment|// not pooling readers, we release it:
+name|readerMap
+operator|.
+name|remove
+argument_list|(
 name|sr
 operator|.
+name|getSegmentInfo
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|hasChanges
 condition|)
 block|{
-comment|// Abandon the changes& retry closing:
-name|sr
+comment|// Must checkpoint w/ deleter, because this
+comment|// segment reader will have created new _X_N.del
+comment|// file.
+name|deleter
 operator|.
-name|hasChanges
-operator|=
+name|checkpoint
+argument_list|(
+name|segmentInfos
+argument_list|,
 literal|false
+argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|sr
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|ignore
-parameter_list|)
-block|{
-comment|// Keep throwing original exception
-block|}
-block|}
 block|}
 block|}
 block|}
@@ -1291,6 +1280,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// We invoke deleter.checkpoint below, so we must be
+comment|// sync'd on IW:
+assert|assert
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|IndexWriter
+operator|.
+name|this
+argument_list|)
+assert|;
 name|Iterator
 argument_list|<
 name|Map
@@ -1361,43 +1362,23 @@ argument_list|)
 assert|;
 name|sr
 operator|.
-name|startCommit
-argument_list|()
-expr_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
-name|sr
-operator|.
 name|doCommit
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-name|sr
+comment|// Must checkpoint w/ deleter, because this
+comment|// segment reader will have created new _X_N.del
+comment|// file.
+name|deleter
 operator|.
-name|rollbackCommit
-argument_list|()
+name|checkpoint
+argument_list|(
+name|segmentInfos
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
-block|}
-block|}
 block|}
 name|iter
 operator|.
@@ -1424,6 +1405,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// We invoke deleter.checkpoint below, so we must be
+comment|// sync'd on IW:
+assert|assert
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|IndexWriter
+operator|.
+name|this
+argument_list|)
+assert|;
 for|for
 control|(
 name|Map
@@ -1468,43 +1461,23 @@ argument_list|)
 assert|;
 name|sr
 operator|.
-name|startCommit
-argument_list|()
-expr_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
-name|sr
-operator|.
 name|doCommit
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
-name|sr
+comment|// Must checkpoint w/ deleter, because this
+comment|// segment reader will have created new _X_N.del
+comment|// file.
+name|deleter
 operator|.
-name|rollbackCommit
-argument_list|()
+name|checkpoint
+argument_list|(
+name|segmentInfos
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 block|}
@@ -12085,7 +12058,7 @@ index|[
 name|i
 index|]
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -12561,17 +12534,6 @@ block|}
 name|flushDeletesCount
 operator|++
 expr_stmt|;
-name|SegmentInfos
-name|rollback
-init|=
-operator|(
-name|SegmentInfos
-operator|)
-name|segmentInfos
-operator|.
-name|clone
-argument_list|()
-decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -12602,108 +12564,15 @@ if|if
 condition|(
 operator|!
 name|success
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"hit exception flushing deletes"
-argument_list|)
-expr_stmt|;
-comment|// Carefully remove any partially written .del
-comment|// files
-specifier|final
-name|int
-name|size
-init|=
-name|rollback
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|size
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|String
-name|newDelFileName
-init|=
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getDelFileName
-argument_list|()
-decl_stmt|;
-specifier|final
-name|String
-name|delFileName
-init|=
-name|rollback
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getDelFileName
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|newDelFileName
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|newDelFileName
-operator|.
-name|equals
-argument_list|(
-name|delFileName
-argument_list|)
-condition|)
-name|deleter
-operator|.
-name|deleteFile
-argument_list|(
-name|newDelFileName
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Fully replace the segmentInfos since flushed
-comment|// deletes could have changed any of the
-comment|// SegmentInfo instances:
-name|segmentInfos
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|segmentInfos
-operator|.
-name|addAll
-argument_list|(
-name|rollback
 argument_list|)
 expr_stmt|;
 block|}
@@ -13133,6 +13002,19 @@ operator|+
 name|fileName
 operator|+
 literal|" does not exist"
+assert|;
+comment|// If this trips it means we are missing a call to
+comment|// .checkpoint somewhere, because by the time we
+comment|// are called, deleter should know about every
+comment|// file referenced by the current head
+comment|// segmentInfos:
+assert|assert
+name|deleter
+operator|.
+name|exists
+argument_list|(
+name|fileName
+argument_list|)
 assert|;
 block|}
 block|}
