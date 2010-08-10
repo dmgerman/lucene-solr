@@ -126,6 +126,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_class
 DECL|class|TestIndexWriterMerging
 specifier|public
@@ -143,6 +153,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|int
 name|num
 init|=
@@ -164,6 +180,8 @@ argument_list|()
 decl_stmt|;
 name|fillIndex
 argument_list|(
+name|random
+argument_list|,
 name|indexA
 argument_list|,
 literal|0
@@ -194,6 +212,8 @@ expr_stmt|;
 block|}
 name|fillIndex
 argument_list|(
+name|random
+argument_list|,
 name|indexB
 argument_list|,
 name|num
@@ -236,9 +256,10 @@ name|IndexWriter
 argument_list|(
 name|merged
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -449,6 +470,9 @@ specifier|private
 name|void
 name|fillIndex
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -469,9 +493,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

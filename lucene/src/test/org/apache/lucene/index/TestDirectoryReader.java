@@ -140,6 +140,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_class
 DECL|class|TestDirectoryReader
 specifier|public
@@ -672,6 +682,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|RAMDirectory
 name|ramDir1
 init|=
@@ -681,6 +697,8 @@ argument_list|()
 decl_stmt|;
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir1
 argument_list|,
 literal|"test foo"
@@ -697,6 +715,8 @@ argument_list|()
 decl_stmt|;
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir2
 argument_list|,
 literal|"test blah"
@@ -751,6 +771,8 @@ expr_stmt|;
 comment|// just opened, must be current
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir1
 argument_list|,
 literal|"more text"
@@ -769,6 +791,8 @@ expr_stmt|;
 comment|// has been modified, not current anymore
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir2
 argument_list|,
 literal|"even more text"
@@ -818,6 +842,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|RAMDirectory
 name|ramDir1
 init|=
@@ -827,6 +857,8 @@ argument_list|()
 decl_stmt|;
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir1
 argument_list|,
 literal|"test foo"
@@ -843,6 +875,8 @@ argument_list|()
 decl_stmt|;
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir2
 argument_list|,
 literal|"test blah"
@@ -859,6 +893,8 @@ argument_list|()
 decl_stmt|;
 name|addDoc
 argument_list|(
+name|random
+argument_list|,
 name|ramDir3
 argument_list|,
 literal|"test wow"
@@ -1080,6 +1116,9 @@ specifier|private
 name|void
 name|addDoc
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|RAMDirectory
 name|ramDir1
 parameter_list|,
@@ -1100,9 +1139,10 @@ name|IndexWriter
 argument_list|(
 name|ramDir1
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

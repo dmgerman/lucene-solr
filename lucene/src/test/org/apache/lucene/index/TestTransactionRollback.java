@@ -88,6 +88,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -195,6 +205,11 @@ DECL|field|dir
 specifier|private
 name|Directory
 name|dir
+decl_stmt|;
+DECL|field|random
+specifier|private
+name|Random
+name|random
 decl_stmt|;
 comment|//Rolls back index to a chosen ID
 DECL|method|rollBackLast
@@ -326,9 +341,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -603,6 +619,11 @@ operator|new
 name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
+name|random
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 comment|//Build index, of records 1 to 100, committing after each batch of 10
 name|IndexDeletionPolicy
 name|sdp
@@ -619,9 +640,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -977,9 +999,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

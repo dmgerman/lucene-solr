@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -156,6 +166,31 @@ name|TestIndexReaderClone
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|random
+name|Random
+name|random
+decl_stmt|;
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+name|random
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testCloneReadOnlySegmentReader
 specifier|public
 name|void
@@ -176,6 +211,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -272,6 +309,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -354,6 +393,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -436,6 +477,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -548,6 +591,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -636,6 +681,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -745,6 +792,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -877,6 +926,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -994,6 +1045,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -1019,9 +1072,10 @@ name|IndexWriter
 argument_list|(
 name|dir1
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1139,6 +1193,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -1244,6 +1300,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -1261,6 +1319,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir2
 argument_list|,
 literal|true
@@ -1511,6 +1571,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -1528,6 +1590,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir2
 argument_list|,
 literal|true
@@ -1614,6 +1678,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -1687,6 +1753,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -1807,6 +1875,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -2087,6 +2157,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -2186,6 +2258,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -2382,6 +2456,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|true
@@ -2526,6 +2602,8 @@ name|TestIndexReaderReopen
 operator|.
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|dir1
 argument_list|,
 literal|false
@@ -2620,9 +2698,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

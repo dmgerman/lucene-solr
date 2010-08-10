@@ -523,6 +523,8 @@ argument_list|)
 decl_stmt|;
 name|indexSerial
 argument_list|(
+name|r
+argument_list|,
 name|docs
 argument_list|,
 name|dir2
@@ -706,6 +708,8 @@ decl_stmt|;
 comment|//System.out.println("TEST: index serial");
 name|indexSerial
 argument_list|(
+name|r
+argument_list|,
 name|docs
 argument_list|,
 name|dir2
@@ -854,9 +858,10 @@ name|MockIndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|r
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1187,9 +1192,10 @@ name|MockIndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|r
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1444,6 +1450,9 @@ specifier|static
 name|void
 name|indexSerial
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -1466,9 +1475,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

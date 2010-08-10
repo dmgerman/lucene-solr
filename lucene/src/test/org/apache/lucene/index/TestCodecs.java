@@ -2314,9 +2314,11 @@ specifier|final
 name|IndexWriterConfig
 name|config
 init|=
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|Version
 operator|.
 name|LUCENE_31

@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -313,6 +323,9 @@ specifier|private
 name|void
 name|createIndex
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|int
 name|numHits
 parameter_list|)
@@ -339,9 +352,10 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -623,6 +637,9 @@ specifier|private
 name|void
 name|performTest
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|int
 name|numHits
 parameter_list|)
@@ -631,6 +648,8 @@ name|IOException
 block|{
 name|createIndex
 argument_list|(
+name|random
+argument_list|,
 name|numHits
 argument_list|)
 expr_stmt|;
@@ -698,13 +717,23 @@ throws|throws
 name|IOException
 block|{
 comment|// test whether only the minimum amount of seeks() are performed
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|performTest
 argument_list|(
+name|random
+argument_list|,
 literal|5
 argument_list|)
 expr_stmt|;
 name|performTest
 argument_list|(
+name|random
+argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
@@ -732,9 +761,11 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

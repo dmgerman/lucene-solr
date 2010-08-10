@@ -570,22 +570,15 @@ block|{
 if|if
 condition|(
 name|termsIndexDivisor
-operator|<
-literal|1
-operator|&&
-name|termsIndexDivisor
-operator|!=
-operator|-
-literal|1
+operator|==
+literal|0
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"indexDivisor must be -1 (don't load terms index) or greater than 0: got "
-operator|+
-name|termsIndexDivisor
+literal|"indexDivisor must be< 0 (don't load terms index) or greater than 0 (got 0)"
 argument_list|)
 throw|;
 block|}

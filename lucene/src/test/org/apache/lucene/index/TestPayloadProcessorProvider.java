@@ -60,6 +60,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -623,12 +633,16 @@ DECL|method|getConfig
 specifier|private
 name|IndexWriterConfig
 name|getConfig
-parameter_list|()
+parameter_list|(
+name|Random
+name|random
+parameter_list|)
 block|{
 return|return
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -648,6 +662,9 @@ specifier|private
 name|void
 name|populateDirs
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 index|[]
 name|dirs
@@ -686,6 +703,8 @@ argument_list|()
 expr_stmt|;
 name|populateDocs
 argument_list|(
+name|random
+argument_list|,
 name|dirs
 index|[
 name|i
@@ -737,6 +756,9 @@ specifier|private
 name|void
 name|populateDocs
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -755,9 +777,29 @@ argument_list|(
 name|dir
 argument_list|,
 name|getConfig
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
+operator|(
+operator|(
+name|LogMergePolicy
+operator|)
+name|writer
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|)
+operator|.
+name|setMergeFactor
+argument_list|(
+literal|10
+argument_list|)
+expr_stmt|;
 name|TokenStream
 name|payloadTS1
 init|=
@@ -1037,6 +1079,9 @@ specifier|private
 name|void
 name|doTest
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|boolean
 name|addToEmptyIndex
 parameter_list|,
@@ -1061,6 +1106,8 @@ index|]
 decl_stmt|;
 name|populateDirs
 argument_list|(
+name|random
+argument_list|,
 name|dirs
 argument_list|,
 name|multipleCommits
@@ -1081,6 +1128,8 @@ condition|)
 block|{
 name|populateDocs
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 name|multipleCommits
@@ -1165,7 +1214,9 @@ argument_list|(
 name|dir
 argument_list|,
 name|getConfig
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|writer
@@ -1314,9 +1365,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 comment|// addIndexes - single commit in each
 name|doTest
 argument_list|(
+name|random
+argument_list|,
 literal|true
 argument_list|,
 literal|0
@@ -1327,6 +1386,8 @@ expr_stmt|;
 comment|// addIndexes - multiple commits in each
 name|doTest
 argument_list|(
+name|random
+argument_list|,
 literal|true
 argument_list|,
 literal|0
@@ -1345,9 +1406,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 comment|// addIndexes - single commit in each
 name|doTest
 argument_list|(
+name|random
+argument_list|,
 literal|false
 argument_list|,
 name|NUM_DOCS
@@ -1358,6 +1427,8 @@ expr_stmt|;
 comment|// addIndexes - multiple commits in each
 name|doTest
 argument_list|(
+name|random
+argument_list|,
 literal|false
 argument_list|,
 name|NUM_DOCS
@@ -1376,6 +1447,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|Directory
 name|dir
 init|=
@@ -1385,6 +1462,8 @@ argument_list|()
 decl_stmt|;
 name|populateDocs
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 literal|true
@@ -1459,7 +1538,9 @@ argument_list|(
 name|dir
 argument_list|,
 name|getConfig
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|writer

@@ -126,9 +126,11 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|newRandom
+argument_list|()
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

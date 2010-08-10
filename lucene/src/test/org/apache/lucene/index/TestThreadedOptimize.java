@@ -206,6 +206,16 @@ name|File
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_class
 DECL|class|TestThreadedOptimize
 specifier|public
@@ -282,6 +292,9 @@ specifier|public
 name|void
 name|runTest
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 name|directory
 parameter_list|,
@@ -299,9 +312,10 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 name|ANALYZER
@@ -855,9 +869,10 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 name|ANALYZER
@@ -927,6 +942,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|Directory
 name|directory
 init|=
@@ -936,6 +957,8 @@ argument_list|()
 decl_stmt|;
 name|runTest
 argument_list|(
+name|random
+argument_list|,
 name|directory
 argument_list|,
 operator|new
@@ -945,6 +968,8 @@ argument_list|)
 expr_stmt|;
 name|runTest
 argument_list|(
+name|random
+argument_list|,
 name|directory
 argument_list|,
 operator|new
@@ -979,6 +1004,8 @@ argument_list|)
 expr_stmt|;
 name|runTest
 argument_list|(
+name|random
+argument_list|,
 name|directory
 argument_list|,
 operator|new
@@ -988,6 +1015,8 @@ argument_list|)
 expr_stmt|;
 name|runTest
 argument_list|(
+name|random
+argument_list|,
 name|directory
 argument_list|,
 operator|new

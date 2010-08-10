@@ -1640,6 +1640,12 @@ operator|+
 name|state
 operator|.
 name|ord
+operator|+
+literal|" pos="
+operator|+
+name|indexResult
+operator|.
+name|position
 assert|;
 name|startOrd
 operator|=
