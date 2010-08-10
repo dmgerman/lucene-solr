@@ -214,7 +214,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -1140,7 +1140,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|ExpirationTimeDeletionPolicy
@@ -1569,7 +1569,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|policy
@@ -2645,7 +2645,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -2907,7 +2907,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|KeepLastNDeletionPolicy
@@ -3252,7 +3252,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -3703,6 +3703,11 @@ name|expectedCount
 init|=
 literal|176
 decl_stmt|;
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -3936,7 +3941,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig

@@ -148,7 +148,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -282,7 +282,7 @@ decl_stmt|;
 DECL|field|directory
 specifier|private
 specifier|static
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 init|=
 literal|null
@@ -317,7 +317,7 @@ block|{
 name|directory
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|Random
@@ -2336,11 +2336,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

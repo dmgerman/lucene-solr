@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -3196,11 +3196,11 @@ throws|throws
 name|Exception
 block|{
 comment|/* build an index */
-name|RAMDirectory
+name|MockRAMDirectory
 name|farsiIndex
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -3438,11 +3438,11 @@ throws|throws
 name|Exception
 block|{
 comment|/* build an index */
-name|RAMDirectory
+name|MockRAMDirectory
 name|danishIndex
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter

@@ -254,7 +254,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -347,7 +347,7 @@ comment|//create a user index
 name|userindex
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|IndexWriter
@@ -485,7 +485,7 @@ comment|// create the spellChecker
 name|spellindex
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|spellChecker

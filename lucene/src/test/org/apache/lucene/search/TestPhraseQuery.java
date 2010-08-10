@@ -259,7 +259,7 @@ name|query
 decl_stmt|;
 DECL|field|directory
 specifier|private
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 decl_stmt|;
 DECL|field|random
@@ -290,7 +290,7 @@ expr_stmt|;
 name|directory
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|Analyzer
@@ -1446,11 +1446,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -1714,11 +1714,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -2420,7 +2420,7 @@ name|Directory
 name|directory
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter

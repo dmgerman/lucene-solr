@@ -438,7 +438,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -584,7 +584,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
@@ -939,7 +939,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
@@ -1107,7 +1107,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
@@ -1845,7 +1845,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
@@ -2598,7 +2598,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|byte
@@ -3246,7 +3246,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -3424,7 +3424,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|Term
@@ -5797,7 +5797,7 @@ init|=
 literal|144
 decl_stmt|;
 comment|// First build up a starting index:
-name|RAMDirectory
+name|MockRAMDirectory
 name|startDir
 init|=
 operator|new
@@ -9085,7 +9085,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
@@ -9408,7 +9408,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
@@ -9717,7 +9717,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

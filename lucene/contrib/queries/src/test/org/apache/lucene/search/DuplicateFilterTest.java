@@ -144,7 +144,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -195,7 +195,7 @@ literal|"url"
 decl_stmt|;
 DECL|field|directory
 specifier|private
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 decl_stmt|;
 DECL|field|reader
@@ -242,7 +242,7 @@ expr_stmt|;
 name|directory
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter

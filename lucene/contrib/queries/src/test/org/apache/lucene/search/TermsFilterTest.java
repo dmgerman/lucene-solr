@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -317,11 +317,11 @@ name|fieldName
 init|=
 literal|"field1"
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|rd
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter

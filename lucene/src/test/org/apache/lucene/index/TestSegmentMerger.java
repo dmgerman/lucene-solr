@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -151,7 +151,7 @@ name|Directory
 name|mergedDir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 DECL|field|mergedSegment
@@ -168,7 +168,7 @@ name|Directory
 name|merge1Dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 DECL|field|doc1
@@ -194,7 +194,7 @@ name|Directory
 name|merge2Dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 DECL|field|doc2

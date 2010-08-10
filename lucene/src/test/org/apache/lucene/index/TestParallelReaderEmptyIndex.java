@@ -194,7 +194,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -225,7 +225,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|rd1
 init|=
 operator|new
@@ -257,7 +257,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|rd2
 init|=
 operator|new
@@ -266,7 +266,7 @@ argument_list|(
 name|rd1
 argument_list|)
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|rdOut
 init|=
 operator|new
@@ -383,7 +383,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|rd1
 init|=
 operator|new
@@ -554,7 +554,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-name|RAMDirectory
+name|MockRAMDirectory
 name|rd2
 init|=
 operator|new
@@ -602,7 +602,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-name|RAMDirectory
+name|MockRAMDirectory
 name|rdOut
 init|=
 operator|new

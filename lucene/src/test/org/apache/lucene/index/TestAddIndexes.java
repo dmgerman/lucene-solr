@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -239,7 +239,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// two auxiliary directories
@@ -247,14 +247,14 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|Directory
 name|aux2
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -544,7 +544,7 @@ name|Directory
 name|aux3
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|writer
@@ -768,7 +768,7 @@ name|Directory
 name|aux4
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|writer
@@ -1176,7 +1176,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -1184,7 +1184,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs
@@ -1453,7 +1453,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -1461,7 +1461,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs
@@ -1731,7 +1731,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -1739,7 +1739,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -2044,7 +2044,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -2052,7 +2052,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs
@@ -2180,7 +2180,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -2188,7 +2188,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs
@@ -2316,7 +2316,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -2324,7 +2324,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs
@@ -2394,7 +2394,7 @@ block|{
 name|aux
 block|,
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|(
 name|aux
 argument_list|)
@@ -2451,7 +2451,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -2459,7 +2459,7 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs
@@ -2579,7 +2579,7 @@ block|{
 name|aux
 block|,
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|(
 name|aux
 argument_list|)
@@ -2628,7 +2628,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 comment|// auxiliary directory
@@ -2636,14 +2636,14 @@ name|Directory
 name|aux
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|Directory
 name|aux2
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|setUpDirs

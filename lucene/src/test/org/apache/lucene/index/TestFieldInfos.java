@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -187,11 +187,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//this is all b/c we are using the no-arg constructor
-name|RAMDirectory
+name|MockRAMDirectory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|String

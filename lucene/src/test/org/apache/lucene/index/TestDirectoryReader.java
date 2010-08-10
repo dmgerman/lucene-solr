@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -222,7 +222,7 @@ expr_stmt|;
 name|dir
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|doc1
@@ -688,11 +688,11 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir1
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|addDoc
@@ -706,11 +706,11 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir2
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|addDoc
@@ -848,11 +848,11 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir1
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|addDoc
@@ -866,11 +866,11 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir2
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|addDoc
@@ -884,11 +884,11 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir3
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|addDoc
@@ -1119,7 +1119,7 @@ parameter_list|(
 name|Random
 name|random
 parameter_list|,
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir1
 parameter_list|,
 name|String

@@ -828,7 +828,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -946,7 +946,7 @@ name|Query
 name|query
 decl_stmt|;
 DECL|field|ramDir
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir
 decl_stmt|;
 DECL|field|searcher
@@ -8372,11 +8372,11 @@ throws|throws
 name|Exception
 block|{
 comment|// setup index 1
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir1
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -8477,11 +8477,11 @@ literal|true
 argument_list|)
 decl_stmt|;
 comment|// setup index 2
-name|RAMDirectory
+name|MockRAMDirectory
 name|ramDir2
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -10490,7 +10490,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 DECL|field|a
@@ -11230,7 +11230,7 @@ expr_stmt|;
 name|ramDir
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|IndexWriter

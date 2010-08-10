@@ -134,7 +134,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -5680,11 +5680,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -212,7 +212,7 @@ name|Directory
 name|store
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 DECL|field|indexReader
@@ -1152,7 +1152,7 @@ operator|new
 name|SpellChecker
 argument_list|(
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;

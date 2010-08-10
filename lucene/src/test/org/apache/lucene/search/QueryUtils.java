@@ -166,7 +166,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -1126,7 +1126,7 @@ block|}
 DECL|method|makeEmptyIndex
 specifier|private
 specifier|static
-name|RAMDirectory
+name|MockRAMDirectory
 name|makeEmptyIndex
 parameter_list|(
 specifier|final
@@ -1136,11 +1136,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|MockRAMDirectory
 name|d
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

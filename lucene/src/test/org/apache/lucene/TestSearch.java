@@ -326,7 +326,7 @@ name|Directory
 name|directory
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer

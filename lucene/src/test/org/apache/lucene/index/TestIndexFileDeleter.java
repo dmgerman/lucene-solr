@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -190,13 +190,20 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|Directory
+name|MockRAMDirectory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
+name|dir
+operator|.
+name|setPreventDoubleWrite
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|writer
 init|=

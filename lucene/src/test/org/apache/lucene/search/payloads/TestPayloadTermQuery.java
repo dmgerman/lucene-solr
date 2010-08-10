@@ -358,7 +358,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -492,7 +492,7 @@ block|}
 decl_stmt|;
 DECL|field|directory
 specifier|protected
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 decl_stmt|;
 DECL|method|TestPayloadTermQuery
@@ -738,7 +738,7 @@ expr_stmt|;
 name|directory
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|Random
@@ -1820,6 +1820,11 @@ name|count
 operator|++
 expr_stmt|;
 block|}
+name|theSearcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testNoMatch
 specifier|public

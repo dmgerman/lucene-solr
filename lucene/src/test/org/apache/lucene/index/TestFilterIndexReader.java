@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -597,7 +597,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|RAMDirectory
+name|MockRAMDirectory
 name|directory
 init|=
 operator|new
@@ -747,7 +747,7 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|//IndexReader reader = new TestReader(IndexReader.open(directory, true));
-name|RAMDirectory
+name|MockRAMDirectory
 name|target
 init|=
 operator|new

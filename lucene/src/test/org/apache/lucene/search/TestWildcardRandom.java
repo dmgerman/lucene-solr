@@ -160,7 +160,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -195,6 +195,11 @@ specifier|private
 name|Searcher
 name|searcher
 decl_stmt|;
+DECL|field|reader
+specifier|private
+name|IndexReader
+name|reader
+decl_stmt|;
 DECL|field|random
 specifier|private
 name|Random
@@ -228,7 +233,7 @@ expr_stmt|;
 name|dir
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
@@ -331,14 +336,13 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|IndexReader
 name|reader
-init|=
+operator|=
 name|writer
 operator|.
 name|getReader
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|searcher
 operator|=
 operator|new
@@ -523,6 +527,11 @@ throws|throws
 name|Exception
 block|{
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader
 operator|.
 name|close
 argument_list|()

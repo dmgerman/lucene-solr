@@ -174,7 +174,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -684,11 +684,11 @@ name|setUp
 argument_list|()
 expr_stmt|;
 comment|//Create an index
-name|RAMDirectory
+name|MockRAMDirectory
 name|dir
 init|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

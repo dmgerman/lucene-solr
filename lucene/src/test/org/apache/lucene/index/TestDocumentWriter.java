@@ -254,7 +254,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|MockRAMDirectory
 import|;
 end_import
 
@@ -324,7 +324,7 @@ name|LuceneTestCase
 block|{
 DECL|field|dir
 specifier|private
-name|RAMDirectory
+name|MockRAMDirectory
 name|dir
 decl_stmt|;
 DECL|method|TestDocumentWriter
@@ -359,7 +359,7 @@ expr_stmt|;
 name|dir
 operator|=
 operator|new
-name|RAMDirectory
+name|MockRAMDirectory
 argument_list|()
 expr_stmt|;
 block|}
