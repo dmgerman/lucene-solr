@@ -152,7 +152,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Seeks to the specified term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be befor or after the current term. */
+comment|/** Seeks to the specified term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be before or after the current term. */
 DECL|method|seek
 specifier|public
 specifier|final
@@ -174,7 +174,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be befor or after the current ord.  See {@link    *  #seek(BytesRef)}. */
+comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be before or after the current ord.  See {@link    *  #seek(BytesRef)}. */
 DECL|method|seek
 specifier|public
 specifier|abstract
