@@ -7764,6 +7764,9 @@ block|}
 block|}
 finally|finally
 block|{
+name|checkpoint
+argument_list|()
+expr_stmt|;
 name|deleter
 operator|.
 name|decRef
@@ -8154,6 +8157,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|// Matches the incRef done in startCommit:
 name|deleter
 operator|.
 name|decRef
@@ -12804,167 +12808,18 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Walk through all files referenced by the current    *  segmentInfos and ask the Directory to sync each file,    *  if it wasn't already.  If that succeeds, then we    *  prepare a new segments_N file but do not fully commit    *  it. */
-DECL|method|startCommit
+comment|// called only from assert
+DECL|method|filesExist
 specifier|private
-name|void
-name|startCommit
+name|boolean
+name|filesExist
 parameter_list|(
-name|long
-name|sizeInBytes
-parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
+name|SegmentInfos
+name|toSync
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|testPoint
-argument_list|(
-literal|"startStartCommit"
-argument_list|)
-assert|;
-comment|// TODO: as of LUCENE-2095, we can simplify this method,
-comment|// since only 1 thread can be in here at once
-if|if
-condition|(
-name|hitOOM
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot commit"
-argument_list|)
-throw|;
-block|}
-try|try
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"startCommit(): start sizeInBytes="
-operator|+
-name|sizeInBytes
-argument_list|)
-expr_stmt|;
-name|SegmentInfos
-name|toSync
-init|=
-literal|null
-decl_stmt|;
-specifier|final
-name|long
-name|myChangeCount
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-assert|assert
-name|lastCommitChangeCount
-operator|<=
-name|changeCount
-assert|;
-if|if
-condition|(
-name|changeCount
-operator|==
-name|lastCommitChangeCount
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"  skip startCommit(): no changes pending"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-comment|// First, we clone& incref the segmentInfos we intend
-comment|// to sync, then, without locking, we sync() each file
-comment|// referenced by toSync, in the background.  Multiple
-comment|// threads can be doing this at once, if say a large
-comment|// merge and a small merge finish at the same time:
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"startCommit index="
-operator|+
-name|segString
-argument_list|(
-name|segmentInfos
-argument_list|)
-operator|+
-literal|" changeCount="
-operator|+
-name|changeCount
-argument_list|)
-expr_stmt|;
-name|readerPool
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
-name|toSync
-operator|=
-operator|(
-name|SegmentInfos
-operator|)
-name|segmentInfos
-operator|.
-name|clone
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|commitUserData
-operator|!=
-literal|null
-condition|)
-name|toSync
-operator|.
-name|setUserData
-argument_list|(
-name|commitUserData
-argument_list|)
-expr_stmt|;
-name|deleter
-operator|.
-name|incRef
-argument_list|(
-name|toSync
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|myChangeCount
-operator|=
-name|changeCount
-expr_stmt|;
 name|Collection
 argument_list|<
 name|String
@@ -13015,8 +12870,188 @@ name|exists
 argument_list|(
 name|fileName
 argument_list|)
+operator|:
+literal|"IndexFileDeleter doesn't know about file "
+operator|+
+name|fileName
 assert|;
 block|}
+return|return
+literal|true
+return|;
+block|}
+comment|/** Walk through all files referenced by the current    *  segmentInfos and ask the Directory to sync each file,    *  if it wasn't already.  If that succeeds, then we    *  prepare a new segments_N file but do not fully commit    *  it. */
+DECL|method|startCommit
+specifier|private
+name|void
+name|startCommit
+parameter_list|(
+name|long
+name|sizeInBytes
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|commitUserData
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+assert|assert
+name|testPoint
+argument_list|(
+literal|"startStartCommit"
+argument_list|)
+assert|;
+assert|assert
+name|pendingCommit
+operator|==
+literal|null
+assert|;
+if|if
+condition|(
+name|hitOOM
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this writer hit an OutOfMemoryError; cannot commit"
+argument_list|)
+throw|;
+block|}
+try|try
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"startCommit(): start sizeInBytes="
+operator|+
+name|sizeInBytes
+argument_list|)
+expr_stmt|;
+specifier|final
+name|SegmentInfos
+name|toSync
+decl_stmt|;
+specifier|final
+name|long
+name|myChangeCount
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+assert|assert
+name|lastCommitChangeCount
+operator|<=
+name|changeCount
+assert|;
+if|if
+condition|(
+name|changeCount
+operator|==
+name|lastCommitChangeCount
+condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"  skip startCommit(): no changes pending"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+comment|// First, we clone& incref the segmentInfos we intend
+comment|// to sync, then, without locking, we sync() each file
+comment|// referenced by toSync, in the background.
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"startCommit index="
+operator|+
+name|segString
+argument_list|(
+name|segmentInfos
+argument_list|)
+operator|+
+literal|" changeCount="
+operator|+
+name|changeCount
+argument_list|)
+expr_stmt|;
+name|readerPool
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|toSync
+operator|=
+operator|(
+name|SegmentInfos
+operator|)
+name|segmentInfos
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+assert|assert
+name|filesExist
+argument_list|(
+name|toSync
+argument_list|)
+assert|;
+if|if
+condition|(
+name|commitUserData
+operator|!=
+literal|null
+condition|)
+name|toSync
+operator|.
+name|setUserData
+argument_list|(
+name|commitUserData
+argument_list|)
+expr_stmt|;
+comment|// This protects the segmentInfos we are now going
+comment|// to commit.  This is important in case, eg, while
+comment|// we are trying to sync all referenced files, a
+comment|// merge completes which would otherwise have
+comment|// removed the files we are now syncing.
+name|deleter
+operator|.
+name|incRef
+argument_list|(
+name|toSync
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|myChangeCount
+operator|=
+name|changeCount
+expr_stmt|;
 block|}
 assert|assert
 name|testPoint
@@ -13024,13 +13059,10 @@ argument_list|(
 literal|"midStartCommit"
 argument_list|)
 assert|;
-name|boolean
-name|setPending
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
+comment|// This call can take a long time -- 10s of seconds
+comment|// or more.  We do it without sync:
 name|directory
 operator|.
 name|sync
@@ -13056,107 +13088,31 @@ init|(
 name|this
 init|)
 block|{
-comment|// If someone saved a newer version of segments file
-comment|// since I first started syncing my version, I can
-comment|// safely skip saving myself since I've been
-comment|// superseded:
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-if|if
-condition|(
-name|myChangeCount
-operator|<=
-name|lastCommitChangeCount
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"sync superseded by newer infos"
-argument_list|)
-expr_stmt|;
-block|}
-break|break;
-block|}
-elseif|else
-if|if
-condition|(
+assert|assert
 name|pendingCommit
 operator|==
 literal|null
-condition|)
-block|{
-comment|// My turn to commit
-if|if
-condition|(
+assert|;
+assert|assert
 name|segmentInfos
 operator|.
 name|getGeneration
 argument_list|()
-operator|>
+operator|==
 name|toSync
 operator|.
 name|getGeneration
 argument_list|()
-condition|)
-name|toSync
-operator|.
-name|updateGeneration
-argument_list|(
-name|segmentInfos
-argument_list|)
-expr_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
+assert|;
 comment|// Exception here means nothing is prepared
 comment|// (this method unwinds everything it did on
 comment|// an exception)
-try|try
-block|{
 name|toSync
 operator|.
 name|prepareCommit
 argument_list|(
 name|directory
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// Have our master segmentInfos record the
-comment|// generations we just prepared.  We do this
-comment|// on error or success so we don't
-comment|// double-write a segments_N file.
-name|segmentInfos
-operator|.
-name|updateGeneration
-argument_list|(
-name|toSync
-argument_list|)
-expr_stmt|;
-block|}
-assert|assert
-name|pendingCommit
-operator|==
-literal|null
-assert|;
-name|setPending
-operator|=
-literal|true
 expr_stmt|;
 name|pendingCommit
 operator|=
@@ -13166,38 +13122,6 @@ name|pendingCommitChangeCount
 operator|=
 name|myChangeCount
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|message
-argument_list|(
-literal|"hit exception committing segments file"
-argument_list|)
-expr_stmt|;
-block|}
-break|break;
-block|}
-else|else
-block|{
-comment|// Must wait for other commit to complete
-name|doWait
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 block|}
 if|if
 condition|(
@@ -13224,11 +13148,37 @@ init|(
 name|this
 init|)
 block|{
+comment|// Have our master segmentInfos record the
+comment|// generations we just prepared.  We do this
+comment|// on error or success so we don't
+comment|// double-write a segments_N file.
+name|segmentInfos
+operator|.
+name|updateGeneration
+argument_list|(
+name|toSync
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
-operator|!
-name|setPending
+name|pendingCommit
+operator|==
+literal|null
 condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"hit exception committing segments file"
+argument_list|)
+expr_stmt|;
+block|}
 name|deleter
 operator|.
 name|decRef
@@ -13236,6 +13186,7 @@ argument_list|(
 name|toSync
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
