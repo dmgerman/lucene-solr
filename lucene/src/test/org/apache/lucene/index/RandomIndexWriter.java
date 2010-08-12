@@ -493,6 +493,23 @@ operator|==
 name|flushAt
 condition|)
 block|{
+if|if
+condition|(
+name|LuceneTestCaseJ4
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RIW.addDocument: now doing a commit"
+argument_list|)
+expr_stmt|;
+block|}
 name|w
 operator|.
 name|commit

@@ -188,6 +188,8 @@ literal|0
 condition|)
 block|{
 comment|// no prefix -- match all terms for this field:
+comment|// NOTE: for now, MultiTermQuery enums terms at the
+comment|// MultiReader level, so we must use MultiFields here:
 specifier|final
 name|Terms
 name|terms

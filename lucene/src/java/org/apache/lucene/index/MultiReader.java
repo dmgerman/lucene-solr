@@ -546,7 +546,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiFields.getFields if you really need a top level Fields (NOTE that it's usually better to work per segment instead)"
+literal|"please use MultiFields.getFields, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
 argument_list|)
 throw|;
 block|}
@@ -619,7 +619,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiFields.getDeletedDocs if you really need a top level Bits deletedDocs (NOTE that it's usually better to work per segment instead)"
+literal|"please use MultiFields.getDeletedDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Bits deletedDocs"
 argument_list|)
 throw|;
 block|}

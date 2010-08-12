@@ -366,8 +366,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// NOTE: debateably, the caller should never pass in a
-comment|// multi reader...
+comment|// NOTE: for now, MultiTermQuery enums terms at the
+comment|// MultiReader level, so we must use MultiFields here:
 specifier|final
 name|Terms
 name|terms

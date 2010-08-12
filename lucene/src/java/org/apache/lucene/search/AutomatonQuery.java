@@ -376,6 +376,8 @@ name|automaton
 argument_list|)
 condition|)
 block|{
+comment|// NOTE: for now, MultiTermQuery enums terms at the
+comment|// MultiReader level, so we must use MultiFields here:
 return|return
 name|MultiFields
 operator|.
