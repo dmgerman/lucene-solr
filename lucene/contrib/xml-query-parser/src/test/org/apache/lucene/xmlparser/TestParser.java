@@ -54,6 +54,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -368,14 +378,12 @@ argument_list|,
 name|analyzer
 argument_list|)
 expr_stmt|;
-comment|//initialize the index (done once, then cached in static data for use with ALL tests)
-if|if
-condition|(
-name|dir
-operator|==
-literal|null
-condition|)
-block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|BufferedReader
 name|d
 init|=
@@ -398,9 +406,10 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 expr_stmt|;
 name|IndexWriter
 name|writer
@@ -410,9 +419,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|Version
 operator|.
 name|LUCENE_24
@@ -600,7 +610,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 name|reader
 operator|=
 name|IndexReader
@@ -641,7 +650,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//		dir.close();
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|super
 operator|.
 name|tearDown

@@ -1056,6 +1056,17 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|reader
 operator|=
 name|IndexReader

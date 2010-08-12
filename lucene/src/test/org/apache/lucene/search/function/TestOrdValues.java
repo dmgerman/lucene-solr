@@ -402,6 +402,11 @@ operator|=
 name|resID
 expr_stmt|;
 block|}
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Test exact score for OrdFieldSource    */
 annotation|@
@@ -693,6 +698,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Test caching OrdFieldSource    */
 annotation|@
@@ -1165,6 +1175,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// verify new values are reloaded (not reused) for a new reader
 name|s
 operator|=
@@ -1331,6 +1346,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testName
 specifier|private

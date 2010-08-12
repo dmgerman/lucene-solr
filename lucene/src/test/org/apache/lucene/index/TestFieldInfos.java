@@ -190,9 +190,11 @@ comment|//this is all b/c we are using the no-arg constructor
 name|MockRAMDirectory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
+argument_list|(
+name|newRandom
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|String
 name|name

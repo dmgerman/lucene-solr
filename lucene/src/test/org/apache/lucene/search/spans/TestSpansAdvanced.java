@@ -282,9 +282,10 @@ expr_stmt|;
 comment|// create test index
 name|mDirectory
 operator|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 expr_stmt|;
 specifier|final
 name|RandomIndexWriter

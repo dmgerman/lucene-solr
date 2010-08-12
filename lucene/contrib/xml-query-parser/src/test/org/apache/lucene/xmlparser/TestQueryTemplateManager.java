@@ -38,6 +38,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|StringTokenizer
 import|;
 end_import
@@ -248,6 +258,11 @@ DECL|field|searcher
 specifier|private
 name|IndexSearcher
 name|searcher
+decl_stmt|;
+DECL|field|dir
+specifier|private
+name|MockRAMDirectory
+name|dir
 decl_stmt|;
 comment|//A collection of documents' field values for use in our tests
 DECL|field|docFieldValues
@@ -684,13 +699,19 @@ name|setUp
 argument_list|()
 expr_stmt|;
 comment|//Create an index
-name|MockRAMDirectory
-name|dir
+name|Random
+name|random
 init|=
-operator|new
-name|MockRAMDirectory
+name|newRandom
 argument_list|()
 decl_stmt|;
+name|dir
+operator|=
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|w
 init|=
@@ -699,9 +720,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 name|analyzer
@@ -782,6 +804,11 @@ throws|throws
 name|Exception
 block|{
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()

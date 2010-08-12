@@ -847,9 +847,10 @@ comment|// With ConcurrentMergeScheduler, in RAMDir
 name|Directory
 name|directory
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|RANDOM
+argument_list|)
 decl_stmt|;
 name|runStressTest
 argument_list|(

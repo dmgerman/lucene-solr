@@ -746,12 +746,19 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|Directory
 name|directory
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -763,8 +770,7 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -983,6 +989,16 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|directory
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Simply extends IndexInput in a way that we are able to count the number
 comment|// of invocations of seek()

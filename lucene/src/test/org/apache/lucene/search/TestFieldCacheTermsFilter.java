@@ -120,6 +120,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_comment
 comment|/**  * A basic unit test for FieldCacheTermsFilter  *  * @see org.apache.lucene.search.FieldCacheTermsFilter  */
 end_comment
@@ -145,12 +155,19 @@ name|fieldName
 init|=
 literal|"field1"
 decl_stmt|;
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|MockRAMDirectory
 name|rd
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|RandomIndexWriter
 name|w
@@ -158,8 +175,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|rd
 argument_list|)

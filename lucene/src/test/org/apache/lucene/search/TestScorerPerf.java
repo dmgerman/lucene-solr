@@ -227,6 +227,9 @@ block|{
 DECL|field|r
 name|Random
 name|r
+init|=
+name|newRandom
+argument_list|()
 decl_stmt|;
 DECL|field|validate
 name|boolean
@@ -249,6 +252,10 @@ DECL|field|s
 name|IndexSearcher
 name|s
 decl_stmt|;
+DECL|field|d
+name|Directory
+name|d
+decl_stmt|;
 DECL|method|createDummySearcher
 specifier|public
 name|void
@@ -259,24 +266,25 @@ name|Exception
 block|{
 comment|// Create a dummy index with nothing in it.
 comment|// This could possibly fail if Lucene starts checking for docid ranges...
-name|MockRAMDirectory
-name|rd
-init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
-decl_stmt|;
+name|d
+operator|=
+name|newDirectory
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|iw
 init|=
 operator|new
 name|IndexWriter
 argument_list|(
-name|rd
+name|d
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|r
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -304,7 +312,7 @@ operator|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|rd
+name|d
 argument_list|,
 literal|true
 argument_list|)
@@ -431,9 +439,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|r
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -2015,11 +2024,6 @@ throws|throws
 name|Exception
 block|{
 comment|// test many small sets... the bugs will be found on boundary conditions
-name|r
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|createDummySearcher
 argument_list|()
 expr_stmt|;
@@ -2067,6 +2071,11 @@ name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
 name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|d
 operator|.
 name|close
 argument_list|()

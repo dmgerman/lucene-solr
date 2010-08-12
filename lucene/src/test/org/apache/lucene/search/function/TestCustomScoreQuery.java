@@ -1654,6 +1654,11 @@ argument_list|,
 name|q5CustomMulAdd
 argument_list|)
 expr_stmt|;
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// verify results are as expected.
 DECL|method|verifyResults

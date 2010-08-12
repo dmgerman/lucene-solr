@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -336,11 +346,18 @@ block|,
 literal|"blueberry pizza"
 block|,     }
 decl_stmt|;
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|directory
 operator|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 expr_stmt|;
 name|RandomIndexWriter
 name|iw
@@ -348,8 +365,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|)

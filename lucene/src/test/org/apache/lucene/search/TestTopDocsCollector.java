@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -79,20 +89,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockRAMDirectory
 import|;
 end_import
 
@@ -435,10 +431,6 @@ DECL|field|dir
 specifier|private
 name|Directory
 name|dir
-init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
 decl_stmt|;
 DECL|field|reader
 specifier|private
@@ -522,14 +514,26 @@ argument_list|()
 expr_stmt|;
 comment|// populate an index with 30 documents, this should be enough for the test.
 comment|// The documents have no content - the test uses MatchAllDocsQuery().
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
+name|dir
+operator|=
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
+expr_stmt|;
 name|RandomIndexWriter
 name|writer
 init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|dir
 argument_list|)

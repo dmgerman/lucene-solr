@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -190,12 +200,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|IndexWriter
 name|iw
@@ -364,6 +381,16 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// todo some assertations.
+name|unoptimizedReader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|addDocument
 specifier|private

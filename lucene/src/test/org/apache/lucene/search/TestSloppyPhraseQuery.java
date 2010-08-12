@@ -777,9 +777,10 @@ expr_stmt|;
 name|MockRAMDirectory
 name|ramDir
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|RandomIndexWriter
 name|writer

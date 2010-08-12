@@ -630,9 +630,10 @@ block|}
 name|MockRAMDirectory
 name|ramdir
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|Analyzer
 name|analyzer
@@ -796,6 +797,11 @@ argument_list|,
 name|analyzer
 argument_list|)
 expr_stmt|;
+name|ramdir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Run all queries against both the RAMDirectory and MemoryIndex, ensuring they are the same.    */
 DECL|method|assertAllQueries
@@ -899,6 +905,16 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
+name|ram
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|mem
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Return a random analyzer (Simple, Stop, Standard) to analyze the terms.    */
 DECL|method|randomAnalyzer

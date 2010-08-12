@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -95,20 +105,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
 import|;
 end_import
 
@@ -259,11 +255,18 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|directory
 operator|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 expr_stmt|;
 name|writer
 operator|=
@@ -272,9 +275,10 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -300,6 +304,11 @@ throws|throws
 name|Exception
 block|{
 name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|directory
 operator|.
 name|close
 argument_list|()
@@ -765,6 +774,11 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|r
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/* these tests do not test anything, as no assertions:   public void testMiles() {     double LLM = DistanceUtils.getInstance().getLLMDistance(lat, lng,39.012200001, -77.3942);     System.out.println(LLM);     System.out.println("-->"+DistanceUtils.getInstance().getDistanceMi(lat, lng, 39.0122, -77.3942));   }      public void testMiles2(){     System.out.println("Test Miles 2");     double LLM = DistanceUtils.getInstance().getLLMDistance(44.30073, -78.32131,43.687267, -79.39842);     System.out.println(LLM);     System.out.println("-->"+DistanceUtils.getInstance().getDistanceMi(44.30073, -78.32131, 43.687267, -79.39842));        }   */
 comment|//  public void testDistanceQueryCacheable() throws IOException {

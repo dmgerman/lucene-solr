@@ -227,9 +227,10 @@ block|}
 decl_stmt|;
 name|index
 operator|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|rnd
+argument_list|)
 expr_stmt|;
 name|RandomIndexWriter
 name|w

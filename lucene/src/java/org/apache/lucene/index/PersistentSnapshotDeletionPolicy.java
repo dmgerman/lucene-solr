@@ -342,6 +342,11 @@ operator|==
 literal|null
 condition|)
 block|{
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|IllegalStateException
@@ -393,6 +398,11 @@ operator|!=
 literal|0
 condition|)
 block|{
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|IllegalStateException

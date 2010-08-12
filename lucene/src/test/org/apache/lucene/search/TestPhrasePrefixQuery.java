@@ -176,6 +176,16 @@ name|LinkedList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class tests PhrasePrefixQuery class.  */
 end_comment
@@ -211,12 +221,19 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|Random
+name|random
+init|=
+name|newRandom
+argument_list|()
+decl_stmt|;
 name|MockRAMDirectory
 name|indexStore
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|RandomIndexWriter
 name|writer
@@ -224,8 +241,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|indexStore
 argument_list|)

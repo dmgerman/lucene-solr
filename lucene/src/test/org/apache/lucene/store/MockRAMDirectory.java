@@ -1300,6 +1300,27 @@ name|openFiles
 argument_list|)
 throw|;
 block|}
+name|open
+operator|=
+literal|false
+expr_stmt|;
+block|}
+DECL|field|open
+name|boolean
+name|open
+init|=
+literal|true
+decl_stmt|;
+DECL|method|isOpen
+specifier|public
+specifier|synchronized
+name|boolean
+name|isOpen
+parameter_list|()
+block|{
+return|return
+name|open
+return|;
 block|}
 comment|/**    * Objects that represent fail-able conditions. Objects of a derived    * class are created and registered with the mock directory. After    * register, each object will be invoked once for each first write    * of a file, giving the object a chance to throw an IOException.    */
 DECL|class|Failure

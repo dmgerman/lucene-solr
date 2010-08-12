@@ -951,9 +951,10 @@ decl_stmt|;
 name|Directory
 name|directory
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|runTest
 argument_list|(

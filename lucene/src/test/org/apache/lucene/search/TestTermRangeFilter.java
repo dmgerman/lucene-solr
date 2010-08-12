@@ -3199,9 +3199,10 @@ comment|/* build an index */
 name|MockRAMDirectory
 name|farsiIndex
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|rand
+argument_list|)
 decl_stmt|;
 name|RandomIndexWriter
 name|writer
@@ -3441,9 +3442,10 @@ comment|/* build an index */
 name|MockRAMDirectory
 name|danishIndex
 init|=
-operator|new
-name|MockRAMDirectory
-argument_list|()
+name|newDirectory
+argument_list|(
+name|rand
+argument_list|)
 decl_stmt|;
 name|RandomIndexWriter
 name|writer
