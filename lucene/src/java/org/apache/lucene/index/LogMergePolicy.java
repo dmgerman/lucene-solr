@@ -102,13 +102,12 @@ name|maxMergeDocs
 init|=
 name|DEFAULT_MAX_MERGE_DOCS
 decl_stmt|;
-comment|/* TODO 3.0: change this default to true */
 DECL|field|calibrateSizeByDeletes
 specifier|protected
 name|boolean
 name|calibrateSizeByDeletes
 init|=
-literal|false
+literal|true
 decl_stmt|;
 DECL|field|useCompoundFile
 specifier|private
@@ -394,6 +393,13 @@ argument_list|(
 name|info
 argument_list|)
 decl_stmt|;
+assert|assert
+name|delCount
+operator|<=
+name|info
+operator|.
+name|docCount
+assert|;
 return|return
 operator|(
 name|info
@@ -453,7 +459,7 @@ argument_list|(
 name|info
 argument_list|)
 decl_stmt|;
-name|float
+name|double
 name|delRatio
 init|=
 operator|(
@@ -480,6 +486,11 @@ name|docCount
 operator|)
 operator|)
 decl_stmt|;
+assert|assert
+name|delRatio
+operator|<=
+literal|1.0
+assert|;
 return|return
 operator|(
 name|info
@@ -497,7 +508,7 @@ argument_list|(
 name|byteSize
 operator|*
 operator|(
-literal|1.0f
+literal|1.0
 operator|-
 name|delRatio
 operator|)
