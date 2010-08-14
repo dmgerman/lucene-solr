@@ -3273,6 +3273,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// Must force the close else the writer can have
+comment|// open files which cause exc in MockRAMDir.close
+name|modifier
+operator|.
+name|rollback
+argument_list|()
+expr_stmt|;
+block|}
 comment|// If the close() succeeded, make sure there are
 comment|// no unreferenced files.
 if|if
