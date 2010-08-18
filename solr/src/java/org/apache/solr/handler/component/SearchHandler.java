@@ -446,6 +446,15 @@ name|INIT_CONNECTION_TIMEOUT
 init|=
 literal|"shard-connection-timeout"
 decl_stmt|;
+comment|// URL scheme to be used in distributed search.
+DECL|field|INIT_URL_SCHEME
+specifier|static
+specifier|final
+name|String
+name|INIT_URL_SCHEME
+init|=
+literal|"url-scheme"
+decl_stmt|;
 DECL|field|soTimeout
 specifier|static
 name|int
@@ -460,6 +469,15 @@ name|int
 name|connectionTimeout
 init|=
 literal|0
+decl_stmt|;
+comment|//current default values
+DECL|field|scheme
+specifier|public
+specifier|static
+name|String
+name|scheme
+init|=
+literal|"http://"
 decl_stmt|;
 comment|//current default values
 DECL|field|log
@@ -913,6 +931,44 @@ argument_list|(
 literal|"Setting shard-socket-timeout to: "
 operator|+
 name|soTimeout
+argument_list|)
+expr_stmt|;
+block|}
+name|Object
+name|urlScheme
+init|=
+name|initArgs
+operator|.
+name|get
+argument_list|(
+name|INIT_URL_SCHEME
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|urlScheme
+operator|!=
+literal|null
+condition|)
+block|{
+name|SearchHandler
+operator|.
+name|scheme
+operator|=
+operator|(
+name|String
+operator|)
+name|urlScheme
+operator|+
+literal|"://"
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Setting url-scheme to: "
+operator|+
+name|urlScheme
 argument_list|)
 expr_stmt|;
 block|}
@@ -2087,7 +2143,9 @@ comment|// String url = "http://" + shard + "/select";
 name|String
 name|url
 init|=
-literal|"http://"
+name|SearchHandler
+operator|.
+name|scheme
 operator|+
 name|shard
 decl_stmt|;
