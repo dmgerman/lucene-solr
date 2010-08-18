@@ -34,6 +34,7 @@ end_comment
 
 begin_class
 DECL|class|SuggestWordScoreComparator
+specifier|public
 class|class
 name|SuggestWordScoreComparator
 implements|implements
