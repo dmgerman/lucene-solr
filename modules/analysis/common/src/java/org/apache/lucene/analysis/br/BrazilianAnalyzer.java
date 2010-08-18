@@ -54,16 +54,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -581,6 +571,16 @@ block|,
 literal|"uns"
 block|}
 decl_stmt|;
+comment|/** File containing default Brazilian Portuguese stopwords. */
+DECL|field|DEFAULT_STOPWORD_FILE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|DEFAULT_STOPWORD_FILE
+init|=
+literal|"stopwords.txt"
+decl_stmt|;
 comment|/**    * Returns an unmodifiable instance of the default stop-words set.    * @return an unmodifiable instance of the default stop-words set.    */
 DECL|method|getDefaultStopSet
 specifier|public
@@ -612,7 +612,13 @@ argument_list|<
 name|?
 argument_list|>
 name|DEFAULT_STOP_SET
-init|=
+decl_stmt|;
+static|static
+block|{
+try|try
+block|{
+name|DEFAULT_STOP_SET
+operator|=
 name|CharArraySet
 operator|.
 name|unmodifiableSet
@@ -624,17 +630,41 @@ name|Version
 operator|.
 name|LUCENE_CURRENT
 argument_list|,
-name|Arrays
+name|WordlistLoader
 operator|.
-name|asList
+name|getWordSet
 argument_list|(
-name|BRAZILIAN_STOP_WORDS
+name|BrazilianAnalyzer
+operator|.
+name|class
+argument_list|,
+name|DEFAULT_STOPWORD_FILE
+argument_list|,
+literal|"#"
 argument_list|)
 argument_list|,
 literal|false
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+comment|// default set should always be present as it is part of the
+comment|// distribution (JAR)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Unable to load default stopword set"
+argument_list|)
+throw|;
+block|}
+block|}
 block|}
 comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
 comment|// TODO make this private in 3.1
