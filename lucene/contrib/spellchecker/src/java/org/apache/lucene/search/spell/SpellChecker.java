@@ -598,6 +598,19 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
+DECL|method|getComparator
+specifier|public
+name|Comparator
+argument_list|<
+name|SuggestWord
+argument_list|>
+name|getComparator
+parameter_list|()
+block|{
+return|return
+name|comparator
+return|;
+block|}
 comment|/**    * Sets the {@link StringDistance} implementation for this    * {@link SpellChecker} instance.    *     * @param sd the {@link StringDistance} implementation for this    * {@link SpellChecker} instance    */
 DECL|method|setStringDistance
 specifier|public
