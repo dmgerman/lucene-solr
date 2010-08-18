@@ -246,6 +246,17 @@ name|HIGHLIGHT
 operator|+
 literal|".tag.post"
 decl_stmt|;
+DECL|field|MULTI_VALUED_SEPARATOR
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MULTI_VALUED_SEPARATOR
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".multiValuedSeparatorChar"
+decl_stmt|;
 comment|// Formatter
 DECL|field|SIMPLE
 specifier|public
