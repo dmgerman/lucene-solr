@@ -99,6 +99,8 @@ block|{
 DECL|field|regexImpl
 specifier|private
 name|RegexCapabilities
+operator|.
+name|RegexMatcher
 name|regexImpl
 decl_stmt|;
 DECL|field|prefixRef
@@ -118,7 +120,7 @@ name|Term
 name|term
 parameter_list|,
 name|RegexCapabilities
-name|regexImpl
+name|regexCap
 parameter_list|)
 throws|throws
 name|IOException
@@ -145,9 +147,7 @@ name|this
 operator|.
 name|regexImpl
 operator|=
-name|regexImpl
-expr_stmt|;
-name|regexImpl
+name|regexCap
 operator|.
 name|compile
 argument_list|(
@@ -207,20 +207,12 @@ condition|)
 block|{
 comment|// TODO: set BoostAttr based on distance of
 comment|// searchTerm.text() and term().text()
-name|String
-name|text
-init|=
-name|term
-operator|.
-name|utf8ToString
-argument_list|()
-decl_stmt|;
 return|return
 name|regexImpl
 operator|.
 name|match
 argument_list|(
-name|text
+name|term
 argument_list|)
 condition|?
 name|AcceptStatus
