@@ -133,6 +133,18 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"collate"
 decl_stmt|;
+comment|/**    * Certain spelling implementations may allow for an accuracy setting.    */
+DECL|field|SPELLCHECK_ACCURACY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_ACCURACY
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"accuracy"
+decl_stmt|;
 block|}
 end_interface
 
