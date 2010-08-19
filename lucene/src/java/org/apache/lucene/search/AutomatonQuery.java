@@ -289,10 +289,12 @@ expr_stmt|;
 block|}
 DECL|method|compileAutomaton
 specifier|private
+specifier|synchronized
 name|void
 name|compileAutomaton
 parameter_list|()
 block|{
+comment|// this method must be synchronized, as setting the three transient fields is not atomic:
 if|if
 condition|(
 name|runAutomaton
