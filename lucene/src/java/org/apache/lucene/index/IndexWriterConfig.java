@@ -146,7 +146,7 @@ name|APPEND
 block|,
 name|CREATE_OR_APPEND
 block|}
-comment|/** Default value is 128. Change using {@link #setTermIndexInterval(int)}. */
+comment|/** Default value is 32. Change using {@link #setTermIndexInterval(int)}. */
 DECL|field|DEFAULT_TERM_INDEX_INTERVAL
 specifier|public
 specifier|static
