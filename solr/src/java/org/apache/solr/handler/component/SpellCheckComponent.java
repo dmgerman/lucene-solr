@@ -3243,6 +3243,17 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+comment|// we are replacing the query in order, but injected terms might cause illegal offsets due to previous replacements.
+if|if
+condition|(
+name|tok
+operator|.
+name|getPositionIncrement
+argument_list|()
+operator|==
+literal|0
+condition|)
+continue|continue;
 name|collation
 operator|.
 name|replace
