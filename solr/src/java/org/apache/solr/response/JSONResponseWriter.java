@@ -2342,6 +2342,16 @@ operator|.
 name|getSearcher
 argument_list|()
 decl_stmt|;
+comment|// be defensive... write out the doc even if we don't have the scores like we should
+name|includeScore
+operator|=
+name|includeScore
+operator|&&
+name|ids
+operator|.
+name|hasScores
+argument_list|()
+expr_stmt|;
 name|DocIterator
 name|iterator
 init|=
