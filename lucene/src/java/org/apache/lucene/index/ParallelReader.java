@@ -889,8 +889,6 @@ specifier|public
 name|Bits
 name|getDeletedDocs
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|MultiFields
@@ -1326,45 +1324,6 @@ block|{
 comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|hasDeletions
-return|;
-block|}
-comment|// check first reader
-annotation|@
-name|Override
-DECL|method|isDeleted
-specifier|public
-name|boolean
-name|isDeleted
-parameter_list|(
-name|int
-name|n
-parameter_list|)
-block|{
-comment|// Don't call ensureOpen() here (it could affect performance)
-if|if
-condition|(
-name|readers
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-condition|)
-return|return
-name|readers
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|isDeleted
-argument_list|(
-name|n
-argument_list|)
-return|;
-return|return
-literal|false
 return|;
 block|}
 comment|// delete in all readers

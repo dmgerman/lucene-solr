@@ -549,26 +549,6 @@ argument_list|,
 name|codecs2
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|readOnly
-condition|)
-return|return
-operator|new
-name|ReadOnlyDirectoryReader
-argument_list|(
-name|directory
-argument_list|,
-name|infos
-argument_list|,
-name|deletionPolicy
-argument_list|,
-name|termInfosIndexDivisor
-argument_list|,
-name|codecs2
-argument_list|)
-return|;
-else|else
 return|return
 operator|new
 name|DirectoryReader
@@ -579,7 +559,7 @@ name|infos
 argument_list|,
 name|deletionPolicy
 argument_list|,
-literal|false
+name|readOnly
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|,
@@ -2656,36 +2636,6 @@ block|{
 name|DirectoryReader
 name|reader
 decl_stmt|;
-if|if
-condition|(
-name|openReadOnly
-condition|)
-block|{
-name|reader
-operator|=
-operator|new
-name|ReadOnlyDirectoryReader
-argument_list|(
-name|directory
-argument_list|,
-name|infos
-argument_list|,
-name|subReaders
-argument_list|,
-name|starts
-argument_list|,
-name|normsCache
-argument_list|,
-name|doClone
-argument_list|,
-name|termInfosIndexDivisor
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|reader
 operator|=
 operator|new
@@ -2701,7 +2651,7 @@ name|starts
 argument_list|,
 name|normsCache
 argument_list|,
-literal|false
+name|openReadOnly
 argument_list|,
 name|doClone
 argument_list|,
@@ -2710,7 +2660,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|reader
 return|;
@@ -3069,46 +3018,6 @@ name|i
 index|]
 argument_list|,
 name|fieldSelector
-argument_list|)
-return|;
-comment|// dispatch to segment reader
-block|}
-annotation|@
-name|Override
-DECL|method|isDeleted
-specifier|public
-name|boolean
-name|isDeleted
-parameter_list|(
-name|int
-name|n
-parameter_list|)
-block|{
-comment|// Don't call ensureOpen() here (it could affect performance)
-specifier|final
-name|int
-name|i
-init|=
-name|readerIndex
-argument_list|(
-name|n
-argument_list|)
-decl_stmt|;
-comment|// find segment num
-return|return
-name|subReaders
-index|[
-name|i
-index|]
-operator|.
-name|isDeleted
-argument_list|(
-name|n
-operator|-
-name|starts
-index|[
-name|i
-index|]
 argument_list|)
 return|;
 comment|// dispatch to segment reader
@@ -3891,11 +3800,13 @@ block|{
 comment|// NOTE: we should not reach this code w/ the core
 comment|// IndexReader classes; however, an external subclass
 comment|// of IndexReader could reach this.
-name|ReadOnlySegmentReader
-operator|.
-name|noWrite
-argument_list|()
-expr_stmt|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This IndexReader cannot make any changes to the index (it was opened with readOnly = true)"
+argument_list|)
+throw|;
 block|}
 if|if
 condition|(

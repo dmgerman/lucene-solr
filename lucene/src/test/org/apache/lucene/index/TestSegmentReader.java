@@ -510,12 +510,13 @@ name|assertTrue
 argument_list|(
 name|deleteReader
 operator|.
-name|isDeleted
+name|getDeletedDocs
+argument_list|()
+operator|.
+name|get
 argument_list|(
 literal|0
 argument_list|)
-operator|==
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertTrue

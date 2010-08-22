@@ -174,9 +174,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|MockRAMDirectory
+name|Bits
 import|;
 end_import
 
@@ -491,7 +491,19 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//Perhaps not the most efficient approach but meets our needs here.
+comment|//Perhaps not the most efficient approach but meets our
+comment|//needs here.
+specifier|final
+name|Bits
+name|delDocs
+init|=
+name|MultiFields
+operator|.
+name|getDeletedDocs
+argument_list|(
+name|r
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -512,10 +524,14 @@ control|)
 block|{
 if|if
 condition|(
+name|delDocs
+operator|==
+literal|null
+operator|||
 operator|!
-name|r
+name|delDocs
 operator|.
-name|isDeleted
+name|get
 argument_list|(
 name|i
 argument_list|)

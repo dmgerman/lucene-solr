@@ -609,9 +609,9 @@ block|{
 if|if
 condition|(
 operator|!
-name|reader
+name|delDocs
 operator|.
-name|isDeleted
+name|get
 argument_list|(
 name|d
 argument_list|)
