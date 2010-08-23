@@ -1206,6 +1206,12 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+comment|// TODO: fix CustomScoreQuery usage in testRange/testGeoHashRange so we don't need this.
+name|writer
+operator|.
+name|optimize
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|close
