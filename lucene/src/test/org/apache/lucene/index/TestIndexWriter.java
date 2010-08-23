@@ -32212,19 +32212,61 @@ literal|2
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Creating over empty dir should not create any files.
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
+name|String
+index|[]
+name|files
+init|=
 name|dir
 operator|.
 name|listAll
 argument_list|()
+decl_stmt|;
+comment|// Creating over empty dir should not create any files,
+comment|// or, at most the write.lock file
+specifier|final
+name|int
+name|extraFileCount
+decl_stmt|;
+if|if
+condition|(
+name|files
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+block|{
+name|assertEquals
+argument_list|(
+literal|"write.lock"
+argument_list|,
+name|files
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
+name|extraFileCount
+operator|=
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|files
 operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|extraFileCount
+operator|=
+literal|0
+expr_stmt|;
+block|}
 name|Document
 name|doc
 init|=
@@ -32271,6 +32313,8 @@ argument_list|(
 literal|"only the stored and term vector files should exist in the directory"
 argument_list|,
 literal|5
+operator|+
+name|extraFileCount
 argument_list|,
 name|dir
 operator|.
@@ -32331,6 +32375,8 @@ operator|.
 name|length
 operator|>
 literal|5
+operator|+
+name|extraFileCount
 argument_list|)
 expr_stmt|;
 comment|// After rollback, IW should remove all files
