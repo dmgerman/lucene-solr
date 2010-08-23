@@ -266,7 +266,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -627,7 +627,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|MockRAMDirectory
+name|Directory
 name|ramdir
 init|=
 name|newDirectory
@@ -812,7 +812,7 @@ parameter_list|(
 name|MemoryIndex
 name|memory
 parameter_list|,
-name|MockRAMDirectory
+name|Directory
 name|ramdir
 parameter_list|,
 name|Analyzer

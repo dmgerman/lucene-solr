@@ -240,20 +240,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockRAMDirectory
-import|;
-end_import
-
 begin_class
 DECL|class|TestStressIndexing2
 specifier|public

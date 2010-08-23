@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -123,7 +123,7 @@ name|input
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|ramDir
 init|=
 name|newDirectory

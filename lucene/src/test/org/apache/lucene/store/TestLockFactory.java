@@ -258,8 +258,12 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|MockLockFactory
 name|lf
@@ -418,8 +422,12 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|dir
 operator|.
@@ -562,7 +570,7 @@ name|Directory
 name|dir
 init|=
 operator|new
-name|MockRAMDirectory
+name|RAMDirectory
 argument_list|()
 decl_stmt|;
 name|assertTrue

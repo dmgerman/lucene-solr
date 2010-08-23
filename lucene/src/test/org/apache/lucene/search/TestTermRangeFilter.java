@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -3196,7 +3196,7 @@ throws|throws
 name|Exception
 block|{
 comment|/* build an index */
-name|MockRAMDirectory
+name|Directory
 name|farsiIndex
 init|=
 name|newDirectory
@@ -3439,7 +3439,7 @@ throws|throws
 name|Exception
 block|{
 comment|/* build an index */
-name|MockRAMDirectory
+name|Directory
 name|danishIndex
 init|=
 name|newDirectory

@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -774,7 +774,7 @@ argument_list|(
 name|slop
 argument_list|)
 expr_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|ramDir
 init|=
 name|newDirectory

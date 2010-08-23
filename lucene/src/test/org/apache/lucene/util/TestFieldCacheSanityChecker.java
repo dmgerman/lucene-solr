@@ -138,7 +138,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -220,7 +220,7 @@ decl_stmt|;
 DECL|field|dirA
 DECL|field|dirB
 specifier|protected
-name|MockRAMDirectory
+name|Directory
 name|dirA
 decl_stmt|,
 name|dirB

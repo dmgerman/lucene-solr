@@ -246,7 +246,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -261,6 +261,20 @@ operator|.
 name|store
 operator|.
 name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
 import|;
 end_import
 
@@ -2381,9 +2395,13 @@ name|k
 index|]
 operator|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|(
 name|addDir
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//int j = 0;
@@ -3962,9 +3980,13 @@ name|i
 index|]
 operator|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|(
 name|dir1
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

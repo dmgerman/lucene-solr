@@ -62,20 +62,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -106,7 +92,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -185,7 +171,7 @@ decl_stmt|;
 DECL|field|dir
 specifier|private
 specifier|static
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
 literal|null

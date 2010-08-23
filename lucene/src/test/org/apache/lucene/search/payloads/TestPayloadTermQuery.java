@@ -358,7 +358,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -492,7 +492,7 @@ block|}
 decl_stmt|;
 DECL|field|directory
 specifier|protected
-name|MockRAMDirectory
+name|Directory
 name|directory
 decl_stmt|;
 DECL|method|TestPayloadTermQuery

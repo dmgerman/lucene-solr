@@ -188,20 +188,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockRAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -1527,7 +1513,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|MockRAMDirectory
+name|Directory
 name|ramDirectory1
 decl_stmt|,
 name|ramDirectory2
@@ -2008,7 +1994,7 @@ literal|"doc0"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|ramDirectory1
 decl_stmt|;
 name|IndexSearcher
@@ -2149,7 +2135,7 @@ name|hits
 operator|=
 literal|null
 expr_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|ramDirectory2
 decl_stmt|;
 name|IndexSearcher
@@ -2414,7 +2400,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
 name|newDirectory
@@ -2674,7 +2660,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|dir1
 init|=
 name|newDirectory
@@ -2682,7 +2668,7 @@ argument_list|(
 name|random
 argument_list|)
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|dir2
 init|=
 name|newDirectory
@@ -2807,7 +2793,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|dir1
 init|=
 name|newDirectory
@@ -2815,7 +2801,7 @@ argument_list|(
 name|random
 argument_list|)
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|dir2
 init|=
 name|newDirectory

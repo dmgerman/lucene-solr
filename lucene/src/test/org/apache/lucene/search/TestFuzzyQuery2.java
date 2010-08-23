@@ -164,7 +164,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -425,7 +425,7 @@ argument_list|,
 name|bits
 argument_list|)
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
 name|newDirectory

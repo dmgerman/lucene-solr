@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|RAMDirectory
 import|;
 end_import
 
@@ -623,12 +623,16 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|d
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|d
 operator|.
@@ -837,12 +841,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|d
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|d
 operator|.

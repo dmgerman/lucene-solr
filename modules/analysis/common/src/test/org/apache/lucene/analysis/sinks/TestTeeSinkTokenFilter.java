@@ -266,20 +266,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|TermPositionVector
 import|;
 end_import
@@ -308,7 +294,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -679,7 +665,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
 name|newDirectory

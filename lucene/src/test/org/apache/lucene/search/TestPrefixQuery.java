@@ -34,9 +34,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|store
 operator|.
-name|LuceneTestCase
+name|Directory
 import|;
 end_import
 
@@ -48,9 +48,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|MockRAMDirectory
+name|LuceneTestCase
 import|;
 end_import
 
@@ -150,7 +150,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|MockRAMDirectory
+name|Directory
 name|directory
 init|=
 name|newDirectory

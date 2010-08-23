@@ -1001,8 +1001,12 @@ comment|// First in a RAM directory:
 name|directory
 operator|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|runTest
 argument_list|(

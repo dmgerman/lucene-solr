@@ -24,6 +24,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -143,20 +157,6 @@ operator|.
 name|queryParser
 operator|.
 name|QueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockRAMDirectory
 import|;
 end_import
 
@@ -354,7 +354,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|indexStore
 init|=
 name|getIndexStore
@@ -607,7 +607,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|indexStore
 init|=
 name|getIndexStore
@@ -723,7 +723,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|indexStore
 init|=
 name|getIndexStore
@@ -863,7 +863,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|indexStore
 init|=
 name|getIndexStore
@@ -1184,7 +1184,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|indexStore
 init|=
 name|getIndexStore
@@ -1374,7 +1374,7 @@ expr_stmt|;
 block|}
 DECL|method|getIndexStore
 specifier|private
-name|MockRAMDirectory
+name|Directory
 name|getIndexStore
 parameter_list|(
 name|String
@@ -1387,7 +1387,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|indexStore
 init|=
 name|newDirectory
@@ -1710,7 +1710,7 @@ comment|// these should find only doc 2
 block|}
 decl_stmt|;
 comment|// prepare the index
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
 name|newDirectory

@@ -44,7 +44,21 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
 import|;
 end_import
 
@@ -171,8 +185,12 @@ block|{
 name|db
 operator|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+operator|new
+name|RAMDirectory
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|docs
 operator|=

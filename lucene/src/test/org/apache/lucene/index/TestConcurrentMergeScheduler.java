@@ -26,21 +26,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -150,7 +136,7 @@ specifier|static
 class|class
 name|FailOnlyOnFlush
 extends|extends
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 block|{
@@ -203,7 +189,7 @@ specifier|public
 name|void
 name|eval
 parameter_list|(
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|dir
 parameter_list|)
 throws|throws
@@ -303,7 +289,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|directory
 init|=
 name|newDirectory
@@ -567,7 +553,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|directory
 init|=
 name|newDirectory
@@ -805,7 +791,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|directory
 init|=
 name|newDirectory
@@ -980,7 +966,7 @@ init|=
 name|newRandom
 argument_list|()
 decl_stmt|;
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|directory
 init|=
 name|newDirectory

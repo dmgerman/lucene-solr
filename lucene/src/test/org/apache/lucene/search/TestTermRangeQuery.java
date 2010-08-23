@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -285,7 +285,7 @@ literal|0
 decl_stmt|;
 DECL|field|dir
 specifier|private
-name|MockRAMDirectory
+name|Directory
 name|dir
 decl_stmt|;
 DECL|field|random
