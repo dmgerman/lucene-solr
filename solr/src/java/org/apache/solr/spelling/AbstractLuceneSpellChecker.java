@@ -352,6 +352,20 @@ name|FieldType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|SolrIndexSearcher
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract base class for all Lucene-based spell checking implementations.  *   *<p>  * Refer to<a href="http://wiki.apache.org/solr/SpellCheckComponent">SpellCheckComponent</a>  * for more details.  *</p>  *   * @since solr 1.3  */
 end_comment
@@ -1339,7 +1353,13 @@ DECL|method|reload
 specifier|public
 name|void
 name|reload
-parameter_list|()
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|SolrIndexSearcher
+name|searcher
+parameter_list|)
 throws|throws
 name|IOException
 block|{

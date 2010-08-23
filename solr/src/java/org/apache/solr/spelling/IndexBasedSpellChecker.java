@@ -430,14 +430,24 @@ DECL|method|reload
 specifier|public
 name|void
 name|reload
-parameter_list|()
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|SolrIndexSearcher
+name|searcher
+parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|super
 operator|.
 name|reload
-argument_list|()
+argument_list|(
+name|core
+argument_list|,
+name|searcher
+argument_list|)
 expr_stmt|;
 comment|//reload the source
 name|initSourceReader
