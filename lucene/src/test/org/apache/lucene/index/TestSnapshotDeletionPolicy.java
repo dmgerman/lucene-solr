@@ -1831,6 +1831,11 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// but 'snapshot1' files will still exist (need to release snapshot before they can be deleted).
 name|String
 name|segFileName
@@ -1997,6 +2002,11 @@ expr_stmt|;
 name|writer
 operator|.
 name|deleteUnusedFiles
+argument_list|()
+expr_stmt|;
+name|writer
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 name|assertFalse
