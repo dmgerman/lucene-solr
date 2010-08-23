@@ -370,11 +370,12 @@ decl_stmt|;
 comment|/**    * Carrot2 controller that manages instances of clustering algorithms    */
 DECL|field|controller
 specifier|private
-name|CachingController
+name|Controller
 name|controller
 init|=
-operator|new
-name|CachingController
+name|ControllerFactory
+operator|.
+name|createPooling
 argument_list|()
 decl_stmt|;
 DECL|field|clusteringAlgorithmClass
@@ -585,6 +586,20 @@ argument_list|(
 name|initParams
 argument_list|,
 name|initAttributes
+argument_list|)
+expr_stmt|;
+comment|// Customize the language model factory. The implementation we provide here
+comment|// is included in the code base of Solr, so that it's possible to refactor
+comment|// the Lucene APIs the factory relies on if needed.
+name|initAttributes
+operator|.
+name|put
+argument_list|(
+literal|"PreprocessingPipeline.languageModelFactory"
+argument_list|,
+operator|new
+name|LuceneLanguageModelFactory
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this
