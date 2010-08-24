@@ -172,6 +172,12 @@ name|preventDoubleWrite
 init|=
 literal|true
 decl_stmt|;
+DECL|field|trackDiskUsage
+name|boolean
+name|trackDiskUsage
+init|=
+literal|false
+decl_stmt|;
 DECL|field|unSyncedFiles
 specifier|private
 name|Set
@@ -277,6 +283,20 @@ name|delegate
 expr_stmt|;
 name|init
 argument_list|()
+expr_stmt|;
+block|}
+DECL|method|setTrackDiskUsage
+specifier|public
+name|void
+name|setTrackDiskUsage
+parameter_list|(
+name|boolean
+name|v
+parameter_list|)
+block|{
+name|trackDiskUsage
+operator|=
+name|v
 expr_stmt|;
 block|}
 comment|/** If set to true, we throw an IOException if the same    *  file is opened by createOutput, ever. */
