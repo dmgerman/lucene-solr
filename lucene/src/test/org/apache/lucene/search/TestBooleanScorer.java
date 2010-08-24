@@ -560,6 +560,10 @@ name|scorers
 argument_list|)
 argument_list|,
 literal|null
+argument_list|,
+name|scorers
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|assertEquals
