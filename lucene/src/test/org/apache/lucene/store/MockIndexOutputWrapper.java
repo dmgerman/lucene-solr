@@ -161,6 +161,15 @@ name|size
 expr_stmt|;
 block|}
 block|}
+name|dir
+operator|.
+name|files
+operator|.
+name|remove
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
