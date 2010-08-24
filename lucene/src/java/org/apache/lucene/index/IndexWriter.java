@@ -3832,12 +3832,6 @@ name|directory
 operator|+
 literal|"\n"
 operator|+
-literal|"mergePolicy="
-operator|+
-name|mergePolicy
-operator|+
-literal|"\n"
-operator|+
 literal|"index="
 operator|+
 name|segString

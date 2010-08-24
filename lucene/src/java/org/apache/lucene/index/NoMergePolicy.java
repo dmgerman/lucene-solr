@@ -217,6 +217,18 @@ name|IndexWriter
 name|writer
 parameter_list|)
 block|{}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"NoMergePolicy"
+return|;
+block|}
 block|}
 end_class
 

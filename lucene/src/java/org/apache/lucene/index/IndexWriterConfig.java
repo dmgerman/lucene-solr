@@ -1249,7 +1249,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** @see #setReaderTermsIndexDivisor() */
+comment|/** @see #setReaderTermsIndexDivisor(int) */
 DECL|method|getReaderTermsIndexDivisor
 specifier|public
 name|int
@@ -1301,6 +1301,12 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
+name|analyzer
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
 name|analyzer
 operator|.
 name|getClass
