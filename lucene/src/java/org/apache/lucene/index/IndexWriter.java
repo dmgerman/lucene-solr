@@ -7768,13 +7768,13 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|checkpoint
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 finally|finally
 block|{
-name|checkpoint
-argument_list|()
-expr_stmt|;
 name|deleter
 operator|.
 name|decRef
