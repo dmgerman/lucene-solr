@@ -979,7 +979,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"random.multiplier"
+literal|"tests.multiplier"
 argument_list|,
 literal|"1"
 argument_list|)
