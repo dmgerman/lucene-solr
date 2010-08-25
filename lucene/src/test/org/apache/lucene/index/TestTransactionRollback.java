@@ -629,17 +629,17 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|random
+operator|=
+name|newRandom
+argument_list|()
+expr_stmt|;
 name|dir
 operator|=
 name|newDirectory
 argument_list|(
 name|random
 argument_list|)
-expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
 expr_stmt|;
 comment|//Build index, of records 1 to 100, committing after each batch of 10
 name|IndexDeletionPolicy
