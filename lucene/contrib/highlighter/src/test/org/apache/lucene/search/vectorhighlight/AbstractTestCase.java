@@ -473,6 +473,10 @@ index|[]
 name|shortMVValues
 init|=
 block|{
+literal|""
+block|,
+literal|""
+block|,
 literal|"a b c"
 block|,
 literal|""
@@ -2042,6 +2046,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// ""
+comment|// ""
 comment|//  012345
 comment|// "a b c"
 comment|//  0 1 2
