@@ -986,7 +986,7 @@ name|getProperty
 argument_list|(
 literal|"tests.directory"
 argument_list|,
-literal|"RAMDirectory"
+literal|"random"
 argument_list|)
 decl_stmt|;
 comment|/** Get the number of times to run tests */
