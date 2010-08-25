@@ -1668,7 +1668,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"MockRAMDirectory: cannot close: there are still open files: "
+literal|"MockDirectoryWrapper: cannot close: there are still open files: "
 operator|+
 name|openFiles
 argument_list|,
