@@ -3169,12 +3169,19 @@ name|Math
 operator|.
 name|min
 argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
 name|queue
 operator|.
 name|size
 argument_list|()
 operator|-
 name|off
+argument_list|)
 argument_list|,
 name|lim
 argument_list|)
@@ -3188,6 +3195,15 @@ init|=
 name|counts
 decl_stmt|;
 comment|// reuse the counts array for the index into the tnums array
+assert|assert
+name|indirect
+operator|.
+name|length
+operator|>=
+name|tnums
+operator|.
+name|length
+assert|;
 name|int
 name|tnumCount
 init|=
