@@ -51,10 +51,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|IntUtilsTest
+DECL|class|PrimUtilsTest
 specifier|public
 class|class
-name|IntUtilsTest
+name|PrimUtilsTest
 extends|extends
 name|LuceneTestCase
 block|{
