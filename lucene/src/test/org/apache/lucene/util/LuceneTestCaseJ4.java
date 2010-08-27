@@ -3137,6 +3137,7 @@ return|return
 name|c
 return|;
 block|}
+comment|/**    * Returns a new Dictionary instance. Use this when the test does not    * care about the specific Directory implementation (most tests).    *<p>    * The Directory is wrapped with {@link MockDirectoryWrapper}.    * By default this means it will be picky, such as ensuring that you    * properly close it and all open files in your test. It will emulate    * some features of Windows, such as not allowing open files to be    * overwritten.    */
 DECL|method|newDirectory
 specifier|public
 specifier|static
@@ -3192,6 +3193,7 @@ return|return
 name|dir
 return|;
 block|}
+comment|/**    * Returns a new Dictionary instance, with contents copied from the    * provided directory. See {@link #newDirectory(Random)} for more    * information.    */
 DECL|method|newDirectory
 specifier|public
 specifier|static
