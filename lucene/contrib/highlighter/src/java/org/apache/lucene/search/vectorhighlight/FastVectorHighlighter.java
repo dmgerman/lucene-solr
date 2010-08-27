@@ -262,6 +262,8 @@ name|fieldFragList
 init|=
 name|getFieldFragList
 argument_list|(
+name|fragListBuilder
+argument_list|,
 name|fieldQuery
 argument_list|,
 name|reader
@@ -323,6 +325,8 @@ name|fieldFragList
 init|=
 name|getFieldFragList
 argument_list|(
+name|fragListBuilder
+argument_list|,
 name|fieldQuery
 argument_list|,
 name|reader
@@ -351,7 +355,7 @@ name|maxNumFragments
 argument_list|)
 return|;
 block|}
-comment|/**    * return the best fragment.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return the best fragment (snippet) string    * @throws IOException    */
+comment|/**    * return the best fragment.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param fragListBuilder {@link FragListBuilder} object    * @param fragmentsBuilder {@link FragmentsBuilder} object    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return the best fragment (snippet) string    * @throws IOException    */
 DECL|method|getBestFragment
 specifier|public
 specifier|final
@@ -374,6 +378,12 @@ parameter_list|,
 name|int
 name|fragCharSize
 parameter_list|,
+name|FragListBuilder
+name|fragListBuilder
+parameter_list|,
+name|FragmentsBuilder
+name|fragmentsBuilder
+parameter_list|,
 name|String
 index|[]
 name|preTags
@@ -393,6 +403,8 @@ name|fieldFragList
 init|=
 name|getFieldFragList
 argument_list|(
+name|fragListBuilder
+argument_list|,
 name|fieldQuery
 argument_list|,
 name|reader
@@ -425,7 +437,7 @@ name|encoder
 argument_list|)
 return|;
 block|}
-comment|/**    * return the best fragments.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param maxNumFragments maximum number of fragments    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return created fragments or null when no fragments created.    *         size of the array can be less than maxNumFragments    * @throws IOException    */
+comment|/**    * return the best fragments.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param maxNumFragments maximum number of fragments    * @param fragListBuilder {@link FragListBuilder} object    * @param fragmentsBuilder {@link FragmentsBuilder} object    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return created fragments or null when no fragments created.    *         size of the array can be less than maxNumFragments    * @throws IOException    */
 DECL|method|getBestFragments
 specifier|public
 specifier|final
@@ -452,6 +464,12 @@ parameter_list|,
 name|int
 name|maxNumFragments
 parameter_list|,
+name|FragListBuilder
+name|fragListBuilder
+parameter_list|,
+name|FragmentsBuilder
+name|fragmentsBuilder
+parameter_list|,
 name|String
 index|[]
 name|preTags
@@ -471,6 +489,8 @@ name|fieldFragList
 init|=
 name|getFieldFragList
 argument_list|(
+name|fragListBuilder
+argument_list|,
 name|fieldQuery
 argument_list|,
 name|reader
@@ -510,6 +530,9 @@ specifier|private
 name|FieldFragList
 name|getFieldFragList
 parameter_list|(
+name|FragListBuilder
+name|fragListBuilder
+parameter_list|,
 specifier|final
 name|FieldQuery
 name|fieldQuery
