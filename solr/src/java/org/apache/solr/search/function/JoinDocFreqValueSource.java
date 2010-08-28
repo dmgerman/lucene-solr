@@ -82,6 +82,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Use a field value and find the Document Frequency within another field.  *   * @since solr 4.0  */
 end_comment
@@ -236,15 +250,29 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|e
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
 operator|.
-name|printStackTrace
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"caught exception in function "
+operator|+
+name|description
 argument_list|()
-expr_stmt|;
+operator|+
+literal|" : doc="
+operator|+
+name|doc
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
-return|return
-literal|0
-return|;
 block|}
 specifier|public
 name|float
