@@ -40,6 +40,22 @@ name|SolrServerException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *  * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -924,7 +940,9 @@ literal|"fl"
 argument_list|,
 literal|"*,score"
 argument_list|,
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"true"
 argument_list|)

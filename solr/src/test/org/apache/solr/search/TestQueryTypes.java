@@ -24,6 +24,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|AbstractSolrTestCase
@@ -940,7 +956,9 @@ literal|"bq"
 argument_list|,
 literal|"{!prefix f=v_t}he"
 argument_list|,
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"on"
 argument_list|)

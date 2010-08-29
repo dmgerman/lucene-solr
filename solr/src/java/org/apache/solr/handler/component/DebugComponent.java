@@ -48,7 +48,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|HighlightParams
+name|CommonParams
 import|;
 end_import
 
@@ -243,6 +243,16 @@ name|getResults
 argument_list|()
 operator|.
 name|docList
+argument_list|,
+name|rb
+operator|.
+name|isDebugQuery
+argument_list|()
+argument_list|,
+name|rb
+operator|.
+name|isDebugResults
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|NamedList
@@ -286,6 +296,11 @@ if|if
 condition|(
 name|rb
 operator|.
+name|isDebugQuery
+argument_list|()
+operator|&&
+name|rb
+operator|.
 name|getQparser
 argument_list|()
 operator|!=
@@ -318,6 +333,11 @@ condition|)
 block|{
 if|if
 condition|(
+name|rb
+operator|.
+name|isDebugQuery
+argument_list|()
+operator|&&
 literal|null
 operator|!=
 name|rb
@@ -479,7 +499,9 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"true"
 argument_list|)
@@ -493,7 +515,9 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"false"
 argument_list|)
