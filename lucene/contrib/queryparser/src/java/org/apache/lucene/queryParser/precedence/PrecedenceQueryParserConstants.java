@@ -169,81 +169,88 @@ init|=
 literal|20
 decl_stmt|;
 comment|/** RegularExpression Id. */
+DECL|field|REGEXPTERM
+name|int
+name|REGEXPTERM
+init|=
+literal|21
+decl_stmt|;
+comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_START
 name|int
 name|RANGEIN_START
 init|=
-literal|21
+literal|22
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_START
 name|int
 name|RANGEEX_START
 init|=
-literal|22
+literal|23
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|NUMBER
 name|int
 name|NUMBER
 init|=
-literal|23
+literal|24
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_TO
 name|int
 name|RANGEIN_TO
 init|=
-literal|24
+literal|25
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_END
 name|int
 name|RANGEIN_END
 init|=
-literal|25
+literal|26
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_QUOTED
 name|int
 name|RANGEIN_QUOTED
 init|=
-literal|26
+literal|27
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_GOOP
 name|int
 name|RANGEIN_GOOP
 init|=
-literal|27
+literal|28
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_TO
 name|int
 name|RANGEEX_TO
 init|=
-literal|28
+literal|29
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_END
 name|int
 name|RANGEEX_END
 init|=
-literal|29
+literal|30
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_QUOTED
 name|int
 name|RANGEEX_QUOTED
 init|=
-literal|30
+literal|31
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_GOOP
 name|int
 name|RANGEEX_GOOP
 init|=
-literal|31
+literal|32
 decl_stmt|;
 comment|/** Lexical state. */
 DECL|field|Boost
@@ -321,6 +328,8 @@ block|,
 literal|"<PREFIXTERM>"
 block|,
 literal|"<WILDTERM>"
+block|,
+literal|"<REGEXPTERM>"
 block|,
 literal|"\"[\""
 block|,
