@@ -2255,14 +2255,14 @@ condition|)
 block|{
 name|expected
 operator|=
-literal|45
+literal|44
 expr_stmt|;
 block|}
 else|else
 block|{
 name|expected
 operator|=
-literal|46
+literal|45
 expr_stmt|;
 block|}
 name|assertEquals
@@ -2273,7 +2273,7 @@ name|expected
 argument_list|,
 name|writer
 operator|.
-name|maxDoc
+name|numDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
