@@ -207,11 +207,9 @@ name|nextInt
 argument_list|(
 name|random
 argument_list|,
-literal|1
+literal|20
 argument_list|,
-literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
+literal|100
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -367,9 +365,7 @@ expr_stmt|;
 name|int
 name|numDocs
 init|=
-literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
+literal|100
 decl_stmt|;
 for|for
 control|(
