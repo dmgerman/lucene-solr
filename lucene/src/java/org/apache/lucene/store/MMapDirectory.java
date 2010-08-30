@@ -74,6 +74,22 @@ name|nio
 operator|.
 name|channels
 operator|.
+name|ClosedChannelException
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|channels
+operator|.
 name|FileChannel
 import|;
 end_import

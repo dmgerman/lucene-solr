@@ -165,7 +165,7 @@ specifier|final
 name|int
 name|termIndexInterval
 decl_stmt|;
-comment|/** Expert: The fraction of {@link TermDocs} entries stored in skip tables,    * used to accelerate {@link TermDocs#skipTo(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
+comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
 DECL|field|skipInterval
 specifier|public
 specifier|final

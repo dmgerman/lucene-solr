@@ -850,7 +850,7 @@ name|comparator
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Return this state's number.     *<p>    * Expert: Will be useless unless {@link Automaton#setStateNumbers(Set)}    * has been called first to number the states.    * @return the number    */
+comment|/**    * Return this state's number.     *<p>    * Expert: Will be useless unless {@link Automaton#getNumberedStates}    * has been called first to number the states.    * @return the number    */
 DECL|method|getNumber
 specifier|public
 name|int

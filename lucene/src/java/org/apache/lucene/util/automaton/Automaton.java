@@ -207,7 +207,7 @@ name|allow_mutation
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Constructs a new automaton that accepts the empty language. Using this    * constructor, automata can be constructed manually from {@link State} and    * {@link Transition} objects.    *     * @see #setInitialState(State)    * @see State    * @see Transition    */
+comment|/**    * Constructs a new automaton that accepts the empty language. Using this    * constructor, automata can be constructed manually from {@link State} and    * {@link Transition} objects.    *     * @see State    * @see Transition    */
 DECL|method|Automaton
 specifier|public
 name|Automaton
