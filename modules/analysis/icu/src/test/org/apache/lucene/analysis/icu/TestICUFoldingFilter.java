@@ -326,6 +326,37 @@ literal|"craezy"
 block|}
 argument_list|)
 expr_stmt|;
+comment|// proper downcasing of Turkish dotted-capital I
+comment|// (according to default case folding rules)
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"ELÄ°F"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"elif"
+block|}
+argument_list|)
+expr_stmt|;
+comment|// handling of decomposed combining-dot-above
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"eli\u0307f"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"elif"
+block|}
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
