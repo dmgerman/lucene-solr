@@ -50,6 +50,22 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanClause
+operator|.
+name|Occur
+import|;
+end_import
+
 begin_comment
 comment|/* Description from Doug Cutting (excerpted from  * LUCENE-1483):  *  * BooleanScorer uses a ~16k array to score windows of  * docs. So it scores docs 0-16k first, then docs 16-32k,  * etc. For each window it iterates through all query terms  * and accumulates a score in table[doc%16k]. It also stores  * in the table a bitmask representing which terms  * contributed to the score. Non-zero scores are chained in  * a linked list. At the end of scoring each window it then  * iterates through the linked list and, if the bitmask  * matches the boolean constraints, collects a hit. For  * boolean queries with lots of frequent terms this can be  * much faster, since it does not need to update a priority  * queue for each posting, instead performing constant-time  * operations per posting. The only downside is that it  * results in hits being delivered out-of-order within the  * window, which means it cannot be nested within other  * scorers. But it works well as a top-level scorer.  *  * The new BooleanScorer2 implementation instead works by  * merging priority queues of postings, albeit with some  * clever tricks. For example, a pure conjunction (all terms  * required) does not require a priority queue. Instead it  * sorts the posting streams at the start, then repeatedly  * skips the first to to the last. If the first ever equals  * the last, then there's a hit. When some terms are  * required and some terms are optional, the conjunction can  * be evaluated first, then the optional terms can all skip  * to the match and be added to the score. Thus the  * conjunction can reduce the number of priority queue  * updates for the optional terms. */
 end_comment
@@ -327,6 +343,10 @@ name|doc
 init|=
 name|NO_MORE_DOCS
 decl_stmt|;
+DECL|field|freq
+name|int
+name|freq
+decl_stmt|;
 DECL|method|BucketScorer
 specifier|public
 name|BucketScorer
@@ -365,6 +385,18 @@ parameter_list|()
 block|{
 return|return
 name|doc
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+return|return
+name|freq
 return|;
 block|}
 annotation|@
@@ -526,13 +558,8 @@ specifier|public
 name|Scorer
 name|scorer
 decl_stmt|;
-DECL|field|required
-specifier|public
-name|boolean
-name|required
-init|=
-literal|false
-decl_stmt|;
+comment|// TODO: re-enable this if BQ ever sends us required clauses
+comment|//public boolean required = false;
 DECL|field|prohibited
 specifier|public
 name|boolean
@@ -572,18 +599,27 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|required
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this scorer cannot handle required=true"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|scorer
 operator|=
 name|scorer
 expr_stmt|;
-name|this
-operator|.
-name|required
-operator|=
-name|required
-expr_stmt|;
+comment|// TODO: re-enable this if BQ ever sends us required clauses
+comment|//this.required = required;
 name|this
 operator|.
 name|prohibited
@@ -627,13 +663,8 @@ name|float
 index|[]
 name|coordFactors
 decl_stmt|;
-DECL|field|requiredMask
-specifier|private
-name|int
-name|requiredMask
-init|=
-literal|0
-decl_stmt|;
+comment|// TODO: re-enable this if BQ ever sends us required clauses
+comment|//private int requiredMask = 0;
 DECL|field|prohibitedMask
 specifier|private
 name|int
@@ -675,6 +706,9 @@ decl_stmt|;
 DECL|method|BooleanScorer
 name|BooleanScorer
 parameter_list|(
+name|Weight
+name|weight
+parameter_list|,
 name|Similarity
 name|similarity
 parameter_list|,
@@ -702,6 +736,8 @@ block|{
 name|super
 argument_list|(
 name|similarity
+argument_list|,
+name|weight
 argument_list|)
 expr_stmt|;
 name|this
@@ -959,18 +995,11 @@ name|prohibitedMask
 operator|)
 operator|==
 literal|0
-operator|&&
-operator|(
-name|current
-operator|.
-name|bits
-operator|&
-name|requiredMask
-operator|)
-operator|==
-name|requiredMask
 condition|)
 block|{
+comment|// TODO: re-enable this if BQ ever sends us required
+comment|// clauses
+comment|//&& (current.bits& requiredMask) == requiredMask) {
 if|if
 condition|(
 name|current
@@ -1037,6 +1066,14 @@ operator|=
 name|current
 operator|.
 name|doc
+expr_stmt|;
+name|bs
+operator|.
+name|freq
+operator|=
+name|current
+operator|.
+name|coord
 expr_stmt|;
 name|collector
 operator|.
@@ -1253,16 +1290,6 @@ operator|)
 operator|==
 literal|0
 operator|&&
-operator|(
-name|current
-operator|.
-name|bits
-operator|&
-name|requiredMask
-operator|)
-operator|==
-name|requiredMask
-operator|&&
 name|current
 operator|.
 name|coord
@@ -1270,6 +1297,8 @@ operator|>=
 name|minNrShouldMatch
 condition|)
 block|{
+comment|// TODO: re-enable this if BQ ever sends us required clauses
+comment|// (current.bits& requiredMask) == requiredMask&&
 return|return
 name|doc
 operator|=
@@ -1503,6 +1532,114 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|visitSubScorers
+specifier|protected
+name|void
+name|visitSubScorers
+parameter_list|(
+name|Query
+name|parent
+parameter_list|,
+name|Occur
+name|relationship
+parameter_list|,
+name|ScorerVisitor
+argument_list|<
+name|Query
+argument_list|,
+name|Query
+argument_list|,
+name|Scorer
+argument_list|>
+name|visitor
+parameter_list|)
+block|{
+name|super
+operator|.
+name|visitSubScorers
+argument_list|(
+name|parent
+argument_list|,
+name|relationship
+argument_list|,
+name|visitor
+argument_list|)
+expr_stmt|;
+specifier|final
+name|Query
+name|q
+init|=
+name|weight
+operator|.
+name|getQuery
+argument_list|()
+decl_stmt|;
+name|SubScorer
+name|sub
+init|=
+name|scorers
+decl_stmt|;
+while|while
+condition|(
+name|sub
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// TODO: re-enable this if BQ ever sends us required
+comment|//clauses
+comment|//if (sub.required) {
+comment|//relationship = Occur.MUST;
+if|if
+condition|(
+operator|!
+name|sub
+operator|.
+name|prohibited
+condition|)
+block|{
+name|relationship
+operator|=
+name|Occur
+operator|.
+name|SHOULD
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// TODO: maybe it's pointless to do this, but, it is
+comment|// possible the doc may still be collected, eg foo
+comment|// OR (bar -fee)
+name|relationship
+operator|=
+name|Occur
+operator|.
+name|MUST_NOT
+expr_stmt|;
+block|}
+name|sub
+operator|.
+name|scorer
+operator|.
+name|visitSubScorers
+argument_list|(
+name|q
+argument_list|,
+name|relationship
+argument_list|,
+name|visitor
+argument_list|)
+expr_stmt|;
+name|sub
+operator|=
+name|sub
+operator|.
+name|next
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

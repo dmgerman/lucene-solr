@@ -1357,6 +1357,8 @@ return|return
 operator|new
 name|BooleanScorer
 argument_list|(
+name|this
+argument_list|,
 name|similarity
 argument_list|,
 name|minNrShouldMatch
@@ -1414,6 +1416,8 @@ return|return
 operator|new
 name|BooleanScorer2
 argument_list|(
+name|this
+argument_list|,
 name|similarity
 argument_list|,
 name|minNrShouldMatch

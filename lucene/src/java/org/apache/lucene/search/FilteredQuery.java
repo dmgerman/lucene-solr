@@ -515,6 +515,8 @@ operator|new
 name|Scorer
 argument_list|(
 name|similarity
+argument_list|,
+name|this
 argument_list|)
 block|{
 specifier|private

@@ -548,6 +548,8 @@ init|=
 operator|new
 name|BooleanScorer
 argument_list|(
+literal|null
+argument_list|,
 name|sim
 argument_list|,
 literal|1
