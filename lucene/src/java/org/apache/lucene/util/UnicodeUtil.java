@@ -97,15 +97,6 @@ name|UNI_MAX_BMP
 init|=
 literal|0x0000FFFF
 decl_stmt|;
-DECL|field|HALF_BASE
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|HALF_BASE
-init|=
-literal|0x0010000
-decl_stmt|;
 DECL|field|HALF_SHIFT
 specifier|private
 specifier|static
@@ -2101,14 +2092,6 @@ block|}
 else|else
 block|{
 comment|// target is a character in range 0xFFFF - 0x10FFFF
-specifier|final
-name|int
-name|chHalf
-init|=
-name|ch
-operator|-
-name|HALF_BASE
-decl_stmt|;
 name|out
 index|[
 name|outUpto
@@ -2120,12 +2103,13 @@ name|char
 call|)
 argument_list|(
 operator|(
-name|chHalf
+name|ch
 operator|>>
 name|HALF_SHIFT
 operator|)
 operator|+
-name|UNI_SUR_HIGH_START
+literal|0xD7C0
+comment|/* UNI_SUR_HIGH_START - 64 */
 argument_list|)
 expr_stmt|;
 name|out
@@ -2139,7 +2123,7 @@ name|char
 call|)
 argument_list|(
 operator|(
-name|chHalf
+name|ch
 operator|&
 name|HALF_MASK
 operator|)
