@@ -209,6 +209,13 @@ argument_list|,
 name|anlzr
 argument_list|)
 decl_stmt|;
+name|qp
+operator|.
+name|setAllowLeadingWildcard
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|Query
