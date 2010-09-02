@@ -729,6 +729,21 @@ operator|||
 name|debugResults
 return|;
 block|}
+comment|/**    *    * @return true if all debugging options are on    */
+DECL|method|isDebugAll
+specifier|public
+name|boolean
+name|isDebugAll
+parameter_list|()
+block|{
+return|return
+name|debugQuery
+operator|&&
+name|debugTimings
+operator|&&
+name|debugResults
+return|;
+block|}
 DECL|method|setDebug
 specifier|public
 name|void
