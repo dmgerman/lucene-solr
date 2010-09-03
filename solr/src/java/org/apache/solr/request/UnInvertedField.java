@@ -3190,7 +3190,7 @@ argument_list|)
 decl_stmt|;
 assert|assert
 name|collectCount
-operator|<
+operator|<=
 name|lim
 assert|;
 comment|// the start and end indexes of our list "sorted" (starting with the highest value)
