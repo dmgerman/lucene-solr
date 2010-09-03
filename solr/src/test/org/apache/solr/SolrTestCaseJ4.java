@@ -315,6 +315,7 @@ end_comment
 begin_class
 DECL|class|SolrTestCaseJ4
 specifier|public
+specifier|abstract
 class|class
 name|SolrTestCaseJ4
 extends|extends

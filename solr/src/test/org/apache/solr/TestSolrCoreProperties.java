@@ -20,6 +20,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|util
@@ -174,7 +188,7 @@ specifier|public
 class|class
 name|TestSolrCoreProperties
 extends|extends
-name|AbstractSolrTestCase
+name|LuceneTestCase
 block|{
 DECL|field|CONF_DIR
 specifier|private
@@ -219,6 +233,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|setUpMe
 argument_list|()
 expr_stmt|;
@@ -300,6 +319,11 @@ argument_list|(
 name|homeDir
 argument_list|)
 expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testSimple
 specifier|public
@@ -357,6 +381,10 @@ DECL|field|confDir
 name|File
 name|confDir
 decl_stmt|;
+DECL|field|dataDir
+name|File
+name|dataDir
+decl_stmt|;
 comment|/**    * if masterPort is null, this instance is a master -- otherwise this instance is a slave, and assumes the master is    * on localhost at the specified port.    */
 DECL|method|getHomeDir
 specifier|public
@@ -371,8 +399,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getSchemaFile
 specifier|public
 name|String
@@ -411,8 +437,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getSolrConfigFile
 specifier|public
 name|String

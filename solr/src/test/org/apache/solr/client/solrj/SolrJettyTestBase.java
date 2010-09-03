@@ -298,6 +298,10 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|server
+operator|=
+literal|null
+expr_stmt|;
 block|}
 DECL|method|getSolrServer
 specifier|public
