@@ -623,6 +623,19 @@ literal|".class"
 argument_list|)
 condition|)
 block|{
+comment|// FIXME: Find the static/sysprop/file leakage here.
+comment|// If we call Class.forName(ReplicationHandler) here, its test will later fail
+comment|// when run inside the same JVM (-Dtests.threadspercpu=0), so something is wrong.
+if|if
+condition|(
+name|file
+operator|.
+name|contains
+argument_list|(
+literal|"ReplicationHandler"
+argument_list|)
+condition|)
+continue|continue;
 name|classes
 operator|.
 name|add
