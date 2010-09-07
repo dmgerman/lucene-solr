@@ -150,7 +150,7 @@ name|handler
 operator|.
 name|clustering
 operator|.
-name|AbstractClusteringTest
+name|AbstractClusteringTestCase
 import|;
 end_import
 
@@ -297,7 +297,7 @@ specifier|public
 class|class
 name|CarrotClusteringEngineTest
 extends|extends
-name|AbstractClusteringTest
+name|AbstractClusteringTestCase
 block|{
 annotation|@
 name|Test

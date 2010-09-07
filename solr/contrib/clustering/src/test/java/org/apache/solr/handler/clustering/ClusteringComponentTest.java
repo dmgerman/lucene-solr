@@ -202,7 +202,7 @@ specifier|public
 class|class
 name|ClusteringComponentTest
 extends|extends
-name|AbstractClusteringTest
+name|AbstractClusteringTestCase
 block|{
 annotation|@
 name|Test
