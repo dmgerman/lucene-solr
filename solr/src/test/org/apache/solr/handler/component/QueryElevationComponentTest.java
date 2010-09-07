@@ -1197,7 +1197,7 @@ literal|"//result/doc[1]/str[@name='id'][.='c']"
 argument_list|)
 expr_stmt|;
 comment|// Try normal sort by 'id'
-comment|// default 'forceBoost' shoudl be false
+comment|// default 'forceBoost' should be false
 name|assertEquals
 argument_list|(
 literal|false
