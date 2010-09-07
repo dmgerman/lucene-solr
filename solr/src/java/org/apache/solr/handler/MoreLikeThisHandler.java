@@ -1360,6 +1360,13 @@ operator|.
 name|DEBUG
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|dbgParams
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -1417,6 +1424,7 @@ name|dbgResults
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
