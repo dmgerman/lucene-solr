@@ -28401,6 +28401,26 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|// Force class loader to load ThreadInterruptedException
+comment|// up front... else we can see a false failure if 2nd
+comment|// interrupt arrives while class loader is trying to
+comment|// init this class (in servicing a first interrupt):
+name|assertTrue
+argument_list|(
+operator|new
+name|ThreadInterruptedException
+argument_list|(
+operator|new
+name|InterruptedException
+argument_list|()
+argument_list|)
+operator|.
+name|getCause
+argument_list|()
+operator|instanceof
+name|InterruptedException
+argument_list|)
+expr_stmt|;
 comment|// issue 100 interrupts to child thread
 name|int
 name|i
