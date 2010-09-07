@@ -896,6 +896,11 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
+name|TEMP_DIR
+operator|.
+name|mkdirs
+argument_list|()
+expr_stmt|;
 block|}
 comment|// by default we randomly pick a different codec for
 comment|// each test case (non-J4 tests) and each test class (J4
