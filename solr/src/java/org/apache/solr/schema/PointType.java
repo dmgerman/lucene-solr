@@ -830,7 +830,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Sorting not suported on PointType "
+literal|"Sorting not supported on PointType "
 operator|+
 name|field
 operator|.
