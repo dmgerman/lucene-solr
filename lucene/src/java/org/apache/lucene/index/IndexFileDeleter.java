@@ -290,7 +290,7 @@ specifier|static
 name|boolean
 name|VERBOSE_REF_COUNTS
 init|=
-literal|true
+literal|false
 decl_stmt|;
 DECL|method|setInfoStream
 name|void
