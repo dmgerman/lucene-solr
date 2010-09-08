@@ -358,6 +358,10 @@ argument_list|,
 literal|"point_hash"
 argument_list|,
 literal|"32.5, -79.0"
+argument_list|,
+literal|"point"
+argument_list|,
+literal|"32.5, -79.0"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -370,6 +374,10 @@ argument_list|,
 literal|"7"
 argument_list|,
 literal|"point_hash"
+argument_list|,
+literal|"32.6, -78.0"
+argument_list|,
+literal|"point"
 argument_list|,
 literal|"32.6, -78.0"
 argument_list|)
@@ -392,7 +400,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}hsin(1, x_td, y_td, 0, 0)"
+literal|"{!func}hsin(1, false, x_td, y_td, 0, 0)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -412,7 +420,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}hsin(1, x_td, y_td, 0, 0)"
+literal|"{!func}hsin(1, false, x_td, y_td, 0, 0)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -445,7 +453,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}hsin(1, x_td, y_td, 0, 0)"
+literal|"{!func}hsin(1, false, x_td, y_td, 0, 0)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -478,7 +486,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}hsin(1, x_td, y_td, 0, 0)"
+literal|"{!func}hsin(1, false, x_td, y_td, 0, 0)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -498,7 +506,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}hsin(1, x_td, y_td, 0, 0, true)"
+literal|"{!func}hsin(1, true, x_td, y_td, 0, 0)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -506,6 +514,27 @@ literal|"id:5"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='1.0471976'"
+argument_list|)
+expr_stmt|;
+comment|//SOLR-2114
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}hsin(6371.009, true, point, vector(0, 0))"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:6"
+argument_list|)
+argument_list|,
+literal|"//float[@name='score']='8977.814'"
 argument_list|)
 expr_stmt|;
 comment|//Geo Hash Haversine
