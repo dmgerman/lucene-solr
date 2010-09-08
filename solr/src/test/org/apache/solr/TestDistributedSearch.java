@@ -912,44 +912,6 @@ argument_list|,
 name|t1
 argument_list|)
 expr_stmt|;
-name|handle
-operator|.
-name|put
-argument_list|(
-literal|"debug"
-argument_list|,
-name|UNORDERED
-argument_list|)
-expr_stmt|;
-name|handle
-operator|.
-name|put
-argument_list|(
-literal|"time"
-argument_list|,
-name|SKIPVAL
-argument_list|)
-expr_stmt|;
-name|query
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"now their fox sat had put"
-argument_list|,
-literal|"fl"
-argument_list|,
-literal|"*,score"
-argument_list|,
-name|CommonParams
-operator|.
-name|DEBUG_QUERY
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-comment|// TODO: This test currently fails because debug info is obtained only
-comment|// on shards with matches.
-comment|/***     query("q","matchesnothing","fl","*,score",             "debugQuery", "true");         ***/
 name|query
 argument_list|(
 literal|"q"
@@ -1532,6 +1494,112 @@ literal|100
 argument_list|)
 expr_stmt|;
 block|}
+comment|// test debugging
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"explain"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"debug"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"time"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"now their fox sat had put"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+name|CommonParams
+operator|.
+name|TIMING
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+name|CommonParams
+operator|.
+name|RESULTS
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+name|CommonParams
+operator|.
+name|QUERY
+argument_list|)
+expr_stmt|;
+comment|// TODO: This test currently fails because debug info is obtained only
+comment|// on shards with matches.
+comment|// query("q","matchesnothing","fl","*,score", "debugQuery", "true");
 comment|// Thread.sleep(10000000000L);
 block|}
 block|}
