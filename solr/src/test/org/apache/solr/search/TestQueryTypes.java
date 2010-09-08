@@ -805,6 +805,27 @@ argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
+comment|// test wacky param names
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!prefix f=$a/b/c v=$'a b/c'}"
+argument_list|,
+literal|"a/b/c"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"a b/c"
+argument_list|,
+literal|"hel"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 literal|"test param subst with literal"

@@ -1385,7 +1385,35 @@ literal|5
 argument_list|)
 expr_stmt|;
 comment|// check a complex key name
-comment|// query("q","*:*", "rows",0, "facet","true", "facet.field","{!key=a/b/c}"+t1,"facet.limit",5, "facet.shard.limit",5);
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|0
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key=a/b/c}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.limit"
+argument_list|,
+literal|5
+argument_list|,
+literal|"facet.shard.limit"
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
 name|handle
 operator|.
 name|remove
