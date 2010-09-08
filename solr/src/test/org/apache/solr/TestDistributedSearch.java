@@ -1344,9 +1344,19 @@ argument_list|,
 name|i1
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|// test error produced for field that is invalid for schema
+comment|/*** TODO: the failure may come back in "exception"     try {       // test error produced for field that is invalid for schema       query("q","*:*", "rows",100, "facet","true", "facet.field",invalidField, "facet.mincount",2);       TestCase.fail("SolrServerException expected for invalid field that is not in schema");     } catch (SolrServerException ex) {       // expected     }     ***/
+comment|// Try to get better coverage for refinement queries by turning off over requesting.
+comment|// This makes it much more likely that we may not get the top facet values and hence
+comment|// we turn of that checking.
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"facet_fields"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
 name|query
 argument_list|(
 literal|"q"
@@ -1355,7 +1365,7 @@ literal|"*:*"
 argument_list|,
 literal|"rows"
 argument_list|,
-literal|100
+literal|0
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -1363,29 +1373,26 @@ literal|"true"
 argument_list|,
 literal|"facet.field"
 argument_list|,
-name|invalidField
+name|t1
 argument_list|,
-literal|"facet.mincount"
+literal|"facet.limit"
 argument_list|,
-literal|2
+literal|5
+argument_list|,
+literal|"facet.shard.limit"
+argument_list|,
+literal|5
 argument_list|)
 expr_stmt|;
-name|TestCase
+comment|// check a complex key name
+comment|// query("q","*:*", "rows",0, "facet","true", "facet.field","{!key=a/b/c}"+t1,"facet.limit",5, "facet.shard.limit",5);
+name|handle
 operator|.
-name|fail
+name|remove
 argument_list|(
-literal|"SolrServerException expected for invalid field that is not in schema"
+literal|"facet_fields"
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SolrServerException
-name|ex
-parameter_list|)
-block|{
-comment|// expected
-block|}
 comment|// index the same document to two servers and make sure things
 comment|// don't blow up.
 if|if
