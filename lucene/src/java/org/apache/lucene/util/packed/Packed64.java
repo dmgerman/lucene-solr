@@ -805,6 +805,9 @@ specifier|final
 name|long
 name|majorBitPos
 init|=
+operator|(
+name|long
+operator|)
 name|index
 operator|*
 name|bitsPerValue
@@ -909,6 +912,9 @@ specifier|final
 name|long
 name|majorBitPos
 init|=
+operator|(
+name|long
+operator|)
 name|index
 operator|*
 name|bitsPerValue
