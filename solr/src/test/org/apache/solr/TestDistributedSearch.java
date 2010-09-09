@@ -1401,7 +1401,36 @@ literal|"true"
 argument_list|,
 literal|"facet.field"
 argument_list|,
-literal|"{!key='a b/c \\' \\} foo'}"
+literal|"{!key='$a b/c \\' \\} foo'}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.limit"
+argument_list|,
+literal|5
+argument_list|,
+literal|"facet.shard.limit"
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|0
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key='$a'}"
 operator|+
 name|t1
 argument_list|,
