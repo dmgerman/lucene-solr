@@ -1401,7 +1401,7 @@ literal|"true"
 argument_list|,
 literal|"facet.field"
 argument_list|,
-literal|"{!key=a/b/c}"
+literal|"{!key='a b/c \\' \\} foo'}"
 operator|+
 name|t1
 argument_list|,

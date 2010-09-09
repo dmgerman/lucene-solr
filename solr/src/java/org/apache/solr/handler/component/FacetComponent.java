@@ -551,6 +551,16 @@ name|facetCommand
 decl_stmt|;
 comment|// add terms into the original facet.field command
 comment|// do it via parameter reference to avoid another layer of encoding.
+name|String
+name|termsKeyEncoded
+init|=
+name|QueryParsing
+operator|.
+name|encodeLocalParamVal
+argument_list|(
+name|termsKey
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|dff
@@ -564,7 +574,7 @@ name|facetCommand
 operator|=
 name|commandPrefix
 operator|+
-name|termsKey
+name|termsKeyEncoded
 operator|+
 literal|" "
 operator|+
@@ -584,7 +594,7 @@ name|facetCommand
 operator|=
 name|commandPrefix
 operator|+
-name|termsKey
+name|termsKeyEncoded
 operator|+
 literal|'}'
 operator|+
