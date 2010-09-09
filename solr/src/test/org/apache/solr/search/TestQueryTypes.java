@@ -563,6 +563,7 @@ argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
+comment|// no analysis is done, so these should match nothing
 name|assertQ
 argument_list|(
 literal|"test raw query"
@@ -589,6 +590,44 @@ literal|"{!raw f=v_f}1.5"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+comment|// test "term" qparser, which should only do readableToIndexed
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f=v_f}1.5"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// text fields are *not* analyzed since they may not be idempotent
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f=v_t}Hello"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f=v_t}hello"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
 comment|//
