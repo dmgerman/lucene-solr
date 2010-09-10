@@ -1583,6 +1583,11 @@ name|comparators
 index|[
 name|i
 index|]
+operator|=
+name|comparators
+index|[
+name|i
+index|]
 operator|.
 name|setNextReader
 argument_list|(

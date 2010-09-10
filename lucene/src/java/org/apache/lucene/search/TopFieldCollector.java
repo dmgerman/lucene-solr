@@ -100,7 +100,6 @@ extends|extends
 name|TopFieldCollector
 block|{
 DECL|field|comparator
-specifier|final
 name|FieldComparator
 name|comparator
 decl_stmt|;
@@ -321,6 +320,8 @@ name|docBase
 operator|=
 name|docBase
 expr_stmt|;
+name|comparator
+operator|=
 name|comparator
 operator|.
 name|setNextReader
@@ -1804,6 +1805,11 @@ name|i
 operator|++
 control|)
 block|{
+name|comparators
+index|[
+name|i
+index|]
+operator|=
 name|comparators
 index|[
 name|i

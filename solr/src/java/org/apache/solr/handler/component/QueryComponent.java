@@ -2120,6 +2120,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 name|comparator
+operator|=
+name|comparator
 operator|.
 name|setNextReader
 argument_list|(
