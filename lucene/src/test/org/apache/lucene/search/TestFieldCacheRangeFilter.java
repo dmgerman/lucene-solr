@@ -5670,9 +5670,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|rand
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -5684,8 +5682,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|rand
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

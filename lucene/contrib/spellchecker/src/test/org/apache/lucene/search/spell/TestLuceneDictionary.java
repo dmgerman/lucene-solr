@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -184,11 +174,6 @@ name|indexReader
 init|=
 literal|null
 decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-decl_stmt|;
 DECL|field|ld
 specifier|private
 name|LuceneDictionary
@@ -217,17 +202,10 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|store
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|IndexWriter
 name|writer
@@ -239,8 +217,6 @@ name|store
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1161,9 +1137,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|SpellChecker
 name|sc

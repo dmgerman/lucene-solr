@@ -46,16 +46,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|BitSet
 import|;
 end_import
@@ -196,13 +186,6 @@ name|TestScorerPerf
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|r
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 DECL|field|validate
 name|boolean
 name|validate
@@ -241,9 +224,7 @@ comment|// This could possibly fail if Lucene starts checking for docid ranges..
 name|d
 operator|=
 name|newDirectory
-argument_list|(
-name|r
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|IndexWriter
 name|iw
@@ -255,8 +236,6 @@ name|d
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|r
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -413,8 +392,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|r
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -469,7 +446,7 @@ control|)
 block|{
 if|if
 condition|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -575,7 +552,7 @@ name|set
 operator|.
 name|set
 argument_list|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -637,7 +614,7 @@ name|randBitSet
 argument_list|(
 name|setSize
 argument_list|,
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -872,7 +849,7 @@ name|rnd
 init|=
 name|sets
 index|[
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -997,7 +974,7 @@ block|{
 name|int
 name|nClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1145,7 +1122,7 @@ block|{
 name|int
 name|oClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1186,7 +1163,7 @@ block|{
 name|int
 name|nClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1373,7 +1350,7 @@ block|{
 name|int
 name|nClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1422,7 +1399,7 @@ decl_stmt|;
 comment|// don't pick same clause twice
 name|tnum
 operator|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1604,7 +1581,7 @@ block|{
 name|int
 name|oClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1640,7 +1617,7 @@ block|{
 name|int
 name|nClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1689,7 +1666,7 @@ decl_stmt|;
 comment|// don't pick same clause twice
 name|tnum
 operator|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1879,7 +1856,7 @@ block|{
 name|int
 name|nClauses
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -1916,7 +1893,7 @@ block|{
 name|int
 name|tnum
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(

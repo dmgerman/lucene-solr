@@ -106,16 +106,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|File
@@ -130,11 +120,6 @@ name|TestStressIndexing
 extends|extends
 name|MultiCodecTestCase
 block|{
-DECL|field|RANDOM
-specifier|private
-name|Random
-name|RANDOM
-decl_stmt|;
 DECL|class|TimedThread
 specifier|private
 specifier|static
@@ -402,7 +387,7 @@ decl_stmt|;
 name|int
 name|n
 init|=
-name|RANDOM
+name|random
 operator|.
 name|nextInt
 argument_list|()
@@ -626,8 +611,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|RANDOM
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -838,19 +821,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RANDOM
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 comment|// With ConcurrentMergeScheduler, in RAMDir
 name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|RANDOM
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|runStressTest
 argument_list|(

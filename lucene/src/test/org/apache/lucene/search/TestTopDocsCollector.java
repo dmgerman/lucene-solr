@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -514,18 +504,10 @@ argument_list|()
 expr_stmt|;
 comment|// populate an index with 30 documents, this should be enough for the test.
 comment|// The documents have no content - the test uses MatchAllDocsQuery().
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|dir
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
 name|writer

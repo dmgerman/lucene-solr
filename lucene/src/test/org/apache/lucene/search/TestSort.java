@@ -88,16 +88,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -446,14 +436,6 @@ DECL|field|sort
 specifier|private
 name|Sort
 name|sort
-decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
 decl_stmt|;
 DECL|method|TestSort
 specifier|public
@@ -956,9 +938,7 @@ name|Directory
 name|indexStore
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|dirs
 operator|.
@@ -1606,9 +1586,7 @@ name|Directory
 name|indexStore
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|dirs
 operator|.
@@ -1990,10 +1968,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|field|r
-name|Random
-name|r
-decl_stmt|;
 DECL|method|getRandomNumber
 specifier|public
 name|int
@@ -2016,7 +1990,7 @@ name|Math
 operator|.
 name|abs
 argument_list|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|()
@@ -2663,11 +2637,6 @@ name|IOException
 throws|,
 name|ParseException
 block|{
-name|r
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|ScoreDoc
 index|[]
 name|result
@@ -9508,9 +9477,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriter
 name|w
@@ -9522,8 +9489,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -9760,9 +9725,7 @@ name|Directory
 name|indexStore
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -9774,8 +9737,6 @@ name|indexStore
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

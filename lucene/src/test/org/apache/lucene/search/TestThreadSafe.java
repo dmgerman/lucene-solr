@@ -168,10 +168,6 @@ name|TestThreadSafe
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|r
-name|Random
-name|r
-decl_stmt|;
 DECL|field|dir1
 name|Directory
 name|dir1
@@ -541,7 +537,7 @@ decl_stmt|;
 name|int
 name|nFields
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -566,7 +562,7 @@ block|{
 name|int
 name|flen
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -602,7 +598,7 @@ name|append
 argument_list|(
 name|words
 index|[
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -732,7 +728,7 @@ argument_list|,
 operator|new
 name|Random
 argument_list|(
-name|r
+name|random
 operator|.
 name|nextLong
 argument_list|()
@@ -794,17 +790,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|r
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|dir1
 operator|=
 name|newDirectory
-argument_list|(
-name|r
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// test w/ field sizes bigger than the buffer of an index input
 name|buildDir

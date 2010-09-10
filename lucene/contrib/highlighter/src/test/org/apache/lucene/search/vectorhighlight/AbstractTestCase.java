@@ -602,10 +602,7 @@ expr_stmt|;
 name|dir
 operator|=
 name|newDirectory
-argument_list|(
-name|newRandom
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@

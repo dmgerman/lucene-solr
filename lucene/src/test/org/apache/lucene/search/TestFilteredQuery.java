@@ -154,16 +154,6 @@ name|BitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_comment
 comment|/**  * FilteredQuery JUnit tests.  *  *<p>Created: Apr 21, 2004 1:21:46 PM  *  *  * @since   1.4  */
 end_comment
@@ -216,18 +206,10 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|directory
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
 name|writer

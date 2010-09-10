@@ -18,26 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -136,12 +116,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|rand
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -163,9 +137,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|rand
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -210,7 +182,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|rand
+name|random
 argument_list|,
 literal|1
 argument_list|,
@@ -226,7 +198,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|rand
+name|random
 argument_list|,
 literal|1
 argument_list|,
@@ -364,7 +336,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|rand
+name|random
 operator|.
 name|nextBoolean
 argument_list|()
@@ -398,7 +370,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|rand
+name|random
 argument_list|,
 literal|1
 argument_list|,
@@ -468,7 +440,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|rand
+name|random
 operator|.
 name|nextBoolean
 argument_list|()
@@ -511,7 +483,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|rand
+name|random
 argument_list|,
 literal|1
 argument_list|,

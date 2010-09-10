@@ -110,16 +110,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_class
 DECL|class|TestSegmentTermDocs
 specifier|public
@@ -146,11 +136,6 @@ DECL|field|info
 specifier|private
 name|SegmentInfo
 name|info
-decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
 decl_stmt|;
 DECL|method|TestSegmentTermDocs
 specifier|public
@@ -181,17 +166,10 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|dir
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|DocHelper
 operator|.
@@ -562,9 +540,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -576,8 +552,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

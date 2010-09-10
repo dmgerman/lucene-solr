@@ -40,16 +40,6 @@ name|Arrays
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_class
 DECL|class|PrimUtilsTest
 specifier|public
@@ -58,13 +48,6 @@ name|PrimUtilsTest
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|r
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 DECL|method|testSort
 specifier|public
 name|void
@@ -152,7 +135,7 @@ block|{
 name|int
 name|start
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -172,7 +155,7 @@ name|maxSize
 else|:
 name|start
 operator|+
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -206,7 +189,7 @@ index|[
 name|i
 index|]
 operator|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -331,7 +314,7 @@ decl_stmt|;
 name|int
 name|startSize
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -351,7 +334,7 @@ name|maxSize
 else|:
 name|startSize
 operator|+
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -363,7 +346,7 @@ decl_stmt|;
 name|int
 name|adds
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -406,7 +389,7 @@ block|{
 name|long
 name|v
 init|=
-name|r
+name|random
 operator|.
 name|nextLong
 argument_list|()

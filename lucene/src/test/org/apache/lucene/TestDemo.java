@@ -228,20 +228,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -282,10 +268,7 @@ name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|newRandom
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// To store an index on disk, use this instead:
 comment|//Directory directory = FSDirectory.open("/tmp/testindex");

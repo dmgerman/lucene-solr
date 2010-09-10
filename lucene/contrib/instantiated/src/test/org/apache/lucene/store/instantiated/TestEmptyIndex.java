@@ -316,19 +316,11 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// make sure a Directory acts the same
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|Directory
 name|d
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 operator|new
 name|IndexWriter
@@ -337,8 +329,6 @@ name|d
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -509,19 +499,11 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// make sure a Directory acts the same
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|Directory
 name|d
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 operator|new
 name|IndexWriter
@@ -530,8 +512,6 @@ name|d
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

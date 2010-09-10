@@ -1701,19 +1701,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|r
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
 name|w
@@ -1721,14 +1713,12 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|r
+name|random
 argument_list|,
 name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|r
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1757,7 +1747,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|r
+name|random
 argument_list|,
 literal|2
 argument_list|,
@@ -1851,7 +1841,7 @@ name|term
 init|=
 name|getRandomString
 argument_list|(
-name|r
+name|random
 argument_list|)
 operator|+
 literal|"_ "
@@ -2062,7 +2052,7 @@ argument_list|)
 expr_stmt|;
 name|doTestSeekExists
 argument_list|(
-name|r
+name|random
 argument_list|,
 name|fieldTerms
 argument_list|,
@@ -2071,7 +2061,7 @@ argument_list|)
 expr_stmt|;
 name|doTestSeekDoesNotExist
 argument_list|(
-name|r
+name|random
 argument_list|,
 name|numField
 argument_list|,

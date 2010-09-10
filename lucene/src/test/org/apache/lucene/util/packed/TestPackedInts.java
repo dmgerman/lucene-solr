@@ -94,11 +94,6 @@ name|TestPackedInts
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|rnd
-specifier|private
-name|Random
-name|rnd
-decl_stmt|;
 DECL|method|testBitsRequired
 specifier|public
 name|void
@@ -259,11 +254,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|rnd
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|int
 name|num
 init|=
@@ -312,7 +302,7 @@ name|valueCount
 init|=
 literal|100
 operator|+
-name|rnd
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -324,9 +314,7 @@ name|Directory
 name|d
 init|=
 name|newDirectory
-argument_list|(
-name|rnd
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexOutput
 name|out
@@ -383,7 +371,7 @@ block|{
 name|long
 name|v
 init|=
-name|rnd
+name|random
 operator|.
 name|nextLong
 argument_list|()
@@ -757,11 +745,6 @@ name|MAX_BITS_PER_VALUE
 init|=
 literal|64
 decl_stmt|;
-name|rnd
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -791,7 +774,7 @@ name|valueCount
 argument_list|,
 name|bitsPerValue
 argument_list|,
-name|rnd
+name|random
 operator|.
 name|nextLong
 argument_list|()
@@ -1363,10 +1346,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|newRandom
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|IndexOutput
 name|out

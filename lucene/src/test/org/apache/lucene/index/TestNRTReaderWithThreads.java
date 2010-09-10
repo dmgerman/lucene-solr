@@ -134,9 +134,7 @@ name|Directory
 name|mainDir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -148,8 +146,6 @@ name|mainDir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

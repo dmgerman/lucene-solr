@@ -176,14 +176,6 @@ name|T
 init|=
 literal|true
 decl_stmt|;
-DECL|field|rand
-specifier|protected
-name|Random
-name|rand
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 comment|/**    * Collation interacts badly with hyphens -- collation produces different    * ordering than Unicode code-point ordering -- so two indexes are created:    * one which can't have negative random integers, for testing collated ranges,    * and the other which can have negative random integers, for all other tests.    */
 DECL|class|TestIndex
 class|class
@@ -208,6 +200,9 @@ decl_stmt|;
 DECL|method|TestIndex
 name|TestIndex
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|int
 name|minR
 parameter_list|,
@@ -241,9 +236,7 @@ block|{
 name|index
 operator|=
 name|newDirectory
-argument_list|(
-name|rand
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -430,6 +423,8 @@ operator|=
 operator|new
 name|TestIndex
 argument_list|(
+name|random
+argument_list|,
 name|Integer
 operator|.
 name|MAX_VALUE
@@ -446,6 +441,8 @@ operator|=
 operator|new
 name|TestIndex
 argument_list|(
+name|random
+argument_list|,
 name|Integer
 operator|.
 name|MAX_VALUE
@@ -459,7 +456,7 @@ name|signedIndexReader
 operator|=
 name|build
 argument_list|(
-name|rand
+name|random
 argument_list|,
 name|signedIndexDir
 argument_list|)
@@ -468,7 +465,7 @@ name|unsignedIndexReader
 operator|=
 name|build
 argument_list|(
-name|rand
+name|random
 argument_list|,
 name|unsignedIndexDir
 argument_list|)
@@ -541,8 +538,6 @@ name|index
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -615,12 +610,12 @@ name|index
 operator|.
 name|allowNegativeRandomInts
 condition|?
-name|rand
+name|random
 operator|.
 name|nextInt
 argument_list|()
 else|:
-name|rand
+name|random
 operator|.
 name|nextInt
 argument_list|(

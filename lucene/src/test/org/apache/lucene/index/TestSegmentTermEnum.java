@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -162,10 +152,6 @@ DECL|field|dir
 name|Directory
 name|dir
 decl_stmt|;
-DECL|field|random
-name|Random
-name|random
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
@@ -181,17 +167,10 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|dir
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -237,8 +216,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -299,8 +276,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -349,8 +324,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

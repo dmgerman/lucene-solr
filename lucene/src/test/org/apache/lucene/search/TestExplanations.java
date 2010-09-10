@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -289,11 +279,6 @@ specifier|protected
 name|Directory
 name|directory
 decl_stmt|;
-DECL|field|random
-specifier|protected
-name|Random
-name|random
-decl_stmt|;
 DECL|field|KEY
 specifier|public
 specifier|static
@@ -377,17 +362,10 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|directory
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
 name|writer

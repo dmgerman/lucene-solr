@@ -144,16 +144,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_class
 DECL|class|TestFilterIndexReader
 specifier|public
@@ -577,19 +567,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|IndexWriter
 name|writer
@@ -601,8 +583,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -738,9 +718,7 @@ name|Directory
 name|target
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|writer
 operator|=
@@ -751,8 +729,6 @@ name|target
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

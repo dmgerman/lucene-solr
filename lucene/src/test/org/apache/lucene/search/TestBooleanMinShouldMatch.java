@@ -146,11 +146,6 @@ name|TestBooleanMinShouldMatch
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|rnd
-specifier|private
-name|Random
-name|rnd
-decl_stmt|;
 DECL|field|index
 specifier|private
 name|Directory
@@ -181,11 +176,6 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|rnd
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|String
 index|[]
 name|data
@@ -214,9 +204,7 @@ decl_stmt|;
 name|index
 operator|=
 name|newDirectory
-argument_list|(
-name|rnd
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
 name|w
@@ -224,7 +212,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|rnd
+name|random
 argument_list|,
 name|index
 argument_list|)
@@ -2633,7 +2621,7 @@ name|q
 operator|.
 name|setMinimumNumberShouldMatch
 argument_list|(
-name|rnd
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -2672,7 +2660,7 @@ block|{
 name|int
 name|lev
 init|=
-name|rnd
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -2683,7 +2671,7 @@ specifier|final
 name|long
 name|seed
 init|=
-name|rnd
+name|random
 operator|.
 name|nextLong
 argument_list|()

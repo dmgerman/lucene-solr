@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -148,20 +138,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_class
 DECL|class|TestTransactions
 specifier|public
@@ -170,11 +146,6 @@ name|TestTransactions
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|RANDOM
-specifier|private
-name|Random
-name|RANDOM
-decl_stmt|;
 DECL|field|doFail
 specifier|private
 specifier|static
@@ -210,7 +181,7 @@ name|TestTransactions
 operator|.
 name|doFail
 operator|&&
-name|RANDOM
+name|random
 operator|.
 name|nextInt
 argument_list|()
@@ -499,8 +470,6 @@ name|dir1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|RANDOM
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -567,8 +536,6 @@ name|dir2
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|RANDOM
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -767,7 +734,7 @@ decl_stmt|;
 name|int
 name|n
 init|=
-name|RANDOM
+name|random
 operator|.
 name|nextInt
 argument_list|()
@@ -1055,8 +1022,6 @@ name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|RANDOM
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1090,7 +1055,7 @@ decl_stmt|;
 name|int
 name|n
 init|=
-name|RANDOM
+name|random
 operator|.
 name|nextInt
 argument_list|()
@@ -1147,11 +1112,6 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|RANDOM
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 comment|// we cant use non-ramdir on windows, because this test needs to double-write.
 name|MockDirectoryWrapper
 name|dir1

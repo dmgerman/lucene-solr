@@ -522,12 +522,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|Directory
 name|directory
 init|=
@@ -548,8 +542,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -749,8 +741,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

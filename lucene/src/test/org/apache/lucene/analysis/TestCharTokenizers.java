@@ -48,16 +48,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -67,20 +57,6 @@ operator|.
 name|util
 operator|.
 name|Version
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
 import|;
 end_import
 
@@ -112,19 +88,13 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|Random
-name|newRandom
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 comment|// create random input
 name|int
 name|num
 init|=
 literal|1024
 operator|+
-name|newRandom
+name|random
 operator|.
 name|nextInt
 argument_list|(

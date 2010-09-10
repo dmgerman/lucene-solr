@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -479,14 +469,6 @@ name|FIELD
 init|=
 literal|"text"
 decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 DECL|method|testConcurrentPhrase
 specifier|public
 name|void
@@ -512,9 +494,7 @@ name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexWriter
@@ -527,8 +507,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -804,9 +782,7 @@ name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexWriter
@@ -819,8 +795,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1225,9 +1199,7 @@ name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexWriter
@@ -1240,8 +1212,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1517,9 +1487,7 @@ name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexWriter
@@ -1532,8 +1500,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1806,9 +1772,7 @@ name|Directory
 name|directory
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexWriter
@@ -1821,8 +1785,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

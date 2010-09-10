@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -92,12 +82,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|JavaBinCodec
 name|javabin
 init|=
@@ -129,7 +113,7 @@ name|_TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
-name|r
+name|random
 argument_list|)
 decl_stmt|;
 name|ByteArrayOutputStream

@@ -182,9 +182,7 @@ expr_stmt|;
 name|snapshotDir
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -228,9 +226,7 @@ expr_stmt|;
 name|snapshotDir
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 return|return
 operator|new
@@ -341,9 +337,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PersistentSnapshotDeletionPolicy
 name|psdp
@@ -700,9 +694,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PersistentSnapshotDeletionPolicy
 name|psdp
@@ -823,9 +815,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PersistentSnapshotDeletionPolicy
 name|psdp

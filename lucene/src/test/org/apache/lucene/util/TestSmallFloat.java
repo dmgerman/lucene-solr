@@ -16,16 +16,6 @@ begin_comment
 comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_class
 DECL|class|TestSmallFloat
 specifier|public
@@ -353,12 +343,6 @@ name|void
 name|testFloatToByte
 parameter_list|()
 block|{
-name|Random
-name|rand
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 comment|// up iterations for more exhaustive test after changing something
 name|int
 name|num
@@ -389,7 +373,7 @@ name|Float
 operator|.
 name|intBitsToFloat
 argument_list|(
-name|rand
+name|random
 operator|.
 name|nextInt
 argument_list|()

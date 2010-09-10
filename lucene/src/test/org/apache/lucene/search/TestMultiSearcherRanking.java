@@ -138,16 +138,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests {@link MultiSearcher} ranking, i.e. makes sure this bug is fixed:  * http://issues.apache.org/bugzilla/show_bug.cgi?id=31841  *  */
 end_comment
@@ -561,19 +551,11 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 comment|// create MultiSearcher from two seperate searchers
 name|d1
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|IndexWriter
 name|iw1
@@ -585,8 +567,6 @@ name|d1
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -608,9 +588,7 @@ expr_stmt|;
 name|d2
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|IndexWriter
 name|iw2
@@ -622,8 +600,6 @@ name|d2
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -690,9 +666,7 @@ comment|// create IndexSearcher which contains all documents
 name|d
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|IndexWriter
 name|iw
@@ -704,8 +678,6 @@ name|d
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new

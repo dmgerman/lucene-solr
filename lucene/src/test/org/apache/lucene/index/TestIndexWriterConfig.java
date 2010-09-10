@@ -1706,10 +1706,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|newRandom
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|IndexWriter
 name|writer

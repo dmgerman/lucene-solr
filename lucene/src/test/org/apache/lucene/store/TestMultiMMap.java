@@ -175,12 +175,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int

@@ -104,10 +104,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|newRandom
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|IntStreamFactory
 name|f
@@ -232,10 +229,7 @@ name|Directory
 name|dir
 init|=
 name|newDirectory
-argument_list|(
-name|newRandom
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|IntStreamFactory
 name|f

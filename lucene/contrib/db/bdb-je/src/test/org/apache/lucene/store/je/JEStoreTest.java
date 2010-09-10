@@ -598,8 +598,7 @@ decl_stmt|;
 name|Random
 name|r
 init|=
-name|newRandom
-argument_list|()
+name|random
 decl_stmt|;
 specifier|final
 name|long
@@ -1390,8 +1389,7 @@ decl_stmt|;
 name|Random
 name|r
 init|=
-name|newRandom
-argument_list|()
+name|random
 decl_stmt|;
 specifier|final
 name|long
@@ -2629,8 +2627,7 @@ decl_stmt|;
 name|Random
 name|r
 init|=
-name|newRandom
-argument_list|()
+name|random
 decl_stmt|;
 specifier|final
 name|long
