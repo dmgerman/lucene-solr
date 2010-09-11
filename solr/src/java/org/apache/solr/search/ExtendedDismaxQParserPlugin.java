@@ -829,19 +829,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"missing query string"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
+comment|// throw new SolrException( SolrException.ErrorCode.BAD_REQUEST, "missing query string" );
 block|}
 block|}
 else|else
