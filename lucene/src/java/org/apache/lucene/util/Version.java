@@ -54,7 +54,7 @@ comment|/** Match settings and bugs in Lucene's 3.0 release. */
 DECL|enum constant|LUCENE_30
 name|LUCENE_30
 block|,
-comment|/** Match settings and bugs in Lucene's 3.0 release. */
+comment|/** Match settings and bugs in Lucene's 3.1 release. */
 DECL|enum constant|LUCENE_31
 name|LUCENE_31
 block|,
