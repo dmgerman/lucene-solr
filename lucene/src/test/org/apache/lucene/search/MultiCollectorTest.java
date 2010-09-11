@@ -105,10 +105,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|ChainingCollectorTest
+DECL|class|MultiCollectorTest
 specifier|public
 class|class
-name|ChainingCollectorTest
+name|MultiCollectorTest
 extends|extends
 name|LuceneTestCaseJ4
 block|{
@@ -231,8 +231,9 @@ block|{
 comment|// Tests that the collector rejects all null collectors.
 try|try
 block|{
-operator|new
-name|ChainingCollector
+name|MultiCollector
+operator|.
+name|wrap
 argument_list|(
 literal|null
 argument_list|,
@@ -241,7 +242,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"all collectors null should not be supported"
+literal|"only null collectors should not be supported"
 argument_list|)
 expr_stmt|;
 block|}
@@ -258,8 +259,9 @@ comment|// doesn't, an NPE would be thrown.
 name|Collector
 name|c
 init|=
-operator|new
-name|ChainingCollector
+name|MultiCollector
+operator|.
+name|wrap
 argument_list|(
 operator|new
 name|DummyCollector
@@ -272,6 +274,13 @@ name|DummyCollector
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|assertTrue
+argument_list|(
+name|c
+operator|instanceof
+name|MultiCollector
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|c
@@ -301,6 +310,51 @@ operator|.
 name|setScorer
 argument_list|(
 literal|null
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testSingleCollector
+specifier|public
+name|void
+name|testSingleCollector
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Tests that if a single Collector is input, it is returned (and not MultiCollector).
+name|DummyCollector
+name|dc
+init|=
+operator|new
+name|DummyCollector
+argument_list|()
+decl_stmt|;
+name|assertSame
+argument_list|(
+name|dc
+argument_list|,
+name|MultiCollector
+operator|.
+name|wrap
+argument_list|(
+name|dc
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertSame
+argument_list|(
+name|dc
+argument_list|,
+name|MultiCollector
+operator|.
+name|wrap
+argument_list|(
+name|dc
+argument_list|,
+literal|null
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -337,8 +391,9 @@ decl_stmt|;
 name|Collector
 name|c
 init|=
-operator|new
-name|ChainingCollector
+name|MultiCollector
+operator|.
+name|wrap
 argument_list|(
 name|dcs
 argument_list|)
