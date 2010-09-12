@@ -203,18 +203,23 @@ operator|new
 name|RAMDirectory
 argument_list|()
 expr_stmt|;
-name|RandomIndexWriter
-name|w
+name|Random
+name|random
 init|=
-operator|new
-name|RandomIndexWriter
-argument_list|(
 name|newStaticRandom
 argument_list|(
 name|TestSubScorerFreqs
 operator|.
 name|class
 argument_list|)
+decl_stmt|;
+name|RandomIndexWriter
+name|w
+init|=
+operator|new
+name|RandomIndexWriter
+argument_list|(
+name|random
 argument_list|,
 name|dir
 argument_list|)
@@ -248,9 +253,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"f"
 argument_list|,
 literal|"a b c d b c d c d d"
@@ -286,9 +292,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"f"
 argument_list|,
 literal|"a b c d"

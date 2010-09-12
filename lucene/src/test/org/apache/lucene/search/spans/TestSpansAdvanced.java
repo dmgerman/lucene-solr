@@ -404,8 +404,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_ID
 argument_list|,
@@ -429,8 +428,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_TEXT
 argument_list|,

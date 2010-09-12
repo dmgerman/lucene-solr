@@ -656,8 +656,7 @@ decl_stmt|;
 name|Field
 name|field1
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -682,8 +681,7 @@ decl_stmt|;
 name|Field
 name|field2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"term"
 argument_list|,

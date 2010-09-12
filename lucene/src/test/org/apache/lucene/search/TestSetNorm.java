@@ -186,8 +186,7 @@ comment|// add the same document four times
 name|Fieldable
 name|f1
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,

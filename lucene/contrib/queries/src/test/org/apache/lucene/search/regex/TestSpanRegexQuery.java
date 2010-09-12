@@ -353,7 +353,7 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// doc.add(new Field("field", "the quick brown fox jumps over the lazy dog",
+comment|// doc.add(newField("field", "the quick brown fox jumps over the lazy dog",
 comment|// Field.Store.NO, Field.Index.ANALYZED));
 comment|// writer.addDocument(doc);
 comment|// doc = new Document();
@@ -361,8 +361,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -399,8 +398,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -698,8 +696,7 @@ name|lDoc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -731,8 +728,7 @@ name|lDoc2
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,

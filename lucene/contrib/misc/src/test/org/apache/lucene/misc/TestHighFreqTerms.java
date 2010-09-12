@@ -1205,7 +1205,6 @@ block|}
 comment|/********************Testing Utils**********************************/
 DECL|method|indexDocs
 specifier|private
-specifier|static
 name|void
 name|indexDocs
 parameter_list|(
@@ -1250,8 +1249,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"FIELD_1"
 argument_list|,
@@ -1282,8 +1280,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"different_field"
 argument_list|,
@@ -1345,8 +1342,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"different_field"
 argument_list|,
@@ -1423,8 +1419,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"FIELD_1"
 argument_list|,
@@ -1519,8 +1514,7 @@ name|newdoc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"FIELD_1"
 argument_list|,
@@ -1594,8 +1588,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"different_field"
 argument_list|,

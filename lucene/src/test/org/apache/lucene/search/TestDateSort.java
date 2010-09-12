@@ -598,7 +598,6 @@ expr_stmt|;
 block|}
 DECL|method|createDocument
 specifier|private
-specifier|static
 name|Document
 name|createDocument
 parameter_list|(
@@ -620,8 +619,7 @@ comment|// Add the text field.
 name|Field
 name|textField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|TEXT_FIELD
 argument_list|,
@@ -667,8 +665,7 @@ decl_stmt|;
 name|Field
 name|dateTimeField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|DATE_TIME_FIELD
 argument_list|,

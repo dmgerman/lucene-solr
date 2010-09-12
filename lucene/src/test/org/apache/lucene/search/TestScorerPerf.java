@@ -463,8 +463,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 argument_list|,

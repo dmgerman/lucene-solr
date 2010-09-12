@@ -940,8 +940,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"key"
 argument_list|,

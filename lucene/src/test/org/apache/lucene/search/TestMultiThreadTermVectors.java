@@ -258,8 +258,7 @@ decl_stmt|;
 name|Fieldable
 name|fld
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,

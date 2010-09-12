@@ -236,9 +236,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"test"
 argument_list|,
 literal|"test text"
@@ -261,9 +262,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"type"
 argument_list|,
 literal|"A"
@@ -286,9 +288,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"other"
 argument_list|,
 literal|"other test text"
@@ -325,9 +328,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"test"
 argument_list|,
 literal|"test text"
@@ -350,9 +354,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"type"
 argument_list|,
 literal|"B"
@@ -375,9 +380,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"other"
 argument_list|,
 literal|"other test text"

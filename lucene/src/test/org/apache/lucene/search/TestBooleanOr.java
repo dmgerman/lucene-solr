@@ -932,8 +932,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_T
 argument_list|,
@@ -957,8 +956,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_C
 argument_list|,

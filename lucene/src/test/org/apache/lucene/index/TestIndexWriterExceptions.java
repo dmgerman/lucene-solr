@@ -217,8 +217,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content1"
 argument_list|,
@@ -242,8 +241,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content6"
 argument_list|,
@@ -273,8 +271,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content2"
 argument_list|,
@@ -298,8 +295,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content3"
 argument_list|,
@@ -323,8 +319,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content4"
 argument_list|,
@@ -348,8 +343,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content5"
 argument_list|,
@@ -373,8 +367,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content7"
 argument_list|,
@@ -404,8 +397,7 @@ specifier|final
 name|Field
 name|idField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,

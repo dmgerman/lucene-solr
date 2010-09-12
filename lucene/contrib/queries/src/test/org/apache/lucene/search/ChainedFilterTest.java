@@ -432,8 +432,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"key"
 argument_list|,
@@ -463,8 +462,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"owner"
 argument_list|,
@@ -498,8 +496,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"date"
 argument_list|,

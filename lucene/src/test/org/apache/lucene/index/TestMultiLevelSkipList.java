@@ -425,8 +425,7 @@ name|d1
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|term
 operator|.

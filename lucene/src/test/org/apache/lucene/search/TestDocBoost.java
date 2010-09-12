@@ -164,8 +164,7 @@ decl_stmt|;
 name|Fieldable
 name|f1
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -187,8 +186,7 @@ decl_stmt|;
 name|Fieldable
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,

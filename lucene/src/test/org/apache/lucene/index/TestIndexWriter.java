@@ -1206,7 +1206,6 @@ expr_stmt|;
 block|}
 DECL|method|addDoc
 specifier|private
-specifier|static
 name|void
 name|addDoc
 parameter_list|(
@@ -1227,8 +1226,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -1281,8 +1279,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -1308,8 +1305,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -3225,8 +3221,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -3490,8 +3485,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -6544,8 +6538,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"a"
 operator|+
@@ -6573,8 +6566,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"b"
 operator|+
@@ -6602,8 +6594,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 operator|+
@@ -6631,8 +6622,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"d"
 operator|+
@@ -6658,8 +6648,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"e"
 operator|+
@@ -6685,8 +6674,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 operator|+
@@ -6994,8 +6982,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -7136,8 +7123,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -7517,8 +7503,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -7961,8 +7946,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -8027,8 +8011,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -8133,8 +8116,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -8289,8 +8271,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -8456,8 +8437,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -8686,8 +8666,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -9118,8 +9097,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -9257,8 +9235,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -9441,8 +9418,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -9717,8 +9693,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -9800,8 +9775,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -9844,8 +9818,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -9888,8 +9861,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -9988,8 +9960,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -10037,8 +10008,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -10086,8 +10056,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -10224,8 +10193,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -10493,8 +10461,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"tvtest"
 argument_list|,
@@ -10677,8 +10644,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -10730,8 +10696,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -10769,8 +10734,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -11187,8 +11151,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -11505,8 +11468,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -11550,8 +11512,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"crash"
 argument_list|,
@@ -11581,8 +11542,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"other"
 argument_list|,
@@ -11646,8 +11606,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -11857,8 +11816,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -12229,8 +12187,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -12274,8 +12231,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"crash"
 argument_list|,
@@ -12305,8 +12261,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"other"
 argument_list|,
@@ -12370,8 +12325,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -12674,8 +12628,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -12950,8 +12903,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content3"
 argument_list|,
@@ -12992,8 +12944,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content4"
 argument_list|,
@@ -13035,8 +12986,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content1"
 argument_list|,
@@ -13056,8 +13006,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content3"
 argument_list|,
@@ -13081,8 +13030,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content5"
 argument_list|,
@@ -13247,8 +13195,7 @@ decl_stmt|;
 name|Field
 name|idField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -13779,8 +13726,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -14441,8 +14387,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -14984,8 +14929,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -16004,8 +15948,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -16946,8 +16889,7 @@ decl_stmt|;
 name|Field
 name|storedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"stored"
 argument_list|,
@@ -17003,8 +16945,7 @@ expr_stmt|;
 name|Field
 name|termVectorField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"termVector"
 argument_list|,
@@ -17270,8 +17211,7 @@ decl_stmt|;
 name|Field
 name|storedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"stored"
 argument_list|,
@@ -17327,8 +17267,7 @@ expr_stmt|;
 name|Field
 name|termVectorField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"termVector"
 argument_list|,
@@ -17512,8 +17451,7 @@ expr_stmt|;
 name|Field
 name|storedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"stored"
 argument_list|,
@@ -17542,8 +17480,7 @@ expr_stmt|;
 name|Field
 name|termVectorField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"termVector"
 argument_list|,
@@ -17813,8 +17750,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -17957,8 +17893,7 @@ expr_stmt|;
 name|Field
 name|storedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"stored"
 argument_list|,
@@ -17987,8 +17922,7 @@ expr_stmt|;
 name|Field
 name|termVectorField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"termVector"
 argument_list|,
@@ -18285,8 +18219,7 @@ expr_stmt|;
 name|Field
 name|storedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"stored"
 argument_list|,
@@ -18315,8 +18248,7 @@ expr_stmt|;
 name|Field
 name|termVectorField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"termVector"
 argument_list|,
@@ -18620,8 +18552,7 @@ expr_stmt|;
 name|Field
 name|storedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"stored"
 argument_list|,
@@ -18650,8 +18581,7 @@ expr_stmt|;
 name|Field
 name|termVectorField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"termVector"
 argument_list|,
@@ -18912,8 +18842,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|""
 argument_list|,
@@ -19062,8 +18991,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -19186,8 +19114,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -19267,8 +19194,7 @@ name|crashDoc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"crash"
 argument_list|,
@@ -19490,8 +19416,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -19688,8 +19613,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -20051,8 +19975,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -20293,8 +20216,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 operator|+
@@ -22913,7 +22835,6 @@ block|}
 DECL|class|RunAddIndexesThreads
 specifier|private
 specifier|abstract
-specifier|static
 class|class
 name|RunAddIndexesThreads
 block|{
@@ -25283,8 +25204,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -25326,8 +25246,7 @@ expr_stmt|;
 name|Field
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -25612,8 +25531,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -25814,8 +25732,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -26243,8 +26160,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -26445,8 +26361,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -26474,8 +26389,7 @@ decl_stmt|;
 name|Field
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -26725,8 +26639,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -26754,8 +26667,7 @@ decl_stmt|;
 name|Field
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -26970,8 +26882,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -27007,8 +26918,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -27037,8 +26947,7 @@ expr_stmt|;
 name|Field
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -27355,8 +27264,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -27663,8 +27571,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -28199,8 +28106,7 @@ expr_stmt|;
 name|Field
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"string"
 argument_list|,
@@ -28770,8 +28676,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"zzz"
 argument_list|,
@@ -28795,8 +28700,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"aaa"
 argument_list|,
@@ -28820,8 +28724,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"zzz"
 argument_list|,
@@ -29061,8 +28964,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -29099,8 +29001,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -29435,8 +29336,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 argument_list|,
@@ -30064,8 +29964,7 @@ comment|// Single segment
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 argument_list|,
@@ -30532,8 +30431,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -30751,8 +30649,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -31109,8 +31006,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 argument_list|,
@@ -31176,8 +31072,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 argument_list|,
@@ -31374,8 +31269,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -31784,8 +31678,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 argument_list|,
@@ -31839,8 +31732,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 argument_list|,
@@ -32004,8 +31896,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 argument_list|,
@@ -32632,8 +32523,7 @@ decl_stmt|;
 name|Field
 name|idField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -32802,8 +32692,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 operator|+
@@ -33435,8 +33324,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 argument_list|,

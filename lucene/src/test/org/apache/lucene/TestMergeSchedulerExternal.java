@@ -443,8 +443,7 @@ decl_stmt|;
 name|Field
 name|idField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,

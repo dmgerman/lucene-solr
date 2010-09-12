@@ -602,8 +602,7 @@ name|d1
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"default"
 argument_list|,
@@ -641,8 +640,7 @@ name|d2
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"default"
 argument_list|,
@@ -680,8 +678,7 @@ name|d3
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"default"
 argument_list|,
