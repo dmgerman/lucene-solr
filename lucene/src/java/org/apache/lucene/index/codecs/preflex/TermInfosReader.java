@@ -273,7 +273,6 @@ operator|.
 name|CloneableKey
 block|{
 DECL|field|term
-specifier|private
 name|Term
 name|term
 decl_stmt|;
@@ -301,6 +300,14 @@ name|Object
 name|other
 parameter_list|)
 block|{
+name|CloneableTerm
+name|t
+init|=
+operator|(
+name|CloneableTerm
+operator|)
+name|other
+decl_stmt|;
 return|return
 name|this
 operator|.
@@ -308,7 +315,9 @@ name|term
 operator|.
 name|equals
 argument_list|(
-name|other
+name|t
+operator|.
+name|term
 argument_list|)
 return|;
 block|}

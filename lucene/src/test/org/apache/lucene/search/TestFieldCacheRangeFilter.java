@@ -124,6 +124,28 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * A basic 'positive' Unit test class for the FieldCacheRangeFilter class.  *  *<p>  * NOTE: at the moment, this class only tests for 'positive' results,  * it does not verify the results to ensure there are no 'false positives',  * nor does it adequately test 'negative' results.  It also does not test  * that garbage in results in an Exception.  */
 end_comment
@@ -136,6 +158,8 @@ name|TestFieldCacheRangeFilter
 extends|extends
 name|BaseTestRangeFilter
 block|{
+annotation|@
+name|Test
 DECL|method|testRangeFilterId
 specifier|public
 name|void
@@ -1080,6 +1104,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterRand
 specifier|public
 name|void
@@ -1723,6 +1749,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// byte-ranges cannot be tested, because all ranges are too big for bytes, need an extra range for that
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterShorts
 specifier|public
 name|void
@@ -2814,6 +2842,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterInts
 specifier|public
 name|void
@@ -3896,6 +3926,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterLongs
 specifier|public
 name|void
@@ -4979,6 +5011,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// float and double tests are a bit minimalistic, but its complicated, because missing precision
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterFloats
 specifier|public
 name|void
@@ -5318,6 +5352,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterDoubles
 specifier|public
 name|void
@@ -5658,6 +5694,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test using a sparse index (with deleted docs).
+annotation|@
+name|Test
 DECL|method|testSparseIndex
 specifier|public
 name|void
