@@ -198,6 +198,30 @@ name|FACET
 operator|+
 literal|".missing"
 decl_stmt|;
+comment|/**    * Comma separated list of fields to pivot    *     * example: author,type  (for types by author / types within author)    */
+DECL|field|FACET_PIVOT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_PIVOT
+init|=
+name|FACET
+operator|+
+literal|".pivot"
+decl_stmt|;
+comment|/**    * Minimum number of docs that need to match to be included in the sublist    *     * default value is 1    */
+DECL|field|FACET_PIVOT_MINCOUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_PIVOT_MINCOUNT
+init|=
+name|FACET_PIVOT
+operator|+
+literal|".mincount"
+decl_stmt|;
 comment|/**    * String option: "count" causes facets to be sorted    * by the count, "index" results in index order.    */
 DECL|field|FACET_SORT
 specifier|public

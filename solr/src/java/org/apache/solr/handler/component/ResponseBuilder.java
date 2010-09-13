@@ -673,6 +673,19 @@ operator|.
 name|TermsHelper
 name|_termsHelper
 decl_stmt|;
+DECL|field|_pivots
+name|SimpleOrderedMap
+argument_list|<
+name|List
+argument_list|<
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+argument_list|>
+name|_pivots
+decl_stmt|;
 comment|/**    * Utility function to add debugging info.  This will make sure a valid    * debugInfo exists before adding to it.    */
 DECL|method|addDebugInfo
 specifier|public
