@@ -126,7 +126,6 @@ name|LuceneTestCase
 block|{
 DECL|method|testSplitEscaping
 specifier|public
-specifier|static
 name|void
 name|testSplitEscaping
 parameter_list|()
