@@ -396,7 +396,7 @@ block|{
 comment|/* NOOP */
 block|}
 DECL|class|Resolver
-specifier|private
+specifier|public
 specifier|static
 class|class
 name|Resolver
@@ -406,23 +406,23 @@ operator|.
 name|ObjectResolver
 block|{
 DECL|field|solrQueryRequest
-specifier|private
+specifier|protected
 specifier|final
 name|SolrQueryRequest
 name|solrQueryRequest
 decl_stmt|;
 DECL|field|schema
-specifier|private
+specifier|protected
 name|IndexSchema
 name|schema
 decl_stmt|;
 DECL|field|searcher
-specifier|private
+specifier|protected
 name|SolrIndexSearcher
 name|searcher
 decl_stmt|;
 DECL|field|returnFields
-specifier|private
+specifier|protected
 specifier|final
 name|Set
 argument_list|<
@@ -431,7 +431,7 @@ argument_list|>
 name|returnFields
 decl_stmt|;
 DECL|field|includeScore
-specifier|private
+specifier|protected
 specifier|final
 name|boolean
 name|includeScore
