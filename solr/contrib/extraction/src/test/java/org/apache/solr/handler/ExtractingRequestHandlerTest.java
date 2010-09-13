@@ -731,6 +731,11 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"unknown field 'a'"
+argument_list|)
+expr_stmt|;
 name|loadLocal
 argument_list|(
 literal|"simple.html"
@@ -767,6 +772,12 @@ name|e
 parameter_list|)
 block|{
 comment|//do nothing
+block|}
+finally|finally
+block|{
+name|resetExceptionIgnores
+argument_list|()
+expr_stmt|;
 block|}
 name|loadLocal
 argument_list|(
