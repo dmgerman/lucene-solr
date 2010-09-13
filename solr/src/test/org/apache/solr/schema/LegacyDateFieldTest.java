@@ -68,7 +68,19 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LocalizedTestCase
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -113,12 +125,21 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|LocalizedTestCaseRunner
+operator|.
+name|class
+argument_list|)
 DECL|class|LegacyDateFieldTest
 specifier|public
 class|class
 name|LegacyDateFieldTest
 extends|extends
-name|LocalizedTestCase
+name|LuceneTestCase
 block|{
 comment|// if and when this class is removed, make sure to refactor all
 comment|// appropriate code to DateFieldTest

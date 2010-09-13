@@ -172,7 +172,7 @@ specifier|public
 class|class
 name|TestSubScorerFreqs
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|field|dir
 specifier|private

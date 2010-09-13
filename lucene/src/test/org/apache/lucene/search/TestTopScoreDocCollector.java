@@ -110,25 +110,6 @@ name|TestTopScoreDocCollector
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestTopScoreDocCollector
-specifier|public
-name|TestTopScoreDocCollector
-parameter_list|()
-block|{   }
-DECL|method|TestTopScoreDocCollector
-specifier|public
-name|TestTopScoreDocCollector
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testOutOfOrderCollection
 specifier|public
 name|void

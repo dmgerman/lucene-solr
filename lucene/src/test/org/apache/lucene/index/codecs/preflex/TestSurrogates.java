@@ -156,7 +156,7 @@ specifier|public
 class|class
 name|TestSurrogates
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|method|makeDifficultRandomUnicodeString
 specifier|private

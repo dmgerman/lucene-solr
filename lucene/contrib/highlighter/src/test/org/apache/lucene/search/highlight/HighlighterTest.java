@@ -996,21 +996,6 @@ block|,
 literal|"lets is a the lets is a the lets is a the lets"
 block|}
 decl_stmt|;
-comment|/**    * Constructor for HighlightExtractorTest.    *     * @param arg0    */
-DECL|method|HighlighterTest
-specifier|public
-name|HighlighterTest
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|arg0
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testQueryScorerHits
 specifier|public
 name|void
@@ -11256,7 +11241,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -11539,7 +11524,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()

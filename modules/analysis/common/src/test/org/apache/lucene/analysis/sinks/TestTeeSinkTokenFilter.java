@@ -346,16 +346,6 @@ name|StringReader
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_comment
 comment|/**  * tests for the TestTeeSinkTokenFilter  */
 end_comment
@@ -390,24 +380,10 @@ name|String
 index|[]
 name|tokens2
 decl_stmt|;
-DECL|method|TestTeeSinkTokenFilter
-specifier|public
-name|TestTeeSinkTokenFilter
-parameter_list|(
-name|String
-name|s
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()

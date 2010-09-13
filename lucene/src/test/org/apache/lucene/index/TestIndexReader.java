@@ -128,26 +128,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -510,50 +490,6 @@ name|TestIndexReader
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/** Main for running test case by itself. */
-DECL|method|main
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-name|args
-index|[]
-parameter_list|)
-block|{
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-operator|new
-name|TestSuite
-argument_list|(
-name|TestIndexReader
-operator|.
-name|class
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//        TestRunner.run (new TestIndexReader("testBasicDelete"));
-comment|//        TestRunner.run (new TestIndexReader("testDeleteReaderWriterConflict"));
-comment|//        TestRunner.run (new TestIndexReader("testDeleteReaderReaderConflict"));
-comment|//        TestRunner.run (new TestIndexReader("testFilesOpenClose"));
-block|}
-DECL|method|TestIndexReader
-specifier|public
-name|TestIndexReader
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testCommitUserData
 specifier|public
 name|void

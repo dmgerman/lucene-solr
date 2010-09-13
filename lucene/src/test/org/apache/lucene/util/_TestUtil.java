@@ -203,7 +203,7 @@ return|return
 operator|new
 name|File
 argument_list|(
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 operator|.
 name|TEMP_DIR
 argument_list|,

@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LocalizedTestCase
+name|LuceneTestCase
 import|;
 end_import
 
@@ -41,6 +41,18 @@ operator|.
 name|util
 operator|.
 name|DateMathParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -139,12 +151,21 @@ comment|/**  * Tests that the functions in DateMathParser  */
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|LocalizedTestCaseRunner
+operator|.
+name|class
+argument_list|)
 DECL|class|DateMathParserTest
 specifier|public
 class|class
 name|DateMathParserTest
 extends|extends
-name|LocalizedTestCase
+name|LuceneTestCase
 block|{
 DECL|field|UTC
 specifier|public

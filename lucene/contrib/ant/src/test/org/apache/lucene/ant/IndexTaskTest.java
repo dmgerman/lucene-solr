@@ -220,7 +220,7 @@ comment|/**      *  The JUnit setup method      *      *@exception  IOException 
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -412,7 +412,7 @@ comment|/**      *  The teardown method for JUnit      * TODO: remove indexDir? 
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()

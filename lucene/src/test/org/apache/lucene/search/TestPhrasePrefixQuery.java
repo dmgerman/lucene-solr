@@ -188,20 +188,6 @@ name|TestPhrasePrefixQuery
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestPhrasePrefixQuery
-specifier|public
-name|TestPhrasePrefixQuery
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      *      */
 DECL|method|testPhrasePrefix
 specifier|public

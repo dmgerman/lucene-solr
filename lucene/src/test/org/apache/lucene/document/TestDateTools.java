@@ -92,7 +92,19 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LocalizedTestCase
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -101,12 +113,21 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|LocalizedTestCaseRunner
+operator|.
+name|class
+argument_list|)
 DECL|class|TestDateTools
 specifier|public
 class|class
 name|TestDateTools
 extends|extends
-name|LocalizedTestCase
+name|LuceneTestCase
 block|{
 DECL|method|testStringToDate
 specifier|public

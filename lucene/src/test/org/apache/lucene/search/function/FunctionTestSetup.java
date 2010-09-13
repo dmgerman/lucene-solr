@@ -140,7 +140,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -200,7 +200,7 @@ specifier|public
 class|class
 name|FunctionTestSetup
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 comment|/**    * Actual score computation order is slightly different than assumptios    * this allows for a small amount of variation    */
 DECL|field|TEST_SCORE_TOLERANCE_DELTA

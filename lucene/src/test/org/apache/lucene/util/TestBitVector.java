@@ -80,20 +80,6 @@ name|TestBitVector
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestBitVector
-specifier|public
-name|TestBitVector
-parameter_list|(
-name|String
-name|s
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      * Test the default constructor on BitVectors of various sizes.      * @throws Exception      */
 DECL|method|testConstructSize
 specifier|public

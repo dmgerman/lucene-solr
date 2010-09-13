@@ -158,20 +158,6 @@ literal|"print.props=false"
 operator|+
 name|NEW_LINE
 decl_stmt|;
-DECL|method|TestPerfTasksParse
-specifier|public
-name|TestPerfTasksParse
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Test the repetiotion parsing for parallel tasks */
 DECL|method|testParseParallelTaskSequenceRepetition
 specifier|public

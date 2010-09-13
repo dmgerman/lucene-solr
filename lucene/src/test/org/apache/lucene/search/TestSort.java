@@ -437,37 +437,6 @@ specifier|private
 name|Sort
 name|sort
 decl_stmt|;
-DECL|method|TestSort
-specifier|public
-name|TestSort
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|suite
-specifier|public
-specifier|static
-name|Test
-name|suite
-parameter_list|()
-block|{
-return|return
-operator|new
-name|TestSuite
-argument_list|(
-name|TestSort
-operator|.
-name|class
-argument_list|)
-return|;
-block|}
 comment|// document data:
 comment|// the tracer field is used to determine which document was hit
 comment|// the contents field is used to search and sort by relevance
@@ -2063,7 +2032,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -2199,7 +2168,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()

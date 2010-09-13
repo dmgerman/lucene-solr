@@ -70,7 +70,7 @@ specifier|public
 class|class
 name|TestSetOnce
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|class|SetOnceThread
 specifier|private

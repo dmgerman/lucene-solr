@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -272,20 +272,6 @@ name|TestMultiSearcher
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestMultiSearcher
-specifier|public
-name|TestMultiSearcher
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** 	 * ReturnS a new instance of the concrete MultiSearcher class 	 * used in this test. 	 */
 DECL|method|getMultiSearcherInstance
 specifier|protected
@@ -1396,7 +1382,7 @@ name|IndexWriter
 argument_list|(
 name|directory
 argument_list|,
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 operator|.
 name|newIndexWriterConfig
 argument_list|(

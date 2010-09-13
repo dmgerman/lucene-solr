@@ -162,7 +162,7 @@ specifier|public
 class|class
 name|TestRemoteCachingWrapperFilter
 extends|extends
-name|RemoteTestCaseJ4
+name|RemoteTestCase
 block|{
 DECL|field|indexStore
 specifier|private

@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -256,7 +256,7 @@ specifier|public
 class|class
 name|TestNumericRangeQuery32
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 comment|// distance of entries
 DECL|field|distance

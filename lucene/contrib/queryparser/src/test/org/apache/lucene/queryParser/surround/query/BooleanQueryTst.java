@@ -134,19 +134,9 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
 name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
 operator|.
 name|Assert
 import|;
@@ -177,7 +167,7 @@ name|String
 name|fieldName
 decl_stmt|;
 DECL|field|testCase
-name|TestCase
+name|Assert
 name|testCase
 decl_stmt|;
 DECL|field|qf
@@ -207,7 +197,7 @@ parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
-name|TestCase
+name|Assert
 name|testCase
 parameter_list|,
 name|BasicQueryFactory

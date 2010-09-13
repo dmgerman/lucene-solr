@@ -326,7 +326,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|MultiCodecTestCase
+name|LuceneTestCase
 import|;
 end_import
 
@@ -341,6 +341,18 @@ operator|.
 name|util
 operator|.
 name|Version
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -409,12 +421,21 @@ comment|//   - skipTo(doc)
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|MultiCodecTestCaseRunner
+operator|.
+name|class
+argument_list|)
 DECL|class|TestCodecs
 specifier|public
 class|class
 name|TestCodecs
 extends|extends
-name|MultiCodecTestCase
+name|LuceneTestCase
 block|{
 DECL|field|fieldNames
 specifier|private

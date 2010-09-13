@@ -36,7 +36,19 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LocalizedTestCase
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -45,12 +57,21 @@ comment|/**  */
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|LocalizedTestCaseRunner
+operator|.
+name|class
+argument_list|)
 DECL|class|TestNLS
 specifier|public
 class|class
 name|TestNLS
 extends|extends
-name|LocalizedTestCase
+name|LuceneTestCase
 block|{
 DECL|method|testMessageLoading
 specifier|public

@@ -302,7 +302,7 @@ comment|/** Set the test case. This test case needs      *  a few text files cre
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()

@@ -150,20 +150,6 @@ name|TestDateFilter
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestDateFilter
-specifier|public
-name|TestDateFilter
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    *    */
 DECL|method|testBefore
 specifier|public

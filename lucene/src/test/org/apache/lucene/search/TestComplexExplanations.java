@@ -64,7 +64,7 @@ comment|/**    * Override the Similarity used in our searcher with one that play
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()

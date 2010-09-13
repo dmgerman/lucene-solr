@@ -240,7 +240,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 operator|.
 name|TEST_VERSION_CURRENT
 import|;

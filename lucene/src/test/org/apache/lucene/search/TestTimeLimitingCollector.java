@@ -269,25 +269,11 @@ specifier|private
 name|Query
 name|query
 decl_stmt|;
-DECL|method|TestTimeLimitingCollector
-specifier|public
-name|TestTimeLimitingCollector
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * initializes searcher with a document set    */
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -462,7 +448,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()

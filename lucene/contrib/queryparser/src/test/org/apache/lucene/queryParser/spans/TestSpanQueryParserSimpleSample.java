@@ -194,27 +194,6 @@ name|TestSpanQueryParserSimpleSample
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestSpanQueryParserSimpleSample
-specifier|public
-name|TestSpanQueryParserSimpleSample
-parameter_list|()
-block|{
-comment|// empty constructor
-block|}
-DECL|method|TestSpanQueryParserSimpleSample
-specifier|public
-name|TestSpanQueryParserSimpleSample
-parameter_list|(
-name|String
-name|testName
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|testName
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testBasicDemo
 specifier|public
 name|void

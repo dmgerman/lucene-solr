@@ -169,25 +169,11 @@ name|reader
 init|=
 literal|null
 decl_stmt|;
-DECL|method|TestSegmentReader
-specifier|public
-name|TestSegmentReader
-parameter_list|(
-name|String
-name|s
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
-block|}
 comment|//TODO: Setup the reader w/ multiple documents
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -242,7 +228,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()

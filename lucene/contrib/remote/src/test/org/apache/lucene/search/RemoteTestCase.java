@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -151,13 +151,13 @@ comment|/**  * Base class for remote tests.  *<p>  * Call {@link #startServer(Se
 end_comment
 
 begin_class
-DECL|class|RemoteTestCaseJ4
+DECL|class|RemoteTestCase
 specifier|public
 specifier|abstract
 class|class
-name|RemoteTestCaseJ4
+name|RemoteTestCase
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|field|port
 specifier|private

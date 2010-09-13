@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -72,7 +72,7 @@ specifier|public
 class|class
 name|TestCopyBytes
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|method|value
 specifier|private
