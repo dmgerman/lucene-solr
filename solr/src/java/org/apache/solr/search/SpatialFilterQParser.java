@@ -207,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates a spatial Filter based on the type of spatial point used.  *<p/>  * The field must implement XXXX  *<p/>  *<p/>  *<p/>  * Syntax:  *<pre>{!sfilt fl=location [units=[K|M]] [meas=[0-INF|hsin|sqe]] }&pt=49.32,-79.0&d=20</pre>  *<p/>  * Parameters:  *<ul>  *<li>fl - The fields to filter on.  Must implement XXXX. Required.  If more than one, XXXX</li>  *<li>pt - The point to use as a reference.  Must match the dimension of the field. Required.</li>  *<li>d - The distance in the units specified. Required.</li>  *<li>units - The units of the distance.  K - kilometers, M - Miles.  Optional.  Default is miles.</li>  *<li>meas - The distance measure to use.  Default is Euclidean (2-norm).  If a number between 0-INF is used, then the Vector Distance is used.  hsin = Haversine, sqe = Squared Euclidean</li>  *</ul>  */
+comment|/**  * Creates a spatial Filter based on the type of spatial point used.  *<p/>  * The field must implement {@link org.apache.solr.schema.SpatialQueryable}  *<p/>  * All units are in Kilometers  *<p/>  *<p/>  * Syntax:  *<pre>{!sfilt fl=location [units=[K|M]] [meas=[0-INF|hsin|sqe]] }&pt=49.32,-79.0&d=20</pre>  *<p/>  * Parameters:  *<ul>  *<li>fl - The fields to filter on.  Must implement XXXX. Required.  If more than one, XXXX</li>  *<li>pt - The point to use as a reference.  Must match the dimension of the field. Required.</li>  *<li>d - The distance in the units specified. Required.</li>  *<li>meas - The distance measure to use.  Default is Euclidean (2-norm).  If a number between 0-INF is used, then the Vector Distance is used.  hsin = Haversine, sqe = Squared Euclidean</li>  *</ul> *  *  */
 end_comment
 
 begin_class
