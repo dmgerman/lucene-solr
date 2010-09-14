@@ -2350,21 +2350,22 @@ name|startTermIndex
 operator|-
 literal|1
 expr_stmt|;
-comment|// find the end term.  \uffff isn't a legal unicode char, but only compareTo
-comment|// is used, so it should be fine, and is guaranteed to be bigger than legal chars.
+name|prefixRef
+operator|.
+name|append
+argument_list|(
+name|ByteUtils
+operator|.
+name|bigTerm
+argument_list|)
+expr_stmt|;
 name|endTermIndex
 operator|=
 name|si
 operator|.
 name|binarySearchLookup
 argument_list|(
-operator|new
-name|BytesRef
-argument_list|(
-name|prefix
-operator|+
-literal|"\uffff\uffff\uffff\uffff"
-argument_list|)
+name|prefixRef
 argument_list|,
 name|br
 argument_list|)
