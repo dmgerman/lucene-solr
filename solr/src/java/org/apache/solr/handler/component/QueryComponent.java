@@ -1631,6 +1631,13 @@ argument_list|,
 name|cmd
 argument_list|)
 expr_stmt|;
+name|rb
+operator|.
+name|setResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 name|rsp
 operator|.
 name|add
@@ -1642,6 +1649,7 @@ operator|.
 name|groupedResults
 argument_list|)
 expr_stmt|;
+comment|// TODO: get "hits" a different way
 return|return;
 block|}
 block|}
