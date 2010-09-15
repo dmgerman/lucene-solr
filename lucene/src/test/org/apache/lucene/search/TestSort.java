@@ -40,6 +40,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -888,8 +898,34 @@ literal|null
 block|}
 block|}
 decl_stmt|;
+comment|// the sort order of Ã versus U depends on the version of the rules being used
+comment|// for the inherited root locale: Ã's order isnt specified in Locale.US since
+comment|// its not used in english.
+specifier|private
+name|boolean
+name|oStrokeFirst
+init|=
+name|Collator
+operator|.
+name|getInstance
+argument_list|(
+operator|new
+name|Locale
+argument_list|(
+literal|""
+argument_list|)
+argument_list|)
+operator|.
+name|compare
+argument_list|(
+literal|"Ã"
+argument_list|,
+literal|"U"
+argument_list|)
+operator|<
+literal|0
+decl_stmt|;
 comment|// create an index of all the documents, or just the x, or just the y documents
-DECL|method|getIndex
 specifier|private
 name|IndexSearcher
 name|getIndex
@@ -1522,7 +1558,6 @@ return|return
 name|s
 return|;
 block|}
-DECL|method|getFullIndex
 specifier|private
 name|IndexSearcher
 name|getFullIndex
@@ -1539,7 +1574,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|getFullStrings
 specifier|private
 name|IndexSearcher
 name|getFullStrings
@@ -1796,7 +1830,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|getRandomNumberString
 specifier|public
 name|String
 name|getRandomNumberString
@@ -1853,7 +1886,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|getRandomCharString
 specifier|public
 name|String
 name|getRandomCharString
@@ -1873,7 +1905,6 @@ literal|122
 argument_list|)
 return|;
 block|}
-DECL|method|getRandomCharString
 specifier|public
 name|String
 name|getRandomCharString
@@ -1937,7 +1968,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|getRandomNumber
 specifier|public
 name|int
 name|getRandomNumber
@@ -1978,7 +2008,6 @@ return|return
 name|randInt
 return|;
 block|}
-DECL|method|getXIndex
 specifier|private
 name|IndexSearcher
 name|getXIndex
@@ -1995,7 +2024,6 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|getYIndex
 specifier|private
 name|IndexSearcher
 name|getYIndex
@@ -2012,7 +2040,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|getEmptyIndex
 specifier|private
 name|IndexSearcher
 name|getEmptyIndex
@@ -2031,7 +2058,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setUp
 specifier|public
 name|void
 name|setUp
@@ -2150,7 +2176,6 @@ name|Sort
 argument_list|()
 expr_stmt|;
 block|}
-DECL|field|dirs
 specifier|private
 name|ArrayList
 argument_list|<
@@ -2167,7 +2192,6 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|tearDown
 specifier|public
 name|void
 name|tearDown
@@ -2230,7 +2254,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// test the sorts by score and document number
-DECL|method|testBuiltInSorts
 specifier|public
 name|void
 name|testBuiltInSorts
@@ -2299,7 +2322,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test sorts where the type of field is specified
-DECL|method|testTypedSort
 specifier|public
 name|void
 name|testTypedSort
@@ -2596,7 +2618,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test String sorting: small queue to many matches, multi field sort, reverse sort    */
-DECL|method|testStringSort
 specifier|public
 name|void
 name|testStringSort
@@ -3008,7 +3029,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**     * test sorts where the type of field is specified and a custom field parser     * is used, that uses a simple char encoding. The sorted string contains a     * character beginning from 'A' that is mapped to a numeric value using some     * "funny" algorithm to be different for each data type.    */
-DECL|method|testCustomFieldParserSort
 specifier|public
 name|void
 name|testCustomFieldParserSort
@@ -3487,7 +3507,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// test sorts when there's nothing in the index
-DECL|method|testEmptyIndex
 specifier|public
 name|void
 name|testEmptyIndex
@@ -3637,28 +3656,23 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
-DECL|class|MyFieldComparator
 specifier|static
 class|class
 name|MyFieldComparator
 extends|extends
 name|FieldComparator
 block|{
-DECL|field|docValues
 name|int
 index|[]
 name|docValues
 decl_stmt|;
-DECL|field|slotValues
 name|int
 index|[]
 name|slotValues
 decl_stmt|;
-DECL|field|bottomValue
 name|int
 name|bottomValue
 decl_stmt|;
-DECL|method|MyFieldComparator
 name|MyFieldComparator
 parameter_list|(
 name|int
@@ -3676,7 +3690,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|copy
 specifier|public
 name|void
 name|copy
@@ -3701,7 +3714,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare
 specifier|public
 name|int
 name|compare
@@ -3727,7 +3739,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|compareBottom
 specifier|public
 name|int
 name|compareBottom
@@ -3747,7 +3758,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setBottom
 specifier|public
 name|void
 name|setBottom
@@ -3766,7 +3776,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setNextReader
 specifier|public
 name|FieldComparator
 name|setNextReader
@@ -3834,7 +3843,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|value
 specifier|public
 name|Comparable
 argument_list|<
@@ -3859,7 +3867,6 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|MyFieldComparatorSource
 specifier|static
 class|class
 name|MyFieldComparatorSource
@@ -3868,7 +3875,6 @@ name|FieldComparatorSource
 block|{
 annotation|@
 name|Override
-DECL|method|newComparator
 specifier|public
 name|FieldComparator
 name|newComparator
@@ -3896,7 +3902,6 @@ return|;
 block|}
 block|}
 comment|// Test sorting w/ custom FieldComparator
-DECL|method|testNewCustomFieldParserSort
 specifier|public
 name|void
 name|testNewCustomFieldParserSort
@@ -3932,7 +3937,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test sorts in reverse
-DECL|method|testReverseSort
 specifier|public
 name|void
 name|testReverseSort
@@ -4141,7 +4145,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test sorting when the sort field is empty (undefined) for some of the documents
-DECL|method|testEmptyFieldSort
 specifier|public
 name|void
 name|testEmptyFieldSort
@@ -4721,7 +4724,6 @@ expr_stmt|;
 comment|// Don't close the parallelSearcher. it would close the full searcher too!
 block|}
 comment|// test sorts using a series of fields
-DECL|method|testSortCombos
 specifier|public
 name|void
 name|testSortCombos
@@ -4843,7 +4845,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test using a Locale for sorting strings
-DECL|method|testLocaleSort
 specifier|public
 name|void
 name|testLocaleSort
@@ -4930,7 +4931,6 @@ expr_stmt|;
 block|}
 comment|// test using various international locales with accented characters
 comment|// (which sort differently depending on locale)
-DECL|method|testInternationalSort
 specifier|public
 name|void
 name|testInternationalSort
@@ -4961,6 +4961,10 @@ name|queryY
 argument_list|,
 name|sort
 argument_list|,
+name|oStrokeFirst
+condition|?
+literal|"BFJHD"
+else|:
 literal|"BFJDH"
 argument_list|)
 expr_stmt|;
@@ -5079,7 +5083,6 @@ expr_stmt|;
 block|}
 comment|// Test the MultiSearcher's ability to preserve locale-sensitive ordering
 comment|// by wrapping it around a single searcher
-DECL|method|testInternationalMultiSearcherSort
 specifier|public
 name|void
 name|testInternationalMultiSearcherSort
@@ -5154,6 +5157,10 @@ name|queryY
 argument_list|,
 name|sort
 argument_list|,
+name|oStrokeFirst
+condition|?
+literal|"BFJHD"
+else|:
 literal|"BFJDH"
 argument_list|)
 expr_stmt|;
@@ -5189,7 +5196,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test a variety of sorts using more than one searcher
-DECL|method|testMultiSort
 specifier|public
 name|void
 name|testMultiSort
@@ -5222,7 +5228,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test a variety of sorts using a parallel multisearcher
-DECL|method|testParallelMultiSort
 specifier|public
 name|void
 name|testParallelMultiSort
@@ -5256,7 +5261,6 @@ expr_stmt|;
 block|}
 comment|// test that the relevancy scores are the same even if
 comment|// hits are sorted
-DECL|method|testNormalizedScores
 specifier|public
 name|void
 name|testNormalizedScores
@@ -6701,7 +6705,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTopDocsScores
 specifier|public
 name|void
 name|testTopDocsScores
@@ -6850,7 +6853,6 @@ literal|1e-6
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSortWithoutFillFields
 specifier|public
 name|void
 name|testSortWithoutFillFields
@@ -6993,7 +6995,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testSortWithoutScoreTracking
 specifier|public
 name|void
 name|testSortWithoutScoreTracking
@@ -7146,7 +7147,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testSortWithScoreNoMaxScoreTracking
 specifier|public
 name|void
 name|testSortWithScoreNoMaxScoreTracking
@@ -7301,7 +7301,6 @@ expr_stmt|;
 block|}
 block|}
 comment|// MultiComparatorScoringNoMaxScoreCollector
-DECL|method|testSortWithScoreNoMaxScoreTrackingMulti
 specifier|public
 name|void
 name|testSortWithScoreNoMaxScoreTrackingMulti
@@ -7455,7 +7454,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testSortWithScoreAndMaxScoreTracking
 specifier|public
 name|void
 name|testSortWithScoreAndMaxScoreTracking
@@ -7610,7 +7608,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testOutOfOrderDocsScoringSort
 specifier|public
 name|void
 name|testOutOfOrderDocsScoringSort
@@ -7932,7 +7929,6 @@ block|}
 block|}
 block|}
 comment|// OutOfOrderMulti*Collector
-DECL|method|testOutOfOrderDocsScoringSortMulti
 specifier|public
 name|void
 name|testOutOfOrderDocsScoringSortMulti
@@ -8253,7 +8249,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testSortWithScoreAndMaxScoreTrackingNoResults
 specifier|public
 name|void
 name|testSortWithScoreAndMaxScoreTrackingNoResults
@@ -8359,7 +8354,6 @@ expr_stmt|;
 block|}
 block|}
 comment|// runs a variety of sorts useful for multisearchers
-DECL|method|runMultiSorts
 specifier|private
 name|void
 name|runMultiSorts
@@ -9003,7 +8997,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// make sure the documents returned by the search match the expected list
-DECL|method|assertMatches
 specifier|private
 name|void
 name|assertMatches
@@ -9160,7 +9153,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getScores
 specifier|private
 name|HashMap
 argument_list|<
@@ -9282,7 +9274,6 @@ name|scoreMap
 return|;
 block|}
 comment|// make sure all the values in the maps match
-DECL|method|assertSameValues
 specifier|private
 parameter_list|<
 name|K
@@ -9437,7 +9428,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testEmptyStringVsNullStringSort
 specifier|public
 name|void
 name|testEmptyStringVsNullStringSort
@@ -9682,7 +9672,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testLUCENE2142
 specifier|public
 name|void
 name|testLUCENE2142
