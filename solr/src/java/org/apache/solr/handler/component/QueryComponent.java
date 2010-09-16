@@ -1622,6 +1622,34 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|rb
+operator|.
+name|doHighlights
+operator|||
+name|rb
+operator|.
+name|isDebug
+argument_list|()
+condition|)
+block|{
+comment|// we need a single list of the returned docs
+name|cmd
+operator|.
+name|setFlags
+argument_list|(
+name|cmd
+operator|.
+name|getFlags
+argument_list|()
+operator||
+name|SolrIndexSearcher
+operator|.
+name|GET_DOCLIST
+argument_list|)
+expr_stmt|;
+block|}
 name|searcher
 operator|.
 name|search
@@ -1649,7 +1677,7 @@ operator|.
 name|groupedResults
 argument_list|)
 expr_stmt|;
-comment|// TODO: get "hits" a different way
+comment|// TODO: get "hits" a different way to log
 return|return;
 block|}
 block|}
