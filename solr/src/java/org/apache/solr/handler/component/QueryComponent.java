@@ -1611,11 +1611,6 @@ name|cmd
 operator|.
 name|setFlags
 argument_list|(
-name|cmd
-operator|.
-name|getFlags
-argument_list|()
-operator||
 name|SolrIndexSearcher
 operator|.
 name|GET_DOCLIST
