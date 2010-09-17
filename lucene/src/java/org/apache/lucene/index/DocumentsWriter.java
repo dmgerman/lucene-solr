@@ -2329,6 +2329,12 @@ operator|.
 name|consumer
 argument_list|)
 expr_stmt|;
+specifier|final
+name|long
+name|startNumBytesUsed
+init|=
+name|numBytesUsed
+decl_stmt|;
 name|consumer
 operator|.
 name|flush
@@ -2398,7 +2404,7 @@ name|nf
 operator|.
 name|format
 argument_list|(
-name|numBytesUsed
+name|startNumBytesUsed
 operator|/
 literal|1024.
 operator|/
@@ -2438,7 +2444,7 @@ literal|100.0
 operator|*
 name|newSegmentSize
 operator|/
-name|numBytesUsed
+name|startNumBytesUsed
 argument_list|)
 operator|+
 literal|"%"
