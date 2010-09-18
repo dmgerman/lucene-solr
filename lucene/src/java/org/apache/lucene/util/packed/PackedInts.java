@@ -189,6 +189,23 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
+comment|/** Returns the current position */
+DECL|method|ord
+name|int
+name|ord
+parameter_list|()
+function_decl|;
+comment|/** Skips to the given ordinal and returns its value.      * @return the value at the given position      * @throws IOException if reading the value throws an IOException*/
+DECL|method|advance
+name|long
+name|advance
+parameter_list|(
+name|int
+name|ord
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 comment|/**    * A packed integer array that can be modified.    * @lucene.internal    */
 DECL|interface|Mutable
