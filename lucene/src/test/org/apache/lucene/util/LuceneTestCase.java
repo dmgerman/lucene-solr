@@ -4800,80 +4800,21 @@ name|clazz
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-DECL|method|runChild
-specifier|protected
-name|void
-name|runChild
-parameter_list|(
-name|FrameworkMethod
-name|arg0
-parameter_list|,
-name|RunNotifier
-name|arg1
-parameter_list|)
-block|{
-name|arg1
-operator|.
-name|addListener
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
-name|locale
-operator|=
-name|defaultLocale
-expr_stmt|;
-name|super
-operator|.
-name|runChild
-argument_list|(
-name|arg0
-argument_list|,
-name|arg1
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|Locale
-name|other
-range|:
-name|Locale
-operator|.
-name|getAvailableLocales
-argument_list|()
-control|)
-block|{
-name|locale
-operator|=
-name|other
-expr_stmt|;
-name|Locale
-operator|.
-name|setDefault
-argument_list|(
-name|locale
-argument_list|)
-expr_stmt|;
-name|super
-operator|.
-name|runChild
-argument_list|(
-name|arg0
-argument_list|,
-name|arg1
-argument_list|)
-expr_stmt|;
-block|}
-name|Locale
-operator|.
-name|setDefault
-argument_list|(
-name|defaultLocale
-argument_list|)
-expr_stmt|;
-block|}
+comment|// FIXME see LUCENE-2652
+comment|//    @Override
+comment|//    protected void runChild(FrameworkMethod arg0, RunNotifier arg1) {
+comment|//      arg1.addListener(listener);
+comment|//      locale = defaultLocale;
+comment|//      super.runChild(arg0, arg1);
+comment|//
+comment|//      for (Locale other : Locale.getAvailableLocales()) {
+comment|//        locale = other;
+comment|//        Locale.setDefault(locale);
+comment|//        super.runChild(arg0, arg1);
+comment|//      }
+comment|//
+comment|//      Locale.setDefault(defaultLocale);
+comment|//    }
 block|}
 comment|/**    * Test runner for Lucene test classes that run across all core codecs.    */
 DECL|class|MultiCodecTestCaseRunner
