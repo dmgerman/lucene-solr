@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>Please note: Since matchVersion 3.1 on, this filter no longer lowercases non-thai text.  * {@link ThaiAnalyzer} will insert a {@link LowerCaseFilter} before this filter  * so the behaviour of the Analyzer does not change. With version 3.1, the filter handles  * position increments correctly.  */
+comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>Please note: Since matchVersion 3.1 on, this filter no longer lowercases non-thai text.  * {@link ThaiAnalyzer} will insert a {@link LowerCaseFilter} before this filter  * so the behaviour of the Analyzer does not change. With version 3.1, the filter handles  * position increments correctly.  *<p>WARNING: this filter may not be supported by all JREs.  *    It is known to work with Sun/Oracle and Harmony JREs.  *    If your application needs to be fully portable, consider using ICUTokenizer instead,  *    which uses an ICU Thai BreakIterator that will always be available.  */
 end_comment
 
 begin_class
@@ -205,11 +205,20 @@ name|ThaiWordFilter
 extends|extends
 name|TokenFilter
 block|{
-DECL|field|breaker
+comment|/**     * True if the JRE supports a working dictionary-based breakiterator for Thai.    * If this is false, this filter will not work at all!    */
+DECL|field|DBBI_AVAILABLE
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|DBBI_AVAILABLE
+decl_stmt|;
+DECL|field|proto
 specifier|private
+specifier|static
 specifier|final
 name|BreakIterator
-name|breaker
+name|proto
 init|=
 name|BreakIterator
 operator|.
@@ -221,6 +230,40 @@ argument_list|(
 literal|"th"
 argument_list|)
 argument_list|)
+decl_stmt|;
+static|static
+block|{
+comment|// check that we have a working dictionary-based break iterator for thai
+name|proto
+operator|.
+name|setText
+argument_list|(
+literal|"à¸ à¸²à¸©à¸²à¹à¸à¸¢"
+argument_list|)
+expr_stmt|;
+name|DBBI_AVAILABLE
+operator|=
+name|proto
+operator|.
+name|isBoundary
+argument_list|(
+literal|4
+argument_list|)
+expr_stmt|;
+block|}
+DECL|field|breaker
+specifier|private
+specifier|final
+name|BreakIterator
+name|breaker
+init|=
+operator|(
+name|BreakIterator
+operator|)
+name|proto
+operator|.
+name|clone
+argument_list|()
 decl_stmt|;
 DECL|field|charIterator
 specifier|private
@@ -360,6 +403,18 @@ name|input
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|DBBI_AVAILABLE
+condition|)
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"This JRE does not have support for Thai segmentation"
+argument_list|)
+throw|;
 name|handlePosIncr
 operator|=
 name|matchVersion
