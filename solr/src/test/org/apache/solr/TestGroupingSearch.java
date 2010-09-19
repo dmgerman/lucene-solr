@@ -1019,16 +1019,20 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"/responseHeader/status:0"
+literal|"/responseHeader/status==0"
 comment|// exact match
 argument_list|,
-literal|"/responseHeader:{'_SKIP_':'QTime', 'status':0}"
+literal|"/responseHeader=={'_SKIP_':'QTime', 'status':0}"
 comment|// partial match by skipping some elements
 argument_list|,
-literal|"/responseHeader:{'_MATCH_':'status', 'status':0}"
+literal|"/responseHeader=={'_MATCH_':'status', 'status':0}"
 comment|// partial match by only including some elements
 argument_list|,
-literal|"/grouped:{'foo_i':{'matches':10,'groups':[\n"
+literal|"/grouped=={'"
+operator|+
+name|f
+operator|+
+literal|"':{'matches':10,'groups':[\n"
 operator|+
 literal|"{'groupValue':1,'doclist':{'numFound':3,'start':0,'docs':[{'id':'8'}]}},"
 operator|+
@@ -1075,7 +1079,11 @@ argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
-literal|"/grouped:{'foo_i':{'matches':10,'groups':["
+literal|"/grouped=={'"
+operator|+
+name|f
+operator|+
+literal|"':{'matches':10,'groups':["
 operator|+
 literal|"{'groupValue':1,'doclist':{'numFound':3,'start':0,'docs':[{'id':'8'}]}},"
 operator|+
@@ -1120,7 +1128,11 @@ argument_list|,
 literal|"3"
 argument_list|)
 argument_list|,
-literal|"/grouped:{'foo_i':{'matches':10,'groups':["
+literal|"/grouped=={'"
+operator|+
+name|f
+operator|+
+literal|"':{'matches':10,'groups':["
 operator|+
 literal|"{'groupValue':1,'doclist':{'numFound':3,'start':0,'docs':[{'id':'8'},{'id':'10'},{'id':'5'}]}},"
 operator|+
@@ -1169,7 +1181,11 @@ argument_list|,
 literal|"off"
 argument_list|)
 argument_list|,
-literal|"/grouped/foo_i/groups:"
+literal|"/grouped/"
+operator|+
+name|f
+operator|+
+literal|"/groups=="
 operator|+
 literal|"["
 operator|+
@@ -1225,7 +1241,7 @@ argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
-literal|"/grouped:{'"
+literal|"/grouped=={'"
 operator|+
 name|func
 operator|+
@@ -1274,13 +1290,17 @@ argument_list|,
 name|f
 argument_list|)
 argument_list|,
-literal|"/grouped/foo_i/matches:10:"
+literal|"/grouped/"
+operator|+
+name|f
+operator|+
+literal|"/matches==10"
 argument_list|,
 literal|"/facet_counts/facet_fields/"
 operator|+
 name|f
 operator|+
-literal|":['1',3, '2',3, '3',2, '4',1, '5',1]"
+literal|"==['1',3, '2',3, '3',2, '4',1, '5',1]"
 argument_list|)
 expr_stmt|;
 name|purgeFieldCache
@@ -1327,9 +1347,13 @@ argument_list|,
 name|f
 argument_list|)
 argument_list|,
-literal|"/grouped/foo_i/matches:10:"
+literal|"/grouped/"
+operator|+
+name|f
+operator|+
+literal|"/matches==10"
 argument_list|,
-literal|"/highlighting:{'_ORDERED_':'', '8':{},'3':{},'4':{},'1':{},'2':{}}"
+literal|"/highlighting=={'_ORDERED_':'', '8':{},'3':{},'4':{},'1':{},'2':{}}"
 argument_list|)
 expr_stmt|;
 comment|// test that grouping works with debugging
@@ -1364,11 +1388,107 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/grouped/foo_i/matches:10:"
+literal|"/grouped/"
+operator|+
+name|f
+operator|+
+literal|"/matches==10"
 argument_list|,
-literal|"/debug/explain/8:"
+literal|"/debug/explain/8=="
 argument_list|,
-literal|"/debug/explain/2:"
+literal|"/debug/explain/2=="
+argument_list|)
+expr_stmt|;
+comment|///////////////////////// group.query
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fq"
+argument_list|,
+name|filt
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}"
+operator|+
+name|f2
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+literal|"id:[2 TO 5]"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|"3"
+argument_list|)
+argument_list|,
+literal|"/grouped=={'id:[2 TO 5]':{'matches':10,"
+operator|+
+literal|"'doclist':{'numFound':4,'start':0,'docs':[{'id':'3'},{'id':'4'},{'id':'2'}]}}}"
+argument_list|)
+expr_stmt|;
+comment|// multiple at once
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fq"
+argument_list|,
+name|filt
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}"
+operator|+
+name|f2
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.query"
+argument_list|,
+literal|"id:[2 TO 5]"
+argument_list|,
+literal|"group.query"
+argument_list|,
+literal|"id:[5 TO 5]"
+argument_list|,
+literal|"group.field"
+argument_list|,
+name|f
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"group.limit"
+argument_list|,
+literal|"2"
+argument_list|)
+argument_list|,
+literal|"/grouped/id:[2 TO 5]=={'matches':10,'doclist':{'numFound':4,'start':0,'docs':[{'id':'3'},{'id':'4'}]}}"
+argument_list|,
+literal|"/grouped/id:[5 TO 5]=={'matches':10,'doclist':{'numFound':1,'start':0,'docs':[{'id':'5'}]}}"
+argument_list|,
+literal|"/grouped/"
+operator|+
+name|f
+operator|+
+literal|"=={'matches':10,'groups':[{'groupValue':1,'doclist':{'numFound':3,'start':0,'docs':[{'id':'8'},{'id':'10'}]}}]}"
 argument_list|)
 expr_stmt|;
 block|}
