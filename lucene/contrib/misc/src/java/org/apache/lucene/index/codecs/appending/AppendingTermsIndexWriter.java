@@ -56,9 +56,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 import|;
 end_import
 
@@ -96,7 +94,7 @@ specifier|public
 class|class
 name|AppendingTermsIndexWriter
 extends|extends
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 block|{
 DECL|field|CODEC_NAME
 specifier|final

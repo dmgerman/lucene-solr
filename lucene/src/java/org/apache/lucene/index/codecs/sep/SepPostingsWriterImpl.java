@@ -108,9 +108,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsWriter
+name|PostingsWriterBase
 import|;
 end_import
 
@@ -167,7 +165,7 @@ specifier|final
 class|class
 name|SepPostingsWriterImpl
 extends|extends
-name|StandardPostingsWriter
+name|PostingsWriterBase
 block|{
 DECL|field|CODEC
 specifier|final

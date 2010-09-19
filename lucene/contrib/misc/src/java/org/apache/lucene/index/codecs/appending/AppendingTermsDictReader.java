@@ -66,9 +66,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsReader
+name|PostingsReaderBase
 import|;
 end_import
 
@@ -84,9 +82,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 import|;
 end_import
 
@@ -102,9 +98,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 import|;
 end_import
 
@@ -120,9 +114,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 import|;
 end_import
 
@@ -188,13 +180,13 @@ specifier|public
 class|class
 name|AppendingTermsDictReader
 extends|extends
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 block|{
 DECL|method|AppendingTermsDictReader
 specifier|public
 name|AppendingTermsDictReader
 parameter_list|(
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 name|indexReader
 parameter_list|,
 name|Directory
@@ -206,7 +198,7 @@ parameter_list|,
 name|String
 name|segment
 parameter_list|,
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|postingsReader
 parameter_list|,
 name|int
@@ -267,11 +259,11 @@ name|AppendingTermsDictWriter
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 operator|.
 name|VERSION_START
 argument_list|,
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 operator|.
 name|VERSION_CURRENT
 argument_list|)

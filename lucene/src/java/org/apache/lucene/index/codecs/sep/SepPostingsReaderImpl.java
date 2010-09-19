@@ -122,9 +122,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsReader
+name|PostingsReaderBase
 import|;
 end_import
 
@@ -139,8 +137,6 @@ operator|.
 name|index
 operator|.
 name|codecs
-operator|.
-name|standard
 operator|.
 name|TermState
 import|;
@@ -238,7 +234,7 @@ specifier|public
 class|class
 name|SepPostingsReaderImpl
 extends|extends
-name|StandardPostingsReader
+name|PostingsReaderBase
 block|{
 DECL|field|freqIn
 specifier|final

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.standard
+DECL|package|org.apache.lucene.index.codecs
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|index
 operator|.
 name|codecs
-operator|.
-name|standard
 package|;
 end_package
 
@@ -89,11 +87,11 @@ comment|/**  * TermsDictReader interacts with an instance of this class  * to ma
 end_comment
 
 begin_class
-DECL|class|StandardTermsIndexReader
+DECL|class|TermsIndexReaderBase
 specifier|public
 specifier|abstract
 class|class
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 block|{
 DECL|class|TermsIndexResult
 specifier|static

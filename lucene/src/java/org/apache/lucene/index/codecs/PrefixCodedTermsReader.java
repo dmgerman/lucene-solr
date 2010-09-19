@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.standard
+DECL|package|org.apache.lucene.index.codecs
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|index
 operator|.
 name|codecs
-operator|.
-name|standard
 package|;
 end_package
 
@@ -214,22 +212,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|FieldsProducer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -307,14 +289,14 @@ import|;
 end_import
 
 begin_comment
-comment|/** Handles a terms dict, but decouples all details of  *  doc/freqs/positions reading to an instance of {@link  *  StandardPostingsReader}.  This class is reusable for  *  codecs that use a different format for  *  docs/freqs/positions (though codecs are also free to  *  make their own terms dict impl).  *  *<p>This class also interacts with an instance of {@link  * StandardTermsIndexReader}, to abstract away the specific  * implementation of the terms dict index.   * @lucene.experimental */
+comment|/** Handles a terms dict, but decouples all details of  *  doc/freqs/positions reading to an instance of {@link  *  StandardPostingsReader}.  This class is reusable for  *  codecs that use a different format for  *  docs/freqs/positions (though codecs are also free to  *  make their own terms dict impl).  *  *<p>This class also interacts with an instance of {@link  * TermsIndexReaderBase}, to abstract away the specific  * implementation of the terms dict index.   * @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|StandardTermsDictReader
+DECL|class|PrefixCodedTermsReader
 specifier|public
 class|class
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 extends|extends
 name|FieldsProducer
 block|{
@@ -330,7 +312,7 @@ comment|// produce DocsEnum on demand
 DECL|field|postingsReader
 specifier|private
 specifier|final
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|postingsReader
 decl_stmt|;
 DECL|field|fields
@@ -378,7 +360,7 @@ decl_stmt|;
 comment|// Reads the terms index
 DECL|field|indexReader
 specifier|private
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 name|indexReader
 decl_stmt|;
 comment|// keeps the dirStart offset
@@ -511,11 +493,11 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|StandardTermsDictReader
+DECL|method|PrefixCodedTermsReader
 specifier|public
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 parameter_list|(
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 name|indexReader
 parameter_list|,
 name|Directory
@@ -527,7 +509,7 @@ parameter_list|,
 name|String
 name|segment
 parameter_list|,
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|postingsReader
 parameter_list|,
 name|int
@@ -584,7 +566,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|StandardCodec
+name|PrefixCodedTermsWriter
 operator|.
 name|TERMS_EXTENSION
 argument_list|)
@@ -677,7 +659,7 @@ name|readLong
 argument_list|()
 decl_stmt|;
 specifier|final
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 operator|.
 name|FieldReader
 name|fieldIndexReader
@@ -787,15 +769,15 @@ name|checkHeader
 argument_list|(
 name|in
 argument_list|,
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 operator|.
 name|VERSION_START
 argument_list|,
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 operator|.
 name|VERSION_CURRENT
 argument_list|)
@@ -976,7 +958,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|StandardCodec
+name|PrefixCodedTermsWriter
 operator|.
 name|TERMS_EXTENSION
 argument_list|)
@@ -1000,7 +982,7 @@ name|extensions
 operator|.
 name|add
 argument_list|(
-name|StandardCodec
+name|PrefixCodedTermsWriter
 operator|.
 name|TERMS_EXTENSION
 argument_list|)
@@ -1163,7 +1145,7 @@ name|termsStartPointer
 decl_stmt|;
 DECL|field|fieldIndexReader
 specifier|final
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 operator|.
 name|FieldReader
 name|fieldIndexReader
@@ -1171,7 +1153,7 @@ decl_stmt|;
 DECL|method|FieldReader
 name|FieldReader
 parameter_list|(
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 operator|.
 name|FieldReader
 name|fieldIndexReader
@@ -1307,13 +1289,13 @@ decl_stmt|;
 DECL|field|indexResult
 specifier|private
 specifier|final
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 operator|.
 name|TermsIndexResult
 name|indexResult
 init|=
 operator|new
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 operator|.
 name|TermsIndexResult
 argument_list|()
@@ -1339,7 +1321,7 @@ operator|=
 operator|(
 name|IndexInput
 operator|)
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 operator|.
 name|this
 operator|.

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.standard
+DECL|package|org.apache.lucene.index.codecs
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|index
 operator|.
 name|codecs
-operator|.
-name|standard
 package|;
 end_package
 
@@ -221,12 +219,12 @@ comment|/** @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|SimpleStandardTermsIndexReader
+DECL|class|FixedGapTermsIndexReader
 specifier|public
 class|class
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 extends|extends
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 block|{
 comment|// NOTE: long is overkill here, since this number is 128
 comment|// by default and only indexDivisor * 128 if you change
@@ -327,9 +325,9 @@ specifier|protected
 name|long
 name|dirOffset
 decl_stmt|;
-DECL|method|SimpleStandardTermsIndexReader
+DECL|method|FixedGapTermsIndexReader
 specifier|public
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 parameter_list|(
 name|Directory
 name|dir
@@ -373,7 +371,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|StandardCodec
+name|FixedGapTermsIndexWriter
 operator|.
 name|TERMS_INDEX_EXTENSION
 argument_list|)
@@ -656,15 +654,15 @@ name|checkHeader
 argument_list|(
 name|input
 argument_list|,
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 operator|.
 name|VERSION_START
 argument_list|,
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 operator|.
 name|VERSION_START
 argument_list|)
@@ -804,7 +802,7 @@ operator|=
 name|numIndexTerms
 expr_stmt|;
 comment|// We still create the indexReader when indexDivisor
-comment|// is -1, so that StandardTermsDictReader can call
+comment|// is -1, so that PrefixCodedTermsReader can call
 comment|// isIndexTerm for each field:
 if|if
 condition|(
@@ -2149,7 +2147,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|StandardCodec
+name|FixedGapTermsIndexWriter
 operator|.
 name|TERMS_INDEX_EXTENSION
 argument_list|)
@@ -2173,7 +2171,7 @@ name|extensions
 operator|.
 name|add
 argument_list|(
-name|StandardCodec
+name|FixedGapTermsIndexWriter
 operator|.
 name|TERMS_INDEX_EXTENSION
 argument_list|)

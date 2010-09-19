@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.standard
+DECL|package|org.apache.lucene.index.codecs
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|index
 operator|.
 name|codecs
-operator|.
-name|standard
 package|;
 end_package
 
@@ -183,18 +181,27 @@ comment|/** @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|SimpleStandardTermsIndexWriter
+DECL|class|FixedGapTermsIndexWriter
 specifier|public
 class|class
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 extends|extends
-name|StandardTermsIndexWriter
+name|TermsIndexWriterBase
 block|{
 DECL|field|out
 specifier|protected
 specifier|final
 name|IndexOutput
 name|out
+decl_stmt|;
+comment|/** Extension of terms index file */
+DECL|field|TERMS_INDEX_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|TERMS_INDEX_EXTENSION
+init|=
+literal|"tii"
 decl_stmt|;
 DECL|field|CODEC_NAME
 specifier|final
@@ -254,9 +261,9 @@ specifier|private
 name|IndexOutput
 name|termsOut
 decl_stmt|;
-DECL|method|SimpleStandardTermsIndexWriter
+DECL|method|FixedGapTermsIndexWriter
 specifier|public
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 parameter_list|(
 name|SegmentWriteState
 name|state
@@ -278,8 +285,6 @@ name|segmentName
 argument_list|,
 literal|""
 argument_list|,
-name|StandardCodec
-operator|.
 name|TERMS_INDEX_EXTENSION
 argument_list|)
 decl_stmt|;

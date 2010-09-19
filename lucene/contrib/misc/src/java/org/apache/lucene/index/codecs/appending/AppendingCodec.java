@@ -142,9 +142,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 import|;
 end_import
 
@@ -178,6 +176,22 @@ name|index
 operator|.
 name|codecs
 operator|.
+name|PostingsReaderBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
 name|standard
 operator|.
 name|StandardPostingsReader
@@ -196,9 +210,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsReaderImpl
+name|PostingsWriterBase
 import|;
 end_import
 
@@ -232,9 +244,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsWriterImpl
+name|PrefixCodedTermsReader
 import|;
 end_import
 
@@ -250,27 +260,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|standard
-operator|.
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 import|;
 end_import
 
@@ -345,11 +335,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsWriter
+name|PostingsWriterBase
 name|docsWriter
 init|=
 operator|new
-name|StandardPostingsWriterImpl
+name|StandardPostingsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -466,11 +456,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|docsReader
 init|=
 operator|new
-name|StandardPostingsReaderImpl
+name|StandardPostingsReader
 argument_list|(
 name|state
 operator|.
@@ -485,7 +475,7 @@ operator|.
 name|readBufferSize
 argument_list|)
 decl_stmt|;
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 name|indexReader
 decl_stmt|;
 name|boolean
@@ -645,7 +635,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsReaderImpl
+name|StandardPostingsReader
 operator|.
 name|files
 argument_list|(
@@ -656,7 +646,7 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 operator|.
 name|files
 argument_list|(
@@ -667,7 +657,7 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
