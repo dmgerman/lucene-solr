@@ -2231,6 +2231,30 @@ name|FixedGapTermsIndexWriter
 argument_list|(
 name|state
 argument_list|)
+block|{
+comment|// We sort in reverse unicode order, so, we must
+comment|// disable the suffix-stripping opto that
+comment|// FixedGapTermsIndexWriter does by default!
+annotation|@
+name|Override
+specifier|protected
+name|int
+name|indexedTermPrefixLength
+parameter_list|(
+name|BytesRef
+name|priorTerm
+parameter_list|,
+name|BytesRef
+name|indexedTerm
+parameter_list|)
+block|{
+return|return
+name|indexedTerm
+operator|.
+name|length
+return|;
+block|}
+block|}
 expr_stmt|;
 name|success
 operator|=
