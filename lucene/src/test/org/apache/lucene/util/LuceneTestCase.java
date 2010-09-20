@@ -1848,6 +1848,10 @@ argument_list|(
 name|timeZone
 argument_list|)
 expr_stmt|;
+name|testsFailed
+operator|=
+literal|false
+expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -1892,6 +1896,11 @@ literal|"solr.data.dir"
 argument_list|)
 expr_stmt|;
 comment|// now look for unclosed resources
+if|if
+condition|(
+operator|!
+name|testsFailed
+condition|)
 for|for
 control|(
 name|MockDirectoryWrapper
@@ -1954,6 +1963,13 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+DECL|field|testsFailed
+specifier|private
+specifier|static
+name|boolean
+name|testsFailed
+decl_stmt|;
+comment|/* true if any tests failed */
 comment|// This is how we get control when errors occur.
 comment|// Think of this as start/end/success/failed
 comment|// events.
@@ -1982,6 +1998,10 @@ name|FrameworkMethod
 name|method
 parameter_list|)
 block|{
+name|testsFailed
+operator|=
+literal|true
+expr_stmt|;
 name|reportAdditionalFailureInfo
 argument_list|()
 expr_stmt|;
