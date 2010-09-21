@@ -468,7 +468,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *    *<p>Currently this returns {@link NIOFSDirectory}    *  on non-Windows JREs and {@link SimpleFSDirectory}    *  on Windows. It is highly recommended that you consult the    *  implementation's documentation for your platform before    *  using this method.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. On 64 bit systems, it may also good to    * return {@link MMapDirectory}, but this is disabled    * because of officially missing unmap support in Java.    * For optimal performance you should consider using    * this implementation on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
+comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *    *<p>Currently this returns {@link NIOFSDirectory}    *  on non-Windows JREs, {@link MMapDirectory} on 64-bit     *  Sun Windows JREs, and {@link SimpleFSDirectory} for other    *  JRes on Windows. It is highly recommended that you consult the    *  implementation's documentation for your platform before    *  using this method.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. For optimal performance you should consider using    * {@link MMapDirectory} on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
 DECL|method|open
 specifier|public
 specifier|static
@@ -513,6 +513,26 @@ operator|.
 name|WINDOWS
 condition|)
 block|{
+if|if
+condition|(
+name|MMapDirectory
+operator|.
+name|UNMAP_SUPPORTED
+operator|&&
+name|Constants
+operator|.
+name|JRE_IS_64BIT
+condition|)
+return|return
+operator|new
+name|MMapDirectory
+argument_list|(
+name|path
+argument_list|,
+name|lockFactory
+argument_list|)
+return|;
+else|else
 return|return
 operator|new
 name|SimpleFSDirectory
