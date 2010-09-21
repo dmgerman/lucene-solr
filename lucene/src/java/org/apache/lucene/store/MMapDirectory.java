@@ -810,6 +810,19 @@ name|Object
 name|clone
 parameter_list|()
 block|{
+if|if
+condition|(
+name|buffer
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"MMapIndexInput already closed"
+argument_list|)
+throw|;
 name|MMapIndexInput
 name|clone
 init|=
@@ -850,6 +863,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// unmap the buffer (if enabled) and at least unset it for GC
+try|try
+block|{
 if|if
 condition|(
 name|isClone
@@ -859,9 +875,6 @@ operator|==
 literal|null
 condition|)
 return|return;
-comment|// unmap the buffer (if enabled) and at least unset it for GC
-try|try
-block|{
 name|cleanMapping
 argument_list|(
 name|buffer
@@ -1425,6 +1438,19 @@ name|Object
 name|clone
 parameter_list|()
 block|{
+if|if
+condition|(
+name|buffers
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"MultiMMapIndexInput already closed"
+argument_list|)
+throw|;
 name|MultiMMapIndexInput
 name|clone
 init|=
@@ -1541,6 +1567,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|isClone
@@ -1550,8 +1578,6 @@ operator|==
 literal|null
 condition|)
 return|return;
-try|try
-block|{
 for|for
 control|(
 name|int
