@@ -13292,6 +13292,27 @@ argument_list|(
 literal|100
 argument_list|)
 expr_stmt|;
+comment|// have to use compound file to prevent running out of
+comment|// descripters when newDirectory returns a file-system
+comment|// backed directory:
+operator|(
+operator|(
+name|LogMergePolicy
+operator|)
+name|writer
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|)
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 comment|//System.out.println("TEST: pass=" + pass + " cms=" + (pass>= 2));
 for|for
 control|(
