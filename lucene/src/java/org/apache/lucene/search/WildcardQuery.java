@@ -164,8 +164,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Convert Lucene wildcard syntax into an automaton.    */
+comment|/**    * Convert Lucene wildcard syntax into an automaton.    * @lucene.internal    */
 DECL|method|toAutomaton
+specifier|public
 specifier|static
 name|Automaton
 name|toAutomaton

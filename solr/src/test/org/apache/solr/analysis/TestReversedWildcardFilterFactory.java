@@ -899,6 +899,94 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testFalsePositives
+specifier|public
+name|void
+name|testFalsePositives
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// add a doc
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"one"
+argument_list|,
+literal|"gomez"
+argument_list|,
+literal|"two"
+argument_list|,
+literal|"gomez"
+argument_list|,
+literal|"three"
+argument_list|,
+literal|"gomez"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"false positive"
+argument_list|,
+name|req
+argument_list|(
+literal|"+id:1 +one:*zemog*"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"false positive"
+argument_list|,
+name|req
+argument_list|(
+literal|"+id:1 +two:*zemog*"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"false positive"
+argument_list|,
+name|req
+argument_list|(
+literal|"+id:1 +three:*zemog*"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"should have matched"
+argument_list|,
+name|req
+argument_list|(
+literal|"+id:1 +one:*omez*"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=1]"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
