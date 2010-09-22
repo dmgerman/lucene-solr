@@ -503,7 +503,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"EXC: "
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": EXC: "
 argument_list|)
 expr_stmt|;
 name|re
