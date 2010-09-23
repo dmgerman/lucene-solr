@@ -326,22 +326,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|random
-init|=
-name|newStaticRandom
-argument_list|(
-name|TestBoolean2
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 name|directory
 operator|=
 name|newDirectory
-argument_list|(
-name|random
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
 name|writer
@@ -384,8 +372,6 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
-argument_list|,
 name|field
 argument_list|,
 name|docFields
@@ -528,8 +514,6 @@ name|dir2
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -565,8 +549,6 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
-argument_list|,
 literal|"field2"
 argument_list|,
 literal|"xxx"
@@ -622,8 +604,6 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
-argument_list|,
 literal|"field2"
 argument_list|,
 literal|"big bad bug"

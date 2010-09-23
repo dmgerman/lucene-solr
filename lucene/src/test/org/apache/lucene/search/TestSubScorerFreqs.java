@@ -203,16 +203,6 @@ operator|new
 name|RAMDirectory
 argument_list|()
 expr_stmt|;
-name|Random
-name|random
-init|=
-name|newStaticRandom
-argument_list|(
-name|TestSubScorerFreqs
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 name|RandomIndexWriter
 name|w
 init|=
@@ -255,8 +245,6 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
-argument_list|,
 literal|"f"
 argument_list|,
 literal|"a b c d b c d c d d"
@@ -294,8 +282,6 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
-argument_list|,
 literal|"f"
 argument_list|,
 literal|"a b c d"
