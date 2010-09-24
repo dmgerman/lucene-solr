@@ -244,6 +244,8 @@ name|searcher
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query
@@ -256,6 +258,8 @@ operator|.
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValue
 specifier|public
 name|float
@@ -266,6 +270,8 @@ return|return
 name|queryWeight
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|sumOfSquaredWeights
 specifier|public
 name|float
@@ -285,6 +291,8 @@ operator|*
 name|queryWeight
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|normalize
 specifier|public
 name|void
@@ -307,6 +315,8 @@ operator|.
 name|queryNorm
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|scorer
 specifier|public
 name|Scorer
@@ -336,6 +346,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|explain
 specifier|public
 name|Explanation
@@ -616,6 +628,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -631,6 +645,8 @@ name|nextDoc
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int
@@ -644,6 +660,8 @@ name|docID
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -656,6 +674,8 @@ return|return
 name|theScore
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|advance
 specifier|public
 name|int
@@ -676,24 +696,9 @@ name|target
 argument_list|)
 return|;
 block|}
-DECL|method|explain
-specifier|public
-name|Explanation
-name|explain
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
 block|}
-block|}
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -738,6 +743,8 @@ throw|;
 block|}
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -771,6 +778,8 @@ operator|)
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this. */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -831,6 +840,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a hash code value for this object. */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
