@@ -337,6 +337,19 @@ argument_list|,
 name|whacky
 argument_list|)
 expr_stmt|;
+comment|// null test
+name|Assert
+operator|.
+name|assertFalse
+argument_list|(
+name|q
+operator|.
+name|equals
+argument_list|(
+literal|null
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|checkEqual
 specifier|public
