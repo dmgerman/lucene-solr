@@ -161,6 +161,8 @@ return|return
 name|func
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|rewrite
 specifier|public
 name|Query
@@ -176,6 +178,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|extractTerms
 specifier|public
 name|void
@@ -247,6 +251,8 @@ name|searcher
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getQuery
 specifier|public
 name|Query
@@ -259,6 +265,8 @@ operator|.
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValue
 specifier|public
 name|float
@@ -591,12 +599,12 @@ return|return
 name|doc
 return|;
 block|}
-annotation|@
-name|Override
 comment|// instead of matching all docs, we could also embed a query.
 comment|// the score could either ignore the subscore, or boost it.
 comment|// Containment:  floatline(foo:myTerm, "myFloatField", 1.0, 0.0f)
 comment|// Boost:        foo:myTerm^floatline("myFloatField",1.0,0.0f)
+annotation|@
+name|Override
 DECL|method|nextDoc
 specifier|public
 name|int
@@ -669,69 +677,8 @@ name|nextDoc
 argument_list|()
 return|;
 block|}
-comment|// instead of matching all docs, we could also embed a query.
-comment|// the score could either ignore the subscore, or boost it.
-comment|// Containment:  floatline(foo:myTerm, "myFloatField", 1.0, 0.0f)
-comment|// Boost:        foo:myTerm^floatline("myFloatField",1.0,0.0f)
-DECL|method|next
-specifier|public
-name|boolean
-name|next
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-for|for
-control|(
-init|;
-condition|;
-control|)
-block|{
-operator|++
-name|doc
-expr_stmt|;
-if|if
-condition|(
-name|doc
-operator|>=
-name|maxDoc
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-if|if
-condition|(
-name|hasDeletions
-operator|&&
-name|delDocs
-operator|.
-name|get
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-continue|continue;
-comment|// todo: maybe allow score() to throw a specific exception
-comment|// and continue on to the next document if it is thrown...
-comment|// that may be useful, but exceptions aren't really good
-comment|// for flow control.
-return|return
-literal|true
-return|;
-block|}
-block|}
-DECL|method|doc
-specifier|public
-name|int
-name|doc
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float
@@ -768,28 +715,6 @@ operator|-
 name|Float
 operator|.
 name|MAX_VALUE
-return|;
-block|}
-DECL|method|skipTo
-specifier|public
-name|boolean
-name|skipTo
-parameter_list|(
-name|int
-name|target
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|doc
-operator|=
-name|target
-operator|-
-literal|1
-expr_stmt|;
-return|return
-name|next
-argument_list|()
 return|;
 block|}
 DECL|method|explain
@@ -878,6 +803,8 @@ name|result
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -900,6 +827,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Prints a user-readable version of this query. */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -945,6 +874,8 @@ operator|)
 return|;
 block|}
 comment|/** Returns true if<code>o</code> is equal to this. */
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1000,6 +931,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a hash code value for this object. */
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
