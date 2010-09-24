@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes words that are too long or too short from the stream.  */
+comment|/**  * Removes words that are too long or too short from the stream.  *<p>  * Note: Length is calculated as the number of UTF-16 code units.  *</p>  */
 end_comment
 
 begin_class
