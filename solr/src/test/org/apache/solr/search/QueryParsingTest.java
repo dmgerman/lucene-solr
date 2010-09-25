@@ -1013,36 +1013,10 @@ argument_list|,
 literal|"weight"
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|//bad number of parens, but the function parser can handle an extra close
-name|sort
-operator|=
-name|QueryParsing
-operator|.
-name|parseSort
-argument_list|(
-literal|"pow(weight,2)) desc, bday asc"
-argument_list|,
-name|schema
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SolrException
-name|e
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
+name|gvim
 comment|//Test literals in functions
 name|sort
-operator|=
+init|=
 name|QueryParsing
 operator|.
 name|parseSort
@@ -1051,7 +1025,7 @@ literal|"strdist(foo_s, \"junk\", jw) desc"
 argument_list|,
 name|schema
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|flds
 operator|=
 name|sort
