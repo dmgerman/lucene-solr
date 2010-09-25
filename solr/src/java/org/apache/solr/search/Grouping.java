@@ -2655,11 +2655,6 @@ condition|)
 return|return;
 name|group
 operator|.
-name|matches
-operator|++
-expr_stmt|;
-name|group
-operator|.
 name|collector
 operator|.
 name|collect
@@ -2773,10 +2768,6 @@ DECL|field|groupValue
 specifier|public
 name|MutableValue
 name|groupValue
-decl_stmt|;
-DECL|field|matches
-name|int
-name|matches
 decl_stmt|;
 DECL|field|collector
 name|TopFieldCollector
