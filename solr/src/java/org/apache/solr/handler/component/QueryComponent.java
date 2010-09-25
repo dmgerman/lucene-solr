@@ -614,7 +614,11 @@ name|ArrayList
 argument_list|<
 name|Query
 argument_list|>
-argument_list|()
+argument_list|(
+name|fqs
+operator|.
+name|length
+argument_list|)
 expr_stmt|;
 name|rb
 operator|.

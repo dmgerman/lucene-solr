@@ -195,6 +195,14 @@ block|,
 name|SpatialFilterQParserPlugin
 operator|.
 name|class
+block|,
+name|SpatialBoxQParserPlugin
+operator|.
+name|NAME
+block|,
+name|SpatialBoxQParserPlugin
+operator|.
+name|class
 block|,   }
 decl_stmt|;
 comment|/** return a {@link QParser} */
