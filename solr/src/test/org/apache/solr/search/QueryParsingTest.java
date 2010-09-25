@@ -1013,10 +1013,9 @@ argument_list|,
 literal|"weight"
 argument_list|)
 expr_stmt|;
-name|gvim
 comment|//Test literals in functions
 name|sort
-init|=
+operator|=
 name|QueryParsing
 operator|.
 name|parseSort
@@ -1025,7 +1024,7 @@ literal|"strdist(foo_s, \"junk\", jw) desc"
 argument_list|,
 name|schema
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|flds
 operator|=
 name|sort
