@@ -2417,28 +2417,6 @@ return|return
 name|position
 return|;
 block|}
-comment|/** Returns length of payload at current position */
-DECL|method|getPayloadLength
-specifier|public
-name|int
-name|getPayloadLength
-parameter_list|()
-block|{
-assert|assert
-name|lazyProxPointer
-operator|==
-operator|-
-literal|1
-assert|;
-assert|assert
-name|posPendingCount
-operator|<
-name|freq
-assert|;
-return|return
-name|payloadLength
-return|;
-block|}
 comment|/** Returns the payload at this position, or null if no      *  payload was indexed. */
 DECL|method|getPayload
 specifier|public
