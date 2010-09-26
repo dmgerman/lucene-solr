@@ -3340,6 +3340,16 @@ operator|.
 name|advanceDelGen
 argument_list|()
 expr_stmt|;
+assert|assert
+name|deletedDocs
+operator|.
+name|length
+argument_list|()
+operator|==
+name|si
+operator|.
+name|docCount
+assert|;
 comment|// We can write directly to the actual name (vs to a
 comment|// .tmp& renaming it) because the file is not live
 comment|// until segments file is written:
