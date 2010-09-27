@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -61,6 +51,22 @@ operator|.
 name|document
 operator|.
 name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
 import|;
 end_import
 
@@ -351,9 +357,6 @@ specifier|private
 name|void
 name|createIndex
 parameter_list|(
-name|Random
-name|random
-parameter_list|,
 name|int
 name|numHits
 parameter_list|)
@@ -666,9 +669,6 @@ specifier|private
 name|void
 name|performTest
 parameter_list|(
-name|Random
-name|random
-parameter_list|,
 name|int
 name|numHits
 parameter_list|)
@@ -677,8 +677,6 @@ name|IOException
 block|{
 name|createIndex
 argument_list|(
-name|random
-argument_list|,
 name|numHits
 argument_list|)
 expr_stmt|;
@@ -745,21 +743,33 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// test whether only the minimum amount of seeks() are performed
+comment|// test whether only the minimum amount of seeks()
+comment|// are performed
+if|if
+condition|(
+operator|!
+name|CodecProvider
+operator|.
+name|getDefaultCodec
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"SimpleText"
+argument_list|)
+condition|)
+block|{
 name|performTest
 argument_list|(
-name|random
-argument_list|,
 literal|5
 argument_list|)
 expr_stmt|;
 name|performTest
 argument_list|(
-name|random
-argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|testSeek
 specifier|public

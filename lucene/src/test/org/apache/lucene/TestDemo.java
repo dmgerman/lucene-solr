@@ -90,20 +90,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -118,7 +104,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -147,6 +133,20 @@ operator|.
 name|queryParser
 operator|.
 name|QueryParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TopDocs
 import|;
 end_import
 
@@ -189,20 +189,6 @@ operator|.
 name|search
 operator|.
 name|TermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ScoreDoc
 import|;
 end_import
 
@@ -272,26 +258,15 @@ argument_list|()
 decl_stmt|;
 comment|// To store an index on disk, use this instead:
 comment|//Directory directory = FSDirectory.open("/tmp/testindex");
-name|IndexWriter
+name|RandomIndexWriter
 name|iwriter
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
+name|random
+argument_list|,
 name|directory
-argument_list|,
-operator|new
-name|IndexWriterConfig
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
-name|analyzer
-argument_list|)
-operator|.
-name|setMaxFieldLength
-argument_list|(
-literal|25000
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document
@@ -412,8 +387,7 @@ argument_list|(
 literal|"text"
 argument_list|)
 decl_stmt|;
-name|ScoreDoc
-index|[]
+name|TopDocs
 name|hits
 init|=
 name|isearcher
@@ -426,8 +400,6 @@ literal|null
 argument_list|,
 literal|1
 argument_list|)
-operator|.
-name|scoreDocs
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -435,7 +407,7 @@ literal|1
 argument_list|,
 name|hits
 operator|.
-name|length
+name|totalHits
 argument_list|)
 expr_stmt|;
 comment|// Iterate through the results:
@@ -449,6 +421,8 @@ init|;
 name|i
 operator|<
 name|hits
+operator|.
+name|scoreDocs
 operator|.
 name|length
 condition|;
@@ -464,6 +438,8 @@ operator|.
 name|doc
 argument_list|(
 name|hits
+operator|.
+name|scoreDocs
 index|[
 name|i
 index|]
@@ -484,6 +460,34 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Test simple phrase query
+name|query
+operator|=
+name|parser
+operator|.
+name|parse
+argument_list|(
+literal|"\"to be\""
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|isearcher
+operator|.
+name|search
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
 name|isearcher
 operator|.
 name|close
