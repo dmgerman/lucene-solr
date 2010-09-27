@@ -289,19 +289,6 @@ init|=
 name|DEFAULT_READ_CHUNK_SIZE
 decl_stmt|;
 comment|// LUCENE-1566
-comment|/**    * Chunk size used to read when using FileChannel API. If an attempt to read a    * large file is made without limiting the chunk size, an OOM may occur.    */
-DECL|field|CHANNEL_CHUNK_SIZE
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|CHANNEL_CHUNK_SIZE
-init|=
-literal|1
-operator|<<
-literal|21
-decl_stmt|;
-comment|// Use 2MB chunk size - LUCENE-2537
 comment|// returns the canonical version of the directory, creating it if it doesn't exist.
 DECL|method|getCanonicalPath
 specifier|private
