@@ -96,7 +96,7 @@ expr_stmt|;
 comment|// check score order
 name|assertEquals
 argument_list|(
-literal|"<b>c</b><b>a</b><b>a</b> b b"
+literal|"<b>c</b><b>a</b><b>a</b> b b "
 argument_list|,
 name|f
 index|[

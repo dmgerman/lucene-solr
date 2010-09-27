@@ -1169,7 +1169,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"subInfos=(d((6,7)))/1.0(0,100)"
+literal|"subInfos=(d((9,10)))/1.0(3,103)"
 argument_list|,
 name|ffl
 operator|.

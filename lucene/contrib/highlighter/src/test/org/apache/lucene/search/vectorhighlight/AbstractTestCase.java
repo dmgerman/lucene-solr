@@ -2043,13 +2043,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|//  0
 comment|// ""
+comment|//  1
 comment|// ""
-comment|//  012345
+comment|//  234567
 comment|// "a b c"
 comment|//  0 1 2
+comment|//  8
 comment|// ""
-comment|//  6789
+comment|//   111
+comment|//  9012
 comment|// "d e"
 comment|//  3 4
 name|make1dmfIndex
