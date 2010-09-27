@@ -252,8 +252,9 @@ name|BytesRef
 argument_list|>
 name|termComp
 decl_stmt|;
-comment|/**    * Expert ctor:    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied reader.    *<p>    * @lucene.internal Use the public ctor instead.     *<p>    * @param runAutomaton pre-compiled ByteRunAutomaton    * @param finite true if the automaton accepts a finite language    */
+comment|/**    * Expert ctor:    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied reader.    *<p>    * @lucene.experimental     *<p>    * @param runAutomaton pre-compiled ByteRunAutomaton    * @param finite true if the automaton accepts a finite language    */
 DECL|method|AutomatonTermsEnum
+specifier|public
 name|AutomatonTermsEnum
 parameter_list|(
 name|ByteRunAutomaton
@@ -690,7 +691,7 @@ decl_stmt|;
 name|int
 name|maxInterval
 init|=
-literal|0xef
+literal|0xff
 decl_stmt|;
 for|for
 control|(
@@ -819,11 +820,7 @@ operator|!=
 literal|0xff
 condition|)
 name|maxInterval
-operator|=
-name|incrementUTF8
-argument_list|(
-name|maxInterval
-argument_list|)
+operator|++
 expr_stmt|;
 name|int
 name|length
@@ -891,7 +888,7 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**    * Increments the utf16 buffer to the next String in lexicographic order after s that will not put    * the machine into a reject state. If such a string does not exist, returns    * false.    *     * The correctness of this method depends upon the automaton being deterministic,    * and having no transitions to dead states.    *     * @return true if more possible solutions exist for the DFA    */
+comment|/**    * Increments the byte buffer to the next String in binary order after s that will not put    * the machine into a reject state. If such a string does not exist, returns    * false.    *     * The correctness of this method depends upon the automaton being deterministic,    * and having no transitions to dead states.    *     * @return true if more possible solutions exist for the DFA    */
 DECL|method|nextString
 specifier|private
 name|boolean
@@ -1103,22 +1100,15 @@ index|]
 operator|&
 literal|0xff
 expr_stmt|;
-comment|// if the next character is U+FFFF and is not part of the useful portion,
+comment|// if the next byte is 0xff and is not part of the useful portion,
 comment|// then by definition it puts us in a reject state, and therefore this
 comment|// path is dead. there cannot be any higher transitions. backtrack.
-name|c
-operator|=
-name|incrementUTF8
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|c
+operator|++
 operator|==
-operator|-
-literal|1
+literal|0xff
 condition|)
 return|return
 literal|false
@@ -1393,20 +1383,13 @@ operator|&
 literal|0xff
 decl_stmt|;
 comment|// if a character is 0xff its a dead-end too,
-comment|// because there is no higher character in UTF-8 sort order.
-name|nextChar
-operator|=
-name|incrementUTF8
-argument_list|(
-name|nextChar
-argument_list|)
-expr_stmt|;
+comment|// because there is no higher character in binary sort order.
 if|if
 condition|(
 name|nextChar
+operator|++
 operator|!=
-operator|-
-literal|1
+literal|0xff
 condition|)
 block|{
 name|seekBytesRef
@@ -1441,37 +1424,6 @@ return|return
 literal|false
 return|;
 comment|/* all solutions exhausted */
-block|}
-comment|/* return the next utf8 byte in utf8 order, or -1 if exhausted */
-DECL|method|incrementUTF8
-specifier|private
-specifier|final
-name|int
-name|incrementUTF8
-parameter_list|(
-name|int
-name|utf8
-parameter_list|)
-block|{
-switch|switch
-condition|(
-name|utf8
-condition|)
-block|{
-case|case
-literal|0xff
-case|:
-return|return
-operator|-
-literal|1
-return|;
-default|default:
-return|return
-name|utf8
-operator|+
-literal|1
-return|;
-block|}
 block|}
 block|}
 end_class
