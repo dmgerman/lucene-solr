@@ -417,6 +417,16 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|assertSameParser
+argument_list|(
+name|entry
+argument_list|,
+name|parser
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -499,7 +509,7 @@ operator|.
 name|DEFAULT_BYTE_PARSER
 expr_stmt|;
 block|}
-name|assertSameParserAndResetCounts
+name|setParserAndResetCounts
 argument_list|(
 name|vals
 argument_list|,
