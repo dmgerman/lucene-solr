@@ -678,6 +678,36 @@ argument_list|(
 name|actualTerm
 argument_list|)
 decl_stmt|;
+comment|// Make sure we always seek forward:
+assert|assert
+name|actualTerm
+operator|==
+literal|null
+operator|||
+name|t
+operator|==
+literal|null
+operator|||
+name|getComparator
+argument_list|()
+operator|.
+name|compare
+argument_list|(
+name|t
+argument_list|,
+name|actualTerm
+argument_list|)
+operator|>
+literal|0
+operator|:
+literal|"curTerm="
+operator|+
+name|actualTerm
+operator|+
+literal|" seekTerm="
+operator|+
+name|t
+assert|;
 if|if
 condition|(
 name|t
