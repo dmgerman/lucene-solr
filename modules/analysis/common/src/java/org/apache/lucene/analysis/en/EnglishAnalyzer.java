@@ -411,6 +411,26 @@ argument_list|(
 name|source
 argument_list|)
 decl_stmt|;
+comment|// prior to this we get the classic behavior, standardfilter does it for us.
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_31
+argument_list|)
+condition|)
+name|result
+operator|=
+operator|new
+name|EnglishPossessiveFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 operator|new

@@ -20,21 +20,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|lucene
 operator|.
-name|io
+name|analysis
 operator|.
-name|Reader
+name|Tokenizer
 import|;
 end_import
 
@@ -48,7 +42,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
+name|tokenattributes
+operator|.
+name|CharTermAttribute
 import|;
 end_import
 
@@ -96,22 +92,6 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|tokenattributes
-operator|.
 name|TypeAttribute
 import|;
 end_import
@@ -144,8 +124,28 @@ name|Version
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
 begin_comment
-comment|/** A grammar-based tokenizer constructed with JFlex  *  *<p> This should be a good tokenizer for most European-language documents:  *  *<ul>  *<li>Splits words at punctuation characters, removing punctuation. However, a   *     dot that's not followed by whitespace is considered part of a token.  *<li>Splits words at hyphens, unless there's a number in the token, in which case  *     the whole token is interpreted as a product number and is not split.  *<li>Recognizes email addresses and internet hostnames as one token.  *</ul>  *  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1608</a>  *</ul>  */
+comment|/** A grammar-based tokenizer constructed with JFlex.  *<p>  * As of Lucene version 3.1, this class implements the Word Break rules from the  * Unicode Text Segmentation algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>.  *<p/>  *<b>WARNING</b>: Because JFlex does not support Unicode supplementary   * characters (characters above the Basic Multilingual Plane, which contains  * those up to and including U+FFFF), this scanner will not recognize them  * properly.  If you need to be able to process text containing supplementary   * characters, consider using the ICU4J-backed implementation in contrib/icu    * ({@link org.apache.lucene.analysis.icu.segmentation.ICUTokenizer})  * instead of this class, since the ICU4J-backed implementation does not have  * this limitation.  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardTokenizer:  *<ul>  *<li> As of 3.1, StandardTokenizer implements Unicode text segmentation.  *   If you use a previous version number, you get the exact behavior of  *   {@link ClassicTokenizer} for backwards compatibility.  *</ul>  */
 end_comment
 
 begin_class
@@ -172,6 +172,9 @@ name|ALPHANUM
 init|=
 literal|0
 decl_stmt|;
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|APOSTROPHE
 specifier|public
 specifier|static
@@ -181,6 +184,9 @@ name|APOSTROPHE
 init|=
 literal|1
 decl_stmt|;
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|ACRONYM
 specifier|public
 specifier|static
@@ -190,6 +196,9 @@ name|ACRONYM
 init|=
 literal|2
 decl_stmt|;
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|COMPANY
 specifier|public
 specifier|static
@@ -208,6 +217,9 @@ name|EMAIL
 init|=
 literal|4
 decl_stmt|;
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|HOST
 specifier|public
 specifier|static
@@ -226,6 +238,9 @@ name|NUM
 init|=
 literal|6
 decl_stmt|;
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|CJ
 specifier|public
 specifier|static
@@ -246,6 +261,42 @@ name|int
 name|ACRONYM_DEP
 init|=
 literal|8
+decl_stmt|;
+DECL|field|URL
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|URL
+init|=
+literal|9
+decl_stmt|;
+DECL|field|SOUTHEAST_ASIAN
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|SOUTHEAST_ASIAN
+init|=
+literal|10
+decl_stmt|;
+DECL|field|IDEOGRAPHIC
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|IDEOGRAPHIC
+init|=
+literal|11
+decl_stmt|;
+DECL|field|HIRAGANA
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|HIRAGANA
+init|=
+literal|12
 decl_stmt|;
 comment|/** String token types that correspond to token type int constants */
 DECL|field|TOKEN_TYPES
@@ -277,6 +328,14 @@ block|,
 literal|"<CJ>"
 block|,
 literal|"<ACRONYM_DEP>"
+block|,
+literal|"<URL>"
+block|,
+literal|"<SOUTHEAST_ASIAN>"
+block|,
+literal|"<IDEOGRAPHIC>"
+block|,
+literal|"<HIRAGANA>"
 block|}
 decl_stmt|;
 DECL|field|replaceInvalidAcronym
@@ -427,13 +486,13 @@ name|LUCENE_31
 argument_list|)
 condition|?
 operator|new
-name|StandardTokenizerImpl31
+name|StandardTokenizerImpl
 argument_list|(
 name|input
 argument_list|)
 else|:
 operator|new
-name|StandardTokenizerImplOrig
+name|ClassicTokenizerImpl
 argument_list|(
 name|input
 argument_list|)

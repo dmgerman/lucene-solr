@@ -107,7 +107,7 @@ init|=
 operator|new
 name|StringReader
 argument_list|(
-literal|"What's this thing do?"
+literal|"Wha\u0301t's this thing do?"
 argument_list|)
 decl_stmt|;
 name|StandardTokenizerFactory
@@ -115,6 +115,67 @@ name|factory
 init|=
 operator|new
 name|StandardTokenizerFactory
+argument_list|()
+decl_stmt|;
+name|factory
+operator|.
+name|init
+argument_list|(
+name|DEFAULT_VERSION_PARAM
+argument_list|)
+expr_stmt|;
+name|Tokenizer
+name|stream
+init|=
+name|factory
+operator|.
+name|create
+argument_list|(
+name|reader
+argument_list|)
+decl_stmt|;
+name|assertTokenStreamContents
+argument_list|(
+name|stream
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"Wha\u0301t's"
+block|,
+literal|"this"
+block|,
+literal|"thing"
+block|,
+literal|"do"
+block|}
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Test ClassicTokenizerFactory    */
+DECL|method|testClassicTokenizer
+specifier|public
+name|void
+name|testClassicTokenizer
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Reader
+name|reader
+init|=
+operator|new
+name|StringReader
+argument_list|(
+literal|"What's this thing do?"
+argument_list|)
+decl_stmt|;
+name|ClassicTokenizerFactory
+name|factory
+init|=
+operator|new
+name|ClassicTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|factory
@@ -153,7 +214,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test StandardFilterFactory    */
+comment|/**    * Test ClassicFilterFactory    */
 DECL|method|testStandardFilter
 specifier|public
 name|void
@@ -171,11 +232,11 @@ argument_list|(
 literal|"What's this thing do?"
 argument_list|)
 decl_stmt|;
-name|StandardTokenizerFactory
+name|ClassicTokenizerFactory
 name|factory
 init|=
 operator|new
-name|StandardTokenizerFactory
+name|ClassicTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|factory
@@ -185,11 +246,11 @@ argument_list|(
 name|DEFAULT_VERSION_PARAM
 argument_list|)
 expr_stmt|;
-name|StandardFilterFactory
+name|ClassicFilterFactory
 name|filterFactory
 init|=
 operator|new
-name|StandardFilterFactory
+name|ClassicFilterFactory
 argument_list|()
 decl_stmt|;
 name|filterFactory

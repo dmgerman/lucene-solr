@@ -384,41 +384,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * test that acronym normalization works    */
-DECL|method|testAcronym
-specifier|public
-name|void
-name|testAcronym
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|Analyzer
-name|a
-init|=
-operator|new
-name|GreekAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-decl_stmt|;
-name|assertAnalyzesTo
-argument_list|(
-name|a
-argument_list|,
-literal|"Î.Î .Î¤."
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"Î±ÏÏ"
-block|}
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 

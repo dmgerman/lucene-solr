@@ -318,7 +318,9 @@ index|[]
 block|{
 literal|"33bis"
 block|,
-literal|"1940-1945"
+literal|"1940"
+block|,
+literal|"1945"
 block|,
 literal|"1940"
 block|,

@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 3.1, StopFilter correctly handles Unicode 4.0  *         supplementary characters in stopwords  *<li> As of 2.9, StopFilter preserves position  *        increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
+comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 3.1, StandardTokenizer implements Unicode text segmentation,  *        and StopFilter correctly handles Unicode 4.0 supplementary characters  *        in stopwords.  {@link ClassicTokenizer} and {@link ClassicAnalyzer}   *        are the pre-3.1 implementations of StandardTokenizer and  *        StandardAnalyzer.  *<li> As of 2.9, StopFilter preserves position increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
 end_comment
 
 begin_class
@@ -397,6 +397,8 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|src
 argument_list|)
 decl_stmt|;
