@@ -694,7 +694,7 @@ return|return
 name|fuzzyMinSim
 return|;
 block|}
-comment|/**    * Set the minimum similarity for fuzzy queries.    * Default is 0.5f.    */
+comment|/**    * Set the minimum similarity for fuzzy queries.    * Default is 2f.    */
 DECL|method|setFuzzyMinSim
 specifier|public
 name|void
@@ -3916,12 +3916,8 @@ block|{ }
 if|if
 condition|(
 name|fms
-argument_list|<
+operator|<
 literal|0.0f
-operator|||
-name|fms
-argument_list|>
-literal|1.0f
 condition|)
 block|{
 block|{
@@ -3934,6 +3930,35 @@ operator|new
 name|ParseException
 argument_list|(
 literal|"Minimum similarity for a FuzzyQuery has to be between 0.0f and 1.0f !"
+argument_list|)
+throw|;
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|fms
+operator|>=
+literal|1.0f
+operator|&&
+name|fms
+operator|!=
+operator|(
+name|int
+operator|)
+name|fms
+condition|)
+block|{
+block|{
+if|if
+condition|(
+literal|true
+condition|)
+throw|throw
+operator|new
+name|ParseException
+argument_list|(
+literal|"Fractional edit distances are not allowed!"
 argument_list|)
 throw|;
 block|}

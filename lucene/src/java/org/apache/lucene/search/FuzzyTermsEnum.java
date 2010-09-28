@@ -340,6 +340,12 @@ specifier|private
 name|int
 name|maxEdits
 decl_stmt|;
+DECL|field|raw
+specifier|private
+specifier|final
+name|boolean
+name|raw
+decl_stmt|;
 DECL|field|runAutomata
 specifier|private
 name|List
@@ -373,7 +379,7 @@ specifier|final
 name|int
 name|realPrefixLength
 decl_stmt|;
-comment|/**    * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of    * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;    *<code>minSimilarity</code>.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.     *     * @param reader Delivers terms.    * @param term Pattern term.    * @param minSimilarity Minimum required similarity for terms from the reader. Default value is 0.5f.    * @param prefixLength Length of required common prefix. Default value is 0.    * @throws IOException    */
+comment|/**    * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of    * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;    *<code>minSimilarity</code>.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.     *     * @param reader Delivers terms.    * @param term Pattern term.    * @param minSimilarity Minimum required similarity for terms from the reader.    * @param prefixLength Length of required common prefix. Default value is 0.    * @throws IOException    */
 DECL|method|FuzzyTermsEnum
 specifier|public
 name|FuzzyTermsEnum
@@ -400,15 +406,21 @@ condition|(
 name|minSimilarity
 operator|>=
 literal|1.0f
+operator|&&
+name|minSimilarity
+operator|!=
+operator|(
+name|int
+operator|)
+name|minSimilarity
 condition|)
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"minimumSimilarity cannot be greater than or equal to 1"
+literal|"fractional edit distances are not allowed"
 argument_list|)
 throw|;
-elseif|else
 if|if
 condition|(
 name|minSimilarity
@@ -543,12 +555,67 @@ name|termLength
 else|:
 name|prefixLength
 expr_stmt|;
+comment|// if minSimilarity>= 1, we treat it as number of edits
+if|if
+condition|(
+name|minSimilarity
+operator|>=
+literal|1f
+condition|)
+block|{
+name|this
+operator|.
+name|minSimilarity
+operator|=
+literal|1
+operator|-
+operator|(
+name|minSimilarity
+operator|+
+literal|1
+operator|)
+operator|/
+name|this
+operator|.
+name|termLength
+expr_stmt|;
+name|maxEdits
+operator|=
+operator|(
+name|int
+operator|)
+name|minSimilarity
+expr_stmt|;
+name|raw
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|minSimilarity
 operator|=
 name|minSimilarity
 expr_stmt|;
+comment|// calculate the maximum k edits for this similarity
+name|maxEdits
+operator|=
+name|initialMaxDistance
+argument_list|(
+name|this
+operator|.
+name|minSimilarity
+argument_list|,
+name|termLength
+argument_list|)
+expr_stmt|;
+name|raw
+operator|=
+literal|false
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|scale_factor
@@ -558,18 +625,10 @@ operator|/
 operator|(
 literal|1.0f
 operator|-
+name|this
+operator|.
 name|minSimilarity
 operator|)
-expr_stmt|;
-comment|// calculate the maximum k edits for this similarity
-name|maxEdits
-operator|=
-name|initialMaxDistance
-argument_list|(
-name|minSimilarity
-argument_list|,
-name|termLength
-argument_list|)
 expr_stmt|;
 name|TermsEnum
 name|subEnum
@@ -914,10 +973,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO, besides changing linear -> automaton, and swapping in a smaller
-comment|// automaton, we can also use this information to optimize the linear case
-comment|// itself: re-init maxDistances so the fast-fail happens for more terms due
-comment|// to the now stricter constraints.
 block|}
 comment|// for some raw min similarity and input term length, the maximum # of edits
 DECL|method|initialMaxDistance
@@ -938,7 +993,7 @@ name|int
 call|)
 argument_list|(
 operator|(
-literal|1
+literal|1D
 operator|-
 name|minimumSimilarity
 operator|)
@@ -1945,7 +2000,9 @@ comment|//which is 8-3 or more precisely Math.abs(3-8).
 comment|//if our maximum edit distance is 4, then we can discard this word
 comment|//without looking at it.
 return|return
-literal|0.0f
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
 return|;
 block|}
 comment|// init matrix d
@@ -2155,7 +2212,9 @@ comment|//equal is okay, but not greater
 comment|//the closest the target can be to the text is just too far away.
 comment|//this target is leaving the party early.
 return|return
-literal|0.0f
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
 return|;
 block|}
 comment|// copy current distance counts to 'previous row' distance counts: swap p and d
@@ -2222,6 +2281,16 @@ name|m
 parameter_list|)
 block|{
 return|return
+name|raw
+condition|?
+name|maxEdits
+else|:
+name|Math
+operator|.
+name|min
+argument_list|(
+name|maxEdits
+argument_list|,
 call|(
 name|int
 call|)
@@ -2246,6 +2315,7 @@ argument_list|)
 operator|+
 name|realPrefixLength
 operator|)
+argument_list|)
 argument_list|)
 return|;
 block|}

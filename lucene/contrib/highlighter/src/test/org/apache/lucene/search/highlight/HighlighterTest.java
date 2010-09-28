@@ -4289,7 +4289,7 @@ literal|0
 expr_stmt|;
 name|doSearching
 argument_list|(
-literal|"Kinnedy~"
+literal|"Kinnedy~0.5"
 argument_list|)
 expr_stmt|;
 name|doStandardHighlights
