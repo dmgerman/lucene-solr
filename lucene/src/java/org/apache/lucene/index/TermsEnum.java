@@ -270,6 +270,16 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Optional optimization hint: informs the codec that the    *  current term is likely to be re-seek'd-to soon.  */
+DECL|method|cacheCurrentTerm
+specifier|public
+specifier|abstract
+name|void
+name|cacheCurrentTerm
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/** An empty TermsEnum for quickly returning an empty instance e.g.    * in {@link org.apache.lucene.search.MultiTermQuery}    *<p><em>Please note:</em> This enum should be unmodifiable,    * but it is currently possible to add Attributes to it.    * This should not be a problem, as the enum is always empty and    * the existence of unused Attributes does not matter.    */
 DECL|field|EMPTY
 specifier|public
@@ -317,6 +327,13 @@ operator|.
 name|END
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|cacheCurrentTerm
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 specifier|public

@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|PriorityQueue
 import|;
 end_import
@@ -721,6 +711,8 @@ name|collector
 operator|.
 name|collect
 argument_list|(
+name|termsEnum
+argument_list|,
 name|bytes
 argument_list|,
 name|boostAtt
@@ -730,6 +722,11 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+name|termsEnum
+operator|.
+name|cacheCurrentTerm
+argument_list|()
+expr_stmt|;
 name|count
 operator|++
 expr_stmt|;
@@ -770,6 +767,9 @@ specifier|abstract
 name|boolean
 name|collect
 parameter_list|(
+name|TermsEnum
+name|termsEnum
+parameter_list|,
 name|BytesRef
 name|bytes
 parameter_list|,
@@ -867,10 +867,15 @@ operator|new
 name|TermCollector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|collect
 parameter_list|(
+name|TermsEnum
+name|termsEnum
+parameter_list|,
 name|BytesRef
 name|bytes
 parameter_list|,
@@ -895,6 +900,11 @@ argument_list|(
 name|bytes
 argument_list|)
 argument_list|)
+argument_list|,
+name|termsEnum
+operator|.
+name|docFreq
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|tq
@@ -1015,6 +1025,9 @@ name|getQuery
 parameter_list|(
 name|Term
 name|term
+parameter_list|,
+name|int
+name|docCount
 parameter_list|)
 function_decl|;
 annotation|@
@@ -1075,10 +1088,15 @@ operator|new
 name|TermCollector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|collect
 parameter_list|(
+name|TermsEnum
+name|termsEnum
+parameter_list|,
 name|BytesRef
 name|bytes
 parameter_list|,
@@ -1123,6 +1141,15 @@ operator|.
 name|boost
 operator|=
 name|boost
+expr_stmt|;
+name|st
+operator|.
+name|docFreq
+operator|=
+name|termsEnum
+operator|.
+name|docFreq
+argument_list|()
 expr_stmt|;
 name|stQueue
 operator|.
@@ -1236,6 +1263,10 @@ name|st
 operator|.
 name|bytes
 argument_list|)
+argument_list|,
+name|st
+operator|.
+name|docFreq
 argument_list|)
 decl_stmt|;
 name|tq
@@ -1407,6 +1438,11 @@ specifier|public
 name|float
 name|boost
 decl_stmt|;
+DECL|field|docFreq
+specifier|public
+name|int
+name|docFreq
+decl_stmt|;
 DECL|method|compareTo
 specifier|public
 name|int
@@ -1501,6 +1537,9 @@ name|getQuery
 parameter_list|(
 name|Term
 name|term
+parameter_list|,
+name|int
+name|docFreq
 parameter_list|)
 block|{
 return|return
@@ -1508,6 +1547,8 @@ operator|new
 name|TermQuery
 argument_list|(
 name|term
+argument_list|,
+name|docFreq
 argument_list|)
 return|;
 block|}
@@ -1556,6 +1597,9 @@ name|getQuery
 parameter_list|(
 name|Term
 name|term
+parameter_list|,
+name|int
+name|docFreq
 parameter_list|)
 block|{
 return|return
@@ -1569,6 +1613,8 @@ operator|new
 name|TermQuery
 argument_list|(
 name|term
+argument_list|,
+name|docFreq
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2117,6 +2163,9 @@ specifier|public
 name|boolean
 name|collect
 parameter_list|(
+name|TermsEnum
+name|termsEnum
+parameter_list|,
 name|BytesRef
 name|bytes
 parameter_list|,
@@ -2155,20 +2204,12 @@ argument_list|(
 name|bytes
 argument_list|)
 expr_stmt|;
-comment|// Loading the TermInfo from the terms dict here
-comment|// should not be costly, because 1) the
-comment|// query/filter will load the TermInfo when it
-comment|// runs, and 2) the terms dict has a cache:
 name|docVisitCount
 operator|+=
-name|reader
+name|termsEnum
 operator|.
 name|docFreq
-argument_list|(
-name|field
-argument_list|,
-name|bytes
-argument_list|)
+argument_list|()
 expr_stmt|;
 return|return
 literal|true

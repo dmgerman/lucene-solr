@@ -1225,8 +1225,6 @@ index|[]
 argument_list|>
 name|stores
 decl_stmt|;
-comment|// TODO 4.0: make sure we re-enable SimpleText in the rotation
-comment|//private static final String[] TEST_CODECS = new String[] {"MockSep", "MockFixedIntBlock", "MockVariableIntBlock", "SimpleText"};
 DECL|field|TEST_CODECS
 specifier|private
 specifier|static
@@ -1244,6 +1242,8 @@ block|,
 literal|"MockFixedIntBlock"
 block|,
 literal|"MockVariableIntBlock"
+block|,
+literal|"SimpleText"
 block|}
 decl_stmt|;
 DECL|method|swapCodec
@@ -1552,8 +1552,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// TODO 4.0: add this into test rotation
-comment|//swapCodec(new SimpleTextCodec());
+name|swapCodec
+argument_list|(
+operator|new
+name|SimpleTextCodec
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|cp
 operator|.

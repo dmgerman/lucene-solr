@@ -415,7 +415,7 @@ name|float
 name|freq
 parameter_list|)
 function_decl|;
-comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre>    * idf(searcher.docFreq(term), searcher.maxDoc());    *</pre>    *     * Note that {@link Searcher#maxDoc()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link Searcher#docFreq(Term)} is used, and when the latter     * is inaccurate, so is {@link Searcher#maxDoc()}, and in the same direction.    * In addition, {@link Searcher#maxDoc()} is more efficient to compute    *       * @param term the term in question    * @param searcher the document collection being searched    * @return an IDFExplain object that includes both an idf score factor               and an explanation for the term.    * @throws IOException    */
+comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre>    * idf(docFreq, searcher.maxDoc());    *</pre>    *     * Note that {@link Searcher#maxDoc()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link Searcher#docFreq(Term)} is used, and when the latter     * is inaccurate, so is {@link Searcher#maxDoc()}, and in the same direction.    * In addition, {@link Searcher#maxDoc()} is more efficient to compute    *       * @param term the term in question    * @param searcher the document collection being searched    * @param docFreq externally computed docFreq for this term    * @return an IDFExplain object that includes both an idf score factor               and an explanation for the term.    * @throws IOException    */
 DECL|method|idfExplain
 specifier|public
 name|IDFExplanation
@@ -428,6 +428,9 @@ parameter_list|,
 specifier|final
 name|Searcher
 name|searcher
+parameter_list|,
+name|int
+name|docFreq
 parameter_list|)
 throws|throws
 name|IOException
@@ -436,12 +439,7 @@ specifier|final
 name|int
 name|df
 init|=
-name|searcher
-operator|.
 name|docFreq
-argument_list|(
-name|term
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -499,6 +497,39 @@ name|idf
 return|;
 block|}
 block|}
+return|;
+block|}
+comment|/**    * This method forwards to {@link    * idfExplain(Term,Searcher,int)} by passing    *<code>searcher.docFreq(term)</code> as the docFreq.    */
+DECL|method|idfExplain
+specifier|public
+name|IDFExplanation
+name|idfExplain
+parameter_list|(
+specifier|final
+name|Term
+name|term
+parameter_list|,
+specifier|final
+name|Searcher
+name|searcher
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|idfExplain
+argument_list|(
+name|term
+argument_list|,
+name|searcher
+argument_list|,
+name|searcher
+operator|.
+name|docFreq
+argument_list|(
+name|term
+argument_list|)
+argument_list|)
 return|;
 block|}
 comment|/**    * Computes a score factor for a phrase.    *     *<p>    * The default implementation sums the idf factor for    * each term in the phrase.    *     * @param terms the terms in the phrase    * @param searcher the document collection being searched    * @return an IDFExplain object that includes both an idf     *         score factor for the phrase and an explanation     *         for each term.    * @throws IOException    */
