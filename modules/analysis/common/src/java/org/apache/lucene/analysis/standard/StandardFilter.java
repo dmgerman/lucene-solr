@@ -120,6 +120,9 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
+comment|/** @deprecated Use {@link #StandardFilter(Version, TokenStream)} instead. */
+annotation|@
+name|Deprecated
 DECL|method|StandardFilter
 specifier|public
 name|StandardFilter
