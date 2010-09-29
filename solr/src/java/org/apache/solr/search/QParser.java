@@ -628,7 +628,7 @@ comment|//   overrideable syntax $x=foo  (set global for limited scope) (invaria
 comment|//                       $x+=foo (append to global for limited scope)
 comment|/** check both local and global params */
 DECL|method|getParam
-specifier|protected
+specifier|public
 name|String
 name|getParam
 parameter_list|(
