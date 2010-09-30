@@ -1612,14 +1612,6 @@ argument_list|(
 name|otherQueryS
 argument_list|,
 name|req
-operator|.
-name|getSearcher
-argument_list|()
-argument_list|,
-name|req
-operator|.
-name|getSchema
-argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -2117,7 +2109,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Executes a basic query in lucene syntax    */
+comment|/**    * Executes a basic query    */
 DECL|method|doSimpleQuery
 specifier|public
 specifier|static
@@ -2127,11 +2119,8 @@ parameter_list|(
 name|String
 name|sreq
 parameter_list|,
-name|SolrIndexSearcher
-name|searcher
-parameter_list|,
-name|IndexSchema
-name|schema
+name|SolrQueryRequest
+name|req
 parameter_list|,
 name|int
 name|start
@@ -2176,17 +2165,24 @@ argument_list|)
 else|:
 literal|""
 decl_stmt|;
+try|try
+block|{
 name|Query
 name|query
 init|=
-name|QueryParsing
+name|QParser
 operator|.
-name|parseQuery
+name|getParser
 argument_list|(
 name|qs
 argument_list|,
-name|schema
+literal|null
+argument_list|,
+name|req
 argument_list|)
+operator|.
+name|getQuery
+argument_list|()
 decl_stmt|;
 comment|// If the first non-query, non-filter command is a simple sort on an indexed field, then
 comment|// we can use the Lucene sort ability.
@@ -2218,14 +2214,17 @@ argument_list|(
 literal|1
 argument_list|)
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 block|}
 name|DocList
 name|results
 init|=
-name|searcher
+name|req
+operator|.
+name|getSearcher
+argument_list|()
 operator|.
 name|getDocList
 argument_list|(
@@ -2246,6 +2245,29 @@ decl_stmt|;
 return|return
 name|results
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|ParseException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Error parsing query: "
+operator|+
+name|qs
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * Given a string containing fieldNames and boost info,    * converts it to a Map from field name to boost info.    *    *<p>    * Doesn't care if boost info is negative, you're on your own.    *</p>    *<p>    * Doesn't care if boost info is missing, again: you're on your own.    *</p>    *    * @param in a String like "fieldOne^2.3 fieldTwo fieldThree^-0.4"    * @return Map of fieldOne =&gt; 2.3, fieldTwo =&gt; null, fieldThree =&gt; -0.4    */
 DECL|method|parseFieldBoosts
@@ -3734,9 +3756,6 @@ argument_list|(
 name|sort
 argument_list|,
 name|req
-operator|.
-name|getSchema
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

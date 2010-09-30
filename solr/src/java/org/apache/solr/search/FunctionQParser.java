@@ -229,9 +229,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|parseMultipleSources
+name|parseToEnd
 operator|=
-name|parseMultipleSources
+name|parseToEnd
 expr_stmt|;
 block|}
 comment|/** throw exception if there is extra stuff at the end of the parsed valuesource(s). */
