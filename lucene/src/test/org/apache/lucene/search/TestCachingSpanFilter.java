@@ -62,6 +62,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SerialMergeScheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|Term
@@ -171,6 +199,24 @@ argument_list|(
 name|random
 argument_list|,
 name|dir
+argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|random
+argument_list|,
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
+name|MockAnalyzer
+argument_list|()
+argument_list|)
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// NOTE: cannot use writer.getReader because RIW (on
@@ -538,26 +584,29 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
+comment|// NOTE: important to hold ref here so GC doesn't clear
+comment|// the cache entry!  Else the assert below may sometimes
+comment|// fail:
+name|IndexReader
+name|oldReader
+init|=
+name|reader
+decl_stmt|;
 comment|// make sure we get a cache hit when we reopen readers
 comment|// that had no new deletions
-name|IndexReader
-name|newReader
-init|=
+name|reader
+operator|=
 name|refreshReader
 argument_list|(
 name|reader
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|reader
 operator|!=
-name|newReader
+name|oldReader
 argument_list|)
-expr_stmt|;
-name|reader
-operator|=
-name|newReader
 expr_stmt|;
 name|searcher
 operator|=
@@ -680,6 +729,17 @@ argument_list|,
 name|docs
 operator|.
 name|totalHits
+argument_list|)
+expr_stmt|;
+comment|// NOTE: silliness to make sure JRE does not optimize
+comment|// away our holding onto oldReader to prevent
+comment|// CachingWrapperFilter's WeakHashMap from dropping the
+comment|// entry:
+name|assertTrue
+argument_list|(
+name|oldReader
+operator|!=
+literal|null
 argument_list|)
 expr_stmt|;
 name|writer
