@@ -2336,6 +2336,28 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** @lucene.internal */
+DECL|method|getMinSimilarity
+specifier|public
+name|float
+name|getMinSimilarity
+parameter_list|()
+block|{
+return|return
+name|minSimilarity
+return|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|getScaleFactor
+specifier|public
+name|float
+name|getScaleFactor
+parameter_list|()
+block|{
+return|return
+name|scale_factor
+return|;
+block|}
 block|}
 end_class
 
