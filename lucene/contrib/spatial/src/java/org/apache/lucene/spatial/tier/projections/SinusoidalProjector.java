@@ -25,6 +25,8 @@ comment|/**  * Based on Sinusoidal Projections  * Project a latitude / longitude
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SinusoidalProjector
 specifier|public
 class|class
