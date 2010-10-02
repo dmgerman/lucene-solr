@@ -292,6 +292,8 @@ name|State
 name|savedState
 decl_stmt|;
 comment|/** @deprecated Use {@link #CommonGramsFilter(Version, TokenStream, Set)} instead */
+annotation|@
+name|Deprecated
 DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter
@@ -319,6 +321,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** @deprecated Use {@link #CommonGramsFilter(Version, TokenStream, Set, boolean)} instead */
+annotation|@
+name|Deprecated
 DECL|method|CommonGramsFilter
 specifier|public
 name|CommonGramsFilter

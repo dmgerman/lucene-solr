@@ -430,6 +430,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test turkish lowercasing (old buggy behavior)    * @deprecated Remove this when support for 3.0 indexes is no longer required    */
+annotation|@
+name|Deprecated
 DECL|method|testTurkishBWComp
 specifier|public
 name|void

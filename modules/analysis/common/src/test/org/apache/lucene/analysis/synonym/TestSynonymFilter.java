@@ -2719,6 +2719,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/***    * Return a list of tokens according to a test string format:    * a b c  =>  returns List<Token> [a,b,c]    * a/b   => tokens a and b share the same spot (b.positionIncrement=0)    * a,3/b/c => a,b,c all share same position (a.positionIncrement=3, b.positionIncrement=0, c.positionIncrement=0)    * a,1,10,11  => "a" with positionIncrement=1, startOffset=10, endOffset=11    * @deprecated does not support attributes api    */
+annotation|@
+name|Deprecated
 DECL|method|tokens
 specifier|private
 name|List
@@ -2991,6 +2993,8 @@ name|result
 return|;
 block|}
 comment|/**    * @deprecated does not support custom attributes    */
+annotation|@
+name|Deprecated
 DECL|class|IterTokenStream
 specifier|private
 specifier|static

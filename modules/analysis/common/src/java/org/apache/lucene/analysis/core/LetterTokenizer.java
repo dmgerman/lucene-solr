@@ -167,6 +167,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a new LetterTokenizer.    *     * @deprecated use {@link #LetterTokenizer(Version, Reader)} instead. This    *             will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer
@@ -186,6 +188,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a new LetterTokenizer using a given {@link AttributeSource}.     * @deprecated    * use {@link #LetterTokenizer(Version, AttributeSource, Reader)} instead.    * This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer
@@ -210,6 +214,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a new LetterTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #LetterTokenizer(Version, AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|LetterTokenizer
 specifier|public
 name|LetterTokenizer

@@ -525,6 +525,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated does not support custom attributes    */
+annotation|@
+name|Deprecated
 DECL|class|IterTokenStream
 specifier|private
 specifier|static

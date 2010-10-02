@@ -572,6 +572,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * TODO: rewrite tests not to use string comparison.    * @deprecated only tests TermAttribute!    */
+annotation|@
+name|Deprecated
 DECL|method|tsToString
 specifier|private
 specifier|static

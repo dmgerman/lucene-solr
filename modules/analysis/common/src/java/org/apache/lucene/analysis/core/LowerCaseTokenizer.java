@@ -189,6 +189,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a new LowerCaseTokenizer using a given {@link AttributeSource}.    *     * @deprecated use {@link #LowerCaseTokenizer(AttributeSource, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
@@ -213,6 +215,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a new LowerCaseTokenizer using a given    * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *     * @deprecated use {@link #LowerCaseTokenizer(AttributeSource.AttributeFactory, Reader)}    *             instead. This will be removed in Lucene 4.0.    */
+annotation|@
+name|Deprecated
 DECL|method|LowerCaseTokenizer
 specifier|public
 name|LowerCaseTokenizer
