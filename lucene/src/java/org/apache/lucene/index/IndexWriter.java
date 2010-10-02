@@ -383,6 +383,8 @@ implements|implements
 name|Closeable
 block|{
 comment|/**    * Default value for the write lock timeout (1,000).    * @see #setDefaultWriteLockTimeout    * @deprecated use {@link IndexWriterConfig#WRITE_LOCK_TIMEOUT} instead    */
+annotation|@
+name|Deprecated
 DECL|field|WRITE_LOCK_TIMEOUT
 specifier|public
 specifier|static
@@ -409,6 +411,8 @@ init|=
 literal|"write.lock"
 decl_stmt|;
 comment|/**    * Value to denote a flush trigger is disabled    * @deprecated use {@link IndexWriterConfig#DISABLE_AUTO_FLUSH} instead    */
+annotation|@
+name|Deprecated
 DECL|field|DISABLE_AUTO_FLUSH
 specifier|public
 specifier|final
@@ -421,6 +425,8 @@ operator|.
 name|DISABLE_AUTO_FLUSH
 decl_stmt|;
 comment|/**    * Disabled by default (because IndexWriter flushes by RAM usage    * by default). Change using {@link #setMaxBufferedDocs(int)}.    * @deprecated use {@link IndexWriterConfig#DEFAULT_MAX_BUFFERED_DOCS} instead.    */
+annotation|@
+name|Deprecated
 DECL|field|DEFAULT_MAX_BUFFERED_DOCS
 specifier|public
 specifier|final
@@ -433,6 +439,8 @@ operator|.
 name|DEFAULT_MAX_BUFFERED_DOCS
 decl_stmt|;
 comment|/**    * Default value is 16 MB (which means flush when buffered    * docs consume 16 MB RAM).  Change using {@link #setRAMBufferSizeMB}.    * @deprecated use {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} instead.    */
+annotation|@
+name|Deprecated
 DECL|field|DEFAULT_RAM_BUFFER_SIZE_MB
 specifier|public
 specifier|final
@@ -445,6 +453,8 @@ operator|.
 name|DEFAULT_RAM_BUFFER_SIZE_MB
 decl_stmt|;
 comment|/**    * Disabled by default (because IndexWriter flushes by RAM usage    * by default). Change using {@link #setMaxBufferedDeleteTerms(int)}.    * @deprecated use {@link IndexWriterConfig#DEFAULT_MAX_BUFFERED_DELETE_TERMS} instead    */
+annotation|@
+name|Deprecated
 DECL|field|DEFAULT_MAX_BUFFERED_DELETE_TERMS
 specifier|public
 specifier|final
@@ -457,6 +467,8 @@ operator|.
 name|DEFAULT_MAX_BUFFERED_DELETE_TERMS
 decl_stmt|;
 comment|/**    * Default value is 10,000. Change using {@link #setMaxFieldLength(int)}.    *     * @deprecated see {@link IndexWriterConfig}    */
+annotation|@
+name|Deprecated
 DECL|field|DEFAULT_MAX_FIELD_LENGTH
 specifier|public
 specifier|final
@@ -467,6 +479,8 @@ init|=
 literal|10000
 decl_stmt|;
 comment|/**    * Default value is 128. Change using {@link #setTermIndexInterval(int)}.    * @deprecated use {@link IndexWriterConfig#DEFAULT_TERM_INDEX_INTERVAL} instead.    */
+annotation|@
+name|Deprecated
 DECL|field|DEFAULT_TERM_INDEX_INTERVAL
 specifier|public
 specifier|final
@@ -2008,6 +2022,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**<p>Get the current setting of whether newly flushed    *  segments will use the compound file format.  Note that    *  this just returns the value previously set with    *  setUseCompoundFile(boolean), or the default value    *  (true).  You cannot use this to query the status of    *  previously flushed segments.</p>    *    *<p>Note that this method is a convenience method: it    *  just calls mergePolicy.getUseCompoundFile as long as    *  mergePolicy is an instance of {@link LogMergePolicy}.    *  Otherwise an IllegalArgumentException is thrown.</p>    *    *  @see #setUseCompoundFile(boolean)    *  @deprecated use {@link LogMergePolicy#getUseCompoundDocStore()} and    *  {@link LogMergePolicy#getUseCompoundFile()} directly.    */
+annotation|@
+name|Deprecated
 DECL|method|getUseCompoundFile
 specifier|public
 name|boolean
@@ -2023,6 +2039,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    *<p>    * Setting to turn on usage of a compound file. When on, multiple files for    * each segment are merged into a single file when a new segment is flushed.    *</p>    *     *<p>    * Note that this method is a convenience method: it just calls    * mergePolicy.setUseCompoundFile as long as mergePolicy is an instance of    * {@link LogMergePolicy}. Otherwise an IllegalArgumentException is thrown.    *</p>    *     * @deprecated use {@link LogMergePolicy#setUseCompoundDocStore(boolean)} and    *             {@link LogMergePolicy#setUseCompoundFile(boolean)} directly.    *             Note that this method set the given value on both, therefore    *             you should consider doing the same.    */
+annotation|@
+name|Deprecated
 DECL|method|setUseCompoundFile
 specifier|public
 name|void
@@ -2050,6 +2068,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Expert: Set the Similarity implementation used by this IndexWriter.    *    * @see Similarity#setDefault(Similarity)    * @deprecated use {@link IndexWriterConfig#setSimilarity(Similarity)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setSimilarity
 specifier|public
 name|void
@@ -2086,6 +2106,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Expert: Return the Similarity implementation used by this IndexWriter.    *    *<p>This defaults to the current value of {@link Similarity#getDefault()}.    * @deprecated use {@link IndexWriterConfig#getSimilarity()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getSimilarity
 specifier|public
 name|Similarity
@@ -2100,6 +2122,8 @@ name|similarity
 return|;
 block|}
 comment|/** Expert: Set the interval between indexed terms.  Large values cause less    * memory to be used by IndexReader, but slow random-access to terms.  Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term.  In    * particular, it is the maximum number of other terms that must be    * scanned before a term is located and its frequency and position information    * may be processed.  In a large index with user-entered query terms, query    * processing time is likely to be dominated not by term lookup but rather    * by the processing of frequency and positional data.  In a small index    * or when many uncommon query terms are generated (e.g., by wildcard    * queries) term lookup may become a dominant cost.    *    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *    * @see #DEFAULT_TERM_INDEX_INTERVAL    * @deprecated use {@link IndexWriterConfig#setTermIndexInterval(int)}    */
+annotation|@
+name|Deprecated
 DECL|method|setTermIndexInterval
 specifier|public
 name|void
@@ -2129,6 +2153,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Expert: Return the interval between indexed terms.    *    * @see #setTermIndexInterval(int)    * @deprecated use {@link IndexWriterConfig#getTermIndexInterval()}    */
+annotation|@
+name|Deprecated
 DECL|method|getTermIndexInterval
 specifier|public
 name|int
@@ -2146,6 +2172,8 @@ name|termIndexInterval
 return|;
 block|}
 comment|/**    * Constructs an IndexWriter for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If<code>create</code>    * is true, then a new, empty index will be created in    *<code>d</code>, replacing the index already there, if any.    *    * @param d the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param mfl Maximum field length in number of terms/tokens: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    *  @deprecated use {@link #IndexWriter(Directory, IndexWriterConfig)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -2207,6 +2235,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs an IndexWriter for the index in    *<code>d</code>, first creating it if it does not    * already exist.  Text will be analyzed with    *<code>a</code>.    *    * @param d the index directory    * @param a the analyzer to use    * @param mfl Maximum field length in number of terms/tokens: LIMITED, UNLIMITED, or user-specified    *   via the MaxFieldLength constructor.    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    *  @deprecated use {@link #IndexWriter(Directory, IndexWriterConfig)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -2252,6 +2282,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: constructs an IndexWriter with a custom {@link    * IndexDeletionPolicy}, for the index in<code>d</code>,    * first creating it if it does not already exist.  Text    * will be analyzed with<code>a</code>.    *    * @param d the index directory    * @param a the analyzer to use    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl whether or not to limit field lengths    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be    *  read/written to or if there is any other low-level    *  IO error    *  @deprecated use {@link #IndexWriter(Directory, IndexWriterConfig)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -2305,6 +2337,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: constructs an IndexWriter with a custom {@link    * IndexDeletionPolicy}, for the index in<code>d</code>.    * Text will be analyzed with<code>a</code>.  If    *<code>create</code> is true, then a new, empty index    * will be created in<code>d</code>, replacing the index    * already there, if any.    *    * @param d the index directory    * @param a the analyzer to use    * @param create<code>true</code> to create the index or overwrite    *  the existing one;<code>false</code> to append to the existing    *  index    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl {@link org.apache.lucene.index.IndexWriter.MaxFieldLength}, whether or not to limit field lengths.  Value is in number of terms/tokens    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    *  @deprecated use {@link #IndexWriter(Directory, IndexWriterConfig)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -2374,6 +2408,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: constructs an IndexWriter on specific commit    * point, with a custom {@link IndexDeletionPolicy}, for    * the index in<code>d</code>.  Text will be analyzed    * with<code>a</code>.    *    *<p> This is only meaningful if you've used a {@link    * IndexDeletionPolicy} in that past that keeps more than    * just the last commit.    *     *<p>This operation is similar to {@link #rollback()},    * except that method can only rollback what's been done    * with the current instance of IndexWriter since its last    * commit, whereas this method can rollback to an    * arbitrary commit point from the past, assuming the    * {@link IndexDeletionPolicy} has preserved past    * commits.    *    * @param d the index directory    * @param a the analyzer to use    * @param deletionPolicy see<a href="#deletionPolicy">above</a>    * @param mfl whether or not to limit field lengths, value is in number of terms/tokens.  See {@link org.apache.lucene.index.IndexWriter.MaxFieldLength}.    * @param commit which commit to open    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if the directory cannot be read/written to, or    *  if it does not exist and<code>create</code> is    *<code>false</code> or if there is any other low-level    *  IO error    *  @deprecated use {@link #IndexWriter(Directory, IndexWriterConfig)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -3064,6 +3100,8 @@ name|config
 return|;
 block|}
 comment|/**    * Expert: set the merge policy used by this writer.    *     * @deprecated use {@link IndexWriterConfig#setMergePolicy(MergePolicy)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|setMergePolicy
 specifier|public
 name|void
@@ -3138,6 +3176,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: returns the current MergePolicy in use by this writer.    * @see #setMergePolicy    *     * @deprecated use {@link IndexWriterConfig#getMergePolicy()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getMergePolicy
 specifier|public
 name|MergePolicy
@@ -3152,6 +3192,8 @@ name|mergePolicy
 return|;
 block|}
 comment|/**    * Expert: set the merge scheduler used by this writer.    * @deprecated use {@link IndexWriterConfig#setMergeScheduler(MergeScheduler)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setMergeScheduler
 specifier|synchronized
 specifier|public
@@ -3234,6 +3276,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: returns the current MergeScheduler in use by this    * writer.    * @see #setMergeScheduler(MergeScheduler)    * @deprecated use {@link IndexWriterConfig#getMergeScheduler()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getMergeScheduler
 specifier|public
 name|MergeScheduler
@@ -3248,6 +3292,8 @@ name|mergeScheduler
 return|;
 block|}
 comment|/**<p>Determines the largest segment (measured by    * document count) that may be merged with other segments.    * Small values (e.g., less than 10,000) are best for    * interactive indexing, as this limits the length of    * pauses while indexing to a few seconds.  Larger values    * are best for batched indexing and speedier    * searches.</p>    *    *<p>The default value is {@link Integer#MAX_VALUE}.</p>    *    *<p>Note that this method is a convenience method: it    * just calls mergePolicy.setMaxMergeDocs as long as    * mergePolicy is an instance of {@link LogMergePolicy}.    * Otherwise an IllegalArgumentException is thrown.</p>    *    *<p>The default merge policy ({@link    * LogByteSizeMergePolicy}) also allows you to set this    * limit by net size (in MB) of the segment, using {@link    * LogByteSizeMergePolicy#setMaxMergeMB}.</p>    * @deprecated use {@link LogMergePolicy#setMaxMergeDocs(int)} directly.    */
+annotation|@
+name|Deprecated
 DECL|method|setMaxMergeDocs
 specifier|public
 name|void
@@ -3267,6 +3313,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    *<p>Returns the largest segment (measured by document    * count) that may be merged with other segments.</p>    *    *<p>Note that this method is a convenience method: it    * just calls mergePolicy.getMaxMergeDocs as long as    * mergePolicy is an instance of {@link LogMergePolicy}.    * Otherwise an IllegalArgumentException is thrown.</p>    *    * @see #setMaxMergeDocs    * @deprecated use {@link LogMergePolicy#getMaxMergeDocs()} directly.    */
+annotation|@
+name|Deprecated
 DECL|method|getMaxMergeDocs
 specifier|public
 name|int
@@ -3282,6 +3330,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.  This setting refers to the number of running terms,    * not to the number of different terms.<p/>    *<strong>Note:</strong> this silently truncates large documents, excluding from the    * index all terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than {@link #DEFAULT_MAX_FIELD_LENGTH} terms    * will be indexed for a field.    * @deprecated use {@link IndexWriterConfig#setMaxFieldLength(int)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setMaxFieldLength
 specifier|public
 name|void
@@ -3331,6 +3381,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the maximum number of terms that will be    * indexed for a single field in a document.    * @see #setMaxFieldLength    * @deprecated use {@link IndexWriterConfig#getMaxFieldLength()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getMaxFieldLength
 specifier|public
 name|int
@@ -3345,6 +3397,8 @@ name|maxFieldLength
 return|;
 block|}
 comment|/** Determines the minimal number of documents required    * before the buffered in-memory documents are flushed as    * a new Segment.  Large values generally gives faster    * indexing.    *    *<p>When this is set, the writer will flush every    * maxBufferedDocs added documents.  Pass in {@link    * #DISABLE_AUTO_FLUSH} to prevent triggering a flush due    * to number of buffered documents.  Note that if flushing    * by RAM usage is also enabled, then the flush will be    * triggered by whichever comes first.</p>    *    *<p>Disabled by default (writer flushes by RAM usage).</p>    *    * @throws IllegalArgumentException if maxBufferedDocs is    * enabled but smaller than 2, or it disables maxBufferedDocs    * when ramBufferSize is already disabled    * @see #setRAMBufferSizeMB    * @deprecated use {@link IndexWriterConfig#setMaxBufferedDocs(int)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|setMaxBufferedDocs
 specifier|public
 name|void
@@ -3509,6 +3563,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns the number of buffered added documents that will    * trigger a flush if enabled.    * @see #setMaxBufferedDocs    * @deprecated use {@link IndexWriterConfig#getMaxBufferedDocs()} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|getMaxBufferedDocs
 specifier|public
 name|int
@@ -3526,6 +3582,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Determines the amount of RAM that may be used for    * buffering added documents and deletions before they are    * flushed to the Directory.  Generally for faster    * indexing performance it's best to flush by RAM usage    * instead of document count and use as large a RAM buffer    * as you can.    *    *<p>When this is set, the writer will flush whenever    * buffered documents and deletions use this much RAM.    * Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage.  Note that if    * flushing by document count is also enabled, then the    * flush will be triggered by whichever comes first.</p>    *    *<p><b>NOTE</b>: the account of RAM usage for pending    * deletions is only approximate.  Specifically, if you    * delete by Query, Lucene currently has no way to measure    * the RAM usage if individual Queries so the accounting    * will under-estimate and you should compensate by either    * calling commit() periodically yourself, or by using    * {@link #setMaxBufferedDeleteTerms} to flush by count    * instead of RAM usage (each buffered delete Query counts    * as one).    *    *<p><b>NOTE</b>: because IndexWriter uses    *<code>int</code>s when managing its internal storage,    * the absolute maximum value for this setting is somewhat    * less than 2048 MB.  The precise limit depends on    * various factors, such as how large your documents are,    * how many fields have norms, etc., so it's best to set    * this value comfortably under 2048.</p>    *    *<p> The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.</p>    *     * @throws IllegalArgumentException if ramBufferSize is    * enabled but non-positive, or it disables ramBufferSize    * when maxBufferedDocs is already disabled    * @deprecated use {@link IndexWriterConfig#setRAMBufferSizeMB(double)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|setRAMBufferSizeMB
 specifier|public
 name|void
@@ -3620,6 +3678,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the value set by {@link #setRAMBufferSizeMB} if enabled.    * @deprecated use {@link IndexWriterConfig#getRAMBufferSizeMB()} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|getRAMBufferSizeMB
 specifier|public
 name|double
@@ -3634,6 +3694,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    *<p>Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.</p>     *<p>Disabled by default (writer flushes by RAM usage).</p>    *     * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    * @deprecated use {@link IndexWriterConfig#setMaxBufferedDeleteTerms(int)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|setMaxBufferedDeleteTerms
 specifier|public
 name|void
@@ -3694,6 +3756,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the number of buffered deleted terms that will    * trigger a flush if enabled.    * @see #setMaxBufferedDeleteTerms    * @deprecated use {@link IndexWriterConfig#getMaxBufferedDeleteTerms()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getMaxBufferedDeleteTerms
 specifier|public
 name|int
@@ -3711,6 +3775,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Determines how often segment indices are merged by addDocument().  With    * smaller values, less RAM is used while indexing, and searches on    * unoptimized indices are faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while searches on unoptimized    * indices are slower, indexing is faster.  Thus larger values (> 10) are best    * for batch index creation, and smaller values (< 10) for indices that are    * interactively maintained.    *    *<p>Note that this method is a convenience method: it    * just calls mergePolicy.setMergeFactor as long as    * mergePolicy is an instance of {@link LogMergePolicy}.    * Otherwise an IllegalArgumentException is thrown.</p>    *    *<p>This must never be less than 2.  The default value is 10.    * @deprecated use {@link LogMergePolicy#setMergeFactor(int)} directly.    */
+annotation|@
+name|Deprecated
 DECL|method|setMergeFactor
 specifier|public
 name|void
@@ -3730,6 +3796,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    *<p>Returns the number of segments that are merged at    * once and also controls the total number of segments    * allowed to accumulate in the index.</p>    *    *<p>Note that this method is a convenience method: it    * just calls mergePolicy.getMergeFactor as long as    * mergePolicy is an instance of {@link LogMergePolicy}.    * Otherwise an IllegalArgumentException is thrown.</p>    *    * @see #setMergeFactor    * @deprecated use {@link LogMergePolicy#getMergeFactor()} directly.    */
+annotation|@
+name|Deprecated
 DECL|method|getMergeFactor
 specifier|public
 name|int
@@ -3882,6 +3950,8 @@ literal|null
 return|;
 block|}
 comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this instance of IndexWriter.  @see    * @see #setDefaultWriteLockTimeout to change the default value for all instances of IndexWriter.    * @deprecated use {@link IndexWriterConfig#setWriteLockTimeout(long)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setWriteLockTimeout
 specifier|public
 name|void
@@ -3911,6 +3981,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns allowed timeout when acquiring the write lock.    * @see #setWriteLockTimeout    * @deprecated use {@link IndexWriterConfig#getWriteLockTimeout()}    */
+annotation|@
+name|Deprecated
 DECL|method|getWriteLockTimeout
 specifier|public
 name|long
@@ -3925,6 +3997,8 @@ name|writeLockTimeout
 return|;
 block|}
 comment|/**    * Sets the default (for any instance of IndexWriter) maximum time to wait for a write lock (in    * milliseconds).    * @deprecated use {@link IndexWriterConfig#setDefaultWriteLockTimeout(long)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
 specifier|static
@@ -3944,6 +4018,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns default write lock timeout for newly    * instantiated IndexWriters.    * @see #setDefaultWriteLockTimeout    * @deprecated use {@link IndexWriterConfig#getDefaultWriteLockTimeout()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getDefaultWriteLockTimeout
 specifier|public
 specifier|static
@@ -13289,6 +13365,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Specifies maximum field length (in number of tokens/terms) in    * {@link IndexWriter} constructors. {@link #setMaxFieldLength(int)} overrides    * the value set by the constructor.    *     * @deprecated use {@link IndexWriterConfig} and pass    *             {@link IndexWriterConfig#UNLIMITED_FIELD_LENGTH} or your own    *             value.    */
+annotation|@
+name|Deprecated
 DECL|class|MaxFieldLength
 specifier|public
 specifier|static
@@ -13436,6 +13514,8 @@ name|IndexReaderWarmer
 name|mergedSegmentWarmer
 decl_stmt|;
 comment|/**    * Set the merged segment warmer. See {@link IndexReaderWarmer}.    *     * @deprecated use    *             {@link IndexWriterConfig#setMergedSegmentWarmer}    *             instead.    */
+annotation|@
+name|Deprecated
 DECL|method|setMergedSegmentWarmer
 specifier|public
 name|void
@@ -13460,6 +13540,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the current merged segment warmer. See {@link IndexReaderWarmer}.    *     * @deprecated use {@link IndexWriterConfig#getMergedSegmentWarmer()} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|getMergedSegmentWarmer
 specifier|public
 name|IndexReaderWarmer

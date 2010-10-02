@@ -695,9 +695,6 @@ condition|)
 block|{
 name|currentField
 operator|=
-operator|(
-name|String
-operator|)
 name|keys
 operator|.
 name|next
@@ -705,9 +702,6 @@ argument_list|()
 expr_stmt|;
 name|currentReader
 operator|=
-operator|(
-name|IndexReader
-operator|)
 name|fieldToReader
 operator|.
 name|get
@@ -2059,17 +2053,12 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|(
-operator|(
-name|IndexReader
-operator|)
 name|fieldToReader
 operator|.
 name|get
 argument_list|(
 name|field
 argument_list|)
-operator|)
 decl_stmt|;
 return|return
 name|reader

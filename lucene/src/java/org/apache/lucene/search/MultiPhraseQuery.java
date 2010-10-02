@@ -1252,9 +1252,6 @@ expr_stmt|;
 name|Scorer
 name|scorer
 init|=
-operator|(
-name|Scorer
-operator|)
 name|scorer
 argument_list|(
 name|reader
@@ -2214,9 +2211,6 @@ block|{
 name|DocsAndPositionsEnum
 name|postings
 init|=
-operator|(
-name|DocsAndPositionsEnum
-operator|)
 name|i
 operator|.
 name|next

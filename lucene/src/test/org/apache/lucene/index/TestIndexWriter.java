@@ -7053,6 +7053,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Make sure it's OK to change RAM buffer size and // maxBufferedDocs in a      * write session      *       * @deprecated after all the setters on IW go away (4.0), this test can be      *             removed because changing ram buffer settings during a write      *             session won't be possible.      */
+annotation|@
+name|Deprecated
 DECL|method|testChangingRAMBuffer
 specifier|public
 name|void
@@ -7434,6 +7436,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * @deprecated after setters on IW go away, this test can be deleted because      *             changing those settings on IW won't be possible.      */
+annotation|@
+name|Deprecated
 DECL|method|testChangingRAMBuffer2
 specifier|public
 name|void

@@ -423,6 +423,8 @@ name|reverse
 expr_stmt|;
 block|}
 comment|/** Creates a sort by terms in the given field, parsed    * to numeric values using a custom {@link FieldCache.Parser}.    * @param field  Name of field to sort by.  Must not be null.    * @param parser Instance of a {@link FieldCache.Parser},    *  which must subclass one of the existing numeric    *  parsers from {@link FieldCache}. Sort type is inferred    *  by testing which numeric parser the parser subclasses.    * @throws IllegalArgumentException if the parser fails to    *  subclass an existing numeric parser, or field is null    *      *  @deprecated use EntryCreator version    */
+annotation|@
+name|Deprecated
 DECL|method|SortField
 specifier|public
 name|SortField
@@ -447,6 +449,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a sort, possibly in reverse, by terms in the given field, parsed    * to numeric values using a custom {@link FieldCache.Parser}.    * @param field  Name of field to sort by.  Must not be null.    * @param parser Instance of a {@link FieldCache.Parser},    *  which must subclass one of the existing numeric    *  parsers from {@link FieldCache}. Sort type is inferred    *  by testing which numeric parser the parser subclasses.    * @param reverse True if natural order should be reversed.    * @throws IllegalArgumentException if the parser fails to    *  subclass an existing numeric parser, or field is null    *      *  @deprecated use EntryCreator version    */
+annotation|@
+name|Deprecated
 DECL|method|SortField
 specifier|public
 name|SortField
@@ -1136,6 +1140,8 @@ name|locale
 return|;
 block|}
 comment|/** Returns the instance of a {@link FieldCache} parser that fits to the given sort type.    * May return<code>null</code> if no parser was specified. Sorting is using the default parser then.    * @return An instance of a {@link FieldCache} parser, or<code>null</code>.    * @deprecated use getEntryCreator()    */
+annotation|@
+name|Deprecated
 DECL|method|getParser
 specifier|public
 name|FieldCache

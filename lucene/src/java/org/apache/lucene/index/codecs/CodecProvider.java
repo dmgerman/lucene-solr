@@ -421,9 +421,6 @@ specifier|final
 name|Codec
 name|codec
 init|=
-operator|(
-name|Codec
-operator|)
 name|codecs
 operator|.
 name|get

@@ -469,6 +469,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Copy contents of a directory src to a directory dest. If a file in src    * already exists in dest then the one in dest will be blindly overwritten.    *<p>    *<b>NOTE:</b> the source directory cannot change while this method is    * running. Otherwise the results are undefined and you could easily hit a    * FileNotFoundException.    *<p>    *<b>NOTE:</b> this method only copies files that look like index files (ie,    * have extensions matching the known extensions of index files).    *     * @param src source directory    * @param dest destination directory    * @param closeDirSrc if<code>true</code>, call {@link #close()} method on     *        source directory    * @deprecated should be replaced with calls to    *             {@link #copy(Directory, String, String)} for every file that    *             needs copying. You can use the following code:    *     *<pre>    * for (String file : src.listAll()) {    *   src.copy(dest, file, file);    * }    *</pre>    */
+annotation|@
+name|Deprecated
 DECL|method|copy
 specifier|public
 specifier|static
