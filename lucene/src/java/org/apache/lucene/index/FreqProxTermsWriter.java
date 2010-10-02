@@ -313,7 +313,10 @@ name|perField
 operator|.
 name|termsHashPerField
 operator|.
-name|numPostings
+name|bytesHash
+operator|.
+name|size
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -521,7 +524,10 @@ name|numPostings
 init|=
 name|perField
 operator|.
-name|numPostings
+name|bytesHash
+operator|.
+name|size
+argument_list|()
 decl_stmt|;
 name|perField
 operator|.

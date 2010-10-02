@@ -717,6 +717,25 @@ name|lastDocIDs
 index|[
 name|termID
 index|]
+operator|:
+literal|"id: "
+operator|+
+name|docState
+operator|.
+name|docID
+operator|+
+literal|" postings ID: "
+operator|+
+name|postings
+operator|.
+name|lastDocIDs
+index|[
+name|termID
+index|]
+operator|+
+literal|" termID: "
+operator|+
+name|termID
 assert|;
 comment|// Term not yet seen in the current doc but previously
 comment|// seen in other doc(s) since the last flush

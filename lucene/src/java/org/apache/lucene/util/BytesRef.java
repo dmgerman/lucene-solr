@@ -94,6 +94,14 @@ argument_list|>
 implements|,
 name|Externalizable
 block|{
+DECL|field|HASH_PRIME
+specifier|static
+specifier|final
+name|int
+name|HASH_PRIME
+init|=
+literal|31
+decl_stmt|;
 DECL|field|EMPTY_BYTES
 specifier|public
 specifier|static
@@ -603,12 +611,6 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-specifier|final
-name|int
-name|prime
-init|=
-literal|31
-decl_stmt|;
 name|int
 name|result
 init|=
@@ -639,7 +641,7 @@ control|)
 block|{
 name|result
 operator|=
-name|prime
+name|HASH_PRIME
 operator|*
 name|result
 operator|+

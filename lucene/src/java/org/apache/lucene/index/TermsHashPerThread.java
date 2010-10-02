@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|ByteBlockPool
 import|;
 end_import
 
@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
+name|BytesRef
 import|;
 end_import
 
@@ -77,6 +77,8 @@ specifier|final
 name|TermsHashPerThread
 name|nextPerThread
 decl_stmt|;
+comment|// the secondary is currently consumed by TermVectorsWriter
+comment|// see secondary entry point in TermsHashPerField#add(int)
 DECL|field|intPool
 specifier|final
 name|IntBlockPool
@@ -104,30 +106,11 @@ operator|.
 name|DocState
 name|docState
 decl_stmt|;
-comment|// Used when comparing postings via termRefComp, in TermsHashPerField
-DECL|field|tr1
+comment|// Used by perField to obtain terms from the analysis chain
+DECL|field|termBytesRef
 specifier|final
 name|BytesRef
-name|tr1
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
-DECL|field|tr2
-specifier|final
-name|BytesRef
-name|tr2
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
-comment|// Used by perField:
-DECL|field|utf8
-specifier|final
-name|BytesRef
-name|utf8
+name|termBytesRef
 init|=
 operator|new
 name|BytesRef
@@ -202,42 +185,23 @@ operator|.
 name|byteBlockAllocator
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
+comment|// use the allocator from the docWriter which tracks the used bytes
+name|primary
+operator|=
 name|nextTermsHash
 operator|!=
 literal|null
+expr_stmt|;
+if|if
+condition|(
+name|primary
 condition|)
 block|{
 comment|// We are primary
-name|primary
-operator|=
-literal|true
-expr_stmt|;
 name|termBytePool
 operator|=
 name|bytePool
 expr_stmt|;
-block|}
-else|else
-block|{
-name|primary
-operator|=
-literal|false
-expr_stmt|;
-name|termBytePool
-operator|=
-name|primaryPerThread
-operator|.
-name|bytePool
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|nextTermsHash
-operator|!=
-literal|null
-condition|)
 name|nextPerThread
 operator|=
 name|nextTermsHash
@@ -249,11 +213,32 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+comment|// this will be the primaryPerThread in the secondary
+assert|assert
+name|nextPerThread
+operator|!=
+literal|null
+assert|;
+block|}
 else|else
+block|{
+assert|assert
+name|primaryPerThread
+operator|!=
+literal|null
+assert|;
+name|termBytePool
+operator|=
+name|primaryPerThread
+operator|.
+name|bytePool
+expr_stmt|;
+comment|// we are secondary and share the byte pool with the primary
 name|nextPerThread
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -304,9 +289,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|nextPerThread
-operator|!=
-literal|null
+name|primary
 condition|)
 name|nextPerThread
 operator|.
@@ -331,9 +314,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|nextPerThread
-operator|!=
-literal|null
+name|primary
 condition|)
 name|nextPerThread
 operator|.
@@ -370,28 +351,19 @@ specifier|final
 name|DocumentsWriter
 operator|.
 name|DocWriter
-name|doc2
-decl_stmt|;
-if|if
-condition|(
-name|nextPerThread
-operator|!=
-literal|null
-condition|)
-name|doc2
-operator|=
+name|docFromSecondary
+init|=
+name|primary
+condition|?
 name|nextPerThread
 operator|.
 name|consumer
 operator|.
 name|finishDocument
 argument_list|()
-expr_stmt|;
-else|else
-name|doc2
-operator|=
+else|:
 literal|null
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|doc
@@ -399,7 +371,7 @@ operator|==
 literal|null
 condition|)
 return|return
-name|doc2
+name|docFromSecondary
 return|;
 else|else
 block|{
@@ -407,7 +379,7 @@ name|doc
 operator|.
 name|setNext
 argument_list|(
-name|doc2
+name|docFromSecondary
 argument_list|)
 expr_stmt|;
 return|return
@@ -434,17 +406,6 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|primary
-condition|)
-block|{
-name|bytePool
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class
