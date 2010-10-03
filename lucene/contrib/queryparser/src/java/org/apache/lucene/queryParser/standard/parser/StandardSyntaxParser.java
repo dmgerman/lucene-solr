@@ -483,11 +483,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"all"
-argument_list|)
 DECL|class|StandardSyntaxParser
 specifier|public
 class|class
@@ -1005,6 +1000,9 @@ throws|throws
 name|ParseException
 block|{
 name|Vector
+argument_list|<
+name|QueryNode
+argument_list|>
 name|clauses
 init|=
 literal|null
@@ -1107,6 +1105,9 @@ name|clauses
 operator|=
 operator|new
 name|Vector
+argument_list|<
+name|QueryNode
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|clauses
@@ -1184,6 +1185,9 @@ decl_stmt|,
 name|c
 decl_stmt|;
 name|Vector
+argument_list|<
+name|QueryNode
+argument_list|>
 name|clauses
 init|=
 literal|null
@@ -1257,6 +1261,9 @@ name|clauses
 operator|=
 operator|new
 name|Vector
+argument_list|<
+name|QueryNode
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|clauses
@@ -1334,6 +1341,9 @@ decl_stmt|,
 name|c
 decl_stmt|;
 name|Vector
+argument_list|<
+name|QueryNode
+argument_list|>
 name|clauses
 init|=
 literal|null
@@ -1407,6 +1417,9 @@ name|clauses
 operator|=
 operator|new
 name|Vector
+argument_list|<
+name|QueryNode
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|clauses

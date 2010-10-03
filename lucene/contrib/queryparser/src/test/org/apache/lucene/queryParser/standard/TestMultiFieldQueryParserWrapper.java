@@ -283,6 +283,8 @@ comment|/**  * Tests multi field query parsing using the  * {@link MultiFieldQue
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestMultiFieldQueryParserWrapper
 specifier|public
 class|class

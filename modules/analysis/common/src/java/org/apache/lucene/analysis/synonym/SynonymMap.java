@@ -347,10 +347,6 @@ name|currMap
 operator|.
 name|synonyms
 operator|=
-operator|(
-name|Token
-index|[]
-operator|)
 name|superset
 operator|.
 name|toArray
