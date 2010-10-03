@@ -402,14 +402,10 @@ parameter_list|)
 block|{
 name|exclusions
 operator|=
-operator|new
-name|HashSet
-argument_list|(
 name|exclusiontable
 operator|.
 name|keySet
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}
