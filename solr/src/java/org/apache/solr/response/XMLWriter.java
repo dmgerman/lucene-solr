@@ -3421,7 +3421,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * writes a Map in the same format as a NamedList, using the    * stringification of the key Object when it's non-null.    *    * @param name    * @param map    * @throws IOException    * @see http://lucene.apache.org/solr/api/org/apache/solr/response/SolrQueryResponse.html#returnable_data    */
+comment|/**    * writes a Map in the same format as a NamedList, using the    * stringification of the key Object when it's non-null.    *    * @param name    * @param map    * @throws IOException    * @see SolrQueryResponse Note on Returnable Data    */
 DECL|method|writeMap
 specifier|public
 name|void

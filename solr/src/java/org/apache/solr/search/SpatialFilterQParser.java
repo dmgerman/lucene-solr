@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see {@link SpatialFilterQParserPlugin}  */
+comment|/**  * @see SpatialFilterQParserPlugin  */
 end_comment
 
 begin_class

@@ -155,7 +155,7 @@ name|DEFAULT_POST_TAGS
 init|=
 literal|"</em>"
 decl_stmt|;
-comment|/**    * Return a {@link org.apache.lucene.search.vectorhighlight.FragmentsBuilder} appropriate for this field.    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.vectorhighlight.FragmentsBuilder}.    */
+comment|/**    * Return a {@link org.apache.lucene.search.vectorhighlight.FragmentsBuilder} appropriate for this field.    *     * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.vectorhighlight.FragmentsBuilder}.    */
 DECL|method|getFragmentsBuilder
 specifier|public
 name|FragmentsBuilder

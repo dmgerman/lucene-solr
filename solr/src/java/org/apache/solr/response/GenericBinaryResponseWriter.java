@@ -88,6 +88,26 @@ name|SolrQueryRequest
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|BaseResponseWriter
+operator|.
+name|SingleResponseWriter
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/**  *   *   * A generic {@link QueryResponseWriter} implementation that requires a user to  * implement the  * {@link #getSingleResponseWriter(OutputStream, SolrQueryRequest, SolrQueryResponse)}  * that defines a {@link SingleResponseWriter} to handle the binary output.  *   * @since 1.5  * @version $Id$  *   */
 end_comment
