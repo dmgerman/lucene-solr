@@ -3164,7 +3164,7 @@ return|return
 name|query
 return|;
 block|}
-comment|/**    * Builds a new RegexpQuery instance    * @param prefix Regexp term    * @return new RegexpQuery instance    */
+comment|/**    * Builds a new RegexpQuery instance    * @param regexp Regexp term    * @return new RegexpQuery instance    */
 DECL|method|newRegexpQuery
 specifier|protected
 name|Query

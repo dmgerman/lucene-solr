@@ -94,6 +94,26 @@ name|Tokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|miscellaneous
+operator|.
+name|PerFieldAnalyzerWrapper
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/**  * An convenience subclass of Analyzer that makes it easy to implement  * {@link TokenStream} reuse.  *<p>  * ReusableAnalyzerBase is a simplification of Analyzer that supports easy reuse  * for the most common use-cases. Analyzers such as  * {@link PerFieldAnalyzerWrapper} that behave differently depending upon the  * field name need to subclass Analyzer directly instead.  *</p>  *<p>  * To prevent consistency problems, this class does not allow subclasses to  * extend {@link #reusableTokenStream(String, Reader)} or  * {@link #tokenStream(String, Reader)} directly. Instead, subclasses must  * implement {@link #createComponents(String, Reader)}.  *</p>  */
 end_comment

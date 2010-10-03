@@ -573,7 +573,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words. If a non-empty stem exclusion set is    * provided this analyzer will add a {@link KeywordMarkerTokenFilter} before    * stemming.    *     * @param matchVersion lucene compatibility version    * @param stopwords a stopword set    * @param stemExclusionSet a set of terms not to be stemmed    */
+comment|/**    * Builds an analyzer with the given stop words. If a non-empty stem exclusion set is    * provided this analyzer will add a {@link KeywordMarkerFilter} before    * stemming.    *     * @param matchVersion lucene compatibility version    * @param stopwords a stopword set    * @param stemExclusionSet a set of terms not to be stemmed    */
 DECL|method|PolishAnalyzer
 specifier|public
 name|PolishAnalyzer

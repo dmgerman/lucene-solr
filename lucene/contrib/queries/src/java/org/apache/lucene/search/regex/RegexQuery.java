@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements the regular expression term search query.  * The expressions supported depend on the regular expression implementation  * used by way of the {@link RegexCapabilities} interface.  *  * @see RegexTermEnum  */
+comment|/** Implements the regular expression term search query.  * The expressions supported depend on the regular expression implementation  * used by way of the {@link RegexCapabilities} interface.  *  * @see RegexTermsEnum  */
 end_comment
 
 begin_class

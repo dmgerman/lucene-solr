@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link BytesRefHash} is a special purpose hash-map like data-structure  * optimized for {@link BytesRef} instances. BytesRefHash maintains mappings of  * byte arrays to ordinal (Map<BytesRef,int>) storing the hashed bytes  * efficiently in continuous storage. The mapping to the ordinal is  * encapsulated inside {@link BytesRefHash} and is guaranteed to be increased  * for each added {@link BytesRef}.  *   *<p>  * Note: The maximum capacity {@link BytesRef} instance passed to  * {@link #add(BytesRef)} must not be longer than {@link #BYTES_BLOCK_SIZE}-2 (  * {@value #BYTES_BLOCK_SIZE}-2. The internal storage is limited to 2GB total  * byte storage.  *</p>  *   * @lucene.internal  */
+comment|/**  * {@link BytesRefHash} is a special purpose hash-map like data-structure  * optimized for {@link BytesRef} instances. BytesRefHash maintains mappings of  * byte arrays to ordinal (Map<BytesRef,int>) storing the hashed bytes  * efficiently in continuous storage. The mapping to the ordinal is  * encapsulated inside {@link BytesRefHash} and is guaranteed to be increased  * for each added {@link BytesRef}.  *   *<p>  * Note: The maximum capacity {@link BytesRef} instance passed to  * {@link #add(BytesRef)} must not be longer than {@link ByteBlockPool#BYTE_BLOCK_SIZE}-2.   * The internal storage is limited to 2GB totalbyte storage.  *</p>  *   * @lucene.internal  */
 end_comment
 
 begin_class
@@ -1073,7 +1073,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Clears the {@link BytesRef} and returns an {@link Entry} which maps to the    * given {@link BytesRef}    */
+comment|/**    * Clears the {@link BytesRef} which maps to the given {@link BytesRef}    */
 DECL|method|clear
 specifier|public
 name|void
@@ -1168,7 +1168,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a new {@link BytesRef} with a pre-calculated hash code.    *     * @param bytes    *          the bytes to hash    * @param code    *          the bytes hash code    *     *<p>    *          Hashcode is defined as:    *     *<pre>    * int hash = 0;    * for (int i = offset; i&lt; offset + length; i++) {    *   hash = 31 * hash + bytes[i];    * }    *</pre>    *     * @return the ord the given bytes are hashed if there was no mapping for the    *         given bytes, otherwise<code>(-(ord)-1)</code>. This guarantees    *         that the return value will always be&gt;= 0 if the given bytes    *         haven't been hashed before.    *     * @throws MaxBytesLengthExceededException    *           if the given bytes are> 2 +    *           {@link ByteBlockPool#BYTE_BLOCK_SIZE}    */
+comment|/**    * Adds a new {@link BytesRef} with a pre-calculated hash code.    *     * @param bytes    *          the bytes to hash    * @param code    *          the bytes hash code    *     *<p>    *          Hashcode is defined as:    *     *<pre>    * int hash = 0;    * for (int i = offset; i&lt; offset + length; i++) {    *   hash = 31 * hash + bytes[i];    * }    *</pre>    *     * @return the ord the given bytes are hashed if there was no mapping for the    *         given bytes, otherwise<code>(-(ord)-1)</code>. This guarantees    *         that the return value will always be&gt;= 0 if the given bytes    *         haven't been hashed before.    *     * @throws MaxBytesLengthExceededException    *           if the given bytes are>    *           {@link ByteBlockPool#BYTE_BLOCK_SIZE} - 2    */
 DECL|method|add
 specifier|public
 name|int
@@ -2200,7 +2200,7 @@ name|ord
 index|]
 return|;
 block|}
-comment|/**    * Thrown if a {@link BytesRef} exceeds the {@link BytesRefHash} limit of    * {@link #BYTES_BLOCK_SIZE}-2 ({@value #BYTES_BLOCK_SIZE}-2).    */
+comment|/**    * Thrown if a {@link BytesRef} exceeds the {@link BytesRefHash} limit of    * {@link ByteBlockPool#BYTE_BLOCK_SIZE}-2.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

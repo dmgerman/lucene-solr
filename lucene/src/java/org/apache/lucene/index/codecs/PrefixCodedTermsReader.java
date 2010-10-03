@@ -288,6 +288,28 @@ name|CodecUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|standard
+operator|.
+name|StandardPostingsReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/** Handles a terms dict, but decouples all details of  *  doc/freqs/positions reading to an instance of {@link  *  StandardPostingsReader}.  This class is reusable for  *  codecs that use a different format for  *  docs/freqs/positions (though codecs are also free to  *  make their own terms dict impl).  *  *<p>This class also interacts with an instance of {@link  * TermsIndexReaderBase}, to abstract away the specific  * implementation of the terms dict index.   * @lucene.experimental */
 end_comment

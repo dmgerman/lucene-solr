@@ -715,7 +715,7 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Sort by a cached entry value    * @param creator    * @param reverse    * @param sortMissingLast    */
+comment|/**    * Sort by a cached entry value    * @param creator    * @param reverse    */
 DECL|method|SortField
 specifier|public
 name|SortField

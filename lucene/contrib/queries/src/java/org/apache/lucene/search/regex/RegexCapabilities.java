@@ -54,7 +54,7 @@ name|RegexCapabilities
 extends|extends
 name|Serializable
 block|{
-comment|/**    * Called by the constructor of {@link RegexTermEnum} allowing    * implementations to cache a compiled version of the regular    * expression pattern.    *    * @param pattern regular expression pattern    */
+comment|/**    * Called by the constructor of {@link RegexTermsEnum} allowing    * implementations to cache a compiled version of the regular    * expression pattern.    *    * @param pattern regular expression pattern    */
 DECL|method|compile
 specifier|public
 name|RegexMatcher
@@ -69,7 +69,7 @@ specifier|public
 interface|interface
 name|RegexMatcher
 block|{
-comment|/**      *      * @param string      * @return true if string matches the pattern last passed to {@link #compile}.      */
+comment|/**      *      * @param term The term in bytes.      * @return true if string matches the pattern last passed to {@link #compile}.      */
 DECL|method|match
 specifier|public
 name|boolean

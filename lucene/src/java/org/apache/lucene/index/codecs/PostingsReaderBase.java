@@ -108,6 +108,28 @@ name|Bits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|standard
+operator|.
+name|StandardPostingsWriter
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/** PrefixCodedTermsReader interacts with a single instance  *  of this to manage creation of {@link DocsEnum} and  *  {@link DocsAndPositionsEnum} instances.  It provides an  *  IndexInput (termsIn) where this class may read any  *  previously stored data that it had written in its  *  corresponding {@link StandardPostingsWriter} at indexing  *  time.   *  @lucene.experimental */
 end_comment

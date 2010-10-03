@@ -194,7 +194,7 @@ specifier|public
 class|class
 name|DirectSpellChecker
 block|{
-comment|/** The default StringDistance, Levenshtein distance implemented internally    *  via {@link LevenshteinAutomata}.    *<p>    *  Note: this is the fastest distance metric, because Levenshtein is used    *  to draw candidates from the term dictionary: this just re-uses the scoring.    *<p>    *  Note also that this metric differs in subtle ways from {@link LevenshteinDistance}:    *<ul>    *<li> This metric treats full unicode codepoints as characters, but    *         LevenshteinDistance calculates based on UTF-16 code units.    *<li> This metric scales raw edit distances into a floating point score    *         differently than LevenshteinDistance: the scaling is based upon the    *         shortest of the two terms instead of the longest.    *</ul>    */
+comment|/** The default StringDistance, Levenshtein distance implemented internally    *  via {@link LevenshteinAutomata}.    *<p>    *  Note: this is the fastest distance metric, because Levenshtein is used    *  to draw candidates from the term dictionary: this just re-uses the scoring.    *<p>    *  Note also that this metric differs in subtle ways from {@link LevensteinDistance}:    *<ul>    *<li> This metric treats full unicode codepoints as characters, but    *         LevenshteinDistance calculates based on UTF-16 code units.    *<li> This metric scales raw edit distances into a floating point score    *         differently than LevenshteinDistance: the scaling is based upon the    *         shortest of the two terms instead of the longest.    *</ul>    */
 DECL|field|INTERNAL_LEVENSHTEIN
 specifier|public
 specifier|static
@@ -661,7 +661,7 @@ operator|=
 name|distance
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, boolean)     *       suggestSimilar(term, numSug, ir, false)    */
+comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, boolean)     *       suggestSimilar(term, numSug, ir, false)}    */
 DECL|method|suggestSimilar
 specifier|public
 name|SuggestWord
@@ -693,7 +693,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, boolean, float)     *       suggestSimilar(term, numSug, ir, morePopular, this.accuracy)    */
+comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, boolean, float)     *       suggestSimilar(term, numSug, ir, morePopular, this.accuracy)}    */
 DECL|method|suggestSimilar
 specifier|public
 name|SuggestWord

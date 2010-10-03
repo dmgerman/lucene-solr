@@ -499,7 +499,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * This method forwards to {@link    * idfExplain(Term,Searcher,int)} by passing    *<code>searcher.docFreq(term)</code> as the docFreq.    */
+comment|/**    * This method forwards to {@link    * #idfExplain(Term,Searcher,int)} by passing    *<code>searcher.docFreq(term)</code> as the docFreq.    */
 DECL|method|idfExplain
 specifier|public
 name|IDFExplanation

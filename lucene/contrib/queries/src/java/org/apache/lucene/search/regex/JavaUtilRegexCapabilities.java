@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation tying Java's built-in java.util.regex to RegexQuery.  *  * Note that because this implementation currently only returns null from  * {@link #prefix} that queries using this implementation will enumerate and  * attempt to {@link #match} each term for the specified field in the index.  */
+comment|/**  * An implementation tying Java's built-in java.util.regex to RegexQuery.  *  * Note that because this implementation currently only returns null from  * {@link RegexCapabilities.RegexMatcher#prefix()} that queries using this implementation   * will enumerate and attempt to {@link RegexCapabilities.RegexMatcher#match(BytesRef)} each   * term for the specified field in the index.  */
 end_comment
 
 begin_class

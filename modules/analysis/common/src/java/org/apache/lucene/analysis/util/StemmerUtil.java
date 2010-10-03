@@ -28,7 +28,7 @@ specifier|public
 class|class
 name|StemmerUtil
 block|{
-comment|/**    * Returns true if the character array starts with the suffix.    *     * @param s Input Buffer    * @param len length of input buffer    * @param suffix Suffix string to test    * @return true if<code>s</code> starts with<code>suffix</code>    */
+comment|/**    * Returns true if the character array starts with the suffix.    *     * @param s Input Buffer    * @param len length of input buffer    * @param prefix Prefix string to test    * @return true if<code>s</code> starts with<code>prefix</code>    */
 DECL|method|startsWith
 specifier|public
 specifier|static

@@ -169,7 +169,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator} with a block size of    * {@link ByteBlockPool#BYTE_BLOCK_SIZE} (    * {@value ByteBlockPool#BYTE_BLOCK_SIZE}, upper buffered docs limit of    * {@link #DEFAULT_BUFFERED_BLOCKS} ({@value #DEFAULT_BUFFERED_BLOCKS}) and a    * {@link DummyConcurrentLock} instance.    *     */
+comment|/**    * Creates a new {@link RecyclingByteBlockAllocator} with a block size of    * {@link ByteBlockPool#BYTE_BLOCK_SIZE}, upper buffered docs limit of    * {@link #DEFAULT_BUFFERED_BLOCKS} ({@value #DEFAULT_BUFFERED_BLOCKS}) and a    * {@link DummyConcurrentLock} instance.    *     */
 DECL|method|RecyclingByteBlockAllocator
 specifier|public
 name|RecyclingByteBlockAllocator
