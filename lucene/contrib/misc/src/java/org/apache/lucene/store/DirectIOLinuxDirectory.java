@@ -88,6 +88,42 @@ name|FileChannel
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|NativeFSLockFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
 begin_comment
 comment|/**  * An {@link Directory} implementation that uses the  * Linux-specific O_DIRECT flag to bypass all OS level  * caching.  To use this you must compile  * NativePosixUtil.cpp (exposes Linux-specific APIs through  * JNI) for your platform.  *  *<p><b>WARNING</b>: this code is very new and quite easily  * could contain horrible bugs.  For example, here's one  * known issue: if you use seek in IndexOutput, and then  * write more than one buffer's worth of bytes, then the  * file will be wrong.  Lucene does not do this (only writes  * small number of bytes after seek).   * @lucene.experimental  */
 end_comment
