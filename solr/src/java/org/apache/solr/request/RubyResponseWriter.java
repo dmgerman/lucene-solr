@@ -41,6 +41,8 @@ comment|/**  * @deprecated use org.apache.solr.response.RubyResponseWriter  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|RubyResponseWriter
 specifier|public
 class|class

@@ -41,6 +41,8 @@ comment|/**  * @deprecated use org.apache.solr.response.JSONResponseWriter  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|JSONResponseWriter
 specifier|public
 class|class

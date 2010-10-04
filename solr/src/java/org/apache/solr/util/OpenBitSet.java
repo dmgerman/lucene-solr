@@ -31,6 +31,8 @@ comment|/** An "open" BitSet implementation that allows direct access to the arr
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|OpenBitSet
 specifier|public
 class|class

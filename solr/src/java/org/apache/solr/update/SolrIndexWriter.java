@@ -913,6 +913,8 @@ name|d
 return|;
 block|}
 comment|/** @deprecated remove when getDirectory(String,SolrIndexConfig) is gone */
+annotation|@
+name|Deprecated
 DECL|field|LEGACY_DIR_FACTORY
 specifier|private
 specifier|static
@@ -936,6 +938,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated use getDirectory(String path, DirectoryFactory directoryFactory, SolrIndexConfig config)    */
+annotation|@
+name|Deprecated
 DECL|method|getDirectory
 specifier|public
 specifier|static
@@ -1086,6 +1090,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated    */
+annotation|@
+name|Deprecated
 DECL|method|SolrIndexWriter
 specifier|public
 name|SolrIndexWriter
@@ -1137,6 +1143,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated    */
+annotation|@
+name|Deprecated
 DECL|method|SolrIndexWriter
 specifier|public
 name|SolrIndexWriter

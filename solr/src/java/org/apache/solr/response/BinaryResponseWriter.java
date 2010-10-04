@@ -855,12 +855,6 @@ control|(
 name|Fieldable
 name|f
 range|:
-operator|(
-name|List
-argument_list|<
-name|Fieldable
-argument_list|>
-operator|)
 name|doc
 operator|.
 name|getFields

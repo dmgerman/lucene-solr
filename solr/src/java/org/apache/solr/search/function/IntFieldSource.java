@@ -301,9 +301,6 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|(
-name|int
-operator|)
 name|arr
 index|[
 name|doc

@@ -1269,10 +1269,6 @@ argument_list|(
 name|i
 argument_list|)
 argument_list|,
-operator|(
-name|String
-index|[]
-operator|)
 name|l
 operator|.
 name|toArray

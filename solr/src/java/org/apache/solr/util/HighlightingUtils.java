@@ -363,6 +363,8 @@ comment|/**  * DEPRECATED Collection of Utility and Factory methods for Highligh
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|HighlightingUtils
 specifier|public
 class|class
@@ -484,6 +486,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter#isHighlightingEnabled     */
+annotation|@
+name|Deprecated
 DECL|method|isHighlightingEnabled
 specifier|public
 specifier|static
@@ -507,6 +511,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter     */
+annotation|@
+name|Deprecated
 DECL|method|getHighlighter
 specifier|public
 specifier|static
@@ -537,6 +543,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter#getHighlightFields     */
+annotation|@
+name|Deprecated
 DECL|method|getHighlightFields
 specifier|public
 specifier|static
@@ -569,6 +577,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter     */
+annotation|@
+name|Deprecated
 DECL|method|getMaxSnippets
 specifier|public
 specifier|static
@@ -594,6 +604,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter     */
+annotation|@
+name|Deprecated
 DECL|method|getFormatter
 specifier|public
 specifier|static
@@ -619,6 +631,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter     */
+annotation|@
+name|Deprecated
 DECL|method|getFragmenter
 specifier|public
 specifier|static
@@ -644,6 +658,8 @@ argument_list|)
 return|;
 block|}
 comment|/**     * @deprecated use DefaultSolrHighlighter     * @see DefaultSolrHighlighter#doHighlighting     */
+annotation|@
+name|Deprecated
 annotation|@
 name|SuppressWarnings
 argument_list|(

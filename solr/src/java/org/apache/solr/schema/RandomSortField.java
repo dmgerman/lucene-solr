@@ -695,9 +695,6 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|(
-name|int
-operator|)
 name|hash
 argument_list|(
 name|doc

@@ -190,10 +190,7 @@ name|doc
 parameter_list|)
 block|{
 return|return
-call|(
-name|int
-call|)
-argument_list|(
+operator|(
 name|end
 operator|-
 name|sindex
@@ -202,7 +199,7 @@ name|getOrd
 argument_list|(
 name|doc
 argument_list|)
-argument_list|)
+operator|)
 return|;
 block|}
 specifier|public

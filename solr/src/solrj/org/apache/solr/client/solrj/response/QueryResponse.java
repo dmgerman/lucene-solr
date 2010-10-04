@@ -1760,9 +1760,6 @@ decl_stmt|;
 name|Object
 name|v
 init|=
-operator|(
-name|Object
-operator|)
 name|nl
 operator|.
 name|getVal

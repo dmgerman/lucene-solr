@@ -21,6 +21,8 @@ comment|/**  * @deprecated use org.apache.solr.response.BinaryQueryResponseWrite
 end_comment
 
 begin_interface
+annotation|@
+name|Deprecated
 DECL|interface|BinaryQueryResponseWriter
 specifier|public
 interface|interface

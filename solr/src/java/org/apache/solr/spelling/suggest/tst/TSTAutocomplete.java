@@ -591,9 +591,6 @@ block|{
 name|TernaryTreeNode
 name|top
 init|=
-operator|(
-name|TernaryTreeNode
-operator|)
 name|st
 operator|.
 name|peek

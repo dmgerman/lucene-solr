@@ -647,6 +647,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the param, or the default if it's empty or not specified.    * @deprecated use SolrParam.get(String,String)    */
+annotation|@
+name|Deprecated
 DECL|method|getParam
 specifier|public
 specifier|static
@@ -701,6 +703,8 @@ name|v
 return|;
 block|}
 comment|/**    * Treats the param value as a Number, returns the default if nothing is    * there or if it's not a number.    * @deprecated use SolrParam.getFloat(String,float)    */
+annotation|@
+name|Deprecated
 DECL|method|getNumberParam
 specifier|public
 specifier|static
@@ -777,6 +781,8 @@ name|r
 return|;
 block|}
 comment|/**    * Treats parameter value as a boolean.  The string 'false' is false;    * any other non-empty string is true.    * @deprecated use SolrParam.getBool(String,boolean)    */
+annotation|@
+name|Deprecated
 DECL|method|getBooleanParam
 specifier|public
 specifier|static
@@ -2450,6 +2456,8 @@ name|out
 return|;
 block|}
 comment|/**    * Given a string containing functions with optional boosts, returns    * an array of Queries representing those functions with the specified    * boosts.    *<p>    * NOTE: intra-function whitespace is not allowed.    *</p>    * @see #parseFieldBoosts    * @deprecated    */
+annotation|@
+name|Deprecated
 DECL|method|parseFuncs
 specifier|public
 specifier|static
@@ -2586,12 +2594,6 @@ control|(
 name|BooleanClause
 name|c
 range|:
-operator|(
-name|List
-argument_list|<
-name|BooleanClause
-argument_list|>
-operator|)
 name|q
 operator|.
 name|clauses
@@ -2880,12 +2882,6 @@ control|(
 name|BooleanClause
 name|clause
 range|:
-operator|(
-name|List
-argument_list|<
-name|BooleanClause
-argument_list|>
-operator|)
 name|from
 operator|.
 name|clauses

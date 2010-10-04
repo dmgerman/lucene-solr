@@ -375,6 +375,8 @@ init|=
 literal|"commitWithin"
 decl_stmt|;
 comment|/**    * @deprecated use {@link #OVERWRITE}    */
+annotation|@
+name|Deprecated
 DECL|field|OVERWRITE_COMMITTED
 specifier|public
 specifier|static
@@ -385,6 +387,8 @@ init|=
 literal|"overwriteCommitted"
 decl_stmt|;
 comment|/**    * @deprecated use {@link #OVERWRITE}    */
+annotation|@
+name|Deprecated
 DECL|field|OVERWRITE_PENDING
 specifier|public
 specifier|static
@@ -395,6 +399,8 @@ init|=
 literal|"overwritePending"
 decl_stmt|;
 comment|/**    * @deprecated use {@link #OVERWRITE}    */
+annotation|@
+name|Deprecated
 DECL|field|ALLOW_DUPS
 specifier|public
 specifier|static

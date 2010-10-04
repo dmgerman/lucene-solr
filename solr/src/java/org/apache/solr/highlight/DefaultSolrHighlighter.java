@@ -3345,9 +3345,6 @@ specifier|final
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
@@ -3600,9 +3597,6 @@ name|tstream
 expr_stmt|;
 name|bufferedOffsetAtt
 operator|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|bufferedTokenStream
 operator|.
 name|addAttribute
@@ -3662,9 +3656,6 @@ DECL|field|offsetAtt
 name|OffsetAttribute
 name|offsetAtt
 init|=
-operator|(
-name|OffsetAttribute
-operator|)
 name|addAttribute
 argument_list|(
 name|OffsetAttribute

@@ -65,6 +65,8 @@ comment|/**  * @deprecated use org.apache.solr.response.TextResponseWriter  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TextResponseWriter
 specifier|public
 specifier|abstract

@@ -21,6 +21,8 @@ comment|/**  A variety of high efficiencly bit twiddling routines.  * @deprecate
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|BitUtil
 specifier|public
 class|class

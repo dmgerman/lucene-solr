@@ -21,6 +21,8 @@ comment|/**  * @deprecated use org.apache.solr.response.QueryResponseWriter  */
 end_comment
 
 begin_interface
+annotation|@
+name|Deprecated
 DECL|interface|QueryResponseWriter
 specifier|public
 interface|interface

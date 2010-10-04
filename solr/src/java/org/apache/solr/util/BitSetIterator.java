@@ -35,6 +35,8 @@ comment|/** An iterator to iterate over set bits in an OpenBitSet.  * This is fa
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|BitSetIterator
 specifier|public
 class|class

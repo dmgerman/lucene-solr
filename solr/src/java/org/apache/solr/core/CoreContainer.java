@@ -486,6 +486,8 @@ init|=
 literal|null
 decl_stmt|;
 comment|/**      * @deprecated all cores now abort on configuration error regardless of configuration      */
+annotation|@
+name|Deprecated
 DECL|method|isAbortOnConfigurationError
 specifier|public
 name|boolean
@@ -497,6 +499,8 @@ literal|true
 return|;
 block|}
 comment|/**      * @exception generates an error if you attempt to set this value to false      * @deprecated all cores now abort on configuration error regardless of configuration      */
+annotation|@
+name|Deprecated
 DECL|method|setAbortOnConfigurationError
 specifier|public
 name|void

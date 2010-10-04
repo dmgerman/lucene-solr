@@ -1367,6 +1367,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * @param req    * @param rsp    * @return a response object equivalent to what you get from the XML/JSON/javabin parser. Documents    * become SolrDocuments, DocList becomes SolrDocumentList etc.    *     * @deprecated use {@link BinaryResponseWriter#getParsedResponse(SolrQueryRequest, SolrQueryResponse)}    */
+annotation|@
+name|Deprecated
 DECL|method|getParsedResponse
 specifier|public
 name|NamedList

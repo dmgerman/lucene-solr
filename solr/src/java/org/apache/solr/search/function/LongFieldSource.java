@@ -263,9 +263,6 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|(
-name|long
-operator|)
 name|arr
 index|[
 name|doc
