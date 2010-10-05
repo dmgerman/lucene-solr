@@ -836,6 +836,12 @@ argument_list|>
 name|comparator
 parameter_list|)
 block|{
+if|if
+condition|(
+name|numTransitions
+operator|>
+literal|1
+condition|)
 name|Arrays
 operator|.
 name|sort
