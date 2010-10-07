@@ -794,16 +794,6 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Assume
-import|;
-end_import
-
 begin_class
 DECL|class|TestIndexWriter
 specifier|public
@@ -22107,14 +22097,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertTrue
-argument_list|(
 name|_TestUtil
 operator|.
 name|checkIndex
 argument_list|(
 name|dir
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|s
@@ -33524,12 +33511,6 @@ name|dir
 init|=
 name|newDirectory
 argument_list|()
-decl_stmt|;
-specifier|final
-name|Random
-name|rand
-init|=
-name|random
 decl_stmt|;
 comment|//IndexWriter w = new IndexWriter(dir, newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer()).setReaderPooling(true));
 name|IndexWriter

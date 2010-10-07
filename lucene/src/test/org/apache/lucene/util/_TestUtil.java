@@ -362,7 +362,9 @@ comment|/** This runs the CheckIndex tool on the index in.  If any    *  issues 
 DECL|method|checkIndex
 specifier|public
 specifier|static
-name|boolean
+name|CheckIndex
+operator|.
+name|Status
 name|checkIndex
 parameter_list|(
 name|Directory
@@ -453,9 +455,11 @@ argument_list|)
 throw|;
 block|}
 else|else
+block|{
 return|return
-literal|true
+name|indexStatus
 return|;
+block|}
 block|}
 comment|/** start and end are BOTH inclusive */
 DECL|method|nextInt
