@@ -1002,20 +1002,6 @@ operator|=
 name|size
 expr_stmt|;
 block|}
-comment|/**       * Create a TopTermsBooleanQueryRewrite that is limited      * to at most {@link BooleanQuery#getMaxClauseCount} terms.       */
-DECL|method|TopTermsBooleanQueryRewrite
-specifier|public
-name|TopTermsBooleanQueryRewrite
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|Integer
-operator|.
-name|MAX_VALUE
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Return a suitable Query for a MultiTermQuery term. */
 DECL|method|getQuery
 specifier|protected
@@ -1503,16 +1489,6 @@ name|TopTermsScoringBooleanQueryRewrite
 extends|extends
 name|TopTermsBooleanQueryRewrite
 block|{
-comment|/**       * Create a TopTermsScoringBooleanQueryRewrite that is limited      * to at most {@link BooleanQuery#getMaxClauseCount} terms.       */
-DECL|method|TopTermsScoringBooleanQueryRewrite
-specifier|public
-name|TopTermsScoringBooleanQueryRewrite
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**       * Create a TopTermsScoringBooleanQueryRewrite for       * at most<code>size</code> terms.      *<p>      * NOTE: if {@link BooleanQuery#getMaxClauseCount} is smaller than       *<code>size</code>, then it will be used instead.       */
 DECL|method|TopTermsScoringBooleanQueryRewrite
 specifier|public
@@ -1563,16 +1539,6 @@ name|TopTermsBoostOnlyBooleanQueryRewrite
 extends|extends
 name|TopTermsBooleanQueryRewrite
 block|{
-comment|/**       * Create a TopTermsBoostOnlyBooleanQueryRewrite that is limited      * to at most {@link BooleanQuery#getMaxClauseCount} terms.       */
-DECL|method|TopTermsBoostOnlyBooleanQueryRewrite
-specifier|public
-name|TopTermsBoostOnlyBooleanQueryRewrite
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**       * Create a TopTermsBoostOnlyBooleanQueryRewrite for       * at most<code>size</code> terms.      *<p>      * NOTE: if {@link BooleanQuery#getMaxClauseCount} is smaller than       *<code>size</code>, then it will be used instead.       */
 DECL|method|TopTermsBoostOnlyBooleanQueryRewrite
 specifier|public
