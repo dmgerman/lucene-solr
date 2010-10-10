@@ -2503,6 +2503,12 @@ name|ParseException
 block|{
 return|return
 name|parsedUserQuery
+operator|==
+literal|null
+condition|?
+name|altUserQuery
+else|:
+name|parsedUserQuery
 return|;
 block|}
 DECL|method|addDebugInfo
