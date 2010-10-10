@@ -741,10 +741,12 @@ expr_stmt|;
 block|}
 name|reader
 operator|=
-name|writer
+name|IndexReader
 operator|.
-name|getReader
-argument_list|()
+name|open
+argument_list|(
+name|writer
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.

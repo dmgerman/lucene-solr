@@ -890,12 +890,14 @@ comment|// (must) get an NRT reader:
 name|IndexReader
 name|reader
 init|=
+name|IndexReader
+operator|.
+name|open
+argument_list|(
 name|writer
 operator|.
 name|w
-operator|.
-name|getReader
-argument_list|()
+argument_list|)
 decl_stmt|;
 name|IndexSearcher
 name|searcher

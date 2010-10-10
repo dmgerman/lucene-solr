@@ -821,34 +821,11 @@ specifier|private
 name|PayloadProcessorProvider
 name|payloadProcessorProvider
 decl_stmt|;
-comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#commit} and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
+comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#flush} and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
 DECL|method|getReader
-specifier|public
 name|IndexReader
 name|getReader
 parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|getReader
-argument_list|(
-name|config
-operator|.
-name|getReaderTermsIndexDivisor
-argument_list|()
-argument_list|)
-return|;
-block|}
-comment|/** Expert: like {@link #getReader}, except you can    *  specify which termInfosIndexDivisor should be used for    *  any newly opened readers.    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriter#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely. */
-DECL|method|getReader
-specifier|public
-name|IndexReader
-name|getReader
-parameter_list|(
-name|int
-name|termInfosIndexDivisor
-parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -906,7 +883,10 @@ name|this
 argument_list|,
 name|segmentInfos
 argument_list|,
-name|termInfosIndexDivisor
+name|config
+operator|.
+name|getReaderTermsIndexDivisor
+argument_list|()
 argument_list|,
 name|codecs
 argument_list|)

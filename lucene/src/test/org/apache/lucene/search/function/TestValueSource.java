@@ -219,10 +219,12 @@ block|}
 name|IndexReader
 name|r
 init|=
-name|w
+name|IndexReader
 operator|.
-name|getReader
-argument_list|()
+name|open
+argument_list|(
+name|w
+argument_list|)
 decl_stmt|;
 name|w
 operator|.

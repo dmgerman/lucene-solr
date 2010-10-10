@@ -397,10 +397,12 @@ expr_stmt|;
 name|IndexReader
 name|r
 init|=
-name|writer
+name|IndexReader
 operator|.
-name|getReader
-argument_list|()
+name|open
+argument_list|(
+name|writer
+argument_list|)
 decl_stmt|;
 name|writer
 operator|.
