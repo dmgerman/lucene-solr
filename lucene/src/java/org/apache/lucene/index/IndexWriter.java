@@ -1844,7 +1844,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is    */
+comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is closed    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final

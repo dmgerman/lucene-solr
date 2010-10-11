@@ -2406,6 +2406,14 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|long
+name|startMS
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2560,6 +2568,32 @@ argument_list|,
 name|maxDiff
 argument_list|)
 expr_stmt|;
+comment|// Hurry things along if they are going slow (eg
+comment|// if you got SimpleText codec this will kick in):
+if|if
+condition|(
+name|i
+argument_list|<
+name|doc
+operator|&&
+name|System
+operator|.
+name|currentTimeMillis
+operator|(
+operator|)
+operator|-
+name|startMS
+argument_list|>
+literal|5
+condition|)
+block|{
+name|i
+operator|=
+name|doc
+operator|-
+literal|1
+expr_stmt|;
+block|}
 block|}
 name|lastDoc
 index|[
