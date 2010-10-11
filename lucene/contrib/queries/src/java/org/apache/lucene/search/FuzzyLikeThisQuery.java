@@ -1150,6 +1150,24 @@ name|score
 expr_stmt|;
 comment|// maintain minScore
 block|}
+name|boostAtt
+operator|.
+name|setMaxNonCompetitiveBoost
+argument_list|(
+name|variantsQ
+operator|.
+name|size
+argument_list|()
+operator|>=
+name|MAX_VARIANTS_PER_TERM
+condition|?
+name|minScore
+else|:
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 if|if
