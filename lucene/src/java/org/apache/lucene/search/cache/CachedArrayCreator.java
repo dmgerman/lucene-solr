@@ -516,10 +516,10 @@ name|OpenBitSet
 name|valid
 parameter_list|,
 name|int
-name|maxDocs
+name|numDocs
 parameter_list|,
 name|int
-name|numDocs
+name|maxDocs
 parameter_list|)
 block|{
 if|if
