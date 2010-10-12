@@ -848,6 +848,23 @@ name|bitPos
 operator|*
 name|FAC_BITPOS
 decl_stmt|;
+assert|assert
+name|elementPos
+operator|<
+name|blocks
+operator|.
+name|length
+operator|:
+literal|"elementPos: "
+operator|+
+name|elementPos
+operator|+
+literal|"; blocks.len: "
+operator|+
+name|blocks
+operator|.
+name|length
+assert|;
 return|return
 operator|(
 operator|(

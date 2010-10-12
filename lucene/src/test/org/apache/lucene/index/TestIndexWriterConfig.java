@@ -270,6 +270,7 @@ comment|// Does not implement anything - used only for type checking on IndexWri
 annotation|@
 name|Override
 DECL|method|getChain
+specifier|public
 name|DocConsumer
 name|getChain
 parameter_list|(

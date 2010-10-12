@@ -12,6 +12,22 @@ name|index
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|values
+operator|.
+name|Values
+import|;
+end_import
+
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -41,6 +57,10 @@ DECL|field|number
 specifier|public
 name|int
 name|number
+decl_stmt|;
+DECL|field|indexValues
+name|Values
+name|indexValues
 decl_stmt|;
 comment|// true if term vector for this field should be stored
 DECL|field|storeTermVector
@@ -381,6 +401,60 @@ expr_stmt|;
 comment|// if one require omitTermFreqAndPositions at least once, it remains off for life
 block|}
 block|}
+block|}
+DECL|method|setIndexValues
+name|void
+name|setIndexValues
+parameter_list|(
+name|Values
+name|v
+parameter_list|)
+block|{
+if|if
+condition|(
+name|indexValues
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|indexValues
+operator|!=
+name|v
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"indexValues is already set to "
+operator|+
+name|indexValues
+operator|+
+literal|"; cannot change to "
+operator|+
+name|v
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+name|indexValues
+operator|=
+name|v
+expr_stmt|;
+block|}
+block|}
+DECL|method|getIndexValues
+name|Values
+name|getIndexValues
+parameter_list|()
+block|{
+return|return
+name|indexValues
+return|;
 block|}
 block|}
 end_class
