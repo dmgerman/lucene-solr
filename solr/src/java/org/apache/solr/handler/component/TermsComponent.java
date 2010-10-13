@@ -407,6 +407,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|rb
+operator|.
+name|isDistrib
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|params
@@ -1782,18 +1788,6 @@ argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
-comment|// don't pass through the shards param
-name|sreq
-operator|.
-name|params
-operator|.
-name|remove
-argument_list|(
-name|ShardParams
-operator|.
-name|SHARDS
-argument_list|)
-expr_stmt|;
 comment|// remove any limits for shards, we want them to return all possible
 comment|// responses
 comment|// we want this so we can calculate the correct counts
@@ -1849,40 +1843,6 @@ operator|.
 name|TERMS_SORT_INDEX
 argument_list|)
 expr_stmt|;
-comment|// TODO: is there a better way to handle this?
-name|String
-name|qt
-init|=
-name|params
-operator|.
-name|get
-argument_list|(
-name|CommonParams
-operator|.
-name|QT
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|qt
-operator|!=
-literal|null
-condition|)
-block|{
-name|sreq
-operator|.
-name|params
-operator|.
-name|add
-argument_list|(
-name|CommonParams
-operator|.
-name|QT
-argument_list|,
-name|qt
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|sreq
 return|;

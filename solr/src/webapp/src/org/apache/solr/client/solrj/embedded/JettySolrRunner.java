@@ -34,26 +34,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Random
@@ -116,6 +96,30 @@ name|org
 operator|.
 name|mortbay
 operator|.
+name|component
+operator|.
+name|LifeCycle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|mortbay
+operator|.
+name|jetty
+operator|.
+name|Connector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|mortbay
+operator|.
 name|jetty
 operator|.
 name|Handler
@@ -142,7 +146,9 @@ name|mortbay
 operator|.
 name|jetty
 operator|.
-name|Connector
+name|nio
+operator|.
+name|SelectChannelConnector
 import|;
 end_import
 
@@ -236,6 +242,18 @@ DECL|field|context
 name|String
 name|context
 decl_stmt|;
+DECL|field|solrConfigFilename
+specifier|private
+name|String
+name|solrConfigFilename
+decl_stmt|;
+DECL|field|waitOnSolr
+specifier|private
+name|boolean
+name|waitOnSolr
+init|=
+literal|false
+decl_stmt|;
 DECL|method|JettySolrRunner
 specifier|public
 name|JettySolrRunner
@@ -280,36 +298,13 @@ argument_list|,
 name|port
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|solrConfigFilename
-operator|!=
-literal|null
-condition|)
-name|dispatchFilter
+name|this
 operator|.
-name|setInitParameter
-argument_list|(
-literal|"solrconfig-filename"
-argument_list|,
 name|solrConfigFilename
-argument_list|)
+operator|=
+name|solrConfigFilename
 expr_stmt|;
 block|}
-comment|//  public JettySolrRunner( String context, String home, String dataDir, int port, boolean log )
-comment|//  {
-comment|//    if(!log) {
-comment|//      System.setProperty("org.mortbay.log.class", NoLog.class.getName() );
-comment|//      System.setProperty("java.util.logging.config.file", home+"/conf/logging.properties");
-comment|//      NoLog noLogger = new NoLog();
-comment|//      org.mortbay.log.Log.setLog(noLogger);
-comment|//    }
-comment|//
-comment|//    // Initalize JNDI
-comment|//    Config.setInstanceDir(home);
-comment|//    new SolrCore(dataDir, new IndexSchema(home+"/conf/schema.xml"));
-comment|//    this.init( context, port );
-comment|//  }
 DECL|method|init
 specifier|private
 name|void
@@ -334,6 +329,13 @@ operator|new
 name|Server
 argument_list|(
 name|port
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setStopAtShutdown
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -395,14 +397,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|server
-operator|.
-name|setStopAtShutdown
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// Initialize the servlets
+specifier|final
 name|Context
 name|root
 init|=
@@ -418,16 +414,104 @@ operator|.
 name|SESSIONS
 argument_list|)
 decl_stmt|;
-comment|// for some reason, there must be a servlet for this to get applied
-name|root
+name|server
 operator|.
-name|addServlet
+name|addLifeCycleListener
 argument_list|(
-name|Servlet404
+operator|new
+name|LifeCycle
 operator|.
-name|class
+name|Listener
+argument_list|()
+block|{
+specifier|public
+name|void
+name|lifeCycleStopping
+parameter_list|(
+name|LifeCycle
+name|arg0
+parameter_list|)
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"hostPort"
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|lifeCycleStopped
+parameter_list|(
+name|LifeCycle
+name|arg0
+parameter_list|)
+block|{}
+specifier|public
+name|void
+name|lifeCycleStarting
+parameter_list|(
+name|LifeCycle
+name|arg0
+parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|JettySolrRunner
+operator|.
+name|this
+init|)
+block|{
+name|waitOnSolr
+operator|=
+literal|true
+expr_stmt|;
+name|JettySolrRunner
+operator|.
+name|this
+operator|.
+name|notify
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|lifeCycleStarted
+parameter_list|(
+name|LifeCycle
+name|arg0
+parameter_list|)
+block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"hostPort"
 argument_list|,
-literal|"/*"
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|getLocalPort
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|solrConfigFilename
+operator|!=
+literal|null
+condition|)
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solrconfig"
+argument_list|,
+name|solrConfigFilename
 argument_list|)
 expr_stmt|;
 name|dispatchFilter
@@ -447,9 +531,57 @@ operator|.
 name|REQUEST
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|solrConfigFilename
+operator|!=
+literal|null
+condition|)
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solrconfig"
+argument_list|)
+expr_stmt|;
 block|}
-comment|//------------------------------------------------------------------------------------------------
-comment|//------------------------------------------------------------------------------------------------
+specifier|public
+name|void
+name|lifeCycleFailure
+parameter_list|(
+name|LifeCycle
+name|arg0
+parameter_list|,
+name|Throwable
+name|arg1
+parameter_list|)
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"hostPort"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+comment|// for some reason, there must be a servlet for this to get applied
+name|root
+operator|.
+name|addServlet
+argument_list|(
+name|Servlet404
+operator|.
+name|class
+argument_list|,
+literal|"/*"
+argument_list|)
+expr_stmt|;
+block|}
+comment|// ------------------------------------------------------------------------------------------------
+comment|// ------------------------------------------------------------------------------------------------
 DECL|method|start
 specifier|public
 name|void
@@ -490,15 +622,49 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
-if|if
+synchronized|synchronized
+init|(
+name|JettySolrRunner
+operator|.
+name|this
+init|)
+block|{
+name|int
+name|cnt
+init|=
+literal|0
+decl_stmt|;
+while|while
 condition|(
-name|waitForSolr
+operator|!
+name|waitOnSolr
 condition|)
-name|waitForSolr
+block|{
+name|this
+operator|.
+name|wait
 argument_list|(
-name|context
+literal|100
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cnt
+operator|++
+operator|==
+literal|5
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Jetty/Solr unresponsive"
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
 block|}
 DECL|method|stop
 specifier|public
@@ -528,110 +694,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Waits until a ping query to the solr server succeeds,    * retrying every 200 milliseconds up to 2 minutes.    */
-DECL|method|waitForSolr
-specifier|public
-name|void
-name|waitForSolr
-parameter_list|(
-name|String
-name|context
-parameter_list|)
-throws|throws
-name|Exception
-block|{
-name|int
-name|port
-init|=
-name|getLocalPort
-argument_list|()
-decl_stmt|;
-comment|// A raw term query type doesn't check the schema
-name|URL
-name|url
-init|=
-operator|new
-name|URL
-argument_list|(
-literal|"http://localhost:"
-operator|+
-name|port
-operator|+
-name|context
-operator|+
-literal|"/select?q={!raw+f=junit_test_query}ping"
-argument_list|)
-decl_stmt|;
-name|Exception
-name|ex
-init|=
-literal|null
-decl_stmt|;
-comment|// Wait for a total of 20 seconds: 100 tries, 200 milliseconds each
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-literal|600
-condition|;
-name|i
-operator|++
-control|)
-block|{
-try|try
-block|{
-name|InputStream
-name|stream
-init|=
-name|url
-operator|.
-name|openStream
-argument_list|()
-decl_stmt|;
-name|stream
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// e.printStackTrace();
-name|ex
-operator|=
-name|e
-expr_stmt|;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|200
-argument_list|)
-expr_stmt|;
-continue|continue;
-block|}
-return|return;
-block|}
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Jetty/Solr unresponsive"
-argument_list|,
-name|ex
-argument_list|)
-throw|;
-block|}
-comment|/**    * Returns the Local Port of the first Connector found for the jetty Server.    * @exception RuntimeException if there is no Connector    */
+comment|/**    * Returns the Local Port of the first Connector found for the jetty Server.    *     * @exception RuntimeException if there is no Connector    */
 DECL|method|getLocalPort
 specifier|public
 name|int
@@ -674,9 +737,9 @@ name|getLocalPort
 argument_list|()
 return|;
 block|}
-comment|//--------------------------------------------------------------
-comment|//--------------------------------------------------------------
-comment|/**     * This is a stupid hack to give jetty something to attach to    */
+comment|// --------------------------------------------------------------
+comment|// --------------------------------------------------------------
+comment|/**    * This is a stupid hack to give jetty something to attach to    */
 DECL|class|Servlet404
 specifier|public
 specifier|static
@@ -717,7 +780,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A main class that starts jetty+solr     * This is useful for debugging    */
+comment|/**    * A main class that starts jetty+solr This is useful for debugging    */
 DECL|method|main
 specifier|public
 specifier|static
@@ -864,7 +927,7 @@ parameter_list|,
 name|Object
 name|arg1
 parameter_list|)
-block|{}
+block|{   }
 DECL|method|debug
 specifier|public
 name|void
@@ -876,7 +939,7 @@ parameter_list|,
 name|Throwable
 name|th
 parameter_list|)
-block|{}
+block|{   }
 DECL|method|debug
 specifier|public
 name|void
@@ -891,7 +954,7 @@ parameter_list|,
 name|Object
 name|arg1
 parameter_list|)
-block|{}
+block|{   }
 DECL|method|warn
 specifier|public
 name|void
@@ -906,7 +969,7 @@ parameter_list|,
 name|Object
 name|arg1
 parameter_list|)
-block|{}
+block|{   }
 DECL|method|warn
 specifier|public
 name|void
@@ -918,7 +981,7 @@ parameter_list|,
 name|Throwable
 name|th
 parameter_list|)
-block|{}
+block|{   }
 DECL|method|getLogger
 specifier|public
 name|Logger
