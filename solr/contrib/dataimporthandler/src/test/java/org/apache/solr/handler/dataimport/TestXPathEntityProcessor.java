@@ -19,46 +19,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|dataimport
-operator|.
-name|AbstractDataImportHandlerTestCase
-operator|.
-name|createMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -160,7 +120,7 @@ specifier|public
 class|class
 name|TestXPathEntityProcessor
 extends|extends
-name|SolrTestCaseJ4
+name|AbstractDataImportHandlerTestCase
 block|{
 DECL|field|simulateSlowReader
 name|boolean
@@ -310,8 +270,6 @@ expr_stmt|;
 name|Context
 name|c
 init|=
-name|AbstractDataImportHandlerTestCase
-operator|.
 name|getContext
 argument_list|(
 literal|null
@@ -404,8 +362,6 @@ name|row
 argument_list|)
 expr_stmt|;
 block|}
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|3
@@ -416,8 +372,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Empire Burlesque"
@@ -435,8 +389,6 @@ literal|"title"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Bonnie Tyler"
@@ -454,8 +406,6 @@ literal|"artist"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"1982"
@@ -536,8 +486,6 @@ expr_stmt|;
 name|Context
 name|c
 init|=
-name|AbstractDataImportHandlerTestCase
-operator|.
 name|getContext
 argument_list|(
 literal|null
@@ -630,8 +578,6 @@ name|row
 argument_list|)
 expr_stmt|;
 block|}
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|2
@@ -718,8 +664,6 @@ expr_stmt|;
 name|Context
 name|c
 init|=
-name|AbstractDataImportHandlerTestCase
-operator|.
 name|getContext
 argument_list|(
 literal|null
@@ -796,8 +740,6 @@ operator|=
 name|row
 expr_stmt|;
 block|}
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"1B2"
@@ -926,8 +868,6 @@ expr_stmt|;
 name|Context
 name|c
 init|=
-name|AbstractDataImportHandlerTestCase
-operator|.
 name|getContext
 argument_list|(
 literal|null
@@ -1213,8 +1153,6 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Expected thread to stop"
@@ -1229,8 +1167,6 @@ name|isAlive
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 name|rowsToRead
@@ -1254,8 +1190,6 @@ operator|<
 literal|0
 condition|)
 block|{
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Empire Burlesque"
@@ -1273,8 +1207,6 @@ literal|"title"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Bonnie Tyler"
@@ -1292,8 +1224,6 @@ literal|"artist"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"1982"
@@ -1464,8 +1394,6 @@ decl_stmt|;
 name|Context
 name|c
 init|=
-name|AbstractDataImportHandlerTestCase
-operator|.
 name|getContext
 argument_list|(
 literal|null
@@ -1558,8 +1486,6 @@ name|row
 argument_list|)
 expr_stmt|;
 block|}
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|3
@@ -1570,8 +1496,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Empire Burlesque"
@@ -1589,8 +1513,6 @@ literal|"title"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Bonnie Tyler"
@@ -1608,8 +1530,6 @@ literal|"artist"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"1982"
