@@ -58,6 +58,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -438,6 +450,23 @@ block|{
 return|return;
 comment|// Quick return - no output do nothing.
 block|}
+try|try
+block|{
+name|LogManager
+operator|.
+name|getLogManager
+argument_list|()
+operator|.
+name|readConfiguration
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{}
 name|sb
 operator|.
 name|setLength
