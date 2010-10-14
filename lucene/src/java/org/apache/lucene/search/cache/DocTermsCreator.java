@@ -658,7 +658,15 @@ block|}
 block|}
 block|}
 comment|// maybe an int-only impl?
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+specifier|final
+name|T
+name|t
+init|=
 operator|(
 name|T
 operator|)
@@ -677,6 +685,9 @@ operator|.
 name|getMutable
 argument_list|()
 argument_list|)
+decl_stmt|;
+return|return
+name|t
 return|;
 block|}
 annotation|@
