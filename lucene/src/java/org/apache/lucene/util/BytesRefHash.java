@@ -296,7 +296,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Returns the {@link BytesRef} value for the given ord.    *<p>    * Note: the given ord must be a positive integer less that the current size (    * {@link #size()})    *</p>    *     * @param ord    *          the ord    *     * @return a BytesRef instance for the given ord    */
+comment|/**    * Populates and returns a {@link BytesRef} with the bytes for the given ord.    *<p>    * Note: the given ord must be a positive integer less that the current size (    * {@link #size()})    *</p>    *    * @param ord the ord    * @param ref the {@link BytesRef} to populate    *     * @return the given BytesRef instance populated with the bytes for the given ord    */
 DECL|method|get
 specifier|public
 name|BytesRef
@@ -304,6 +304,9 @@ name|get
 parameter_list|(
 name|int
 name|ord
+parameter_list|,
+name|BytesRef
+name|ref
 parameter_list|)
 block|{
 assert|assert
@@ -331,7 +334,7 @@ name|pool
 operator|.
 name|setBytesRef
 argument_list|(
-name|scratch1
+name|ref
 argument_list|,
 name|bytesStart
 index|[
