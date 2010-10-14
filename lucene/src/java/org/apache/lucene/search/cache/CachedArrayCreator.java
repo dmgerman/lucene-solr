@@ -406,7 +406,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Parser changed in subsequet call.  "
+literal|"Parser changed in subsequent call.  "
 operator|+
 name|value
 operator|.
@@ -485,7 +485,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Parser changed in subsequet call.  "
+literal|"Parser changed in subsequent call.  "
 operator|+
 name|value
 operator|.
