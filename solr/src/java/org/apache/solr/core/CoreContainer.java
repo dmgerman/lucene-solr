@@ -588,6 +588,24 @@ operator|.
 name|locateSolrHome
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"New CoreContainer: solrHome="
+operator|+
+name|solrHome
+operator|+
+literal|" instance="
+operator|+
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|initZooKeeper
 specifier|private
@@ -2640,7 +2658,14 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"CoreContainer was not shutdown prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!"
+literal|"CoreContainer was not shutdown prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!  instance="
+operator|+
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|shutdown
