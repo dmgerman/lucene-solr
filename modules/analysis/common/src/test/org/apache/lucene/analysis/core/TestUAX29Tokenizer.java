@@ -1497,11 +1497,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|WordBreakTestUnicode_5_2_0
+name|WordBreakTestUnicode_6_0_0
 name|wordBreakTest
 init|=
 operator|new
-name|WordBreakTestUnicode_5_2_0
+name|WordBreakTestUnicode_6_0_0
 argument_list|()
 decl_stmt|;
 name|wordBreakTest
