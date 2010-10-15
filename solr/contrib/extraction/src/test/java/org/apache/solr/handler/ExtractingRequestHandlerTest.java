@@ -1878,6 +1878,8 @@ argument_list|(
 name|args
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// TODO: stop using locally defined streams once stream.file and
 comment|// stream.body work everywhere
 name|List
@@ -1927,6 +1929,15 @@ argument_list|,
 name|req
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
