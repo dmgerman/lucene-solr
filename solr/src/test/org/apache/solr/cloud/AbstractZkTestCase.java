@@ -224,15 +224,7 @@ name|beforeClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{
-name|initCore
-argument_list|(
-literal|"solrconfig.xml"
-argument_list|,
-literal|"schema12.xml"
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 annotation|@
 name|Override
 DECL|method|setUp
