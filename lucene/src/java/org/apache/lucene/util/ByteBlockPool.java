@@ -16,10 +16,6 @@ begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_comment
-comment|/* Class that Posting and PostingVector use to write byte  * streams into shared fixed-size byte[] arrays.  The idea  * is to allocate slices of increasing lengths For  * example, the first slice is 5 bytes, the next slice is  * 14, etc.  We start by writing our bytes into the first  * 5 bytes.  When we hit the end of the slice, we allocate  * the next slice and then write the address of the new  * slice into the last 4 bytes of the previous slice (the  * "forwarding address").  *  * Each slice is filled with 0's initially, and we mark  * the end with a non-zero byte.  This way the methods  * that are writing into the slice don't need to record  * its length and instead allocate a new slice once they  * hit a non-zero byte. */
-end_comment
-
 begin_import
 import|import
 name|java
@@ -55,6 +51,10 @@ operator|.
 name|NUM_BYTES_OBJECT_REF
 import|;
 end_import
+
+begin_comment
+comment|/**   * Class that Posting and PostingVector use to write byte  * streams into shared fixed-size byte[] arrays.  The idea  * is to allocate slices of increasing lengths For  * example, the first slice is 5 bytes, the next slice is  * 14, etc.  We start by writing our bytes into the first  * 5 bytes.  When we hit the end of the slice, we allocate  * the next slice and then write the address of the new  * slice into the last 4 bytes of the previous slice (the  * "forwarding address").  *  * Each slice is filled with 0's initially, and we mark  * the end with a non-zero byte.  This way the methods  * that are writing into the slice don't need to record  * its length and instead allocate a new slice once they  * hit a non-zero byte.   *   * @lucene.internal  **/
+end_comment
 
 begin_class
 DECL|class|ByteBlockPool
@@ -201,6 +201,60 @@ name|blockSize
 index|]
 return|;
 block|}
+block|}
+DECL|class|DirectAllocator
+specifier|public
+specifier|static
+specifier|final
+class|class
+name|DirectAllocator
+extends|extends
+name|Allocator
+block|{
+DECL|method|DirectAllocator
+specifier|public
+name|DirectAllocator
+parameter_list|()
+block|{
+name|this
+argument_list|(
+name|BYTE_BLOCK_SIZE
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|DirectAllocator
+specifier|public
+name|DirectAllocator
+parameter_list|(
+name|int
+name|blockSize
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|blockSize
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|recycleByteBlocks
+specifier|public
+name|void
+name|recycleByteBlocks
+parameter_list|(
+name|byte
+index|[]
+index|[]
+name|blocks
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|end
+parameter_list|)
+block|{     }
 block|}
 DECL|field|buffers
 specifier|public
