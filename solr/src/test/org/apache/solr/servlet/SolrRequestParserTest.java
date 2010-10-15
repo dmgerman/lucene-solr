@@ -254,6 +254,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Assume
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|BeforeClass
 import|;
 end_import
@@ -802,10 +812,20 @@ name|Exception
 name|ex
 parameter_list|)
 block|{
-comment|// TODO - should it fail/skip?
-name|fail
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
 literal|"this test only works if you have a network connection."
+argument_list|)
+expr_stmt|;
+name|Assume
+operator|.
+name|assumeNoException
+argument_list|(
+name|ex
 argument_list|)
 expr_stmt|;
 return|return;
