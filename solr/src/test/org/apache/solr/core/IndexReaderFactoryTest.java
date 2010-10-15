@@ -127,7 +127,7 @@ name|assertTrue
 argument_list|(
 literal|"readerFactory is not an instanceof "
 operator|+
-name|AlternateIndexReaderTest
+name|AlternateDirectoryTest
 operator|.
 name|TestIndexReaderFactory
 operator|.
