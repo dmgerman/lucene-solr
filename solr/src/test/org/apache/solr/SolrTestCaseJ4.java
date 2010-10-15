@@ -1455,26 +1455,38 @@ operator|!=
 name|results
 condition|)
 block|{
-name|fail
-argument_list|(
-name|m
-operator|+
-literal|"query failed XPath: "
+name|String
+name|msg
+init|=
+literal|"REQUEST FAILED: xpath="
 operator|+
 name|results
 operator|+
-literal|"\n xml response was: "
+literal|"\n\txml response was: "
 operator|+
 name|response
 operator|+
-literal|"\n request was: "
+literal|"\n\trequest was:"
 operator|+
 name|req
 operator|.
 name|getParamString
 argument_list|()
+decl_stmt|;
+name|log
+operator|.
+name|error
+argument_list|(
+name|msg
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|msg
+argument_list|)
+throw|;
 block|}
 block|}
 catch|catch
@@ -1499,6 +1511,18 @@ name|Exception
 name|e2
 parameter_list|)
 block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"REQUEST FAILED: "
+operator|+
+name|req
+operator|.
+name|getParamString
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
