@@ -3195,6 +3195,11 @@ operator|instanceof
 name|Field
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -3386,6 +3391,11 @@ argument_list|)
 operator|instanceof
 name|Field
 argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** @see org.apache.solr.util.DateMathParserTest */
