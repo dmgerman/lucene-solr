@@ -2183,6 +2183,48 @@ name|FrameworkMethod
 name|method
 parameter_list|)
 block|{
+comment|// org.junit.internal.AssumptionViolatedException in older releases
+comment|// org.junit.Assume.AssumptionViolatedException in recent ones
+if|if
+condition|(
+name|e
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|"AssumptionViolatedException"
+argument_list|)
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: "
+operator|+
+name|method
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" Assume failed (ignored):"
+argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
 name|testsFailed
 operator|=
 literal|true
@@ -2190,6 +2232,7 @@ expr_stmt|;
 name|reportAdditionalFailureInfo
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|failed
