@@ -401,6 +401,10 @@ argument_list|,
 literal|"text"
 argument_list|,
 literal|"line up and fly directly at the enemy death cannons, clogging them with wreckage!"
+argument_list|,
+literal|"zerolen_s"
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 block|}
@@ -962,6 +966,34 @@ argument_list|,
 literal|"//int[2][@name='Obnoxious'][.='1']"
 argument_list|,
 literal|"//int[3][@name='Tool'][.='2']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[42 TO 47]"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.method"
+argument_list|,
+literal|"fc"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:[42 TO 45]"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"zerolen_s"
+argument_list|)
+argument_list|,
+literal|"*[count(//lst[@name='zerolen_s']/int)=1]"
 argument_list|)
 expr_stmt|;
 block|}

@@ -1347,6 +1347,10 @@ operator|.
 name|length
 operator|>
 name|left
+operator|||
+name|currentBlock
+operator|==
+literal|null
 condition|)
 block|{
 if|if
