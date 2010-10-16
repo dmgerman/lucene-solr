@@ -242,6 +242,9 @@ name|IOException
 throws|,
 name|ParseException
 block|{
+name|fail
+argument_list|()
+expr_stmt|;
 name|Analyzer
 name|analyzer
 init|=
