@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Test for ScriptTransformer  *</p>  *<p/>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * Test for ScriptTransformer  *</p>  *<p/>  * All tests in this have been ignored because script support is only available  * in Java 1.6+  *  * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -162,6 +162,8 @@ name|AbstractDataImportHandlerTestCase
 block|{
 annotation|@
 name|Test
+annotation|@
+name|Ignore
 DECL|method|testBasic
 specifier|public
 name|void
@@ -365,6 +367,8 @@ return|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
 DECL|method|testOneparam
 specifier|public
 name|void
@@ -460,6 +464,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
 DECL|method|testReadScriptTag
 specifier|public
 name|void
@@ -544,6 +550,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
 DECL|method|testCheckScript
 specifier|public
 name|void
