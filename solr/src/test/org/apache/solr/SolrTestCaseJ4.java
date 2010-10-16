@@ -1511,16 +1511,20 @@ name|Exception
 name|e2
 parameter_list|)
 block|{
-name|log
+name|SolrException
 operator|.
-name|error
+name|log
 argument_list|(
+name|log
+argument_list|,
 literal|"REQUEST FAILED: "
 operator|+
 name|req
 operator|.
 name|getParamString
 argument_list|()
+argument_list|,
+name|e2
 argument_list|)
 expr_stmt|;
 throw|throw
