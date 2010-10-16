@@ -2437,9 +2437,6 @@ name|field
 argument_list|,
 operator|new
 name|DocTermsIndexCreator
-argument_list|<
-name|DocTermsIndex
-argument_list|>
 argument_list|(
 name|field
 argument_list|)
@@ -2472,9 +2469,6 @@ name|field
 argument_list|,
 operator|new
 name|DocTermsIndexCreator
-argument_list|<
-name|DocTermsIndex
-argument_list|>
 argument_list|(
 name|field
 argument_list|,
@@ -2566,9 +2560,6 @@ name|field
 argument_list|,
 operator|new
 name|DocTermsCreator
-argument_list|<
-name|DocTerms
-argument_list|>
 argument_list|(
 name|field
 argument_list|)
@@ -2601,9 +2592,6 @@ name|field
 argument_list|,
 operator|new
 name|DocTermsCreator
-argument_list|<
-name|DocTerms
-argument_list|>
 argument_list|(
 name|field
 argument_list|,
