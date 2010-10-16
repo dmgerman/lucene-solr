@@ -3691,6 +3691,11 @@ literal|"weight"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|request
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|args
 operator|.
 name|put
@@ -3780,6 +3785,11 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|request
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
