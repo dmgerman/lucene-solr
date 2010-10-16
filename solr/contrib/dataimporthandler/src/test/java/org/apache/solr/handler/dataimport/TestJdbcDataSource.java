@@ -697,6 +697,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock database server to work"
+argument_list|)
 DECL|method|testBasic
 specifier|public
 name|void
