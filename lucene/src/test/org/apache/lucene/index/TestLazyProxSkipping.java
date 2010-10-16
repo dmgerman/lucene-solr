@@ -238,18 +238,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assume
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests lazy skipping on the proximity file.  *  */
 end_comment
@@ -777,9 +765,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|assumeTrue
+name|assumeFalse
 argument_list|(
-operator|!
+literal|"This test cannot run with SimpleText codec"
+argument_list|,
 name|CodecProvider
 operator|.
 name|getDefaultCodec
