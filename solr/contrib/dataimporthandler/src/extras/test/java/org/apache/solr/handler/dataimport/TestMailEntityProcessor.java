@@ -203,6 +203,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|method|testConnection
 specifier|public
 name|void
@@ -331,6 +334,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|method|testRecursion
 specifier|public
 name|void
@@ -458,6 +464,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|method|testExclude
 specifier|public
 name|void
@@ -594,6 +603,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|method|testInclude
 specifier|public
 name|void
@@ -730,6 +742,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|method|testIncludeAndExclude
 specifier|public
 name|void
@@ -875,6 +890,9 @@ annotation|@
 name|Test
 annotation|@
 name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|method|testFetchTimeSince
 specifier|public
 name|void
