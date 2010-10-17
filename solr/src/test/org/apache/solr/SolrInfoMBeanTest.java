@@ -134,6 +134,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -195,6 +205,11 @@ extends|extends
 name|LuceneTestCase
 block|{
 comment|/**    * Gets a list of everything we can find in the classpath and makes sure it has    * a name, description, etc...    */
+annotation|@
+name|Ignore
+argument_list|(
+literal|"meddles with unrelated tests"
+argument_list|)
 DECL|method|testCallMBeanInfo
 specifier|public
 name|void
