@@ -276,6 +276,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -324,6 +338,29 @@ name|IndexSearcher
 implements|implements
 name|SolrInfoMBean
 block|{
+comment|// These should *only* be used for debugging or monitoring purposes
+DECL|field|numOpens
+specifier|public
+specifier|static
+specifier|final
+name|AtomicLong
+name|numOpens
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
+DECL|field|numCloses
+specifier|public
+specifier|static
+specifier|final
+name|AtomicLong
+name|numCloses
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -1295,6 +1332,12 @@ operator|.
 name|ALL
 argument_list|)
 expr_stmt|;
+comment|// do this at the end since an exception in the constructor means we won't close
+name|numOpens
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|toString
 specifier|public
@@ -1496,6 +1539,12 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|// do this at the end so it only gets done if there are no exceptions
+name|numCloses
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** Direct access to the IndexReader used by this searcher */
 DECL|method|getReader
