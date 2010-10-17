@@ -1417,6 +1417,11 @@ name|SolrQueryResponse
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
