@@ -2573,6 +2573,20 @@ name|void
 name|shutdown
 parameter_list|()
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Shutting down CoreContainer instance="
+operator|+
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|cores
