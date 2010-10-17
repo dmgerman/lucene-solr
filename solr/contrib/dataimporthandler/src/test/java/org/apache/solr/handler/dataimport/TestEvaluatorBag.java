@@ -34,6 +34,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -557,6 +567,11 @@ block|}
 comment|/**    * Test method for {@link EvaluatorBag#getDateFormatEvaluator()}.    */
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Known Locale/TZ problems: see https://issues.apache.org/jira/browse/SOLR-1916"
+argument_list|)
 DECL|method|testGetDateFormatEvaluator
 specifier|public
 name|void
