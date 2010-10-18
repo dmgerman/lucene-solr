@@ -2543,7 +2543,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL:"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDescription
