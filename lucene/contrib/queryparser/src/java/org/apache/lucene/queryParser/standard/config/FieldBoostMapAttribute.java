@@ -82,7 +82,7 @@ name|setFieldBoostMap
 parameter_list|(
 name|Map
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Float
 argument_list|>
@@ -93,7 +93,7 @@ DECL|method|getFieldBoostMap
 specifier|public
 name|Map
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Float
 argument_list|>
