@@ -205,11 +205,6 @@ extends|extends
 name|LuceneTestCase
 block|{
 comment|/**    * Gets a list of everything we can find in the classpath and makes sure it has    * a name, description, etc...    */
-annotation|@
-name|Ignore
-argument_list|(
-literal|"meddles with unrelated tests"
-argument_list|)
 DECL|method|testCallMBeanInfo
 specifier|public
 name|void
@@ -564,10 +559,10 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
-name|directories
-operator|.
-name|add
-argument_list|(
+specifier|final
+name|File
+name|f
+init|=
 operator|new
 name|File
 argument_list|(
@@ -579,6 +574,47 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+decl_stmt|;
+comment|// only iterate classes from the core, not the tests
+if|if
+condition|(
+operator|!
+name|f
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"build"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"solr"
+argument_list|)
+condition|)
+continue|continue;
+comment|// extra security :-)
+if|if
+condition|(
+name|f
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"tests"
+argument_list|)
+condition|)
+continue|continue;
+name|directories
+operator|.
+name|add
+argument_list|(
+name|f
 argument_list|)
 expr_stmt|;
 block|}
@@ -638,19 +674,6 @@ literal|".class"
 argument_list|)
 condition|)
 block|{
-comment|// FIXME: Find the static/sysprop/file leakage here.
-comment|// If we call Class.forName(ReplicationHandler) here, its test will later fail
-comment|// when run inside the same JVM (-Dtests.threadspercpu=0), so something is wrong.
-if|if
-condition|(
-name|file
-operator|.
-name|contains
-argument_list|(
-literal|"ReplicationHandler"
-argument_list|)
-condition|)
-continue|continue;
 name|classes
 operator|.
 name|add
