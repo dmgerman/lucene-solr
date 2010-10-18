@@ -1019,7 +1019,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|4
+literal|10
 condition|;
 name|i
 operator|++
