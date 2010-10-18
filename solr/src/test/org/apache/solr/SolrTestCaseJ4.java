@@ -974,9 +974,17 @@ literal|"solr.RAMDirectoryFactory"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|dataDir
+operator|==
+literal|null
+condition|)
+block|{
 name|createTempDir
 argument_list|()
 expr_stmt|;
+block|}
 comment|// other  methods like starting a jetty instance need these too
 name|System
 operator|.

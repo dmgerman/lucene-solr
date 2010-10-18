@@ -555,7 +555,7 @@ name|String
 name|solrConfigFilenameOverride
 decl_stmt|;
 DECL|field|defaultCoreName
-specifier|private
+specifier|protected
 name|String
 name|defaultCoreName
 init|=
@@ -678,7 +678,7 @@ name|solrHome
 expr_stmt|;
 block|}
 DECL|method|initZooKeeper
-specifier|private
+specifier|protected
 name|void
 name|initZooKeeper
 parameter_list|(
