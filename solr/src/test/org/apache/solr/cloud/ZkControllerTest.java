@@ -925,7 +925,7 @@ argument_list|()
 argument_list|,
 name|TIMEOUT
 argument_list|,
-literal|1000
+name|TIMEOUT
 argument_list|,
 literal|"localhost"
 argument_list|,
