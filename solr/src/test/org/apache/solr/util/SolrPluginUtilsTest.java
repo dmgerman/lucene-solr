@@ -640,7 +640,7 @@ expr_stmt|;
 block|}
 name|holder
 operator|.
-name|close
+name|decref
 argument_list|()
 expr_stmt|;
 block|}
