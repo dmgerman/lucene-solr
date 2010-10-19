@@ -1120,7 +1120,7 @@ name|getQueryNodeProcessor
 argument_list|()
 operator|)
 operator|.
-name|addProcessor
+name|add
 argument_list|(
 operator|new
 name|QPTestParserQueryNodeProcessor
