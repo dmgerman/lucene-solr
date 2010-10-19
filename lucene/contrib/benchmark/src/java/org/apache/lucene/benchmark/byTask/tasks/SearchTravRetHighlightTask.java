@@ -575,6 +575,14 @@ name|String
 name|params
 parameter_list|)
 block|{
+comment|// can't call super because super doesn't understand our
+comment|// params syntax
+name|this
+operator|.
+name|params
+operator|=
+name|params
+expr_stmt|;
 name|String
 index|[]
 name|splits
