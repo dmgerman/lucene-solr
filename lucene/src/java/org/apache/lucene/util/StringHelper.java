@@ -129,7 +129,9 @@ return|return
 name|len
 return|;
 block|}
-comment|/**    * Compares two strings, character by character, and returns the    * first position where the two strings differ from one another.    *    * @param s1 The first string to compare    * @param s2 The second string to compare    * @return The first position where the two strings differ.    */
+comment|/**    * Compares two strings, character by character, and returns the    * first position where the two strings differ from one another.    *    * @param s1 The first string to compare    * @param s2 The second string to compare    * @return The first position where the two strings differ.    *     * @deprecated This method cannot handle supplementary characters.    */
+annotation|@
+name|Deprecated
 DECL|method|stringDifference
 specifier|public
 specifier|static
