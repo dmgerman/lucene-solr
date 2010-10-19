@@ -62,16 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Calendar
 import|;
 end_import
@@ -93,16 +83,6 @@ operator|.
 name|util
 operator|.
 name|GregorianCalendar
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
 import|;
 end_import
 
@@ -632,32 +612,11 @@ name|RegExp
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|runner
-operator|.
-name|RunWith
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests QueryParser.  */
 end_comment
 
 begin_class
-annotation|@
-name|RunWith
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|LocalizedTestCaseRunner
-operator|.
-name|class
-argument_list|)
 DECL|class|TestQueryParser
 specifier|public
 class|class

@@ -64,16 +64,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Calendar
 import|;
 end_import
@@ -95,16 +85,6 @@ operator|.
 name|util
 operator|.
 name|GregorianCalendar
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
 import|;
 end_import
 
@@ -770,32 +750,11 @@ name|RegExp
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|runner
-operator|.
-name|RunWith
-import|;
-end_import
-
 begin_comment
 comment|/**  * This test case is a copy of the core Lucene query parser test, it was adapted  * to use new {@link QueryParserWrapper} instead of the old query parser.  *   * Tests QueryParser.  *   * @deprecated this entire test case tests QueryParserWrapper which is  *             deprecated. When QPW is gone, so will the test.  */
 end_comment
 
 begin_class
-annotation|@
-name|RunWith
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|LocalizedTestCaseRunner
-operator|.
-name|class
-argument_list|)
 annotation|@
 name|Deprecated
 DECL|class|TestQueryParserWrapper

@@ -832,32 +832,11 @@ name|RegExp
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|runner
-operator|.
-name|RunWith
-import|;
-end_import
-
 begin_comment
 comment|/**  * This test case is a copy of the core Lucene query parser test, it was adapted  * to use new QueryParserHelper instead of the old query parser.  *   * Tests QueryParser.  */
 end_comment
 
 begin_class
-annotation|@
-name|RunWith
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|LocalizedTestCaseRunner
-operator|.
-name|class
-argument_list|)
 DECL|class|TestQPHelper
 specifier|public
 class|class
