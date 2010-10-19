@@ -236,13 +236,7 @@ return|return
 name|searcher
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|close
-parameter_list|()
-block|{ }
+comment|// @Override public void close() { }
 block|}
 decl_stmt|;
 name|SolrQueryResponse

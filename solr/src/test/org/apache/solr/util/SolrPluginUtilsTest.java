@@ -484,8 +484,11 @@ expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
+name|RefCounted
+argument_list|<
 name|SolrIndexSearcher
-name|srchr
+argument_list|>
+name|holder
 init|=
 name|h
 operator|.
@@ -494,6 +497,11 @@ argument_list|()
 operator|.
 name|getSearcher
 argument_list|()
+decl_stmt|;
+name|SolrIndexSearcher
+name|srchr
+init|=
+name|holder
 operator|.
 name|get
 argument_list|()
@@ -630,7 +638,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|srchr
+name|holder
 operator|.
 name|close
 argument_list|()

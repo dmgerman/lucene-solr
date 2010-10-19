@@ -309,6 +309,15 @@ argument_list|>
 name|evictionListener
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"new ConcurrentLRUCache: "
+operator|+
+name|this
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|upperWaterMark
@@ -2440,6 +2449,7 @@ block|}
 block|}
 DECL|field|isDestroyed
 specifier|private
+specifier|volatile
 name|boolean
 name|isDestroyed
 init|=
@@ -2451,6 +2461,15 @@ name|void
 name|destroy
 parameter_list|()
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"destroying "
+operator|+
+name|this
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 if|if
@@ -2947,7 +2966,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"ConcurrentLRUCache was not destroyed prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!!"
+literal|"ConcurrentLRUCache was not destroyed prior to finalize(), indicates a bug -- POSSIBLE RESOURCE LEAK!!! - "
+operator|+
+name|this
 argument_list|)
 expr_stmt|;
 name|destroy
