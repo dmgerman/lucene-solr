@@ -234,20 +234,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Fieldable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|Field
 operator|.
 name|Index
@@ -345,34 +331,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @since solr 4.0  */
+comment|/**  * This is thread safe  * @since solr 4.0  */
 end_comment
 
 begin_class
-DECL|class|PivotFacetComponent
+DECL|class|PivotFacetHelper
 specifier|public
 class|class
-name|PivotFacetComponent
-extends|extends
-name|SearchComponent
+name|PivotFacetHelper
 block|{
-DECL|field|COMPONENT_NAME
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|COMPONENT_NAME
-init|=
-literal|"pivot"
-decl_stmt|;
-DECL|field|PIVOT_KEY
-specifier|static
-specifier|final
-name|String
-name|PIVOT_KEY
-init|=
-literal|"facet_pivot"
-decl_stmt|;
 comment|/**    * Designed to be overridden by subclasses that provide different faceting implementations.    * TODO: Currently this is returning a SimpleFacets object, but those capabilities would    *       be better as an extracted abstract class or interface.    */
 DECL|method|getFacetImplementation
 specifier|protected
@@ -401,60 +368,29 @@ name|params
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|prepare
-specifier|public
-name|void
-name|prepare
-parameter_list|(
-name|ResponseBuilder
-name|rb
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-name|rb
-operator|.
-name|req
-operator|.
-name|getParams
-argument_list|()
-operator|.
-name|getBool
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET
-argument_list|,
-literal|false
-argument_list|)
-condition|)
-block|{
-name|rb
-operator|.
-name|setNeedDocSet
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|rb
-operator|.
-name|doFacets
-operator|=
-literal|true
-expr_stmt|;
-block|}
-block|}
 DECL|method|process
 specifier|public
-name|void
+name|SimpleOrderedMap
+argument_list|<
+name|List
+argument_list|<
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+argument_list|>
 name|process
 parameter_list|(
 name|ResponseBuilder
 name|rb
+parameter_list|,
+name|SolrParams
+name|params
+parameter_list|,
+name|String
+index|[]
+name|pivots
 parameter_list|)
 throws|throws
 name|IOException
@@ -465,39 +401,14 @@ operator|!
 name|rb
 operator|.
 name|doFacets
-condition|)
-return|return;
-name|SolrParams
-name|params
-init|=
-name|rb
-operator|.
-name|req
-operator|.
-name|getParams
-argument_list|()
-decl_stmt|;
-name|String
-index|[]
-name|pivots
-init|=
-name|params
-operator|.
-name|getParams
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET_PIVOT
-argument_list|)
-decl_stmt|;
-comment|// example: author,type  (for types by author / types within author)
-if|if
-condition|(
+operator|||
 name|pivots
 operator|==
 literal|null
 condition|)
-return|return;
+return|return
+literal|null
+return|;
 name|int
 name|minMatch
 init|=
@@ -711,58 +622,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|NamedList
-name|facetCounts
-init|=
-operator|(
-name|NamedList
-operator|)
-name|rb
-operator|.
-name|rsp
-operator|.
-name|getValues
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"facet_counts"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|facetCounts
-operator|==
-literal|null
-condition|)
-block|{
-name|facetCounts
-operator|=
-operator|new
-name|NamedList
-argument_list|()
-expr_stmt|;
-name|rb
-operator|.
-name|rsp
-operator|.
-name|add
-argument_list|(
-literal|"facet_counts"
-argument_list|,
-name|facetCounts
-argument_list|)
-expr_stmt|;
-block|}
-name|facetCounts
-operator|.
-name|add
-argument_list|(
-name|PIVOT_KEY
-argument_list|,
+return|return
 name|pivotResponse
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/**    * Recursive function to do all the pivots    */
 DECL|method|doPivots
@@ -1113,492 +975,127 @@ return|return
 name|values
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|distributedProcess
-specifier|public
-name|int
-name|distributedProcess
-parameter_list|(
-name|ResponseBuilder
-name|rb
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-operator|!
-name|rb
-operator|.
-name|doFacets
-condition|)
-block|{
-return|return
-name|ResponseBuilder
-operator|.
-name|STAGE_DONE
-return|;
-block|}
-if|if
-condition|(
-name|rb
-operator|.
-name|stage
-operator|==
-name|ResponseBuilder
-operator|.
-name|STAGE_GET_FIELDS
-condition|)
-block|{
-name|SolrParams
-name|params
-init|=
-name|rb
-operator|.
-name|req
-operator|.
-name|getParams
-argument_list|()
-decl_stmt|;
-name|String
-index|[]
-name|pivots
-init|=
-name|params
-operator|.
-name|getParams
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET_PIVOT
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|ShardRequest
-name|sreq
-range|:
-name|rb
-operator|.
-name|outgoing
-control|)
-block|{
-if|if
-condition|(
-operator|(
-name|sreq
-operator|.
-name|purpose
-operator|&
-name|ShardRequest
-operator|.
-name|PURPOSE_GET_FIELDS
-operator|)
-operator|!=
-literal|0
-operator|&&
-name|sreq
-operator|.
-name|shards
-operator|!=
-literal|null
-operator|&&
-name|sreq
-operator|.
-name|shards
-operator|.
-name|length
-operator|==
-literal|1
-condition|)
-block|{
-name|sreq
-operator|.
-name|params
-operator|.
-name|set
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|sreq
-operator|.
-name|params
-operator|.
-name|set
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET_PIVOT
-argument_list|,
-name|pivots
-argument_list|)
-expr_stmt|;
-name|sreq
-operator|.
-name|params
-operator|.
-name|set
-argument_list|(
-name|FacetParams
-operator|.
-name|FACET_PIVOT_MINCOUNT
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-comment|// keep this at 1 regardless so that it accumulates everything
-block|}
-block|}
-block|}
-return|return
-name|ResponseBuilder
-operator|.
-name|STAGE_DONE
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|handleResponses
-specifier|public
-name|void
-name|handleResponses
-parameter_list|(
-name|ResponseBuilder
-name|rb
-parameter_list|,
-name|ShardRequest
-name|sreq
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|rb
-operator|.
-name|doFacets
-condition|)
-return|return;
-if|if
-condition|(
-operator|(
-name|sreq
-operator|.
-name|purpose
-operator|&
-name|ShardRequest
-operator|.
-name|PURPOSE_GET_FACETS
-operator|)
-operator|!=
-literal|0
-condition|)
-block|{
-name|SimpleOrderedMap
-argument_list|<
-name|List
-argument_list|<
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
-argument_list|>
-name|tf
-init|=
-name|rb
-operator|.
-name|_pivots
-decl_stmt|;
-if|if
-condition|(
-literal|null
-operator|==
-name|tf
-condition|)
-block|{
-name|tf
-operator|=
-operator|new
-name|SimpleOrderedMap
-argument_list|<
-name|List
-argument_list|<
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
-argument_list|>
-argument_list|()
-expr_stmt|;
-name|rb
-operator|.
-name|_pivots
-operator|=
-name|tf
-expr_stmt|;
-block|}
-for|for
-control|(
-name|ShardResponse
-name|srsp
-range|:
-name|sreq
-operator|.
-name|responses
-control|)
-block|{
-name|int
-name|shardNum
-init|=
-name|rb
-operator|.
-name|getShardNum
-argument_list|(
-name|srsp
-operator|.
-name|getShard
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|NamedList
-name|facet_counts
-init|=
-operator|(
-name|NamedList
-operator|)
-name|srsp
-operator|.
-name|getSolrResponse
-argument_list|()
-operator|.
-name|getResponse
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"facet_counts"
-argument_list|)
-decl_stmt|;
-comment|// handle facet trees from shards
-name|SimpleOrderedMap
-argument_list|<
-name|List
-argument_list|<
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
-argument_list|>
-name|shard_pivots
-init|=
-operator|(
-name|SimpleOrderedMap
-argument_list|<
-name|List
-argument_list|<
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
-argument_list|>
-operator|)
-name|facet_counts
-operator|.
-name|get
-argument_list|(
-name|PIVOT_KEY
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|shard_pivots
-operator|!=
-literal|null
-condition|)
-block|{
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|shard_pivots
-operator|.
-name|size
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
-comment|// TODO -- accumulate the results from each shard
-comment|// The following code worked to accumulate facets for an previous
-comment|// two level patch... it is here for reference till someone can upgrade
-comment|/**             String shard_tree_name = (String) shard_pivots.getName( j );             SimpleOrderedMap<NamedList> shard_tree = (SimpleOrderedMap<NamedList>)shard_pivots.getVal( j );             SimpleOrderedMap<NamedList> facet_tree = tf.get( shard_tree_name );             if ( null == facet_tree) {                facet_tree = new SimpleOrderedMap<NamedList>();                tf.add( shard_tree_name, facet_tree );             }              for( int o = 0; o< shard_tree.size() ; o++ ) {               String shard_outer = (String) shard_tree.getName( o );               NamedList shard_innerList = (NamedList) shard_tree.getVal( o );               NamedList tree_innerList  = (NamedList) facet_tree.get( shard_outer );               if ( null == tree_innerList ) {                  tree_innerList = new NamedList();                 facet_tree.add( shard_outer, tree_innerList );               }                for ( int i = 0 ; i< shard_innerList.size() ; i++ ) {                 String shard_term = (String) shard_innerList.getName( i );                 long shard_count  = ((Number) shard_innerList.getVal(i)).longValue();                 int tree_idx      = tree_innerList.indexOf( shard_term, 0 );                  if ( -1 == tree_idx ) {                   tree_innerList.add( shard_term, shard_count );                 } else {                   long tree_count = ((Number) tree_innerList.getVal( tree_idx )).longValue();                   tree_innerList.setVal( tree_idx, shard_count + tree_count );                 }               } // innerList loop             } // outer loop               **/
-block|}
-comment|// each tree loop
-block|}
-block|}
-block|}
-return|return ;
-block|}
-annotation|@
-name|Override
-DECL|method|finishStage
-specifier|public
-name|void
-name|finishStage
-parameter_list|(
-name|ResponseBuilder
-name|rb
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|rb
-operator|.
-name|doFacets
-operator|||
-name|rb
-operator|.
-name|stage
-operator|!=
-name|ResponseBuilder
-operator|.
-name|STAGE_GET_FIELDS
-condition|)
-return|return;
-comment|// wait until STAGE_GET_FIELDS
-comment|// so that "result" is already stored in the response (for aesthetics)
-name|SimpleOrderedMap
-argument_list|<
-name|List
-argument_list|<
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
-argument_list|>
-name|tf
-init|=
-name|rb
-operator|.
-name|_pivots
-decl_stmt|;
-comment|// get 'facet_counts' from the response
-name|NamedList
-name|facetCounts
-init|=
-operator|(
-name|NamedList
-operator|)
-name|rb
-operator|.
-name|rsp
-operator|.
-name|getValues
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"facet_counts"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|facetCounts
-operator|==
-literal|null
-condition|)
-block|{
-name|facetCounts
-operator|=
-operator|new
-name|NamedList
-argument_list|()
-expr_stmt|;
-name|rb
-operator|.
-name|rsp
-operator|.
-name|add
-argument_list|(
-literal|"facet_counts"
-argument_list|,
-name|facetCounts
-argument_list|)
-expr_stmt|;
-block|}
-name|facetCounts
-operator|.
-name|add
-argument_list|(
-name|PIVOT_KEY
-argument_list|,
-name|tf
-argument_list|)
-expr_stmt|;
-name|rb
-operator|.
-name|_pivots
-operator|=
-literal|null
-expr_stmt|;
-block|}
-DECL|method|getDescription
-specifier|public
-name|String
-name|getDescription
-parameter_list|()
-block|{
-return|return
-literal|"Handle Pivot (multi-level) Faceting"
-return|;
-block|}
-DECL|method|getSourceId
-specifier|public
-name|String
-name|getSourceId
-parameter_list|()
-block|{
-return|return
-literal|"$Id$"
-return|;
-block|}
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|"$URL$"
-return|;
-block|}
-DECL|method|getVersion
-specifier|public
-name|String
-name|getVersion
-parameter_list|()
-block|{
-return|return
-literal|"$Revision$"
-return|;
-block|}
+comment|// TODO: This is code from various patches to support distributed search.
+comment|//  Some parts may be helpful for whoever implements distributed search.
+comment|//
+comment|//  @Override
+comment|//  public int distributedProcess(ResponseBuilder rb) throws IOException {
+comment|//    if (!rb.doFacets) {
+comment|//      return ResponseBuilder.STAGE_DONE;
+comment|//    }
+comment|//
+comment|//    if (rb.stage == ResponseBuilder.STAGE_GET_FIELDS) {
+comment|//      SolrParams params = rb.req.getParams();
+comment|//      String[] pivots = params.getParams(FacetParams.FACET_PIVOT);
+comment|//      for ( ShardRequest sreq : rb.outgoing ) {
+comment|//        if (( sreq.purpose& ShardRequest.PURPOSE_GET_FIELDS ) != 0
+comment|//&& sreq.shards != null&& sreq.shards.length == 1 ) {
+comment|//          sreq.params.set( FacetParams.FACET, "true" );
+comment|//          sreq.params.set( FacetParams.FACET_PIVOT, pivots );
+comment|//          sreq.params.set( FacetParams.FACET_PIVOT_MINCOUNT, 1 ); // keep this at 1 regardless so that it accumulates everything
+comment|//            }
+comment|//      }
+comment|//    }
+comment|//    return ResponseBuilder.STAGE_DONE;
+comment|//  }
+comment|//
+comment|//  @Override
+comment|//  public void handleResponses(ResponseBuilder rb, ShardRequest sreq) {
+comment|//    if (!rb.doFacets) return;
+comment|//
+comment|//
+comment|//    if ((sreq.purpose& ShardRequest.PURPOSE_GET_FACETS)!=0) {
+comment|//      SimpleOrderedMap<List<NamedList<Object>>> tf = rb._pivots;
+comment|//      if ( null == tf ) {
+comment|//        tf = new SimpleOrderedMap<List<NamedList<Object>>>();
+comment|//        rb._pivots = tf;
+comment|//      }
+comment|//      for (ShardResponse srsp: sreq.responses) {
+comment|//        int shardNum = rb.getShardNum(srsp.getShard());
+comment|//
+comment|//        NamedList facet_counts = (NamedList)srsp.getSolrResponse().getResponse().get("facet_counts");
+comment|//
+comment|//        // handle facet trees from shards
+comment|//        SimpleOrderedMap<List<NamedList<Object>>> shard_pivots =
+comment|//          (SimpleOrderedMap<List<NamedList<Object>>>)facet_counts.get( PIVOT_KEY );
+comment|//
+comment|//        if ( shard_pivots != null ) {
+comment|//          for (int j=0; j< shard_pivots.size(); j++) {
+comment|//            // TODO -- accumulate the results from each shard
+comment|//            // The following code worked to accumulate facets for an previous
+comment|//            // two level patch... it is here for reference till someone can upgrade
+comment|//            /**
+comment|//            String shard_tree_name = (String) shard_pivots.getName( j );
+comment|//            SimpleOrderedMap<NamedList> shard_tree = (SimpleOrderedMap<NamedList>)shard_pivots.getVal( j );
+comment|//            SimpleOrderedMap<NamedList> facet_tree = tf.get( shard_tree_name );
+comment|//            if ( null == facet_tree) {
+comment|//              facet_tree = new SimpleOrderedMap<NamedList>();
+comment|//              tf.add( shard_tree_name, facet_tree );
+comment|//            }
+comment|//
+comment|//            for( int o = 0; o< shard_tree.size() ; o++ ) {
+comment|//              String shard_outer = (String) shard_tree.getName( o );
+comment|//              NamedList shard_innerList = (NamedList) shard_tree.getVal( o );
+comment|//              NamedList tree_innerList  = (NamedList) facet_tree.get( shard_outer );
+comment|//              if ( null == tree_innerList ) {
+comment|//                tree_innerList = new NamedList();
+comment|//                facet_tree.add( shard_outer, tree_innerList );
+comment|//              }
+comment|//
+comment|//              for ( int i = 0 ; i< shard_innerList.size() ; i++ ) {
+comment|//                String shard_term = (String) shard_innerList.getName( i );
+comment|//                long shard_count  = ((Number) shard_innerList.getVal(i)).longValue();
+comment|//                int tree_idx      = tree_innerList.indexOf( shard_term, 0 );
+comment|//
+comment|//                if ( -1 == tree_idx ) {
+comment|//                  tree_innerList.add( shard_term, shard_count );
+comment|//                } else {
+comment|//                  long tree_count = ((Number) tree_innerList.getVal( tree_idx )).longValue();
+comment|//                  tree_innerList.setVal( tree_idx, shard_count + tree_count );
+comment|//                }
+comment|//              } // innerList loop
+comment|//            } // outer loop
+comment|//              **/
+comment|//          } // each tree loop
+comment|//        }
+comment|//      }
+comment|//    }
+comment|//    return ;
+comment|//  }
+comment|//
+comment|//  @Override
+comment|//  public void finishStage(ResponseBuilder rb) {
+comment|//    if (!rb.doFacets || rb.stage != ResponseBuilder.STAGE_GET_FIELDS) return;
+comment|//    // wait until STAGE_GET_FIELDS
+comment|//    // so that "result" is already stored in the response (for aesthetics)
+comment|//
+comment|//    SimpleOrderedMap<List<NamedList<Object>>> tf = rb._pivots;
+comment|//
+comment|//    // get 'facet_counts' from the response
+comment|//    NamedList facetCounts = (NamedList) rb.rsp.getValues().get("facet_counts");
+comment|//    if (facetCounts == null) {
+comment|//      facetCounts = new NamedList();
+comment|//      rb.rsp.add("facet_counts", facetCounts);
+comment|//    }
+comment|//    facetCounts.add( PIVOT_KEY, tf );
+comment|//    rb._pivots = null;
+comment|//  }
+comment|//
+comment|//  public String getDescription() {
+comment|//    return "Handle Pivot (multi-level) Faceting";
+comment|//  }
+comment|//
+comment|//  public String getSourceId() {
+comment|//    return "$Id$";
+comment|//  }
+comment|//
+comment|//  public String getSource() {
+comment|//    return "$URL$";
+comment|//  }
+comment|//
+comment|//  public String getVersion() {
+comment|//    return "$Revision$";
+comment|//  }
 block|}
 end_class
 
