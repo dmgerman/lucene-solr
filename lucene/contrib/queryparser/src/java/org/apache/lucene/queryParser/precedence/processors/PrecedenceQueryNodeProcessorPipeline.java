@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.queryParser.precedence
+DECL|package|org.apache.lucene.queryParser.precedence.processors
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|queryParser
 operator|.
 name|precedence
+operator|.
+name|processors
 package|;
 end_package
 
@@ -26,9 +28,13 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|queryParser
 operator|.
-name|Analyzer
+name|core
+operator|.
+name|config
+operator|.
+name|QueryConfigHandler
 import|;
 end_import
 
@@ -44,9 +50,7 @@ name|queryParser
 operator|.
 name|precedence
 operator|.
-name|processors
-operator|.
-name|PrecedenceQueryNodeProcessorPipeline
+name|PrecedenceQueryParser
 import|;
 end_import
 
@@ -62,7 +66,9 @@ name|queryParser
 operator|.
 name|standard
 operator|.
-name|StandardQueryParser
+name|processors
+operator|.
+name|GroupQueryNodeProcessor
 import|;
 end_import
 
@@ -85,56 +91,78 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This query parser works exactly as the standard query parser ( {@link StandardQueryParser} ),   * except that it respect the boolean precedence, so&lt;a AND b OR c AND d&gt; is parsed to&lt;(+a +b) (+c +d)&gt;  * instead of&lt;+a +b +c +d&gt;.  *</p>  *<p>  * EXPERT: This class extends {@link StandardQueryParser}, but uses {@link PrecedenceQueryNodeProcessorPipeline}  * instead of {@link StandardQueryNodeProcessorPipeline} to process the query tree.  *</p>  *   * @see StandardQueryParser  */
+comment|/**  *<p>  * This processor pipeline extends {@link StandardQueryNodeProcessorPipeline} and enables  * boolean precedence on it.  *</p>  *<p>  * EXPERT: the precedence is enabled by removing {@link GroupQueryNodeProcessor} from the  * {@link StandardQueryNodeProcessorPipeline} and appending {@link BooleanModifiersQueryNodeProcessor}  * to the pipeline.  *</p>  *   * @see PrecedenceQueryParser  *  @see StandardQueryNodeProcessorPipeline  */
 end_comment
 
 begin_class
-DECL|class|PrecedenceQueryParser
+DECL|class|PrecedenceQueryNodeProcessorPipeline
 specifier|public
 class|class
-name|PrecedenceQueryParser
-extends|extends
-name|StandardQueryParser
-block|{
-comment|/**    * @see StandardQueryParser#StandardQueryParser()    */
-DECL|method|PrecedenceQueryParser
-specifier|public
-name|PrecedenceQueryParser
-parameter_list|()
-block|{
-name|setQueryNodeProcessor
-argument_list|(
-operator|new
 name|PrecedenceQueryNodeProcessorPipeline
-argument_list|(
-name|getQueryConfigHandler
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * @see StandardQueryParser#StandardQueryParser(Analyzer)    */
-DECL|method|PrecedenceQueryParser
+extends|extends
+name|StandardQueryNodeProcessorPipeline
+block|{
+comment|/**    * @see StandardQueryNodeProcessorPipeline#StandardQueryNodeProcessorPipeline(QueryConfigHandler)    */
+DECL|method|PrecedenceQueryNodeProcessorPipeline
 specifier|public
-name|PrecedenceQueryParser
+name|PrecedenceQueryNodeProcessorPipeline
 parameter_list|(
-name|Analyzer
-name|analyer
+name|QueryConfigHandler
+name|queryConfig
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|analyer
+name|queryConfig
 argument_list|)
 expr_stmt|;
-name|setQueryNodeProcessor
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|get
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|GroupQueryNodeProcessor
+operator|.
+name|class
+argument_list|)
+condition|)
+block|{
+name|remove
+argument_list|(
+name|i
+operator|--
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|add
 argument_list|(
 operator|new
-name|PrecedenceQueryNodeProcessorPipeline
-argument_list|(
-name|getQueryConfigHandler
+name|BooleanModifiersQueryNodeProcessor
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
