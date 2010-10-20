@@ -3329,6 +3329,49 @@ operator|+
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|closeHooks
+operator|!=
+literal|null
+condition|)
+block|{
+for|for
+control|(
+name|CloseHook
+name|hook
+range|:
+name|closeHooks
+control|)
+block|{
+try|try
+block|{
+name|hook
+operator|.
+name|close
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 try|try
 block|{
 name|infoRegistry
@@ -3379,9 +3422,34 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|closeSearcher
+name|searcherExecutor
+operator|.
+name|shutdown
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|searcherExecutor
+operator|.
+name|awaitTermination
+argument_list|(
+literal|60
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Timeout waiting for searchExecutor to terminate"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -3401,9 +3469,14 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|searcherExecutor
-operator|.
-name|shutdown
+comment|// Since we waited for the searcherExecutor to shut down,
+comment|// there should be no more searchers warming in the background
+comment|// that we need to take care of.
+comment|//
+comment|// For the case that a searcher was registered *before* warming
+comment|// then the searchExecutor will throw an exception when getSearcher()
+comment|// tries to use it, and the exception handling code should close it.
+name|closeSearcher
 argument_list|()
 expr_stmt|;
 block|}
@@ -3422,30 +3495,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|closeHooks
-operator|!=
-literal|null
-condition|)
-block|{
-for|for
-control|(
-name|CloseHook
-name|hook
-range|:
-name|closeHooks
-control|)
-block|{
-name|hook
-operator|.
-name|close
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 comment|/** Current core usage count. */
@@ -5469,6 +5518,7 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
+comment|/***         // a searcher may have been warming asynchronously while the core was being closed.         // if this happens, just close the searcher.         if (isClosed()) {           // NOTE: this should not happen now - see close() for details.           // *BUT* if we left it enabled, this could still happen before           // close() stopped the executor - so disable this test for now.           log.error("Ignoring searcher register on closed core:" + newSearcher);           _searcher.decref();         }         ***/
 name|newSearcher
 operator|.
 name|register
