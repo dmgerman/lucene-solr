@@ -67,8 +67,6 @@ operator|=
 name|wrapped
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|freq
 specifier|public
 name|float
@@ -79,8 +77,6 @@ return|return
 literal|1.0f
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|hasNext
 specifier|public
 name|boolean
@@ -94,8 +90,6 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|next
 specifier|public
 name|String
@@ -112,8 +106,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|remove
 specifier|public
 name|void

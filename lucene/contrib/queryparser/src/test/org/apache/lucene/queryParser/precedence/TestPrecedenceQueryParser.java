@@ -394,18 +394,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|runner
-operator|.
-name|RunWith
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -455,15 +443,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|RunWith
-argument_list|(
-name|LuceneTestCase
-operator|.
-name|LocalizedTestCaseRunner
-operator|.
-name|class
-argument_list|)
 DECL|class|TestPrecedenceQueryParser
 specifier|public
 class|class

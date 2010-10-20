@@ -596,7 +596,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(b:one~0.5 t:one~0.5) (b:two t:two)"
+literal|"(b:one~2.0 t:one~2.0) (b:two t:two)"
 argument_list|,
 name|q
 operator|.
@@ -837,7 +837,7 @@ name|Exception
 block|{
 name|Map
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Float
 argument_list|>
@@ -846,7 +846,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Float
 argument_list|>
@@ -1904,7 +1904,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"f1:bla~0.5 f2:bla~0.5 f3:bla~0.5"
+literal|"f1:bla~2.0 f2:bla~2.0 f3:bla~2.0"
 argument_list|,
 name|q
 operator|.

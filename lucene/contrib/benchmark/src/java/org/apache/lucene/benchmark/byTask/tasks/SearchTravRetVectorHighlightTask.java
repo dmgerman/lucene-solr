@@ -528,6 +528,13 @@ name|String
 name|params
 parameter_list|)
 block|{
+name|super
+operator|.
+name|setParams
+argument_list|(
+name|params
+argument_list|)
+expr_stmt|;
 name|String
 index|[]
 name|splits

@@ -113,11 +113,6 @@ extends|extends
 name|QueryParserWrapper
 block|{
 comment|/**    * Creates a MultiFieldQueryParser. Allows passing of a map with term to    * Boost, and the boost to apply to each term.    *     *<p>    * It will, when parse(String query) is called, construct a query like this    * (assuming the query consists of two terms and you specify the two fields    *<code>title</code> and<code>body</code>):    *</p>    *     *<code>      * (title:term1 body:term1) (title:term2 body:term2)      *</code>    *     *<p>    * When setDefaultOperator(AND_OPERATOR) is set, the result will be:    *</p>    *     *<code>      * +(title:term1 body:term1) +(title:term2 body:term2)      *</code>    *     *<p>    * When you pass a boost (title=>5 body=>10) you can get    *</p>    *     *<code>      * +(title:term1^5.0 body:term1^10.0) +(title:term2^5.0 body:term2^10.0)      *</code>    *     *<p>    * In other words, all the query's terms must appear, but it doesn't matter in    * what fields they appear.    *</p>    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|MultiFieldQueryParserWrapper
 specifier|public
 name|MultiFieldQueryParserWrapper
@@ -130,6 +125,11 @@ name|Analyzer
 name|analyzer
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Float
+argument_list|>
 name|boosts
 parameter_list|)
 block|{

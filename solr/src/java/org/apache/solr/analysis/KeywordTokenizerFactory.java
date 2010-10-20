@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id: LowerCaseTokenizerFactory.java 382610 2006-03-03 01:43:03Z yonik $  */
+comment|/**  * @version $Id$  */
 end_comment
 
 begin_class

@@ -196,6 +196,20 @@ name|solr
 operator|.
 name|request
 operator|.
+name|LocalSolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
 name|SolrQueryRequestBase
 import|;
 end_import
@@ -379,7 +393,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"Could not find an instance of QueryComponent.  Disabling collation verification against the index."
 argument_list|)
@@ -531,16 +545,7 @@ argument_list|)
 decl_stmt|;
 name|params
 operator|.
-name|remove
-argument_list|(
-name|CommonParams
-operator|.
-name|Q
-argument_list|)
-expr_stmt|;
-name|params
-operator|.
-name|add
+name|set
 argument_list|(
 name|CommonParams
 operator|.
@@ -560,16 +565,7 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|remove
-argument_list|(
-name|CommonParams
-operator|.
-name|ROWS
-argument_list|)
-expr_stmt|;
-name|params
-operator|.
-name|add
+name|set
 argument_list|(
 name|CommonParams
 operator|.
@@ -580,7 +576,7 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|add
+name|set
 argument_list|(
 name|CommonParams
 operator|.
@@ -589,13 +585,13 @@ argument_list|,
 literal|"0"
 argument_list|)
 expr_stmt|;
-comment|//Would rather have found a concrete class to use...
+comment|// creating a request here... make sure to close it!
 name|checkResponse
 operator|.
 name|req
 operator|=
 operator|new
-name|SolrQueryRequestBase
+name|LocalSolrQueryRequest
 argument_list|(
 name|ultimateResponse
 operator|.
@@ -606,7 +602,6 @@ argument_list|()
 argument_list|,
 name|params
 argument_list|)
-block|{ }
 expr_stmt|;
 name|checkResponse
 operator|.
@@ -664,6 +659,16 @@ literal|"Exception trying to re-query to check if a spell check possibility woul
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|checkResponse
+operator|.
+name|req
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

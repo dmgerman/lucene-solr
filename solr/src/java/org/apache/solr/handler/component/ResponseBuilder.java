@@ -160,7 +160,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|SolrIndexSearcher
+name|SortSpec
 import|;
 end_import
 
@@ -174,41 +174,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|SortSpec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|SolrPluginUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
+name|SolrIndexSearcher
 import|;
 end_import
 
@@ -229,16 +195,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -474,12 +430,24 @@ name|stage
 decl_stmt|;
 comment|// What stage is this current request at?
 comment|//The address of the Shard
+DECL|field|isDistrib
+name|boolean
+name|isDistrib
+decl_stmt|;
+comment|// is this a distributed search?
 DECL|field|shards
 specifier|public
 name|String
 index|[]
 name|shards
 decl_stmt|;
+DECL|field|slices
+specifier|public
+name|String
+index|[]
+name|slices
+decl_stmt|;
+comment|// the optional logical ids of the shards
 DECL|field|shards_rows
 specifier|public
 name|int

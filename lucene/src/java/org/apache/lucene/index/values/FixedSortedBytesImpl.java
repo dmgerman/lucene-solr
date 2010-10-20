@@ -768,6 +768,10 @@ operator|.
 name|get
 argument_list|(
 name|e
+argument_list|,
+operator|new
+name|BytesRef
+argument_list|()
 argument_list|)
 decl_stmt|;
 assert|assert

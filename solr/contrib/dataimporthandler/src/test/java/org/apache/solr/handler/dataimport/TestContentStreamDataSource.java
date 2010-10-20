@@ -20,16 +20,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -39,18 +29,6 @@ operator|.
 name|io
 operator|.
 name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -174,20 +152,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|AbstractSolrTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After
@@ -211,18 +175,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
 import|;
 end_import
 
@@ -256,7 +208,7 @@ specifier|public
 class|class
 name|TestContentStreamDataSource
 extends|extends
-name|SolrTestCaseJ4
+name|AbstractDataImportHandlerTestCase
 block|{
 DECL|field|CONF_DIR
 specifier|private
@@ -654,8 +606,6 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|SolrTestCaseJ4
-operator|.
 name|TEMP_DIR
 argument_list|,
 name|getClass
@@ -800,8 +750,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|AbstractSolrTestCase
-operator|.
 name|recurseDelete
 argument_list|(
 name|homeDir

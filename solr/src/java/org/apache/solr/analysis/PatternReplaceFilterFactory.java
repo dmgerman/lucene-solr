@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id:$  * @see PatternReplaceFilter  */
+comment|/**  * @version $Id$  * @see PatternReplaceFilter  */
 end_comment
 
 begin_class

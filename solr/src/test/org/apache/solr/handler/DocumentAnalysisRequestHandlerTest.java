@@ -547,6 +547,11 @@ name|getFirstValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Tests the {@link DocumentAnalysisRequestHandler#handleAnalysisRequest(org.apache.solr.client.solrj.request.DocumentAnalysisRequest,    * org.apache.solr.schema.IndexSchema)}    */
 annotation|@

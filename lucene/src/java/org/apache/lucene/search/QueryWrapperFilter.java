@@ -54,6 +54,7 @@ name|Filter
 block|{
 DECL|field|query
 specifier|private
+specifier|final
 name|Query
 name|query
 decl_stmt|;
@@ -72,6 +73,18 @@ name|query
 operator|=
 name|query
 expr_stmt|;
+block|}
+comment|/** returns the inner Query */
+DECL|method|getQuery
+specifier|public
+specifier|final
+name|Query
+name|getQuery
+parameter_list|()
+block|{
+return|return
+name|query
+return|;
 block|}
 annotation|@
 name|Override

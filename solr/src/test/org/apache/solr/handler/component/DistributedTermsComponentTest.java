@@ -26,6 +26,16 @@ name|BaseDistributedSearchTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test for TermsComponent distributed querying  *  * @version $Id$  * @since solr 1.5  */
 end_comment
@@ -48,6 +58,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|del
+argument_list|(
+literal|"*:*"
+argument_list|)
+expr_stmt|;
 name|index
 argument_list|(
 name|id

@@ -20,28 +20,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|junit
@@ -126,7 +104,7 @@ specifier|public
 class|class
 name|TestClobTransformer
 extends|extends
-name|SolrTestCaseJ4
+name|AbstractDataImportHandlerTestCase
 block|{
 annotation|@
 name|Test
@@ -222,8 +200,6 @@ expr_stmt|;
 name|Context
 name|ctx
 init|=
-name|AbstractDataImportHandlerTestCase
-operator|.
 name|getContext
 argument_list|(
 literal|null
@@ -363,8 +339,6 @@ argument_list|,
 name|ctx
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"hello!"

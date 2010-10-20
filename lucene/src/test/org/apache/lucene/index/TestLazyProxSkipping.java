@@ -48,6 +48,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -224,18 +238,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assume
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests lazy skipping on the proximity file.  *  */
 end_comment
@@ -405,7 +407,15 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|true
+argument_list|,
+literal|false
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -755,9 +765,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|assumeTrue
+name|assumeFalse
 argument_list|(
-operator|!
+literal|"This test cannot run with SimpleText codec"
+argument_list|,
 name|CodecProvider
 operator|.
 name|getDefaultCodec

@@ -1097,6 +1097,11 @@ argument_list|(
 name|sort
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1286,6 +1291,11 @@ name|SolrException
 name|e
 parameter_list|)
 block|{     }
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

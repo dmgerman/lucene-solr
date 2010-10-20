@@ -24,29 +24,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -94,7 +72,7 @@ specifier|public
 class|class
 name|TestVariableResolver
 extends|extends
-name|SolrTestCaseJ4
+name|AbstractDataImportHandlerTestCase
 block|{
 annotation|@
 name|Test
@@ -146,8 +124,6 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"WORLD"
@@ -226,8 +202,6 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// System.out.println("val = " + val);
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"hello"
@@ -235,8 +209,6 @@ argument_list|,
 name|val
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"world"
@@ -329,8 +301,6 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"WORLD1"
@@ -423,8 +393,6 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"WORLD1"
@@ -549,8 +517,6 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 operator|new
@@ -706,8 +672,6 @@ argument_list|(
 literal|"${dataimporter.functions.formatDate('NOW/DAY','yyyy-MM-dd HH:mm')}"
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 operator|new
@@ -791,8 +755,6 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"WORLD"
@@ -856,8 +818,6 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"WORLD"
@@ -1062,8 +1022,6 @@ argument_list|(
 literal|"${dataimporter.functions.formatDate('NOW/DAY','yyyy-MM-dd HH:mm')}"
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 operator|new
@@ -1085,8 +1043,6 @@ argument_list|,
 name|s
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Hello World"

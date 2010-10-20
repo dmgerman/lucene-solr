@@ -844,7 +844,7 @@ name|doTest
 argument_list|(
 literal|10
 argument_list|,
-literal|100
+literal|10
 argument_list|)
 expr_stmt|;
 name|ir1

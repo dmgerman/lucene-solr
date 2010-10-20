@@ -232,6 +232,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|io
 operator|.
 name|File
@@ -304,6 +314,37 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// broken for turkish: https://issues.apache.org/jira/browse/SOLR-2088
+name|String
+name|defLang
+init|=
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getLanguage
+argument_list|()
+decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"Known bugs under Turkish locale: https://issues.apache.org/jira/browse/SOLR-2088"
+argument_list|,
+name|defLang
+operator|.
+name|equals
+argument_list|(
+literal|"tr"
+argument_list|)
+operator|||
+name|defLang
+operator|.
+name|equals
+argument_list|(
+literal|"az"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|ExtractingRequestHandler
 name|handler
 init|=
@@ -1878,6 +1919,8 @@ argument_list|(
 name|args
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// TODO: stop using locally defined streams once stream.file and
 comment|// stream.body work everywhere
 name|List
@@ -1927,6 +1970,15 @@ argument_list|,
 name|req
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

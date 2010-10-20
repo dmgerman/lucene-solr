@@ -106,6 +106,20 @@ name|ToStringUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
+import|;
+end_import
+
 begin_comment
 comment|/**  * A Query that matches documents within an range of terms.  *  *<p>This query matches the documents looking for terms that fall into the  * supplied range according to {@link  * String#compareTo(String)}, unless a<code>Collator</code> is provided. It is not intended  * for numerical ranges; use {@link NumericRangeQuery} instead.  *  *<p>This query uses the {@link  * MultiTermQuery#CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}  * rewrite method.  * @since 2.9  */
 end_comment
@@ -304,6 +318,9 @@ name|getTermsEnum
 parameter_list|(
 name|IndexReader
 name|reader
+parameter_list|,
+name|AttributeSource
+name|atts
 parameter_list|)
 throws|throws
 name|IOException

@@ -379,8 +379,7 @@ name|h
 operator|.
 name|createConfig
 argument_list|(
-name|getSolrConfigFile
-argument_list|()
+literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;
 name|h
@@ -395,8 +394,7 @@ argument_list|()
 argument_list|,
 name|solrConfig
 argument_list|,
-name|getSchemaFile
-argument_list|()
+literal|"schema12.xml"
 argument_list|)
 expr_stmt|;
 name|lrf
@@ -440,7 +438,7 @@ name|getSchemaFile
 parameter_list|()
 block|{
 return|return
-literal|"schema12.xml"
+literal|null
 return|;
 block|}
 annotation|@
@@ -452,8 +450,9 @@ name|getSolrConfigFile
 parameter_list|()
 block|{
 return|return
-literal|"solrconfig.xml"
+literal|null
 return|;
+comment|// prevent superclass from creating it's own TestHarness
 block|}
 annotation|@
 name|Test

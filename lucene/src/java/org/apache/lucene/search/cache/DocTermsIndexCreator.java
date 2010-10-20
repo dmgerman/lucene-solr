@@ -259,15 +259,10 @@ DECL|class|DocTermsIndexCreator
 specifier|public
 class|class
 name|DocTermsIndexCreator
-parameter_list|<
-name|T
-extends|extends
-name|DocTermsIndex
-parameter_list|>
 extends|extends
 name|EntryCreatorWithOptions
 argument_list|<
-name|T
+name|DocTermsIndex
 argument_list|>
 block|{
 DECL|field|FASTER_BUT_MORE_RAM
@@ -382,7 +377,7 @@ annotation|@
 name|Override
 DECL|method|create
 specifier|public
-name|T
+name|DocTermsIndex
 name|create
 parameter_list|(
 name|IndexReader
@@ -830,9 +825,6 @@ block|}
 block|}
 comment|// maybe an int-only impl?
 return|return
-operator|(
-name|T
-operator|)
 operator|new
 name|DocTermsIndexImpl
 argument_list|(
@@ -861,10 +853,10 @@ annotation|@
 name|Override
 DECL|method|validate
 specifier|public
-name|T
+name|DocTermsIndex
 name|validate
 parameter_list|(
-name|T
+name|DocTermsIndex
 name|entry
 parameter_list|,
 name|IndexReader

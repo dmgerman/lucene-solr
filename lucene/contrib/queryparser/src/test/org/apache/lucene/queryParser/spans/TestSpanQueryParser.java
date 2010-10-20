@@ -316,7 +316,7 @@ name|this
 operator|.
 name|spanProcessorPipeline
 operator|.
-name|addProcessor
+name|add
 argument_list|(
 operator|new
 name|WildcardQueryNodeProcessor
@@ -327,7 +327,7 @@ name|this
 operator|.
 name|spanProcessorPipeline
 operator|.
-name|addProcessor
+name|add
 argument_list|(
 operator|new
 name|SpansValidatorQueryNodeProcessor
@@ -338,7 +338,7 @@ name|this
 operator|.
 name|spanProcessorPipeline
 operator|.
-name|addProcessor
+name|add
 argument_list|(
 operator|new
 name|UniqueFieldQueryNodeProcessor

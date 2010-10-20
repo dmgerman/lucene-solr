@@ -225,15 +225,10 @@ DECL|class|DocTermsCreator
 specifier|public
 class|class
 name|DocTermsCreator
-parameter_list|<
-name|T
-extends|extends
-name|DocTerms
-parameter_list|>
 extends|extends
 name|EntryCreatorWithOptions
 argument_list|<
-name|T
+name|DocTerms
 argument_list|>
 block|{
 DECL|field|FASTER_BUT_MORE_RAM
@@ -348,7 +343,7 @@ annotation|@
 name|Override
 DECL|method|create
 specifier|public
-name|T
+name|DocTerms
 name|create
 parameter_list|(
 name|IndexReader
@@ -659,9 +654,6 @@ block|}
 block|}
 comment|// maybe an int-only impl?
 return|return
-operator|(
-name|T
-operator|)
 operator|new
 name|DocTermsImpl
 argument_list|(
@@ -683,10 +675,10 @@ annotation|@
 name|Override
 DECL|method|validate
 specifier|public
-name|T
+name|DocTerms
 name|validate
 parameter_list|(
-name|T
+name|DocTerms
 name|entry
 parameter_list|,
 name|IndexReader
