@@ -3180,7 +3180,7 @@ literal|"term~"
 argument_list|,
 literal|null
 argument_list|,
-literal|"term~0.5"
+literal|"term~2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -3194,20 +3194,20 @@ argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
-literal|"term~^2"
+literal|"term~^3"
 argument_list|,
 literal|null
 argument_list|,
-literal|"term~0.5^2.0"
+literal|"term~2.0^3.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
 argument_list|(
-literal|"term^2~"
+literal|"term^3~"
 argument_list|,
 literal|null
 argument_list|,
-literal|"term~0.5^2.0"
+literal|"term~2.0^3.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -3327,7 +3327,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|0.5f
+literal|2.0f
 argument_list|,
 name|fq
 operator|.
@@ -3523,7 +3523,7 @@ name|assertWildcardQueryEquals
 argument_list|(
 literal|"Term~"
 argument_list|,
-literal|"term~0.5"
+literal|"term~2.0"
 argument_list|)
 expr_stmt|;
 name|assertWildcardQueryEquals
@@ -3532,7 +3532,7 @@ literal|"Term~"
 argument_list|,
 literal|true
 argument_list|,
-literal|"term~0.5"
+literal|"term~2.0"
 argument_list|)
 expr_stmt|;
 name|assertWildcardQueryEquals
@@ -3541,7 +3541,7 @@ literal|"Term~"
 argument_list|,
 literal|false
 argument_list|,
-literal|"Term~0.5"
+literal|"Term~2.0"
 argument_list|)
 expr_stmt|;
 comment|// Range queries:
@@ -5404,7 +5404,7 @@ literal|"a:b\\-c~"
 argument_list|,
 name|a
 argument_list|,
-literal|"a:b-c~0.5"
+literal|"a:b-c~2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -5413,7 +5413,7 @@ literal|"a:b\\+c~"
 argument_list|,
 name|a
 argument_list|,
-literal|"a:b+c~0.5"
+literal|"a:b+c~2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -5422,7 +5422,7 @@ literal|"a:b\\:c~"
 argument_list|,
 name|a
 argument_list|,
-literal|"a:b:c~0.5"
+literal|"a:b:c~2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -5431,7 +5431,7 @@ literal|"a:b\\\\c~"
 argument_list|,
 name|a
 argument_list|,
-literal|"a:b\\c~0.5"
+literal|"a:b\\c~2.0"
 argument_list|)
 expr_stmt|;
 comment|// TODO: implement Range queries on QueryParser
