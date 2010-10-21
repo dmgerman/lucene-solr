@@ -495,7 +495,18 @@ operator|.
 name|cloneExpanded
 argument_list|()
 expr_stmt|;
-comment|//assertEquals(singleton, expandedSingleton);
+name|assertTrue
+argument_list|(
+name|BasicOperations
+operator|.
+name|sameLanguage
+argument_list|(
+name|singleton
+argument_list|,
+name|expandedSingleton
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testGetRandomAcceptedString
 specifier|public
