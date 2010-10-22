@@ -209,9 +209,9 @@ init|=
 literal|26
 decl_stmt|;
 comment|/** RegularExpression Id. */
-DECL|field|RANGEIN_TO
+DECL|field|RANGE_TO
 name|int
-name|RANGEIN_TO
+name|RANGE_TO
 init|=
 literal|27
 decl_stmt|;
@@ -223,46 +223,25 @@ init|=
 literal|28
 decl_stmt|;
 comment|/** RegularExpression Id. */
-DECL|field|RANGEIN_QUOTED
-name|int
-name|RANGEIN_QUOTED
-init|=
-literal|29
-decl_stmt|;
-comment|/** RegularExpression Id. */
-DECL|field|RANGEIN_GOOP
-name|int
-name|RANGEIN_GOOP
-init|=
-literal|30
-decl_stmt|;
-comment|/** RegularExpression Id. */
-DECL|field|RANGEEX_TO
-name|int
-name|RANGEEX_TO
-init|=
-literal|31
-decl_stmt|;
-comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_END
 name|int
 name|RANGEEX_END
 init|=
-literal|32
+literal|29
 decl_stmt|;
 comment|/** RegularExpression Id. */
-DECL|field|RANGEEX_QUOTED
+DECL|field|RANGE_QUOTED
 name|int
-name|RANGEEX_QUOTED
+name|RANGE_QUOTED
 init|=
-literal|33
+literal|30
 decl_stmt|;
 comment|/** RegularExpression Id. */
-DECL|field|RANGEEX_GOOP
+DECL|field|RANGE_GOOP
 name|int
-name|RANGEEX_GOOP
+name|RANGE_GOOP
 init|=
-literal|34
+literal|31
 decl_stmt|;
 comment|/** Lexical state. */
 DECL|field|Boost
@@ -272,25 +251,18 @@ init|=
 literal|0
 decl_stmt|;
 comment|/** Lexical state. */
-DECL|field|RangeEx
+DECL|field|Range
 name|int
-name|RangeEx
+name|Range
 init|=
 literal|1
-decl_stmt|;
-comment|/** Lexical state. */
-DECL|field|RangeIn
-name|int
-name|RangeIn
-init|=
-literal|2
 decl_stmt|;
 comment|/** Lexical state. */
 DECL|field|DEFAULT
 name|int
 name|DEFAULT
 init|=
-literal|3
+literal|2
 decl_stmt|;
 comment|/** Literal token values. */
 DECL|field|tokenImage
@@ -357,17 +329,11 @@ literal|"\"TO\""
 block|,
 literal|"\"]\""
 block|,
-literal|"<RANGEIN_QUOTED>"
-block|,
-literal|"<RANGEIN_GOOP>"
-block|,
-literal|"\"TO\""
-block|,
 literal|"\"}\""
 block|,
-literal|"<RANGEEX_QUOTED>"
+literal|"<RANGE_QUOTED>"
 block|,
-literal|"<RANGEEX_GOOP>"
+literal|"<RANGE_GOOP>"
 block|,   }
 decl_stmt|;
 block|}
