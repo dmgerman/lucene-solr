@@ -183,10 +183,12 @@ name|useUnmapHack
 init|=
 name|UNMAP_SUPPORTED
 decl_stmt|;
-DECL|field|maxBBuf
-specifier|private
+DECL|field|DEFAULT_MAX_BUFF
+specifier|public
+specifier|static
+specifier|final
 name|int
-name|maxBBuf
+name|DEFAULT_MAX_BUFF
 init|=
 name|Constants
 operator|.
@@ -203,6 +205,13 @@ literal|1024
 operator|*
 literal|1024
 operator|)
+decl_stmt|;
+DECL|field|maxBBuf
+specifier|private
+name|int
+name|maxBBuf
+init|=
+name|DEFAULT_MAX_BUFF
 decl_stmt|;
 comment|/** Create a new MMapDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException    */
 DECL|method|MMapDirectory
