@@ -205,6 +205,9 @@ extends|extends
 name|LuceneTestCase
 block|{
 comment|/**    * Gets a list of everything we can find in the classpath and makes sure it has    * a name, description, etc...    */
+annotation|@
+name|Ignore
+comment|// TODO: reenable once SOLR-2160 is fixed
 DECL|method|testCallMBeanInfo
 specifier|public
 name|void
@@ -213,6 +216,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|//    Object[] init = org.apache.solr.search.QParserPlugin.standardPlugins;
 name|List
 argument_list|<
 name|Class
