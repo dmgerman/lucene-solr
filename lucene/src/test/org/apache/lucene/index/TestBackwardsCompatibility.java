@@ -881,11 +881,26 @@ name|writer
 operator|!=
 literal|null
 condition|)
+block|{
+try|try
+block|{
 name|writer
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IndexFormatTooOldException
+name|e
+parameter_list|)
+block|{
+comment|// OK -- since IW gives merge scheduler a chance
+comment|// to merge at close, it's possible and fine to
+comment|// hit this exc here
+block|}
+block|}
 name|writer
 operator|=
 literal|null
