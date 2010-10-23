@@ -1068,6 +1068,30 @@ comment|// get Analyzer from superclass and tokenize the terms
 name|TokenStream
 name|source
 init|=
+literal|null
+decl_stmt|;
+name|CharTermAttribute
+name|termAtt
+init|=
+literal|null
+decl_stmt|;
+name|boolean
+name|multipleTokens
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|part1
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// part1
+try|try
+block|{
+name|source
+operator|=
 name|getAnalyzer
 argument_list|()
 operator|.
@@ -1081,10 +1105,9 @@ argument_list|(
 name|part1
 argument_list|)
 argument_list|)
-decl_stmt|;
-name|CharTermAttribute
+expr_stmt|;
 name|termAtt
-init|=
+operator|=
 name|source
 operator|.
 name|addAttribute
@@ -1093,15 +1116,11 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-name|boolean
+expr_stmt|;
 name|multipleTokens
-init|=
+operator|=
 literal|false
-decl_stmt|;
-comment|// part1
-try|try
-block|{
+expr_stmt|;
 if|if
 condition|(
 name|source
@@ -1171,6 +1190,14 @@ literal|" - tokens were added to part1"
 argument_list|)
 throw|;
 block|}
+block|}
+if|if
+condition|(
+name|part2
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// part2
 name|source
 operator|=
@@ -1269,6 +1296,7 @@ operator|+
 literal|" - tokens were added to part2"
 argument_list|)
 throw|;
+block|}
 block|}
 return|return
 name|super
