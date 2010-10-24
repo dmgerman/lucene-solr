@@ -2212,6 +2212,7 @@ argument_list|(
 name|clazz
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SolrException
@@ -2236,8 +2237,11 @@ name|cast
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 throw|;
+block|}
 comment|//most of the classes do not have constructors which takes SolrCore argument. It is recommended to obtain SolrCore by implementing SolrCoreAware.
 comment|// So invariably always it will cause a  NoSuchMethodException. So iterate though the list of available constructors
 name|Constructor
@@ -3042,7 +3046,11 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
+literal|null
+argument_list|,
 name|e
+argument_list|,
+literal|false
 argument_list|)
 throw|;
 block|}
