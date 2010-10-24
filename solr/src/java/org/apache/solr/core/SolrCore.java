@@ -2237,8 +2237,6 @@ name|cast
 operator|.
 name|getName
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 throw|;
 block|}
@@ -2357,6 +2355,8 @@ name|getName
 argument_list|()
 argument_list|,
 name|e
+argument_list|,
+literal|false
 argument_list|)
 throw|;
 block|}
