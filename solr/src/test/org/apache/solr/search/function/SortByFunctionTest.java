@@ -430,6 +430,13 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Make sure it uses two readers
+name|assertU
+argument_list|(
 name|adoc
 argument_list|(
 literal|"id"
