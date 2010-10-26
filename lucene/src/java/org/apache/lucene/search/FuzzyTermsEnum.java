@@ -375,7 +375,7 @@ specifier|private
 name|BytesRef
 name|bottomTerm
 decl_stmt|;
-comment|// nocommit: chicken-and-egg
+comment|// TODO: chicken-and-egg
 DECL|field|termComparator
 specifier|private
 specifier|final

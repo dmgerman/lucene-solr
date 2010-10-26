@@ -904,9 +904,6 @@ name|randomRegexp
 argument_list|(
 name|random
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 decl_stmt|;
 name|assertSame
 argument_list|(

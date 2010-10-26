@@ -833,7 +833,6 @@ block|}
 block|}
 comment|/**    * Reverses the language of the given (non-singleton) automaton while returning    * the set of new initial states.    */
 DECL|method|reverse
-specifier|private
 specifier|static
 name|Set
 argument_list|<

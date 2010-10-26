@@ -581,11 +581,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"New CoreContainer: solrHome="
-operator|+
-name|solrHome
-operator|+
-literal|" instance="
+literal|"New CoreContainer "
 operator|+
 name|System
 operator|.

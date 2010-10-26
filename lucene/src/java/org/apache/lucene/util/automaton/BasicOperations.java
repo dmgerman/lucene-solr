@@ -202,6 +202,24 @@ operator|.
 name|singleton
 argument_list|)
 return|;
+if|if
+condition|(
+name|isEmpty
+argument_list|(
+name|a1
+argument_list|)
+operator|||
+name|isEmpty
+argument_list|(
+name|a2
+argument_list|)
+condition|)
+return|return
+name|BasicAutomata
+operator|.
+name|makeEmpty
+argument_list|()
+return|;
 comment|// adding epsilon transitions with the NFA concatenation algorithm
 comment|// in this case always produces a resulting DFA, preventing expensive
 comment|// redundant determinize() calls for this common case.

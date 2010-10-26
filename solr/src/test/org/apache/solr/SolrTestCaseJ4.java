@@ -614,8 +614,11 @@ argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
-comment|// TODO: make this fail if we manage to clean up
-comment|// fail(msg);
+name|fail
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/** Causes an exception matching the regex pattern to not be logged. */

@@ -2663,6 +2663,11 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+comment|// TODO: we should check whether this index is too old,
+comment|// and throw an IndexFormatTooOldExc up front, here,
+comment|// instead of later when merge, applyDeletes, getReader
+comment|// is attempted.  I think to do this we should store the
+comment|// oldest segment's version in segments_N.
 try|try
 block|{
 if|if
@@ -10088,12 +10093,21 @@ operator|.
 name|isAborted
 argument_list|()
 operator|&&
+operator|(
+name|merge
+operator|.
+name|optimize
+operator|||
+operator|(
 operator|!
 name|closed
 operator|&&
 operator|!
 name|closing
+operator|)
+operator|)
 condition|)
+block|{
 name|updatePendingMerges
 argument_list|(
 name|merge
@@ -10105,6 +10119,7 @@ operator|.
 name|optimize
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

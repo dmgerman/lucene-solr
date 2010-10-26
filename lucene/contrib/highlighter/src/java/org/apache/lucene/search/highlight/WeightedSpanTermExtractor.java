@@ -982,8 +982,6 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit is this needed anymore?
-comment|/*       else {         FakeReader fReader = new FakeReader();         MultiTermQuery.SCORING_BOOLEAN_QUERY_REWRITE.rewrite(fReader, mtq);         if (fReader.field != null) {           IndexReader ir = getReaderForField(fReader.field);           extract(query.rewrite(ir), terms);         }       }       */
 block|}
 elseif|else
 if|if

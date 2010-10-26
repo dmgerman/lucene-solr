@@ -233,7 +233,6 @@ specifier|final
 name|FieldInfo
 name|fieldInfo
 decl_stmt|;
-comment|// nocommit - how to communicate byte usage to DocumentsWriter?
 DECL|field|bytesHash
 specifier|final
 name|BytesRefHash
