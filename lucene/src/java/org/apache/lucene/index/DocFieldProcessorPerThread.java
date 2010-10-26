@@ -94,9 +94,11 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|codecs
 operator|.
-name|ValuesAttribute
+name|docvalues
+operator|.
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -112,9 +114,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|codec
-operator|.
-name|DocValuesConsumer
+name|ValuesAttribute
 import|;
 end_import
 

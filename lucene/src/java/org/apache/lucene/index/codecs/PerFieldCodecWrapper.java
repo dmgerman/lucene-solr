@@ -84,16 +84,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|TreeSet
 import|;
 end_import
@@ -230,9 +220,11 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|codecs
 operator|.
-name|DocValues
+name|docvalues
+operator|.
+name|DocValuesConsumer
 import|;
 end_import
 
@@ -248,9 +240,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|codec
-operator|.
-name|DocValuesConsumer
+name|DocValues
 import|;
 end_import
 
