@@ -310,6 +310,22 @@ begin_comment
 comment|// javadocs
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|values
+operator|.
+name|DocValues
+import|;
+end_import
+
 begin_comment
 comment|/** Handles a terms dict, but decouples all details of  *  doc/freqs/positions reading to an instance of {@link  *  StandardPostingsReader}.  This class is reusable for  *  codecs that use a different format for  *  docs/freqs/positions (though codecs are also free to  *  make their own terms dict impl).  *  *<p>This class also interacts with an instance of {@link  * TermsIndexReaderBase}, to abstract away the specific  * implementation of the terms dict index.   * @lucene.experimental */
 end_comment
@@ -1166,6 +1182,21 @@ name|current
 operator|.
 name|iterator
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|docValues
+specifier|public
+name|DocValues
+name|docValues
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
 return|;
 block|}
 block|}

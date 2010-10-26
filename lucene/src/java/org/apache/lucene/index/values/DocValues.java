@@ -77,14 +77,28 @@ import|;
 end_import
 
 begin_class
-DECL|class|Reader
+DECL|class|DocValues
 specifier|public
 specifier|abstract
 class|class
-name|Reader
+name|DocValues
 implements|implements
 name|Closeable
 block|{
+DECL|field|EMPTY_ARRAY
+specifier|public
+specifier|static
+specifier|final
+name|DocValues
+index|[]
+name|EMPTY_ARRAY
+init|=
+operator|new
+name|DocValues
+index|[
+literal|0
+index|]
+decl_stmt|;
 DECL|method|getEnum
 specifier|public
 name|ValuesEnum
@@ -141,6 +155,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+DECL|method|type
+specifier|public
+specifier|abstract
+name|Values
+name|type
+parameter_list|()
+function_decl|;
 comment|/**    * Source of integer (returned as java long), per document. The underlying    * implementation may use different numbers of bits per value; long is only    * used since it can handle all precisions.    */
 DECL|class|Source
 specifier|public

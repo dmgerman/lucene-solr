@@ -414,6 +414,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|values
+operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|Collector
@@ -3387,6 +3403,24 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|DocValues
+name|docValues
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// TODO
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
 block|}
 return|;
 block|}
@@ -3497,6 +3531,27 @@ block|}
 block|}
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|public
+name|DocValues
+name|docValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"not implemented"
+argument_list|)
+throw|;
 block|}
 block|}
 return|;

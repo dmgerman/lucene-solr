@@ -2231,6 +2231,16 @@ argument_list|)
 expr_stmt|;
 name|flushState
 operator|=
+name|segWriteState
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|segWriteState
+name|SegmentWriteState
+name|segWriteState
+parameter_list|()
+block|{
+return|return
 operator|new
 name|SegmentWriteState
 argument_list|(
@@ -2262,7 +2272,7 @@ name|writer
 operator|.
 name|codecs
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/** Returns the codec used to flush the last segment */
 DECL|method|getCodec

@@ -437,6 +437,26 @@ name|name
 argument_list|)
 operator|<
 literal|0
+operator|:
+literal|"current field name "
+operator|+
+operator|(
+name|currentField
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|currentField
+operator|.
+name|name
+operator|)
+operator|+
+literal|" given: "
+operator|+
+name|field
+operator|.
+name|name
 assert|;
 name|currentField
 operator|=

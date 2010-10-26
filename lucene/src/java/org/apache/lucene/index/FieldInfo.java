@@ -448,6 +448,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|getIndexValues
+specifier|public
 name|Values
 name|getIndexValues
 parameter_list|()
