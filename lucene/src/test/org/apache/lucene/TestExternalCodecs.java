@@ -2925,15 +2925,6 @@ operator|.
 name|getSequentialSubReaders
 argument_list|()
 decl_stmt|;
-name|assertTrue
-argument_list|(
-name|subs
-operator|.
-name|length
-operator|>
-literal|1
-argument_list|)
-expr_stmt|;
 comment|// test each segment
 for|for
 control|(
@@ -2952,7 +2943,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|//System.out.println("test i=" + i);
 name|testTermsOrder
 argument_list|(
 name|subs
