@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -155,6 +145,20 @@ operator|.
 name|util
 operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CollectionUtil
 import|;
 end_import
 
@@ -339,9 +343,9 @@ name|size
 argument_list|()
 decl_stmt|;
 comment|// Sort by field name
-name|Collections
+name|CollectionUtil
 operator|.
-name|sort
+name|quickSort
 argument_list|(
 name|allFields
 argument_list|)
