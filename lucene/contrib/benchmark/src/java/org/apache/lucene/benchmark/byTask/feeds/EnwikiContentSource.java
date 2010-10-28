@@ -772,6 +772,14 @@ break|break;
 case|case
 name|ID
 case|:
+comment|//the doc id is the first one in the page.  All other ids after that one can be ignored according to the schema
+if|if
+condition|(
+name|id
+operator|==
+literal|null
+condition|)
+block|{
 name|id
 operator|=
 name|contents
@@ -779,6 +787,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 break|break;
 default|default:
 comment|// this element should be discarded.
