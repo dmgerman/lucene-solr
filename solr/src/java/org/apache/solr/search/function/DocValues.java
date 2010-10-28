@@ -215,6 +215,35 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * @param doc The doc to retrieve to sort ordinal for    * @return the sort ordinal for the specified doc    * TODO: Maybe we can just use intVal for this...    */
+DECL|method|ordVal
+specifier|public
+name|int
+name|ordVal
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * @return the number of unique sort ordinals this instance has    */
+DECL|method|numOrd
+specifier|public
+name|int
+name|numOrd
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 DECL|method|toString
 specifier|public
 specifier|abstract

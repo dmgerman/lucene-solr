@@ -499,6 +499,12 @@ DECL|field|matches
 name|int
 name|matches
 decl_stmt|;
+DECL|field|groupsFull
+name|boolean
+name|groupsFull
+init|=
+literal|false
+decl_stmt|;
 DECL|method|TopGroupCollector
 specifier|public
 name|TopGroupCollector
@@ -699,6 +705,86 @@ block|{
 name|matches
 operator|++
 expr_stmt|;
+comment|// Doing this before ValueFiller and HashMap are executed
+comment|// This allows us to exit this method asap when a doc is not competitive
+comment|// As it turns out this happens most of the times.
+if|if
+condition|(
+name|groupsFull
+condition|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+condition|;
+name|i
+operator|++
+control|)
+block|{
+specifier|final
+name|int
+name|c
+init|=
+name|reversed
+index|[
+name|i
+index|]
+operator|*
+name|comparators
+index|[
+name|i
+index|]
+operator|.
+name|compareBottom
+argument_list|(
+name|doc
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|c
+operator|<
+literal|0
+condition|)
+block|{
+comment|// Definitely not competitive. So don't even bother to continue
+return|return;
+block|}
+elseif|else
+if|if
+condition|(
+name|c
+operator|>
+literal|0
+condition|)
+block|{
+comment|// Definitely competitive.
+break|break;
+block|}
+elseif|else
+if|if
+condition|(
+name|i
+operator|==
+name|comparators
+operator|.
+name|length
+operator|-
+literal|1
+condition|)
+block|{
+comment|// Here c=0. If we're at the last comparator, this doc is not
+comment|// competitive, since docs are visited in doc Id order, which means
+comment|// this doc cannot compete with any other document in the queue.
+return|return;
+block|}
+block|}
+block|}
+comment|// These next two statements are expensive
 name|filler
 operator|.
 name|fillValue
@@ -817,6 +903,10 @@ operator|==
 literal|null
 condition|)
 block|{
+name|groupsFull
+operator|=
+literal|true
+expr_stmt|;
 name|buildSet
 argument_list|()
 expr_stmt|;
