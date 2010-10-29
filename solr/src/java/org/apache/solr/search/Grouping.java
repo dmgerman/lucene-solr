@@ -702,6 +702,11 @@ expr_stmt|;
 comment|// if orderedGroups != null, then we already have collected N groups and
 comment|// can short circuit by comparing this document to the smallest group
 comment|// without having to even find what group this document belongs to.
+comment|// Even if this document belongs to a group in the top N, we know that
+comment|// we don't have to update that group.
+comment|//
+comment|// Downside: if the number of unique groups is very low, this is
+comment|// wasted effort as we will most likely be updating an existing group.
 if|if
 condition|(
 name|orderedGroups
