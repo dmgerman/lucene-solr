@@ -226,7 +226,7 @@ condition|)
 block|{
 name|fieldInfo
 operator|.
-name|setIndexValues
+name|setDocValues
 argument_list|(
 name|attr
 operator|.

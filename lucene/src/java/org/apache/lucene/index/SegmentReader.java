@@ -4510,7 +4510,7 @@ if|if
 condition|(
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|!=
 literal|null
 operator|&&

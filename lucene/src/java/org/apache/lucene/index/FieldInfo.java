@@ -58,9 +58,9 @@ specifier|public
 name|int
 name|number
 decl_stmt|;
-DECL|field|indexValues
+DECL|field|docValues
 name|Values
-name|indexValues
+name|docValues
 decl_stmt|;
 comment|// true if term vector for this field should be stored
 DECL|field|storeTermVector
@@ -402,9 +402,9 @@ comment|// if one require omitTermFreqAndPositions at least once, it remains off
 block|}
 block|}
 block|}
-DECL|method|setIndexValues
+DECL|method|setDocValues
 name|void
-name|setIndexValues
+name|setDocValues
 parameter_list|(
 name|Values
 name|v
@@ -412,14 +412,14 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|indexValues
+name|docValues
 operator|!=
 literal|null
 condition|)
 block|{
 if|if
 condition|(
-name|indexValues
+name|docValues
 operator|!=
 name|v
 condition|)
@@ -430,7 +430,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"indexValues is already set to "
 operator|+
-name|indexValues
+name|docValues
 operator|+
 literal|"; cannot change to "
 operator|+
@@ -441,20 +441,32 @@ block|}
 block|}
 else|else
 block|{
-name|indexValues
+name|docValues
 operator|=
 name|v
 expr_stmt|;
 block|}
 block|}
-DECL|method|getIndexValues
+DECL|method|hasDocValues
 specifier|public
-name|Values
-name|getIndexValues
+name|boolean
+name|hasDocValues
 parameter_list|()
 block|{
 return|return
-name|indexValues
+name|docValues
+operator|!=
+literal|null
+return|;
+block|}
+DECL|method|getDocValues
+specifier|public
+name|Values
+name|getDocValues
+parameter_list|()
+block|{
+return|return
+name|docValues
 return|;
 block|}
 block|}

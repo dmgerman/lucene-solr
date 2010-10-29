@@ -929,16 +929,16 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|ints
+DECL|method|getInt
 specifier|public
 name|long
-name|ints
+name|getInt
 parameter_list|(
 name|int
 name|docID
 parameter_list|)
 block|{
-comment|// nocommit -- can we somehow avoid 2X method calls
+comment|// TODO -- can we somehow avoid 2X method calls
 comment|// on each get? must push minValue down, and make
 comment|// PackedInts implement Ints.Source
 specifier|final
@@ -989,6 +989,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -997,6 +999,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|datIn
 operator|.
 name|close

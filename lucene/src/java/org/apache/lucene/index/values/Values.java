@@ -41,7 +41,7 @@ block|,
 DECL|enum constant|SIMPLE_FLOAT_8BYTE
 name|SIMPLE_FLOAT_8BYTE
 block|,
-comment|// nocommit -- shouldn't lucene decide/detect straight vs
+comment|// TODO(simonw): -- shouldn't lucene decide/detect straight vs
 comment|// deref, as well fixed vs var?
 DECL|enum constant|BYTES_FIXED_STRAIGHT
 name|BYTES_FIXED_STRAIGHT
@@ -60,7 +60,7 @@ name|BYTES_VAR_DEREF
 block|,
 DECL|enum constant|BYTES_VAR_SORTED
 name|BYTES_VAR_SORTED
-comment|// nocommit -- need STRING variants as well
+comment|// TODO(simonw): -- need STRING variants as well
 block|}
 end_enum
 

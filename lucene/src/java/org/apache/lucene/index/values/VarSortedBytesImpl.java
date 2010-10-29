@@ -794,7 +794,7 @@ name|offset
 argument_list|)
 expr_stmt|;
 comment|// write index -- first doc -> 1+ord
-comment|// nocommit -- allow not -1:
+comment|// TODO(simonw): allow not -1:
 specifier|final
 name|PackedInts
 operator|.
@@ -904,7 +904,7 @@ name|finish
 argument_list|()
 expr_stmt|;
 comment|// next ord (0-based) -> offset
-comment|// nocommit -- allow not -1:
+comment|// TODO(simonw): -- allow not -1:
 name|PackedInts
 operator|.
 name|Writer

@@ -1319,7 +1319,7 @@ if|if
 condition|(
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|==
 literal|null
 condition|)
@@ -1335,7 +1335,7 @@ switch|switch
 condition|(
 name|fi
 operator|.
-name|indexValues
+name|docValues
 condition|)
 block|{
 case|case
@@ -1427,7 +1427,7 @@ literal|"unhandled indexValues type "
 operator|+
 name|fi
 operator|.
-name|indexValues
+name|docValues
 argument_list|)
 throw|;
 block|}
@@ -1675,7 +1675,7 @@ literal|0
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 literal|null
 expr_stmt|;
@@ -1685,7 +1685,7 @@ literal|1
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1697,7 +1697,7 @@ literal|2
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1709,7 +1709,7 @@ literal|3
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1721,7 +1721,7 @@ literal|4
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1733,7 +1733,7 @@ literal|5
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1745,7 +1745,7 @@ literal|6
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1757,7 +1757,7 @@ literal|7
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1769,7 +1769,7 @@ literal|8
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1781,7 +1781,7 @@ literal|9
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.
@@ -1793,7 +1793,7 @@ literal|10
 case|:
 name|fi
 operator|.
-name|indexValues
+name|docValues
 operator|=
 name|Values
 operator|.

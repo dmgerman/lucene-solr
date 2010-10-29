@@ -1481,6 +1481,8 @@ name|clone
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -1489,6 +1491,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|datIn
