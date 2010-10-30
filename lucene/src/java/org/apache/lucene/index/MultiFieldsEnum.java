@@ -896,6 +896,15 @@ condition|(
 name|values
 operator|!=
 literal|null
+operator|&&
+name|currentField
+operator|.
+name|equals
+argument_list|(
+name|withSlice
+operator|.
+name|current
+argument_list|)
 condition|)
 block|{
 if|if

@@ -358,20 +358,18 @@ operator|.
 name|docValues
 argument_list|()
 decl_stmt|;
-assert|assert
+comment|// TODO: is this assert values and if so when?
+comment|//        assert docValues != null : "DocValues are null for " + mergeState.fieldInfo.getDocValues();
+if|if
+condition|(
 name|docValues
-operator|!=
+operator|==
 literal|null
-operator|:
-literal|"DocValues are null for "
-operator|+
-name|mergeState
-operator|.
-name|fieldInfo
-operator|.
-name|getDocValues
-argument_list|()
-assert|;
+condition|)
+block|{
+comment|// for now just continue
+continue|continue;
+block|}
 specifier|final
 name|DocValuesConsumer
 name|docValuesConsumer
