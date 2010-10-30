@@ -699,6 +699,92 @@ block|{
 name|matches
 operator|++
 expr_stmt|;
+comment|// if orderedGroups != null, then we already have collected N groups and
+comment|// can short circuit by comparing this document to the smallest group
+comment|// without having to even find what group this document belongs to.
+comment|// Even if this document belongs to a group in the top N, we know that
+comment|// we don't have to update that group.
+comment|//
+comment|// Downside: if the number of unique groups is very low, this is
+comment|// wasted effort as we will most likely be updating an existing group.
+if|if
+condition|(
+name|orderedGroups
+operator|!=
+literal|null
+condition|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+condition|;
+name|i
+operator|++
+control|)
+block|{
+specifier|final
+name|int
+name|c
+init|=
+name|reversed
+index|[
+name|i
+index|]
+operator|*
+name|comparators
+index|[
+name|i
+index|]
+operator|.
+name|compareBottom
+argument_list|(
+name|doc
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|c
+operator|<
+literal|0
+condition|)
+block|{
+comment|// Definitely not competitive. So don't even bother to continue
+return|return;
+block|}
+elseif|else
+if|if
+condition|(
+name|c
+operator|>
+literal|0
+condition|)
+block|{
+comment|// Definitely competitive.
+break|break;
+block|}
+elseif|else
+if|if
+condition|(
+name|i
+operator|==
+name|comparators
+operator|.
+name|length
+operator|-
+literal|1
+condition|)
+block|{
+comment|// Here c=0. If we're at the last comparator, this doc is not
+comment|// competitive, since docs are visited in doc Id order, which means
+comment|// this doc cannot compete with any other document in the queue.
+return|return;
+block|}
+block|}
+block|}
 name|filler
 operator|.
 name|fillValue
@@ -808,89 +894,24 @@ argument_list|,
 name|sg
 argument_list|)
 expr_stmt|;
-return|return;
-block|}
 if|if
 condition|(
-name|orderedGroups
+name|groupMap
+operator|.
+name|size
+argument_list|()
 operator|==
-literal|null
+name|nGroups
 condition|)
 block|{
 name|buildSet
 argument_list|()
 expr_stmt|;
 block|}
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|int
-name|c
-init|=
-name|reversed
-index|[
-name|i
-index|]
-operator|*
-name|comparators
-index|[
-name|i
-index|]
-operator|.
-name|compareBottom
-argument_list|(
-name|doc
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|c
-operator|<
-literal|0
-condition|)
-block|{
-comment|// Definitely not competitive.
 return|return;
 block|}
-elseif|else
-if|if
-condition|(
-name|c
-operator|>
-literal|0
-condition|)
-block|{
-comment|// Definitely competitive.
-break|break;
-block|}
-elseif|else
-if|if
-condition|(
-name|i
-operator|==
-name|comparators
-operator|.
-name|length
-operator|-
-literal|1
-condition|)
-block|{
-comment|// Here c=0. If we're at the last comparator, this doc is not
-comment|// competitive, since docs are visited in doc Id order, which means
-comment|// this doc cannot compete with any other document in the queue.
-return|return;
-block|}
-block|}
+comment|// we already tested that the document is competitive, so replace
+comment|// the smallest group with this new group.
 comment|// remove current smallest group
 name|SearchGroup
 name|smallest

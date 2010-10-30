@@ -2280,15 +2280,7 @@ argument_list|,
 literal|"+a +b"
 argument_list|)
 expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"a&& ! b"
-argument_list|,
-literal|null
-argument_list|,
-literal|"+a -b"
-argument_list|)
-expr_stmt|;
+comment|//    assertQueryEquals("a&& ! b", null, "+a -b");
 name|assertQueryEquals
 argument_list|(
 literal|"a OR b"
@@ -2316,15 +2308,7 @@ argument_list|,
 literal|"a -b"
 argument_list|)
 expr_stmt|;
-name|assertQueryEquals
-argument_list|(
-literal|"a OR ! b"
-argument_list|,
-literal|null
-argument_list|,
-literal|"a -b"
-argument_list|)
-expr_stmt|;
+comment|//    assertQueryEquals("a OR ! b", null, "a -b");
 name|assertQueryEquals
 argument_list|(
 literal|"a OR -b"
@@ -2332,6 +2316,70 @@ argument_list|,
 literal|null
 argument_list|,
 literal|"a -b"
+argument_list|)
+expr_stmt|;
+comment|// +,-,! should be directly adjacent to operand (i.e. not separated by whitespace) to be treated as an operator
+name|Analyzer
+name|a
+init|=
+operator|new
+name|Analyzer
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|TokenStream
+name|tokenStream
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|Reader
+name|reader
+parameter_list|)
+block|{
+return|return
+operator|new
+name|MockTokenizer
+argument_list|(
+name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+block|}
+decl_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a - b"
+argument_list|,
+name|a
+argument_list|,
+literal|"a - b"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a + b"
+argument_list|,
+name|a
+argument_list|,
+literal|"a + b"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a ! b"
+argument_list|,
+name|a
+argument_list|,
+literal|"a ! b"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals

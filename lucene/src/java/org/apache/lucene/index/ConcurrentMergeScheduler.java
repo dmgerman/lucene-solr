@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CollectionUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -81,16 +95,6 @@ operator|.
 name|util
 operator|.
 name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
 import|;
 end_import
 
@@ -403,18 +407,23 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Larger merges come first
-DECL|class|CompareByMergeDocCount
+DECL|field|compareByMergeDocCount
 specifier|protected
 specifier|static
-class|class
-name|CompareByMergeDocCount
-implements|implements
+specifier|final
 name|Comparator
 argument_list|<
 name|MergeThread
 argument_list|>
+name|compareByMergeDocCount
+init|=
+operator|new
+name|Comparator
+argument_list|<
+name|MergeThread
+argument_list|>
+argument_list|()
 block|{
-DECL|method|compare
 specifier|public
 name|int
 name|compare
@@ -493,6 +502,7 @@ name|c1
 return|;
 block|}
 block|}
+decl_stmt|;
 comment|/** Called whenever the running merges have changed, to    *  pause& unpause threads. */
 DECL|method|updateMergeThreads
 specifier|protected
@@ -501,15 +511,13 @@ name|void
 name|updateMergeThreads
 parameter_list|()
 block|{
-name|Collections
+name|CollectionUtil
 operator|.
-name|sort
+name|mergeSort
 argument_list|(
 name|mergeThreads
 argument_list|,
-operator|new
-name|CompareByMergeDocCount
-argument_list|()
+name|compareByMergeDocCount
 argument_list|)
 expr_stmt|;
 specifier|final

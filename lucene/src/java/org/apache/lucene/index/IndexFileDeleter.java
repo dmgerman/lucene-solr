@@ -160,6 +160,20 @@ name|NoSuchDirectoryException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CollectionUtil
+import|;
+end_import
+
 begin_comment
 comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * The same directory file may be referenced by more than  * one IndexCommit, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
 end_comment
@@ -830,9 +844,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// We keep commits list in sorted order (oldest to newest):
-name|Collections
+name|CollectionUtil
 operator|.
-name|sort
+name|mergeSort
 argument_list|(
 name|commits
 argument_list|)

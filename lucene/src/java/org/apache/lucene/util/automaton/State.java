@@ -62,16 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -836,15 +826,16 @@ argument_list|>
 name|comparator
 parameter_list|)
 block|{
+comment|// mergesort seems to perform better on already sorted arrays:
 if|if
 condition|(
 name|numTransitions
 operator|>
 literal|1
 condition|)
-name|Arrays
+name|ArrayUtil
 operator|.
-name|sort
+name|mergeSort
 argument_list|(
 name|transitionsArray
 argument_list|,
