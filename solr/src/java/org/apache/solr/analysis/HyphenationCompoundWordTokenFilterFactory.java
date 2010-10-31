@@ -18,36 +18,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -208,6 +178,28 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link HyphenationCompoundWordTokenFilter}  *<p>  * This factory accepts the following parameters:  *<ul>  *<li><code>hyphenator</code> (mandatory): path to the FOP xml hyphenation pattern.   *  See<a href="http://offo.sourceforge.net/hyphenation/">http://offo.sourceforge.net/hyphenation/</a>.  *<li><code>encoding</code> (optional): encoding of the xml hyphenation file. defaults to UTF-8.  *<li><code>dictionary</code> (optional): dictionary of words. defaults to no dictionary.  *<li><code>minWordSize</code> (optional): minimal word length that gets decomposed. defaults to 5.  *<li><code>minSubwordSize</code> (optional): minimum length of subwords. defaults to 2.  *<li><code>maxSubwordSize</code> (optional): maximum length of subwords. defaults to 15.  *<li><code>onlyLongestMatch</code> (optional): if true, adds only the longest matching subword   *    to the stream. defaults to false.  *</ul>  *<p>  * @see HyphenationCompoundWordTokenFilter  */
 end_comment
@@ -246,10 +238,7 @@ DECL|field|encoding
 specifier|private
 name|String
 name|encoding
-init|=
-literal|"UTF-8"
 decl_stmt|;
-comment|// default to UTF-8 encoding
 DECL|field|minWordSize
 specifier|private
 name|int
@@ -403,8 +392,8 @@ name|ResourceLoader
 name|loader
 parameter_list|)
 block|{
-name|Reader
-name|reader
+name|InputStream
+name|stream
 init|=
 literal|null
 decl_stmt|;
@@ -428,24 +417,40 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|InputStream
-name|hyph
-init|=
+comment|// TODO: Broken, because we cannot resolve real system id
+comment|// ResourceLoader should also supply method like ClassLoader to get resource URL
+name|stream
+operator|=
 name|loader
 operator|.
 name|openResource
 argument_list|(
 name|hypFile
 argument_list|)
-decl_stmt|;
-name|reader
-operator|=
+expr_stmt|;
+specifier|final
+name|InputSource
+name|is
+init|=
 operator|new
-name|InputStreamReader
+name|InputSource
 argument_list|(
-name|hyph
-argument_list|,
+name|stream
+argument_list|)
+decl_stmt|;
+name|is
+operator|.
+name|setEncoding
+argument_list|(
 name|encoding
+argument_list|)
+expr_stmt|;
+comment|// if it's null let xml parser decide
+name|is
+operator|.
+name|setSystemId
+argument_list|(
+name|hypFile
 argument_list|)
 expr_stmt|;
 name|hyphenator
@@ -454,7 +459,7 @@ name|HyphenationCompoundWordTokenFilter
 operator|.
 name|getHyphenationTree
 argument_list|(
-name|reader
+name|is
 argument_list|)
 expr_stmt|;
 block|}
@@ -464,7 +469,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|// TODO: getHyphenationTree really shouldnt throw "Exception"
+comment|// TODO: getHyphenationTree really shouldn't throw "Exception"
 throw|throw
 operator|new
 name|RuntimeException
@@ -479,7 +484,7 @@ name|IOUtils
 operator|.
 name|closeQuietly
 argument_list|(
-name|reader
+name|stream
 argument_list|)
 expr_stmt|;
 block|}

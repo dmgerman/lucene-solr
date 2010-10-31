@@ -347,7 +347,7 @@ block|{
 name|parse
 argument_list|(
 operator|new
-name|File
+name|InputSource
 argument_list|(
 name|filename
 argument_list|)
@@ -1339,11 +1339,54 @@ name|String
 name|systemId
 parameter_list|)
 block|{
-return|return
-name|HyphenationDTDGenerator
+comment|// supply the internal hyphenation.dtd if possible
+if|if
+condition|(
+operator|(
+name|systemId
+operator|!=
+literal|null
+operator|&&
+name|systemId
 operator|.
-name|generateDTD
+name|matches
+argument_list|(
+literal|"(?i).*\\bhyphenation.dtd\\b.*"
+argument_list|)
+operator|)
+operator|||
+operator|(
+literal|"hyphenation-info"
+operator|.
+name|equals
+argument_list|(
+name|publicId
+argument_list|)
+operator|)
+condition|)
+block|{
+comment|// System.out.println(this.getClass().getResource("hyphenation.dtd").toExternalForm());
+return|return
+operator|new
+name|InputSource
+argument_list|(
+name|this
+operator|.
+name|getClass
 argument_list|()
+operator|.
+name|getResource
+argument_list|(
+literal|"hyphenation.dtd"
+argument_list|)
+operator|.
+name|toExternalForm
+argument_list|()
+argument_list|)
+return|;
+block|}
+return|return
+literal|null
 return|;
 block|}
 comment|//
@@ -1847,101 +1890,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//
-comment|// ErrorHandler methods
-comment|//
-comment|/**    * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)    */
-annotation|@
-name|Override
-DECL|method|warning
-specifier|public
-name|void
-name|warning
-parameter_list|(
-name|SAXParseException
-name|ex
-parameter_list|)
-block|{
-name|errMsg
-operator|=
-literal|"[Warning] "
-operator|+
-name|getLocationString
-argument_list|(
-name|ex
-argument_list|)
-operator|+
-literal|": "
-operator|+
-name|ex
-operator|.
-name|getMessage
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)    */
-annotation|@
-name|Override
-DECL|method|error
-specifier|public
-name|void
-name|error
-parameter_list|(
-name|SAXParseException
-name|ex
-parameter_list|)
-block|{
-name|errMsg
-operator|=
-literal|"[Error] "
-operator|+
-name|getLocationString
-argument_list|(
-name|ex
-argument_list|)
-operator|+
-literal|": "
-operator|+
-name|ex
-operator|.
-name|getMessage
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)    */
-annotation|@
-name|Override
-DECL|method|fatalError
-specifier|public
-name|void
-name|fatalError
-parameter_list|(
-name|SAXParseException
-name|ex
-parameter_list|)
-throws|throws
-name|SAXException
-block|{
-name|errMsg
-operator|=
-literal|"[Fatal Error] "
-operator|+
-name|getLocationString
-argument_list|(
-name|ex
-argument_list|)
-operator|+
-literal|": "
-operator|+
-name|ex
-operator|.
-name|getMessage
-argument_list|()
-expr_stmt|;
-throw|throw
-name|ex
-throw|;
-block|}
 comment|/**    * Returns a string of the location.    */
 DECL|method|getLocationString
 specifier|private
@@ -2185,176 +2133,6 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-end_class
-
-begin_class
-DECL|class|HyphenationDTDGenerator
-class|class
-name|HyphenationDTDGenerator
-block|{
-DECL|field|DTD_STRING
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DTD_STRING
-init|=
-literal|"<?xml version=\"1.0\" encoding=\"US-ASCII\"?>\n"
-operator|+
-literal|"<!--\n"
-operator|+
-literal|"  Copyright 1999-2004 The Apache Software Foundation\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"  Licensed under the Apache License, Version 2.0 (the \"License\");\n"
-operator|+
-literal|"  you may not use this file except in compliance with the License.\n"
-operator|+
-literal|"  You may obtain a copy of the License at\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"       http://www.apache.org/licenses/LICENSE-2.0\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"  Unless required by applicable law or agreed to in writing, software\n"
-operator|+
-literal|"  distributed under the License is distributed on an \"AS IS\" BASIS,\n"
-operator|+
-literal|"  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n"
-operator|+
-literal|"  See the License for the specific language governing permissions and\n"
-operator|+
-literal|"  limitations under the License.\n"
-operator|+
-literal|"-->\n"
-operator|+
-literal|"<!-- $Id: hyphenation.dtd,v 1.3 2004/02/27 18:34:59 jeremias Exp $ -->\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!ELEMENT hyphenation-info (hyphen-char?, hyphen-min?,\n"
-operator|+
-literal|"                           classes, exceptions?, patterns)>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!-- Hyphen character to be used in the exception list as shortcut for\n"
-operator|+
-literal|"<hyphen pre-break=\"-\"/>. Defaults to '-'\n"
-operator|+
-literal|"-->\n"
-operator|+
-literal|"<!ELEMENT hyphen-char EMPTY>\n"
-operator|+
-literal|"<!ATTLIST hyphen-char value CDATA #REQUIRED>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!-- Default minimun length in characters of hyphenated word fragments\n"
-operator|+
-literal|"     before and after the line break. For some languages this is not\n"
-operator|+
-literal|"     only for aesthetic purposes, wrong hyphens may be generated if this\n"
-operator|+
-literal|"     is not accounted for.\n"
-operator|+
-literal|"-->\n"
-operator|+
-literal|"<!ELEMENT hyphen-min EMPTY>\n"
-operator|+
-literal|"<!ATTLIST hyphen-min before CDATA #REQUIRED>\n"
-operator|+
-literal|"<!ATTLIST hyphen-min after CDATA #REQUIRED>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!-- Character equivalent classes: space separated list of character groups, all\n"
-operator|+
-literal|"     characters in a group are to be treated equivalent as far as\n"
-operator|+
-literal|"     the hyphenation algorithm is concerned. The first character in a group\n"
-operator|+
-literal|"     is the group's equivalent character. Patterns should only contain\n"
-operator|+
-literal|"     first characters. It also defines word characters, i.e. a word that\n"
-operator|+
-literal|"     contains characters not present in any of the classes is not hyphenated.\n"
-operator|+
-literal|"-->\n"
-operator|+
-literal|"<!ELEMENT classes (#PCDATA)>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!-- Hyphenation exceptions: space separated list of hyphenated words.\n"
-operator|+
-literal|"     A hyphen is indicated by the hyphen tag, but you can use the\n"
-operator|+
-literal|"     hyphen-char defined previously as shortcut. This is in cases\n"
-operator|+
-literal|"     when the algorithm procedure finds wrong hyphens or you want\n"
-operator|+
-literal|"     to provide your own hyphenation for some words.\n"
-operator|+
-literal|"-->\n"
-operator|+
-literal|"<!ELEMENT exceptions (#PCDATA|hyphen)*>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!-- The hyphenation patterns, space separated. A pattern is made of 'equivalent'\n"
-operator|+
-literal|"     characters as described before, between any two word characters a digit\n"
-operator|+
-literal|"     in the range 0 to 9 may be specified. The absence of a digit is equivalent\n"
-operator|+
-literal|"     to zero. The '.' character is reserved to indicate begining or ending\n"
-operator|+
-literal|"     of words. -->\n"
-operator|+
-literal|"<!ELEMENT patterns (#PCDATA)>\n"
-operator|+
-literal|"\n"
-operator|+
-literal|"<!-- A \"full hyphen\" equivalent to TeX's \\discretionary\n"
-operator|+
-literal|"     with pre-break, post-break and no-break attributes.\n"
-operator|+
-literal|"     To be used in the exceptions list, the hyphen character is not\n"
-operator|+
-literal|"     automatically added -->\n"
-operator|+
-literal|"<!ELEMENT hyphen EMPTY>\n"
-operator|+
-literal|"<!ATTLIST hyphen pre CDATA #IMPLIED>\n"
-operator|+
-literal|"<!ATTLIST hyphen no CDATA #IMPLIED>\n"
-operator|+
-literal|"<!ATTLIST hyphen post CDATA #IMPLIED>\n"
-decl_stmt|;
-DECL|method|generateDTD
-specifier|public
-specifier|static
-name|InputSource
-name|generateDTD
-parameter_list|()
-block|{
-return|return
-operator|new
-name|InputSource
-argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-name|DTD_STRING
-argument_list|)
-argument_list|)
-return|;
 block|}
 block|}
 end_class
