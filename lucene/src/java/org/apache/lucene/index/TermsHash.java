@@ -228,7 +228,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|abort
-specifier|synchronized
 specifier|public
 name|void
 name|abort
