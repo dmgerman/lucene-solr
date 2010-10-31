@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Facet parameters  */
+comment|/**  * Group parameters  */
 end_comment
 
 begin_interface
@@ -92,6 +92,18 @@ init|=
 name|GROUP
 operator|+
 literal|".limit"
+decl_stmt|;
+comment|/** the offset for the doclist of each group */
+DECL|field|GROUP_OFFSET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GROUP_OFFSET
+init|=
+name|GROUP
+operator|+
+literal|".offset"
 decl_stmt|;
 block|}
 end_interface

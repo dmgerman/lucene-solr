@@ -126,12 +126,24 @@ name|int
 name|docsPerGroup
 decl_stmt|;
 comment|// how many docs in each group - from "group.limit" param, default=1
+DECL|field|groupOffset
+specifier|public
+name|int
+name|groupOffset
+decl_stmt|;
+comment|// the offset within each group (for paging within each group)
 DECL|field|numGroups
 specifier|public
 name|int
 name|numGroups
 decl_stmt|;
 comment|// how many groups - defaults to the "rows" parameter
+DECL|field|offset
+specifier|public
+name|int
+name|offset
+decl_stmt|;
+comment|// offset into the list of groups
 block|}
 DECL|class|CommandQuery
 specifier|public
@@ -2497,6 +2509,9 @@ name|docsPerGroup
 parameter_list|,
 name|boolean
 name|getScores
+parameter_list|,
+name|int
+name|offset
 parameter_list|)
 throws|throws
 name|IOException
@@ -2506,6 +2521,19 @@ name|getSortFields
 init|=
 literal|false
 decl_stmt|;
+if|if
+condition|(
+name|topGroups
+operator|.
+name|orderedGroups
+operator|==
+literal|null
+condition|)
+name|topGroups
+operator|.
+name|buildSet
+argument_list|()
+expr_stmt|;
 name|groupMap
 operator|=
 operator|new
@@ -2531,12 +2559,21 @@ name|group
 range|:
 name|topGroups
 operator|.
-name|groupMap
-operator|.
-name|values
-argument_list|()
+name|orderedGroups
 control|)
 block|{
+if|if
+condition|(
+name|offset
+operator|>
+literal|0
+condition|)
+block|{
+name|offset
+operator|--
+expr_stmt|;
+continue|continue;
+block|}
 name|SearchGroupDocs
 name|groupDocs
 init|=
