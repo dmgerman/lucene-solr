@@ -23,9 +23,16 @@ end_comment
 begin_class
 DECL|class|English
 specifier|public
+specifier|final
 class|class
 name|English
 block|{
+DECL|method|English
+specifier|private
+name|English
+parameter_list|()
+block|{}
+comment|// no instance
 DECL|method|longToEnglish
 specifier|public
 specifier|static

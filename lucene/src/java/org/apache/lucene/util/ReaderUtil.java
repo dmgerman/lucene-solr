@@ -67,9 +67,16 @@ end_comment
 begin_class
 DECL|class|ReaderUtil
 specifier|public
+specifier|final
 class|class
 name|ReaderUtil
 block|{
+DECL|method|ReaderUtil
+specifier|private
+name|ReaderUtil
+parameter_list|()
+block|{}
+comment|// no instance
 DECL|class|Slice
 specifier|public
 specifier|static

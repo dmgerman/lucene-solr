@@ -23,9 +23,16 @@ end_comment
 begin_class
 DECL|class|ToStringUtils
 specifier|public
+specifier|final
 class|class
 name|ToStringUtils
 block|{
+DECL|method|ToStringUtils
+specifier|private
+name|ToStringUtils
+parameter_list|()
+block|{}
+comment|// no instance
 comment|/**    * for printing boost only if not 1.0    */
 DECL|method|boost
 specifier|public

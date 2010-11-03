@@ -38,11 +38,17 @@ end_comment
 
 begin_class
 DECL|class|UnicodeUtil
-specifier|final
 specifier|public
+specifier|final
 class|class
 name|UnicodeUtil
 block|{
+DECL|method|UnicodeUtil
+specifier|private
+name|UnicodeUtil
+parameter_list|()
+block|{}
+comment|// no instance
 DECL|field|UNI_SUR_HIGH_START
 specifier|public
 specifier|static
