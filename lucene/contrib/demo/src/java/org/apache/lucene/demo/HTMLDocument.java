@@ -310,13 +310,24 @@ argument_list|(
 name|f
 argument_list|)
 decl_stmt|;
+name|InputStreamReader
+name|reader
+init|=
+operator|new
+name|InputStreamReader
+argument_list|(
+name|fis
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+decl_stmt|;
 name|HTMLParser
 name|parser
 init|=
 operator|new
 name|HTMLParser
 argument_list|(
-name|fis
+name|reader
 argument_list|)
 decl_stmt|;
 comment|// Add the tag-stripped contents as a Reader-valued Text field so it will
