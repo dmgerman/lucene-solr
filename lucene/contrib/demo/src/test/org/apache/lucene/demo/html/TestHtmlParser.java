@@ -508,6 +508,44 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// LUCENE-590
+DECL|method|testSummaryTitle
+specifier|public
+name|void
+name|testSummaryTitle
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|text
+init|=
+literal|"<html><head><title>Summary</title></head><body>Summary of the document</body></html>"
+decl_stmt|;
+name|HTMLParser
+name|parser
+init|=
+operator|new
+name|HTMLParser
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|text
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Summary of the document"
+argument_list|,
+name|parser
+operator|.
+name|getSummary
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|// LUCENE-2246
 DECL|method|testTurkish
 specifier|public
