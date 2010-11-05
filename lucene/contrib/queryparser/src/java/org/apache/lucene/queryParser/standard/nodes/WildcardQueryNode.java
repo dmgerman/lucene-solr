@@ -161,10 +161,9 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|getTermEscaped
-argument_list|(
-name|escaper
-argument_list|)
+name|this
+operator|.
+name|text
 return|;
 block|}
 else|else
@@ -176,10 +175,9 @@ name|field
 operator|+
 literal|":"
 operator|+
-name|getTermEscaped
-argument_list|(
-name|escaper
-argument_list|)
+name|this
+operator|.
+name|text
 return|;
 block|}
 block|}
