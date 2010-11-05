@@ -8283,6 +8283,12 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+comment|// NOTE: this method cannot be sync'd because
+comment|// maybeMerge() in turn calls mergeScheduler.merge which
+comment|// in turn can take a long time to run and we don't want
+comment|// to hold the lock for that.  In the case of
+comment|// ConcurrentMergeScheduler this can lead to deadlock
+comment|// when it stalls due to too many running merges.
 comment|// We can be called during close, when closing==true, so we must pass false to ensureOpen:
 name|ensureOpen
 argument_list|(
