@@ -191,6 +191,11 @@ DECL|field|flushAt
 name|int
 name|flushAt
 decl_stmt|;
+DECL|field|getReaderCalled
+specifier|private
+name|boolean
+name|getReaderCalled
+decl_stmt|;
 comment|// Randomly calls Thread.yield so we mixup thread scheduling
 DECL|class|MockIndexWriter
 specifier|private
@@ -639,6 +644,26 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|getReaderCalled
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+name|r
+operator|.
+name|nextInt
+argument_list|(
+literal|4
+argument_list|)
+operator|==
+literal|2
+condition|)
+name|w
+operator|.
+name|optimize
+argument_list|()
+expr_stmt|;
 comment|// If we are writing with PreFlexRW, force a full
 comment|// IndexReader.open so terms are sorted in codepoint
 comment|// order during searching:
@@ -756,8 +781,14 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// if someone isn't using getReader() API, we want to be sure to
+comment|// maybeOptimize since presumably they might open a reader on the dir.
 if|if
 condition|(
+name|getReaderCalled
+operator|==
+literal|false
+operator|&&
 name|r
 operator|.
 name|nextInt
