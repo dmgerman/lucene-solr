@@ -105,6 +105,20 @@ specifier|abstract
 class|class
 name|Codec
 block|{
+DECL|field|EMPTY
+specifier|public
+specifier|static
+specifier|final
+name|Codec
+index|[]
+name|EMPTY
+init|=
+operator|new
+name|Codec
+index|[
+literal|0
+index|]
+decl_stmt|;
 comment|/** Unique name that's used to retrieve this codec when    *  reading the index */
 DECL|field|name
 specifier|public

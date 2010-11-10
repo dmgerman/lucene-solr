@@ -134,20 +134,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|locks
-operator|.
-name|ReentrantLock
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -171,22 +157,6 @@ operator|.
 name|document
 operator|.
 name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|Codec
 import|;
 end_import
 
@@ -2229,6 +2199,23 @@ argument_list|(
 name|onlyDocStore
 argument_list|)
 expr_stmt|;
+specifier|final
+name|SegmentCodecs
+name|info
+init|=
+name|SegmentCodecs
+operator|.
+name|build
+argument_list|(
+name|docFieldProcessor
+operator|.
+name|fieldInfos
+argument_list|,
+name|writer
+operator|.
+name|codecs
+argument_list|)
+decl_stmt|;
 name|flushState
 operator|=
 operator|new
@@ -2258,22 +2245,20 @@ operator|.
 name|getTermIndexInterval
 argument_list|()
 argument_list|,
-name|writer
-operator|.
-name|codecs
+name|info
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the codec used to flush the last segment */
-DECL|method|getCodec
-name|Codec
-name|getCodec
+comment|/** Returns the SegmentCodecs used to flush the last segment */
+DECL|method|getSegmentCodecs
+name|SegmentCodecs
+name|getSegmentCodecs
 parameter_list|()
 block|{
 return|return
 name|flushState
 operator|.
-name|codec
+name|segmentCodecs
 return|;
 block|}
 comment|/** Flush all pending docs to a new segment */
@@ -2481,7 +2466,7 @@ argument_list|()
 argument_list|,
 name|flushState
 operator|.
-name|codec
+name|segmentCodecs
 argument_list|)
 decl_stmt|;
 specifier|final

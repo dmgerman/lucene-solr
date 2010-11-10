@@ -674,12 +674,8 @@ name|w
 operator|.
 name|codecs
 operator|.
-name|getWriter
-argument_list|(
-literal|null
-argument_list|)
-operator|.
-name|name
+name|getDefaultFieldCodec
+argument_list|()
 operator|.
 name|equals
 argument_list|(

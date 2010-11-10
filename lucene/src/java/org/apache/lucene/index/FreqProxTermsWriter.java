@@ -350,14 +350,16 @@ argument_list|(
 name|allFields
 argument_list|)
 expr_stmt|;
-comment|// TODO: allow Lucene user to customize this codec:
 specifier|final
 name|FieldsConsumer
 name|consumer
 init|=
 name|state
 operator|.
+name|segmentCodecs
+operator|.
 name|codec
+argument_list|()
 operator|.
 name|fieldsConsumer
 argument_list|(

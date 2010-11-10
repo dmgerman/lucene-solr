@@ -1651,8 +1651,6 @@ argument_list|,
 name|doOpenStores
 argument_list|,
 name|termsIndexDivisor
-argument_list|,
-name|codecs
 argument_list|)
 expr_stmt|;
 if|if
@@ -7708,7 +7706,7 @@ argument_list|()
 argument_list|,
 name|merger
 operator|.
-name|getCodec
+name|getSegmentCodecs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8784,7 +8782,7 @@ argument_list|()
 argument_list|,
 name|docWriter
 operator|.
-name|getCodec
+name|getSegmentCodecs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8801,10 +8799,8 @@ literal|"flush codec="
 operator|+
 name|docWriter
 operator|.
-name|getCodec
+name|getSegmentCodecs
 argument_list|()
-operator|.
-name|name
 argument_list|)
 expr_stmt|;
 block|}
@@ -11887,11 +11883,11 @@ name|merge
 operator|.
 name|info
 operator|.
-name|setCodec
+name|setSegmentCodecs
 argument_list|(
 name|merger
 operator|.
-name|getCodec
+name|getSegmentCodecs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -11904,14 +11900,12 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"merge codec="
+literal|"merge segmentCodecs="
 operator|+
 name|merger
 operator|.
-name|getCodec
+name|getSegmentCodecs
 argument_list|()
-operator|.
-name|name
 argument_list|)
 expr_stmt|;
 block|}
