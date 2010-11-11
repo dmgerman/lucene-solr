@@ -1636,7 +1636,7 @@ expr_stmt|;
 block|}
 comment|// Method 2: open segments.gen and read its
 comment|// contents.  Then we take the larger of the two
-comment|// gen's.  This way, if either approach is hitting
+comment|// gens.  This way, if either approach is hitting
 comment|// a stale cache (NFS) we have a better chance of
 comment|// getting the right generation.
 name|long

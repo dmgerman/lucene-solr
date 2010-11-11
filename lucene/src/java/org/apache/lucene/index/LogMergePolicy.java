@@ -2284,6 +2284,14 @@ operator|new
 name|StringBuilder
 argument_list|(
 literal|"["
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|": "
 argument_list|)
 decl_stmt|;
 name|sb

@@ -1418,6 +1418,11 @@ operator|+
 literal|"@"
 operator|+
 name|directory
+operator|+
+literal|" lockFactory="
+operator|+
+name|getLockFactory
+argument_list|()
 return|;
 block|}
 comment|/**    * Sets the maximum number of bytes read at once from the    * underlying file during {@link IndexInput#readBytes}.    * The default value is {@link #DEFAULT_READ_CHUNK_SIZE};    *    *<p> This was introduced due to<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6478546">Sun    * JVM Bug 6478546</a>, which throws an incorrect    * OutOfMemoryError when attempting to read too many bytes    * at once.  It only happens on 32bit JVMs with a large    * maximum heap size.</p>    *    *<p>Changes to this value will not impact any    * already-opened {@link IndexInput}s.  You should call    * this before attempting to open an index on the    * directory.</p>    *    *<p><b>NOTE</b>: This value should be as large as    * possible to reduce any possible performance impact.  If    * you still encounter an incorrect OutOfMemoryError,    * trying lowering the chunk size.</p>    */

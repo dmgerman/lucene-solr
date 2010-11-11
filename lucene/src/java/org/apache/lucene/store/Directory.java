@@ -386,6 +386,26 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" lockFactory="
+operator|+
+name|getLockFactory
+argument_list|()
+return|;
+block|}
 comment|/**    * Copies the file<i>src</i> to {@link Directory}<i>to</i> under the new    * file name<i>dest</i>.    *<p>    * If you want to copy the entire source directory to the destination one, you    * can do so like this:    *     *<pre>    * Directory to; // the directory to copy to    * for (String file : dir.listAll()) {    *   dir.copy(to, file, newFile); // newFile can be either file, or a new name    * }    *</pre>    *<p>    *<b>NOTE:</b> this method does not check whether<i>dest<i> exist and will    * overwrite it if it does.    */
 DECL|method|copy
 specifier|public
