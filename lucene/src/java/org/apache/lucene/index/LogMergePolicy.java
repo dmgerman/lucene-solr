@@ -1980,7 +1980,7 @@ decl_stmt|;
 if|if
 condition|(
 name|maxLevel
-operator|<
+operator|<=
 name|levelFloor
 condition|)
 comment|// All remaining segments fall into the min level
