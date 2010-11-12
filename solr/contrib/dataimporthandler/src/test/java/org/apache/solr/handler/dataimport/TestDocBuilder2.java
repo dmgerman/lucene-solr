@@ -201,6 +201,33 @@ argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor processAdd was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|processAddCalled
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor processCommit was not callled"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|processCommitCalled
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor finish was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|finishCalled
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -283,6 +310,24 @@ argument_list|,
 name|EndEventListener
 operator|.
 name|executed
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor processAdd was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|processAddCalled
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor finish was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|finishCalled
 argument_list|)
 expr_stmt|;
 block|}
@@ -1212,6 +1257,24 @@ argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor processDelete was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|processDeleteCalled
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor finish was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|finishCalled
+argument_list|)
+expr_stmt|;
 name|MockDataSource
 operator|.
 name|clearCache
@@ -1320,6 +1383,24 @@ literal|"id:3"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor processDelete was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|processDeleteCalled
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Update request processor finish was not called"
+argument_list|,
+name|TestUpdateRequestProcessor
+operator|.
+name|finishCalled
 argument_list|)
 expr_stmt|;
 block|}

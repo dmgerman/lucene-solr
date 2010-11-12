@@ -442,10 +442,10 @@ specifier|public
 name|String
 name|name
 decl_stmt|;
-comment|/** Name of codec used to read this segment. */
+comment|/** CodecInfo used to read this segment. */
 DECL|field|codec
 specifier|public
-name|String
+name|SegmentCodecs
 name|codec
 decl_stmt|;
 comment|/** Document count (does not take deletions into account). */
@@ -828,7 +828,9 @@ name|sis
 init|=
 operator|new
 name|SegmentInfos
-argument_list|()
+argument_list|(
+name|codecs
+argument_list|)
 decl_stmt|;
 name|Status
 name|result
@@ -1408,15 +1410,13 @@ decl_stmt|;
 try|try
 block|{
 specifier|final
-name|String
+name|SegmentCodecs
 name|codec
 init|=
 name|info
 operator|.
-name|getCodec
+name|getCodecInfo
 argument_list|()
-operator|.
-name|name
 decl_stmt|;
 name|msg
 argument_list|(
@@ -2342,6 +2342,16 @@ range|:
 name|fieldNames
 control|)
 block|{
+if|if
+condition|(
+name|reader
+operator|.
+name|hasNorms
+argument_list|(
+name|fieldName
+argument_list|)
+condition|)
+block|{
 name|reader
 operator|.
 name|norms
@@ -2358,6 +2368,7 @@ name|status
 operator|.
 name|totFields
 expr_stmt|;
+block|}
 block|}
 name|msg
 argument_list|(
@@ -2565,6 +2576,11 @@ operator|.
 name|terms
 argument_list|()
 decl_stmt|;
+assert|assert
+name|terms
+operator|!=
+literal|null
+assert|;
 name|boolean
 name|hasOrd
 init|=

@@ -360,8 +360,6 @@ decl_stmt|;
 DECL|field|dfaAtt
 specifier|private
 specifier|final
-name|Priv
-operator|.
 name|LevenshteinAutomataAttribute
 name|dfaAtt
 decl_stmt|;
@@ -617,8 +615,6 @@ name|atts
 operator|.
 name|addAttribute
 argument_list|(
-name|Priv
-operator|.
 name|LevenshteinAutomataAttribute
 operator|.
 name|class
@@ -2545,14 +2541,6 @@ return|return
 name|scale_factor
 return|;
 block|}
-comment|// Wrapper class to hide the attribute from outside!
-DECL|class|Priv
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|Priv
-block|{
 comment|/** @lucene.internal */
 DECL|interface|LevenshteinAutomataAttribute
 specifier|public
@@ -2730,7 +2718,6 @@ argument_list|(
 name|automata
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

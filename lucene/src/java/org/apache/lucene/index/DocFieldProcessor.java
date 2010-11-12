@@ -141,10 +141,6 @@ DECL|field|fieldInfos
 specifier|final
 name|FieldInfos
 name|fieldInfos
-init|=
-operator|new
-name|FieldInfos
-argument_list|()
 decl_stmt|;
 DECL|field|consumer
 specifier|final
@@ -254,7 +250,10 @@ name|fieldsConsumer
 operator|=
 name|state
 operator|.
+name|segmentCodecs
+operator|.
 name|codec
+argument_list|()
 operator|.
 name|fieldsConsumer
 argument_list|(
@@ -296,6 +295,14 @@ name|DocFieldConsumer
 name|consumer
 parameter_list|)
 block|{
+name|this
+operator|.
+name|fieldInfos
+operator|=
+operator|new
+name|FieldInfos
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|docWriter

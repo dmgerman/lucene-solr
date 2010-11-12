@@ -1980,7 +1980,7 @@ decl_stmt|;
 if|if
 condition|(
 name|maxLevel
-operator|<
+operator|<=
 name|levelFloor
 condition|)
 comment|// All remaining segments fall into the min level
@@ -2284,6 +2284,14 @@ operator|new
 name|StringBuilder
 argument_list|(
 literal|"["
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|": "
 argument_list|)
 decl_stmt|;
 name|sb

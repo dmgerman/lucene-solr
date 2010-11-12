@@ -4141,21 +4141,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"test runs extremely slow (minutes) with SimpleText"
-argument_list|,
-name|CodecProvider
-operator|.
-name|getDefaultCodec
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

@@ -230,6 +230,22 @@ operator|=
 name|cp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SnapshotDeletionPolicy.SnapshotCommitPoint("
+operator|+
+name|cp
+operator|+
+literal|")"
+return|;
+block|}
 comment|/**      * Returns true if this segment can be deleted. The default implementation      * returns false if this segment is currently held as snapshot.      */
 DECL|method|shouldDelete
 specifier|protected

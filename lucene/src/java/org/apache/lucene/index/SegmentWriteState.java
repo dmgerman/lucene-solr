@@ -20,9 +20,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|HashSet
+name|PrintStream
 import|;
 end_import
 
@@ -40,9 +40,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|PrintStream
+name|HashSet
 import|;
 end_import
 
@@ -57,38 +57,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|CodecProvider
 import|;
 end_import
 
@@ -152,11 +120,15 @@ name|String
 argument_list|>
 name|flushedFiles
 decl_stmt|;
-comment|// Actual codec used
-DECL|field|codec
+DECL|field|segmentCodecs
 specifier|final
-name|Codec
-name|codec
+name|SegmentCodecs
+name|segmentCodecs
+decl_stmt|;
+DECL|field|currentCodecId
+specifier|public
+name|int
+name|currentCodecId
 decl_stmt|;
 comment|/** Expert: The fraction of terms in the "dictionary" which should be stored    * in RAM.  Smaller values use more memory, but make searching slightly    * faster, while larger values use less memory and make searching slightly    * slower.  Searching is typically not dominated by dictionary lookup, so    * tweaking this is rarely useful.*/
 DECL|field|termIndexInterval
@@ -211,8 +183,8 @@ parameter_list|,
 name|int
 name|termIndexInterval
 parameter_list|,
-name|CodecProvider
-name|codecs
+name|SegmentCodecs
+name|segmentCodecs
 parameter_list|)
 block|{
 name|this
@@ -265,14 +237,9 @@ name|termIndexInterval
 expr_stmt|;
 name|this
 operator|.
-name|codec
+name|segmentCodecs
 operator|=
-name|codecs
-operator|.
-name|getWriter
-argument_list|(
-name|this
-argument_list|)
+name|segmentCodecs
 expr_stmt|;
 name|flushedFiles
 operator|=

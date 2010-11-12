@@ -43,6 +43,7 @@ end_comment
 begin_class
 DECL|class|IndexableBinaryStringTools
 specifier|public
+specifier|final
 class|class
 name|IndexableBinaryStringTools
 block|{

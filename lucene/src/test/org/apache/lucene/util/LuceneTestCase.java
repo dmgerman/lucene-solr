@@ -1408,6 +1408,13 @@ argument_list|(
 name|codec
 argument_list|)
 expr_stmt|;
+name|cp
+operator|.
+name|setDefaultFieldCodec
+argument_list|(
+name|codec
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|codec
@@ -1648,6 +1655,13 @@ expr_stmt|;
 name|CodecProvider
 operator|.
 name|setDefaultCodec
+argument_list|(
+name|savedDefaultCodec
+argument_list|)
+expr_stmt|;
+name|cp
+operator|.
+name|setDefaultFieldCodec
 argument_list|(
 name|savedDefaultCodec
 argument_list|)
