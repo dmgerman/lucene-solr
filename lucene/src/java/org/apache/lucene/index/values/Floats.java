@@ -181,11 +181,7 @@ comment|/**  * Exposes writer/reader for floating point values. You can specify 
 end_comment
 
 begin_comment
-comment|//nocommit - add mmap version
-end_comment
-
-begin_comment
-comment|//nocommti - add bulk copy where possible
+comment|//TODO - add bulk copy where possible
 end_comment
 
 begin_class

@@ -805,6 +805,8 @@ range|:
 name|otherFiles
 control|)
 block|{
+comment|// under some circumstances we only write DocValues
+comment|// so other files will be added even if they don't exist
 if|if
 condition|(
 name|dir
@@ -874,10 +876,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// files.add(IndexFileNames.segmentFileName(segmentInfo.name, "",
-comment|// Writer.DATA_EXTENSION));
-comment|// files.add(IndexFileNames.segmentFileName(segmentInfo.name, "",
-comment|// Writer.INDEX_EXTENSION));
 block|}
 annotation|@
 name|Override

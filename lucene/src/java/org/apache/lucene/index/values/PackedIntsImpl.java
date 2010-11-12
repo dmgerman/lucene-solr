@@ -221,7 +221,7 @@ name|IntsWriter
 extends|extends
 name|Writer
 block|{
-comment|// nocommit - can we bulkcopy this on a merge?
+comment|// TODO: can we bulkcopy this on a merge?
 DECL|field|intsRef
 specifier|private
 name|LongsRef

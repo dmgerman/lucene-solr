@@ -62,20 +62,6 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
-name|AtomicBoolean
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
 name|AtomicLong
 import|;
 end_import
@@ -251,7 +237,7 @@ block|,
 name|SORTED
 block|}
 empty_stmt|;
-comment|// nocommit -- i shouldn't have to specify fixed? can
+comment|// TODO -- i shouldn't have to specify fixed? can
 comment|// track itself& do the write thing at write time?
 DECL|method|getWriter
 specifier|public
@@ -1232,6 +1218,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|datOut
+operator|!=
+literal|null
+assert|;
 name|files
 operator|.
 name|add
@@ -1250,6 +1241,14 @@ name|CSF_DATA_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|idxOut
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// called after flush - so this must be initialized if needed or present
 specifier|final
 name|String
 name|idxFile
@@ -1267,17 +1266,6 @@ operator|.
 name|CSF_INDEX_EXTENSION
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|.
-name|fileExists
-argument_list|(
-name|idxFile
-argument_list|)
-condition|)
-block|{
-comment|// TODO is this correct? could be initialized lazy
 name|files
 operator|.
 name|add
@@ -1447,7 +1435,11 @@ name|IndexInput
 name|cloneData
 parameter_list|()
 block|{
-comment|// is never NULL
+assert|assert
+name|datIn
+operator|!=
+literal|null
+assert|;
 return|return
 operator|(
 name|IndexInput
@@ -1465,6 +1457,7 @@ name|IndexInput
 name|cloneIndex
 parameter_list|()
 block|{
+comment|// TODO assert here for null rather than return null
 return|return
 name|idxIn
 operator|==
