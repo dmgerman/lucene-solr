@@ -1709,7 +1709,7 @@ name|reader
 init|=
 name|si
 operator|.
-name|getCodecInfo
+name|getSegmentCodecs
 argument_list|()
 operator|.
 name|codec
@@ -2095,7 +2095,7 @@ name|terms
 init|=
 name|si
 operator|.
-name|getCodecInfo
+name|getSegmentCodecs
 argument_list|()
 operator|.
 name|codec
