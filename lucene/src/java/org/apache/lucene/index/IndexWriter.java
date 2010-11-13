@@ -9555,7 +9555,7 @@ operator|.
 name|hasChanges
 operator|=
 name|delCount
-operator|>=
+operator|>
 literal|0
 expr_stmt|;
 block|}
