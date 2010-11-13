@@ -1927,14 +1927,19 @@ operator|.
 name|GROUP_SORT
 argument_list|)
 decl_stmt|;
-comment|// TODO: don't use groupSort==null to test for the presense of a sort since "score desc" will normalize to null
+comment|// groupSort defaults to sort
 name|Sort
 name|groupSort
 init|=
 name|groupSortStr
-operator|!=
+operator|==
 literal|null
 condition|?
+name|cmd
+operator|.
+name|getSort
+argument_list|()
+else|:
 name|QueryParsing
 operator|.
 name|parseSort
@@ -1943,8 +1948,6 @@ name|groupSortStr
 argument_list|,
 name|req
 argument_list|)
-else|:
-literal|null
 decl_stmt|;
 name|int
 name|limitDefault
