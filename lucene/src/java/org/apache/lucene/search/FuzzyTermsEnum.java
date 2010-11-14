@@ -324,16 +324,12 @@ name|actualEnum
 decl_stmt|;
 DECL|field|actualBoostAtt
 specifier|private
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 name|actualBoostAtt
 decl_stmt|;
 DECL|field|boostAtt
 specifier|private
 specifier|final
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 name|boostAtt
 init|=
@@ -342,8 +338,6 @@ argument_list|()
 operator|.
 name|addAttribute
 argument_list|(
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 operator|.
 name|class
@@ -352,8 +346,6 @@ decl_stmt|;
 DECL|field|maxBoostAtt
 specifier|private
 specifier|final
-name|MultiTermQuery
-operator|.
 name|MaxNonCompetitiveBoostAttribute
 name|maxBoostAtt
 decl_stmt|;
@@ -717,8 +709,6 @@ name|atts
 operator|.
 name|addAttribute
 argument_list|(
-name|MultiTermQuery
-operator|.
 name|MaxNonCompetitiveBoostAttribute
 operator|.
 name|class
@@ -994,8 +984,6 @@ argument_list|()
 operator|.
 name|addAttribute
 argument_list|(
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 operator|.
 name|class
@@ -1532,8 +1520,6 @@ decl_stmt|;
 DECL|field|boostAtt
 specifier|private
 specifier|final
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 name|boostAtt
 init|=
@@ -1542,8 +1528,6 @@ argument_list|()
 operator|.
 name|addAttribute
 argument_list|(
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 operator|.
 name|class
@@ -1843,8 +1827,6 @@ decl_stmt|;
 DECL|field|boostAtt
 specifier|private
 specifier|final
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 name|boostAtt
 init|=
@@ -1853,8 +1835,6 @@ argument_list|()
 operator|.
 name|addAttribute
 argument_list|(
-name|MultiTermQuery
-operator|.
 name|BoostAttribute
 operator|.
 name|class
