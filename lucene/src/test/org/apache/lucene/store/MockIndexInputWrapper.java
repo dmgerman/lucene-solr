@@ -54,7 +54,7 @@ name|MockDirectoryWrapper
 name|dir
 decl_stmt|;
 DECL|field|name
-specifier|private
+specifier|final
 name|String
 name|name
 decl_stmt|;
@@ -170,6 +170,15 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|openFilesDeleted
+operator|.
+name|remove
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -202,7 +211,7 @@ block|}
 block|}
 name|dir
 operator|.
-name|files
+name|openFileHandles
 operator|.
 name|remove
 argument_list|(

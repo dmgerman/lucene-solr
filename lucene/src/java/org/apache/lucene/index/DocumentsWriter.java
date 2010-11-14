@@ -1967,7 +1967,9 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"docWriter: done abort"
+literal|"docWriter: done abort; abortedFiles="
+operator|+
+name|abortedFiles
 argument_list|)
 expr_stmt|;
 block|}
@@ -2576,6 +2578,20 @@ return|return
 name|flushState
 operator|.
 name|numDocs
+return|;
+block|}
+DECL|method|getFlushedFiles
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|getFlushedFiles
+parameter_list|()
+block|{
+return|return
+name|flushState
+operator|.
+name|flushedFiles
 return|;
 block|}
 comment|/** Build compound file for the segment we just flushed */
