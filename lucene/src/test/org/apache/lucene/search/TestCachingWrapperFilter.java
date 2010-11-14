@@ -34,23 +34,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|analysis
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
+name|MockAnalyzer
 import|;
 end_import
 
@@ -90,9 +76,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|index
 operator|.
-name|MockAnalyzer
+name|IndexReader
 import|;
 end_import
 
@@ -106,7 +92,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SerialMergeScheduler
+name|LogMergePolicy
 import|;
 end_import
 
@@ -134,7 +120,35 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SerialMergeScheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SlowMultiReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
 import|;
 end_import
 
@@ -883,6 +897,24 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// asserts below requires no unexpected merges:
+operator|(
+operator|(
+name|LogMergePolicy
+operator|)
+name|writer
+operator|.
+name|w
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|)
+operator|.
+name|setMergeFactor
+argument_list|(
+literal|10
+argument_list|)
+expr_stmt|;
 comment|// NOTE: cannot use writer.getReader because RIW (on
 comment|// flipping a coin) may give us a newly opened reader,
 comment|// but we use .reopen on this reader below and expect to

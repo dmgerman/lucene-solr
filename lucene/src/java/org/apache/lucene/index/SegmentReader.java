@@ -659,11 +659,11 @@ name|name
 expr_stmt|;
 specifier|final
 name|SegmentCodecs
-name|codecInfo
+name|segmentCodecs
 init|=
 name|si
 operator|.
-name|getCodecInfo
+name|getSegmentCodecs
 argument_list|()
 decl_stmt|;
 name|this
@@ -760,7 +760,7 @@ expr_stmt|;
 comment|// Ask codec for its Fields
 name|fields
 operator|=
-name|codecInfo
+name|segmentCodecs
 operator|.
 name|codec
 argument_list|()

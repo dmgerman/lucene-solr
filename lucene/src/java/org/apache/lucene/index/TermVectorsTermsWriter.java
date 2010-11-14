@@ -213,6 +213,22 @@ name|IOException
 block|{
 if|if
 condition|(
+name|state
+operator|.
+name|numDocsInStore
+operator|>
+literal|0
+condition|)
+block|{
+comment|// It's possible that all documents seen in this segment
+comment|// hit non-aborting exceptions, in which case we will
+comment|// not have yet init'd the TermVectorsWriter:
+name|initTermVectorsWriter
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|tvx
 operator|!=
 literal|null
