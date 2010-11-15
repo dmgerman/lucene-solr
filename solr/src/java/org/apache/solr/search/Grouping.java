@@ -3566,14 +3566,7 @@ name|buildSet
 argument_list|()
 expr_stmt|;
 block|}
-name|SearchGroup
-name|leastSignificantGroup
-init|=
-name|orderedGroups
-operator|.
-name|last
-argument_list|()
-decl_stmt|;
+comment|// see if this new group would be competitive if this doc was the top doc
 for|for
 control|(
 name|int
@@ -3590,16 +3583,12 @@ specifier|final
 name|int
 name|c
 init|=
-name|leastSignificantGroup
-operator|.
-name|sortGroupReversed
+name|reversed
 index|[
 name|i
 index|]
 operator|*
-name|leastSignificantGroup
-operator|.
-name|sortGroupComparators
+name|comparators
 index|[
 name|i
 index|]
@@ -3616,7 +3605,7 @@ operator|<
 literal|0
 condition|)
 block|{
-comment|// Definitely not competitive.
+comment|// Definitely not competitive. So don't even bother to continue
 return|return;
 block|}
 elseif|else
@@ -3635,9 +3624,7 @@ if|if
 condition|(
 name|i
 operator|==
-name|leastSignificantGroup
-operator|.
-name|sortGroupComparators
+name|comparators
 operator|.
 name|length
 operator|-
