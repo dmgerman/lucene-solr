@@ -837,13 +837,6 @@ argument_list|()
 decl_stmt|;
 comment|// slight pause - TODO: takes an oddly long amount of time to schedule tasks
 comment|// with almost no delay ...
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|5000
-argument_list|)
-expr_stmt|;
 name|CloudState
 name|cloudState2
 init|=
@@ -864,7 +857,7 @@ control|(
 name|int
 name|i
 init|=
-literal|30
+literal|60
 init|;
 name|i
 operator|>
