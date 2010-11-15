@@ -565,6 +565,18 @@ annotation|@
 name|Override
 specifier|protected
 name|void
+name|checkMaxClauseCount
+parameter_list|(
+name|int
+name|count
+parameter_list|)
+block|{
+comment|// we accept all terms as SpanOrQuery has no limits
+block|}
+annotation|@
+name|Override
+specifier|protected
+name|void
 name|addClause
 parameter_list|(
 name|SpanOrQuery
