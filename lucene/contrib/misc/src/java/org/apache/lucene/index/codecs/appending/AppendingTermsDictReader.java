@@ -212,6 +212,9 @@ name|termComp
 parameter_list|,
 name|int
 name|termsCacheSize
+parameter_list|,
+name|String
+name|codecId
 parameter_list|)
 throws|throws
 name|IOException
@@ -233,6 +236,8 @@ argument_list|,
 name|termComp
 argument_list|,
 name|termsCacheSize
+argument_list|,
+name|codecId
 argument_list|)
 expr_stmt|;
 block|}

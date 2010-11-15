@@ -573,6 +573,9 @@ name|termComp
 parameter_list|,
 name|int
 name|termsCacheSize
+parameter_list|,
+name|String
+name|codecId
 parameter_list|)
 throws|throws
 name|IOException
@@ -614,7 +617,7 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
-literal|""
+name|codecId
 argument_list|,
 name|PrefixCodedTermsWriter
 operator|.
@@ -987,6 +990,9 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
+name|String
+name|id
+parameter_list|,
 name|Collection
 argument_list|<
 name|String
@@ -1006,7 +1012,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-literal|""
+name|id
 argument_list|,
 name|PrefixCodedTermsWriter
 operator|.

@@ -376,7 +376,9 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
-literal|""
+name|state
+operator|.
+name|codecId
 argument_list|,
 name|DOC_EXTENSION
 argument_list|)
@@ -432,7 +434,9 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
-literal|""
+name|state
+operator|.
+name|codecId
 argument_list|,
 name|FREQ_EXTENSION
 argument_list|)
@@ -478,7 +482,9 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
-literal|""
+name|state
+operator|.
+name|codecId
 argument_list|,
 name|POS_EXTENSION
 argument_list|)
@@ -525,7 +531,9 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
-literal|""
+name|state
+operator|.
+name|codecId
 argument_list|,
 name|PAYLOAD_EXTENSION
 argument_list|)
@@ -586,7 +594,9 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
-literal|""
+name|state
+operator|.
+name|codecId
 argument_list|,
 name|SKIP_EXTENSION
 argument_list|)

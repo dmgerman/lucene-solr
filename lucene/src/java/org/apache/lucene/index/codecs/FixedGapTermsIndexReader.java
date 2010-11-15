@@ -346,6 +346,9 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|termComp
+parameter_list|,
+name|String
+name|codecId
 parameter_list|)
 throws|throws
 name|IOException
@@ -369,7 +372,7 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
-literal|""
+name|codecId
 argument_list|,
 name|FixedGapTermsIndexWriter
 operator|.
@@ -2126,6 +2129,9 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
+name|String
+name|id
+parameter_list|,
 name|Collection
 argument_list|<
 name|String
@@ -2145,7 +2151,7 @@ name|info
 operator|.
 name|name
 argument_list|,
-literal|""
+name|id
 argument_list|,
 name|FixedGapTermsIndexWriter
 operator|.
