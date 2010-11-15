@@ -132,20 +132,14 @@ DECL|method|TooManyClauses
 specifier|public
 name|TooManyClauses
 parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|getMessage
-specifier|public
-name|String
-name|getMessage
-parameter_list|()
 block|{
-return|return
+name|super
+argument_list|(
 literal|"maxClauseCount is set to "
 operator|+
 name|maxClauseCount
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/** Return the maximum number of clauses permitted, 1024 by default.    * Attempts to add more than the permitted number of clauses cause {@link    * TooManyClauses} to be thrown.    * @see #setMaxClauseCount(int)    */
