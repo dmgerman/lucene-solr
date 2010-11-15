@@ -212,6 +212,8 @@ init|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|random
+argument_list|,
 operator|new
 name|RAMDirectory
 argument_list|()
@@ -223,6 +225,8 @@ init|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|random
+argument_list|,
 operator|new
 name|RAMDirectory
 argument_list|()

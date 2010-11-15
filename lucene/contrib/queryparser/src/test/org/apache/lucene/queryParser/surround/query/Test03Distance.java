@@ -194,6 +194,8 @@ init|=
 operator|new
 name|SingleFieldTestDb
 argument_list|(
+name|random
+argument_list|,
 name|docs1
 argument_list|,
 name|fieldName
@@ -1011,6 +1013,8 @@ init|=
 operator|new
 name|SingleFieldTestDb
 argument_list|(
+name|random
+argument_list|,
 name|docs2
 argument_list|,
 name|fieldName
@@ -1317,6 +1321,8 @@ init|=
 operator|new
 name|SingleFieldTestDb
 argument_list|(
+name|random
+argument_list|,
 name|docs3
 argument_list|,
 name|fieldName

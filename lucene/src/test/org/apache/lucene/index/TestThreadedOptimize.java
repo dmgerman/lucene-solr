@@ -236,7 +236,6 @@ name|NUM_ITER
 init|=
 literal|1
 decl_stmt|;
-comment|//private final static int NUM_ITER = 10;
 DECL|field|NUM_ITER2
 specifier|private
 specifier|final
@@ -246,9 +245,9 @@ name|NUM_ITER2
 init|=
 literal|1
 decl_stmt|;
-comment|//private final static int NUM_ITER2 = 5;
 DECL|field|failed
 specifier|private
+specifier|volatile
 name|boolean
 name|failed
 decl_stmt|;
@@ -819,6 +818,72 @@ decl_stmt|;
 comment|// System.out.println("TEST: now index=" + writer.segString());
 name|assertEquals
 argument_list|(
+literal|"index="
+operator|+
+name|writer
+operator|.
+name|segString
+argument_list|()
+operator|+
+literal|" numDocs"
+operator|+
+name|writer
+operator|.
+name|numDocs
+argument_list|()
+operator|+
+literal|" maxDoc="
+operator|+
+name|writer
+operator|.
+name|maxDoc
+argument_list|()
+operator|+
+literal|" config="
+operator|+
+name|writer
+operator|.
+name|getConfig
+argument_list|()
+argument_list|,
+name|expectedDocCount
+argument_list|,
+name|writer
+operator|.
+name|numDocs
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"index="
+operator|+
+name|writer
+operator|.
+name|segString
+argument_list|()
+operator|+
+literal|" numDocs"
+operator|+
+name|writer
+operator|.
+name|numDocs
+argument_list|()
+operator|+
+literal|" maxDoc="
+operator|+
+name|writer
+operator|.
+name|maxDoc
+argument_list|()
+operator|+
+literal|" config="
+operator|+
+name|writer
+operator|.
+name|getConfig
+argument_list|()
+argument_list|,
 name|expectedDocCount
 argument_list|,
 name|writer
@@ -873,6 +938,10 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
+literal|"reader="
+operator|+
+name|reader
+argument_list|,
 name|reader
 operator|.
 name|isOptimized

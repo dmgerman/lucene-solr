@@ -3587,6 +3587,8 @@ init|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|r
+argument_list|,
 name|impl
 argument_list|)
 decl_stmt|;
@@ -3690,6 +3692,8 @@ init|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|r
+argument_list|,
 name|impl
 argument_list|)
 decl_stmt|;

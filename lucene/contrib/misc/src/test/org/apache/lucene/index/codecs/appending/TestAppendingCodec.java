@@ -32,6 +32,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -685,12 +695,17 @@ DECL|method|AppendingRAMDirectory
 specifier|public
 name|AppendingRAMDirectory
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 name|delegate
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|random
+argument_list|,
 name|delegate
 argument_list|)
 expr_stmt|;
@@ -745,6 +760,8 @@ init|=
 operator|new
 name|AppendingRAMDirectory
 argument_list|(
+name|random
+argument_list|,
 operator|new
 name|RAMDirectory
 argument_list|()
