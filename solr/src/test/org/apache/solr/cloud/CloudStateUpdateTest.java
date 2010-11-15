@@ -886,6 +886,10 @@ expr_stmt|;
 if|if
 condition|(
 name|slices
+operator|!=
+literal|null
+operator|&&
+name|slices
 operator|.
 name|containsKey
 argument_list|(
