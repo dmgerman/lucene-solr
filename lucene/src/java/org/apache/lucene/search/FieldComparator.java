@@ -5175,6 +5175,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+name|ords
+index|[
+name|bottomSlot
+index|]
+operator|=
+name|bottomOrd
+expr_stmt|;
 block|}
 block|}
 if|if
