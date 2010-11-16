@@ -2201,7 +2201,6 @@ argument_list|(
 name|onlyDocStore
 argument_list|)
 expr_stmt|;
-comment|// nocommit - this does not work for docValues
 specifier|final
 name|SegmentCodecs
 name|info
