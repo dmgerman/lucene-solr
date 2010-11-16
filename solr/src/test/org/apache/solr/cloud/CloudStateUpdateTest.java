@@ -857,7 +857,7 @@ control|(
 name|int
 name|i
 init|=
-literal|60
+literal|75
 init|;
 name|i
 operator|>
@@ -1051,7 +1051,7 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-comment|// slight pause for watch to trigger
+comment|// slight pause (15s timeout) for watch to trigger
 for|for
 control|(
 name|int
@@ -1061,7 +1061,11 @@ literal|0
 init|;
 name|i
 operator|<
-literal|30
+operator|(
+literal|5
+operator|*
+literal|15
+operator|)
 condition|;
 name|i
 operator|++
@@ -1089,7 +1093,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|50
+literal|200
 argument_list|)
 expr_stmt|;
 block|}
