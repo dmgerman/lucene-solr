@@ -1834,7 +1834,6 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|//
 name|byte
 name|upto
 init|=
@@ -2121,6 +2120,7 @@ name|LockObtainFailedException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|Directory
 name|d
 init|=
