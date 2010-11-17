@@ -281,6 +281,9 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
+name|String
+name|id
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -290,6 +293,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// preflex fields have no codec ID - we ignore it here
 name|PreFlexFields
 operator|.
 name|files

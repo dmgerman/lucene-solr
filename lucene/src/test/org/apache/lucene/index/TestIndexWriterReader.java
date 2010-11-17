@@ -496,6 +496,22 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// test relies on no merges happening below:
+operator|(
+operator|(
+name|LogMergePolicy
+operator|)
+name|writer
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|)
+operator|.
+name|setMergeFactor
+argument_list|(
+literal|10
+argument_list|)
+expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -899,6 +915,22 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// test relies on no merges happening below:
+operator|(
+operator|(
+name|LogMergePolicy
+operator|)
+name|writer
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|)
+operator|.
+name|setMergeFactor
+argument_list|(
+literal|10
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|setInfoStream
@@ -2347,6 +2379,8 @@ operator|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|random
+argument_list|,
 operator|new
 name|RAMDirectory
 argument_list|(
@@ -3912,6 +3946,8 @@ operator|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|random
+argument_list|,
 operator|new
 name|RAMDirectory
 argument_list|(

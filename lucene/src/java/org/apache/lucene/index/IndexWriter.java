@@ -662,6 +662,11 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// used by optimize to note those needing optimization
+DECL|field|optimizeMaxNumSegments
+specifier|private
+name|int
+name|optimizeMaxNumSegments
+decl_stmt|;
 DECL|field|writeLock
 specifier|private
 name|Lock
@@ -5749,6 +5754,10 @@ argument_list|(
 name|segmentInfos
 argument_list|)
 expr_stmt|;
+name|optimizeMaxNumSegments
+operator|=
+name|maxNumSegments
+expr_stmt|;
 comment|// Now mark all pending& running merges as optimize
 comment|// merge:
 for|for
@@ -6397,7 +6406,9 @@ if|if
 condition|(
 name|stopMerges
 condition|)
+block|{
 return|return;
+block|}
 comment|// Do not start new merges if we've hit OOME
 if|if
 condition|(
@@ -6469,7 +6480,6 @@ operator|.
 name|OneMerge
 name|merge
 init|=
-operator|(
 name|spec
 operator|.
 name|merges
@@ -6478,7 +6488,6 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
 decl_stmt|;
 name|merge
 operator|.
@@ -6496,6 +6505,7 @@ block|}
 block|}
 block|}
 else|else
+block|{
 name|spec
 operator|=
 name|mergePolicy
@@ -6505,6 +6515,7 @@ argument_list|(
 name|segmentInfos
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|spec
@@ -6537,6 +6548,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|registerMerge
 argument_list|(
 name|spec
@@ -6549,6 +6561,7 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** Expert: the {@link MergeScheduler} calls this method    *  to retrieve the next merge requested by the    *  MergePolicy */
@@ -7903,6 +7916,11 @@ block|}
 block|}
 finally|finally
 block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|deleter
 operator|.
 name|decRef
@@ -7910,6 +7928,7 @@ argument_list|(
 name|files
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -9860,6 +9879,8 @@ name|merge
 operator|.
 name|optimize
 condition|)
+block|{
+comment|// cascade the optimize:
 name|segmentsToOptimize
 operator|.
 name|add
@@ -9869,6 +9890,7 @@ operator|.
 name|info
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -10400,9 +10422,11 @@ argument_list|(
 name|info
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|segmentInfos
@@ -10415,9 +10439,11 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|info
@@ -10426,10 +10452,35 @@ name|dir
 operator|!=
 name|directory
 condition|)
+block|{
 name|isExternal
 operator|=
 literal|true
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|segmentsToOptimize
+operator|.
+name|contains
+argument_list|(
+name|info
+argument_list|)
+condition|)
+block|{
+name|merge
+operator|.
+name|optimize
+operator|=
+literal|true
+expr_stmt|;
+name|merge
+operator|.
+name|maxNumSegmentsOptimize
+operator|=
+name|optimizeMaxNumSegments
+expr_stmt|;
+block|}
 block|}
 name|ensureContiguousMerge
 argument_list|(
@@ -12657,6 +12708,11 @@ argument_list|(
 literal|"abort merge after building CFS"
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|deleter
 operator|.
 name|deleteFile
@@ -12664,6 +12720,7 @@ argument_list|(
 name|compoundFileName
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|0
 return|;

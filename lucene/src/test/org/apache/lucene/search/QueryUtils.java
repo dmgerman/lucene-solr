@@ -64,6 +64,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -485,6 +495,9 @@ specifier|static
 name|void
 name|check
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Query
 name|q1
 parameter_list|,
@@ -494,6 +507,8 @@ parameter_list|)
 block|{
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|s
@@ -508,6 +523,9 @@ specifier|static
 name|void
 name|check
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Query
 name|q1
 parameter_list|,
@@ -568,10 +586,14 @@ condition|)
 block|{
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|wrapUnderlyingReader
 argument_list|(
+name|random
+argument_list|,
 name|is
 argument_list|,
 operator|-
@@ -583,10 +605,14 @@ argument_list|)
 expr_stmt|;
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|wrapUnderlyingReader
 argument_list|(
+name|random
+argument_list|,
 name|is
 argument_list|,
 literal|0
@@ -597,10 +623,14 @@ argument_list|)
 expr_stmt|;
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|wrapUnderlyingReader
 argument_list|(
+name|random
+argument_list|,
 name|is
 argument_list|,
 operator|+
@@ -619,10 +649,14 @@ condition|)
 block|{
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|wrapSearcher
 argument_list|(
+name|random
+argument_list|,
 name|s
 argument_list|,
 operator|-
@@ -634,10 +668,14 @@ argument_list|)
 expr_stmt|;
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|wrapSearcher
 argument_list|(
+name|random
+argument_list|,
 name|s
 argument_list|,
 literal|0
@@ -648,10 +686,14 @@ argument_list|)
 expr_stmt|;
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|q1
 argument_list|,
 name|wrapSearcher
 argument_list|(
+name|random
+argument_list|,
 name|s
 argument_list|,
 operator|+
@@ -728,6 +770,9 @@ specifier|static
 name|IndexSearcher
 name|wrapUnderlyingReader
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 specifier|final
 name|IndexSearcher
 name|s
@@ -769,6 +814,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -781,6 +828,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -800,6 +849,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 name|edge
 operator|<
 literal|0
@@ -818,6 +869,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -836,6 +889,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -850,6 +905,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 operator|<
 name|edge
@@ -868,6 +925,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -887,6 +946,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 operator|<
 name|edge
@@ -905,6 +966,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -923,6 +986,8 @@ name|open
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -966,6 +1031,9 @@ specifier|static
 name|MultiSearcher
 name|wrapSearcher
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 specifier|final
 name|Searcher
 name|s
@@ -998,6 +1066,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -1016,6 +1086,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 name|edge
 operator|<
 literal|0
@@ -1033,6 +1105,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -1050,6 +1124,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -1063,6 +1139,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 operator|<
 name|edge
@@ -1080,6 +1158,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -1098,6 +1178,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 operator|<
 name|edge
@@ -1115,6 +1197,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -1132,6 +1216,8 @@ name|IndexSearcher
 argument_list|(
 name|makeEmptyIndex
 argument_list|(
+name|random
+argument_list|,
 literal|0
 argument_list|)
 argument_list|,
@@ -1170,6 +1256,9 @@ specifier|static
 name|Directory
 name|makeEmptyIndex
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 specifier|final
 name|int
 name|numDeletedDocs
@@ -1183,6 +1272,8 @@ init|=
 operator|new
 name|MockDirectoryWrapper
 argument_list|(
+name|random
+argument_list|,
 operator|new
 name|RAMDirectory
 argument_list|()

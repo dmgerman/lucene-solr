@@ -321,14 +321,6 @@ name|i
 operator|++
 control|)
 block|{
-name|state
-operator|.
-name|currentCodecId
-operator|=
-name|i
-expr_stmt|;
-comment|// actual codec should use that to create its
-comment|// files
 name|consumers
 operator|.
 name|add
@@ -340,7 +332,15 @@ index|]
 operator|.
 name|fieldsConsumer
 argument_list|(
+operator|new
+name|SegmentWriteState
+argument_list|(
 name|state
+argument_list|,
+literal|""
+operator|+
+name|i
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -680,6 +680,12 @@ argument_list|,
 name|readBufferSize
 argument_list|,
 name|indexDivisor
+argument_list|,
+literal|""
+operator|+
+name|fi
+operator|.
+name|codecId
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1119,6 +1125,9 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
+name|String
+name|codecId
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -1128,6 +1137,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// ignore codecid sicne segmentCodec will assign it per codec
 name|segmentCodecs
 operator|.
 name|files

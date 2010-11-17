@@ -292,6 +292,10 @@ argument_list|(
 name|state
 operator|.
 name|segmentName
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|out

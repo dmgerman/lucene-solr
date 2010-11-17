@@ -567,6 +567,8 @@ name|CheckHits
 operator|.
 name|checkHitCollector
 argument_list|(
+name|random
+argument_list|,
 name|q
 argument_list|,
 name|FIELD

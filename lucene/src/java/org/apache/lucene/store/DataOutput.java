@@ -194,6 +194,7 @@ block|}
 comment|/** Writes an int in a variable-length format.  Writes between one and    * five bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see DataInput#readVInt()    */
 DECL|method|writeVInt
 specifier|public
+specifier|final
 name|void
 name|writeVInt
 parameter_list|(
@@ -281,6 +282,7 @@ block|}
 comment|/** Writes an long in a variable-length format.  Writes between one and five    * bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see DataInput#readVLong()    */
 DECL|method|writeVLong
 specifier|public
+specifier|final
 name|void
 name|writeVLong
 parameter_list|(

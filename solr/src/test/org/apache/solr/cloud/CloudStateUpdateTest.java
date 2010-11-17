@@ -837,13 +837,6 @@ argument_list|()
 decl_stmt|;
 comment|// slight pause - TODO: takes an oddly long amount of time to schedule tasks
 comment|// with almost no delay ...
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|5000
-argument_list|)
-expr_stmt|;
 name|CloudState
 name|cloudState2
 init|=
@@ -864,7 +857,7 @@ control|(
 name|int
 name|i
 init|=
-literal|30
+literal|75
 init|;
 name|i
 operator|>
@@ -892,6 +885,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|slices
+operator|!=
+literal|null
+operator|&&
 name|slices
 operator|.
 name|containsKey
@@ -1054,7 +1051,7 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-comment|// slight pause for watch to trigger
+comment|// slight pause (15s timeout) for watch to trigger
 for|for
 control|(
 name|int
@@ -1064,7 +1061,11 @@ literal|0
 init|;
 name|i
 operator|<
-literal|30
+operator|(
+literal|5
+operator|*
+literal|15
+operator|)
 condition|;
 name|i
 operator|++
@@ -1092,7 +1093,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|50
+literal|200
 argument_list|)
 expr_stmt|;
 block|}
@@ -1152,7 +1153,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|200
 condition|;
 name|i
 operator|++

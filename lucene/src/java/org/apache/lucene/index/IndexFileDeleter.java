@@ -2353,7 +2353,15 @@ name|count
 operator|>
 literal|0
 operator|:
-literal|"RefCount is 0 pre-increment for file \""
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": RefCount is 0 pre-increment for file \""
 operator|+
 name|fileName
 operator|+
@@ -2376,7 +2384,15 @@ name|count
 operator|>
 literal|0
 operator|:
-literal|"RefCount is 0 pre-decrement for file \""
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": RefCount is 0 pre-decrement for file \""
 operator|+
 name|fileName
 operator|+

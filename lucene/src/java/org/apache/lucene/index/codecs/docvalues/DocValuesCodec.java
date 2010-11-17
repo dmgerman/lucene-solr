@@ -136,20 +136,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|FieldsEnum
 import|;
 end_import
@@ -576,16 +562,27 @@ name|state
 operator|.
 name|segmentName
 argument_list|,
+comment|// TODO: set comparator here
+comment|//TODO can we have a compound file per segment and codec for docvalues?
 name|state
 operator|.
 name|directory
 argument_list|,
 name|field
 argument_list|,
+name|state
+operator|.
+name|codecId
+operator|+
+literal|"-"
+operator|+
+name|field
+operator|.
+name|number
+argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-comment|// TODO: set comparator here
 name|docValuesConsumers
 operator|.
 name|add
@@ -684,6 +681,10 @@ name|state
 operator|.
 name|segmentInfo
 argument_list|,
+name|state
+operator|.
+name|codecId
+argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
@@ -709,16 +710,6 @@ operator|new
 name|WrappingFielsdProducer
 argument_list|(
 name|state
-operator|.
-name|segmentInfo
-argument_list|,
-name|state
-operator|.
-name|dir
-argument_list|,
-name|state
-operator|.
-name|fieldInfos
 argument_list|,
 name|other
 operator|.
@@ -734,16 +725,6 @@ operator|new
 name|WrappingFielsdProducer
 argument_list|(
 name|state
-operator|.
-name|segmentInfo
-argument_list|,
-name|state
-operator|.
-name|dir
-argument_list|,
-name|state
-operator|.
-name|fieldInfos
 argument_list|,
 name|FieldsProducer
 operator|.
@@ -763,6 +744,9 @@ name|dir
 parameter_list|,
 name|SegmentInfo
 name|segmentInfo
+parameter_list|,
+name|String
+name|codecId
 parameter_list|,
 name|Set
 argument_list|<
@@ -794,6 +778,8 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
+name|codecId
+argument_list|,
 name|otherFiles
 argument_list|)
 expr_stmt|;
@@ -805,8 +791,10 @@ range|:
 name|otherFiles
 control|)
 block|{
-comment|// under some circumstances we only write DocValues
-comment|// so other files will be added even if they don't exist
+comment|// under some circumstances we only write
+comment|// DocValues
+comment|// so other files will be added even if
+comment|// they don't exist
 if|if
 condition|(
 name|dir
@@ -824,6 +812,7 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO can we have a compound file per segment and codec for docvalues?
 for|for
 control|(
 name|String
@@ -844,6 +833,10 @@ argument_list|(
 name|segmentInfo
 operator|.
 name|name
+operator|+
+literal|"_"
+operator|+
+name|codecId
 argument_list|)
 operator|&&
 operator|(
@@ -933,14 +926,8 @@ decl_stmt|;
 DECL|method|WrappingFielsdProducer
 name|WrappingFielsdProducer
 parameter_list|(
-name|SegmentInfo
-name|si
-parameter_list|,
-name|Directory
-name|dir
-parameter_list|,
-name|FieldInfos
-name|fieldInfo
+name|SegmentReadState
+name|state
 parameter_list|,
 name|FieldsProducer
 name|other
@@ -950,11 +937,21 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|si
+name|state
+operator|.
+name|segmentInfo
 argument_list|,
+name|state
+operator|.
 name|dir
 argument_list|,
-name|fieldInfo
+name|state
+operator|.
+name|fieldInfos
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 expr_stmt|;
 name|this

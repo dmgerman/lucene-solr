@@ -2256,6 +2256,9 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
+name|String
+name|codecId
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -2508,6 +2511,10 @@ argument_list|,
 name|state
 operator|.
 name|readBufferSize
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|PostingsReaderBase
@@ -2554,6 +2561,10 @@ operator|.
 name|termsIndexDivisor
 argument_list|,
 name|reverseUnicodeComparator
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 expr_stmt|;
 name|success
@@ -2616,6 +2627,10 @@ argument_list|,
 name|StandardCodec
 operator|.
 name|TERMS_CACHE_SIZE
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|success
@@ -2666,6 +2681,9 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
+name|String
+name|codecId
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -2683,6 +2701,8 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
+name|codecId
+argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
@@ -2694,6 +2714,8 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
+name|codecId
+argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
@@ -2704,6 +2726,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|codecId
 argument_list|,
 name|files
 argument_list|)

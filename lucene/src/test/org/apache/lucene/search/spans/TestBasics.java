@@ -5920,6 +5920,8 @@ name|CheckHits
 operator|.
 name|checkHits
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 literal|"field"

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -473,6 +473,10 @@ argument_list|,
 name|state
 operator|.
 name|readBufferSize
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|TermsIndexReaderBase
@@ -512,6 +516,10 @@ name|BytesRef
 operator|.
 name|getUTF8SortedAsUnicodeComparator
 argument_list|()
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 expr_stmt|;
 name|success
@@ -576,6 +584,10 @@ argument_list|,
 name|StandardCodec
 operator|.
 name|TERMS_CACHE_SIZE
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|success
@@ -626,6 +638,9 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
+name|String
+name|codecId
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -643,6 +658,8 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
+name|codecId
+argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
@@ -654,6 +671,8 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
+name|codecId
+argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
@@ -664,6 +683,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|codecId
 argument_list|,
 name|files
 argument_list|)

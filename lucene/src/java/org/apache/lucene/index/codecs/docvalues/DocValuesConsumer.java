@@ -454,6 +454,9 @@ parameter_list|,
 name|FieldInfo
 name|field
 parameter_list|,
+name|String
+name|codecId
+parameter_list|,
 name|Comparator
 argument_list|<
 name|BytesRef
@@ -471,9 +474,7 @@ name|segmentName
 operator|+
 literal|"_"
 operator|+
-name|field
-operator|.
-name|number
+name|codecId
 decl_stmt|;
 return|return
 name|Writer

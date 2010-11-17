@@ -664,6 +664,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|filteredquery
 argument_list|,
 name|searcher
@@ -767,6 +769,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|filteredquery
 argument_list|,
 name|searcher
@@ -832,6 +836,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|filteredquery
 argument_list|,
 name|searcher
@@ -885,6 +891,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|filteredquery
 argument_list|,
 name|searcher
@@ -1283,6 +1291,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|filteredquery
 argument_list|,
 name|searcher
@@ -1393,6 +1403,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1505,6 +1517,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
