@@ -854,18 +854,13 @@ name|Exception
 block|{
 comment|// we generate aweful regexps: good for testing.
 comment|// but for preflex codec, the test can be very slow, so use less iterations.
-name|String
-name|codec
-init|=
-name|CodecProvider
-operator|.
-name|getDefaultCodec
-argument_list|()
-decl_stmt|;
 name|int
 name|num
 init|=
-name|codec
+name|getRandomFieldCodec
+argument_list|(
+literal|"field"
+argument_list|)
 operator|.
 name|equals
 argument_list|(
