@@ -173,7 +173,7 @@ specifier|private
 name|String
 name|defaultFieldCodec
 init|=
-name|defaultCodec
+literal|"Standard"
 decl_stmt|;
 DECL|field|perFieldMap
 specifier|private
@@ -230,14 +230,6 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|()
-decl_stmt|;
-DECL|field|defaultCodec
-specifier|private
-specifier|static
-name|String
-name|defaultCodec
-init|=
-literal|"Standard"
 decl_stmt|;
 DECL|field|CORE_CODECS
 specifier|public
@@ -533,36 +525,6 @@ return|return
 name|defaultCodecs
 return|;
 block|}
-comment|/** Used for testing. @lucene.internal */
-DECL|method|setDefaultCodec
-specifier|public
-specifier|synchronized
-specifier|static
-name|void
-name|setDefaultCodec
-parameter_list|(
-name|String
-name|s
-parameter_list|)
-block|{
-name|defaultCodec
-operator|=
-name|s
-expr_stmt|;
-block|}
-comment|/** Used for testing. @lucene.internal */
-DECL|method|getDefaultCodec
-specifier|public
-specifier|synchronized
-specifier|static
-name|String
-name|getDefaultCodec
-parameter_list|()
-block|{
-return|return
-name|defaultCodec
-return|;
-block|}
 comment|/**    * Sets the {@link Codec} for a given field. Not that setting a fields code is    * write-once. If the fields codec is already set this method will throw an    * {@link IllegalArgumentException}    *     * @param field    *          the name of the field    * @param codec    *          the name of the codec    * @throws IllegalArgumentException    *           if the codec for the given field is already set    *     */
 DECL|method|setFieldCodec
 specifier|public
@@ -722,14 +684,6 @@ name|register
 argument_list|(
 operator|new
 name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|setDefaultFieldCodec
-argument_list|(
-name|CodecProvider
-operator|.
-name|getDefaultCodec
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -773,8 +773,15 @@ literal|"This test cannot run with SimpleText codec"
 argument_list|,
 name|CodecProvider
 operator|.
-name|getDefaultCodec
+name|getDefault
 argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+name|this
+operator|.
+name|field
+argument_list|)
 operator|.
 name|equals
 argument_list|(
