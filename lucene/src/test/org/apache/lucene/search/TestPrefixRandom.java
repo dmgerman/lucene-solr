@@ -146,6 +146,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -333,14 +349,13 @@ argument_list|)
 expr_stmt|;
 comment|// we generate aweful prefixes: good for testing.
 comment|// but for preflex codec, the test can be very slow, so use less iterations.
-specifier|final
 name|String
 name|codec
 init|=
-name|getRandomFieldCodec
-argument_list|(
-literal|"field"
-argument_list|)
+name|CodecProvider
+operator|.
+name|getDefaultCodec
+argument_list|()
 decl_stmt|;
 name|int
 name|num

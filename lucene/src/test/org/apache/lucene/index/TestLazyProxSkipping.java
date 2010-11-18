@@ -771,12 +771,10 @@ name|assumeFalse
 argument_list|(
 literal|"This test cannot run with SimpleText codec"
 argument_list|,
-name|getRandomFieldCodec
-argument_list|(
-name|this
+name|CodecProvider
 operator|.
-name|field
-argument_list|)
+name|getDefaultCodec
+argument_list|()
 operator|.
 name|equals
 argument_list|(

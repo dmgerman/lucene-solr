@@ -538,10 +538,7 @@ name|equals
 argument_list|(
 name|CodecProvider
 operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getDefaultFieldCodec
+name|getDefaultCodec
 argument_list|()
 argument_list|)
 condition|)
