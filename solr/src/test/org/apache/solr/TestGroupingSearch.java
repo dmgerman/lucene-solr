@@ -2527,18 +2527,6 @@ argument_list|)
 operator|-
 literal|1
 decl_stmt|;
-comment|// TODO: remove restriction on 0
-name|group_limit
-operator|=
-name|random
-operator|.
-name|nextInt
-argument_list|(
-literal|10
-argument_list|)
-operator|+
-literal|1
-expr_stmt|;
 name|int
 name|group_offset
 init|=
@@ -3274,7 +3262,7 @@ control|)
 block|{
 if|if
 condition|(
-name|group_offset
+name|group_limit
 operator|!=
 operator|-
 literal|1
