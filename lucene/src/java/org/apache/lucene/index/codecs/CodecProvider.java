@@ -525,7 +525,7 @@ return|return
 name|defaultCodecs
 return|;
 block|}
-comment|/**    * Sets the {@link Codec} for a given field. Not that setting a fields code is    * write-once. If the fields codec is already set this method will throw an    * {@link IllegalArgumentException}    *     * @param field    *          the name of the field    * @param codec    *          the name of the codec    * @throws IllegalArgumentException    *           if the codec for the given field is already set    *     */
+comment|/**    * Sets the {@link Codec} for a given field. Not that setting a field's codec is    * write-once. If the field's codec is already set this method will throw an    * {@link IllegalArgumentException}.    *     * @param field    *          the name of the field    * @param codec    *          the name of the codec    * @throws IllegalArgumentException    *           if the codec for the given field is already set    *     */
 DECL|method|setFieldCodec
 specifier|public
 specifier|synchronized
