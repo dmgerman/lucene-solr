@@ -1073,9 +1073,14 @@ operator|.
 name|merge
 argument_list|()
 expr_stmt|;
-name|merger
+name|r1
 operator|.
-name|closeReaders
+name|close
+argument_list|()
+expr_stmt|;
+name|r2
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 specifier|final
