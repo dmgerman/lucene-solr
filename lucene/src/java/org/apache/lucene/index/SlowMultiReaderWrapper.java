@@ -272,6 +272,19 @@ literal|"please call close on the original reader instead"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|getSequentialSubReaders
+specifier|public
+name|IndexReader
+index|[]
+name|getSequentialSubReaders
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

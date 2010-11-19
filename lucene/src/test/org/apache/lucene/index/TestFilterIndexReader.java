@@ -740,6 +740,10 @@ init|=
 operator|new
 name|TestReader
 argument_list|(
+name|SlowMultiReaderWrapper
+operator|.
+name|wrap
+argument_list|(
 name|IndexReader
 operator|.
 name|open
@@ -747,6 +751,7 @@ argument_list|(
 name|directory
 argument_list|,
 literal|true
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;

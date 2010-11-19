@@ -1021,12 +1021,10 @@ name|getDeletedDocs
 parameter_list|()
 block|{
 return|return
-name|MultiFields
+name|in
 operator|.
 name|getDeletedDocs
-argument_list|(
-name|in
-argument_list|)
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -1593,7 +1591,10 @@ name|getSequentialSubReaders
 parameter_list|()
 block|{
 return|return
-literal|null
+name|in
+operator|.
+name|getSequentialSubReaders
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -1607,12 +1608,10 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|MultiFields
-operator|.
-name|getFields
-argument_list|(
 name|in
-argument_list|)
+operator|.
+name|fields
+argument_list|()
 return|;
 block|}
 comment|/** If the subclass of FilteredIndexReader modifies the    *  contents of the FieldCache, you must override this    *  method to provide a different key */
