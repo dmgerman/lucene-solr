@@ -32,26 +32,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -506,7 +486,11 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+operator|new
+name|SlowMultiReaderWrapper
+argument_list|(
 name|reader
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -531,32 +515,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-comment|/** Main for running test case by itself. */
-DECL|method|main
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-name|args
-index|[]
-parameter_list|)
-block|{
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-operator|new
-name|TestSuite
-argument_list|(
-name|TestIndexReader
-operator|.
-name|class
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Tests the IndexReader.getFieldNames implementation    * @throws Exception on error    */
 DECL|method|testFilterIndexReader
@@ -710,7 +668,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//IndexReader reader = new TestReader(IndexReader.open(directory, true));
 name|Directory
 name|target
 init|=
@@ -740,10 +697,6 @@ init|=
 operator|new
 name|TestReader
 argument_list|(
-name|SlowMultiReaderWrapper
-operator|.
-name|wrap
-argument_list|(
 name|IndexReader
 operator|.
 name|open
@@ -751,7 +704,6 @@ argument_list|(
 name|directory
 argument_list|,
 literal|true
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
