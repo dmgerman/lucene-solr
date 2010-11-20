@@ -815,7 +815,6 @@ operator|)
 operator|)
 argument_list|)
 decl_stmt|;
-comment|// System.out.println("TEST: now index=" + writer.segString());
 name|assertEquals
 argument_list|(
 literal|"index="
@@ -825,7 +824,7 @@ operator|.
 name|segString
 argument_list|()
 operator|+
-literal|" numDocs"
+literal|" numDocs="
 operator|+
 name|writer
 operator|.
@@ -863,7 +862,7 @@ operator|.
 name|segString
 argument_list|()
 operator|+
-literal|" numDocs"
+literal|" numDocs="
 operator|+
 name|writer
 operator|.

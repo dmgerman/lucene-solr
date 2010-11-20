@@ -5499,7 +5499,16 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|10
+argument_list|,
 literal|500
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Close w/o first stopping/joining the threads
