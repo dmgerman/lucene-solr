@@ -506,7 +506,6 @@ block|}
 DECL|field|defaultCodecs
 specifier|static
 specifier|private
-specifier|final
 name|CodecProvider
 name|defaultCodecs
 init|=
@@ -524,6 +523,22 @@ block|{
 return|return
 name|defaultCodecs
 return|;
+block|}
+comment|/** For testing only    *  @lucene.internal */
+DECL|method|setDefault
+specifier|public
+specifier|static
+name|void
+name|setDefault
+parameter_list|(
+name|CodecProvider
+name|cp
+parameter_list|)
+block|{
+name|defaultCodecs
+operator|=
+name|cp
+expr_stmt|;
 block|}
 comment|/**    * Sets the {@link Codec} for a given field. Not that setting a field's codec is    * write-once. If the field's codec is already set this method will throw an    * {@link IllegalArgumentException}.    *     * @param field    *          the name of the field    * @param codec    *          the name of the codec    * @throws IllegalArgumentException    *           if the codec for the given field is already set    *     */
 DECL|method|setFieldCodec

@@ -206,19 +206,6 @@ name|WRITE_LOCK_TIMEOUT
 init|=
 literal|1000
 decl_stmt|;
-comment|/** Default {@link CodecProvider}. */
-DECL|field|DEFAULT_CODEC_PROVIDER
-specifier|public
-specifier|final
-specifier|static
-name|CodecProvider
-name|DEFAULT_CODEC_PROVIDER
-init|=
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-decl_stmt|;
 comment|/** The maximum number of simultaneous threads that may be    *  indexing documents at once in IndexWriter; if more    *  than this many threads arrive they will wait for    *  others to finish. */
 DECL|field|DEFAULT_MAX_THREAD_STATES
 specifier|public
@@ -469,7 +456,10 @@ literal|null
 expr_stmt|;
 name|codecProvider
 operator|=
-name|DEFAULT_CODEC_PROVIDER
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
 expr_stmt|;
 name|mergePolicy
 operator|=
