@@ -113,11 +113,12 @@ operator|)
 expr_stmt|;
 if|if
 condition|(
-name|tsize
-operator|<=
+name|size
+operator|>=
 name|rehashCount
 condition|)
 block|{
+comment|// should be able to hold "size" w/o rehashing
 name|tsize
 operator|<<=
 literal|1
@@ -614,6 +615,21 @@ name|int
 index|[
 name|newSize
 index|]
+expr_stmt|;
+if|if
+condition|(
+name|emptyVal
+operator|!=
+literal|0
+condition|)
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|keys
+argument_list|,
+name|emptyVal
+argument_list|)
 expr_stmt|;
 for|for
 control|(
