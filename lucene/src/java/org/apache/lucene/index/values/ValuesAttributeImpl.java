@@ -80,20 +80,6 @@ name|LongsRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SetOnce
-import|;
-end_import
-
 begin_class
 DECL|class|ValuesAttributeImpl
 specifier|public
@@ -233,9 +219,6 @@ expr_stmt|;
 break|break;
 case|case
 name|PACKED_INTS
-case|:
-case|case
-name|PACKED_INTS_FIXED
 case|:
 name|ints
 operator|=
@@ -385,9 +368,6 @@ expr_stmt|;
 break|break;
 case|case
 name|PACKED_INTS
-case|:
-case|case
-name|PACKED_INTS_FIXED
 case|:
 name|other
 operator|.

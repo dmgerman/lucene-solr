@@ -32,9 +32,6 @@ comment|/** Integral value is stored as packed ints.  The bit    *  precision is
 DECL|enum constant|PACKED_INTS
 name|PACKED_INTS
 block|,
-DECL|enum constant|PACKED_INTS_FIXED
-name|PACKED_INTS_FIXED
-block|,
 DECL|enum constant|SIMPLE_FLOAT_4BYTE
 name|SIMPLE_FLOAT_4BYTE
 block|,

@@ -178,6 +178,12 @@ name|FieldsConsumer
 name|fieldsConsumer
 decl_stmt|;
 comment|// TODO this should be encapsulated in DocumentsWriter
+DECL|field|docValuesConsumerState
+specifier|private
+name|SegmentWriteState
+name|docValuesConsumerState
+decl_stmt|;
+comment|// TODO this should be encapsulated in DocumentsWriter
 DECL|method|docValuesConsumer
 specifier|synchronized
 name|DocValuesConsumer
@@ -238,17 +244,16 @@ literal|null
 condition|)
 block|{
 comment|/* nocommit -- this is a hack and only works since DocValuesCodec supports initializing the FieldsConsumer twice.          * we need to find a way that allows us to obtain a FieldsConsumer per DocumentsWriter. Currently some codecs rely on           * the SegmentsWriteState passed in right at the moment when the segment is flushed (doccount etc) but we need the consumer earlier           * to support docvalues and later on stored fields too.            */
-name|SegmentWriteState
-name|state
-init|=
+name|docValuesConsumerState
+operator|=
 name|docWriter
 operator|.
 name|segWriteState
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fieldsConsumer
 operator|=
-name|state
+name|docValuesConsumerState
 operator|.
 name|segmentCodecs
 operator|.
@@ -257,7 +262,7 @@ argument_list|()
 operator|.
 name|fieldsConsumer
 argument_list|(
-name|state
+name|docValuesConsumerState
 argument_list|)
 expr_stmt|;
 block|}
@@ -512,7 +517,22 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// nocommit this should go away
+comment|// TODO remove this once docvalues are fully supported by codecs
+name|state
+operator|.
+name|flushedFiles
+operator|.
+name|addAll
+argument_list|(
+name|docValuesConsumerState
+operator|.
+name|flushedFiles
+argument_list|)
+expr_stmt|;
+name|docValuesConsumerState
+operator|=
+literal|null
+expr_stmt|;
 name|fieldsConsumer
 operator|=
 literal|null
