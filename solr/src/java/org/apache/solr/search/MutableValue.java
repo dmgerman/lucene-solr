@@ -30,7 +30,7 @@ implements|implements
 name|Comparable
 block|{
 DECL|field|exists
-specifier|protected
+specifier|public
 name|boolean
 name|exists
 init|=
@@ -202,15 +202,13 @@ name|c1
 operator|==
 name|c2
 operator|)
-condition|?
+operator|&&
 name|this
 operator|.
 name|equalsSameType
 argument_list|(
 name|other
 argument_list|)
-else|:
-literal|false
 return|;
 block|}
 DECL|method|hashCode
