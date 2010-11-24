@@ -1339,7 +1339,7 @@ block|}
 assert|assert
 name|numDocs
 operator|<=
-name|docCount
+name|docsToGather
 assert|;
 comment|// make sure we didn't gather too many
 name|int
