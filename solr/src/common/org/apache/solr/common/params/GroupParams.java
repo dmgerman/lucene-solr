@@ -105,6 +105,18 @@ name|GROUP
 operator|+
 literal|".offset"
 decl_stmt|;
+comment|/** treat the first group result as the main result.  true/false */
+DECL|field|GROUP_MAIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GROUP_MAIN
+init|=
+name|GROUP
+operator|+
+literal|".main"
+decl_stmt|;
 block|}
 end_interface
 
