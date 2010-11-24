@@ -6274,6 +6274,21 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+operator|(
+operator|(
+name|LogMergePolicy
+operator|)
+name|writer
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|)
+operator|.
+name|setNoCFSRatio
+argument_list|(
+literal|1.0
+argument_list|)
+expr_stmt|;
 comment|// add 100 documents
 for|for
 control|(
