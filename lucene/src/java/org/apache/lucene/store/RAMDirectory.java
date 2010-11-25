@@ -118,6 +118,7 @@ init|=
 literal|1l
 decl_stmt|;
 DECL|field|fileMap
+specifier|protected
 name|HashMap
 argument_list|<
 name|String
@@ -136,6 +137,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|sizeInBytes
+specifier|protected
 specifier|final
 name|AtomicLong
 name|sizeInBytes
@@ -597,7 +599,7 @@ name|file
 init|=
 name|fileMap
 operator|.
-name|get
+name|remove
 argument_list|(
 name|name
 argument_list|)
@@ -609,13 +611,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|fileMap
-operator|.
-name|remove
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
 name|file
 operator|.
 name|directory
@@ -662,11 +657,8 @@ expr_stmt|;
 name|RAMFile
 name|file
 init|=
-operator|new
-name|RAMFile
-argument_list|(
-name|this
-argument_list|)
+name|newRAMFile
+argument_list|()
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -722,6 +714,21 @@ operator|new
 name|RAMOutputStream
 argument_list|(
 name|file
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a new {@link RAMFile} for storing data. This method can be    * overridden to return different {@link RAMFile} impls, that e.g. override    * {@link RAMFile#newBuffer(int)}.    */
+DECL|method|newRAMFile
+specifier|protected
+name|RAMFile
+name|newRAMFile
+parameter_list|()
+block|{
+return|return
+operator|new
+name|RAMFile
+argument_list|(
+name|this
 argument_list|)
 return|;
 block|}
