@@ -342,20 +342,6 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_class
 DECL|class|TestIndexReaderReopen
 specifier|public
