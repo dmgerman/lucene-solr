@@ -211,22 +211,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|state
-operator|.
-name|numDocsInStore
-operator|>
-literal|0
-condition|)
-block|{
-comment|// It's possible that all documents seen in this segment
+comment|// NOTE: it's possible that all documents seen in this segment
 comment|// hit non-aborting exceptions, in which case we will
-comment|// not have yet init'd the TermVectorsWriter:
-name|initTermVectorsWriter
-argument_list|()
-expr_stmt|;
-block|}
+comment|// not have yet init'd the TermVectorsWriter.  This is
+comment|// actually OK (unlike in the stored fields case)
+comment|// because, although IieldInfos.hasVectors() will return
+comment|// true, the TermVectorsReader gracefully handles
+comment|// non-existence of the term vectors files.
 if|if
 condition|(
 name|tvx
