@@ -81,7 +81,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|/** Default noCFSRatio.  If a merge's size is>= 10% of    *  the index, then we disable compound file for it.    *  @see setNoCFSRatio */
+comment|/** Default noCFSRatio.  If a merge's size is>= 10% of    *  the index, then we disable compound file for it.    *  @see #setNoCFSRatio */
 DECL|field|DEFAULT_NO_CFS_RATIO
 specifier|public
 specifier|static
@@ -177,7 +177,7 @@ name|verbose
 argument_list|()
 return|;
 block|}
-comment|/** @see setNoCFSRatio */
+comment|/** @see #setNoCFSRatio */
 DECL|method|getNoCFSRatio
 specifier|public
 name|double
