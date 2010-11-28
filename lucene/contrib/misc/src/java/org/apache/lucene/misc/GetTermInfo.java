@@ -310,7 +310,7 @@ name|println
 argument_list|(
 literal|"\n\nusage:\n\t"
 operator|+
-literal|"java org.apache.lucene.index.GetTermInfo<index dir> field term \n\n"
+literal|"java org.apache.lucene.misc.GetTermInfo<index dir> field term \n\n"
 argument_list|)
 expr_stmt|;
 block|}
