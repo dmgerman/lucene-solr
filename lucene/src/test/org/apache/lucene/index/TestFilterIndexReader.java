@@ -735,14 +735,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|reader
-operator|.
-name|isOptimized
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|TermsEnum
 name|terms
 init|=
