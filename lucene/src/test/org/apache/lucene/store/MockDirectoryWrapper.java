@@ -363,11 +363,21 @@ name|delegate
 operator|=
 name|delegate
 expr_stmt|;
+comment|// must make a private random since our methods are
+comment|// called from different threads; else test failures may
+comment|// not be reproducible from the original seed
 name|this
 operator|.
 name|randomState
 operator|=
+operator|new
+name|Random
+argument_list|(
 name|random
+operator|.
+name|nextInt
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|init
 argument_list|()

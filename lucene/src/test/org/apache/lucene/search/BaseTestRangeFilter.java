@@ -756,6 +756,21 @@ argument_list|(
 name|bodyField
 argument_list|)
 expr_stmt|;
+name|int
+name|minCount
+init|=
+literal|0
+decl_stmt|;
+name|int
+name|maxCount
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -817,6 +832,24 @@ name|maxR
 operator|=
 name|r
 expr_stmt|;
+name|maxCount
+operator|=
+literal|1
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|index
+operator|.
+name|maxR
+operator|==
+name|r
+condition|)
+block|{
+name|maxCount
+operator|++
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -832,6 +865,24 @@ operator|.
 name|minR
 operator|=
 name|r
+expr_stmt|;
+name|minCount
+operator|=
+literal|1
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|r
+operator|==
+name|index
+operator|.
+name|minR
+condition|)
+block|{
+name|minCount
+operator|++
 expr_stmt|;
 block|}
 name|randField
@@ -858,6 +909,25 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|minCount
+operator|==
+literal|1
+operator|&&
+name|maxCount
+operator|==
+literal|1
+condition|)
+block|{
+comment|// our subclasses rely on only 1 doc having the min or
+comment|// max, so, we loop until we satisfy that.  it should be
+comment|// exceedingly rare (Yonik calculates 1 in ~429,000)
+comment|// times) that this loop requires more than one try:
+break|break;
+block|}
+comment|// try again
 block|}
 name|IndexReader
 name|ir
