@@ -119,8 +119,18 @@ operator|-
 literal|1
 return|;
 block|}
+comment|// third criteria: term text
 return|return
-literal|0
+name|second
+operator|.
+name|string
+operator|.
+name|compareTo
+argument_list|(
+name|first
+operator|.
+name|string
+argument_list|)
 return|;
 block|}
 block|}

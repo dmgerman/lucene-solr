@@ -458,7 +458,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/[1]/suggestion==[{'word':'blue','freq':1}, {'word':'blud','freq':1}, {'word':'boue','freq':1}]"
+literal|"/spellcheck/suggestions/[1]/suggestion==[{'word':'blud','freq':1}, {'word':'blue','freq':1}, {'word':'blee','freq':1}]"
 argument_list|)
 expr_stmt|;
 block|}
