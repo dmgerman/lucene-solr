@@ -392,7 +392,6 @@ name|bytesUsed
 operator|.
 name|addAndGet
 argument_list|(
-operator|-
 operator|(
 name|docToAddress
 operator|.
@@ -768,7 +767,7 @@ argument_list|(
 name|idxIn
 argument_list|)
 expr_stmt|;
-name|missingValues
+name|missingValue
 operator|.
 name|bytesValue
 operator|=

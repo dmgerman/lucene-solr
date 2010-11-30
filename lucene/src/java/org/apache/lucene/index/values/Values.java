@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Controls whether per-field values are stored into  *  index.  This storage is non-sparse, so it's best to  *  use this when all docs have the field, and loads all  *  values into RAM, exposing a random access API, when  *  loaded.  *  *<p><b>NOTE</b>: This feature is experimental and the  * API is free to change in non-backwards-compatible ways.  */
+comment|/** Controls whether per-field values are stored into  *  index.  This storage is non-sparse, so it's best to  *  use this when all docs have the field, and loads all  *  values into RAM, exposing a random access API, when  *  loaded.  *  * @lucene.experimenta   */
 end_comment
 
 begin_enum

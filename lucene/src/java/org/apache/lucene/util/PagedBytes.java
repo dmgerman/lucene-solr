@@ -966,11 +966,11 @@ return|return
 name|start
 return|;
 block|}
-comment|/**      * Reads length as 1 or 2 byte vInt prefix, starting @ start and fill the      * given {@link BytesRef} with the byte slice starting after the length      * prefix.      * @lucene.internal      **/
-DECL|method|fillUsingLengthPrefix4
+comment|/**      * Gets a slice out of {@link PagedBytes} starting at<i>start</i>, the      * length is read as 1 or 2 byte vInt prefix. Iff the slice spans across a      * block border this method will allocate sufficient resources and copy the      * paged data.      *<p>      * Slices spanning more than one block are not supported.      *</p>      *       * @lucene.internal      **/
+DECL|method|fillSliceWithPrefix
 specifier|public
 name|BytesRef
-name|fillUsingLengthPrefix4
+name|fillSliceWithPrefix
 parameter_list|(
 name|BytesRef
 name|b

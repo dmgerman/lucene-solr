@@ -30,6 +30,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -107,6 +121,9 @@ name|id
 parameter_list|,
 name|boolean
 name|useFixedArray
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -119,6 +136,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}

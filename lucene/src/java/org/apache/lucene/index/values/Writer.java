@@ -40,6 +40,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -107,6 +121,20 @@ name|Writer
 extends|extends
 name|DocValuesConsumer
 block|{
+DECL|method|Writer
+specifier|protected
+name|Writer
+parameter_list|(
+name|AtomicLong
+name|bytesUsed
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|bytesUsed
+argument_list|)
+expr_stmt|;
+block|}
 DECL|field|INDEX_EXTENSION
 specifier|public
 specifier|static
@@ -427,6 +455,9 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|comp
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -449,6 +480,8 @@ argument_list|,
 name|id
 argument_list|,
 literal|true
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -464,6 +497,8 @@ argument_list|,
 name|id
 argument_list|,
 literal|4
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -479,6 +514,8 @@ argument_list|,
 name|id
 argument_list|,
 literal|8
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -502,6 +539,8 @@ argument_list|,
 name|comp
 argument_list|,
 literal|true
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -525,6 +564,8 @@ argument_list|,
 name|comp
 argument_list|,
 literal|true
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -548,6 +589,8 @@ argument_list|,
 name|comp
 argument_list|,
 literal|true
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -571,6 +614,8 @@ argument_list|,
 name|comp
 argument_list|,
 literal|false
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -594,6 +639,8 @@ argument_list|,
 name|comp
 argument_list|,
 literal|false
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 case|case
@@ -617,6 +664,8 @@ argument_list|,
 name|comp
 argument_list|,
 literal|false
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 default|default:

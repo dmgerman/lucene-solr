@@ -457,7 +457,7 @@ operator|.
 name|docBase
 argument_list|)
 expr_stmt|;
-comment|// nocommit should we add a transfer to API to each reader?
+comment|// TODO should we add a transfer to API to each reader?
 name|datOut
 operator|.
 name|copyBytes
@@ -751,7 +751,7 @@ name|size
 expr_stmt|;
 name|this
 operator|.
-name|missingValues
+name|missingValue
 operator|.
 name|bytesValue
 operator|=

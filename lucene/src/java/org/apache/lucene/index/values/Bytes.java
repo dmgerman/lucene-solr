@@ -94,7 +94,7 @@ name|values
 operator|.
 name|DocValues
 operator|.
-name|MissingValues
+name|MissingValue
 import|;
 end_import
 
@@ -326,6 +326,9 @@ name|comp
 parameter_list|,
 name|boolean
 name|fixedSize
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -390,6 +393,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -414,6 +419,8 @@ argument_list|,
 name|id
 argument_list|,
 name|comp
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -438,6 +445,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -460,6 +469,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -484,6 +495,8 @@ argument_list|,
 name|id
 argument_list|,
 name|comp
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -920,7 +933,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|MissingValues
+name|MissingValue
 name|missing
 init|=
 name|getMissing
@@ -1423,7 +1436,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|MissingValues
+name|MissingValue
 name|missing
 init|=
 name|getMissing
@@ -1556,11 +1569,13 @@ name|bytesRef
 decl_stmt|;
 DECL|field|codecName
 specifier|private
+specifier|final
 name|String
 name|codecName
 decl_stmt|;
 DECL|field|version
 specifier|private
+specifier|final
 name|int
 name|version
 decl_stmt|;
@@ -1569,12 +1584,6 @@ specifier|protected
 specifier|final
 name|ByteBlockPool
 name|pool
-decl_stmt|;
-DECL|field|bytesUsed
-specifier|protected
-specifier|final
-name|AtomicLong
-name|bytesUsed
 decl_stmt|;
 DECL|method|BytesWriterBase
 specifier|protected
@@ -1607,6 +1616,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|bytesUsed
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|dir
@@ -1636,12 +1650,6 @@ operator|.
 name|pool
 operator|=
 name|pool
-expr_stmt|;
-name|this
-operator|.
-name|bytesUsed
-operator|=
-name|bytesUsed
 expr_stmt|;
 if|if
 condition|(

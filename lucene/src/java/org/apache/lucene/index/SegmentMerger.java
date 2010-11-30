@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1889,6 +1903,12 @@ argument_list|,
 name|termIndexInterval
 argument_list|,
 name|codecInfo
+argument_list|,
+operator|new
+name|AtomicLong
+argument_list|(
+literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return

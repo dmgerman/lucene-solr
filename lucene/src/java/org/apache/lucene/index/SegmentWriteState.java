@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -120,6 +134,12 @@ name|String
 argument_list|>
 name|flushedFiles
 decl_stmt|;
+DECL|field|bytesUsed
+specifier|public
+specifier|final
+name|AtomicLong
+name|bytesUsed
+decl_stmt|;
 DECL|field|segmentCodecs
 specifier|final
 name|SegmentCodecs
@@ -186,6 +206,9 @@ name|termIndexInterval
 parameter_list|,
 name|SegmentCodecs
 name|segmentCodecs
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 block|{
 name|this
@@ -254,6 +277,12 @@ expr_stmt|;
 name|codecId
 operator|=
 literal|""
+expr_stmt|;
+name|this
+operator|.
+name|bytesUsed
+operator|=
+name|bytesUsed
 expr_stmt|;
 block|}
 comment|/**    * Create a shallow {@link SegmentWriteState} copy final a codec ID    */
@@ -332,6 +361,12 @@ operator|.
 name|codecId
 operator|=
 name|codecId
+expr_stmt|;
+name|bytesUsed
+operator|=
+name|state
+operator|.
+name|bytesUsed
 expr_stmt|;
 block|}
 block|}

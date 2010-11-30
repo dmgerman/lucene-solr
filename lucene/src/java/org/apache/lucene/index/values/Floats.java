@@ -70,6 +70,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -265,6 +279,9 @@ name|id
 parameter_list|,
 name|int
 name|precisionBytes
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -304,6 +321,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -316,6 +335,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|bytesUsed
 argument_list|)
 return|;
 block|}
@@ -406,10 +427,18 @@ name|id
 parameter_list|,
 name|int
 name|precision
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|bytesUsed
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|dir
@@ -630,7 +659,7 @@ name|FloatsReader
 condition|)
 block|{
 comment|// no deletes - bulk copy
-comment|// nocommit - should be do bulks with deletes too?
+comment|// TODO: should be do bulks with deletes too?
 specifier|final
 name|FloatsReader
 name|reader
@@ -772,6 +801,9 @@ name|dir
 parameter_list|,
 name|String
 name|id
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -783,6 +815,8 @@ argument_list|,
 name|id
 argument_list|,
 literal|4
+argument_list|,
+name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}
@@ -993,6 +1027,9 @@ name|dir
 parameter_list|,
 name|String
 name|id
+parameter_list|,
+name|AtomicLong
+name|bytesUsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -1004,6 +1041,8 @@ argument_list|,
 name|id
 argument_list|,
 literal|8
+argument_list|,
+name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}
@@ -1484,7 +1523,7 @@ operator|.
 name|asFloatBuffer
 argument_list|()
 expr_stmt|;
-name|missingValues
+name|missingValue
 operator|.
 name|doubleValue
 operator|=
@@ -1548,7 +1587,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|MissingValues
+name|MissingValue
 name|missing
 init|=
 name|getMissing
@@ -1698,7 +1737,7 @@ operator|.
 name|asDoubleBuffer
 argument_list|()
 expr_stmt|;
-name|missingValues
+name|missingValue
 operator|.
 name|doubleValue
 operator|=
@@ -1762,7 +1801,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|MissingValues
+name|MissingValue
 name|missing
 init|=
 name|getMissing
