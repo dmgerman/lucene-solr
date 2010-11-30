@@ -6395,7 +6395,7 @@ name|query2
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Todo (nocommit): Convert from DateField to DateUtil
+comment|// Todo: Convert from DateField to DateUtil
 comment|//  public void testLocalDateFormat() throws IOException, QueryNodeException {
 comment|//    Directory ramDir = newDirectory();
 comment|//    IndexWriter iw = new IndexWriter(ramDir, newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(MockTokenizer.WHITESPACE, false)));

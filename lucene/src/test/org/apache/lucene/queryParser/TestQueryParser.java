@@ -5961,7 +5961,7 @@ name|query2
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Todo (nocommit): convert this from DateField to DateUtil
+comment|// Todo: convert this from DateField to DateUtil
 comment|//  public void testLocalDateFormat() throws IOException, ParseException {
 comment|//    Directory ramDir = newDirectory();
 comment|//    IndexWriter iw = new IndexWriter(ramDir, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(MockTokenizer.WHITESPACE, false)));
