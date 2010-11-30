@@ -394,7 +394,7 @@ name|query
 operator|.
 name|getTermsEnum
 argument_list|(
-name|reader
+name|terms
 argument_list|)
 decl_stmt|;
 assert|assert

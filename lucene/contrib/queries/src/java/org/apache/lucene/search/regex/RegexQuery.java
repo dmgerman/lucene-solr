@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Terms
 import|;
 end_import
 
@@ -209,8 +209,8 @@ specifier|protected
 name|FilteredTermsEnum
 name|getTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|Terms
+name|terms
 parameter_list|,
 name|AttributeSource
 name|atts
@@ -222,7 +222,10 @@ return|return
 operator|new
 name|RegexTermsEnum
 argument_list|(
-name|reader
+name|terms
+operator|.
+name|iterator
+argument_list|()
 argument_list|,
 name|term
 argument_list|,

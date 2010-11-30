@@ -74,6 +74,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|Terms
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|TermsEnum
 import|;
 end_import
@@ -608,8 +622,8 @@ specifier|abstract
 name|TermsEnum
 name|getTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|Terms
+name|terms
 parameter_list|,
 name|AttributeSource
 name|atts
@@ -617,15 +631,15 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Convenience method, if no attributes are needed:    * This simply passes empty attributes and is equal to:    *<code>getTermsEnum(reader, new AttributeSource())</code>    */
+comment|/** Convenience method, if no attributes are needed:    * This simply passes empty attributes and is equal to:    *<code>getTermsEnum(terms, new AttributeSource())</code>    */
 DECL|method|getTermsEnum
 specifier|protected
 specifier|final
 name|TermsEnum
 name|getTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|Terms
+name|terms
 parameter_list|)
 throws|throws
 name|IOException
@@ -633,7 +647,7 @@ block|{
 return|return
 name|getTermsEnum
 argument_list|(
-name|reader
+name|terms
 argument_list|,
 operator|new
 name|AttributeSource

@@ -120,7 +120,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Terms
 import|;
 end_import
 
@@ -808,8 +808,8 @@ name|TermsEnum
 name|getTermsEnum
 parameter_list|(
 specifier|final
-name|IndexReader
-name|reader
+name|Terms
+name|terms
 parameter_list|,
 name|AttributeSource
 name|atts
@@ -853,7 +853,10 @@ else|:
 operator|new
 name|NumericRangeTermsEnum
 argument_list|(
-name|reader
+name|terms
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1293,18 +1296,15 @@ DECL|method|NumericRangeTermsEnum
 name|NumericRangeTermsEnum
 parameter_list|(
 specifier|final
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|getField
-argument_list|()
+name|tenum
 argument_list|)
 expr_stmt|;
 switch|switch

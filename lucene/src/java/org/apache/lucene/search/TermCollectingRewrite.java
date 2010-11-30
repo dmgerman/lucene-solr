@@ -332,7 +332,7 @@ name|query
 operator|.
 name|getTermsEnum
 argument_list|(
-name|r
+name|terms
 argument_list|,
 name|collector
 operator|.

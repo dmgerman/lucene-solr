@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Term
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|TermsEnum
 import|;
 end_import
 
@@ -113,8 +113,8 @@ DECL|method|RegexTermsEnum
 specifier|public
 name|RegexTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|,
 name|Term
 name|term
@@ -127,12 +127,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|term
-operator|.
-name|field
-argument_list|()
+name|tenum
 argument_list|)
 expr_stmt|;
 name|String

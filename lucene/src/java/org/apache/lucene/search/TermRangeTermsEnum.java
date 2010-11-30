@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|TermsEnum
 import|;
 end_import
 
@@ -132,16 +132,13 @@ name|BytesRef
 argument_list|>
 name|termComp
 decl_stmt|;
-comment|/**    * Enumerates all terms greater/equal than<code>lowerTerm</code>    * but less/equal than<code>upperTerm</code>.     *     * If an endpoint is null, it is said to be "open". Either or both     * endpoints may be open.  Open endpoints may not be exclusive     * (you can't select all but the first or last term without     * explicitly specifying the term to exclude.)    *     * @param reader    * @param field    *          An interned field that holds both lower and upper terms.    * @param lowerTermText    *          The term text at the lower end of the range    * @param upperTermText    *          The term text at the upper end of the range    * @param includeLower    *          If true, the<code>lowerTerm</code> is included in the range.    * @param includeUpper    *          If true, the<code>upperTerm</code> is included in the range.    * @param collator    *          The collator to use to collate index Terms, to determine their    *          membership in the range bounded by<code>lowerTerm</code> and    *<code>upperTerm</code>.    *     * @throws IOException    */
+comment|/**    * Enumerates all terms greater/equal than<code>lowerTerm</code>    * but less/equal than<code>upperTerm</code>.     *     * If an endpoint is null, it is said to be "open". Either or both     * endpoints may be open.  Open endpoints may not be exclusive     * (you can't select all but the first or last term without     * explicitly specifying the term to exclude.)    *     * @param tenum    *          TermsEnum to filter    * @param lowerTermText    *          The term text at the lower end of the range    * @param upperTermText    *          The term text at the upper end of the range    * @param includeLower    *          If true, the<code>lowerTerm</code> is included in the range.    * @param includeUpper    *          If true, the<code>upperTerm</code> is included in the range.    * @param collator    *          The collator to use to collate index Terms, to determine their    *          membership in the range bounded by<code>lowerTerm</code> and    *<code>upperTerm</code>.    *     * @throws IOException    */
 DECL|method|TermRangeTermsEnum
 specifier|public
 name|TermRangeTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|String
-name|field
+name|TermsEnum
+name|tenum
 parameter_list|,
 name|String
 name|lowerTermText
@@ -163,9 +160,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|field
+name|tenum
 argument_list|)
 expr_stmt|;
 name|this

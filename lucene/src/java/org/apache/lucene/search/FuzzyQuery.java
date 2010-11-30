@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Term
 import|;
 end_import
 
@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|Terms
 import|;
 end_import
 
@@ -444,8 +444,8 @@ specifier|protected
 name|TermsEnum
 name|getTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|Terms
+name|terms
 parameter_list|,
 name|AttributeSource
 name|atts
@@ -453,6 +453,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|TermsEnum
+name|tenum
+init|=
+name|terms
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -464,7 +472,7 @@ return|return
 operator|new
 name|SingleTermsEnum
 argument_list|(
-name|reader
+name|tenum
 argument_list|,
 name|term
 argument_list|)
@@ -474,7 +482,7 @@ return|return
 operator|new
 name|FuzzyTermsEnum
 argument_list|(
-name|reader
+name|tenum
 argument_list|,
 name|atts
 argument_list|,
