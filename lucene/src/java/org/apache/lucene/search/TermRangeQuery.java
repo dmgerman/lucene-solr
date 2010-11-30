@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermsEnum
+name|Terms
 import|;
 end_import
 
@@ -60,21 +60,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Terms
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ToStringUtils
+name|TermsEnum
 import|;
 end_import
 
@@ -89,6 +75,20 @@ operator|.
 name|util
 operator|.
 name|AttributeSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ToStringUtils
 import|;
 end_import
 
@@ -383,20 +383,6 @@ name|includeUpper
 argument_list|,
 name|collator
 argument_list|)
-return|;
-block|}
-comment|/** @deprecated */
-annotation|@
-name|Deprecated
-DECL|method|field
-specifier|public
-name|String
-name|field
-parameter_list|()
-block|{
-return|return
-name|getField
-argument_list|()
 return|;
 block|}
 comment|/** Prints a user-readable version of this query. */

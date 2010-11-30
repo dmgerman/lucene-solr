@@ -159,27 +159,6 @@ name|matchVersion
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated Use {@link #LowerCaseFilter(Version, TokenStream)} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|LowerCaseFilter
-specifier|public
-name|LowerCaseFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
-name|in
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|incrementToken

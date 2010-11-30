@@ -20,6 +20,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -124,26 +144,6 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
 begin_comment
 comment|/** A grammar-based tokenizer constructed with JFlex.  *<p>  * As of Lucene version 3.1, this class implements the Word Break rules from the  * Unicode Text Segmentation algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>.  *<p/>  *<b>WARNING</b>: Because JFlex does not support Unicode supplementary   * characters (characters above the Basic Multilingual Plane, which contains  * those up to and including U+FFFF), this scanner will not recognize them  * properly.  If you need to be able to process text containing supplementary   * characters, consider using the ICU4J-backed implementation in modules/analysis/icu    * (org.apache.lucene.analysis.icu.segmentation.ICUTokenizer)  * instead of this class, since the ICU4J-backed implementation does not have  * this limitation.  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardTokenizer:  *<ul>  *<li> As of 3.1, StandardTokenizer implements Unicode text segmentation.  *   If you use a previous version number, you get the exact behavior of  *   {@link ClassicTokenizer} for backwards compatibility.  *</ul>  */
 end_comment
@@ -172,7 +172,7 @@ name|ALPHANUM
 init|=
 literal|0
 decl_stmt|;
-comment|/** @deprecated */
+comment|/** @deprecated (3.1) */
 annotation|@
 name|Deprecated
 DECL|field|APOSTROPHE
@@ -184,7 +184,7 @@ name|APOSTROPHE
 init|=
 literal|1
 decl_stmt|;
-comment|/** @deprecated */
+comment|/** @deprecated (3.1) */
 annotation|@
 name|Deprecated
 DECL|field|ACRONYM
@@ -196,7 +196,7 @@ name|ACRONYM
 init|=
 literal|2
 decl_stmt|;
-comment|/** @deprecated */
+comment|/** @deprecated (3.1) */
 annotation|@
 name|Deprecated
 DECL|field|COMPANY
@@ -217,7 +217,7 @@ name|EMAIL
 init|=
 literal|4
 decl_stmt|;
-comment|/** @deprecated */
+comment|/** @deprecated (3.1) */
 annotation|@
 name|Deprecated
 DECL|field|HOST
@@ -238,7 +238,7 @@ name|NUM
 init|=
 literal|6
 decl_stmt|;
-comment|/** @deprecated */
+comment|/** @deprecated (3.1) */
 annotation|@
 name|Deprecated
 DECL|field|CJ
@@ -250,7 +250,7 @@ name|CJ
 init|=
 literal|7
 decl_stmt|;
-comment|/**    * @deprecated this solves a bug where HOSTs that end with '.' are identified    *             as ACRONYMs.    */
+comment|/** @deprecated (3.1) */
 annotation|@
 name|Deprecated
 DECL|field|ACRONYM_DEP
@@ -337,11 +337,6 @@ literal|"<IDEOGRAPHIC>"
 block|,
 literal|"<HIRAGANA>"
 block|}
-decl_stmt|;
-DECL|field|replaceInvalidAcronym
-specifier|private
-name|boolean
-name|replaceInvalidAcronym
 decl_stmt|;
 DECL|field|maxTokenLength
 specifier|private
@@ -497,30 +492,6 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_24
-argument_list|)
-condition|)
-block|{
-name|replaceInvalidAcronym
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-name|replaceInvalidAcronym
-operator|=
-literal|false
-expr_stmt|;
-block|}
 name|this
 operator|.
 name|input
@@ -693,11 +664,6 @@ operator|.
 name|ACRONYM_DEP
 condition|)
 block|{
-if|if
-condition|(
-name|replaceInvalidAcronym
-condition|)
-block|{
 name|typeAtt
 operator|.
 name|setType
@@ -725,24 +691,6 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// remove extra '.'
-block|}
-else|else
-block|{
-name|typeAtt
-operator|.
-name|setType
-argument_list|(
-name|StandardTokenizer
-operator|.
-name|TOKEN_TYPES
-index|[
-name|StandardTokenizer
-operator|.
-name|ACRONYM
-index|]
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -833,38 +781,6 @@ name|yyreset
 argument_list|(
 name|reader
 argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Prior to https://issues.apache.org/jira/browse/LUCENE-1068, StandardTokenizer mischaracterized as acronyms tokens like www.abc.com    * when they should have been labeled as hosts instead.    * @return true if StandardTokenizer now returns these tokens as Hosts, otherwise false    *    * @deprecated Remove in 3.X and make true the only valid value    */
-annotation|@
-name|Deprecated
-DECL|method|isReplaceInvalidAcronym
-specifier|public
-name|boolean
-name|isReplaceInvalidAcronym
-parameter_list|()
-block|{
-return|return
-name|replaceInvalidAcronym
-return|;
-block|}
-comment|/**    *    * @param replaceInvalidAcronym Set to true to replace mischaracterized acronyms as HOST.    * @deprecated Remove in 3.X and make true the only valid value    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    */
-annotation|@
-name|Deprecated
-DECL|method|setReplaceInvalidAcronym
-specifier|public
-name|void
-name|setReplaceInvalidAcronym
-parameter_list|(
-name|boolean
-name|replaceInvalidAcronym
-parameter_list|)
-block|{
-name|this
-operator|.
-name|replaceInvalidAcronym
-operator|=
-name|replaceInvalidAcronym
 expr_stmt|;
 block|}
 block|}

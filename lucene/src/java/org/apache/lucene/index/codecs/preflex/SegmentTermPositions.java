@@ -73,10 +73,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**  * @lucene.experimental  * @deprecated (4.0)  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SegmentTermPositions
 specifier|public
 specifier|final

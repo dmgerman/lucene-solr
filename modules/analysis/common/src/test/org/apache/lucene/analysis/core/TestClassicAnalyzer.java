@@ -944,47 +944,11 @@ literal|"<HOST>"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// 2.3 should show the bug
-name|a2
-operator|=
-operator|new
-name|ClassicAnalyzer
-argument_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-operator|.
-name|LUCENE_23
-argument_list|)
-expr_stmt|;
-name|assertAnalyzesTo
-argument_list|(
-name|a2
-argument_list|,
-literal|"www.nutch.org."
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"wwwnutchorg"
-block|}
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"<ACRONYM>"
-block|}
-argument_list|)
-expr_stmt|;
-comment|// 2.4 should not show the bug
+comment|// 2.3 should show the bug. But, alas, it's obsolete, we don't support it.
+comment|// a2 = new ClassicAnalyzer(org.apache.lucene.util.Version.LUCENE_23);
+comment|// assertAnalyzesTo(a2, "www.nutch.org.", new String[]{ "wwwnutchorg" }, new String[] { "<ACRONYM>" });
+comment|// 2.4 should not show the bug. But, alas, it's also obsolete,
+comment|// so we check latest released (Robert's gonna break this on 4.0 soon :) )
 name|a2
 operator|=
 operator|new
@@ -992,7 +956,7 @@ name|ClassicAnalyzer
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_31
 argument_list|)
 expr_stmt|;
 name|assertAnalyzesTo

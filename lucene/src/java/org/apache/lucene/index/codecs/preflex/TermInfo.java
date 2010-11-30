@@ -21,7 +21,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** A TermInfo is the record of information stored for a  * term  * @deprecated This class is no longer used in flexible  * indexing. */
+comment|/** A TermInfo is the record of information stored for a  * term  * @deprecated (4.0) This class is no longer used in flexible  * indexing. */
 end_comment
 
 begin_class

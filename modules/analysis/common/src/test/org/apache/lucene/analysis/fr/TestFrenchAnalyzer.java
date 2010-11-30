@@ -331,7 +331,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @deprecated remove this test for Lucene 4.0 	 */
+comment|/** 	 * @deprecated (3.1) remove this test for Lucene 5.0 	 */
 annotation|@
 name|Deprecated
 DECL|method|testAnalyzer30
@@ -643,65 +643,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*  	 * Test that changes to the exclusion table are applied immediately 	 * when using reusable token streams. 	 */
-DECL|method|testExclusionTableReuse
-specifier|public
-name|void
-name|testExclusionTableReuse
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|FrenchAnalyzer
-name|fa
-init|=
-operator|new
-name|FrenchAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
-decl_stmt|;
-name|assertAnalyzesToReuse
-argument_list|(
-name|fa
-argument_list|,
-literal|"habitable"
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"habit"
-block|}
-argument_list|)
-expr_stmt|;
-name|fa
-operator|.
-name|setStemExclusionTable
-argument_list|(
-operator|new
-name|String
-index|[]
-block|{
-literal|"habitable"
-block|}
-argument_list|)
-expr_stmt|;
-name|assertAnalyzesToReuse
-argument_list|(
-name|fa
-argument_list|,
-literal|"habitable"
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"habitable"
-block|}
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testExclusionTableViaCtor
 specifier|public
 name|void
@@ -826,7 +767,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Prior to 3.1, this analyzer had no lowercase filter.    * stopwords were case sensitive. Preserve this for back compat.    * @deprecated Remove this test in Lucene 4.0    */
+comment|/**    * Prior to 3.1, this analyzer had no lowercase filter.    * stopwords were case sensitive. Preserve this for back compat.    * @deprecated (3.1) Remove this test in Lucene 5.0    */
 annotation|@
 name|Deprecated
 DECL|method|testBuggyStopwordsCasing

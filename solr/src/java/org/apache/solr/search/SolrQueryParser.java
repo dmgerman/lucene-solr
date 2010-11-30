@@ -381,7 +381,7 @@ literal|"luceneMatchVersion"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_30
 argument_list|)
 argument_list|,
 name|defaultField
@@ -496,7 +496,7 @@ literal|"luceneMatchVersion"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_30
 argument_list|)
 argument_list|,
 name|defaultField

@@ -581,10 +581,6 @@ literal|"contents"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//DateFilter filter =
-comment|//  new DateFilter("modified", Time(1997,0,1), Time(1998,0,1));
-comment|//DateFilter filter = DateFilter.Before("modified", Time(1997,00,01));
-comment|//System.out.println(filter);
 name|hits
 operator|=
 name|searcher
@@ -661,7 +657,6 @@ name|i
 index|]
 operator|.
 name|score
-comment|// 			   + " " + DateField.stringToDate(d.get("modified"))
 operator|+
 literal|" "
 operator|+
@@ -685,54 +680,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-DECL|method|Time
-specifier|static
-name|long
-name|Time
-parameter_list|(
-name|int
-name|year
-parameter_list|,
-name|int
-name|month
-parameter_list|,
-name|int
-name|day
-parameter_list|)
-block|{
-name|GregorianCalendar
-name|calendar
-init|=
-operator|new
-name|GregorianCalendar
-argument_list|()
-decl_stmt|;
-name|calendar
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|calendar
-operator|.
-name|set
-argument_list|(
-name|year
-argument_list|,
-name|month
-argument_list|,
-name|day
-argument_list|)
-expr_stmt|;
-return|return
-name|calendar
-operator|.
-name|getTime
-argument_list|()
-operator|.
-name|getTime
-argument_list|()
-return|;
 block|}
 block|}
 end_class

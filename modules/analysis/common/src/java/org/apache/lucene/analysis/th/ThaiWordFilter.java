@@ -32,9 +32,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|lang
 operator|.
-name|Locale
+name|Character
+operator|.
+name|UnicodeBlock
 import|;
 end_import
 
@@ -42,11 +44,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
+name|text
 operator|.
-name|Character
+name|BreakIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|UnicodeBlock
+name|util
+operator|.
+name|Locale
 import|;
 end_import
 
@@ -59,16 +69,6 @@ operator|.
 name|text
 operator|.
 name|Segment
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|BreakIterator
 import|;
 end_import
 
@@ -128,7 +128,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|PositionIncrementAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -160,7 +160,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
+name|PositionIncrementAttribute
 import|;
 end_import
 
@@ -348,27 +348,6 @@ name|hasMoreTokensInClone
 init|=
 literal|false
 decl_stmt|;
-comment|/** Creates a new ThaiWordFilter that also lowercases non-thai text.    * @deprecated Use the ctor with {@code matchVersion} instead!    */
-annotation|@
-name|Deprecated
-DECL|method|ThaiWordFilter
-specifier|public
-name|ThaiWordFilter
-parameter_list|(
-name|TokenStream
-name|input
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
-name|input
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Creates a new ThaiWordFilter with the specified match version. */
 DECL|method|ThaiWordFilter
 specifier|public

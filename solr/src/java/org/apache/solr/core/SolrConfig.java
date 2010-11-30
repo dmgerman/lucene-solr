@@ -724,7 +724,7 @@ literal|"luceneMatchVersion"
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_30
 argument_list|)
 expr_stmt|;
 name|log

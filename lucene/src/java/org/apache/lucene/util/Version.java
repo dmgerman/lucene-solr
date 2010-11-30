@@ -26,35 +26,17 @@ specifier|public
 enum|enum
 name|Version
 block|{
-comment|/** Match settings and bugs in Lucene's 2.0 release. */
-DECL|enum constant|LUCENE_20
-name|LUCENE_20
-block|,
-comment|/** Match settings and bugs in Lucene's 2.1 release. */
-DECL|enum constant|LUCENE_21
-name|LUCENE_21
-block|,
-comment|/** Match settings and bugs in Lucene's 2.2 release. */
-DECL|enum constant|LUCENE_22
-name|LUCENE_22
-block|,
-comment|/** Match settings and bugs in Lucene's 2.3 release. */
-DECL|enum constant|LUCENE_23
-name|LUCENE_23
-block|,
-comment|/** Match settings and bugs in Lucene's 2.4 release. */
-DECL|enum constant|LUCENE_24
-name|LUCENE_24
-block|,
-comment|/** Match settings and bugs in Lucene's 2.9 release. */
-DECL|enum constant|LUCENE_29
-name|LUCENE_29
-block|,
-comment|/** Match settings and bugs in Lucene's 3.0 release. */
+comment|/**    * Match settings and bugs in Lucene's 3.0 release.    * @deprecated (4.0) Use latest    */
+DECL|enum constant|Deprecated
+annotation|@
+name|Deprecated
 DECL|enum constant|LUCENE_30
 name|LUCENE_30
 block|,
-comment|/** Match settings and bugs in Lucene's 3.1 release. */
+comment|/**    * Match settings and bugs in Lucene's 3.1 release.    * @deprecated (4.0) Use latest    */
+DECL|enum constant|Deprecated
+annotation|@
+name|Deprecated
 DECL|enum constant|LUCENE_31
 name|LUCENE_31
 block|,

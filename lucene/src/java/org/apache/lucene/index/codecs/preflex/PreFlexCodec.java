@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Codec that reads the pre-flex-indexing postings  *  format.  It does not provide a writer because newly  *  written segments should use StandardCodec.  *  * @deprecated This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
+comment|/** Codec that reads the pre-flex-indexing postings  *  format.  It does not provide a writer because newly  *  written segments should use StandardCodec.  *  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
 end_comment
 
 begin_class

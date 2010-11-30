@@ -368,7 +368,7 @@ name|StopAnalyzer
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_40
 argument_list|,
 name|stopWordsSet
 argument_list|)
@@ -411,18 +411,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|PositionIncrementAttribute
-name|posIncrAtt
-init|=
-name|stream
-operator|.
-name|addAttribute
-argument_list|(
-name|PositionIncrementAttribute
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 while|while
 condition|(
 name|stream
@@ -449,17 +437,6 @@ name|text
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|posIncrAtt
-operator|.
-name|getPositionIncrement
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// in 2.4 stop tokenizer does not apply increments.
 block|}
 block|}
 DECL|method|testStopListPositions

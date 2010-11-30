@@ -52,6 +52,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -661,6 +671,20 @@ name|this
 argument_list|)
 return|;
 block|}
+DECL|method|sync
+specifier|public
+name|void
+name|sync
+parameter_list|(
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|names
+parameter_list|)
+throws|throws
+name|IOException
+block|{   }
 comment|/** Returns a stream reading an existing file. */
 annotation|@
 name|Override

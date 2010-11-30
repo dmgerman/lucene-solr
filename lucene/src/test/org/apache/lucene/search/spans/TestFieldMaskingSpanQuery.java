@@ -888,10 +888,6 @@ operator|new
 name|SpanOrQuery
 argument_list|(
 operator|new
-name|SpanQuery
-index|[]
-block|{
-operator|new
 name|SpanTermQuery
 argument_list|(
 operator|new
@@ -902,7 +898,7 @@ argument_list|,
 literal|"sally"
 argument_list|)
 argument_list|)
-block|,
+argument_list|,
 operator|new
 name|SpanTermQuery
 argument_list|(
@@ -914,7 +910,6 @@ argument_list|,
 literal|"james"
 argument_list|)
 argument_list|)
-block|}
 argument_list|)
 return|;
 block|}
@@ -1853,12 +1848,8 @@ init|=
 operator|new
 name|SpanOrQuery
 argument_list|(
-operator|new
-name|SpanQuery
-index|[]
-block|{
 name|q1
-block|,
+argument_list|,
 operator|new
 name|FieldMaskingSpanQuery
 argument_list|(
@@ -1866,7 +1857,6 @@ name|q2
 argument_list|,
 literal|"gender"
 argument_list|)
-block|}
 argument_list|)
 decl_stmt|;
 name|check
@@ -2204,14 +2194,9 @@ init|=
 operator|new
 name|SpanOrQuery
 argument_list|(
-operator|new
-name|SpanQuery
-index|[]
-block|{
 name|q1
-block|,
+argument_list|,
 name|q2
-block|}
 argument_list|)
 decl_stmt|;
 name|SpanQuery
@@ -2387,12 +2372,8 @@ init|=
 operator|new
 name|SpanOrQuery
 argument_list|(
-operator|new
-name|SpanQuery
-index|[]
-block|{
 name|qA1
-block|,
+argument_list|,
 operator|new
 name|FieldMaskingSpanQuery
 argument_list|(
@@ -2400,7 +2381,6 @@ name|qA2
 argument_list|,
 literal|"gender"
 argument_list|)
-block|}
 argument_list|)
 decl_stmt|;
 name|SpanQuery

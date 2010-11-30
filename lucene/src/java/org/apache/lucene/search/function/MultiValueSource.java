@@ -36,20 +36,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|IndexReader
@@ -70,8 +56,22 @@ name|Explanation
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ReaderUtil
+import|;
+end_import
+
 begin_comment
-comment|/** This class wraps another ValueSource, but protects  *  against accidental double RAM usage in FieldCache when  *  a composite reader is passed to {@link #getValues}.  *  *<p><b>NOTE</b>: this class adds a CPU penalty to every  *  lookup, as it must resolve the incoming document to the  *  right sub-reader using a binary search.</p>  *  *  @deprecated This class is temporary, to ease the  *  migration to segment-based searching. Please change your  *  code to not pass composite readers to these APIs. */
+comment|/** This class wraps another ValueSource, but protects  *  against accidental double RAM usage in FieldCache when  *  a composite reader is passed to {@link #getValues}.  *  *<p><b>NOTE</b>: this class adds a CPU penalty to every  *  lookup, as it must resolve the incoming document to the  *  right sub-reader using a binary search.</p>  *  *  @deprecated (4.0) This class is temporary, to ease the  *  migration to segment-based searching. Please change your  *  code to not pass composite readers to these APIs. */
 end_comment
 
 begin_class

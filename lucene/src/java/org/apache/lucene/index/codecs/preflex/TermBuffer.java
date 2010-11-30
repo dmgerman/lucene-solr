@@ -96,7 +96,13 @@ name|FieldInfos
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.experimental  * @deprecated (4.0)  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TermBuffer
 specifier|final
 class|class

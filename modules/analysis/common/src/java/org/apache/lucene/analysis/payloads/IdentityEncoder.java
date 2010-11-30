@@ -90,19 +90,6 @@ argument_list|(
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
-comment|/** @deprecated This field is no longer used. Use {@link #charset} instead. */
-annotation|@
-name|Deprecated
-DECL|field|charsetName
-specifier|protected
-name|String
-name|charsetName
-init|=
-name|charset
-operator|.
-name|name
-argument_list|()
-decl_stmt|;
 DECL|method|IdentityEncoder
 specifier|public
 name|IdentityEncoder
@@ -121,14 +108,6 @@ operator|.
 name|charset
 operator|=
 name|charset
-expr_stmt|;
-comment|// @deprecated, remove this in 4.0:
-name|charsetName
-operator|=
-name|charset
-operator|.
-name|name
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|encode

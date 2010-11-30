@@ -231,26 +231,17 @@ operator|new
 name|SerialMergeScheduler
 argument_list|()
 argument_list|)
-argument_list|)
-decl_stmt|;
+operator|.
 comment|// asserts below requires no unexpected merges:
-operator|(
-operator|(
-name|LogMergePolicy
-operator|)
-name|writer
-operator|.
-name|w
-operator|.
-name|getMergePolicy
-argument_list|()
-operator|)
-operator|.
-name|setMergeFactor
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
 argument_list|(
 literal|10
 argument_list|)
-expr_stmt|;
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|// NOTE: cannot use writer.getReader because RIW (on
 comment|// flipping a coin) may give us a newly opened reader,
 comment|// but we use .reopen on this reader below and expect to

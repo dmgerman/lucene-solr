@@ -543,26 +543,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Provide a SortedVIntList when it is definitely      *  smaller than an OpenBitSet      *  @deprecated Either use CachingWrapperFilter, or      *  switch to a different DocIdSet implementation yourself.      *  This method will be removed in Lucene 4.0       **/
-annotation|@
-name|Deprecated
-DECL|method|finalResult
-specifier|protected
-specifier|final
-name|DocIdSet
-name|finalResult
-parameter_list|(
-name|OpenBitSetDISI
-name|result
-parameter_list|,
-name|int
-name|maxDocs
-parameter_list|)
-block|{
-return|return
-name|result
-return|;
-block|}
 comment|/**      * Delegates to each filter in the chain.      * @param reader IndexReader      * @param logic Logical operation      * @return DocIdSet      */
 DECL|method|getDocIdSet
 specifier|private
@@ -635,15 +615,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|finalResult
-argument_list|(
 name|result
-argument_list|,
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
 return|;
 block|}
 comment|/**      * Delegates to each filter in the chain.      * @param reader IndexReader      * @param logic Logical operation      * @return DocIdSet      */
@@ -745,15 +717,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|finalResult
-argument_list|(
 name|result
-argument_list|,
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
 return|;
 block|}
 annotation|@

@@ -92,6 +92,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -910,6 +920,22 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|sync
+specifier|public
+name|void
+name|sync
+parameter_list|(
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|names
+parameter_list|)
+throws|throws
+name|IOException
+block|{     }
 comment|/** Not implemented      * @throws UnsupportedOperationException */
 annotation|@
 name|Override

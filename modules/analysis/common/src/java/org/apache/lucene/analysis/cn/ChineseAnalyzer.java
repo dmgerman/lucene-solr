@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link Analyzer} that tokenizes text with {@link ChineseTokenizer} and  * filters with {@link ChineseFilter}  * @deprecated Use {@link StandardAnalyzer} instead, which has the same functionality.  * This analyzer will be removed in Lucene 4.0  */
+comment|/**  * An {@link Analyzer} that tokenizes text with {@link ChineseTokenizer} and  * filters with {@link ChineseFilter}  * @deprecated (3.1) Use {@link StandardAnalyzer} instead, which has the same functionality.  * This analyzer will be removed in Lucene 5.0  */
 end_comment
 
 begin_class
