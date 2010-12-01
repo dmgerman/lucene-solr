@@ -1875,34 +1875,6 @@ operator|=
 name|infoStream
 expr_stmt|;
 block|}
-comment|/**    * Casts current mergePolicy to LogMergePolicy, and throws    * an exception if the mergePolicy is not a LogMergePolicy.    */
-DECL|method|getLogMergePolicy
-specifier|private
-name|LogMergePolicy
-name|getLogMergePolicy
-parameter_list|()
-block|{
-if|if
-condition|(
-name|mergePolicy
-operator|instanceof
-name|LogMergePolicy
-condition|)
-return|return
-operator|(
-name|LogMergePolicy
-operator|)
-name|mergePolicy
-return|;
-else|else
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"this method can only be called when the merge policy is the default LogMergePolicy"
-argument_list|)
-throw|;
-block|}
 DECL|field|codecs
 name|CodecProvider
 name|codecs
