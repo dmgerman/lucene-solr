@@ -1864,7 +1864,7 @@ name|escStr
 operator|==
 literal|null
 operator|||
-name|encStr
+name|escStr
 operator|.
 name|length
 argument_list|()
