@@ -383,6 +383,10 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
@@ -649,6 +653,10 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
 name|System
 operator|.
 name|out
