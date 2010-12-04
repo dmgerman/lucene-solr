@@ -438,6 +438,12 @@ condition|?
 literal|"BFJHD"
 else|:
 literal|"BFJDH"
+argument_list|,
+literal|"EACGI"
+argument_list|,
+literal|"BJDFH"
+argument_list|,
+literal|"BJDHF"
 argument_list|)
 expr_stmt|;
 block|}
