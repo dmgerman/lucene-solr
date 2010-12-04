@@ -177,12 +177,6 @@ specifier|final
 name|SegmentInfos
 name|segments
 decl_stmt|;
-DECL|field|useCompoundFile
-specifier|public
-specifier|final
-name|boolean
-name|useCompoundFile
-decl_stmt|;
 DECL|field|aborted
 name|boolean
 name|aborted
@@ -201,9 +195,6 @@ name|OneMerge
 parameter_list|(
 name|SegmentInfos
 name|segments
-parameter_list|,
-name|boolean
-name|useCompoundFile
 parameter_list|)
 block|{
 if|if
@@ -227,12 +218,6 @@ operator|.
 name|segments
 operator|=
 name|segments
-expr_stmt|;
-name|this
-operator|.
-name|useCompoundFile
-operator|=
-name|useCompoundFile
 expr_stmt|;
 block|}
 comment|/** Record that an exception occurred while executing      *  this merge */
@@ -940,7 +925,7 @@ name|void
 name|close
 parameter_list|()
 function_decl|;
-comment|/**    * Returns true if a newly flushed (not from merge)    * segment should use the compound file format.    */
+comment|/**    * Returns true if a new segment (regardless of its origin) should use the compound file format.    */
 DECL|method|useCompoundFile
 specifier|public
 specifier|abstract
@@ -953,6 +938,8 @@ parameter_list|,
 name|SegmentInfo
 name|newSegment
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Returns true if the doc store files should use the    * compound file format.    */
 DECL|method|useCompoundDocStore
