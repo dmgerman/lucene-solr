@@ -998,6 +998,16 @@ name|String
 name|s
 parameter_list|)
 block|{
+if|if
+condition|(
+name|s
+operator|==
+literal|null
+condition|)
+name|s
+operator|=
+literal|"(null)"
+expr_stmt|;
 try|try
 block|{
 name|sb
