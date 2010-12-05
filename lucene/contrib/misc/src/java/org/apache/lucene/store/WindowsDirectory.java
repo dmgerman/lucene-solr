@@ -48,6 +48,16 @@ name|WindowsDirectory
 extends|extends
 name|FSDirectory
 block|{
+DECL|field|DEFAULT_BUFFERSIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_BUFFERSIZE
+init|=
+literal|4096
+decl_stmt|;
+comment|/* default pgsize on ia32/amd64 */
 static|static
 block|{
 name|System
@@ -129,7 +139,14 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
 name|bufferSize
+argument_list|,
+name|DEFAULT_BUFFERSIZE
+argument_list|)
 argument_list|)
 return|;
 block|}
