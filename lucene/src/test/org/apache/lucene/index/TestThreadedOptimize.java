@@ -310,6 +310,12 @@ name|setMergeScheduler
 argument_list|(
 name|merger
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for
@@ -815,7 +821,6 @@ operator|)
 operator|)
 argument_list|)
 decl_stmt|;
-comment|// System.out.println("TEST: now index=" + writer.segString());
 name|assertEquals
 argument_list|(
 literal|"index="
@@ -825,7 +830,7 @@ operator|.
 name|segString
 argument_list|()
 operator|+
-literal|" numDocs"
+literal|" numDocs="
 operator|+
 name|writer
 operator|.
@@ -863,7 +868,7 @@ operator|.
 name|segString
 argument_list|()
 operator|+
-literal|" numDocs"
+literal|" numDocs="
 operator|+
 name|writer
 operator|.

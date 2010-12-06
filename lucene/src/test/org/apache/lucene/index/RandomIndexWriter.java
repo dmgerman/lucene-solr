@@ -96,22 +96,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|CodecProvider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -235,11 +219,21 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
+comment|// must make a private random since our methods are
+comment|// called from different threads; else test failures may
+comment|// not be reproducible from the original seed
 name|this
 operator|.
 name|r
 operator|=
+operator|new
+name|Random
+argument_list|(
 name|r
+operator|.
+name|nextInt
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -464,9 +458,15 @@ name|println
 argument_list|(
 literal|"codec default="
 operator|+
-name|CodecProvider
+name|w
 operator|.
-name|getDefaultCodec
+name|getConfig
+argument_list|()
+operator|.
+name|getCodecProvider
+argument_list|()
+operator|.
+name|getDefaultFieldCodec
 argument_list|()
 argument_list|)
 expr_stmt|;

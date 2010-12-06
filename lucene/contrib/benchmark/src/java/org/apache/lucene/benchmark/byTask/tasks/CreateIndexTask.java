@@ -769,13 +769,6 @@ condition|)
 block|{
 name|CodecProvider
 operator|.
-name|setDefaultCodec
-argument_list|(
-name|defaultCodec
-argument_list|)
-expr_stmt|;
-name|CodecProvider
-operator|.
 name|getDefault
 argument_list|()
 operator|.

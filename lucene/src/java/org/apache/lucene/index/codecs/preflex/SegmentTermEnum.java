@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @deprecated No longer used with flex indexing, except for  * reading old segments   * @lucene.experimental */
+comment|/**  * @deprecated (4.0) No longer used with flex indexing, except for  * reading old segments   * @lucene.experimental */
 end_comment
 
 begin_class

@@ -88,20 +88,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -285,16 +271,6 @@ parameter_list|(
 name|boolean
 name|omitTermFreqAndPositions
 parameter_list|)
-function_decl|;
-DECL|method|hasFieldAttribute
-name|boolean
-name|hasFieldAttribute
-parameter_list|()
-function_decl|;
-DECL|method|getFieldAttributes
-name|AttributeSource
-name|getFieldAttributes
-parameter_list|()
 function_decl|;
 block|}
 end_interface

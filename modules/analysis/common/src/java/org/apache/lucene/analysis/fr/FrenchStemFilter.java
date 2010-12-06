@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerFilter  * @deprecated Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.FrenchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 4.0  */
+comment|/**  * A {@link TokenFilter} that stems french words.   *<p>  * The used stemmer can be changed at runtime after the  * filter object is created (as long as it is a {@link FrenchStemmer}).  *</p>  *<p>  * To prevent terms from being stemmed use an instance of  * {@link KeywordMarkerFilter} or a custom {@link TokenFilter} that sets  * the {@link KeywordAttribute} before this {@link TokenStream}.  *</p>  * @see KeywordMarkerFilter  * @deprecated (3.1) Use {@link SnowballFilter} with   * {@link org.tartarus.snowball.ext.FrenchStemmer} instead, which has the  * same functionality. This filter will be removed in Lucene 5.0  */
 end_comment
 
 begin_class
@@ -178,16 +178,6 @@ init|=
 operator|new
 name|FrenchStemmer
 argument_list|()
-decl_stmt|;
-DECL|field|exclusions
-specifier|private
-name|Set
-argument_list|<
-name|?
-argument_list|>
-name|exclusions
-init|=
-literal|null
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
@@ -229,34 +219,6 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param in the {@link TokenStream} to filter    * @param exclusiontable a set of terms not to be stemmed    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead.    */
-annotation|@
-name|Deprecated
-comment|// TODO remove in 3.2
-DECL|method|FrenchStemFilter
-specifier|public
-name|FrenchStemFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
-name|exclusiontable
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|in
-argument_list|)
-expr_stmt|;
-name|exclusions
-operator|=
-name|exclusiontable
-expr_stmt|;
-block|}
 comment|/** 	 * @return  Returns true for the next token in the stream, or false at EOS 	 */
 annotation|@
 name|Override
@@ -292,20 +254,6 @@ name|keywordAttr
 operator|.
 name|isKeyword
 argument_list|()
-operator|&&
-operator|(
-name|exclusions
-operator|==
-literal|null
-operator|||
-operator|!
-name|exclusions
-operator|.
-name|contains
-argument_list|(
-name|term
-argument_list|)
-operator|)
 condition|)
 block|{
 name|String
@@ -381,32 +329,6 @@ operator|=
 name|stemmer
 expr_stmt|;
 block|}
-block|}
-comment|/** 	 * Set an alternative exclusion list for this filter.    * @deprecated use {@link KeywordAttribute} with {@link KeywordMarkerFilter} instead. 	 */
-annotation|@
-name|Deprecated
-comment|// TODO remove in 3.2
-DECL|method|setExclusionTable
-specifier|public
-name|void
-name|setExclusionTable
-parameter_list|(
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|exclusiontable
-parameter_list|)
-block|{
-name|exclusions
-operator|=
-name|exclusiontable
-operator|.
-name|keySet
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 end_class

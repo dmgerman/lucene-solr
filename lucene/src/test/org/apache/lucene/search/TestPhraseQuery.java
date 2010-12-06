@@ -1490,7 +1490,7 @@ name|newIndexWriterConfig
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_40
 argument_list|,
 name|stopAnalyzer
 argument_list|)

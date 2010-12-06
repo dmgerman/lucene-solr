@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|TermsEnum
 import|;
 end_import
 
@@ -123,22 +123,6 @@ operator|.
 name|automaton
 operator|.
 name|SpecialOperations
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|State
 import|;
 end_import
 
@@ -266,7 +250,7 @@ name|BytesRef
 argument_list|>
 name|termComp
 decl_stmt|;
-comment|/**    * Expert ctor:    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied reader.    *<p>    * @lucene.experimental     *<p>    * @param runAutomaton pre-compiled ByteRunAutomaton    * @param finite true if the automaton accepts a finite language    */
+comment|/**    * Expert ctor:    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *<p>    * @lucene.experimental     *<p>    * @param runAutomaton pre-compiled ByteRunAutomaton    * @param finite true if the automaton accepts a finite language    */
 DECL|method|AutomatonTermsEnum
 specifier|public
 name|AutomatonTermsEnum
@@ -274,11 +258,8 @@ parameter_list|(
 name|ByteRunAutomaton
 name|runAutomaton
 parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|,
 name|boolean
 name|finite
@@ -291,9 +272,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|field
+name|tenum
 argument_list|)
 expr_stmt|;
 name|this
@@ -364,56 +343,13 @@ block|}
 comment|// build a cache of sorted transitions for every state
 name|allTransitions
 operator|=
-operator|new
-name|Transition
-index|[
-name|runAutomaton
-operator|.
-name|getSize
-argument_list|()
-index|]
-index|[]
-expr_stmt|;
-for|for
-control|(
-name|State
-name|state
-range|:
 name|this
 operator|.
 name|automaton
 operator|.
-name|getNumberedStates
-argument_list|()
-control|)
-block|{
-name|state
-operator|.
-name|sortTransitions
-argument_list|(
-name|Transition
-operator|.
-name|CompareByMinMaxThenDest
-argument_list|)
-expr_stmt|;
-name|state
-operator|.
-name|trimTransitionsArray
+name|getSortedTransitions
 argument_list|()
 expr_stmt|;
-name|allTransitions
-index|[
-name|state
-operator|.
-name|getNumber
-argument_list|()
-index|]
-operator|=
-name|state
-operator|.
-name|transitionsArray
-expr_stmt|;
-block|}
 comment|// used for path tracking, where each bit is a numbered state.
 name|visited
 operator|=
@@ -432,7 +368,7 @@ name|getComparator
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied reader.    *<p>    * It will automatically calculate whether or not the automaton is finite    */
+comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *<p>    * It will automatically calculate whether or not the automaton is finite    */
 DECL|method|AutomatonTermsEnum
 specifier|public
 name|AutomatonTermsEnum
@@ -440,11 +376,8 @@ parameter_list|(
 name|Automaton
 name|automaton
 parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|)
 throws|throws
 name|IOException
@@ -457,9 +390,7 @@ argument_list|(
 name|automaton
 argument_list|)
 argument_list|,
-name|field
-argument_list|,
-name|reader
+name|tenum
 argument_list|,
 name|SpecialOperations
 operator|.

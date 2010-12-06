@@ -76,6 +76,10 @@ name|BytesRef
 import|;
 end_import
 
+begin_comment
+comment|/**  *   * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|DocValues
 specifier|public
@@ -362,9 +366,7 @@ block|{
 return|return
 name|getEnum
 argument_list|(
-operator|new
-name|AttributeSource
-argument_list|()
+literal|null
 argument_list|)
 return|;
 block|}

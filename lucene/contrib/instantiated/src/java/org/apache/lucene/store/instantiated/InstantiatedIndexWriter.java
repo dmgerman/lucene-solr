@@ -407,15 +407,6 @@ name|infoStream
 init|=
 literal|null
 decl_stmt|;
-DECL|field|maxFieldLength
-specifier|private
-name|int
-name|maxFieldLength
-init|=
-name|IndexWriter
-operator|.
-name|DEFAULT_MAX_FIELD_LENGTH
-decl_stmt|;
 DECL|field|index
 specifier|private
 specifier|final
@@ -2574,7 +2565,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Adds a document to this index.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    */
+comment|/**    * Adds a document to this index.    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -2595,7 +2586,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link #setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    *    * @param doc    * @param analyzer    * @throws IOException    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.    *    * @param doc    * @param analyzer    * @throws IOException    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -3127,17 +3118,6 @@ operator|.
 name|fieldLength
 operator|++
 expr_stmt|;
-if|if
-condition|(
-name|fieldSetting
-operator|.
-name|fieldLength
-operator|>
-name|maxFieldLength
-condition|)
-block|{
-break|break;
-block|}
 block|}
 name|tokenStream
 operator|.
@@ -3734,32 +3714,6 @@ name|doc
 argument_list|,
 name|analyzer
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|getMaxFieldLength
-specifier|public
-name|int
-name|getMaxFieldLength
-parameter_list|()
-block|{
-return|return
-name|maxFieldLength
-return|;
-block|}
-DECL|method|setMaxFieldLength
-specifier|public
-name|void
-name|setMaxFieldLength
-parameter_list|(
-name|int
-name|maxFieldLength
-parameter_list|)
-block|{
-name|this
-operator|.
-name|maxFieldLength
-operator|=
-name|maxFieldLength
 expr_stmt|;
 block|}
 DECL|method|getSimilarity

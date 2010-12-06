@@ -506,6 +506,11 @@ name|Integer
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|int
+name|uniqueCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -599,10 +604,13 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|i
+name|uniqueCount
 argument_list|,
 name|key
 argument_list|)
+expr_stmt|;
+name|uniqueCount
+operator|++
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1172,6 +1180,11 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|int
+name|uniqueCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1258,7 +1271,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|i
+name|uniqueCount
 argument_list|,
 name|key
 argument_list|)
@@ -1274,6 +1287,9 @@ name|count
 operator|+
 literal|1
 argument_list|)
+expr_stmt|;
+name|uniqueCount
+operator|++
 expr_stmt|;
 block|}
 else|else
@@ -1580,6 +1596,11 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|int
+name|uniqueCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1666,7 +1687,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|i
+name|uniqueCount
 argument_list|,
 name|key
 argument_list|)
@@ -1700,7 +1721,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|i
+name|uniqueCount
 argument_list|,
 name|offsetKey
 argument_list|)
@@ -1716,6 +1737,9 @@ name|count
 operator|+
 literal|1
 argument_list|)
+expr_stmt|;
+name|uniqueCount
+operator|++
 expr_stmt|;
 block|}
 else|else

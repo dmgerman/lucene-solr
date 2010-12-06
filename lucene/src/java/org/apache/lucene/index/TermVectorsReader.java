@@ -443,20 +443,6 @@ name|format
 operator|==
 name|tvfFormat
 assert|;
-assert|assert
-operator|(
-name|tvx
-operator|.
-name|length
-argument_list|()
-operator|-
-name|FORMAT_SIZE
-operator|)
-operator|%
-literal|16
-operator|==
-literal|0
-assert|;
 name|numTotalDocs
 operator|=
 call|(
@@ -540,9 +526,10 @@ block|}
 block|}
 else|else
 block|{
-comment|// TODO: understand why FieldInfos.hasVectors() can
-comment|// return true yet the term vectors files don't
-comment|// exist...
+comment|// If all documents flushed in a segment had hit
+comment|// non-aborting exceptions, it's possible that
+comment|// FieldInfos.hasVectors returns true yet the term
+comment|// vector files don't exist.
 name|format
 operator|=
 literal|0

@@ -80,6 +80,10 @@ name|ReaderUtil
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|MultiDocValues
 specifier|public
@@ -573,6 +577,19 @@ name|attributes
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|currentEnum
+operator|.
+name|copyReferences
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|intsRef
+operator|=
+name|currentEnum
+operator|.
+name|intsRef
+expr_stmt|;
 name|currentMax
 operator|=
 name|idx
@@ -693,6 +710,13 @@ name|this
 operator|.
 name|attributes
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|currentEnum
+operator|.
+name|copyReferences
+argument_list|(
+name|this
 argument_list|)
 expr_stmt|;
 name|currentStart
@@ -1223,16 +1247,6 @@ return|return
 name|missingValue
 operator|.
 name|longValue
-return|;
-block|}
-DECL|method|ramBytesUsed
-specifier|public
-name|long
-name|ramBytesUsed
-parameter_list|()
-block|{
-return|return
-literal|0
 return|;
 block|}
 annotation|@

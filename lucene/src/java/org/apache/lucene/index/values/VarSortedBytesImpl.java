@@ -318,6 +318,10 @@ begin_comment
 comment|// docs reference that single source
 end_comment
 
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|VarSortedBytesImpl
 class|class
@@ -1368,7 +1372,7 @@ argument_list|)
 decl_stmt|;
 name|data
 operator|.
-name|fill
+name|fillSlice
 argument_list|(
 name|bytesRef
 argument_list|,
@@ -1477,12 +1481,6 @@ specifier|private
 name|IndexInput
 name|datIn
 decl_stmt|;
-DECL|field|bytesRef
-specifier|private
-specifier|final
-name|BytesRef
-name|bytesRef
-decl_stmt|;
 DECL|field|valueCount
 specifier|private
 name|int
@@ -1536,13 +1534,6 @@ name|Values
 operator|.
 name|BYTES_VAR_SORTED
 argument_list|)
-expr_stmt|;
-name|bytesRef
-operator|=
-name|attr
-operator|.
-name|bytes
-argument_list|()
 expr_stmt|;
 name|totBytes
 operator|=

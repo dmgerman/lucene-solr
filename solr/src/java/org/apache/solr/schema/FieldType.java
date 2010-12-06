@@ -2210,9 +2210,10 @@ name|SchemaField
 name|field
 parameter_list|)
 block|{
+comment|// return new OrdFieldSource(field.name);
 return|return
 operator|new
-name|OrdFieldSource
+name|StrFieldSource
 argument_list|(
 name|field
 operator|.

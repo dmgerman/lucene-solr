@@ -166,6 +166,9 @@ name|assertTrue
 argument_list|(
 name|writer
 operator|.
+name|getConfig
+argument_list|()
+operator|.
 name|getMergePolicy
 argument_list|()
 operator|.
@@ -189,6 +192,9 @@ expr_stmt|;
 name|assertTrue
 argument_list|(
 name|writer
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getMergeScheduler
 argument_list|()

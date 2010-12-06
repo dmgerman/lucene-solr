@@ -1710,6 +1710,7 @@ expr_stmt|;
 block|}
 comment|/**    * Returns a sorted array of transitions for each state (and sets state    * numbers).    */
 DECL|method|getSortedTransitions
+specifier|public
 name|Transition
 index|[]
 index|[]

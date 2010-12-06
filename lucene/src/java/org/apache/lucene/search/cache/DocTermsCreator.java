@@ -809,7 +809,7 @@ decl_stmt|;
 return|return
 name|bytes
 operator|.
-name|fillUsingLengthPrefix
+name|fill
 argument_list|(
 name|ret
 argument_list|,

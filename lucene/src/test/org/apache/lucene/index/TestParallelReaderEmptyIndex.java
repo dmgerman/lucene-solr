@@ -296,12 +296,7 @@ name|iwOut
 operator|.
 name|addIndexes
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|pr
-block|}
 argument_list|)
 expr_stmt|;
 name|iwOut
@@ -613,12 +608,7 @@ name|iwOut
 operator|.
 name|addIndexes
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|pr
-block|}
 argument_list|)
 expr_stmt|;
 comment|// ParallelReader closes any IndexReader you added to it:

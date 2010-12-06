@@ -2371,17 +2371,6 @@ name|ExplanationAsserter
 extends|extends
 name|Collector
 block|{
-comment|/**      * @deprecated      * @see CheckHits#EXPLAIN_SCORE_TOLERANCE_DELTA      */
-annotation|@
-name|Deprecated
-DECL|field|SCORE_TOLERANCE_DELTA
-specifier|public
-specifier|static
-name|float
-name|SCORE_TOLERANCE_DELTA
-init|=
-literal|0.00005f
-decl_stmt|;
 DECL|field|q
 name|Query
 name|q

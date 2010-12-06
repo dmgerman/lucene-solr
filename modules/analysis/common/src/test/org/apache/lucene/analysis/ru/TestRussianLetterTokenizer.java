@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Testcase for {@link RussianLetterTokenizer}  * @deprecated Remove this test class in Lucene 4.0  */
+comment|/**  * Testcase for {@link RussianLetterTokenizer}  * @deprecated (3.1) Remove this test class in Lucene 5.0  */
 end_comment
 
 begin_class

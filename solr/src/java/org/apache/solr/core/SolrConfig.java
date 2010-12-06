@@ -721,10 +721,6 @@ operator|=
 name|getLuceneVersion
 argument_list|(
 literal|"luceneMatchVersion"
-argument_list|,
-name|Version
-operator|.
-name|LUCENE_24
 argument_list|)
 expr_stmt|;
 name|log

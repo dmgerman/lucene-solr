@@ -20,15 +20,21 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|analysis
+name|io
 operator|.
-name|Analyzer
+name|StringReader
 import|;
 end_import
 
@@ -42,49 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|CachingTokenFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
+name|*
 import|;
 end_import
 
@@ -180,7 +144,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|PositionIncrementAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -196,7 +160,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
+name|PositionIncrementAttribute
 import|;
 end_import
 
@@ -323,26 +287,6 @@ operator|.
 name|util
 operator|.
 name|English
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
 import|;
 end_import
 
@@ -1363,6 +1307,8 @@ argument_list|(
 operator|new
 name|StandardFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|StandardTokenizer
 argument_list|(
@@ -1408,6 +1354,8 @@ argument_list|(
 operator|new
 name|StandardFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|StandardTokenizer
 argument_list|(
@@ -1549,6 +1497,8 @@ operator|=
 operator|new
 name|StandardFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|StandardTokenizer
 argument_list|(
@@ -1601,6 +1551,8 @@ argument_list|(
 operator|new
 name|StandardFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|StandardTokenizer
 argument_list|(
@@ -1719,6 +1671,8 @@ argument_list|(
 operator|new
 name|StandardFilter
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|StandardTokenizer
 argument_list|(

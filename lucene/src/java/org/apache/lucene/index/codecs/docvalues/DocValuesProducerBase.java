@@ -88,20 +88,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexFileNames
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|SegmentInfo
 import|;
 end_import
@@ -210,22 +196,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -245,6 +215,10 @@ operator|.
 name|IntsRef
 import|;
 end_import
+
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
 
 begin_class
 DECL|class|DocValuesProducerBase

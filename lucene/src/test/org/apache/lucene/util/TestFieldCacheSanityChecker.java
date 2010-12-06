@@ -580,14 +580,9 @@ operator|=
 operator|new
 name|MultiReader
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|readerA
-block|,
+argument_list|,
 name|readerB
-block|}
 argument_list|)
 expr_stmt|;
 block|}

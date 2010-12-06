@@ -42,13 +42,13 @@ name|io
 operator|.
 name|IOException
 function_decl|;
-comment|/**    * Returns the column position of the character last read.    * @deprecated    * @see #getEndColumn    */
+comment|/**    * Returns the column position of the character last read.    * @deprecated (gen)    * @see #getEndColumn    */
 DECL|method|getColumn
 name|int
 name|getColumn
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the line number of the character last read.    * @deprecated    * @see #getEndLine    */
+comment|/**    * Returns the line number of the character last read.    * @deprecated (gen)    * @see #getEndLine    */
 DECL|method|getLine
 name|int
 name|getLine

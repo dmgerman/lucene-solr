@@ -120,7 +120,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|ValuesAttribute
+name|PerDocFieldValues
 import|;
 end_import
 
@@ -252,8 +252,8 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|,
-name|ValuesAttribute
-name|attr
+name|PerDocFieldValues
+name|docValues
 parameter_list|)
 throws|throws
 name|IOException

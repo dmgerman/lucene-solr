@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** This stores a monotonically increasing set of<Term, TermInfo> pairs in a  * Directory.  Pairs are accessed either by Term or by ordinal position the  * set  * @deprecated This class has been replaced by  * FormatPostingsTermsDictReader, except for reading old segments.   * @lucene.experimental  */
+comment|/** This stores a monotonically increasing set of<Term, TermInfo> pairs in a  * Directory.  Pairs are accessed either by Term or by ordinal position the  * set  * @deprecated (4.0) This class has been replaced by  * FormatPostingsTermsDictReader, except for reading old segments.   * @lucene.experimental  */
 end_comment
 
 begin_class

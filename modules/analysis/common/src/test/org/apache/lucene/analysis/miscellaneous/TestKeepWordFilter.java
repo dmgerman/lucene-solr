@@ -92,6 +92,22 @@ name|WhitespaceTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharArraySet
+import|;
+end_import
+
 begin_comment
 comment|/** Test {@link KeepWordFilter} */
 end_comment
@@ -167,9 +183,15 @@ name|KeepWordFilter
 argument_list|(
 name|stream
 argument_list|,
+operator|new
+name|CharArraySet
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|words
 argument_list|,
 literal|true
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents
@@ -208,9 +230,15 @@ name|KeepWordFilter
 argument_list|(
 name|stream
 argument_list|,
+operator|new
+name|CharArraySet
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|words
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents

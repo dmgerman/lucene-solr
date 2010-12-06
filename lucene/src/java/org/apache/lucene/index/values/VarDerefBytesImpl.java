@@ -346,6 +346,10 @@ begin_comment
 comment|// docs reference that single source
 end_comment
 
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|VarDerefBytesImpl
 class|class

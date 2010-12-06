@@ -633,17 +633,13 @@ operator|new
 name|MultiSearcher
 argument_list|(
 operator|new
-name|Searchable
-index|[]
-block|{
-operator|new
 name|CustomSearcher
 argument_list|(
 name|reader
 argument_list|,
 literal|0
 argument_list|)
-block|,
+argument_list|,
 operator|new
 name|CustomSearcher
 argument_list|(
@@ -651,7 +647,6 @@ name|reader
 argument_list|,
 literal|2
 argument_list|)
-block|}
 argument_list|)
 decl_stmt|;
 comment|// search and check hits

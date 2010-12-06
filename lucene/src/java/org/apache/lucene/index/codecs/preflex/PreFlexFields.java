@@ -347,10 +347,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Exposes flex API on a pre-flex index, as a codec.   * @lucene.experimental */
+comment|/** Exposes flex API on a pre-flex index, as a codec.   * @lucene.experimental  * @deprecated (4.0)  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PreFlexFields
 specifier|public
 class|class

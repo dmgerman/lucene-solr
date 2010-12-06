@@ -147,36 +147,6 @@ operator|.
 name|NO
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-comment|// binary fields with store off are not allowed
-operator|new
-name|Field
-argument_list|(
-literal|"fail"
-argument_list|,
-name|binaryValStored
-operator|.
-name|getBytes
-argument_list|()
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|NO
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{     }
 name|Document
 name|doc
 init|=

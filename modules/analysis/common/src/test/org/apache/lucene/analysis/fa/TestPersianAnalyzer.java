@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
+name|Analyzer
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Analyzer
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -1156,16 +1156,14 @@ name|PersianAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
-operator|new
-name|String
-index|[]
-block|{
+name|asSet
+argument_list|(
 literal|"the"
-block|,
+argument_list|,
 literal|"and"
-block|,
+argument_list|,
 literal|"a"
-block|}
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo

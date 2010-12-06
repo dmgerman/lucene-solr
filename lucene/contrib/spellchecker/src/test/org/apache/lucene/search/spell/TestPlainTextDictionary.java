@@ -184,7 +184,7 @@ index|[
 literal|1
 index|]
 argument_list|,
-literal|"twoword"
+literal|"oneword"
 argument_list|)
 expr_stmt|;
 name|spellChecker

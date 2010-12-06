@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Represents a logical byte[] as a series of pages.  You  *  can write-once into the logical byte[] (append only),  *  using copy, and then retrieve slices (BytesRef) into it  *  using fill.  *  *<p>@lucene.internal</p>*/
+comment|/** Represents a logical byte[] as a series of pages.  You  *  can write-once into the logical byte[] (append only),  *  using copy, and then retrieve slices (BytesRef) into it  *  using fill.  *  * @lucene.internal  **/
 end_comment
 
 begin_class
@@ -333,11 +333,11 @@ operator|.
 name|blockSize
 expr_stmt|;
 block|}
-comment|/** Get a slice out of the byte array. */
-DECL|method|fill
+comment|/**      * Gets a slice out of {@link PagedBytes} starting at<i>start</i> with a      * given length. Iff the slice spans across a block border this method will      * allocate sufficient resources and copy the paged data.      *<p>      * Slices spanning more than one block are not supported.      *</p>      * @lucene.internal       **/
+DECL|method|fillSlice
 specifier|public
 name|BytesRef
-name|fill
+name|fillSlice
 parameter_list|(
 name|BytesRef
 name|b
@@ -545,11 +545,11 @@ return|return
 name|b
 return|;
 block|}
-comment|/** Reads length as 1 or 2 byte vInt prefix, starting @ start */
-DECL|method|fillUsingLengthPrefix
+comment|/**      * Reads length as 1 or 2 byte vInt prefix, starting at<i>start</i>.      *<p>      *<b>Note:</b> this method does not support slices spanning across block      * borders.      *</p>      *       * @return the given {@link BytesRef}      *       * @lucene.internal      **/
+DECL|method|fill
 specifier|public
 name|BytesRef
-name|fillUsingLengthPrefix
+name|fill
 parameter_list|(
 name|BytesRef
 name|b
@@ -680,11 +680,11 @@ return|return
 name|b
 return|;
 block|}
-comment|/** @lucene.internal  Reads length as 1 or 2 byte vInt prefix, starting @ start.  Returns the block number of the term. */
-DECL|method|fillUsingLengthPrefix2
+comment|/**      * Reads length as 1 or 2 byte vInt prefix, starting at<i>start</i>. *      *<p>      *<b>Note:</b> this method does not support slices spanning across block      * borders.      *</p>      *       * @return the internal block number of the slice.      * @lucene.internal      **/
+DECL|method|fillAndGetIndex
 specifier|public
 name|int
-name|fillUsingLengthPrefix2
+name|fillAndGetIndex
 parameter_list|(
 name|BytesRef
 name|b
@@ -815,11 +815,11 @@ return|return
 name|index
 return|;
 block|}
-comment|/** @lucene.internal  Reads length as 1 or 2 byte vInt prefix, starting @ start.       * Returns the start offset of the next part, suitable as start parameter on next call      * to sequentially read all BytesRefs. */
-DECL|method|fillUsingLengthPrefix3
+comment|/**      * Reads length as 1 or 2 byte vInt prefix, starting at<i>start</i> and      * returns the start offset of the next part, suitable as start parameter on      * next call to sequentially read all {@link BytesRef}.      *       *<p>      *<b>Note:</b> this method does not support slices spanning across block      * borders.      *</p>      *       * @return the start offset of the next part, suitable as start parameter on      *         next call to sequentially read all {@link BytesRef}.      * @lucene.internal      **/
+DECL|method|fillAndGetStart
 specifier|public
 name|long
-name|fillUsingLengthPrefix3
+name|fillAndGetStart
 parameter_list|(
 name|BytesRef
 name|b

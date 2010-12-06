@@ -781,6 +781,9 @@ name|interval
 init|=
 name|writer
 operator|.
+name|getConfig
+argument_list|()
+operator|.
 name|getTermIndexInterval
 argument_list|()
 decl_stmt|;

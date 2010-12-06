@@ -550,14 +550,9 @@ name|super
 argument_list|(
 name|q
 argument_list|,
-operator|new
-name|ValueSourceQuery
-index|[]
-block|{
 name|qValSrc1
-block|,
+argument_list|,
 name|qValSrc2
-block|}
 argument_list|)
 expr_stmt|;
 block|}

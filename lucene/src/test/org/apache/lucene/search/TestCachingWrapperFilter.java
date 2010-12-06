@@ -705,6 +705,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
+operator|new
+name|SlowMultiReaderWrapper
+argument_list|(
 name|IndexReader
 operator|.
 name|open
@@ -713,21 +716,12 @@ name|dir
 argument_list|,
 literal|true
 argument_list|)
-decl_stmt|;
-name|IndexReader
-name|slowReader
-init|=
-name|SlowMultiReaderWrapper
-operator|.
-name|wrap
-argument_list|(
-name|reader
 argument_list|)
 decl_stmt|;
 comment|// not cacheable:
 name|assertDocIdSetCacheable
 argument_list|(
-name|slowReader
+name|reader
 argument_list|,
 operator|new
 name|QueryWrapperFilter
@@ -751,7 +745,7 @@ expr_stmt|;
 comment|// returns default empty docidset, always cacheable:
 name|assertDocIdSetCacheable
 argument_list|(
-name|slowReader
+name|reader
 argument_list|,
 name|NumericRangeFilter
 operator|.
@@ -785,7 +779,7 @@ expr_stmt|;
 comment|// is cacheable:
 name|assertDocIdSetCacheable
 argument_list|(
-name|slowReader
+name|reader
 argument_list|,
 name|FieldCacheRangeFilter
 operator|.
@@ -818,7 +812,7 @@ expr_stmt|;
 comment|// a openbitset filter is always cacheable
 name|assertDocIdSetCacheable
 argument_list|(
-name|slowReader
+name|reader
 argument_list|,
 operator|new
 name|Filter
@@ -895,26 +889,17 @@ operator|new
 name|SerialMergeScheduler
 argument_list|()
 argument_list|)
-argument_list|)
-decl_stmt|;
+operator|.
 comment|// asserts below requires no unexpected merges:
-operator|(
-operator|(
-name|LogMergePolicy
-operator|)
-name|writer
-operator|.
-name|w
-operator|.
-name|getMergePolicy
-argument_list|()
-operator|)
-operator|.
-name|setMergeFactor
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
 argument_list|(
 literal|10
 argument_list|)
-expr_stmt|;
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|// NOTE: cannot use writer.getReader because RIW (on
 comment|// flipping a coin) may give us a newly opened reader,
 comment|// but we use .reopen on this reader below and expect to

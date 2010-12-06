@@ -120,27 +120,6 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
-comment|/** @deprecated Use {@link #StandardFilter(Version, TokenStream)} instead. */
-annotation|@
-name|Deprecated
-DECL|method|StandardFilter
-specifier|public
-name|StandardFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
-name|in
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|StandardFilter
 specifier|public
 name|StandardFilter

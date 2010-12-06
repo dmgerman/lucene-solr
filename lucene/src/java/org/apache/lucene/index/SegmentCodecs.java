@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|IdentityHashMap
 import|;
 end_import
@@ -591,9 +601,14 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"CodecInfo [codecs="
+literal|"SegmentCodecs [codecs="
 operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
 name|codecs
+argument_list|)
 operator|+
 literal|", provider="
 operator|+

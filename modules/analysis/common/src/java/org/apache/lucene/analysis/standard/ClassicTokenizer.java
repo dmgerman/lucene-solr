@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A grammar-based tokenizer constructed with JFlex  *  *<p> This should be a good tokenizer for most European-language documents:  *  *<ul>  *<li>Splits words at punctuation characters, removing punctuation. However, a   *     dot that's not followed by whitespace is considered part of a token.  *<li>Splits words at hyphens, unless there's a number in the token, in which case  *     the whole token is interpreted as a product number and is not split.  *<li>Recognizes email addresses and internet hostnames as one token.  *</ul>  *  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating ClassicAnalyzer:  *<ul>  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1608</a>  *</ul>  *   * ClassicTokenizer was named StandardTokenizer in Lucene versions prior to 3.1.  * As of 3.1, {@link StandardTokenizer} implements Unicode text segmentation,  * as specified by UAX#29.  */
+comment|/** A grammar-based tokenizer constructed with JFlex  *  *<p> This should be a good tokenizer for most European-language documents:  *  *<ul>  *<li>Splits words at punctuation characters, removing punctuation. However, a   *     dot that's not followed by whitespace is considered part of a token.  *<li>Splits words at hyphens, unless there's a number in the token, in which case  *     the whole token is interpreted as a product number and is not split.  *<li>Recognizes email addresses and internet hostnames as one token.  *</ul>  *  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  *  * ClassicTokenizer was named StandardTokenizer in Lucene versions prior to 3.1.  * As of 3.1, {@link StandardTokenizer} implements Unicode text segmentation,  * as specified by UAX#29.  */
 end_comment
 
 begin_class
@@ -235,9 +235,6 @@ name|CJ
 init|=
 literal|7
 decl_stmt|;
-comment|/**    * @deprecated this solves a bug where HOSTs that end with '.' are identified    *             as ACRONYMs.    */
-annotation|@
-name|Deprecated
 DECL|field|ACRONYM_DEP
 specifier|public
 specifier|static
@@ -278,11 +275,6 @@ literal|"<CJ>"
 block|,
 literal|"<ACRONYM_DEP>"
 block|}
-decl_stmt|;
-DECL|field|replaceInvalidAcronym
-specifier|private
-name|boolean
-name|replaceInvalidAcronym
 decl_stmt|;
 DECL|field|maxTokenLength
 specifier|private
@@ -402,7 +394,6 @@ expr_stmt|;
 block|}
 DECL|method|init
 specifier|private
-specifier|final
 name|void
 name|init
 parameter_list|(
@@ -423,30 +414,6 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_24
-argument_list|)
-condition|)
-block|{
-name|replaceInvalidAcronym
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-name|replaceInvalidAcronym
-operator|=
-literal|false
-expr_stmt|;
-block|}
 name|this
 operator|.
 name|input
@@ -607,9 +574,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// This 'if' should be removed in the next release. For now, it converts
-comment|// invalid acronyms to HOST. When removed, only the 'else' part should
-comment|// remain.
 if|if
 condition|(
 name|tokenType
@@ -617,11 +581,6 @@ operator|==
 name|ClassicTokenizer
 operator|.
 name|ACRONYM_DEP
-condition|)
-block|{
-if|if
-condition|(
-name|replaceInvalidAcronym
 condition|)
 block|{
 name|typeAtt
@@ -651,24 +610,6 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// remove extra '.'
-block|}
-else|else
-block|{
-name|typeAtt
-operator|.
-name|setType
-argument_list|(
-name|ClassicTokenizer
-operator|.
-name|TOKEN_TYPES
-index|[
-name|ClassicTokenizer
-operator|.
-name|ACRONYM
-index|]
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -759,38 +700,6 @@ name|yyreset
 argument_list|(
 name|reader
 argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Prior to https://issues.apache.org/jira/browse/LUCENE-1068, ClassicTokenizer mischaracterized as acronyms tokens like www.abc.com    * when they should have been labeled as hosts instead.    * @return true if ClassicTokenizer now returns these tokens as Hosts, otherwise false    *    * @deprecated Remove in 3.X and make true the only valid value    */
-annotation|@
-name|Deprecated
-DECL|method|isReplaceInvalidAcronym
-specifier|public
-name|boolean
-name|isReplaceInvalidAcronym
-parameter_list|()
-block|{
-return|return
-name|replaceInvalidAcronym
-return|;
-block|}
-comment|/**    *    * @param replaceInvalidAcronym Set to true to replace mischaracterized acronyms as HOST.    * @deprecated Remove in 3.X and make true the only valid value    *    * See https://issues.apache.org/jira/browse/LUCENE-1068    */
-annotation|@
-name|Deprecated
-DECL|method|setReplaceInvalidAcronym
-specifier|public
-name|void
-name|setReplaceInvalidAcronym
-parameter_list|(
-name|boolean
-name|replaceInvalidAcronym
-parameter_list|)
-block|{
-name|this
-operator|.
-name|replaceInvalidAcronym
-operator|=
-name|replaceInvalidAcronym
 expr_stmt|;
 block|}
 block|}

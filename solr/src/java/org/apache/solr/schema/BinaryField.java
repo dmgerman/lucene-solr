@@ -488,13 +488,6 @@ argument_list|,
 name|offset
 argument_list|,
 name|len
-argument_list|,
-name|getFieldStore
-argument_list|(
-name|field
-argument_list|,
-literal|null
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|f

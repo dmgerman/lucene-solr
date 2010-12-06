@@ -342,20 +342,6 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
 begin_class
 DECL|class|TestIndexReaderReopen
 specifier|public
@@ -1353,10 +1339,6 @@ return|return
 operator|new
 name|MultiReader
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|IndexReader
 operator|.
 name|open
@@ -1365,7 +1347,7 @@ name|dir1
 argument_list|,
 literal|false
 argument_list|)
-block|,
+argument_list|,
 name|IndexReader
 operator|.
 name|open
@@ -1374,7 +1356,6 @@ name|dir2
 argument_list|,
 literal|false
 argument_list|)
-block|}
 argument_list|)
 return|;
 block|}
@@ -1473,10 +1454,6 @@ return|return
 operator|new
 name|MultiReader
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|IndexReader
 operator|.
 name|open
@@ -1485,7 +1462,7 @@ name|dir3
 argument_list|,
 literal|false
 argument_list|)
-block|,
+argument_list|,
 name|IndexReader
 operator|.
 name|open
@@ -1494,7 +1471,7 @@ name|dir4
 argument_list|,
 literal|false
 argument_list|)
-block|,
+argument_list|,
 comment|// Does not implement reopen, so
 comment|// hits exception:
 operator|new
@@ -1509,7 +1486,6 @@ argument_list|,
 literal|false
 argument_list|)
 argument_list|)
-block|}
 argument_list|)
 return|;
 block|}
@@ -1718,10 +1694,6 @@ init|=
 operator|new
 name|MultiReader
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|IndexReader
 operator|.
 name|open
@@ -1730,7 +1702,7 @@ name|dir3
 argument_list|,
 literal|false
 argument_list|)
-block|,
+argument_list|,
 name|IndexReader
 operator|.
 name|open
@@ -1739,21 +1711,16 @@ name|dir4
 argument_list|,
 literal|false
 argument_list|)
-block|}
 argument_list|)
 decl_stmt|;
 return|return
 operator|new
 name|MultiReader
 argument_list|(
-operator|new
-name|IndexReader
-index|[]
-block|{
 name|pr
-block|,
+argument_list|,
 name|mr
-block|,
+argument_list|,
 name|IndexReader
 operator|.
 name|open
@@ -1762,7 +1729,6 @@ name|dir5
 argument_list|,
 literal|false
 argument_list|)
-block|}
 argument_list|)
 return|;
 block|}
@@ -3427,8 +3393,6 @@ decl_stmt|;
 name|SegmentReader
 name|segmentReader1
 init|=
-name|SegmentReader
-operator|.
 name|getOnlySegmentReader
 argument_list|(
 name|reader1
@@ -3515,8 +3479,6 @@ decl_stmt|;
 name|SegmentReader
 name|segmentReader3
 init|=
-name|SegmentReader
-operator|.
 name|getOnlySegmentReader
 argument_list|(
 name|reader3
@@ -6381,8 +6343,6 @@ decl_stmt|;
 name|SegmentReader
 name|sr1
 init|=
-name|SegmentReader
-operator|.
 name|getOnlySegmentReader
 argument_list|(
 name|r1
@@ -6531,26 +6491,16 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-argument_list|)
-decl_stmt|;
-operator|(
-operator|(
-name|LogMergePolicy
-operator|)
-name|writer
 operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getMergePolicy
-argument_list|()
-operator|)
-operator|.
-name|setMergeFactor
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
 argument_list|(
 literal|10
 argument_list|)
-expr_stmt|;
+argument_list|)
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int

@@ -117,6 +117,55 @@ name|DELETED_PK_QUERY
 init|=
 literal|"select id from x where last_modified> NOW AND deleted='true'"
 decl_stmt|;
+DECL|field|dataConfig_delta
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|dataConfig_delta
+init|=
+literal|"<dataConfig>"
+operator|+
+literal|"<dataSource  type=\"MockDataSource\"/>\n"
+operator|+
+literal|"<document>\n"
+operator|+
+literal|"<entity name=\"x\" transformer=\"TemplateTransformer\""
+operator|+
+literal|"            query=\""
+operator|+
+name|FULLIMPORT_QUERY
+operator|+
+literal|"\""
+operator|+
+literal|"            deletedPkQuery=\""
+operator|+
+name|DELETED_PK_QUERY
+operator|+
+literal|"\""
+operator|+
+literal|"            deltaImportQuery=\"select * from x where id='${dih.delta.id}'\""
+operator|+
+literal|"            deltaQuery=\""
+operator|+
+name|DELTA_QUERY
+operator|+
+literal|"\">\n"
+operator|+
+literal|"<field column=\"id\" name=\"id\"/>\n"
+operator|+
+literal|"<entity name=\"y\" query=\"select * from y where y.A='${x.id}'\">\n"
+operator|+
+literal|"<field column=\"desc\" />\n"
+operator|+
+literal|"</entity>\n"
+operator|+
+literal|"</entity>\n"
+operator|+
+literal|"</document>\n"
+operator|+
+literal|"</dataConfig>\n"
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -1340,52 +1389,6 @@ literal|"//*[@numFound='1']"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|dataConfig_delta
-specifier|private
-specifier|static
-name|String
-name|dataConfig_delta
-init|=
-literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
-operator|+
-literal|"<document>\n"
-operator|+
-literal|"<entity name=\"x\" transformer=\"TemplateTransformer\""
-operator|+
-literal|"				query=\""
-operator|+
-name|FULLIMPORT_QUERY
-operator|+
-literal|"\""
-operator|+
-literal|"				deletedPkQuery=\""
-operator|+
-name|DELETED_PK_QUERY
-operator|+
-literal|"\""
-operator|+
-literal|" 				deltaImportQuery=\"select * from x where id='${dataimporter.delta.id}'\""
-operator|+
-literal|"				deltaQuery=\""
-operator|+
-name|DELTA_QUERY
-operator|+
-literal|"\">\n"
-operator|+
-literal|"<field column=\"id\" name=\"id\"/>\n"
-operator|+
-literal|"<entity name=\"y\" query=\"select * from y where y.A='${x.id}'\">\n"
-operator|+
-literal|"<field column=\"desc\" />\n"
-operator|+
-literal|"</entity>\n"
-operator|+
-literal|"</entity>\n"
-operator|+
-literal|"</document>\n"
-operator|+
-literal|"</dataConfig>\n"
-decl_stmt|;
 block|}
 end_class
 

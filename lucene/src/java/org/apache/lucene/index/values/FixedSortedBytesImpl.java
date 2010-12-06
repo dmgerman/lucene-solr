@@ -338,6 +338,10 @@ begin_comment
 comment|// have the same value, they store only 1 byte[]
 end_comment
 
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|FixedSortedBytesImpl
 class|class
@@ -1374,7 +1378,7 @@ block|{
 return|return
 name|data
 operator|.
-name|fill
+name|fillSlice
 argument_list|(
 name|bytesRef
 argument_list|,

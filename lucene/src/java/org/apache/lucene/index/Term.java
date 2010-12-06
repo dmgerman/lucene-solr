@@ -560,7 +560,7 @@ operator|.
 name|getUTF8SortedAsUTF16Comparator
 argument_list|()
 decl_stmt|;
-comment|/**     * @deprecated For internal backwards compatibility use only    * @lucene.internal    */
+comment|/**     * @deprecated (4.0) For internal backwards compatibility use only    * @lucene.internal    */
 annotation|@
 name|Deprecated
 DECL|method|compareToUTF16

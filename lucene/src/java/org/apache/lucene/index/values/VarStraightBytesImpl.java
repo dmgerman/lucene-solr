@@ -214,6 +214,10 @@ begin_comment
 comment|// Variable length byte[] per document, no sharing
 end_comment
 
+begin_comment
+comment|/**  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|VarStraightBytesImpl
 class|class
@@ -842,7 +846,7 @@ decl_stmt|;
 return|return
 name|data
 operator|.
-name|fill
+name|fillSlice
 argument_list|(
 name|bytesRef
 argument_list|,
@@ -962,12 +966,6 @@ specifier|final
 name|int
 name|totBytes
 decl_stmt|;
-DECL|field|ref
-specifier|private
-specifier|final
-name|BytesRef
-name|ref
-decl_stmt|;
 DECL|field|pos
 specifier|private
 name|int
@@ -1035,13 +1033,6 @@ operator|.
 name|idxIn
 operator|=
 name|idxIn
-expr_stmt|;
-name|ref
-operator|=
-name|attr
-operator|.
-name|bytes
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1111,13 +1102,13 @@ name|totBytes
 condition|)
 block|{
 comment|// empty values at the end
-name|ref
+name|bytesRef
 operator|.
 name|length
 operator|=
 literal|0
 expr_stmt|;
-name|ref
+name|bytesRef
 operator|.
 name|offset
 operator|=
@@ -1170,7 +1161,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ref
+name|bytesRef
 operator|.
 name|bytes
 operator|.
@@ -1178,14 +1169,16 @@ name|length
 operator|<
 name|size
 condition|)
-name|ref
+block|{
+name|bytesRef
 operator|.
 name|grow
 argument_list|(
 name|size
 argument_list|)
 expr_stmt|;
-name|ref
+block|}
+name|bytesRef
 operator|.
 name|length
 operator|=
@@ -1195,7 +1188,7 @@ name|datIn
 operator|.
 name|readBytes
 argument_list|(
-name|ref
+name|bytesRef
 operator|.
 name|bytes
 argument_list|,

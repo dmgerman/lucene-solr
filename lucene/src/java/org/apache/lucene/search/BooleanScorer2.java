@@ -726,14 +726,9 @@ name|ConjunctionScorer
 argument_list|(
 name|defaultSimilarity
 argument_list|,
-operator|new
-name|Scorer
-index|[]
-block|{
 name|req1
-block|,
+argument_list|,
 name|req2
-block|}
 argument_list|)
 return|;
 comment|// All scorers match, so defaultSimilarity always has 1 as
