@@ -819,12 +819,12 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Values
+name|Type
 name|type
 parameter_list|()
 block|{
 return|return
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_STRAIGHT
 return|;
@@ -846,7 +846,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -877,7 +877,7 @@ specifier|final
 class|class
 name|FixedStraightBytesEnum
 extends|extends
-name|ValuesEnum
+name|DocValuesEnum
 block|{
 DECL|field|datIn
 specifier|private
@@ -934,7 +934,7 @@ name|super
 argument_list|(
 name|source
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_STRAIGHT
 argument_list|)
@@ -989,7 +989,7 @@ specifier|protected
 name|void
 name|copyReferences
 parameter_list|(
-name|ValuesEnum
+name|DocValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{
@@ -1161,12 +1161,12 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Values
+name|Type
 name|type
 parameter_list|()
 block|{
 return|return
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_STRAIGHT
 return|;

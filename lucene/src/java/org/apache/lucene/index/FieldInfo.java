@@ -24,7 +24,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Values
+name|Type
 import|;
 end_import
 
@@ -59,7 +59,7 @@ name|int
 name|number
 decl_stmt|;
 DECL|field|docValues
-name|Values
+name|Type
 name|docValues
 decl_stmt|;
 comment|// true if term vector for this field should be stored
@@ -413,7 +413,7 @@ DECL|method|setDocValues
 name|void
 name|setDocValues
 parameter_list|(
-name|Values
+name|Type
 name|v
 parameter_list|)
 block|{
@@ -468,7 +468,7 @@ return|;
 block|}
 DECL|method|getDocValues
 specifier|public
-name|Values
+name|Type
 name|getDocValues
 parameter_list|()
 block|{

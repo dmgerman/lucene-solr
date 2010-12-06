@@ -366,7 +366,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Values
+name|Type
 import|;
 end_import
 

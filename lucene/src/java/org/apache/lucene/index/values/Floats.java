@@ -575,7 +575,7 @@ specifier|protected
 name|void
 name|setNextEnum
 parameter_list|(
-name|ValuesEnum
+name|DocValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{
@@ -1525,7 +1525,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1547,7 +1547,7 @@ name|SourceEnum
 argument_list|(
 name|attrSource
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 argument_list|,
@@ -1637,12 +1637,12 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Values
+name|Type
 name|type
 parameter_list|()
 block|{
 return|return
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 return|;
@@ -1708,7 +1708,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1819,12 +1819,12 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Values
+name|Type
 name|type
 parameter_list|()
 block|{
 return|return
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_8BYTE
 return|;
@@ -1855,7 +1855,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1923,7 +1923,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Values
+name|Type
 name|type
 parameter_list|()
 block|{
@@ -1932,11 +1932,11 @@ name|precisionBytes
 operator|==
 literal|4
 condition|?
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 else|:
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_8BYTE
 return|;
@@ -1975,7 +1975,7 @@ literal|4
 argument_list|,
 name|maxDoc
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 argument_list|)
@@ -2153,7 +2153,7 @@ literal|8
 argument_list|,
 name|maxDoc
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_8BYTE
 argument_list|)
@@ -2305,7 +2305,7 @@ specifier|abstract
 class|class
 name|FloatsEnumImpl
 extends|extends
-name|ValuesEnum
+name|DocValuesEnum
 block|{
 DECL|field|dataIn
 specifier|protected
@@ -2354,7 +2354,7 @@ parameter_list|,
 name|int
 name|maxDoc
 parameter_list|,
-name|Values
+name|Type
 name|type
 parameter_list|)
 throws|throws
@@ -2368,11 +2368,11 @@ name|precision
 operator|==
 literal|4
 condition|?
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 else|:
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_8BYTE
 argument_list|)

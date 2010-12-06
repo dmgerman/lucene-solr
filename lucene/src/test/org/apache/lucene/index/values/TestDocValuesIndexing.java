@@ -608,7 +608,7 @@ name|TestDocValuesIndexing
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/*    * TODO:    * Roadmap to land on trunk    *       *   - Add documentation for:    *      - Source and ValuesEnum    *      - DocValues    *      - ValuesField    *      - ValuesAttribute    *      - Values    *   - Add @lucene.experimental to all necessary classes    *   - add test for unoptimized case with deletes    *   - add a test for addIndexes    *   - split up existing testcases and give them meaningfull names    *   - use consistent naming throughout DocValues    *     - Values -> DocValueType    *     - PackedIntsImpl -> Ints    *   - run RAT    *   - add tests for FieldComparator FloatIndexValuesComparator vs. FloatValuesComparator etc.    */
+comment|/*    * TODO:    * Roadmap to land on trunk    *       *   - Add documentation for:    *      - Source and ValuesEnum    *      - DocValues    *      - ValuesField    *      - ValuesAttribute    *      - Values    *   - Add @lucene.experimental to all necessary classes    *   - add test for unoptimized case with deletes    *   - add a test for addIndexes    *   - split up existing testcases and give them meaningfull names    *   - run RAT    *   - add tests for FieldComparator FloatIndexValuesComparator vs. FloatValuesComparator etc.    */
 DECL|field|docValuesCodec
 specifier|private
 name|DocValuesCodec
@@ -972,7 +972,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Tests complete indexing of {@link Values} including deletions, merging and    * sparse value fields on Compound-File    */
+comment|/**    * Tests complete indexing of {@link Type} including deletions, merging and    * sparse value fields on Compound-File    */
 DECL|method|testIndexBytesNoDeletesCFS
 specifier|public
 name|void
@@ -1049,7 +1049,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests complete indexing of {@link Values} including deletions, merging and    * sparse value fields on None-Compound-File    */
+comment|/**    * Tests complete indexing of {@link Type} including deletions, merging and    * sparse value fields on None-Compound-File    */
 DECL|method|testIndexBytesNoDeletes
 specifier|public
 name|void
@@ -1262,14 +1262,14 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 name|numVariantList
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 argument_list|(
 name|NUMERICS
@@ -1287,7 +1287,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Values
+name|Type
 name|val
 range|:
 name|numVariantList
@@ -1443,7 +1443,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-name|ValuesEnum
+name|DocValuesEnum
 name|intsEnum
 init|=
 name|getValuesEnum
@@ -1654,7 +1654,7 @@ literal|0.0d
 argument_list|)
 expr_stmt|;
 block|}
-name|ValuesEnum
+name|DocValuesEnum
 name|floatEnum
 init|=
 name|getValuesEnum
@@ -1883,14 +1883,14 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 name|byteVariantList
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 argument_list|(
 name|BYTES
@@ -1921,7 +1921,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Values
+name|Type
 name|byteIndexValue
 range|:
 name|byteVariantList
@@ -2266,7 +2266,7 @@ name|br
 argument_list|)
 expr_stmt|;
 comment|// make sure we advance at least until base
-name|ValuesEnum
+name|DocValuesEnum
 name|bytesEnum
 init|=
 name|getValuesEnum
@@ -2307,7 +2307,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|ValuesEnum
+name|DocValuesEnum
 name|bytesEnum
 init|=
 name|getValuesEnum
@@ -2852,7 +2852,7 @@ return|;
 block|}
 DECL|method|getValuesEnum
 specifier|private
-name|ValuesEnum
+name|DocValuesEnum
 name|getValuesEnum
 parameter_list|(
 name|DocValues
@@ -2861,7 +2861,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ValuesEnum
+name|DocValuesEnum
 name|valuesEnum
 decl_stmt|;
 if|if
@@ -2919,7 +2919,7 @@ specifier|private
 specifier|static
 name|EnumSet
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 name|BYTES
 init|=
@@ -2927,27 +2927,27 @@ name|EnumSet
 operator|.
 name|of
 argument_list|(
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_DEREF
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_SORTED
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_STRAIGHT
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|BYTES_VAR_DEREF
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|BYTES_VAR_SORTED
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|BYTES_VAR_STRAIGHT
 argument_list|)
@@ -2957,7 +2957,7 @@ specifier|private
 specifier|static
 name|EnumSet
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 name|NUMERICS
 init|=
@@ -2965,15 +2965,15 @@ name|EnumSet
 operator|.
 name|of
 argument_list|(
-name|Values
+name|Type
 operator|.
 name|PACKED_INTS
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 argument_list|,
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_8BYTE
 argument_list|)
@@ -3021,12 +3021,12 @@ parameter_list|,
 name|int
 name|numValues
 parameter_list|,
-name|Values
+name|Type
 name|value
 parameter_list|,
 name|List
 argument_list|<
-name|Values
+name|Type
 argument_list|>
 name|valueVarList
 parameter_list|,
@@ -3375,7 +3375,7 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
-name|Values
+name|Type
 name|val
 init|=
 name|valueVarList

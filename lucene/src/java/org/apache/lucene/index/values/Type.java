@@ -23,10 +23,10 @@ comment|/** Controls whether per-field values are stored into  *  index.  This s
 end_comment
 
 begin_enum
-DECL|enum|Values
+DECL|enum|Type
 specifier|public
 enum|enum
-name|Values
+name|Type
 block|{
 comment|/** Integral value is stored as packed ints.  The bit    *  precision is fixed across the segment, and    *  determined by the min/max values in the field. */
 DECL|enum constant|PACKED_INTS

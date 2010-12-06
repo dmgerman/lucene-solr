@@ -239,7 +239,7 @@ specifier|abstract
 name|void
 name|setNextEnum
 parameter_list|(
-name|ValuesEnum
+name|DocValuesEnum
 name|valuesEnum
 parameter_list|)
 function_decl|;
@@ -271,7 +271,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|ValuesEnum
+name|DocValuesEnum
 name|valEnum
 init|=
 name|state
@@ -332,7 +332,7 @@ literal|0
 argument_list|)
 operator|)
 operator|!=
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -387,7 +387,7 @@ name|i
 argument_list|)
 operator|)
 operator|==
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -432,7 +432,7 @@ specifier|static
 name|Writer
 name|create
 parameter_list|(
-name|Values
+name|Type
 name|v
 parameter_list|,
 name|String

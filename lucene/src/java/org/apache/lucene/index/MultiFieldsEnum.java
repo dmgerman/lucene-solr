@@ -60,7 +60,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Values
+name|Type
 import|;
 end_import
 
@@ -821,7 +821,7 @@ name|docsUpto
 init|=
 literal|0
 decl_stmt|;
-name|Values
+name|Type
 name|type
 init|=
 literal|null

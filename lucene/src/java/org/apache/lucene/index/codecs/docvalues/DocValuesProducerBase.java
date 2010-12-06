@@ -184,7 +184,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Values
+name|Type
 import|;
 end_import
 
@@ -472,7 +472,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|Values
+name|Type
 name|v
 parameter_list|)
 throws|throws

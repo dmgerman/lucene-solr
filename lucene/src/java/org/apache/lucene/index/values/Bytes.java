@@ -923,7 +923,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1417,7 +1417,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1874,7 +1874,7 @@ specifier|protected
 name|void
 name|setNextEnum
 parameter_list|(
-name|ValuesEnum
+name|DocValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{

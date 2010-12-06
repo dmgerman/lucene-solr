@@ -586,7 +586,7 @@ name|iter
 operator|++
 control|)
 block|{
-name|ValuesEnum
+name|DocValuesEnum
 name|bytesEnum
 init|=
 name|r
@@ -690,7 +690,7 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -704,7 +704,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1525,7 +1525,7 @@ name|iter
 operator|++
 control|)
 block|{
-name|ValuesEnum
+name|DocValuesEnum
 name|iEnum
 init|=
 name|r
@@ -1628,7 +1628,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1660,7 +1660,7 @@ name|iter
 operator|++
 control|)
 block|{
-name|ValuesEnum
+name|DocValuesEnum
 name|iEnum
 init|=
 name|r
@@ -1773,7 +1773,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -2059,7 +2059,7 @@ name|iter
 operator|++
 control|)
 block|{
-name|ValuesEnum
+name|DocValuesEnum
 name|fEnum
 init|=
 name|r
@@ -2135,7 +2135,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -2167,7 +2167,7 @@ name|iter
 operator|++
 control|)
 block|{
-name|ValuesEnum
+name|DocValuesEnum
 name|fEnum
 init|=
 name|r
@@ -2253,7 +2253,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|ValuesEnum
+name|DocValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,

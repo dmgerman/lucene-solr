@@ -56,7 +56,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Values
+name|Type
 import|;
 end_import
 
@@ -1715,7 +1715,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|PACKED_INTS
 expr_stmt|;
@@ -1727,7 +1727,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_4BYTE
 expr_stmt|;
@@ -1739,7 +1739,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|SIMPLE_FLOAT_8BYTE
 expr_stmt|;
@@ -1751,7 +1751,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_STRAIGHT
 expr_stmt|;
@@ -1763,7 +1763,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_DEREF
 expr_stmt|;
@@ -1775,7 +1775,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|BYTES_FIXED_SORTED
 expr_stmt|;
@@ -1787,7 +1787,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|BYTES_VAR_STRAIGHT
 expr_stmt|;
@@ -1799,7 +1799,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|BYTES_VAR_DEREF
 expr_stmt|;
@@ -1811,7 +1811,7 @@ name|fi
 operator|.
 name|docValues
 operator|=
-name|Values
+name|Type
 operator|.
 name|BYTES_VAR_SORTED
 expr_stmt|;

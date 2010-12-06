@@ -116,7 +116,7 @@ argument_list|()
 decl_stmt|;
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|()
 throws|throws
@@ -132,7 +132,7 @@ block|}
 DECL|method|getEnum
 specifier|public
 specifier|abstract
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -215,7 +215,7 @@ block|}
 DECL|method|type
 specifier|public
 specifier|abstract
-name|Values
+name|Type
 name|type
 parameter_list|()
 function_decl|;
@@ -357,7 +357,7 @@ throw|;
 block|}
 DECL|method|getEnum
 specifier|public
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|()
 throws|throws
@@ -383,14 +383,14 @@ block|}
 DECL|method|type
 specifier|public
 specifier|abstract
-name|Values
+name|Type
 name|type
 parameter_list|()
 function_decl|;
 DECL|method|getEnum
 specifier|public
 specifier|abstract
-name|ValuesEnum
+name|DocValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -406,7 +406,7 @@ specifier|static
 class|class
 name|SourceEnum
 extends|extends
-name|ValuesEnum
+name|DocValuesEnum
 block|{
 DECL|field|source
 specifier|protected
@@ -434,7 +434,7 @@ parameter_list|(
 name|AttributeSource
 name|attrs
 parameter_list|,
-name|Values
+name|Type
 name|type
 parameter_list|,
 name|Source
