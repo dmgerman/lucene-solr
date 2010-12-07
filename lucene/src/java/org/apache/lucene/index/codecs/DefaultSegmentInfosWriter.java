@@ -193,14 +193,11 @@ name|out
 operator|.
 name|writeLong
 argument_list|(
-operator|++
 name|infos
 operator|.
 name|version
 argument_list|)
 expr_stmt|;
-comment|// every write changes
-comment|// the index
 name|out
 operator|.
 name|writeInt

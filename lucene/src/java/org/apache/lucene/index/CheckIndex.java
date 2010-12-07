@@ -4074,6 +4074,13 @@ name|result
 operator|.
 name|newSegments
 operator|.
+name|changed
+argument_list|()
+expr_stmt|;
+name|result
+operator|.
+name|newSegments
+operator|.
 name|commit
 argument_list|(
 name|result

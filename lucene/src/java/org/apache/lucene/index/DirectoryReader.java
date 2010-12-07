@@ -4039,6 +4039,11 @@ name|getLastSegmentInfos
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
 comment|// Checkpoint the state we are about to change, in
 comment|// case we have to roll back:
 name|startCommit

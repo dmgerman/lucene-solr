@@ -2096,6 +2096,11 @@ comment|// segments) pending:
 name|changeCount
 operator|++
 expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -2176,6 +2181,11 @@ argument_list|)
 expr_stmt|;
 name|changeCount
 operator|++
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -2268,6 +2278,7 @@ name|deleter
 operator|.
 name|startingCommitDeleted
 condition|)
+block|{
 comment|// Deletion policy deleted the "head" commit point.
 comment|// We have to mark ourself as changed so that if we
 comment|// are closed w/o any further changes we write a new
@@ -2275,6 +2286,12 @@ comment|// segments_N file.
 name|changeCount
 operator|++
 expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
+block|}
 name|docWriter
 operator|.
 name|setMaxBufferedDeleteTerms
@@ -4381,6 +4398,11 @@ comment|// problems at least with ConcurrentMergeScheduler.
 name|changeCount
 operator|++
 expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
 return|return
 literal|"_"
 operator|+
@@ -5707,6 +5729,11 @@ comment|// Mark that the index has changed
 operator|++
 name|changeCount
 expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -5974,6 +6001,11 @@ name|IOException
 block|{
 name|changeCount
 operator|++
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
 expr_stmt|;
 name|deleter
 operator|.
@@ -12121,6 +12153,11 @@ expr_stmt|;
 name|changeCount
 operator|++
 expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 assert|assert
@@ -12460,53 +12497,21 @@ name|SegmentInfos
 name|infos
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
+return|return
 name|infos
 operator|.
-name|equals
-argument_list|(
-name|segmentInfos
-argument_list|)
-condition|)
-block|{
-comment|// if any structural changes (new segments), we are
-comment|// stale
-return|return
-literal|false
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|infos
-operator|.
-name|getGeneration
-argument_list|()
-operator|!=
+name|version
+operator|==
 name|segmentInfos
 operator|.
-name|getGeneration
-argument_list|()
-condition|)
-block|{
-comment|// if any commit took place since we were opened, we
-comment|// are stale
-return|return
-literal|false
-return|;
-block|}
-else|else
-block|{
-return|return
+name|version
+operator|&&
 operator|!
 name|docWriter
 operator|.
 name|anyChanges
 argument_list|()
 return|;
-block|}
 block|}
 DECL|method|isClosed
 specifier|synchronized

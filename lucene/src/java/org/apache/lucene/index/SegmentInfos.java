@@ -2312,12 +2312,6 @@ name|other
 operator|.
 name|generation
 expr_stmt|;
-name|version
-operator|=
-name|other
-operator|.
-name|version
-expr_stmt|;
 block|}
 DECL|method|rollbackCommit
 specifier|final
@@ -2398,7 +2392,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** Call this to start a commit.  This writes the new    *  segments file, but writes an invalid checksum at the    *  end, so that it is not visible to readers.  Once this    *  is called you must call {@link #finishCommit} to complete    *  the commit or {@link #rollbackCommit} to abort it. */
+comment|/** Call this to start a commit.  This writes the new    *  segments file, but writes an invalid checksum at the    *  end, so that it is not visible to readers.  Once this    *  is called you must call {@link #finishCommit} to complete    *  the commit or {@link #rollbackCommit} to abort it.    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/
 DECL|method|prepareCommit
 specifier|final
 name|void
@@ -2739,7 +2733,7 @@ comment|// It's OK if we fail to write this file since it's
 comment|// used only as one of the retry fallbacks.
 block|}
 block|}
-comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception */
+comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/
 DECL|method|commit
 specifier|final
 name|void
@@ -2970,6 +2964,17 @@ block|}
 return|return
 name|count
 return|;
+block|}
+comment|/** Call this before committing if changes have been made to the    *  segments. */
+DECL|method|changed
+specifier|public
+name|void
+name|changed
+parameter_list|()
+block|{
+name|version
+operator|++
+expr_stmt|;
 block|}
 block|}
 end_class
