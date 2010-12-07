@@ -66,6 +66,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+import|;
+end_import
+
+begin_comment
+comment|// javadoc @link
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|AttributeSource
@@ -87,10 +107,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizer that breaks text into runs of letters and diacritics.  *<p>  * The problem with the standard Letter tokenizer is that it fails on diacritics.  * Handling similar to this is necessary for Indic Scripts, Hebrew, Thaana, etc.  *</p>  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link ArabicLetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link #isTokenChar(int)} and  * {@link #normalize(int)} for details.</li>  *</ul>  */
+comment|/**  * Tokenizer that breaks text into runs of letters and diacritics.  *<p>  * The problem with the standard Letter tokenizer is that it fails on diacritics.  * Handling similar to this is necessary for Indic Scripts, Hebrew, Thaana, etc.  *</p>  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link ArabicLetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link #isTokenChar(int)} and  * {@link #normalize(int)} for details.</li>  *</ul>  * @deprecated (3.1) Use {@link StandardTokenizer} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ArabicLetterTokenizer
 specifier|public
 class|class
