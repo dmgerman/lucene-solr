@@ -664,12 +664,14 @@ name|target
 operator|>=
 name|maxDoc
 condition|)
+block|{
 comment|// we are beyond max doc
 return|return
 name|currentDoc
 operator|=
 name|NO_MORE_DOCS
 return|;
+block|}
 if|if
 condition|(
 name|target
@@ -746,21 +748,11 @@ operator|-
 name|currentStart
 expr_stmt|;
 block|}
-else|else
-block|{
-return|return
-name|currentDoc
+name|target
 operator|=
-name|currentStart
-operator|+
-name|currentEnum
-operator|.
-name|advance
-argument_list|(
-name|relativeDoc
-argument_list|)
-return|;
-block|}
+name|currentMax
+expr_stmt|;
+comment|// make sure that we advance to the next enum if the current is exhausted
 block|}
 do|while
 condition|(
