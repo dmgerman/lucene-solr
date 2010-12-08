@@ -600,17 +600,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-specifier|final
-name|Bits
-name|delDocs
-init|=
-name|MultiFields
-operator|.
-name|getDeletedDocs
-argument_list|(
-name|reader
-argument_list|)
-decl_stmt|;
 name|OpenBitSet
 name|validBits
 init|=
@@ -676,7 +665,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+literal|null
 argument_list|,
 name|docs
 argument_list|)
@@ -786,8 +775,6 @@ name|valid
 operator|=
 name|checkMatchAllBits
 argument_list|(
-name|delDocs
-argument_list|,
 name|validBits
 argument_list|,
 name|vals

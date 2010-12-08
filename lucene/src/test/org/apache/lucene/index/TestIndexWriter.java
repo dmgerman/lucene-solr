@@ -16461,6 +16461,22 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|LogMergePolicy
+name|mergePolicy
+init|=
+name|newLogMergePolicy
+argument_list|(
+literal|true
+argument_list|)
+decl_stmt|;
+name|mergePolicy
+operator|.
+name|setNoCFSRatio
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+comment|// This test expects all of its segments to be in CFS
 name|IndexWriter
 name|w
 init|=
@@ -16480,10 +16496,7 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newLogMergePolicy
-argument_list|(
-literal|true
-argument_list|)
+name|mergePolicy
 argument_list|)
 argument_list|)
 decl_stmt|;
