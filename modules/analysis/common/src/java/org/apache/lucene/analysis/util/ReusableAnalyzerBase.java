@@ -170,6 +170,15 @@ operator|)
 name|getPreviousTokenStream
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Reader
+name|r
+init|=
+name|initReader
+argument_list|(
+name|reader
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|streamChain
@@ -181,7 +190,7 @@ name|streamChain
 operator|.
 name|reset
 argument_list|(
-name|reader
+name|r
 argument_list|)
 condition|)
 block|{
@@ -191,7 +200,7 @@ name|createComponents
 argument_list|(
 name|fieldName
 argument_list|,
-name|reader
+name|r
 argument_list|)
 expr_stmt|;
 name|setPreviousTokenStream
@@ -230,11 +239,28 @@ name|createComponents
 argument_list|(
 name|fieldName
 argument_list|,
+name|initReader
+argument_list|(
 name|reader
+argument_list|)
 argument_list|)
 operator|.
 name|getTokenStream
 argument_list|()
+return|;
+block|}
+comment|/**    * Override this if you want to add a CharFilter chain.    */
+DECL|method|initReader
+specifier|protected
+name|Reader
+name|initReader
+parameter_list|(
+name|Reader
+name|reader
+parameter_list|)
+block|{
+return|return
+name|reader
 return|;
 block|}
 comment|/**    * This class encapsulates the outer components of a token stream. It provides    * access to the source ({@link Tokenizer}) and the outer end (sink), an    * instance of {@link TokenFilter} which also serves as the    * {@link TokenStream} returned by    * {@link Analyzer#tokenStream(String, Reader)} and    * {@link Analyzer#reusableTokenStream(String, Reader)}.    */

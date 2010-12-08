@@ -740,7 +740,9 @@ literal|"à¸à¸¸à¸¢"
 block|,
 literal|"à¸à¸±à¸"
 block|,
-literal|"xyz@demo.com"
+literal|"xyz"
+block|,
+literal|"demo.com"
 block|}
 argument_list|)
 expr_stmt|;

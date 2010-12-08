@@ -1104,6 +1104,8 @@ comment|//
 comment|// Copied (and slightly modified) from
 comment|// org.apache.lucene.search.TestSort.testInternationalSort()
 comment|//
+comment|// TODO: this test is really fragile. there are already 3 different cases,
+comment|// depending upon unicode version.
 DECL|method|testCollationKeySort
 specifier|public
 name|void
@@ -1123,6 +1125,15 @@ name|denmarkAnalyzer
 parameter_list|,
 name|String
 name|usResult
+parameter_list|,
+name|String
+name|frResult
+parameter_list|,
+name|String
+name|svResult
+parameter_list|,
+name|String
+name|dkResult
 parameter_list|)
 throws|throws
 name|Exception
@@ -1682,7 +1693,7 @@ name|queryX
 argument_list|,
 name|sort
 argument_list|,
-literal|"EACGI"
+name|frResult
 argument_list|)
 expr_stmt|;
 name|sort
@@ -1708,7 +1719,7 @@ name|queryY
 argument_list|,
 name|sort
 argument_list|,
-literal|"BJDFH"
+name|svResult
 argument_list|)
 expr_stmt|;
 name|sort
@@ -1734,7 +1745,7 @@ name|queryY
 argument_list|,
 name|sort
 argument_list|,
-literal|"BJDHF"
+name|dkResult
 argument_list|)
 expr_stmt|;
 block|}
