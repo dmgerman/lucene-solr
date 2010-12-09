@@ -182,9 +182,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|search
 operator|.
-name|Directory
+name|DocIdSetIterator
 import|;
 end_import
 
@@ -198,7 +198,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
+name|Directory
 import|;
 end_import
 
@@ -337,9 +337,7 @@ expr_stmt|;
 name|Directory
 name|directory
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|indexDir
 argument_list|)
@@ -515,9 +513,7 @@ decl_stmt|;
 name|Directory
 name|directory
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|indexDir
 argument_list|)
@@ -708,9 +704,7 @@ argument_list|)
 expr_stmt|;
 name|directory
 operator|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1297,7 +1291,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|positions
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

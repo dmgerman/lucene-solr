@@ -439,7 +439,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// dir1 = FSDirectory.open("foofoofoo");
 name|Directory
 name|dir2
 init|=

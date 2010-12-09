@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
+name|Directory
 import|;
 end_import
 
@@ -213,7 +213,7 @@ name|analyzer
 decl_stmt|;
 DECL|field|dir
 specifier|private
-name|FSDirectory
+name|Directory
 name|dir
 decl_stmt|;
 comment|/**      *  The JUnit setup method      *      *@exception  IOException  Description of Exception      */
@@ -330,9 +330,7 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|indexDir
 argument_list|)

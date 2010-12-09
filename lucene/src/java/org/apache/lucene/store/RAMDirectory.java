@@ -198,6 +198,8 @@ specifier|public
 name|RAMDirectory
 parameter_list|()
 block|{
+try|try
+block|{
 name|setLockFactory
 argument_list|(
 operator|new
@@ -205,6 +207,15 @@ name|SingleInstanceLockFactory
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// Cannot happen
+block|}
 block|}
 comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *<P>    * Note that the resulting<code>RAMDirectory</code> instance is fully    * independent from the original<code>Directory</code> (it is a    * complete copy).  Any subsequent changes to the    * original<code>Directory</code> will not be visible in the    *<code>RAMDirectory</code> instance.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
 DECL|method|RAMDirectory

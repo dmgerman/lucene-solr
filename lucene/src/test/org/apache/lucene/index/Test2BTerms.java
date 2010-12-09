@@ -266,6 +266,8 @@ operator|=
 name|TOKEN_LEN
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -299,6 +301,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -576,9 +580,7 @@ decl_stmt|;
 name|Directory
 name|dir
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|_TestUtil
 operator|.
