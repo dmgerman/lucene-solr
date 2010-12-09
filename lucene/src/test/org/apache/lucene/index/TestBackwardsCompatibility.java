@@ -32,6 +32,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -73,16 +83,6 @@ operator|.
 name|io
 operator|.
 name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayOutputStream
 import|;
 end_import
 
@@ -224,11 +224,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|IndexWriterConfig
-operator|.
-name|OpenMode
+name|NumericField
 import|;
 end_import
 
@@ -240,9 +238,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|NumericField
+name|IndexWriterConfig
+operator|.
+name|OpenMode
 import|;
 end_import
 
@@ -298,6 +298,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|NumericRangeQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|ScoreDoc
 import|;
 end_import
@@ -324,9 +338,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|store
 operator|.
-name|NumericRangeQuery
+name|Directory
 import|;
 end_import
 
@@ -338,9 +352,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|Directory
+name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -369,34 +397,6 @@ operator|.
 name|util
 operator|.
 name|_TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -670,6 +670,26 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: index "
+operator|+
+name|unsupportedNames
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 name|unzip
 argument_list|(
 name|getDataFile
@@ -841,6 +861,30 @@ name|e
 parameter_list|)
 block|{
 comment|// pass
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: got expected exc:"
+argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -883,6 +927,13 @@ block|{
 comment|// OK -- since IW gives merge scheduler a chance
 comment|// to merge at close, it's possible and fine to
 comment|// hit this exc here
+name|writer
+operator|.
+name|close
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 name|writer
