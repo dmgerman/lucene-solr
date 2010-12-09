@@ -2737,6 +2737,9 @@ name|testsFailed
 operator|=
 literal|true
 expr_stmt|;
+name|reportAdditionalFailureInfo
+argument_list|()
+expr_stmt|;
 name|System
 operator|.
 name|err
