@@ -817,6 +817,7 @@ comment|// each test case (non-J4 tests) and each test class (J4
 comment|// tests)
 comment|/** Gets the codec to run tests with. */
 DECL|field|TEST_CODEC
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -833,6 +834,7 @@ argument_list|)
 decl_stmt|;
 comment|/** Gets the locale to run tests with */
 DECL|field|TEST_LOCALE
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -849,6 +851,7 @@ argument_list|)
 decl_stmt|;
 comment|/** Gets the timezone to run tests with */
 DECL|field|TEST_TIMEZONE
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -865,6 +868,7 @@ argument_list|)
 decl_stmt|;
 comment|/** Gets the directory to run tests with */
 DECL|field|TEST_DIRECTORY
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -881,6 +885,7 @@ argument_list|)
 decl_stmt|;
 comment|/** Get the number of times to run tests */
 DECL|field|TEST_ITER
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -902,6 +907,7 @@ argument_list|)
 decl_stmt|;
 comment|/** Get the random seed for tests */
 DECL|field|TEST_SEED
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -918,6 +924,7 @@ argument_list|)
 decl_stmt|;
 comment|/** whether or not nightly tests should run */
 DECL|field|TEST_NIGHTLY
+specifier|public
 specifier|static
 specifier|final
 name|boolean
@@ -935,6 +942,23 @@ literal|"tests.nightly"
 argument_list|,
 literal|"false"
 argument_list|)
+argument_list|)
+decl_stmt|;
+comment|/** the line file used by LineFileDocs */
+DECL|field|TEST_LINE_DOCS_FILE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TEST_LINE_DOCS_FILE
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.linedocsfile"
+argument_list|,
+literal|"europarl.lines.txt.gz"
 argument_list|)
 decl_stmt|;
 DECL|field|codecWithParam
