@@ -1981,6 +1981,13 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"index="
+operator|+
+name|writer
+operator|.
+name|segString
+argument_list|()
+argument_list|,
 name|addCount
 operator|.
 name|get
