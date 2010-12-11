@@ -642,7 +642,14 @@ literal|"No sub-file with id "
 operator|+
 name|id
 operator|+
-literal|" found"
+literal|" found (files: "
+operator|+
+name|entries
+operator|.
+name|keySet
+argument_list|()
+operator|+
+literal|")"
 argument_list|)
 throw|;
 return|return

@@ -375,6 +375,7 @@ literal|47
 argument_list|)
 decl_stmt|;
 DECL|field|failure
+specifier|volatile
 name|Throwable
 name|failure
 decl_stmt|;
@@ -642,6 +643,29 @@ literal|500
 decl_stmt|;
 do|do
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": TEST: IndexerThread: cycle"
+argument_list|)
+expr_stmt|;
+block|}
 name|doFail
 operator|.
 name|set
@@ -1010,7 +1034,17 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
-comment|//new Throwable().printStackTrace(System.out);
+operator|new
+name|Throwable
+argument_list|()
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 throw|throw
 operator|new
@@ -1043,6 +1077,21 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: start testRandomExceptions"
+argument_list|)
+expr_stmt|;
+block|}
 name|MockDirectoryWrapper
 name|dir
 init|=
@@ -1096,6 +1145,21 @@ name|setSuppressExceptions
 argument_list|()
 expr_stmt|;
 comment|//writer.setMaxBufferedDocs(10);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: initial commit"
+argument_list|)
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|commit
@@ -1105,6 +1169,7 @@ if|if
 condition|(
 name|VERBOSE
 condition|)
+block|{
 name|writer
 operator|.
 name|setInfoStream
@@ -1114,6 +1179,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 name|IndexerThread
 name|thread
 init|=
@@ -1160,6 +1226,21 @@ name|getName
 argument_list|()
 operator|+
 literal|": hit unexpected failure"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: commit after thread start"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1348,6 +1429,7 @@ if|if
 condition|(
 name|VERBOSE
 condition|)
+block|{
 name|writer
 operator|.
 name|setInfoStream
@@ -1357,6 +1439,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|NUM_THREADS
@@ -1910,6 +1993,19 @@ literal|2
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 name|Document
 name|doc
 init|=

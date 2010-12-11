@@ -50,11 +50,6 @@ init|=
 literal|1
 decl_stmt|;
 comment|// Number of threads that share this instance
-DECL|field|doFlushAfter
-name|boolean
-name|doFlushAfter
-decl_stmt|;
-comment|// true if we should flush after processing current doc
 DECL|field|consumer
 specifier|final
 name|DocConsumerPerThread
@@ -146,10 +141,6 @@ block|{
 name|numThreads
 operator|=
 literal|0
-expr_stmt|;
-name|doFlushAfter
-operator|=
-literal|false
 expr_stmt|;
 block|}
 block|}

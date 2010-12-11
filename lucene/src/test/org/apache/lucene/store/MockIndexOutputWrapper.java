@@ -26,6 +26,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  * Used by MockRAMDirectory to create an output stream that  * will throw an IOException on fake disk full, track max  * disk space actually used, and maybe throw random  * IOExceptions.  */
 end_comment
@@ -430,6 +444,31 @@ name|message
 operator|+=
 literal|")"
 expr_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": MDW: now throw fake disk full"
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|IOException
