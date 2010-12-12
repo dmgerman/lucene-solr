@@ -2017,7 +2017,7 @@ name|minSize
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2107,7 +2107,7 @@ name|targetSize
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 decl_stmt|;
 if|if
