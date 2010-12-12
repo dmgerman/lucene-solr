@@ -32,7 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileNotFoundException
+name|FileInputStream
 import|;
 end_import
 
@@ -304,24 +304,19 @@ operator|==
 literal|null
 condition|)
 block|{
-throw|throw
+comment|// if its not in classpath, we load it as absolute filesystem path (e.g. Hudson's home dir)
+name|is
+operator|=
 operator|new
-name|FileNotFoundException
+name|FileInputStream
 argument_list|(
-literal|"cannot find line docs resource \""
-operator|+
 name|path
-operator|+
-literal|"\""
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 if|if
 condition|(
 name|path
-operator|.
-name|toString
-argument_list|()
 operator|.
 name|endsWith
 argument_list|(
