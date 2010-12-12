@@ -215,7 +215,7 @@ comment|// NOTE: it's possible that all documents seen in this segment
 comment|// hit non-aborting exceptions, in which case we will
 comment|// not have yet init'd the TermVectorsWriter.  This is
 comment|// actually OK (unlike in the stored fields case)
-comment|// because, although IieldInfos.hasVectors() will return
+comment|// because, although FieldInfos.hasVectors() will return
 comment|// true, the TermVectorsReader gracefully handles
 comment|// non-existence of the term vectors files.
 if|if
