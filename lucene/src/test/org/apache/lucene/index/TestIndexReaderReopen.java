@@ -72,6 +72,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -92,16 +102,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -112,7 +112,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Random
 import|;
 end_import
 
@@ -165,20 +165,6 @@ operator|.
 name|document
 operator|.
 name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
 operator|.
 name|Index
 import|;
@@ -197,6 +183,20 @@ operator|.
 name|Field
 operator|.
 name|Store
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
 import|;
 end_import
 
@@ -268,7 +268,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|AlreadyClosedException
 import|;
 end_import
 
@@ -282,21 +282,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|AlreadyClosedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
+name|Directory
 import|;
 end_import
 
@@ -325,6 +311,34 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
 import|;
 end_import
 
@@ -4335,12 +4349,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|// r might have changed because this is not a
-comment|// synchronized method. However we don't want
-comment|// to make it synchronized to test
-comment|// thread-safety of IndexReader.close().
-comment|// That's why we add refreshed also to
-comment|// readersToClose, because double closing is fine
 if|if
 condition|(
 name|refreshed
@@ -4354,13 +4362,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-name|readersToClose
-operator|.
-name|add
-argument_list|(
-name|refreshed
-argument_list|)
-expr_stmt|;
 block|}
 synchronized|synchronized
 init|(
@@ -4369,7 +4370,16 @@ init|)
 block|{
 name|wait
 argument_list|(
-literal|1000
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|1
+argument_list|,
+literal|100
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4452,7 +4462,16 @@ init|)
 block|{
 name|wait
 argument_list|(
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|1
+argument_list|,
 literal|100
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4716,6 +4735,7 @@ name|ReaderThreadTask
 block|{
 DECL|field|stopped
 specifier|protected
+specifier|volatile
 name|boolean
 name|stopped
 decl_stmt|;
