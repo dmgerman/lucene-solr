@@ -3524,29 +3524,29 @@ name|TermOrdValComparator
 extends|extends
 name|FieldComparator
 block|{
+comment|/** @lucene.internal */
 DECL|field|ords
-specifier|private
 specifier|final
 name|int
 index|[]
 name|ords
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|values
-specifier|private
 specifier|final
 name|BytesRef
 index|[]
 name|values
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|readerGen
-specifier|private
 specifier|final
 name|int
 index|[]
 name|readerGen
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|currentReaderGen
-specifier|private
 name|int
 name|currentReaderGen
 init|=
@@ -3564,31 +3564,31 @@ specifier|final
 name|String
 name|field
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|bottomSlot
-specifier|private
 name|int
 name|bottomSlot
 init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|bottomOrd
-specifier|private
 name|int
 name|bottomOrd
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|bottomSameReader
-specifier|private
 name|boolean
 name|bottomSameReader
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|bottomValue
-specifier|private
 name|BytesRef
 name|bottomValue
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|field|tempBR
-specifier|private
 specifier|final
 name|BytesRef
 name|tempBR
@@ -3783,12 +3783,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|// Base class for specialized (per bit width of the
-comment|// ords) per-segment comparator.  NOTE: this is messy;
-comment|// we do this only because hotspot can't reliably inline
-comment|// the underlying array access when looking up doc->ord
+comment|/** Base class for specialized (per bit width of the      * ords) per-segment comparator.  NOTE: this is messy;      * we do this only because hotspot can't reliably inline      * the underlying array access when looking up doc->ord      * @lucene.internal      */
 DECL|class|PerSegmentComparator
-specifier|private
 specifier|abstract
 class|class
 name|PerSegmentComparator
