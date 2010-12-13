@@ -2693,9 +2693,17 @@ literal|"id"
 argument_list|,
 literal|"1"
 argument_list|,
+literal|"const_s"
+argument_list|,
+literal|"xx"
+argument_list|,
 literal|"x_i"
 argument_list|,
 literal|"100"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"a"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2707,9 +2715,17 @@ literal|"id"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"const_s"
+argument_list|,
+literal|"xx"
+argument_list|,
 literal|"x_i"
 argument_list|,
 literal|"300"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"c"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2721,9 +2737,17 @@ literal|"id"
 argument_list|,
 literal|"3"
 argument_list|,
+literal|"const_s"
+argument_list|,
+literal|"xx"
+argument_list|,
 literal|"x_i"
 argument_list|,
 literal|"200"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"b"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2742,6 +2766,11 @@ name|String
 name|asc
 init|=
 literal|"/response/docs==[{'x_i':100},{'x_i':200},{'x_i':300}]"
+decl_stmt|;
+name|String
+name|threeonetwo
+init|=
+literal|"/response/docs==[{'x_i':200},{'x_i':100},{'x_i':300}]"
 decl_stmt|;
 name|String
 name|q
@@ -2783,7 +2812,7 @@ literal|"x_i"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"$x asc"
+literal|"const_s asc, $x asc"
 argument_list|,
 literal|"x"
 argument_list|,
@@ -2808,7 +2837,7 @@ literal|"x_i"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"$x asc, $y desc"
+literal|"$x asc, const_s asc, $y desc"
 argument_list|,
 literal|"x"
 argument_list|,
@@ -2837,7 +2866,7 @@ literal|"x_i"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"add( 10 , 10 ) asc, add(x_i , $const) desc"
+literal|"add( 10 , 10 ) asc, const_s asc, add(x_i , $const) desc"
 argument_list|,
 literal|"const"
 argument_list|,
@@ -2862,7 +2891,27 @@ literal|"x_i"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"{!key=foo}add(x_i,x_i) desc"
+literal|"const_s asc, {!key=foo}add(x_i,x_i) desc"
+argument_list|)
+argument_list|,
+name|desc
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|q
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"x_i"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"{!key=foo}add(x_i,x_i) desc, const_s asc"
 argument_list|)
 argument_list|,
 name|desc
@@ -2883,7 +2932,7 @@ literal|"x_i"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"{!key=bar}add(10,20) asc, {!key=foo}add(x_i,x_i) desc"
+literal|"{!key=bar}add(10,20) asc, const_s asc, {!key=foo}add(x_i,x_i) desc"
 argument_list|)
 argument_list|,
 name|desc
@@ -2916,6 +2965,100 @@ literal|"add(x_i,5)"
 argument_list|)
 argument_list|,
 name|desc
+argument_list|)
+expr_stmt|;
+comment|// no space between inlined localparams and sort order
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|q
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"x_i"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"{!key=bar v=$s1}asc,const_s asc,{!key=foo v=$s2}desc"
+argument_list|,
+literal|"s1"
+argument_list|,
+literal|"add(3,4)"
+argument_list|,
+literal|"s2"
+argument_list|,
+literal|"add(x_i,5)"
+argument_list|)
+argument_list|,
+name|desc
+argument_list|)
+expr_stmt|;
+comment|// field name that isn't a legal java Identifier
+comment|// and starts with a number to trick function parser
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|q
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"x_i"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"1_s asc"
+argument_list|)
+argument_list|,
+name|asc
+argument_list|)
+expr_stmt|;
+comment|// really ugly field name that isn't a java Id, and can't be
+comment|// parsed as a func, but sorted fine in Solr 1.4
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|q
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"x_i"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"[]_s asc, {!key=foo}add(x_i,x_i) desc"
+argument_list|)
+argument_list|,
+name|desc
+argument_list|)
+expr_stmt|;
+comment|// use localparms to sort by a lucene query, then a function
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|q
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"x_i"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"{!lucene v='id:3'}desc, {!key=foo}add(x_i,x_i) asc"
+argument_list|)
+argument_list|,
+name|threeonetwo
 argument_list|)
 expr_stmt|;
 block|}
