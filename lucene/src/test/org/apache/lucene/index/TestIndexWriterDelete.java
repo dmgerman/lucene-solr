@@ -3627,6 +3627,9 @@ name|failed
 init|=
 literal|false
 decl_stmt|;
+name|Thread
+name|thread
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -3636,6 +3639,13 @@ name|Failure
 name|reset
 parameter_list|()
 block|{
+name|thread
+operator|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+expr_stmt|;
 name|sawMaybe
 operator|=
 literal|false
@@ -3660,6 +3670,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|!=
+name|thread
+condition|)
+block|{
+comment|// don't fail during merging
+return|return;
+block|}
 if|if
 condition|(
 name|sawMaybe
