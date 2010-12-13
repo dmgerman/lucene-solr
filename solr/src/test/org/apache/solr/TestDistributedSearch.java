@@ -923,6 +923,27 @@ argument_list|,
 literal|"*,score"
 argument_list|)
 expr_stmt|;
+comment|// test that a single NOW value is propagated to all shards... if that is true
+comment|// then the primary sort should always be a tie and then the secondary should always decide
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!func}ms(NOW)"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"score desc,"
+operator|+
+name|i1
+operator|+
+literal|" desc"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|)
+expr_stmt|;
 name|query
 argument_list|(
 literal|"q"

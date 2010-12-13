@@ -2362,6 +2362,27 @@ argument_list|,
 literal|"//float[@name='score']='0.0'"
 argument_list|)
 expr_stmt|;
+comment|// test that we can specify "NOW"
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!func}ms(NOW)"
+argument_list|,
+literal|"NOW"
+argument_list|,
+literal|"1000"
+argument_list|)
+argument_list|,
+literal|"//float[@name='score']='1000.0'"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
