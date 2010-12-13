@@ -328,16 +328,6 @@ operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|d
-operator|.
-name|fileExists
-argument_list|(
-name|idxName
-argument_list|)
-condition|)
-block|{
 name|tvx
 operator|=
 name|d
@@ -522,18 +512,6 @@ literal|" docStoreOffset="
 operator|+
 name|docStoreOffset
 assert|;
-block|}
-block|}
-else|else
-block|{
-comment|// If all documents flushed in a segment had hit
-comment|// non-aborting exceptions, it's possible that
-comment|// FieldInfos.hasVectors returns true yet the term
-comment|// vector files don't exist.
-name|format
-operator|=
-literal|0
-expr_stmt|;
 block|}
 name|this
 operator|.

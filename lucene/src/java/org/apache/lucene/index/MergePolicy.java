@@ -134,6 +134,11 @@ name|boolean
 name|mergeDocStores
 decl_stmt|;
 comment|// used by IndexWriter
+DECL|field|hasVectors
+name|boolean
+name|hasVectors
+decl_stmt|;
+comment|// used by IndexWriter
 DECL|field|optimize
 name|boolean
 name|optimize
@@ -505,6 +510,19 @@ operator|.
 name|append
 argument_list|(
 literal|" [mergeDocStores]"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|aborted
+condition|)
+block|{
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" [ABORTED]"
 argument_list|)
 expr_stmt|;
 block|}

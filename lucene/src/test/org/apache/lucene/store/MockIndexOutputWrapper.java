@@ -468,6 +468,17 @@ operator|+
 literal|": MDW: now throw fake disk full"
 argument_list|)
 expr_stmt|;
+operator|new
+name|Throwable
+argument_list|()
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 throw|throw
 operator|new

@@ -132,6 +132,17 @@ init|=
 operator|-
 literal|10
 decl_stmt|;
+comment|/** Each segment records whether it has term vectors */
+DECL|field|FORMAT_HAS_VECTORS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_HAS_VECTORS
+init|=
+operator|-
+literal|11
+decl_stmt|;
 comment|/** This must always point to the most recent file format.    * whenever you add a new format, make it 1 smaller (negative version logic)! */
 DECL|field|FORMAT_CURRENT
 specifier|public
@@ -140,7 +151,7 @@ specifier|final
 name|int
 name|FORMAT_CURRENT
 init|=
-name|FORMAT_4_0
+name|FORMAT_HAS_VECTORS
 decl_stmt|;
 comment|/** This must always point to the first supported file format. */
 DECL|field|FORMAT_MINIMUM

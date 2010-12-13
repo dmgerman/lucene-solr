@@ -1625,7 +1625,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"closeDocStore: files="
+literal|"closeDocStore: openFiles="
 operator|+
 name|openFiles
 operator|+
@@ -2777,6 +2777,8 @@ argument_list|,
 name|flushState
 operator|.
 name|segmentCodecs
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 if|if
@@ -2804,6 +2806,11 @@ name|docStoreOffset
 argument_list|)
 expr_stmt|;
 block|}
+name|boolean
+name|hasVectors
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|closeDocStore
@@ -2825,6 +2832,12 @@ name|segmentInfos
 argument_list|)
 expr_stmt|;
 block|}
+name|hasVectors
+operator||=
+name|flushState
+operator|.
+name|hasVectors
+expr_stmt|;
 if|if
 condition|(
 name|numDocsInRAM
@@ -2930,6 +2943,54 @@ argument_list|,
 name|flushState
 argument_list|)
 expr_stmt|;
+name|hasVectors
+operator||=
+name|flushState
+operator|.
+name|hasVectors
+expr_stmt|;
+if|if
+condition|(
+name|hasVectors
+condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"new segment has vectors"
+argument_list|)
+expr_stmt|;
+block|}
+name|newSegment
+operator|.
+name|setHasVectors
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"new segment has no vectors"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|infoStream

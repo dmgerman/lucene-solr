@@ -275,7 +275,16 @@ decl_stmt|;
 name|long
 name|diskFree
 init|=
-literal|200
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|100
+argument_list|,
+literal|300
+argument_list|)
 decl_stmt|;
 while|while
 condition|(
@@ -613,7 +622,16 @@ expr_stmt|;
 comment|// Now try again w/ more space:
 name|diskFree
 operator|+=
-literal|500
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|400
+argument_list|,
+literal|600
+argument_list|)
 expr_stmt|;
 block|}
 else|else

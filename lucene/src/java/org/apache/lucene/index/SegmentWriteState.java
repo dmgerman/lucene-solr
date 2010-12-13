@@ -111,6 +111,11 @@ specifier|public
 name|int
 name|numDocsInStore
 decl_stmt|;
+DECL|field|hasVectors
+specifier|public
+name|boolean
+name|hasVectors
+decl_stmt|;
 DECL|field|flushedFiles
 specifier|public
 specifier|final
