@@ -234,6 +234,13 @@ name|startsWith
 argument_list|(
 literal|"IBM"
 argument_list|)
+operator|||
+name|vendor
+operator|.
+name|startsWith
+argument_list|(
+literal|"Apple"
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// if we are not the fork
