@@ -5469,7 +5469,9 @@ name|random
 init|=
 operator|new
 name|Random
-argument_list|()
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 DECL|field|name
 specifier|private
