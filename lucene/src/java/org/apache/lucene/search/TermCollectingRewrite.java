@@ -374,6 +374,10 @@ literal|null
 operator|&&
 name|newTermComp
 operator|!=
+literal|null
+operator|&&
+name|newTermComp
+operator|!=
 name|lastTermComp
 condition|)
 throw|throw
