@@ -1467,9 +1467,7 @@ expr_stmt|;
 name|Random
 name|r
 init|=
-operator|new
-name|Random
-argument_list|()
+name|random
 decl_stmt|;
 for|for
 control|(

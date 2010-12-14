@@ -271,6 +271,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// specific seed for reproducible perf testing
 DECL|field|nDocs
 name|int
 name|nDocs
