@@ -2313,7 +2313,7 @@ name|testsFailed
 condition|)
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
@@ -5277,7 +5277,7 @@ parameter_list|()
 block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
