@@ -519,6 +519,13 @@ name|FieldsProducer
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -633,6 +640,53 @@ name|codec
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// If we hit exception (eg, IOE because writer was
+comment|// committing, or, for any other reason) we must
+comment|// go back and close all FieldsProducers we opened:
+for|for
+control|(
+name|FieldsProducer
+name|fp
+range|:
+name|producers
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+try|try
+block|{
+name|fp
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Suppress all exceptions here so we continue
+comment|// to throw the original one
+block|}
+block|}
 block|}
 block|}
 block|}
