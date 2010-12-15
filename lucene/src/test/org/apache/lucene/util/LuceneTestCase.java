@@ -4162,6 +4162,27 @@ name|length
 argument_list|)
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|fsdirClass
+operator|.
+name|indexOf
+argument_list|(
+literal|"."
+argument_list|)
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|// if not fully qualified, assume .store
+name|fsdirClass
+operator|=
+literal|"org.apache.lucene.store."
+operator|+
+name|fsdirClass
+expr_stmt|;
+block|}
 name|clazz
 operator|=
 name|Class
