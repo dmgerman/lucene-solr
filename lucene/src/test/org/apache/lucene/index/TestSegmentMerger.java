@@ -462,6 +462,9 @@ literal|false
 argument_list|,
 name|merger
 operator|.
+name|fieldInfos
+argument_list|()
+operator|.
 name|hasProx
 argument_list|()
 argument_list|,
@@ -471,6 +474,9 @@ name|getSegmentCodecs
 argument_list|()
 argument_list|,
 name|merger
+operator|.
+name|fieldInfos
+argument_list|()
 operator|.
 name|hasVectors
 argument_list|()
