@@ -1019,6 +1019,7 @@ name|any
 operator|=
 literal|true
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|infoStream
@@ -1035,7 +1036,6 @@ operator|+
 literal|" docIDs"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
