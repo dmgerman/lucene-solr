@@ -2639,7 +2639,7 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    * @lucene.experimental */
+comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    *  The returned instance has been safely published for use by    *  multiple threads without additional synchronization.    * @lucene.experimental */
 DECL|method|getDeletedDocs
 specifier|public
 specifier|abstract
