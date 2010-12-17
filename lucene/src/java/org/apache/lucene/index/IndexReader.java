@@ -3228,6 +3228,7 @@ throw|;
 block|}
 DECL|field|fields
 specifier|private
+specifier|volatile
 name|Fields
 name|fields
 decl_stmt|;

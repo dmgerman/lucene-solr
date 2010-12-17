@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -63,6 +53,18 @@ operator|.
 name|util
 operator|.
 name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
 import|;
 end_import
 
@@ -169,7 +171,7 @@ argument_list|>
 name|terms
 init|=
 operator|new
-name|HashMap
+name|ConcurrentHashMap
 argument_list|<
 name|String
 argument_list|,
@@ -1257,21 +1259,25 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
 name|Terms
 name|result
-decl_stmt|;
-if|if
-condition|(
-operator|!
+init|=
 name|terms
 operator|.
-name|containsKey
+name|get
 argument_list|(
 name|field
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|result
+operator|!=
+literal|null
 condition|)
-block|{
+return|return
+name|result
+return|;
 comment|// Lazy init: first time this field is requested, we
 comment|// create& add to terms:
 specifier|final
@@ -1378,6 +1384,8 @@ name|result
 operator|=
 literal|null
 expr_stmt|;
+comment|// don't cache this case with an unbounded cache, since the number of fields that don't exist
+comment|// is unbounded.
 block|}
 else|else
 block|{
@@ -1407,7 +1415,6 @@ name|EMPTY_ARRAY
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|terms
 operator|.
 name|put
@@ -1415,18 +1422,6 @@ argument_list|(
 name|field
 argument_list|,
 name|result
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|result
-operator|=
-name|terms
-operator|.
-name|get
-argument_list|(
-name|field
 argument_list|)
 expr_stmt|;
 block|}
