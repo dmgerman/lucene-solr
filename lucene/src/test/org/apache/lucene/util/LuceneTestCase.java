@@ -2095,11 +2095,36 @@ name|void
 name|afterClassLuceneTestCaseJ4
 parameter_list|()
 block|{
+name|int
+name|rogueThreads
+init|=
 name|threadCleanup
 argument_list|(
 literal|"test class"
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|rogueThreads
+operator|>
+literal|0
+condition|)
+block|{
+comment|// TODO: fail here once the leaks are fixed.
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"RESOURCE LEAK: test class left "
+operator|+
+name|rogueThreads
+operator|+
+literal|" thread(s) running"
+argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|codecDescription
 decl_stmt|;
@@ -2764,6 +2789,10 @@ argument_list|(
 literal|"org.apache.solr"
 argument_list|)
 condition|)
+block|{
+name|int
+name|rogueThreads
+init|=
 name|threadCleanup
 argument_list|(
 literal|"test method: '"
@@ -2773,7 +2802,50 @@ argument_list|()
 operator|+
 literal|"'"
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|rogueThreads
+operator|>
+literal|0
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"RESOURCE LEAK: test method: '"
+operator|+
+name|getName
+argument_list|()
+operator|+
+literal|"' left "
+operator|+
+name|rogueThreads
+operator|+
+literal|" thread(s) running"
+argument_list|)
 expr_stmt|;
+comment|// TODO: fail, but print seed for now.
+if|if
+condition|(
+operator|!
+name|testsFailed
+operator|&&
+name|uncaughtExceptions
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|reportAdditionalFailureInfo
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
 name|Thread
 operator|.
 name|setDefaultUncaughtExceptionHandler
@@ -2913,22 +2985,17 @@ name|Boolean
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**    * Looks for leftover running threads, trying to kill them off,    * so they don't fail future tests.    * returns the number of rogue threads that it found.    */
 DECL|method|threadCleanup
 specifier|private
 specifier|static
-name|void
+name|int
 name|threadCleanup
 parameter_list|(
 name|String
 name|context
 parameter_list|)
 block|{
-comment|// we will only actually fail() after all cleanup has happened!
-name|boolean
-name|shouldFail
-init|=
-literal|false
-decl_stmt|;
 comment|// educated guess
 name|Thread
 index|[]
@@ -3085,10 +3152,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|shouldFail
-operator|=
-literal|true
-expr_stmt|;
 name|rogueCount
 operator|++
 expr_stmt|;
@@ -3160,35 +3223,9 @@ block|}
 block|}
 block|}
 block|}
-if|if
-condition|(
-name|shouldFail
-operator|&&
-operator|!
-name|testsFailed
-comment|/* don't be loud if the test failed, maybe it didnt join() etc */
-condition|)
-block|{
-comment|// TODO: we can't fail until we fix contrib and solr
-comment|//fail("test '" + getName() + "' left " + rogueCount + " thread(s) running");
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"RESOURCE LEAK: "
-operator|+
-name|context
-operator|+
-literal|" left "
-operator|+
+return|return
 name|rogueCount
-operator|+
-literal|" thread(s) running"
-argument_list|)
-expr_stmt|;
-block|}
+return|;
 block|}
 comment|/**    * Asserts that FieldCacheSanityChecker does not detect any    * problems with FieldCache.DEFAULT.    *<p>    * If any problems are found, they are logged to System.err    * (allong with the msg) when the Assertion is thrown.    *</p>    *<p>    * This method is called by tearDown after every test method,    * however IndexReaders scoped inside test methods may be garbage    * collected prior to this method being called, causing errors to    * be overlooked. Tests are encouraged to keep their IndexReaders    * scoped at the class level, or to explicitly call this method    * directly in the same scope as the IndexReader.    *</p>    *    * @see FieldCacheSanityChecker    */
 DECL|method|assertSaneFieldCaches
