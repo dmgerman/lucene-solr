@@ -1022,6 +1022,10 @@ name|getDefault
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+operator|new
+name|FieldInfos
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|merger

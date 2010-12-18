@@ -387,11 +387,6 @@ name|boolean
 name|aborting
 decl_stmt|;
 comment|// True if an abort is pending
-DECL|field|docFieldProcessor
-specifier|private
-name|DocFieldProcessor
-name|docFieldProcessor
-decl_stmt|;
 DECL|field|infoStream
 name|PrintStream
 name|infoStream
@@ -961,21 +956,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|consumer
-operator|instanceof
-name|DocFieldProcessor
-condition|)
-block|{
-name|docFieldProcessor
-operator|=
-operator|(
-name|DocFieldProcessor
-operator|)
-name|consumer
-expr_stmt|;
-block|}
 block|}
 comment|// Buffer a specific docID for deletion.  Currently only
 comment|// used when we hit a exception when adding a document
@@ -1202,27 +1182,6 @@ parameter_list|()
 block|{
 return|return
 name|fieldInfos
-return|;
-block|}
-comment|/** Returns true if any of the fields in the current    *  buffered docs have omitTermFreqAndPositions==false */
-DECL|method|hasProx
-name|boolean
-name|hasProx
-parameter_list|()
-block|{
-return|return
-operator|(
-name|docFieldProcessor
-operator|!=
-literal|null
-operator|)
-condition|?
-name|fieldInfos
-operator|.
-name|hasProx
-argument_list|()
-else|:
-literal|true
 return|;
 block|}
 comment|/** If non-null, various details of indexing are printed    *  here. */
@@ -2188,6 +2147,8 @@ name|directory
 argument_list|,
 literal|false
 argument_list|,
+name|fieldInfos
+operator|.
 name|hasProx
 argument_list|()
 argument_list|,

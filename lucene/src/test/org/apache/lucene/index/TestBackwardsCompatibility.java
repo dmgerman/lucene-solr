@@ -1532,6 +1532,26 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: oldName="
+operator|+
+name|oldNames
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 name|unzip
 argument_list|(
 name|getDataFile
@@ -2229,6 +2249,19 @@ name|APPEND
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// add 10 docs
 for|for
 control|(
