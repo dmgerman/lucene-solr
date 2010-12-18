@@ -1647,8 +1647,6 @@ argument_list|(
 literal|false
 argument_list|,
 literal|true
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 comment|// create a 2nd index
@@ -2094,8 +2092,6 @@ operator|.
 name|flush
 argument_list|(
 literal|false
-argument_list|,
-literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -3333,8 +3329,6 @@ operator|!
 name|optimize
 argument_list|,
 literal|true
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -3416,8 +3410,6 @@ operator|.
 name|flush
 argument_list|(
 literal|false
-argument_list|,
-literal|true
 argument_list|,
 literal|true
 argument_list|)

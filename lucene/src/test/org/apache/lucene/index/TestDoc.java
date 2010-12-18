@@ -1076,13 +1076,6 @@ name|dir
 argument_list|,
 name|useCompoundFile
 argument_list|,
-operator|-
-literal|1
-argument_list|,
-literal|null
-argument_list|,
-literal|false
-argument_list|,
 name|merger
 operator|.
 name|fieldInfos

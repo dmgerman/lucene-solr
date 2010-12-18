@@ -129,11 +129,6 @@ name|SegmentInfo
 name|info
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|mergeDocStores
-name|boolean
-name|mergeDocStores
-decl_stmt|;
-comment|// used by IndexWriter
 DECL|field|optimize
 name|boolean
 name|optimize
@@ -495,19 +490,6 @@ argument_list|(
 literal|" [optimize]"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|mergeDocStores
-condition|)
-block|{
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" [mergeDocStores]"
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|aborted
@@ -953,17 +935,6 @@ name|newSegment
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/**    * Returns true if the doc store files should use the    * compound file format.    */
-DECL|method|useCompoundDocStore
-specifier|public
-specifier|abstract
-name|boolean
-name|useCompoundDocStore
-parameter_list|(
-name|SegmentInfos
-name|segments
-parameter_list|)
 function_decl|;
 block|}
 end_class

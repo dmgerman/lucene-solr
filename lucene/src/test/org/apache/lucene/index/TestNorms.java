@@ -773,13 +773,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|lmp
-operator|.
-name|setUseCompoundDocStore
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|iw
 operator|.
 name|close
@@ -1171,13 +1164,6 @@ expr_stmt|;
 name|lmp
 operator|.
 name|setUseCompoundFile
-argument_list|(
-name|compound
-argument_list|)
-expr_stmt|;
-name|lmp
-operator|.
-name|setUseCompoundDocStore
 argument_list|(
 name|compound
 argument_list|)
