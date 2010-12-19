@@ -8874,35 +8874,6 @@ name|isAborted
 argument_list|()
 condition|)
 return|return;
-name|boolean
-name|hasVectors
-init|=
-literal|false
-decl_stmt|;
-for|for
-control|(
-name|SegmentInfo
-name|sourceSegment
-range|:
-name|merge
-operator|.
-name|segments
-control|)
-block|{
-if|if
-condition|(
-name|sourceSegment
-operator|.
-name|getHasVectors
-argument_list|()
-condition|)
-block|{
-name|hasVectors
-operator|=
-literal|true
-expr_stmt|;
-block|}
-block|}
 comment|// Bind a new segment name here so even with
 comment|// ConcurrentMergePolicy we keep deterministic segment
 comment|// names.
@@ -8926,7 +8897,7 @@ literal|false
 argument_list|,
 literal|null
 argument_list|,
-name|hasVectors
+literal|false
 argument_list|)
 expr_stmt|;
 name|Map
@@ -9780,6 +9751,21 @@ argument_list|()
 operator|)
 argument_list|)
 decl_stmt|;
+name|merge
+operator|.
+name|info
+operator|.
+name|setHasVectors
+argument_list|(
+name|merger
+operator|.
+name|fieldInfos
+argument_list|()
+operator|.
+name|hasVectors
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|merge
 operator|.
 name|readers
