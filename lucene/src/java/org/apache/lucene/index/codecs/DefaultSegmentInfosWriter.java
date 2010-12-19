@@ -121,17 +121,6 @@ init|=
 operator|-
 literal|9
 decl_stmt|;
-comment|/** Each segment records whether its postings are written    *  in the new flex format */
-DECL|field|FORMAT_4_0
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORMAT_4_0
-init|=
-operator|-
-literal|11
-decl_stmt|;
 comment|/** Each segment records whether it has term vectors */
 DECL|field|FORMAT_HAS_VECTORS
 specifier|public
@@ -142,6 +131,17 @@ name|FORMAT_HAS_VECTORS
 init|=
 operator|-
 literal|10
+decl_stmt|;
+comment|/** Each segment records whether its postings are written    *  in the new flex format */
+DECL|field|FORMAT_4_0
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_4_0
+init|=
+operator|-
+literal|11
 decl_stmt|;
 comment|/** This must always point to the most recent file format.    * whenever you add a new format, make it 1 smaller (negative version logic)! */
 DECL|field|FORMAT_CURRENT
