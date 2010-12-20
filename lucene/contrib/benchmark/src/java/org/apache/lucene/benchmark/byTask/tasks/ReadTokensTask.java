@@ -130,6 +130,20 @@ name|Fieldable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|NumericField
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple task to test performance of tokenizers.  It just  * creates a token stream for each field of the document and  * read all tokens out of that stream.  */
 end_comment
@@ -297,6 +311,10 @@ name|field
 operator|.
 name|isTokenized
 argument_list|()
+operator|||
+name|field
+operator|instanceof
+name|NumericField
 condition|)
 continue|continue;
 specifier|final
