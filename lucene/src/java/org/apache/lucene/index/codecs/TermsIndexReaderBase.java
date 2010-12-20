@@ -154,7 +154,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Call this sequentially for each term encoutered,      *  after calling {@link #getIndexOffset}. */
+comment|/** Call this sequentially for each term encountered,      *  after calling {@link #getIndexOffset}. */
 DECL|method|isIndexTerm
 specifier|public
 specifier|abstract
