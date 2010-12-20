@@ -437,9 +437,9 @@ name|CODEC_NAME
 argument_list|,
 name|VERSION_CURRENT
 argument_list|,
-literal|false
+literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|,
 operator|new
 name|ByteBlockPool
@@ -467,7 +467,8 @@ operator|.
 name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
-comment|// TODO BytesRefHash uses bytes too!
+comment|// TODO BytesRefHash
+comment|// uses bytes too!
 block|}
 annotation|@
 name|Override
@@ -509,9 +510,6 @@ operator|=
 name|bytes
 operator|.
 name|length
-expr_stmt|;
-name|initDataOut
-argument_list|()
 expr_stmt|;
 name|datOut
 operator|.
@@ -669,17 +667,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
-name|datOut
+name|size
 operator|==
-literal|null
+operator|-
+literal|1
 condition|)
-comment|// no added data
-return|return;
-name|initIndexOut
-argument_list|()
+block|{
+name|datOut
+operator|.
+name|writeInt
+argument_list|(
+name|size
+argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|count
@@ -796,6 +801,9 @@ operator|.
 name|finish
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|hash
 operator|.
 name|close
@@ -828,6 +836,7 @@ name|docToID
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|class|Reader
@@ -872,8 +881,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|size
 operator|=
 name|datIn
@@ -881,17 +888,6 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
 block|}
 annotation|@
 name|Override

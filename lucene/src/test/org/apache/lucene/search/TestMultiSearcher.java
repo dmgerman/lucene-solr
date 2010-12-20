@@ -1895,6 +1895,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/* uncomment this when the highest score is always normalized to 1.0, even when it was< 1.0  public void testNormalization1() throws IOException {      testNormalization(1, "Using 1 document per index:");  }   */
 DECL|method|testNormalization10

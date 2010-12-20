@@ -941,6 +941,11 @@ name|field
 operator|.
 name|getOmitTermFreqAndPositions
 argument_list|()
+argument_list|,
+name|field
+operator|.
+name|docValuesType
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|fp

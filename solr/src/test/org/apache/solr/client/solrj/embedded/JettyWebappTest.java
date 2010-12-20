@@ -274,7 +274,12 @@ name|HashSessionIdManager
 argument_list|(
 operator|new
 name|Random
+argument_list|(
+name|random
+operator|.
+name|nextLong
 argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

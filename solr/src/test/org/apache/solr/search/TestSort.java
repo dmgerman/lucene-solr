@@ -224,9 +224,7 @@ DECL|field|r
 name|Random
 name|r
 init|=
-operator|new
-name|Random
-argument_list|()
+name|random
 decl_stmt|;
 DECL|field|ndocs
 name|int

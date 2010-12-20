@@ -126,6 +126,24 @@ name|TestQuerySenderListener
 extends|extends
 name|SolrTestCaseJ4
 block|{
+comment|// number of instances configured in the solrconfig.xml
+DECL|field|EXPECTED_MOCK_LISTENER_INSTANCES
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|EXPECTED_MOCK_LISTENER_INSTANCES
+init|=
+literal|4
+decl_stmt|;
+DECL|field|preInitMockListenerCount
+specifier|private
+specifier|static
+name|int
+name|preInitMockListenerCount
+init|=
+literal|0
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -137,11 +155,51 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// record current value prior to core initialization
+comment|// so we can verify the correct number of instances later
+comment|// NOTE: this won't work properly if concurrent tests run
+comment|// in the same VM
+name|preInitMockListenerCount
+operator|=
+name|MockEventListener
+operator|.
+name|getCreateCount
+argument_list|()
+expr_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig-querysender.xml"
 argument_list|,
 literal|"schema.xml"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testListenerCreationCounts
+specifier|public
+name|void
+name|testListenerCreationCounts
+parameter_list|()
+block|{
+name|SolrCore
+name|core
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Unexpected number of listeners created"
+argument_list|,
+name|EXPECTED_MOCK_LISTENER_INSTANCES
+argument_list|,
+name|MockEventListener
+operator|.
+name|getCreateCount
+argument_list|()
+operator|-
+name|preInitMockListenerCount
 argument_list|)
 expr_stmt|;
 block|}
@@ -164,7 +222,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|core
 operator|.
@@ -176,7 +234,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|core
 operator|.

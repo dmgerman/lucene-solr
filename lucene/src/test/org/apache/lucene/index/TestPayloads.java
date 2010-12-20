@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -250,9 +240,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|search
 operator|.
-name|Directory
+name|DocIdSetIterator
 import|;
 end_import
 
@@ -266,7 +256,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
+name|Directory
 import|;
 end_import
 
@@ -1131,7 +1121,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// first perform the test using a RAMDirectory
 name|Directory
 name|dir
 init|=
@@ -1141,43 +1130,6 @@ decl_stmt|;
 name|performTest
 argument_list|(
 name|dir
-argument_list|)
-expr_stmt|;
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// now use a FSDirectory and repeat same test
-name|File
-name|dirName
-init|=
-name|_TestUtil
-operator|.
-name|getTempDir
-argument_list|(
-literal|"test_payloads"
-argument_list|)
-decl_stmt|;
-name|dir
-operator|=
-name|FSDirectory
-operator|.
-name|open
-argument_list|(
-name|dirName
-argument_list|)
-expr_stmt|;
-name|performTest
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-name|_TestUtil
-operator|.
-name|rmDir
-argument_list|(
-name|dirName
 argument_list|)
 expr_stmt|;
 name|dir
@@ -1592,7 +1544,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -3398,7 +3350,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

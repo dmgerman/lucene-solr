@@ -556,16 +556,6 @@ specifier|protected
 name|SimpleOrderedMap
 name|facetResponse
 decl_stmt|;
-DECL|field|NOW
-specifier|public
-specifier|final
-name|Date
-name|NOW
-init|=
-operator|new
-name|Date
-argument_list|()
-decl_stmt|;
 comment|// per-facet values
 DECL|field|localParams
 name|SolrParams
@@ -4598,7 +4588,7 @@ name|ft
 operator|.
 name|parseMath
 argument_list|(
-name|NOW
+literal|null
 argument_list|,
 name|startS
 argument_list|)
@@ -4655,7 +4645,7 @@ name|ft
 operator|.
 name|parseMath
 argument_list|(
-name|NOW
+literal|null
 argument_list|,
 name|endS
 argument_list|)
@@ -4746,13 +4736,6 @@ operator|.
 name|US
 argument_list|)
 decl_stmt|;
-name|dmp
-operator|.
-name|setNow
-argument_list|(
-name|NOW
-argument_list|)
-expr_stmt|;
 specifier|final
 name|int
 name|minCount
@@ -5652,7 +5635,7 @@ name|DateRangeEndpointCalculator
 argument_list|(
 name|sf
 argument_list|,
-name|NOW
+literal|null
 argument_list|)
 expr_stmt|;
 block|}

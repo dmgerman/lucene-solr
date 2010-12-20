@@ -577,9 +577,7 @@ comment|//add a doc in the new index dir
 name|Directory
 name|dir
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|newDir
 argument_list|)
@@ -707,6 +705,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|newDir
 operator|.

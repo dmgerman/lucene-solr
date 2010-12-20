@@ -1352,6 +1352,19 @@ name|SolrQueryResponse
 argument_list|()
 decl_stmt|;
 comment|/* even for HEAD requests, we need to execute the handler to                  * ensure we don't get an error (and to make sure the correct                  * QueryResponseWriter is selected and we get the correct                  * Content-Type)                  */
+name|SolrRequestInfo
+operator|.
+name|setRequestInfo
+argument_list|(
+operator|new
+name|SolrRequestInfo
+argument_list|(
+name|solrReq
+argument_list|,
+name|solrRsp
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|execute
@@ -1514,6 +1527,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|SolrRequestInfo
+operator|.
+name|clearRequestInfo
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|// Otherwise let the webapp handle the request

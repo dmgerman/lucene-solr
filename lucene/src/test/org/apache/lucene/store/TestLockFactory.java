@@ -770,12 +770,10 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|FSDirectory
-name|fs1
+name|Directory
+name|dir
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|indexDir
 argument_list|,
@@ -789,7 +787,7 @@ init|=
 operator|new
 name|IndexWriter
 argument_list|(
-name|fs1
+name|dir
 argument_list|,
 operator|new
 name|IndexWriterConfig
@@ -827,7 +825,7 @@ name|WriterThread
 argument_list|(
 literal|100
 argument_list|,
-name|fs1
+name|dir
 argument_list|)
 decl_stmt|;
 name|SearcherThread
@@ -838,7 +836,7 @@ name|SearcherThread
 argument_list|(
 literal|100
 argument_list|,
-name|fs1
+name|dir
 argument_list|)
 decl_stmt|;
 name|writer
@@ -891,6 +889,11 @@ name|searcher
 operator|.
 name|hitException
 argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 comment|// Cleanup
 name|_TestUtil
@@ -1239,9 +1242,7 @@ decl_stmt|;
 name|Directory
 name|dir1
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|fdir1
 argument_list|,
@@ -1256,9 +1257,7 @@ comment|// same directory, but locks are stored somewhere else. The prefix of th
 name|Directory
 name|dir2
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|fdir1
 argument_list|,
@@ -1305,6 +1304,16 @@ argument_list|,
 name|prefix2
 argument_list|)
 expr_stmt|;
+name|dir1
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir2
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|_TestUtil
 operator|.
 name|rmDir
@@ -1344,9 +1353,7 @@ decl_stmt|;
 name|Directory
 name|dir
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|dirName
 argument_list|)
@@ -1370,6 +1377,11 @@ literal|null
 operator|==
 name|prefix
 argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|_TestUtil
 operator|.

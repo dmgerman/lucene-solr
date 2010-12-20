@@ -92,18 +92,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Close doc stores */
-DECL|method|closeDocStore
-specifier|abstract
-name|void
-name|closeDocStore
-parameter_list|(
-name|SegmentWriteState
-name|state
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Attempt to free RAM, returning true if any RAM was    *  freed */
 DECL|method|freeRAM
 specifier|abstract

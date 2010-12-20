@@ -83,17 +83,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|closeDocStore
-specifier|abstract
-name|void
-name|closeDocStore
-parameter_list|(
-name|SegmentWriteState
-name|state
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 DECL|method|abort
 specifier|abstract
 name|void

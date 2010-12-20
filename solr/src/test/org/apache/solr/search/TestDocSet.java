@@ -188,9 +188,7 @@ DECL|field|rand
 name|Random
 name|rand
 init|=
-operator|new
-name|Random
-argument_list|()
+name|random
 decl_stmt|;
 DECL|field|loadfactor
 name|float

@@ -589,14 +589,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|ConcurrentMergeScheduler
-operator|.
-name|anyUnhandledExceptions
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

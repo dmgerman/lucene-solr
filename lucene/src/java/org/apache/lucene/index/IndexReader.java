@@ -1710,7 +1710,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * If the directory does not exist or if there is no index in it.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    * @throws IOException if there is a problem with accessing the index    */
 DECL|method|indexExists
 specifier|public
 specifier|static
@@ -1723,17 +1723,31 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+try|try
+block|{
+operator|new
 name|SegmentInfos
+argument_list|()
 operator|.
-name|getCurrentSegmentGeneration
+name|read
 argument_list|(
 name|directory
 argument_list|)
-operator|!=
-operator|-
-literal|1
+expr_stmt|;
+return|return
+literal|true
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|/** Returns the number of documents in this index. */
 DECL|method|numDocs
@@ -2655,7 +2669,7 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    * @lucene.experimental */
+comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    *  The returned instance has been safely published for use by    *  multiple threads without additional synchronization.    * @lucene.experimental */
 DECL|method|getDeletedDocs
 specifier|public
 specifier|abstract
@@ -3282,6 +3296,7 @@ return|;
 block|}
 DECL|field|fields
 specifier|private
+specifier|volatile
 name|Fields
 name|fields
 decl_stmt|;

@@ -1890,7 +1890,7 @@ return|return
 name|code
 return|;
 block|}
-comment|/**    * Returns hash of chars in range start (inclusive) to    * end (inclusive)    */
+comment|/**    * Returns hash of bytes in range start (inclusive) to    * end (inclusive)    */
 DECL|method|hashCode
 specifier|public
 specifier|static
@@ -2038,6 +2038,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/* DISABLE THIS FOR NOW: This has performance problems until Java creates intrinsics for Class#getComponentType() and Array.newInstance()   public static<T> T[] grow(T[] array, int minSize) {     if (array.length< minSize) {       @SuppressWarnings("unchecked") final T[] newArray =         (T[]) Array.newInstance(array.getClass().getComponentType(), oversize(minSize, RamUsageEstimator.NUM_BYTES_OBJECT_REF));       System.arraycopy(array, 0, newArray, 0, array.length);       return newArray;     } else       return array;   }    public static<T> T[] grow(T[] array) {     return grow(array, 1 + array.length);   }    public static<T> T[] shrink(T[] array, int targetSize) {     final int newSize = getShrinkSize(array.length, targetSize, RamUsageEstimator.NUM_BYTES_OBJECT_REF);     if (newSize != array.length) {       @SuppressWarnings("unchecked") final T[] newArray =         (T[]) Array.newInstance(array.getClass().getComponentType(), newSize);       System.arraycopy(array, 0, newArray, 0, newSize);       return newArray;     } else       return array;   }   */
 comment|// Since Arrays.equals doesn't implement offsets for equals
 comment|/**    * See if two array slices are the same.    *    * @param left        The left array to compare    * @param offsetLeft  The offset into the array.  Must be positive    * @param right       The right array to compare    * @param offsetRight the offset into the right array.  Must be positive    * @param length      The length of the section of the array to compare    * @return true if the two arrays, starting at their respective offsets, are equal    *     * @see java.util.Arrays#equals(char[], char[])    */
 DECL|method|equals

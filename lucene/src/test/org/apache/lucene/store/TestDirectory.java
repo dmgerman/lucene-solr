@@ -91,47 +91,38 @@ throws|throws
 name|Throwable
 block|{
 name|Directory
-name|dir
+index|[]
+name|dirs
 init|=
+operator|new
+name|Directory
+index|[]
+block|{
 operator|new
 name|RAMDirectory
 argument_list|()
-decl_stmt|;
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-name|dir
-operator|.
-name|createOutput
-argument_list|(
-literal|"test"
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AlreadyClosedException
-name|ace
-parameter_list|)
-block|{     }
-name|dir
-operator|=
-name|FSDirectory
-operator|.
-name|open
+block|,
+operator|new
+name|SimpleFSDirectory
 argument_list|(
 name|TEMP_DIR
 argument_list|)
-expr_stmt|;
+block|,
+operator|new
+name|NIOFSDirectory
+argument_list|(
+name|TEMP_DIR
+argument_list|)
+block|}
+decl_stmt|;
+for|for
+control|(
+name|Directory
+name|dir
+range|:
+name|dirs
+control|)
+block|{
 name|dir
 operator|.
 name|close
@@ -157,7 +148,8 @@ parameter_list|(
 name|AlreadyClosedException
 name|ace
 parameter_list|)
-block|{     }
+block|{       }
+block|}
 block|}
 comment|// Test that different instances of FSDirectory can coexist on the same
 comment|// path, can read, write, and lock files.
@@ -698,9 +690,7 @@ name|IOException
 block|{
 name|checkDirectoryFilter
 argument_list|(
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 operator|new
 name|File

@@ -209,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Stores ints packed with fixed-bit precision.  *   * @lucene.experimental  * */
+comment|/**  * Stores ints packed with fixed-bit precision.  *   * @lucene.experimental  * */
 end_comment
 
 begin_class
@@ -276,12 +276,6 @@ specifier|private
 name|boolean
 name|started
 decl_stmt|;
-DECL|field|dir
-specifier|private
-specifier|final
-name|Directory
-name|dir
-decl_stmt|;
 DECL|field|id
 specifier|private
 specifier|final
@@ -308,6 +302,11 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+DECL|field|datOut
+specifier|private
+name|IndexOutput
+name|datOut
+decl_stmt|;
 DECL|method|IntsWriter
 specifier|protected
 name|IntsWriter
@@ -328,12 +327,6 @@ name|super
 argument_list|(
 name|bytesUsed
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|dir
-operator|=
-name|dir
 expr_stmt|;
 name|this
 operator|.
@@ -358,7 +351,37 @@ operator|.
 name|NUM_BYTES_LONG
 argument_list|)
 expr_stmt|;
-comment|// TODO the bitset needs memory too
+comment|// TODO the bitset
+comment|// needs memory too
+name|datOut
+operator|=
+name|dir
+operator|.
+name|createOutput
+argument_list|(
+name|IndexFileNames
+operator|.
+name|segmentFileName
+argument_list|(
+name|id
+argument_list|,
+literal|""
+argument_list|,
+name|DATA_EXTENSION
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|CodecUtil
+operator|.
+name|writeHeader
+argument_list|(
+name|datOut
+argument_list|,
+name|CODEC_NAME
+argument_list|,
+name|VERSION_CURRENT
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -519,43 +542,21 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
 operator|!
 name|started
 condition|)
-return|return;
-specifier|final
-name|IndexOutput
-name|datOut
-init|=
-name|dir
-operator|.
-name|createOutput
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|id
-argument_list|,
-literal|""
-argument_list|,
-name|DATA_EXTENSION
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|CodecUtil
-operator|.
-name|writeHeader
-argument_list|(
-name|datOut
-argument_list|,
-name|CODEC_NAME
-argument_list|,
-name|VERSION_CURRENT
-argument_list|)
+block|{
+name|minValue
+operator|=
+name|maxValue
+operator|=
+literal|0
 expr_stmt|;
+block|}
 comment|// TODO -- long can't work right since it's signed
 name|datOut
 operator|.
@@ -564,7 +565,8 @@ argument_list|(
 name|minValue
 argument_list|)
 expr_stmt|;
-comment|// write a default value to recognize docs without a value for that field
+comment|// write a default value to recognize docs without a value for that
+comment|// field
 specifier|final
 name|long
 name|defaultValue
@@ -615,12 +617,17 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-assert|assert
+name|lastDocId
+operator|++
+expr_stmt|;
+if|if
+condition|(
 name|firstDoc
-operator|>=
-literal|0
-assert|;
-comment|// we have at lest one value!
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -645,9 +652,6 @@ argument_list|)
 expr_stmt|;
 comment|// fill with defaults until first bit set
 block|}
-name|lastDocId
-operator|++
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -707,6 +711,7 @@ expr_stmt|;
 comment|// fill all gaps
 block|}
 block|}
+block|}
 for|for
 control|(
 name|int
@@ -735,6 +740,9 @@ operator|.
 name|finish
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|datOut
 operator|.
 name|close
@@ -760,6 +768,7 @@ name|docToValue
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

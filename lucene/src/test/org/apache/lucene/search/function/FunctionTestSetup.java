@@ -385,6 +385,21 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: setUp"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// prepare a small index with just a few documents.
 name|dir
 operator|=
@@ -442,6 +457,21 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
+name|iw
+operator|.
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// add docs not exactly in natural ID order, to verify we do check the order of docs by scores
 name|int
 name|remaining
@@ -524,6 +554,21 @@ operator|!
 name|doMultiSegment
 condition|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: setUp optimize"
+argument_list|)
+expr_stmt|;
+block|}
 name|iw
 operator|.
 name|optimize
@@ -535,6 +580,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: setUp done close"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|addDoc
 specifier|private

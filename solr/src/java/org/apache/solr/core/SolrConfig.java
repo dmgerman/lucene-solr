@@ -1179,6 +1179,10 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// this is hackish, since it picks up all SolrEventListeners,
+comment|// regardless of when/how/why thye are used (or even if they are
+comment|// declared outside of the appropriate context) but there's no nice
+comment|// way arround that in the PluginInfo framework
 name|loadPluginInfo
 argument_list|(
 name|SolrEventListener
