@@ -2369,12 +2369,25 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|long
+name|newSegmentSizeNoStore
+init|=
+name|newSegment
+operator|.
+name|sizeInBytes
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
+specifier|final
+name|long
 name|newSegmentSize
 init|=
 name|newSegment
 operator|.
 name|sizeInBytes
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|message
 argument_list|(
@@ -2408,6 +2421,21 @@ argument_list|)
 operator|+
 literal|" MB"
 operator|+
+literal|" ("
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|newSegmentSizeNoStore
+operator|/
+literal|1024
+operator|/
+literal|1024
+argument_list|)
+operator|+
+literal|" MB w/o doc stores)"
+operator|+
 literal|" docs/MB="
 operator|+
 name|nf
@@ -2433,7 +2461,7 @@ name|format
 argument_list|(
 literal|100.0
 operator|*
-name|newSegmentSize
+name|newSegmentSizeNoStore
 operator|/
 name|startNumBytesUsed
 argument_list|)

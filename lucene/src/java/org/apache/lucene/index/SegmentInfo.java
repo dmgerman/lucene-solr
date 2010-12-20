@@ -989,7 +989,10 @@ DECL|method|sizeInBytes
 specifier|public
 name|long
 name|sizeInBytes
-parameter_list|()
+parameter_list|(
+name|boolean
+name|includeDocStores
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -1049,6 +1052,21 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|includeDocStores
+operator|&&
+name|IndexFileNames
+operator|.
+name|isDocStoreFile
+argument_list|(
+name|fileName
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 comment|// We don't count bytes used by a shared doc store
 comment|// against this segment:
 if|if

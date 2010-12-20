@@ -520,7 +520,9 @@ init|=
 name|info
 operator|.
 name|sizeInBytes
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
