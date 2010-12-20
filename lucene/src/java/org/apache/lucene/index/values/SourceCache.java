@@ -111,11 +111,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|laodSorted
+DECL|method|loadSorted
 specifier|public
 specifier|abstract
 name|SortedSource
-name|laodSorted
+name|loadSorted
 parameter_list|(
 name|DocValues
 name|values
@@ -203,11 +203,11 @@ return|return
 name|ref
 return|;
 block|}
-DECL|method|laodSorted
+DECL|method|loadSorted
 specifier|public
 specifier|synchronized
 name|SortedSource
-name|laodSorted
+name|loadSorted
 parameter_list|(
 name|DocValues
 name|values
