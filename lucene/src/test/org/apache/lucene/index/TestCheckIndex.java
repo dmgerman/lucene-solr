@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -166,11 +166,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -181,8 +180,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -208,8 +206,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -258,6 +255,11 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+name|writer
+operator|.
+name|optimize
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -603,6 +605,11 @@ operator|==
 literal|true
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testLuceneConstantVersion
 specifier|public
@@ -626,11 +633,17 @@ argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
+literal|"null version"
+argument_list|,
 name|version
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+literal|"Invalid version: "
+operator|+
+name|version
+argument_list|,
 name|version
 operator|.
 name|equals
@@ -639,7 +652,7 @@ name|Constants
 operator|.
 name|LUCENE_MAIN_VERSION
 operator|+
-literal|"-dev"
+literal|"-SNAPSHOT"
 argument_list|)
 operator|||
 name|version
@@ -654,6 +667,14 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+name|version
+operator|+
+literal|" should start with: "
+operator|+
+name|Constants
+operator|.
+name|LUCENE_VERSION
+argument_list|,
 name|Constants
 operator|.
 name|LUCENE_VERSION

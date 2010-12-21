@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -192,20 +182,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
 begin_comment
 comment|/*******************************************************************************  * Tests the span query bug in Lucene. It demonstrates that SpanTermQuerys don't  * work correctly in a BooleanQuery.  *   */
 end_comment
@@ -234,11 +210,6 @@ specifier|protected
 name|IndexSearcher
 name|searcher
 decl_stmt|;
-DECL|field|random
-specifier|protected
-name|Random
-name|random
-decl_stmt|;
 comment|// field names in the index
 DECL|field|FIELD_ID
 specifier|private
@@ -262,7 +233,7 @@ comment|/**    * Initializes the tests by adding 4 identical documents to the in
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -274,16 +245,10 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 comment|// create test index
 name|mDirectory
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -374,7 +339,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -439,8 +404,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_ID
 argument_list|,
@@ -464,8 +428,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_TEXT
 argument_list|,
@@ -660,6 +623,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|s

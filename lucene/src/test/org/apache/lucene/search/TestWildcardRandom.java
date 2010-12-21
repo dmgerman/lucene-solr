@@ -58,11 +58,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Random
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
 import|;
 end_import
 
@@ -158,9 +162,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|RAMDirectory
+name|LuceneTestCase
 import|;
 end_import
 
@@ -174,7 +178,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|_TestUtil
 import|;
 end_import
 
@@ -195,10 +199,10 @@ specifier|private
 name|Searcher
 name|searcher
 decl_stmt|;
-DECL|field|random
+DECL|field|reader
 specifier|private
-name|Random
-name|random
+name|IndexReader
+name|reader
 decl_stmt|;
 DECL|field|dir
 specifier|private
@@ -208,7 +212,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -220,15 +224,9 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|dir
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
@@ -240,6 +238,29 @@ argument_list|(
 name|random
 argument_list|,
 name|dir
+argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
+name|MockAnalyzer
+argument_list|()
+argument_list|)
+operator|.
+name|setMaxBufferedDocs
+argument_list|(
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|50
+argument_list|,
+literal|1000
+argument_list|)
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document
@@ -252,8 +273,7 @@ decl_stmt|;
 name|Field
 name|field
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -331,14 +351,13 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|IndexReader
 name|reader
-init|=
+operator|=
 name|writer
 operator|.
 name|getReader
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|searcher
 operator|=
 operator|new
@@ -515,7 +534,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -523,6 +542,11 @@ throws|throws
 name|Exception
 block|{
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|reader
 operator|.
 name|close
 argument_list|()

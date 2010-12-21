@@ -110,6 +110,22 @@ name|index
 operator|.
 name|codecs
 operator|.
+name|PostingsWriterBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
 name|standard
 operator|.
 name|StandardPostingsWriter
@@ -128,9 +144,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsWriterImpl
+name|PostingsReaderBase
 import|;
 end_import
 
@@ -149,24 +163,6 @@ operator|.
 name|standard
 operator|.
 name|StandardPostingsReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|standard
-operator|.
-name|StandardPostingsReaderImpl
 import|;
 end_import
 
@@ -214,9 +210,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 import|;
 end_import
 
@@ -232,9 +226,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 import|;
 end_import
 
@@ -250,9 +242,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 import|;
 end_import
 
@@ -268,9 +258,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 import|;
 end_import
 
@@ -286,9 +274,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 import|;
 end_import
 
@@ -304,9 +290,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsIndexWriter
+name|TermsIndexWriterBase
 import|;
 end_import
 
@@ -368,15 +352,49 @@ name|PulsingCodec
 extends|extends
 name|Codec
 block|{
+DECL|field|freqCutoff
+specifier|private
+specifier|final
+name|int
+name|freqCutoff
+decl_stmt|;
+comment|/** Terms with freq<= freqCutoff are inlined into terms    *  dict. */
 DECL|method|PulsingCodec
 specifier|public
 name|PulsingCodec
-parameter_list|()
+parameter_list|(
+name|int
+name|freqCutoff
+parameter_list|)
 block|{
 name|name
 operator|=
 literal|"Pulsing"
 expr_stmt|;
+name|this
+operator|.
+name|freqCutoff
+operator|=
+name|freqCutoff
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|name
+operator|+
+literal|"(freqCutoff="
+operator|+
+name|freqCutoff
+operator|+
+literal|")"
+return|;
 block|}
 annotation|@
 name|Override
@@ -391,26 +409,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// We wrap StandardPostingsWriterImpl, but any StandardPostingsWriter
+comment|// We wrap StandardPostingsWriter, but any StandardPostingsWriter
 comment|// will work:
-name|StandardPostingsWriter
+name|PostingsWriterBase
 name|docsWriter
 init|=
 operator|new
-name|StandardPostingsWriterImpl
+name|StandardPostingsWriter
 argument_list|(
 name|state
 argument_list|)
 decl_stmt|;
 comment|// Terms that have<= freqCutoff number of docs are
 comment|// "pulsed" (inlined):
-specifier|final
-name|int
-name|freqCutoff
-init|=
-literal|1
-decl_stmt|;
-name|StandardPostingsWriter
+name|PostingsWriterBase
 name|pulsingWriter
 init|=
 operator|new
@@ -422,7 +434,7 @@ name|docsWriter
 argument_list|)
 decl_stmt|;
 comment|// Terms dict index
-name|StandardTermsIndexWriter
+name|TermsIndexWriterBase
 name|indexWriter
 decl_stmt|;
 name|boolean
@@ -435,7 +447,7 @@ block|{
 name|indexWriter
 operator|=
 operator|new
-name|SimpleStandardTermsIndexWriter
+name|FixedGapTermsIndexWriter
 argument_list|(
 name|state
 argument_list|)
@@ -471,7 +483,7 @@ name|FieldsConsumer
 name|ret
 init|=
 operator|new
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 argument_list|(
 name|indexWriter
 argument_list|,
@@ -533,13 +545,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// We wrap StandardPostingsReaderImpl, but any StandardPostingsReader
+comment|// We wrap StandardPostingsReader, but any StandardPostingsReader
 comment|// will work:
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|docsReader
 init|=
 operator|new
-name|StandardPostingsReaderImpl
+name|StandardPostingsReader
 argument_list|(
 name|state
 operator|.
@@ -552,9 +564,13 @@ argument_list|,
 name|state
 operator|.
 name|readBufferSize
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|pulsingReader
 init|=
 operator|new
@@ -564,7 +580,7 @@ name|docsReader
 argument_list|)
 decl_stmt|;
 comment|// Terms dict index reader
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 name|indexReader
 decl_stmt|;
 name|boolean
@@ -577,7 +593,7 @@ block|{
 name|indexReader
 operator|=
 operator|new
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 argument_list|(
 name|state
 operator|.
@@ -601,6 +617,10 @@ name|BytesRef
 operator|.
 name|getUTF8SortedAsUnicodeComparator
 argument_list|()
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 expr_stmt|;
 name|success
@@ -634,7 +654,7 @@ name|FieldsProducer
 name|ret
 init|=
 operator|new
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 argument_list|(
 name|indexReader
 argument_list|,
@@ -666,6 +686,10 @@ argument_list|,
 name|StandardCodec
 operator|.
 name|TERMS_CACHE_SIZE
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|success
@@ -716,6 +740,9 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
+name|String
+name|id
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -725,35 +752,41 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsReaderImpl
+name|StandardPostingsReader
 operator|.
 name|files
 argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|id
 argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 operator|.
 name|files
 argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|id
 argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|id
 argument_list|,
 name|files
 argument_list|)

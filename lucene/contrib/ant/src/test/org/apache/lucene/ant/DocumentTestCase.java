@@ -48,11 +48,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -63,22 +67,8 @@ specifier|abstract
 class|class
 name|DocumentTestCase
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
-DECL|method|DocumentTestCase
-specifier|public
-name|DocumentTestCase
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|getFile
 specifier|protected
 name|File

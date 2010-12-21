@@ -868,7 +868,9 @@ name|a1
 init|=
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|TermOffsetsTokenStream
 name|tots
@@ -916,7 +918,9 @@ name|a2
 init|=
 operator|new
 name|WhitespaceAnalyzer
-argument_list|()
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
 decl_stmt|;
 name|TokenStream
 name|ts2
@@ -3691,6 +3695,11 @@ literal|"weight"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|request
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|args
 operator|.
 name|put
@@ -3780,6 +3789,11 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|request
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@

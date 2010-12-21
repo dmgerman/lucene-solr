@@ -20,16 +20,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -126,6 +116,20 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  * Assert that the content of an index   * is instantly available  * for all open searchers  * also after a commit.  */
 end_comment
@@ -136,7 +140,7 @@ specifier|public
 class|class
 name|TestRealTime
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|test
 specifier|public

@@ -218,7 +218,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -246,7 +246,7 @@ name|LuceneTestCase
 block|{
 DECL|field|directory
 specifier|private
-name|RAMDirectory
+name|Directory
 name|directory
 decl_stmt|;
 DECL|field|reader
@@ -262,7 +262,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -276,8 +276,7 @@ argument_list|()
 expr_stmt|;
 name|directory
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
@@ -286,8 +285,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|)
@@ -331,7 +329,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -384,8 +382,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"text"
 argument_list|,

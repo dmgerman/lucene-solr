@@ -48,6 +48,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -283,6 +293,9 @@ specifier|static
 name|void
 name|checkHitCollector
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Query
 name|query
 parameter_list|,
@@ -303,6 +316,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -430,6 +445,8 @@ name|QueryUtils
 operator|.
 name|wrapSearcher
 argument_list|(
+name|random
+argument_list|,
 name|searcher
 argument_list|,
 name|i
@@ -500,6 +517,8 @@ name|QueryUtils
 operator|.
 name|wrapUnderlyingReader
 argument_list|(
+name|random
+argument_list|,
 operator|(
 name|IndexSearcher
 operator|)
@@ -658,6 +677,9 @@ specifier|static
 name|void
 name|checkHits
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Query
 name|query
 parameter_list|,
@@ -803,6 +825,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -2347,17 +2371,6 @@ name|ExplanationAsserter
 extends|extends
 name|Collector
 block|{
-comment|/**      * @deprecated      * @see CheckHits#EXPLAIN_SCORE_TOLERANCE_DELTA      */
-annotation|@
-name|Deprecated
-DECL|field|SCORE_TOLERANCE_DELTA
-specifier|public
-specifier|static
-name|float
-name|SCORE_TOLERANCE_DELTA
-init|=
-literal|0.00005f
-decl_stmt|;
 DECL|field|q
 name|Query
 name|q

@@ -44,13 +44,6 @@ name|String
 index|[]
 name|internedStrings
 decl_stmt|;
-DECL|field|r
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 DECL|method|randStr
 specifier|private
 name|String
@@ -96,7 +89,7 @@ call|)
 argument_list|(
 literal|'a'
 operator|+
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -160,7 +153,7 @@ index|]
 operator|=
 name|randStr
 argument_list|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(

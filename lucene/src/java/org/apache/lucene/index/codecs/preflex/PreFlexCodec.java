@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Codec that reads the pre-flex-indexing postings  *  format.  It does not provide a writer because newly  *  written segments should use StandardCodec.  *  * @deprecated This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
+comment|/** Codec that reads the pre-flex-indexing postings  *  format.  It does not provide a writer because newly  *  written segments should use StandardCodec.  *  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -281,6 +281,9 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
+name|String
+name|id
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -290,6 +293,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// preflex fields have no codec ID - we ignore it here
 name|PreFlexFields
 operator|.
 name|files

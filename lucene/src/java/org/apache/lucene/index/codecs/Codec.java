@@ -105,6 +105,20 @@ specifier|abstract
 class|class
 name|Codec
 block|{
+DECL|field|EMPTY
+specifier|public
+specifier|static
+specifier|final
+name|Codec
+index|[]
+name|EMPTY
+init|=
+operator|new
+name|Codec
+index|[
+literal|0
+index|]
+decl_stmt|;
 comment|/** Unique name that's used to retrieve this codec when    *  reading the index */
 DECL|field|name
 specifier|public
@@ -222,7 +236,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Gathers files associated with this segment */
+comment|/**    * Gathers files associated with this segment    *     * @param dir the {@link Directory} this segment was written to    * @param segmentInfo the {@link SegmentInfo} for this segment     * @param id the codec id within this segment    * @param files the of files to add the codec files to.    */
 DECL|method|files
 specifier|public
 specifier|abstract
@@ -234,6 +248,9 @@ name|dir
 parameter_list|,
 name|SegmentInfo
 name|segmentInfo
+parameter_list|,
+name|String
+name|id
 parameter_list|,
 name|Set
 argument_list|<
@@ -258,6 +275,18 @@ argument_list|>
 name|extensions
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
+block|}
 block|}
 end_class
 

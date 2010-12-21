@@ -88,6 +88,42 @@ name|FileChannel
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|NativeFSLockFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
 begin_comment
 comment|/**  * An {@link Directory} implementation that uses the  * Linux-specific O_DIRECT flag to bypass all OS level  * caching.  To use this you must compile  * NativePosixUtil.cpp (exposes Linux-specific APIs through  * JNI) for your platform.  *  *<p><b>WARNING</b>: this code is very new and quite easily  * could contain horrible bugs.  For example, here's one  * known issue: if you use seek in IndexOutput, and then  * write more than one buffer's worth of bytes, then the  * file will be wrong.  Lucene does not do this (only writes  * small number of bytes after seek).   * @lucene.experimental  */
 end_comment
@@ -123,7 +159,13 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
-comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException    */
+DECL|field|forcedBufferSize
+specifier|private
+specifier|final
+name|int
+name|forcedBufferSize
+decl_stmt|;
+comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @param forcedBufferSize if this is 0, just use Lucene's    *    default buffer size; else, force this buffer size.    *    For best performance, force the buffer size to    *    something fairly large (eg 1 MB), but note that this    *    will eat up the JRE's direct buffer storage space    * @throws IOException    */
 DECL|method|DirectIOLinuxDirectory
 specifier|public
 name|DirectIOLinuxDirectory
@@ -133,6 +175,9 @@ name|path
 parameter_list|,
 name|LockFactory
 name|lockFactory
+parameter_list|,
+name|int
+name|forcedBufferSize
 parameter_list|)
 throws|throws
 name|IOException
@@ -144,24 +189,11 @@ argument_list|,
 name|lockFactory
 argument_list|)
 expr_stmt|;
-block|}
-comment|/** Create a new NIOFSDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException    */
-DECL|method|DirectIOLinuxDirectory
-specifier|public
-name|DirectIOLinuxDirectory
-parameter_list|(
-name|File
-name|path
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
-argument_list|(
-name|path
-argument_list|,
-literal|null
-argument_list|)
+name|this
+operator|.
+name|forcedBufferSize
+operator|=
+name|forcedBufferSize
 expr_stmt|;
 block|}
 annotation|@
@@ -196,7 +228,13 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
+name|forcedBufferSize
+operator|==
+literal|0
+condition|?
 name|bufferSize
+else|:
+name|forcedBufferSize
 argument_list|)
 return|;
 block|}
@@ -234,7 +272,15 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
-literal|4096
+name|forcedBufferSize
+operator|==
+literal|0
+condition|?
+name|BufferedIndexOutput
+operator|.
+name|BUFFER_SIZE
+else|:
+name|forcedBufferSize
 argument_list|)
 return|;
 block|}
@@ -306,12 +352,6 @@ throws|throws
 name|IOException
 block|{
 comment|//this.path = path;
-name|bufferSize
-operator|=
-literal|1024
-operator|*
-literal|1024
-expr_stmt|;
 name|FileDescriptor
 name|fd
 init|=
@@ -919,12 +959,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|bufferSize
-operator|=
-literal|1024
-operator|*
-literal|1024
-expr_stmt|;
 name|FileDescriptor
 name|fd
 init|=

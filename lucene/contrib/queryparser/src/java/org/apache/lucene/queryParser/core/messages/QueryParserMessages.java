@@ -102,6 +102,12 @@ specifier|static
 name|String
 name|INVALID_SYNTAX_FUZZY_LIMITS
 decl_stmt|;
+DECL|field|INVALID_SYNTAX_FUZZY_EDITS
+specifier|public
+specifier|static
+name|String
+name|INVALID_SYNTAX_FUZZY_EDITS
+decl_stmt|;
 DECL|field|INVALID_SYNTAX_ESCAPE_UNICODE_TRUNCATION
 specifier|public
 specifier|static

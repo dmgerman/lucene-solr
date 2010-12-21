@@ -20,11 +20,15 @@ end_package
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -38,7 +42,7 @@ specifier|public
 class|class
 name|ModifiableSolrParamsTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 annotation|@
 name|Override
@@ -47,7 +51,14 @@ specifier|public
 name|void
 name|setUp
 parameter_list|()
+throws|throws
+name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|modifiable
 operator|=
 operator|new
@@ -62,10 +73,17 @@ specifier|public
 name|void
 name|tearDown
 parameter_list|()
+throws|throws
+name|Exception
 block|{
 name|modifiable
 operator|.
 name|clear
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
 argument_list|()
 expr_stmt|;
 block|}

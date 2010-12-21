@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 3.1, StopFilter correctly handles Unicode 4.0  *         supplementary characters in stopwords  *<li> As of 2.9, StopFilter preserves position  *        increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
+comment|/**  * Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter} and {@link StopFilter}, using a list of  * English stop words.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardAnalyzer:  *<ul>  *<li> As of 3.1, StandardTokenizer implements Unicode text segmentation,  *        and StopFilter correctly handles Unicode 4.0 supplementary characters  *        in stopwords.  {@link ClassicTokenizer} and {@link ClassicAnalyzer}   *        are the pre-3.1 implementations of StandardTokenizer and  *        StandardAnalyzer.  *<li> As of 2.9, StopFilter preserves position increments  *<li> As of 2.4, Tokens incorrectly identified as acronyms  *        are corrected (see<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
 end_comment
 
 begin_class
@@ -195,13 +195,6 @@ name|int
 name|maxTokenLength
 init|=
 name|DEFAULT_MAX_TOKEN_LENGTH
-decl_stmt|;
-comment|/**    * Specifies whether deprecated acronyms should be replaced with HOST type.    * See {@linkplain "https://issues.apache.org/jira/browse/LUCENE-1068"}    */
-DECL|field|replaceInvalidAcronym
-specifier|private
-specifier|final
-name|boolean
-name|replaceInvalidAcronym
 decl_stmt|;
 comment|/** An unmodifiable set containing some common English words that are usually not   useful for searching. */
 DECL|field|STOP_WORDS_SET
@@ -238,17 +231,6 @@ argument_list|(
 name|matchVersion
 argument_list|,
 name|stopWords
-argument_list|)
-expr_stmt|;
-name|replaceInvalidAcronym
-operator|=
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_24
 argument_list|)
 expr_stmt|;
 block|}
@@ -384,19 +366,14 @@ argument_list|(
 name|maxTokenLength
 argument_list|)
 expr_stmt|;
-name|src
-operator|.
-name|setReplaceInvalidAcronym
-argument_list|(
-name|replaceInvalidAcronym
-argument_list|)
-expr_stmt|;
 name|TokenStream
 name|tok
 init|=
 operator|new
 name|StandardFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|src
 argument_list|)
 decl_stmt|;

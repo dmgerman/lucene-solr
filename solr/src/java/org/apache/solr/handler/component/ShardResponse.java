@@ -244,6 +244,34 @@ operator|=
 name|rspCode
 expr_stmt|;
 block|}
+comment|/** What was the shard address that returned this response.  Example:  "http://localhost:8983/solr" */
+DECL|method|getShardAddress
+specifier|public
+name|String
+name|getShardAddress
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|shardAddress
+return|;
+block|}
+DECL|method|setShardAddress
+name|void
+name|setShardAddress
+parameter_list|(
+name|String
+name|addr
+parameter_list|)
+block|{
+name|this
+operator|.
+name|shardAddress
+operator|=
+name|addr
+expr_stmt|;
+block|}
 block|}
 end_class
 

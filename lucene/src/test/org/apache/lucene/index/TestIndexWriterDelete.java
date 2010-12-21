@@ -148,7 +148,21 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMDirectory
 import|;
 end_import
 
@@ -163,6 +177,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
 import|;
 end_import
 
@@ -226,8 +254,7 @@ decl_stmt|;
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -238,8 +265,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -288,8 +314,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -316,8 +341,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"country"
 argument_list|,
@@ -344,8 +368,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -372,8 +395,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"city"
 argument_list|,
@@ -493,8 +515,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -505,8 +526,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -696,8 +716,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -708,8 +727,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -730,6 +748,28 @@ literal|1
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|addDocument
+argument_list|(
+operator|new
+name|Document
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|deleteDocuments
@@ -814,11 +854,27 @@ name|t
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: t="
+operator|+
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -829,8 +885,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -856,6 +911,19 @@ literal|4
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|modifier
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 name|int
 name|id
 init|=
@@ -958,9 +1026,26 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// nocommit
-comment|//        assertEquals(2, modifier.getNumBufferedDeleteTerms());
-comment|//        assertEquals(1, modifier.getBufferedDeleteTermsSize());
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|modifier
+operator|.
+name|getNumBufferedDeleteTerms
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|modifier
+operator|.
+name|getBufferedDeleteTermsSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 name|modifier
@@ -1094,8 +1179,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1106,8 +1190,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -1280,6 +1363,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// test that batched delete terms are flushed together
 DECL|method|testBatchDeletes
@@ -1293,8 +1386,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1305,8 +1397,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -1581,8 +1672,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1593,8 +1683,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -1806,8 +1895,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1818,8 +1906,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -1985,8 +2072,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1997,8 +2083,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -2208,8 +2293,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -2233,8 +2317,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -2263,8 +2346,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -2338,8 +2420,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -2363,8 +2444,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -2393,8 +2473,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -2543,13 +2622,20 @@ init|=
 literal|144
 decl_stmt|;
 comment|// First build up a starting index:
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|startDir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// TODO: find the resource leak that only occurs sometimes here.
+name|startDir
+operator|.
+name|setNoDeleteOpenFile
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -2558,8 +2644,7 @@ name|IndexWriter
 argument_list|(
 name|startDir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -2601,8 +2686,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -2631,8 +2715,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -2699,13 +2782,34 @@ operator|!
 name|done
 condition|)
 block|{
-name|MockRAMDirectory
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: cycle"
+argument_list|)
+expr_stmt|;
+block|}
+name|MockDirectoryWrapper
 name|dir
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
+argument_list|(
+name|random
+argument_list|,
+operator|new
+name|RAMDirectory
 argument_list|(
 name|startDir
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|dir
@@ -2723,8 +2827,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -2748,8 +2851,44 @@ name|setMaxBufferedDeleteTerms
 argument_list|(
 literal|1000
 argument_list|)
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|ConcurrentMergeScheduler
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
+operator|(
+operator|(
+name|ConcurrentMergeScheduler
+operator|)
+name|modifier
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|getMergeScheduler
+argument_list|()
+operator|)
+operator|.
+name|setSuppressExceptions
+argument_list|()
+expr_stmt|;
+name|modifier
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// For each disk size, first try to commit against
 comment|// dir that will hit random IOExceptions& disk
 comment|// full; after, give it infinite disk space& turn
@@ -2774,6 +2913,23 @@ name|x
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: x="
+operator|+
+name|x
+argument_list|)
+expr_stmt|;
+block|}
 name|double
 name|rate
 init|=
@@ -2914,8 +3070,6 @@ operator|.
 name|setRandomIOExceptionRate
 argument_list|(
 name|rate
-argument_list|,
-name|diskFree
 argument_list|)
 expr_stmt|;
 try|try
@@ -2963,8 +3117,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -2993,8 +3146,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"content"
 argument_list|,
@@ -3145,12 +3297,34 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// Must force the close else the writer can have
+comment|// open files which cause exc in MockRAMDir.close
+name|modifier
+operator|.
+name|rollback
+argument_list|()
+expr_stmt|;
+block|}
 comment|// If the close() succeeded, make sure there are
 comment|// no unreferenced files.
 if|if
 condition|(
 name|success
 condition|)
+block|{
+name|_TestUtil
+operator|.
+name|checkIndex
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|TestIndexWriter
 operator|.
 name|assertNoUnreferencedFiles
@@ -3160,6 +3334,7 @@ argument_list|,
 literal|"after writer.close"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Finally, verify index is not corrupt, and, if
 comment|// we succeeded, we see all docs changed, and if
 comment|// we failed, we see either all docs or no docs
@@ -3404,12 +3579,22 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|modifier
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// Try again with 10 more bytes of free space:
 name|diskFree
 operator|+=
 literal|10
 expr_stmt|;
 block|}
+name|startDir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// This test tests that buffered deletes are cleared when
 comment|// an Exception is hit during flush.
@@ -3421,13 +3606,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 name|failure
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 argument_list|()
@@ -3442,15 +3627,25 @@ name|failed
 init|=
 literal|false
 decl_stmt|;
+name|Thread
+name|thread
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 name|reset
 parameter_list|()
 block|{
+name|thread
+operator|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+expr_stmt|;
 name|sawMaybe
 operator|=
 literal|false
@@ -3469,12 +3664,25 @@ specifier|public
 name|void
 name|eval
 parameter_list|(
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|dir
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|!=
+name|thread
+condition|)
+block|{
+comment|// don't fail during merging
+return|return;
+block|}
 if|if
 condition|(
 name|sawMaybe
@@ -3550,6 +3758,32 @@ name|failed
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: mock failure: now fail"
+argument_list|)
+expr_stmt|;
+operator|new
+name|Throwable
+argument_list|()
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|IOException
@@ -3609,6 +3843,32 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: mock failure: saw applyDeletes"
+argument_list|)
+expr_stmt|;
+operator|new
+name|Throwable
+argument_list|()
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 name|sawMaybe
 operator|=
 literal|true
@@ -3661,11 +3921,10 @@ block|,
 literal|"Venice"
 block|}
 decl_stmt|;
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -3676,8 +3935,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -3696,8 +3954,26 @@ name|setMaxBufferedDeleteTerms
 argument_list|(
 literal|2
 argument_list|)
+operator|.
+name|setReaderPooling
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 decl_stmt|;
+name|modifier
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 name|LogMergePolicy
 name|lmp
 init|=
@@ -3757,8 +4033,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -3785,8 +4060,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"country"
 argument_list|,
@@ -3813,8 +4087,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -3841,8 +4114,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"city"
 argument_list|,
@@ -3874,11 +4146,41 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// flush (and commit if ac)
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now optimize"
+argument_list|)
+expr_stmt|;
+block|}
 name|modifier
 operator|.
 name|optimize
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now commit"
+argument_list|)
+expr_stmt|;
+block|}
 name|modifier
 operator|.
 name|commit
@@ -3916,6 +4218,23 @@ expr_stmt|;
 comment|// open the writer again (closed above)
 comment|// delete the doc
 comment|// max buf del terms is two, so this is buffered
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: delete term="
+operator|+
+name|term
+argument_list|)
+expr_stmt|;
+block|}
 name|modifier
 operator|.
 name|deleteDocuments
@@ -3925,6 +4244,21 @@ argument_list|)
 expr_stmt|;
 comment|// add a doc (needed for the !ac case; see below)
 comment|// doc remains buffered
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: add empty doc"
+argument_list|)
+expr_stmt|;
+block|}
 name|Document
 name|doc
 init|=
@@ -3944,10 +4278,10 @@ comment|// The failure object will fail on the first write after the del
 comment|// file gets created when processing the buffered delete
 comment|// in the ac case, this will be when writing the new segments
 comment|// files so we really don't need the new doc, but it's harmless
-comment|// in the !ac case, a new segments file won't be created but in
-comment|// this case, creation of the cfs file happens next so we need
-comment|// the doc (to test that it's okay that we don't lose deletes if
-comment|// failing while creating the cfs file)
+comment|// a new segments file won't be created but in this
+comment|// case, creation of the cfs file happens next so we
+comment|// need the doc (to test that it's okay that we don't
+comment|// lose deletes if failing while creating the cfs file)
 name|boolean
 name|failed
 init|=
@@ -3955,6 +4289,21 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now commit for failure"
+argument_list|)
+expr_stmt|;
+block|}
 name|modifier
 operator|.
 name|commit
@@ -4023,13 +4372,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 name|failure
 init|=
 operator|new
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 argument_list|()
@@ -4042,7 +4391,7 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|public
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 operator|.
 name|Failure
 name|reset
@@ -4062,7 +4411,7 @@ specifier|public
 name|void
 name|eval
 parameter_list|(
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|dir
 parameter_list|)
 throws|throws
@@ -4130,11 +4479,10 @@ block|,
 literal|"Venice"
 block|}
 decl_stmt|;
-name|MockRAMDirectory
+name|MockDirectoryWrapper
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -4145,8 +4493,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -4205,8 +4552,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -4233,8 +4579,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"country"
 argument_list|,
@@ -4261,8 +4606,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -4289,8 +4633,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"city"
 argument_list|,
@@ -4346,6 +4689,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testDeleteNullQuery
 specifier|public
@@ -4358,8 +4706,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -4371,6 +4718,11 @@ argument_list|(
 name|dir
 argument_list|,
 operator|new
+name|IndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
 name|MockAnalyzer
 argument_list|(
 name|MockTokenizer
@@ -4379,12 +4731,7 @@ name|WHITESPACE
 argument_list|,
 literal|false
 argument_list|)
-argument_list|,
-name|IndexWriter
-operator|.
-name|MaxFieldLength
-operator|.
-name|UNLIMITED
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for

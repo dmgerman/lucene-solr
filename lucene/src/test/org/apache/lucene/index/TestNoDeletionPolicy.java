@@ -76,6 +76,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -170,23 +180,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -206,7 +202,7 @@ specifier|public
 class|class
 name|TestNoDeletionPolicy
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 annotation|@
 name|Test
@@ -399,8 +395,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -411,8 +406,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -455,8 +449,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"c"
 argument_list|,
@@ -507,6 +500,11 @@ argument_list|)
 expr_stmt|;
 block|}
 name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()

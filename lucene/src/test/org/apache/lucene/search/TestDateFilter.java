@@ -24,6 +24,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -116,20 +130,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -150,20 +150,6 @@ name|TestDateFilter
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestDateFilter
-specifier|public
-name|TestDateFilter
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    *    */
 DECL|method|testBefore
 specifier|public
@@ -174,11 +160,10 @@ throws|throws
 name|IOException
 block|{
 comment|// create an index
-name|RAMDirectory
+name|Directory
 name|indexStore
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -187,8 +172,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|indexStore
 argument_list|)
@@ -213,8 +197,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"datefield"
 argument_list|,
@@ -251,8 +234,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"body"
 argument_list|,
@@ -590,11 +572,10 @@ throws|throws
 name|IOException
 block|{
 comment|// create an index
-name|RAMDirectory
+name|Directory
 name|indexStore
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -603,8 +584,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|indexStore
 argument_list|)
@@ -629,8 +609,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"datefield"
 argument_list|,
@@ -667,8 +646,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"body"
 argument_list|,

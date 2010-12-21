@@ -72,16 +72,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -201,6 +191,24 @@ name|a2
 operator|.
 name|singleton
 argument_list|)
+return|;
+if|if
+condition|(
+name|isEmpty
+argument_list|(
+name|a1
+argument_list|)
+operator|||
+name|isEmpty
+argument_list|(
+name|a2
+argument_list|)
+condition|)
+return|return
+name|BasicAutomata
+operator|.
+name|makeEmpty
+argument_list|()
 return|;
 comment|// adding epsilon transitions with the NFA concatenation algorithm
 comment|// in this case always produces a resulting DFA, preventing expensive
@@ -2597,7 +2605,7 @@ name|count
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 index|]
 decl_stmt|;
@@ -2840,7 +2848,7 @@ name|count
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 index|]
 decl_stmt|;
@@ -3100,16 +3108,16 @@ name|void
 name|sort
 parameter_list|()
 block|{
+comment|// mergesort seems to perform better on already sorted arrays:
 if|if
 condition|(
 name|count
 operator|>
 literal|1
 condition|)
-block|{
-name|Arrays
+name|ArrayUtil
 operator|.
-name|sort
+name|mergeSort
 argument_list|(
 name|points
 argument_list|,
@@ -3118,7 +3126,6 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|add
 specifier|public
@@ -3698,7 +3705,7 @@ name|newStateUpto
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 index|]
 decl_stmt|;

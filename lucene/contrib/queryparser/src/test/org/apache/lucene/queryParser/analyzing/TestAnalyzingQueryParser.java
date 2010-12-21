@@ -206,7 +206,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -315,7 +315,7 @@ literal|"ubersetzung ubersetzung~0.9"
 block|,
 literal|"motley crue motley~0.75 crue~0.5"
 block|,
-literal|"renee zellweger renee~0.9 zellweger~0.5"
+literal|"renee zellweger renee~0.9 zellweger~2.0"
 block|}
 expr_stmt|;
 name|a

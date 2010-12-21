@@ -37,11 +37,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A BreakIterator-like API for iterating over subwords in text, according to WordDelimiterFilter rules.  */
+comment|/**  * A BreakIterator-like API for iterating over subwords in text, according to WordDelimiterFilter rules.  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|WordDelimiterIterator
+specifier|public
 specifier|final
 class|class
 name|WordDelimiterIterator
@@ -855,6 +856,24 @@ name|ch
 index|]
 return|;
 block|}
+return|return
+name|getType
+argument_list|(
+name|ch
+argument_list|)
+return|;
+block|}
+comment|/**    * Computes the type of the given character    *    * @param ch Character whose type is to be determined    * @return Type of the character    */
+DECL|method|getType
+specifier|public
+specifier|static
+name|byte
+name|getType
+parameter_list|(
+name|int
+name|ch
+parameter_list|)
+block|{
 switch|switch
 condition|(
 name|Character

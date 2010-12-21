@@ -528,6 +528,9 @@ name|String
 name|params
 parameter_list|)
 block|{
+comment|// can't call super because super doesn't understand our
+comment|// params syntax
+specifier|final
 name|String
 index|[]
 name|splits

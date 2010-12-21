@@ -158,7 +158,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
+name|Directory
 import|;
 end_import
 
@@ -189,6 +189,11 @@ specifier|private
 name|Searcher
 name|searcher
 decl_stmt|;
+DECL|field|dir
+specifier|private
+name|Directory
+name|dir
+decl_stmt|;
 DECL|field|storePathName
 name|String
 name|storePathName
@@ -207,7 +212,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -265,14 +270,9 @@ name|t
 argument_list|)
 throw|;
 block|}
-name|searcher
+name|dir
 operator|=
-operator|new
-name|IndexSearcher
-argument_list|(
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 operator|new
 name|File
@@ -280,6 +280,13 @@ argument_list|(
 name|storePathName
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|searcher
+operator|=
+operator|new
+name|IndexSearcher
+argument_list|(
+name|dir
 argument_list|,
 literal|true
 argument_list|)
@@ -416,7 +423,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -424,6 +431,11 @@ throws|throws
 name|Exception
 block|{
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()

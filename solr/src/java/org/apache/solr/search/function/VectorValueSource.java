@@ -142,6 +142,7 @@ name|MultiValueSource
 block|{
 DECL|field|sources
 specifier|protected
+specifier|final
 name|List
 argument_list|<
 name|ValueSource

@@ -56,9 +56,7 @@ specifier|final
 name|double
 name|DEFAULT_MAX_MERGE_MB
 init|=
-name|Long
-operator|.
-name|MAX_VALUE
+literal|2048
 decl_stmt|;
 DECL|method|LogByteSizeMergePolicy
 specifier|public

@@ -134,7 +134,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -870,11 +870,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -883,8 +882,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|dir
 argument_list|)
@@ -1497,11 +1495,10 @@ name|NOT_ANALYZED
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|RAMDirectory
+name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -1510,8 +1507,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|dir
 argument_list|)

@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -134,11 +134,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|String
@@ -164,8 +163,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|)
@@ -198,8 +196,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"category"
 argument_list|,

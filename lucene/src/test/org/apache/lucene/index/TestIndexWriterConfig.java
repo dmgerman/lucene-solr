@@ -17,54 +17,6 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -200,22 +152,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|CodecProvider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|DefaultSimilarity
@@ -246,7 +182,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -266,7 +202,7 @@ specifier|public
 class|class
 name|TestIndexWriterConfig
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|class|MySimilarity
 specifier|private
@@ -545,18 +481,6 @@ argument_list|(
 name|conf
 operator|.
 name|getMergedSegmentWarmer
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|IndexWriterConfig
-operator|.
-name|DEFAULT_CODEC_PROVIDER
-argument_list|,
-name|CodecProvider
-operator|.
-name|getDefault
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -939,7 +863,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|128
+literal|32
 argument_list|,
 name|IndexWriterConfig
 operator|.

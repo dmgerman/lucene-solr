@@ -26,6 +26,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -99,6 +113,8 @@ DECL|class|DocumentAnalysisResponseTest
 specifier|public
 class|class
 name|DocumentAnalysisResponseTest
+extends|extends
+name|LuceneTestCase
 block|{
 comment|/**    * Tests the {@link DocumentAnalysisResponse#setResponse(org.apache.solr.common.util.NamedList)} method    */
 annotation|@

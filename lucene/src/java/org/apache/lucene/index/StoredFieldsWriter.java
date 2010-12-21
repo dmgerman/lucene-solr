@@ -96,11 +96,6 @@ DECL|field|lastDocID
 name|int
 name|lastDocID
 decl_stmt|;
-DECL|field|segment
-specifier|private
-name|String
-name|segment
-decl_stmt|;
 DECL|field|freeCount
 name|int
 name|freeCount
@@ -224,8 +219,6 @@ comment|// not have yet init'd the FieldsWriter:
 name|initFieldsWriter
 argument_list|()
 expr_stmt|;
-comment|// Fill fdx file to include any final docs that we
-comment|// skipped because they hit non-aborting exceptions
 name|fill
 argument_list|(
 name|state
@@ -241,11 +234,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|fieldsWriter
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
 name|fieldsWriter
 operator|.
 name|close
@@ -380,6 +368,7 @@ block|}
 block|}
 DECL|method|initFieldsWriter
 specifier|private
+specifier|synchronized
 name|void
 name|initFieldsWriter
 parameter_list|()
@@ -393,20 +382,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|segment
-operator|=
-name|docWriter
-operator|.
-name|getSegment
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|segment
-operator|!=
-literal|null
-condition|)
-block|{
 name|fieldsWriter
 operator|=
 operator|new
@@ -416,7 +391,10 @@ name|docWriter
 operator|.
 name|directory
 argument_list|,
-name|segment
+name|docWriter
+operator|.
+name|getSegment
+argument_list|()
 argument_list|,
 name|fieldInfos
 argument_list|)
@@ -425,7 +403,6 @@ name|lastDocID
 operator|=
 literal|0
 expr_stmt|;
-block|}
 block|}
 block|}
 DECL|field|allocCount
@@ -447,20 +424,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
 name|fieldsWriter
 operator|.
-name|close
+name|abort
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{       }
 name|fieldsWriter
 operator|=
 literal|null
@@ -484,17 +452,11 @@ name|IOException
 block|{
 comment|// We must "catch up" for all docs before us
 comment|// that had no stored fields:
-specifier|final
-name|int
-name|end
-init|=
-name|docID
-decl_stmt|;
 while|while
 condition|(
 name|lastDocID
 operator|<
-name|end
+name|docID
 condition|)
 block|{
 name|fieldsWriter
@@ -637,7 +599,7 @@ literal|1
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 decl_stmt|;
 name|Fieldable

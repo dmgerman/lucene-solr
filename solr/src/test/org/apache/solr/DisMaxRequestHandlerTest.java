@@ -18,6 +18,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -440,7 +456,9 @@ literal|"bq"
 argument_list|,
 literal|"subject:cool^4"
 argument_list|,
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"true"
 argument_list|)
@@ -628,7 +646,9 @@ literal|"bq"
 argument_list|,
 literal|"subject:hell OR subject:cool"
 argument_list|,
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"true"
 argument_list|)
@@ -688,7 +708,9 @@ literal|"bq"
 argument_list|,
 literal|""
 argument_list|,
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"true"
 argument_list|)

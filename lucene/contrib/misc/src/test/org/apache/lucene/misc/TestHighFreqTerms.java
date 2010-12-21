@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -41,20 +51,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexWriterConfig
 import|;
 end_import
 
@@ -96,7 +92,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -156,6 +152,26 @@ name|Field
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_class
 DECL|class|TestHighFreqTerms
 specifier|public
@@ -175,7 +191,7 @@ decl_stmt|;
 DECL|field|dir
 specifier|private
 specifier|static
-name|MockRAMDirectory
+name|Directory
 name|dir
 init|=
 literal|null
@@ -188,23 +204,20 @@ name|reader
 init|=
 literal|null
 decl_stmt|;
-DECL|method|setUp
+annotation|@
+name|BeforeClass
+DECL|method|setUpClass
 specifier|public
+specifier|static
 name|void
-name|setUp
+name|setUpClass
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
 name|dir
 operator|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|writer
@@ -214,9 +227,10 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
+name|random
+argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -253,23 +267,34 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|tearDown
+annotation|@
+name|AfterClass
+DECL|method|tearDownClass
 specifier|public
+specifier|static
 name|void
-name|tearDown
+name|tearDownClass
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
+operator|=
+literal|null
+expr_stmt|;
+name|reader
+operator|=
+literal|null
 expr_stmt|;
 block|}
 comment|/******************** Tests for getHighFreqTerms **********************************/
@@ -277,7 +302,6 @@ comment|// test without specifying field (i.e. if we pass in field=null it shoul
 comment|// the term "diff" in the field "different_field" occurs 20 times and is the highest df term
 DECL|method|testFirstTermHighestDocFreqAllFields
 specifier|public
-specifier|static
 name|void
 name|testFirstTermHighestDocFreqAllFields
 parameter_list|()
@@ -326,7 +350,6 @@ expr_stmt|;
 block|}
 DECL|method|testFirstTermHighestDocFreq
 specifier|public
-specifier|static
 name|void
 name|testFirstTermHighestDocFreq
 parameter_list|()
@@ -375,7 +398,6 @@ expr_stmt|;
 block|}
 DECL|method|testOrderedByDocFreqDescending
 specifier|public
-specifier|static
 name|void
 name|testOrderedByDocFreqDescending
 parameter_list|()
@@ -475,7 +497,6 @@ block|}
 block|}
 DECL|method|testNumTerms
 specifier|public
-specifier|static
 name|void
 name|testNumTerms
 parameter_list|()
@@ -523,7 +544,6 @@ expr_stmt|;
 block|}
 DECL|method|testGetHighFreqTerms
 specifier|public
-specifier|static
 name|void
 name|testGetHighFreqTerms
 parameter_list|()
@@ -674,7 +694,6 @@ block|}
 comment|/********************Test sortByTotalTermFreq**********************************/
 DECL|method|testFirstTermHighestTotalTermFreq
 specifier|public
-specifier|static
 name|void
 name|testFirstTermHighestTotalTermFreq
 parameter_list|()
@@ -736,7 +755,6 @@ expr_stmt|;
 block|}
 DECL|method|testFirstTermHighestTotalTermFreqDifferentField
 specifier|public
-specifier|static
 name|void
 name|testFirstTermHighestTotalTermFreqDifferentField
 parameter_list|()
@@ -806,7 +824,6 @@ expr_stmt|;
 block|}
 DECL|method|testOrderedByTermFreqDescending
 specifier|public
-specifier|static
 name|void
 name|testOrderedByTermFreqDescending
 parameter_list|()
@@ -916,7 +933,6 @@ block|}
 block|}
 DECL|method|testGetTermFreqOrdered
 specifier|public
-specifier|static
 name|void
 name|testGetTermFreqOrdered
 parameter_list|()
@@ -1092,16 +1108,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 comment|/********************Tests for getTotalTermFreq**********************************/
 DECL|method|testGetTotalTermFreq
 specifier|public
-specifier|static
 name|void
 name|testGetTotalTermFreq
 parameter_list|()
@@ -1141,11 +1151,6 @@ argument_list|,
 name|termtext
 argument_list|)
 decl_stmt|;
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"highTf tf should be 200"
@@ -1158,7 +1163,6 @@ expr_stmt|;
 block|}
 DECL|method|testGetTotalTermFreqBadTerm
 specifier|public
-specifier|static
 name|void
 name|testGetTotalTermFreqBadTerm
 parameter_list|()
@@ -1198,11 +1202,6 @@ argument_list|,
 name|termtext
 argument_list|)
 decl_stmt|;
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"totalTermFreq should be 0 for term not in index"
@@ -1261,9 +1260,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"FIELD_1"
 argument_list|,
 name|content
@@ -1293,9 +1293,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"different_field"
 argument_list|,
 literal|"diff"
@@ -1356,9 +1357,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"different_field"
 argument_list|,
 literal|"diff"
@@ -1434,9 +1436,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"FIELD_1"
 argument_list|,
 name|content
@@ -1530,9 +1533,10 @@ name|newdoc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"FIELD_1"
 argument_list|,
 name|newcontent
@@ -1605,9 +1609,10 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
+name|random
+argument_list|,
 literal|"different_field"
 argument_list|,
 name|content

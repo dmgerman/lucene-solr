@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -53,6 +63,18 @@ operator|.
 name|text
 operator|.
 name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|LogManager
 import|;
 end_import
 
@@ -260,9 +282,10 @@ decl_stmt|;
 comment|/** Buffer output until the end of the test */
 DECL|field|sb
 specifier|private
-name|StringBuilder
+name|ByteArrayOutputStream
 name|sb
 decl_stmt|;
+comment|// use a BOS for our mostly ascii-output
 DECL|field|lock
 specifier|private
 specifier|static
@@ -360,14 +383,7 @@ DECL|method|LuceneJUnitResultFormatter
 specifier|public
 name|LuceneJUnitResultFormatter
 parameter_list|()
-block|{
-name|sb
-operator|=
-operator|new
-name|StringBuilder
-argument_list|()
-expr_stmt|;
-block|}
+block|{   }
 comment|/**    * Sets the stream the formatter is supposed to write its results to.    * @param out the output stream to write to    */
 DECL|method|setOutput
 specifier|public
@@ -439,21 +455,34 @@ return|return;
 comment|// Quick return - no output do nothing.
 block|}
 name|sb
-operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
+operator|=
+operator|new
+name|ByteArrayOutputStream
+argument_list|()
 expr_stmt|;
-name|sb
+comment|// don't reuse, so its gc'ed
+try|try
+block|{
+name|LogManager
 operator|.
+name|getLogManager
+argument_list|()
+operator|.
+name|readConfiguration
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{}
 name|append
 argument_list|(
 literal|"Testsuite: "
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|suite
@@ -462,8 +491,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -483,15 +510,11 @@ name|JUnitTest
 name|suite
 parameter_list|)
 block|{
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|"Tests run: "
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|suite
@@ -500,15 +523,11 @@ name|runCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|", Failures: "
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|suite
@@ -517,15 +536,11 @@ name|failureCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|", Errors: "
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|suite
@@ -534,15 +549,11 @@ name|errorCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|", Time elapsed: "
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|numberFormat
@@ -558,15 +569,11 @@ name|ONE_SECOND
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|" sec"
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -574,8 +581,6 @@ operator|.
 name|LINE_SEP
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -598,8 +603,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|"------------- Standard Output ---------------"
@@ -644,8 +647,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|sb
-operator|.
 name|append
 argument_list|(
 literal|"------------- Standard Error -----------------"
@@ -694,17 +695,11 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|out
-operator|.
-name|write
-argument_list|(
 name|sb
 operator|.
-name|toString
-argument_list|()
-operator|.
-name|getBytes
-argument_list|()
+name|writeTo
+argument_list|(
+name|out
 argument_list|)
 expr_stmt|;
 name|out
@@ -932,8 +927,6 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-name|sb
-operator|.
 name|append
 argument_list|(
 name|formatTest
@@ -944,8 +937,6 @@ operator|+
 name|type
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -953,8 +944,6 @@ operator|.
 name|LINE_SEP
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|error
@@ -963,8 +952,6 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -982,15 +969,11 @@ argument_list|(
 name|error
 argument_list|)
 decl_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|strace
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -998,8 +981,6 @@ operator|.
 name|LINE_SEP
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
 name|append
 argument_list|(
 name|StringUtils
@@ -1007,6 +988,78 @@ operator|.
 name|LINE_SEP
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|append
+specifier|public
+name|LuceneJUnitResultFormatter
+name|append
+parameter_list|(
+name|String
+name|s
+parameter_list|)
+block|{
+if|if
+condition|(
+name|s
+operator|==
+literal|null
+condition|)
+name|s
+operator|=
+literal|"(null)"
+expr_stmt|;
+try|try
+block|{
+name|sb
+operator|.
+name|write
+argument_list|(
+name|s
+operator|.
+name|getBytes
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// intentionally use default charset, its a console.
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+return|return
+name|this
+return|;
+block|}
+DECL|method|append
+specifier|public
+name|LuceneJUnitResultFormatter
+name|append
+parameter_list|(
+name|long
+name|l
+parameter_list|)
+block|{
+return|return
+name|append
+argument_list|(
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|l
+argument_list|)
+argument_list|)
+return|;
 block|}
 block|}
 end_class

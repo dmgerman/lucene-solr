@@ -166,7 +166,7 @@ specifier|private
 name|boolean
 name|collectPayloads
 decl_stmt|;
-comment|/** Construct a SpanNearQuery.  Matches spans matching a span from each    * clause, with up to<code>slop</code> total unmatched positions between    * them.  * When<code>inOrder</code> is true, the spans from each clause    * must be * ordered as in<code>clauses</code>. */
+comment|/** Construct a SpanNearQuery.  Matches spans matching a span from each    * clause, with up to<code>slop</code> total unmatched positions between    * them.  * When<code>inOrder</code> is true, the spans from each clause    * must be * ordered as in<code>clauses</code>.    * @param clauses the clauses to find near each other    * @param slop The slop value    * @param inOrder true if order is important    * */
 DECL|method|SpanNearQuery
 specifier|public
 name|SpanNearQuery

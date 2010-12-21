@@ -851,7 +851,7 @@ return|return
 name|c
 return|;
 block|}
-comment|/**    * @deprecated    * @see #getEndColumn    */
+comment|/**    * @deprecated (gen)    * @see #getEndColumn    */
 DECL|method|getColumn
 specifier|public
 name|int
@@ -865,7 +865,7 @@ name|bufpos
 index|]
 return|;
 block|}
-comment|/**    * @deprecated    * @see #getEndLine    */
+comment|/**    * @deprecated (gen)    * @see #getEndLine    */
 DECL|method|getLine
 specifier|public
 name|int

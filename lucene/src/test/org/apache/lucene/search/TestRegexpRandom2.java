@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -146,7 +136,35 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|MultiFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Terms
 import|;
 end_import
 
@@ -186,9 +204,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|index
 operator|.
-name|Directory
+name|codecs
+operator|.
+name|CodecProvider
 import|;
 end_import
 
@@ -202,7 +222,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockRAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -259,6 +279,20 @@ operator|.
 name|util
 operator|.
 name|_TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
 import|;
 end_import
 
@@ -353,15 +387,10 @@ specifier|private
 name|Directory
 name|dir
 decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -373,20 +402,11 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|dir
 operator|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
-comment|// TODO: fix mocktokenizer to not extend chartokenizer, so you can have an 'empty' keyword.
-comment|// currently, this means 'empty tokens' arent created/tested in the enumeration:
-comment|//<mikemccand> it's like having a big hairy scary monster in the basement but being upset that it doesn't have fangs
 name|RandomIndexWriter
 name|writer
 init|=
@@ -397,6 +417,10 @@ name|random
 argument_list|,
 name|dir
 argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -405,6 +429,21 @@ operator|.
 name|KEYWORD
 argument_list|,
 literal|false
+argument_list|)
+argument_list|)
+operator|.
+name|setMaxBufferedDocs
+argument_list|(
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|50
+argument_list|,
+literal|1000
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -418,8 +457,7 @@ decl_stmt|;
 name|Field
 name|field
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -435,7 +473,7 @@ name|Field
 operator|.
 name|Index
 operator|.
-name|ANALYZED
+name|NOT_ANALYZED
 argument_list|)
 decl_stmt|;
 name|doc
@@ -584,7 +622,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -673,8 +711,11 @@ specifier|protected
 name|TermsEnum
 name|getTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|Terms
+name|terms
+parameter_list|,
+name|AttributeSource
+name|atts
 parameter_list|)
 throws|throws
 name|IOException
@@ -683,9 +724,10 @@ return|return
 operator|new
 name|SimpleAutomatonTermsEnum
 argument_list|(
-name|reader
-argument_list|,
-name|field
+name|terms
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -722,20 +764,15 @@ DECL|method|SimpleAutomatonTermsEnum
 specifier|private
 name|SimpleAutomatonTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|String
-name|field
+name|TermsEnum
+name|tenum
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|field
+name|tenum
 argument_list|)
 expr_stmt|;
 name|setInitialSeekTerm
@@ -839,9 +876,30 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// we generate aweful regexps: good for testing.
+comment|// but for preflex codec, the test can be very slow, so use less iterations.
 name|int
 name|num
 init|=
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+literal|"field"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"PreFlex"
+argument_list|)
+condition|?
+literal|100
+operator|*
+name|RANDOM_MULTIPLIER
+else|:
 literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
@@ -870,9 +928,6 @@ name|randomRegexp
 argument_list|(
 name|random
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 decl_stmt|;
 name|assertSame
 argument_list|(
@@ -936,6 +991,22 @@ comment|// for example: "a\uda07\udcc7?.*?" gets rewritten to a simpler query:
 comment|// a\uda07* prefixquery. Prefixquery then does the "wrong" thing, which
 comment|// isn't really wrong as the query was undefined to begin with... but not
 comment|// automatically comparable.
+comment|// TODO: does this check even matter anymore?!
+name|Terms
+name|terms
+init|=
+name|MultiFields
+operator|.
+name|getTerms
+argument_list|(
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
+argument_list|,
+literal|"field"
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -944,10 +1015,7 @@ name|smart
 operator|.
 name|getTermsEnum
 argument_list|(
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
+name|terms
 argument_list|)
 operator|instanceof
 name|AutomatonTermsEnum

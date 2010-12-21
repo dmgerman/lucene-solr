@@ -90,6 +90,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|collation
+operator|.
+name|CollationKeyAnalyzer
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
 name|java
 operator|.
 name|io

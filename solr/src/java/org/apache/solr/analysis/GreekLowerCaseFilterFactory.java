@@ -160,6 +160,8 @@ return|return
 operator|new
 name|GreekLowerCaseFilter
 argument_list|(
+name|luceneMatchVersion
+argument_list|,
 name|in
 argument_list|)
 return|;

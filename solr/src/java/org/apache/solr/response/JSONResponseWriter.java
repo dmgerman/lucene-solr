@@ -2129,18 +2129,10 @@ name|writeDoc
 argument_list|(
 name|name
 argument_list|,
-call|(
-name|List
-argument_list|<
-name|Fieldable
-argument_list|>
-call|)
-argument_list|(
 name|doc
 operator|.
 name|getFields
 argument_list|()
-argument_list|)
 argument_list|,
 name|returnFields
 argument_list|,
@@ -2342,6 +2334,16 @@ operator|.
 name|getSearcher
 argument_list|()
 decl_stmt|;
+comment|// be defensive... write out the doc even if we don't have the scores like we should
+name|includeScore
+operator|=
+name|includeScore
+operator|&&
+name|ids
+operator|.
+name|hasScores
+argument_list|()
+expr_stmt|;
 name|DocIterator
 name|iterator
 init|=

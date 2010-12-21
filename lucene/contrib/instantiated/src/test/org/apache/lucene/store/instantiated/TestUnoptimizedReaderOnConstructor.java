@@ -96,20 +96,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|Directory
 import|;
 end_import
@@ -193,8 +179,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -364,6 +349,16 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// todo some assertations.
+name|unoptimizedReader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|addDocument
 specifier|private

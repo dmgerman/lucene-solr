@@ -1333,7 +1333,7 @@ block|}
 block|}
 annotation|@
 name|Deprecated
-comment|/**    * @deprecated    * @see #getEndColumn    */
+comment|/**    * @deprecated (gen)    * @see #getEndColumn    */
 DECL|method|getColumn
 specifier|public
 name|int
@@ -1349,7 +1349,7 @@ return|;
 block|}
 annotation|@
 name|Deprecated
-comment|/**    * @deprecated    * @see #getEndLine    */
+comment|/**    * @deprecated (gen)    * @see #getEndLine    */
 DECL|method|getLine
 specifier|public
 name|int

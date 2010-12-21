@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -142,9 +142,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 import|;
 end_import
 
@@ -178,6 +176,22 @@ name|index
 operator|.
 name|codecs
 operator|.
+name|PostingsReaderBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
 name|standard
 operator|.
 name|StandardPostingsReader
@@ -196,9 +210,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsReaderImpl
+name|PostingsWriterBase
 import|;
 end_import
 
@@ -232,9 +244,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsWriterImpl
+name|PrefixCodedTermsReader
 import|;
 end_import
 
@@ -250,27 +260,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|standard
-operator|.
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 import|;
 end_import
 
@@ -345,11 +335,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsWriter
+name|PostingsWriterBase
 name|docsWriter
 init|=
 operator|new
-name|StandardPostingsWriterImpl
+name|StandardPostingsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -466,11 +456,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsReader
+name|PostingsReaderBase
 name|docsReader
 init|=
 operator|new
-name|StandardPostingsReaderImpl
+name|StandardPostingsReader
 argument_list|(
 name|state
 operator|.
@@ -483,9 +473,13 @@ argument_list|,
 name|state
 operator|.
 name|readBufferSize
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
-name|StandardTermsIndexReader
+name|TermsIndexReaderBase
 name|indexReader
 decl_stmt|;
 name|boolean
@@ -522,6 +516,10 @@ name|BytesRef
 operator|.
 name|getUTF8SortedAsUnicodeComparator
 argument_list|()
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 expr_stmt|;
 name|success
@@ -586,6 +584,10 @@ argument_list|,
 name|StandardCodec
 operator|.
 name|TERMS_CACHE_SIZE
+argument_list|,
+name|state
+operator|.
+name|codecId
 argument_list|)
 decl_stmt|;
 name|success
@@ -636,6 +638,9 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
+name|String
+name|codecId
+parameter_list|,
 name|Set
 argument_list|<
 name|String
@@ -645,35 +650,41 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StandardPostingsReaderImpl
+name|StandardPostingsReader
 operator|.
 name|files
 argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|codecId
 argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|StandardTermsDictReader
+name|PrefixCodedTermsReader
 operator|.
 name|files
 argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|codecId
 argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|SimpleStandardTermsIndexReader
+name|FixedGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
 name|dir
 argument_list|,
 name|segmentInfo
+argument_list|,
+name|codecId
 argument_list|,
 name|files
 argument_list|)

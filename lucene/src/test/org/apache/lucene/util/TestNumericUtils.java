@@ -2171,13 +2171,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-specifier|final
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|long
 name|num
 init|=

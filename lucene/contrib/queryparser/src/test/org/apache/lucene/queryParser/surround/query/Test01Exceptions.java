@@ -26,16 +26,6 @@ name|junit
 operator|.
 name|framework
 operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
 name|TestSuite
 import|;
 end_import
@@ -50,13 +40,27 @@ name|TestRunner
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_class
 DECL|class|Test01Exceptions
 specifier|public
 class|class
 name|Test01Exceptions
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|/** Main for running test case by itself. */
 DECL|method|main

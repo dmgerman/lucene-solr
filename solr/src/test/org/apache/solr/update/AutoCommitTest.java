@@ -371,14 +371,7 @@ condition|)
 return|return
 literal|true
 return|;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|250
-argument_list|)
-expr_stmt|;
-break|break;
+comment|// it may be that a commit just happened, but the new searcher hasn't been registered yet.
 block|}
 name|Thread
 operator|.
@@ -1191,7 +1184,7 @@ name|trigger
 operator|.
 name|waitForCommit
 argument_list|(
-literal|30000
+literal|45000
 argument_list|)
 argument_list|)
 expr_stmt|;

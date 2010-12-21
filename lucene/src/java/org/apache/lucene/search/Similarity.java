@@ -18,6 +18,36 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -71,36 +101,6 @@ operator|.
 name|util
 operator|.
 name|SmallFloat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
 import|;
 end_import
 
@@ -217,29 +217,6 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Decodes a normalization factor stored in an index.    * @see #decodeNormValue(byte)    * @deprecated Use {@link #decodeNormValue} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|decodeNorm
-specifier|public
-specifier|static
-name|float
-name|decodeNorm
-parameter_list|(
-name|byte
-name|b
-parameter_list|)
-block|{
-return|return
-name|NORM_TABLE
-index|[
-name|b
-operator|&
-literal|0xFF
-index|]
-return|;
-comment|//& 0xFF maps negative bytes to positive above 127
-block|}
 comment|/** Decodes a normalization factor stored in an index.    * @see #encodeNormValue(float)    */
 DECL|method|decodeNormValue
 specifier|public
@@ -259,21 +236,6 @@ literal|0xFF
 index|]
 return|;
 comment|//& 0xFF maps negative bytes to positive above 127
-block|}
-comment|/** Returns a table for decoding normalization bytes.    * @see #encodeNormValue(float)    * @see #decodeNormValue(byte)    *     * @deprecated Use instance methods for encoding/decoding norm values to enable customization.    */
-annotation|@
-name|Deprecated
-DECL|method|getNormDecoder
-specifier|public
-specifier|static
-name|float
-index|[]
-name|getNormDecoder
-parameter_list|()
-block|{
-return|return
-name|NORM_TABLE
-return|;
 block|}
 comment|/**    * Compute the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a float value based on the field    * state and then return that value.    *    *<p>For backward compatibility this method by default calls    * {@link #lengthNorm(String, int)} passing    * {@link FieldInvertState#getLength()} as the second argument, and    * then multiplies this value by {@link FieldInvertState#getBoost()}.</p>    *     * @lucene.experimental    *     * @param field field name    * @param state current processing state for this field    * @return the calculated float norm    */
 DECL|method|computeNorm
@@ -351,28 +313,6 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/**    * Static accessor kept for backwards compability reason, use encodeNormValue instead.    * @param f norm-value to encode    * @return byte representing the given float    * @deprecated Use {@link #encodeNormValue} instead.    *     * @see #encodeNormValue(float)    */
-annotation|@
-name|Deprecated
-DECL|method|encodeNorm
-specifier|public
-specifier|static
-name|byte
-name|encodeNorm
-parameter_list|(
-name|float
-name|f
-parameter_list|)
-block|{
-return|return
-name|SmallFloat
-operator|.
-name|floatToByte315
-argument_list|(
-name|f
-argument_list|)
-return|;
-block|}
 comment|/** Computes a score factor based on a term or phrase's frequency in a    * document.  This value is multiplied by the {@link #idf(int, int)}    * factor for each term in the query and these products are then summed to    * form the initial score for a document.    *    *<p>Terms and phrases repeated in a document indicate the topic of the    * document, so implementations of this method usually return larger values    * when<code>freq</code> is large, and smaller values when<code>freq</code>    * is small.    *    *<p>The default implementation calls {@link #tf(float)}.    *    * @param freq the frequency of a term within a document    * @return a score factor based on a term's within-document frequency    */
 DECL|method|tf
 specifier|public
@@ -415,7 +355,7 @@ name|float
 name|freq
 parameter_list|)
 function_decl|;
-comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre>    * idf(searcher.docFreq(term), searcher.maxDoc());    *</pre>    *     * Note that {@link Searcher#maxDoc()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link Searcher#docFreq(Term)} is used, and when the latter     * is inaccurate, so is {@link Searcher#maxDoc()}, and in the same direction.    * In addition, {@link Searcher#maxDoc()} is more efficient to compute    *       * @param term the term in question    * @param searcher the document collection being searched    * @return an IDFExplain object that includes both an idf score factor               and an explanation for the term.    * @throws IOException    */
+comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre>    * idf(docFreq, searcher.maxDoc());    *</pre>    *     * Note that {@link Searcher#maxDoc()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link Searcher#docFreq(Term)} is used, and when the latter     * is inaccurate, so is {@link Searcher#maxDoc()}, and in the same direction.    * In addition, {@link Searcher#maxDoc()} is more efficient to compute    *       * @param term the term in question    * @param searcher the document collection being searched    * @param docFreq externally computed docFreq for this term    * @return an IDFExplain object that includes both an idf score factor               and an explanation for the term.    * @throws IOException    */
 DECL|method|idfExplain
 specifier|public
 name|IDFExplanation
@@ -428,6 +368,9 @@ parameter_list|,
 specifier|final
 name|Searcher
 name|searcher
+parameter_list|,
+name|int
+name|docFreq
 parameter_list|)
 throws|throws
 name|IOException
@@ -436,12 +379,7 @@ specifier|final
 name|int
 name|df
 init|=
-name|searcher
-operator|.
 name|docFreq
-argument_list|(
-name|term
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -499,6 +437,39 @@ name|idf
 return|;
 block|}
 block|}
+return|;
+block|}
+comment|/**    * This method forwards to {@link    * #idfExplain(Term,Searcher,int)} by passing    *<code>searcher.docFreq(term)</code> as the docFreq.    */
+DECL|method|idfExplain
+specifier|public
+name|IDFExplanation
+name|idfExplain
+parameter_list|(
+specifier|final
+name|Term
+name|term
+parameter_list|,
+specifier|final
+name|Searcher
+name|searcher
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|idfExplain
+argument_list|(
+name|term
+argument_list|,
+name|searcher
+argument_list|,
+name|searcher
+operator|.
+name|docFreq
+argument_list|(
+name|term
+argument_list|)
+argument_list|)
 return|;
 block|}
 comment|/**    * Computes a score factor for a phrase.    *     *<p>    * The default implementation sums the idf factor for    * each term in the phrase.    *     * @param terms the terms in the phrase    * @param searcher the document collection being searched    * @return an IDFExplain object that includes both an idf     *         score factor for the phrase and an explanation     *         for each term.    * @throws IOException    */

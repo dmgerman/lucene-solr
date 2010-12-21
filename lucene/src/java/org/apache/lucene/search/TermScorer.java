@@ -40,6 +40,22 @@ name|DocsEnum
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanClause
+operator|.
+name|Occur
+import|;
+end_import
+
 begin_comment
 comment|/** Expert: A<code>Scorer</code> for documents matching a<code>Term</code>.  */
 end_comment
@@ -52,11 +68,6 @@ name|TermScorer
 extends|extends
 name|Scorer
 block|{
-DECL|field|weight
-specifier|private
-name|Weight
-name|weight
-decl_stmt|;
 DECL|field|docsEnum
 specifier|private
 name|DocsEnum
@@ -158,13 +169,9 @@ block|{
 name|super
 argument_list|(
 name|similarity
+argument_list|,
+name|weight
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|weight
-operator|=
-name|weight
 expr_stmt|;
 name|this
 operator|.
@@ -391,6 +398,18 @@ parameter_list|()
 block|{
 return|return
 name|doc
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+return|return
+name|freq
 return|;
 block|}
 comment|/**    * Advances to the next document matching the query.<br>    * The iterator over the matching documents is buffered using    * {@link TermDocs#read(int[],int[])}.    *     * @return the document matching the query or NO_MORE_DOCS if there are no more documents.    */

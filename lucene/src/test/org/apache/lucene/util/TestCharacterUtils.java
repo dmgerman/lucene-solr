@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 operator|.
 name|TEST_VERSION_CURRENT
 import|;
@@ -109,6 +109,8 @@ DECL|class|TestCharacterUtils
 specifier|public
 class|class
 name|TestCharacterUtils
+extends|extends
+name|LuceneTestCase
 block|{
 annotation|@
 name|Test
@@ -218,7 +220,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ArrayIndexOutOfBoundsException
+name|IndexOutOfBoundsException
 name|e
 parameter_list|)
 block|{     }
@@ -306,7 +308,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ArrayIndexOutOfBoundsException
+name|IndexOutOfBoundsException
 name|e
 parameter_list|)
 block|{     }
@@ -411,7 +413,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|StringIndexOutOfBoundsException
+name|IndexOutOfBoundsException
 name|e
 parameter_list|)
 block|{     }
@@ -499,7 +501,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|StringIndexOutOfBoundsException
+name|IndexOutOfBoundsException
 name|e
 parameter_list|)
 block|{     }

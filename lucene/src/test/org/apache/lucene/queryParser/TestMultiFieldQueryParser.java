@@ -148,20 +148,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|BooleanClause
@@ -237,20 +223,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
 import|;
 end_import
 
@@ -590,7 +562,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(b:one~0.5 t:one~0.5) (b:two t:two)"
+literal|"(b:one~2.0 t:one~2.0) (b:two t:two)"
 argument_list|,
 name|q
 operator|.
@@ -1933,7 +1905,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"f1:bla~0.5 f2:bla~0.5 f3:bla~0.5"
+literal|"f1:bla~2.0 f2:bla~2.0 f3:bla~2.0"
 argument_list|,
 name|q
 operator|.
@@ -1979,8 +1951,7 @@ decl_stmt|;
 name|Directory
 name|ramDir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -1991,8 +1962,7 @@ name|IndexWriter
 argument_list|(
 name|ramDir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -2011,8 +1981,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"body"
 argument_list|,
@@ -2121,6 +2090,11 @@ name|length
 argument_list|)
 expr_stmt|;
 name|is
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|ramDir
 operator|.
 name|close
 argument_list|()

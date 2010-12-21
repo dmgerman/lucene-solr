@@ -148,6 +148,26 @@ name|INDEX_DIR
 init|=
 literal|"indexDir"
 decl_stmt|;
+comment|/** The collection name in solr cloud */
+DECL|field|COLLECTION
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|COLLECTION
+init|=
+literal|"collection"
+decl_stmt|;
+comment|/** The shard id in solr cloud */
+DECL|field|SHARD
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SHARD
+init|=
+literal|"shard"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum

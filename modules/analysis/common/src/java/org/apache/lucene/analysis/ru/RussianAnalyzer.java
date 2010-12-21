@@ -54,16 +54,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -281,7 +271,7 @@ name|RussianAnalyzer
 extends|extends
 name|StopwordAnalyzerBase
 block|{
-comment|/**      * List of typical Russian stopwords. (for backwards compatibility)      * @deprecated Remove this for LUCENE 4.0      */
+comment|/**      * List of typical Russian stopwords. (for backwards compatibility)      * @deprecated (3.1) Remove this for LUCENE 5.0      */
 annotation|@
 name|Deprecated
 DECL|field|RUSSIAN_STOP_WORDS_30
@@ -512,7 +502,7 @@ specifier|static
 class|class
 name|DefaultSetHolder
 block|{
-comment|/** @deprecated remove this for Lucene 4.0 */
+comment|/** @deprecated (3.1) remove this for Lucene 5.0 */
 annotation|@
 name|Deprecated
 DECL|field|DEFAULT_STOP_SET_30
@@ -648,36 +638,6 @@ name|DEFAULT_STOP_SET_30
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      * @deprecated use {@link #RussianAnalyzer(Version, Set)} instead      */
-annotation|@
-name|Deprecated
-DECL|method|RussianAnalyzer
-specifier|public
-name|RussianAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
-name|String
-modifier|...
-name|stopwords
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|matchVersion
-argument_list|,
-name|StopFilter
-operator|.
-name|makeStopSet
-argument_list|(
-name|matchVersion
-argument_list|,
-name|stopwords
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      * Builds an analyzer with the given stop words      *       * @param matchVersion      *          lucene compatibility version      * @param stopwords      *          a stopword set      */
 DECL|method|RussianAnalyzer
 specifier|public
@@ -752,36 +712,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Builds an analyzer with the given stop words.      * TODO: create a Set version of this ctor      * @deprecated use {@link #RussianAnalyzer(Version, Set)} instead      */
-annotation|@
-name|Deprecated
-DECL|method|RussianAnalyzer
-specifier|public
-name|RussianAnalyzer
-parameter_list|(
-name|Version
-name|matchVersion
-parameter_list|,
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|stopwords
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|matchVersion
-argument_list|,
-name|stopwords
-operator|.
-name|keySet
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Creates    * {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided, and {@link SnowballFilter}    */
 annotation|@
 name|Override
@@ -827,6 +757,8 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
@@ -955,17 +887,33 @@ argument_list|,
 name|stemExclusionSet
 argument_list|)
 expr_stmt|;
+name|result
+operator|=
+operator|new
+name|SnowballFilter
+argument_list|(
+name|result
+argument_list|,
+operator|new
+name|org
+operator|.
+name|tartarus
+operator|.
+name|snowball
+operator|.
+name|ext
+operator|.
+name|RussianStemmer
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|TokenStreamComponents
 argument_list|(
 name|source
 argument_list|,
-operator|new
-name|RussianStemFilter
-argument_list|(
 name|result
-argument_list|)
 argument_list|)
 return|;
 block|}

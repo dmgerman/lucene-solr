@@ -198,7 +198,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"1"
+literal|"2"
 return|;
 block|}
 DECL|method|processResponse

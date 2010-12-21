@@ -164,9 +164,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|MockRAMDirectory
+name|Bits
 import|;
 end_import
 
@@ -326,8 +326,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -475,7 +474,19 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//Perhaps not the most efficient approach but meets our needs here.
+comment|//Perhaps not the most efficient approach but meets our
+comment|//needs here.
+specifier|final
+name|Bits
+name|delDocs
+init|=
+name|MultiFields
+operator|.
+name|getDeletedDocs
+argument_list|(
+name|r
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -496,10 +507,14 @@ control|)
 block|{
 if|if
 condition|(
+name|delDocs
+operator|==
+literal|null
+operator|||
 operator|!
-name|r
+name|delDocs
 operator|.
-name|isDeleted
+name|get
 argument_list|(
 name|i
 argument_list|)
@@ -585,7 +600,7 @@ comment|/*   private void showAvailableCommitPoints() throws Exception {     Col
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -599,8 +614,7 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 comment|//Build index, of records 1 to 100, committing after each batch of 10
@@ -619,8 +633,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -661,8 +674,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD_RECORD_ID
 argument_list|,
@@ -740,6 +752,27 @@ block|}
 name|w
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|public
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
@@ -977,8 +1010,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,

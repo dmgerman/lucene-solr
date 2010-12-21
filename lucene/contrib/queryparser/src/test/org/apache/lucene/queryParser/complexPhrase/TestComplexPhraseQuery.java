@@ -106,20 +106,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|queryParser
 operator|.
 name|QueryParser
@@ -192,7 +178,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -218,6 +204,10 @@ name|TestComplexPhraseQuery
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|rd
+name|Directory
+name|rd
+decl_stmt|;
 DECL|field|analyzer
 name|Analyzer
 name|analyzer
@@ -648,7 +638,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -660,13 +650,11 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|RAMDirectory
 name|rd
-init|=
-operator|new
-name|RAMDirectory
+operator|=
+name|newDirectory
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|IndexWriter
 name|w
 init|=
@@ -675,8 +663,7 @@ name|IndexWriter
 argument_list|(
 name|rd
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -712,8 +699,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"name"
 argument_list|,
@@ -742,8 +728,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -795,7 +780,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -803,6 +788,11 @@ throws|throws
 name|Exception
 block|{
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|rd
 operator|.
 name|close
 argument_list|()

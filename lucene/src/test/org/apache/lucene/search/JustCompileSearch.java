@@ -958,7 +958,7 @@ annotation|@
 name|Override
 DECL|method|setNextReader
 specifier|public
-name|void
+name|FieldComparator
 name|setNextReader
 parameter_list|(
 name|IndexReader

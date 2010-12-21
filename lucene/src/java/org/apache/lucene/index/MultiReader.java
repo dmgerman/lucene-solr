@@ -546,7 +546,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiFields.getFields if you really need a top level Fields (NOTE that it's usually better to work per segment instead)"
+literal|"please use MultiFields.getFields, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
 argument_list|)
 throw|;
 block|}
@@ -612,14 +612,12 @@ specifier|public
 name|Bits
 name|getDeletedDocs
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiFields.getDeletedDocs if you really need a top level Bits deletedDocs (NOTE that it's usually better to work per segment instead)"
+literal|"please use MultiFields.getDeletedDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Bits deletedDocs"
 argument_list|)
 throw|;
 block|}
@@ -1216,45 +1214,6 @@ name|i
 index|]
 argument_list|,
 name|fieldSelector
-argument_list|)
-return|;
-comment|// dispatch to segment reader
-block|}
-annotation|@
-name|Override
-DECL|method|isDeleted
-specifier|public
-name|boolean
-name|isDeleted
-parameter_list|(
-name|int
-name|n
-parameter_list|)
-block|{
-comment|// Don't call ensureOpen() here (it could affect performance)
-name|int
-name|i
-init|=
-name|readerIndex
-argument_list|(
-name|n
-argument_list|)
-decl_stmt|;
-comment|// find segment num
-return|return
-name|subReaders
-index|[
-name|i
-index|]
-operator|.
-name|isDeleted
-argument_list|(
-name|n
-operator|-
-name|starts
-index|[
-name|i
-index|]
 argument_list|)
 return|;
 comment|// dispatch to segment reader

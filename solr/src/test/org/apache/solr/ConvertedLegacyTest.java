@@ -3176,6 +3176,16 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
+literal|"id:42 AND subword:bar-foo"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
 literal|"id:42 AND subword:\"bar foo\"~2"
 argument_list|)
 argument_list|,
@@ -3186,7 +3196,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:42 AND subword:\"foo/bar\""
+literal|"id:42 AND subword:foo/bar"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
@@ -3196,7 +3206,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:42 AND subword:\"foobar\""
+literal|"id:42 AND subword:foobar"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=0]"
@@ -3256,6 +3266,16 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
+literal|"id:42 AND subword:bar-foo"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
 literal|"id:42 AND subword:\"bar foo\"~2"
 argument_list|)
 argument_list|,
@@ -3266,7 +3286,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:42 AND subword:\"foo/bar\""
+literal|"id:42 AND subword:foo/bar"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
@@ -4022,7 +4042,7 @@ literal|"//float[.='1.4142135'] "
 argument_list|,
 literal|"//float[@name='score'] "
 argument_list|,
-literal|"*[count(//doc/*)=13]"
+literal|"*[count(//doc/*)>=13]"
 argument_list|)
 expr_stmt|;
 name|args
@@ -4085,7 +4105,7 @@ literal|"//float[.='1.4142135'] "
 argument_list|,
 literal|"//float[@name='score'] "
 argument_list|,
-literal|"*[count(//doc/*)=13]"
+literal|"*[count(//doc/*)>=13]"
 argument_list|)
 expr_stmt|;
 name|args

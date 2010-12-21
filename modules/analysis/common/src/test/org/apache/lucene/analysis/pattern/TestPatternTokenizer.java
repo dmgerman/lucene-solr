@@ -122,6 +122,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|charfilter
 operator|.
 name|MappingCharFilter
@@ -141,20 +155,6 @@ operator|.
 name|charfilter
 operator|.
 name|NormalizeCharMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenStream
 import|;
 end_import
 
@@ -571,7 +571,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * TODO: rewrite tests not to use string comparison.    * @deprecated only tests TermAttribute!    */
+comment|/**     * TODO: rewrite tests not to use string comparison.    */
 DECL|method|tsToString
 specifier|private
 specifier|static

@@ -78,6 +78,26 @@ name|SolrQueryRequest
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|BaseResponseWriter
+operator|.
+name|SingleResponseWriter
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/**  *   *   * A generic {@link QueryResponseWriter} implementation that requires a user to  * implement the  * {@link #getSingleResponseWriter(Writer, SolrQueryRequest, SolrQueryResponse)}  * that defines a {@link SingleResponseWriter} to handle plain ol' text output.  *   * @since 1.5  * @version $Id$  *   */
 end_comment
@@ -93,7 +113,7 @@ name|BaseResponseWriter
 implements|implements
 name|QueryResponseWriter
 block|{
-comment|/**    *     * Writes text output using the {@link SingleResponseWriter} provided by a    * call to    * {@link #getSingleResponseWriter(Writer, SolrQueryRequest, SolrQueryResponse)}    * .    *     * @param out    *          The {@link Writer} to write the text output to.    * @param request    *          The provided {@link SolrQueryRequest}.    * @param response    *          The provided {@link SolrQueryResponse}.    */
+comment|/**    *     * Writes text output using the {@link SingleResponseWriter} provided by a    * call to    * {@link #getSingleResponseWriter(Writer, SolrQueryRequest, SolrQueryResponse)}    * .    *     * @param writer    *          The {@link Writer} to write the text output to.    * @param request    *          The provided {@link SolrQueryRequest}.    * @param response    *          The provided {@link SolrQueryResponse}.    */
 DECL|method|write
 specifier|public
 name|void

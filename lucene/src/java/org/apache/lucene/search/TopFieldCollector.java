@@ -100,7 +100,6 @@ extends|extends
 name|TopFieldCollector
 block|{
 DECL|field|comparator
-specifier|final
 name|FieldComparator
 name|comparator
 decl_stmt|;
@@ -108,6 +107,11 @@ DECL|field|reverseMul
 specifier|final
 name|int
 name|reverseMul
+decl_stmt|;
+DECL|field|queue
+specifier|final
+name|FieldValueHitQueue
+name|queue
 decl_stmt|;
 DECL|method|OneComparatorNonScoringCollector
 specifier|public
@@ -133,6 +137,12 @@ name|numHits
 argument_list|,
 name|fillFields
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|queue
+operator|=
+name|queue
 expr_stmt|;
 name|comparator
 operator|=
@@ -321,6 +331,12 @@ name|docBase
 operator|=
 name|docBase
 expr_stmt|;
+name|queue
+operator|.
+name|setComparator
+argument_list|(
+literal|0
+argument_list|,
 name|comparator
 operator|.
 name|setNextReader
@@ -329,6 +345,13 @@ name|reader
 argument_list|,
 name|docBase
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|comparator
+operator|=
+name|queue
+operator|.
+name|firstComparator
 expr_stmt|;
 block|}
 annotation|@
@@ -1447,6 +1470,11 @@ name|int
 index|[]
 name|reverseMul
 decl_stmt|;
+DECL|field|queue
+specifier|final
+name|FieldValueHitQueue
+name|queue
+decl_stmt|;
 DECL|method|MultiComparatorNonScoringCollector
 specifier|public
 name|MultiComparatorNonScoringCollector
@@ -1471,6 +1499,12 @@ name|numHits
 argument_list|,
 name|fillFields
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|queue
+operator|=
+name|queue
 expr_stmt|;
 name|comparators
 operator|=
@@ -1804,6 +1838,12 @@ name|i
 operator|++
 control|)
 block|{
+name|queue
+operator|.
+name|setComparator
+argument_list|(
+name|i
+argument_list|,
 name|comparators
 index|[
 name|i
@@ -1814,6 +1854,7 @@ argument_list|(
 name|reader
 argument_list|,
 name|docBase
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3756,6 +3797,21 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"Sort must contain at least one field"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|numHits
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"numHits must be> 0; please use TotalHitCountCollector if you just need the total hit count"
 argument_list|)
 throw|;
 block|}

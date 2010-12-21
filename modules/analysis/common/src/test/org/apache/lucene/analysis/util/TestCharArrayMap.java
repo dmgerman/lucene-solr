@@ -82,13 +82,6 @@ name|TestCharArrayMap
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|r
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 DECL|method|doRandom
 specifier|public
 name|void
@@ -159,7 +152,7 @@ block|{
 name|int
 name|len
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -199,7 +192,7 @@ operator|=
 operator|(
 name|char
 operator|)
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -235,7 +228,7 @@ decl_stmt|;
 name|int
 name|val
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|()

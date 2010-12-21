@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -122,20 +122,6 @@ name|TestDocBoost
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestDocBoost
-specifier|public
-name|TestDocBoost
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testDocBoost
 specifier|public
 name|void
@@ -144,11 +130,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|Directory
 name|store
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -157,8 +142,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|store
 argument_list|)
@@ -166,8 +150,7 @@ decl_stmt|;
 name|Fieldable
 name|f1
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -189,8 +172,7 @@ decl_stmt|;
 name|Fieldable
 name|f2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,

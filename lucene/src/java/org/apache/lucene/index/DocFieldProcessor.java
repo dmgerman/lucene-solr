@@ -120,10 +120,6 @@ DECL|field|fieldInfos
 specifier|final
 name|FieldInfos
 name|fieldInfos
-init|=
-operator|new
-name|FieldInfos
-argument_list|()
 decl_stmt|;
 DECL|field|consumer
 specifier|final
@@ -212,6 +208,13 @@ operator|.
 name|consumer
 operator|=
 name|consumer
+expr_stmt|;
+name|fieldInfos
+operator|=
+name|docWriter
+operator|.
+name|getFieldInfos
+argument_list|()
 expr_stmt|;
 name|consumer
 operator|.
@@ -1264,7 +1267,7 @@ name|println
 argument_list|(
 literal|"WARNING: document contains at least one immense term (whose UTF8 encoding is longer than the max length "
 operator|+
-name|DocumentsWriterRAMAllocator
+name|DocumentsWriterPerThread
 operator|.
 name|MAX_TERM_LENGTH_UTF8
 operator|+

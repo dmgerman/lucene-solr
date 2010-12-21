@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -34,7 +38,7 @@ specifier|public
 class|class
 name|TestUpdatingList
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|baseListModel
 specifier|private
@@ -56,13 +60,18 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|baseListModel
 operator|=
 operator|new

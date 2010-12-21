@@ -50,20 +50,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -134,7 +120,29 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -150,6 +158,8 @@ name|TestFieldCacheRangeFilter
 extends|extends
 name|BaseTestRangeFilter
 block|{
+annotation|@
+name|Test
 DECL|method|testRangeFilterId
 specifier|public
 name|void
@@ -1094,6 +1104,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterRand
 specifier|public
 name|void
@@ -1737,6 +1749,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// byte-ranges cannot be tested, because all ranges are too big for bytes, need an extra range for that
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterShorts
 specifier|public
 name|void
@@ -2828,6 +2842,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterInts
 specifier|public
 name|void
@@ -3910,6 +3926,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterLongs
 specifier|public
 name|void
@@ -4993,6 +5011,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// float and double tests are a bit minimalistic, but its complicated, because missing precision
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterFloats
 specifier|public
 name|void
@@ -5332,6 +5352,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testFieldCacheRangeFilterDoubles
 specifier|public
 name|void
@@ -5672,6 +5694,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test using a sparse index (with deleted docs).
+annotation|@
+name|Test
 DECL|method|testSparseIndex
 specifier|public
 name|void
@@ -5680,11 +5704,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|RAMDirectory
+name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -5695,8 +5718,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -5733,8 +5755,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -5763,8 +5784,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"body"
 argument_list|,
@@ -6141,6 +6161,16 @@ name|result
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

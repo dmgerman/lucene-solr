@@ -133,6 +133,54 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"collate"
 decl_stmt|;
+comment|/**    *<p>    * The maximum number of collations to return.  Default=1.  Ignored if "spellcheck.collate" is false.    *</p>    */
+DECL|field|SPELLCHECK_MAX_COLLATIONS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_MAX_COLLATIONS
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"maxCollations"
+decl_stmt|;
+comment|/**    *<p>    * The maximum number of collations to test by querying against the index.       * When testing, the collation is substituted for the original query's "q" param.  Any "qf"s are retained.    * If this is set to zero, does not test for hits before returning collations (returned collations may result in zero hits).    * Default=0. Ignored of "spellcheck.collate" is false.     *</p>    */
+DECL|field|SPELLCHECK_MAX_COLLATION_TRIES
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_MAX_COLLATION_TRIES
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"maxCollationTries"
+decl_stmt|;
+comment|/**    *<p>    * Whether to use the Extended Results Format for collations.     * Includes "before>after" pairs to easily allow clients to generate messages like "no results for PORK.  did you mean POLK?"    * Also indicates the # of hits each collation will return on re-query.  Default=false, which retains 1.4-compatible output.    *</p>    */
+DECL|field|SPELLCHECK_COLLATE_EXTENDED_RESULTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_COLLATE_EXTENDED_RESULTS
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"collateExtendedResults"
+decl_stmt|;
+comment|/**    * Certain spelling implementations may allow for an accuracy setting.    */
+DECL|field|SPELLCHECK_ACCURACY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_ACCURACY
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"accuracy"
+decl_stmt|;
 block|}
 end_interface
 

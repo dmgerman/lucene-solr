@@ -218,22 +218,34 @@ name|i
 operator|++
 control|)
 block|{
-name|SpanQuery
-name|clause
-init|=
+name|addClause
+argument_list|(
 name|clauses
 index|[
 name|i
 index|]
-decl_stmt|;
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** Adds a clause to this query */
+DECL|method|addClause
+specifier|public
+specifier|final
+name|void
+name|addClause
+parameter_list|(
+name|SpanQuery
+name|clause
+parameter_list|)
+block|{
 if|if
 condition|(
-name|i
+name|field
 operator|==
-literal|0
+literal|null
 condition|)
 block|{
-comment|// check field
 name|field
 operator|=
 name|clause
@@ -274,7 +286,6 @@ argument_list|(
 name|clause
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/** Return the clauses whose spans are matched. */
 DECL|method|getClauses

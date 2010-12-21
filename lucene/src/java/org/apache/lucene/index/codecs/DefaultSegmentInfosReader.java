@@ -190,6 +190,7 @@ argument_list|,
 name|segmentsFileName
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|format
 init|=
@@ -198,6 +199,13 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+name|infos
+operator|.
+name|setFormat
+argument_list|(
+name|format
+argument_list|)
+expr_stmt|;
 comment|// check that it is a format we can understand
 if|if
 condition|(

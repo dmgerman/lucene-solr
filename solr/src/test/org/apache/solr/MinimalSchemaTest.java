@@ -321,6 +321,18 @@ condition|)
 block|{
 continue|continue;
 block|}
+if|if
+condition|(
+name|handler
+operator|.
+name|startsWith
+argument_list|(
+literal|"/mlt"
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 name|assertQ
 argument_list|(
 literal|"failure w/handler: '"

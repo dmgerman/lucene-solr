@@ -357,7 +357,7 @@ name|v
 operator|=
 name|LUCENE_MAIN_VERSION
 operator|+
-literal|"-dev"
+literal|"-SNAPSHOT"
 expr_stmt|;
 block|}
 elseif|else
@@ -376,7 +376,7 @@ name|v
 operator|=
 name|LUCENE_MAIN_VERSION
 operator|+
-literal|"-dev "
+literal|"-SNAPSHOT "
 operator|+
 name|v
 expr_stmt|;

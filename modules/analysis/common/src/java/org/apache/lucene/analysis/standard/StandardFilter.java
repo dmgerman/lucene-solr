@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -78,24 +88,45 @@ name|TypeAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
-comment|/** Normalizes tokens extracted with {@link StandardTokenizer}. */
+comment|/**  * Normalizes tokens extracted with {@link StandardTokenizer}.  */
 end_comment
 
 begin_class
 DECL|class|StandardFilter
 specifier|public
-specifier|final
 class|class
 name|StandardFilter
 extends|extends
 name|TokenFilter
 block|{
-comment|/** Construct filtering<i>in</i>. */
+DECL|field|matchVersion
+specifier|private
+specifier|final
+name|Version
+name|matchVersion
+decl_stmt|;
 DECL|method|StandardFilter
 specifier|public
 name|StandardFilter
 parameter_list|(
+name|Version
+name|matchVersion
+parameter_list|,
 name|TokenStream
 name|in
 parameter_list|)
@@ -105,6 +136,12 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|matchVersion
+operator|=
+name|matchVersion
+expr_stmt|;
 block|}
 DECL|field|APOSTROPHE_TYPE
 specifier|private
@@ -113,11 +150,11 @@ specifier|final
 name|String
 name|APOSTROPHE_TYPE
 init|=
-name|StandardTokenizer
+name|ClassicTokenizer
 operator|.
 name|TOKEN_TYPES
 index|[
-name|StandardTokenizer
+name|ClassicTokenizer
 operator|.
 name|APOSTROPHE
 index|]
@@ -129,11 +166,11 @@ specifier|final
 name|String
 name|ACRONYM_TYPE
 init|=
-name|StandardTokenizer
+name|ClassicTokenizer
 operator|.
 name|TOKEN_TYPES
 index|[
-name|StandardTokenizer
+name|ClassicTokenizer
 operator|.
 name|ACRONYM
 index|]
@@ -165,7 +202,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** Returns the next token in the stream, or null at EOS.    *<p>Removes<tt>'s</tt> from the end of words.    *<p>Removes dots from acronyms.    */
 annotation|@
 name|Override
 DECL|method|incrementToken
@@ -175,10 +211,39 @@ name|boolean
 name|incrementToken
 parameter_list|()
 throws|throws
-name|java
+name|IOException
+block|{
+if|if
+condition|(
+name|matchVersion
 operator|.
-name|io
+name|onOrAfter
+argument_list|(
+name|Version
 operator|.
+name|LUCENE_31
+argument_list|)
+condition|)
+return|return
+name|input
+operator|.
+name|incrementToken
+argument_list|()
+return|;
+comment|// TODO: add some niceties for the new grammar
+else|else
+return|return
+name|incrementTokenClassic
+argument_list|()
+return|;
+block|}
+DECL|method|incrementTokenClassic
+specifier|public
+specifier|final
+name|boolean
+name|incrementTokenClassic
+parameter_list|()
+throws|throws
 name|IOException
 block|{
 if|if

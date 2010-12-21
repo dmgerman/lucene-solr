@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -48,7 +52,7 @@ specifier|public
 class|class
 name|TestHash
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 comment|// Test that the java version produces the same output as the C version
 DECL|method|testEqualsLOOKUP3
@@ -401,11 +405,7 @@ block|{
 name|Random
 name|r
 init|=
-operator|new
-name|Random
-argument_list|(
-literal|0
-argument_list|)
+name|random
 decl_stmt|;
 name|int
 index|[]

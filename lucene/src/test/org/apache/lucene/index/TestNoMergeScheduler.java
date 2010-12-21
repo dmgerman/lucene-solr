@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -104,7 +104,7 @@ specifier|public
 class|class
 name|TestNoMergeScheduler
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 annotation|@
 name|Test

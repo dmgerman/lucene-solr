@@ -380,6 +380,11 @@ argument_list|,
 literal|"{\"data1\":\"NaN\",\"data2\":\"-Infinity\",\"data3\":\"Infinity\"}"
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -467,6 +472,11 @@ argument_list|()
 argument_list|,
 literal|"a:3:{s:5:\"data1\";s:5:\"hello\";s:5:\"data2\";i:42;s:5:\"data3\";b:1;}"
 argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -568,6 +578,11 @@ argument_list|()
 argument_list|,
 literal|"{\"nl\":[[\"data1\",\"hello\"],[null,42]]}"
 argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

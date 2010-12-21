@@ -656,7 +656,7 @@ literal|"ophoud"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated remove this test in Lucene 4.0    */
+comment|/**    * @deprecated (3.1) remove this test in Lucene 5.0    */
 annotation|@
 name|Deprecated
 DECL|method|testOldBuggyStemmer
@@ -808,55 +808,6 @@ literal|"licham"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*     * Test that changes to the exclusion table are applied immediately    * when using reusable token streams.    */
-DECL|method|testExclusionTableReuse
-specifier|public
-name|void
-name|testExclusionTableReuse
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|DutchAnalyzer
-name|a
-init|=
-operator|new
-name|DutchAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
-decl_stmt|;
-name|checkOneTermReuse
-argument_list|(
-name|a
-argument_list|,
-literal|"lichamelijk"
-argument_list|,
-literal|"licham"
-argument_list|)
-expr_stmt|;
-name|a
-operator|.
-name|setStemExclusionTable
-argument_list|(
-operator|new
-name|String
-index|[]
-block|{
-literal|"lichamelijk"
-block|}
-argument_list|)
-expr_stmt|;
-name|checkOneTermReuse
-argument_list|(
-name|a
-argument_list|,
-literal|"lichamelijk"
-argument_list|,
-literal|"lichamelijk"
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testExclusionTableViaCtor
 specifier|public
 name|void
@@ -1001,7 +952,7 @@ literal|"somethingentirelydifferent"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Prior to 3.1, this analyzer had no lowercase filter.    * stopwords were case sensitive. Preserve this for back compat.    * @deprecated Remove this test in Lucene 4.0    */
+comment|/**    * Prior to 3.1, this analyzer had no lowercase filter.    * stopwords were case sensitive. Preserve this for back compat.    * @deprecated (3.1) Remove this test in Lucene 5.0    */
 annotation|@
 name|Deprecated
 DECL|method|testBuggyStopwordsCasing

@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id:$  * @see TrimFilter  */
+comment|/**  * @version $Id$  * @see TrimFilter  */
 end_comment
 
 begin_class

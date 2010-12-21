@@ -62,16 +62,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -333,7 +323,7 @@ name|numTransitions
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 index|]
 decl_stmt|;
@@ -836,9 +826,16 @@ argument_list|>
 name|comparator
 parameter_list|)
 block|{
-name|Arrays
+comment|// mergesort seems to perform better on already sorted arrays:
+if|if
+condition|(
+name|numTransitions
+operator|>
+literal|1
+condition|)
+name|ArrayUtil
 operator|.
-name|sort
+name|mergeSort
 argument_list|(
 name|transitionsArray
 argument_list|,
@@ -850,7 +847,7 @@ name|comparator
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Return this state's number.     *<p>    * Expert: Will be useless unless {@link Automaton#setStateNumbers(Set)}    * has been called first to number the states.    * @return the number    */
+comment|/**    * Return this state's number.     *<p>    * Expert: Will be useless unless {@link Automaton#getNumberedStates}    * has been called first to number the states.    * @return the number    */
 DECL|method|getNumber
 specifier|public
 name|int
@@ -965,6 +962,18 @@ name|s
 operator|.
 name|id
 operator|-
+name|id
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
 name|id
 return|;
 block|}

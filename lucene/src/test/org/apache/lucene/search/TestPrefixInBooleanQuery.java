@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -137,12 +137,8 @@ literal|"name"
 decl_stmt|;
 DECL|field|directory
 specifier|private
-name|RAMDirectory
+name|Directory
 name|directory
-init|=
-operator|new
-name|RAMDirectory
-argument_list|()
 decl_stmt|;
 DECL|field|reader
 specifier|private
@@ -157,7 +153,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -169,14 +165,18 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|directory
+operator|=
+name|newDirectory
+argument_list|()
+expr_stmt|;
 name|RandomIndexWriter
 name|writer
 init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|)
@@ -207,8 +207,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD
 argument_list|,
@@ -248,8 +247,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD
 argument_list|,
@@ -303,8 +301,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD
 argument_list|,
@@ -344,8 +341,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD
 argument_list|,

@@ -18,6 +18,20 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ArrayUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -33,16 +47,6 @@ operator|.
 name|util
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -206,10 +210,12 @@ block|}
 comment|// Sort the array the first time...
 comment|// We don't need to sort the array in any future calls because we know
 comment|// it will already start off sorted (all scorers on same doc).
-comment|// note that this comparator is not consistent with equals!
-name|Arrays
+comment|// Note that this comparator is not consistent with equals!
+comment|// Also we use mergeSort here to be stable (so order of Scoreres that
+comment|// match on first document keeps preserved):
+name|ArrayUtil
 operator|.
-name|sort
+name|mergeSort
 argument_list|(
 name|scorers
 argument_list|,

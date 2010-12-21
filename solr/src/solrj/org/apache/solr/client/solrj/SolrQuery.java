@@ -973,6 +973,41 @@ return|return
 name|this
 return|;
 block|}
+comment|/** Add field(s) for pivot computation.    *     * pivot fields are comma separated    *     * @param fields Array of field names from the IndexSchema    * @return this    */
+DECL|method|addFacetPivotField
+specifier|public
+name|SolrQuery
+name|addFacetPivotField
+parameter_list|(
+name|String
+modifier|...
+name|fields
+parameter_list|)
+block|{
+name|add
+argument_list|(
+name|FacetParams
+operator|.
+name|FACET_PIVOT
+argument_list|,
+name|fields
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|set
+argument_list|(
+name|FacetParams
+operator|.
+name|FACET
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/** get the facet fields    *     * @return string array of facet fields or null if not set/empty    */
 DECL|method|getFacetFields
 specifier|public
@@ -1465,6 +1500,8 @@ name|this
 return|;
 block|}
 comment|/**    * @deprecated use {@link #setFacetMissing(Boolean)}    */
+annotation|@
+name|Deprecated
 DECL|method|setMissing
 specifier|public
 name|SolrQuery

@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -142,20 +142,6 @@ name|TestBooleanScorer
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|TestBooleanScorer
-specifier|public
-name|TestBooleanScorer
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
 DECL|field|FIELD
 specifier|private
 specifier|static
@@ -173,11 +159,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|String
@@ -203,8 +188,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|)
@@ -237,8 +221,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FIELD
 argument_list|,
@@ -532,6 +515,8 @@ init|=
 operator|new
 name|BooleanScorer
 argument_list|(
+literal|null
+argument_list|,
 name|sim
 argument_list|,
 literal|1
@@ -544,6 +529,10 @@ name|scorers
 argument_list|)
 argument_list|,
 literal|null
+argument_list|,
+name|scorers
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|assertEquals

@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Term
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|Terms
 import|;
 end_import
 
@@ -76,9 +76,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|MultiFields
+name|ToStringUtils
 import|;
 end_import
 
@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ToStringUtils
+name|AttributeSource
 import|;
 end_import
 
@@ -289,10 +289,12 @@ expr_stmt|;
 block|}
 DECL|method|compileAutomaton
 specifier|private
+specifier|synchronized
 name|void
 name|compileAutomaton
 parameter_list|()
 block|{
+comment|// this method must be synchronized, as setting the three transient fields is not atomic:
 if|if
 condition|(
 name|runAutomaton
@@ -342,8 +344,11 @@ specifier|protected
 name|TermsEnum
 name|getTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|Terms
+name|terms
+parameter_list|,
+name|AttributeSource
+name|atts
 parameter_list|)
 throws|throws
 name|IOException
@@ -365,6 +370,14 @@ operator|.
 name|EMPTY
 return|;
 block|}
+name|TermsEnum
+name|tenum
+init|=
+name|terms
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
 comment|// matches all possible strings
 if|if
 condition|(
@@ -377,18 +390,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|MultiFields
-operator|.
-name|getTerms
-argument_list|(
-name|reader
-argument_list|,
-name|getField
-argument_list|()
-argument_list|)
-operator|.
-name|iterator
-argument_list|()
+name|tenum
 return|;
 block|}
 comment|// matches a fixed string in singleton representation
@@ -410,7 +412,7 @@ return|return
 operator|new
 name|SingleTermsEnum
 argument_list|(
-name|reader
+name|tenum
 argument_list|,
 name|term
 operator|.
@@ -463,7 +465,7 @@ return|return
 operator|new
 name|SingleTermsEnum
 argument_list|(
-name|reader
+name|tenum
 argument_list|,
 name|term
 operator|.
@@ -511,7 +513,7 @@ return|return
 operator|new
 name|PrefixTermsEnum
 argument_list|(
-name|reader
+name|tenum
 argument_list|,
 name|term
 operator|.
@@ -532,12 +534,7 @@ name|AutomatonTermsEnum
 argument_list|(
 name|runAutomaton
 argument_list|,
-name|term
-operator|.
-name|field
-argument_list|()
-argument_list|,
-name|reader
+name|tenum
 argument_list|,
 name|isFinite
 argument_list|,

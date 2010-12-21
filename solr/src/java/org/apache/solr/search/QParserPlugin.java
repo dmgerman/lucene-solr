@@ -164,6 +164,14 @@ name|RawQParserPlugin
 operator|.
 name|class
 block|,
+name|TermQParserPlugin
+operator|.
+name|NAME
+block|,
+name|TermQParserPlugin
+operator|.
+name|class
+block|,
 name|NestedQParserPlugin
 operator|.
 name|NAME
@@ -185,6 +193,14 @@ operator|.
 name|NAME
 block|,
 name|SpatialFilterQParserPlugin
+operator|.
+name|class
+block|,
+name|SpatialBoxQParserPlugin
+operator|.
+name|NAME
+block|,
+name|SpatialBoxQParserPlugin
 operator|.
 name|class
 block|,   }

@@ -46,6 +46,16 @@ name|DISTANCE
 init|=
 literal|"d"
 decl_stmt|;
+DECL|field|FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FIELD
+init|=
+literal|"sfield"
+decl_stmt|;
+comment|// the field that contains the points we are measuring from "pt"
 comment|/**    * km - kilometers    * mi - miles    */
 DECL|field|UNITS
 specifier|public

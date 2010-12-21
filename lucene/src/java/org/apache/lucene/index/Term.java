@@ -268,7 +268,7 @@ return|return
 name|bytes
 return|;
 block|}
-comment|/**    * Optimized construction of new Terms by reusing same field as this Term    * - avoids field.intern() overhead     *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy rather than pass reused bytes from    * a TermsEnum.    * @param text The bytes of the new term (field is implicitly same as this Term instance)    * @return A new Term    */
+comment|/**    * Optimized construction of new Terms by reusing same field as this Term    * - avoids field.intern() overhead     *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy rather than pass reused bytes from    * a TermsEnum.    * @param bytes The bytes of the new term (field is implicitly same as this Term instance)    * @return A new Term    */
 DECL|method|createTerm
 specifier|public
 name|Term
@@ -560,7 +560,7 @@ operator|.
 name|getUTF8SortedAsUTF16Comparator
 argument_list|()
 decl_stmt|;
-comment|/**     * @deprecated For internal backwards compatibility use only    * @lucene.internal    */
+comment|/**     * @deprecated (4.0) For internal backwards compatibility use only    * @lucene.internal    */
 annotation|@
 name|Deprecated
 DECL|method|compareToUTF16

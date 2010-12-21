@@ -1980,7 +1980,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"shoudl be doc! "
+literal|"should be doc! "
 operator|+
 name|parser
 operator|.

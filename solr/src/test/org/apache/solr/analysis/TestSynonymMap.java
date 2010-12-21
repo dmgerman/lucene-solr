@@ -58,16 +58,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -96,13 +86,27 @@ name|SynonymMap
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_class
 DECL|class|TestSynonymMap
 specifier|public
 class|class
 name|TestSynonymMap
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|testInvalidMappingRules
 specifier|public
@@ -1891,10 +1895,6 @@ name|Token
 index|[]
 name|tokens
 init|=
-operator|(
-operator|(
-name|SynonymMap
-operator|)
 name|map
 operator|.
 name|submap
@@ -1903,7 +1903,6 @@ name|get
 argument_list|(
 name|src
 argument_list|)
-operator|)
 operator|.
 name|synonyms
 decl_stmt|;
@@ -1967,9 +1966,6 @@ name|src
 parameter_list|)
 block|{
 return|return
-operator|(
-name|SynonymMap
-operator|)
 name|map
 operator|.
 name|submap

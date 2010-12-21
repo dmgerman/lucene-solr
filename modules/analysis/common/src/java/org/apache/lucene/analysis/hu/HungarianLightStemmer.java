@@ -1088,6 +1088,11 @@ return|return
 name|len
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|removePlural
 specifier|private
 name|int

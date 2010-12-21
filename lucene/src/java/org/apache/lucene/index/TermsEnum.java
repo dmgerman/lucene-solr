@@ -152,7 +152,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Seeks to the specified term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be befor or after the current term. */
+comment|/** Seeks to the specified term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be before or after the current term. */
 DECL|method|seek
 specifier|public
 specifier|final
@@ -174,7 +174,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be befor or after the current ord.  See {@link    *  #seek(BytesRef)}. */
+comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be before or after the current ord.  See {@link    *  #seek(BytesRef)}. */
 DECL|method|seek
 specifier|public
 specifier|abstract
@@ -270,6 +270,16 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Optional optimization hint: informs the codec that the    *  current term is likely to be re-seek'd-to soon.  */
+DECL|method|cacheCurrentTerm
+specifier|public
+specifier|abstract
+name|void
+name|cacheCurrentTerm
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/** An empty TermsEnum for quickly returning an empty instance e.g.    * in {@link org.apache.lucene.search.MultiTermQuery}    *<p><em>Please note:</em> This enum should be unmodifiable,    * but it is currently possible to add Attributes to it.    * This should not be a problem, as the enum is always empty and    * the existence of unused Attributes does not matter.    */
 DECL|field|EMPTY
 specifier|public
@@ -317,6 +327,13 @@ operator|.
 name|END
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|cacheCurrentTerm
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 specifier|public

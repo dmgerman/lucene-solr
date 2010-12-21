@@ -603,6 +603,11 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 comment|/* if the stopwords for a field are changed,      * then saved streams for that field are erased.      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|Map
 argument_list|<
 name|String
@@ -761,6 +766,11 @@ throws|throws
 name|IOException
 block|{
 comment|/* map of SavedStreams for each field */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|Map
 argument_list|<
 name|String

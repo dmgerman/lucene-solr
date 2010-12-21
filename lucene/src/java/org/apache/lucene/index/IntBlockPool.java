@@ -49,7 +49,7 @@ specifier|public
 name|int
 name|intUpto
 init|=
-name|DocumentsWriterRAMAllocator
+name|DocumentsWriterPerThread
 operator|.
 name|INT_BLOCK_SIZE
 decl_stmt|;
@@ -67,7 +67,7 @@ name|int
 name|intOffset
 init|=
 operator|-
-name|DocumentsWriterRAMAllocator
+name|DocumentsWriterPerThread
 operator|.
 name|INT_BLOCK_SIZE
 decl_stmt|;
@@ -115,8 +115,6 @@ literal|0
 condition|)
 comment|// Recycle all but the first buffer
 name|docWriter
-operator|.
-name|ramAllocator
 operator|.
 name|recycleIntBlocks
 argument_list|(
@@ -222,8 +220,6 @@ index|]
 operator|=
 name|docWriter
 operator|.
-name|ramAllocator
-operator|.
 name|getIntBlock
 argument_list|()
 expr_stmt|;
@@ -236,7 +232,7 @@ literal|0
 expr_stmt|;
 name|intOffset
 operator|+=
-name|DocumentsWriterRAMAllocator
+name|DocumentsWriterPerThread
 operator|.
 name|INT_BLOCK_SIZE
 expr_stmt|;

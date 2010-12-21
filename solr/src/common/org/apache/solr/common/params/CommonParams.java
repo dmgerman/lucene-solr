@@ -148,7 +148,7 @@ name|DF
 init|=
 literal|"df"
 decl_stmt|;
-comment|/** whether to include debug data */
+comment|/** whether to include debug data for all components pieces, including doing explains*/
 DECL|field|DEBUG_QUERY
 specifier|public
 specifier|static
@@ -157,6 +157,46 @@ name|String
 name|DEBUG_QUERY
 init|=
 literal|"debugQuery"
+decl_stmt|;
+comment|/**    * Whether to provide debug info for specific items.    *    * @see #DEBUG_QUERY    */
+DECL|field|DEBUG
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEBUG
+init|=
+literal|"debug"
+decl_stmt|;
+comment|/**    * {@link #DEBUG} value indicating an interest in debug output related to timing    */
+DECL|field|TIMING
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TIMING
+init|=
+literal|"timing"
+decl_stmt|;
+comment|/**    * {@link #DEBUG} value indicating an interest in debug output related to the results (explains)    */
+DECL|field|RESULTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RESULTS
+init|=
+literal|"results"
+decl_stmt|;
+comment|/**    * {@link #DEBUG} value indicating an interest in debug output related to the Query (parsing, etc.)    */
+DECL|field|QUERY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|QUERY
+init|=
+literal|"query"
 decl_stmt|;
 comment|/**     * boolean indicating whether score explanations should structured (true),     * or plain text (false)    */
 DECL|field|EXPLAIN_STRUCT

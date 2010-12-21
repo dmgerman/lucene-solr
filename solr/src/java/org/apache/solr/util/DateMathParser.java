@@ -18,6 +18,34 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrRequestInfo
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -99,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Simple Utility class for parsing "math" like strings relating to Dates.  *  *<p>  * The basic syntax support addition, subtraction and rounding at various  * levels of granularity (or "units").  Commands can be chained together  * and are parsed from left to right.  '+' and '-' denote addition and  * subtraction, while '/' denotes "round".  Round requires only a unit, while  * addition/subtraction require an integer value and a unit.  * Command strings must not include white space, but the "No-Op" command  * (empty string) is allowed....    *</p>  *  *<pre>  *   /HOUR  *      ... Round to the start of the current hour  *   /DAY  *      ... Round to the start of the current day  *   +2YEARS  *      ... Exactly two years in the future from now  *   -1DAY  *      ... Exactly 1 day prior to now  *   /DAY+6MONTHS+3DAYS  *      ... 6 months and 3 days in the future from the start of  *          the current day  *   +6MONTHS+3DAYS/DAY  *      ... 6 months and 3 days in the future from now, rounded  *          down to nearest day  *</pre>  *  *<p>  * All commands are relative to a "now" which is fixed in an instance of  * DateMathParser such that  *<code>p.parseMath("+0MILLISECOND").equals(p.parseMath("+0MILLISECOND"))</code>  * no matter how many wall clock milliseconds elapse between the two  * distinct calls to parse (Assuming no other thread calls  * "<code>setNow</code>" in the interim)  *</p>  *  *<p>  * Multiple aliases exist for the various units of time (ie:  *<code>MINUTE</code> and<code>MINUTES</code>;<code>MILLI</code>,  *<code>MILLIS</code>,<code>MILLISECOND</code>, and  *<code>MILLISECONDS</code>.)  The complete list can be found by  * inspecting the keySet of<code>CALENDAR_UNITS</code>.  *</p>  *  * @version $Id:$  */
+comment|/**  * A Simple Utility class for parsing "math" like strings relating to Dates.  *  *<p>  * The basic syntax support addition, subtraction and rounding at various  * levels of granularity (or "units").  Commands can be chained together  * and are parsed from left to right.  '+' and '-' denote addition and  * subtraction, while '/' denotes "round".  Round requires only a unit, while  * addition/subtraction require an integer value and a unit.  * Command strings must not include white space, but the "No-Op" command  * (empty string) is allowed....    *</p>  *  *<pre>  *   /HOUR  *      ... Round to the start of the current hour  *   /DAY  *      ... Round to the start of the current day  *   +2YEARS  *      ... Exactly two years in the future from now  *   -1DAY  *      ... Exactly 1 day prior to now  *   /DAY+6MONTHS+3DAYS  *      ... 6 months and 3 days in the future from the start of  *          the current day  *   +6MONTHS+3DAYS/DAY  *      ... 6 months and 3 days in the future from now, rounded  *          down to nearest day  *</pre>  *  *<p>  * All commands are relative to a "now" which is fixed in an instance of  * DateMathParser such that  *<code>p.parseMath("+0MILLISECOND").equals(p.parseMath("+0MILLISECOND"))</code>  * no matter how many wall clock milliseconds elapse between the two  * distinct calls to parse (Assuming no other thread calls  * "<code>setNow</code>" in the interim)  *</p>  *  *<p>  * Multiple aliases exist for the various units of time (ie:  *<code>MINUTE</code> and<code>MINUTES</code>;<code>MILLI</code>,  *<code>MILLIS</code>,<code>MILLISECOND</code>, and  *<code>MILLISECONDS</code>.)  The complete list can be found by  * inspecting the keySet of<code>CALENDAR_UNITS</code>.  *</p>  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -666,13 +694,6 @@ name|loc
 operator|=
 name|l
 expr_stmt|;
-name|setNow
-argument_list|(
-operator|new
-name|Date
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** Redefines this instance's concept of "now" */
 DECL|method|setNow
@@ -696,6 +717,47 @@ name|Date
 name|getNow
 parameter_list|()
 block|{
+if|if
+condition|(
+name|now
+operator|==
+literal|null
+condition|)
+block|{
+name|SolrRequestInfo
+name|reqInfo
+init|=
+name|SolrRequestInfo
+operator|.
+name|getRequestInfo
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|reqInfo
+operator|==
+literal|null
+condition|)
+block|{
+comment|// fall back to current time if no request info set
+name|now
+operator|=
+operator|new
+name|Date
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|now
+operator|=
+name|reqInfo
+operator|.
+name|getNOW
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 return|return
 operator|(
 name|Date

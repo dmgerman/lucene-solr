@@ -228,9 +228,6 @@ name|pos
 operator|++
 index|]
 operator|=
-operator|(
-name|char
-operator|)
 name|c
 expr_stmt|;
 block|}
@@ -278,9 +275,6 @@ name|pos
 operator|++
 index|]
 operator|=
-operator|(
-name|char
-operator|)
 name|c
 expr_stmt|;
 return|return

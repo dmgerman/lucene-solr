@@ -78,6 +78,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|schema
 operator|.
 name|IndexSchema
@@ -160,6 +174,12 @@ block|{
 name|Sort
 name|sort
 decl_stmt|;
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|()
+decl_stmt|;
 name|IndexSchema
 name|schema
 init|=
@@ -179,7 +199,7 @@ name|parseSort
 argument_list|(
 literal|"score desc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -198,7 +218,7 @@ name|parseSort
 argument_list|(
 literal|"score asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|SortField
@@ -244,7 +264,7 @@ name|parseSort
 argument_list|(
 literal|"weight desc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -303,7 +323,7 @@ name|parseSort
 argument_list|(
 literal|"weight desc,bday asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -404,7 +424,7 @@ name|parseSort
 argument_list|(
 literal|"weight top,bday asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -504,7 +524,7 @@ name|parseSort
 argument_list|(
 literal|"weight top,bday bottom"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -605,7 +625,7 @@ name|parseSort
 argument_list|(
 literal|"weight         desc,            bday         asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -680,7 +700,7 @@ name|parseSort
 argument_list|(
 literal|"weight desc,"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -727,7 +747,7 @@ name|parseSort
 argument_list|(
 literal|"pow(weight, 2) desc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -776,7 +796,7 @@ name|parseSort
 argument_list|(
 literal|"sum(product(r_f,sum(d_f,t_f,1)),a_f) asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -822,7 +842,7 @@ name|parseSort
 argument_list|(
 literal|"pow(weight,                 2)         desc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -870,7 +890,7 @@ name|parseSort
 argument_list|(
 literal|"pow(weight, 2) desc, weight    desc,   bday    asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -975,7 +995,7 @@ name|parseSort
 argument_list|(
 literal|"weight desc,"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -1013,33 +1033,6 @@ argument_list|,
 literal|"weight"
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|//bad number of parens, but the function parser can handle an extra close
-name|sort
-operator|=
-name|QueryParsing
-operator|.
-name|parseSort
-argument_list|(
-literal|"pow(weight,2)) desc, bday asc"
-argument_list|,
-name|schema
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SolrException
-name|e
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|//Test literals in functions
 name|sort
 operator|=
@@ -1049,7 +1042,7 @@ name|parseSort
 argument_list|(
 literal|"strdist(foo_s, \"junk\", jw) desc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|flds
@@ -1096,13 +1089,18 @@ name|parseSort
 argument_list|(
 literal|""
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
 name|sort
 argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1117,6 +1115,12 @@ name|Exception
 block|{
 name|Sort
 name|sort
+decl_stmt|;
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|()
 decl_stmt|;
 name|IndexSchema
 name|schema
@@ -1140,7 +1144,7 @@ name|parseSort
 argument_list|(
 literal|"weight, desc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1167,7 +1171,7 @@ name|parseSort
 argument_list|(
 literal|"w"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1194,7 +1198,7 @@ name|parseSort
 argument_list|(
 literal|"weight desc, bday"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1220,7 +1224,7 @@ name|parseSort
 argument_list|(
 literal|"pow(weight,,2) desc, bday asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1246,7 +1250,7 @@ name|parseSort
 argument_list|(
 literal|"pow() desc, bday asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1272,7 +1276,7 @@ name|parseSort
 argument_list|(
 literal|"pow((weight,2) desc, bday asc"
 argument_list|,
-name|schema
+name|req
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1287,6 +1291,11 @@ name|SolrException
 name|e
 parameter_list|)
 block|{     }
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -132,27 +132,6 @@ specifier|final
 name|CharacterUtils
 name|charUtils
 decl_stmt|;
-comment|/** @deprecated Use {@link #GreekLowerCaseFilter(Version, TokenStream)} instead. */
-annotation|@
-name|Deprecated
-DECL|method|GreekLowerCaseFilter
-specifier|public
-name|GreekLowerCaseFilter
-parameter_list|(
-name|TokenStream
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|,
-name|in
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Create a GreekLowerCaseFilter that normalizes Greek token text.    *     * @param matchVersion Lucene compatibility version,     *   See<a href="#version">above</a>    * @param in TokenStream to filter    */
 DECL|method|GreekLowerCaseFilter
 specifier|public

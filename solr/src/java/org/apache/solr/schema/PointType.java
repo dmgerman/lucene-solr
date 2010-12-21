@@ -305,7 +305,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A point type that indexes a point in an n-dimensional space as separate fields and uses  * range queries for bounding box calculations.  *<p/>  *<p/>  * NOTE: There can only be one sub type  */
+comment|/**  * A point type that indexes a point in an n-dimensional space as separate fields and supports range queries.  * See {@link LatLonType} for geo-spatial queries.  */
 end_comment
 
 begin_class
@@ -830,7 +830,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Sorting not suported on PointType "
+literal|"Sorting not supported on PointType "
 operator|+
 name|field
 operator|.

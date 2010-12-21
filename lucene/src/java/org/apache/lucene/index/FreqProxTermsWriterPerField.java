@@ -128,6 +128,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|// TODO: break into separate freq and prox writers as
 end_comment
@@ -414,7 +428,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|writeProx
-specifier|final
 name|void
 name|writeProx
 parameter_list|(
@@ -552,7 +565,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|newTerm
-specifier|final
 name|void
 name|newTerm
 parameter_list|(
@@ -647,7 +659,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|addTerm
-specifier|final
 name|void
 name|addTerm
 parameter_list|(
@@ -789,6 +800,25 @@ name|lastDocIDs
 index|[
 name|termID
 index|]
+operator|:
+literal|"id: "
+operator|+
+name|docState
+operator|.
+name|docID
+operator|+
+literal|" postings ID: "
+operator|+
+name|postings
+operator|.
+name|lastDocIDs
+index|[
+name|termID
+index|]
+operator|+
+literal|" termID: "
+operator|+
+name|termID
 assert|;
 comment|// Term not yet seen in the current doc but previously
 comment|// seen in other doc(s) since the last flush
@@ -1163,9 +1193,9 @@ name|BYTES_PER_POSTING
 operator|+
 literal|4
 operator|*
-name|DocumentsWriterRAMAllocator
+name|RamUsageEstimator
 operator|.
-name|INT_NUM_BYTE
+name|NUM_BYTES_INT
 return|;
 block|}
 block|}
@@ -1245,7 +1275,10 @@ name|numTerms
 init|=
 name|termsHashPerField
 operator|.
-name|numPostings
+name|bytesHash
+operator|.
+name|size
+argument_list|()
 decl_stmt|;
 specifier|final
 name|BytesRef

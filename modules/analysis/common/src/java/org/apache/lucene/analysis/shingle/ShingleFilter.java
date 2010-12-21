@@ -276,6 +276,14 @@ name|outputUnigrams
 init|=
 literal|true
 decl_stmt|;
+comment|/**    * By default, we don't override behavior of outputUnigrams.    */
+DECL|field|outputUnigramsIfNoShingles
+specifier|private
+name|boolean
+name|outputUnigramsIfNoShingles
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * maximum shingle size (number of tokens)    */
 DECL|field|maxShingleSize
 specifier|private
@@ -315,6 +323,13 @@ name|boolean
 name|isOutputHere
 init|=
 literal|false
+decl_stmt|;
+comment|/**    * true if no shingles have been output yet (for outputUnigramsIfNoShingles).    */
+DECL|field|noShingleOutput
+name|boolean
+name|noShingleOutput
+init|=
+literal|true
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
@@ -505,6 +520,23 @@ operator|=
 operator|new
 name|CircularSequence
 argument_list|()
+expr_stmt|;
+block|}
+comment|/**    *<p>Shall we override the behavior of outputUnigrams==false for those    * times when no shingles are available (because there are fewer than    * minShingleSize tokens in the input stream)? (default: false.)    *<p>Note that if outputUnigrams==true, then unigrams are always output,    * regardless of whether any shingles are available.    *    * @param outputUnigramsIfNoShingles Whether or not to output a single    * unigram when no shingles are available.    */
+DECL|method|setOutputUnigramsIfNoShingles
+specifier|public
+name|void
+name|setOutputUnigramsIfNoShingles
+parameter_list|(
+name|boolean
+name|outputUnigramsIfNoShingles
+parameter_list|)
+block|{
+name|this
+operator|.
+name|outputUnigramsIfNoShingles
+operator|=
+name|outputUnigramsIfNoShingles
 expr_stmt|;
 block|}
 comment|/**    * Set the max shingle size (default: 2)    *    * @param maxShingleSize max size of output shingles    */
@@ -882,6 +914,10 @@ name|setType
 argument_list|(
 name|tokenType
 argument_list|)
+expr_stmt|;
+name|noShingleOutput
+operator|=
+literal|false
 expr_stmt|;
 block|}
 name|offsetAtt
@@ -1341,6 +1377,33 @@ comment|// end of input stream
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|outputUnigramsIfNoShingles
+operator|&&
+name|noShingleOutput
+operator|&&
+name|gramSize
+operator|.
+name|minValue
+operator|>
+literal|1
+operator|&&
+name|inputWindow
+operator|.
+name|size
+argument_list|()
+operator|<
+name|minShingleSize
+condition|)
+block|{
+name|gramSize
+operator|.
+name|minValue
+operator|=
+literal|1
+expr_stmt|;
+block|}
 name|gramSize
 operator|.
 name|reset
@@ -1384,6 +1447,26 @@ name|isOutputHere
 operator|=
 literal|false
 expr_stmt|;
+name|noShingleOutput
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+name|outputUnigramsIfNoShingles
+operator|&&
+operator|!
+name|outputUnigrams
+condition|)
+block|{
+comment|// Fix up gramSize if minValue was reset for outputUnigramsIfNoShingles
+name|gramSize
+operator|.
+name|minValue
+operator|=
+name|minShingleSize
+expr_stmt|;
+block|}
 block|}
 comment|/**    *<p>An instance of this class is used to maintain the number of input    * stream tokens that will be used to compose the next unigram or shingle:    * {@link #gramSize}.    *<p><code>gramSize</code> will take on values from the circular sequence    *<b>{ [ 1, ] {@link #minShingleSize} [ , ... , {@link #maxShingleSize} ] }</b>.    *<p>1 is included in the circular sequence only if     * {@link #outputUnigrams} = true.    */
 DECL|class|CircularSequence

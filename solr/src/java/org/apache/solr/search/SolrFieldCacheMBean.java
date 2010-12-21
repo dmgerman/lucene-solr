@@ -331,7 +331,7 @@ name|insanity
 init|=
 name|checker
 operator|.
-name|checkSanity
+name|check
 argument_list|(
 name|entries
 argument_list|)
@@ -364,37 +364,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// we only estimate the size of insane entries
-for|for
-control|(
-name|CacheEntry
-name|e
-range|:
-name|insanity
-index|[
-name|i
-index|]
-operator|.
-name|getCacheEntries
-argument_list|()
-control|)
-block|{
-comment|// don't re-estimate if we've already done it.
-if|if
-condition|(
-literal|null
-operator|==
-name|e
-operator|.
-name|getEstimatedSize
-argument_list|()
-condition|)
-name|e
-operator|.
-name|estimateSize
-argument_list|()
-expr_stmt|;
-block|}
+comment|/** RAM estimation is both CPU and memory intensive... we don't want to do it unless asked.       // we only estimate the size of insane entries       for (CacheEntry e : insanity[i].getCacheEntries()) {         // don't re-estimate if we've already done it.         if (null == e.getEstimatedSize()) e.estimateSize();       }       **/
 name|stats
 operator|.
 name|add

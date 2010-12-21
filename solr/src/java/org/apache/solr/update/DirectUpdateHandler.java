@@ -279,6 +279,8 @@ comment|/**  *<code>DirectUpdateHandler</code> implements an UpdateHandler where
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|DirectUpdateHandler
 specifier|public
 class|class

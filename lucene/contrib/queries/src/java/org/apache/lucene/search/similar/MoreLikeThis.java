@@ -1009,7 +1009,7 @@ operator|=
 name|maxWordLen
 expr_stmt|;
 block|}
-comment|/** 	 * Set the set of stopwords. 	 * Any word in this set is considered "uninteresting" and ignored. 	 * Even if your Analyzer allows stopwords, you might want to tell the MoreLikeThis code to ignore them, as 	 * for the purposes of document similarity it seems reasonable to assume that "a stop word is never interesting". 	 *  	 * @param stopWords set of stopwords, if null it means to allow stop words 	 * 	 * @see org.apache.lucene.analysis.StopFilter#makeStopSet StopFilter.makeStopSet() 	 * @see #getStopWords	  	 */
+comment|/** 	 * Set the set of stopwords. 	 * Any word in this set is considered "uninteresting" and ignored. 	 * Even if your Analyzer allows stopwords, you might want to tell the MoreLikeThis code to ignore them, as 	 * for the purposes of document similarity it seems reasonable to assume that "a stop word is never interesting". 	 *  	 * @param stopWords set of stopwords, if null it means to allow stop words 	 * 	 * @see #getStopWords	  	 */
 DECL|method|setStopWords
 specifier|public
 name|void

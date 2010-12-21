@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|TermsEnum
 import|;
 end_import
 
@@ -61,6 +61,20 @@ operator|.
 name|util
 operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntsRef
 import|;
 end_import
 
@@ -109,22 +123,6 @@ operator|.
 name|automaton
 operator|.
 name|SpecialOperations
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|State
 import|;
 end_import
 
@@ -252,18 +250,16 @@ name|BytesRef
 argument_list|>
 name|termComp
 decl_stmt|;
-comment|/**    * Expert ctor:    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied reader.    *<p>    * @lucene.internal Use the public ctor instead.     *<p>    * @param runAutomaton pre-compiled ByteRunAutomaton    * @param finite true if the automaton accepts a finite language    */
+comment|/**    * Expert ctor:    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *<p>    * @lucene.experimental     *<p>    * @param runAutomaton pre-compiled ByteRunAutomaton    * @param finite true if the automaton accepts a finite language    */
 DECL|method|AutomatonTermsEnum
+specifier|public
 name|AutomatonTermsEnum
 parameter_list|(
 name|ByteRunAutomaton
 name|runAutomaton
 parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|,
 name|boolean
 name|finite
@@ -276,9 +272,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|field
+name|tenum
 argument_list|)
 expr_stmt|;
 name|this
@@ -349,56 +343,13 @@ block|}
 comment|// build a cache of sorted transitions for every state
 name|allTransitions
 operator|=
-operator|new
-name|Transition
-index|[
-name|runAutomaton
-operator|.
-name|getSize
-argument_list|()
-index|]
-index|[]
-expr_stmt|;
-for|for
-control|(
-name|State
-name|state
-range|:
 name|this
 operator|.
 name|automaton
 operator|.
-name|getNumberedStates
-argument_list|()
-control|)
-block|{
-name|state
-operator|.
-name|sortTransitions
-argument_list|(
-name|Transition
-operator|.
-name|CompareByMinMaxThenDest
-argument_list|)
-expr_stmt|;
-name|state
-operator|.
-name|trimTransitionsArray
+name|getSortedTransitions
 argument_list|()
 expr_stmt|;
-name|allTransitions
-index|[
-name|state
-operator|.
-name|getNumber
-argument_list|()
-index|]
-operator|=
-name|state
-operator|.
-name|transitionsArray
-expr_stmt|;
-block|}
 comment|// used for path tracking, where each bit is a numbered state.
 name|visited
 operator|=
@@ -411,18 +362,13 @@ name|getSize
 argument_list|()
 index|]
 expr_stmt|;
-name|setUseTermsCache
-argument_list|(
-name|finite
-argument_list|)
-expr_stmt|;
 name|termComp
 operator|=
 name|getComparator
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied reader.    *<p>    * It will automatically calculate whether or not the automaton is finite    */
+comment|/**    * Construct an enumerator based upon an automaton, enumerating the specified    * field, working on a supplied TermsEnum    *<p>    * It will automatically calculate whether or not the automaton is finite    */
 DECL|method|AutomatonTermsEnum
 specifier|public
 name|AutomatonTermsEnum
@@ -430,11 +376,8 @@ parameter_list|(
 name|Automaton
 name|automaton
 parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|)
 throws|throws
 name|IOException
@@ -447,9 +390,7 @@ argument_list|(
 name|automaton
 argument_list|)
 argument_list|,
-name|field
-argument_list|,
-name|reader
+name|tenum
 argument_list|,
 name|SpecialOperations
 operator|.
@@ -690,7 +631,7 @@ decl_stmt|;
 name|int
 name|maxInterval
 init|=
-literal|0xef
+literal|0xff
 decl_stmt|;
 for|for
 control|(
@@ -819,11 +760,7 @@ operator|!=
 literal|0xff
 condition|)
 name|maxInterval
-operator|=
-name|incrementUTF8
-argument_list|(
-name|maxInterval
-argument_list|)
+operator|++
 expr_stmt|;
 name|int
 name|length
@@ -891,7 +828,19 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**    * Increments the utf16 buffer to the next String in lexicographic order after s that will not put    * the machine into a reject state. If such a string does not exist, returns    * false.    *     * The correctness of this method depends upon the automaton being deterministic,    * and having no transitions to dead states.    *     * @return true if more possible solutions exist for the DFA    */
+DECL|field|savedStates
+specifier|private
+specifier|final
+name|IntsRef
+name|savedStates
+init|=
+operator|new
+name|IntsRef
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
+comment|/**    * Increments the byte buffer to the next String in binary order after s that will not put    * the machine into a reject state. If such a string does not exist, returns    * false.    *     * The correctness of this method depends upon the automaton being deterministic,    * and having no transitions to dead states.    *     * @return true if more possible solutions exist for the DFA    */
 DECL|method|nextString
 specifier|private
 name|boolean
@@ -906,6 +855,36 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
+name|savedStates
+operator|.
+name|grow
+argument_list|(
+name|seekBytesRef
+operator|.
+name|length
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
+specifier|final
+name|int
+index|[]
+name|states
+init|=
+name|savedStates
+operator|.
+name|ints
+decl_stmt|;
+name|states
+index|[
+literal|0
+index|]
+operator|=
+name|runAutomaton
+operator|.
+name|getInitialState
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 literal|true
@@ -918,19 +897,15 @@ name|linear
 operator|=
 literal|false
 expr_stmt|;
-name|state
-operator|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
-expr_stmt|;
 comment|// walk the automaton until a character is rejected.
 for|for
 control|(
-name|pos
+name|state
 operator|=
-literal|0
+name|states
+index|[
+name|pos
+index|]
 init|;
 name|pos
 operator|<
@@ -976,6 +951,15 @@ operator|-
 literal|1
 condition|)
 break|break;
+name|states
+index|[
+name|pos
+operator|+
+literal|1
+index|]
+operator|=
+name|nextState
+expr_stmt|;
 comment|// we found a loop, record it for faster enumeration
 if|if
 condition|(
@@ -1028,32 +1012,55 @@ block|{
 comment|/* no more solutions exist from this useful portion, backtrack */
 if|if
 condition|(
-operator|!
+operator|(
+name|pos
+operator|=
 name|backtrack
 argument_list|(
 name|pos
 argument_list|)
+operator|)
+operator|<
+literal|0
 condition|)
 comment|/* no more solutions at all */
 return|return
 literal|false
 return|;
-elseif|else
-if|if
-condition|(
+specifier|final
+name|int
+name|newState
+init|=
 name|runAutomaton
 operator|.
-name|run
+name|step
 argument_list|(
+name|states
+index|[
+name|pos
+index|]
+argument_list|,
 name|seekBytesRef
 operator|.
 name|bytes
-argument_list|,
+index|[
+name|pos
+index|]
+operator|&
+literal|0xff
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|newState
+operator|>=
 literal|0
-argument_list|,
-name|seekBytesRef
+operator|&&
+name|runAutomaton
 operator|.
-name|length
+name|isAccept
+argument_list|(
+name|newState
 argument_list|)
 condition|)
 comment|/* String is good to go as-is */
@@ -1061,6 +1068,17 @@ return|return
 literal|true
 return|;
 comment|/* else advance further */
+comment|// TODO: paranoia? if we backtrack thru an infinite DFA, the loop detection is important!
+comment|// for now, restart from scratch for all infinite DFAs
+if|if
+condition|(
+operator|!
+name|finite
+condition|)
+name|pos
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -1103,22 +1121,15 @@ index|]
 operator|&
 literal|0xff
 expr_stmt|;
-comment|// if the next character is U+FFFF and is not part of the useful portion,
+comment|// if the next byte is 0xff and is not part of the useful portion,
 comment|// then by definition it puts us in a reject state, and therefore this
 comment|// path is dead. there cannot be any higher transitions. backtrack.
-name|c
-operator|=
-name|incrementUTF8
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|c
+operator|++
 operator|==
-operator|-
-literal|1
+literal|0xff
 condition|)
 return|return
 literal|false
@@ -1361,10 +1372,10 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Attempts to backtrack thru the string after encountering a dead end    * at some given position. Returns false if no more possible strings     * can match.    *     * @param position current position in the input String    * @return true if more possible solutions exist for the DFA    */
+comment|/**    * Attempts to backtrack thru the string after encountering a dead end    * at some given position. Returns false if no more possible strings     * can match.    *     * @param position current position in the input String    * @return position>=0 if more possible solutions exist for the DFA    */
 DECL|method|backtrack
 specifier|private
-name|boolean
+name|int
 name|backtrack
 parameter_list|(
 name|int
@@ -1374,6 +1385,7 @@ block|{
 while|while
 condition|(
 name|position
+operator|--
 operator|>
 literal|0
 condition|)
@@ -1386,27 +1398,18 @@ operator|.
 name|bytes
 index|[
 name|position
-operator|-
-literal|1
 index|]
 operator|&
 literal|0xff
 decl_stmt|;
 comment|// if a character is 0xff its a dead-end too,
-comment|// because there is no higher character in UTF-8 sort order.
-name|nextChar
-operator|=
-name|incrementUTF8
-argument_list|(
-name|nextChar
-argument_list|)
-expr_stmt|;
+comment|// because there is no higher character in binary sort order.
 if|if
 condition|(
 name|nextChar
+operator|++
 operator|!=
-operator|-
-literal|1
+literal|0xff
 condition|)
 block|{
 name|seekBytesRef
@@ -1414,8 +1417,6 @@ operator|.
 name|bytes
 index|[
 name|position
-operator|-
-literal|1
 index|]
 operator|=
 operator|(
@@ -1428,50 +1429,19 @@ operator|.
 name|length
 operator|=
 name|position
+operator|+
+literal|1
 expr_stmt|;
 return|return
-literal|true
-return|;
-block|}
 name|position
-operator|--
-expr_stmt|;
-block|}
-return|return
-literal|false
 return|;
-comment|/* all solutions exhausted */
 block|}
-comment|/* return the next utf8 byte in utf8 order, or -1 if exhausted */
-DECL|method|incrementUTF8
-specifier|private
-specifier|final
-name|int
-name|incrementUTF8
-parameter_list|(
-name|int
-name|utf8
-parameter_list|)
-block|{
-switch|switch
-condition|(
-name|utf8
-condition|)
-block|{
-case|case
-literal|0xff
-case|:
+block|}
 return|return
 operator|-
 literal|1
 return|;
-default|default:
-return|return
-name|utf8
-operator|+
-literal|1
-return|;
-block|}
+comment|/* all solutions exhausted */
 block|}
 block|}
 end_class

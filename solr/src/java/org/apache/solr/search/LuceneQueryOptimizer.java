@@ -198,12 +198,6 @@ control|(
 name|BooleanClause
 name|c
 range|:
-operator|(
-name|List
-argument_list|<
-name|BooleanClause
-argument_list|>
-operator|)
 name|original
 operator|.
 name|clauses

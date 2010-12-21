@@ -80,6 +80,22 @@ name|WhitespaceTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|th
+operator|.
+name|ThaiWordFilter
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple tests to ensure the Thai word filter factory is working.  */
 end_comment
@@ -101,6 +117,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"JRE does not support Thai dictionary-based BreakIterator"
+argument_list|,
+name|ThaiWordFilter
+operator|.
+name|DBBI_AVAILABLE
+argument_list|)
+expr_stmt|;
 name|Reader
 name|reader
 init|=

@@ -884,6 +884,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a formatter that can be use by the current thread if needed to    * convert Date objects to the Internal representation.    *    * Only the<tt>format(Date)</tt> can be used safely.    *     * @deprecated - use formatDate(Date) instead    */
+annotation|@
+name|Deprecated
 DECL|method|getThreadLocalDateFormat
 specifier|protected
 name|DateFormat

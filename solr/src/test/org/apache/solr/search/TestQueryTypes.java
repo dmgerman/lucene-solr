@@ -24,6 +24,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|AbstractSolrTestCase
@@ -547,6 +563,7 @@ argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
+comment|// no analysis is done, so these should match nothing
 name|assertQ
 argument_list|(
 literal|"test raw query"
@@ -573,6 +590,44 @@ literal|"{!raw f=v_f}1.5"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+comment|// test "term" qparser, which should only do readableToIndexed
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f=v_f}1.5"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// text fields are *not* analyzed since they may not be idempotent
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f=v_t}Hello"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!term f=v_t}hello"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
 comment|//
@@ -789,6 +844,27 @@ argument_list|,
 literal|"//result[@numFound='2']"
 argument_list|)
 expr_stmt|;
+comment|// test wacky param names
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!prefix f=$a/b/c v=$'a b/c'}"
+argument_list|,
+literal|"a/b/c"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"a b/c"
+argument_list|,
+literal|"hel"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='2']"
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 literal|"test param subst with literal"
@@ -940,7 +1016,9 @@ literal|"bq"
 argument_list|,
 literal|"{!prefix f=v_t}he"
 argument_list|,
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"on"
 argument_list|)

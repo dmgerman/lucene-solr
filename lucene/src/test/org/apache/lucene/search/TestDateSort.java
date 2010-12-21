@@ -208,20 +208,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test date sorting, i.e. auto-sorting of fields with type "long".  * See http://issues.apache.org/jira/browse/LUCENE-1045   */
 end_comment
@@ -265,7 +251,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -280,8 +266,7 @@ expr_stmt|;
 comment|// Create an index writer.
 name|directory
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
@@ -290,8 +275,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|)
@@ -379,7 +363,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -614,7 +598,6 @@ expr_stmt|;
 block|}
 DECL|method|createDocument
 specifier|private
-specifier|static
 name|Document
 name|createDocument
 parameter_list|(
@@ -636,8 +619,7 @@ comment|// Add the text field.
 name|Field
 name|textField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|TEXT_FIELD
 argument_list|,
@@ -683,8 +665,7 @@ decl_stmt|;
 name|Field
 name|dateTimeField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|DATE_TIME_FIELD
 argument_list|,

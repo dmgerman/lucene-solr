@@ -148,6 +148,11 @@ name|TaskSequence
 name|sequence
 decl_stmt|;
 comment|/**    * Read algorithm from file    * @param runData perf-run-data used at running the tasks.    * @throws Exception if errors while parsing the algorithm     */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|Algorithm
 specifier|public
 name|Algorithm
@@ -1210,6 +1215,7 @@ operator|.
 name|setNoChildReport
 argument_list|()
 expr_stmt|;
+comment|/* intentional fallthrough */
 case|case
 literal|'}'
 case|:

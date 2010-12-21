@@ -292,6 +292,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|ByteUtils
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1393,17 +1407,22 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|BytesRef
+name|prefixRef
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|prefix
+argument_list|)
+decl_stmt|;
 name|startTermIndex
 operator|=
 name|si
 operator|.
 name|binarySearchLookup
 argument_list|(
-operator|new
-name|BytesRef
-argument_list|(
-name|prefix
-argument_list|)
+name|prefixRef
 argument_list|,
 name|tempBR
 argument_list|)
@@ -1421,22 +1440,23 @@ name|startTermIndex
 operator|-
 literal|1
 expr_stmt|;
-comment|// find the end term.  \uffff isn't a legal unicode char, but only compareTo
-comment|// is used, so it should be fine, and is guaranteed to be bigger than legal chars.
-comment|// TODO: switch to binarySearch version that takes start/end in Java6
+name|prefixRef
+operator|.
+name|append
+argument_list|(
+name|ByteUtils
+operator|.
+name|bigTerm
+argument_list|)
+expr_stmt|;
+comment|// TODO: we could constrain the lower endpoint if we had a binarySearch method that allowed passing start/end
 name|endTermIndex
 operator|=
 name|si
 operator|.
 name|binarySearchLookup
 argument_list|(
-operator|new
-name|BytesRef
-argument_list|(
-name|prefix
-operator|+
-literal|"\uffff\uffff\uffff\uffff"
-argument_list|)
+name|prefixRef
 argument_list|,
 name|tempBR
 argument_list|)

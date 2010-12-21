@@ -829,19 +829,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"missing query string"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
+comment|// throw new SolrException( SolrException.ErrorCode.BAD_REQUEST, "missing query string" );
 block|}
 block|}
 else|else
@@ -2511,6 +2502,12 @@ throws|throws
 name|ParseException
 block|{
 return|return
+name|parsedUserQuery
+operator|==
+literal|null
+condition|?
+name|altUserQuery
+else|:
 name|parsedUserQuery
 return|;
 block|}
@@ -4287,6 +4284,10 @@ DECL|field|bool
 name|boolean
 name|bool
 decl_stmt|;
+DECL|field|bool2
+name|boolean
+name|bool2
+decl_stmt|;
 DECL|field|flt
 name|float
 name|flt
@@ -4481,7 +4482,10 @@ name|String
 name|b
 parameter_list|,
 name|boolean
-name|inclusive
+name|startInclusive
+parameter_list|,
+name|boolean
+name|endInclusive
 parameter_list|)
 throws|throws
 name|ParseException
@@ -4517,7 +4521,13 @@ name|this
 operator|.
 name|bool
 operator|=
-name|inclusive
+name|startInclusive
+expr_stmt|;
+name|this
+operator|.
+name|bool2
+operator|=
+name|endInclusive
 expr_stmt|;
 return|return
 name|getAliasedQuery
@@ -5113,6 +5123,8 @@ argument_list|,
 name|val2
 argument_list|,
 name|bool
+argument_list|,
+name|bool2
 argument_list|)
 return|;
 block|}

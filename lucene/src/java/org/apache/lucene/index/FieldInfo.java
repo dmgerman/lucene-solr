@@ -72,6 +72,13 @@ name|boolean
 name|storePayloads
 decl_stmt|;
 comment|// whether this field stores payloads together with term positions
+DECL|field|codecId
+name|int
+name|codecId
+init|=
+literal|0
+decl_stmt|;
+comment|// set inside SegmentCodecs#build() during segment flush - this is used to identify the codec used to write this field
 DECL|method|FieldInfo
 name|FieldInfo
 parameter_list|(

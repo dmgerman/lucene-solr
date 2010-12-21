@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A RussianLetterTokenizer is a {@link Tokenizer} that extends {@link LetterTokenizer}  * by also allowing the basic Latin digits 0-9.  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link RussianLetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  * @deprecated Use {@link StandardTokenizer} instead, which has the same functionality.  * This filter will be removed in Lucene 4.0   */
+comment|/**  * A RussianLetterTokenizer is a {@link Tokenizer} that extends {@link LetterTokenizer}  * by also allowing the basic Latin digits 0-9.  *<p>  *<a name="version"/>  * You must specify the required {@link Version} compatibility when creating  * {@link RussianLetterTokenizer}:  *<ul>  *<li>As of 3.1, {@link CharTokenizer} uses an int based API to normalize and  * detect token characters. See {@link CharTokenizer#isTokenChar(int)} and  * {@link CharTokenizer#normalize(int)} for details.</li>  *</ul>  * @deprecated (3.1) Use {@link StandardTokenizer} instead, which has the same functionality.  * This filter will be removed in Lucene 5.0   */
 end_comment
 
 begin_class
@@ -220,67 +220,6 @@ name|super
 argument_list|(
 name|matchVersion
 argument_list|,
-name|factory
-argument_list|,
-name|in
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Construct a new RussianLetterTokenizer.      *       * @deprecated use {@link #RussianLetterTokenizer(Version, Reader)} instead. This will      *             be removed in Lucene 4.0.      */
-annotation|@
-name|Deprecated
-DECL|method|RussianLetterTokenizer
-specifier|public
-name|RussianLetterTokenizer
-parameter_list|(
-name|Reader
-name|in
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|in
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Construct a new RussianLetterTokenizer using a given {@link AttributeSource}.      *       * @deprecated use {@link #RussianLetterTokenizer(Version, AttributeSource, Reader)}      *             instead. This will be removed in Lucene 4.0.      */
-annotation|@
-name|Deprecated
-DECL|method|RussianLetterTokenizer
-specifier|public
-name|RussianLetterTokenizer
-parameter_list|(
-name|AttributeSource
-name|source
-parameter_list|,
-name|Reader
-name|in
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|source
-argument_list|,
-name|in
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Construct a new RussianLetterTokenizer using a given      * {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.      *       * @deprecated use {@link #RussianLetterTokenizer(Version, AttributeSource.AttributeFactory, Reader)}      *             instead. This will be removed in Lucene 4.0.      */
-annotation|@
-name|Deprecated
-DECL|method|RussianLetterTokenizer
-specifier|public
-name|RussianLetterTokenizer
-parameter_list|(
-name|AttributeFactory
-name|factory
-parameter_list|,
-name|Reader
-name|in
-parameter_list|)
-block|{
-name|super
-argument_list|(
 name|factory
 argument_list|,
 name|in

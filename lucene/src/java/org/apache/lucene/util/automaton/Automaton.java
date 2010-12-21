@@ -207,7 +207,7 @@ name|allow_mutation
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Constructs a new automaton that accepts the empty language. Using this    * constructor, automata can be constructed manually from {@link State} and    * {@link Transition} objects.    *     * @see #setInitialState(State)    * @see State    * @see Transition    */
+comment|/**    * Constructs a new automaton that accepts the empty language. Using this    * constructor, automata can be constructed manually from {@link State} and    * {@link Transition} objects.    *     * @see State    * @see Transition    */
 DECL|method|Automaton
 specifier|public
 name|Automaton
@@ -629,7 +629,7 @@ name|upto
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_OBJ_REF
+name|NUM_BYTES_OBJECT_REF
 argument_list|)
 index|]
 decl_stmt|;
@@ -1710,6 +1710,7 @@ expr_stmt|;
 block|}
 comment|/**    * Returns a sorted array of transitions for each state (and sets state    * numbers).    */
 DECL|method|getSortedTransitions
+specifier|public
 name|Transition
 index|[]
 index|[]

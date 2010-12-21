@@ -2458,6 +2458,27 @@ name|int
 name|to
 parameter_list|)
 block|{
+if|if
+condition|(
+name|from
+operator|>
+name|to
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid range: from ("
+operator|+
+name|from
+operator|+
+literal|") cannot be> to ("
+operator|+
+name|to
+operator|+
+literal|")"
+argument_list|)
+throw|;
 name|RegExp
 name|r
 init|=

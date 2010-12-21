@@ -156,7 +156,7 @@ specifier|public
 class|class
 name|TestSurrogates
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 DECL|method|makeDifficultRandomUnicodeString
 specifier|private
@@ -1701,17 +1701,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -1720,14 +1713,12 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|r
+name|random
 argument_list|,
 name|dir
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|r
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -1756,7 +1747,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|r
+name|random
 argument_list|,
 literal|2
 argument_list|,
@@ -1850,7 +1841,7 @@ name|term
 init|=
 name|getRandomString
 argument_list|(
-name|r
+name|random
 argument_list|)
 operator|+
 literal|"_ "
@@ -1891,8 +1882,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|field
 argument_list|,
@@ -2061,7 +2051,7 @@ argument_list|)
 expr_stmt|;
 name|doTestSeekExists
 argument_list|(
-name|r
+name|random
 argument_list|,
 name|fieldTerms
 argument_list|,
@@ -2070,7 +2060,7 @@ argument_list|)
 expr_stmt|;
 name|doTestSeekDoesNotExist
 argument_list|(
-name|r
+name|random
 argument_list|,
 name|numField
 argument_list|,
@@ -2082,6 +2072,16 @@ name|reader
 argument_list|)
 expr_stmt|;
 name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|w
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
 operator|.
 name|close
 argument_list|()

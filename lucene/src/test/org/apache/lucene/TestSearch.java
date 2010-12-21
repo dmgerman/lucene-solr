@@ -20,7 +20,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|GregorianCalendar
+name|Random
 import|;
 end_import
 
@@ -229,6 +229,8 @@ argument_list|)
 decl_stmt|;
 name|doTestSearch
 argument_list|(
+name|random
+argument_list|,
 name|pw
 argument_list|,
 literal|false
@@ -274,6 +276,8 @@ argument_list|)
 expr_stmt|;
 name|doTestSearch
 argument_list|(
+name|random
+argument_list|,
 name|pw
 argument_list|,
 literal|true
@@ -313,6 +317,9 @@ specifier|private
 name|void
 name|doTestSearch
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|PrintWriter
 name|out
 parameter_list|,
@@ -325,8 +332,7 @@ block|{
 name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -339,8 +345,7 @@ decl_stmt|;
 name|IndexWriterConfig
 name|conf
 init|=
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -424,8 +429,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -560,10 +564,6 @@ literal|"contents"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//DateFilter filter =
-comment|//  new DateFilter("modified", Time(1997,0,1), Time(1998,0,1));
-comment|//DateFilter filter = DateFilter.Before("modified", Time(1997,00,01));
-comment|//System.out.println(filter);
 name|hits
 operator|=
 name|searcher
@@ -640,7 +640,6 @@ name|i
 index|]
 operator|.
 name|score
-comment|// 			   + " " + DateField.stringToDate(d.get("modified"))
 operator|+
 literal|" "
 operator|+
@@ -659,54 +658,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-DECL|method|Time
-specifier|static
-name|long
-name|Time
-parameter_list|(
-name|int
-name|year
-parameter_list|,
-name|int
-name|month
-parameter_list|,
-name|int
-name|day
-parameter_list|)
-block|{
-name|GregorianCalendar
-name|calendar
-init|=
-operator|new
-name|GregorianCalendar
-argument_list|()
-decl_stmt|;
-name|calendar
+name|directory
 operator|.
-name|clear
+name|close
 argument_list|()
 expr_stmt|;
-name|calendar
-operator|.
-name|set
-argument_list|(
-name|year
-argument_list|,
-name|month
-argument_list|,
-name|day
-argument_list|)
-expr_stmt|;
-return|return
-name|calendar
-operator|.
-name|getTime
-argument_list|()
-operator|.
-name|getTime
-argument_list|()
-return|;
 block|}
 block|}
 end_class

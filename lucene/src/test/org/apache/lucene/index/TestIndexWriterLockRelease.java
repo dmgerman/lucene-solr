@@ -114,7 +114,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
+name|Directory
 import|;
 end_import
 
@@ -142,7 +142,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -243,7 +243,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -360,12 +360,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|FSDirectory
+name|Directory
 name|dir
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|this
 operator|.
@@ -435,7 +433,7 @@ parameter_list|(
 name|FileNotFoundException
 name|e1
 parameter_list|)
-block|{             }
+block|{         }
 block|}
 finally|finally
 block|{

@@ -939,9 +939,6 @@ literal|0
 condition|)
 block|{
 return|return
-operator|(
-name|int
-operator|)
 operator|-
 name|a
 index|[
@@ -1722,9 +1719,6 @@ name|i
 operator|++
 index|]
 operator|=
-operator|(
-name|String
-operator|)
 name|iter
 operator|.
 name|nextElement
@@ -1993,6 +1987,9 @@ block|}
 DECL|method|keys
 specifier|public
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|keys
 parameter_list|()
 block|{
@@ -2008,6 +2005,9 @@ class|class
 name|Iterator
 implements|implements
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 block|{
 comment|/**      * current node index      */
 DECL|field|cur
@@ -2090,6 +2090,9 @@ block|}
 comment|/**      * Node stack      */
 DECL|field|ns
 name|Stack
+argument_list|<
+name|Item
+argument_list|>
 name|ns
 decl_stmt|;
 comment|/**      * key stack implemented with a StringBuilder      */
@@ -2111,6 +2114,9 @@ name|ns
 operator|=
 operator|new
 name|Stack
+argument_list|<
+name|Item
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|ks
@@ -2151,7 +2157,7 @@ expr_stmt|;
 block|}
 DECL|method|nextElement
 specifier|public
-name|Object
+name|String
 name|nextElement
 parameter_list|()
 block|{
@@ -2280,9 +2286,6 @@ condition|)
 block|{
 name|i
 operator|=
-operator|(
-name|Item
-operator|)
 name|ns
 operator|.
 name|pop
@@ -2328,6 +2331,9 @@ name|ns
 operator|.
 name|push
 argument_list|(
+operator|(
+name|Item
+operator|)
 name|i
 operator|.
 name|clone
@@ -2358,6 +2364,9 @@ name|ns
 operator|.
 name|push
 argument_list|(
+operator|(
+name|Item
+operator|)
 name|i
 operator|.
 name|clone
@@ -2395,6 +2404,9 @@ name|ns
 operator|.
 name|push
 argument_list|(
+operator|(
+name|Item
+operator|)
 name|i
 operator|.
 name|clone

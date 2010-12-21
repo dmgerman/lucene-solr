@@ -134,11 +134,6 @@ name|boolean
 name|optimize
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|increfDone
-name|boolean
-name|increfDone
-decl_stmt|;
-comment|// used by IndexWriter
 DECL|field|registerDone
 name|boolean
 name|registerDone
@@ -171,23 +166,11 @@ index|[]
 name|readersClone
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|mergeFiles
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|mergeFiles
-decl_stmt|;
-comment|// used by IndexWriter
 DECL|field|segments
+specifier|public
 specifier|final
 name|SegmentInfos
 name|segments
-decl_stmt|;
-DECL|field|useCompoundFile
-specifier|final
-name|boolean
-name|useCompoundFile
 decl_stmt|;
 DECL|field|aborted
 name|boolean
@@ -207,9 +190,6 @@ name|OneMerge
 parameter_list|(
 name|SegmentInfos
 name|segments
-parameter_list|,
-name|boolean
-name|useCompoundFile
 parameter_list|)
 block|{
 if|if
@@ -233,12 +213,6 @@ operator|.
 name|segments
 operator|=
 name|segments
-expr_stmt|;
-name|this
-operator|.
-name|useCompoundFile
-operator|=
-name|useCompoundFile
 expr_stmt|;
 block|}
 comment|/** Record that an exception occurred while executing      *  this merge */
@@ -413,6 +387,7 @@ name|paused
 return|;
 block|}
 DECL|method|segString
+specifier|public
 name|String
 name|segString
 parameter_list|(
@@ -515,11 +490,93 @@ argument_list|(
 literal|" [optimize]"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|aborted
+condition|)
+block|{
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" [ABORTED]"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|b
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+comment|/**      * Returns the total size in bytes of this merge. Note that this does not      * indicate the size of the merged segment, but the input total size.      * */
+DECL|method|totalBytesSize
+specifier|public
+name|long
+name|totalBytesSize
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|long
+name|total
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfo
+name|info
+range|:
+name|segments
+control|)
+block|{
+name|total
+operator|+=
+name|info
+operator|.
+name|sizeInBytes
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|total
+return|;
+block|}
+comment|/**      * Returns the total number of documents that are included with this merge.      * Note that this does not indicate the number of documents after the merge.      * */
+DECL|method|totalNumDocs
+specifier|public
+name|int
+name|totalNumDocs
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|int
+name|total
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfo
+name|info
+range|:
+name|segments
+control|)
+block|{
+name|total
+operator|+=
+name|info
+operator|.
+name|docCount
+expr_stmt|;
+block|}
+return|return
+name|total
 return|;
 block|}
 block|}
@@ -533,6 +590,7 @@ block|{
 comment|/**      * The subset of segments to be included in the primitive merge.      */
 DECL|field|merges
 specifier|public
+specifier|final
 name|List
 argument_list|<
 name|OneMerge
@@ -864,7 +922,7 @@ name|void
 name|close
 parameter_list|()
 function_decl|;
-comment|/**    * Returns true if a newly flushed (not from merge)    * segment should use the compound file format.    */
+comment|/**    * Returns true if a new segment (regardless of its origin) should use the compound file format.    */
 DECL|method|useCompoundFile
 specifier|public
 specifier|abstract
@@ -877,6 +935,8 @@ parameter_list|,
 name|SegmentInfo
 name|newSegment
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

@@ -72,6 +72,20 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestReverseStringFilter
 specifier|public
@@ -296,7 +310,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test the broken 3.0 behavior, for back compat    */
+comment|/**    * Test the broken 3.0 behavior, for back compat    * @deprecated (3.1) Remove in Lucene 5.0    */
+annotation|@
+name|Deprecated
 DECL|method|testBackCompat
 specifier|public
 name|void
@@ -313,6 +329,10 @@ name|ReverseStringFilter
 operator|.
 name|reverse
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_30
+argument_list|,
 literal|"ð©¬ð©¬"
 argument_list|)
 argument_list|)

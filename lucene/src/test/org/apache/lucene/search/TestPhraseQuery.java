@@ -259,13 +259,8 @@ name|query
 decl_stmt|;
 DECL|field|directory
 specifier|private
-name|RAMDirectory
+name|Directory
 name|directory
-decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
 decl_stmt|;
 annotation|@
 name|Override
@@ -282,15 +277,9 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|directory
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|Analyzer
@@ -367,8 +356,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -392,8 +380,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"repeated"
 argument_list|,
@@ -416,8 +403,7 @@ expr_stmt|;
 name|Fieldable
 name|repeatedField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"repeated"
 argument_list|,
@@ -447,8 +433,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"palindrome"
 argument_list|,
@@ -485,8 +470,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"nonexist"
 argument_list|,
@@ -523,8 +507,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"nonexist"
 argument_list|,
@@ -581,7 +564,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -680,6 +663,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -757,6 +742,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -831,6 +818,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -898,6 +887,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -978,6 +969,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1054,6 +1047,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1135,6 +1130,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1209,6 +1206,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1302,6 +1301,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1390,6 +1391,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1432,6 +1435,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1446,11 +1451,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -1484,11 +1488,9 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_40
 argument_list|,
 name|stopAnalyzer
 argument_list|)
@@ -1505,8 +1507,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -1619,6 +1620,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1685,6 +1688,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -1714,11 +1719,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|RAMDirectory
+name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -1743,8 +1747,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"source"
 argument_list|,
@@ -1781,8 +1784,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -1806,8 +1808,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"source"
 argument_list|,
@@ -1919,6 +1920,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|phraseQuery
 argument_list|,
 name|searcher
@@ -2000,6 +2003,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|termQuery
 argument_list|,
 name|searcher
@@ -2026,8 +2031,6 @@ name|directory
 argument_list|,
 name|newIndexWriterConfig
 argument_list|(
-name|random
-argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
@@ -2053,8 +2056,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -2091,8 +2093,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -2129,8 +2130,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -2387,6 +2387,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|booleanQuery
 argument_list|,
 name|searcher
@@ -2419,8 +2421,7 @@ block|{
 name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -2445,8 +2446,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -2484,8 +2484,7 @@ name|doc2
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -2523,8 +2522,7 @@ name|doc3
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -2725,6 +2723,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -2941,6 +2941,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -2983,6 +2985,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3078,6 +3082,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3167,6 +3173,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3256,6 +3264,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3358,6 +3368,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3451,6 +3463,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3517,6 +3531,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3595,6 +3611,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3675,6 +3693,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3784,6 +3804,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3860,6 +3882,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -3961,6 +3985,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -4054,6 +4080,8 @@ name|QueryUtils
 operator|.
 name|check
 argument_list|(
+name|random
+argument_list|,
 name|query
 argument_list|,
 name|searcher
@@ -4162,8 +4190,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -4215,8 +4242,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 argument_list|,

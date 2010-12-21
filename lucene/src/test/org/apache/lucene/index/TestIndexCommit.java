@@ -80,23 +80,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 import|;
 end_import
 
@@ -116,7 +102,7 @@ specifier|public
 class|class
 name|TestIndexCommit
 extends|extends
-name|LuceneTestCaseJ4
+name|LuceneTestCase
 block|{
 annotation|@
 name|Test
@@ -133,8 +119,7 @@ specifier|final
 name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexCommit
@@ -416,6 +401,11 @@ operator|.
 name|hashCode
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

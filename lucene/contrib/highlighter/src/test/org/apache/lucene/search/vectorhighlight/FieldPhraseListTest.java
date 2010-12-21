@@ -1362,7 +1362,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"d(1.0)((6,7))"
+literal|"d(1.0)((9,10))"
 argument_list|,
 name|fpl
 operator|.

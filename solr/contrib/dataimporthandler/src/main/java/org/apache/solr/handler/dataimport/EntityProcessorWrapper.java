@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Wrapper over EntityProcessor instance which performs transforms and handles multi-row outputs correctly.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A Wrapper over {@link EntityProcessor} instance which performs transforms and handles multi-row outputs correctly.  *  * @version $Id$  * @since solr 1.4  */
 end_comment
 
 begin_class

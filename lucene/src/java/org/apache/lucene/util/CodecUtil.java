@@ -107,6 +107,12 @@ specifier|final
 class|class
 name|CodecUtil
 block|{
+DECL|method|CodecUtil
+specifier|private
+name|CodecUtil
+parameter_list|()
+block|{}
+comment|// no instance
 DECL|field|CODEC_MAGIC
 specifier|private
 specifier|final
@@ -119,7 +125,7 @@ decl_stmt|;
 DECL|method|writeHeader
 specifier|public
 specifier|static
-name|void
+name|IndexOutput
 name|writeHeader
 parameter_list|(
 name|IndexOutput
@@ -194,6 +200,9 @@ literal|"]"
 argument_list|)
 throw|;
 block|}
+return|return
+name|out
+return|;
 block|}
 DECL|method|headerLength
 specifier|public

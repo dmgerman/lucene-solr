@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ArrayUtil
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -49,16 +63,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -773,9 +777,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Arrays
+name|ArrayUtil
 operator|.
-name|sort
+name|quickSort
 argument_list|(
 name|subSpansByDoc
 argument_list|,

@@ -314,6 +314,20 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/**  * Read index (abstract) task.  * Sub classes implement withSearch(), withWarm(), withTraverse() and withRetrieve()  * methods to configure the actual action.  *<p/>  *<p>Note: All ReadTasks reuse the reader if it is already open.  * Otherwise a reader is opened at start and closed at the end.  *<p>  * The<code>search.num.hits</code> config parameter sets  * the top number of hits to collect during searching.  If  *<code>print.hits.field</code> is set, then each hit is  * printed along with the value of that field.</p>  *  *<p>Other side effects: none.  */
 end_comment
@@ -466,6 +480,14 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+name|Bits
+name|delDocs
+init|=
+name|reader
+operator|.
+name|getDeletedDocs
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -487,9 +509,9 @@ block|{
 if|if
 condition|(
 operator|!
-name|reader
+name|delDocs
 operator|.
-name|isDeleted
+name|get
 argument_list|(
 name|m
 argument_list|)

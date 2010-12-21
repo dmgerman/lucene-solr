@@ -40,11 +40,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
 import|;
 end_import
 
@@ -56,9 +60,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|RAMDirectory
+name|LuceneTestCase
 import|;
 end_import
 
@@ -72,7 +76,7 @@ specifier|public
 class|class
 name|TestPlainTextDictionary
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|method|testBuild
 specifier|public
@@ -119,11 +123,10 @@ name|input
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|RAMDirectory
+name|Directory
 name|ramDir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|SpellChecker
@@ -181,8 +184,18 @@ index|[
 literal|1
 index|]
 argument_list|,
-literal|"twoword"
+literal|"oneword"
 argument_list|)
+expr_stmt|;
+name|spellChecker
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|ramDir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

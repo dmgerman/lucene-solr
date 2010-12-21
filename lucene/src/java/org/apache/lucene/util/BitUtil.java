@@ -28,9 +28,16 @@ end_comment
 begin_class
 DECL|class|BitUtil
 specifier|public
+specifier|final
 class|class
 name|BitUtil
 block|{
+DECL|method|BitUtil
+specifier|private
+name|BitUtil
+parameter_list|()
+block|{}
+comment|// no instance
 comment|/** Returns the number of bits set in the long */
 DECL|method|pop
 specifier|public

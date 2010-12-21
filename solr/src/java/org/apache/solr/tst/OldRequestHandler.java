@@ -340,9 +340,6 @@ literal|1
 argument_list|)
 argument_list|,
 name|req
-operator|.
-name|getSchema
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

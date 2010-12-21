@@ -50,16 +50,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -128,11 +118,6 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-decl_stmt|;
 DECL|method|testLexicon
 specifier|public
 name|void
@@ -141,11 +126,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
 name|int
 name|num
 init|=

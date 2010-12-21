@@ -328,16 +328,6 @@ operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|d
-operator|.
-name|fileExists
-argument_list|(
-name|idxName
-argument_list|)
-condition|)
-block|{
 name|tvx
 operator|=
 name|d
@@ -443,20 +433,6 @@ name|format
 operator|==
 name|tvfFormat
 assert|;
-assert|assert
-operator|(
-name|tvx
-operator|.
-name|length
-argument_list|()
-operator|-
-name|FORMAT_SIZE
-operator|)
-operator|%
-literal|16
-operator|==
-literal|0
-assert|;
 name|numTotalDocs
 operator|=
 call|(
@@ -537,12 +513,6 @@ operator|+
 name|docStoreOffset
 assert|;
 block|}
-block|}
-else|else
-name|format
-operator|=
-literal|0
-expr_stmt|;
 name|this
 operator|.
 name|fieldInfos
@@ -626,10 +596,12 @@ name|boolean
 name|canReadRawDocs
 parameter_list|()
 block|{
+comment|// we can always read raw docs, unless the term vectors
+comment|// didn't exist
 return|return
 name|format
-operator|>=
-name|FORMAT_UTF8_LENGTH_IN_BYTES
+operator|!=
+literal|0
 return|;
 block|}
 comment|/** Retrieve the length (in bytes) of the tvd and tvf    *  entries for the next numDocs starting with    *  startDocID.  This is used for bulk copying when    *  merging segments, if the field numbers are    *  congruent.  Once this returns, the tvf& tvd streams    *  are seeked to the startDocID. */
@@ -682,21 +654,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|// SegmentMerger calls canReadRawDocs() first and should
-comment|// not call us if that returns false.
-if|if
-condition|(
-name|format
-operator|<
-name|FORMAT_UTF8_LENGTH_IN_BYTES
-condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"cannot read raw docs with older term vector formats"
-argument_list|)
-throw|;
 name|seekTvx
 argument_list|(
 name|startDocID

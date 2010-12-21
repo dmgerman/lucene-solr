@@ -81,7 +81,7 @@ operator|=
 name|ignoringOffsets
 expr_stmt|;
 block|}
-comment|/**    * Tell the mapper what to expect in regards to field, number of terms, offset and position storage.    * This method will be called once before retrieving the vector for a field.    *    * This method will be called before {@link #map(String,int,TermVectorOffsetInfo[],int[])}.    * @param field The field the vector is for    * @param numTerms The number of terms that need to be mapped    * @param storeOffsets true if the mapper should expect offset information    * @param storePositions true if the mapper should expect positions info    */
+comment|/**    * Tell the mapper what to expect in regards to field, number of terms, offset and position storage.    * This method will be called once before retrieving the vector for a field.    *    * This method will be called before {@link #map(BytesRef,int,TermVectorOffsetInfo[],int[])}.    * @param field The field the vector is for    * @param numTerms The number of terms that need to be mapped    * @param storeOffsets true if the mapper should expect offset information    * @param storePositions true if the mapper should expect positions info    */
 DECL|method|setExpectations
 specifier|public
 specifier|abstract

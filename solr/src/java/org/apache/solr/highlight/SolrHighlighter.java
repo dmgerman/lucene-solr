@@ -268,6 +268,27 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// Thread safe registry
+DECL|field|encoders
+specifier|protected
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SolrEncoder
+argument_list|>
+name|encoders
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|SolrEncoder
+argument_list|>
+argument_list|()
+decl_stmt|;
+comment|// Thread safe registry
 DECL|field|fragmenters
 specifier|protected
 specifier|final

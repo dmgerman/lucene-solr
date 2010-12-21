@@ -86,6 +86,12 @@ specifier|public
 name|DistanceUnits
 name|units
 decl_stmt|;
+comment|/** Just do a "bounding box" - or any other quicker method / shape that    * still encompasses all of the points of interest, but may also encompass    * points outside.    */
+DECL|field|bbox
+specifier|public
+name|boolean
+name|bbox
+decl_stmt|;
 DECL|method|SpatialOptions
 specifier|public
 name|SpatialOptions

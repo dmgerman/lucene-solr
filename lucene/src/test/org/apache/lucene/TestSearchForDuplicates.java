@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -265,6 +275,8 @@ argument_list|)
 decl_stmt|;
 name|doTest
 argument_list|(
+name|random
+argument_list|,
 name|pw
 argument_list|,
 literal|false
@@ -310,6 +322,8 @@ argument_list|)
 expr_stmt|;
 name|doTest
 argument_list|(
+name|random
+argument_list|,
 name|pw
 argument_list|,
 literal|true
@@ -349,6 +363,9 @@ specifier|private
 name|void
 name|doTest
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|PrintWriter
 name|out
 parameter_list|,
@@ -361,8 +378,7 @@ block|{
 name|Directory
 name|directory
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -375,8 +391,7 @@ decl_stmt|;
 name|IndexWriterConfig
 name|conf
 init|=
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -412,6 +427,30 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now build index"
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|MAX_DOCS
@@ -444,8 +483,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|PRIORITY_FIELD
 argument_list|,
@@ -471,8 +509,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|ID_FIELD
 argument_list|,
@@ -687,6 +724,11 @@ name|searcher
 argument_list|)
 expr_stmt|;
 name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|directory
 operator|.
 name|close
 argument_list|()

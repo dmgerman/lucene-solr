@@ -59,6 +59,20 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrConfig
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -180,6 +194,16 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|SolrConfig
+operator|.
+name|severeErrors
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 name|fail
 argument_list|(

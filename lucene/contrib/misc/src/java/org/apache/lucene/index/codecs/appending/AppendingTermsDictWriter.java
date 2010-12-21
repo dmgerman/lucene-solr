@@ -66,9 +66,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardPostingsWriter
+name|PostingsWriterBase
 import|;
 end_import
 
@@ -84,9 +82,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 import|;
 end_import
 
@@ -102,9 +98,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|standard
-operator|.
-name|StandardTermsIndexWriter
+name|TermsIndexWriterBase
 import|;
 end_import
 
@@ -156,7 +150,7 @@ specifier|public
 class|class
 name|AppendingTermsDictWriter
 extends|extends
-name|StandardTermsDictWriter
+name|PrefixCodedTermsWriter
 block|{
 DECL|field|CODEC_NAME
 specifier|final
@@ -170,13 +164,13 @@ DECL|method|AppendingTermsDictWriter
 specifier|public
 name|AppendingTermsDictWriter
 parameter_list|(
-name|StandardTermsIndexWriter
+name|TermsIndexWriterBase
 name|indexWriter
 parameter_list|,
 name|SegmentWriteState
 name|state
 parameter_list|,
-name|StandardPostingsWriter
+name|PostingsWriterBase
 name|postingsWriter
 parameter_list|,
 name|Comparator

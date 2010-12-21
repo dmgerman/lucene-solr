@@ -22,6 +22,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -31,6 +41,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -158,6 +182,9 @@ DECL|method|SingleFieldTestDb
 specifier|public
 name|SingleFieldTestDb
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|String
 index|[]
 name|documents
@@ -171,8 +198,14 @@ block|{
 name|db
 operator|=
 operator|new
+name|MockDirectoryWrapper
+argument_list|(
+name|random
+argument_list|,
+operator|new
 name|RAMDirectory
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|docs
 operator|=

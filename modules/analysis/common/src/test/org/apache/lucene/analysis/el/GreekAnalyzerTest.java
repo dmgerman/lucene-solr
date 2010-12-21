@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenStreamTestCase
+name|Analyzer
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Analyzer
+name|BaseTokenStreamTestCase
 import|;
 end_import
 
@@ -163,7 +163,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Test the analysis of various greek strings. 	 * 	 * @throws Exception in case an error occurs 	 * @deprecated Remove this test when support for 3.0 is no longer needed 	 */
+comment|/** 	 * Test the analysis of various greek strings. 	 * 	 * @throws Exception in case an error occurs 	 * @deprecated (3.1) Remove this test when support for 3.0 is no longer needed 	 */
 annotation|@
 name|Deprecated
 DECL|method|testAnalyzerBWCompat
@@ -343,78 +343,6 @@ block|,
 literal|"Î¼ÎµÏÏ"
 block|,
 literal|"Î±Î»Î»"
-block|}
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** 	 * Greek Analyzer didn't call standardFilter, so no normalization of acronyms. 	 * check that this is preserved. 	 * @deprecated remove this test in Lucene 4.0 	 */
-annotation|@
-name|Deprecated
-DECL|method|testAcronymBWCompat
-specifier|public
-name|void
-name|testAcronymBWCompat
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|Analyzer
-name|a
-init|=
-operator|new
-name|GreekAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|)
-decl_stmt|;
-name|assertAnalyzesTo
-argument_list|(
-name|a
-argument_list|,
-literal|"Î.Î .Î¤."
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"Î±.Ï.Ï."
-block|}
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * test that acronym normalization works    */
-DECL|method|testAcronym
-specifier|public
-name|void
-name|testAcronym
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|Analyzer
-name|a
-init|=
-operator|new
-name|GreekAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-decl_stmt|;
-name|assertAnalyzesTo
-argument_list|(
-name|a
-argument_list|,
-literal|"Î.Î .Î¤."
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-literal|"Î±ÏÏ"
 block|}
 argument_list|)
 expr_stmt|;

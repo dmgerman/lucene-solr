@@ -48,11 +48,13 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|TestCase
+name|noggit
+operator|.
+name|JSONParser
 import|;
 end_import
 
@@ -62,9 +64,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|noggit
+name|lucene
 operator|.
-name|JSONParser
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -174,7 +178,7 @@ specifier|public
 class|class
 name|JsonLoaderTest
 extends|extends
-name|TestCase
+name|LuceneTestCase
 block|{
 DECL|field|input
 specifier|static

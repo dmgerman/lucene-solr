@@ -74,16 +74,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -266,7 +256,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -310,11 +300,6 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|()
-decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
 decl_stmt|;
 DECL|field|ITERATIONS
 specifier|public
@@ -361,11 +346,6 @@ argument_list|(
 literal|"testqueries2.txt"
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * read a set of queries from a resource file    */
@@ -627,11 +607,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|RAMDirectory
+name|Directory
 name|ramdir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -677,8 +656,7 @@ decl_stmt|;
 name|Field
 name|field1
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -703,8 +681,7 @@ decl_stmt|;
 name|Field
 name|field2
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"term"
 argument_list|,
@@ -796,6 +773,11 @@ argument_list|,
 name|analyzer
 argument_list|)
 expr_stmt|;
+name|ramdir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Run all queries against both the RAMDirectory and MemoryIndex, ensuring they are the same.    */
 DECL|method|assertAllQueries
@@ -806,7 +788,7 @@ parameter_list|(
 name|MemoryIndex
 name|memory
 parameter_list|,
-name|RAMDirectory
+name|Directory
 name|ramdir
 parameter_list|,
 name|Analyzer
@@ -899,6 +881,16 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
+name|ram
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|mem
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Return a random analyzer (Simple, Stop, Standard) to analyze the terms.    */
 DECL|method|randomAnalyzer

@@ -48,16 +48,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -164,7 +154,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -203,32 +193,6 @@ name|epsilon
 init|=
 literal|0.00001f
 decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-decl_stmt|;
-annotation|@
-name|Override
-DECL|method|setUp
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|testFromTestData
 specifier|public
 name|void
@@ -425,11 +389,10 @@ argument_list|,
 name|bits
 argument_list|)
 decl_stmt|;
-name|RAMDirectory
+name|Directory
 name|dir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
@@ -463,8 +426,7 @@ decl_stmt|;
 name|Field
 name|field
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -864,7 +826,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* Code to generate test data   public static void main(String args[]) throws Exception {     int bits = 3;     System.out.println(bits);     int terms = (int) Math.pow(2, bits);          RAMDirectory dir = new RAMDirectory();     IndexWriter writer = new IndexWriter(dir, new KeywordAnalyzer(),         IndexWriter.MaxFieldLength.UNLIMITED);          Document doc = new Document();     Field field = new Field("field", "", Field.Store.NO, Field.Index.ANALYZED);     doc.add(field);      for (int i = 0; i< terms; i++) {       field.setValue(Integer.toBinaryString(i));       writer.addDocument(doc);     }          writer.optimize();     writer.close();      IndexSearcher searcher = new IndexSearcher(dir);     for (int prefix = 0; prefix< bits; prefix++)       for (int pqsize = 1; pqsize<= terms; pqsize++)         for (float minscore = 0.1F; minscore< 1F; minscore += 0.2F)           for (int query = 0; query< terms; query++) {             FuzzyQuery q = new FuzzyQuery(                 new Term("field", Integer.toBinaryString(query)), minscore, prefix);             q.setRewriteMethod(new MultiTermQuery.TopTermsBoostOnlyBooleanQueryRewrite(pqsize));             System.out.println(query + "," + prefix + "," + pqsize + "," + minscore);             TopDocs docs = searcher.search(q, terms);             System.out.println(docs.totalHits);             for (int i = 0; i< docs.totalHits; i++)               System.out.println(docs.scoreDocs[i].doc + "," + docs.scoreDocs[i].score);           }   }   */
+comment|/* Code to generate test data   public static void main(String args[]) throws Exception {     int bits = 3;     System.out.println(bits);     int terms = (int) Math.pow(2, bits);          RAMDirectory dir = new RAMDirectory();     IndexWriter writer = new IndexWriter(dir, new KeywordAnalyzer(),         IndexWriter.MaxFieldLength.UNLIMITED);          Document doc = new Document();     Field field = newField("field", "", Field.Store.NO, Field.Index.ANALYZED);     doc.add(field);      for (int i = 0; i< terms; i++) {       field.setValue(Integer.toBinaryString(i));       writer.addDocument(doc);     }          writer.optimize();     writer.close();      IndexSearcher searcher = new IndexSearcher(dir);     for (int prefix = 0; prefix< bits; prefix++)       for (int pqsize = 1; pqsize<= terms; pqsize++)         for (float minscore = 0.1F; minscore< 1F; minscore += 0.2F)           for (int query = 0; query< terms; query++) {             FuzzyQuery q = new FuzzyQuery(                 new Term("field", Integer.toBinaryString(query)), minscore, prefix);             q.setRewriteMethod(new MultiTermQuery.TopTermsBoostOnlyBooleanQueryRewrite(pqsize));             System.out.println(query + "," + prefix + "," + pqsize + "," + minscore);             TopDocs docs = searcher.search(q, terms);             System.out.println(docs.totalHits);             for (int i = 0; i< docs.totalHits; i++)               System.out.println(docs.scoreDocs[i].doc + "," + docs.scoreDocs[i].score);           }   }   */
 block|}
 end_class
 

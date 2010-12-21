@@ -118,6 +118,20 @@ name|solr
 operator|.
 name|request
 operator|.
+name|LocalSolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
 name|SolrQueryRequest
 import|;
 end_import
@@ -375,6 +389,8 @@ init|=
 literal|"commitWithin"
 decl_stmt|;
 comment|/**    * @deprecated use {@link #OVERWRITE}    */
+annotation|@
+name|Deprecated
 DECL|field|OVERWRITE_COMMITTED
 specifier|public
 specifier|static
@@ -385,6 +401,8 @@ init|=
 literal|"overwriteCommitted"
 decl_stmt|;
 comment|/**    * @deprecated use {@link #OVERWRITE}    */
+annotation|@
+name|Deprecated
 DECL|field|OVERWRITE_PENDING
 specifier|public
 specifier|static
@@ -395,6 +413,8 @@ init|=
 literal|"overwritePending"
 decl_stmt|;
 comment|/**    * @deprecated use {@link #OVERWRITE}    */
+annotation|@
+name|Deprecated
 DECL|field|ALLOW_DUPS
 specifier|public
 specifier|static
@@ -509,8 +529,6 @@ name|Writer
 name|output
 parameter_list|)
 block|{
-try|try
-block|{
 name|SolrCore
 name|core
 init|=
@@ -519,6 +537,27 @@ operator|.
 name|getSolrCore
 argument_list|()
 decl_stmt|;
+name|SolrQueryRequest
+name|req
+init|=
+operator|new
+name|LocalSolrQueryRequest
+argument_list|(
+name|core
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+index|[]
+argument_list|>
+argument_list|()
+argument_list|)
+decl_stmt|;
+try|try
+block|{
 comment|// Old style requests do not choose a custom handler
 name|UpdateRequestProcessorChain
 name|processorFactory
@@ -529,34 +568,6 @@ name|getUpdateProcessingChain
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
-name|SolrParams
-name|params
-init|=
-operator|new
-name|MapSolrParams
-argument_list|(
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|SolrQueryRequestBase
-name|req
-init|=
-operator|new
-name|SolrQueryRequestBase
-argument_list|(
-name|core
-argument_list|,
-name|params
-argument_list|)
-block|{       }
 decl_stmt|;
 name|SolrQueryResponse
 name|rsp
@@ -679,6 +690,14 @@ name|ee
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
+name|req
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////

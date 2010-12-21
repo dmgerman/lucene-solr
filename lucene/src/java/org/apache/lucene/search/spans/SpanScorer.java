@@ -101,11 +101,6 @@ specifier|protected
 name|Spans
 name|spans
 decl_stmt|;
-DECL|field|weight
-specifier|protected
-name|Weight
-name|weight
-decl_stmt|;
 DECL|field|norms
 specifier|protected
 name|byte
@@ -157,6 +152,8 @@ block|{
 name|super
 argument_list|(
 name|similarity
+argument_list|,
+name|weight
 argument_list|)
 expr_stmt|;
 name|this
@@ -170,12 +167,6 @@ operator|.
 name|norms
 operator|=
 name|norms
-expr_stmt|;
-name|this
-operator|.
-name|weight
-operator|=
-name|weight
 expr_stmt|;
 name|this
 operator|.
@@ -439,6 +430,20 @@ index|]
 argument_list|)
 return|;
 comment|// normalize
+block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|freq
+return|;
 block|}
 comment|/** This method is no longer an official member of {@link Scorer},    * but it is needed by SpanWeight to build an explanation. */
 DECL|method|explain

@@ -905,7 +905,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"d(6,7,3)"
+literal|"d(9,10,3)"
 argument_list|,
 name|stack
 operator|.

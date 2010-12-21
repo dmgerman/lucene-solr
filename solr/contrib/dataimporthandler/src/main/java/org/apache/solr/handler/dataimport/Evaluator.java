@@ -29,7 +29,7 @@ specifier|abstract
 class|class
 name|Evaluator
 block|{
-comment|/**    * Return a String after processing an expression and a VariableResolver    *    * @see org.apache.solr.handler.dataimport.VariableResolver    * @param expression string to be evaluated    * @param context instance    * @return the value of the given expression evaluated using the resolver    */
+comment|/**    * Return a String after processing an expression and a {@link VariableResolver}    *    * @see VariableResolver    * @param expression string to be evaluated    * @param context instance    * @return the value of the given expression evaluated using the resolver    */
 DECL|method|evaluate
 specifier|public
 specifier|abstract

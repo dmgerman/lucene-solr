@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -117,20 +107,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RAMDirectory
 import|;
 end_import
 
@@ -228,16 +204,9 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|Random
-name|random
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|directory
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
@@ -261,8 +230,7 @@ decl_stmt|;
 name|Field
 name|titleField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"title"
 argument_list|,
@@ -284,8 +252,7 @@ decl_stmt|;
 name|Field
 name|field
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 name|FN
 argument_list|,
@@ -307,8 +274,7 @@ decl_stmt|;
 name|Field
 name|footerField
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"footer"
 argument_list|,

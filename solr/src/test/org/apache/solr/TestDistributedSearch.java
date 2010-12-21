@@ -40,6 +40,22 @@ name|SolrServerException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *  * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -896,42 +912,6 @@ argument_list|,
 name|t1
 argument_list|)
 expr_stmt|;
-name|handle
-operator|.
-name|put
-argument_list|(
-literal|"debug"
-argument_list|,
-name|UNORDERED
-argument_list|)
-expr_stmt|;
-name|handle
-operator|.
-name|put
-argument_list|(
-literal|"time"
-argument_list|,
-name|SKIPVAL
-argument_list|)
-expr_stmt|;
-name|query
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"now their fox sat had put"
-argument_list|,
-literal|"fl"
-argument_list|,
-literal|"*,score"
-argument_list|,
-literal|"debugQuery"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-comment|// TODO: This test currently fails because debug info is obtained only
-comment|// on shards with matches.
-comment|/***     query("q","matchesnothing","fl","*,score",             "debugQuery", "true");         ***/
 name|query
 argument_list|(
 literal|"q"
@@ -941,6 +921,27 @@ argument_list|,
 literal|"fl"
 argument_list|,
 literal|"*,score"
+argument_list|)
+expr_stmt|;
+comment|// test that a single NOW value is propagated to all shards... if that is true
+comment|// then the primary sort should always be a tie and then the secondary should always decide
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!func}ms(NOW)"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"score desc,"
+operator|+
+name|i1
+operator|+
+literal|" desc"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1364,9 +1365,19 @@ argument_list|,
 name|i1
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|// test error produced for field that is invalid for schema
+comment|/*** TODO: the failure may come back in "exception"     try {       // test error produced for field that is invalid for schema       query("q","*:*", "rows",100, "facet","true", "facet.field",invalidField, "facet.mincount",2);       TestCase.fail("SolrServerException expected for invalid field that is not in schema");     } catch (SolrServerException ex) {       // expected     }     ***/
+comment|// Try to get better coverage for refinement queries by turning off over requesting.
+comment|// This makes it much more likely that we may not get the top facet values and hence
+comment|// we turn of that checking.
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"facet_fields"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
 name|query
 argument_list|(
 literal|"q"
@@ -1375,7 +1386,7 @@ literal|"*:*"
 argument_list|,
 literal|"rows"
 argument_list|,
-literal|100
+literal|0
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -1383,29 +1394,83 @@ literal|"true"
 argument_list|,
 literal|"facet.field"
 argument_list|,
-name|invalidField
+name|t1
 argument_list|,
-literal|"facet.mincount"
+literal|"facet.limit"
 argument_list|,
-literal|2
+literal|5
+argument_list|,
+literal|"facet.shard.limit"
+argument_list|,
+literal|5
 argument_list|)
 expr_stmt|;
-name|TestCase
-operator|.
-name|fail
+comment|// check a complex key name
+name|query
 argument_list|(
-literal|"SolrServerException expected for invalid field that is not in schema"
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|0
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key='$a b/c \\' \\} foo'}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.limit"
+argument_list|,
+literal|5
+argument_list|,
+literal|"facet.shard.limit"
+argument_list|,
+literal|5
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SolrServerException
-name|ex
-parameter_list|)
-block|{
-comment|// expected
-block|}
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|0
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"{!key='$a'}"
+operator|+
+name|t1
+argument_list|,
+literal|"facet.limit"
+argument_list|,
+literal|5
+argument_list|,
+literal|"facet.shard.limit"
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
+name|handle
+operator|.
+name|remove
+argument_list|(
+literal|"facet_fields"
+argument_list|)
+expr_stmt|;
 comment|// index the same document to two servers and make sure things
 comment|// don't blow up.
 if|if
@@ -1514,6 +1579,112 @@ literal|100
 argument_list|)
 expr_stmt|;
 block|}
+comment|// test debugging
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"explain"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"debug"
+argument_list|,
+name|UNORDERED
+argument_list|)
+expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"time"
+argument_list|,
+name|SKIPVAL
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"now their fox sat had put"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+name|CommonParams
+operator|.
+name|TIMING
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+name|CommonParams
+operator|.
+name|RESULTS
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[1 TO 5]"
+argument_list|,
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+name|CommonParams
+operator|.
+name|QUERY
+argument_list|)
+expr_stmt|;
+comment|// TODO: This test currently fails because debug info is obtained only
+comment|// on shards with matches.
+comment|// query("q","matchesnothing","fl","*,score", "debugQuery", "true");
 comment|// Thread.sleep(10000000000L);
 block|}
 block|}

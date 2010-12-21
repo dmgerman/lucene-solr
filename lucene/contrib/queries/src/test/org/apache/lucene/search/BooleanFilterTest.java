@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -130,6 +120,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SlowMultiReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -144,7 +148,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -172,7 +176,7 @@ name|LuceneTestCase
 block|{
 DECL|field|directory
 specifier|private
-name|RAMDirectory
+name|Directory
 name|directory
 decl_stmt|;
 DECL|field|reader
@@ -183,7 +187,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -197,8 +201,7 @@ argument_list|()
 expr_stmt|;
 name|directory
 operator|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 name|RandomIndexWriter
@@ -207,8 +210,7 @@ init|=
 operator|new
 name|RandomIndexWriter
 argument_list|(
-name|newRandom
-argument_list|()
+name|random
 argument_list|,
 name|directory
 argument_list|,
@@ -291,10 +293,14 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|=
+operator|new
+name|SlowMultiReaderWrapper
+argument_list|(
 name|writer
 operator|.
 name|getReader
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -305,7 +311,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|tearDown
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -362,8 +368,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"accessRights"
 argument_list|,
@@ -387,8 +392,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"price"
 argument_list|,
@@ -412,8 +416,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"date"
 argument_list|,
@@ -437,8 +440,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"inStock"
 argument_list|,

@@ -66,6 +66,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -311,10 +331,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Exposes flex API on a pre-flex index, as a codec.   * @lucene.experimental */
+comment|/** Exposes flex API on a pre-flex index, as a codec.   * @lucene.experimental  * @deprecated (4.0)  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PreFlexFields
 specifier|public
 class|class
@@ -385,6 +407,25 @@ name|FieldInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|preTerms
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Terms
+argument_list|>
+name|preTerms
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Terms
+argument_list|>
+argument_list|()
+decl_stmt|;
 DECL|field|dir
 specifier|private
 specifier|final
@@ -445,6 +486,13 @@ operator|-
 name|indexDivisor
 expr_stmt|;
 block|}
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|TermInfosReader
 name|r
 init|=
@@ -575,6 +623,21 @@ argument_list|,
 name|fieldInfo
 argument_list|)
 expr_stmt|;
+name|preTerms
+operator|.
+name|put
+argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|,
+operator|new
+name|PreTerms
+argument_list|(
+name|fieldInfo
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -617,6 +680,29 @@ name|proxStream
 operator|=
 literal|null
 expr_stmt|;
+block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// With lock-less commits, it's entirely possible (and
+comment|// fine) to hit a FileNotFound exception above. In
+comment|// this case, we want to explicitly close any subset
+comment|// of things that were opened so that we don't have to
+comment|// wait for a GC to do so.
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|this
 operator|.
@@ -799,37 +885,14 @@ name|String
 name|field
 parameter_list|)
 block|{
-name|FieldInfo
-name|fi
-init|=
-name|fieldInfos
+return|return
+name|preTerms
 operator|.
-name|fieldInfo
+name|get
 argument_list|(
 name|field
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|fi
-operator|!=
-literal|null
-condition|)
-block|{
-return|return
-operator|new
-name|PreTerms
-argument_list|(
-name|fi
-argument_list|)
 return|;
-block|}
-else|else
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 DECL|method|getTermsDict
 specifier|synchronized
@@ -1617,6 +1680,8 @@ name|createTerm
 argument_list|(
 name|term
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Test if the term we seek'd to in fact found a
@@ -1944,6 +2009,8 @@ name|seekTermEnum
 operator|.
 name|term
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|//newSuffixStart = downTo+4;
@@ -2191,6 +2258,8 @@ name|createTerm
 argument_list|(
 name|scratchTerm
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2849,6 +2918,8 @@ name|createTerm
 argument_list|(
 name|scratchTerm
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|scratchTerm
@@ -3116,6 +3187,8 @@ name|seekTermEnum
 operator|.
 name|term
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|scratchTerm
@@ -3229,6 +3302,8 @@ argument_list|(
 name|termEnum
 argument_list|,
 name|protoTerm
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -3315,6 +3390,25 @@ name|getUTF8SortedAsUTF16Comparator
 argument_list|()
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|cacheCurrentTerm
+specifier|public
+name|void
+name|cacheCurrentTerm
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|getTermsDict
+argument_list|()
+operator|.
+name|cacheCurrentTerm
+argument_list|(
+name|termEnum
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -3426,6 +3520,8 @@ argument_list|(
 name|termEnum
 argument_list|,
 name|t0
+argument_list|,
+name|useCache
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -3629,6 +3725,8 @@ name|seekTermEnum
 operator|.
 name|term
 argument_list|()
+argument_list|,
+name|useCache
 argument_list|)
 expr_stmt|;
 name|newSuffixStart

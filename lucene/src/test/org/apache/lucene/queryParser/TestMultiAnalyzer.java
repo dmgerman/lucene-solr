@@ -696,7 +696,7 @@ name|QueryParser
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_24
+name|LUCENE_40
 argument_list|,
 literal|""
 argument_list|,
@@ -722,21 +722,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"\"quick brown\""
-argument_list|,
-name|qp
-operator|.
-name|parse
-argument_list|(
-literal|"\"the quick brown\""
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
 literal|"quick brown fox"
 argument_list|,
 name|qp
@@ -744,21 +729,6 @@ operator|.
 name|parse
 argument_list|(
 literal|"the quick brown fox"
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"\"quick brown fox\""
-argument_list|,
-name|qp
-operator|.
-name|parse
-argument_list|(
-literal|"\"the quick brown fox\""
 argument_list|)
 operator|.
 name|toString

@@ -98,12 +98,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Random
-name|r
-init|=
-name|newRandom
-argument_list|()
-decl_stmt|;
 name|int
 name|num
 init|=
@@ -129,8 +123,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -141,8 +134,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -215,7 +207,7 @@ name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
-name|r
+name|random
 argument_list|,
 literal|1
 argument_list|,
@@ -234,8 +226,7 @@ decl_stmt|;
 name|Field
 name|f
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -264,8 +255,7 @@ expr_stmt|;
 name|Field
 name|id
 init|=
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -294,7 +284,7 @@ expr_stmt|;
 name|boolean
 name|onlyUniqueTerms
 init|=
-name|r
+name|random
 operator|.
 name|nextBoolean
 argument_list|()
@@ -332,7 +322,7 @@ condition|(
 operator|!
 name|onlyUniqueTerms
 operator|&&
-name|r
+name|random
 operator|.
 name|nextBoolean
 argument_list|()
@@ -353,7 +343,7 @@ name|terms
 operator|.
 name|get
 argument_list|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -396,7 +386,7 @@ name|_TestUtil
 operator|.
 name|randomUnicodeString
 argument_list|(
-name|r
+name|random
 argument_list|,
 literal|10
 argument_list|)
@@ -488,7 +478,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -510,7 +500,7 @@ name|i
 operator|>
 literal|0
 operator|&&
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -523,7 +513,7 @@ block|{
 name|int
 name|delID
 init|=
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -701,7 +691,7 @@ name|terms
 operator|.
 name|get
 argument_list|(
-name|r
+name|random
 operator|.
 name|nextInt
 argument_list|(
@@ -804,8 +794,7 @@ block|{
 name|Directory
 name|dir
 init|=
-operator|new
-name|MockRAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -816,8 +805,7 @@ name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -838,8 +826,7 @@ name|d
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Field
+name|newField
 argument_list|(
 literal|"f"
 argument_list|,

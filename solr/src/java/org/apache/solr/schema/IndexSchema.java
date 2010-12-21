@@ -787,6 +787,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @deprecated -- get access to SolrConfig some other way...    */
+annotation|@
+name|Deprecated
 DECL|method|getSolrConfig
 specifier|public
 name|SolrConfig
@@ -996,6 +998,8 @@ name|queryAnalyzer
 return|;
 block|}
 comment|/**    * A SolrQueryParser linked to this IndexSchema for field datatype    * information, and populated with default options from the    *&lt;solrQueryParser&gt; configuration for this IndexSchema.    *    * @param defaultField if non-null overrides the schema default    * @deprecated    */
+annotation|@
+name|Deprecated
 DECL|method|getSolrQueryParser
 specifier|public
 name|SolrQueryParser
@@ -2490,10 +2494,6 @@ expr_stmt|;
 comment|// stuff it in a normal array for faster access
 name|dynamicFields
 operator|=
-operator|(
-name|DynamicField
-index|[]
-operator|)
 name|dFields
 operator|.
 name|toArray

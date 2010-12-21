@@ -80,7 +80,35 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|ByteBlockPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
 import|;
 end_import
 
@@ -297,10 +325,14 @@ if|if
 condition|(
 name|termsHashPerField
 operator|.
-name|numPostings
+name|bytesHash
+operator|.
+name|size
+argument_list|()
 operator|!=
 literal|0
 condition|)
+block|{
 comment|// Only necessary if previous doc hit a
 comment|// non-aborting exception while writing vectors in
 comment|// this field:
@@ -309,6 +341,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// TODO: only if needed for performance
@@ -323,6 +356,7 @@ name|void
 name|abort
 parameter_list|()
 block|{}
+comment|/** Called once per field per document if term vectors    *  are enabled, to write the vectors to    *  RAMOutputStream, which is then quickly flushed to    *  the real term vectors files in the Directory. */
 annotation|@
 name|Override
 DECL|method|finish
@@ -339,7 +373,10 @@ name|doVectors
 operator|||
 name|termsHashPerField
 operator|.
-name|numPostings
+name|bytesHash
+operator|.
+name|size
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -373,7 +410,10 @@ name|numPostings
 init|=
 name|termsHashPerField
 operator|.
-name|numPostings
+name|bytesHash
+operator|.
+name|size
+argument_list|()
 decl_stmt|;
 specifier|final
 name|BytesRef
@@ -1270,9 +1310,9 @@ argument_list|()
 operator|+
 literal|3
 operator|*
-name|DocumentsWriterRAMAllocator
+name|RamUsageEstimator
 operator|.
-name|INT_NUM_BYTE
+name|NUM_BYTES_INT
 return|;
 block|}
 block|}

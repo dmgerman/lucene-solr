@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Indicate that the implementing class is capable of generating a Query against spatial resources.  * For example, the PointType is capable of creating a query that restricts the document space down  * to documents that are within a certain distance of a given point. *  *  **/
+comment|/**  * Indicate that the implementing class is capable of generating a Query against spatial resources.  * For example, the LatLonType is capable of creating a query that restricts the document space down  * to documents that are within a certain distance of a given point on Earth. *  *  **/
 end_comment
 
 begin_interface

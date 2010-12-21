@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#skipTo(int)} and uses skipTo() on the given Scorers.   */
+comment|/** A Scorer for OR like queries, counterpart of<code>ConjunctionScorer</code>.  * This Scorer implements {@link Scorer#advance(int)} and uses advance() on the given Scorers.   */
 end_comment
 
 begin_class
@@ -85,7 +85,7 @@ specifier|final
 name|int
 name|minimumNrMatchers
 decl_stmt|;
-comment|/** The scorerDocQueue contains all subscorers ordered by their current doc(),    * with the minimum at the top.    *<br>The scorerDocQueue is initialized the first time next() or skipTo() is called.    *<br>An exhausted scorer is immediately removed from the scorerDocQueue.    *<br>If less than the minimumNrMatchers scorers    * remain in the scorerDocQueue next() and skipTo() return false.    *<p>    * After each to call to next() or skipTo()    *<code>currentSumScore</code> is the total score of the current matching doc,    *<code>nrMatchers</code> is the number of matching scorers,    * and all scorers are after the matching doc, or are exhausted.    */
+comment|/** The scorerDocQueue contains all subscorers ordered by their current doc(),    * with the minimum at the top.    *<br>The scorerDocQueue is initialized the first time nextDoc() or advance() is called.    *<br>An exhausted scorer is immediately removed from the scorerDocQueue.    *<br>If less than the minimumNrMatchers scorers    * remain in the scorerDocQueue nextDoc() and advance() return false.    *<p>    * After each to call to nextDoc() or advance()    *<code>currentSumScore</code> is the total score of the current matching doc,    *<code>nrMatchers</code> is the number of matching scorers,    * and all scorers are after the matching doc, or are exhausted.    */
 DECL|field|scorerDocQueue
 specifier|private
 name|ScorerDocQueue
@@ -215,7 +215,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Called the first time next() or skipTo() is called to    * initialize<code>scorerDocQueue</code>.    */
+comment|/** Called the first time nextDoc() or advance() is called to    * initialize<code>scorerDocQueue</code>.    */
 DECL|method|initScorerDocQueue
 specifier|private
 name|void
@@ -298,7 +298,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #next()} must be called once before this method is called    * for the first time.    * @param collector The collector to which all matching documents are passed through.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
+comment|/** Expert: Collects matching documents in a range.  Hook for optimization.    * Note that {@link #nextDoc()} must be called once before this method is called    * for the first time.    * @param collector The collector to which all matching documents are passed through.    * @param max Do not score documents past this.    * @return true if more matching documents may remain.    */
 annotation|@
 name|Override
 DECL|method|score
@@ -390,7 +390,7 @@ return|return
 name|currentDoc
 return|;
 block|}
-comment|/** Advance all subscorers after the current document determined by the    * top of the<code>scorerDocQueue</code>.    * Repeat until at least the minimum number of subscorers match on the same    * document and all subscorers are after that document or are exhausted.    *<br>On entry the<code>scorerDocQueue</code> has at least<code>minimumNrMatchers</code>    * available. At least the scorer with the minimum document number will be advanced.    * @return true iff there is a match.    *<br>In case there is a match,</code>currentDoc</code>,</code>currentSumScore</code>,    * and</code>nrMatchers</code> describe the match.    *    * TODO: Investigate whether it is possible to use skipTo() when    * the minimum number of matchers is bigger than one, ie. try and use the    * character of ConjunctionScorer for the minimum number of matchers.    * Also delay calling score() on the sub scorers until the minimum number of    * matchers is reached.    *<br>For this, a Scorer array with minimumNrMatchers elements might    * hold Scorers at currentDoc that are temporarily popped from scorerQueue.    */
+comment|/** Advance all subscorers after the current document determined by the    * top of the<code>scorerDocQueue</code>.    * Repeat until at least the minimum number of subscorers match on the same    * document and all subscorers are after that document or are exhausted.    *<br>On entry the<code>scorerDocQueue</code> has at least<code>minimumNrMatchers</code>    * available. At least the scorer with the minimum document number will be advanced.    * @return true iff there is a match.    *<br>In case there is a match,</code>currentDoc</code>,</code>currentSumScore</code>,    * and</code>nrMatchers</code> describe the match.    *    * TODO: Investigate whether it is possible to use advance() when    * the minimum number of matchers is bigger than one, ie. try and use the    * character of ConjunctionScorer for the minimum number of matchers.    * Also delay calling score() on the sub scorers until the minimum number of    * matchers is reached.    *<br>For this, a Scorer array with minimumNrMatchers elements might    * hold Scorers at currentDoc that are temporarily popped from scorerQueue.    */
 DECL|method|advanceAfterCurrent
 specifier|protected
 name|boolean
@@ -546,7 +546,7 @@ return|return
 name|nrMatchers
 return|;
 block|}
-comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses the skipTo() method on the subscorers.    *     * @param target    *          The target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
+comment|/**    * Advances to the first match beyond the current whose document number is    * greater than or equal to a given target.<br>    * The implementation uses the advance() method on the subscorers.    *     * @param target    *          The target document number.    * @return the document whose number is greater than or equal to the given    *         target, or -1 if none exist.    */
 annotation|@
 name|Override
 DECL|method|advance

@@ -41,6 +41,8 @@ comment|/**  * @deprecated use org.apache.solr.response.PHPSerializedResponseWri
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|PHPSerializedResponseWriter
 specifier|public
 class|class

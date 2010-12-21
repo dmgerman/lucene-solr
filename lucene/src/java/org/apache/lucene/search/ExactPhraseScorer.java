@@ -50,6 +50,22 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanClause
+operator|.
+name|Occur
+import|;
+end_import
+
 begin_class
 DECL|class|ExactPhraseScorer
 specifier|final
@@ -58,12 +74,6 @@ name|ExactPhraseScorer
 extends|extends
 name|Scorer
 block|{
-DECL|field|weight
-specifier|private
-specifier|final
-name|Weight
-name|weight
-decl_stmt|;
 DECL|field|norms
 specifier|private
 specifier|final
@@ -266,13 +276,9 @@ block|{
 name|super
 argument_list|(
 name|similarity
+argument_list|,
+name|weight
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|weight
-operator|=
-name|weight
 expr_stmt|;
 name|this
 operator|.
@@ -840,10 +846,12 @@ operator|+
 literal|")"
 return|;
 block|}
-comment|// used by MultiPhraseQuery
-DECL|method|currentFreq
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
 name|float
-name|currentFreq
+name|freq
 parameter_list|()
 block|{
 return|return

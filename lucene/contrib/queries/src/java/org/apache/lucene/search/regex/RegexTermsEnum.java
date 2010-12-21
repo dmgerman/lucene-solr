@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Term
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|TermsEnum
 import|;
 end_import
 
@@ -99,6 +99,8 @@ block|{
 DECL|field|regexImpl
 specifier|private
 name|RegexCapabilities
+operator|.
+name|RegexMatcher
 name|regexImpl
 decl_stmt|;
 DECL|field|prefixRef
@@ -111,26 +113,21 @@ DECL|method|RegexTermsEnum
 specifier|public
 name|RegexTermsEnum
 parameter_list|(
-name|IndexReader
-name|reader
+name|TermsEnum
+name|tenum
 parameter_list|,
 name|Term
 name|term
 parameter_list|,
 name|RegexCapabilities
-name|regexImpl
+name|regexCap
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|super
 argument_list|(
-name|reader
-argument_list|,
-name|term
-operator|.
-name|field
-argument_list|()
+name|tenum
 argument_list|)
 expr_stmt|;
 name|String
@@ -145,9 +142,7 @@ name|this
 operator|.
 name|regexImpl
 operator|=
-name|regexImpl
-expr_stmt|;
-name|regexImpl
+name|regexCap
 operator|.
 name|compile
 argument_list|(
@@ -207,20 +202,12 @@ condition|)
 block|{
 comment|// TODO: set BoostAttr based on distance of
 comment|// searchTerm.text() and term().text()
-name|String
-name|text
-init|=
-name|term
-operator|.
-name|utf8ToString
-argument_list|()
-decl_stmt|;
 return|return
 name|regexImpl
 operator|.
 name|match
 argument_list|(
-name|text
+name|term
 argument_list|)
 condition|?
 name|AcceptStatus

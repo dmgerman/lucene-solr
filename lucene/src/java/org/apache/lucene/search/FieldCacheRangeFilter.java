@@ -239,7 +239,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a string range filter using {@link FieldCache#getStringIndex}. This works with all    * fields containing zero or one term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
+comment|/**    * Creates a string range filter using {@link FieldCache#getTermsIndex}. This works with all    * fields containing zero or one term in the field. The range can be half-open by setting one    * of the values to<code>null</code>.    */
 DECL|method|newStringRange
 specifier|public
 specifier|static

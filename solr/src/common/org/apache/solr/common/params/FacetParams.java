@@ -198,6 +198,30 @@ name|FACET
 operator|+
 literal|".missing"
 decl_stmt|;
+comment|/**    * Comma separated list of fields to pivot    *     * example: author,type  (for types by author / types within author)    */
+DECL|field|FACET_PIVOT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_PIVOT
+init|=
+name|FACET
+operator|+
+literal|".pivot"
+decl_stmt|;
+comment|/**    * Minimum number of docs that need to match to be included in the sublist    *     * default value is 1    */
+DECL|field|FACET_PIVOT_MINCOUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_PIVOT_MINCOUNT
+init|=
+name|FACET_PIVOT
+operator|+
+literal|".mincount"
+decl_stmt|;
 comment|/**    * String option: "count" causes facets to be sorted    * by the count, "index" results in index order.    */
 DECL|field|FACET_SORT
 specifier|public
@@ -330,7 +354,7 @@ name|FACET_DATE
 operator|+
 literal|".hardend"
 decl_stmt|;
-comment|/**    * String indicating what "other" ranges should be computed for a    * date facet range (multi-value).    * Can be overriden on a per field basis.    * @see FacetDateOther    */
+comment|/**    * String indicating what "other" ranges should be computed for a    * date facet range (multi-value).    * Can be overriden on a per field basis.    * @see FacetRangeOther    */
 DECL|field|FACET_DATE_OTHER
 specifier|public
 specifier|static
@@ -342,7 +366,191 @@ name|FACET_DATE
 operator|+
 literal|".other"
 decl_stmt|;
-comment|/**    * An enumeration of the legal values for FACET_DATE_OTHER...    *<ul>    *<li>before = the count of matches before the start date</li>    *<li>after = the count of matches after the end date</li>    *<li>between = the count of all matches between start and end</li>    *<li>all = all of the above (default value)</li>    *<li>none = no additional info requested</li>    *</ul>    * @see #FACET_DATE_OTHER    * @see #FACET_DATE_INCLUDE    */
+comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for date faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: [lower,upper,edge]    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetRangeInclude    */
+DECL|field|FACET_DATE_INCLUDE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DATE_INCLUDE
+init|=
+name|FACET_DATE
+operator|+
+literal|".include"
+decl_stmt|;
+comment|/**    * Any numerical field whose terms the user wants to enumerate over    * Facet Contraint Counts for selected ranges.    */
+DECL|field|FACET_RANGE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE
+init|=
+name|FACET
+operator|+
+literal|".range"
+decl_stmt|;
+comment|/**    * Number indicating the starting point for a numerical range facet.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_RANGE_START
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE_START
+init|=
+name|FACET_RANGE
+operator|+
+literal|".start"
+decl_stmt|;
+comment|/**    * Number indicating the ending point for a numerical range facet.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_RANGE_END
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE_END
+init|=
+name|FACET_RANGE
+operator|+
+literal|".end"
+decl_stmt|;
+comment|/**    * Number indicating the interval of sub-ranges for a numerical    * facet range.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_RANGE_GAP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE_GAP
+init|=
+name|FACET_RANGE
+operator|+
+literal|".gap"
+decl_stmt|;
+comment|/**    * Boolean indicating how counts should be computed if the range    * between 'start' and 'end' is not evenly divisible by 'gap'.  If    * this value is true, then all counts of ranges involving the 'end'    * point will use the exact endpoint specified -- this includes the    * 'between' and 'after' counts as well as the last range computed    * using the 'gap'.  If the value is false, then 'gap' is used to    * compute the effective endpoint closest to the 'end' param which    * results in the range between 'start' and 'end' being evenly    * divisible by 'gap'.    * The default is false.    * Can be overriden on a per field basis.    */
+DECL|field|FACET_RANGE_HARD_END
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE_HARD_END
+init|=
+name|FACET_RANGE
+operator|+
+literal|".hardend"
+decl_stmt|;
+comment|/**    * String indicating what "other" ranges should be computed for a    * numerical range facet (multi-value).    * Can be overriden on a per field basis.    * @see FacetNumberOther    */
+DECL|field|FACET_RANGE_OTHER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE_OTHER
+init|=
+name|FACET_RANGE
+operator|+
+literal|".other"
+decl_stmt|;
+comment|/**    * String indicating whether ranges for numerical range faceting     * should be exclusive or inclusive. By default both the start and    * end point are inclusive.    * Can be overriden on a per field basis.    * @see FacetNumberExclusive    */
+comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for numeric faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: [lower,upper,edge]    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetRangeInclude    */
+DECL|field|FACET_RANGE_INCLUDE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_RANGE_INCLUDE
+init|=
+name|FACET_RANGE
+operator|+
+literal|".include"
+decl_stmt|;
+comment|/**    * An enumeration of the legal values for {@link #FACET_RANGE_OTHER} and {@link #FACET_DATE_OTHER} ...    *<ul>    *<li>before = the count of matches before the start</li>    *<li>after = the count of matches after the end</li>    *<li>between = the count of all matches between start and end</li>    *<li>all = all of the above (default value)</li>    *<li>none = no additional info requested</li>    *</ul>    * @see #FACET_RANGE_OTHER    * @see #FACET_DATE_OTHER    */
+DECL|enum|FacetRangeOther
+specifier|public
+enum|enum
+name|FacetRangeOther
+block|{
+DECL|enum constant|BEFORE
+DECL|enum constant|AFTER
+DECL|enum constant|BETWEEN
+DECL|enum constant|ALL
+DECL|enum constant|NONE
+name|BEFORE
+block|,
+name|AFTER
+block|,
+name|BETWEEN
+block|,
+name|ALL
+block|,
+name|NONE
+block|;
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|()
+return|;
+block|}
+DECL|method|get
+specifier|public
+specifier|static
+name|FacetRangeOther
+name|get
+parameter_list|(
+name|String
+name|label
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|valueOf
+argument_list|(
+name|label
+operator|.
+name|toUpperCase
+argument_list|()
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+name|label
+operator|+
+literal|" is not a valid type of 'other' range facet information"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+comment|/**    * @deprecated Use {@link FacetRangeOther}    */
+annotation|@
+name|Deprecated
 DECL|enum|FacetDateOther
 specifier|public
 enum|enum
@@ -376,11 +584,7 @@ name|toString
 argument_list|()
 operator|.
 name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ENGLISH
-argument_list|)
+argument_list|()
 return|;
 block|}
 DECL|method|get
@@ -401,11 +605,7 @@ argument_list|(
 name|label
 operator|.
 name|toUpperCase
-argument_list|(
-name|Locale
-operator|.
-name|ENGLISH
-argument_list|)
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -427,7 +627,7 @@ name|BAD_REQUEST
 argument_list|,
 name|label
 operator|+
-literal|" is not a valid type of 'other' date facet information"
+literal|" is not a valid type of 'other' range facet information"
 argument_list|,
 name|e
 argument_list|)
@@ -435,23 +635,11 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for date faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: [lower,upper,edge]    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetDateInclude    */
-DECL|field|FACET_DATE_INCLUDE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FACET_DATE_INCLUDE
-init|=
-name|FACET_DATE
-operator|+
-literal|".include"
-decl_stmt|;
-comment|/**    * An enumeration of the legal values for FACET_DATE_INCLUDE...    *<ul>    *<li>lower = all gap based ranges include their lower bound</li>    *<li>upper = all gap based ranges include their upper bound</li>    *<li>edge = the first and last gap ranges include their edge bounds (ie: lower     *     for the first one, upper for the last one) even if the corresponding     *     upper/lower option is not specified    *</li>    *<li>outer = the FacetDateOther.BEFORE and FacetDateOther.AFTER ranges     *     should be inclusive of their bounds, even if the first or last ranges     *     already include those boundaries.    *</li>    *<li>all = shorthand for lower, upper, edge, and outer</li>    *</ul>    * @see #FACET_DATE_INCLUDE    */
-DECL|enum|FacetDateInclude
+comment|/**    * An enumeration of the legal values for {@link #FACET_DATE_INCLUDE} and {@link #FACET_RANGE_INCLUDE}    *    *<ul>    *<li>lower = all gap based ranges include their lower bound</li>    *<li>upper = all gap based ranges include their upper bound</li>    *<li>edge = the first and last gap ranges include their edge bounds (ie: lower     *     for the first one, upper for the last one) even if the corresponding     *     upper/lower option is not specified    *</li>    *<li>outer = the BEFORE and AFTER ranges     *     should be inclusive of their bounds, even if the first or last ranges     *     already include those boundaries.    *</li>    *<li>all = shorthand for lower, upper, edge, and outer</li>    *</ul>    * @see #FACET_DATE_INCLUDE    * @see #FACET_RANGE_INCLUDE    */
+DECL|enum|FacetRangeInclude
 specifier|public
 enum|enum
-name|FacetDateInclude
+name|FacetRangeInclude
 block|{
 DECL|enum constant|ALL
 DECL|enum constant|LOWER
@@ -491,7 +679,7 @@ block|}
 DECL|method|get
 specifier|public
 specifier|static
-name|FacetDateInclude
+name|FacetRangeInclude
 name|get
 parameter_list|(
 name|String
@@ -532,24 +720,20 @@ name|BAD_REQUEST
 argument_list|,
 name|label
 operator|+
-literal|" is not a valid type of for "
-operator|+
-name|FACET_DATE_INCLUDE
-operator|+
-literal|" information"
+literal|" is not a valid type of for range 'include' information"
 argument_list|,
 name|e
 argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Convinience method for parsing the param value according to the correct semantics.      */
+comment|/**      * Convinience method for parsing the param value according to the       * correct semantics.      */
 DECL|method|parseParam
 specifier|public
 specifier|static
 name|EnumSet
 argument_list|<
-name|FacetDateInclude
+name|FacetRangeInclude
 argument_list|>
 name|parseParam
 parameter_list|(
@@ -588,7 +772,7 @@ comment|// build up set containing whatever is specified
 specifier|final
 name|EnumSet
 argument_list|<
-name|FacetDateInclude
+name|FacetRangeInclude
 argument_list|>
 name|include
 init|=
@@ -596,7 +780,7 @@ name|EnumSet
 operator|.
 name|noneOf
 argument_list|(
-name|FacetDateInclude
+name|FacetRangeInclude
 operator|.
 name|class
 argument_list|)
@@ -614,7 +798,7 @@ name|include
 operator|.
 name|add
 argument_list|(
-name|FacetDateInclude
+name|FacetRangeInclude
 operator|.
 name|get
 argument_list|(
@@ -630,7 +814,7 @@ name|include
 operator|.
 name|contains
 argument_list|(
-name|FacetDateInclude
+name|FacetRangeInclude
 operator|.
 name|ALL
 argument_list|)
@@ -640,7 +824,7 @@ name|EnumSet
 operator|.
 name|allOf
 argument_list|(
-name|FacetDateInclude
+name|FacetRangeInclude
 operator|.
 name|class
 argument_list|)

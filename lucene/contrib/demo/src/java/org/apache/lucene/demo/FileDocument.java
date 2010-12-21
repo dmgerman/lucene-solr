@@ -32,7 +32,27 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|FileReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStreamReader
 import|;
 end_import
 
@@ -103,7 +123,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileNotFoundException
+name|IOException
 block|{
 comment|// make a new, empty document
 name|Document
@@ -187,7 +207,7 @@ argument_list|)
 expr_stmt|;
 comment|// Add the contents of the file to a field named "contents".  Specify a Reader,
 comment|// so that the text of the file is tokenized and indexed, but not stored.
-comment|// Note that FileReader expects the file to be in the system's default encoding.
+comment|// Note that FileReader expects the file to be in UTF-8 encoding.
 comment|// If that's not the case searching for special characters will fail.
 name|doc
 operator|.
@@ -199,9 +219,15 @@ argument_list|(
 literal|"contents"
 argument_list|,
 operator|new
-name|FileReader
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
 argument_list|(
 name|f
+argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 argument_list|)

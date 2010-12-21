@@ -149,7 +149,9 @@ name|String
 argument_list|,
 name|Class
 argument_list|<
-name|Object
+name|?
+extends|extends
+name|NLS
 argument_list|>
 argument_list|>
 name|bundles
@@ -161,7 +163,9 @@ name|String
 argument_list|,
 name|Class
 argument_list|<
-name|Object
+name|?
+extends|extends
+name|NLS
 argument_list|>
 argument_list|>
 argument_list|(
@@ -327,11 +331,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Initialize a given class with the message bundle Keys Should be called from    * a class that extends NLS in a static block at class load time.    *     * @param bundleName    *          Property file with that contains the message bundle    * @param clazz    *          where constants will reside    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|initializeMessages
 specifier|protected
 specifier|static
@@ -342,6 +341,11 @@ name|String
 name|bundleName
 parameter_list|,
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|NLS
+argument_list|>
 name|clazz
 parameter_list|)
 block|{
@@ -422,7 +426,9 @@ control|)
 block|{
 name|Class
 argument_list|<
-name|Object
+name|?
+extends|extends
+name|NLS
 argument_list|>
 name|clazz
 init|=
@@ -504,7 +510,9 @@ name|load
 parameter_list|(
 name|Class
 argument_list|<
-name|Object
+name|?
+extends|extends
+name|NLS
 argument_list|>
 name|clazz
 parameter_list|)
@@ -627,7 +635,9 @@ name|isFieldAccessible
 parameter_list|,
 name|Class
 argument_list|<
-name|Object
+name|?
+extends|extends
+name|NLS
 argument_list|>
 name|clazz
 parameter_list|)
@@ -731,7 +741,9 @@ name|key
 parameter_list|,
 name|Class
 argument_list|<
-name|Object
+name|?
+extends|extends
+name|NLS
 argument_list|>
 name|clazz
 parameter_list|)
@@ -841,11 +853,6 @@ comment|// system
 block|}
 block|}
 comment|/*    * Make a class field accessible    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|makeAccessible
 specifier|private
 specifier|static
@@ -883,10 +890,13 @@ name|doPrivileged
 argument_list|(
 operator|new
 name|PrivilegedAction
+argument_list|<
+name|Void
+argument_list|>
 argument_list|()
 block|{
 specifier|public
-name|Object
+name|Void
 name|run
 parameter_list|()
 block|{

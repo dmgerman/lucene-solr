@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -176,7 +166,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -362,32 +352,6 @@ argument_list|(
 literal|"X A A"
 argument_list|)
 decl_stmt|;
-DECL|field|random
-specifier|private
-name|Random
-name|random
-decl_stmt|;
-annotation|@
-name|Override
-DECL|method|setUp
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-name|random
-operator|=
-name|newRandom
-argument_list|()
-expr_stmt|;
-block|}
 comment|/**    * Test DOC_4 and QUERY_4.    * QUERY_4 has a fuzzy (len=1) match to DOC_4, so all slop values> 0 should succeed.    * But only the 3rd sequence of A's in DOC_4 will do.    */
 DECL|method|testDoc4_Query4_All_Slops_Should_match
 specifier|public
@@ -774,11 +738,10 @@ argument_list|(
 name|slop
 argument_list|)
 expr_stmt|;
-name|RAMDirectory
+name|Directory
 name|ramDir
 init|=
-operator|new
-name|RAMDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|RandomIndexWriter
