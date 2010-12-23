@@ -2654,7 +2654,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"(\\s+<)|(<\\s+)|(\\s+<\\s+)"
+literal|"(\\s+<\\s*)|(\\s*<\\s+)"
 argument_list|)
 decl_stmt|;
 DECL|field|spacePattern
@@ -2758,6 +2758,8 @@ operator|.
 name|split
 argument_list|(
 name|s
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|int
