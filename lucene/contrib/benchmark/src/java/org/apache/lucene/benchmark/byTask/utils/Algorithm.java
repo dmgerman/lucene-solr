@@ -461,11 +461,11 @@ block|}
 else|else
 block|{
 comment|// get params, for tasks that supports them, - anything until next ')'
-name|StringBuffer
+name|StringBuilder
 name|params
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|stok
@@ -1365,11 +1365,11 @@ argument_list|(
 literal|"line.separator"
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|sb

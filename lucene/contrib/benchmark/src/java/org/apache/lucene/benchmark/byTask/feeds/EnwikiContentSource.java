@@ -222,11 +222,11 @@ name|nmde
 decl_stmt|;
 DECL|field|contents
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|contents
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 DECL|field|title
@@ -393,11 +393,11 @@ name|String
 name|original
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buffer
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buffer

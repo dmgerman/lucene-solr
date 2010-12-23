@@ -388,11 +388,11 @@ operator|+
 literal|".txt"
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|contents
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|contents

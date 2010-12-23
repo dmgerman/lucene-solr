@@ -96,32 +96,6 @@ name|IOException
 throws|,
 name|InterruptedException
 function_decl|;
-comment|/**    * Parse the inputText and return DocData.     * @param inputText the html text to parse.    * @see #parse(DocData, String, Date, Reader, DateFormat)    */
-DECL|method|parse
-specifier|public
-name|DocData
-name|parse
-parameter_list|(
-name|DocData
-name|docData
-parameter_list|,
-name|String
-name|name
-parameter_list|,
-name|Date
-name|date
-parameter_list|,
-name|StringBuffer
-name|inputText
-parameter_list|,
-name|DateFormat
-name|dateFormat
-parameter_list|)
-throws|throws
-name|IOException
-throws|,
-name|InterruptedException
-function_decl|;
 block|}
 end_interface
 
