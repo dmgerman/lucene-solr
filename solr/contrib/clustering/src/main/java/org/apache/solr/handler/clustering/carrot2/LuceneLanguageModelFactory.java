@@ -198,7 +198,7 @@ name|text
 operator|.
 name|linguistic
 operator|.
-name|DefaultLanguageModelFactory
+name|BaseLanguageModelFactory
 import|;
 end_import
 
@@ -531,7 +531,7 @@ specifier|public
 class|class
 name|LuceneLanguageModelFactory
 extends|extends
-name|DefaultLanguageModelFactory
+name|BaseLanguageModelFactory
 block|{
 DECL|field|logger
 specifier|final
