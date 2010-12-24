@@ -908,11 +908,11 @@ name|readLine
 argument_list|()
 expr_stmt|;
 comment|//skip an empty line
-name|StringBuffer
+name|StringBuilder
 name|bodyBuf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|1024
 argument_list|)

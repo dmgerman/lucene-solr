@@ -373,11 +373,11 @@ literal|"utf-8"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|doc
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|doc
@@ -467,11 +467,11 @@ literal|"utf-8"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|doc
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|doc
