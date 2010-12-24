@@ -185,7 +185,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"dismaxOldStyleDefaults"
+literal|"includedHandler"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
