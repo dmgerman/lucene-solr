@@ -54,6 +54,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrRequestInfo
@@ -384,6 +400,21 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|String
+name|qt
+init|=
+name|solrReq
+operator|.
+name|getParams
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|CommonParams
+operator|.
+name|QT
+argument_list|)
+decl_stmt|;
 name|SolrRequestHandler
 name|handler
 init|=
@@ -393,8 +424,15 @@ name|getRequestHandler
 argument_list|(
 name|solrReq
 operator|.
-name|getQueryType
+name|getParams
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|CommonParams
+operator|.
+name|QT
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -410,10 +448,7 @@ name|warn
 argument_list|(
 literal|"Unknown Request Handler '"
 operator|+
-name|solrReq
-operator|.
-name|getQueryType
-argument_list|()
+name|qt
 operator|+
 literal|"' :"
 operator|+
@@ -432,10 +467,7 @@ name|BAD_REQUEST
 argument_list|,
 literal|"Unknown Request Handler '"
 operator|+
-name|solrReq
-operator|.
-name|getQueryType
-argument_list|()
+name|qt
 operator|+
 literal|"'"
 argument_list|,
