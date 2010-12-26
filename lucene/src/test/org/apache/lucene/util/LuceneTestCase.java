@@ -2985,6 +2985,34 @@ name|Boolean
 argument_list|>
 argument_list|()
 decl_stmt|;
+static|static
+block|{
+comment|// just a hack for things like eclipse test-runner threads
+for|for
+control|(
+name|Thread
+name|t
+range|:
+name|Thread
+operator|.
+name|getAllStackTraces
+argument_list|()
+operator|.
+name|keySet
+argument_list|()
+control|)
+block|{
+name|rogueThreads
+operator|.
+name|put
+argument_list|(
+name|t
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Looks for leftover running threads, trying to kill them off,    * so they don't fail future tests.    * returns the number of rogue threads that it found.    */
 DECL|method|threadCleanup
 specifier|private
