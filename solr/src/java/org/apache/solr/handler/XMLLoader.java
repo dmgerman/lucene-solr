@@ -1216,18 +1216,6 @@ operator|new
 name|DeleteUpdateCommand
 argument_list|()
 decl_stmt|;
-name|deleteCmd
-operator|.
-name|fromPending
-operator|=
-literal|true
-expr_stmt|;
-name|deleteCmd
-operator|.
-name|fromCommitted
-operator|=
-literal|true
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -1276,17 +1264,7 @@ name|attrName
 argument_list|)
 condition|)
 block|{
-name|deleteCmd
-operator|.
-name|fromPending
-operator|=
-name|StrUtils
-operator|.
-name|parseBoolean
-argument_list|(
-name|attrVal
-argument_list|)
-expr_stmt|;
+comment|// deprecated
 block|}
 elseif|else
 if|if
@@ -1299,17 +1277,7 @@ name|attrName
 argument_list|)
 condition|)
 block|{
-name|deleteCmd
-operator|.
-name|fromCommitted
-operator|=
-name|StrUtils
-operator|.
-name|parseBoolean
-argument_list|(
-name|attrVal
-argument_list|)
-expr_stmt|;
+comment|// deprecated
 block|}
 else|else
 block|{

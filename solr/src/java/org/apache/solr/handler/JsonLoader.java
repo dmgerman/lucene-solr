@@ -761,17 +761,6 @@ operator|new
 name|DeleteUpdateCommand
 argument_list|()
 decl_stmt|;
-name|cmd
-operator|.
-name|fromCommitted
-operator|=
-name|cmd
-operator|.
-name|fromPending
-operator|=
-literal|true
-expr_stmt|;
-comment|// TODO? enable this?
 while|while
 condition|(
 literal|true
