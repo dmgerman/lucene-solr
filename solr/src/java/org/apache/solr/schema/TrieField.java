@@ -1045,6 +1045,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getValueSource
 specifier|public
 name|ValueSource
@@ -1052,6 +1054,9 @@ name|getValueSource
 parameter_list|(
 name|SchemaField
 name|field
+parameter_list|,
+name|QParser
+name|qparser
 parameter_list|)
 block|{
 name|int

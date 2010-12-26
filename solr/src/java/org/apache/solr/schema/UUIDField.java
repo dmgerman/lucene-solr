@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|UUIDField
 extends|extends
-name|FieldType
+name|StrField
 block|{
 DECL|field|NEW
 specifier|private
