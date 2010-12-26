@@ -104,20 +104,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ByteUtils
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -1065,17 +1051,6 @@ argument_list|(
 literal|"searcher"
 argument_list|)
 decl_stmt|;
-comment|// todo: we need docFreq that takes a BytesRef
-name|String
-name|strVal
-init|=
-name|ByteUtils
-operator|.
-name|UTF8toUTF16
-argument_list|(
-name|indexedBytes
-argument_list|)
-decl_stmt|;
 name|int
 name|docfreq
 init|=
@@ -1088,7 +1063,7 @@ name|Term
 argument_list|(
 name|indexedField
 argument_list|,
-name|strVal
+name|indexedBytes
 argument_list|)
 argument_list|)
 decl_stmt|;
