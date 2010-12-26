@@ -430,11 +430,11 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|true
+literal|false
 argument_list|,
 name|add
 operator|.
-name|allowDups
+name|overwrite
 argument_list|)
 expr_stmt|;
 comment|// parse the commit commands

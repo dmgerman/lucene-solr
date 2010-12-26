@@ -292,32 +292,32 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"false\"><doc><field name=\"id\">101</field></doc></add>"
+literal|"<add overwrite=\"true\"><doc><field name=\"id\">101</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"false\"><doc><field name=\"id\">101</field></doc></add>"
+literal|"<add overwrite=\"true\"><doc><field name=\"id\">101</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">105</field></doc></add>"
+literal|"<add  overwrite=\"false\"><doc><field name=\"id\">105</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"false\"><doc><field name=\"id\">102</field></doc></add>"
+literal|"<add overwrite=\"true\"><doc><field name=\"id\">102</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">103</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">103</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"false\"><doc><field name=\"id\">101</field></doc></add>"
+literal|"<add overwrite=\"true\"><doc><field name=\"id\">101</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -403,17 +403,17 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"val_s\">apple</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">apple</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"val_s\">banana</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">banana</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"val_s\">pear</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">pear</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1343,7 +1343,7 @@ expr_stmt|;
 comment|// check for docs that appear more than once in a range
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"val_s\">apple</field><field name=\"val_s\">banana</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">apple</field><field name=\"val_s\">banana</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1384,7 +1384,7 @@ expr_stmt|;
 comment|//<delete><id>44</id></delete>
 name|assertU
 argument_list|(
-literal|"<add overwritePending=\"true\" overwriteCommitted=\"true\"><doc><field name=\"id\">44</field><field name=\"text\">red riding hood</field></doc></add>"
+literal|"<add><doc><field name=\"id\">44</field><field name=\"text\">red riding hood</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1432,12 +1432,12 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\" overwriteCommitted=\"false\" overwritePending=\"false\"><doc><field name=\"id\">44</field><field name=\"text\">red riding hood</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"text\">red riding hood</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\" overwriteCommitted=\"false\" overwritePending=\"false\"><doc><field name=\"id\">44</field><field name=\"text\">big bad wolf</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"text\">big bad wolf</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1902,52 +1902,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">1234567890</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">1234567890</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">10</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">10</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">-987654321</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">2147483647</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">2147483647</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">-2147483648</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">-2147483648</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_i\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2051,52 +2051,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">1234567890</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">1234567890</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">10</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">10</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">-987654321</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">9223372036854775807</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">9223372036854775807</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">-9223372036854775808</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">-9223372036854775808</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_l\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2200,52 +2200,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">1.4142135</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">1.4142135</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">NaN</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">NaN</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-987654321</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-999999.99</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-999999.99</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1e20</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1e20</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sf\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2361,52 +2361,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1.4142135</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1.4142135</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">NaN</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">NaN</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1e-100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1e-100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-999999.99</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-999999.99</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1e100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1e100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"num_sd\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2532,32 +2532,32 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"a_i\">10</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">10</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"a_i\">1</field><field name=\"b_i\">100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">1</field><field name=\"b_i\">100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"a_i\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"a_i\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"a_i\">1</field><field name=\"b_i\">50</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">1</field><field name=\"b_i\">50</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id\">44</field><field name=\"a_i\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2657,37 +2657,37 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1000</field><field name=\"a_i\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1000</field><field name=\"a_i\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1001</field><field name=\"a_i\">10</field><field name=\"nullfirst\">A</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1001</field><field name=\"a_i\">10</field><field name=\"nullfirst\">A</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1002</field><field name=\"a_i\">1</field><field name=\"b_si\">100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1002</field><field name=\"a_i\">1</field><field name=\"b_si\">100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1003</field><field name=\"a_i\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1003</field><field name=\"a_i\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1004</field><field name=\"a_i\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1004</field><field name=\"a_i\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1005</field><field name=\"a_i\">1</field><field name=\"b_si\">50</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1005</field><field name=\"a_i\">1</field><field name=\"b_si\">50</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add allowDups=\"true\"><doc><field name=\"id_i\">1006</field><field name=\"a_i\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1006</field><field name=\"a_i\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU

@@ -156,24 +156,6 @@ operator|new
 name|AddUpdateCommand
 argument_list|()
 decl_stmt|;
-name|cmd
-operator|.
-name|overwriteCommitted
-operator|=
-literal|true
-expr_stmt|;
-name|cmd
-operator|.
-name|overwritePending
-operator|=
-literal|true
-expr_stmt|;
-name|cmd
-operator|.
-name|allowDups
-operator|=
-literal|false
-expr_stmt|;
 comment|//add just under the merge factor, so no segments are merged
 comment|//the merge factor is 100 and the maxBufferedDocs is 2, so there should be 50 segments
 for|for

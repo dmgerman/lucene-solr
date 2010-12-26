@@ -351,7 +351,7 @@ argument_list|,
 literal|"//*[@numFound='0']"
 argument_list|)
 expr_stmt|;
-comment|// test allowDups default of false
+comment|// test overwrite default of true
 name|assertU
 argument_list|(
 name|adoc
@@ -462,9 +462,9 @@ argument_list|,
 literal|"101"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,
 name|add
@@ -476,9 +476,9 @@ argument_list|,
 literal|"101"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,
 name|add
@@ -490,9 +490,9 @@ argument_list|,
 literal|"105"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 block|,
 name|add
@@ -504,9 +504,9 @@ argument_list|,
 literal|"102"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,
 name|add
@@ -518,9 +518,9 @@ argument_list|,
 literal|"103"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 block|,
 name|add
@@ -532,9 +532,9 @@ argument_list|,
 literal|"101"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|, }
 decl_stmt|;

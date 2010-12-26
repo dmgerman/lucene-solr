@@ -385,7 +385,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>DirectUpdateHandler2</code> implements an UpdateHandler where documents are added  * directly to the main Lucene index as opposed to adding to a separate smaller index.  * For this reason, not all combinations to/from pending and committed are supported.  * This version supports efficient removal of duplicates on a commit.  It works by maintaining  * a related count for every document being added or deleted.  At commit time, for every id with a count,  * all but the last "count" docs with that id are deleted.  *<p>  *  * Supported add command parameters:<TABLE BORDER><TR><TH>allowDups</TH><TH>overwritePending</TH><TH>overwriteCommitted</TH><TH>efficiency</TH></TR><TR><TD>false</TD><TD>false</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>true or false</TD><TD>true</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>true</TD><TD>false</TD><TD>false</TD><TD>fastest</TD></TR></TABLE><p>Supported delete commands:<TABLE BORDER><TR><TH>command</TH><TH>fromPending</TH><TH>fromCommitted</TH><TH>efficiency</TH></TR><TR><TD>delete</TD><TD>true</TD><TD>true</TD><TD>fast</TD></TR><TR><TD>deleteByQuery</TD><TD>true</TD><TD>true</TD><TD>very slow*</TD></TR></TABLE><p>* deleteByQuery causes a commit to happen (close current index writer, open new index reader)   before it can be processed.  If deleteByQuery functionality is needed, it's best if they can   be batched and executed together so they may share the same index reader.   *  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>DirectUpdateHandler2</code> implements an UpdateHandler where documents are added  * directly to the main Lucene index as opposed to adding to a separate smaller index.  */
 end_comment
 
 begin_class
@@ -745,7 +745,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|// if there is no ID field, use allowDups
+comment|// if there is no ID field, don't overwrite
 if|if
 condition|(
 name|idField
@@ -755,19 +755,7 @@ condition|)
 block|{
 name|cmd
 operator|.
-name|allowDups
-operator|=
-literal|true
-expr_stmt|;
-name|cmd
-operator|.
-name|overwriteCommitted
-operator|=
-literal|false
-expr_stmt|;
-name|cmd
-operator|.
-name|overwritePending
+name|overwrite
 operator|=
 literal|false
 expr_stmt|;
@@ -814,11 +802,7 @@ if|if
 condition|(
 name|cmd
 operator|.
-name|overwriteCommitted
-operator|||
-name|cmd
-operator|.
-name|overwritePending
+name|overwrite
 condition|)
 block|{
 if|if
