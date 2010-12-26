@@ -94,22 +94,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|internal
-operator|.
-name|runners
-operator|.
-name|statements
-operator|.
-name|Fail
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -175,18 +159,6 @@ operator|.
 name|util
 operator|.
 name|Random
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
 import|;
 end_import
 

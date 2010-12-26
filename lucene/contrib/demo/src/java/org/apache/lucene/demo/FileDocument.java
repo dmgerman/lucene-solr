@@ -42,16 +42,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStreamReader
 import|;
 end_import

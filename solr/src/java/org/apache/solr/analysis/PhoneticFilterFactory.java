@@ -196,22 +196,6 @@ name|SolrException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|StrUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Create tokens based on phonetic encoders  *   * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *   * This takes two arguments:  *  "encoder" required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex"  *   * "inject" (default=true) add tokens to the stream with the offset=0  *   * @version $Id$  * @see PhoneticFilter  */
 end_comment

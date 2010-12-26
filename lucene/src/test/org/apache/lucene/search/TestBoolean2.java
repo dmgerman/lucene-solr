@@ -238,18 +238,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/** Test BooleanQuery2 against BooleanQuery by overriding the standard query parser.  * This also tests the scoring order of BooleanQuery.  */
 end_comment

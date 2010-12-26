@@ -62,16 +62,6 @@ name|Collection
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Only return those matches that have a specific payload at  * the given position.  *<p/>  *   */
 end_comment

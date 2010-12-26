@@ -112,18 +112,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/** Tests the ability to configure multiple query output writers, and select those  * at query time.  *  */
 end_comment

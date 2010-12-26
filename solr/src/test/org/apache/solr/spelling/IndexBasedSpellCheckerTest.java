@@ -17,18 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -228,20 +216,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|FSDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -275,22 +249,6 @@ operator|.
 name|core
 operator|.
 name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|component
-operator|.
-name|SearchComponent
 import|;
 end_import
 

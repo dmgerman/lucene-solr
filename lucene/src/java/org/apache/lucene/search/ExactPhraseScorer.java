@@ -50,22 +50,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BooleanClause
-operator|.
-name|Occur
-import|;
-end_import
-
 begin_class
 DECL|class|ExactPhraseScorer
 specifier|final

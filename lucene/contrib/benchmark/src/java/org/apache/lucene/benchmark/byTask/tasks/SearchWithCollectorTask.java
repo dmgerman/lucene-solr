@@ -100,16 +100,6 @@ name|TopScoreDocCollector
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Does search w/ a custom collector  */
 end_comment
