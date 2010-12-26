@@ -369,7 +369,7 @@ name|lockFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *    *<p>Currently this returns {@link NIOFSDirectory}    *  on non-Windows JREs, {@link MMapDirectory} on 64-bit     *  Sun Windows JREs, and {@link SimpleFSDirectory} for other    *  JRes on Windows. It is highly recommended that you consult the    *  implementation's documentation for your platform before    *  using this method.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. For optimal performance you should consider using    * {@link MMapDirectory} on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
+comment|/** Creates an FSDirectory instance, trying to pick the    *  best implementation given the current environment.    *  The directory returned uses the {@link NativeFSLockFactory}.    *    *<p>Currently this returns {@link MMapDirectory} for most Solaris    *  and Windows 64-bit JREs, {@link NIOFSDirectory} for other    *  non-Windows JREs, and {@link SimpleFSDirectory} for other    *  JREs on Windows. It is highly recommended that you consult the    *  implementation's documentation for your platform before    *  using this method.    *    *<p><b>NOTE</b>: this method may suddenly change which    * implementation is returned from release to release, in    * the event that higher performance defaults become    * possible; if the precise implementation is important to    * your application, please instantiate it directly,    * instead. For optimal performance you should consider using    * {@link MMapDirectory} on 64 bit JVMs.    *    *<p>See<a href="#subclasses">above</a> */
 DECL|method|open
 specifier|public
 specifier|static
@@ -409,21 +409,25 @@ name|IOException
 block|{
 if|if
 condition|(
+operator|(
 name|Constants
 operator|.
 name|WINDOWS
-condition|)
-block|{
-if|if
-condition|(
-name|MMapDirectory
+operator|||
+name|Constants
 operator|.
-name|UNMAP_SUPPORTED
+name|SUN_OS
+operator|)
 operator|&&
 name|Constants
 operator|.
 name|JRE_IS_64BIT
+operator|&&
+name|MMapDirectory
+operator|.
+name|UNMAP_SUPPORTED
 condition|)
+block|{
 return|return
 operator|new
 name|MMapDirectory
@@ -433,7 +437,15 @@ argument_list|,
 name|lockFactory
 argument_list|)
 return|;
-else|else
+block|}
+elseif|else
+if|if
+condition|(
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
 return|return
 operator|new
 name|SimpleFSDirectory
