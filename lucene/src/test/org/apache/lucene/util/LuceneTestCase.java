@@ -3142,18 +3142,6 @@ name|Thread
 operator|.
 name|currentThread
 argument_list|()
-operator|&&
-comment|// TODO: TimeLimitingCollector starts a thread statically.... WTF?!
-operator|!
-name|t
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"TimeLimitedCollector timer thread"
-argument_list|)
 condition|)
 block|{
 name|System
