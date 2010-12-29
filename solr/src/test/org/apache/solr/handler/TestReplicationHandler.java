@@ -1559,8 +1559,7 @@ expr_stmt|;
 comment|//change the schema on master
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -1603,8 +1602,7 @@ argument_list|)
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|SLAVE_CONFIG
 argument_list|)
@@ -2147,8 +2145,7 @@ comment|//change solrconfig on slave
 comment|//this has no entry for pollinginterval
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -2394,8 +2391,7 @@ comment|// NOTE: at this point, the slave is not polling any more
 comment|// restore it.
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -2540,8 +2536,7 @@ expr_stmt|;
 comment|//change solrconfig having 'replicateAfter startup' option on master
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -2584,8 +2579,7 @@ argument_list|)
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|SLAVE_CONFIG
 argument_list|)
@@ -2689,8 +2683,7 @@ comment|// NOTE: the master only replicates after startup now!
 comment|// revert that change.
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -2733,8 +2726,7 @@ argument_list|)
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|SLAVE_CONFIG
 argument_list|)
@@ -2942,8 +2934,7 @@ expr_stmt|;
 comment|//change solrconfig on master
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -2965,8 +2956,7 @@ expr_stmt|;
 comment|//change schema on master
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -2988,8 +2978,7 @@ expr_stmt|;
 comment|//keep a copy of the new schema
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -3032,8 +3021,7 @@ argument_list|)
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|SLAVE_CONFIG
 argument_list|)
@@ -3264,8 +3252,7 @@ argument_list|()
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|CONF_DIR
 operator|+
@@ -4207,8 +4194,7 @@ argument_list|)
 decl_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|getSolrConfigFile
 argument_list|()
@@ -4231,8 +4217,7 @@ argument_list|)
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|getSchemaFile
 argument_list|()

@@ -1040,8 +1040,7 @@ name|zkController
 operator|.
 name|uploadToZK
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 literal|"solr/conf"
 argument_list|)

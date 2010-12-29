@@ -1792,8 +1792,7 @@ name|up
 operator|.
 name|addFile
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 literal|"books.csv"
 argument_list|)

@@ -526,8 +526,9 @@ argument_list|)
 decl_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|SolrTestCaseJ4
+operator|.
+name|getFile
 argument_list|(
 name|getSolrConfigFile
 argument_list|()
@@ -548,8 +549,9 @@ argument_list|)
 expr_stmt|;
 name|copyFile
 argument_list|(
-operator|new
-name|File
+name|SolrTestCaseJ4
+operator|.
+name|getFile
 argument_list|(
 name|getSchemaFile
 argument_list|()
