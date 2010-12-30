@@ -1032,15 +1032,16 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This is a utility function that lets you get the contents of an admin file    *     * It is only used so that we can get rid of "/admin/get-file.jsp" and include    * "admin-extra.html" in "/admin/index.html" using jsp scriptlets    *     * @deprecated This functionality is implemented in    *             {@link #handleRequestBody(SolrQueryRequest, SolrQueryResponse)}.    */
-annotation|@
-name|Deprecated
+comment|/**    * This is a utility function that lets you get the contents of an admin file    *     * It is only used so that we can get rid of "/admin/get-file.jsp" and include    * "admin-extra.html" in "/admin/index.html" using jsp scriptlets    */
 DECL|method|getFileContents
 specifier|public
 specifier|static
 name|String
 name|getFileContents
 parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
 name|String
 name|path
 parameter_list|)
@@ -1078,14 +1079,6 @@ block|}
 block|}
 try|try
 block|{
-name|SolrCore
-name|core
-init|=
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-decl_stmt|;
 name|InputStream
 name|input
 init|=
