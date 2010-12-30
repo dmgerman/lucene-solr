@@ -16,6 +16,20 @@ name|update
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment
@@ -43,11 +57,16 @@ comment|// query string for delete-by-query
 DECL|method|DeleteUpdateCommand
 specifier|public
 name|DeleteUpdateCommand
-parameter_list|()
+parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|)
 block|{
 name|super
 argument_list|(
 literal|"delete"
+argument_list|,
+name|req
 argument_list|)
 expr_stmt|;
 block|}

@@ -534,6 +534,8 @@ name|loader
 operator|.
 name|processUpdate
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|parser

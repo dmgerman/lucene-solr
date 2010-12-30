@@ -343,6 +343,7 @@ specifier|private
 name|void
 name|parseAndLoadDocs
 parameter_list|(
+specifier|final
 name|SolrQueryRequest
 name|req
 parameter_list|,
@@ -408,6 +409,8 @@ name|addCmd
 operator|=
 name|getAddCommand
 argument_list|(
+name|req
+argument_list|,
 name|updateRequest
 operator|.
 name|getParams
@@ -474,6 +477,8 @@ condition|)
 block|{
 name|delete
 argument_list|(
+name|req
+argument_list|,
 name|update
 operator|.
 name|getDeleteById
@@ -497,6 +502,8 @@ condition|)
 block|{
 name|delete
 argument_list|(
+name|req
+argument_list|,
 name|update
 operator|.
 name|getDeleteQuery
@@ -514,6 +521,9 @@ specifier|private
 name|AddUpdateCommand
 name|getAddCommand
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|SolrParams
 name|params
 parameter_list|)
@@ -523,7 +533,9 @@ name|addCmd
 init|=
 operator|new
 name|AddUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 name|addCmd
 operator|.
@@ -563,6 +575,9 @@ specifier|private
 name|void
 name|delete
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|List
 argument_list|<
 name|String
@@ -591,7 +606,9 @@ name|delcmd
 init|=
 operator|new
 name|DeleteUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

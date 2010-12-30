@@ -447,6 +447,8 @@ name|this
 operator|.
 name|processUpdate
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|parser
@@ -494,6 +496,9 @@ DECL|method|processUpdate
 name|void
 name|processUpdate
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|UpdateRequestProcessor
 name|processor
 parameter_list|,
@@ -585,7 +590,9 @@ name|addCmd
 operator|=
 operator|new
 name|AddUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 expr_stmt|;
 for|for
 control|(
@@ -771,6 +778,8 @@ init|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 name|XmlUpdateRequestHandler
 operator|.
 name|OPTIMIZE
@@ -1005,7 +1014,9 @@ name|cmd
 init|=
 operator|new
 name|RollbackUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 name|processor
 operator|.
@@ -1040,6 +1051,8 @@ argument_list|)
 expr_stmt|;
 name|processDelete
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|parser
@@ -1056,6 +1069,9 @@ DECL|method|processDelete
 name|void
 name|processDelete
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|UpdateRequestProcessor
 name|processor
 parameter_list|,
@@ -1073,7 +1089,9 @@ name|deleteCmd
 init|=
 operator|new
 name|DeleteUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 for|for
 control|(

@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|AbstractSolrTestCase
@@ -149,12 +163,20 @@ operator|.
 name|getUpdateHandler
 argument_list|()
 decl_stmt|;
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|()
+decl_stmt|;
 name|AddUpdateCommand
 name|cmd
 init|=
 operator|new
 name|AddUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 comment|//add just under the merge factor, so no segments are merged
 comment|//the merge factor is 100 and the maxBufferedDocs is 2, so there should be 50 segments
@@ -254,6 +276,8 @@ init|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
@@ -293,6 +317,8 @@ operator|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -377,6 +403,11 @@ name|indexDir
 argument_list|,
 literal|1
 argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|assertNumSegments

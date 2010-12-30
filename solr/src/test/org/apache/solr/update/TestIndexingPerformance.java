@@ -367,7 +367,9 @@ name|add
 init|=
 operator|new
 name|AddUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 name|Field
 name|idField
@@ -590,7 +592,9 @@ name|rollback
 argument_list|(
 operator|new
 name|RollbackUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|req

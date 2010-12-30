@@ -16,6 +16,20 @@ name|update
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id$  * @since Solr 1.4  */
 end_comment
@@ -31,11 +45,16 @@ block|{
 DECL|method|RollbackUpdateCommand
 specifier|public
 name|RollbackUpdateCommand
-parameter_list|()
+parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|)
 block|{
 name|super
 argument_list|(
 literal|"rollback"
+argument_list|,
+name|req
 argument_list|)
 expr_stmt|;
 block|}

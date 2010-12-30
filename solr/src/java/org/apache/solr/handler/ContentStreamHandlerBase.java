@@ -242,6 +242,8 @@ name|RequestHandlerUtils
 operator|.
 name|handleCommit
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|params
@@ -254,6 +256,8 @@ name|RequestHandlerUtils
 operator|.
 name|handleRollback
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|params
@@ -304,6 +308,8 @@ name|RequestHandlerUtils
 operator|.
 name|handleCommit
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|params
@@ -315,6 +321,8 @@ name|RequestHandlerUtils
 operator|.
 name|handleRollback
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|params

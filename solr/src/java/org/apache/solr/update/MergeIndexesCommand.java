@@ -30,6 +30,20 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/**  * A merge indexes command encapsulated in an object.  *  * @since solr 1.4  * @version $Id$  */
 end_comment
@@ -51,11 +65,16 @@ decl_stmt|;
 DECL|method|MergeIndexesCommand
 specifier|public
 name|MergeIndexesCommand
-parameter_list|()
+parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|)
 block|{
 name|this
 argument_list|(
 literal|null
+argument_list|,
+name|req
 argument_list|)
 expr_stmt|;
 block|}
@@ -66,11 +85,16 @@ parameter_list|(
 name|Directory
 index|[]
 name|dirs
+parameter_list|,
+name|SolrQueryRequest
+name|req
 parameter_list|)
 block|{
 name|super
 argument_list|(
 literal|"mergeIndexes"
+argument_list|,
+name|req
 argument_list|)
 expr_stmt|;
 name|this

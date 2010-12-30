@@ -387,6 +387,8 @@ name|this
 operator|.
 name|processUpdate
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|,
 name|parser
@@ -408,6 +410,9 @@ DECL|method|processUpdate
 name|void
 name|processUpdate
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|UpdateRequestProcessor
 name|processor
 parameter_list|,
@@ -478,6 +483,8 @@ name|processAdd
 argument_list|(
 name|parseAdd
 argument_list|(
+name|req
+argument_list|,
 name|parser
 argument_list|)
 argument_list|)
@@ -502,6 +509,8 @@ init|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
@@ -549,6 +558,8 @@ init|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
@@ -596,6 +607,8 @@ name|processDelete
 argument_list|(
 name|parseDelete
 argument_list|(
+name|req
+argument_list|,
 name|parser
 argument_list|)
 argument_list|)
@@ -620,6 +633,8 @@ name|processRollback
 argument_list|(
 name|parseRollback
 argument_list|(
+name|req
+argument_list|,
 name|parser
 argument_list|)
 argument_list|)
@@ -739,6 +754,9 @@ DECL|method|parseDelete
 name|DeleteUpdateCommand
 name|parseDelete
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|JSONParser
 name|js
 parameter_list|)
@@ -759,7 +777,9 @@ name|cmd
 init|=
 operator|new
 name|DeleteUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 while|while
 condition|(
@@ -960,6 +980,9 @@ DECL|method|parseRollback
 name|RollbackUpdateCommand
 name|parseRollback
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|JSONParser
 name|js
 parameter_list|)
@@ -987,7 +1010,9 @@ expr_stmt|;
 return|return
 operator|new
 name|RollbackUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 return|;
 block|}
 DECL|method|parseCommitOptions
@@ -1183,6 +1208,9 @@ DECL|method|parseAdd
 name|AddUpdateCommand
 name|parseAdd
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|JSONParser
 name|js
 parameter_list|)
@@ -1203,7 +1231,9 @@ name|cmd
 init|=
 operator|new
 name|AddUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 name|float
 name|boost
