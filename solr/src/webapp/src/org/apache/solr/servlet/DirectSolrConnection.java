@@ -325,32 +325,17 @@ class|class
 name|DirectSolrConnection
 block|{
 DECL|field|core
+specifier|protected
 specifier|final
 name|SolrCore
 name|core
 decl_stmt|;
 DECL|field|parser
+specifier|protected
 specifier|final
 name|SolrRequestParsers
 name|parser
 decl_stmt|;
-comment|/**    * Initialize using the static singleton SolrCore.getSolrCore().    *     * @deprecated use {@link #DirectSolrConnection(SolrCore)}    */
-annotation|@
-name|Deprecated
-DECL|method|DirectSolrConnection
-specifier|public
-name|DirectSolrConnection
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|SolrCore
-operator|.
-name|getSolrCore
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Initialize using an explicit SolrCore    */
 DECL|method|DirectSolrConnection
 specifier|public
