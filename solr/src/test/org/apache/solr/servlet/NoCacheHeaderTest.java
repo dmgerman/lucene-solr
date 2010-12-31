@@ -115,7 +115,7 @@ name|Exception
 block|{
 name|createJetty
 argument_list|(
-literal|"solr/"
+name|TEST_HOME
 argument_list|,
 literal|"solr/conf/solrconfig-nocache.xml"
 argument_list|,

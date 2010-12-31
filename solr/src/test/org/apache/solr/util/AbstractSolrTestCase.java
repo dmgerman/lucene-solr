@@ -274,6 +274,19 @@ name|String
 name|getSolrConfigFile
 parameter_list|()
 function_decl|;
+comment|/**    * Subclasses can override this to change a test's solr home    * (default is in test-files)    */
+DECL|method|getSolrHome
+specifier|public
+name|String
+name|getSolrHome
+parameter_list|()
+block|{
+return|return
+name|SolrTestCaseJ4
+operator|.
+name|TEST_HOME
+return|;
+block|}
 comment|/**    * The directory used to story the index managed by the TestHarness h    */
 DECL|field|dataDir
 specifier|protected
@@ -387,6 +400,16 @@ init|=
 name|getSolrConfigFile
 argument_list|()
 decl_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.solr.home"
+argument_list|,
+name|getSolrHome
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|configFile

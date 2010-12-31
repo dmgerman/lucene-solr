@@ -56,6 +56,8 @@ argument_list|(
 literal|"dataimport-solrconfig.xml"
 argument_list|,
 literal|"dataimport-schema-no-unique-key.xml"
+argument_list|,
+literal|"solr-dihextras"
 argument_list|)
 expr_stmt|;
 block|}
@@ -76,7 +78,17 @@ literal|"<dataSource type=\"BinFileDataSource\"/>"
 operator|+
 literal|"<document>"
 operator|+
-literal|"<entity processor=\"TikaEntityProcessor\" url=\"../../../../../extraction/src/test/resources/solr-word.pdf\">"
+literal|"<entity processor=\"TikaEntityProcessor\" url=\""
+operator|+
+name|getFile
+argument_list|(
+literal|"solr-word.pdf"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|"\">"
 operator|+
 literal|"<field column=\"Author\" meta=\"true\" name=\"author\"/>"
 operator|+

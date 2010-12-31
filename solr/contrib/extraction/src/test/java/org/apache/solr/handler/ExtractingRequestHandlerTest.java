@@ -254,6 +254,8 @@ argument_list|(
 literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
+argument_list|,
+literal|"solr-extraction"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1916,8 +1918,7 @@ name|ContentStreamBase
 operator|.
 name|FileStream
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|filename
 argument_list|)
