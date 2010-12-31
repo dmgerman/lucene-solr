@@ -738,6 +738,12 @@ argument_list|(
 literal|"unknown field 'a'"
 argument_list|)
 expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"unknown field 'meta'"
+argument_list|)
+expr_stmt|;
+comment|// TODO: should this exception be happening?
 name|loadLocal
 argument_list|(
 literal|"simple.html"
