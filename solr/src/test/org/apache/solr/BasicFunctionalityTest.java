@@ -1232,13 +1232,7 @@ argument_list|(
 literal|"<add><doc><field name=\"id\">1</field></doc><doc><field name=\"id\">2</field></doc></add>"
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"<result status=\"0\"></result>"
-argument_list|,
-name|res
-argument_list|)
-expr_stmt|;
+comment|// assertEquals("<result status=\"0\"></result>", res);
 name|assertU
 argument_list|(
 literal|"<commit/>"
@@ -1285,13 +1279,7 @@ operator|+
 literal|"</add>"
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"<result status=\"0\"></result>"
-argument_list|,
-name|res
-argument_list|)
-expr_stmt|;
+comment|// assertEquals("<result status=\"0\"></result>", res);
 name|assertU
 argument_list|(
 literal|"<commit/>"
@@ -1380,13 +1368,7 @@ operator|+
 literal|"</add>"
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"<result status=\"0\"></result>"
-argument_list|,
-name|res
-argument_list|)
-expr_stmt|;
+comment|// assertEquals("<result status=\"0\"></result>", res);
 name|assertU
 argument_list|(
 literal|"<commit/>"
