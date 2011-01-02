@@ -104,6 +104,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|values
+operator|.
+name|DocValues
+operator|.
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -181,11 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exposes writer/reader for floating point values. You can specify 4 (java  * float) or 8 (java double) byte precision.  *   * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// TODO - add bulk copy where possible
+comment|/**  * Exposes {@link Writer} and reader ({@link Source}) for 32 bit and 64 bit  * floating point values.  *<p>  * Current implementations store either 4 byte or 8 byte floating points with  * full precision without any compression.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -194,6 +208,7 @@ specifier|public
 class|class
 name|Floats
 block|{
+comment|// TODO - add bulk copy where possible
 DECL|field|CODEC_NAME
 specifier|private
 specifier|static

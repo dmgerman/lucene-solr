@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Abstract API for per-document stored primitive values of type<tt>byte[]</tt>  * ,<tt>long</tt> or<tt>double</tt>. The API accepts a single value for each  * document. The underlying storage mechanism, file formats, data-structures and  * representations depend on the actual implementation.  *<p>  * Document IDs passed to this API must always be increasing unless stated  * otherwise.  *</p>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -125,6 +125,7 @@ name|Writer
 extends|extends
 name|DocValuesConsumer
 block|{
+comment|/**    * Creates a new {@link Writer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
 DECL|method|Writer
 specifier|protected
 name|Writer
@@ -139,6 +140,7 @@ name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Filename extension for index files    */
 DECL|field|INDEX_EXTENSION
 specifier|public
 specifier|static
@@ -148,6 +150,7 @@ name|INDEX_EXTENSION
 init|=
 literal|"idx"
 decl_stmt|;
+comment|/**    * Filename extension for data files.    */
 DECL|field|DATA_EXTENSION
 specifier|public
 specifier|static
@@ -157,7 +160,7 @@ name|DATA_EXTENSION
 init|=
 literal|"dat"
 decl_stmt|;
-comment|/** Records the specfied value for the docID */
+comment|/**    * Records the specified<tt>long</tt> value for the docID or throws an    * {@link UnsupportedOperationException} if this {@link Writer} doesn't record    *<tt>long</tt> values.    *     * @throws UnsupportedOperationException    *           if this writer doesn't record<tt>long</tt> values    */
 DECL|method|add
 specifier|public
 name|void
@@ -178,7 +181,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Records the specfied value for the docID */
+comment|/**    * Records the specified<tt>double</tt> value for the docID or throws an    * {@link UnsupportedOperationException} if this {@link Writer} doesn't record    *<tt>double</tt> values.    *     * @throws UnsupportedOperationException    *           if this writer doesn't record<tt>double</tt> values    */
 DECL|method|add
 specifier|public
 name|void
@@ -199,7 +202,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Records the specfied value for the docID */
+comment|/**    * Records the specified {@link BytesRef} value for the docID or throws an    * {@link UnsupportedOperationException} if this {@link Writer} doesn't record    * {@link BytesRef} values.    *     * @throws UnsupportedOperationException    *           if this writer doesn't record {@link BytesRef} values    */
 DECL|method|add
 specifier|public
 name|void
@@ -220,7 +223,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Records the specfied value for the docID */
+comment|/**    * Records a value from the given document id. The methods implementation    * obtains the value for the document id from the last {@link DocValuesEnum}    * set to {@link #setNextEnum(DocValuesEnum)}.    *<p>    * This method is used during merging to provide implementation agnostic    * default merge implementation.    *</p>    *<p>    * The given document id must be the same document id returned from    * {@link DocValuesEnum#docID()} when this method is called. All documents IDs    * between the given ID and the previously given ID or<tt>0</tt> if the    * method is call the first time are filled with default values depending on    * the {@link Writer} implementation. The given document ID must always be    * greater than the previous ID or<tt>0</tt> if called the first time.    */
 DECL|method|add
 specifier|protected
 specifier|abstract
@@ -233,6 +236,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Sets the next {@link DocValuesEnum} to consume values from on calls to    * {@link #add(int)}    *     * @param valuesEnum    *          the next {@link DocValuesEnum}, this must not be null    */
 DECL|method|setNextEnum
 specifier|protected
 specifier|abstract
@@ -243,7 +247,7 @@ name|DocValuesEnum
 name|valuesEnum
 parameter_list|)
 function_decl|;
-comment|/** Finish writing, close any files */
+comment|/**    * Finish writing and close any files and resources used by this Writer.    *     * @param docCount    *          the total number of documents for this writer. This must be    *          greater that or equal to the largest document id passed to one of    *          the add methods after the {@link Writer} was created.    */
 DECL|method|finish
 specifier|public
 specifier|abstract
@@ -256,7 +260,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|// enables bulk copies in subclasses per MergeState
 annotation|@
 name|Override
 DECL|method|merge
@@ -270,6 +273,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// This enables bulk copies in subclasses per MergeState, subclasses can
+comment|// simply override this and decide if they want to merge
+comment|// segments using this generic implementation or if a bulk merge is possible
+comment|// / feasible.
 specifier|final
 name|DocValuesEnum
 name|valEnum
@@ -293,6 +300,9 @@ argument_list|(
 name|valEnum
 argument_list|)
 expr_stmt|;
+comment|// set the current enum we are working on - the
+comment|// impl. will get the correct reference for the type
+comment|// it supports
 name|int
 name|docID
 init|=
@@ -426,6 +436,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param comp    *          a {@link BytesRef} comparator used for {@link Bytes} variants. If    *<code>null</code>    *          {@link BytesRef#getUTF8SortedAsUnicodeComparator()} is used as the    *          default.    * @param bytesUsed    *          a byte-usage tracking reference    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -433,7 +444,7 @@ name|Writer
 name|create
 parameter_list|(
 name|Type
-name|v
+name|type
 parameter_list|,
 name|String
 name|id
@@ -453,9 +464,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|comp
+operator|==
+literal|null
+condition|)
+block|{
+name|comp
+operator|=
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
+expr_stmt|;
+block|}
 switch|switch
 condition|(
-name|v
+name|type
 condition|)
 block|{
 case|case
@@ -666,7 +692,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"Unknown Values: "
 operator|+
-name|v
+name|type
 argument_list|)
 throw|;
 block|}

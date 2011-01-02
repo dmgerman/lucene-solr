@@ -46,35 +46,11 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|concurrent
 operator|.
 name|atomic
 operator|.
 name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
 import|;
 end_import
 
@@ -148,50 +124,14 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
-comment|/**  * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// TODO this might need to go in the codec package since is a direct relative to
-end_comment
-
-begin_comment
-comment|// TermsConsumer
+comment|/**  * Abstract API that consumes {@link PerDocFieldValues}.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link PerDocFieldValues} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -201,17 +141,15 @@ specifier|abstract
 class|class
 name|DocValuesConsumer
 block|{
+comment|// TODO this might need to go in the codec package since is a direct relative
+comment|// to TermsConsumer
 DECL|field|bytesUsed
 specifier|protected
+specifier|final
 name|AtomicLong
 name|bytesUsed
-init|=
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
 decl_stmt|;
+comment|/**    * Creates a new {@link DocValuesConsumer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
 DECL|method|DocValuesConsumer
 specifier|protected
 name|DocValuesConsumer
@@ -225,24 +163,19 @@ operator|.
 name|bytesUsed
 operator|=
 name|bytesUsed
+operator|==
+literal|null
+condition|?
+operator|new
+name|AtomicLong
+argument_list|(
+literal|0
+argument_list|)
+else|:
+name|bytesUsed
 expr_stmt|;
 block|}
-DECL|method|bytesUsed
-specifier|public
-specifier|final
-name|long
-name|bytesUsed
-parameter_list|()
-block|{
-return|return
-name|this
-operator|.
-name|bytesUsed
-operator|.
-name|get
-argument_list|()
-return|;
-block|}
+comment|/**    * Adds the given {@link PerDocFieldValues} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param docValues    *          the values to add    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|add
 specifier|public
 specifier|abstract
@@ -258,6 +191,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Called when the consumer of this API is doc with adding    * {@link PerDocFieldValues} to this {@link DocValuesConsumer}    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, PerDocFieldValues)}.    * @throws IOException    */
 DECL|method|finish
 specifier|public
 specifier|abstract
@@ -270,6 +204,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Gathers files associated with this {@link DocValuesConsumer}    *     * @param files    *          the of files to add the consumers files to.    */
 DECL|method|files
 specifier|public
 specifier|abstract
@@ -285,6 +220,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Merges the given {@link org.apache.lucene.index.codecs.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param values    *          the docValues to merge in    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
 name|void
@@ -309,6 +245,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|mergeState
+operator|!=
+literal|null
+assert|;
 comment|// TODO we need some kind of compatibility notation for values such
 comment|// that two slightly different segments can be merged eg. fixed vs.
 comment|// variable byte len or float32 vs. float64
@@ -396,6 +337,7 @@ if|if
 condition|(
 name|merged
 condition|)
+block|{
 name|finish
 argument_list|(
 name|mergeState
@@ -404,6 +346,8 @@ name|mergedDocCount
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Merges the given {@link MergeState} into this {@link DocValuesConsumer}.    * {@link MergeState#docBase} must always be increasing. Merging segments out    * of order is not supported.    *     * @param mergeState    *          the {@link MergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|protected
 specifier|abstract
@@ -416,31 +360,35 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/*    * specialized auxiliary MergeState is necessary since we don't want to    * exploit internals up to the codec ones    */
+comment|/**    * Specialized auxiliary MergeState is necessary since we don't want to    * exploit internals up to the codecs consumer. An instance of this class is    * created for each merged low level {@link IndexReader} we are merging to    * support low level bulk copies.    */
 DECL|class|MergeState
 specifier|public
 specifier|static
 class|class
 name|MergeState
 block|{
+comment|/**      * the source reader for this MergeState - merged values should be read from      * this instance      */
 DECL|field|reader
 specifier|public
 specifier|final
 name|DocValues
 name|reader
 decl_stmt|;
+comment|/** the absolute docBase for this MergeState within the resulting segment */
 DECL|field|docBase
 specifier|public
 specifier|final
 name|int
 name|docBase
 decl_stmt|;
+comment|/** the number of documents in this MergeState */
 DECL|field|docCount
 specifier|public
 specifier|final
 name|int
 name|docCount
 decl_stmt|;
+comment|/** the deleted bits for this MergeState */
 DECL|field|bits
 specifier|public
 specifier|final
@@ -494,53 +442,6 @@ operator|=
 name|bits
 expr_stmt|;
 block|}
-block|}
-DECL|method|create
-specifier|public
-specifier|static
-name|DocValuesConsumer
-name|create
-parameter_list|(
-name|String
-name|id
-parameter_list|,
-name|Directory
-name|directory
-parameter_list|,
-name|FieldInfo
-name|field
-parameter_list|,
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|comp
-parameter_list|,
-name|AtomicLong
-name|bytesUsed
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|Writer
-operator|.
-name|create
-argument_list|(
-name|field
-operator|.
-name|getDocValues
-argument_list|()
-argument_list|,
-name|id
-argument_list|,
-name|directory
-argument_list|,
-name|comp
-argument_list|,
-name|bytesUsed
-argument_list|)
-return|;
 block|}
 block|}
 end_class

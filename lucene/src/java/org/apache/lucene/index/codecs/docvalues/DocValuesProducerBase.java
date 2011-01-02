@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Abstract base class for FieldsProducer implementations supporting  * {@link DocValues}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -259,6 +259,7 @@ operator|new
 name|DocValuesCodecInfo
 argument_list|()
 decl_stmt|;
+comment|/**    * Creates a new {@link DocValuesProducerBase} instance and loads all    * {@link DocValues} instances for this segment and codec.    *     * @param si    *          the segment info to load the {@link DocValues} for.    * @param dir    *          the directory to load the {@link DocValues} from.    * @param fieldInfo    *          the {@link FieldInfos}    * @param codecId    *          the codec ID    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|DocValuesProducerBase
 specifier|protected
 name|DocValuesProducerBase
@@ -307,6 +308,7 @@ name|codecId
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Returns a {@link DocValues} instance for the given field name or    *<code>null</code> if this field has no {@link DocValues}.    */
 annotation|@
 name|Override
 DECL|method|docValues
@@ -417,7 +419,7 @@ name|fieldInfo
 operator|.
 name|name
 decl_stmt|;
-comment|//TODO can we have a compound file  per segment and codec for docvalues?
+comment|// TODO can we have a compound file per segment and codec for docvalues?
 specifier|final
 name|String
 name|id
@@ -458,6 +460,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Loads a {@link DocValues} instance depending on the given {@link Type}.    * Codecs that use different implementations for a certain {@link Type} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link DocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link DocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link Type} is not supported    */
 DECL|method|loadDocValues
 specifier|protected
 name|DocValues
@@ -473,14 +476,14 @@ name|String
 name|id
 parameter_list|,
 name|Type
-name|v
+name|type
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 switch|switch
 condition|(
-name|v
+name|type
 condition|)
 block|{
 case|case
@@ -673,7 +676,7 @@ name|IllegalStateException
 argument_list|(
 literal|"unrecognized index values mode "
 operator|+
-name|v
+name|type
 argument_list|)
 throw|;
 block|}
@@ -699,6 +702,11 @@ operator|.
 name|values
 argument_list|()
 decl_stmt|;
+name|IOException
+name|ex
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|DocValues
@@ -707,11 +715,36 @@ range|:
 name|values
 control|)
 block|{
+try|try
+block|{
 name|docValues
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|ex
+operator|=
+name|e
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|ex
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+name|ex
+throw|;
 block|}
 block|}
 block|}

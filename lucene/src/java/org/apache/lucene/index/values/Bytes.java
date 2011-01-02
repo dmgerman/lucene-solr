@@ -265,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides concrete Writer/Reader impls for byte[] value per document. There  * are 6 package-private impls of this, for all combinations of  * STRAIGHT/DEREF/SORTED X fixed/not fixed.  *   *<p>  * NOTE: The total amount of byte[] data stored (across a single segment) cannot  * exceed 2GB.  *</p>  *<p>  * NOTE: Each byte[] must be<= 32768 bytes in length  *</p>  * @lucene.experimental  */
+comment|/**  * Provides concrete Writer/Reader implementations for<tt>byte[]</tt> value per  * document. There are 6 package-private default implementations of this, for  * all combinations of {@link Mode#DEREF}/{@link Mode#STRAIGHT}/  * {@link Mode#SORTED} x fixed-length/variable-length.  *   *<p>  * NOTE: Currently the total amount of byte[] data stored (across a single  * segment) cannot exceed 2GB.  *</p>  *<p>  * NOTE: Each byte[] must be<= 32768 bytes in length  *</p>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -283,25 +283,27 @@ parameter_list|()
 block|{
 comment|/* don't instantiate! */
 block|}
-comment|/**    *      *    */
+comment|/**    * Defines the {@link Writer}s store mode. The writer will either store the    * bytes sequentially ({@link #STRAIGHT}, dereferenced ({@link #DEREF}) or    * sorted ({@link #SORTED})    *     */
 DECL|enum|Mode
 specifier|public
 specifier|static
 enum|enum
 name|Mode
 block|{
+comment|/**      * Mode for sequentially stored bytes      */
 DECL|enum constant|STRAIGHT
-DECL|enum constant|DEREF
-DECL|enum constant|SORTED
 name|STRAIGHT
 block|,
+comment|/**      * Mode for dereferenced stored bytes      */
+DECL|enum constant|DEREF
 name|DEREF
 block|,
+comment|/**      * Mode for sorted stored bytes      */
+DECL|enum constant|SORTED
 name|SORTED
 block|}
 empty_stmt|;
-comment|// TODO -- i shouldn't have to specify fixed? can
-comment|// track itself& do the write thing at write time?
+comment|/**    * Creates a new<tt>byte[]</tt> {@link Writer} instances for the given    * directory.    *     * @param dir    *          the directory to write the values to    * @param id    *          the id used to create a unique file name. Usually composed out of    *          the segment name and a unique id per segment.    * @param mode    *          the writers store mode    * @param comp    *          a {@link BytesRef} comparator - only used with {@link Mode#SORTED}    * @param fixedSize    *<code>true</code> if all bytes subsequently passed to the    *          {@link Writer} will have the same length    * @param bytesUsed    *          an {@link AtomicLong} instance to track the used bytes within the    *          {@link Writer}. A call to {@link Writer#finish(int)} will release    *          all internally used resources and frees the memeory tracking    *          reference.    * @return a new {@link Writer} instance    * @throws IOException    *           if the files for the writer can not be created.    */
 DECL|method|getWriter
 specifier|public
 specifier|static
@@ -332,6 +334,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO -- i shouldn't have to specify fixed? can
+comment|// track itself& do the write thing at write time?
 if|if
 condition|(
 name|comp
@@ -508,7 +512,7 @@ literal|""
 argument_list|)
 throw|;
 block|}
-comment|// TODO -- I can peek @ header to determing fixed/mode?
+comment|/**    * Creates a new {@link DocValues} instance that provides either memory    * resident or iterative access to a per-document stored<tt>byte[]</tt>    * value. The returned {@link DocValues} instance will be initialized without    * consuming a significant amount of memory.    *     * @param dir    *          the directory to load the {@link DocValues} from.    * @param id    *          the file ID in the {@link Directory} to load the values from.    * @param mode    *          the mode used to store the values    * @param fixedSize    *<code>true</code> iff the values are stored with fixed-size,    *          otherwise<code>false</code>    * @param maxDoc    *          the number of document values stored for the given ID    * @return an initialized {@link DocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|getValues
 specifier|public
 specifier|static
@@ -533,6 +537,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO -- I can peek @ header to determing fixed/mode?
 if|if
 condition|(
 name|fixedSize
@@ -546,8 +551,6 @@ name|Mode
 operator|.
 name|STRAIGHT
 condition|)
-block|{
-try|try
 block|{
 return|return
 operator|new
@@ -563,17 +566,6 @@ name|maxDoc
 argument_list|)
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
-block|}
 elseif|else
 if|if
 condition|(
@@ -583,8 +575,6 @@ name|Mode
 operator|.
 name|DEREF
 condition|)
-block|{
-try|try
 block|{
 return|return
 operator|new
@@ -599,17 +589,6 @@ argument_list|,
 name|maxDoc
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
 block|}
 elseif|else
 if|if
@@ -714,7 +693,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|""
+literal|"Illegal Mode: "
+operator|+
+name|mode
 argument_list|)
 throw|;
 block|}
@@ -865,11 +846,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 name|data
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// close data
+block|}
+finally|finally
+block|{
 try|try
 block|{
 if|if
@@ -900,6 +887,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**      * Returns one greater than the largest possible document number.      */
 DECL|method|maxDoc
 specifier|protected
 specifier|abstract
@@ -907,17 +896,6 @@ name|int
 name|maxDoc
 parameter_list|()
 function_decl|;
-DECL|method|ramBytesUsed
-specifier|public
-name|long
-name|ramBytesUsed
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-comment|// TODO
-block|}
 annotation|@
 name|Override
 DECL|method|getEnum
@@ -1234,6 +1212,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|datIn
@@ -1245,6 +1225,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|idxIn
@@ -1257,6 +1240,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|maxDoc
 specifier|protected
@@ -1768,6 +1752,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|datOut
@@ -1779,6 +1765,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+try|try
+block|{
 if|if
 condition|(
 name|idxOut
@@ -1790,6 +1781,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|pool
@@ -1801,6 +1795,8 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
+block|}
 block|}
 annotation|@
 name|Override
@@ -2137,15 +2133,12 @@ name|IndexInput
 name|cloneIndex
 parameter_list|()
 block|{
-comment|// TODO assert here for null
-comment|// rather than return null
-return|return
+assert|assert
 name|idxIn
-operator|==
+operator|!=
 literal|null
-condition|?
-literal|null
-else|:
+assert|;
+return|return
 operator|(
 name|IndexInput
 operator|)
@@ -2165,11 +2158,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 name|super
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+try|try
+block|{
 if|if
 condition|(
 name|datIn
@@ -2183,6 +2183,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|idxIn
@@ -2195,6 +2198,8 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 block|}

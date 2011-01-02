@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @see FieldsEnum#docValues()  * @see Fields#docValues(String)  * @lucene.experimental  */
+comment|/**  * TODO  * @see FieldsEnum#docValues()  * @see Fields#docValues(String)  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -328,7 +328,7 @@ name|cache
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link DocValues} fields {@link Type}. Source    * implementations provide random access semantics similar to array lookups    * and typically are entirely memory resident.    *<p>    * {@link Source} defines 3 {@link Type} //TODO finish this     */
+comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link DocValues} fields {@link Type}. Source    * implementations provide random access semantics similar to array lookups    * and typically are entirely memory resident.    *<p>    * {@link Source} defines 3 {@link Type} //TODO finish this    */
 DECL|class|Source
 specifier|public
 specifier|static
@@ -346,6 +346,7 @@ operator|new
 name|MissingValue
 argument_list|()
 decl_stmt|;
+comment|/**      * Returns a<tt>long</tt> for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>long</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>long</tt> values.      * @see MissingValue      * @see #getMissing()      */
 DECL|method|getInt
 specifier|public
 name|long
@@ -363,6 +364,7 @@ literal|"ints are not supported"
 argument_list|)
 throw|;
 block|}
+comment|/**      * Returns a<tt>double</tt> for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>double</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>double</tt> values.      * @see MissingValue      * @see #getMissing()      */
 DECL|method|getFloat
 specifier|public
 name|double
@@ -380,6 +382,7 @@ literal|"floats are not supported"
 argument_list|)
 throw|;
 block|}
+comment|/**      * Returns a {@link BytesRef} for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>byte[]</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>byte[]</tt> values.      * @see MissingValue      * @see #getMissing()      */
 DECL|method|getBytes
 specifier|public
 name|BytesRef
@@ -400,7 +403,7 @@ literal|"bytes are not supported"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns number of unique values. Some impls may throw      * UnsupportedOperationException.      */
+comment|/**      * Returns number of unique values. Some implementations may throw      * UnsupportedOperationException.      */
 DECL|method|getValueCount
 specifier|public
 name|int
@@ -413,6 +416,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**      * Returns a {@link DocValuesEnum} for this source.      */
 DECL|method|getEnum
 specifier|public
 name|DocValuesEnum
@@ -428,6 +432,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * Returns a {@link MissingValue} instance for this {@link Source}.      * Depending on the type of this {@link Source} consumers of the API should      * check if the value returned from on of the getter methods represents a      * value for a missing document or rather a value for a document no value      * was specified during indexing.      */
 DECL|method|getMissing
 specifier|public
 name|MissingValue
@@ -438,6 +443,7 @@ return|return
 name|missingValue
 return|;
 block|}
+comment|/**      * Returns the {@link Type} of this source.      *       * @return the {@link Type} of this source.      */
 DECL|method|type
 specifier|public
 specifier|abstract
@@ -445,6 +451,7 @@ name|Type
 name|type
 parameter_list|()
 function_decl|;
+comment|/**      * Returns a {@link DocValuesEnum} for this source which uses the given      * {@link AttributeSource}.      */
 DECL|method|getEnum
 specifier|public
 specifier|abstract
@@ -458,7 +465,9 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
+comment|/**    * {@link DocValuesEnum} utility for {@link Source} implemenations.    *     */
 DECL|class|SourceEnum
+specifier|public
 specifier|abstract
 specifier|static
 class|class
@@ -486,7 +495,9 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/**      * Creates a new {@link SourceEnum}      *       * @param attrs      *          the {@link AttributeSource} for this enum      * @param type      *          the enums {@link Type}      * @param source      *          the source this enum operates on      * @param numDocs      *          the number of documents within the source      */
 DECL|method|SourceEnum
+specifier|protected
 name|SourceEnum
 parameter_list|(
 name|AttributeSource
@@ -573,6 +584,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * A sorted variant of {@link Source} for<tt>byte[]</tt> values per document.    *<p>    * Note: {@link DocValuesEnum} obtained from a {@link SortedSource} will    * enumerate values in document order and not in sorted order.    */
 DECL|class|SortedSource
 specifier|public
 specifier|static
@@ -639,18 +651,20 @@ specifier|static
 class|class
 name|LookupResult
 block|{
+comment|/**<code>true</code> iff the values was found */
 DECL|field|found
 specifier|public
 name|boolean
 name|found
 decl_stmt|;
+comment|/**        * the ordinal of the value if found or the ordinal of the value if it        * would be present in the source        */
 DECL|field|ord
 specifier|public
 name|int
 name|ord
 decl_stmt|;
 block|}
-comment|/**      * Finds the largest ord whose value is<= the requested value. If      * {@link LookupResult#found} is true, then ord is an exact match. The      * returned {@link LookupResult} may be reused across calls.      */
+comment|/**      * Finds the largest ord whose value is less or equal to the requested      * value. If {@link LookupResult#found} is true, then ord is an exact match.      * The returned {@link LookupResult} may be reused across calls.      */
 DECL|method|getByValue
 specifier|public
 specifier|final
@@ -672,6 +686,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**      * Performs a lookup by value.      *       * @param value      *          the value to look up      * @param tmpRef      *          a temporary {@link BytesRef} instance used to compare internal      *          values to the given value. Must not be<code>null</code>      * @return the {@link LookupResult}      */
 DECL|method|getByValue
 specifier|public
 specifier|abstract
@@ -686,6 +701,7 @@ name|tmpRef
 parameter_list|)
 function_decl|;
 block|}
+comment|/**    * {@link MissingValue} is used by {@link Source} implementations to define an    * Implementation dependent value for documents that had no value assigned    * during indexing. Its purpose is similar to a default value but since the a    * missing value across {@link Type} and its implementations can be highly    * dynamic the actual values are not constant but defined per {@link Source}    * through the {@link MissingValue} struct. The actual value used to indicate    * a missing value can even changed within the same field from one segment to    * another. Certain {@link Ints} implementations for instance use a value    * outside of value set as the missing value.    */
 DECL|class|MissingValue
 specifier|public
 specifier|final
@@ -708,6 +724,7 @@ specifier|public
 name|BytesRef
 name|bytesValue
 decl_stmt|;
+comment|/**      * Copies the values from the given {@link MissingValue}.      */
 DECL|method|copy
 specifier|public
 specifier|final
