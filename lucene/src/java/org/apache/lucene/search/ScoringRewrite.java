@@ -377,11 +377,7 @@ init|=
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-operator|new
-name|QueryWrapperFilter
-argument_list|(
 name|bq
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|result

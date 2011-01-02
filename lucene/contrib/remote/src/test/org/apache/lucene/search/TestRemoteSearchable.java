@@ -868,9 +868,6 @@ operator|new
 name|ConstantScoreQuery
 argument_list|(
 operator|new
-name|QueryWrapperFilter
-argument_list|(
-operator|new
 name|TermQuery
 argument_list|(
 operator|new
@@ -879,7 +876,6 @@ argument_list|(
 literal|"test"
 argument_list|,
 literal|"test"
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
