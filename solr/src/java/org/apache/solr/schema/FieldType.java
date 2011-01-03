@@ -1009,7 +1009,7 @@ block|}
 comment|/**    * Used for adding a document when a field needs to be created from a    * type and a string.    *    *<p>    * By default, the indexed value is the same as the stored value    * (taken from toInternal()).   Having a different representation for    * external, internal, and indexed would present quite a few problems    * given the current Lucene architecture.  An analyzer for adding docs    * would need to translate internal->indexed while an analyzer for    * querying would need to translate external-&gt;indexed.    *</p>    *<p>    * The only other alternative to having internal==indexed would be to have    * internal==external.   In this case, toInternal should convert to    * the indexed representation, toExternal() should do nothing, and    * createField() should *not* call toInternal, but use the external    * value and set tokenized=true to get Lucene to convert to the    * internal(indexed) form.    *</p>    *    * :TODO: clean up and clarify this explanation.    *    * @see #toInternal    *    *    */
 DECL|method|createField
 specifier|public
-name|Field
+name|Fieldable
 name|createField
 parameter_list|(
 name|SchemaField
@@ -1156,10 +1156,10 @@ name|boost
 argument_list|)
 return|;
 block|}
-comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param storage {@link org.apache.lucene.document.Field.Store}    * @param index {@link org.apache.lucene.document.Field.Index}    * @param vec {@link org.apache.lucene.document.Field.TermVector}    * @param omitNorms true if norms should be omitted    * @param omitTFPos true if term freq and position should be omitted.    * @param boost The boost value    * @return the {@link org.apache.lucene.document.Field}.    */
+comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param storage {@link org.apache.lucene.document.Field.Store}    * @param index {@link org.apache.lucene.document.Field.Index}    * @param vec {@link org.apache.lucene.document.Field.TermVector}    * @param omitNorms true if norms should be omitted    * @param omitTFPos true if term freq and position should be omitted.    * @param boost The boost value    * @return the {@link org.apache.lucene.document.Fieldable}.    */
 DECL|method|createField
 specifier|protected
-name|Field
+name|Fieldable
 name|createField
 parameter_list|(
 name|String
@@ -1252,7 +1252,7 @@ name|float
 name|boost
 parameter_list|)
 block|{
-name|Field
+name|Fieldable
 name|f
 init|=
 name|createField
@@ -1541,7 +1541,7 @@ argument_list|,
 name|ext
 argument_list|)
 expr_stmt|;
-name|Field
+name|Fieldable
 name|f
 init|=
 name|createField
@@ -2080,7 +2080,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not    *  @return a Query instance to perform range search according to given parameters    *    * @see org.apache.solr.search.SolrQueryParser#getRangeQuery(String, String, String, boolean)    */
+comment|/**    * Returns a Query instance for doing range searches on this field type. {@link org.apache.solr.search.SolrQueryParser}    * currently passes part1 and part2 as null if they are '*' respectively. minInclusive and maxInclusive are both true    * currently by SolrQueryParser but that may change in the future. Also, other QueryParser implementations may have    * different semantics.    *<p/>    * Sub-classes should override this method to provide their own range query implementation. They should strive to    * handle nulls in part1 and/or part2 as well as unequal minInclusive and maxInclusive parameters gracefully.    *    * @param parser    * @param field        the schema field    * @param part1        the lower boundary of the range, nulls are allowed.    * @param part2        the upper boundary of the range, nulls are allowed    * @param minInclusive whether the minimum of the range is inclusive or not    * @param maxInclusive whether the maximum of the range is inclusive or not    *  @return a Query instance to perform range search according to given parameters    *    */
 DECL|method|getRangeQuery
 specifier|public
 name|Query
