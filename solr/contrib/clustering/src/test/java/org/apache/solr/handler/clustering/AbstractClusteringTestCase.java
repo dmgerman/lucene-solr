@@ -40,18 +40,6 @@ name|BeforeClass
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  *  */
 end_comment
@@ -89,6 +77,8 @@ argument_list|(
 literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
+argument_list|,
+literal|"solr-clustering"
 argument_list|)
 expr_stmt|;
 name|numberOfDocs

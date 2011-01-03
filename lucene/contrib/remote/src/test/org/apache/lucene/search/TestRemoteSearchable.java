@@ -117,18 +117,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -880,9 +868,6 @@ operator|new
 name|ConstantScoreQuery
 argument_list|(
 operator|new
-name|QueryWrapperFilter
-argument_list|(
-operator|new
 name|TermQuery
 argument_list|(
 operator|new
@@ -891,7 +876,6 @@ argument_list|(
 literal|"test"
 argument_list|,
 literal|"test"
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)

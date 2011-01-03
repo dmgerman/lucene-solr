@@ -3249,11 +3249,12 @@ operator|<=
 literal|50
 condition|)
 block|{
-comment|// TODO: this may depend on the highlighter component (or other components?)
 name|SolrPluginUtils
 operator|.
 name|optimizePreFetchDocs
 argument_list|(
+name|rb
+argument_list|,
 name|rb
 operator|.
 name|getResults

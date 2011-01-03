@@ -88,16 +88,6 @@ name|Pattern
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_class
 DECL|class|TestCharTermAttributeImpl
 specifier|public

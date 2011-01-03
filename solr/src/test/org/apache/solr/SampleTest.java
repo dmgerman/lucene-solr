@@ -62,18 +62,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is an example of how to write a JUnit tests for Solr using the  * SolrTestCaseJ4  */
 end_comment
@@ -223,9 +211,9 @@ argument_list|,
 literal|"Who Me?"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -233,7 +221,7 @@ name|assertU
 argument_list|(
 literal|"or just make the raw XML yourself"
 argument_list|,
-literal|"<add allowDups=\"true\">"
+literal|"<add overwrite=\"false\">"
 operator|+
 name|doc
 argument_list|(

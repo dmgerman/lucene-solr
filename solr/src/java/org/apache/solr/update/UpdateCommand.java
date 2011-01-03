@@ -16,6 +16,20 @@ name|update
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/** An index update command encapsulated in an object (Command pattern)  *  * @version $Id$  */
 end_comment
@@ -26,8 +40,15 @@ specifier|public
 class|class
 name|UpdateCommand
 block|{
+DECL|field|req
+specifier|protected
+specifier|final
+name|SolrQueryRequest
+name|req
+decl_stmt|;
 DECL|field|commandName
 specifier|protected
+specifier|final
 name|String
 name|commandName
 decl_stmt|;
@@ -37,8 +58,17 @@ name|UpdateCommand
 parameter_list|(
 name|String
 name|commandName
+parameter_list|,
+name|SolrQueryRequest
+name|req
 parameter_list|)
 block|{
+name|this
+operator|.
+name|req
+operator|=
+name|req
+expr_stmt|;
 name|this
 operator|.
 name|commandName

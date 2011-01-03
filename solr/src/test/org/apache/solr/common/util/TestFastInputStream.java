@@ -19,18 +19,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -159,7 +147,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|NamedListCodec
+name|JavaBinCodec
 operator|.
 name|writeVInt
 argument_list|(

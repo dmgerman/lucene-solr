@@ -282,6 +282,8 @@ init|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 name|optimize
 argument_list|)
 decl_stmt|;
@@ -388,6 +390,9 @@ specifier|static
 name|boolean
 name|handleCommit
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|UpdateRequestProcessor
 name|processor
 parameter_list|,
@@ -466,6 +471,8 @@ init|=
 operator|new
 name|CommitUpdateCommand
 argument_list|(
+name|req
+argument_list|,
 name|optimize
 argument_list|)
 decl_stmt|;
@@ -559,6 +566,9 @@ specifier|static
 name|boolean
 name|handleRollback
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|UpdateRequestProcessor
 name|processor
 parameter_list|,
@@ -620,7 +630,9 @@ name|cmd
 init|=
 operator|new
 name|RollbackUpdateCommand
-argument_list|()
+argument_list|(
+name|req
+argument_list|)
 decl_stmt|;
 name|processor
 operator|.

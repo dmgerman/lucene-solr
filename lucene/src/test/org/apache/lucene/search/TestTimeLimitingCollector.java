@@ -178,11 +178,26 @@ name|ThreadInterruptedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests the {@link TimeLimitingCollector}.  This test checks (1) search  * correctness (regardless of timeout), (2) expected timeout behavior,  * and (3) a sanity test with multiple searching threads.  */
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"broken: see https://issues.apache.org/jira/browse/LUCENE-2822"
+argument_list|)
 DECL|class|TestTimeLimitingCollector
 specifier|public
 class|class

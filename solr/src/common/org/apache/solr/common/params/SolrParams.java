@@ -1288,27 +1288,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** how to transform a String into a boolean... more flexible than    * Boolean.parseBoolean() to enable easier integration with html forms.    * @deprecated Use org.apache.solr.common.util.StrUtils.parseBool    */
-annotation|@
-name|Deprecated
-DECL|method|parseBool
-specifier|protected
-name|boolean
-name|parseBool
-parameter_list|(
-name|String
-name|s
-parameter_list|)
-block|{
-return|return
-name|StrUtils
-operator|.
-name|parseBool
-argument_list|(
-name|s
-argument_list|)
-return|;
-block|}
 comment|/** Create a Map<String,String> from a NamedList given no keys are repeated */
 DECL|method|toMap
 specifier|public

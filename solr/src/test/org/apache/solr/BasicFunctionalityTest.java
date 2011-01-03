@@ -15,42 +15,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -790,7 +754,7 @@ argument_list|,
 literal|"//*[@numFound='0']"
 argument_list|)
 expr_stmt|;
-comment|// test allowDups default of false
+comment|// test overwrite default of true
 name|assertU
 argument_list|(
 name|adoc
@@ -901,9 +865,9 @@ argument_list|,
 literal|"101"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,
 name|add
@@ -915,9 +879,9 @@ argument_list|,
 literal|"101"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,
 name|add
@@ -929,9 +893,9 @@ argument_list|,
 literal|"105"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 block|,
 name|add
@@ -943,9 +907,9 @@ argument_list|,
 literal|"102"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,
 name|add
@@ -957,9 +921,9 @@ argument_list|,
 literal|"103"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 block|,
 name|add
@@ -971,9 +935,9 @@ argument_list|,
 literal|"101"
 argument_list|)
 argument_list|,
-literal|"allowDups"
+literal|"overwrite"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 block|,     }
 decl_stmt|;
@@ -1268,13 +1232,7 @@ argument_list|(
 literal|"<add><doc><field name=\"id\">1</field></doc><doc><field name=\"id\">2</field></doc></add>"
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"<result status=\"0\"></result>"
-argument_list|,
-name|res
-argument_list|)
-expr_stmt|;
+comment|// assertEquals("<result status=\"0\"></result>", res);
 name|assertU
 argument_list|(
 literal|"<commit/>"
@@ -1321,13 +1279,7 @@ operator|+
 literal|"</add>"
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"<result status=\"0\"></result>"
-argument_list|,
-name|res
-argument_list|)
-expr_stmt|;
+comment|// assertEquals("<result status=\"0\"></result>", res);
 name|assertU
 argument_list|(
 literal|"<commit/>"
@@ -1416,13 +1368,7 @@ operator|+
 literal|"</add>"
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"<result status=\"0\"></result>"
-argument_list|,
-name|res
-argument_list|)
-expr_stmt|;
+comment|// assertEquals("<result status=\"0\"></result>", res);
 name|assertU
 argument_list|(
 literal|"<commit/>"
@@ -1792,65 +1738,6 @@ literal|"keywordtok:\"How nOw broWn-ish C.o.w. ?\""
 argument_list|)
 argument_list|,
 literal|"//str[.='How nOw broWn-ish C.o.w. ?']"
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** @see org.apache.solr.analysis.TestRemoveDuplicatesTokenFilter */
-annotation|@
-name|Test
-DECL|method|testRemoveDuplicatesTokenFilter
-specifier|public
-name|void
-name|testRemoveDuplicatesTokenFilter
-parameter_list|()
-block|{
-name|Query
-name|q
-init|=
-name|QueryParsing
-operator|.
-name|parseQuery
-argument_list|(
-literal|"TV"
-argument_list|,
-literal|"dedup"
-argument_list|,
-name|h
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getSchema
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"not boolean?"
-argument_list|,
-name|q
-operator|instanceof
-name|BooleanQuery
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"unexpected number of stemmed synonym tokens"
-argument_list|,
-literal|2
-argument_list|,
-operator|(
-operator|(
-name|BooleanQuery
-operator|)
-name|q
-operator|)
-operator|.
-name|clauses
-argument_list|()
-operator|.
-name|size
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

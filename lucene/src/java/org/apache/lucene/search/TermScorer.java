@@ -40,22 +40,6 @@ name|DocsEnum
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BooleanClause
-operator|.
-name|Occur
-import|;
-end_import
-
 begin_comment
 comment|/** Expert: A<code>Scorer</code> for documents matching a<code>Term</code>.  */
 end_comment

@@ -1052,6 +1052,8 @@ specifier|public
 name|void
 name|finishDoc
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 assert|assert
 name|omitTF
@@ -1064,6 +1066,17 @@ name|currentDoc
 operator|.
 name|termDocFreq
 assert|;
+if|if
+condition|(
+name|pulsed
+condition|)
+block|{
+name|wrappedPostingsWriter
+operator|.
+name|finishDoc
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|field|pendingIsIndexTerm
 name|boolean

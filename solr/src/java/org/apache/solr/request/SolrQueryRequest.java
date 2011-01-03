@@ -56,22 +56,6 @@ name|common
 operator|.
 name|params
 operator|.
-name|CommonParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
 name|SolrParams
 import|;
 end_import
@@ -179,67 +163,6 @@ name|void
 name|close
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the input parameter value for the specified name    * @return the value, or the first value if the parameter was    * specified more then once; may be null.    * @deprecated Use {@link #getParams()} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getParam
-specifier|public
-name|String
-name|getParam
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the input parameter values for the specified name    * @return the values; may be null or empty depending on implementation    * @deprecated Use {@link #getParams()} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getParams
-specifier|public
-name|String
-index|[]
-name|getParams
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the primary query string parameter of the request    * @deprecated Use {@link #getParams()} and {@link CommonParams#Q} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getQueryString
-specifier|public
-name|String
-name|getQueryString
-parameter_list|()
-function_decl|;
-comment|/**    * Signifies the syntax and the handler that should be used    * to execute this query.    * @deprecated Use {@link #getParams()} and {@link CommonParams#QT} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getQueryType
-specifier|public
-name|String
-name|getQueryType
-parameter_list|()
-function_decl|;
-comment|/** starting position in matches to return to client    * @deprecated Use {@link #getParams()} and {@link CommonParams#START} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getStart
-specifier|public
-name|int
-name|getStart
-parameter_list|()
-function_decl|;
-comment|/** number of matching documents to return    * @deprecated Use {@link #getParams()} and {@link CommonParams#ROWS} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getLimit
-specifier|public
-name|int
-name|getLimit
-parameter_list|()
-function_decl|;
 comment|/** The start time of this request in milliseconds */
 DECL|method|getStartTime
 specifier|public
@@ -275,7 +198,6 @@ name|String
 name|getParamString
 parameter_list|()
 function_decl|;
-comment|/******   // Get the current elapsed time in milliseconds   public long getElapsedTime();   ******/
 block|}
 end_interface
 
