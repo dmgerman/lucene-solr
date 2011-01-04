@@ -979,10 +979,12 @@ name|byte
 name|b
 index|[]
 init|=
-name|ir
+name|MultiNorms
 operator|.
 name|norms
 argument_list|(
+name|ir
+argument_list|,
 name|field
 argument_list|)
 decl_stmt|;
