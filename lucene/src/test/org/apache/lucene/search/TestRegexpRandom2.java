@@ -373,7 +373,7 @@ extends|extends
 name|LuceneTestCase
 block|{
 DECL|field|searcher
-specifier|private
+specifier|protected
 name|IndexSearcher
 name|searcher
 decl_stmt|;
@@ -938,7 +938,7 @@ block|}
 block|}
 comment|/** check that the # of hits is the same as from a very    * simple regexpquery implementation.    */
 DECL|method|assertSame
-specifier|private
+specifier|protected
 name|void
 name|assertSame
 parameter_list|(
