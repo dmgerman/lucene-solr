@@ -681,15 +681,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|state
-operator|.
-name|flushedFiles
-operator|.
-name|add
-argument_list|(
-name|seedFileName
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Random
 name|random

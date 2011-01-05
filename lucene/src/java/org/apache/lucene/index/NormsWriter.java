@@ -419,15 +419,6 @@ operator|.
 name|NORMS_EXTENSION
 argument_list|)
 decl_stmt|;
-name|state
-operator|.
-name|flushedFiles
-operator|.
-name|add
-argument_list|(
-name|normsFileName
-argument_list|)
-expr_stmt|;
 name|IndexOutput
 name|normsOut
 init|=

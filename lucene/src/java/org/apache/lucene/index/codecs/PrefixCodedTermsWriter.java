@@ -332,15 +332,6 @@ argument_list|(
 name|out
 argument_list|)
 expr_stmt|;
-name|state
-operator|.
-name|flushedFiles
-operator|.
-name|add
-argument_list|(
-name|termsFileName
-argument_list|)
-expr_stmt|;
 name|fieldInfos
 operator|=
 name|state

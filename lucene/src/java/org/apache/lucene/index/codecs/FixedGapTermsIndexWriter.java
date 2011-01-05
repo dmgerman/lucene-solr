@@ -290,15 +290,6 @@ argument_list|,
 name|TERMS_INDEX_EXTENSION
 argument_list|)
 decl_stmt|;
-name|state
-operator|.
-name|flushedFiles
-operator|.
-name|add
-argument_list|(
-name|indexFileName
-argument_list|)
-expr_stmt|;
 name|termIndexInterval
 operator|=
 name|state
