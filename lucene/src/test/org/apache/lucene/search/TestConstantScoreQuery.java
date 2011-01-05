@@ -299,7 +299,7 @@ specifier|private
 name|void
 name|checkHits
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|,
 name|Query

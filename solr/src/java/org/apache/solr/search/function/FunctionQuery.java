@@ -198,7 +198,7 @@ name|Weight
 block|{
 DECL|field|searcher
 specifier|protected
-name|Searcher
+name|IndexSearcher
 name|searcher
 decl_stmt|;
 DECL|field|queryNorm
@@ -220,7 +220,7 @@ DECL|method|FunctionWeight
 specifier|public
 name|FunctionWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -810,7 +810,7 @@ specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws

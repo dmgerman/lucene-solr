@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -156,7 +156,7 @@ decl_stmt|;
 comment|/** Index to be searched. */
 DECL|field|searcher
 specifier|protected
-name|Searcher
+name|IndexSearcher
 name|searcher
 decl_stmt|;
 comment|/** index field to extract doc name for each search result; used for judging the results. */
@@ -195,7 +195,7 @@ parameter_list|,
 name|QualityQueryParser
 name|qqParser
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|,
 name|String

@@ -308,7 +308,7 @@ name|Term
 argument_list|>
 name|terms
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -1589,7 +1589,7 @@ name|dir
 argument_list|)
 expr_stmt|;
 comment|/*      * Verify the index      */
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|new

@@ -254,20 +254,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Weight
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -598,16 +584,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Weight
-name|w
-init|=
-name|q
-operator|.
-name|weight
-argument_list|(
-name|searcher
-argument_list|)
-decl_stmt|;
+comment|// TODO: instead of always passing false we
+comment|// should detect based on the query; if we make
+comment|// the IndexSearcher search methods that take
+comment|// Weight public again, we can go back to
+comment|// pulling the Weight ourselves:
 name|TopFieldCollector
 name|collector
 init|=
@@ -627,18 +608,14 @@ argument_list|,
 name|withMaxScore
 argument_list|()
 argument_list|,
-operator|!
-name|w
-operator|.
-name|scoresDocsOutOfOrder
-argument_list|()
+literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
 operator|.
 name|search
 argument_list|(
-name|w
+name|q
 argument_list|,
 literal|null
 argument_list|,

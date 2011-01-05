@@ -296,7 +296,7 @@ name|Term
 argument_list|>
 name|terms
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -463,7 +463,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|new

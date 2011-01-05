@@ -211,7 +211,7 @@ DECL|method|ValueSourceWeight
 specifier|public
 name|ValueSourceWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 block|{
@@ -649,7 +649,7 @@ specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 block|{

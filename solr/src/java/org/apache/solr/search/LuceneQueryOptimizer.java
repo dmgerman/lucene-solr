@@ -154,7 +154,7 @@ parameter_list|(
 name|BooleanQuery
 name|original
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|,
 name|int
