@@ -3000,12 +3000,10 @@ name|canIgnoreDeletedDocs
 condition|?
 literal|null
 else|:
-name|MultiFields
+name|reader
 operator|.
 name|getDeletedDocs
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
