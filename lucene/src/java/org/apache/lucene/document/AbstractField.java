@@ -340,7 +340,7 @@ operator|=
 name|boost
 expr_stmt|;
 block|}
-comment|/** Returns the boost factor for hits for this field.    *    *<p>The default value is 1.0.    *    *<p>Note: this value is not stored directly with the document in the index.    * Documents returned from {@link org.apache.lucene.index.IndexReader#document(int)} and    * {@link org.apache.lucene.search.Searcher#doc(int)} may thus not have the same value present as when    * this field was indexed.    *    * @see #setBoost(float)    */
+comment|/** Returns the boost factor for hits for this field.    *    *<p>The default value is 1.0.    *    *<p>Note: this value is not stored directly with the document in the index.    * Documents returned from {@link org.apache.lucene.index.IndexReader#document(int)} and    * {@link org.apache.lucene.search.IndexSearcher#doc(int)} may thus not have the same value present as when    * this field was indexed.    *    * @see #setBoost(float)    */
 DECL|method|getBoost
 specifier|public
 name|float

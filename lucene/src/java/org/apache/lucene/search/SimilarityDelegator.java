@@ -31,7 +31,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Expert: Delegating scoring implementation.  Useful in {@link  * Query#getSimilarity(Searcher)} implementations, to override only certain  * methods of a Searcher's Similarity implementation.. */
+comment|/** Expert: Delegating scoring implementation.  Useful in {@link  * Query#getSimilarity(IndexSearcher)} implementations, to override only certain  * methods of a Searcher's Similarity implementation.. */
 end_comment
 
 begin_class

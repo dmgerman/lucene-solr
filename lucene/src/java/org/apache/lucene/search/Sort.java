@@ -48,7 +48,7 @@ name|Sort
 implements|implements
 name|Serializable
 block|{
-comment|/**    * Represents sorting by computed relevance. Using this sort criteria returns    * the same results as calling    * {@link Searcher#search(Query,int) Searcher#search()}without a sort criteria,    * only with slightly more overhead.    */
+comment|/**    * Represents sorting by computed relevance. Using this sort criteria returns    * the same results as calling    * {@link IndexSearcher#search(Query,int) IndexSearcher#search()}without a sort criteria,    * only with slightly more overhead.    */
 DECL|field|RELEVANCE
 specifier|public
 specifier|static
@@ -82,7 +82,7 @@ name|SortField
 index|[]
 name|fields
 decl_stmt|;
-comment|/**    * Sorts by computed relevance. This is the same sort criteria as calling    * {@link Searcher#search(Query,int) Searcher#search()}without a sort criteria,    * only with slightly more overhead.    */
+comment|/**    * Sorts by computed relevance. This is the same sort criteria as calling    * {@link IndexSearcher#search(Query,int) IndexSearcher#search()}without a sort criteria,    * only with slightly more overhead.    */
 DECL|method|Sort
 specifier|public
 name|Sort

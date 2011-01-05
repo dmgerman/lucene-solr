@@ -258,6 +258,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|NIOFSDirectory
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ReaderUtil
@@ -1134,7 +1152,7 @@ name|n
 argument_list|)
 return|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link Collector#collect(int)} is called for every matching    * document.    *<br>Collector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * Searcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.    *    *<p>{@link Collector#collect(int)} is called for every matching    * document.    *<br>Collector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * IndexSearcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|public
 name|void
@@ -1165,7 +1183,7 @@ name|results
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * Searcher#search(Query, int)}) is usually more efficient, as it skips   * non-high-scoring hits.   *<p>Note: The<code>score</code> passed to this method is a raw score.   * In other words, the score will not necessarily be a float whose value is   * between 0 and 1.   * @throws BooleanQuery.TooManyClauses   */
+comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * IndexSearcher#search(Query, int)}) is usually more efficient, as it skips   * non-high-scoring hits.   *<p>Note: The<code>score</code> passed to this method is a raw score.   * In other words, the score will not necessarily be a float whose value is   * between 0 and 1.   * @throws BooleanQuery.TooManyClauses   */
 DECL|method|search
 specifier|public
 name|void
@@ -1264,7 +1282,7 @@ name|sort
 argument_list|)
 return|;
 block|}
-comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Applications should usually call {@link Searcher#search(Query,int)} or    * {@link Searcher#search(Query,Filter,int)} instead.    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Expert: Low-level search implementation.  Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null.    *    *<p>Applications should usually call {@link IndexSearcher#search(Query,int)} or    * {@link IndexSearcher#search(Query,Filter,int)} instead.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|protected
 name|TopDocs
@@ -1537,7 +1555,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * Searcher#search(Query,Filter,int,Sort)} instead.    *     * @throws BooleanQuery.TooManyClauses    */
+comment|/** Expert: Low-level search implementation with arbitrary sorting.  Finds    * the top<code>n</code> hits for<code>query</code>, applying    *<code>filter</code> if non-null, and sorting the hits by the criteria in    *<code>sort</code>.    *    *<p>Applications should usually call {@link    * IndexSearcher#search(Query,Filter,int,Sort)} instead.    *     * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
@@ -1881,7 +1899,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link Searcher#search(Query,int)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     * @param weight    *          to match documents    * @param filter    *          if non-null, used to permit documents to be collected.    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link IndexSearcher#search(Query,int)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     * @param weight    *          to match documents    * @param filter    *          if non-null, used to permit documents to be collected.    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|protected
 name|void
@@ -2325,7 +2343,7 @@ name|doc
 argument_list|)
 return|;
 block|}
-comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link Searcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Expert: low-level implementation method    * Returns an Explanation that describes how<code>doc</code> scored against    *<code>weight</code>.    *    *<p>This is intended to be used in developing Similarity implementations,    * and, for good performance, should not be displayed with every hit.    * Computing an explanation is as expensive as executing the query over the    * entire index.    *<p>Applications should call {@link IndexSearcher#explain(Query, int)}.    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|explain
 specifier|protected
 name|Explanation

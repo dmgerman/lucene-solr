@@ -64,7 +64,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Called once for every document matching a query, with the unbased document    * number.    *     *<p>    * Note: This is called in an inner search loop. For good search performance,    * implementations of this method should not call {@link Searcher#doc(int)} or    * {@link org.apache.lucene.index.IndexReader#document(int)} on every hit.    * Doing so can slow searches by an order of magnitude or more.    */
+comment|/**    * Called once for every document matching a query, with the unbased document    * number.    *     *<p>    * Note: This is called in an inner search loop. For good search performance,    * implementations of this method should not call {@link IndexSearcher#doc(int)} or    * {@link org.apache.lucene.index.IndexReader#document(int)} on every hit.    * Doing so can slow searches by an order of magnitude or more.    */
 DECL|method|collect
 specifier|public
 specifier|abstract

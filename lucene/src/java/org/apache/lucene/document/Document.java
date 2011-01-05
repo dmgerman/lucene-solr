@@ -40,6 +40,24 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|IndexSearcher
+import|;
+end_import
+
+begin_comment
+comment|// for javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|ScoreDoc
 import|;
 end_import
@@ -385,7 +403,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns a List of all the fields in a document.    *<p>Note that fields which are<i>not</i> {@link Fieldable#isStored() stored} are    *<i>not</i> available in documents retrieved from the    * index, e.g. {@link Searcher#doc(int)} or {@link    * IndexReader#document(int)}.    */
+comment|/** Returns a List of all the fields in a document.    *<p>Note that fields which are<i>not</i> {@link Fieldable#isStored() stored} are    *<i>not</i> available in documents retrieved from the    * index, e.g. {@link IndexSearcher#doc(int)} or {@link    * IndexReader#document(int)}.    */
 DECL|method|getFields
 specifier|public
 specifier|final
