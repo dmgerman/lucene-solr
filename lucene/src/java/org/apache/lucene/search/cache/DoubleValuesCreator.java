@@ -369,6 +369,7 @@ annotation|@
 name|Override
 DECL|method|validate
 specifier|public
+specifier|synchronized
 name|DoubleValues
 name|validate
 parameter_list|(
