@@ -1041,7 +1041,7 @@ specifier|private
 name|void
 name|checkBooleanTerms
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|,
 name|TermRangeQuery

@@ -100,9 +100,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|search
 operator|.
-name|XMLWriter
+name|QParser
 import|;
 end_import
 
@@ -350,6 +350,9 @@ name|getValueSource
 parameter_list|(
 name|SchemaField
 name|field
+parameter_list|,
+name|QParser
+name|qparser
 parameter_list|)
 block|{
 return|return
@@ -363,25 +366,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|write
-specifier|public
-name|void
-name|write
-parameter_list|(
-name|XMLWriter
-name|xmlWriter
-parameter_list|,
-name|String
-name|name
-parameter_list|,
-name|Fieldable
-name|f
-parameter_list|)
-throws|throws
-name|IOException
-block|{ }
 annotation|@
 name|Override
 DECL|method|write

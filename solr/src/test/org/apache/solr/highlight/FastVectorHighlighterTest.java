@@ -17,30 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertSame
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -59,6 +35,22 @@ operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|component
+operator|.
+name|HighlightComponent
 import|;
 end_import
 
@@ -134,13 +126,15 @@ block|{
 name|SolrHighlighter
 name|highlighter
 init|=
+name|HighlightComponent
+operator|.
+name|getHighlighter
+argument_list|(
 name|h
 operator|.
 name|getCore
 argument_list|()
-operator|.
-name|getHighlighter
-argument_list|()
+argument_list|)
 decl_stmt|;
 comment|// Make sure we loaded the one fragListBuilder
 name|SolrFragListBuilder

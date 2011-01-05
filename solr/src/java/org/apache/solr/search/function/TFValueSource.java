@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -211,7 +211,7 @@ name|similarity
 init|=
 operator|(
 operator|(
-name|Searcher
+name|IndexSearcher
 operator|)
 name|context
 operator|.

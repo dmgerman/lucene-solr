@@ -332,15 +332,6 @@ argument_list|(
 name|out
 argument_list|)
 expr_stmt|;
-name|state
-operator|.
-name|flushedFiles
-operator|.
-name|add
-argument_list|(
-name|termsFileName
-argument_list|)
-expr_stmt|;
 name|fieldInfos
 operator|=
 name|state
@@ -421,6 +412,8 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 assert|assert
 name|currentField
@@ -812,6 +805,7 @@ name|numDocs
 operator|>
 literal|0
 assert|;
+comment|//System.out.println("finishTerm term=" + fieldInfo.name + ":" + text.utf8ToString() + " fp="  + out.getFilePointer());
 specifier|final
 name|boolean
 name|isIndexTerm
@@ -832,13 +826,81 @@ argument_list|(
 name|text
 argument_list|)
 expr_stmt|;
+specifier|final
+name|int
+name|highBit
+init|=
+name|isIndexTerm
+condition|?
+literal|0x80
+else|:
+literal|0
+decl_stmt|;
+comment|//System.out.println("  isIndex=" + isIndexTerm);
+comment|// This is a vInt, except, we steal top bit to record
+comment|// whether this was an indexed term:
+if|if
+condition|(
+operator|(
+name|numDocs
+operator|&
+operator|~
+literal|0x3F
+operator|)
+operator|==
+literal|0
+condition|)
+block|{
+comment|// Fast case -- docFreq fits in 6 bits
+name|out
+operator|.
+name|writeByte
+argument_list|(
+call|(
+name|byte
+call|)
+argument_list|(
+name|highBit
+operator||
+name|numDocs
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Write bottom 6 bits of docFreq, then write the
+comment|// remainder as vInt:
+name|out
+operator|.
+name|writeByte
+argument_list|(
+call|(
+name|byte
+call|)
+argument_list|(
+name|highBit
+operator||
+literal|0x40
+operator||
+operator|(
+name|numDocs
+operator|&
+literal|0x3F
+operator|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|out
 operator|.
 name|writeVInt
 argument_list|(
 name|numDocs
+operator|>>>
+literal|6
 argument_list|)
 expr_stmt|;
+block|}
 name|postingsWriter
 operator|.
 name|finishTerm
@@ -863,6 +925,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// EOF marker:
+name|out
+operator|.
+name|writeVInt
+argument_list|(
+name|DeltaBytesWriter
+operator|.
+name|TERM_EOF
+argument_list|)
+expr_stmt|;
 name|fieldIndexWriter
 operator|.
 name|finish

@@ -1191,10 +1191,12 @@ name|byte
 index|[]
 name|norms
 init|=
-name|reader
+name|MultiNorms
 operator|.
 name|norms
 argument_list|(
+name|reader
+argument_list|,
 name|f
 operator|.
 name|name
@@ -1230,10 +1232,12 @@ name|maxDoc
 argument_list|()
 index|]
 expr_stmt|;
-name|reader
+name|MultiNorms
 operator|.
 name|norms
 argument_list|(
+name|reader
+argument_list|,
 name|f
 operator|.
 name|name

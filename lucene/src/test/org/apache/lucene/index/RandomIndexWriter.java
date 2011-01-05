@@ -470,6 +470,15 @@ name|getDefaultFieldCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|method|addDocument

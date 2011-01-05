@@ -558,14 +558,6 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-specifier|final
-name|int
-name|startLength
-init|=
-name|fieldState
-operator|.
-name|length
-decl_stmt|;
 try|try
 block|{
 name|boolean

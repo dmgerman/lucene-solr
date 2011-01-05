@@ -370,27 +370,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Date
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -1028,6 +1008,8 @@ operator|new
 name|MergeIndexesCommand
 argument_list|(
 name|dirs
+argument_list|,
+name|req
 argument_list|)
 argument_list|)
 expr_stmt|;

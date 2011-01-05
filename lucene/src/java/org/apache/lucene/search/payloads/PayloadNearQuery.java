@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -361,7 +361,7 @@ specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -810,7 +810,7 @@ parameter_list|(
 name|SpanQuery
 name|query
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws

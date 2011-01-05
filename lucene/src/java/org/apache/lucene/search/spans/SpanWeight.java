@@ -168,7 +168,7 @@ parameter_list|(
 name|SpanQuery
 name|query
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws

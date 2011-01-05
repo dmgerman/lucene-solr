@@ -495,8 +495,7 @@ literal|"/configs/conf1/"
 operator|+
 name|name
 argument_list|,
-operator|new
-name|File
+name|getFile
 argument_list|(
 literal|"solr"
 operator|+

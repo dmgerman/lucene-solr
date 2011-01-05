@@ -44,18 +44,6 @@ name|NamedList
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * A base class for all analysis request handler tests.  *  * @version $Id$  * @since solr 1.4  */
 end_comment

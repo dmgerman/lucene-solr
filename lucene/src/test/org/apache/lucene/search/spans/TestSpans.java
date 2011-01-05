@@ -42,20 +42,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Query
 import|;
 end_import
@@ -140,7 +126,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -2770,7 +2756,7 @@ specifier|public
 name|Similarity
 name|getSimilarity
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|s
 parameter_list|)
 block|{
@@ -2954,7 +2940,7 @@ specifier|private
 name|int
 name|hitCount
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|,
 name|String

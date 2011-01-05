@@ -142,18 +142,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is a simple test to make sure the<code>CopyField</code> works.  * It uses its own special schema file.  *  * @since solr 1.4  */
 end_comment

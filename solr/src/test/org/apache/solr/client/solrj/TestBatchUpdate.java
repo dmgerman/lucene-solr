@@ -162,18 +162,6 @@ name|Iterator
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test for SOLR-1038  *  * @since solr 1.4  * @version $Id$  */
 end_comment

@@ -122,18 +122,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Test FieldScoreQuery search.  *<p>  * Tests here create an index with a few documents, each having  * an int value indexed  field and a float value indexed field.  * The values of these fields are later used for scoring.  *<p>  * The rank tests use Hits to verify that docs are ordered (by score) as expected.  *<p>  * The exact score tests use TopDocs top to verify the exact score.    */
 end_comment

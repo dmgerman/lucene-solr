@@ -570,7 +570,11 @@ throw|throw
 operator|new
 name|NumberFormatException
 argument_list|(
-literal|"Invalid shift value in prefixCoded bytes (is encoded value really an INT?)"
+literal|"Invalid shift value ("
+operator|+
+name|shift
+operator|+
+literal|") in prefixCoded bytes (is encoded value really an INT?)"
 argument_list|)
 throw|;
 return|return

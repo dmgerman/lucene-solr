@@ -20,22 +20,6 @@ name|response
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|NamedList
-import|;
-end_import
-
 begin_comment
 comment|/**  * TODO -- mostly a stub until we have a defined output format  *   * @version $Id$  * @since solr 1.3  */
 end_comment

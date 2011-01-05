@@ -90,18 +90,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * A test case for the several HTTP cache headers emitted by Solr  */
 end_comment
@@ -127,7 +115,7 @@ name|Exception
 block|{
 name|createJetty
 argument_list|(
-literal|"solr/"
+name|TEST_HOME
 argument_list|,
 literal|"solr/conf/solrconfig-nocache.xml"
 argument_list|,

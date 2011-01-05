@@ -16,6 +16,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -102,34 +122,6 @@ block|{
 comment|// Try not introduce a dependency on the example schema or config unless you need to.
 comment|// using configs in the test directory allows more flexibility to change "example"
 comment|// without breaking configs.
-DECL|field|EXAMPLE_HOME
-specifier|public
-specifier|static
-name|String
-name|EXAMPLE_HOME
-init|=
-literal|"../../../example/solr/"
-decl_stmt|;
-DECL|field|EXAMPLE_SCHEMA
-specifier|public
-specifier|static
-name|String
-name|EXAMPLE_SCHEMA
-init|=
-name|EXAMPLE_HOME
-operator|+
-literal|"conf/schema.xml"
-decl_stmt|;
-DECL|field|EXAMPLE_CONFIG
-specifier|public
-specifier|static
-name|String
-name|EXAMPLE_CONFIG
-init|=
-name|EXAMPLE_HOME
-operator|+
-literal|"conf/solrconfig.xml"
-decl_stmt|;
 DECL|method|getSolrHome
 specifier|public
 name|String

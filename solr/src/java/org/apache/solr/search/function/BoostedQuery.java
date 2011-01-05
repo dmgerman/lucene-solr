@@ -244,7 +244,7 @@ specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -268,7 +268,7 @@ extends|extends
 name|Weight
 block|{
 DECL|field|searcher
-name|Searcher
+name|IndexSearcher
 name|searcher
 decl_stmt|;
 DECL|field|qWeight
@@ -283,7 +283,7 @@ DECL|method|BoostedWeight
 specifier|public
 name|BoostedWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -676,7 +676,7 @@ decl_stmt|;
 DECL|field|searcher
 specifier|private
 specifier|final
-name|Searcher
+name|IndexSearcher
 name|searcher
 decl_stmt|;
 DECL|method|CustomScorer
@@ -686,7 +686,7 @@ parameter_list|(
 name|Similarity
 name|similarity
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|,
 name|IndexReader

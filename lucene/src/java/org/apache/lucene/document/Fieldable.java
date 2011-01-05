@@ -295,7 +295,7 @@ name|boolean
 name|getOmitTermFreqAndPositions
 parameter_list|()
 function_decl|;
-comment|/** Expert:   *   * If set, omit term freq, positions and payloads from   * postings for this field.   *   *<p><b>NOTE</b>: While this option reduces storage space   * required in the index, it also means any query   * requiring positional information, such as {@link   * PhraseQuery} or {@link SpanQuery} subclasses will   * silently fail to find results.   */
+comment|/** Expert:   *   * If set, omit term freq, positions and payloads from   * postings for this field.   *   *<p><b>NOTE</b>: While this option reduces storage space   * required in the index, it also means any query   * requiring positional information, such as {@link   * PhraseQuery} or {@link SpanQuery} subclasses will   * fail with an exception.   */
 DECL|method|setOmitTermFreqAndPositions
 name|void
 name|setOmitTermFreqAndPositions

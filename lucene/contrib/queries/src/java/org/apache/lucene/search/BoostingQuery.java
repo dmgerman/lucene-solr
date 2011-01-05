@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -216,7 +216,7 @@ specifier|public
 name|Similarity
 name|getSimilarity
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 block|{

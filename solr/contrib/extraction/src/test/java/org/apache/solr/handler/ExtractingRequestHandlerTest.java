@@ -197,18 +197,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -225,16 +213,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
 import|;
 end_import
 
@@ -276,6 +254,8 @@ argument_list|(
 literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
+argument_list|,
+literal|"solr-extraction"
 argument_list|)
 expr_stmt|;
 block|}
@@ -758,6 +738,12 @@ argument_list|(
 literal|"unknown field 'a'"
 argument_list|)
 expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"unknown field 'meta'"
+argument_list|)
+expr_stmt|;
+comment|// TODO: should this exception be happening?
 name|loadLocal
 argument_list|(
 literal|"simple.html"
@@ -1938,8 +1924,7 @@ name|ContentStreamBase
 operator|.
 name|FileStream
 argument_list|(
-operator|new
-name|File
+name|getFile
 argument_list|(
 name|filename
 argument_list|)

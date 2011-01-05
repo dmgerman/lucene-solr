@@ -16,6 +16,20 @@ name|update
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id$  */
 end_comment
@@ -64,6 +78,9 @@ DECL|method|CommitUpdateCommand
 specifier|public
 name|CommitUpdateCommand
 parameter_list|(
+name|SolrQueryRequest
+name|req
+parameter_list|,
 name|boolean
 name|optimize
 parameter_list|)
@@ -71,6 +88,8 @@ block|{
 name|super
 argument_list|(
 literal|"commit"
+argument_list|,
+name|req
 argument_list|)
 expr_stmt|;
 name|this

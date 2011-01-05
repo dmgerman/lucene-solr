@@ -448,20 +448,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Query
 import|;
 end_import
@@ -504,7 +490,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -598,7 +584,7 @@ decl_stmt|;
 comment|//Fields as an array
 DECL|field|searcher
 specifier|private
-name|Searcher
+name|IndexSearcher
 name|searcher
 decl_stmt|;
 DECL|field|query

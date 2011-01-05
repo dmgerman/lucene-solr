@@ -645,22 +645,14 @@ operator|instanceof
 name|ConstantScoreQuery
 condition|)
 block|{
-comment|// wrapped as ConstantScoreQuery using QueryWrapperFilter
+comment|// wrapped as ConstantScoreQuery
 name|q
 operator|=
 operator|(
-call|(
-name|QueryWrapperFilter
-call|)
-argument_list|(
 operator|(
 name|ConstantScoreQuery
 operator|)
 name|q
-argument_list|)
-operator|.
-name|getFilter
-argument_list|()
 operator|)
 operator|.
 name|getQuery

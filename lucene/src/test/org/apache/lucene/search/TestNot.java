@@ -211,7 +211,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|new

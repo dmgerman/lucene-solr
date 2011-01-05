@@ -934,11 +934,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|fstEnum
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 comment|//System.out.println("seek to text=" + text.utf8ToString());
 specifier|final
 name|BytesRefFSTEnum
@@ -958,7 +953,7 @@ name|result
 init|=
 name|fstEnum
 operator|.
-name|advance
+name|seekCeil
 argument_list|(
 name|text
 argument_list|)

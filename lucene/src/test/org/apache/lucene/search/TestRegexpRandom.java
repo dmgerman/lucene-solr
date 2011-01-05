@@ -196,7 +196,7 @@ name|LuceneTestCase
 block|{
 DECL|field|searcher
 specifier|private
-name|Searcher
+name|IndexSearcher
 name|searcher
 decl_stmt|;
 DECL|field|reader

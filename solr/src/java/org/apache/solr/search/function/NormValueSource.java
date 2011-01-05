@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -57,20 +57,6 @@ operator|.
 name|search
 operator|.
 name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|SolrIndexReader
 import|;
 end_import
 
@@ -161,7 +147,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -193,11 +179,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|(
-name|Searcher
+name|IndexSearcher
 operator|)
 name|context
 operator|.

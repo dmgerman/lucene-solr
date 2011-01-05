@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -99,20 +99,6 @@ operator|.
 name|search
 operator|.
 name|MutableValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ByteUtils
 import|;
 end_import
 
@@ -1052,28 +1038,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|(
-name|Searcher
+name|IndexSearcher
 operator|)
 name|context
 operator|.
 name|get
 argument_list|(
 literal|"searcher"
-argument_list|)
-decl_stmt|;
-comment|// todo: we need docFreq that takes a BytesRef
-name|String
-name|strVal
-init|=
-name|ByteUtils
-operator|.
-name|UTF8toUTF16
-argument_list|(
-name|indexedBytes
 argument_list|)
 decl_stmt|;
 name|int
@@ -1088,7 +1063,7 @@ name|Term
 argument_list|(
 name|indexedField
 argument_list|,
-name|strVal
+name|indexedBytes
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1112,7 +1087,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws

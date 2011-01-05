@@ -36,6 +36,34 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|QParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|SolrPluginUtils
@@ -66,20 +94,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
@@ -97,50 +111,6 @@ operator|.
 name|search
 operator|.
 name|DocList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|DocSlice
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|response
-operator|.
-name|SolrQueryResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|*
 import|;
 end_import
 
@@ -317,18 +287,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
 import|;
 end_import
 
@@ -1123,6 +1081,26 @@ decl_stmt|;
 name|String
 name|t
 decl_stmt|;
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|()
+decl_stmt|;
+name|QParser
+name|qparser
+init|=
+name|QParser
+operator|.
+name|getParser
+argument_list|(
+literal|"hi"
+argument_list|,
+literal|"dismax"
+argument_list|,
+name|req
+argument_list|)
+decl_stmt|;
 name|DisjunctionMaxQueryParser
 name|qp
 init|=
@@ -1131,12 +1109,14 @@ name|SolrPluginUtils
 operator|.
 name|DisjunctionMaxQueryParser
 argument_list|(
-name|h
-operator|.
-name|getCore
-argument_list|()
+name|qparser
+argument_list|,
+name|req
 operator|.
 name|getSchema
+argument_list|()
+operator|.
+name|getDefaultSearchFieldName
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1993,7 +1973,7 @@ name|calcMSM
 argument_list|(
 literal|5
 argument_list|,
-literal|"-5"
+literal|" -5 "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2005,7 +1985,7 @@ name|calcMSM
 argument_list|(
 literal|5
 argument_list|,
-literal|"-100%"
+literal|"\n -100% \n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2018,7 +1998,7 @@ name|calcMSM
 argument_list|(
 literal|5
 argument_list|,
-literal|"3"
+literal|" \n3\n "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2091,7 +2071,7 @@ name|calcMSM
 argument_list|(
 literal|3
 argument_list|,
-literal|"25%"
+literal|" \n25% \n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2115,7 +2095,7 @@ name|calcMSM
 argument_list|(
 literal|5
 argument_list|,
-literal|"25%"
+literal|" 25% "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2140,7 +2120,7 @@ name|calcMSM
 argument_list|(
 literal|3
 argument_list|,
-literal|"-25%"
+literal|" \n-25%\n "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2261,7 +2241,7 @@ name|calcMSM
 argument_list|(
 literal|2
 argument_list|,
-literal|"3<25%"
+literal|" 3\n<\n25% "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2285,7 +2265,7 @@ name|calcMSM
 argument_list|(
 literal|4
 argument_list|,
-literal|"3<25%"
+literal|"\n 3< \n25%\n "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2310,7 +2290,7 @@ name|calcMSM
 argument_list|(
 literal|1
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|"\n3< -25% 10< -3 \n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2322,7 +2302,7 @@ name|calcMSM
 argument_list|(
 literal|2
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10< -3\n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2334,7 +2314,7 @@ name|calcMSM
 argument_list|(
 literal|3
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% \n 10< -3 \n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2346,7 +2326,7 @@ name|calcMSM
 argument_list|(
 literal|4
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10< -3 "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2358,7 +2338,7 @@ name|calcMSM
 argument_list|(
 literal|5
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10< -3"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2382,7 +2362,7 @@ name|calcMSM
 argument_list|(
 literal|7
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10< -3 "
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2394,7 +2374,7 @@ name|calcMSM
 argument_list|(
 literal|8
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10 \n< -3\n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2406,7 +2386,7 @@ name|calcMSM
 argument_list|(
 literal|9
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10< -3 \n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2418,7 +2398,7 @@ name|calcMSM
 argument_list|(
 literal|10
 argument_list|,
-literal|"3<-25% 10<-3"
+literal|" 3< -25% 10< -3"
 argument_list|)
 argument_list|)
 expr_stmt|;

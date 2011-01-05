@@ -439,6 +439,19 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 return|return
 name|writer
 return|;
@@ -815,7 +828,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*    * Test is hetrogenous index segements are merge sucessfully    */
+comment|/*    * Test that heterogeneous index segments are merged sucessfully    */
 annotation|@
 name|Test
 DECL|method|testChangeCodecAndMerge
@@ -839,6 +852,21 @@ operator|new
 name|MockCodecProvider
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: make new index"
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriterConfig
 name|iwconf
 init|=
@@ -926,6 +954,21 @@ argument_list|,
 name|provider
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: addDocs3"
+argument_list|)
+expr_stmt|;
+block|}
 name|addDocs3
 argument_list|(
 name|writer
@@ -1084,6 +1127,21 @@ name|iwconf
 argument_list|)
 expr_stmt|;
 comment|// swap in new codec for currently written segments
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: add docs w/ Standard codec for content field"
+argument_list|)
+expr_stmt|;
+block|}
 name|addDocs2
 argument_list|(
 name|writer
@@ -1180,6 +1238,7 @@ argument_list|,
 name|provider
 argument_list|)
 expr_stmt|;
+comment|////
 name|assertQuery
 argument_list|(
 operator|new
@@ -1197,6 +1256,21 @@ argument_list|,
 name|provider
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: add more docs w/ new codec"
+argument_list|)
+expr_stmt|;
+block|}
 name|addDocs2
 argument_list|(
 name|writer
@@ -1270,6 +1344,21 @@ name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now optimize"
+argument_list|)
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|optimize
@@ -1634,6 +1723,23 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: assertQuery "
+operator|+
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexReader
 name|reader
 init|=

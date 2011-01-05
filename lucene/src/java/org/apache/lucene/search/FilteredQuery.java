@@ -132,7 +132,7 @@ name|Weight
 name|createWeight
 parameter_list|(
 specifier|final
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
