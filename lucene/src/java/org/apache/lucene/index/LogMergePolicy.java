@@ -847,6 +847,30 @@ operator|>
 name|maxMergeDocs
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"optimize: skip segment="
+operator|+
+name|info
+operator|+
+literal|": size is> maxMergeSize ("
+operator|+
+name|maxMergeSize
+operator|+
+literal|") or sizeDocs is> maxMergeDocs ("
+operator|+
+name|maxMergeDocs
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// need to skip that segment + add a merge for the 'right' segments,
 comment|// unless there is only 1 which is optimized.
 if|if
