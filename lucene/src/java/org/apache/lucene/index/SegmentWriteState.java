@@ -128,10 +128,10 @@ decl_stmt|;
 comment|/** Expert: The fraction of terms in the "dictionary" which should be stored    * in RAM.  Smaller values use more memory, but make searching slightly    * faster, while larger values use less memory and make searching slightly    * slower.  Searching is typically not dominated by dictionary lookup, so    * tweaking this is rarely useful.*/
 DECL|field|termIndexInterval
 specifier|public
-specifier|final
 name|int
 name|termIndexInterval
 decl_stmt|;
+comment|// TODO: this should be private to the codec, not settable here or in IWC
 comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
 DECL|field|skipInterval
 specifier|public

@@ -749,11 +749,6 @@ operator|||
 name|position
 operator|==
 literal|0
-operator|||
-name|position
-operator|==
-operator|-
-literal|1
 operator|:
 literal|"position="
 operator|+

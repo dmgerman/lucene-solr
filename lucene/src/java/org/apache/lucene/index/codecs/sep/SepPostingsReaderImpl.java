@@ -2580,6 +2580,11 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+assert|assert
+name|code
+operator|>=
+literal|0
+assert|;
 if|if
 condition|(
 name|storePayloads

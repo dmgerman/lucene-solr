@@ -71,7 +71,6 @@ comment|// that must do so), then it should negate this value to
 comment|// get the app's terms divisor:
 DECL|field|termsIndexDivisor
 specifier|public
-specifier|final
 name|int
 name|termsIndexDivisor
 decl_stmt|;

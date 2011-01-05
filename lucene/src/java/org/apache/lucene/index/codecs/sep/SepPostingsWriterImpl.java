@@ -1021,6 +1021,24 @@ name|position
 operator|-
 name|lastPosition
 decl_stmt|;
+assert|assert
+name|delta
+operator|>
+literal|0
+operator|||
+name|position
+operator|==
+literal|0
+operator|:
+literal|"position="
+operator|+
+name|position
+operator|+
+literal|" lastPosition="
+operator|+
+name|lastPosition
+assert|;
+comment|// not quite right (if pos=0 is repeated twice we don't catch it)
 name|lastPosition
 operator|=
 name|position
