@@ -1171,7 +1171,7 @@ name|scorer
 argument_list|(
 name|searcher
 operator|.
-name|getIndexReader
+name|getTopReaderContext
 argument_list|()
 argument_list|,
 literal|true
@@ -1221,7 +1221,7 @@ name|explain
 argument_list|(
 name|searcher
 operator|.
-name|getIndexReader
+name|getTopReaderContext
 argument_list|()
 argument_list|,
 literal|1

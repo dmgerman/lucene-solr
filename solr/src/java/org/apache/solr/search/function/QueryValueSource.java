@@ -443,6 +443,9 @@ operator|.
 name|scorer
 argument_list|(
 name|reader
+operator|.
+name|getTopReaderContext
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,

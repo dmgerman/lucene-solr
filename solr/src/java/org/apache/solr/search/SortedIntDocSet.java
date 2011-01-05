@@ -88,6 +88,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|ReaderContext
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2599,8 +2615,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|ReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -2609,6 +2625,13 @@ name|int
 name|offset
 init|=
 literal|0
+decl_stmt|;
+name|IndexReader
+name|reader
+init|=
+name|context
+operator|.
+name|reader
 decl_stmt|;
 name|SolrIndexReader
 name|r

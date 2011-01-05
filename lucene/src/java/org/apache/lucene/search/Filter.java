@@ -37,6 +37,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|ReaderContext
 import|;
 end_import
 
@@ -71,15 +73,16 @@ name|io
 operator|.
 name|Serializable
 block|{
-comment|/**    * Creates a {@link DocIdSet} enumerating the documents that should be    * permitted in search results.<b>NOTE:</b> null can be    * returned if no documents are accepted by this Filter.    *<p>    * Note: This method will be called once per segment in    * the index during searching.  The returned {@link DocIdSet}    * must refer to document IDs for that segment, not for    * the top-level reader.    *     * @param reader a {@link IndexReader} instance opened on the index currently    *         searched on. The provided reader is always an    *         atomic reader, so you can call reader.fields()    *         or reader.getDeletedDocs(), for example.    *              * @return a DocIdSet that provides the documents which should be permitted or    *         prohibited in search results.<b>NOTE:</b> null can be returned if    *         no documents will be accepted by this Filter.    *     * @see DocIdBitSet    */
+comment|/**    * Creates a {@link DocIdSet} enumerating the documents that should be    * permitted in search results.<b>NOTE:</b> null can be    * returned if no documents are accepted by this Filter.    *<p>    * Note: This method will be called once per segment in    * the index during searching.  The returned {@link DocIdSet}    * must refer to document IDs for that segment, not for    * the top-level reader.    *     * @param context a {@link ReaderContext} instance opened on the index currently    *         searched on. Note, it is likely that the provided reader info does not    *         represent the whole underlying index i.e. if the index has more than    *         one segment the given reader only represents a single segment.    *         The provided context is always an atomic context, so you can call     *         {@link IndexReader#fields()} or  {@link IndexReader#getDeletedDocs()}    *         on the context's reader, for example.    *              * @return a DocIdSet that provides the documents which should be permitted or    *         prohibited in search results.<b>NOTE:</b> null can be returned if    *         no documents will be accepted by this Filter.    *     * @see DocIdBitSet    */
+comment|// TODO make this context an AtomicContext
 DECL|method|getDocIdSet
 specifier|public
 specifier|abstract
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|ReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException

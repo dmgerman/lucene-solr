@@ -4673,6 +4673,9 @@ argument_list|(
 name|this
 operator|.
 name|reader
+operator|.
+name|getTopReaderContext
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|OpenBitSet

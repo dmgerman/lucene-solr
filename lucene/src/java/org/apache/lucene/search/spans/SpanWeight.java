@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|ReaderContext
 import|;
 end_import
 
@@ -314,8 +316,8 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|IndexReader
-name|reader
+name|ReaderContext
+name|context
 parameter_list|,
 name|boolean
 name|scoreDocsInOrder
@@ -334,6 +336,8 @@ name|query
 operator|.
 name|getSpans
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|)
 argument_list|,
@@ -341,6 +345,8 @@ name|this
 argument_list|,
 name|similarity
 argument_list|,
+name|context
+operator|.
 name|reader
 operator|.
 name|norms
@@ -360,8 +366,8 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|IndexReader
-name|reader
+name|ReaderContext
+name|context
 parameter_list|,
 name|int
 name|doc
@@ -573,7 +579,7 @@ name|SpanScorer
 operator|)
 name|scorer
 argument_list|(
-name|reader
+name|context
 argument_list|,
 literal|true
 argument_list|,
@@ -611,6 +617,8 @@ name|byte
 index|[]
 name|fieldNorms
 init|=
+name|context
+operator|.
 name|reader
 operator|.
 name|norms

@@ -74,6 +74,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|ReaderContext
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -130,8 +146,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|ReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -143,8 +159,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|ReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -154,7 +170,7 @@ name|getDocIdSet
 argument_list|(
 literal|null
 argument_list|,
-name|reader
+name|context
 argument_list|)
 return|;
 block|}

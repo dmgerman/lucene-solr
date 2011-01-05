@@ -78,6 +78,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|ReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|OpenBitSetDISI
@@ -110,6 +126,9 @@ name|CachingWrapperFilter
 extends|extends
 name|Filter
 block|{
+comment|// TODO: make this filter aware of ReaderContext. a cached filter could
+comment|// specify the actual readers key or something similar to indicate on which
+comment|// level of the readers hierarchy it should be cached.
 DECL|field|filter
 name|Filter
 name|filter
@@ -625,12 +644,20 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|ReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|IndexReader
+name|reader
+init|=
+name|context
+operator|.
+name|reader
+decl_stmt|;
 specifier|final
 name|Object
 name|coreKey
@@ -696,7 +723,7 @@ name|filter
 operator|.
 name|getDocIdSet
 argument_list|(
-name|reader
+name|context
 argument_list|)
 argument_list|,
 name|reader

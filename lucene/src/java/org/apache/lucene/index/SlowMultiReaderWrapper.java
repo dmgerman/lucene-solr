@@ -158,6 +158,22 @@ begin_comment
 comment|// javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|ReaderContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader} or any other  * IndexReader subclass that returns non-null from {@link  * IndexReader#getSequentialSubReaders}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, by stepping through the sub-readers to  * merge fields/terms, appending docs, etc.  *  *<p>If you ever hit an UnsupportedOperationException saying  * "please use MultiFields.XXX instead", the simple  * but non-performant workaround is to wrap your reader  * using this class.</p>  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * it's better to get the sequential sub readers (see {@link  * ReaderUtil#gatherSubReaders}, instead, and iterate through them  * yourself.</p>  */
 end_comment
@@ -171,6 +187,12 @@ name|SlowMultiReaderWrapper
 extends|extends
 name|FilterIndexReader
 block|{
+DECL|field|readerContext
+specifier|private
+specifier|final
+name|ReaderContext
+name|readerContext
+decl_stmt|;
 DECL|field|normsCache
 specifier|private
 specifier|final
@@ -206,6 +228,15 @@ argument_list|(
 name|other
 argument_list|)
 expr_stmt|;
+name|readerContext
+operator|=
+operator|new
+name|AtomicReaderContext
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+comment|// emulate atomic reader!
 block|}
 annotation|@
 name|Override
@@ -413,6 +444,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|getTopReaderContext
+specifier|public
+name|ReaderContext
+name|getTopReaderContext
+parameter_list|()
+block|{
+return|return
+name|readerContext
+return|;
 block|}
 annotation|@
 name|Override

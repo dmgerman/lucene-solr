@@ -337,6 +337,18 @@ specifier|private
 name|int
 name|readBufferSize
 decl_stmt|;
+DECL|field|readerContext
+specifier|private
+specifier|final
+name|ReaderContext
+name|readerContext
+init|=
+operator|new
+name|AtomicReaderContext
+argument_list|(
+name|this
+argument_list|)
+decl_stmt|;
 DECL|field|fieldsReaderLocal
 name|CloseableThreadLocal
 argument_list|<
@@ -5299,6 +5311,18 @@ name|buffer
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getTopReaderContext
+specifier|public
+name|ReaderContext
+name|getTopReaderContext
+parameter_list|()
+block|{
+return|return
+name|readerContext
 return|;
 block|}
 comment|/**    * Return the name of the segment this reader is reading.    */

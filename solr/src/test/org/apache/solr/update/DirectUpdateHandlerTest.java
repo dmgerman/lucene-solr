@@ -1352,16 +1352,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// should have deletions
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|r
 operator|.
-name|getLeafReaders
+name|getTopReaderContext
 argument_list|()
 operator|.
-name|length
-operator|>
-literal|1
+name|isAtomic
 argument_list|)
 expr_stmt|;
 comment|// more than 1 segment
@@ -1424,19 +1422,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// no dups
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|r
 operator|.
-name|getLeafReaders
+name|getTopReaderContext
 argument_list|()
 operator|.
-name|length
-operator|>
-literal|1
+name|isAtomic
 argument_list|)
 expr_stmt|;
-comment|// still more than 1 segment
+comment|//still more than 1 segment
 name|sr
 operator|.
 name|close
