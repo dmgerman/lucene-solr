@@ -554,10 +554,17 @@ name|ExecutorService
 name|executor
 parameter_list|)
 block|{
-comment|// TODO: eable this assert once SolrIndexReader and friends are refactored to use ReaderContext
-comment|// We can't assert this here since SolrIndexReader will fail in some contexts - once solr is consistent we should be fine here
-comment|// Lucene instead passes all tests even with this assert!
-comment|// assert context.isTopLevel: "IndexSearcher's ReaderContext must be topLevel for reader" + context.reader;
+assert|assert
+name|context
+operator|.
+name|isTopLevel
+operator|:
+literal|"IndexSearcher's ReaderContext must be topLevel for reader"
+operator|+
+name|context
+operator|.
+name|reader
+assert|;
 name|reader
 operator|=
 name|context
