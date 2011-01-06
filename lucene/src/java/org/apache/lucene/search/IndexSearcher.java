@@ -512,7 +512,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|// convinience ctor for other IR based ctors
+comment|// convenience ctor for other IR based ctors
 DECL|method|IndexSearcher
 specifier|private
 name|IndexSearcher
