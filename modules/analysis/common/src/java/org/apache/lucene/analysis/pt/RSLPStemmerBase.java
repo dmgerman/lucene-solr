@@ -1679,8 +1679,10 @@ if|if
 condition|(
 name|s
 operator|.
-name|isEmpty
+name|length
 argument_list|()
+operator|==
+literal|0
 condition|)
 return|return
 literal|null
@@ -1798,11 +1800,12 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-operator|!
 name|line
 operator|.
-name|isEmpty
+name|length
 argument_list|()
+operator|>
+literal|0
 operator|&&
 name|line
 operator|.
