@@ -344,19 +344,19 @@ name|AtomicReaderContext
 index|[]
 name|leafContexts
 decl_stmt|;
+comment|// These are only used for multi-threaded search
+DECL|field|executor
+specifier|private
+specifier|final
+name|ExecutorService
+name|executor
+decl_stmt|;
 DECL|field|subSearchers
 specifier|protected
 specifier|final
 name|IndexSearcher
 index|[]
 name|subSearchers
-decl_stmt|;
-comment|//  protected final int[] docStarts;
-DECL|field|executor
-specifier|private
-specifier|final
-name|ExecutorService
-name|executor
 decl_stmt|;
 comment|/** The Similarity implementation used by this searcher. */
 DECL|field|similarity
@@ -643,6 +643,20 @@ name|leaves
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|executor
+operator|==
+literal|null
+condition|)
+block|{
+name|subSearchers
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
 name|subSearchers
 operator|=
 operator|new
@@ -672,7 +686,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|// TODO do we need those IS if executor is null?
 if|if
 condition|(
 name|leafContexts
@@ -717,6 +730,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// we need to get a TL context for sub searchers!
+block|}
 block|}
 block|}
 block|}
