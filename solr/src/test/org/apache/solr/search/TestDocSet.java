@@ -1910,34 +1910,13 @@ operator|.
 name|getTopFilter
 argument_list|()
 decl_stmt|;
-comment|// test top-level
+comment|/*** top level filters are no longer supported     // test top-level     DocIdSet da = fa.getDocIdSet(topLevelContext);     DocIdSet db = fb.getDocIdSet(topLevelContext);     doTestIteratorEqual(da, db);     ***/
 name|DocIdSet
 name|da
-init|=
-name|fa
-operator|.
-name|getDocIdSet
-argument_list|(
-name|topLevelContext
-argument_list|)
 decl_stmt|;
 name|DocIdSet
 name|db
-init|=
-name|fb
-operator|.
-name|getDocIdSet
-argument_list|(
-name|topLevelContext
-argument_list|)
 decl_stmt|;
-name|doTestIteratorEqual
-argument_list|(
-name|da
-argument_list|,
-name|db
-argument_list|)
-expr_stmt|;
 comment|// first test in-sequence sub readers
 for|for
 control|(
