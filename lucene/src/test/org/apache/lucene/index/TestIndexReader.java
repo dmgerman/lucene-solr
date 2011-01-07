@@ -6576,6 +6576,13 @@ comment|// we did not create garbage).  Just create a
 comment|// new IndexFileDeleter, have it delete
 comment|// unreferenced files, then verify that in fact
 comment|// no files were deleted:
+name|IndexWriter
+operator|.
+name|unlock
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|TestIndexWriter
 operator|.
 name|assertNoUnreferencedFiles
