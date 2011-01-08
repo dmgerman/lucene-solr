@@ -485,13 +485,9 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|TopValueSource
-argument_list|(
-operator|new
 name|OrdFieldSource
 argument_list|(
 name|field
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -558,13 +554,9 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|TopValueSource
-argument_list|(
-operator|new
 name|ReverseOrdFieldSource
 argument_list|(
 name|field
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -589,6 +581,7 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+comment|// top(vs) is now a no-op
 name|ValueSource
 name|source
 init|=
@@ -597,22 +590,8 @@ operator|.
 name|parseValueSource
 argument_list|()
 decl_stmt|;
-comment|// nested top is redundant, and ord and rord get automatically wrapped
-if|if
-condition|(
-name|source
-operator|instanceof
-name|TopValueSource
-condition|)
 return|return
 name|source
-return|;
-return|return
-operator|new
-name|TopValueSource
-argument_list|(
-name|source
-argument_list|)
 return|;
 block|}
 block|}
@@ -833,9 +812,6 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|TopValueSource
-argument_list|(
-operator|new
 name|ScaleFloatFunction
 argument_list|(
 name|source
@@ -843,7 +819,6 @@ argument_list|,
 name|min
 argument_list|,
 name|max
-argument_list|)
 argument_list|)
 return|;
 block|}
