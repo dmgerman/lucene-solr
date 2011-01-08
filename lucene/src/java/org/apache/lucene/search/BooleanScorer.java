@@ -707,6 +707,9 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
+name|boolean
+name|disableCoord
+parameter_list|,
 name|Similarity
 name|similarity
 parameter_list|,
@@ -733,11 +736,12 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|similarity
+literal|null
 argument_list|,
 name|weight
 argument_list|)
 expr_stmt|;
+comment|// Similarity not used
 name|this
 operator|.
 name|minNrShouldMatch
@@ -885,12 +889,6 @@ operator|+
 literal|1
 index|]
 expr_stmt|;
-name|Similarity
-name|sim
-init|=
-name|getSimilarity
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -913,7 +911,11 @@ index|[
 name|i
 index|]
 operator|=
-name|sim
+name|disableCoord
+condition|?
+literal|1.0f
+else|:
+name|similarity
 operator|.
 name|coord
 argument_list|(

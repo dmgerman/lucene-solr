@@ -218,6 +218,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|disableCoord
 specifier|private
+specifier|final
 name|boolean
 name|disableCoord
 decl_stmt|;
@@ -226,7 +227,12 @@ DECL|method|BooleanQuery
 specifier|public
 name|BooleanQuery
 parameter_list|()
-block|{}
+block|{
+name|disableCoord
+operator|=
+literal|false
+expr_stmt|;
+block|}
 comment|/** Constructs an empty boolean query.    *    * {@link Similarity#coord(int,int)} may be disabled in scoring, as    * appropriate. For example, this score factor does not make sense for most    * automatically generated queries, like {@link WildcardQuery} and {@link    * FuzzyQuery}.    *    * @param disableCoord disables {@link Similarity#coord(int,int)} in scoring.    */
 DECL|method|BooleanQuery
 specifier|public
@@ -252,67 +258,6 @@ parameter_list|()
 block|{
 return|return
 name|disableCoord
-return|;
-block|}
-comment|// Implement coord disabling.
-comment|// Inherit javadoc.
-annotation|@
-name|Override
-DECL|method|getSimilarity
-specifier|public
-name|Similarity
-name|getSimilarity
-parameter_list|(
-name|IndexSearcher
-name|searcher
-parameter_list|)
-block|{
-name|Similarity
-name|result
-init|=
-name|super
-operator|.
-name|getSimilarity
-argument_list|(
-name|searcher
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|disableCoord
-condition|)
-block|{
-comment|// disable coord as requested
-name|result
-operator|=
-operator|new
-name|SimilarityDelegator
-argument_list|(
-name|result
-argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|public
-name|float
-name|coord
-parameter_list|(
-name|int
-name|overlap
-parameter_list|,
-name|int
-name|maxOverlap
-parameter_list|)
-block|{
-return|return
-literal|1.0f
-return|;
-block|}
-block|}
-expr_stmt|;
-block|}
-return|return
-name|result
 return|;
 block|}
 comment|/**    * Specifies a minimum number of the optional BooleanClauses    * which must be satisfied.    *    *<p>    * By default no optional clauses are necessary for a match    * (unless there are no required clauses).  If this method is used,    * then the specified number of clauses is required.    *</p>    *<p>    * Use of this method is totally independent of specifying that    * any specific clauses are required (or prohibited).  This number will    * only be compared against the number of matching optional clauses.    *</p>    *    * @param min the number of optional clauses that must match    */
@@ -494,12 +439,21 @@ name|int
 name|maxCoord
 decl_stmt|;
 comment|// num optional + num required
+DECL|field|disableCoord
+specifier|private
+specifier|final
+name|boolean
+name|disableCoord
+decl_stmt|;
 DECL|method|BooleanWeight
 specifier|public
 name|BooleanWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|disableCoord
 parameter_list|)
 throws|throws
 name|IOException
@@ -512,6 +466,12 @@ name|getSimilarity
 argument_list|(
 name|searcher
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|disableCoord
+operator|=
+name|disableCoord
 expr_stmt|;
 name|weights
 operator|=
@@ -1141,9 +1101,14 @@ argument_list|(
 name|sum
 argument_list|)
 expr_stmt|;
+specifier|final
 name|float
 name|coordFactor
 init|=
+name|disableCoord
+condition|?
+literal|1.0f
+else|:
 name|similarity
 operator|.
 name|coord
@@ -1159,11 +1124,12 @@ name|coordFactor
 operator|==
 literal|1.0f
 condition|)
-comment|// coord is no-op
+block|{
 return|return
 name|sumExpl
 return|;
 comment|// eliminate wrapper
+block|}
 else|else
 block|{
 name|ComplexExplanation
@@ -1410,6 +1376,8 @@ name|BooleanScorer
 argument_list|(
 name|this
 argument_list|,
+name|disableCoord
+argument_list|,
 name|similarity
 argument_list|,
 name|minNrShouldMatch
@@ -1468,6 +1436,8 @@ operator|new
 name|BooleanScorer2
 argument_list|(
 name|this
+argument_list|,
+name|disableCoord
 argument_list|,
 name|similarity
 argument_list|,
@@ -1567,6 +1537,8 @@ operator|new
 name|BooleanWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|disableCoord
 argument_list|)
 return|;
 block|}

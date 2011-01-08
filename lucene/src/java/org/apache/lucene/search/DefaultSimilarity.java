@@ -86,37 +86,12 @@ name|getLength
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
 name|state
 operator|.
 name|getBoost
 argument_list|()
 operator|*
-name|lengthNorm
-argument_list|(
-name|field
-argument_list|,
-name|numTerms
-argument_list|)
-operator|)
-return|;
-block|}
-comment|/** Implemented as<code>1/sqrt(numTerms)</code>. */
-annotation|@
-name|Override
-DECL|method|lengthNorm
-specifier|public
-name|float
-name|lengthNorm
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|,
-name|int
-name|numTerms
-parameter_list|)
-block|{
-return|return
+operator|(
 call|(
 name|float
 call|)
@@ -130,6 +105,7 @@ argument_list|(
 name|numTerms
 argument_list|)
 argument_list|)
+operator|)
 return|;
 block|}
 comment|/** Implemented as<code>1/sqrt(sumOfSquaredWeights)</code>. */
