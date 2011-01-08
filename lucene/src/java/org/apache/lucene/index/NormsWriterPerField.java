@@ -323,10 +323,9 @@ index|[
 name|upto
 index|]
 operator|=
-name|Similarity
+name|docState
 operator|.
-name|getDefault
-argument_list|()
+name|similarity
 operator|.
 name|encodeNormValue
 argument_list|(

@@ -132,7 +132,6 @@ name|InvertedDocEndConsumer
 block|{
 DECL|field|defaultNorm
 specifier|private
-specifier|static
 specifier|final
 name|byte
 name|defaultNorm
