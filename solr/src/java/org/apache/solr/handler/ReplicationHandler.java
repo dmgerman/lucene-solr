@@ -588,6 +588,9 @@ decl_stmt|;
 DECL|field|snapShootDetails
 specifier|volatile
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|snapShootDetails
 decl_stmt|;
 DECL|field|replicationEnabled
@@ -1238,6 +1241,9 @@ specifier|private
 name|List
 argument_list|<
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|>
 name|getCommits
 parameter_list|()
@@ -1261,6 +1267,9 @@ decl_stmt|;
 name|List
 argument_list|<
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|>
 name|l
 init|=
@@ -1268,6 +1277,9 @@ operator|new
 name|ArrayList
 argument_list|<
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1285,10 +1297,16 @@ block|{
 try|try
 block|{
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|nl
 init|=
 operator|new
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|nl
@@ -4865,6 +4883,9 @@ name|void
 name|addVal
 parameter_list|(
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|nl
 parameter_list|,
 name|String
