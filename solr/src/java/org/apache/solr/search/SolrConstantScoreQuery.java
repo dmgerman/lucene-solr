@@ -237,7 +237,9 @@ operator|=
 name|ValueSource
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|searcher
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

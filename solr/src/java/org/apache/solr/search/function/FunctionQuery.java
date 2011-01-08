@@ -241,7 +241,9 @@ operator|=
 name|func
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|searcher
+argument_list|)
 expr_stmt|;
 name|func
 operator|.

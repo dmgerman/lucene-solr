@@ -196,7 +196,12 @@ init|=
 name|ValueSource
 operator|.
 name|newContext
+argument_list|(
+name|sqr
+operator|.
+name|getSearcher
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|vs
 operator|.

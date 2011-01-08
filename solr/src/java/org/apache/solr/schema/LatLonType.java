@@ -2142,7 +2142,9 @@ operator|=
 name|latSource
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|searcher
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -2151,7 +2153,9 @@ operator|=
 name|lonSource
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|searcher
+argument_list|)
 expr_stmt|;
 name|latSource
 operator|.

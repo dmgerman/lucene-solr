@@ -817,7 +817,9 @@ init|=
 name|ValueSource
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|searcher
+argument_list|)
 decl_stmt|;
 name|groupBy
 operator|.

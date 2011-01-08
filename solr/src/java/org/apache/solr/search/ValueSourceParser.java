@@ -5299,26 +5299,7 @@ name|searcher
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-name|a
-operator|.
-name|createWeight
-argument_list|(
-name|context
-argument_list|,
-name|searcher
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|createWeight
-argument_list|(
-name|context
-argument_list|,
-name|searcher
-argument_list|)
-expr_stmt|;
-block|}
+block|{     }
 DECL|method|hashCode
 specifier|public
 name|int
