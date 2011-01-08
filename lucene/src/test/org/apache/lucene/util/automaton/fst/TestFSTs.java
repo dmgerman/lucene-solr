@@ -6655,7 +6655,7 @@ init|=
 operator|new
 name|LineFileDocs
 argument_list|(
-literal|false
+name|random
 argument_list|)
 decl_stmt|;
 specifier|final
