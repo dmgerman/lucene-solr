@@ -1048,12 +1048,10 @@ expr_stmt|;
 block|}
 block|}
 comment|// this optimization allows out of order scoring as top scorer,
-comment|// TODO: theoretically this method should not be called because its protected and
-comment|// this class does not use it, it should be public in Scorer!
 annotation|@
 name|Override
 DECL|method|score
-specifier|protected
+specifier|public
 name|boolean
 name|score
 parameter_list|(

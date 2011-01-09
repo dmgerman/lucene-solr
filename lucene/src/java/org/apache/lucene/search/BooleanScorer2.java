@@ -1183,7 +1183,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|score
-specifier|protected
+specifier|public
 name|boolean
 name|score
 parameter_list|(

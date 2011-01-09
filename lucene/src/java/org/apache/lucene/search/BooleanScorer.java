@@ -930,7 +930,7 @@ comment|// firstDocID is ignored since nextDoc() initializes 'current'
 annotation|@
 name|Override
 DECL|method|score
-specifier|protected
+specifier|public
 name|boolean
 name|score
 parameter_list|(

@@ -302,7 +302,7 @@ comment|/** Expert: Collects matching documents in a range.  Hook for optimizati
 annotation|@
 name|Override
 DECL|method|score
-specifier|protected
+specifier|public
 name|boolean
 name|score
 parameter_list|(
