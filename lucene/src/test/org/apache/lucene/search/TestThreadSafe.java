@@ -838,7 +838,7 @@ comment|// do many small tests so the thread locals go away inbetween
 name|int
 name|num
 init|=
-literal|100
+literal|10
 operator|*
 name|RANDOM_MULTIPLIER
 decl_stmt|;
