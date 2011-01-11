@@ -1624,7 +1624,7 @@ condition|)
 block|{
 name|state
 operator|.
-name|copy
+name|copyFrom
 argument_list|(
 name|cachedState
 argument_list|)

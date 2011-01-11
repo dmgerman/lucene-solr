@@ -88,10 +88,10 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// how many docs have this term
-DECL|method|copy
+DECL|method|copyFrom
 specifier|public
 name|void
-name|copy
+name|copyFrom
 parameter_list|(
 name|TermState
 name|other

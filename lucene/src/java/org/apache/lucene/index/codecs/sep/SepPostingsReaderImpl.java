@@ -792,10 +792,10 @@ return|return
 name|other
 return|;
 block|}
-DECL|method|copy
+DECL|method|copyFrom
 specifier|public
 name|void
-name|copy
+name|copyFrom
 parameter_list|(
 name|TermState
 name|_other
@@ -803,7 +803,7 @@ parameter_list|)
 block|{
 name|super
 operator|.
-name|copy
+name|copyFrom
 argument_list|(
 name|_other
 argument_list|)
