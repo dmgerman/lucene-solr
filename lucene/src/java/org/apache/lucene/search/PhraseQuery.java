@@ -58,7 +58,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -781,7 +781,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|,
 name|boolean
@@ -1077,7 +1077,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|,
 name|int

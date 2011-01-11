@@ -52,7 +52,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -284,7 +284,7 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|)
 throws|throws
@@ -363,8 +363,8 @@ parameter_list|(
 name|Filter
 name|filter
 parameter_list|,
-name|ReaderContext
-name|info
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -376,7 +376,7 @@ name|filter
 operator|.
 name|getDocIdSet
 argument_list|(
-name|info
+name|context
 argument_list|)
 decl_stmt|;
 if|if
@@ -434,8 +434,8 @@ specifier|private
 name|OpenBitSetDISI
 name|initialResult
 parameter_list|(
-name|ReaderContext
-name|info
+name|AtomicReaderContext
+name|context
 parameter_list|,
 name|int
 name|logic
@@ -450,7 +450,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|info
+name|context
 operator|.
 name|reader
 decl_stmt|;
@@ -480,7 +480,7 @@ literal|0
 index|]
 index|]
 argument_list|,
-name|info
+name|context
 argument_list|)
 argument_list|,
 name|reader
@@ -519,7 +519,7 @@ literal|0
 index|]
 index|]
 argument_list|,
-name|info
+name|context
 argument_list|)
 argument_list|,
 name|reader
@@ -572,8 +572,8 @@ specifier|private
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|ReaderContext
-name|info
+name|AtomicReaderContext
+name|context
 parameter_list|,
 name|int
 name|logic
@@ -590,7 +590,7 @@ name|result
 init|=
 name|initialResult
 argument_list|(
-name|info
+name|context
 argument_list|,
 name|logic
 argument_list|,
@@ -632,7 +632,7 @@ index|]
 operator|.
 name|getDocIdSet
 argument_list|(
-name|info
+name|context
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -647,7 +647,7 @@ specifier|private
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|info
 parameter_list|,
 name|int

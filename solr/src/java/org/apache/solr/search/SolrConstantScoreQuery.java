@@ -52,7 +52,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -340,7 +340,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|,
 name|boolean
@@ -371,7 +371,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|,
 name|int
@@ -542,8 +542,8 @@ parameter_list|(
 name|Similarity
 name|similarity
 parameter_list|,
-name|ReaderContext
-name|info
+name|AtomicReaderContext
+name|context
 parameter_list|,
 name|ConstantWeight
 name|w
@@ -583,14 +583,14 @@ name|w
 operator|.
 name|context
 argument_list|,
-name|info
+name|context
 argument_list|)
 else|:
 name|filter
 operator|.
 name|getDocIdSet
 argument_list|(
-name|info
+name|context
 argument_list|)
 decl_stmt|;
 if|if

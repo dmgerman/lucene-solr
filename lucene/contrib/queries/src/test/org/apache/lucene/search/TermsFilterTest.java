@@ -80,7 +80,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -440,9 +440,22 @@ name|getReader
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ReaderContext
+name|assertTrue
+argument_list|(
+name|reader
+operator|.
+name|getTopReaderContext
+argument_list|()
+operator|.
+name|isAtomic
+argument_list|)
+expr_stmt|;
+name|AtomicReaderContext
 name|context
 init|=
+operator|(
+name|AtomicReaderContext
+operator|)
 name|reader
 operator|.
 name|getTopReaderContext

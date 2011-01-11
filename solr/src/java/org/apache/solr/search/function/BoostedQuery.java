@@ -58,7 +58,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -73,20 +73,6 @@ operator|.
 name|util
 operator|.
 name|ToStringUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|SolrIndexReader
 import|;
 end_import
 
@@ -427,7 +413,7 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|,
 name|boolean
@@ -496,7 +482,7 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|ReaderContext
+name|AtomicReaderContext
 name|readerContext
 parameter_list|,
 name|int

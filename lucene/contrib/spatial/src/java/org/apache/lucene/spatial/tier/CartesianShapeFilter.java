@@ -64,7 +64,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -223,7 +223,7 @@ name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 specifier|final
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|)
 throws|throws

@@ -38,7 +38,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -96,17 +96,30 @@ name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 specifier|final
-name|ReaderContext
+name|AtomicReaderContext
 name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 comment|// get a private context that is used to rewrite, createWeight and score eventually
+assert|assert
+name|context
+operator|.
+name|reader
+operator|.
+name|getTopReaderContext
+argument_list|()
+operator|.
+name|isAtomic
+assert|;
 specifier|final
-name|ReaderContext
+name|AtomicReaderContext
 name|privateContext
 init|=
+operator|(
+name|AtomicReaderContext
+operator|)
 name|context
 operator|.
 name|reader
