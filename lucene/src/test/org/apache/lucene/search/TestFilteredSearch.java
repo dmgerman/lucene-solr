@@ -621,12 +621,7 @@ decl_stmt|;
 name|int
 name|docBase
 init|=
-operator|(
-operator|(
-name|AtomicReaderContext
-operator|)
 name|context
-operator|)
 operator|.
 name|docBase
 decl_stmt|;
