@@ -82,6 +82,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|TermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|codecs
 operator|.
 name|PostingsReaderBase
@@ -100,7 +114,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|TermState
+name|PrefixCodedTermState
 import|;
 end_import
 
@@ -285,7 +299,7 @@ specifier|static
 class|class
 name|PulsingTermState
 extends|extends
-name|TermState
+name|PrefixCodedTermState
 block|{
 DECL|field|postings
 specifier|private
@@ -301,7 +315,7 @@ decl_stmt|;
 comment|// -1 if this term was not inlined
 DECL|field|wrappedTermState
 specifier|private
-name|TermState
+name|PrefixCodedTermState
 name|wrappedTermState
 decl_stmt|;
 DECL|field|pendingIndexTerm
@@ -378,7 +392,7 @@ operator|.
 name|wrappedTermState
 operator|=
 operator|(
-name|TermState
+name|PrefixCodedTermState
 operator|)
 name|wrappedTermState
 operator|.
@@ -532,7 +546,7 @@ annotation|@
 name|Override
 DECL|method|newTermState
 specifier|public
-name|TermState
+name|PrefixCodedTermState
 name|newTermState
 parameter_list|()
 throws|throws
@@ -571,7 +585,7 @@ parameter_list|,
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TermState
+name|PrefixCodedTermState
 name|_termState
 parameter_list|,
 name|boolean
@@ -728,7 +742,7 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|,
-name|TermState
+name|PrefixCodedTermState
 name|_termState
 parameter_list|,
 name|Bits
@@ -877,7 +891,7 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|,
-name|TermState
+name|PrefixCodedTermState
 name|_termState
 parameter_list|,
 name|Bits
