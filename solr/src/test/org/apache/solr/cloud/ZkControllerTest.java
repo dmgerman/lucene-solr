@@ -364,6 +364,16 @@ argument_list|()
 expr_stmt|;
 name|AbstractZkTestCase
 operator|.
+name|tryCleanSolrZkNode
+argument_list|(
+name|server
+operator|.
+name|getZkHost
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|AbstractZkTestCase
+operator|.
 name|makeSolrZkNode
 argument_list|(
 name|server
