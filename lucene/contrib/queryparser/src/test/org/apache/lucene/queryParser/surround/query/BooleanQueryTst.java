@@ -339,10 +339,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
 name|docBase
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 block|}
