@@ -728,11 +728,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -746,6 +743,8 @@ operator|.
 name|emptyMap
 argument_list|()
 argument_list|,
+name|context
+operator|.
 name|reader
 argument_list|)
 expr_stmt|;

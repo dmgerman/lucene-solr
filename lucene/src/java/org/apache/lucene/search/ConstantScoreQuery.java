@@ -963,11 +963,8 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -976,9 +973,7 @@ name|collector
 operator|.
 name|setNextReader
 argument_list|(
-name|reader
-argument_list|,
-name|docBase
+name|context
 argument_list|)
 expr_stmt|;
 block|}
