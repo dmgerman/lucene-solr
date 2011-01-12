@@ -372,13 +372,13 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|)
 block|{
-comment|//System.out.println("PW field=" + fieldInfo.name);
 name|omitTF
 operator|=
 name|fieldInfo
 operator|.
 name|omitTermFreqAndPositions
 expr_stmt|;
+comment|//System.out.println("PW field=" + fieldInfo.name + " omitTF=" + omitTF);
 name|storePayloads
 operator|=
 name|fieldInfo
@@ -431,6 +431,7 @@ block|{
 name|push
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("PW: wrapped.finishDoc");
 name|wrappedPostingsWriter
 operator|.
 name|finishDoc
@@ -1140,7 +1141,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PW now push @ " + pendingCount);
+comment|//System.out.println("PW now push @ " + pendingCount + " wrapped=" + wrappedPostingsWriter);
 assert|assert
 name|pendingCount
 operator|==
@@ -1184,6 +1185,7 @@ name|doc
 operator|=
 name|pos
 expr_stmt|;
+comment|//System.out.println("PW: wrapped.startDoc docID=" + doc.docID + " tf=" + doc.termFreq);
 name|wrappedPostingsWriter
 operator|.
 name|startDoc
@@ -1219,6 +1221,7 @@ name|doc
 operator|.
 name|docID
 assert|;
+comment|//System.out.println("PW: wrapped.finishDoc");
 name|wrappedPostingsWriter
 operator|.
 name|finishDoc
@@ -1228,6 +1231,7 @@ name|doc
 operator|=
 name|pos
 expr_stmt|;
+comment|//System.out.println("PW: wrapped.startDoc docID=" + doc.docID + " tf=" + doc.termFreq);
 name|wrappedPostingsWriter
 operator|.
 name|startDoc
@@ -1242,6 +1246,7 @@ name|termFreq
 argument_list|)
 expr_stmt|;
 block|}
+comment|//System.out.println("PW:   wrapped.addPos pos=" + pos.pos);
 name|wrappedPostingsWriter
 operator|.
 name|addPosition
