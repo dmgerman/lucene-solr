@@ -811,7 +811,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|Collection
@@ -1522,7 +1522,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|Collection
@@ -2421,7 +2421,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|Collection

@@ -1802,7 +1802,7 @@ name|reader
 operator|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 expr_stmt|;
 name|this

@@ -313,8 +313,6 @@ argument_list|(
 name|context
 argument_list|,
 name|leaf
-operator|.
-name|reader
 argument_list|)
 decl_stmt|;
 return|return

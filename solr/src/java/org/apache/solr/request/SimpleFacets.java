@@ -2295,7 +2295,7 @@ name|getTermsIndex
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 name|fieldName
@@ -3469,7 +3469,7 @@ name|r
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|FieldType

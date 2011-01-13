@@ -1448,7 +1448,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|getElevationMap
@@ -2340,7 +2340,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|ElevationObj

@@ -974,7 +974,7 @@ try|try
 block|{
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|deleteDocument

@@ -100,7 +100,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -162,7 +162,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|ReaderContext
+name|AtomicReaderContext
 name|readerContext
 parameter_list|)
 throws|throws

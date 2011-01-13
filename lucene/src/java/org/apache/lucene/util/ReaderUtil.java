@@ -1049,6 +1049,37 @@ return|return
 name|leaves
 return|;
 block|}
+comment|/**    * Walks up the reader tree and return the given context's top level reader    * context, or in other words the reader tree's root context.    */
+DECL|method|getTopLevelContext
+specifier|public
+specifier|static
+name|ReaderContext
+name|getTopLevelContext
+parameter_list|(
+name|ReaderContext
+name|context
+parameter_list|)
+block|{
+while|while
+condition|(
+name|context
+operator|.
+name|parent
+operator|!=
+literal|null
+condition|)
+block|{
+name|context
+operator|=
+name|context
+operator|.
+name|parent
+expr_stmt|;
+block|}
+return|return
+name|context
+return|;
+block|}
 comment|/**    * Returns index of the searcher/reader for document<code>n</code> in the    * array used to construct this searcher/reader.    */
 DECL|method|subIndex
 specifier|public

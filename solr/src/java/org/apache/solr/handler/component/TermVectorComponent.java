@@ -1279,7 +1279,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 comment|//the TVMapper is a TermVectorMapper which can be used to optimize loading of Term Vectors

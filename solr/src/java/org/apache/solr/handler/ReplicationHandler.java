@@ -1860,7 +1860,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|getIndexCommit
@@ -3065,7 +3065,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|getIndexCommit
@@ -3084,7 +3084,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|getIndexCommit
@@ -5743,7 +5743,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 if|if

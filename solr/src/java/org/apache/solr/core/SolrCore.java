@@ -4488,7 +4488,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|IndexReader

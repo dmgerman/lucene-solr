@@ -529,7 +529,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -925,7 +925,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1308,7 +1308,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
