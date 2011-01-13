@@ -769,6 +769,19 @@ return|return
 name|randVals
 return|;
 block|}
+comment|/**    * Subclasses can override this to change a test's solr home    * (default is in test-files)    */
+DECL|method|getSolrHome
+specifier|public
+name|String
+name|getSolrHome
+parameter_list|()
+block|{
+return|return
+name|SolrTestCaseJ4
+operator|.
+name|TEST_HOME
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|setUp
@@ -806,6 +819,16 @@ argument_list|(
 literal|"solr.test.sys.prop2"
 argument_list|,
 literal|"proptwo"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.solr.home"
+argument_list|,
+name|getSolrHome
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|testDir
