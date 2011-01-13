@@ -187,6 +187,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -565,8 +567,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -583,7 +585,7 @@ name|StringIndexDocValues
 argument_list|(
 name|this
 argument_list|,
-name|reader
+name|readerContext
 argument_list|,
 name|field
 argument_list|)

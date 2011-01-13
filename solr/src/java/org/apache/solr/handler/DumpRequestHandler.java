@@ -188,10 +188,22 @@ literal|null
 condition|)
 block|{
 name|ArrayList
+argument_list|<
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
 name|streams
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// Cycle through each stream

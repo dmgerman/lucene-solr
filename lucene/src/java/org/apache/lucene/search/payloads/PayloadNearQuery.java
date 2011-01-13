@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -70,7 +72,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -361,7 +363,7 @@ specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -810,7 +812,7 @@ parameter_list|(
 name|SpanQuery
 name|query
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -831,14 +833,11 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
+name|ScorerContext
+name|scorerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -851,6 +850,8 @@ name|query
 operator|.
 name|getSpans
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|)
 argument_list|,
@@ -858,6 +859,8 @@ name|this
 argument_list|,
 name|similarity
 argument_list|,
+name|context
+operator|.
 name|reader
 operator|.
 name|norms

@@ -1078,7 +1078,7 @@ name|si1
 operator|.
 name|dir
 argument_list|,
-name|useCompoundFile
+literal|false
 argument_list|,
 name|merger
 operator|.
@@ -1124,6 +1124,13 @@ argument_list|,
 name|info
 argument_list|)
 decl_stmt|;
+name|info
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 specifier|final

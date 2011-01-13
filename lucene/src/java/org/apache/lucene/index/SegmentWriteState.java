@@ -28,26 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -105,15 +85,6 @@ specifier|public
 name|boolean
 name|hasVectors
 decl_stmt|;
-DECL|field|flushedFiles
-specifier|public
-specifier|final
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|flushedFiles
-decl_stmt|;
 DECL|field|segmentCodecs
 specifier|final
 name|SegmentCodecs
@@ -128,10 +99,10 @@ decl_stmt|;
 comment|/** Expert: The fraction of terms in the "dictionary" which should be stored    * in RAM.  Smaller values use more memory, but make searching slightly    * faster, while larger values use less memory and make searching slightly    * slower.  Searching is typically not dominated by dictionary lookup, so    * tweaking this is rarely useful.*/
 DECL|field|termIndexInterval
 specifier|public
-specifier|final
 name|int
 name|termIndexInterval
 decl_stmt|;
+comment|// TODO: this should be private to the codec, not settable here or in IWC
 comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
 DECL|field|skipInterval
 specifier|public
@@ -218,15 +189,6 @@ name|segmentCodecs
 operator|=
 name|segmentCodecs
 expr_stmt|;
-name|flushedFiles
-operator|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-expr_stmt|;
 name|codecId
 operator|=
 literal|""
@@ -284,12 +246,6 @@ operator|=
 name|state
 operator|.
 name|segmentCodecs
-expr_stmt|;
-name|flushedFiles
-operator|=
-name|state
-operator|.
-name|flushedFiles
 expr_stmt|;
 name|this
 operator|.

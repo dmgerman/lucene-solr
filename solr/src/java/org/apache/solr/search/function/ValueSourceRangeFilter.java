@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -71,6 +71,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -219,8 +221,8 @@ name|Map
 name|context
 parameter_list|,
 specifier|final
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -244,11 +246,13 @@ name|getValues
 argument_list|(
 name|context
 argument_list|,
-name|reader
+name|readerContext
 argument_list|)
 operator|.
 name|getRangeScorer
 argument_list|(
+name|readerContext
+operator|.
 name|reader
 argument_list|,
 name|lowerVal
@@ -274,7 +278,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws

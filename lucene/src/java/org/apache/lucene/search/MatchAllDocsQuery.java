@@ -40,7 +40,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -54,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiFields
+name|Term
 import|;
 end_import
 
@@ -217,12 +219,10 @@ argument_list|)
 expr_stmt|;
 name|delDocs
 operator|=
-name|MultiFields
+name|reader
 operator|.
 name|getDeletedDocs
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|score
 operator|=
@@ -389,7 +389,7 @@ DECL|method|MatchAllDocsWeight
 specifier|public
 name|MatchAllDocsWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 block|{
@@ -497,14 +497,11 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
+name|ScorerContext
+name|scorerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -513,6 +510,8 @@ return|return
 operator|new
 name|MatchAllScorer
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|similarity
@@ -523,6 +522,8 @@ name|normsField
 operator|!=
 literal|null
 condition|?
+name|context
+operator|.
 name|reader
 operator|.
 name|norms
@@ -541,8 +542,8 @@ specifier|public
 name|Explanation
 name|explain
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|,
 name|int
 name|doc
@@ -611,7 +612,7 @@ specifier|public
 name|Weight
 name|createWeight
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 block|{

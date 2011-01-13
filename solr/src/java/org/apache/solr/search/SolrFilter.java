@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -69,6 +69,38 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -115,7 +147,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -130,8 +162,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -143,8 +175,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -154,7 +186,7 @@ name|getDocIdSet
 argument_list|(
 literal|null
 argument_list|,
-name|reader
+name|context
 argument_list|)
 return|;
 block|}

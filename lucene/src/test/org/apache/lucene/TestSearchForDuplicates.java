@@ -548,7 +548,7 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// try a search without OR
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|new
@@ -746,7 +746,7 @@ name|ScoreDoc
 index|[]
 name|hits
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -843,7 +843,7 @@ parameter_list|,
 name|int
 name|expectedCount
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws

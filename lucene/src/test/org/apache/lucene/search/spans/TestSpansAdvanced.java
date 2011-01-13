@@ -596,7 +596,7 @@ specifier|static
 name|void
 name|assertHits
 parameter_list|(
-name|Searcher
+name|IndexSearcher
 name|s
 parameter_list|,
 name|Query

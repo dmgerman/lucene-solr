@@ -480,7 +480,7 @@ operator|.
 name|getBoost
 argument_list|()
 operator|*
-name|lengthNorm
+name|computeLengthNorm
 argument_list|(
 name|fieldName
 argument_list|,
@@ -489,12 +489,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
-annotation|@
-name|Override
-DECL|method|lengthNorm
+DECL|method|computeLengthNorm
 specifier|public
 name|float
-name|lengthNorm
+name|computeLengthNorm
 parameter_list|(
 name|String
 name|fieldName

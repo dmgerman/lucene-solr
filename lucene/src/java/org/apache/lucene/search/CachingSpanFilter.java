@@ -40,7 +40,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiFields
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -205,8 +207,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -216,6 +218,8 @@ name|result
 init|=
 name|getCachedResult
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|)
 decl_stmt|;
@@ -269,12 +273,10 @@ operator|.
 name|hasDeletions
 argument_list|()
 condition|?
-name|MultiFields
+name|reader
 operator|.
 name|getDeletedDocs
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 else|:
 name|coreKey
 decl_stmt|;

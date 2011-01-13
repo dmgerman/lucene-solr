@@ -1175,7 +1175,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("\nADD: " + input.utf8ToString());
+comment|//System.out.println("\nFST ADD: input=" + input + " output=" + fst.outputs.outputToString(output));
 assert|assert
 name|lastInput
 operator|.
@@ -1803,8 +1803,7 @@ if|if
 condition|(
 name|fst
 operator|.
-name|getEmptyOutput
-argument_list|()
+name|emptyOutput
 operator|==
 literal|null
 condition|)

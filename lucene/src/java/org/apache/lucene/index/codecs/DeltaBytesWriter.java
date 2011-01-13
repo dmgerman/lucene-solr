@@ -61,6 +61,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
+operator|.
+name|BYTE_BLOCK_SIZE
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -76,6 +92,18 @@ specifier|final
 class|class
 name|DeltaBytesWriter
 block|{
+comment|// Must be bigger than
+comment|// DocumentsWriter.MAX_TERM_LENGTH_UTF8.  If you change
+comment|// this it's an index format change, so that change must be
+comment|// versioned:
+DECL|field|TERM_EOF
+specifier|final
+specifier|static
+name|int
+name|TERM_EOF
+init|=
+name|BYTE_BLOCK_SIZE
+decl_stmt|;
 DECL|field|lastBytes
 specifier|private
 name|byte
@@ -192,7 +220,9 @@ index|[
 name|start
 index|]
 condition|)
+block|{
 break|break;
+block|}
 name|start
 operator|++
 expr_stmt|;

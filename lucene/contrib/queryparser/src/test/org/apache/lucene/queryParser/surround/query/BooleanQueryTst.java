@@ -41,6 +41,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -55,20 +57,6 @@ operator|.
 name|search
 operator|.
 name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Searcher
 import|;
 end_import
 
@@ -345,19 +333,16 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
 name|docBase
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 block|}
@@ -578,7 +563,7 @@ operator|new
 name|TestCollector
 argument_list|()
 decl_stmt|;
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|new

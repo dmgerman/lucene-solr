@@ -847,6 +847,30 @@ operator|>
 name|maxMergeDocs
 condition|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"optimize: skip segment="
+operator|+
+name|info
+operator|+
+literal|": size is> maxMergeSize ("
+operator|+
+name|maxMergeSize
+operator|+
+literal|") or sizeDocs is> maxMergeDocs ("
+operator|+
+name|maxMergeDocs
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// need to skip that segment + add a merge for the 'right' segments,
 comment|// unless there is only 1 which is optimized.
 if|if
@@ -1325,6 +1349,24 @@ name|maxNumSegments
 operator|>
 literal|0
 assert|;
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"findMergesForOptimize: maxNumSegs="
+operator|+
+name|maxNumSegments
+operator|+
+literal|" segsToOptimize= "
+operator|+
+name|segmentsToOptimize
+argument_list|)
+expr_stmt|;
+block|}
 comment|// If the segments are already optimized (e.g. there's only 1 segment), or
 comment|// there are<maxNumSegements, all optimized, nothing to do.
 if|if
@@ -1338,9 +1380,23 @@ argument_list|,
 name|segmentsToOptimize
 argument_list|)
 condition|)
+block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"already optimized; skip"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
+block|}
 comment|// Find the newest (rightmost) segment that needs to
 comment|// be optimized (other segments may have been flushed
 comment|// since optimize started):
@@ -1393,9 +1449,23 @@ name|last
 operator|==
 literal|0
 condition|)
+block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"last == 0; skip"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
+block|}
 comment|// There is only one segment already, and it is optimized
 if|if
 condition|(
@@ -1417,9 +1487,23 @@ literal|0
 argument_list|)
 argument_list|)
 condition|)
+block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"already 1 seg; skip"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
+block|}
 comment|// Check if there are any segments above the threshold
 name|boolean
 name|anyTooLarge

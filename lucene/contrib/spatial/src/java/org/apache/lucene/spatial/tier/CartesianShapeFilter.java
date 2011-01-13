@@ -63,6 +63,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -221,8 +223,8 @@ name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 specifier|final
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -231,6 +233,8 @@ specifier|final
 name|Bits
 name|delDocs
 init|=
+name|context
+operator|.
 name|reader
 operator|.
 name|getDeletedDocs
@@ -321,6 +325,8 @@ throws|throws
 name|IOException
 block|{
 return|return
+name|context
+operator|.
 name|reader
 operator|.
 name|termDocsEnum
@@ -356,6 +362,8 @@ init|=
 operator|new
 name|OpenBitSet
 argument_list|(
+name|context
+operator|.
 name|reader
 operator|.
 name|maxDoc
@@ -410,6 +418,8 @@ specifier|final
 name|DocsEnum
 name|docsEnum
 init|=
+name|context
+operator|.
 name|reader
 operator|.
 name|termDocsEnum

@@ -447,7 +447,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|getVersion
@@ -658,7 +658,7 @@ name|lastModified
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|directory

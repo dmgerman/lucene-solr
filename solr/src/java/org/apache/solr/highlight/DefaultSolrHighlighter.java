@@ -1365,7 +1365,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 name|fieldName
@@ -2361,7 +2361,7 @@ name|getTokenStream
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 name|docId
@@ -2912,7 +2912,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 name|docId

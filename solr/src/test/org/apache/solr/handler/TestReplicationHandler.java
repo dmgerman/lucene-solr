@@ -3784,6 +3784,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|AbstractSolrTestCase
+operator|.
+name|recurseDelete
+argument_list|(
+name|snapDir
+argument_list|)
+expr_stmt|;
+comment|// clean up the snap dir
 block|}
 comment|/* character copy of file using UTF-8 */
 DECL|method|copyFile

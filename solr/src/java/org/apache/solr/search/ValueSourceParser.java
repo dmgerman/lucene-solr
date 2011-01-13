@@ -27,6 +27,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -82,7 +84,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -485,13 +487,9 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|TopValueSource
-argument_list|(
-operator|new
 name|OrdFieldSource
 argument_list|(
 name|field
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -558,13 +556,9 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|TopValueSource
-argument_list|(
-operator|new
 name|ReverseOrdFieldSource
 argument_list|(
 name|field
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -589,6 +583,7 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+comment|// top(vs) is now a no-op
 name|ValueSource
 name|source
 init|=
@@ -597,22 +592,8 @@ operator|.
 name|parseValueSource
 argument_list|()
 decl_stmt|;
-comment|// nested top is redundant, and ord and rord get automatically wrapped
-if|if
-condition|(
-name|source
-operator|instanceof
-name|TopValueSource
-condition|)
 return|return
 name|source
-return|;
-return|return
-operator|new
-name|TopValueSource
-argument_list|(
-name|source
-argument_list|)
 return|;
 block|}
 block|}
@@ -833,9 +814,6 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|TopValueSource
-argument_list|(
-operator|new
 name|ScaleFloatFunction
 argument_list|(
 name|source
@@ -843,7 +821,6 @@ argument_list|,
 name|min
 argument_list|,
 name|max
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -4461,8 +4438,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -4829,8 +4806,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -4845,7 +4822,7 @@ name|getValues
 argument_list|(
 name|context
 argument_list|,
-name|reader
+name|readerContext
 argument_list|)
 decl_stmt|;
 return|return
@@ -5118,8 +5095,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -5134,7 +5111,7 @@ name|getValues
 argument_list|(
 name|context
 argument_list|,
-name|reader
+name|readerContext
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -5147,7 +5124,7 @@ name|getValues
 argument_list|(
 name|context
 argument_list|,
-name|reader
+name|readerContext
 argument_list|)
 decl_stmt|;
 return|return
@@ -5294,31 +5271,12 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-name|a
-operator|.
-name|createWeight
-argument_list|(
-name|context
-argument_list|,
-name|searcher
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|createWeight
-argument_list|(
-name|context
-argument_list|,
-name|searcher
-argument_list|)
-expr_stmt|;
-block|}
+block|{     }
 DECL|method|hashCode
 specifier|public
 name|int

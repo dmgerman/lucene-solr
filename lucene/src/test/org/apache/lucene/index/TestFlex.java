@@ -464,6 +464,8 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|assertEquals
 argument_list|(
 literal|0
@@ -474,6 +476,15 @@ name|ord
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|uoe
+parameter_list|)
+block|{
+comment|// ok -- codec is not required to support this op
+block|}
 name|r
 operator|.
 name|close

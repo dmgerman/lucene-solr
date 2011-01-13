@@ -2247,7 +2247,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 literal|false

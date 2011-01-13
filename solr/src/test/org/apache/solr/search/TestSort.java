@@ -71,6 +71,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -659,8 +661,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -668,6 +670,8 @@ block|{
 return|return
 name|randSet
 argument_list|(
+name|context
+operator|.
 name|reader
 operator|.
 name|maxDoc
@@ -1071,11 +1075,8 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -1084,15 +1085,13 @@ name|topCollector
 operator|.
 name|setNextReader
 argument_list|(
-name|reader
-argument_list|,
-name|docBase
+name|context
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
 name|docBase
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 block|}

@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -42,7 +44,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -109,7 +111,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -135,17 +137,17 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Searcher
+name|IndexSearcher
 name|searcher
 init|=
 operator|(
-name|Searcher
+name|IndexSearcher
 operator|)
 name|context
 operator|.

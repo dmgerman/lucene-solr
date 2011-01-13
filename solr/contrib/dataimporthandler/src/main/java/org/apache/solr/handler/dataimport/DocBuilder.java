@@ -5625,8 +5625,6 @@ operator|*
 literal|60
 operator|)
 operator|)
-operator|%
-literal|60
 operator|+
 literal|":"
 operator|+

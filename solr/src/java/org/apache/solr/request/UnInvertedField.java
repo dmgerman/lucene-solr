@@ -1112,7 +1112,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|int
@@ -2407,6 +2407,9 @@ block|}
 DECL|method|getCounts
 specifier|public
 name|NamedList
+argument_list|<
+name|Integer
+argument_list|>
 name|getCounts
 parameter_list|(
 name|SolrIndexSearcher
@@ -2455,10 +2458,16 @@ name|field
 argument_list|)
 decl_stmt|;
 name|NamedList
+argument_list|<
+name|Integer
+argument_list|>
 name|res
 init|=
 operator|new
 name|NamedList
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// order is important
@@ -2537,7 +2546,7 @@ name|getEnumerator
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3796,7 +3805,7 @@ name|getTermsIndex
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 name|f
@@ -3872,7 +3881,7 @@ name|getEnumerator
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4835,6 +4844,11 @@ throws|throws
 name|IOException
 block|{
 name|SolrCache
+argument_list|<
+name|String
+argument_list|,
+name|UnInvertedField
+argument_list|>
 name|cache
 init|=
 name|searcher
@@ -4862,9 +4876,6 @@ block|}
 name|UnInvertedField
 name|uif
 init|=
-operator|(
-name|UnInvertedField
-operator|)
 name|cache
 operator|.
 name|get
@@ -4886,9 +4897,6 @@ init|)
 block|{
 name|uif
 operator|=
-operator|(
-name|UnInvertedField
-operator|)
 name|cache
 operator|.
 name|get
@@ -5250,20 +5258,6 @@ operator|.
 name|docFreq
 argument_list|()
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|cacheCurrentTerm
-specifier|public
-name|void
-name|cacheCurrentTerm
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
 block|}
 DECL|method|skipTo
 specifier|public

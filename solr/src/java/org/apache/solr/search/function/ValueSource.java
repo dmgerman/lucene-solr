@@ -40,6 +40,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|FieldComparator
@@ -84,7 +100,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Searcher
+name|IndexSearcher
 import|;
 end_import
 
@@ -203,8 +219,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -245,7 +261,7 @@ name|description
 argument_list|()
 return|;
 block|}
-comment|/**    * EXPERIMENTAL: This method is subject to change.    *<br>WARNING: Sorted function queries are not currently weighted.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, org.apache.lucene.index.IndexReader)}    * to populate the SortField.    *     * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
+comment|/**    * EXPERIMENTAL: This method is subject to change.    *<br>WARNING: Sorted function queries are not currently weighted.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, AtomicReaderContext)}    * to populate the SortField.    *     * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -284,7 +300,7 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|Searcher
+name|IndexSearcher
 name|searcher
 parameter_list|)
 throws|throws
@@ -296,12 +312,29 @@ specifier|public
 specifier|static
 name|Map
 name|newContext
-parameter_list|()
+parameter_list|(
+name|IndexSearcher
+name|searcher
+parameter_list|)
 block|{
-return|return
+name|Map
+name|context
+init|=
 operator|new
 name|IdentityHashMap
 argument_list|()
+decl_stmt|;
+name|context
+operator|.
+name|put
+argument_list|(
+literal|"searcher"
+argument_list|,
+name|searcher
+argument_list|)
+expr_stmt|;
+return|return
+name|context
 return|;
 block|}
 DECL|class|ValueSourceComparatorSource
@@ -526,11 +559,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -544,7 +574,7 @@ operator|.
 name|emptyMap
 argument_list|()
 argument_list|,
-name|reader
+name|context
 argument_list|)
 expr_stmt|;
 return|return

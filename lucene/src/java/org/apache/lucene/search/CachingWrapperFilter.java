@@ -80,7 +80,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiFields
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -124,6 +126,9 @@ name|CachingWrapperFilter
 extends|extends
 name|Filter
 block|{
+comment|// TODO: make this filter aware of ReaderContext. a cached filter could
+comment|// specify the actual readers key or something similar to indicate on which
+comment|// level of the readers hierarchy it should be cached.
 DECL|field|filter
 name|Filter
 name|filter
@@ -328,12 +333,10 @@ specifier|final
 name|Bits
 name|delDocs
 init|=
-name|MultiFields
+name|reader
 operator|.
 name|getDeletedDocs
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -641,12 +644,20 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|IndexReader
+name|reader
+init|=
+name|context
+operator|.
+name|reader
+decl_stmt|;
 specifier|final
 name|Object
 name|coreKey
@@ -665,12 +676,10 @@ operator|.
 name|hasDeletions
 argument_list|()
 condition|?
-name|MultiFields
+name|reader
 operator|.
 name|getDeletedDocs
-argument_list|(
-name|reader
-argument_list|)
+argument_list|()
 else|:
 name|coreKey
 decl_stmt|;
@@ -714,7 +723,7 @@ name|filter
 operator|.
 name|getDocIdSet
 argument_list|(
-name|reader
+name|context
 argument_list|)
 argument_list|,
 name|reader

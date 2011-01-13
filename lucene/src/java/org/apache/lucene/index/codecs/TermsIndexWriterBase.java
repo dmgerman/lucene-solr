@@ -131,6 +131,8 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 DECL|method|close
 specifier|public

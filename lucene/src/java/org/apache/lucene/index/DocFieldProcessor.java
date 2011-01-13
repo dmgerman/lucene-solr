@@ -349,15 +349,6 @@ argument_list|,
 name|fileName
 argument_list|)
 expr_stmt|;
-name|state
-operator|.
-name|flushedFiles
-operator|.
-name|add
-argument_list|(
-name|fileName
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override

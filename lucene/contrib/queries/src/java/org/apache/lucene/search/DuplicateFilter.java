@@ -64,6 +64,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Terms
 import|;
 end_import
@@ -146,6 +162,8 @@ name|DuplicateFilter
 extends|extends
 name|Filter
 block|{
+comment|// TODO: make duplicate filter aware of ReaderContext such that we can
+comment|// filter duplicates across segments
 DECL|field|fieldName
 name|String
 name|fieldName
@@ -258,8 +276,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -274,6 +292,8 @@ block|{
 return|return
 name|fastBits
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|)
 return|;
@@ -283,6 +303,8 @@ block|{
 return|return
 name|correctBits
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|)
 return|;
@@ -403,7 +425,7 @@ if|if
 condition|(
 name|doc
 operator|!=
-name|docs
+name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -450,7 +472,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|docs
+name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -612,7 +634,7 @@ if|if
 condition|(
 name|doc
 operator|!=
-name|docs
+name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -666,7 +688,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|docs
+name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
