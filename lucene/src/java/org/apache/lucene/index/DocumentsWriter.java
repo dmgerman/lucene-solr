@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -407,28 +397,6 @@ operator|*
 literal|1024
 argument_list|)
 decl_stmt|;
-comment|// If we've allocated 5% over our RAM budget, we then
-comment|// free down to 95%
-DECL|field|freeLevel
-specifier|private
-name|long
-name|freeLevel
-init|=
-call|(
-name|long
-call|)
-argument_list|(
-name|IndexWriterConfig
-operator|.
-name|DEFAULT_RAM_BUFFER_SIZE_MB
-operator|*
-literal|1024
-operator|*
-literal|1024
-operator|*
-literal|0.95
-argument_list|)
-decl_stmt|;
 comment|// Flush @ this number of docs.  If ramBufferSize is
 comment|// non-zero we will flush by RAM usage instead.
 DECL|field|maxBufferedDocs
@@ -455,14 +423,6 @@ DECL|field|pendingDeletes
 specifier|final
 name|SegmentDeletes
 name|pendingDeletes
-decl_stmt|;
-DECL|field|flushControl
-specifier|private
-specifier|final
-name|IndexWriter
-operator|.
-name|FlushControl
-name|flushControl
 decl_stmt|;
 DECL|field|chain
 specifier|final
@@ -553,12 +513,6 @@ operator|.
 name|chain
 operator|=
 name|chain
-expr_stmt|;
-name|flushControl
-operator|=
-name|writer
-operator|.
-name|flushControl
 expr_stmt|;
 name|this
 operator|.
@@ -974,17 +928,6 @@ operator|*
 literal|1024
 operator|*
 literal|1024
-argument_list|)
-expr_stmt|;
-name|freeLevel
-operator|=
-call|(
-name|long
-call|)
-argument_list|(
-literal|0.95
-operator|*
-name|ramBufferSize
 argument_list|)
 expr_stmt|;
 block|}

@@ -107,26 +107,6 @@ operator|-
 literal|1
 condition|)
 block|{
-if|if
-condition|(
-name|bufferUpto
-operator|>
-literal|0
-condition|)
-comment|// Recycle all but the first buffer
-name|docWriter
-operator|.
-name|recycleIntBlocks
-argument_list|(
-name|buffers
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-operator|+
-name|bufferUpto
-argument_list|)
-expr_stmt|;
 comment|// Reuse first buffer
 name|bufferUpto
 operator|=
